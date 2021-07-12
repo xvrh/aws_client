@@ -75,6 +75,13 @@ class StructType {
     this.a,
     this.b,
   });
+  factory StructType.fromJson(Map<String, dynamic> json) {
+    return StructType(
+      a: json['A'] as String?,
+      b: json['B'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final a = this.a;
     final b = this.b;

@@ -80,6 +80,13 @@ class OutputShape {
     this.timestamp,
     this.trueBool,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> _) {
+    return OutputShape();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

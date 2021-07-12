@@ -3004,6 +3004,13 @@ class CreateDatasetGroupResponse {
       datasetGroupArn: json['DatasetGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetGroupArn = this.datasetGroupArn;
+    return {
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+    };
+  }
 }
 
 class CreateDatasetImportJobResponse {
@@ -3017,6 +3024,14 @@ class CreateDatasetImportJobResponse {
     return CreateDatasetImportJobResponse(
       datasetImportJobArn: json['DatasetImportJobArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetImportJobArn = this.datasetImportJobArn;
+    return {
+      if (datasetImportJobArn != null)
+        'DatasetImportJobArn': datasetImportJobArn,
+    };
   }
 }
 
@@ -3032,6 +3047,13 @@ class CreateDatasetResponse {
       datasetArn: json['DatasetArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    return {
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+    };
+  }
 }
 
 class CreateForecastExportJobResponse {
@@ -3046,6 +3068,14 @@ class CreateForecastExportJobResponse {
       forecastExportJobArn: json['ForecastExportJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final forecastExportJobArn = this.forecastExportJobArn;
+    return {
+      if (forecastExportJobArn != null)
+        'ForecastExportJobArn': forecastExportJobArn,
+    };
+  }
 }
 
 class CreateForecastResponse {
@@ -3059,6 +3089,13 @@ class CreateForecastResponse {
     return CreateForecastResponse(
       forecastArn: json['ForecastArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forecastArn = this.forecastArn;
+    return {
+      if (forecastArn != null) 'ForecastArn': forecastArn,
+    };
   }
 }
 
@@ -3077,6 +3114,14 @@ class CreatePredictorBacktestExportJobResponse {
           json['PredictorBacktestExportJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final predictorBacktestExportJobArn = this.predictorBacktestExportJobArn;
+    return {
+      if (predictorBacktestExportJobArn != null)
+        'PredictorBacktestExportJobArn': predictorBacktestExportJobArn,
+    };
+  }
 }
 
 class CreatePredictorResponse {
@@ -3090,6 +3135,13 @@ class CreatePredictorResponse {
     return CreatePredictorResponse(
       predictorArn: json['PredictorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predictorArn = this.predictorArn;
+    return {
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+    };
   }
 }
 
@@ -3177,6 +3229,21 @@ class DatasetGroupSummary {
       datasetGroupName: json['DatasetGroupName'] as String?,
       lastModificationTime: timeStampFromJson(json['LastModificationTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final datasetGroupName = this.datasetGroupName;
+    final lastModificationTime = this.lastModificationTime;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+      if (datasetGroupName != null) 'DatasetGroupName': datasetGroupName,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+    };
   }
 }
 
@@ -3270,6 +3337,29 @@ class DatasetImportJobSummary {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataSource = this.dataSource;
+    final datasetImportJobArn = this.datasetImportJobArn;
+    final datasetImportJobName = this.datasetImportJobName;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataSource != null) 'DataSource': dataSource,
+      if (datasetImportJobArn != null)
+        'DatasetImportJobArn': datasetImportJobArn,
+      if (datasetImportJobName != null)
+        'DatasetImportJobName': datasetImportJobName,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Provides a summary of the dataset properties used in the <a>ListDatasets</a>
@@ -3316,6 +3406,25 @@ class DatasetSummary {
       domain: (json['Domain'] as String?)?.toDomain(),
       lastModificationTime: timeStampFromJson(json['LastModificationTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final datasetType = this.datasetType;
+    final domain = this.domain;
+    final lastModificationTime = this.lastModificationTime;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (datasetType != null) 'DatasetType': datasetType.toValue(),
+      if (domain != null) 'Domain': domain.toValue(),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+    };
   }
 }
 
@@ -3424,6 +3533,27 @@ class DescribeDatasetGroupResponse {
       lastModificationTime: timeStampFromJson(json['LastModificationTime']),
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetArns = this.datasetArns;
+    final datasetGroupArn = this.datasetGroupArn;
+    final datasetGroupName = this.datasetGroupName;
+    final domain = this.domain;
+    final lastModificationTime = this.lastModificationTime;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetArns != null) 'DatasetArns': datasetArns,
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+      if (datasetGroupName != null) 'DatasetGroupName': datasetGroupName,
+      if (domain != null) 'Domain': domain.toValue(),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3575,6 +3705,48 @@ class DescribeDatasetImportJobResponse {
       useGeolocationForTimeZone: json['UseGeolocationForTimeZone'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataSize = this.dataSize;
+    final dataSource = this.dataSource;
+    final datasetArn = this.datasetArn;
+    final datasetImportJobArn = this.datasetImportJobArn;
+    final datasetImportJobName = this.datasetImportJobName;
+    final estimatedTimeRemainingInMinutes =
+        this.estimatedTimeRemainingInMinutes;
+    final fieldStatistics = this.fieldStatistics;
+    final geolocationFormat = this.geolocationFormat;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final status = this.status;
+    final timeZone = this.timeZone;
+    final timestampFormat = this.timestampFormat;
+    final useGeolocationForTimeZone = this.useGeolocationForTimeZone;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataSize != null) 'DataSize': dataSize,
+      if (dataSource != null) 'DataSource': dataSource,
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetImportJobArn != null)
+        'DatasetImportJobArn': datasetImportJobArn,
+      if (datasetImportJobName != null)
+        'DatasetImportJobName': datasetImportJobName,
+      if (estimatedTimeRemainingInMinutes != null)
+        'EstimatedTimeRemainingInMinutes': estimatedTimeRemainingInMinutes,
+      if (fieldStatistics != null) 'FieldStatistics': fieldStatistics,
+      if (geolocationFormat != null) 'GeolocationFormat': geolocationFormat,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status,
+      if (timeZone != null) 'TimeZone': timeZone,
+      if (timestampFormat != null) 'TimestampFormat': timestampFormat,
+      if (useGeolocationForTimeZone != null)
+        'UseGeolocationForTimeZone': useGeolocationForTimeZone,
+    };
+  }
 }
 
 class DescribeDatasetResponse {
@@ -3679,6 +3851,33 @@ class DescribeDatasetResponse {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataFrequency = this.dataFrequency;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final datasetType = this.datasetType;
+    final domain = this.domain;
+    final encryptionConfig = this.encryptionConfig;
+    final lastModificationTime = this.lastModificationTime;
+    final schema = this.schema;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataFrequency != null) 'DataFrequency': dataFrequency,
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (datasetType != null) 'DatasetType': datasetType.toValue(),
+      if (domain != null) 'Domain': domain.toValue(),
+      if (encryptionConfig != null) 'EncryptionConfig': encryptionConfig,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (schema != null) 'Schema': schema,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class DescribeForecastExportJobResponse {
@@ -3772,6 +3971,31 @@ class DescribeForecastExportJobResponse {
       message: json['Message'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destination = this.destination;
+    final forecastArn = this.forecastArn;
+    final forecastExportJobArn = this.forecastExportJobArn;
+    final forecastExportJobName = this.forecastExportJobName;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (destination != null) 'Destination': destination,
+      if (forecastArn != null) 'ForecastArn': forecastArn,
+      if (forecastExportJobArn != null)
+        'ForecastExportJobArn': forecastExportJobArn,
+      if (forecastExportJobName != null)
+        'ForecastExportJobName': forecastExportJobName,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3877,6 +4101,35 @@ class DescribeForecastResponse {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final estimatedTimeRemainingInMinutes =
+        this.estimatedTimeRemainingInMinutes;
+    final forecastArn = this.forecastArn;
+    final forecastName = this.forecastName;
+    final forecastTypes = this.forecastTypes;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final predictorArn = this.predictorArn;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+      if (estimatedTimeRemainingInMinutes != null)
+        'EstimatedTimeRemainingInMinutes': estimatedTimeRemainingInMinutes,
+      if (forecastArn != null) 'ForecastArn': forecastArn,
+      if (forecastName != null) 'ForecastName': forecastName,
+      if (forecastTypes != null) 'ForecastTypes': forecastTypes,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class DescribePredictorBacktestExportJobResponse {
@@ -3967,6 +4220,31 @@ class DescribePredictorBacktestExportJobResponse {
           json['PredictorBacktestExportJobName'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destination = this.destination;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final predictorArn = this.predictorArn;
+    final predictorBacktestExportJobArn = this.predictorBacktestExportJobArn;
+    final predictorBacktestExportJobName = this.predictorBacktestExportJobName;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (destination != null) 'Destination': destination,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+      if (predictorBacktestExportJobArn != null)
+        'PredictorBacktestExportJobArn': predictorBacktestExportJobArn,
+      if (predictorBacktestExportJobName != null)
+        'PredictorBacktestExportJobName': predictorBacktestExportJobName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -4176,6 +4454,65 @@ class DescribePredictorResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final autoMLAlgorithmArns = this.autoMLAlgorithmArns;
+    final autoMLOverrideStrategy = this.autoMLOverrideStrategy;
+    final creationTime = this.creationTime;
+    final datasetImportJobArns = this.datasetImportJobArns;
+    final encryptionConfig = this.encryptionConfig;
+    final estimatedTimeRemainingInMinutes =
+        this.estimatedTimeRemainingInMinutes;
+    final evaluationParameters = this.evaluationParameters;
+    final featurizationConfig = this.featurizationConfig;
+    final forecastHorizon = this.forecastHorizon;
+    final forecastTypes = this.forecastTypes;
+    final hPOConfig = this.hPOConfig;
+    final inputDataConfig = this.inputDataConfig;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final performAutoML = this.performAutoML;
+    final performHPO = this.performHPO;
+    final predictorArn = this.predictorArn;
+    final predictorExecutionDetails = this.predictorExecutionDetails;
+    final predictorName = this.predictorName;
+    final status = this.status;
+    final trainingParameters = this.trainingParameters;
+    return {
+      if (algorithmArn != null) 'AlgorithmArn': algorithmArn,
+      if (autoMLAlgorithmArns != null)
+        'AutoMLAlgorithmArns': autoMLAlgorithmArns,
+      if (autoMLOverrideStrategy != null)
+        'AutoMLOverrideStrategy': autoMLOverrideStrategy.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetImportJobArns != null)
+        'DatasetImportJobArns': datasetImportJobArns,
+      if (encryptionConfig != null) 'EncryptionConfig': encryptionConfig,
+      if (estimatedTimeRemainingInMinutes != null)
+        'EstimatedTimeRemainingInMinutes': estimatedTimeRemainingInMinutes,
+      if (evaluationParameters != null)
+        'EvaluationParameters': evaluationParameters,
+      if (featurizationConfig != null)
+        'FeaturizationConfig': featurizationConfig,
+      if (forecastHorizon != null) 'ForecastHorizon': forecastHorizon,
+      if (forecastTypes != null) 'ForecastTypes': forecastTypes,
+      if (hPOConfig != null) 'HPOConfig': hPOConfig,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (performAutoML != null) 'PerformAutoML': performAutoML,
+      if (performHPO != null) 'PerformHPO': performHPO,
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+      if (predictorExecutionDetails != null)
+        'PredictorExecutionDetails': predictorExecutionDetails,
+      if (predictorName != null) 'PredictorName': predictorName,
+      if (status != null) 'Status': status,
+      if (trainingParameters != null) 'TrainingParameters': trainingParameters,
+    };
+  }
 }
 
 enum Domain {
@@ -4291,6 +4628,17 @@ class ErrorMetric {
       wape: json['WAPE'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final forecastType = this.forecastType;
+    final rmse = this.rmse;
+    final wape = this.wape;
+    return {
+      if (forecastType != null) 'ForecastType': forecastType,
+      if (rmse != null) 'RMSE': rmse,
+      if (wape != null) 'WAPE': wape,
+    };
+  }
 }
 
 /// Parameters that define how to split a dataset into training data and testing
@@ -4360,6 +4708,15 @@ class EvaluationResult {
           .map((e) => WindowSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final testWindows = this.testWindows;
+    return {
+      if (algorithmArn != null) 'AlgorithmArn': algorithmArn,
+      if (testWindows != null) 'TestWindows': testWindows,
+    };
   }
 }
 
@@ -4668,6 +5025,14 @@ class Filter {
     required this.key,
     required this.value,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      condition: (json['Condition'] as String).toFilterConditionString(),
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final condition = this.condition;
     final key = this.key;
@@ -4798,6 +5163,29 @@ class ForecastExportJobSummary {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destination = this.destination;
+    final forecastExportJobArn = this.forecastExportJobArn;
+    final forecastExportJobName = this.forecastExportJobName;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (destination != null) 'Destination': destination,
+      if (forecastExportJobArn != null)
+        'ForecastExportJobArn': forecastExportJobArn,
+      if (forecastExportJobName != null)
+        'ForecastExportJobName': forecastExportJobName,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Provides a summary of the forecast properties used in the
@@ -4892,6 +5280,29 @@ class ForecastSummary {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final forecastArn = this.forecastArn;
+    final forecastName = this.forecastName;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final predictorArn = this.predictorArn;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+      if (forecastArn != null) 'ForecastArn': forecastArn,
+      if (forecastName != null) 'ForecastName': forecastName,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class GetAccuracyMetricsResponse {
@@ -4918,6 +5329,17 @@ class GetAccuracyMetricsResponse {
           .map((e) => EvaluationResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoMLOverrideStrategy = this.autoMLOverrideStrategy;
+    final predictorEvaluationResults = this.predictorEvaluationResults;
+    return {
+      if (autoMLOverrideStrategy != null)
+        'AutoMLOverrideStrategy': autoMLOverrideStrategy.toValue(),
+      if (predictorEvaluationResults != null)
+        'PredictorEvaluationResults': predictorEvaluationResults,
+    };
   }
 }
 
@@ -5080,6 +5502,15 @@ class ListDatasetGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetGroups = this.datasetGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetGroups != null) 'DatasetGroups': datasetGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetImportJobsResponse {
@@ -5104,6 +5535,15 @@ class ListDatasetImportJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetImportJobs = this.datasetImportJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetImportJobs != null) 'DatasetImportJobs': datasetImportJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetsResponse {
@@ -5126,6 +5566,15 @@ class ListDatasetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasets = this.datasets;
+    final nextToken = this.nextToken;
+    return {
+      if (datasets != null) 'Datasets': datasets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5151,6 +5600,15 @@ class ListForecastExportJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final forecastExportJobs = this.forecastExportJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (forecastExportJobs != null) 'ForecastExportJobs': forecastExportJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListForecastsResponse {
@@ -5173,6 +5631,15 @@ class ListForecastsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forecasts = this.forecasts;
+    final nextToken = this.nextToken;
+    return {
+      if (forecasts != null) 'Forecasts': forecasts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5201,6 +5668,16 @@ class ListPredictorBacktestExportJobsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final predictorBacktestExportJobs = this.predictorBacktestExportJobs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (predictorBacktestExportJobs != null)
+        'PredictorBacktestExportJobs': predictorBacktestExportJobs,
+    };
+  }
 }
 
 class ListPredictorsResponse {
@@ -5224,6 +5701,15 @@ class ListPredictorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final predictors = this.predictors;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (predictors != null) 'Predictors': predictors,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5240,6 +5726,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5275,6 +5768,18 @@ class Metrics {
           .map((e) => WeightedQuantileLoss.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMetrics = this.errorMetrics;
+    final rmse = this.rmse;
+    final weightedQuantileLosses = this.weightedQuantileLosses;
+    return {
+      if (errorMetrics != null) 'ErrorMetrics': errorMetrics,
+      if (rmse != null) 'RMSE': rmse,
+      if (weightedQuantileLosses != null)
+        'WeightedQuantileLosses': weightedQuantileLosses,
+    };
   }
 }
 
@@ -5420,6 +5925,29 @@ class PredictorBacktestExportJobSummary {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destination = this.destination;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final predictorBacktestExportJobArn = this.predictorBacktestExportJobArn;
+    final predictorBacktestExportJobName = this.predictorBacktestExportJobName;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (destination != null) 'Destination': destination,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (predictorBacktestExportJobArn != null)
+        'PredictorBacktestExportJobArn': predictorBacktestExportJobArn,
+      if (predictorBacktestExportJobName != null)
+        'PredictorBacktestExportJobName': predictorBacktestExportJobName,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// The algorithm used to perform a backtest and the status of those tests.
@@ -5445,6 +5973,15 @@ class PredictorExecution {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final testWindows = this.testWindows;
+    return {
+      if (algorithmArn != null) 'AlgorithmArn': algorithmArn,
+      if (testWindows != null) 'TestWindows': testWindows,
+    };
+  }
 }
 
 /// Contains details on the backtests performed to evaluate the accuracy of the
@@ -5468,6 +6005,14 @@ class PredictorExecutionDetails {
           .map((e) => PredictorExecution.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final predictorExecutions = this.predictorExecutions;
+    return {
+      if (predictorExecutions != null)
+        'PredictorExecutions': predictorExecutions,
+    };
   }
 }
 
@@ -5557,6 +6102,27 @@ class PredictorSummary {
       predictorName: json['PredictorName'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final lastModificationTime = this.lastModificationTime;
+    final message = this.message;
+    final predictorArn = this.predictorArn;
+    final predictorName = this.predictorName;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (datasetGroupArn != null) 'DatasetGroupArn': datasetGroupArn,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (message != null) 'Message': message,
+      if (predictorArn != null) 'PredictorArn': predictorArn,
+      if (predictorName != null) 'PredictorName': predictorName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -5783,6 +6349,35 @@ class Statistics {
       min: json['Min'] as String?,
       stddev: json['Stddev'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final avg = this.avg;
+    final count = this.count;
+    final countDistinct = this.countDistinct;
+    final countDistinctLong = this.countDistinctLong;
+    final countLong = this.countLong;
+    final countNan = this.countNan;
+    final countNanLong = this.countNanLong;
+    final countNull = this.countNull;
+    final countNullLong = this.countNullLong;
+    final max = this.max;
+    final min = this.min;
+    final stddev = this.stddev;
+    return {
+      if (avg != null) 'Avg': avg,
+      if (count != null) 'Count': count,
+      if (countDistinct != null) 'CountDistinct': countDistinct,
+      if (countDistinctLong != null) 'CountDistinctLong': countDistinctLong,
+      if (countLong != null) 'CountLong': countLong,
+      if (countNan != null) 'CountNan': countNan,
+      if (countNanLong != null) 'CountNanLong': countNanLong,
+      if (countNull != null) 'CountNull': countNull,
+      if (countNullLong != null) 'CountNullLong': countNullLong,
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+      if (stddev != null) 'Stddev': stddev,
+    };
   }
 }
 
@@ -6121,6 +6716,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The status, start time, and end time of a backtest, as well as a failure
@@ -6164,6 +6763,21 @@ class TestWindowSummary {
       testWindowStart: timeStampFromJson(json['TestWindowStart']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final status = this.status;
+    final testWindowEnd = this.testWindowEnd;
+    final testWindowStart = this.testWindowStart;
+    return {
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status,
+      if (testWindowEnd != null)
+        'TestWindowEnd': unixTimestampToJson(testWindowEnd),
+      if (testWindowStart != null)
+        'TestWindowStart': unixTimestampToJson(testWindowStart),
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -6171,12 +6785,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDatasetGroupResponse {
   UpdateDatasetGroupResponse();
   factory UpdateDatasetGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDatasetGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6201,6 +6823,15 @@ class WeightedQuantileLoss {
       lossValue: json['LossValue'] as double?,
       quantile: json['Quantile'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lossValue = this.lossValue;
+    final quantile = this.quantile;
+    return {
+      if (lossValue != null) 'LossValue': lossValue,
+      if (quantile != null) 'Quantile': quantile,
+    };
   }
 }
 
@@ -6252,6 +6883,23 @@ class WindowSummary {
       testWindowEnd: timeStampFromJson(json['TestWindowEnd']),
       testWindowStart: timeStampFromJson(json['TestWindowStart']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationType = this.evaluationType;
+    final itemCount = this.itemCount;
+    final metrics = this.metrics;
+    final testWindowEnd = this.testWindowEnd;
+    final testWindowStart = this.testWindowStart;
+    return {
+      if (evaluationType != null) 'EvaluationType': evaluationType.toValue(),
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (metrics != null) 'Metrics': metrics,
+      if (testWindowEnd != null)
+        'TestWindowEnd': unixTimestampToJson(testWindowEnd),
+      if (testWindowStart != null)
+        'TestWindowStart': unixTimestampToJson(testWindowStart),
+    };
   }
 }
 

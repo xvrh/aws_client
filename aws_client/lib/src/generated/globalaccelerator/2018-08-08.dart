@@ -3110,6 +3110,30 @@ class Accelerator {
       status: (json['Status'] as String?)?.toAcceleratorStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorArn = this.acceleratorArn;
+    final createdTime = this.createdTime;
+    final dnsName = this.dnsName;
+    final enabled = this.enabled;
+    final ipAddressType = this.ipAddressType;
+    final ipSets = this.ipSets;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (acceleratorArn != null) 'AcceleratorArn': acceleratorArn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dnsName != null) 'DnsName': dnsName,
+      if (enabled != null) 'Enabled': enabled,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (ipSets != null) 'IpSets': ipSets,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Attributes of an accelerator.
@@ -3151,6 +3175,17 @@ class AcceleratorAttributes {
       flowLogsS3Bucket: json['FlowLogsS3Bucket'] as String?,
       flowLogsS3Prefix: json['FlowLogsS3Prefix'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowLogsEnabled = this.flowLogsEnabled;
+    final flowLogsS3Bucket = this.flowLogsS3Bucket;
+    final flowLogsS3Prefix = this.flowLogsS3Prefix;
+    return {
+      if (flowLogsEnabled != null) 'FlowLogsEnabled': flowLogsEnabled,
+      if (flowLogsS3Bucket != null) 'FlowLogsS3Bucket': flowLogsS3Bucket,
+      if (flowLogsS3Prefix != null) 'FlowLogsS3Prefix': flowLogsS3Prefix,
+    };
   }
 }
 
@@ -3205,6 +3240,16 @@ class AddCustomRoutingEndpointsResponse {
       endpointGroupArn: json['EndpointGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointDescriptions = this.endpointDescriptions;
+    final endpointGroupArn = this.endpointGroupArn;
+    return {
+      if (endpointDescriptions != null)
+        'EndpointDescriptions': endpointDescriptions,
+      if (endpointGroupArn != null) 'EndpointGroupArn': endpointGroupArn,
+    };
+  }
 }
 
 class AdvertiseByoipCidrResponse {
@@ -3220,6 +3265,13 @@ class AdvertiseByoipCidrResponse {
           ? ByoipCidr.fromJson(json['ByoipCidr'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'ByoipCidr': byoipCidr,
+    };
   }
 }
 
@@ -3311,6 +3363,17 @@ class ByoipCidr {
       state: (json['State'] as String?)?.toByoipCidrState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final events = this.events;
+    final state = this.state;
+    return {
+      if (cidr != null) 'Cidr': cidr,
+      if (events != null) 'Events': events,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// A complex type that contains a <code>Message</code> and a
@@ -3336,6 +3399,15 @@ class ByoipCidrEvent {
       message: json['Message'] as String?,
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final timestamp = this.timestamp;
+    return {
+      if (message != null) 'Message': message,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -3430,6 +3502,13 @@ class CidrAuthorizationContext {
     required this.message,
     required this.signature,
   });
+  factory CidrAuthorizationContext.fromJson(Map<String, dynamic> json) {
+    return CidrAuthorizationContext(
+      message: json['Message'] as String,
+      signature: json['Signature'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final message = this.message;
     final signature = this.signature;
@@ -3483,6 +3562,13 @@ class CreateAcceleratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
+  }
 }
 
 class CreateCustomRoutingAcceleratorResponse {
@@ -3500,6 +3586,13 @@ class CreateCustomRoutingAcceleratorResponse {
               json['Accelerator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
   }
 }
 
@@ -3520,6 +3613,13 @@ class CreateCustomRoutingEndpointGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroup = this.endpointGroup;
+    return {
+      if (endpointGroup != null) 'EndpointGroup': endpointGroup,
+    };
+  }
 }
 
 class CreateCustomRoutingListenerResponse {
@@ -3538,6 +3638,13 @@ class CreateCustomRoutingListenerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
+  }
 }
 
 class CreateEndpointGroupResponse {
@@ -3555,6 +3662,13 @@ class CreateEndpointGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroup = this.endpointGroup;
+    return {
+      if (endpointGroup != null) 'EndpointGroup': endpointGroup,
+    };
+  }
 }
 
 class CreateListenerResponse {
@@ -3570,6 +3684,13 @@ class CreateListenerResponse {
           ? Listener.fromJson(json['Listener'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
   }
 }
 
@@ -3646,6 +3767,30 @@ class CustomRoutingAccelerator {
       status: (json['Status'] as String?)?.toCustomRoutingAcceleratorStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorArn = this.acceleratorArn;
+    final createdTime = this.createdTime;
+    final dnsName = this.dnsName;
+    final enabled = this.enabled;
+    final ipAddressType = this.ipAddressType;
+    final ipSets = this.ipSets;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (acceleratorArn != null) 'AcceleratorArn': acceleratorArn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dnsName != null) 'DnsName': dnsName,
+      if (enabled != null) 'Enabled': enabled,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (ipSets != null) 'IpSets': ipSets,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Attributes of a custom routing accelerator.
@@ -3688,6 +3833,17 @@ class CustomRoutingAcceleratorAttributes {
       flowLogsS3Bucket: json['FlowLogsS3Bucket'] as String?,
       flowLogsS3Prefix: json['FlowLogsS3Prefix'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowLogsEnabled = this.flowLogsEnabled;
+    final flowLogsS3Bucket = this.flowLogsS3Bucket;
+    final flowLogsS3Prefix = this.flowLogsS3Prefix;
+    return {
+      if (flowLogsEnabled != null) 'FlowLogsEnabled': flowLogsEnabled,
+      if (flowLogsS3Bucket != null) 'FlowLogsS3Bucket': flowLogsS3Bucket,
+      if (flowLogsS3Prefix != null) 'FlowLogsS3Prefix': flowLogsS3Prefix,
+    };
   }
 }
 
@@ -3741,6 +3897,18 @@ class CustomRoutingDestinationConfiguration {
     required this.protocols,
     required this.toPort,
   });
+  factory CustomRoutingDestinationConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return CustomRoutingDestinationConfiguration(
+      fromPort: json['FromPort'] as int,
+      protocols: (json['Protocols'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toCustomRoutingProtocol())
+          .toList(),
+      toPort: json['ToPort'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fromPort = this.fromPort;
     final protocols = this.protocols;
@@ -3785,6 +3953,18 @@ class CustomRoutingDestinationDescription {
       toPort: json['ToPort'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final protocols = this.protocols;
+    final toPort = this.toPort;
+    return {
+      if (fromPort != null) 'FromPort': fromPort,
+      if (protocols != null)
+        'Protocols': protocols.map((e) => e.toValue()).toList(),
+      if (toPort != null) 'ToPort': toPort,
+    };
+  }
 }
 
 enum CustomRoutingDestinationTrafficState {
@@ -3827,6 +4007,13 @@ class CustomRoutingEndpointConfiguration {
   CustomRoutingEndpointConfiguration({
     this.endpointId,
   });
+  factory CustomRoutingEndpointConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return CustomRoutingEndpointConfiguration(
+      endpointId: json['EndpointId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endpointId = this.endpointId;
     return {
@@ -3850,6 +4037,13 @@ class CustomRoutingEndpointDescription {
     return CustomRoutingEndpointDescription(
       endpointId: json['EndpointId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointId = this.endpointId;
+    return {
+      if (endpointId != null) 'EndpointId': endpointId,
+    };
   }
 }
 
@@ -3893,6 +4087,22 @@ class CustomRoutingEndpointGroup {
       endpointGroupRegion: json['EndpointGroupRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationDescriptions = this.destinationDescriptions;
+    final endpointDescriptions = this.endpointDescriptions;
+    final endpointGroupArn = this.endpointGroupArn;
+    final endpointGroupRegion = this.endpointGroupRegion;
+    return {
+      if (destinationDescriptions != null)
+        'DestinationDescriptions': destinationDescriptions,
+      if (endpointDescriptions != null)
+        'EndpointDescriptions': endpointDescriptions,
+      if (endpointGroupArn != null) 'EndpointGroupArn': endpointGroupArn,
+      if (endpointGroupRegion != null)
+        'EndpointGroupRegion': endpointGroupRegion,
+    };
+  }
 }
 
 /// A complex type for a listener for a custom routing accelerator.
@@ -3919,6 +4129,15 @@ class CustomRoutingListener {
           .map((e) => PortRange.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listenerArn = this.listenerArn;
+    final portRanges = this.portRanges;
+    return {
+      if (listenerArn != null) 'ListenerArn': listenerArn,
+      if (portRanges != null) 'PortRanges': portRanges,
+    };
   }
 }
 
@@ -3964,6 +4183,13 @@ class DeprovisionByoipCidrResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'ByoipCidr': byoipCidr,
+    };
+  }
 }
 
 class DescribeAcceleratorAttributesResponse {
@@ -3982,6 +4208,14 @@ class DescribeAcceleratorAttributesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorAttributes = this.acceleratorAttributes;
+    return {
+      if (acceleratorAttributes != null)
+        'AcceleratorAttributes': acceleratorAttributes,
+    };
+  }
 }
 
 class DescribeAcceleratorResponse {
@@ -3997,6 +4231,13 @@ class DescribeAcceleratorResponse {
           ? Accelerator.fromJson(json['Accelerator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
   }
 }
 
@@ -4016,6 +4257,14 @@ class DescribeCustomRoutingAcceleratorAttributesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorAttributes = this.acceleratorAttributes;
+    return {
+      if (acceleratorAttributes != null)
+        'AcceleratorAttributes': acceleratorAttributes,
+    };
+  }
 }
 
 class DescribeCustomRoutingAcceleratorResponse {
@@ -4033,6 +4282,13 @@ class DescribeCustomRoutingAcceleratorResponse {
               json['Accelerator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
   }
 }
 
@@ -4052,6 +4308,13 @@ class DescribeCustomRoutingEndpointGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroup = this.endpointGroup;
+    return {
+      if (endpointGroup != null) 'EndpointGroup': endpointGroup,
+    };
+  }
 }
 
 class DescribeCustomRoutingListenerResponse {
@@ -4070,6 +4333,13 @@ class DescribeCustomRoutingListenerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
+  }
 }
 
 class DescribeEndpointGroupResponse {
@@ -4087,6 +4357,13 @@ class DescribeEndpointGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroup = this.endpointGroup;
+    return {
+      if (endpointGroup != null) 'EndpointGroup': endpointGroup,
+    };
+  }
 }
 
 class DescribeListenerResponse {
@@ -4102,6 +4379,13 @@ class DescribeListenerResponse {
           ? Listener.fromJson(json['Listener'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
   }
 }
 
@@ -4165,6 +4449,31 @@ class DestinationPortMapping {
       ipAddressType: (json['IpAddressType'] as String?)?.toIpAddressType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorArn = this.acceleratorArn;
+    final acceleratorSocketAddresses = this.acceleratorSocketAddresses;
+    final destinationSocketAddress = this.destinationSocketAddress;
+    final destinationTrafficState = this.destinationTrafficState;
+    final endpointGroupArn = this.endpointGroupArn;
+    final endpointGroupRegion = this.endpointGroupRegion;
+    final endpointId = this.endpointId;
+    final ipAddressType = this.ipAddressType;
+    return {
+      if (acceleratorArn != null) 'AcceleratorArn': acceleratorArn,
+      if (acceleratorSocketAddresses != null)
+        'AcceleratorSocketAddresses': acceleratorSocketAddresses,
+      if (destinationSocketAddress != null)
+        'DestinationSocketAddress': destinationSocketAddress,
+      if (destinationTrafficState != null)
+        'DestinationTrafficState': destinationTrafficState.toValue(),
+      if (endpointGroupArn != null) 'EndpointGroupArn': endpointGroupArn,
+      if (endpointGroupRegion != null)
+        'EndpointGroupRegion': endpointGroupRegion,
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+    };
+  }
 }
 
 /// A complex type for endpoints. A resource must be valid and active when you
@@ -4210,6 +4519,14 @@ class EndpointConfiguration {
     this.endpointId,
     this.weight,
   });
+  factory EndpointConfiguration.fromJson(Map<String, dynamic> json) {
+    return EndpointConfiguration(
+      clientIPPreservationEnabled: json['ClientIPPreservationEnabled'] as bool?,
+      endpointId: json['EndpointId'] as String?,
+      weight: json['Weight'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clientIPPreservationEnabled = this.clientIPPreservationEnabled;
     final endpointId = this.endpointId;
@@ -4282,6 +4599,22 @@ class EndpointDescription {
       healthState: (json['HealthState'] as String?)?.toHealthState(),
       weight: json['Weight'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientIPPreservationEnabled = this.clientIPPreservationEnabled;
+    final endpointId = this.endpointId;
+    final healthReason = this.healthReason;
+    final healthState = this.healthState;
+    final weight = this.weight;
+    return {
+      if (clientIPPreservationEnabled != null)
+        'ClientIPPreservationEnabled': clientIPPreservationEnabled,
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (healthReason != null) 'HealthReason': healthReason,
+      if (healthState != null) 'HealthState': healthState.toValue(),
+      if (weight != null) 'Weight': weight,
+    };
   }
 }
 
@@ -4372,6 +4705,36 @@ class EndpointGroup {
       thresholdCount: json['ThresholdCount'] as int?,
       trafficDialPercentage: json['TrafficDialPercentage'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointDescriptions = this.endpointDescriptions;
+    final endpointGroupArn = this.endpointGroupArn;
+    final endpointGroupRegion = this.endpointGroupRegion;
+    final healthCheckIntervalSeconds = this.healthCheckIntervalSeconds;
+    final healthCheckPath = this.healthCheckPath;
+    final healthCheckPort = this.healthCheckPort;
+    final healthCheckProtocol = this.healthCheckProtocol;
+    final portOverrides = this.portOverrides;
+    final thresholdCount = this.thresholdCount;
+    final trafficDialPercentage = this.trafficDialPercentage;
+    return {
+      if (endpointDescriptions != null)
+        'EndpointDescriptions': endpointDescriptions,
+      if (endpointGroupArn != null) 'EndpointGroupArn': endpointGroupArn,
+      if (endpointGroupRegion != null)
+        'EndpointGroupRegion': endpointGroupRegion,
+      if (healthCheckIntervalSeconds != null)
+        'HealthCheckIntervalSeconds': healthCheckIntervalSeconds,
+      if (healthCheckPath != null) 'HealthCheckPath': healthCheckPath,
+      if (healthCheckPort != null) 'HealthCheckPort': healthCheckPort,
+      if (healthCheckProtocol != null)
+        'HealthCheckProtocol': healthCheckProtocol.toValue(),
+      if (portOverrides != null) 'PortOverrides': portOverrides,
+      if (thresholdCount != null) 'ThresholdCount': thresholdCount,
+      if (trafficDialPercentage != null)
+        'TrafficDialPercentage': trafficDialPercentage,
+    };
   }
 }
 
@@ -4486,6 +4849,15 @@ class IpSet {
       ipFamily: json['IpFamily'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipAddresses = this.ipAddresses;
+    final ipFamily = this.ipFamily;
+    return {
+      if (ipAddresses != null) 'IpAddresses': ipAddresses,
+      if (ipFamily != null) 'IpFamily': ipFamily,
+    };
+  }
 }
 
 class ListAcceleratorsResponse {
@@ -4509,6 +4881,15 @@ class ListAcceleratorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accelerators = this.accelerators;
+    final nextToken = this.nextToken;
+    return {
+      if (accelerators != null) 'Accelerators': accelerators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListByoipCidrsResponse {
@@ -4530,6 +4911,15 @@ class ListByoipCidrsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final byoipCidrs = this.byoipCidrs;
+    final nextToken = this.nextToken;
+    return {
+      if (byoipCidrs != null) 'ByoipCidrs': byoipCidrs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4555,6 +4945,15 @@ class ListCustomRoutingAcceleratorsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerators = this.accelerators;
+    final nextToken = this.nextToken;
+    return {
+      if (accelerators != null) 'Accelerators': accelerators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4582,6 +4981,15 @@ class ListCustomRoutingEndpointGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroups = this.endpointGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (endpointGroups != null) 'EndpointGroups': endpointGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCustomRoutingListenersResponse {
@@ -4605,6 +5013,15 @@ class ListCustomRoutingListenersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listeners = this.listeners;
+    final nextToken = this.nextToken;
+    return {
+      if (listeners != null) 'Listeners': listeners,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4632,6 +5049,16 @@ class ListCustomRoutingPortMappingsByDestinationResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationPortMappings = this.destinationPortMappings;
+    final nextToken = this.nextToken;
+    return {
+      if (destinationPortMappings != null)
+        'DestinationPortMappings': destinationPortMappings,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCustomRoutingPortMappingsResponse {
@@ -4656,6 +5083,15 @@ class ListCustomRoutingPortMappingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final portMappings = this.portMappings;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (portMappings != null) 'PortMappings': portMappings,
+    };
+  }
 }
 
 class ListEndpointGroupsResponse {
@@ -4678,6 +5114,15 @@ class ListEndpointGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroups = this.endpointGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (endpointGroups != null) 'EndpointGroups': endpointGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4702,6 +5147,15 @@ class ListListenersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listeners = this.listeners;
+    final nextToken = this.nextToken;
+    return {
+      if (listeners != null) 'Listeners': listeners,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4718,6 +5172,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4772,6 +5233,19 @@ class Listener {
       protocol: (json['Protocol'] as String?)?.toProtocol(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientAffinity = this.clientAffinity;
+    final listenerArn = this.listenerArn;
+    final portRanges = this.portRanges;
+    final protocol = this.protocol;
+    return {
+      if (clientAffinity != null) 'ClientAffinity': clientAffinity.toValue(),
+      if (listenerArn != null) 'ListenerArn': listenerArn,
+      if (portRanges != null) 'PortRanges': portRanges,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+    };
+  }
 }
 
 /// Returns the ports and associated IP addresses and ports of Amazon EC2
@@ -4825,6 +5299,26 @@ class PortMapping {
           .map((e) => (e as String).toCustomRoutingProtocol())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorPort = this.acceleratorPort;
+    final destinationSocketAddress = this.destinationSocketAddress;
+    final destinationTrafficState = this.destinationTrafficState;
+    final endpointGroupArn = this.endpointGroupArn;
+    final endpointId = this.endpointId;
+    final protocols = this.protocols;
+    return {
+      if (acceleratorPort != null) 'AcceleratorPort': acceleratorPort,
+      if (destinationSocketAddress != null)
+        'DestinationSocketAddress': destinationSocketAddress,
+      if (destinationTrafficState != null)
+        'DestinationTrafficState': destinationTrafficState.toValue(),
+      if (endpointGroupArn != null) 'EndpointGroupArn': endpointGroupArn,
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (protocols != null)
+        'Protocols': protocols.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -4939,6 +5433,13 @@ class ProvisionByoipCidrResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'ByoipCidr': byoipCidr,
+    };
+  }
 }
 
 /// An IP address/port combination.
@@ -4958,6 +5459,15 @@ class SocketAddress {
       ipAddress: json['IpAddress'] as String?,
       port: json['Port'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddress = this.ipAddress;
+    final port = this.port;
+    return {
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -4996,12 +5506,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5021,6 +5539,14 @@ class UpdateAcceleratorAttributesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorAttributes = this.acceleratorAttributes;
+    return {
+      if (acceleratorAttributes != null)
+        'AcceleratorAttributes': acceleratorAttributes,
+    };
+  }
 }
 
 class UpdateAcceleratorResponse {
@@ -5036,6 +5562,13 @@ class UpdateAcceleratorResponse {
           ? Accelerator.fromJson(json['Accelerator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
   }
 }
 
@@ -5055,6 +5588,14 @@ class UpdateCustomRoutingAcceleratorAttributesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorAttributes = this.acceleratorAttributes;
+    return {
+      if (acceleratorAttributes != null)
+        'AcceleratorAttributes': acceleratorAttributes,
+    };
+  }
 }
 
 class UpdateCustomRoutingAcceleratorResponse {
@@ -5072,6 +5613,13 @@ class UpdateCustomRoutingAcceleratorResponse {
               json['Accelerator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accelerator = this.accelerator;
+    return {
+      if (accelerator != null) 'Accelerator': accelerator,
+    };
   }
 }
 
@@ -5091,6 +5639,13 @@ class UpdateCustomRoutingListenerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
+  }
 }
 
 class UpdateEndpointGroupResponse {
@@ -5108,6 +5663,13 @@ class UpdateEndpointGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointGroup = this.endpointGroup;
+    return {
+      if (endpointGroup != null) 'EndpointGroup': endpointGroup,
+    };
+  }
 }
 
 class UpdateListenerResponse {
@@ -5124,6 +5686,13 @@ class UpdateListenerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    return {
+      if (listener != null) 'Listener': listener,
+    };
+  }
 }
 
 class WithdrawByoipCidrResponse {
@@ -5139,6 +5708,13 @@ class WithdrawByoipCidrResponse {
           ? ByoipCidr.fromJson(json['ByoipCidr'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'ByoipCidr': byoipCidr,
+    };
   }
 }
 

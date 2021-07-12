@@ -1035,6 +1035,13 @@ class BulkPublishResponse {
       identityPoolId: json['IdentityPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolId = this.identityPoolId;
+    return {
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+    };
+  }
 }
 
 enum BulkPublishStatus {
@@ -1169,6 +1176,27 @@ class Dataset {
       numRecords: json['NumRecords'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final dataStorage = this.dataStorage;
+    final datasetName = this.datasetName;
+    final identityId = this.identityId;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final numRecords = this.numRecords;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (dataStorage != null) 'DataStorage': dataStorage,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (identityId != null) 'IdentityId': identityId,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (numRecords != null) 'NumRecords': numRecords,
+    };
+  }
 }
 
 /// Response to a successful DeleteDataset request.
@@ -1189,6 +1217,13 @@ class DeleteDatasetResponse {
           ? Dataset.fromJson(json['Dataset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataset = this.dataset;
+    return {
+      if (dataset != null) 'Dataset': dataset,
+    };
   }
 }
 
@@ -1211,6 +1246,13 @@ class DescribeDatasetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataset = this.dataset;
+    return {
+      if (dataset != null) 'Dataset': dataset,
+    };
+  }
 }
 
 /// Response to a successful DescribeIdentityPoolUsage request.
@@ -1230,6 +1272,13 @@ class DescribeIdentityPoolUsageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolUsage = this.identityPoolUsage;
+    return {
+      if (identityPoolUsage != null) 'IdentityPoolUsage': identityPoolUsage,
+    };
+  }
 }
 
 /// The response to a successful DescribeIdentityUsage request.
@@ -1247,6 +1296,13 @@ class DescribeIdentityUsageResponse {
               json['IdentityUsage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityUsage = this.identityUsage;
+    return {
+      if (identityUsage != null) 'IdentityUsage': identityUsage,
+    };
   }
 }
 
@@ -1298,6 +1354,24 @@ class GetBulkPublishDetailsResponse {
       identityPoolId: json['IdentityPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bulkPublishCompleteTime = this.bulkPublishCompleteTime;
+    final bulkPublishStartTime = this.bulkPublishStartTime;
+    final bulkPublishStatus = this.bulkPublishStatus;
+    final failureMessage = this.failureMessage;
+    final identityPoolId = this.identityPoolId;
+    return {
+      if (bulkPublishCompleteTime != null)
+        'BulkPublishCompleteTime': unixTimestampToJson(bulkPublishCompleteTime),
+      if (bulkPublishStartTime != null)
+        'BulkPublishStartTime': unixTimestampToJson(bulkPublishStartTime),
+      if (bulkPublishStatus != null)
+        'BulkPublishStatus': bulkPublishStatus.toValue(),
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+    };
+  }
 }
 
 /// The response from the GetCognitoEvents request
@@ -1313,6 +1387,13 @@ class GetCognitoEventsResponse {
       events: (json['Events'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    return {
+      if (events != null) 'Events': events,
+    };
   }
 }
 
@@ -1346,6 +1427,17 @@ class GetIdentityPoolConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cognitoStreams = this.cognitoStreams;
+    final identityPoolId = this.identityPoolId;
+    final pushSync = this.pushSync;
+    return {
+      if (cognitoStreams != null) 'CognitoStreams': cognitoStreams,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (pushSync != null) 'PushSync': pushSync,
+    };
+  }
 }
 
 /// Usage information for the identity pool.
@@ -1377,6 +1469,20 @@ class IdentityPoolUsage {
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
       syncSessionsCount: json['SyncSessionsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataStorage = this.dataStorage;
+    final identityPoolId = this.identityPoolId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final syncSessionsCount = this.syncSessionsCount;
+    return {
+      if (dataStorage != null) 'DataStorage': dataStorage,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (syncSessionsCount != null) 'SyncSessionsCount': syncSessionsCount,
+    };
   }
 }
 
@@ -1417,6 +1523,22 @@ class IdentityUsage {
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataStorage = this.dataStorage;
+    final datasetCount = this.datasetCount;
+    final identityId = this.identityId;
+    final identityPoolId = this.identityPoolId;
+    final lastModifiedDate = this.lastModifiedDate;
+    return {
+      if (dataStorage != null) 'DataStorage': dataStorage,
+      if (datasetCount != null) 'DatasetCount': datasetCount,
+      if (identityId != null) 'IdentityId': identityId,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+    };
+  }
 }
 
 /// Returned for a successful ListDatasets request.
@@ -1444,6 +1566,17 @@ class ListDatasetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final datasets = this.datasets;
+    final nextToken = this.nextToken;
+    return {
+      if (count != null) 'Count': count,
+      if (datasets != null) 'Datasets': datasets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1477,6 +1610,19 @@ class ListIdentityPoolUsageResponse {
       maxResults: json['MaxResults'] as int?,
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final identityPoolUsages = this.identityPoolUsages;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (count != null) 'Count': count,
+      if (identityPoolUsages != null) 'IdentityPoolUsages': identityPoolUsages,
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1539,6 +1685,32 @@ class ListRecordsResponse {
           .toList(),
       syncSessionToken: json['SyncSessionToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final datasetDeletedAfterRequestedSyncCount =
+        this.datasetDeletedAfterRequestedSyncCount;
+    final datasetExists = this.datasetExists;
+    final datasetSyncCount = this.datasetSyncCount;
+    final lastModifiedBy = this.lastModifiedBy;
+    final mergedDatasetNames = this.mergedDatasetNames;
+    final nextToken = this.nextToken;
+    final records = this.records;
+    final syncSessionToken = this.syncSessionToken;
+    return {
+      if (count != null) 'Count': count,
+      if (datasetDeletedAfterRequestedSyncCount != null)
+        'DatasetDeletedAfterRequestedSyncCount':
+            datasetDeletedAfterRequestedSyncCount,
+      if (datasetExists != null) 'DatasetExists': datasetExists,
+      if (datasetSyncCount != null) 'DatasetSyncCount': datasetSyncCount,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (mergedDatasetNames != null) 'MergedDatasetNames': mergedDatasetNames,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (records != null) 'Records': records,
+      if (syncSessionToken != null) 'SyncSessionToken': syncSessionToken,
+    };
   }
 }
 
@@ -1678,6 +1850,25 @@ class Record {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceLastModifiedDate = this.deviceLastModifiedDate;
+    final key = this.key;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final syncCount = this.syncCount;
+    final value = this.value;
+    return {
+      if (deviceLastModifiedDate != null)
+        'DeviceLastModifiedDate': unixTimestampToJson(deviceLastModifiedDate),
+      if (key != null) 'Key': key,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (syncCount != null) 'SyncCount': syncCount,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// An update operation for a record.
@@ -1704,6 +1895,16 @@ class RecordPatch {
     this.deviceLastModifiedDate,
     this.value,
   });
+  factory RecordPatch.fromJson(Map<String, dynamic> json) {
+    return RecordPatch(
+      key: json['Key'] as String,
+      op: (json['Op'] as String).toOperation(),
+      syncCount: json['SyncCount'] as int,
+      deviceLastModifiedDate: timeStampFromJson(json['DeviceLastModifiedDate']),
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final op = this.op;
@@ -1733,6 +1934,13 @@ class RegisterDeviceResponse {
     return RegisterDeviceResponse(
       deviceId: json['DeviceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+    };
   }
 }
 
@@ -1765,6 +1973,17 @@ class SetIdentityPoolConfigurationResponse {
           ? PushSync.fromJson(json['PushSync'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cognitoStreams = this.cognitoStreams;
+    final identityPoolId = this.identityPoolId;
+    final pushSync = this.pushSync;
+    return {
+      if (cognitoStreams != null) 'CognitoStreams': cognitoStreams,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (pushSync != null) 'PushSync': pushSync,
+    };
   }
 }
 
@@ -1802,6 +2021,10 @@ class SubscribeToDatasetResponse {
   factory SubscribeToDatasetResponse.fromJson(Map<String, dynamic> _) {
     return SubscribeToDatasetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Response to an UnsubscribeFromDataset request.
@@ -1809,6 +2032,10 @@ class UnsubscribeFromDatasetResponse {
   UnsubscribeFromDatasetResponse();
   factory UnsubscribeFromDatasetResponse.fromJson(Map<String, dynamic> _) {
     return UnsubscribeFromDatasetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1827,6 +2054,13 @@ class UpdateRecordsResponse {
           .map((e) => Record.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final records = this.records;
+    return {
+      if (records != null) 'Records': records,
+    };
   }
 }
 

@@ -1368,6 +1368,52 @@ class Cluster {
       totalNodes: json['TotalNodes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeNodes = this.activeNodes;
+    final clusterArn = this.clusterArn;
+    final clusterDiscoveryEndpoint = this.clusterDiscoveryEndpoint;
+    final clusterEndpointEncryptionType = this.clusterEndpointEncryptionType;
+    final clusterName = this.clusterName;
+    final description = this.description;
+    final iamRoleArn = this.iamRoleArn;
+    final nodeIdsToRemove = this.nodeIdsToRemove;
+    final nodeType = this.nodeType;
+    final nodes = this.nodes;
+    final notificationConfiguration = this.notificationConfiguration;
+    final parameterGroup = this.parameterGroup;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final sSEDescription = this.sSEDescription;
+    final securityGroups = this.securityGroups;
+    final status = this.status;
+    final subnetGroup = this.subnetGroup;
+    final totalNodes = this.totalNodes;
+    return {
+      if (activeNodes != null) 'ActiveNodes': activeNodes,
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (clusterDiscoveryEndpoint != null)
+        'ClusterDiscoveryEndpoint': clusterDiscoveryEndpoint,
+      if (clusterEndpointEncryptionType != null)
+        'ClusterEndpointEncryptionType':
+            clusterEndpointEncryptionType.toValue(),
+      if (clusterName != null) 'ClusterName': clusterName,
+      if (description != null) 'Description': description,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (nodeIdsToRemove != null) 'NodeIdsToRemove': nodeIdsToRemove,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (nodes != null) 'Nodes': nodes,
+      if (notificationConfiguration != null)
+        'NotificationConfiguration': notificationConfiguration,
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (sSEDescription != null) 'SSEDescription': sSEDescription,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (status != null) 'Status': status,
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+      if (totalNodes != null) 'TotalNodes': totalNodes,
+    };
+  }
 }
 
 enum ClusterEndpointEncryptionType {
@@ -1412,6 +1458,13 @@ class CreateClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class CreateParameterGroupResponse {
@@ -1429,6 +1482,13 @@ class CreateParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 class CreateSubnetGroupResponse {
@@ -1444,6 +1504,13 @@ class CreateSubnetGroupResponse {
           ? SubnetGroup.fromJson(json['SubnetGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetGroup = this.subnetGroup;
+    return {
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+    };
   }
 }
 
@@ -1463,6 +1530,13 @@ class DecreaseReplicationFactorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class DeleteClusterResponse {
@@ -1479,6 +1553,13 @@ class DeleteClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class DeleteParameterGroupResponse {
@@ -1494,6 +1575,13 @@ class DeleteParameterGroupResponse {
       deletionMessage: json['DeletionMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletionMessage = this.deletionMessage;
+    return {
+      if (deletionMessage != null) 'DeletionMessage': deletionMessage,
+    };
+  }
 }
 
 class DeleteSubnetGroupResponse {
@@ -1508,6 +1596,13 @@ class DeleteSubnetGroupResponse {
     return DeleteSubnetGroupResponse(
       deletionMessage: json['DeletionMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deletionMessage = this.deletionMessage;
+    return {
+      if (deletionMessage != null) 'DeletionMessage': deletionMessage,
+    };
   }
 }
 
@@ -1532,6 +1627,15 @@ class DescribeClustersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final nextToken = this.nextToken;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDefaultParametersResponse {
@@ -1555,6 +1659,15 @@ class DescribeDefaultParametersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parameters = this.parameters;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 class DescribeEventsResponse {
@@ -1576,6 +1689,15 @@ class DescribeEventsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1600,6 +1722,15 @@ class DescribeParameterGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parameterGroups = this.parameterGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parameterGroups != null) 'ParameterGroups': parameterGroups,
+    };
+  }
 }
 
 class DescribeParametersResponse {
@@ -1623,6 +1754,15 @@ class DescribeParametersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parameters = this.parameters;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 class DescribeSubnetGroupsResponse {
@@ -1645,6 +1785,15 @@ class DescribeSubnetGroupsResponse {
           .map((e) => SubnetGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subnetGroups = this.subnetGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subnetGroups != null) 'SubnetGroups': subnetGroups,
+    };
   }
 }
 
@@ -1672,6 +1821,17 @@ class Endpoint {
       port: json['Port'] as int?,
       url: json['URL'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    final url = this.url;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+      if (url != null) 'URL': url,
+    };
   }
 }
 
@@ -1707,6 +1867,19 @@ class Event {
       sourceType: (json['SourceType'] as String?)?.toSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final message = this.message;
+    final sourceName = this.sourceName;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (message != null) 'Message': message,
+      if (sourceName != null) 'SourceName': sourceName,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 class IncreaseReplicationFactorResponse {
@@ -1723,6 +1896,13 @@ class IncreaseReplicationFactorResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -1781,6 +1961,15 @@ class ListTagsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Represents an individual node within a DAX cluster.
@@ -1827,6 +2016,25 @@ class Node {
       parameterGroupStatus: json['ParameterGroupStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final endpoint = this.endpoint;
+    final nodeCreateTime = this.nodeCreateTime;
+    final nodeId = this.nodeId;
+    final nodeStatus = this.nodeStatus;
+    final parameterGroupStatus = this.parameterGroupStatus;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (nodeCreateTime != null)
+        'NodeCreateTime': unixTimestampToJson(nodeCreateTime),
+      if (nodeId != null) 'NodeId': nodeId,
+      if (nodeStatus != null) 'NodeStatus': nodeStatus,
+      if (parameterGroupStatus != null)
+        'ParameterGroupStatus': parameterGroupStatus,
+    };
+  }
 }
 
 /// Represents a parameter value that is applicable to a particular node type.
@@ -1846,6 +2054,15 @@ class NodeTypeSpecificValue {
       nodeType: json['NodeType'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeType = this.nodeType;
+    final value = this.value;
+    return {
+      if (nodeType != null) 'NodeType': nodeType,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -1870,6 +2087,15 @@ class NotificationConfiguration {
       topicArn: json['TopicArn'] as String?,
       topicStatus: json['TopicStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    final topicStatus = this.topicStatus;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (topicStatus != null) 'TopicStatus': topicStatus,
+    };
   }
 }
 
@@ -1938,6 +2164,32 @@ class Parameter {
       source: json['Source'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final changeType = this.changeType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final nodeTypeSpecificValues = this.nodeTypeSpecificValues;
+    final parameterName = this.parameterName;
+    final parameterType = this.parameterType;
+    final parameterValue = this.parameterValue;
+    final source = this.source;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable.toValue(),
+      if (nodeTypeSpecificValues != null)
+        'NodeTypeSpecificValues': nodeTypeSpecificValues,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (parameterType != null) 'ParameterType': parameterType.toValue(),
+      if (parameterValue != null) 'ParameterValue': parameterValue,
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// A named set of parameters that are applied to all of the nodes in a DAX
@@ -1958,6 +2210,15 @@ class ParameterGroup {
       description: json['Description'] as String?,
       parameterGroupName: json['ParameterGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final parameterGroupName = this.parameterGroupName;
+    return {
+      if (description != null) 'Description': description,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+    };
   }
 }
 
@@ -1987,6 +2248,18 @@ class ParameterGroupStatus {
       parameterGroupName: json['ParameterGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nodeIdsToReboot = this.nodeIdsToReboot;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    final parameterGroupName = this.parameterGroupName;
+    return {
+      if (nodeIdsToReboot != null) 'NodeIdsToReboot': nodeIdsToReboot,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+    };
+  }
 }
 
 /// An individual DAX parameter.
@@ -2001,6 +2274,13 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+  factory ParameterNameValue.fromJson(Map<String, dynamic> json) {
+    return ParameterNameValue(
+      parameterName: json['ParameterName'] as String?,
+      parameterValue: json['ParameterValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final parameterName = this.parameterName;
     final parameterValue = this.parameterValue;
@@ -2053,6 +2333,13 @@ class RebootNodeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 /// The description of the server-side encryption status on the specified DAX
@@ -2084,6 +2371,13 @@ class SSEDescription {
       status: (json['Status'] as String?)?.toSSEStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Represents the settings used to enable server-side encryption.
@@ -2095,6 +2389,12 @@ class SSESpecification {
   SSESpecification({
     required this.enabled,
   });
+  factory SSESpecification.fromJson(Map<String, dynamic> json) {
+    return SSESpecification(
+      enabled: json['Enabled'] as bool,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     return {
@@ -2159,6 +2459,16 @@ class SecurityGroupMembership {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIdentifier = this.securityGroupIdentifier;
+    final status = this.status;
+    return {
+      if (securityGroupIdentifier != null)
+        'SecurityGroupIdentifier': securityGroupIdentifier,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 enum SourceType {
@@ -2214,6 +2524,16 @@ class Subnet {
       subnetIdentifier: json['SubnetIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+    };
+  }
 }
 
 /// Represents the output of one of the following actions:
@@ -2255,6 +2575,19 @@ class SubnetGroup {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final subnetGroupName = this.subnetGroupName;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (description != null) 'Description': description,
+      if (subnetGroupName != null) 'SubnetGroupName': subnetGroupName,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -2312,6 +2645,13 @@ class TagResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -2329,6 +2669,13 @@ class UntagResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class UpdateClusterResponse {
@@ -2344,6 +2691,13 @@ class UpdateClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -2362,6 +2716,13 @@ class UpdateParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 class UpdateSubnetGroupResponse {
@@ -2377,6 +2738,13 @@ class UpdateSubnetGroupResponse {
           ? SubnetGroup.fromJson(json['SubnetGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetGroup = this.subnetGroup;
+    return {
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+    };
   }
 }
 

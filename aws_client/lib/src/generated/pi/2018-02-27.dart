@@ -492,6 +492,15 @@ class DataPoint {
       value: json['Value'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      'Timestamp': unixTimestampToJson(timestamp),
+      'Value': value,
+    };
+  }
 }
 
 class DescribeDimensionKeysResponse {
@@ -542,6 +551,23 @@ class DescribeDimensionKeysResponse {
           .map((e) => ResponsePartitionKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alignedEndTime = this.alignedEndTime;
+    final alignedStartTime = this.alignedStartTime;
+    final keys = this.keys;
+    final nextToken = this.nextToken;
+    final partitionKeys = this.partitionKeys;
+    return {
+      if (alignedEndTime != null)
+        'AlignedEndTime': unixTimestampToJson(alignedEndTime),
+      if (alignedStartTime != null)
+        'AlignedStartTime': unixTimestampToJson(alignedStartTime),
+      if (keys != null) 'Keys': keys,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (partitionKeys != null) 'PartitionKeys': partitionKeys,
+    };
   }
 }
 
@@ -710,6 +736,17 @@ class DimensionGroup {
     this.dimensions,
     this.limit,
   });
+  factory DimensionGroup.fromJson(Map<String, dynamic> json) {
+    return DimensionGroup(
+      group: json['Group'] as String,
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      limit: json['Limit'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final group = this.group;
     final dimensions = this.dimensions;
@@ -751,6 +788,17 @@ class DimensionKeyDescription {
           .toList(),
       total: json['Total'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    final partitions = this.partitions;
+    final total = this.total;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (partitions != null) 'Partitions': partitions,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -797,6 +845,17 @@ class DimensionKeyDetail {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimension = this.dimension;
+    final status = this.status;
+    final value = this.value;
+    return {
+      if (dimension != null) 'Dimension': dimension,
+      if (status != null) 'Status': status.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class GetDimensionKeyDetailsResponse {
@@ -813,6 +872,13 @@ class GetDimensionKeyDetailsResponse {
           .map((e) => DimensionKeyDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
   }
 }
 
@@ -865,6 +931,23 @@ class GetResourceMetricsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alignedEndTime = this.alignedEndTime;
+    final alignedStartTime = this.alignedStartTime;
+    final identifier = this.identifier;
+    final metricList = this.metricList;
+    final nextToken = this.nextToken;
+    return {
+      if (alignedEndTime != null)
+        'AlignedEndTime': unixTimestampToJson(alignedEndTime),
+      if (alignedStartTime != null)
+        'AlignedStartTime': unixTimestampToJson(alignedStartTime),
+      if (identifier != null) 'Identifier': identifier,
+      if (metricList != null) 'MetricList': metricList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A time-ordered series of data points, corresponding to a dimension of a
@@ -892,6 +975,15 @@ class MetricKeyDataPoints {
               json['Key'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataPoints = this.dataPoints;
+    final key = this.key;
+    return {
+      if (dataPoints != null) 'DataPoints': dataPoints,
+      if (key != null) 'Key': key,
+    };
   }
 }
 
@@ -950,6 +1042,17 @@ class MetricQuery {
     this.filter,
     this.groupBy,
   });
+  factory MetricQuery.fromJson(Map<String, dynamic> json) {
+    return MetricQuery(
+      metric: json['Metric'] as String,
+      filter: (json['Filter'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      groupBy: json['GroupBy'] != null
+          ? DimensionGroup.fromJson(json['GroupBy'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final metric = this.metric;
     final filter = this.filter;
@@ -977,6 +1080,13 @@ class ResponsePartitionKey {
       dimensions: (json['Dimensions'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    return {
+      'Dimensions': dimensions,
+    };
   }
 }
 
@@ -1020,6 +1130,15 @@ class ResponseResourceMetricKey {
       dimensions: (json['Dimensions'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    final dimensions = this.dimensions;
+    return {
+      'Metric': metric,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
   }
 }
 

@@ -930,6 +930,15 @@ class CancelJobRunResponse {
       virtualClusterId: json['virtualClusterId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (id != null) 'id': id,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
+  }
 }
 
 /// A configuration for CloudWatch monitoring. You can configure your jobs to
@@ -1161,6 +1170,19 @@ class CreateManagedEndpointResponse {
       virtualClusterId: json['virtualClusterId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
+  }
 }
 
 class CreateVirtualClusterResponse {
@@ -1185,6 +1207,17 @@ class CreateVirtualClusterResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class DeleteManagedEndpointResponse {
@@ -1204,6 +1237,15 @@ class DeleteManagedEndpointResponse {
       virtualClusterId: json['virtualClusterId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (id != null) 'id': id,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
+  }
 }
 
 class DeleteVirtualClusterResponse {
@@ -1217,6 +1259,13 @@ class DeleteVirtualClusterResponse {
     return DeleteVirtualClusterResponse(
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -1234,6 +1283,13 @@ class DescribeJobRunResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobRun = this.jobRun;
+    return {
+      if (jobRun != null) 'jobRun': jobRun,
+    };
+  }
 }
 
 class DescribeManagedEndpointResponse {
@@ -1249,6 +1305,13 @@ class DescribeManagedEndpointResponse {
           ? Endpoint.fromJson(json['endpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
   }
 }
 
@@ -1266,6 +1329,13 @@ class DescribeVirtualClusterResponse {
               json['virtualCluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualCluster = this.virtualCluster;
+    return {
+      if (virtualCluster != null) 'virtualCluster': virtualCluster,
+    };
   }
 }
 
@@ -1381,6 +1451,42 @@ class Endpoint {
       type: json['type'] as String?,
       virtualClusterId: json['virtualClusterId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final certificateArn = this.certificateArn;
+    final configurationOverrides = this.configurationOverrides;
+    final createdAt = this.createdAt;
+    final executionRoleArn = this.executionRoleArn;
+    final id = this.id;
+    final name = this.name;
+    final releaseLabel = this.releaseLabel;
+    final securityGroup = this.securityGroup;
+    final serverUrl = this.serverUrl;
+    final state = this.state;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final type = this.type;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (arn != null) 'arn': arn,
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (configurationOverrides != null)
+        'configurationOverrides': configurationOverrides,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (releaseLabel != null) 'releaseLabel': releaseLabel,
+      if (securityGroup != null) 'securityGroup': securityGroup,
+      if (serverUrl != null) 'serverUrl': serverUrl,
+      if (state != null) 'state': state.toValue(),
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
   }
 }
 
@@ -1587,6 +1693,44 @@ class JobRun {
       virtualClusterId: json['virtualClusterId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientToken = this.clientToken;
+    final configurationOverrides = this.configurationOverrides;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final executionRoleArn = this.executionRoleArn;
+    final failureReason = this.failureReason;
+    final finishedAt = this.finishedAt;
+    final id = this.id;
+    final jobDriver = this.jobDriver;
+    final name = this.name;
+    final releaseLabel = this.releaseLabel;
+    final state = this.state;
+    final stateDetails = this.stateDetails;
+    final tags = this.tags;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientToken != null) 'clientToken': clientToken,
+      if (configurationOverrides != null)
+        'configurationOverrides': configurationOverrides,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
+      if (failureReason != null) 'failureReason': failureReason.toValue(),
+      if (finishedAt != null) 'finishedAt': iso8601ToJson(finishedAt),
+      if (id != null) 'id': id,
+      if (jobDriver != null) 'jobDriver': jobDriver,
+      if (name != null) 'name': name,
+      if (releaseLabel != null) 'releaseLabel': releaseLabel,
+      if (state != null) 'state': state.toValue(),
+      if (stateDetails != null) 'stateDetails': stateDetails,
+      if (tags != null) 'tags': tags,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
+  }
 }
 
 enum JobRunState {
@@ -1662,6 +1806,15 @@ class ListJobRunsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobRuns = this.jobRuns;
+    final nextToken = this.nextToken;
+    return {
+      if (jobRuns != null) 'jobRuns': jobRuns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListManagedEndpointsResponse {
@@ -1684,6 +1837,15 @@ class ListManagedEndpointsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'endpoints': endpoints,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1698,6 +1860,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1720,6 +1889,15 @@ class ListVirtualClustersResponse {
           .map((e) => VirtualCluster.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final virtualClusters = this.virtualClusters;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (virtualClusters != null) 'virtualClusters': virtualClusters,
+    };
   }
 }
 
@@ -1891,6 +2069,19 @@ class StartJobRunResponse {
       virtualClusterId: json['virtualClusterId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final virtualClusterId = this.virtualClusterId;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (virtualClusterId != null) 'virtualClusterId': virtualClusterId,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -1898,12 +2089,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1959,6 +2158,25 @@ class VirtualCluster {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final containerProvider = this.containerProvider;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (containerProvider != null) 'containerProvider': containerProvider,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

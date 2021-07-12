@@ -2679,6 +2679,15 @@ class Alarm {
       alarmName: json['AlarmName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmARN = this.alarmARN;
+    final alarmName = this.alarmName;
+    return {
+      'AlarmARN': alarmARN,
+      'AlarmName': alarmName,
+    };
+  }
 }
 
 /// Represents a CloudWatch metric of your choosing for a target tracking
@@ -2770,6 +2779,10 @@ class DeleteScalingPolicyResponse {
   factory DeleteScalingPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScalingPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteScheduledActionResponse {
@@ -2777,12 +2790,20 @@ class DeleteScheduledActionResponse {
   factory DeleteScheduledActionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScheduledActionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterScalableTargetResponse {
   DeregisterScalableTargetResponse();
   factory DeregisterScalableTargetResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterScalableTargetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2806,6 +2827,15 @@ class DescribeScalableTargetsResponse {
           .map((e) => ScalableTarget.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalableTargets = this.scalableTargets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalableTargets != null) 'ScalableTargets': scalableTargets,
+    };
   }
 }
 
@@ -2831,6 +2861,15 @@ class DescribeScalingActivitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingActivities = this.scalingActivities;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingActivities != null) 'ScalingActivities': scalingActivities,
+    };
+  }
 }
 
 class DescribeScalingPoliciesResponse {
@@ -2854,6 +2893,15 @@ class DescribeScalingPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingPolicies = this.scalingPolicies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingPolicies != null) 'ScalingPolicies': scalingPolicies,
+    };
+  }
 }
 
 class DescribeScheduledActionsResponse {
@@ -2876,6 +2924,15 @@ class DescribeScheduledActionsResponse {
           .map((e) => ScheduledAction.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduledActions = this.scheduledActions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scheduledActions != null) 'ScheduledActions': scheduledActions,
+    };
   }
 }
 
@@ -3203,6 +3260,15 @@ class PutScalingPolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyARN = this.policyARN;
+    final alarms = this.alarms;
+    return {
+      'PolicyARN': policyARN,
+      if (alarms != null) 'Alarms': alarms,
+    };
+  }
 }
 
 class PutScheduledActionResponse {
@@ -3210,12 +3276,20 @@ class PutScheduledActionResponse {
   factory PutScheduledActionResponse.fromJson(Map<String, dynamic> _) {
     return PutScheduledActionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RegisterScalableTargetResponse {
   RegisterScalableTargetResponse();
   factory RegisterScalableTargetResponse.fromJson(Map<String, dynamic> _) {
     return RegisterScalableTargetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3531,6 +3605,27 @@ class ScalableTarget {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final maxCapacity = this.maxCapacity;
+    final minCapacity = this.minCapacity;
+    final resourceId = this.resourceId;
+    final roleARN = this.roleARN;
+    final scalableDimension = this.scalableDimension;
+    final serviceNamespace = this.serviceNamespace;
+    final suspendedState = this.suspendedState;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'MaxCapacity': maxCapacity,
+      'MinCapacity': minCapacity,
+      'ResourceId': resourceId,
+      'RoleARN': roleARN,
+      'ScalableDimension': scalableDimension.toValue(),
+      'ServiceNamespace': serviceNamespace.toValue(),
+      if (suspendedState != null) 'SuspendedState': suspendedState,
+    };
+  }
 }
 
 /// Represents the minimum and maximum capacity for a scheduled action.
@@ -3794,6 +3889,33 @@ class ScalingActivity {
       endTime: timeStampFromJson(json['EndTime']),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activityId = this.activityId;
+    final cause = this.cause;
+    final description = this.description;
+    final resourceId = this.resourceId;
+    final scalableDimension = this.scalableDimension;
+    final serviceNamespace = this.serviceNamespace;
+    final startTime = this.startTime;
+    final statusCode = this.statusCode;
+    final details = this.details;
+    final endTime = this.endTime;
+    final statusMessage = this.statusMessage;
+    return {
+      'ActivityId': activityId,
+      'Cause': cause,
+      'Description': description,
+      'ResourceId': resourceId,
+      'ScalableDimension': scalableDimension.toValue(),
+      'ServiceNamespace': serviceNamespace.toValue(),
+      'StartTime': unixTimestampToJson(startTime),
+      'StatusCode': statusCode.toValue(),
+      if (details != null) 'Details': details,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -4077,6 +4199,35 @@ class ScalingPolicy {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final policyARN = this.policyARN;
+    final policyName = this.policyName;
+    final policyType = this.policyType;
+    final resourceId = this.resourceId;
+    final scalableDimension = this.scalableDimension;
+    final serviceNamespace = this.serviceNamespace;
+    final alarms = this.alarms;
+    final stepScalingPolicyConfiguration = this.stepScalingPolicyConfiguration;
+    final targetTrackingScalingPolicyConfiguration =
+        this.targetTrackingScalingPolicyConfiguration;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'PolicyARN': policyARN,
+      'PolicyName': policyName,
+      'PolicyType': policyType.toValue(),
+      'ResourceId': resourceId,
+      'ScalableDimension': scalableDimension.toValue(),
+      'ServiceNamespace': serviceNamespace.toValue(),
+      if (alarms != null) 'Alarms': alarms,
+      if (stepScalingPolicyConfiguration != null)
+        'StepScalingPolicyConfiguration': stepScalingPolicyConfiguration,
+      if (targetTrackingScalingPolicyConfiguration != null)
+        'TargetTrackingScalingPolicyConfiguration':
+            targetTrackingScalingPolicyConfiguration,
+    };
+  }
 }
 
 /// Represents a scheduled action.
@@ -4335,6 +4486,35 @@ class ScheduledAction {
       startTime: timeStampFromJson(json['StartTime']),
       timezone: json['Timezone'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final resourceId = this.resourceId;
+    final schedule = this.schedule;
+    final scheduledActionARN = this.scheduledActionARN;
+    final scheduledActionName = this.scheduledActionName;
+    final serviceNamespace = this.serviceNamespace;
+    final endTime = this.endTime;
+    final scalableDimension = this.scalableDimension;
+    final scalableTargetAction = this.scalableTargetAction;
+    final startTime = this.startTime;
+    final timezone = this.timezone;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ResourceId': resourceId,
+      'Schedule': schedule,
+      'ScheduledActionARN': scheduledActionARN,
+      'ScheduledActionName': scheduledActionName,
+      'ServiceNamespace': serviceNamespace.toValue(),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (scalableDimension != null)
+        'ScalableDimension': scalableDimension.toValue(),
+      if (scalableTargetAction != null)
+        'ScalableTargetAction': scalableTargetAction,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (timezone != null) 'Timezone': timezone,
+    };
   }
 }
 

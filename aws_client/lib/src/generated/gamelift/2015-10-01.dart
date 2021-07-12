@@ -9789,6 +9789,10 @@ class AcceptMatchOutput {
   factory AcceptMatchOutput.fromJson(Map<String, dynamic> _) {
     return AcceptMatchOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum AcceptanceType {
@@ -9883,6 +9887,27 @@ class Alias {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasArn = this.aliasArn;
+    final aliasId = this.aliasId;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final routingStrategy = this.routingStrategy;
+    return {
+      if (aliasArn != null) 'AliasArn': aliasArn,
+      if (aliasId != null) 'AliasId': aliasId,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (routingStrategy != null) 'RoutingStrategy': routingStrategy,
+    };
+  }
 }
 
 /// Values for use in <a>Player</a> attribute key-value pairs. This object lets
@@ -9964,6 +9989,17 @@ class AwsCredentials {
       secretAccessKey: json['SecretAccessKey'] as String?,
       sessionToken: json['SessionToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (secretAccessKey != null) 'SecretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'SessionToken': sessionToken,
+    };
   }
 }
 
@@ -10115,6 +10151,28 @@ class Build {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildArn = this.buildArn;
+    final buildId = this.buildId;
+    final creationTime = this.creationTime;
+    final name = this.name;
+    final operatingSystem = this.operatingSystem;
+    final sizeOnDisk = this.sizeOnDisk;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (buildArn != null) 'BuildArn': buildArn,
+      if (buildId != null) 'BuildId': buildId,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (name != null) 'Name': name,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem.toValue(),
+      if (sizeOnDisk != null) 'SizeOnDisk': sizeOnDisk,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum BuildStatus {
@@ -10234,6 +10292,13 @@ class ClaimGameServerOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServer = this.gameServer;
+    return {
+      if (gameServer != null) 'GameServer': gameServer,
+    };
+  }
 }
 
 enum ComparisonOperatorType {
@@ -10289,6 +10354,13 @@ class CreateAliasOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    return {
+      if (alias != null) 'Alias': alias,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10324,6 +10396,17 @@ class CreateBuildOutput {
               json['UploadCredentials'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    final storageLocation = this.storageLocation;
+    final uploadCredentials = this.uploadCredentials;
+    return {
+      if (build != null) 'Build': build,
+      if (storageLocation != null) 'StorageLocation': storageLocation,
+      if (uploadCredentials != null) 'UploadCredentials': uploadCredentials,
+    };
   }
 }
 
@@ -10362,6 +10445,17 @@ class CreateFleetLocationsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final locationStates = this.locationStates;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (locationStates != null) 'LocationStates': locationStates,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10394,6 +10488,15 @@ class CreateFleetOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetAttributes = this.fleetAttributes;
+    final locationStates = this.locationStates;
+    return {
+      if (fleetAttributes != null) 'FleetAttributes': fleetAttributes,
+      if (locationStates != null) 'LocationStates': locationStates,
+    };
+  }
 }
 
 class CreateGameServerGroupOutput {
@@ -10415,6 +10518,13 @@ class CreateGameServerGroupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10431,6 +10541,13 @@ class CreateGameSessionOutput {
           ? GameSession.fromJson(json['GameSession'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSession = this.gameSession;
+    return {
+      if (gameSession != null) 'GameSession': gameSession,
+    };
   }
 }
 
@@ -10449,6 +10566,13 @@ class CreateGameSessionQueueOutput {
               json['GameSessionQueue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionQueue = this.gameSessionQueue;
+    return {
+      if (gameSessionQueue != null) 'GameSessionQueue': gameSessionQueue,
+    };
   }
 }
 
@@ -10469,6 +10593,13 @@ class CreateMatchmakingConfigurationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10484,6 +10615,13 @@ class CreateMatchmakingRuleSetOutput {
       ruleSet:
           MatchmakingRuleSet.fromJson(json['RuleSet'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleSet = this.ruleSet;
+    return {
+      'RuleSet': ruleSet,
+    };
   }
 }
 
@@ -10503,6 +10641,13 @@ class CreatePlayerSessionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final playerSession = this.playerSession;
+    return {
+      if (playerSession != null) 'PlayerSession': playerSession,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10520,6 +10665,13 @@ class CreatePlayerSessionsOutput {
           .map((e) => PlayerSession.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final playerSessions = this.playerSessions;
+    return {
+      if (playerSessions != null) 'PlayerSessions': playerSessions,
+    };
   }
 }
 
@@ -10543,6 +10695,13 @@ class CreateScriptOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final script = this.script;
+    return {
+      if (script != null) 'Script': script,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10562,12 +10721,24 @@ class CreateVpcPeeringAuthorizationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vpcPeeringAuthorization = this.vpcPeeringAuthorization;
+    return {
+      if (vpcPeeringAuthorization != null)
+        'VpcPeeringAuthorization': vpcPeeringAuthorization,
+    };
+  }
 }
 
 class CreateVpcPeeringConnectionOutput {
   CreateVpcPeeringConnectionOutput();
   factory CreateVpcPeeringConnectionOutput.fromJson(Map<String, dynamic> _) {
     return CreateVpcPeeringConnectionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10603,6 +10774,17 @@ class DeleteFleetLocationsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final locationStates = this.locationStates;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (locationStates != null) 'LocationStates': locationStates,
+    };
+  }
 }
 
 class DeleteGameServerGroupOutput {
@@ -10621,12 +10803,23 @@ class DeleteGameServerGroupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
+  }
 }
 
 class DeleteGameSessionQueueOutput {
   DeleteGameSessionQueueOutput();
   factory DeleteGameSessionQueueOutput.fromJson(Map<String, dynamic> _) {
     return DeleteGameSessionQueueOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10636,6 +10829,10 @@ class DeleteMatchmakingConfigurationOutput {
       Map<String, dynamic> _) {
     return DeleteMatchmakingConfigurationOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10644,6 +10841,10 @@ class DeleteMatchmakingRuleSetOutput {
   factory DeleteMatchmakingRuleSetOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMatchmakingRuleSetOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteVpcPeeringAuthorizationOutput {
@@ -10651,12 +10852,20 @@ class DeleteVpcPeeringAuthorizationOutput {
   factory DeleteVpcPeeringAuthorizationOutput.fromJson(Map<String, dynamic> _) {
     return DeleteVpcPeeringAuthorizationOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteVpcPeeringConnectionOutput {
   DeleteVpcPeeringConnectionOutput();
   factory DeleteVpcPeeringConnectionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteVpcPeeringConnectionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10675,6 +10884,13 @@ class DescribeAliasOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    return {
+      if (alias != null) 'Alias': alias,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10691,6 +10907,13 @@ class DescribeBuildOutput {
           ? Build.fromJson(json['Build'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    return {
+      if (build != null) 'Build': build,
+    };
   }
 }
 
@@ -10709,6 +10932,13 @@ class DescribeEC2InstanceLimitsOutput {
           .map((e) => EC2InstanceLimit.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eC2InstanceLimits = this.eC2InstanceLimits;
+    return {
+      if (eC2InstanceLimits != null) 'EC2InstanceLimits': eC2InstanceLimits,
+    };
   }
 }
 
@@ -10737,6 +10967,15 @@ class DescribeFleetAttributesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetAttributes = this.fleetAttributes;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetAttributes != null) 'FleetAttributes': fleetAttributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10764,6 +11003,15 @@ class DescribeFleetCapacityOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetCapacity = this.fleetCapacity;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetCapacity != null) 'FleetCapacity': fleetCapacity,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10789,6 +11037,15 @@ class DescribeFleetEventsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -10831,6 +11088,19 @@ class DescribeFleetLocationAttributesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final locationAttributes = this.locationAttributes;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (locationAttributes != null) 'LocationAttributes': locationAttributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10851,6 +11121,13 @@ class DescribeFleetLocationCapacityOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetCapacity = this.fleetCapacity;
+    return {
+      if (fleetCapacity != null) 'FleetCapacity': fleetCapacity,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10870,6 +11147,13 @@ class DescribeFleetLocationUtilizationOutput {
               json['FleetUtilization'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetUtilization = this.fleetUtilization;
+    return {
+      if (fleetUtilization != null) 'FleetUtilization': fleetUtilization,
+    };
   }
 }
 
@@ -10917,6 +11201,21 @@ class DescribeFleetPortSettingsOutput {
       updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final inboundPermissions = this.inboundPermissions;
+    final location = this.location;
+    final updateStatus = this.updateStatus;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (inboundPermissions != null) 'InboundPermissions': inboundPermissions,
+      if (location != null) 'Location': location,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -10944,6 +11243,15 @@ class DescribeFleetUtilizationOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetUtilization = this.fleetUtilization;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetUtilization != null) 'FleetUtilization': fleetUtilization,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeGameServerGroupOutput {
@@ -10961,6 +11269,13 @@ class DescribeGameServerGroupOutput {
               json['GameServerGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
   }
 }
 
@@ -10987,6 +11302,16 @@ class DescribeGameServerInstancesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServerInstances = this.gameServerInstances;
+    final nextToken = this.nextToken;
+    return {
+      if (gameServerInstances != null)
+        'GameServerInstances': gameServerInstances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeGameServerOutput {
@@ -11002,6 +11327,13 @@ class DescribeGameServerOutput {
           ? GameServer.fromJson(json['GameServer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServer = this.gameServer;
+    return {
+      if (gameServer != null) 'GameServer': gameServer,
+    };
   }
 }
 
@@ -11028,6 +11360,15 @@ class DescribeGameSessionDetailsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionDetails = this.gameSessionDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (gameSessionDetails != null) 'GameSessionDetails': gameSessionDetails,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11046,6 +11387,14 @@ class DescribeGameSessionPlacementOutput {
               json['GameSessionPlacement'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionPlacement = this.gameSessionPlacement;
+    return {
+      if (gameSessionPlacement != null)
+        'GameSessionPlacement': gameSessionPlacement,
+    };
   }
 }
 
@@ -11072,6 +11421,15 @@ class DescribeGameSessionQueuesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionQueues = this.gameSessionQueues;
+    final nextToken = this.nextToken;
+    return {
+      if (gameSessionQueues != null) 'GameSessionQueues': gameSessionQueues,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11097,6 +11455,15 @@ class DescribeGameSessionsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameSessions = this.gameSessions;
+    final nextToken = this.nextToken;
+    return {
+      if (gameSessions != null) 'GameSessions': gameSessions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11121,6 +11488,15 @@ class DescribeInstancesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextToken = this.nextToken;
+    return {
+      if (instances != null) 'Instances': instances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11149,6 +11525,15 @@ class DescribeMatchmakingConfigurationsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurations = this.configurations;
+    final nextToken = this.nextToken;
+    return {
+      if (configurations != null) 'Configurations': configurations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11166,6 +11551,13 @@ class DescribeMatchmakingOutput {
           .map((e) => MatchmakingTicket.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ticketList = this.ticketList;
+    return {
+      if (ticketList != null) 'TicketList': ticketList,
+    };
   }
 }
 
@@ -11193,6 +11585,15 @@ class DescribeMatchmakingRuleSetsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleSets = this.ruleSets;
+    final nextToken = this.nextToken;
+    return {
+      'RuleSets': ruleSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11219,6 +11620,15 @@ class DescribePlayerSessionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final playerSessions = this.playerSessions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (playerSessions != null) 'PlayerSessions': playerSessions,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11238,6 +11648,14 @@ class DescribeRuntimeConfigurationOutput {
               json['RuntimeConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final runtimeConfiguration = this.runtimeConfiguration;
+    return {
+      if (runtimeConfiguration != null)
+        'RuntimeConfiguration': runtimeConfiguration,
+    };
   }
 }
 
@@ -11265,6 +11683,15 @@ class DescribeScalingPoliciesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingPolicies = this.scalingPolicies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingPolicies != null) 'ScalingPolicies': scalingPolicies,
+    };
+  }
 }
 
 class DescribeScriptOutput {
@@ -11280,6 +11707,13 @@ class DescribeScriptOutput {
           ? Script.fromJson(json['Script'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final script = this.script;
+    return {
+      if (script != null) 'Script': script,
+    };
   }
 }
 
@@ -11301,6 +11735,14 @@ class DescribeVpcPeeringAuthorizationsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vpcPeeringAuthorizations = this.vpcPeeringAuthorizations;
+    return {
+      if (vpcPeeringAuthorizations != null)
+        'VpcPeeringAuthorizations': vpcPeeringAuthorizations,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -11320,6 +11762,14 @@ class DescribeVpcPeeringConnectionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vpcPeeringConnections = this.vpcPeeringConnections;
+    return {
+      if (vpcPeeringConnections != null)
+        'VpcPeeringConnections': vpcPeeringConnections,
+    };
+  }
 }
 
 /// Player information for use when creating player sessions using a game
@@ -11336,6 +11786,13 @@ class DesiredPlayerSession {
     this.playerData,
     this.playerId,
   });
+  factory DesiredPlayerSession.fromJson(Map<String, dynamic> json) {
+    return DesiredPlayerSession(
+      playerData: json['PlayerData'] as String?,
+      playerId: json['PlayerId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final playerData = this.playerData;
     final playerId = this.playerId;
@@ -11397,6 +11854,25 @@ class EC2InstanceCounts {
       terminating: json['TERMINATING'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final active = this.active;
+    final desired = this.desired;
+    final idle = this.idle;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final pending = this.pending;
+    final terminating = this.terminating;
+    return {
+      if (active != null) 'ACTIVE': active,
+      if (desired != null) 'DESIRED': desired,
+      if (idle != null) 'IDLE': idle,
+      if (maximum != null) 'MAXIMUM': maximum,
+      if (minimum != null) 'MINIMUM': minimum,
+      if (pending != null) 'PENDING': pending,
+      if (terminating != null) 'TERMINATING': terminating,
+    };
+  }
 }
 
 /// The GameLift service limits for an EC2 instance type and current
@@ -11439,6 +11915,19 @@ class EC2InstanceLimit {
       instanceLimit: json['InstanceLimit'] as int?,
       location: json['Location'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentInstances = this.currentInstances;
+    final eC2InstanceType = this.eC2InstanceType;
+    final instanceLimit = this.instanceLimit;
+    final location = this.location;
+    return {
+      if (currentInstances != null) 'CurrentInstances': currentInstances,
+      if (eC2InstanceType != null) 'EC2InstanceType': eC2InstanceType.toValue(),
+      if (instanceLimit != null) 'InstanceLimit': instanceLimit,
+      if (location != null) 'Location': location,
+    };
   }
 }
 
@@ -12046,6 +12535,23 @@ class Event {
       resourceId: json['ResourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventCode = this.eventCode;
+    final eventId = this.eventId;
+    final eventTime = this.eventTime;
+    final message = this.message;
+    final preSignedLogUrl = this.preSignedLogUrl;
+    final resourceId = this.resourceId;
+    return {
+      if (eventCode != null) 'EventCode': eventCode.toValue(),
+      if (eventId != null) 'EventId': eventId,
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (message != null) 'Message': message,
+      if (preSignedLogUrl != null) 'PreSignedLogUrl': preSignedLogUrl,
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
+  }
 }
 
 enum EventCode {
@@ -12516,6 +13022,65 @@ class FleetAttributes {
       terminationTime: timeStampFromJson(json['TerminationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildArn = this.buildArn;
+    final buildId = this.buildId;
+    final certificateConfiguration = this.certificateConfiguration;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final fleetType = this.fleetType;
+    final instanceRoleArn = this.instanceRoleArn;
+    final instanceType = this.instanceType;
+    final logPaths = this.logPaths;
+    final metricGroups = this.metricGroups;
+    final name = this.name;
+    final newGameSessionProtectionPolicy = this.newGameSessionProtectionPolicy;
+    final operatingSystem = this.operatingSystem;
+    final resourceCreationLimitPolicy = this.resourceCreationLimitPolicy;
+    final scriptArn = this.scriptArn;
+    final scriptId = this.scriptId;
+    final serverLaunchParameters = this.serverLaunchParameters;
+    final serverLaunchPath = this.serverLaunchPath;
+    final status = this.status;
+    final stoppedActions = this.stoppedActions;
+    final terminationTime = this.terminationTime;
+    return {
+      if (buildArn != null) 'BuildArn': buildArn,
+      if (buildId != null) 'BuildId': buildId,
+      if (certificateConfiguration != null)
+        'CertificateConfiguration': certificateConfiguration,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (fleetType != null) 'FleetType': fleetType.toValue(),
+      if (instanceRoleArn != null) 'InstanceRoleArn': instanceRoleArn,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (logPaths != null) 'LogPaths': logPaths,
+      if (metricGroups != null) 'MetricGroups': metricGroups,
+      if (name != null) 'Name': name,
+      if (newGameSessionProtectionPolicy != null)
+        'NewGameSessionProtectionPolicy':
+            newGameSessionProtectionPolicy.toValue(),
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem.toValue(),
+      if (resourceCreationLimitPolicy != null)
+        'ResourceCreationLimitPolicy': resourceCreationLimitPolicy,
+      if (scriptArn != null) 'ScriptArn': scriptArn,
+      if (scriptId != null) 'ScriptId': scriptId,
+      if (serverLaunchParameters != null)
+        'ServerLaunchParameters': serverLaunchParameters,
+      if (serverLaunchPath != null) 'ServerLaunchPath': serverLaunchPath,
+      if (status != null) 'Status': status.toValue(),
+      if (stoppedActions != null)
+        'StoppedActions': stoppedActions.map((e) => e.toValue()).toList(),
+      if (terminationTime != null)
+        'TerminationTime': unixTimestampToJson(terminationTime),
+    };
+  }
 }
 
 /// Current resource capacity settings in a specified fleet or location. The
@@ -12568,6 +13133,21 @@ class FleetCapacity {
       instanceType: (json['InstanceType'] as String?)?.toEC2InstanceType(),
       location: json['Location'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final instanceCounts = this.instanceCounts;
+    final instanceType = this.instanceType;
+    final location = this.location;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (instanceCounts != null) 'InstanceCounts': instanceCounts,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (location != null) 'Location': location,
+    };
   }
 }
 
@@ -12719,6 +13299,29 @@ class FleetUtilization {
       location: json['Location'] as String?,
       maximumPlayerSessionCount: json['MaximumPlayerSessionCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeGameSessionCount = this.activeGameSessionCount;
+    final activeServerProcessCount = this.activeServerProcessCount;
+    final currentPlayerSessionCount = this.currentPlayerSessionCount;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final location = this.location;
+    final maximumPlayerSessionCount = this.maximumPlayerSessionCount;
+    return {
+      if (activeGameSessionCount != null)
+        'ActiveGameSessionCount': activeGameSessionCount,
+      if (activeServerProcessCount != null)
+        'ActiveServerProcessCount': activeServerProcessCount,
+      if (currentPlayerSessionCount != null)
+        'CurrentPlayerSessionCount': currentPlayerSessionCount,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (location != null) 'Location': location,
+      if (maximumPlayerSessionCount != null)
+        'MaximumPlayerSessionCount': maximumPlayerSessionCount,
+    };
   }
 }
 
@@ -12904,6 +13507,38 @@ class GameServer {
       utilizationStatus: (json['UtilizationStatus'] as String?)
           ?.toGameServerUtilizationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final claimStatus = this.claimStatus;
+    final connectionInfo = this.connectionInfo;
+    final gameServerData = this.gameServerData;
+    final gameServerGroupArn = this.gameServerGroupArn;
+    final gameServerGroupName = this.gameServerGroupName;
+    final gameServerId = this.gameServerId;
+    final instanceId = this.instanceId;
+    final lastClaimTime = this.lastClaimTime;
+    final lastHealthCheckTime = this.lastHealthCheckTime;
+    final registrationTime = this.registrationTime;
+    final utilizationStatus = this.utilizationStatus;
+    return {
+      if (claimStatus != null) 'ClaimStatus': claimStatus.toValue(),
+      if (connectionInfo != null) 'ConnectionInfo': connectionInfo,
+      if (gameServerData != null) 'GameServerData': gameServerData,
+      if (gameServerGroupArn != null) 'GameServerGroupArn': gameServerGroupArn,
+      if (gameServerGroupName != null)
+        'GameServerGroupName': gameServerGroupName,
+      if (gameServerId != null) 'GameServerId': gameServerId,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (lastClaimTime != null)
+        'LastClaimTime': unixTimestampToJson(lastClaimTime),
+      if (lastHealthCheckTime != null)
+        'LastHealthCheckTime': unixTimestampToJson(lastHealthCheckTime),
+      if (registrationTime != null)
+        'RegistrationTime': unixTimestampToJson(registrationTime),
+      if (utilizationStatus != null)
+        'UtilizationStatus': utilizationStatus.toValue(),
+    };
   }
 }
 
@@ -13103,6 +13738,43 @@ class GameServerGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupArn = this.autoScalingGroupArn;
+    final balancingStrategy = this.balancingStrategy;
+    final creationTime = this.creationTime;
+    final gameServerGroupArn = this.gameServerGroupArn;
+    final gameServerGroupName = this.gameServerGroupName;
+    final gameServerProtectionPolicy = this.gameServerProtectionPolicy;
+    final instanceDefinitions = this.instanceDefinitions;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final suspendedActions = this.suspendedActions;
+    return {
+      if (autoScalingGroupArn != null)
+        'AutoScalingGroupArn': autoScalingGroupArn,
+      if (balancingStrategy != null)
+        'BalancingStrategy': balancingStrategy.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (gameServerGroupArn != null) 'GameServerGroupArn': gameServerGroupArn,
+      if (gameServerGroupName != null)
+        'GameServerGroupName': gameServerGroupName,
+      if (gameServerProtectionPolicy != null)
+        'GameServerProtectionPolicy': gameServerProtectionPolicy.toValue(),
+      if (instanceDefinitions != null)
+        'InstanceDefinitions': instanceDefinitions,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+      if (suspendedActions != null)
+        'SuspendedActions': suspendedActions.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 enum GameServerGroupAction {
@@ -13156,6 +13828,14 @@ class GameServerGroupAutoScalingPolicy {
     required this.targetTrackingConfiguration,
     this.estimatedInstanceWarmup,
   });
+  factory GameServerGroupAutoScalingPolicy.fromJson(Map<String, dynamic> json) {
+    return GameServerGroupAutoScalingPolicy(
+      targetTrackingConfiguration: TargetTrackingConfiguration.fromJson(
+          json['TargetTrackingConfiguration'] as Map<String, dynamic>),
+      estimatedInstanceWarmup: json['EstimatedInstanceWarmup'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final targetTrackingConfiguration = this.targetTrackingConfiguration;
     final estimatedInstanceWarmup = this.estimatedInstanceWarmup;
@@ -13685,6 +14365,20 @@ class GameServerInstance {
           (json['InstanceStatus'] as String?)?.toGameServerInstanceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroupArn = this.gameServerGroupArn;
+    final gameServerGroupName = this.gameServerGroupName;
+    final instanceId = this.instanceId;
+    final instanceStatus = this.instanceStatus;
+    return {
+      if (gameServerGroupArn != null) 'GameServerGroupArn': gameServerGroupArn,
+      if (gameServerGroupName != null)
+        'GameServerGroupName': gameServerGroupName,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (instanceStatus != null) 'InstanceStatus': instanceStatus.toValue(),
+    };
+  }
 }
 
 enum GameServerInstanceStatus {
@@ -13953,6 +14647,54 @@ class GameSession {
       terminationTime: timeStampFromJson(json['TerminationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final creatorId = this.creatorId;
+    final currentPlayerSessionCount = this.currentPlayerSessionCount;
+    final dnsName = this.dnsName;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final gameProperties = this.gameProperties;
+    final gameSessionData = this.gameSessionData;
+    final gameSessionId = this.gameSessionId;
+    final ipAddress = this.ipAddress;
+    final location = this.location;
+    final matchmakerData = this.matchmakerData;
+    final maximumPlayerSessionCount = this.maximumPlayerSessionCount;
+    final name = this.name;
+    final playerSessionCreationPolicy = this.playerSessionCreationPolicy;
+    final port = this.port;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final terminationTime = this.terminationTime;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (creatorId != null) 'CreatorId': creatorId,
+      if (currentPlayerSessionCount != null)
+        'CurrentPlayerSessionCount': currentPlayerSessionCount,
+      if (dnsName != null) 'DnsName': dnsName,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (gameProperties != null) 'GameProperties': gameProperties,
+      if (gameSessionData != null) 'GameSessionData': gameSessionData,
+      if (gameSessionId != null) 'GameSessionId': gameSessionId,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (location != null) 'Location': location,
+      if (matchmakerData != null) 'MatchmakerData': matchmakerData,
+      if (maximumPlayerSessionCount != null)
+        'MaximumPlayerSessionCount': maximumPlayerSessionCount,
+      if (name != null) 'Name': name,
+      if (playerSessionCreationPolicy != null)
+        'PlayerSessionCreationPolicy': playerSessionCreationPolicy.toValue(),
+      if (port != null) 'Port': port,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason.toValue(),
+      if (terminationTime != null)
+        'TerminationTime': unixTimestampToJson(terminationTime),
+    };
+  }
 }
 
 /// Connection information for a new game session that is created in response to
@@ -14015,6 +14757,22 @@ class GameSessionConnectionInfo {
       port: json['Port'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsName = this.dnsName;
+    final gameSessionArn = this.gameSessionArn;
+    final ipAddress = this.ipAddress;
+    final matchedPlayerSessions = this.matchedPlayerSessions;
+    final port = this.port;
+    return {
+      if (dnsName != null) 'DnsName': dnsName,
+      if (gameSessionArn != null) 'GameSessionArn': gameSessionArn,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (matchedPlayerSessions != null)
+        'MatchedPlayerSessions': matchedPlayerSessions,
+      if (port != null) 'Port': port,
+    };
+  }
 }
 
 /// A game session's properties plus the protection policy currently in force.
@@ -14048,6 +14806,16 @@ class GameSessionDetail {
       protectionPolicy:
           (json['ProtectionPolicy'] as String?)?.toProtectionPolicy(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSession = this.gameSession;
+    final protectionPolicy = this.protectionPolicy;
+    return {
+      if (gameSession != null) 'GameSession': gameSession,
+      if (protectionPolicy != null)
+        'ProtectionPolicy': protectionPolicy.toValue(),
+    };
   }
 }
 
@@ -14252,6 +15020,50 @@ class GameSessionPlacement {
       status: (json['Status'] as String?)?.toGameSessionPlacementState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsName = this.dnsName;
+    final endTime = this.endTime;
+    final gameProperties = this.gameProperties;
+    final gameSessionArn = this.gameSessionArn;
+    final gameSessionData = this.gameSessionData;
+    final gameSessionId = this.gameSessionId;
+    final gameSessionName = this.gameSessionName;
+    final gameSessionQueueName = this.gameSessionQueueName;
+    final gameSessionRegion = this.gameSessionRegion;
+    final ipAddress = this.ipAddress;
+    final matchmakerData = this.matchmakerData;
+    final maximumPlayerSessionCount = this.maximumPlayerSessionCount;
+    final placedPlayerSessions = this.placedPlayerSessions;
+    final placementId = this.placementId;
+    final playerLatencies = this.playerLatencies;
+    final port = this.port;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (dnsName != null) 'DnsName': dnsName,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (gameProperties != null) 'GameProperties': gameProperties,
+      if (gameSessionArn != null) 'GameSessionArn': gameSessionArn,
+      if (gameSessionData != null) 'GameSessionData': gameSessionData,
+      if (gameSessionId != null) 'GameSessionId': gameSessionId,
+      if (gameSessionName != null) 'GameSessionName': gameSessionName,
+      if (gameSessionQueueName != null)
+        'GameSessionQueueName': gameSessionQueueName,
+      if (gameSessionRegion != null) 'GameSessionRegion': gameSessionRegion,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (matchmakerData != null) 'MatchmakerData': matchmakerData,
+      if (maximumPlayerSessionCount != null)
+        'MaximumPlayerSessionCount': maximumPlayerSessionCount,
+      if (placedPlayerSessions != null)
+        'PlacedPlayerSessions': placedPlayerSessions,
+      if (placementId != null) 'PlacementId': placementId,
+      if (playerLatencies != null) 'PlayerLatencies': playerLatencies,
+      if (port != null) 'Port': port,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum GameSessionPlacementState {
@@ -14397,6 +15209,33 @@ class GameSessionQueue {
       timeoutInSeconds: json['TimeoutInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customEventData = this.customEventData;
+    final destinations = this.destinations;
+    final filterConfiguration = this.filterConfiguration;
+    final gameSessionQueueArn = this.gameSessionQueueArn;
+    final name = this.name;
+    final notificationTarget = this.notificationTarget;
+    final playerLatencyPolicies = this.playerLatencyPolicies;
+    final priorityConfiguration = this.priorityConfiguration;
+    final timeoutInSeconds = this.timeoutInSeconds;
+    return {
+      if (customEventData != null) 'CustomEventData': customEventData,
+      if (destinations != null) 'Destinations': destinations,
+      if (filterConfiguration != null)
+        'FilterConfiguration': filterConfiguration,
+      if (gameSessionQueueArn != null)
+        'GameSessionQueueArn': gameSessionQueueArn,
+      if (name != null) 'Name': name,
+      if (notificationTarget != null) 'NotificationTarget': notificationTarget,
+      if (playerLatencyPolicies != null)
+        'PlayerLatencyPolicies': playerLatencyPolicies,
+      if (priorityConfiguration != null)
+        'PriorityConfiguration': priorityConfiguration,
+      if (timeoutInSeconds != null) 'TimeoutInSeconds': timeoutInSeconds,
+    };
+  }
 }
 
 /// A fleet or alias designated in a game session queue. Queues fulfill requests
@@ -14509,6 +15348,13 @@ class GetGameSessionLogUrlOutput {
       preSignedUrl: json['PreSignedUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final preSignedUrl = this.preSignedUrl;
+    return {
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -14527,6 +15373,13 @@ class GetInstanceAccessOutput {
               json['InstanceAccess'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceAccess = this.instanceAccess;
+    return {
+      if (instanceAccess != null) 'InstanceAccess': instanceAccess,
+    };
   }
 }
 
@@ -14635,6 +15488,32 @@ class Instance {
       type: (json['Type'] as String?)?.toEC2InstanceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dnsName = this.dnsName;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final instanceId = this.instanceId;
+    final ipAddress = this.ipAddress;
+    final location = this.location;
+    final operatingSystem = this.operatingSystem;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dnsName != null) 'DnsName': dnsName,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (location != null) 'Location': location,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information required to remotely connect to a fleet instance. Access is
@@ -14675,6 +15554,21 @@ class InstanceAccess {
           (json['OperatingSystem'] as String?)?.toOperatingSystem(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final fleetId = this.fleetId;
+    final instanceId = this.instanceId;
+    final ipAddress = this.ipAddress;
+    final operatingSystem = this.operatingSystem;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem.toValue(),
+    };
+  }
 }
 
 /// Set of credentials required to remotely access a fleet instance. Access
@@ -14698,6 +15592,15 @@ class InstanceCredentials {
       secret: json['Secret'] as String?,
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final secret = this.secret;
+    final userName = this.userName;
+    return {
+      if (secret != null) 'Secret': secret,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -14885,6 +15788,14 @@ class LaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+  factory LaunchTemplateSpecification.fromJson(Map<String, dynamic> json) {
+    return LaunchTemplateSpecification(
+      launchTemplateId: json['LaunchTemplateId'] as String?,
+      launchTemplateName: json['LaunchTemplateName'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final launchTemplateId = this.launchTemplateId;
     final launchTemplateName = this.launchTemplateName;
@@ -14920,6 +15831,15 @@ class ListAliasesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final nextToken = this.nextToken;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -14944,6 +15864,15 @@ class ListBuildsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final builds = this.builds;
+    final nextToken = this.nextToken;
+    return {
+      if (builds != null) 'Builds': builds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -14973,6 +15902,15 @@ class ListFleetsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetIds = this.fleetIds;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetIds != null) 'FleetIds': fleetIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGameServerGroupsOutput {
@@ -14996,6 +15934,15 @@ class ListGameServerGroupsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroups = this.gameServerGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (gameServerGroups != null) 'GameServerGroups': gameServerGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -15021,6 +15968,15 @@ class ListGameServersOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServers = this.gameServers;
+    final nextToken = this.nextToken;
+    return {
+      if (gameServers != null) 'GameServers': gameServers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListScriptsOutput {
@@ -15045,6 +16001,15 @@ class ListScriptsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scripts = this.scripts;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scripts != null) 'Scripts': scripts,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -15061,6 +16026,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -15100,6 +16072,18 @@ class LocationAttributes {
       updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locationState = this.locationState;
+    final stoppedActions = this.stoppedActions;
+    final updateStatus = this.updateStatus;
+    return {
+      if (locationState != null) 'LocationState': locationState,
+      if (stoppedActions != null)
+        'StoppedActions': stoppedActions.map((e) => e.toValue()).toList(),
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
+  }
 }
 
 /// A remote location where a multi-location fleet can deploy EC2 instances for
@@ -15115,6 +16099,12 @@ class LocationConfiguration {
   LocationConfiguration({
     this.location,
   });
+  factory LocationConfiguration.fromJson(Map<String, dynamic> json) {
+    return LocationConfiguration(
+      location: json['Location'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final location = this.location;
     return {
@@ -15150,6 +16140,15 @@ class LocationState {
       location: json['Location'] as String?,
       status: (json['Status'] as String?)?.toFleetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final status = this.status;
+    return {
+      if (location != null) 'Location': location,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -15199,6 +16198,15 @@ class MatchedPlayerSession {
       playerId: json['PlayerId'] as String?,
       playerSessionId: json['PlayerSessionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final playerId = this.playerId;
+    final playerSessionId = this.playerSessionId;
+    return {
+      if (playerId != null) 'PlayerId': playerId,
+      if (playerSessionId != null) 'PlayerSessionId': playerSessionId,
+    };
   }
 }
 
@@ -15371,6 +16379,50 @@ class MatchmakingConfiguration {
       ruleSetName: json['RuleSetName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceptanceRequired = this.acceptanceRequired;
+    final acceptanceTimeoutSeconds = this.acceptanceTimeoutSeconds;
+    final additionalPlayerCount = this.additionalPlayerCount;
+    final backfillMode = this.backfillMode;
+    final configurationArn = this.configurationArn;
+    final creationTime = this.creationTime;
+    final customEventData = this.customEventData;
+    final description = this.description;
+    final flexMatchMode = this.flexMatchMode;
+    final gameProperties = this.gameProperties;
+    final gameSessionData = this.gameSessionData;
+    final gameSessionQueueArns = this.gameSessionQueueArns;
+    final name = this.name;
+    final notificationTarget = this.notificationTarget;
+    final requestTimeoutSeconds = this.requestTimeoutSeconds;
+    final ruleSetArn = this.ruleSetArn;
+    final ruleSetName = this.ruleSetName;
+    return {
+      if (acceptanceRequired != null) 'AcceptanceRequired': acceptanceRequired,
+      if (acceptanceTimeoutSeconds != null)
+        'AcceptanceTimeoutSeconds': acceptanceTimeoutSeconds,
+      if (additionalPlayerCount != null)
+        'AdditionalPlayerCount': additionalPlayerCount,
+      if (backfillMode != null) 'BackfillMode': backfillMode.toValue(),
+      if (configurationArn != null) 'ConfigurationArn': configurationArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (customEventData != null) 'CustomEventData': customEventData,
+      if (description != null) 'Description': description,
+      if (flexMatchMode != null) 'FlexMatchMode': flexMatchMode.toValue(),
+      if (gameProperties != null) 'GameProperties': gameProperties,
+      if (gameSessionData != null) 'GameSessionData': gameSessionData,
+      if (gameSessionQueueArns != null)
+        'GameSessionQueueArns': gameSessionQueueArns,
+      if (name != null) 'Name': name,
+      if (notificationTarget != null) 'NotificationTarget': notificationTarget,
+      if (requestTimeoutSeconds != null)
+        'RequestTimeoutSeconds': requestTimeoutSeconds,
+      if (ruleSetArn != null) 'RuleSetArn': ruleSetArn,
+      if (ruleSetName != null) 'RuleSetName': ruleSetName,
+    };
+  }
 }
 
 enum MatchmakingConfigurationStatus {
@@ -15509,6 +16561,20 @@ class MatchmakingRuleSet {
       ruleSetName: json['RuleSetName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleSetBody = this.ruleSetBody;
+    final creationTime = this.creationTime;
+    final ruleSetArn = this.ruleSetArn;
+    final ruleSetName = this.ruleSetName;
+    return {
+      'RuleSetBody': ruleSetBody,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (ruleSetArn != null) 'RuleSetArn': ruleSetArn,
+      if (ruleSetName != null) 'RuleSetName': ruleSetName,
+    };
+  }
 }
 
 /// Ticket generated to track the progress of a matchmaking request. Each ticket
@@ -15642,6 +16708,34 @@ class MatchmakingTicket {
       statusReason: json['StatusReason'] as String?,
       ticketId: json['TicketId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationArn = this.configurationArn;
+    final configurationName = this.configurationName;
+    final endTime = this.endTime;
+    final estimatedWaitTime = this.estimatedWaitTime;
+    final gameSessionConnectionInfo = this.gameSessionConnectionInfo;
+    final players = this.players;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final statusReason = this.statusReason;
+    final ticketId = this.ticketId;
+    return {
+      if (configurationArn != null) 'ConfigurationArn': configurationArn,
+      if (configurationName != null) 'ConfigurationName': configurationName,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (estimatedWaitTime != null) 'EstimatedWaitTime': estimatedWaitTime,
+      if (gameSessionConnectionInfo != null)
+        'GameSessionConnectionInfo': gameSessionConnectionInfo,
+      if (players != null) 'Players': players,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (statusReason != null) 'StatusReason': statusReason,
+      if (ticketId != null) 'TicketId': ticketId,
+    };
   }
 }
 
@@ -15780,6 +16874,15 @@ class PlacedPlayerSession {
       playerId: json['PlayerId'] as String?,
       playerSessionId: json['PlayerSessionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final playerId = this.playerId;
+    final playerSessionId = this.playerSessionId;
+    return {
+      if (playerId != null) 'PlayerId': playerId,
+      if (playerSessionId != null) 'PlayerSessionId': playerSessionId,
+    };
   }
 }
 
@@ -16063,6 +17166,37 @@ class PlayerSession {
       terminationTime: timeStampFromJson(json['TerminationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dnsName = this.dnsName;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final gameSessionId = this.gameSessionId;
+    final ipAddress = this.ipAddress;
+    final playerData = this.playerData;
+    final playerId = this.playerId;
+    final playerSessionId = this.playerSessionId;
+    final port = this.port;
+    final status = this.status;
+    final terminationTime = this.terminationTime;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dnsName != null) 'DnsName': dnsName,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (gameSessionId != null) 'GameSessionId': gameSessionId,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (playerData != null) 'PlayerData': playerData,
+      if (playerId != null) 'PlayerId': playerId,
+      if (playerSessionId != null) 'PlayerSessionId': playerSessionId,
+      if (port != null) 'Port': port,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationTime != null)
+        'TerminationTime': unixTimestampToJson(terminationTime),
+    };
+  }
 }
 
 enum PlayerSessionCreationPolicy {
@@ -16324,6 +17458,13 @@ class PutScalingPolicyOutput {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class RegisterGameServerOutput {
@@ -16339,6 +17480,13 @@ class RegisterGameServerOutput {
           ? GameServer.fromJson(json['GameServer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServer = this.gameServer;
+    return {
+      if (gameServer != null) 'GameServer': gameServer,
+    };
   }
 }
 
@@ -16367,6 +17515,15 @@ class RequestUploadCredentialsOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final storageLocation = this.storageLocation;
+    final uploadCredentials = this.uploadCredentials;
+    return {
+      if (storageLocation != null) 'StorageLocation': storageLocation,
+      if (uploadCredentials != null) 'UploadCredentials': uploadCredentials,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -16388,6 +17545,15 @@ class ResolveAliasOutput {
       fleetArn: json['FleetArn'] as String?,
       fleetId: json['FleetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+    };
   }
 }
 
@@ -16448,6 +17614,13 @@ class ResumeGameServerGroupOutput {
               json['GameServerGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
   }
 }
 
@@ -16904,6 +18077,42 @@ class ScalingPolicy {
       updateStatus: (json['UpdateStatus'] as String?)?.toLocationUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comparisonOperator = this.comparisonOperator;
+    final evaluationPeriods = this.evaluationPeriods;
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final location = this.location;
+    final metricName = this.metricName;
+    final name = this.name;
+    final policyType = this.policyType;
+    final scalingAdjustment = this.scalingAdjustment;
+    final scalingAdjustmentType = this.scalingAdjustmentType;
+    final status = this.status;
+    final targetConfiguration = this.targetConfiguration;
+    final threshold = this.threshold;
+    final updateStatus = this.updateStatus;
+    return {
+      if (comparisonOperator != null)
+        'ComparisonOperator': comparisonOperator.toValue(),
+      if (evaluationPeriods != null) 'EvaluationPeriods': evaluationPeriods,
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (location != null) 'Location': location,
+      if (metricName != null) 'MetricName': metricName.toValue(),
+      if (name != null) 'Name': name,
+      if (policyType != null) 'PolicyType': policyType.toValue(),
+      if (scalingAdjustment != null) 'ScalingAdjustment': scalingAdjustment,
+      if (scalingAdjustmentType != null)
+        'ScalingAdjustmentType': scalingAdjustmentType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (targetConfiguration != null)
+        'TargetConfiguration': targetConfiguration,
+      if (threshold != null) 'Threshold': threshold,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
+  }
 }
 
 enum ScalingStatusType {
@@ -17018,6 +18227,26 @@ class Script {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final name = this.name;
+    final scriptArn = this.scriptArn;
+    final scriptId = this.scriptId;
+    final sizeOnDisk = this.sizeOnDisk;
+    final storageLocation = this.storageLocation;
+    final version = this.version;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (name != null) 'Name': name,
+      if (scriptArn != null) 'ScriptArn': scriptArn,
+      if (scriptId != null) 'ScriptId': scriptId,
+      if (sizeOnDisk != null) 'SizeOnDisk': sizeOnDisk,
+      if (storageLocation != null) 'StorageLocation': storageLocation,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17043,6 +18272,15 @@ class SearchGameSessionsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSessions = this.gameSessions;
+    final nextToken = this.nextToken;
+    return {
+      if (gameSessions != null) 'GameSessions': gameSessions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -17151,6 +18389,15 @@ class StartFleetActionsOutput {
       fleetId: json['FleetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17170,6 +18417,14 @@ class StartGameSessionPlacementOutput {
               json['GameSessionPlacement'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionPlacement = this.gameSessionPlacement;
+    return {
+      if (gameSessionPlacement != null)
+        'GameSessionPlacement': gameSessionPlacement,
+    };
   }
 }
 
@@ -17191,6 +18446,13 @@ class StartMatchBackfillOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final matchmakingTicket = this.matchmakingTicket;
+    return {
+      if (matchmakingTicket != null) 'MatchmakingTicket': matchmakingTicket,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17210,6 +18472,13 @@ class StartMatchmakingOutput {
               json['MatchmakingTicket'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final matchmakingTicket = this.matchmakingTicket;
+    return {
+      if (matchmakingTicket != null) 'MatchmakingTicket': matchmakingTicket,
+    };
   }
 }
 
@@ -17235,6 +18504,15 @@ class StopFleetActionsOutput {
       fleetId: json['FleetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17254,12 +18532,24 @@ class StopGameSessionPlacementOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionPlacement = this.gameSessionPlacement;
+    return {
+      if (gameSessionPlacement != null)
+        'GameSessionPlacement': gameSessionPlacement,
+    };
+  }
 }
 
 class StopMatchmakingOutput {
   StopMatchmakingOutput();
   factory StopMatchmakingOutput.fromJson(Map<String, dynamic> _) {
     return StopMatchmakingOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -17279,6 +18569,13 @@ class SuspendGameServerGroupOutput {
               json['GameServerGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
   }
 }
 
@@ -17332,6 +18629,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -17391,6 +18692,12 @@ class TargetTrackingConfiguration {
   TargetTrackingConfiguration({
     required this.targetValue,
   });
+  factory TargetTrackingConfiguration.fromJson(Map<String, dynamic> json) {
+    return TargetTrackingConfiguration(
+      targetValue: json['TargetValue'] as double,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final targetValue = this.targetValue;
     return {
@@ -17403,6 +18710,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -17421,6 +18732,13 @@ class UpdateAliasOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    return {
+      if (alias != null) 'Alias': alias,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17438,6 +18756,13 @@ class UpdateBuildOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    return {
+      if (build != null) 'Build': build,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17452,6 +18777,13 @@ class UpdateFleetAttributesOutput {
     return UpdateFleetAttributesOutput(
       fleetId: json['FleetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetId = this.fleetId;
+    return {
+      if (fleetId != null) 'FleetId': fleetId,
+    };
   }
 }
 
@@ -17483,6 +18815,17 @@ class UpdateFleetCapacityOutput {
       location: json['Location'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final location = this.location;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (location != null) 'Location': location,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17497,6 +18840,13 @@ class UpdateFleetPortSettingsOutput {
     return UpdateFleetPortSettingsOutput(
       fleetId: json['FleetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetId = this.fleetId;
+    return {
+      if (fleetId != null) 'FleetId': fleetId,
+    };
   }
 }
 
@@ -17516,6 +18866,13 @@ class UpdateGameServerGroupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameServerGroup = this.gameServerGroup;
+    return {
+      if (gameServerGroup != null) 'GameServerGroup': gameServerGroup,
+    };
+  }
 }
 
 class UpdateGameServerOutput {
@@ -17531,6 +18888,13 @@ class UpdateGameServerOutput {
           ? GameServer.fromJson(json['GameServer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameServer = this.gameServer;
+    return {
+      if (gameServer != null) 'GameServer': gameServer,
+    };
   }
 }
 
@@ -17549,6 +18913,13 @@ class UpdateGameSessionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameSession = this.gameSession;
+    return {
+      if (gameSession != null) 'GameSession': gameSession,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17566,6 +18937,13 @@ class UpdateGameSessionQueueOutput {
               json['GameSessionQueue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gameSessionQueue = this.gameSessionQueue;
+    return {
+      if (gameSessionQueue != null) 'GameSessionQueue': gameSessionQueue,
+    };
   }
 }
 
@@ -17586,6 +18964,13 @@ class UpdateMatchmakingConfigurationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17604,6 +18989,14 @@ class UpdateRuntimeConfigurationOutput {
               json['RuntimeConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final runtimeConfiguration = this.runtimeConfiguration;
+    return {
+      if (runtimeConfiguration != null)
+        'RuntimeConfiguration': runtimeConfiguration,
+    };
   }
 }
 
@@ -17626,6 +19019,13 @@ class UpdateScriptOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final script = this.script;
+    return {
+      if (script != null) 'Script': script,
+    };
+  }
 }
 
 /// Represents the returned data in response to a request operation.
@@ -17640,6 +19040,13 @@ class ValidateMatchmakingRuleSetOutput {
     return ValidateMatchmakingRuleSetOutput(
       valid: json['Valid'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final valid = this.valid;
+    return {
+      if (valid != null) 'Valid': valid,
+    };
   }
 }
 
@@ -17699,6 +19106,25 @@ class VpcPeeringAuthorization {
       peerVpcAwsAccountId: json['PeerVpcAwsAccountId'] as String?,
       peerVpcId: json['PeerVpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final gameLiftAwsAccountId = this.gameLiftAwsAccountId;
+    final peerVpcAwsAccountId = this.peerVpcAwsAccountId;
+    final peerVpcId = this.peerVpcId;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (gameLiftAwsAccountId != null)
+        'GameLiftAwsAccountId': gameLiftAwsAccountId,
+      if (peerVpcAwsAccountId != null)
+        'PeerVpcAwsAccountId': peerVpcAwsAccountId,
+      if (peerVpcId != null) 'PeerVpcId': peerVpcId,
+    };
   }
 }
 
@@ -17776,6 +19202,26 @@ class VpcPeeringConnection {
       vpcPeeringConnectionId: json['VpcPeeringConnectionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetArn = this.fleetArn;
+    final fleetId = this.fleetId;
+    final gameLiftVpcId = this.gameLiftVpcId;
+    final ipV4CidrBlock = this.ipV4CidrBlock;
+    final peerVpcId = this.peerVpcId;
+    final status = this.status;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (fleetArn != null) 'FleetArn': fleetArn,
+      if (fleetId != null) 'FleetId': fleetId,
+      if (gameLiftVpcId != null) 'GameLiftVpcId': gameLiftVpcId,
+      if (ipV4CidrBlock != null) 'IpV4CidrBlock': ipV4CidrBlock,
+      if (peerVpcId != null) 'PeerVpcId': peerVpcId,
+      if (status != null) 'Status': status,
+      if (vpcPeeringConnectionId != null)
+        'VpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// Represents status information for a VPC peering connection. Status is
@@ -17799,6 +19245,15 @@ class VpcPeeringConnectionStatus {
       code: json['Code'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code,
+      if (message != null) 'Message': message,
+    };
   }
 }
 

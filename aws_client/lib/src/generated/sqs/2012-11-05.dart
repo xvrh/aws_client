@@ -2307,6 +2307,15 @@ class BatchResultErrorEntry {
     required this.senderFault,
     this.message,
   });
+  factory BatchResultErrorEntry.fromJson(Map<String, dynamic> json) {
+    return BatchResultErrorEntry(
+      code: json['Code'] as String,
+      id: json['Id'] as String,
+      senderFault: json['SenderFault'] as bool,
+      message: json['Message'] as String?,
+    );
+  }
+
   factory BatchResultErrorEntry.fromXml(_s.XmlElement elem) {
     return BatchResultErrorEntry(
       code: _s.extractXmlStringValue(elem, 'Code')!,
@@ -2314,6 +2323,19 @@ class BatchResultErrorEntry {
       senderFault: _s.extractXmlBoolValue(elem, 'SenderFault')!,
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final id = this.id;
+    final senderFault = this.senderFault;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Id': id,
+      'SenderFault': senderFault,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -2352,6 +2374,15 @@ class ChangeMessageVisibilityBatchRequestEntry {
     required this.receiptHandle,
     this.visibilityTimeout,
   });
+  factory ChangeMessageVisibilityBatchRequestEntry.fromJson(
+      Map<String, dynamic> json) {
+    return ChangeMessageVisibilityBatchRequestEntry(
+      id: json['Id'] as String,
+      receiptHandle: json['ReceiptHandle'] as String,
+      visibilityTimeout: json['VisibilityTimeout'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final receiptHandle = this.receiptHandle;
@@ -2380,6 +2411,21 @@ class ChangeMessageVisibilityBatchResult {
     required this.failed,
     required this.successful,
   });
+  factory ChangeMessageVisibilityBatchResult.fromJson(
+      Map<String, dynamic> json) {
+    return ChangeMessageVisibilityBatchResult(
+      failed: (json['Failed'] as List)
+          .whereNotNull()
+          .map((e) => BatchResultErrorEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      successful: (json['Successful'] as List)
+          .whereNotNull()
+          .map((e) => ChangeMessageVisibilityBatchResultEntry.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ChangeMessageVisibilityBatchResult.fromXml(_s.XmlElement elem) {
     return ChangeMessageVisibilityBatchResult(
       failed: elem
@@ -2392,6 +2438,15 @@ class ChangeMessageVisibilityBatchResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
+  }
 }
 
 /// Encloses the <code>Id</code> of an entry in <code>
@@ -2403,10 +2458,24 @@ class ChangeMessageVisibilityBatchResultEntry {
   ChangeMessageVisibilityBatchResultEntry({
     required this.id,
   });
+  factory ChangeMessageVisibilityBatchResultEntry.fromJson(
+      Map<String, dynamic> json) {
+    return ChangeMessageVisibilityBatchResultEntry(
+      id: json['Id'] as String,
+    );
+  }
+
   factory ChangeMessageVisibilityBatchResultEntry.fromXml(_s.XmlElement elem) {
     return ChangeMessageVisibilityBatchResultEntry(
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
   }
 }
 
@@ -2418,10 +2487,23 @@ class CreateQueueResult {
   CreateQueueResult({
     this.queueUrl,
   });
+  factory CreateQueueResult.fromJson(Map<String, dynamic> json) {
+    return CreateQueueResult(
+      queueUrl: json['QueueUrl'] as String?,
+    );
+  }
+
   factory CreateQueueResult.fromXml(_s.XmlElement elem) {
     return CreateQueueResult(
       queueUrl: _s.extractXmlStringValue(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueUrl = this.queueUrl;
+    return {
+      if (queueUrl != null) 'QueueUrl': queueUrl,
+    };
   }
 }
 
@@ -2444,6 +2526,13 @@ class DeleteMessageBatchRequestEntry {
     required this.id,
     required this.receiptHandle,
   });
+  factory DeleteMessageBatchRequestEntry.fromJson(Map<String, dynamic> json) {
+    return DeleteMessageBatchRequestEntry(
+      id: json['Id'] as String,
+      receiptHandle: json['ReceiptHandle'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final receiptHandle = this.receiptHandle;
@@ -2469,6 +2558,20 @@ class DeleteMessageBatchResult {
     required this.failed,
     required this.successful,
   });
+  factory DeleteMessageBatchResult.fromJson(Map<String, dynamic> json) {
+    return DeleteMessageBatchResult(
+      failed: (json['Failed'] as List)
+          .whereNotNull()
+          .map((e) => BatchResultErrorEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      successful: (json['Successful'] as List)
+          .whereNotNull()
+          .map((e) =>
+              DeleteMessageBatchResultEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DeleteMessageBatchResult.fromXml(_s.XmlElement elem) {
     return DeleteMessageBatchResult(
       failed: elem
@@ -2481,6 +2584,15 @@ class DeleteMessageBatchResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
+  }
 }
 
 /// Encloses the <code>Id</code> of an entry in <code>
@@ -2492,10 +2604,23 @@ class DeleteMessageBatchResultEntry {
   DeleteMessageBatchResultEntry({
     required this.id,
   });
+  factory DeleteMessageBatchResultEntry.fromJson(Map<String, dynamic> json) {
+    return DeleteMessageBatchResultEntry(
+      id: json['Id'] as String,
+    );
+  }
+
   factory DeleteMessageBatchResultEntry.fromXml(_s.XmlElement elem) {
     return DeleteMessageBatchResultEntry(
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
   }
 }
 
@@ -2507,6 +2632,13 @@ class GetQueueAttributesResult {
   GetQueueAttributesResult({
     this.attributes,
   });
+  factory GetQueueAttributesResult.fromJson(Map<String, dynamic> json) {
+    return GetQueueAttributesResult(
+      attributes: (json['Attribute'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toQueueAttributeName(), e as String)),
+    );
+  }
+
   factory GetQueueAttributesResult.fromXml(_s.XmlElement elem) {
     return GetQueueAttributesResult(
       attributes: Map.fromEntries(
@@ -2518,6 +2650,14 @@ class GetQueueAttributesResult {
             ),
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null)
+        'Attribute': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+    };
   }
 }
 
@@ -2531,10 +2671,23 @@ class GetQueueUrlResult {
   GetQueueUrlResult({
     this.queueUrl,
   });
+  factory GetQueueUrlResult.fromJson(Map<String, dynamic> json) {
+    return GetQueueUrlResult(
+      queueUrl: json['QueueUrl'] as String?,
+    );
+  }
+
   factory GetQueueUrlResult.fromXml(_s.XmlElement elem) {
     return GetQueueUrlResult(
       queueUrl: _s.extractXmlStringValue(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueUrl = this.queueUrl;
+    return {
+      if (queueUrl != null) 'QueueUrl': queueUrl,
+    };
   }
 }
 
@@ -2553,11 +2706,30 @@ class ListDeadLetterSourceQueuesResult {
     required this.queueUrls,
     this.nextToken,
   });
+  factory ListDeadLetterSourceQueuesResult.fromJson(Map<String, dynamic> json) {
+    return ListDeadLetterSourceQueuesResult(
+      queueUrls: (json['queueUrls'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListDeadLetterSourceQueuesResult.fromXml(_s.XmlElement elem) {
     return ListDeadLetterSourceQueuesResult(
       queueUrls: _s.extractXmlStringListValues(elem, 'QueueUrl'),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueUrls = this.queueUrls;
+    final nextToken = this.nextToken;
+    return {
+      'queueUrls': queueUrls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2568,6 +2740,13 @@ class ListQueueTagsResult {
   ListQueueTagsResult({
     this.tags,
   });
+  factory ListQueueTagsResult.fromJson(Map<String, dynamic> json) {
+    return ListQueueTagsResult(
+      tags: (json['Tag'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory ListQueueTagsResult.fromXml(_s.XmlElement elem) {
     return ListQueueTagsResult(
       tags: Map.fromEntries(
@@ -2579,6 +2758,13 @@ class ListQueueTagsResult {
             ),
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tag': tags,
+    };
   }
 }
 
@@ -2597,11 +2783,30 @@ class ListQueuesResult {
     this.nextToken,
     this.queueUrls,
   });
+  factory ListQueuesResult.fromJson(Map<String, dynamic> json) {
+    return ListQueuesResult(
+      nextToken: json['NextToken'] as String?,
+      queueUrls: (json['QueueUrls'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListQueuesResult.fromXml(_s.XmlElement elem) {
     return ListQueuesResult(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       queueUrls: _s.extractXmlStringListValues(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queueUrls = this.queueUrls;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queueUrls != null) 'QueueUrls': queueUrls,
+    };
   }
 }
 
@@ -2676,6 +2881,21 @@ class Message {
     this.messageId,
     this.receiptHandle,
   });
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      attributes: (json['Attribute'] as Map<String, dynamic>?)?.map(
+          (k, e) => MapEntry(k.toMessageSystemAttributeName(), e as String)),
+      body: json['Body'] as String?,
+      mD5OfBody: json['MD5OfBody'] as String?,
+      mD5OfMessageAttributes: json['MD5OfMessageAttributes'] as String?,
+      messageAttributes: (json['MessageAttribute'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(
+              k, MessageAttributeValue.fromJson(e as Map<String, dynamic>))),
+      messageId: json['MessageId'] as String?,
+      receiptHandle: json['ReceiptHandle'] as String?,
+    );
+  }
+
   factory Message.fromXml(_s.XmlElement elem) {
     return Message(
       attributes: Map.fromEntries(
@@ -2703,6 +2923,27 @@ class Message {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       receiptHandle: _s.extractXmlStringValue(elem, 'ReceiptHandle'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final body = this.body;
+    final mD5OfBody = this.mD5OfBody;
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final messageAttributes = this.messageAttributes;
+    final messageId = this.messageId;
+    final receiptHandle = this.receiptHandle;
+    return {
+      if (attributes != null)
+        'Attribute': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (body != null) 'Body': body,
+      if (mD5OfBody != null) 'MD5OfBody': mD5OfBody,
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (messageAttributes != null) 'MessageAttribute': messageAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (receiptHandle != null) 'ReceiptHandle': receiptHandle,
+    };
   }
 }
 
@@ -2747,6 +2988,22 @@ class MessageAttributeValue {
     this.stringListValues,
     this.stringValue,
   });
+  factory MessageAttributeValue.fromJson(Map<String, dynamic> json) {
+    return MessageAttributeValue(
+      dataType: json['DataType'] as String,
+      binaryListValues: (json['BinaryListValue'] as List?)
+          ?.whereNotNull()
+          .map((e) => _s.decodeUint8List(e as String))
+          .toList(),
+      binaryValue: _s.decodeNullableUint8List(json['BinaryValue'] as String?),
+      stringListValues: (json['StringListValue'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      stringValue: json['StringValue'] as String?,
+    );
+  }
+
   factory MessageAttributeValue.fromXml(_s.XmlElement elem) {
     return MessageAttributeValue(
       dataType: _s.extractXmlStringValue(elem, 'DataType')!,
@@ -2897,6 +3154,22 @@ class MessageSystemAttributeValue {
     this.stringListValues,
     this.stringValue,
   });
+  factory MessageSystemAttributeValue.fromJson(Map<String, dynamic> json) {
+    return MessageSystemAttributeValue(
+      dataType: json['DataType'] as String,
+      binaryListValues: (json['BinaryListValue'] as List?)
+          ?.whereNotNull()
+          .map((e) => _s.decodeUint8List(e as String))
+          .toList(),
+      binaryValue: _s.decodeNullableUint8List(json['BinaryValue'] as String?),
+      stringListValues: (json['StringListValue'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      stringValue: json['StringValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataType = this.dataType;
     final binaryListValues = this.binaryListValues;
@@ -3040,11 +3313,27 @@ class ReceiveMessageResult {
   ReceiveMessageResult({
     this.messages,
   });
+  factory ReceiveMessageResult.fromJson(Map<String, dynamic> json) {
+    return ReceiveMessageResult(
+      messages: (json['Messages'] as List?)
+          ?.whereNotNull()
+          .map((e) => Message.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReceiveMessageResult.fromXml(_s.XmlElement elem) {
     return ReceiveMessageResult(
       messages:
           elem.findElements('Message').map((c) => Message.fromXml(c)).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    return {
+      if (messages != null) 'Messages': messages,
+    };
   }
 }
 
@@ -3209,6 +3498,23 @@ class SendMessageBatchRequestEntry {
     this.messageGroupId,
     this.messageSystemAttributes,
   });
+  factory SendMessageBatchRequestEntry.fromJson(Map<String, dynamic> json) {
+    return SendMessageBatchRequestEntry(
+      id: json['Id'] as String,
+      messageBody: json['MessageBody'] as String,
+      delaySeconds: json['DelaySeconds'] as int?,
+      messageAttributes: (json['MessageAttribute'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(
+              k, MessageAttributeValue.fromJson(e as Map<String, dynamic>))),
+      messageDeduplicationId: json['MessageDeduplicationId'] as String?,
+      messageGroupId: json['MessageGroupId'] as String?,
+      messageSystemAttributes: (json['MessageSystemAttribute']
+              as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toMessageSystemAttributeNameForSends(),
+              MessageSystemAttributeValue.fromJson(e as Map<String, dynamic>))),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final messageBody = this.messageBody;
@@ -3247,6 +3553,20 @@ class SendMessageBatchResult {
     required this.failed,
     required this.successful,
   });
+  factory SendMessageBatchResult.fromJson(Map<String, dynamic> json) {
+    return SendMessageBatchResult(
+      failed: (json['Failed'] as List)
+          .whereNotNull()
+          .map((e) => BatchResultErrorEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      successful: (json['Successful'] as List)
+          .whereNotNull()
+          .map((e) =>
+              SendMessageBatchResultEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SendMessageBatchResult.fromXml(_s.XmlElement elem) {
     return SendMessageBatchResult(
       failed: elem
@@ -3258,6 +3578,15 @@ class SendMessageBatchResult {
           .map((c) => SendMessageBatchResultEntry.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
   }
 }
 
@@ -3307,6 +3636,18 @@ class SendMessageBatchResultEntry {
     this.mD5OfMessageSystemAttributes,
     this.sequenceNumber,
   });
+  factory SendMessageBatchResultEntry.fromJson(Map<String, dynamic> json) {
+    return SendMessageBatchResultEntry(
+      id: json['Id'] as String,
+      mD5OfMessageBody: json['MD5OfMessageBody'] as String,
+      messageId: json['MessageId'] as String,
+      mD5OfMessageAttributes: json['MD5OfMessageAttributes'] as String?,
+      mD5OfMessageSystemAttributes:
+          json['MD5OfMessageSystemAttributes'] as String?,
+      sequenceNumber: json['SequenceNumber'] as String?,
+    );
+  }
+
   factory SendMessageBatchResultEntry.fromXml(_s.XmlElement elem) {
     return SendMessageBatchResultEntry(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -3318,6 +3659,25 @@ class SendMessageBatchResultEntry {
           _s.extractXmlStringValue(elem, 'MD5OfMessageSystemAttributes'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final mD5OfMessageBody = this.mD5OfMessageBody;
+    final messageId = this.messageId;
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final mD5OfMessageSystemAttributes = this.mD5OfMessageSystemAttributes;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      'Id': id,
+      'MD5OfMessageBody': mD5OfMessageBody,
+      'MessageId': messageId,
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (mD5OfMessageSystemAttributes != null)
+        'MD5OfMessageSystemAttributes': mD5OfMessageSystemAttributes,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
   }
 }
 
@@ -3364,6 +3724,17 @@ class SendMessageResult {
     this.messageId,
     this.sequenceNumber,
   });
+  factory SendMessageResult.fromJson(Map<String, dynamic> json) {
+    return SendMessageResult(
+      mD5OfMessageAttributes: json['MD5OfMessageAttributes'] as String?,
+      mD5OfMessageBody: json['MD5OfMessageBody'] as String?,
+      mD5OfMessageSystemAttributes:
+          json['MD5OfMessageSystemAttributes'] as String?,
+      messageId: json['MessageId'] as String?,
+      sequenceNumber: json['SequenceNumber'] as String?,
+    );
+  }
+
   factory SendMessageResult.fromXml(_s.XmlElement elem) {
     return SendMessageResult(
       mD5OfMessageAttributes:
@@ -3374,6 +3745,23 @@ class SendMessageResult {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final mD5OfMessageBody = this.mD5OfMessageBody;
+    final mD5OfMessageSystemAttributes = this.mD5OfMessageSystemAttributes;
+    final messageId = this.messageId;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (mD5OfMessageBody != null) 'MD5OfMessageBody': mD5OfMessageBody,
+      if (mD5OfMessageSystemAttributes != null)
+        'MD5OfMessageSystemAttributes': mD5OfMessageSystemAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
   }
 }
 

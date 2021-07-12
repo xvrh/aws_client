@@ -263,6 +263,21 @@ class CreateTokenResponse {
       tokenType: json['tokenType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final expiresIn = this.expiresIn;
+    final idToken = this.idToken;
+    final refreshToken = this.refreshToken;
+    final tokenType = this.tokenType;
+    return {
+      if (accessToken != null) 'accessToken': accessToken,
+      if (expiresIn != null) 'expiresIn': expiresIn,
+      if (idToken != null) 'idToken': idToken,
+      if (refreshToken != null) 'refreshToken': refreshToken,
+      if (tokenType != null) 'tokenType': tokenType,
+    };
+  }
 }
 
 class RegisterClientResponse {
@@ -305,6 +320,25 @@ class RegisterClientResponse {
       clientSecretExpiresAt: json['clientSecretExpiresAt'] as int?,
       tokenEndpoint: json['tokenEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientId = this.clientId;
+    final clientIdIssuedAt = this.clientIdIssuedAt;
+    final clientSecret = this.clientSecret;
+    final clientSecretExpiresAt = this.clientSecretExpiresAt;
+    final tokenEndpoint = this.tokenEndpoint;
+    return {
+      if (authorizationEndpoint != null)
+        'authorizationEndpoint': authorizationEndpoint,
+      if (clientId != null) 'clientId': clientId,
+      if (clientIdIssuedAt != null) 'clientIdIssuedAt': clientIdIssuedAt,
+      if (clientSecret != null) 'clientSecret': clientSecret,
+      if (clientSecretExpiresAt != null)
+        'clientSecretExpiresAt': clientSecretExpiresAt,
+      if (tokenEndpoint != null) 'tokenEndpoint': tokenEndpoint,
+    };
   }
 }
 
@@ -351,6 +385,24 @@ class StartDeviceAuthorizationResponse {
       verificationUri: json['verificationUri'] as String?,
       verificationUriComplete: json['verificationUriComplete'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceCode = this.deviceCode;
+    final expiresIn = this.expiresIn;
+    final interval = this.interval;
+    final userCode = this.userCode;
+    final verificationUri = this.verificationUri;
+    final verificationUriComplete = this.verificationUriComplete;
+    return {
+      if (deviceCode != null) 'deviceCode': deviceCode,
+      if (expiresIn != null) 'expiresIn': expiresIn,
+      if (interval != null) 'interval': interval,
+      if (userCode != null) 'userCode': userCode,
+      if (verificationUri != null) 'verificationUri': verificationUri,
+      if (verificationUriComplete != null)
+        'verificationUriComplete': verificationUriComplete,
+    };
   }
 }
 

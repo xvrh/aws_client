@@ -2473,6 +2473,15 @@ class CreateAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final serverId = this.serverId;
+    return {
+      'ExternalId': externalId,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class CreateServerResponse {
@@ -2486,6 +2495,13 @@ class CreateServerResponse {
     return CreateServerResponse(
       serverId: json['ServerId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    return {
+      'ServerId': serverId,
+    };
   }
 }
 
@@ -2505,6 +2521,15 @@ class CreateUserResponse {
       serverId: json['ServerId'] as String,
       userName: json['UserName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'UserName': userName,
+    };
   }
 }
 
@@ -2526,6 +2551,15 @@ class DescribeAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final access = this.access;
+    final serverId = this.serverId;
+    return {
+      'Access': access,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class DescribeSecurityPolicyResponse {
@@ -2541,6 +2575,13 @@ class DescribeSecurityPolicyResponse {
           json['SecurityPolicy'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicy = this.securityPolicy;
+    return {
+      'SecurityPolicy': securityPolicy,
+    };
+  }
 }
 
 class DescribeServerResponse {
@@ -2555,6 +2596,13 @@ class DescribeServerResponse {
     return DescribeServerResponse(
       server: DescribedServer.fromJson(json['Server'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      'Server': server,
+    };
   }
 }
 
@@ -2576,6 +2624,15 @@ class DescribeUserResponse {
       serverId: json['ServerId'] as String,
       user: DescribedUser.fromJson(json['User'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final user = this.user;
+    return {
+      'ServerId': serverId,
+      'User': user,
+    };
   }
 }
 
@@ -2675,6 +2732,27 @@ class DescribedAccess {
       role: json['Role'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryMappings = this.homeDirectoryMappings;
+    final homeDirectoryType = this.homeDirectoryType;
+    final policy = this.policy;
+    final posixProfile = this.posixProfile;
+    final role = this.role;
+    return {
+      if (externalId != null) 'ExternalId': externalId,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryMappings != null)
+        'HomeDirectoryMappings': homeDirectoryMappings,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (policy != null) 'Policy': policy,
+      if (posixProfile != null) 'PosixProfile': posixProfile,
+      if (role != null) 'Role': role,
+    };
+  }
 }
 
 /// Describes the properties of a security policy that was specified. For more
@@ -2734,6 +2812,23 @@ class DescribedSecurityPolicy {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicyName = this.securityPolicyName;
+    final fips = this.fips;
+    final sshCiphers = this.sshCiphers;
+    final sshKexs = this.sshKexs;
+    final sshMacs = this.sshMacs;
+    final tlsCiphers = this.tlsCiphers;
+    return {
+      'SecurityPolicyName': securityPolicyName,
+      if (fips != null) 'Fips': fips,
+      if (sshCiphers != null) 'SshCiphers': sshCiphers,
+      if (sshKexs != null) 'SshKexs': sshKexs,
+      if (sshMacs != null) 'SshMacs': sshMacs,
+      if (tlsCiphers != null) 'TlsCiphers': tlsCiphers,
+    };
   }
 }
 
@@ -2902,6 +2997,46 @@ class DescribedServer {
       userCount: json['UserCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final certificate = this.certificate;
+    final domain = this.domain;
+    final endpointDetails = this.endpointDetails;
+    final endpointType = this.endpointType;
+    final hostKeyFingerprint = this.hostKeyFingerprint;
+    final identityProviderDetails = this.identityProviderDetails;
+    final identityProviderType = this.identityProviderType;
+    final loggingRole = this.loggingRole;
+    final protocolDetails = this.protocolDetails;
+    final protocols = this.protocols;
+    final securityPolicyName = this.securityPolicyName;
+    final serverId = this.serverId;
+    final state = this.state;
+    final tags = this.tags;
+    final userCount = this.userCount;
+    return {
+      'Arn': arn,
+      if (certificate != null) 'Certificate': certificate,
+      if (domain != null) 'Domain': domain.toValue(),
+      if (endpointDetails != null) 'EndpointDetails': endpointDetails,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (hostKeyFingerprint != null) 'HostKeyFingerprint': hostKeyFingerprint,
+      if (identityProviderDetails != null)
+        'IdentityProviderDetails': identityProviderDetails,
+      if (identityProviderType != null)
+        'IdentityProviderType': identityProviderType.toValue(),
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+      if (protocolDetails != null) 'ProtocolDetails': protocolDetails,
+      if (protocols != null)
+        'Protocols': protocols.map((e) => e.toValue()).toList(),
+      if (securityPolicyName != null) 'SecurityPolicyName': securityPolicyName,
+      if (serverId != null) 'ServerId': serverId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (userCount != null) 'UserCount': userCount,
+    };
+  }
 }
 
 /// Describes the properties of a user that was specified.
@@ -3017,6 +3152,33 @@ class DescribedUser {
           .toList(),
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryMappings = this.homeDirectoryMappings;
+    final homeDirectoryType = this.homeDirectoryType;
+    final policy = this.policy;
+    final posixProfile = this.posixProfile;
+    final role = this.role;
+    final sshPublicKeys = this.sshPublicKeys;
+    final tags = this.tags;
+    final userName = this.userName;
+    return {
+      'Arn': arn,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryMappings != null)
+        'HomeDirectoryMappings': homeDirectoryMappings,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (policy != null) 'Policy': policy,
+      if (posixProfile != null) 'PosixProfile': posixProfile,
+      if (role != null) 'Role': role,
+      if (sshPublicKeys != null) 'SshPublicKeys': sshPublicKeys,
+      if (tags != null) 'Tags': tags,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -3371,6 +3533,17 @@ class ImportSshPublicKeyResponse {
       userName: json['UserName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final sshPublicKeyId = this.sshPublicKeyId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'SshPublicKeyId': sshPublicKeyId,
+      'UserName': userName,
+    };
+  }
 }
 
 class ListAccessesResponse {
@@ -3403,6 +3576,17 @@ class ListAccessesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accesses = this.accesses;
+    final serverId = this.serverId;
+    final nextToken = this.nextToken;
+    return {
+      'Accesses': accesses,
+      'ServerId': serverId,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSecurityPoliciesResponse {
@@ -3428,6 +3612,15 @@ class ListSecurityPoliciesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicyNames = this.securityPolicyNames;
+    final nextToken = this.nextToken;
+    return {
+      'SecurityPolicyNames': securityPolicyNames,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListServersResponse {
@@ -3452,6 +3645,15 @@ class ListServersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final servers = this.servers;
+    final nextToken = this.nextToken;
+    return {
+      'Servers': servers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3484,6 +3686,17 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListUsersResponse {
@@ -3515,6 +3728,17 @@ class ListUsersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final users = this.users;
+    final nextToken = this.nextToken;
+    return {
+      'ServerId': serverId,
+      'Users': users,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3576,6 +3800,20 @@ class ListedAccess {
           (json['HomeDirectoryType'] as String?)?.toHomeDirectoryType(),
       role: json['Role'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryType = this.homeDirectoryType;
+    final role = this.role;
+    return {
+      if (externalId != null) 'ExternalId': externalId,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (role != null) 'Role': role,
+    };
   }
 }
 
@@ -3657,6 +3895,28 @@ class ListedServer {
       userCount: json['UserCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final domain = this.domain;
+    final endpointType = this.endpointType;
+    final identityProviderType = this.identityProviderType;
+    final loggingRole = this.loggingRole;
+    final serverId = this.serverId;
+    final state = this.state;
+    final userCount = this.userCount;
+    return {
+      'Arn': arn,
+      if (domain != null) 'Domain': domain.toValue(),
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (identityProviderType != null)
+        'IdentityProviderType': identityProviderType.toValue(),
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+      if (serverId != null) 'ServerId': serverId,
+      if (state != null) 'State': state.toValue(),
+      if (userCount != null) 'UserCount': userCount,
+    };
+  }
 }
 
 /// Returns properties of the user that you specify.
@@ -3723,6 +3983,24 @@ class ListedUser {
       sshPublicKeyCount: json['SshPublicKeyCount'] as int?,
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryType = this.homeDirectoryType;
+    final role = this.role;
+    final sshPublicKeyCount = this.sshPublicKeyCount;
+    final userName = this.userName;
+    return {
+      'Arn': arn,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (role != null) 'Role': role,
+      if (sshPublicKeyCount != null) 'SshPublicKeyCount': sshPublicKeyCount,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -3867,6 +4145,17 @@ class SshPublicKey {
       sshPublicKeyId: json['SshPublicKeyId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dateImported = this.dateImported;
+    final sshPublicKeyBody = this.sshPublicKeyBody;
+    final sshPublicKeyId = this.sshPublicKeyId;
+    return {
+      'DateImported': unixTimestampToJson(dateImported),
+      'SshPublicKeyBody': sshPublicKeyBody,
+      'SshPublicKeyId': sshPublicKeyId,
+    };
+  }
 }
 
 /// Describes the condition of a file transfer protocol-enabled server with
@@ -3991,6 +4280,19 @@ class TestIdentityProviderResponse {
       response: json['Response'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    final url = this.url;
+    final message = this.message;
+    final response = this.response;
+    return {
+      'StatusCode': statusCode,
+      'Url': url,
+      if (message != null) 'Message': message,
+      if (response != null) 'Response': response,
+    };
+  }
 }
 
 class UpdateAccessResponse {
@@ -4012,6 +4314,15 @@ class UpdateAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final serverId = this.serverId;
+    return {
+      'ExternalId': externalId,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class UpdateServerResponse {
@@ -4026,6 +4337,13 @@ class UpdateServerResponse {
     return UpdateServerResponse(
       serverId: json['ServerId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    return {
+      'ServerId': serverId,
+    };
   }
 }
 
@@ -4049,6 +4367,15 @@ class UpdateUserResponse {
       serverId: json['ServerId'] as String,
       userName: json['UserName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'UserName': userName,
+    };
   }
 }
 

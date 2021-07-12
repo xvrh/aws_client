@@ -71,6 +71,16 @@ class OutputShape {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fooEnum = this.fooEnum;
+    final listEnums = this.listEnums;
+    return {
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        'ListEnums': listEnums.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 enum JSONEnumType {

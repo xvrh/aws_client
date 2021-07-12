@@ -12663,6 +12663,17 @@ class AccessDetail {
     this.region,
     this.totalAuthenticatedEntities,
   });
+  factory AccessDetail.fromJson(Map<String, dynamic> json) {
+    return AccessDetail(
+      serviceName: json['ServiceName'] as String,
+      serviceNamespace: json['ServiceNamespace'] as String,
+      entityPath: json['EntityPath'] as String?,
+      lastAuthenticatedTime: timeStampFromJson(json['LastAuthenticatedTime']),
+      region: json['Region'] as String?,
+      totalAuthenticatedEntities: json['TotalAuthenticatedEntities'] as int?,
+    );
+  }
+
   factory AccessDetail.fromXml(_s.XmlElement elem) {
     return AccessDetail(
       serviceName: _s.extractXmlStringValue(elem, 'ServiceName')!,
@@ -12674,6 +12685,25 @@ class AccessDetail {
       totalAuthenticatedEntities:
           _s.extractXmlIntValue(elem, 'TotalAuthenticatedEntities'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceName = this.serviceName;
+    final serviceNamespace = this.serviceNamespace;
+    final entityPath = this.entityPath;
+    final lastAuthenticatedTime = this.lastAuthenticatedTime;
+    final region = this.region;
+    final totalAuthenticatedEntities = this.totalAuthenticatedEntities;
+    return {
+      'ServiceName': serviceName,
+      'ServiceNamespace': serviceNamespace,
+      if (entityPath != null) 'EntityPath': entityPath,
+      if (lastAuthenticatedTime != null)
+        'LastAuthenticatedTime': unixTimestampToJson(lastAuthenticatedTime),
+      if (region != null) 'Region': region,
+      if (totalAuthenticatedEntities != null)
+        'TotalAuthenticatedEntities': totalAuthenticatedEntities,
+    };
   }
 }
 
@@ -12711,6 +12741,16 @@ class AccessKey {
     required this.userName,
     this.createDate,
   });
+  factory AccessKey.fromJson(Map<String, dynamic> json) {
+    return AccessKey(
+      accessKeyId: json['AccessKeyId'] as String,
+      secretAccessKey: json['SecretAccessKey'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      userName: json['UserName'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+    );
+  }
+
   factory AccessKey.fromXml(_s.XmlElement elem) {
     return AccessKey(
       accessKeyId: _s.extractXmlStringValue(elem, 'AccessKeyId')!,
@@ -12719,6 +12759,21 @@ class AccessKey {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final secretAccessKey = this.secretAccessKey;
+    final status = this.status;
+    final userName = this.userName;
+    final createDate = this.createDate;
+    return {
+      'AccessKeyId': accessKeyId,
+      'SecretAccessKey': secretAccessKey,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+    };
   }
 }
 
@@ -12789,12 +12844,32 @@ class AccessKeyLastUsed {
     required this.region,
     required this.serviceName,
   });
+  factory AccessKeyLastUsed.fromJson(Map<String, dynamic> json) {
+    return AccessKeyLastUsed(
+      lastUsedDate:
+          nonNullableTimeStampFromJson(json['LastUsedDate'] as Object),
+      region: json['Region'] as String,
+      serviceName: json['ServiceName'] as String,
+    );
+  }
+
   factory AccessKeyLastUsed.fromXml(_s.XmlElement elem) {
     return AccessKeyLastUsed(
       lastUsedDate: _s.extractXmlDateTimeValue(elem, 'LastUsedDate')!,
       region: _s.extractXmlStringValue(elem, 'Region')!,
       serviceName: _s.extractXmlStringValue(elem, 'ServiceName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUsedDate = this.lastUsedDate;
+    final region = this.region;
+    final serviceName = this.serviceName;
+    return {
+      'LastUsedDate': unixTimestampToJson(lastUsedDate),
+      'Region': region,
+      'ServiceName': serviceName,
+    };
   }
 }
 
@@ -12823,6 +12898,15 @@ class AccessKeyMetadata {
     this.status,
     this.userName,
   });
+  factory AccessKeyMetadata.fromJson(Map<String, dynamic> json) {
+    return AccessKeyMetadata(
+      accessKeyId: json['AccessKeyId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      status: (json['Status'] as String?)?.toStatusType(),
+      userName: json['UserName'] as String?,
+    );
+  }
+
   factory AccessKeyMetadata.fromXml(_s.XmlElement elem) {
     return AccessKeyMetadata(
       accessKeyId: _s.extractXmlStringValue(elem, 'AccessKeyId'),
@@ -12830,6 +12914,19 @@ class AccessKeyMetadata {
       status: _s.extractXmlStringValue(elem, 'Status')?.toStatusType(),
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final createDate = this.createDate;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (status != null) 'Status': status.toValue(),
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -12855,6 +12952,14 @@ class AttachedPermissionsBoundary {
     this.permissionsBoundaryArn,
     this.permissionsBoundaryType,
   });
+  factory AttachedPermissionsBoundary.fromJson(Map<String, dynamic> json) {
+    return AttachedPermissionsBoundary(
+      permissionsBoundaryArn: json['PermissionsBoundaryArn'] as String?,
+      permissionsBoundaryType: (json['PermissionsBoundaryType'] as String?)
+          ?.toPermissionsBoundaryAttachmentType(),
+    );
+  }
+
   factory AttachedPermissionsBoundary.fromXml(_s.XmlElement elem) {
     return AttachedPermissionsBoundary(
       permissionsBoundaryArn:
@@ -12863,6 +12968,17 @@ class AttachedPermissionsBoundary {
           .extractXmlStringValue(elem, 'PermissionsBoundaryType')
           ?.toPermissionsBoundaryAttachmentType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissionsBoundaryArn = this.permissionsBoundaryArn;
+    final permissionsBoundaryType = this.permissionsBoundaryType;
+    return {
+      if (permissionsBoundaryArn != null)
+        'PermissionsBoundaryArn': permissionsBoundaryArn,
+      if (permissionsBoundaryType != null)
+        'PermissionsBoundaryType': permissionsBoundaryType.toValue(),
+    };
   }
 }
 
@@ -12887,11 +13003,27 @@ class AttachedPolicy {
     this.policyArn,
     this.policyName,
   });
+  factory AttachedPolicy.fromJson(Map<String, dynamic> json) {
+    return AttachedPolicy(
+      policyArn: json['PolicyArn'] as String?,
+      policyName: json['PolicyName'] as String?,
+    );
+  }
+
   factory AttachedPolicy.fromXml(_s.XmlElement elem) {
     return AttachedPolicy(
       policyArn: _s.extractXmlStringValue(elem, 'PolicyArn'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyName = this.policyName;
+    return {
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -12921,6 +13053,18 @@ class ContextEntry {
     this.contextKeyType,
     this.contextKeyValues,
   });
+  factory ContextEntry.fromJson(Map<String, dynamic> json) {
+    return ContextEntry(
+      contextKeyName: json['ContextKeyName'] as String?,
+      contextKeyType:
+          (json['ContextKeyType'] as String?)?.toContextKeyTypeEnum(),
+      contextKeyValues: (json['ContextKeyValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final contextKeyName = this.contextKeyName;
     final contextKeyType = this.contextKeyType;
@@ -13019,10 +13163,23 @@ class CreateAccessKeyResponse {
   CreateAccessKeyResponse({
     required this.accessKey,
   });
+  factory CreateAccessKeyResponse.fromJson(Map<String, dynamic> json) {
+    return CreateAccessKeyResponse(
+      accessKey: AccessKey.fromJson(json['AccessKey'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateAccessKeyResponse.fromXml(_s.XmlElement elem) {
     return CreateAccessKeyResponse(
       accessKey: AccessKey.fromXml(_s.extractXmlChild(elem, 'AccessKey')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKey = this.accessKey;
+    return {
+      'AccessKey': accessKey,
+    };
   }
 }
 
@@ -13034,10 +13191,23 @@ class CreateGroupResponse {
   CreateGroupResponse({
     required this.group,
   });
+  factory CreateGroupResponse.fromJson(Map<String, dynamic> json) {
+    return CreateGroupResponse(
+      group: Group.fromJson(json['Group'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateGroupResponse.fromXml(_s.XmlElement elem) {
     return CreateGroupResponse(
       group: Group.fromXml(_s.extractXmlChild(elem, 'Group')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      'Group': group,
+    };
   }
 }
 
@@ -13049,11 +13219,25 @@ class CreateInstanceProfileResponse {
   CreateInstanceProfileResponse({
     required this.instanceProfile,
   });
+  factory CreateInstanceProfileResponse.fromJson(Map<String, dynamic> json) {
+    return CreateInstanceProfileResponse(
+      instanceProfile: InstanceProfile.fromJson(
+          json['InstanceProfile'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateInstanceProfileResponse.fromXml(_s.XmlElement elem) {
     return CreateInstanceProfileResponse(
       instanceProfile:
           InstanceProfile.fromXml(_s.extractXmlChild(elem, 'InstanceProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      'InstanceProfile': instanceProfile,
+    };
   }
 }
 
@@ -13065,11 +13249,25 @@ class CreateLoginProfileResponse {
   CreateLoginProfileResponse({
     required this.loginProfile,
   });
+  factory CreateLoginProfileResponse.fromJson(Map<String, dynamic> json) {
+    return CreateLoginProfileResponse(
+      loginProfile:
+          LoginProfile.fromJson(json['LoginProfile'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateLoginProfileResponse.fromXml(_s.XmlElement elem) {
     return CreateLoginProfileResponse(
       loginProfile:
           LoginProfile.fromXml(_s.extractXmlChild(elem, 'LoginProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loginProfile = this.loginProfile;
+    return {
+      'LoginProfile': loginProfile,
+    };
   }
 }
 
@@ -13091,6 +13289,17 @@ class CreateOpenIDConnectProviderResponse {
     this.openIDConnectProviderArn,
     this.tags,
   });
+  factory CreateOpenIDConnectProviderResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateOpenIDConnectProviderResponse(
+      openIDConnectProviderArn: json['OpenIDConnectProviderArn'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CreateOpenIDConnectProviderResponse.fromXml(_s.XmlElement elem) {
     return CreateOpenIDConnectProviderResponse(
       openIDConnectProviderArn:
@@ -13098,6 +13307,16 @@ class CreateOpenIDConnectProviderResponse {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final openIDConnectProviderArn = this.openIDConnectProviderArn;
+    final tags = this.tags;
+    return {
+      if (openIDConnectProviderArn != null)
+        'OpenIDConnectProviderArn': openIDConnectProviderArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -13109,10 +13328,25 @@ class CreatePolicyResponse {
   CreatePolicyResponse({
     this.policy,
   });
+  factory CreatePolicyResponse.fromJson(Map<String, dynamic> json) {
+    return CreatePolicyResponse(
+      policy: json['Policy'] != null
+          ? Policy.fromJson(json['Policy'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreatePolicyResponse.fromXml(_s.XmlElement elem) {
     return CreatePolicyResponse(
       policy: _s.extractXmlChild(elem, 'Policy')?.let((e) => Policy.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -13124,12 +13358,28 @@ class CreatePolicyVersionResponse {
   CreatePolicyVersionResponse({
     this.policyVersion,
   });
+  factory CreatePolicyVersionResponse.fromJson(Map<String, dynamic> json) {
+    return CreatePolicyVersionResponse(
+      policyVersion: json['PolicyVersion'] != null
+          ? PolicyVersion.fromJson(
+              json['PolicyVersion'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreatePolicyVersionResponse.fromXml(_s.XmlElement elem) {
     return CreatePolicyVersionResponse(
       policyVersion: _s
           .extractXmlChild(elem, 'PolicyVersion')
           ?.let((e) => PolicyVersion.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyVersion = this.policyVersion;
+    return {
+      if (policyVersion != null) 'PolicyVersion': policyVersion,
+    };
   }
 }
 
@@ -13141,10 +13391,23 @@ class CreateRoleResponse {
   CreateRoleResponse({
     required this.role,
   });
+  factory CreateRoleResponse.fromJson(Map<String, dynamic> json) {
+    return CreateRoleResponse(
+      role: Role.fromJson(json['Role'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateRoleResponse.fromXml(_s.XmlElement elem) {
     return CreateRoleResponse(
       role: Role.fromXml(_s.extractXmlChild(elem, 'Role')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      'Role': role,
+    };
   }
 }
 
@@ -13164,12 +13427,31 @@ class CreateSAMLProviderResponse {
     this.sAMLProviderArn,
     this.tags,
   });
+  factory CreateSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
+    return CreateSAMLProviderResponse(
+      sAMLProviderArn: json['SAMLProviderArn'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CreateSAMLProviderResponse.fromXml(_s.XmlElement elem) {
     return CreateSAMLProviderResponse(
       sAMLProviderArn: _s.extractXmlStringValue(elem, 'SAMLProviderArn'),
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderArn = this.sAMLProviderArn;
+    final tags = this.tags;
+    return {
+      if (sAMLProviderArn != null) 'SAMLProviderArn': sAMLProviderArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -13180,10 +13462,25 @@ class CreateServiceLinkedRoleResponse {
   CreateServiceLinkedRoleResponse({
     this.role,
   });
+  factory CreateServiceLinkedRoleResponse.fromJson(Map<String, dynamic> json) {
+    return CreateServiceLinkedRoleResponse(
+      role: json['Role'] != null
+          ? Role.fromJson(json['Role'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateServiceLinkedRoleResponse.fromXml(_s.XmlElement elem) {
     return CreateServiceLinkedRoleResponse(
       role: _s.extractXmlChild(elem, 'Role')?.let((e) => Role.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      if (role != null) 'Role': role,
+    };
   }
 }
 
@@ -13200,12 +13497,30 @@ class CreateServiceSpecificCredentialResponse {
   CreateServiceSpecificCredentialResponse({
     this.serviceSpecificCredential,
   });
+  factory CreateServiceSpecificCredentialResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateServiceSpecificCredentialResponse(
+      serviceSpecificCredential: json['ServiceSpecificCredential'] != null
+          ? ServiceSpecificCredential.fromJson(
+              json['ServiceSpecificCredential'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateServiceSpecificCredentialResponse.fromXml(_s.XmlElement elem) {
     return CreateServiceSpecificCredentialResponse(
       serviceSpecificCredential: _s
           .extractXmlChild(elem, 'ServiceSpecificCredential')
           ?.let((e) => ServiceSpecificCredential.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredential = this.serviceSpecificCredential;
+    return {
+      if (serviceSpecificCredential != null)
+        'ServiceSpecificCredential': serviceSpecificCredential,
+    };
   }
 }
 
@@ -13217,10 +13532,25 @@ class CreateUserResponse {
   CreateUserResponse({
     this.user,
   });
+  factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
+    return CreateUserResponse(
+      user: json['User'] != null
+          ? User.fromJson(json['User'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateUserResponse.fromXml(_s.XmlElement elem) {
     return CreateUserResponse(
       user: _s.extractXmlChild(elem, 'User')?.let((e) => User.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -13232,11 +13562,25 @@ class CreateVirtualMFADeviceResponse {
   CreateVirtualMFADeviceResponse({
     required this.virtualMFADevice,
   });
+  factory CreateVirtualMFADeviceResponse.fromJson(Map<String, dynamic> json) {
+    return CreateVirtualMFADeviceResponse(
+      virtualMFADevice: VirtualMFADevice.fromJson(
+          json['VirtualMFADevice'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateVirtualMFADeviceResponse.fromXml(_s.XmlElement elem) {
     return CreateVirtualMFADeviceResponse(
       virtualMFADevice: VirtualMFADevice.fromXml(
           _s.extractXmlChild(elem, 'VirtualMFADevice')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualMFADevice = this.virtualMFADevice;
+    return {
+      'VirtualMFADevice': virtualMFADevice,
+    };
   }
 }
 
@@ -13249,10 +13593,23 @@ class DeleteServiceLinkedRoleResponse {
   DeleteServiceLinkedRoleResponse({
     required this.deletionTaskId,
   });
+  factory DeleteServiceLinkedRoleResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteServiceLinkedRoleResponse(
+      deletionTaskId: json['DeletionTaskId'] as String,
+    );
+  }
+
   factory DeleteServiceLinkedRoleResponse.fromXml(_s.XmlElement elem) {
     return DeleteServiceLinkedRoleResponse(
       deletionTaskId: _s.extractXmlStringValue(elem, 'DeletionTaskId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deletionTaskId = this.deletionTaskId;
+    return {
+      'DeletionTaskId': deletionTaskId,
+    };
   }
 }
 
@@ -13277,6 +13634,16 @@ class DeletionTaskFailureReasonType {
     this.reason,
     this.roleUsageList,
   });
+  factory DeletionTaskFailureReasonType.fromJson(Map<String, dynamic> json) {
+    return DeletionTaskFailureReasonType(
+      reason: json['Reason'] as String?,
+      roleUsageList: (json['RoleUsageList'] as List?)
+          ?.whereNotNull()
+          .map((e) => RoleUsageType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DeletionTaskFailureReasonType.fromXml(_s.XmlElement elem) {
     return DeletionTaskFailureReasonType(
       reason: _s.extractXmlStringValue(elem, 'Reason'),
@@ -13286,6 +13653,15 @@ class DeletionTaskFailureReasonType {
               .map((c) => RoleUsageType.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final roleUsageList = this.roleUsageList;
+    return {
+      if (reason != null) 'Reason': reason,
+      if (roleUsageList != null) 'RoleUsageList': roleUsageList,
+    };
   }
 }
 
@@ -13353,11 +13729,29 @@ class EntityDetails {
     required this.entityInfo,
     this.lastAuthenticated,
   });
+  factory EntityDetails.fromJson(Map<String, dynamic> json) {
+    return EntityDetails(
+      entityInfo:
+          EntityInfo.fromJson(json['EntityInfo'] as Map<String, dynamic>),
+      lastAuthenticated: timeStampFromJson(json['LastAuthenticated']),
+    );
+  }
+
   factory EntityDetails.fromXml(_s.XmlElement elem) {
     return EntityDetails(
       entityInfo: EntityInfo.fromXml(_s.extractXmlChild(elem, 'EntityInfo')!),
       lastAuthenticated: _s.extractXmlDateTimeValue(elem, 'LastAuthenticated'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entityInfo = this.entityInfo;
+    final lastAuthenticated = this.lastAuthenticated;
+    return {
+      'EntityInfo': entityInfo,
+      if (lastAuthenticated != null)
+        'LastAuthenticated': unixTimestampToJson(lastAuthenticated),
+    };
   }
 }
 
@@ -13389,6 +13783,16 @@ class EntityInfo {
     required this.type,
     this.path,
   });
+  factory EntityInfo.fromJson(Map<String, dynamic> json) {
+    return EntityInfo(
+      arn: json['Arn'] as String,
+      id: json['Id'] as String,
+      name: json['Name'] as String,
+      type: (json['Type'] as String).toPolicyOwnerEntityType(),
+      path: json['Path'] as String?,
+    );
+  }
+
   factory EntityInfo.fromXml(_s.XmlElement elem) {
     return EntityInfo(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -13397,6 +13801,21 @@ class EntityInfo {
       type: _s.extractXmlStringValue(elem, 'Type')!.toPolicyOwnerEntityType(),
       path: _s.extractXmlStringValue(elem, 'Path'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    final path = this.path;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'Name': name,
+      'Type': type.toValue(),
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -13459,11 +13878,27 @@ class ErrorDetails {
     required this.code,
     required this.message,
   });
+  factory ErrorDetails.fromJson(Map<String, dynamic> json) {
+    return ErrorDetails(
+      code: json['Code'] as String,
+      message: json['Message'] as String,
+    );
+  }
+
   factory ErrorDetails.fromXml(_s.XmlElement elem) {
     return ErrorDetails(
       code: _s.extractXmlStringValue(elem, 'Code')!,
       message: _s.extractXmlStringValue(elem, 'Message')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Message': message,
+    };
   }
 }
 
@@ -13545,6 +13980,41 @@ class EvaluationResult {
     this.permissionsBoundaryDecisionDetail,
     this.resourceSpecificResults,
   });
+  factory EvaluationResult.fromJson(Map<String, dynamic> json) {
+    return EvaluationResult(
+      evalActionName: json['EvalActionName'] as String,
+      evalDecision:
+          (json['EvalDecision'] as String).toPolicyEvaluationDecisionType(),
+      evalDecisionDetails:
+          (json['EvalDecisionDetails'] as Map<String, dynamic>?)?.map((k, e) =>
+              MapEntry(k, (e as String).toPolicyEvaluationDecisionType())),
+      evalResourceName: json['EvalResourceName'] as String?,
+      matchedStatements: (json['MatchedStatements'] as List?)
+          ?.whereNotNull()
+          .map((e) => Statement.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      missingContextValues: (json['MissingContextValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      organizationsDecisionDetail: json['OrganizationsDecisionDetail'] != null
+          ? OrganizationsDecisionDetail.fromJson(
+              json['OrganizationsDecisionDetail'] as Map<String, dynamic>)
+          : null,
+      permissionsBoundaryDecisionDetail:
+          json['PermissionsBoundaryDecisionDetail'] != null
+              ? PermissionsBoundaryDecisionDetail.fromJson(
+                  json['PermissionsBoundaryDecisionDetail']
+                      as Map<String, dynamic>)
+              : null,
+      resourceSpecificResults: (json['ResourceSpecificResults'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ResourceSpecificResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EvaluationResult.fromXml(_s.XmlElement elem) {
     return EvaluationResult(
       evalActionName: _s.extractXmlStringValue(elem, 'EvalActionName')!,
@@ -13585,6 +14055,36 @@ class EvaluationResult {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evalActionName = this.evalActionName;
+    final evalDecision = this.evalDecision;
+    final evalDecisionDetails = this.evalDecisionDetails;
+    final evalResourceName = this.evalResourceName;
+    final matchedStatements = this.matchedStatements;
+    final missingContextValues = this.missingContextValues;
+    final organizationsDecisionDetail = this.organizationsDecisionDetail;
+    final permissionsBoundaryDecisionDetail =
+        this.permissionsBoundaryDecisionDetail;
+    final resourceSpecificResults = this.resourceSpecificResults;
+    return {
+      'EvalActionName': evalActionName,
+      'EvalDecision': evalDecision.toValue(),
+      if (evalDecisionDetails != null)
+        'EvalDecisionDetails':
+            evalDecisionDetails.map((k, e) => MapEntry(k, e.toValue())),
+      if (evalResourceName != null) 'EvalResourceName': evalResourceName,
+      if (matchedStatements != null) 'MatchedStatements': matchedStatements,
+      if (missingContextValues != null)
+        'MissingContextValues': missingContextValues,
+      if (organizationsDecisionDetail != null)
+        'OrganizationsDecisionDetail': organizationsDecisionDetail,
+      if (permissionsBoundaryDecisionDetail != null)
+        'PermissionsBoundaryDecisionDetail': permissionsBoundaryDecisionDetail,
+      if (resourceSpecificResults != null)
+        'ResourceSpecificResults': resourceSpecificResults,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GenerateCredentialReport</a>
@@ -13600,11 +14100,27 @@ class GenerateCredentialReportResponse {
     this.description,
     this.state,
   });
+  factory GenerateCredentialReportResponse.fromJson(Map<String, dynamic> json) {
+    return GenerateCredentialReportResponse(
+      description: json['Description'] as String?,
+      state: (json['State'] as String?)?.toReportStateType(),
+    );
+  }
+
   factory GenerateCredentialReportResponse.fromXml(_s.XmlElement elem) {
     return GenerateCredentialReportResponse(
       description: _s.extractXmlStringValue(elem, 'Description'),
       state: _s.extractXmlStringValue(elem, 'State')?.toReportStateType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -13616,11 +14132,25 @@ class GenerateOrganizationsAccessReportResponse {
   GenerateOrganizationsAccessReportResponse({
     this.jobId,
   });
+  factory GenerateOrganizationsAccessReportResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GenerateOrganizationsAccessReportResponse(
+      jobId: json['JobId'] as String?,
+    );
+  }
+
   factory GenerateOrganizationsAccessReportResponse.fromXml(
       _s.XmlElement elem) {
     return GenerateOrganizationsAccessReportResponse(
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -13637,11 +14167,25 @@ class GenerateServiceLastAccessedDetailsResponse {
   GenerateServiceLastAccessedDetailsResponse({
     this.jobId,
   });
+  factory GenerateServiceLastAccessedDetailsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GenerateServiceLastAccessedDetailsResponse(
+      jobId: json['JobId'] as String?,
+    );
+  }
+
   factory GenerateServiceLastAccessedDetailsResponse.fromXml(
       _s.XmlElement elem) {
     return GenerateServiceLastAccessedDetailsResponse(
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -13660,6 +14204,16 @@ class GetAccessKeyLastUsedResponse {
     this.accessKeyLastUsed,
     this.userName,
   });
+  factory GetAccessKeyLastUsedResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccessKeyLastUsedResponse(
+      accessKeyLastUsed: json['AccessKeyLastUsed'] != null
+          ? AccessKeyLastUsed.fromJson(
+              json['AccessKeyLastUsed'] as Map<String, dynamic>)
+          : null,
+      userName: json['UserName'] as String?,
+    );
+  }
+
   factory GetAccessKeyLastUsedResponse.fromXml(_s.XmlElement elem) {
     return GetAccessKeyLastUsedResponse(
       accessKeyLastUsed: _s
@@ -13667,6 +14221,15 @@ class GetAccessKeyLastUsedResponse {
           ?.let((e) => AccessKeyLastUsed.fromXml(e)),
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyLastUsed = this.accessKeyLastUsed;
+    final userName = this.userName;
+    return {
+      if (accessKeyLastUsed != null) 'AccessKeyLastUsed': accessKeyLastUsed,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -13707,6 +14270,30 @@ class GetAccountAuthorizationDetailsResponse {
     this.roleDetailList,
     this.userDetailList,
   });
+  factory GetAccountAuthorizationDetailsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetAccountAuthorizationDetailsResponse(
+      groupDetailList: (json['GroupDetailList'] as List?)
+          ?.whereNotNull()
+          .map((e) => GroupDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+      policies: (json['Policies'] as List?)
+          ?.whereNotNull()
+          .map((e) => ManagedPolicyDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      roleDetailList: (json['RoleDetailList'] as List?)
+          ?.whereNotNull()
+          .map((e) => RoleDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      userDetailList: (json['UserDetailList'] as List?)
+          ?.whereNotNull()
+          .map((e) => UserDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetAccountAuthorizationDetailsResponse.fromXml(_s.XmlElement elem) {
     return GetAccountAuthorizationDetailsResponse(
       groupDetailList: _s.extractXmlChild(elem, 'GroupDetailList')?.let(
@@ -13732,6 +14319,23 @@ class GetAccountAuthorizationDetailsResponse {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupDetailList = this.groupDetailList;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policies = this.policies;
+    final roleDetailList = this.roleDetailList;
+    final userDetailList = this.userDetailList;
+    return {
+      if (groupDetailList != null) 'GroupDetailList': groupDetailList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policies != null) 'Policies': policies,
+      if (roleDetailList != null) 'RoleDetailList': roleDetailList,
+      if (userDetailList != null) 'UserDetailList': userDetailList,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetAccountPasswordPolicy</a>
@@ -13743,11 +14347,25 @@ class GetAccountPasswordPolicyResponse {
   GetAccountPasswordPolicyResponse({
     required this.passwordPolicy,
   });
+  factory GetAccountPasswordPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccountPasswordPolicyResponse(
+      passwordPolicy: PasswordPolicy.fromJson(
+          json['PasswordPolicy'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetAccountPasswordPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetAccountPasswordPolicyResponse(
       passwordPolicy:
           PasswordPolicy.fromXml(_s.extractXmlChild(elem, 'PasswordPolicy')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final passwordPolicy = this.passwordPolicy;
+    return {
+      'PasswordPolicy': passwordPolicy,
+    };
   }
 }
 
@@ -13760,6 +14378,13 @@ class GetAccountSummaryResponse {
   GetAccountSummaryResponse({
     this.summaryMap,
   });
+  factory GetAccountSummaryResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccountSummaryResponse(
+      summaryMap: (json['SummaryMap'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toSummaryKeyType(), e as int)),
+    );
+  }
+
   factory GetAccountSummaryResponse.fromXml(_s.XmlElement elem) {
     return GetAccountSummaryResponse(
       summaryMap: Map.fromEntries(
@@ -13773,6 +14398,14 @@ class GetAccountSummaryResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summaryMap = this.summaryMap;
+    return {
+      if (summaryMap != null)
+        'SummaryMap': summaryMap.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// Contains the response to a successful
@@ -13785,12 +14418,28 @@ class GetContextKeysForPolicyResponse {
   GetContextKeysForPolicyResponse({
     this.contextKeyNames,
   });
+  factory GetContextKeysForPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetContextKeysForPolicyResponse(
+      contextKeyNames: (json['ContextKeyNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory GetContextKeysForPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetContextKeysForPolicyResponse(
       contextKeyNames: _s
           .extractXmlChild(elem, 'ContextKeyNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextKeyNames = this.contextKeyNames;
+    return {
+      if (contextKeyNames != null) 'ContextKeyNames': contextKeyNames,
+    };
   }
 }
 
@@ -13811,6 +14460,14 @@ class GetCredentialReportResponse {
     this.generatedTime,
     this.reportFormat,
   });
+  factory GetCredentialReportResponse.fromJson(Map<String, dynamic> json) {
+    return GetCredentialReportResponse(
+      content: _s.decodeNullableUint8List(json['Content'] as String?),
+      generatedTime: timeStampFromJson(json['GeneratedTime']),
+      reportFormat: (json['ReportFormat'] as String?)?.toReportFormatType(),
+    );
+  }
+
   factory GetCredentialReportResponse.fromXml(_s.XmlElement elem) {
     return GetCredentialReportResponse(
       content: _s.extractXmlUint8ListValue(elem, 'Content'),
@@ -13818,6 +14475,18 @@ class GetCredentialReportResponse {
       reportFormat:
           _s.extractXmlStringValue(elem, 'ReportFormat')?.toReportFormatType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final generatedTime = this.generatedTime;
+    final reportFormat = this.reportFormat;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+      if (generatedTime != null)
+        'GeneratedTime': unixTimestampToJson(generatedTime),
+      if (reportFormat != null) 'ReportFormat': reportFormat.toValue(),
+    };
   }
 }
 
@@ -13841,12 +14510,31 @@ class GetGroupPolicyResponse {
     required this.policyDocument,
     required this.policyName,
   });
+  factory GetGroupPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetGroupPolicyResponse(
+      groupName: json['GroupName'] as String,
+      policyDocument: json['PolicyDocument'] as String,
+      policyName: json['PolicyName'] as String,
+    );
+  }
+
   factory GetGroupPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetGroupPolicyResponse(
       groupName: _s.extractXmlStringValue(elem, 'GroupName')!,
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument')!,
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      'GroupName': groupName,
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+    };
   }
 }
 
@@ -13878,6 +14566,18 @@ class GetGroupResponse {
     this.isTruncated,
     this.marker,
   });
+  factory GetGroupResponse.fromJson(Map<String, dynamic> json) {
+    return GetGroupResponse(
+      group: Group.fromJson(json['Group'] as Map<String, dynamic>),
+      users: (json['Users'] as List)
+          .whereNotNull()
+          .map((e) => User.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory GetGroupResponse.fromXml(_s.XmlElement elem) {
     return GetGroupResponse(
       group: Group.fromXml(_s.extractXmlChild(elem, 'Group')!),
@@ -13890,6 +14590,19 @@ class GetGroupResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final users = this.users;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Group': group,
+      'Users': users,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetInstanceProfile</a> request.
@@ -13900,11 +14613,25 @@ class GetInstanceProfileResponse {
   GetInstanceProfileResponse({
     required this.instanceProfile,
   });
+  factory GetInstanceProfileResponse.fromJson(Map<String, dynamic> json) {
+    return GetInstanceProfileResponse(
+      instanceProfile: InstanceProfile.fromJson(
+          json['InstanceProfile'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetInstanceProfileResponse.fromXml(_s.XmlElement elem) {
     return GetInstanceProfileResponse(
       instanceProfile:
           InstanceProfile.fromXml(_s.extractXmlChild(elem, 'InstanceProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      'InstanceProfile': instanceProfile,
+    };
   }
 }
 
@@ -13917,11 +14644,25 @@ class GetLoginProfileResponse {
   GetLoginProfileResponse({
     required this.loginProfile,
   });
+  factory GetLoginProfileResponse.fromJson(Map<String, dynamic> json) {
+    return GetLoginProfileResponse(
+      loginProfile:
+          LoginProfile.fromJson(json['LoginProfile'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetLoginProfileResponse.fromXml(_s.XmlElement elem) {
     return GetLoginProfileResponse(
       loginProfile:
           LoginProfile.fromXml(_s.extractXmlChild(elem, 'LoginProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loginProfile = this.loginProfile;
+    return {
+      'LoginProfile': loginProfile,
+    };
   }
 }
 
@@ -13960,6 +14701,25 @@ class GetOpenIDConnectProviderResponse {
     this.thumbprintList,
     this.url,
   });
+  factory GetOpenIDConnectProviderResponse.fromJson(Map<String, dynamic> json) {
+    return GetOpenIDConnectProviderResponse(
+      clientIDList: (json['ClientIDList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      createDate: timeStampFromJson(json['CreateDate']),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      thumbprintList: (json['ThumbprintList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      url: json['Url'] as String?,
+    );
+  }
+
   factory GetOpenIDConnectProviderResponse.fromXml(_s.XmlElement elem) {
     return GetOpenIDConnectProviderResponse(
       clientIDList: _s
@@ -13973,6 +14733,21 @@ class GetOpenIDConnectProviderResponse {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       url: _s.extractXmlStringValue(elem, 'Url'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientIDList = this.clientIDList;
+    final createDate = this.createDate;
+    final tags = this.tags;
+    final thumbprintList = this.thumbprintList;
+    final url = this.url;
+    return {
+      if (clientIDList != null) 'ClientIDList': clientIDList,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (tags != null) 'Tags': tags,
+      if (thumbprintList != null) 'ThumbprintList': thumbprintList,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -14029,6 +14804,27 @@ class GetOrganizationsAccessReportResponse {
     this.numberOfServicesAccessible,
     this.numberOfServicesNotAccessed,
   });
+  factory GetOrganizationsAccessReportResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetOrganizationsAccessReportResponse(
+      jobCreationDate:
+          nonNullableTimeStampFromJson(json['JobCreationDate'] as Object),
+      jobStatus: (json['JobStatus'] as String).toJobStatusType(),
+      accessDetails: (json['AccessDetails'] as List?)
+          ?.whereNotNull()
+          .map((e) => AccessDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      errorDetails: json['ErrorDetails'] != null
+          ? ErrorDetails.fromJson(json['ErrorDetails'] as Map<String, dynamic>)
+          : null,
+      isTruncated: json['IsTruncated'] as bool?,
+      jobCompletionDate: timeStampFromJson(json['JobCompletionDate']),
+      marker: json['Marker'] as String?,
+      numberOfServicesAccessible: json['NumberOfServicesAccessible'] as int?,
+      numberOfServicesNotAccessed: json['NumberOfServicesNotAccessed'] as int?,
+    );
+  }
+
   factory GetOrganizationsAccessReportResponse.fromXml(_s.XmlElement elem) {
     return GetOrganizationsAccessReportResponse(
       jobCreationDate: _s.extractXmlDateTimeValue(elem, 'JobCreationDate')!,
@@ -14050,6 +14846,32 @@ class GetOrganizationsAccessReportResponse {
           _s.extractXmlIntValue(elem, 'NumberOfServicesNotAccessed'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final accessDetails = this.accessDetails;
+    final errorDetails = this.errorDetails;
+    final isTruncated = this.isTruncated;
+    final jobCompletionDate = this.jobCompletionDate;
+    final marker = this.marker;
+    final numberOfServicesAccessible = this.numberOfServicesAccessible;
+    final numberOfServicesNotAccessed = this.numberOfServicesNotAccessed;
+    return {
+      'JobCreationDate': unixTimestampToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      if (accessDetails != null) 'AccessDetails': accessDetails,
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobCompletionDate != null)
+        'JobCompletionDate': unixTimestampToJson(jobCompletionDate),
+      if (marker != null) 'Marker': marker,
+      if (numberOfServicesAccessible != null)
+        'NumberOfServicesAccessible': numberOfServicesAccessible,
+      if (numberOfServicesNotAccessed != null)
+        'NumberOfServicesNotAccessed': numberOfServicesNotAccessed,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetPolicy</a> request.
@@ -14060,10 +14882,25 @@ class GetPolicyResponse {
   GetPolicyResponse({
     this.policy,
   });
+  factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetPolicyResponse(
+      policy: json['Policy'] != null
+          ? Policy.fromJson(json['Policy'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetPolicyResponse(
       policy: _s.extractXmlChild(elem, 'Policy')?.let((e) => Policy.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -14075,12 +14912,28 @@ class GetPolicyVersionResponse {
   GetPolicyVersionResponse({
     this.policyVersion,
   });
+  factory GetPolicyVersionResponse.fromJson(Map<String, dynamic> json) {
+    return GetPolicyVersionResponse(
+      policyVersion: json['PolicyVersion'] != null
+          ? PolicyVersion.fromJson(
+              json['PolicyVersion'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetPolicyVersionResponse.fromXml(_s.XmlElement elem) {
     return GetPolicyVersionResponse(
       policyVersion: _s
           .extractXmlChild(elem, 'PolicyVersion')
           ?.let((e) => PolicyVersion.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyVersion = this.policyVersion;
+    return {
+      if (policyVersion != null) 'PolicyVersion': policyVersion,
+    };
   }
 }
 
@@ -14104,12 +14957,31 @@ class GetRolePolicyResponse {
     required this.policyName,
     required this.roleName,
   });
+  factory GetRolePolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetRolePolicyResponse(
+      policyDocument: json['PolicyDocument'] as String,
+      policyName: json['PolicyName'] as String,
+      roleName: json['RoleName'] as String,
+    );
+  }
+
   factory GetRolePolicyResponse.fromXml(_s.XmlElement elem) {
     return GetRolePolicyResponse(
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument')!,
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
       roleName: _s.extractXmlStringValue(elem, 'RoleName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final roleName = this.roleName;
+    return {
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+      'RoleName': roleName,
+    };
   }
 }
 
@@ -14121,10 +14993,23 @@ class GetRoleResponse {
   GetRoleResponse({
     required this.role,
   });
+  factory GetRoleResponse.fromJson(Map<String, dynamic> json) {
+    return GetRoleResponse(
+      role: Role.fromJson(json['Role'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetRoleResponse.fromXml(_s.XmlElement elem) {
     return GetRoleResponse(
       role: Role.fromXml(_s.extractXmlChild(elem, 'Role')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      'Role': role,
+    };
   }
 }
 
@@ -14153,6 +15038,18 @@ class GetSAMLProviderResponse {
     this.tags,
     this.validUntil,
   });
+  factory GetSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
+    return GetSAMLProviderResponse(
+      createDate: timeStampFromJson(json['CreateDate']),
+      sAMLMetadataDocument: json['SAMLMetadataDocument'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      validUntil: timeStampFromJson(json['ValidUntil']),
+    );
+  }
+
   factory GetSAMLProviderResponse.fromXml(_s.XmlElement elem) {
     return GetSAMLProviderResponse(
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
@@ -14162,6 +15059,20 @@ class GetSAMLProviderResponse {
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
       validUntil: _s.extractXmlDateTimeValue(elem, 'ValidUntil'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final sAMLMetadataDocument = this.sAMLMetadataDocument;
+    final tags = this.tags;
+    final validUntil = this.validUntil;
+    return {
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (sAMLMetadataDocument != null)
+        'SAMLMetadataDocument': sAMLMetadataDocument,
+      if (tags != null) 'Tags': tags,
+      if (validUntil != null) 'ValidUntil': unixTimestampToJson(validUntil),
+    };
   }
 }
 
@@ -14173,12 +15084,27 @@ class GetSSHPublicKeyResponse {
   GetSSHPublicKeyResponse({
     this.sSHPublicKey,
   });
+  factory GetSSHPublicKeyResponse.fromJson(Map<String, dynamic> json) {
+    return GetSSHPublicKeyResponse(
+      sSHPublicKey: json['SSHPublicKey'] != null
+          ? SSHPublicKey.fromJson(json['SSHPublicKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetSSHPublicKeyResponse.fromXml(_s.XmlElement elem) {
     return GetSSHPublicKeyResponse(
       sSHPublicKey: _s
           .extractXmlChild(elem, 'SSHPublicKey')
           ?.let((e) => SSHPublicKey.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKey = this.sSHPublicKey;
+    return {
+      if (sSHPublicKey != null) 'SSHPublicKey': sSHPublicKey,
+    };
   }
 }
 
@@ -14190,11 +15116,25 @@ class GetServerCertificateResponse {
   GetServerCertificateResponse({
     required this.serverCertificate,
   });
+  factory GetServerCertificateResponse.fromJson(Map<String, dynamic> json) {
+    return GetServerCertificateResponse(
+      serverCertificate: ServerCertificate.fromJson(
+          json['ServerCertificate'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetServerCertificateResponse.fromXml(_s.XmlElement elem) {
     return GetServerCertificateResponse(
       serverCertificate: ServerCertificate.fromXml(
           _s.extractXmlChild(elem, 'ServerCertificate')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificate = this.serverCertificate;
+    return {
+      'ServerCertificate': serverCertificate,
+    };
   }
 }
 
@@ -14249,6 +15189,28 @@ class GetServiceLastAccessedDetailsResponse {
     this.jobType,
     this.marker,
   });
+  factory GetServiceLastAccessedDetailsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetServiceLastAccessedDetailsResponse(
+      jobCompletionDate:
+          nonNullableTimeStampFromJson(json['JobCompletionDate'] as Object),
+      jobCreationDate:
+          nonNullableTimeStampFromJson(json['JobCreationDate'] as Object),
+      jobStatus: (json['JobStatus'] as String).toJobStatusType(),
+      servicesLastAccessed: (json['ServicesLastAccessed'] as List)
+          .whereNotNull()
+          .map((e) => ServiceLastAccessed.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      error: json['Error'] != null
+          ? ErrorDetails.fromJson(json['Error'] as Map<String, dynamic>)
+          : null,
+      isTruncated: json['IsTruncated'] as bool?,
+      jobType:
+          (json['JobType'] as String?)?.toAccessAdvisorUsageGranularityType(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory GetServiceLastAccessedDetailsResponse.fromXml(_s.XmlElement elem) {
     return GetServiceLastAccessedDetailsResponse(
       jobCompletionDate: _s.extractXmlDateTimeValue(elem, 'JobCompletionDate')!,
@@ -14268,6 +15230,27 @@ class GetServiceLastAccessedDetailsResponse {
           ?.toAccessAdvisorUsageGranularityType(),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobCompletionDate = this.jobCompletionDate;
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final servicesLastAccessed = this.servicesLastAccessed;
+    final error = this.error;
+    final isTruncated = this.isTruncated;
+    final jobType = this.jobType;
+    final marker = this.marker;
+    return {
+      'JobCompletionDate': unixTimestampToJson(jobCompletionDate),
+      'JobCreationDate': unixTimestampToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      'ServicesLastAccessed': servicesLastAccessed,
+      if (error != null) 'Error': error,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14317,6 +15300,26 @@ class GetServiceLastAccessedDetailsWithEntitiesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory GetServiceLastAccessedDetailsWithEntitiesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetServiceLastAccessedDetailsWithEntitiesResponse(
+      entityDetailsList: (json['EntityDetailsList'] as List)
+          .whereNotNull()
+          .map((e) => EntityDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      jobCompletionDate:
+          nonNullableTimeStampFromJson(json['JobCompletionDate'] as Object),
+      jobCreationDate:
+          nonNullableTimeStampFromJson(json['JobCreationDate'] as Object),
+      jobStatus: (json['JobStatus'] as String).toJobStatusType(),
+      error: json['Error'] != null
+          ? ErrorDetails.fromJson(json['Error'] as Map<String, dynamic>)
+          : null,
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory GetServiceLastAccessedDetailsWithEntitiesResponse.fromXml(
       _s.XmlElement elem) {
     return GetServiceLastAccessedDetailsWithEntitiesResponse(
@@ -14335,6 +15338,25 @@ class GetServiceLastAccessedDetailsWithEntitiesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityDetailsList = this.entityDetailsList;
+    final jobCompletionDate = this.jobCompletionDate;
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final error = this.error;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'EntityDetailsList': entityDetailsList,
+      'JobCompletionDate': unixTimestampToJson(jobCompletionDate),
+      'JobCreationDate': unixTimestampToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      if (error != null) 'Error': error,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class GetServiceLinkedRoleDeletionStatusResponse {
@@ -14348,6 +15370,17 @@ class GetServiceLinkedRoleDeletionStatusResponse {
     required this.status,
     this.reason,
   });
+  factory GetServiceLinkedRoleDeletionStatusResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetServiceLinkedRoleDeletionStatusResponse(
+      status: (json['Status'] as String).toDeletionTaskStatusType(),
+      reason: json['Reason'] != null
+          ? DeletionTaskFailureReasonType.fromJson(
+              json['Reason'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetServiceLinkedRoleDeletionStatusResponse.fromXml(
       _s.XmlElement elem) {
     return GetServiceLinkedRoleDeletionStatusResponse(
@@ -14357,6 +15390,15 @@ class GetServiceLinkedRoleDeletionStatusResponse {
           .extractXmlChild(elem, 'Reason')
           ?.let((e) => DeletionTaskFailureReasonType.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final reason = this.reason;
+    return {
+      'Status': status.toValue(),
+      if (reason != null) 'Reason': reason,
+    };
   }
 }
 
@@ -14380,12 +15422,31 @@ class GetUserPolicyResponse {
     required this.policyName,
     required this.userName,
   });
+  factory GetUserPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetUserPolicyResponse(
+      policyDocument: json['PolicyDocument'] as String,
+      policyName: json['PolicyName'] as String,
+      userName: json['UserName'] as String,
+    );
+  }
+
   factory GetUserPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetUserPolicyResponse(
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument')!,
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final userName = this.userName;
+    return {
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+      'UserName': userName,
+    };
   }
 }
 
@@ -14418,10 +15479,23 @@ class GetUserResponse {
   GetUserResponse({
     required this.user,
   });
+  factory GetUserResponse.fromJson(Map<String, dynamic> json) {
+    return GetUserResponse(
+      user: User.fromJson(json['User'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetUserResponse.fromXml(_s.XmlElement elem) {
     return GetUserResponse(
       user: User.fromXml(_s.extractXmlChild(elem, 'User')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      'User': user,
+    };
   }
 }
 
@@ -14472,6 +15546,16 @@ class Group {
     required this.groupName,
     required this.path,
   });
+  factory Group.fromJson(Map<String, dynamic> json) {
+    return Group(
+      arn: json['Arn'] as String,
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      groupId: json['GroupId'] as String,
+      groupName: json['GroupName'] as String,
+      path: json['Path'] as String,
+    );
+  }
+
   factory Group.fromXml(_s.XmlElement elem) {
     return Group(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -14480,6 +15564,21 @@ class Group {
       groupName: _s.extractXmlStringValue(elem, 'GroupName')!,
       path: _s.extractXmlStringValue(elem, 'Path')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final path = this.path;
+    return {
+      'Arn': arn,
+      'CreateDate': unixTimestampToJson(createDate),
+      'GroupId': groupId,
+      'GroupName': groupName,
+      'Path': path,
+    };
   }
 }
 
@@ -14524,6 +15623,24 @@ class GroupDetail {
     this.groupPolicyList,
     this.path,
   });
+  factory GroupDetail.fromJson(Map<String, dynamic> json) {
+    return GroupDetail(
+      arn: json['Arn'] as String?,
+      attachedManagedPolicies: (json['AttachedManagedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      createDate: timeStampFromJson(json['CreateDate']),
+      groupId: json['GroupId'] as String?,
+      groupName: json['GroupName'] as String?,
+      groupPolicyList: (json['GroupPolicyList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      path: json['Path'] as String?,
+    );
+  }
+
   factory GroupDetail.fromXml(_s.XmlElement elem) {
     return GroupDetail(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -14543,6 +15660,26 @@ class GroupDetail {
               .toList()),
       path: _s.extractXmlStringValue(elem, 'Path'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final groupPolicyList = this.groupPolicyList;
+    final path = this.path;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (groupId != null) 'GroupId': groupId,
+      if (groupName != null) 'GroupName': groupName,
+      if (groupPolicyList != null) 'GroupPolicyList': groupPolicyList,
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -14606,6 +15743,24 @@ class InstanceProfile {
     required this.roles,
     this.tags,
   });
+  factory InstanceProfile.fromJson(Map<String, dynamic> json) {
+    return InstanceProfile(
+      arn: json['Arn'] as String,
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      instanceProfileId: json['InstanceProfileId'] as String,
+      instanceProfileName: json['InstanceProfileName'] as String,
+      path: json['Path'] as String,
+      roles: (json['Roles'] as List)
+          .whereNotNull()
+          .map((e) => Role.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory InstanceProfile.fromXml(_s.XmlElement elem) {
     return InstanceProfile(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -14622,6 +15777,25 @@ class InstanceProfile {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final instanceProfileId = this.instanceProfileId;
+    final instanceProfileName = this.instanceProfileName;
+    final path = this.path;
+    final roles = this.roles;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': unixTimestampToJson(createDate),
+      'InstanceProfileId': instanceProfileId,
+      'InstanceProfileName': instanceProfileName,
+      'Path': path,
+      'Roles': roles,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -14649,6 +15823,17 @@ class ListAccessKeysResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListAccessKeysResponse.fromJson(Map<String, dynamic> json) {
+    return ListAccessKeysResponse(
+      accessKeyMetadata: (json['AccessKeyMetadata'] as List)
+          .whereNotNull()
+          .map((e) => AccessKeyMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListAccessKeysResponse.fromXml(_s.XmlElement elem) {
     return ListAccessKeysResponse(
       accessKeyMetadata: _s
@@ -14659,6 +15844,17 @@ class ListAccessKeysResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyMetadata = this.accessKeyMetadata;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'AccessKeyMetadata': accessKeyMetadata,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14687,6 +15883,17 @@ class ListAccountAliasesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListAccountAliasesResponse.fromJson(Map<String, dynamic> json) {
+    return ListAccountAliasesResponse(
+      accountAliases: (json['AccountAliases'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListAccountAliasesResponse.fromXml(_s.XmlElement elem) {
     return ListAccountAliasesResponse(
       accountAliases: _s.extractXmlStringListValues(
@@ -14694,6 +15901,17 @@ class ListAccountAliasesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAliases = this.accountAliases;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'AccountAliases': accountAliases,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14722,6 +15940,18 @@ class ListAttachedGroupPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListAttachedGroupPoliciesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListAttachedGroupPoliciesResponse(
+      attachedPolicies: (json['AttachedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListAttachedGroupPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListAttachedGroupPoliciesResponse(
       attachedPolicies: _s.extractXmlChild(elem, 'AttachedPolicies')?.let(
@@ -14732,6 +15962,17 @@ class ListAttachedGroupPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14760,6 +16001,17 @@ class ListAttachedRolePoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListAttachedRolePoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListAttachedRolePoliciesResponse(
+      attachedPolicies: (json['AttachedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListAttachedRolePoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListAttachedRolePoliciesResponse(
       attachedPolicies: _s.extractXmlChild(elem, 'AttachedPolicies')?.let(
@@ -14770,6 +16022,17 @@ class ListAttachedRolePoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14798,6 +16061,17 @@ class ListAttachedUserPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListAttachedUserPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListAttachedUserPoliciesResponse(
+      attachedPolicies: (json['AttachedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListAttachedUserPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListAttachedUserPoliciesResponse(
       attachedPolicies: _s.extractXmlChild(elem, 'AttachedPolicies')?.let(
@@ -14808,6 +16082,17 @@ class ListAttachedUserPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14843,6 +16128,25 @@ class ListEntitiesForPolicyResponse {
     this.policyRoles,
     this.policyUsers,
   });
+  factory ListEntitiesForPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return ListEntitiesForPolicyResponse(
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+      policyGroups: (json['PolicyGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      policyRoles: (json['PolicyRoles'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyRole.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      policyUsers: (json['PolicyUsers'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyUser.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListEntitiesForPolicyResponse.fromXml(_s.XmlElement elem) {
     return ListEntitiesForPolicyResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
@@ -14860,6 +16164,21 @@ class ListEntitiesForPolicyResponse {
           .map((c) => PolicyUser.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policyGroups = this.policyGroups;
+    final policyRoles = this.policyRoles;
+    final policyUsers = this.policyUsers;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policyGroups != null) 'PolicyGroups': policyGroups,
+      if (policyRoles != null) 'PolicyRoles': policyRoles,
+      if (policyUsers != null) 'PolicyUsers': policyUsers,
+    };
   }
 }
 
@@ -14892,6 +16211,17 @@ class ListGroupPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListGroupPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListGroupPoliciesResponse(
+      policyNames: (json['PolicyNames'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListGroupPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListGroupPoliciesResponse(
       policyNames: _s.extractXmlStringListValues(
@@ -14899,6 +16229,17 @@ class ListGroupPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14926,6 +16267,17 @@ class ListGroupsForUserResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListGroupsForUserResponse.fromJson(Map<String, dynamic> json) {
+    return ListGroupsForUserResponse(
+      groups: (json['Groups'] as List)
+          .whereNotNull()
+          .map((e) => Group.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListGroupsForUserResponse.fromXml(_s.XmlElement elem) {
     return ListGroupsForUserResponse(
       groups: _s
@@ -14936,6 +16288,17 @@ class ListGroupsForUserResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Groups': groups,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14963,6 +16326,17 @@ class ListGroupsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
+    return ListGroupsResponse(
+      groups: (json['Groups'] as List)
+          .whereNotNull()
+          .map((e) => Group.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListGroupsResponse.fromXml(_s.XmlElement elem) {
     return ListGroupsResponse(
       groups: _s
@@ -14973,6 +16347,17 @@ class ListGroupsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Groups': groups,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15001,6 +16386,17 @@ class ListInstanceProfileTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListInstanceProfileTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListInstanceProfileTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListInstanceProfileTagsResponse.fromXml(_s.XmlElement elem) {
     return ListInstanceProfileTagsResponse(
       tags: _s
@@ -15011,6 +16407,17 @@ class ListInstanceProfileTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15039,6 +16446,18 @@ class ListInstanceProfilesForRoleResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListInstanceProfilesForRoleResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListInstanceProfilesForRoleResponse(
+      instanceProfiles: (json['InstanceProfiles'] as List)
+          .whereNotNull()
+          .map((e) => InstanceProfile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListInstanceProfilesForRoleResponse.fromXml(_s.XmlElement elem) {
     return ListInstanceProfilesForRoleResponse(
       instanceProfiles: _s
@@ -15049,6 +16468,17 @@ class ListInstanceProfilesForRoleResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfiles = this.instanceProfiles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'InstanceProfiles': instanceProfiles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15076,6 +16506,17 @@ class ListInstanceProfilesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListInstanceProfilesResponse.fromJson(Map<String, dynamic> json) {
+    return ListInstanceProfilesResponse(
+      instanceProfiles: (json['InstanceProfiles'] as List)
+          .whereNotNull()
+          .map((e) => InstanceProfile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListInstanceProfilesResponse.fromXml(_s.XmlElement elem) {
     return ListInstanceProfilesResponse(
       instanceProfiles: _s
@@ -15086,6 +16527,17 @@ class ListInstanceProfilesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfiles = this.instanceProfiles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'InstanceProfiles': instanceProfiles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15114,6 +16566,17 @@ class ListMFADeviceTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListMFADeviceTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListMFADeviceTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListMFADeviceTagsResponse.fromXml(_s.XmlElement elem) {
     return ListMFADeviceTagsResponse(
       tags: _s
@@ -15124,6 +16587,17 @@ class ListMFADeviceTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15151,6 +16625,17 @@ class ListMFADevicesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListMFADevicesResponse.fromJson(Map<String, dynamic> json) {
+    return ListMFADevicesResponse(
+      mFADevices: (json['MFADevices'] as List)
+          .whereNotNull()
+          .map((e) => MFADevice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListMFADevicesResponse.fromXml(_s.XmlElement elem) {
     return ListMFADevicesResponse(
       mFADevices: _s
@@ -15161,6 +16646,17 @@ class ListMFADevicesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mFADevices = this.mFADevices;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'MFADevices': mFADevices,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15190,6 +16686,18 @@ class ListOpenIDConnectProviderTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListOpenIDConnectProviderTagsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListOpenIDConnectProviderTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListOpenIDConnectProviderTagsResponse.fromXml(_s.XmlElement elem) {
     return ListOpenIDConnectProviderTagsResponse(
       tags: _s
@@ -15200,6 +16708,17 @@ class ListOpenIDConnectProviderTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15212,6 +16731,17 @@ class ListOpenIDConnectProvidersResponse {
   ListOpenIDConnectProvidersResponse({
     this.openIDConnectProviderList,
   });
+  factory ListOpenIDConnectProvidersResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListOpenIDConnectProvidersResponse(
+      openIDConnectProviderList: (json['OpenIDConnectProviderList'] as List?)
+          ?.whereNotNull()
+          .map((e) => OpenIDConnectProviderListEntry.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListOpenIDConnectProvidersResponse.fromXml(_s.XmlElement elem) {
     return ListOpenIDConnectProvidersResponse(
       openIDConnectProviderList: _s
@@ -15221,6 +16751,14 @@ class ListOpenIDConnectProvidersResponse {
               .map((c) => OpenIDConnectProviderListEntry.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final openIDConnectProviderList = this.openIDConnectProviderList;
+    return {
+      if (openIDConnectProviderList != null)
+        'OpenIDConnectProviderList': openIDConnectProviderList,
+    };
   }
 }
 
@@ -15252,6 +16790,18 @@ class ListPoliciesGrantingServiceAccessEntry {
     this.policies,
     this.serviceNamespace,
   });
+  factory ListPoliciesGrantingServiceAccessEntry.fromJson(
+      Map<String, dynamic> json) {
+    return ListPoliciesGrantingServiceAccessEntry(
+      policies: (json['Policies'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              PolicyGrantingServiceAccess.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      serviceNamespace: json['ServiceNamespace'] as String?,
+    );
+  }
+
   factory ListPoliciesGrantingServiceAccessEntry.fromXml(_s.XmlElement elem) {
     return ListPoliciesGrantingServiceAccessEntry(
       policies: _s.extractXmlChild(elem, 'Policies')?.let((elem) => elem
@@ -15260,6 +16810,15 @@ class ListPoliciesGrantingServiceAccessEntry {
           .toList()),
       serviceNamespace: _s.extractXmlStringValue(elem, 'ServiceNamespace'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    final serviceNamespace = this.serviceNamespace;
+    return {
+      if (policies != null) 'Policies': policies,
+      if (serviceNamespace != null) 'ServiceNamespace': serviceNamespace,
+    };
   }
 }
 
@@ -15287,6 +16846,20 @@ class ListPoliciesGrantingServiceAccessResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListPoliciesGrantingServiceAccessResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListPoliciesGrantingServiceAccessResponse(
+      policiesGrantingServiceAccess:
+          (json['PoliciesGrantingServiceAccess'] as List)
+              .whereNotNull()
+              .map((e) => ListPoliciesGrantingServiceAccessEntry.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListPoliciesGrantingServiceAccessResponse.fromXml(
       _s.XmlElement elem) {
     return ListPoliciesGrantingServiceAccessResponse(
@@ -15298,6 +16871,17 @@ class ListPoliciesGrantingServiceAccessResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policiesGrantingServiceAccess = this.policiesGrantingServiceAccess;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PoliciesGrantingServiceAccess': policiesGrantingServiceAccess,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15325,6 +16909,17 @@ class ListPoliciesResponse {
     this.marker,
     this.policies,
   });
+  factory ListPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListPoliciesResponse(
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+      policies: (json['Policies'] as List?)
+          ?.whereNotNull()
+          .map((e) => Policy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListPoliciesResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
@@ -15332,6 +16927,17 @@ class ListPoliciesResponse {
       policies: _s.extractXmlChild(elem, 'Policies')?.let((elem) =>
           elem.findElements('member').map((c) => Policy.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policies = this.policies;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policies != null) 'Policies': policies,
+    };
   }
 }
 
@@ -15360,6 +16966,17 @@ class ListPolicyTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListPolicyTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListPolicyTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListPolicyTagsResponse.fromXml(_s.XmlElement elem) {
     return ListPolicyTagsResponse(
       tags: _s
@@ -15370,6 +16987,17 @@ class ListPolicyTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15401,6 +17029,17 @@ class ListPolicyVersionsResponse {
     this.marker,
     this.versions,
   });
+  factory ListPolicyVersionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListPolicyVersionsResponse(
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+      versions: (json['Versions'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListPolicyVersionsResponse.fromXml(_s.XmlElement elem) {
     return ListPolicyVersionsResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
@@ -15410,6 +17049,17 @@ class ListPolicyVersionsResponse {
           .map((c) => PolicyVersion.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final versions = this.versions;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (versions != null) 'Versions': versions,
+    };
   }
 }
 
@@ -15437,6 +17087,17 @@ class ListRolePoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListRolePoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListRolePoliciesResponse(
+      policyNames: (json['PolicyNames'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListRolePoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListRolePoliciesResponse(
       policyNames: _s.extractXmlStringListValues(
@@ -15444,6 +17105,17 @@ class ListRolePoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15472,6 +17144,17 @@ class ListRoleTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListRoleTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListRoleTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListRoleTagsResponse.fromXml(_s.XmlElement elem) {
     return ListRoleTagsResponse(
       tags: _s
@@ -15482,6 +17165,17 @@ class ListRoleTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15509,6 +17203,17 @@ class ListRolesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListRolesResponse.fromJson(Map<String, dynamic> json) {
+    return ListRolesResponse(
+      roles: (json['Roles'] as List)
+          .whereNotNull()
+          .map((e) => Role.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListRolesResponse.fromXml(_s.XmlElement elem) {
     return ListRolesResponse(
       roles: _s
@@ -15519,6 +17224,17 @@ class ListRolesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roles = this.roles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Roles': roles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15548,6 +17264,17 @@ class ListSAMLProviderTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListSAMLProviderTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListSAMLProviderTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListSAMLProviderTagsResponse.fromXml(_s.XmlElement elem) {
     return ListSAMLProviderTagsResponse(
       tags: _s
@@ -15558,6 +17285,17 @@ class ListSAMLProviderTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15570,6 +17308,15 @@ class ListSAMLProvidersResponse {
   ListSAMLProvidersResponse({
     this.sAMLProviderList,
   });
+  factory ListSAMLProvidersResponse.fromJson(Map<String, dynamic> json) {
+    return ListSAMLProvidersResponse(
+      sAMLProviderList: (json['SAMLProviderList'] as List?)
+          ?.whereNotNull()
+          .map((e) => SAMLProviderListEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListSAMLProvidersResponse.fromXml(_s.XmlElement elem) {
     return ListSAMLProvidersResponse(
       sAMLProviderList: _s.extractXmlChild(elem, 'SAMLProviderList')?.let(
@@ -15578,6 +17325,13 @@ class ListSAMLProvidersResponse {
               .map((c) => SAMLProviderListEntry.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderList = this.sAMLProviderList;
+    return {
+      if (sAMLProviderList != null) 'SAMLProviderList': sAMLProviderList,
+    };
   }
 }
 
@@ -15605,6 +17359,17 @@ class ListSSHPublicKeysResponse {
     this.marker,
     this.sSHPublicKeys,
   });
+  factory ListSSHPublicKeysResponse.fromJson(Map<String, dynamic> json) {
+    return ListSSHPublicKeysResponse(
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+      sSHPublicKeys: (json['SSHPublicKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => SSHPublicKeyMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListSSHPublicKeysResponse.fromXml(_s.XmlElement elem) {
     return ListSSHPublicKeysResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
@@ -15615,6 +17380,17 @@ class ListSSHPublicKeysResponse {
               .map((c) => SSHPublicKeyMetadata.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final sSHPublicKeys = this.sSHPublicKeys;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (sSHPublicKeys != null) 'SSHPublicKeys': sSHPublicKeys,
+    };
   }
 }
 
@@ -15643,6 +17419,18 @@ class ListServerCertificateTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListServerCertificateTagsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListServerCertificateTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListServerCertificateTagsResponse.fromXml(_s.XmlElement elem) {
     return ListServerCertificateTagsResponse(
       tags: _s
@@ -15653,6 +17441,17 @@ class ListServerCertificateTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15680,6 +17479,19 @@ class ListServerCertificatesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListServerCertificatesResponse.fromJson(Map<String, dynamic> json) {
+    return ListServerCertificatesResponse(
+      serverCertificateMetadataList:
+          (json['ServerCertificateMetadataList'] as List)
+              .whereNotNull()
+              .map((e) =>
+                  ServerCertificateMetadata.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListServerCertificatesResponse.fromXml(_s.XmlElement elem) {
     return ListServerCertificatesResponse(
       serverCertificateMetadataList: _s
@@ -15691,6 +17503,17 @@ class ListServerCertificatesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificateMetadataList = this.serverCertificateMetadataList;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'ServerCertificateMetadataList': serverCertificateMetadataList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class ListServiceSpecificCredentialsResponse {
@@ -15701,6 +17524,17 @@ class ListServiceSpecificCredentialsResponse {
   ListServiceSpecificCredentialsResponse({
     this.serviceSpecificCredentials,
   });
+  factory ListServiceSpecificCredentialsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListServiceSpecificCredentialsResponse(
+      serviceSpecificCredentials: (json['ServiceSpecificCredentials'] as List?)
+          ?.whereNotNull()
+          .map((e) => ServiceSpecificCredentialMetadata.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListServiceSpecificCredentialsResponse.fromXml(_s.XmlElement elem) {
     return ListServiceSpecificCredentialsResponse(
       serviceSpecificCredentials: _s
@@ -15710,6 +17544,14 @@ class ListServiceSpecificCredentialsResponse {
               .map((c) => ServiceSpecificCredentialMetadata.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredentials = this.serviceSpecificCredentials;
+    return {
+      if (serviceSpecificCredentials != null)
+        'ServiceSpecificCredentials': serviceSpecificCredentials,
+    };
   }
 }
 
@@ -15738,6 +17580,17 @@ class ListSigningCertificatesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListSigningCertificatesResponse.fromJson(Map<String, dynamic> json) {
+    return ListSigningCertificatesResponse(
+      certificates: (json['Certificates'] as List)
+          .whereNotNull()
+          .map((e) => SigningCertificate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListSigningCertificatesResponse.fromXml(_s.XmlElement elem) {
     return ListSigningCertificatesResponse(
       certificates: _s
@@ -15748,6 +17601,17 @@ class ListSigningCertificatesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Certificates': certificates,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15775,6 +17639,17 @@ class ListUserPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListUserPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListUserPoliciesResponse(
+      policyNames: (json['PolicyNames'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListUserPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListUserPoliciesResponse(
       policyNames: _s.extractXmlStringListValues(
@@ -15782,6 +17657,17 @@ class ListUserPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15810,6 +17696,17 @@ class ListUserTagsResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListUserTagsResponse.fromJson(Map<String, dynamic> json) {
+    return ListUserTagsResponse(
+      tags: (json['Tags'] as List)
+          .whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListUserTagsResponse.fromXml(_s.XmlElement elem) {
     return ListUserTagsResponse(
       tags: _s
@@ -15820,6 +17717,17 @@ class ListUserTagsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15847,6 +17755,17 @@ class ListUsersResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
+    return ListUsersResponse(
+      users: (json['Users'] as List)
+          .whereNotNull()
+          .map((e) => User.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListUsersResponse.fromXml(_s.XmlElement elem) {
     return ListUsersResponse(
       users: _s
@@ -15857,6 +17776,17 @@ class ListUsersResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final users = this.users;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Users': users,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15885,6 +17815,17 @@ class ListVirtualMFADevicesResponse {
     this.isTruncated,
     this.marker,
   });
+  factory ListVirtualMFADevicesResponse.fromJson(Map<String, dynamic> json) {
+    return ListVirtualMFADevicesResponse(
+      virtualMFADevices: (json['VirtualMFADevices'] as List)
+          .whereNotNull()
+          .map((e) => VirtualMFADevice.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ListVirtualMFADevicesResponse.fromXml(_s.XmlElement elem) {
     return ListVirtualMFADevicesResponse(
       virtualMFADevices: _s
@@ -15895,6 +17836,17 @@ class ListVirtualMFADevicesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualMFADevices = this.virtualMFADevices;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'VirtualMFADevices': virtualMFADevices,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15919,6 +17871,14 @@ class LoginProfile {
     required this.userName,
     this.passwordResetRequired,
   });
+  factory LoginProfile.fromJson(Map<String, dynamic> json) {
+    return LoginProfile(
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      userName: json['UserName'] as String,
+      passwordResetRequired: json['PasswordResetRequired'] as bool?,
+    );
+  }
+
   factory LoginProfile.fromXml(_s.XmlElement elem) {
     return LoginProfile(
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate')!,
@@ -15926,6 +17886,18 @@ class LoginProfile {
       passwordResetRequired:
           _s.extractXmlBoolValue(elem, 'PasswordResetRequired'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final userName = this.userName;
+    final passwordResetRequired = this.passwordResetRequired;
+    return {
+      'CreateDate': unixTimestampToJson(createDate),
+      'UserName': userName,
+      if (passwordResetRequired != null)
+        'PasswordResetRequired': passwordResetRequired,
+    };
   }
 }
 
@@ -15949,12 +17921,31 @@ class MFADevice {
     required this.serialNumber,
     required this.userName,
   });
+  factory MFADevice.fromJson(Map<String, dynamic> json) {
+    return MFADevice(
+      enableDate: nonNullableTimeStampFromJson(json['EnableDate'] as Object),
+      serialNumber: json['SerialNumber'] as String,
+      userName: json['UserName'] as String,
+    );
+  }
+
   factory MFADevice.fromXml(_s.XmlElement elem) {
     return MFADevice(
       enableDate: _s.extractXmlDateTimeValue(elem, 'EnableDate')!,
       serialNumber: _s.extractXmlStringValue(elem, 'SerialNumber')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enableDate = this.enableDate;
+    final serialNumber = this.serialNumber;
+    final userName = this.userName;
+    return {
+      'EnableDate': unixTimestampToJson(enableDate),
+      'SerialNumber': serialNumber,
+      'UserName': userName,
+    };
   }
 }
 
@@ -16044,6 +18035,27 @@ class ManagedPolicyDetail {
     this.policyVersionList,
     this.updateDate,
   });
+  factory ManagedPolicyDetail.fromJson(Map<String, dynamic> json) {
+    return ManagedPolicyDetail(
+      arn: json['Arn'] as String?,
+      attachmentCount: json['AttachmentCount'] as int?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      defaultVersionId: json['DefaultVersionId'] as String?,
+      description: json['Description'] as String?,
+      isAttachable: json['IsAttachable'] as bool?,
+      path: json['Path'] as String?,
+      permissionsBoundaryUsageCount:
+          json['PermissionsBoundaryUsageCount'] as int?,
+      policyId: json['PolicyId'] as String?,
+      policyName: json['PolicyName'] as String?,
+      policyVersionList: (json['PolicyVersionList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      updateDate: timeStampFromJson(json['UpdateDate']),
+    );
+  }
+
   factory ManagedPolicyDetail.fromXml(_s.XmlElement elem) {
     return ManagedPolicyDetail(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -16065,6 +18077,36 @@ class ManagedPolicyDetail {
       updateDate: _s.extractXmlDateTimeValue(elem, 'UpdateDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachmentCount = this.attachmentCount;
+    final createDate = this.createDate;
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final isAttachable = this.isAttachable;
+    final path = this.path;
+    final permissionsBoundaryUsageCount = this.permissionsBoundaryUsageCount;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final policyVersionList = this.policyVersionList;
+    final updateDate = this.updateDate;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachmentCount != null) 'AttachmentCount': attachmentCount,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (description != null) 'Description': description,
+      if (isAttachable != null) 'IsAttachable': isAttachable,
+      if (path != null) 'Path': path,
+      if (permissionsBoundaryUsageCount != null)
+        'PermissionsBoundaryUsageCount': permissionsBoundaryUsageCount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyVersionList != null) 'PolicyVersionList': policyVersionList,
+      if (updateDate != null) 'UpdateDate': unixTimestampToJson(updateDate),
+    };
+  }
 }
 
 /// Contains the Amazon Resource Name (ARN) for an IAM OpenID Connect provider.
@@ -16074,10 +18116,23 @@ class OpenIDConnectProviderListEntry {
   OpenIDConnectProviderListEntry({
     this.arn,
   });
+  factory OpenIDConnectProviderListEntry.fromJson(Map<String, dynamic> json) {
+    return OpenIDConnectProviderListEntry(
+      arn: json['Arn'] as String?,
+    );
+  }
+
   factory OpenIDConnectProviderListEntry.fromXml(_s.XmlElement elem) {
     return OpenIDConnectProviderListEntry(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -16091,11 +18146,25 @@ class OrganizationsDecisionDetail {
   OrganizationsDecisionDetail({
     this.allowedByOrganizations,
   });
+  factory OrganizationsDecisionDetail.fromJson(Map<String, dynamic> json) {
+    return OrganizationsDecisionDetail(
+      allowedByOrganizations: json['AllowedByOrganizations'] as bool?,
+    );
+  }
+
   factory OrganizationsDecisionDetail.fromXml(_s.XmlElement elem) {
     return OrganizationsDecisionDetail(
       allowedByOrganizations:
           _s.extractXmlBoolValue(elem, 'AllowedByOrganizations'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedByOrganizations = this.allowedByOrganizations;
+    return {
+      if (allowedByOrganizations != null)
+        'AllowedByOrganizations': allowedByOrganizations,
+    };
   }
 }
 
@@ -16156,6 +18225,21 @@ class PasswordPolicy {
     this.requireSymbols,
     this.requireUppercaseCharacters,
   });
+  factory PasswordPolicy.fromJson(Map<String, dynamic> json) {
+    return PasswordPolicy(
+      allowUsersToChangePassword: json['AllowUsersToChangePassword'] as bool?,
+      expirePasswords: json['ExpirePasswords'] as bool?,
+      hardExpiry: json['HardExpiry'] as bool?,
+      maxPasswordAge: json['MaxPasswordAge'] as int?,
+      minimumPasswordLength: json['MinimumPasswordLength'] as int?,
+      passwordReusePrevention: json['PasswordReusePrevention'] as int?,
+      requireLowercaseCharacters: json['RequireLowercaseCharacters'] as bool?,
+      requireNumbers: json['RequireNumbers'] as bool?,
+      requireSymbols: json['RequireSymbols'] as bool?,
+      requireUppercaseCharacters: json['RequireUppercaseCharacters'] as bool?,
+    );
+  }
+
   factory PasswordPolicy.fromXml(_s.XmlElement elem) {
     return PasswordPolicy(
       allowUsersToChangePassword:
@@ -16174,6 +18258,36 @@ class PasswordPolicy {
       requireUppercaseCharacters:
           _s.extractXmlBoolValue(elem, 'RequireUppercaseCharacters'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowUsersToChangePassword = this.allowUsersToChangePassword;
+    final expirePasswords = this.expirePasswords;
+    final hardExpiry = this.hardExpiry;
+    final maxPasswordAge = this.maxPasswordAge;
+    final minimumPasswordLength = this.minimumPasswordLength;
+    final passwordReusePrevention = this.passwordReusePrevention;
+    final requireLowercaseCharacters = this.requireLowercaseCharacters;
+    final requireNumbers = this.requireNumbers;
+    final requireSymbols = this.requireSymbols;
+    final requireUppercaseCharacters = this.requireUppercaseCharacters;
+    return {
+      if (allowUsersToChangePassword != null)
+        'AllowUsersToChangePassword': allowUsersToChangePassword,
+      if (expirePasswords != null) 'ExpirePasswords': expirePasswords,
+      if (hardExpiry != null) 'HardExpiry': hardExpiry,
+      if (maxPasswordAge != null) 'MaxPasswordAge': maxPasswordAge,
+      if (minimumPasswordLength != null)
+        'MinimumPasswordLength': minimumPasswordLength,
+      if (passwordReusePrevention != null)
+        'PasswordReusePrevention': passwordReusePrevention,
+      if (requireLowercaseCharacters != null)
+        'RequireLowercaseCharacters': requireLowercaseCharacters,
+      if (requireNumbers != null) 'RequireNumbers': requireNumbers,
+      if (requireSymbols != null) 'RequireSymbols': requireSymbols,
+      if (requireUppercaseCharacters != null)
+        'RequireUppercaseCharacters': requireUppercaseCharacters,
+    };
   }
 }
 
@@ -16218,11 +18332,27 @@ class PermissionsBoundaryDecisionDetail {
   PermissionsBoundaryDecisionDetail({
     this.allowedByPermissionsBoundary,
   });
+  factory PermissionsBoundaryDecisionDetail.fromJson(
+      Map<String, dynamic> json) {
+    return PermissionsBoundaryDecisionDetail(
+      allowedByPermissionsBoundary:
+          json['AllowedByPermissionsBoundary'] as bool?,
+    );
+  }
+
   factory PermissionsBoundaryDecisionDetail.fromXml(_s.XmlElement elem) {
     return PermissionsBoundaryDecisionDetail(
       allowedByPermissionsBoundary:
           _s.extractXmlBoolValue(elem, 'AllowedByPermissionsBoundary'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedByPermissionsBoundary = this.allowedByPermissionsBoundary;
+    return {
+      if (allowedByPermissionsBoundary != null)
+        'AllowedByPermissionsBoundary': allowedByPermissionsBoundary,
+    };
   }
 }
 
@@ -16312,6 +18442,27 @@ class Policy {
     this.tags,
     this.updateDate,
   });
+  factory Policy.fromJson(Map<String, dynamic> json) {
+    return Policy(
+      arn: json['Arn'] as String?,
+      attachmentCount: json['AttachmentCount'] as int?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      defaultVersionId: json['DefaultVersionId'] as String?,
+      description: json['Description'] as String?,
+      isAttachable: json['IsAttachable'] as bool?,
+      path: json['Path'] as String?,
+      permissionsBoundaryUsageCount:
+          json['PermissionsBoundaryUsageCount'] as int?,
+      policyId: json['PolicyId'] as String?,
+      policyName: json['PolicyName'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      updateDate: timeStampFromJson(json['UpdateDate']),
+    );
+  }
+
   factory Policy.fromXml(_s.XmlElement elem) {
     return Policy(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -16330,6 +18481,36 @@ class Policy {
       updateDate: _s.extractXmlDateTimeValue(elem, 'UpdateDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachmentCount = this.attachmentCount;
+    final createDate = this.createDate;
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final isAttachable = this.isAttachable;
+    final path = this.path;
+    final permissionsBoundaryUsageCount = this.permissionsBoundaryUsageCount;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final tags = this.tags;
+    final updateDate = this.updateDate;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachmentCount != null) 'AttachmentCount': attachmentCount,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (description != null) 'Description': description,
+      if (isAttachable != null) 'IsAttachable': isAttachable,
+      if (path != null) 'Path': path,
+      if (permissionsBoundaryUsageCount != null)
+        'PermissionsBoundaryUsageCount': permissionsBoundaryUsageCount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (tags != null) 'Tags': tags,
+      if (updateDate != null) 'UpdateDate': unixTimestampToJson(updateDate),
+    };
+  }
 }
 
 /// Contains information about an IAM policy, including the policy document.
@@ -16347,11 +18528,27 @@ class PolicyDetail {
     this.policyDocument,
     this.policyName,
   });
+  factory PolicyDetail.fromJson(Map<String, dynamic> json) {
+    return PolicyDetail(
+      policyDocument: json['PolicyDocument'] as String?,
+      policyName: json['PolicyName'] as String?,
+    );
+  }
+
   factory PolicyDetail.fromXml(_s.XmlElement elem) {
     return PolicyDetail(
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      if (policyDocument != null) 'PolicyDocument': policyDocument,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -16428,6 +18625,16 @@ class PolicyGrantingServiceAccess {
     this.entityType,
     this.policyArn,
   });
+  factory PolicyGrantingServiceAccess.fromJson(Map<String, dynamic> json) {
+    return PolicyGrantingServiceAccess(
+      policyName: json['PolicyName'] as String,
+      policyType: (json['PolicyType'] as String).toPolicyType(),
+      entityName: json['EntityName'] as String?,
+      entityType: (json['EntityType'] as String?)?.toPolicyOwnerEntityType(),
+      policyArn: json['PolicyArn'] as String?,
+    );
+  }
+
   factory PolicyGrantingServiceAccess.fromXml(_s.XmlElement elem) {
     return PolicyGrantingServiceAccess(
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
@@ -16438,6 +18645,21 @@ class PolicyGrantingServiceAccess {
           ?.toPolicyOwnerEntityType(),
       policyArn: _s.extractXmlStringValue(elem, 'PolicyArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyName = this.policyName;
+    final policyType = this.policyType;
+    final entityName = this.entityName;
+    final entityType = this.entityType;
+    final policyArn = this.policyArn;
+    return {
+      'PolicyName': policyName,
+      'PolicyType': policyType.toValue(),
+      if (entityName != null) 'EntityName': entityName,
+      if (entityType != null) 'EntityType': entityType.toValue(),
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
   }
 }
 
@@ -16463,11 +18685,27 @@ class PolicyGroup {
     this.groupId,
     this.groupName,
   });
+  factory PolicyGroup.fromJson(Map<String, dynamic> json) {
+    return PolicyGroup(
+      groupId: json['GroupId'] as String?,
+      groupName: json['GroupName'] as String?,
+    );
+  }
+
   factory PolicyGroup.fromXml(_s.XmlElement elem) {
     return PolicyGroup(
       groupId: _s.extractXmlStringValue(elem, 'GroupId'),
       groupName: _s.extractXmlStringValue(elem, 'GroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'GroupId': groupId,
+      if (groupName != null) 'GroupName': groupName,
+    };
   }
 }
 
@@ -16493,11 +18731,27 @@ class PolicyRole {
     this.roleId,
     this.roleName,
   });
+  factory PolicyRole.fromJson(Map<String, dynamic> json) {
+    return PolicyRole(
+      roleId: json['RoleId'] as String?,
+      roleName: json['RoleName'] as String?,
+    );
+  }
+
   factory PolicyRole.fromXml(_s.XmlElement elem) {
     return PolicyRole(
       roleId: _s.extractXmlStringValue(elem, 'RoleId'),
       roleName: _s.extractXmlStringValue(elem, 'RoleName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleId = this.roleId;
+    final roleName = this.roleName;
+    return {
+      if (roleId != null) 'RoleId': roleId,
+      if (roleName != null) 'RoleName': roleName,
+    };
   }
 }
 
@@ -16610,11 +18864,27 @@ class PolicyUser {
     this.userId,
     this.userName,
   });
+  factory PolicyUser.fromJson(Map<String, dynamic> json) {
+    return PolicyUser(
+      userId: json['UserId'] as String?,
+      userName: json['UserName'] as String?,
+    );
+  }
+
   factory PolicyUser.fromXml(_s.XmlElement elem) {
     return PolicyUser(
       userId: _s.extractXmlStringValue(elem, 'UserId'),
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -16664,6 +18934,15 @@ class PolicyVersion {
     this.isDefaultVersion,
     this.versionId,
   });
+  factory PolicyVersion.fromJson(Map<String, dynamic> json) {
+    return PolicyVersion(
+      createDate: timeStampFromJson(json['CreateDate']),
+      document: json['Document'] as String?,
+      isDefaultVersion: json['IsDefaultVersion'] as bool?,
+      versionId: json['VersionId'] as String?,
+    );
+  }
+
   factory PolicyVersion.fromXml(_s.XmlElement elem) {
     return PolicyVersion(
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
@@ -16671,6 +18950,19 @@ class PolicyVersion {
       isDefaultVersion: _s.extractXmlBoolValue(elem, 'IsDefaultVersion'),
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final document = this.document;
+    final isDefaultVersion = this.isDefaultVersion;
+    final versionId = this.versionId;
+    return {
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (document != null) 'Document': document,
+      if (isDefaultVersion != null) 'IsDefaultVersion': isDefaultVersion,
+      if (versionId != null) 'VersionId': versionId,
+    };
   }
 }
 
@@ -16690,11 +18982,27 @@ class Position {
     this.column,
     this.line,
   });
+  factory Position.fromJson(Map<String, dynamic> json) {
+    return Position(
+      column: json['Column'] as int?,
+      line: json['Line'] as int?,
+    );
+  }
+
   factory Position.fromXml(_s.XmlElement elem) {
     return Position(
       column: _s.extractXmlIntValue(elem, 'Column'),
       line: _s.extractXmlIntValue(elem, 'Line'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final column = this.column;
+    final line = this.line;
+    return {
+      if (column != null) 'Column': column,
+      if (line != null) 'Line': line,
+    };
   }
 }
 
@@ -16766,12 +19074,30 @@ class ResetServiceSpecificCredentialResponse {
   ResetServiceSpecificCredentialResponse({
     this.serviceSpecificCredential,
   });
+  factory ResetServiceSpecificCredentialResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ResetServiceSpecificCredentialResponse(
+      serviceSpecificCredential: json['ServiceSpecificCredential'] != null
+          ? ServiceSpecificCredential.fromJson(
+              json['ServiceSpecificCredential'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ResetServiceSpecificCredentialResponse.fromXml(_s.XmlElement elem) {
     return ResetServiceSpecificCredentialResponse(
       serviceSpecificCredential: _s
           .extractXmlChild(elem, 'ServiceSpecificCredential')
           ?.let((e) => ServiceSpecificCredential.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredential = this.serviceSpecificCredential;
+    return {
+      if (serviceSpecificCredential != null)
+        'ServiceSpecificCredential': serviceSpecificCredential,
+    };
   }
 }
 
@@ -16824,6 +19150,31 @@ class ResourceSpecificResult {
     this.missingContextValues,
     this.permissionsBoundaryDecisionDetail,
   });
+  factory ResourceSpecificResult.fromJson(Map<String, dynamic> json) {
+    return ResourceSpecificResult(
+      evalResourceDecision: (json['EvalResourceDecision'] as String)
+          .toPolicyEvaluationDecisionType(),
+      evalResourceName: json['EvalResourceName'] as String,
+      evalDecisionDetails:
+          (json['EvalDecisionDetails'] as Map<String, dynamic>?)?.map((k, e) =>
+              MapEntry(k, (e as String).toPolicyEvaluationDecisionType())),
+      matchedStatements: (json['MatchedStatements'] as List?)
+          ?.whereNotNull()
+          .map((e) => Statement.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      missingContextValues: (json['MissingContextValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      permissionsBoundaryDecisionDetail:
+          json['PermissionsBoundaryDecisionDetail'] != null
+              ? PermissionsBoundaryDecisionDetail.fromJson(
+                  json['PermissionsBoundaryDecisionDetail']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory ResourceSpecificResult.fromXml(_s.XmlElement elem) {
     return ResourceSpecificResult(
       evalResourceDecision: _s
@@ -16853,6 +19204,28 @@ class ResourceSpecificResult {
           .extractXmlChild(elem, 'PermissionsBoundaryDecisionDetail')
           ?.let((e) => PermissionsBoundaryDecisionDetail.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evalResourceDecision = this.evalResourceDecision;
+    final evalResourceName = this.evalResourceName;
+    final evalDecisionDetails = this.evalDecisionDetails;
+    final matchedStatements = this.matchedStatements;
+    final missingContextValues = this.missingContextValues;
+    final permissionsBoundaryDecisionDetail =
+        this.permissionsBoundaryDecisionDetail;
+    return {
+      'EvalResourceDecision': evalResourceDecision.toValue(),
+      'EvalResourceName': evalResourceName,
+      if (evalDecisionDetails != null)
+        'EvalDecisionDetails':
+            evalDecisionDetails.map((k, e) => MapEntry(k, e.toValue())),
+      if (matchedStatements != null) 'MatchedStatements': matchedStatements,
+      if (missingContextValues != null)
+        'MissingContextValues': missingContextValues,
+      if (permissionsBoundaryDecisionDetail != null)
+        'PermissionsBoundaryDecisionDetail': permissionsBoundaryDecisionDetail,
+    };
   }
 }
 
@@ -16931,6 +19304,30 @@ class Role {
     this.roleLastUsed,
     this.tags,
   });
+  factory Role.fromJson(Map<String, dynamic> json) {
+    return Role(
+      arn: json['Arn'] as String,
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      path: json['Path'] as String,
+      roleId: json['RoleId'] as String,
+      roleName: json['RoleName'] as String,
+      assumeRolePolicyDocument: json['AssumeRolePolicyDocument'] as String?,
+      description: json['Description'] as String?,
+      maxSessionDuration: json['MaxSessionDuration'] as int?,
+      permissionsBoundary: json['PermissionsBoundary'] != null
+          ? AttachedPermissionsBoundary.fromJson(
+              json['PermissionsBoundary'] as Map<String, dynamic>)
+          : null,
+      roleLastUsed: json['RoleLastUsed'] != null
+          ? RoleLastUsed.fromJson(json['RoleLastUsed'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory Role.fromXml(_s.XmlElement elem) {
     return Role(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -16951,6 +19348,35 @@ class Role {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final path = this.path;
+    final roleId = this.roleId;
+    final roleName = this.roleName;
+    final assumeRolePolicyDocument = this.assumeRolePolicyDocument;
+    final description = this.description;
+    final maxSessionDuration = this.maxSessionDuration;
+    final permissionsBoundary = this.permissionsBoundary;
+    final roleLastUsed = this.roleLastUsed;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': unixTimestampToJson(createDate),
+      'Path': path,
+      'RoleId': roleId,
+      'RoleName': roleName,
+      if (assumeRolePolicyDocument != null)
+        'AssumeRolePolicyDocument': assumeRolePolicyDocument,
+      if (description != null) 'Description': description,
+      if (maxSessionDuration != null) 'MaxSessionDuration': maxSessionDuration,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (roleLastUsed != null) 'RoleLastUsed': roleLastUsed,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -17031,6 +19457,40 @@ class RoleDetail {
     this.rolePolicyList,
     this.tags,
   });
+  factory RoleDetail.fromJson(Map<String, dynamic> json) {
+    return RoleDetail(
+      arn: json['Arn'] as String?,
+      assumeRolePolicyDocument: json['AssumeRolePolicyDocument'] as String?,
+      attachedManagedPolicies: (json['AttachedManagedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      createDate: timeStampFromJson(json['CreateDate']),
+      instanceProfileList: (json['InstanceProfileList'] as List?)
+          ?.whereNotNull()
+          .map((e) => InstanceProfile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      path: json['Path'] as String?,
+      permissionsBoundary: json['PermissionsBoundary'] != null
+          ? AttachedPermissionsBoundary.fromJson(
+              json['PermissionsBoundary'] as Map<String, dynamic>)
+          : null,
+      roleId: json['RoleId'] as String?,
+      roleLastUsed: json['RoleLastUsed'] != null
+          ? RoleLastUsed.fromJson(json['RoleLastUsed'] as Map<String, dynamic>)
+          : null,
+      roleName: json['RoleName'] as String?,
+      rolePolicyList: (json['RolePolicyList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory RoleDetail.fromXml(_s.XmlElement elem) {
     return RoleDetail(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -17066,6 +19526,39 @@ class RoleDetail {
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assumeRolePolicyDocument = this.assumeRolePolicyDocument;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final instanceProfileList = this.instanceProfileList;
+    final path = this.path;
+    final permissionsBoundary = this.permissionsBoundary;
+    final roleId = this.roleId;
+    final roleLastUsed = this.roleLastUsed;
+    final roleName = this.roleName;
+    final rolePolicyList = this.rolePolicyList;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assumeRolePolicyDocument != null)
+        'AssumeRolePolicyDocument': assumeRolePolicyDocument,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (instanceProfileList != null)
+        'InstanceProfileList': instanceProfileList,
+      if (path != null) 'Path': path,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (roleId != null) 'RoleId': roleId,
+      if (roleLastUsed != null) 'RoleLastUsed': roleLastUsed,
+      if (roleName != null) 'RoleName': roleName,
+      if (rolePolicyList != null) 'RolePolicyList': rolePolicyList,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains information about the last time that an IAM role was used. This
@@ -17096,11 +19589,28 @@ class RoleLastUsed {
     this.lastUsedDate,
     this.region,
   });
+  factory RoleLastUsed.fromJson(Map<String, dynamic> json) {
+    return RoleLastUsed(
+      lastUsedDate: timeStampFromJson(json['LastUsedDate']),
+      region: json['Region'] as String?,
+    );
+  }
+
   factory RoleLastUsed.fromXml(_s.XmlElement elem) {
     return RoleLastUsed(
       lastUsedDate: _s.extractXmlDateTimeValue(elem, 'LastUsedDate'),
       region: _s.extractXmlStringValue(elem, 'Region'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUsedDate = this.lastUsedDate;
+    final region = this.region;
+    return {
+      if (lastUsedDate != null)
+        'LastUsedDate': unixTimestampToJson(lastUsedDate),
+      if (region != null) 'Region': region,
+    };
   }
 }
 
@@ -17120,6 +19630,16 @@ class RoleUsageType {
     this.region,
     this.resources,
   });
+  factory RoleUsageType.fromJson(Map<String, dynamic> json) {
+    return RoleUsageType(
+      region: json['Region'] as String?,
+      resources: (json['Resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory RoleUsageType.fromXml(_s.XmlElement elem) {
     return RoleUsageType(
       region: _s.extractXmlStringValue(elem, 'Region'),
@@ -17127,6 +19647,15 @@ class RoleUsageType {
           .extractXmlChild(elem, 'Resources')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final region = this.region;
+    final resources = this.resources;
+    return {
+      if (region != null) 'Region': region,
+      if (resources != null) 'Resources': resources,
+    };
   }
 }
 
@@ -17146,12 +19675,31 @@ class SAMLProviderListEntry {
     this.createDate,
     this.validUntil,
   });
+  factory SAMLProviderListEntry.fromJson(Map<String, dynamic> json) {
+    return SAMLProviderListEntry(
+      arn: json['Arn'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      validUntil: timeStampFromJson(json['ValidUntil']),
+    );
+  }
+
   factory SAMLProviderListEntry.fromXml(_s.XmlElement elem) {
     return SAMLProviderListEntry(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
       validUntil: _s.extractXmlDateTimeValue(elem, 'ValidUntil'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final validUntil = this.validUntil;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (validUntil != null) 'ValidUntil': unixTimestampToJson(validUntil),
+    };
   }
 }
 
@@ -17189,6 +19737,17 @@ class SSHPublicKey {
     required this.userName,
     this.uploadDate,
   });
+  factory SSHPublicKey.fromJson(Map<String, dynamic> json) {
+    return SSHPublicKey(
+      fingerprint: json['Fingerprint'] as String,
+      sSHPublicKeyBody: json['SSHPublicKeyBody'] as String,
+      sSHPublicKeyId: json['SSHPublicKeyId'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      userName: json['UserName'] as String,
+      uploadDate: timeStampFromJson(json['UploadDate']),
+    );
+  }
+
   factory SSHPublicKey.fromXml(_s.XmlElement elem) {
     return SSHPublicKey(
       fingerprint: _s.extractXmlStringValue(elem, 'Fingerprint')!,
@@ -17198,6 +19757,23 @@ class SSHPublicKey {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fingerprint = this.fingerprint;
+    final sSHPublicKeyBody = this.sSHPublicKeyBody;
+    final sSHPublicKeyId = this.sSHPublicKeyId;
+    final status = this.status;
+    final userName = this.userName;
+    final uploadDate = this.uploadDate;
+    return {
+      'Fingerprint': fingerprint,
+      'SSHPublicKeyBody': sSHPublicKeyBody,
+      'SSHPublicKeyId': sSHPublicKeyId,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (uploadDate != null) 'UploadDate': unixTimestampToJson(uploadDate),
+    };
   }
 }
 
@@ -17228,6 +19804,15 @@ class SSHPublicKeyMetadata {
     required this.uploadDate,
     required this.userName,
   });
+  factory SSHPublicKeyMetadata.fromJson(Map<String, dynamic> json) {
+    return SSHPublicKeyMetadata(
+      sSHPublicKeyId: json['SSHPublicKeyId'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      uploadDate: nonNullableTimeStampFromJson(json['UploadDate'] as Object),
+      userName: json['UserName'] as String,
+    );
+  }
+
   factory SSHPublicKeyMetadata.fromXml(_s.XmlElement elem) {
     return SSHPublicKeyMetadata(
       sSHPublicKeyId: _s.extractXmlStringValue(elem, 'SSHPublicKeyId')!,
@@ -17235,6 +19820,19 @@ class SSHPublicKeyMetadata {
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKeyId = this.sSHPublicKeyId;
+    final status = this.status;
+    final uploadDate = this.uploadDate;
+    final userName = this.userName;
+    return {
+      'SSHPublicKeyId': sSHPublicKeyId,
+      'Status': status.toValue(),
+      'UploadDate': unixTimestampToJson(uploadDate),
+      'UserName': userName,
+    };
   }
 }
 
@@ -17265,6 +19863,19 @@ class ServerCertificate {
     this.certificateChain,
     this.tags,
   });
+  factory ServerCertificate.fromJson(Map<String, dynamic> json) {
+    return ServerCertificate(
+      certificateBody: json['CertificateBody'] as String,
+      serverCertificateMetadata: ServerCertificateMetadata.fromJson(
+          json['ServerCertificateMetadata'] as Map<String, dynamic>),
+      certificateChain: json['CertificateChain'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ServerCertificate.fromXml(_s.XmlElement elem) {
     return ServerCertificate(
       certificateBody: _s.extractXmlStringValue(elem, 'CertificateBody')!,
@@ -17274,6 +19885,19 @@ class ServerCertificate {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateBody = this.certificateBody;
+    final serverCertificateMetadata = this.serverCertificateMetadata;
+    final certificateChain = this.certificateChain;
+    final tags = this.tags;
+    return {
+      'CertificateBody': certificateBody,
+      'ServerCertificateMetadata': serverCertificateMetadata,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -17317,6 +19941,17 @@ class ServerCertificateMetadata {
     this.expiration,
     this.uploadDate,
   });
+  factory ServerCertificateMetadata.fromJson(Map<String, dynamic> json) {
+    return ServerCertificateMetadata(
+      arn: json['Arn'] as String,
+      path: json['Path'] as String,
+      serverCertificateId: json['ServerCertificateId'] as String,
+      serverCertificateName: json['ServerCertificateName'] as String,
+      expiration: timeStampFromJson(json['Expiration']),
+      uploadDate: timeStampFromJson(json['UploadDate']),
+    );
+  }
+
   factory ServerCertificateMetadata.fromXml(_s.XmlElement elem) {
     return ServerCertificateMetadata(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -17328,6 +19963,23 @@ class ServerCertificateMetadata {
       expiration: _s.extractXmlDateTimeValue(elem, 'Expiration'),
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final path = this.path;
+    final serverCertificateId = this.serverCertificateId;
+    final serverCertificateName = this.serverCertificateName;
+    final expiration = this.expiration;
+    final uploadDate = this.uploadDate;
+    return {
+      'Arn': arn,
+      'Path': path,
+      'ServerCertificateId': serverCertificateId,
+      'ServerCertificateName': serverCertificateName,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+      if (uploadDate != null) 'UploadDate': unixTimestampToJson(uploadDate),
+    };
   }
 }
 
@@ -17413,6 +20065,22 @@ class ServiceLastAccessed {
     this.totalAuthenticatedEntities,
     this.trackedActionsLastAccessed,
   });
+  factory ServiceLastAccessed.fromJson(Map<String, dynamic> json) {
+    return ServiceLastAccessed(
+      serviceName: json['ServiceName'] as String,
+      serviceNamespace: json['ServiceNamespace'] as String,
+      lastAuthenticated: timeStampFromJson(json['LastAuthenticated']),
+      lastAuthenticatedEntity: json['LastAuthenticatedEntity'] as String?,
+      lastAuthenticatedRegion: json['LastAuthenticatedRegion'] as String?,
+      totalAuthenticatedEntities: json['TotalAuthenticatedEntities'] as int?,
+      trackedActionsLastAccessed: (json['TrackedActionsLastAccessed'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              TrackedActionLastAccessed.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ServiceLastAccessed.fromXml(_s.XmlElement elem) {
     return ServiceLastAccessed(
       serviceName: _s.extractXmlStringValue(elem, 'ServiceName')!,
@@ -17431,6 +20099,30 @@ class ServiceLastAccessed {
               .map((c) => TrackedActionLastAccessed.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceName = this.serviceName;
+    final serviceNamespace = this.serviceNamespace;
+    final lastAuthenticated = this.lastAuthenticated;
+    final lastAuthenticatedEntity = this.lastAuthenticatedEntity;
+    final lastAuthenticatedRegion = this.lastAuthenticatedRegion;
+    final totalAuthenticatedEntities = this.totalAuthenticatedEntities;
+    final trackedActionsLastAccessed = this.trackedActionsLastAccessed;
+    return {
+      'ServiceName': serviceName,
+      'ServiceNamespace': serviceNamespace,
+      if (lastAuthenticated != null)
+        'LastAuthenticated': unixTimestampToJson(lastAuthenticated),
+      if (lastAuthenticatedEntity != null)
+        'LastAuthenticatedEntity': lastAuthenticatedEntity,
+      if (lastAuthenticatedRegion != null)
+        'LastAuthenticatedRegion': lastAuthenticatedRegion,
+      if (totalAuthenticatedEntities != null)
+        'TotalAuthenticatedEntities': totalAuthenticatedEntities,
+      if (trackedActionsLastAccessed != null)
+        'TrackedActionsLastAccessed': trackedActionsLastAccessed,
+    };
   }
 }
 
@@ -17472,6 +20164,19 @@ class ServiceSpecificCredential {
     required this.status,
     required this.userName,
   });
+  factory ServiceSpecificCredential.fromJson(Map<String, dynamic> json) {
+    return ServiceSpecificCredential(
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      serviceName: json['ServiceName'] as String,
+      servicePassword: json['ServicePassword'] as String,
+      serviceSpecificCredentialId:
+          json['ServiceSpecificCredentialId'] as String,
+      serviceUserName: json['ServiceUserName'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      userName: json['UserName'] as String,
+    );
+  }
+
   factory ServiceSpecificCredential.fromXml(_s.XmlElement elem) {
     return ServiceSpecificCredential(
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate')!,
@@ -17483,6 +20188,25 @@ class ServiceSpecificCredential {
       status: _s.extractXmlStringValue(elem, 'Status')!.toStatusType(),
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final serviceName = this.serviceName;
+    final servicePassword = this.servicePassword;
+    final serviceSpecificCredentialId = this.serviceSpecificCredentialId;
+    final serviceUserName = this.serviceUserName;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      'CreateDate': unixTimestampToJson(createDate),
+      'ServiceName': serviceName,
+      'ServicePassword': servicePassword,
+      'ServiceSpecificCredentialId': serviceSpecificCredentialId,
+      'ServiceUserName': serviceUserName,
+      'Status': status.toValue(),
+      'UserName': userName,
+    };
   }
 }
 
@@ -17517,6 +20241,19 @@ class ServiceSpecificCredentialMetadata {
     required this.status,
     required this.userName,
   });
+  factory ServiceSpecificCredentialMetadata.fromJson(
+      Map<String, dynamic> json) {
+    return ServiceSpecificCredentialMetadata(
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      serviceName: json['ServiceName'] as String,
+      serviceSpecificCredentialId:
+          json['ServiceSpecificCredentialId'] as String,
+      serviceUserName: json['ServiceUserName'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      userName: json['UserName'] as String,
+    );
+  }
+
   factory ServiceSpecificCredentialMetadata.fromXml(_s.XmlElement elem) {
     return ServiceSpecificCredentialMetadata(
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate')!,
@@ -17527,6 +20264,23 @@ class ServiceSpecificCredentialMetadata {
       status: _s.extractXmlStringValue(elem, 'Status')!.toStatusType(),
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final serviceName = this.serviceName;
+    final serviceSpecificCredentialId = this.serviceSpecificCredentialId;
+    final serviceUserName = this.serviceUserName;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      'CreateDate': unixTimestampToJson(createDate),
+      'ServiceName': serviceName,
+      'ServiceSpecificCredentialId': serviceSpecificCredentialId,
+      'ServiceUserName': serviceUserName,
+      'Status': status.toValue(),
+      'UserName': userName,
+    };
   }
 }
 
@@ -17559,6 +20313,16 @@ class SigningCertificate {
     required this.userName,
     this.uploadDate,
   });
+  factory SigningCertificate.fromJson(Map<String, dynamic> json) {
+    return SigningCertificate(
+      certificateBody: json['CertificateBody'] as String,
+      certificateId: json['CertificateId'] as String,
+      status: (json['Status'] as String).toStatusType(),
+      userName: json['UserName'] as String,
+      uploadDate: timeStampFromJson(json['UploadDate']),
+    );
+  }
+
   factory SigningCertificate.fromXml(_s.XmlElement elem) {
     return SigningCertificate(
       certificateBody: _s.extractXmlStringValue(elem, 'CertificateBody')!,
@@ -17567,6 +20331,21 @@ class SigningCertificate {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateBody = this.certificateBody;
+    final certificateId = this.certificateId;
+    final status = this.status;
+    final userName = this.userName;
+    final uploadDate = this.uploadDate;
+    return {
+      'CertificateBody': certificateBody,
+      'CertificateId': certificateId,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (uploadDate != null) 'UploadDate': unixTimestampToJson(uploadDate),
+    };
   }
 }
 
@@ -17595,6 +20374,17 @@ class SimulatePolicyResponse {
     this.isTruncated,
     this.marker,
   });
+  factory SimulatePolicyResponse.fromJson(Map<String, dynamic> json) {
+    return SimulatePolicyResponse(
+      evaluationResults: (json['EvaluationResults'] as List?)
+          ?.whereNotNull()
+          .map((e) => EvaluationResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool?,
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory SimulatePolicyResponse.fromXml(_s.XmlElement elem) {
     return SimulatePolicyResponse(
       evaluationResults: _s.extractXmlChild(elem, 'EvaluationResults')?.let(
@@ -17605,6 +20395,17 @@ class SimulatePolicyResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResults = this.evaluationResults;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (evaluationResults != null) 'EvaluationResults': evaluationResults,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -17633,6 +20434,20 @@ class Statement {
     this.sourcePolicyType,
     this.startPosition,
   });
+  factory Statement.fromJson(Map<String, dynamic> json) {
+    return Statement(
+      endPosition: json['EndPosition'] != null
+          ? Position.fromJson(json['EndPosition'] as Map<String, dynamic>)
+          : null,
+      sourcePolicyId: json['SourcePolicyId'] as String?,
+      sourcePolicyType:
+          (json['SourcePolicyType'] as String?)?.toPolicySourceType(),
+      startPosition: json['StartPosition'] != null
+          ? Position.fromJson(json['StartPosition'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory Statement.fromXml(_s.XmlElement elem) {
     return Statement(
       endPosition: _s
@@ -17646,6 +20461,20 @@ class Statement {
           .extractXmlChild(elem, 'StartPosition')
           ?.let((e) => Position.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endPosition = this.endPosition;
+    final sourcePolicyId = this.sourcePolicyId;
+    final sourcePolicyType = this.sourcePolicyType;
+    final startPosition = this.startPosition;
+    return {
+      if (endPosition != null) 'EndPosition': endPosition,
+      if (sourcePolicyId != null) 'SourcePolicyId': sourcePolicyId,
+      if (sourcePolicyType != null)
+        'SourcePolicyType': sourcePolicyType.toValue(),
+      if (startPosition != null) 'StartPosition': startPosition,
+    };
   }
 }
 
@@ -17677,6 +20506,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key')!,
@@ -17732,6 +20568,15 @@ class TrackedActionLastAccessed {
     this.lastAccessedRegion,
     this.lastAccessedTime,
   });
+  factory TrackedActionLastAccessed.fromJson(Map<String, dynamic> json) {
+    return TrackedActionLastAccessed(
+      actionName: json['ActionName'] as String?,
+      lastAccessedEntity: json['LastAccessedEntity'] as String?,
+      lastAccessedRegion: json['LastAccessedRegion'] as String?,
+      lastAccessedTime: timeStampFromJson(json['LastAccessedTime']),
+    );
+  }
+
   factory TrackedActionLastAccessed.fromXml(_s.XmlElement elem) {
     return TrackedActionLastAccessed(
       actionName: _s.extractXmlStringValue(elem, 'ActionName'),
@@ -17739,6 +20584,20 @@ class TrackedActionLastAccessed {
       lastAccessedRegion: _s.extractXmlStringValue(elem, 'LastAccessedRegion'),
       lastAccessedTime: _s.extractXmlDateTimeValue(elem, 'LastAccessedTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final lastAccessedEntity = this.lastAccessedEntity;
+    final lastAccessedRegion = this.lastAccessedRegion;
+    final lastAccessedTime = this.lastAccessedTime;
+    return {
+      if (actionName != null) 'ActionName': actionName,
+      if (lastAccessedEntity != null) 'LastAccessedEntity': lastAccessedEntity,
+      if (lastAccessedRegion != null) 'LastAccessedRegion': lastAccessedRegion,
+      if (lastAccessedTime != null)
+        'LastAccessedTime': unixTimestampToJson(lastAccessedTime),
+    };
   }
 }
 
@@ -17749,19 +20608,42 @@ class UpdateRoleDescriptionResponse {
   UpdateRoleDescriptionResponse({
     this.role,
   });
+  factory UpdateRoleDescriptionResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateRoleDescriptionResponse(
+      role: json['Role'] != null
+          ? Role.fromJson(json['Role'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory UpdateRoleDescriptionResponse.fromXml(_s.XmlElement elem) {
     return UpdateRoleDescriptionResponse(
       role: _s.extractXmlChild(elem, 'Role')?.let((e) => Role.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      if (role != null) 'Role': role,
+    };
+  }
 }
 
 class UpdateRoleResponse {
   UpdateRoleResponse();
+  factory UpdateRoleResponse.fromJson(Map<String, dynamic> _) {
+    return UpdateRoleResponse();
+  }
+
   factory UpdateRoleResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateRoleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -17773,10 +20655,23 @@ class UpdateSAMLProviderResponse {
   UpdateSAMLProviderResponse({
     this.sAMLProviderArn,
   });
+  factory UpdateSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateSAMLProviderResponse(
+      sAMLProviderArn: json['SAMLProviderArn'] as String?,
+    );
+  }
+
   factory UpdateSAMLProviderResponse.fromXml(_s.XmlElement elem) {
     return UpdateSAMLProviderResponse(
       sAMLProviderArn: _s.extractXmlStringValue(elem, 'SAMLProviderArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderArn = this.sAMLProviderArn;
+    return {
+      if (sAMLProviderArn != null) 'SAMLProviderArn': sAMLProviderArn,
+    };
   }
 }
 
@@ -17788,12 +20683,27 @@ class UploadSSHPublicKeyResponse {
   UploadSSHPublicKeyResponse({
     this.sSHPublicKey,
   });
+  factory UploadSSHPublicKeyResponse.fromJson(Map<String, dynamic> json) {
+    return UploadSSHPublicKeyResponse(
+      sSHPublicKey: json['SSHPublicKey'] != null
+          ? SSHPublicKey.fromJson(json['SSHPublicKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory UploadSSHPublicKeyResponse.fromXml(_s.XmlElement elem) {
     return UploadSSHPublicKeyResponse(
       sSHPublicKey: _s
           .extractXmlChild(elem, 'SSHPublicKey')
           ?.let((e) => SSHPublicKey.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKey = this.sSHPublicKey;
+    return {
+      if (sSHPublicKey != null) 'SSHPublicKey': sSHPublicKey,
+    };
   }
 }
 
@@ -17815,6 +20725,19 @@ class UploadServerCertificateResponse {
     this.serverCertificateMetadata,
     this.tags,
   });
+  factory UploadServerCertificateResponse.fromJson(Map<String, dynamic> json) {
+    return UploadServerCertificateResponse(
+      serverCertificateMetadata: json['ServerCertificateMetadata'] != null
+          ? ServerCertificateMetadata.fromJson(
+              json['ServerCertificateMetadata'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UploadServerCertificateResponse.fromXml(_s.XmlElement elem) {
     return UploadServerCertificateResponse(
       serverCertificateMetadata: _s
@@ -17823,6 +20746,16 @@ class UploadServerCertificateResponse {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificateMetadata = this.serverCertificateMetadata;
+    final tags = this.tags;
+    return {
+      if (serverCertificateMetadata != null)
+        'ServerCertificateMetadata': serverCertificateMetadata,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -17835,11 +20768,25 @@ class UploadSigningCertificateResponse {
   UploadSigningCertificateResponse({
     required this.certificate,
   });
+  factory UploadSigningCertificateResponse.fromJson(Map<String, dynamic> json) {
+    return UploadSigningCertificateResponse(
+      certificate: SigningCertificate.fromJson(
+          json['Certificate'] as Map<String, dynamic>),
+    );
+  }
+
   factory UploadSigningCertificateResponse.fromXml(_s.XmlElement elem) {
     return UploadSigningCertificateResponse(
       certificate:
           SigningCertificate.fromXml(_s.extractXmlChild(elem, 'Certificate')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      'Certificate': certificate,
+    };
   }
 }
 
@@ -17933,6 +20880,25 @@ class User {
     this.permissionsBoundary,
     this.tags,
   });
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      arn: json['Arn'] as String,
+      createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
+      path: json['Path'] as String,
+      userId: json['UserId'] as String,
+      userName: json['UserName'] as String,
+      passwordLastUsed: timeStampFromJson(json['PasswordLastUsed']),
+      permissionsBoundary: json['PermissionsBoundary'] != null
+          ? AttachedPermissionsBoundary.fromJson(
+              json['PermissionsBoundary'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory User.fromXml(_s.XmlElement elem) {
     return User(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
@@ -17947,6 +20913,29 @@ class User {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final path = this.path;
+    final userId = this.userId;
+    final userName = this.userName;
+    final passwordLastUsed = this.passwordLastUsed;
+    final permissionsBoundary = this.permissionsBoundary;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': unixTimestampToJson(createDate),
+      'Path': path,
+      'UserId': userId,
+      'UserName': userName,
+      if (passwordLastUsed != null)
+        'PasswordLastUsed': unixTimestampToJson(passwordLastUsed),
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -18010,6 +20999,36 @@ class UserDetail {
     this.userName,
     this.userPolicyList,
   });
+  factory UserDetail.fromJson(Map<String, dynamic> json) {
+    return UserDetail(
+      arn: json['Arn'] as String?,
+      attachedManagedPolicies: (json['AttachedManagedPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttachedPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      createDate: timeStampFromJson(json['CreateDate']),
+      groupList: (json['GroupList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      path: json['Path'] as String?,
+      permissionsBoundary: json['PermissionsBoundary'] != null
+          ? AttachedPermissionsBoundary.fromJson(
+              json['PermissionsBoundary'] as Map<String, dynamic>)
+          : null,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      userId: json['UserId'] as String?,
+      userName: json['UserName'] as String?,
+      userPolicyList: (json['UserPolicyList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyDetail.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UserDetail.fromXml(_s.XmlElement elem) {
     return UserDetail(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -18037,6 +21056,33 @@ class UserDetail {
               .map((c) => PolicyDetail.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final groupList = this.groupList;
+    final path = this.path;
+    final permissionsBoundary = this.permissionsBoundary;
+    final tags = this.tags;
+    final userId = this.userId;
+    final userName = this.userName;
+    final userPolicyList = this.userPolicyList;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (groupList != null) 'GroupList': groupList,
+      if (path != null) 'Path': path,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (tags != null) 'Tags': tags,
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+      if (userPolicyList != null) 'UserPolicyList': userPolicyList,
+    };
   }
 }
 
@@ -18078,6 +21124,23 @@ class VirtualMFADevice {
     this.tags,
     this.user,
   });
+  factory VirtualMFADevice.fromJson(Map<String, dynamic> json) {
+    return VirtualMFADevice(
+      serialNumber: json['SerialNumber'] as String,
+      base32StringSeed:
+          _s.decodeNullableUint8List(json['Base32StringSeed'] as String?),
+      enableDate: timeStampFromJson(json['EnableDate']),
+      qRCodePNG: _s.decodeNullableUint8List(json['QRCodePNG'] as String?),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      user: json['User'] != null
+          ? User.fromJson(json['User'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory VirtualMFADevice.fromXml(_s.XmlElement elem) {
     return VirtualMFADevice(
       serialNumber: _s.extractXmlStringValue(elem, 'SerialNumber')!,
@@ -18088,6 +21151,24 @@ class VirtualMFADevice {
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
       user: _s.extractXmlChild(elem, 'User')?.let((e) => User.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serialNumber = this.serialNumber;
+    final base32StringSeed = this.base32StringSeed;
+    final enableDate = this.enableDate;
+    final qRCodePNG = this.qRCodePNG;
+    final tags = this.tags;
+    final user = this.user;
+    return {
+      'SerialNumber': serialNumber,
+      if (base32StringSeed != null)
+        'Base32StringSeed': base64Encode(base32StringSeed),
+      if (enableDate != null) 'EnableDate': unixTimestampToJson(enableDate),
+      if (qRCodePNG != null) 'QRCodePNG': base64Encode(qRCodePNG),
+      if (tags != null) 'Tags': tags,
+      if (user != null) 'User': user,
+    };
   }
 }
 

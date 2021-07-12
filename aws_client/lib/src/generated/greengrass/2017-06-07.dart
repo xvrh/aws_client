@@ -2836,6 +2836,13 @@ class AssociateRoleToGroupResponse {
       associatedAt: json['AssociatedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+    };
+  }
 }
 
 class AssociateServiceRoleToAccountResponse {
@@ -2850,6 +2857,13 @@ class AssociateServiceRoleToAccountResponse {
     return AssociateServiceRoleToAccountResponse(
       associatedAt: json['AssociatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+    };
   }
 }
 
@@ -2876,6 +2890,17 @@ class BulkDeployment {
       bulkDeploymentId: json['BulkDeploymentId'] as String?,
       createdAt: json['CreatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bulkDeploymentArn = this.bulkDeploymentArn;
+    final bulkDeploymentId = this.bulkDeploymentId;
+    final createdAt = this.createdAt;
+    return {
+      if (bulkDeploymentArn != null) 'BulkDeploymentArn': bulkDeploymentArn,
+      if (bulkDeploymentId != null) 'BulkDeploymentId': bulkDeploymentId,
+      if (createdAt != null) 'CreatedAt': createdAt,
+    };
   }
 }
 
@@ -2908,6 +2933,18 @@ class BulkDeploymentMetrics {
       recordsProcessed: json['RecordsProcessed'] as int?,
       retryAttempts: json['RetryAttempts'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invalidInputRecords = this.invalidInputRecords;
+    final recordsProcessed = this.recordsProcessed;
+    final retryAttempts = this.retryAttempts;
+    return {
+      if (invalidInputRecords != null)
+        'InvalidInputRecords': invalidInputRecords,
+      if (recordsProcessed != null) 'RecordsProcessed': recordsProcessed,
+      if (retryAttempts != null) 'RetryAttempts': retryAttempts,
+    };
   }
 }
 
@@ -2963,6 +3000,27 @@ class BulkDeploymentResult {
       errorMessage: json['ErrorMessage'] as String?,
       groupArn: json['GroupArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deploymentArn = this.deploymentArn;
+    final deploymentId = this.deploymentId;
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentType = this.deploymentType;
+    final errorDetails = this.errorDetails;
+    final errorMessage = this.errorMessage;
+    final groupArn = this.groupArn;
+    return {
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (deploymentArn != null) 'DeploymentArn': deploymentArn,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentStatus != null) 'DeploymentStatus': deploymentStatus,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (groupArn != null) 'GroupArn': groupArn,
+    };
   }
 }
 
@@ -3268,6 +3326,26 @@ class CreateConnectorDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateConnectorDefinitionVersionResponse {
@@ -3297,6 +3375,19 @@ class CreateConnectorDefinitionVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -3343,6 +3434,26 @@ class CreateCoreDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateCoreDefinitionVersionResponse {
@@ -3373,6 +3484,19 @@ class CreateCoreDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateDeploymentResponse {
@@ -3391,6 +3515,15 @@ class CreateDeploymentResponse {
       deploymentArn: json['DeploymentArn'] as String?,
       deploymentId: json['DeploymentId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentArn = this.deploymentArn;
+    final deploymentId = this.deploymentId;
+    return {
+      if (deploymentArn != null) 'DeploymentArn': deploymentArn,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+    };
   }
 }
 
@@ -3437,6 +3570,26 @@ class CreateDeviceDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateDeviceDefinitionVersionResponse {
@@ -3466,6 +3619,19 @@ class CreateDeviceDefinitionVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -3512,6 +3678,26 @@ class CreateFunctionDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateFunctionDefinitionVersionResponse {
@@ -3542,6 +3728,19 @@ class CreateFunctionDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateGroupCertificateAuthorityResponse {
@@ -3557,6 +3756,14 @@ class CreateGroupCertificateAuthorityResponse {
       groupCertificateAuthorityArn:
           json['GroupCertificateAuthorityArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupCertificateAuthorityArn = this.groupCertificateAuthorityArn;
+    return {
+      if (groupCertificateAuthorityArn != null)
+        'GroupCertificateAuthorityArn': groupCertificateAuthorityArn,
+    };
   }
 }
 
@@ -3603,6 +3810,26 @@ class CreateGroupResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateGroupVersionResponse {
@@ -3631,6 +3858,19 @@ class CreateGroupVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -3677,6 +3917,26 @@ class CreateLoggerDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateLoggerDefinitionVersionResponse {
@@ -3706,6 +3966,19 @@ class CreateLoggerDefinitionVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -3752,6 +4025,26 @@ class CreateResourceDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateResourceDefinitionVersionResponse {
@@ -3782,6 +4075,19 @@ class CreateResourceDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateSoftwareUpdateJobResponse {
@@ -3805,6 +4111,18 @@ class CreateSoftwareUpdateJobResponse {
       iotJobId: json['IotJobId'] as String?,
       platformSoftwareVersion: json['PlatformSoftwareVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iotJobArn = this.iotJobArn;
+    final iotJobId = this.iotJobId;
+    final platformSoftwareVersion = this.platformSoftwareVersion;
+    return {
+      if (iotJobArn != null) 'IotJobArn': iotJobArn,
+      if (iotJobId != null) 'IotJobId': iotJobId,
+      if (platformSoftwareVersion != null)
+        'PlatformSoftwareVersion': platformSoftwareVersion,
+    };
   }
 }
 
@@ -3852,6 +4170,26 @@ class CreateSubscriptionDefinitionResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateSubscriptionDefinitionVersionResponse {
@@ -3881,6 +4219,19 @@ class CreateSubscriptionDefinitionVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -3934,12 +4285,38 @@ class DefinitionInformation {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DeleteConnectorDefinitionResponse {
   DeleteConnectorDefinitionResponse();
   factory DeleteConnectorDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConnectorDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3948,12 +4325,20 @@ class DeleteCoreDefinitionResponse {
   factory DeleteCoreDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCoreDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDeviceDefinitionResponse {
   DeleteDeviceDefinitionResponse();
   factory DeleteDeviceDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3962,12 +4347,20 @@ class DeleteFunctionDefinitionResponse {
   factory DeleteFunctionDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFunctionDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteGroupResponse {
   DeleteGroupResponse();
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3976,12 +4369,20 @@ class DeleteLoggerDefinitionResponse {
   factory DeleteLoggerDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLoggerDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteResourceDefinitionResponse {
   DeleteResourceDefinitionResponse();
   factory DeleteResourceDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourceDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3990,6 +4391,10 @@ class DeleteSubscriptionDefinitionResponse {
   factory DeleteSubscriptionDefinitionResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteSubscriptionDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4025,6 +4430,21 @@ class Deployment {
       deploymentType: (json['DeploymentType'] as String?)?.toDeploymentType(),
       groupArn: json['GroupArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deploymentArn = this.deploymentArn;
+    final deploymentId = this.deploymentId;
+    final deploymentType = this.deploymentType;
+    final groupArn = this.groupArn;
+    return {
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (deploymentArn != null) 'DeploymentArn': deploymentArn,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (groupArn != null) 'GroupArn': groupArn,
+    };
   }
 }
 
@@ -4153,6 +4573,13 @@ class DisassociateRoleFromGroupResponse {
       disassociatedAt: json['DisassociatedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disassociatedAt = this.disassociatedAt;
+    return {
+      if (disassociatedAt != null) 'DisassociatedAt': disassociatedAt,
+    };
+  }
 }
 
 class DisassociateServiceRoleFromAccountResponse {
@@ -4167,6 +4594,13 @@ class DisassociateServiceRoleFromAccountResponse {
     return DisassociateServiceRoleFromAccountResponse(
       disassociatedAt: json['DisassociatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disassociatedAt = this.disassociatedAt;
+    return {
+      if (disassociatedAt != null) 'DisassociatedAt': disassociatedAt,
+    };
   }
 }
 
@@ -4215,6 +4649,16 @@ class ErrorDetail {
       detailedErrorCode: json['DetailedErrorCode'] as String?,
       detailedErrorMessage: json['DetailedErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detailedErrorCode = this.detailedErrorCode;
+    final detailedErrorMessage = this.detailedErrorMessage;
+    return {
+      if (detailedErrorCode != null) 'DetailedErrorCode': detailedErrorCode,
+      if (detailedErrorMessage != null)
+        'DetailedErrorMessage': detailedErrorMessage,
+    };
   }
 }
 
@@ -4595,6 +5039,15 @@ class GetAssociatedRoleResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    final roleArn = this.roleArn;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class GetBulkDeploymentStatusResponse {
@@ -4642,6 +5095,25 @@ class GetBulkDeploymentStatusResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bulkDeploymentMetrics = this.bulkDeploymentMetrics;
+    final bulkDeploymentStatus = this.bulkDeploymentStatus;
+    final createdAt = this.createdAt;
+    final errorDetails = this.errorDetails;
+    final errorMessage = this.errorMessage;
+    final tags = this.tags;
+    return {
+      if (bulkDeploymentMetrics != null)
+        'BulkDeploymentMetrics': bulkDeploymentMetrics,
+      if (bulkDeploymentStatus != null)
+        'BulkDeploymentStatus': bulkDeploymentStatus.toValue(),
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetConnectivityInfoResponse {
@@ -4663,6 +5135,15 @@ class GetConnectivityInfoResponse {
           .toList(),
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectivityInfo = this.connectivityInfo;
+    final message = this.message;
+    return {
+      if (connectivityInfo != null) 'ConnectivityInfo': connectivityInfo,
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -4715,6 +5196,28 @@ class GetConnectorDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetConnectorDefinitionVersionResponse {
@@ -4759,6 +5262,23 @@ class GetConnectorDefinitionVersionResponse {
       nextToken: json['NextToken'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final nextToken = this.nextToken;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -4811,6 +5331,28 @@ class GetCoreDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetCoreDefinitionVersionResponse {
@@ -4855,6 +5397,23 @@ class GetCoreDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final nextToken = this.nextToken;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class GetDeploymentStatusResponse {
@@ -4893,6 +5452,21 @@ class GetDeploymentStatusResponse {
       errorMessage: json['ErrorMessage'] as String?,
       updatedAt: json['UpdatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentType = this.deploymentType;
+    final errorDetails = this.errorDetails;
+    final errorMessage = this.errorMessage;
+    final updatedAt = this.updatedAt;
+    return {
+      if (deploymentStatus != null) 'DeploymentStatus': deploymentStatus,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (updatedAt != null) 'UpdatedAt': updatedAt,
+    };
   }
 }
 
@@ -4945,6 +5519,28 @@ class GetDeviceDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetDeviceDefinitionVersionResponse {
@@ -4989,6 +5585,23 @@ class GetDeviceDefinitionVersionResponse {
       nextToken: json['NextToken'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final nextToken = this.nextToken;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5041,6 +5654,28 @@ class GetFunctionDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetFunctionDefinitionVersionResponse {
@@ -5086,6 +5721,23 @@ class GetFunctionDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final nextToken = this.nextToken;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class GetGroupCertificateAuthorityResponse {
@@ -5112,6 +5764,20 @@ class GetGroupCertificateAuthorityResponse {
           json['GroupCertificateAuthorityId'] as String?,
       pemEncodedCertificate: json['PemEncodedCertificate'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupCertificateAuthorityArn = this.groupCertificateAuthorityArn;
+    final groupCertificateAuthorityId = this.groupCertificateAuthorityId;
+    final pemEncodedCertificate = this.pemEncodedCertificate;
+    return {
+      if (groupCertificateAuthorityArn != null)
+        'GroupCertificateAuthorityArn': groupCertificateAuthorityArn,
+      if (groupCertificateAuthorityId != null)
+        'GroupCertificateAuthorityId': groupCertificateAuthorityId,
+      if (pemEncodedCertificate != null)
+        'PemEncodedCertificate': pemEncodedCertificate,
+    };
   }
 }
 
@@ -5141,6 +5807,22 @@ class GetGroupCertificateConfigurationResponse {
           json['CertificateExpiryInMilliseconds'] as String?,
       groupId: json['GroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorityExpiryInMilliseconds =
+        this.certificateAuthorityExpiryInMilliseconds;
+    final certificateExpiryInMilliseconds =
+        this.certificateExpiryInMilliseconds;
+    final groupId = this.groupId;
+    return {
+      if (certificateAuthorityExpiryInMilliseconds != null)
+        'CertificateAuthorityExpiryInMilliseconds':
+            certificateAuthorityExpiryInMilliseconds,
+      if (certificateExpiryInMilliseconds != null)
+        'CertificateExpiryInMilliseconds': certificateExpiryInMilliseconds,
+      if (groupId != null) 'GroupId': groupId,
+    };
   }
 }
 
@@ -5193,6 +5875,28 @@ class GetGroupResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetGroupVersionResponse {
@@ -5229,6 +5933,21 @@ class GetGroupVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5281,6 +6000,28 @@ class GetLoggerDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetLoggerDefinitionVersionResponse {
@@ -5319,6 +6060,21 @@ class GetLoggerDefinitionVersionResponse {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5371,6 +6127,28 @@ class GetResourceDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetResourceDefinitionVersionResponse {
@@ -5410,6 +6188,21 @@ class GetResourceDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class GetServiceRoleForAccountResponse {
@@ -5428,6 +6221,15 @@ class GetServiceRoleForAccountResponse {
       associatedAt: json['AssociatedAt'] as String?,
       roleArn: json['RoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    final roleArn = this.roleArn;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
   }
 }
 
@@ -5481,6 +6283,28 @@ class GetSubscriptionDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetSubscriptionDefinitionVersionResponse {
@@ -5526,6 +6350,23 @@ class GetSubscriptionDefinitionVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final definition = this.definition;
+    final id = this.id;
+    final nextToken = this.nextToken;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (definition != null) 'Definition': definition,
+      if (id != null) 'Id': id,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class GetThingRuntimeConfigurationResponse {
@@ -5543,6 +6384,14 @@ class GetThingRuntimeConfigurationResponse {
               json['RuntimeConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final runtimeConfiguration = this.runtimeConfiguration;
+    return {
+      if (runtimeConfiguration != null)
+        'RuntimeConfiguration': runtimeConfiguration,
+    };
   }
 }
 
@@ -5566,6 +6415,17 @@ class GroupCertificateAuthorityProperties {
       groupCertificateAuthorityId:
           json['GroupCertificateAuthorityId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupCertificateAuthorityArn = this.groupCertificateAuthorityArn;
+    final groupCertificateAuthorityId = this.groupCertificateAuthorityId;
+    return {
+      if (groupCertificateAuthorityArn != null)
+        'GroupCertificateAuthorityArn': groupCertificateAuthorityArn,
+      if (groupCertificateAuthorityId != null)
+        'GroupCertificateAuthorityId': groupCertificateAuthorityId,
+    };
   }
 }
 
@@ -5611,6 +6471,26 @@ class GroupInformation {
       latestVersionArn: json['LatestVersionArn'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final latestVersion = this.latestVersion;
+    final latestVersionArn = this.latestVersionArn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': lastUpdatedTimestamp,
+      if (latestVersion != null) 'LatestVersion': latestVersion,
+      if (latestVersionArn != null) 'LatestVersionArn': latestVersionArn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5744,6 +6624,15 @@ class ListBulkDeploymentDetailedReportsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    final nextToken = this.nextToken;
+    return {
+      if (deployments != null) 'Deployments': deployments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListBulkDeploymentsResponse {
@@ -5766,6 +6655,15 @@ class ListBulkDeploymentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bulkDeployments = this.bulkDeployments;
+    final nextToken = this.nextToken;
+    return {
+      if (bulkDeployments != null) 'BulkDeployments': bulkDeployments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5791,6 +6689,15 @@ class ListConnectorDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListConnectorDefinitionsResponse {
@@ -5813,6 +6720,15 @@ class ListConnectorDefinitionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5838,6 +6754,15 @@ class ListCoreDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListCoreDefinitionsResponse {
@@ -5861,6 +6786,15 @@ class ListCoreDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDeploymentsResponse {
@@ -5883,6 +6817,15 @@ class ListDeploymentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    final nextToken = this.nextToken;
+    return {
+      if (deployments != null) 'Deployments': deployments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5908,6 +6851,15 @@ class ListDeviceDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListDeviceDefinitionsResponse {
@@ -5930,6 +6882,15 @@ class ListDeviceDefinitionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5955,6 +6916,15 @@ class ListFunctionDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListFunctionDefinitionsResponse {
@@ -5978,6 +6948,15 @@ class ListFunctionDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGroupCertificateAuthoritiesResponse {
@@ -5997,6 +6976,14 @@ class ListGroupCertificateAuthoritiesResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupCertificateAuthorities = this.groupCertificateAuthorities;
+    return {
+      if (groupCertificateAuthorities != null)
+        'GroupCertificateAuthorities': groupCertificateAuthorities,
+    };
   }
 }
 
@@ -6021,6 +7008,15 @@ class ListGroupVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListGroupsResponse {
@@ -6043,6 +7039,15 @@ class ListGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6068,6 +7073,15 @@ class ListLoggerDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListLoggerDefinitionsResponse {
@@ -6090,6 +7104,15 @@ class ListLoggerDefinitionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6115,6 +7138,15 @@ class ListResourceDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListResourceDefinitionsResponse {
@@ -6137,6 +7169,15 @@ class ListResourceDefinitionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6162,6 +7203,15 @@ class ListSubscriptionDefinitionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListSubscriptionDefinitionsResponse {
@@ -6186,6 +7236,15 @@ class ListSubscriptionDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final nextToken = this.nextToken;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6199,6 +7258,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6500,6 +7566,15 @@ class ResetDeploymentsResponse {
       deploymentId: json['DeploymentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentArn = this.deploymentArn;
+    final deploymentId = this.deploymentId;
+    return {
+      if (deploymentArn != null) 'DeploymentArn': deploymentArn,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+    };
+  }
 }
 
 /// Information about a resource.
@@ -6734,6 +7809,14 @@ class RuntimeConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final telemetryConfiguration = this.telemetryConfiguration;
+    return {
+      if (telemetryConfiguration != null)
+        'TelemetryConfiguration': telemetryConfiguration,
+    };
+  }
 }
 
 /// Attributes that define an Amazon S3 machine learning resource.
@@ -6901,12 +7984,25 @@ class StartBulkDeploymentResponse {
       bulkDeploymentId: json['BulkDeploymentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bulkDeploymentArn = this.bulkDeploymentArn;
+    final bulkDeploymentId = this.bulkDeploymentId;
+    return {
+      if (bulkDeploymentArn != null) 'BulkDeploymentArn': bulkDeploymentArn,
+      if (bulkDeploymentId != null) 'BulkDeploymentId': bulkDeploymentId,
+    };
+  }
 }
 
 class StopBulkDeploymentResponse {
   StopBulkDeploymentResponse();
   factory StopBulkDeploymentResponse.fromJson(Map<String, dynamic> _) {
     return StopBulkDeploymentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7032,6 +8128,16 @@ class TelemetryConfiguration {
           ?.toConfigurationSyncStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final telemetry = this.telemetry;
+    final configurationSyncStatus = this.configurationSyncStatus;
+    return {
+      'Telemetry': telemetry.toValue(),
+      if (configurationSyncStatus != null)
+        'ConfigurationSyncStatus': configurationSyncStatus.toValue(),
+    };
+  }
 }
 
 /// Configuration settings for running telemetry.
@@ -7042,6 +8148,12 @@ class TelemetryConfigurationUpdate {
   TelemetryConfigurationUpdate({
     required this.telemetry,
   });
+  factory TelemetryConfigurationUpdate.fromJson(Map<String, dynamic> json) {
+    return TelemetryConfigurationUpdate(
+      telemetry: (json['Telemetry'] as String).toTelemetry(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final telemetry = this.telemetry;
     return {
@@ -7127,12 +8239,25 @@ class UpdateConnectivityInfoResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final version = this.version;
+    return {
+      if (message != null) 'message': message,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class UpdateConnectorDefinitionResponse {
   UpdateConnectorDefinitionResponse();
   factory UpdateConnectorDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateConnectorDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7141,6 +8266,10 @@ class UpdateCoreDefinitionResponse {
   factory UpdateCoreDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCoreDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDeviceDefinitionResponse {
@@ -7148,12 +8277,20 @@ class UpdateDeviceDefinitionResponse {
   factory UpdateDeviceDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateFunctionDefinitionResponse {
   UpdateFunctionDefinitionResponse();
   factory UpdateFunctionDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFunctionDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7184,12 +8321,32 @@ class UpdateGroupCertificateConfigurationResponse {
       groupId: json['GroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorityExpiryInMilliseconds =
+        this.certificateAuthorityExpiryInMilliseconds;
+    final certificateExpiryInMilliseconds =
+        this.certificateExpiryInMilliseconds;
+    final groupId = this.groupId;
+    return {
+      if (certificateAuthorityExpiryInMilliseconds != null)
+        'CertificateAuthorityExpiryInMilliseconds':
+            certificateAuthorityExpiryInMilliseconds,
+      if (certificateExpiryInMilliseconds != null)
+        'CertificateExpiryInMilliseconds': certificateExpiryInMilliseconds,
+      if (groupId != null) 'GroupId': groupId,
+    };
+  }
 }
 
 class UpdateGroupResponse {
   UpdateGroupResponse();
   factory UpdateGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7198,12 +8355,20 @@ class UpdateLoggerDefinitionResponse {
   factory UpdateLoggerDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLoggerDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateResourceDefinitionResponse {
   UpdateResourceDefinitionResponse();
   factory UpdateResourceDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7212,6 +8377,10 @@ class UpdateSubscriptionDefinitionResponse {
   factory UpdateSubscriptionDefinitionResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateSubscriptionDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7299,6 +8468,10 @@ class UpdateThingRuntimeConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateThingRuntimeConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about a version.
@@ -7328,6 +8501,19 @@ class VersionInformation {
       id: json['Id'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTimestamp = this.creationTimestamp;
+    final id = this.id;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTimestamp != null) 'CreationTimestamp': creationTimestamp,
+      if (id != null) 'Id': id,
+      if (version != null) 'Version': version,
+    };
   }
 }
 

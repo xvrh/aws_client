@@ -588,6 +588,10 @@ class DeleteLexiconOutput {
   factory DeleteLexiconOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLexiconOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeVoicesOutput {
@@ -611,6 +615,15 @@ class DescribeVoicesOutput {
           .map((e) => Voice.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final voices = this.voices;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (voices != null) 'Voices': voices,
+    };
   }
 }
 
@@ -694,6 +707,15 @@ class GetLexiconOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lexicon = this.lexicon;
+    final lexiconAttributes = this.lexiconAttributes;
+    return {
+      if (lexicon != null) 'Lexicon': lexicon,
+      if (lexiconAttributes != null) 'LexiconAttributes': lexiconAttributes,
+    };
+  }
 }
 
 class GetSpeechSynthesisTaskOutput {
@@ -711,6 +733,13 @@ class GetSpeechSynthesisTaskOutput {
               json['SynthesisTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final synthesisTask = this.synthesisTask;
+    return {
+      if (synthesisTask != null) 'SynthesisTask': synthesisTask,
+    };
   }
 }
 
@@ -899,6 +928,15 @@ class Lexicon {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final name = this.name;
+    return {
+      if (content != null) 'Content': content,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Contains metadata describing the lexicon such as the number of lexemes,
@@ -945,6 +983,24 @@ class LexiconAttributes {
       size: json['Size'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alphabet = this.alphabet;
+    final languageCode = this.languageCode;
+    final lastModified = this.lastModified;
+    final lexemesCount = this.lexemesCount;
+    final lexiconArn = this.lexiconArn;
+    final size = this.size;
+    return {
+      if (alphabet != null) 'Alphabet': alphabet,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (lexemesCount != null) 'LexemesCount': lexemesCount,
+      if (lexiconArn != null) 'LexiconArn': lexiconArn,
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 /// Describes the content of the lexicon.
@@ -967,6 +1023,15 @@ class LexiconDescription {
           : null,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final name = this.name;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -992,6 +1057,15 @@ class ListLexiconsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lexicons = this.lexicons;
+    final nextToken = this.nextToken;
+    return {
+      if (lexicons != null) 'Lexicons': lexicons,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSpeechSynthesisTasksOutput {
@@ -1016,6 +1090,15 @@ class ListSpeechSynthesisTasksOutput {
           .map((e) => SynthesisTask.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final synthesisTasks = this.synthesisTasks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (synthesisTasks != null) 'SynthesisTasks': synthesisTasks,
+    };
   }
 }
 
@@ -1061,6 +1144,10 @@ class PutLexiconOutput {
   PutLexiconOutput();
   factory PutLexiconOutput.fromJson(Map<String, dynamic> _) {
     return PutLexiconOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1117,6 +1204,13 @@ class StartSpeechSynthesisTaskOutput {
               json['SynthesisTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final synthesisTask = this.synthesisTask;
+    return {
+      if (synthesisTask != null) 'SynthesisTask': synthesisTask,
+    };
   }
 }
 
@@ -1233,6 +1327,43 @@ class SynthesisTask {
       voiceId: (json['VoiceId'] as String?)?.toVoiceId(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final engine = this.engine;
+    final languageCode = this.languageCode;
+    final lexiconNames = this.lexiconNames;
+    final outputFormat = this.outputFormat;
+    final outputUri = this.outputUri;
+    final requestCharacters = this.requestCharacters;
+    final sampleRate = this.sampleRate;
+    final snsTopicArn = this.snsTopicArn;
+    final speechMarkTypes = this.speechMarkTypes;
+    final taskId = this.taskId;
+    final taskStatus = this.taskStatus;
+    final taskStatusReason = this.taskStatusReason;
+    final textType = this.textType;
+    final voiceId = this.voiceId;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (engine != null) 'Engine': engine.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lexiconNames != null) 'LexiconNames': lexiconNames,
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+      if (outputUri != null) 'OutputUri': outputUri,
+      if (requestCharacters != null) 'RequestCharacters': requestCharacters,
+      if (sampleRate != null) 'SampleRate': sampleRate,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (speechMarkTypes != null)
+        'SpeechMarkTypes': speechMarkTypes.map((e) => e.toValue()).toList(),
+      if (taskId != null) 'TaskId': taskId,
+      if (taskStatus != null) 'TaskStatus': taskStatus.toValue(),
+      if (taskStatusReason != null) 'TaskStatusReason': taskStatusReason,
+      if (textType != null) 'TextType': textType.toValue(),
+      if (voiceId != null) 'VoiceId': voiceId.toValue(),
+    };
+  }
 }
 
 class SynthesizeSpeechOutput {
@@ -1272,6 +1403,18 @@ class SynthesizeSpeechOutput {
     this.contentType,
     this.requestCharacters,
   });
+  factory SynthesizeSpeechOutput.fromJson(Map<String, dynamic> json) {
+    return SynthesizeSpeechOutput(
+      audioStream: _s.decodeNullableUint8List(json['AudioStream'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final audioStream = this.audioStream;
+    return {
+      if (audioStream != null) 'AudioStream': base64Encode(audioStream),
+    };
+  }
 }
 
 enum TaskStatus {
@@ -1397,6 +1540,28 @@ class Voice {
           .map((e) => (e as String).toEngine())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalLanguageCodes = this.additionalLanguageCodes;
+    final gender = this.gender;
+    final id = this.id;
+    final languageCode = this.languageCode;
+    final languageName = this.languageName;
+    final name = this.name;
+    final supportedEngines = this.supportedEngines;
+    return {
+      if (additionalLanguageCodes != null)
+        'AdditionalLanguageCodes':
+            additionalLanguageCodes.map((e) => e.toValue()).toList(),
+      if (gender != null) 'Gender': gender.toValue(),
+      if (id != null) 'Id': id.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (languageName != null) 'LanguageName': languageName,
+      if (name != null) 'Name': name,
+      if (supportedEngines != null)
+        'SupportedEngines': supportedEngines.map((e) => e.toValue()).toList(),
+    };
   }
 }
 

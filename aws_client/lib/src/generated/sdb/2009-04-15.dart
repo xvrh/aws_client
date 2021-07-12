@@ -626,6 +626,15 @@ class Attribute {
     this.alternateNameEncoding,
     this.alternateValueEncoding,
   });
+  factory Attribute.fromJson(Map<String, dynamic> json) {
+    return Attribute(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+      alternateNameEncoding: json['AlternateNameEncoding'] as String?,
+      alternateValueEncoding: json['AlternateValueEncoding'] as String?,
+    );
+  }
+
   factory Attribute.fromXml(_s.XmlElement elem) {
     return Attribute(
       name: _s.extractXmlStringValue(elem, 'Name')!,
@@ -636,6 +645,21 @@ class Attribute {
           _s.extractXmlStringValue(elem, 'AlternateValueEncoding'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    final alternateNameEncoding = this.alternateNameEncoding;
+    final alternateValueEncoding = this.alternateValueEncoding;
+    return {
+      'Name': name,
+      'Value': value,
+      if (alternateNameEncoding != null)
+        'AlternateNameEncoding': alternateNameEncoding,
+      if (alternateValueEncoding != null)
+        'AlternateValueEncoding': alternateValueEncoding,
+    };
+  }
 }
 
 /// The specified attribute does not exist.
@@ -645,10 +669,23 @@ class AttributeDoesNotExist implements _s.AwsException {
   AttributeDoesNotExist({
     this.boxUsage,
   });
+  factory AttributeDoesNotExist.fromJson(Map<String, dynamic> json) {
+    return AttributeDoesNotExist(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory AttributeDoesNotExist.fromXml(_s.XmlElement elem) {
     return AttributeDoesNotExist(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -664,6 +701,13 @@ class DeletableAttribute {
     required this.name,
     this.value,
   });
+  factory DeletableAttribute.fromJson(Map<String, dynamic> json) {
+    return DeletableAttribute(
+      name: json['Name'] as String,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -682,6 +726,16 @@ class DeletableItem {
     required this.name,
     this.attributes,
   });
+  factory DeletableItem.fromJson(Map<String, dynamic> json) {
+    return DeletableItem(
+      name: json['ItemName'] as String,
+      attributes: (json['Attributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DeletableAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final attributes = this.attributes;
@@ -723,6 +777,18 @@ class DomainMetadataResult {
     this.itemNamesSizeBytes,
     this.timestamp,
   });
+  factory DomainMetadataResult.fromJson(Map<String, dynamic> json) {
+    return DomainMetadataResult(
+      attributeNameCount: json['AttributeNameCount'] as int?,
+      attributeNamesSizeBytes: json['AttributeNamesSizeBytes'] as int?,
+      attributeValueCount: json['AttributeValueCount'] as int?,
+      attributeValuesSizeBytes: json['AttributeValuesSizeBytes'] as int?,
+      itemCount: json['ItemCount'] as int?,
+      itemNamesSizeBytes: json['ItemNamesSizeBytes'] as int?,
+      timestamp: json['Timestamp'] as int?,
+    );
+  }
+
   factory DomainMetadataResult.fromXml(_s.XmlElement elem) {
     return DomainMetadataResult(
       attributeNameCount: _s.extractXmlIntValue(elem, 'AttributeNameCount'),
@@ -736,6 +802,28 @@ class DomainMetadataResult {
       timestamp: _s.extractXmlIntValue(elem, 'Timestamp'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeNameCount = this.attributeNameCount;
+    final attributeNamesSizeBytes = this.attributeNamesSizeBytes;
+    final attributeValueCount = this.attributeValueCount;
+    final attributeValuesSizeBytes = this.attributeValuesSizeBytes;
+    final itemCount = this.itemCount;
+    final itemNamesSizeBytes = this.itemNamesSizeBytes;
+    final timestamp = this.timestamp;
+    return {
+      if (attributeNameCount != null) 'AttributeNameCount': attributeNameCount,
+      if (attributeNamesSizeBytes != null)
+        'AttributeNamesSizeBytes': attributeNamesSizeBytes,
+      if (attributeValueCount != null)
+        'AttributeValueCount': attributeValueCount,
+      if (attributeValuesSizeBytes != null)
+        'AttributeValuesSizeBytes': attributeValuesSizeBytes,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (itemNamesSizeBytes != null) 'ItemNamesSizeBytes': itemNamesSizeBytes,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
+  }
 }
 
 /// The item name was specified more than once.
@@ -745,10 +833,23 @@ class DuplicateItemName implements _s.AwsException {
   DuplicateItemName({
     this.boxUsage,
   });
+  factory DuplicateItemName.fromJson(Map<String, dynamic> json) {
+    return DuplicateItemName(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory DuplicateItemName.fromXml(_s.XmlElement elem) {
     return DuplicateItemName(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -759,6 +860,15 @@ class GetAttributesResult {
   GetAttributesResult({
     this.attributes,
   });
+  factory GetAttributesResult.fromJson(Map<String, dynamic> json) {
+    return GetAttributesResult(
+      attributes: (json['Attributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => Attribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetAttributesResult.fromXml(_s.XmlElement elem) {
     return GetAttributesResult(
       attributes: elem
@@ -766,6 +876,13 @@ class GetAttributesResult {
           .map((c) => Attribute.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -776,10 +893,23 @@ class InvalidNextToken implements _s.AwsException {
   InvalidNextToken({
     this.boxUsage,
   });
+  factory InvalidNextToken.fromJson(Map<String, dynamic> json) {
+    return InvalidNextToken(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory InvalidNextToken.fromXml(_s.XmlElement elem) {
     return InvalidNextToken(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -790,10 +920,23 @@ class InvalidNumberPredicates implements _s.AwsException {
   InvalidNumberPredicates({
     this.boxUsage,
   });
+  factory InvalidNumberPredicates.fromJson(Map<String, dynamic> json) {
+    return InvalidNumberPredicates(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory InvalidNumberPredicates.fromXml(_s.XmlElement elem) {
     return InvalidNumberPredicates(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -804,10 +947,23 @@ class InvalidNumberValueTests implements _s.AwsException {
   InvalidNumberValueTests({
     this.boxUsage,
   });
+  factory InvalidNumberValueTests.fromJson(Map<String, dynamic> json) {
+    return InvalidNumberValueTests(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory InvalidNumberValueTests.fromXml(_s.XmlElement elem) {
     return InvalidNumberValueTests(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -818,10 +974,23 @@ class InvalidParameterValue implements _s.AwsException {
   InvalidParameterValue({
     this.boxUsage,
   });
+  factory InvalidParameterValue.fromJson(Map<String, dynamic> json) {
+    return InvalidParameterValue(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory InvalidParameterValue.fromXml(_s.XmlElement elem) {
     return InvalidParameterValue(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -832,10 +1001,23 @@ class InvalidQueryExpression implements _s.AwsException {
   InvalidQueryExpression({
     this.boxUsage,
   });
+  factory InvalidQueryExpression.fromJson(Map<String, dynamic> json) {
+    return InvalidQueryExpression(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory InvalidQueryExpression.fromXml(_s.XmlElement elem) {
     return InvalidQueryExpression(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -855,6 +1037,17 @@ class Item {
     required this.name,
     this.alternateNameEncoding,
   });
+  factory Item.fromJson(Map<String, dynamic> json) {
+    return Item(
+      attributes: (json['Attributes'] as List)
+          .whereNotNull()
+          .map((e) => Attribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      name: json['Name'] as String,
+      alternateNameEncoding: json['AlternateNameEncoding'] as String?,
+    );
+  }
+
   factory Item.fromXml(_s.XmlElement elem) {
     return Item(
       attributes: elem
@@ -865,6 +1058,18 @@ class Item {
       alternateNameEncoding:
           _s.extractXmlStringValue(elem, 'AlternateNameEncoding'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final name = this.name;
+    final alternateNameEncoding = this.alternateNameEncoding;
+    return {
+      'Attributes': attributes,
+      'Name': name,
+      if (alternateNameEncoding != null)
+        'AlternateNameEncoding': alternateNameEncoding,
+    };
   }
 }
 
@@ -880,11 +1085,30 @@ class ListDomainsResult {
     this.domainNames,
     this.nextToken,
   });
+  factory ListDomainsResult.fromJson(Map<String, dynamic> json) {
+    return ListDomainsResult(
+      domainNames: (json['DomainNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListDomainsResult.fromXml(_s.XmlElement elem) {
     return ListDomainsResult(
       domainNames: _s.extractXmlStringListValues(elem, 'DomainName'),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainNames = this.domainNames;
+    final nextToken = this.nextToken;
+    return {
+      if (domainNames != null) 'DomainNames': domainNames,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -895,10 +1119,23 @@ class MissingParameter implements _s.AwsException {
   MissingParameter({
     this.boxUsage,
   });
+  factory MissingParameter.fromJson(Map<String, dynamic> json) {
+    return MissingParameter(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory MissingParameter.fromXml(_s.XmlElement elem) {
     return MissingParameter(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -909,10 +1146,23 @@ class NoSuchDomain implements _s.AwsException {
   NoSuchDomain({
     this.boxUsage,
   });
+  factory NoSuchDomain.fromJson(Map<String, dynamic> json) {
+    return NoSuchDomain(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NoSuchDomain.fromXml(_s.XmlElement elem) {
     return NoSuchDomain(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -923,10 +1173,23 @@ class NumberDomainAttributesExceeded implements _s.AwsException {
   NumberDomainAttributesExceeded({
     this.boxUsage,
   });
+  factory NumberDomainAttributesExceeded.fromJson(Map<String, dynamic> json) {
+    return NumberDomainAttributesExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberDomainAttributesExceeded.fromXml(_s.XmlElement elem) {
     return NumberDomainAttributesExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -937,10 +1200,23 @@ class NumberDomainBytesExceeded implements _s.AwsException {
   NumberDomainBytesExceeded({
     this.boxUsage,
   });
+  factory NumberDomainBytesExceeded.fromJson(Map<String, dynamic> json) {
+    return NumberDomainBytesExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberDomainBytesExceeded.fromXml(_s.XmlElement elem) {
     return NumberDomainBytesExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -951,10 +1227,23 @@ class NumberDomainsExceeded implements _s.AwsException {
   NumberDomainsExceeded({
     this.boxUsage,
   });
+  factory NumberDomainsExceeded.fromJson(Map<String, dynamic> json) {
+    return NumberDomainsExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberDomainsExceeded.fromXml(_s.XmlElement elem) {
     return NumberDomainsExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -965,10 +1254,23 @@ class NumberItemAttributesExceeded implements _s.AwsException {
   NumberItemAttributesExceeded({
     this.boxUsage,
   });
+  factory NumberItemAttributesExceeded.fromJson(Map<String, dynamic> json) {
+    return NumberItemAttributesExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberItemAttributesExceeded.fromXml(_s.XmlElement elem) {
     return NumberItemAttributesExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -979,10 +1281,24 @@ class NumberSubmittedAttributesExceeded implements _s.AwsException {
   NumberSubmittedAttributesExceeded({
     this.boxUsage,
   });
+  factory NumberSubmittedAttributesExceeded.fromJson(
+      Map<String, dynamic> json) {
+    return NumberSubmittedAttributesExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberSubmittedAttributesExceeded.fromXml(_s.XmlElement elem) {
     return NumberSubmittedAttributesExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -993,10 +1309,23 @@ class NumberSubmittedItemsExceeded implements _s.AwsException {
   NumberSubmittedItemsExceeded({
     this.boxUsage,
   });
+  factory NumberSubmittedItemsExceeded.fromJson(Map<String, dynamic> json) {
+    return NumberSubmittedItemsExceeded(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory NumberSubmittedItemsExceeded.fromXml(_s.XmlElement elem) {
     return NumberSubmittedItemsExceeded(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -1017,6 +1346,14 @@ class ReplaceableAttribute {
     required this.value,
     this.replace,
   });
+  factory ReplaceableAttribute.fromJson(Map<String, dynamic> json) {
+    return ReplaceableAttribute(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+      replace: json['Replace'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -1041,6 +1378,16 @@ class ReplaceableItem {
     required this.attributes,
     required this.name,
   });
+  factory ReplaceableItem.fromJson(Map<String, dynamic> json) {
+    return ReplaceableItem(
+      attributes: (json['Attributes'] as List)
+          .whereNotNull()
+          .map((e) => ReplaceableAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      name: json['ItemName'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attributes = this.attributes;
     final name = this.name;
@@ -1059,10 +1406,23 @@ class RequestTimeout implements _s.AwsException {
   RequestTimeout({
     this.boxUsage,
   });
+  factory RequestTimeout.fromJson(Map<String, dynamic> json) {
+    return RequestTimeout(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory RequestTimeout.fromXml(_s.XmlElement elem) {
     return RequestTimeout(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -1079,11 +1439,30 @@ class SelectResult {
     this.items,
     this.nextToken,
   });
+  factory SelectResult.fromJson(Map<String, dynamic> json) {
+    return SelectResult(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => Item.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory SelectResult.fromXml(_s.XmlElement elem) {
     return SelectResult(
       items: elem.findElements('Item').map((c) => Item.fromXml(c)).toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1094,10 +1473,23 @@ class TooManyRequestedAttributes implements _s.AwsException {
   TooManyRequestedAttributes({
     this.boxUsage,
   });
+  factory TooManyRequestedAttributes.fromJson(Map<String, dynamic> json) {
+    return TooManyRequestedAttributes(
+      boxUsage: json['BoxUsage'] as double?,
+    );
+  }
+
   factory TooManyRequestedAttributes.fromXml(_s.XmlElement elem) {
     return TooManyRequestedAttributes(
       boxUsage: _s.extractXmlDoubleValue(elem, 'BoxUsage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boxUsage = this.boxUsage;
+    return {
+      if (boxUsage != null) 'BoxUsage': boxUsage,
+    };
   }
 }
 
@@ -1125,6 +1517,14 @@ class UpdateCondition {
     this.name,
     this.value,
   });
+  factory UpdateCondition.fromJson(Map<String, dynamic> json) {
+    return UpdateCondition(
+      exists: json['Exists'] as bool?,
+      name: json['Name'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final exists = this.exists;
     final name = this.name;

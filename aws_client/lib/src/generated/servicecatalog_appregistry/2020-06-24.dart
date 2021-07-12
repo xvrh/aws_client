@@ -1009,6 +1009,26 @@ class Application {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Summary of a Service Catalog AppRegistry application.
@@ -1053,6 +1073,24 @@ class ApplicationSummary {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class AssociateAttributeGroupResponse {
@@ -1074,6 +1112,15 @@ class AssociateAttributeGroupResponse {
       attributeGroupArn: json['attributeGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final attributeGroupArn = this.attributeGroupArn;
+    return {
+      if (applicationArn != null) 'applicationArn': applicationArn,
+      if (attributeGroupArn != null) 'attributeGroupArn': attributeGroupArn,
+    };
+  }
 }
 
 class AssociateResourceResponse {
@@ -1093,6 +1140,15 @@ class AssociateResourceResponse {
       applicationArn: json['applicationArn'] as String?,
       resourceArn: json['resourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final resourceArn = this.resourceArn;
+    return {
+      if (applicationArn != null) 'applicationArn': applicationArn,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
   }
 }
 
@@ -1145,6 +1201,26 @@ class AttributeGroup {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Summary of a Service Catalog AppRegistry attribute group.
@@ -1189,6 +1265,24 @@ class AttributeGroupSummary {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class CreateApplicationResponse {
@@ -1204,6 +1298,13 @@ class CreateApplicationResponse {
           ? Application.fromJson(json['application'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'application': application,
+    };
   }
 }
 
@@ -1222,6 +1323,13 @@ class CreateAttributeGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeGroup = this.attributeGroup;
+    return {
+      if (attributeGroup != null) 'attributeGroup': attributeGroup,
+    };
+  }
 }
 
 class DeleteApplicationResponse {
@@ -1239,6 +1347,13 @@ class DeleteApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'application': application,
+    };
+  }
 }
 
 class DeleteAttributeGroupResponse {
@@ -1255,6 +1370,13 @@ class DeleteAttributeGroupResponse {
               json['attributeGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeGroup = this.attributeGroup;
+    return {
+      if (attributeGroup != null) 'attributeGroup': attributeGroup,
+    };
   }
 }
 
@@ -1276,6 +1398,15 @@ class DisassociateAttributeGroupResponse {
       attributeGroupArn: json['attributeGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final attributeGroupArn = this.attributeGroupArn;
+    return {
+      if (applicationArn != null) 'applicationArn': applicationArn,
+      if (attributeGroupArn != null) 'attributeGroupArn': attributeGroupArn,
+    };
+  }
 }
 
 class DisassociateResourceResponse {
@@ -1294,6 +1425,15 @@ class DisassociateResourceResponse {
       applicationArn: json['applicationArn'] as String?,
       resourceArn: json['resourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final resourceArn = this.resourceArn;
+    return {
+      if (applicationArn != null) 'applicationArn': applicationArn,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
   }
 }
 
@@ -1350,6 +1490,29 @@ class GetApplicationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associatedResourceCount = this.associatedResourceCount;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (associatedResourceCount != null)
+        'associatedResourceCount': associatedResourceCount,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetAttributeGroupResponse {
@@ -1405,6 +1568,28 @@ class GetAttributeGroupResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attributes != null) 'attributes': attributes,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': iso8601ToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -1426,6 +1611,15 @@ class ListApplicationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final nextToken = this.nextToken;
+    return {
+      if (applications != null) 'applications': applications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1450,6 +1644,15 @@ class ListAssociatedAttributeGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeGroups = this.attributeGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (attributeGroups != null) 'attributeGroups': attributeGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssociatedResourcesResponse {
@@ -1471,6 +1674,15 @@ class ListAssociatedResourcesResponse {
           .map((e) => ResourceInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resources != null) 'resources': resources,
+    };
   }
 }
 
@@ -1494,6 +1706,15 @@ class ListAttributeGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeGroups = this.attributeGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (attributeGroups != null) 'attributeGroups': attributeGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1508,6 +1729,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1528,6 +1756,15 @@ class ResourceInfo {
       arn: json['arn'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1605,6 +1842,17 @@ class SyncResourceResponse {
       resourceArn: json['resourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionTaken = this.actionTaken;
+    final applicationArn = this.applicationArn;
+    final resourceArn = this.resourceArn;
+    return {
+      if (actionTaken != null) 'actionTaken': actionTaken.toValue(),
+      if (applicationArn != null) 'applicationArn': applicationArn,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -1612,12 +1860,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1635,6 +1891,13 @@ class UpdateApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'application': application,
+    };
+  }
 }
 
 class UpdateAttributeGroupResponse {
@@ -1651,6 +1914,13 @@ class UpdateAttributeGroupResponse {
               json['attributeGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeGroup = this.attributeGroup;
+    return {
+      if (attributeGroup != null) 'attributeGroup': attributeGroup,
+    };
   }
 }
 

@@ -432,6 +432,15 @@ class CancelQuantumTaskResponse {
       quantumTaskArn: json['quantumTaskArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cancellationStatus = this.cancellationStatus;
+    final quantumTaskArn = this.quantumTaskArn;
+    return {
+      'cancellationStatus': cancellationStatus.toValue(),
+      'quantumTaskArn': quantumTaskArn,
+    };
+  }
 }
 
 enum CancellationStatus {
@@ -473,6 +482,13 @@ class CreateQuantumTaskResponse {
     return CreateQuantumTaskResponse(
       quantumTaskArn: json['quantumTaskArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantumTaskArn = this.quantumTaskArn;
+    return {
+      'quantumTaskArn': quantumTaskArn,
+    };
   }
 }
 
@@ -542,6 +558,21 @@ class DeviceSummary {
       providerName: json['providerName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final deviceStatus = this.deviceStatus;
+    final deviceType = this.deviceType;
+    final providerName = this.providerName;
+    return {
+      'deviceArn': deviceArn,
+      'deviceName': deviceName,
+      'deviceStatus': deviceStatus.toValue(),
+      'deviceType': deviceType.toValue(),
+      'providerName': providerName,
+    };
+  }
 }
 
 enum DeviceType {
@@ -610,6 +641,23 @@ class GetDeviceResponse {
       providerName: json['providerName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceCapabilities = this.deviceCapabilities;
+    final deviceName = this.deviceName;
+    final deviceStatus = this.deviceStatus;
+    final deviceType = this.deviceType;
+    final providerName = this.providerName;
+    return {
+      'deviceArn': deviceArn,
+      'deviceCapabilities': jsonEncode(deviceCapabilities),
+      'deviceName': deviceName,
+      'deviceStatus': deviceStatus.toValue(),
+      'deviceType': deviceType.toValue(),
+      'providerName': providerName,
+    };
+  }
 }
 
 class GetQuantumTaskResponse {
@@ -676,6 +724,33 @@ class GetQuantumTaskResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deviceArn = this.deviceArn;
+    final deviceParameters = this.deviceParameters;
+    final outputS3Bucket = this.outputS3Bucket;
+    final outputS3Directory = this.outputS3Directory;
+    final quantumTaskArn = this.quantumTaskArn;
+    final shots = this.shots;
+    final status = this.status;
+    final endedAt = this.endedAt;
+    final failureReason = this.failureReason;
+    final tags = this.tags;
+    return {
+      'createdAt': iso8601ToJson(createdAt),
+      'deviceArn': deviceArn,
+      'deviceParameters': jsonEncode(deviceParameters),
+      'outputS3Bucket': outputS3Bucket,
+      'outputS3Directory': outputS3Directory,
+      'quantumTaskArn': quantumTaskArn,
+      'shots': shots,
+      'status': status.toValue(),
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -690,6 +765,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -800,6 +882,29 @@ class QuantumTaskSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deviceArn = this.deviceArn;
+    final outputS3Bucket = this.outputS3Bucket;
+    final outputS3Directory = this.outputS3Directory;
+    final quantumTaskArn = this.quantumTaskArn;
+    final shots = this.shots;
+    final status = this.status;
+    final endedAt = this.endedAt;
+    final tags = this.tags;
+    return {
+      'createdAt': iso8601ToJson(createdAt),
+      'deviceArn': deviceArn,
+      'outputS3Bucket': outputS3Bucket,
+      'outputS3Directory': outputS3Directory,
+      'quantumTaskArn': quantumTaskArn,
+      'shots': shots,
+      'status': status.toValue(),
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The filter to use for searching devices.
@@ -814,6 +919,16 @@ class SearchDevicesFilter {
     required this.name,
     required this.values,
   });
+  factory SearchDevicesFilter.fromJson(Map<String, dynamic> json) {
+    return SearchDevicesFilter(
+      name: json['name'] as String,
+      values: (json['values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -847,6 +962,15 @@ class SearchDevicesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      'devices': devices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A filter to use to search for tasks.
@@ -865,6 +989,18 @@ class SearchQuantumTasksFilter {
     required this.operator,
     required this.values,
   });
+  factory SearchQuantumTasksFilter.fromJson(Map<String, dynamic> json) {
+    return SearchQuantumTasksFilter(
+      name: json['name'] as String,
+      operator:
+          (json['operator'] as String).toSearchQuantumTasksFilterOperator(),
+      values: (json['values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -949,6 +1085,15 @@ class SearchQuantumTasksResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final quantumTasks = this.quantumTasks;
+    final nextToken = this.nextToken;
+    return {
+      'quantumTasks': quantumTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -956,12 +1101,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

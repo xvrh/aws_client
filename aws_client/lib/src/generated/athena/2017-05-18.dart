@@ -1943,6 +1943,16 @@ class BatchGetNamedQueryOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namedQueries = this.namedQueries;
+    final unprocessedNamedQueryIds = this.unprocessedNamedQueryIds;
+    return {
+      if (namedQueries != null) 'NamedQueries': namedQueries,
+      if (unprocessedNamedQueryIds != null)
+        'UnprocessedNamedQueryIds': unprocessedNamedQueryIds,
+    };
+  }
 }
 
 class BatchGetQueryExecutionOutput {
@@ -1970,6 +1980,16 @@ class BatchGetQueryExecutionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryExecutions = this.queryExecutions;
+    final unprocessedQueryExecutionIds = this.unprocessedQueryExecutionIds;
+    return {
+      if (queryExecutions != null) 'QueryExecutions': queryExecutions,
+      if (unprocessedQueryExecutionIds != null)
+        'UnprocessedQueryExecutionIds': unprocessedQueryExecutionIds,
+    };
+  }
 }
 
 /// Contains metadata for a column in a table.
@@ -1994,6 +2014,17 @@ class Column {
       comment: json['Comment'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final comment = this.comment;
+    final type = this.type;
+    return {
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -2057,6 +2088,31 @@ class ColumnInfo {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final caseSensitive = this.caseSensitive;
+    final catalogName = this.catalogName;
+    final label = this.label;
+    final nullable = this.nullable;
+    final precision = this.precision;
+    final scale = this.scale;
+    final schemaName = this.schemaName;
+    final tableName = this.tableName;
+    return {
+      'Name': name,
+      'Type': type,
+      if (caseSensitive != null) 'CaseSensitive': caseSensitive,
+      if (catalogName != null) 'CatalogName': catalogName,
+      if (label != null) 'Label': label,
+      if (nullable != null) 'Nullable': nullable.toValue(),
+      if (precision != null) 'Precision': precision,
+      if (scale != null) 'Scale': scale,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 enum ColumnNullable {
@@ -2097,6 +2153,10 @@ class CreateDataCatalogOutput {
   factory CreateDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return CreateDataCatalogOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateNamedQueryOutput {
@@ -2111,6 +2171,13 @@ class CreateNamedQueryOutput {
       namedQueryId: json['NamedQueryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namedQueryId = this.namedQueryId;
+    return {
+      if (namedQueryId != null) 'NamedQueryId': namedQueryId,
+    };
+  }
 }
 
 class CreatePreparedStatementOutput {
@@ -2118,12 +2185,20 @@ class CreatePreparedStatementOutput {
   factory CreatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return CreatePreparedStatementOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateWorkGroupOutput {
   CreateWorkGroupOutput();
   factory CreateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return CreateWorkGroupOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2194,6 +2269,19 @@ class DataCatalog {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final description = this.description;
+    final parameters = this.parameters;
+    return {
+      'Name': name,
+      'Type': type.toValue(),
+      if (description != null) 'Description': description,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// The summary information for the data catalog, which includes its name and
@@ -2214,6 +2302,15 @@ class DataCatalogSummary {
       catalogName: json['CatalogName'] as String?,
       type: (json['Type'] as String?)?.toDataCatalogType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final catalogName = this.catalogName;
+    final type = this.type;
+    return {
+      if (catalogName != null) 'CatalogName': catalogName,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2274,6 +2371,17 @@ class Database {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final description = this.description;
+    final parameters = this.parameters;
+    return {
+      'Name': name,
+      if (description != null) 'Description': description,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// A piece of data (a field in the table).
@@ -2289,12 +2397,23 @@ class Datum {
       varCharValue: json['VarCharValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final varCharValue = this.varCharValue;
+    return {
+      if (varCharValue != null) 'VarCharValue': varCharValue,
+    };
+  }
 }
 
 class DeleteDataCatalogOutput {
   DeleteDataCatalogOutput();
   factory DeleteDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return DeleteDataCatalogOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2303,6 +2422,10 @@ class DeleteNamedQueryOutput {
   factory DeleteNamedQueryOutput.fromJson(Map<String, dynamic> _) {
     return DeleteNamedQueryOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePreparedStatementOutput {
@@ -2310,12 +2433,20 @@ class DeletePreparedStatementOutput {
   factory DeletePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return DeletePreparedStatementOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWorkGroupOutput {
   DeleteWorkGroupOutput();
   factory DeleteWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWorkGroupOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2446,6 +2577,13 @@ class GetDataCatalogOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataCatalog = this.dataCatalog;
+    return {
+      if (dataCatalog != null) 'DataCatalog': dataCatalog,
+    };
+  }
 }
 
 class GetDatabaseOutput {
@@ -2462,6 +2600,13 @@ class GetDatabaseOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    return {
+      if (database != null) 'Database': database,
+    };
+  }
 }
 
 class GetNamedQueryOutput {
@@ -2477,6 +2622,13 @@ class GetNamedQueryOutput {
           ? NamedQuery.fromJson(json['NamedQuery'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namedQuery = this.namedQuery;
+    return {
+      if (namedQuery != null) 'NamedQuery': namedQuery,
+    };
   }
 }
 
@@ -2495,6 +2647,13 @@ class GetPreparedStatementOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final preparedStatement = this.preparedStatement;
+    return {
+      if (preparedStatement != null) 'PreparedStatement': preparedStatement,
+    };
+  }
 }
 
 class GetQueryExecutionOutput {
@@ -2511,6 +2670,13 @@ class GetQueryExecutionOutput {
               json['QueryExecution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryExecution = this.queryExecution;
+    return {
+      if (queryExecution != null) 'QueryExecution': queryExecution,
+    };
   }
 }
 
@@ -2541,6 +2707,17 @@ class GetQueryResultsOutput {
       updateCount: json['UpdateCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resultSet = this.resultSet;
+    final updateCount = this.updateCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resultSet != null) 'ResultSet': resultSet,
+      if (updateCount != null) 'UpdateCount': updateCount,
+    };
+  }
 }
 
 class GetTableMetadataOutput {
@@ -2558,6 +2735,13 @@ class GetTableMetadataOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableMetadata = this.tableMetadata;
+    return {
+      if (tableMetadata != null) 'TableMetadata': tableMetadata,
+    };
+  }
 }
 
 class GetWorkGroupOutput {
@@ -2573,6 +2757,13 @@ class GetWorkGroupOutput {
           ? WorkGroup.fromJson(json['WorkGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workGroup = this.workGroup;
+    return {
+      if (workGroup != null) 'WorkGroup': workGroup,
+    };
   }
 }
 
@@ -2599,6 +2790,16 @@ class ListDataCatalogsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataCatalogsSummary = this.dataCatalogsSummary;
+    final nextToken = this.nextToken;
+    return {
+      if (dataCatalogsSummary != null)
+        'DataCatalogsSummary': dataCatalogsSummary,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDatabasesOutput {
@@ -2623,6 +2824,15 @@ class ListDatabasesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseList = this.databaseList;
+    final nextToken = this.nextToken;
+    return {
+      if (databaseList != null) 'DatabaseList': databaseList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2649,6 +2859,15 @@ class ListEngineVersionsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engineVersions = this.engineVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (engineVersions != null) 'EngineVersions': engineVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListNamedQueriesOutput {
@@ -2673,6 +2892,15 @@ class ListNamedQueriesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namedQueryIds = this.namedQueryIds;
+    final nextToken = this.nextToken;
+    return {
+      if (namedQueryIds != null) 'NamedQueryIds': namedQueryIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2700,6 +2928,15 @@ class ListPreparedStatementsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final preparedStatements = this.preparedStatements;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (preparedStatements != null) 'PreparedStatements': preparedStatements,
+    };
+  }
 }
 
 class ListQueryExecutionsOutput {
@@ -2721,6 +2958,15 @@ class ListQueryExecutionsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryExecutionIds = this.queryExecutionIds;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryExecutionIds != null) 'QueryExecutionIds': queryExecutionIds,
+    };
   }
 }
 
@@ -2747,6 +2993,15 @@ class ListTableMetadataOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tableMetadataList = this.tableMetadataList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tableMetadataList != null) 'TableMetadataList': tableMetadataList,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -2768,6 +3023,15 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2794,6 +3058,15 @@ class ListWorkGroupsOutput {
           .map((e) => WorkGroupSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workGroups = this.workGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workGroups != null) 'WorkGroups': workGroups,
+    };
   }
 }
 
@@ -2836,6 +3109,23 @@ class NamedQuery {
       workGroup: json['WorkGroup'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    final name = this.name;
+    final queryString = this.queryString;
+    final description = this.description;
+    final namedQueryId = this.namedQueryId;
+    final workGroup = this.workGroup;
+    return {
+      'Database': database,
+      'Name': name,
+      'QueryString': queryString,
+      if (description != null) 'Description': description,
+      if (namedQueryId != null) 'NamedQueryId': namedQueryId,
+      if (workGroup != null) 'WorkGroup': workGroup,
+    };
+  }
 }
 
 /// A prepared SQL statement for use with Athena.
@@ -2871,6 +3161,22 @@ class PreparedStatement {
       workGroupName: json['WorkGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final queryStatement = this.queryStatement;
+    final statementName = this.statementName;
+    final workGroupName = this.workGroupName;
+    return {
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (queryStatement != null) 'QueryStatement': queryStatement,
+      if (statementName != null) 'StatementName': statementName,
+      if (workGroupName != null) 'WorkGroupName': workGroupName,
+    };
+  }
 }
 
 /// The name and last modified time of the prepared statement.
@@ -2890,6 +3196,16 @@ class PreparedStatementSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       statementName: json['StatementName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedTime = this.lastModifiedTime;
+    final statementName = this.statementName;
+    return {
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (statementName != null) 'StatementName': statementName,
+    };
   }
 }
 
@@ -2971,6 +3287,31 @@ class QueryExecution {
           : null,
       workGroup: json['WorkGroup'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineVersion = this.engineVersion;
+    final query = this.query;
+    final queryExecutionContext = this.queryExecutionContext;
+    final queryExecutionId = this.queryExecutionId;
+    final resultConfiguration = this.resultConfiguration;
+    final statementType = this.statementType;
+    final statistics = this.statistics;
+    final status = this.status;
+    final workGroup = this.workGroup;
+    return {
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (query != null) 'Query': query,
+      if (queryExecutionContext != null)
+        'QueryExecutionContext': queryExecutionContext,
+      if (queryExecutionId != null) 'QueryExecutionId': queryExecutionId,
+      if (resultConfiguration != null)
+        'ResultConfiguration': resultConfiguration,
+      if (statementType != null) 'StatementType': statementType.toValue(),
+      if (statistics != null) 'Statistics': statistics,
+      if (status != null) 'Status': status,
+      if (workGroup != null) 'WorkGroup': workGroup,
+    };
   }
 }
 
@@ -3105,6 +3446,31 @@ class QueryExecutionStatistics {
       totalExecutionTimeInMillis: json['TotalExecutionTimeInMillis'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataManifestLocation = this.dataManifestLocation;
+    final dataScannedInBytes = this.dataScannedInBytes;
+    final engineExecutionTimeInMillis = this.engineExecutionTimeInMillis;
+    final queryPlanningTimeInMillis = this.queryPlanningTimeInMillis;
+    final queryQueueTimeInMillis = this.queryQueueTimeInMillis;
+    final serviceProcessingTimeInMillis = this.serviceProcessingTimeInMillis;
+    final totalExecutionTimeInMillis = this.totalExecutionTimeInMillis;
+    return {
+      if (dataManifestLocation != null)
+        'DataManifestLocation': dataManifestLocation,
+      if (dataScannedInBytes != null) 'DataScannedInBytes': dataScannedInBytes,
+      if (engineExecutionTimeInMillis != null)
+        'EngineExecutionTimeInMillis': engineExecutionTimeInMillis,
+      if (queryPlanningTimeInMillis != null)
+        'QueryPlanningTimeInMillis': queryPlanningTimeInMillis,
+      if (queryQueueTimeInMillis != null)
+        'QueryQueueTimeInMillis': queryQueueTimeInMillis,
+      if (serviceProcessingTimeInMillis != null)
+        'ServiceProcessingTimeInMillis': serviceProcessingTimeInMillis,
+      if (totalExecutionTimeInMillis != null)
+        'TotalExecutionTimeInMillis': totalExecutionTimeInMillis,
+    };
+  }
 }
 
 /// The completion date, current state, submission time, and state change reason
@@ -3146,6 +3512,21 @@ class QueryExecutionStatus {
       stateChangeReason: json['StateChangeReason'] as String?,
       submissionDateTime: timeStampFromJson(json['SubmissionDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionDateTime = this.completionDateTime;
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final submissionDateTime = this.submissionDateTime;
+    return {
+      if (completionDateTime != null)
+        'CompletionDateTime': unixTimestampToJson(completionDateTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (submissionDateTime != null)
+        'SubmissionDateTime': unixTimestampToJson(submissionDateTime),
+    };
   }
 }
 
@@ -3247,6 +3628,19 @@ class ResultConfigurationUpdates {
     this.removeEncryptionConfiguration,
     this.removeOutputLocation,
   });
+  factory ResultConfigurationUpdates.fromJson(Map<String, dynamic> json) {
+    return ResultConfigurationUpdates(
+      encryptionConfiguration: json['EncryptionConfiguration'] != null
+          ? EncryptionConfiguration.fromJson(
+              json['EncryptionConfiguration'] as Map<String, dynamic>)
+          : null,
+      outputLocation: json['OutputLocation'] as String?,
+      removeEncryptionConfiguration:
+          json['RemoveEncryptionConfiguration'] as bool?,
+      removeOutputLocation: json['RemoveOutputLocation'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final encryptionConfiguration = this.encryptionConfiguration;
     final outputLocation = this.outputLocation;
@@ -3291,6 +3685,15 @@ class ResultSet {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resultSetMetadata = this.resultSetMetadata;
+    final rows = this.rows;
+    return {
+      if (resultSetMetadata != null) 'ResultSetMetadata': resultSetMetadata,
+      if (rows != null) 'Rows': rows,
+    };
+  }
 }
 
 /// The metadata that describes the column structure and data types of a table
@@ -3311,6 +3714,13 @@ class ResultSetMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final columnInfo = this.columnInfo;
+    return {
+      if (columnInfo != null) 'ColumnInfo': columnInfo,
+    };
+  }
 }
 
 /// The rows that comprise a query result table.
@@ -3329,6 +3739,13 @@ class Row {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    return {
+      if (data != null) 'Data': data,
+    };
+  }
 }
 
 class StartQueryExecutionOutput {
@@ -3342,6 +3759,13 @@ class StartQueryExecutionOutput {
     return StartQueryExecutionOutput(
       queryExecutionId: json['QueryExecutionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryExecutionId = this.queryExecutionId;
+    return {
+      if (queryExecutionId != null) 'QueryExecutionId': queryExecutionId,
+    };
   }
 }
 
@@ -3382,6 +3806,10 @@ class StopQueryExecutionOutput {
   StopQueryExecutionOutput();
   factory StopQueryExecutionOutput.fromJson(Map<String, dynamic> _) {
     return StopQueryExecutionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3434,6 +3862,26 @@ class TableMetadata {
           .toList(),
       tableType: json['TableType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final columns = this.columns;
+    final createTime = this.createTime;
+    final lastAccessTime = this.lastAccessTime;
+    final parameters = this.parameters;
+    final partitionKeys = this.partitionKeys;
+    final tableType = this.tableType;
+    return {
+      'Name': name,
+      if (columns != null) 'Columns': columns,
+      if (createTime != null) 'CreateTime': unixTimestampToJson(createTime),
+      if (lastAccessTime != null)
+        'LastAccessTime': unixTimestampToJson(lastAccessTime),
+      if (parameters != null) 'Parameters': parameters,
+      if (partitionKeys != null) 'PartitionKeys': partitionKeys,
+      if (tableType != null) 'TableType': tableType,
+    };
   }
 }
 
@@ -3488,6 +3936,10 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about a named query ID that could not be processed.
@@ -3514,6 +3966,17 @@ class UnprocessedNamedQueryId {
       errorMessage: json['ErrorMessage'] as String?,
       namedQueryId: json['NamedQueryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final namedQueryId = this.namedQueryId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (namedQueryId != null) 'NamedQueryId': namedQueryId,
+    };
   }
 }
 
@@ -3542,12 +4005,27 @@ class UnprocessedQueryExecutionId {
       queryExecutionId: json['QueryExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final queryExecutionId = this.queryExecutionId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (queryExecutionId != null) 'QueryExecutionId': queryExecutionId,
+    };
+  }
 }
 
 class UntagResourceOutput {
   UntagResourceOutput();
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3556,6 +4034,10 @@ class UpdateDataCatalogOutput {
   factory UpdateDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDataCatalogOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePreparedStatementOutput {
@@ -3563,12 +4045,20 @@ class UpdatePreparedStatementOutput {
   factory UpdatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return UpdatePreparedStatementOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateWorkGroupOutput {
   UpdateWorkGroupOutput();
   factory UpdateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return UpdateWorkGroupOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3623,6 +4113,22 @@ class WorkGroup {
       description: json['Description'] as String?,
       state: (json['State'] as String?)?.toWorkGroupState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final configuration = this.configuration;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final state = this.state;
+    return {
+      'Name': name,
+      if (configuration != null) 'Configuration': configuration,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -3786,6 +4292,27 @@ class WorkGroupConfigurationUpdates {
     this.requesterPaysEnabled,
     this.resultConfigurationUpdates,
   });
+  factory WorkGroupConfigurationUpdates.fromJson(Map<String, dynamic> json) {
+    return WorkGroupConfigurationUpdates(
+      bytesScannedCutoffPerQuery: json['BytesScannedCutoffPerQuery'] as int?,
+      enforceWorkGroupConfiguration:
+          json['EnforceWorkGroupConfiguration'] as bool?,
+      engineVersion: json['EngineVersion'] != null
+          ? EngineVersion.fromJson(
+              json['EngineVersion'] as Map<String, dynamic>)
+          : null,
+      publishCloudWatchMetricsEnabled:
+          json['PublishCloudWatchMetricsEnabled'] as bool?,
+      removeBytesScannedCutoffPerQuery:
+          json['RemoveBytesScannedCutoffPerQuery'] as bool?,
+      requesterPaysEnabled: json['RequesterPaysEnabled'] as bool?,
+      resultConfigurationUpdates: json['ResultConfigurationUpdates'] != null
+          ? ResultConfigurationUpdates.fromJson(
+              json['ResultConfigurationUpdates'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bytesScannedCutoffPerQuery = this.bytesScannedCutoffPerQuery;
     final enforceWorkGroupConfiguration = this.enforceWorkGroupConfiguration;
@@ -3880,6 +4407,22 @@ class WorkGroupSummary {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toWorkGroupState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final engineVersion = this.engineVersion;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 

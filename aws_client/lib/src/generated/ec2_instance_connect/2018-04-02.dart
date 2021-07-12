@@ -221,6 +221,15 @@ class SendSSHPublicKeyResponse {
       success: json['Success'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final success = this.success;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (success != null) 'Success': success,
+    };
+  }
 }
 
 class SendSerialConsoleSSHPublicKeyResponse {
@@ -241,6 +250,15 @@ class SendSerialConsoleSSHPublicKeyResponse {
       requestId: json['RequestId'] as String?,
       success: json['Success'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final success = this.success;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (success != null) 'Success': success,
+    };
   }
 }
 

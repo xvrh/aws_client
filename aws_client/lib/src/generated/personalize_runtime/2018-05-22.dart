@@ -286,6 +286,16 @@ class GetPersonalizedRankingResponse {
       recommendationId: json['recommendationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final personalizedRanking = this.personalizedRanking;
+    final recommendationId = this.recommendationId;
+    return {
+      if (personalizedRanking != null)
+        'personalizedRanking': personalizedRanking,
+      if (recommendationId != null) 'recommendationId': recommendationId,
+    };
+  }
 }
 
 class GetRecommendationsResponse {
@@ -308,6 +318,15 @@ class GetRecommendationsResponse {
           .toList(),
       recommendationId: json['recommendationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final itemList = this.itemList;
+    final recommendationId = this.recommendationId;
+    return {
+      if (itemList != null) 'itemList': itemList,
+      if (recommendationId != null) 'recommendationId': recommendationId,
+    };
   }
 }
 
@@ -332,6 +351,15 @@ class PredictedItem {
       itemId: json['itemId'] as String?,
       score: json['score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final itemId = this.itemId;
+    final score = this.score;
+    return {
+      if (itemId != null) 'itemId': itemId,
+      if (score != null) 'score': score,
+    };
   }
 }
 

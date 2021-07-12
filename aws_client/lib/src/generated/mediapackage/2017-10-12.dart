@@ -878,6 +878,25 @@ class Channel {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A Common Media Application Format (CMAF) encryption configuration.
@@ -961,6 +980,22 @@ class CmafPackage {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryption = this.encryption;
+    final hlsManifests = this.hlsManifests;
+    final segmentDurationSeconds = this.segmentDurationSeconds;
+    final segmentPrefix = this.segmentPrefix;
+    final streamSelection = this.streamSelection;
+    return {
+      if (encryption != null) 'encryption': encryption,
+      if (hlsManifests != null) 'hlsManifests': hlsManifests,
+      if (segmentDurationSeconds != null)
+        'segmentDurationSeconds': segmentDurationSeconds,
+      if (segmentPrefix != null) 'segmentPrefix': segmentPrefix,
+      if (streamSelection != null) 'streamSelection': streamSelection,
+    };
+  }
 }
 
 /// A Common Media Application Format (CMAF) packaging configuration.
@@ -986,6 +1021,26 @@ class CmafPackageCreateOrUpdateParameters {
     this.segmentPrefix,
     this.streamSelection,
   });
+  factory CmafPackageCreateOrUpdateParameters.fromJson(
+      Map<String, dynamic> json) {
+    return CmafPackageCreateOrUpdateParameters(
+      encryption: json['encryption'] != null
+          ? CmafEncryption.fromJson(json['encryption'] as Map<String, dynamic>)
+          : null,
+      hlsManifests: (json['hlsManifests'] as List?)
+          ?.whereNotNull()
+          .map((e) => HlsManifestCreateOrUpdateParameters.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      segmentDurationSeconds: json['segmentDurationSeconds'] as int?,
+      segmentPrefix: json['segmentPrefix'] as String?,
+      streamSelection: json['streamSelection'] != null
+          ? StreamSelection.fromJson(
+              json['streamSelection'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final encryption = this.encryption;
     final hlsManifests = this.hlsManifests;
@@ -1046,6 +1101,25 @@ class ConfigureLogsResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateChannelResponse {
@@ -1090,6 +1164,25 @@ class CreateChannelResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1151,6 +1244,29 @@ class CreateHarvestJobResponse {
       startTime: json['startTime'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelId = this.channelId;
+    final createdAt = this.createdAt;
+    final endTime = this.endTime;
+    final id = this.id;
+    final originEndpointId = this.originEndpointId;
+    final s3Destination = this.s3Destination;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (channelId != null) 'channelId': channelId,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (endTime != null) 'endTime': endTime,
+      if (id != null) 'id': id,
+      if (originEndpointId != null) 'originEndpointId': originEndpointId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1253,6 +1369,44 @@ class CreateOriginEndpointResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final channelId = this.channelId;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final description = this.description;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final manifestName = this.manifestName;
+    final mssPackage = this.mssPackage;
+    final origination = this.origination;
+    final startoverWindowSeconds = this.startoverWindowSeconds;
+    final tags = this.tags;
+    final timeDelaySeconds = this.timeDelaySeconds;
+    final url = this.url;
+    final whitelist = this.whitelist;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (channelId != null) 'channelId': channelId,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (description != null) 'description': description,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (manifestName != null) 'manifestName': manifestName,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (origination != null) 'origination': origination.toValue(),
+      if (startoverWindowSeconds != null)
+        'startoverWindowSeconds': startoverWindowSeconds,
+      if (tags != null) 'tags': tags,
+      if (timeDelaySeconds != null) 'timeDelaySeconds': timeDelaySeconds,
+      if (url != null) 'url': url,
+      if (whitelist != null) 'whitelist': whitelist,
+    };
   }
 }
 
@@ -1448,12 +1602,20 @@ class DeleteChannelResponse {
   factory DeleteChannelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteOriginEndpointResponse {
   DeleteOriginEndpointResponse();
   factory DeleteOriginEndpointResponse.fromJson(Map<String, dynamic> _) {
     return DeleteOriginEndpointResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1499,6 +1661,25 @@ class DescribeChannelResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1560,6 +1741,29 @@ class DescribeHarvestJobResponse {
       startTime: json['startTime'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelId = this.channelId;
+    final createdAt = this.createdAt;
+    final endTime = this.endTime;
+    final id = this.id;
+    final originEndpointId = this.originEndpointId;
+    final s3Destination = this.s3Destination;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (channelId != null) 'channelId': channelId,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (endTime != null) 'endTime': endTime,
+      if (id != null) 'id': id,
+      if (originEndpointId != null) 'originEndpointId': originEndpointId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1662,6 +1866,44 @@ class DescribeOriginEndpointResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final channelId = this.channelId;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final description = this.description;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final manifestName = this.manifestName;
+    final mssPackage = this.mssPackage;
+    final origination = this.origination;
+    final startoverWindowSeconds = this.startoverWindowSeconds;
+    final tags = this.tags;
+    final timeDelaySeconds = this.timeDelaySeconds;
+    final url = this.url;
+    final whitelist = this.whitelist;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (channelId != null) 'channelId': channelId,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (description != null) 'description': description,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (manifestName != null) 'manifestName': manifestName,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (origination != null) 'origination': origination.toValue(),
+      if (startoverWindowSeconds != null)
+        'startoverWindowSeconds': startoverWindowSeconds,
+      if (tags != null) 'tags': tags,
+      if (timeDelaySeconds != null) 'timeDelaySeconds': timeDelaySeconds,
+      if (url != null) 'url': url,
+      if (whitelist != null) 'whitelist': whitelist,
+    };
   }
 }
 
@@ -1817,6 +2059,29 @@ class HarvestJob {
       status: (json['status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelId = this.channelId;
+    final createdAt = this.createdAt;
+    final endTime = this.endTime;
+    final id = this.id;
+    final originEndpointId = this.originEndpointId;
+    final s3Destination = this.s3Destination;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (channelId != null) 'channelId': channelId,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (endTime != null) 'endTime': endTime,
+      if (id != null) 'id': id,
+      if (originEndpointId != null) 'originEndpointId': originEndpointId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// An HTTP Live Streaming (HLS) encryption configuration.
@@ -1890,6 +2155,13 @@ class HlsIngest {
           .map((e) => IngestEndpoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ingestEndpoints = this.ingestEndpoints;
+    return {
+      if (ingestEndpoints != null) 'ingestEndpoints': ingestEndpoints,
+    };
   }
 }
 
@@ -1968,6 +2240,30 @@ class HlsManifest {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final adMarkers = this.adMarkers;
+    final includeIframeOnlyStream = this.includeIframeOnlyStream;
+    final manifestName = this.manifestName;
+    final playlistType = this.playlistType;
+    final playlistWindowSeconds = this.playlistWindowSeconds;
+    final programDateTimeIntervalSeconds = this.programDateTimeIntervalSeconds;
+    final url = this.url;
+    return {
+      'id': id,
+      if (adMarkers != null) 'adMarkers': adMarkers.toValue(),
+      if (includeIframeOnlyStream != null)
+        'includeIframeOnlyStream': includeIframeOnlyStream,
+      if (manifestName != null) 'manifestName': manifestName,
+      if (playlistType != null) 'playlistType': playlistType.toValue(),
+      if (playlistWindowSeconds != null)
+        'playlistWindowSeconds': playlistWindowSeconds,
+      if (programDateTimeIntervalSeconds != null)
+        'programDateTimeIntervalSeconds': programDateTimeIntervalSeconds,
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 /// A HTTP Live Streaming (HLS) manifest configuration.
@@ -2032,6 +2328,26 @@ class HlsManifestCreateOrUpdateParameters {
     this.playlistWindowSeconds,
     this.programDateTimeIntervalSeconds,
   });
+  factory HlsManifestCreateOrUpdateParameters.fromJson(
+      Map<String, dynamic> json) {
+    return HlsManifestCreateOrUpdateParameters(
+      id: json['id'] as String,
+      adMarkers: (json['adMarkers'] as String?)?.toAdMarkers(),
+      adTriggers: (json['adTriggers'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toAdTriggersElement())
+          .toList(),
+      adsOnDeliveryRestrictions: (json['adsOnDeliveryRestrictions'] as String?)
+          ?.toAdsOnDeliveryRestrictions(),
+      includeIframeOnlyStream: json['includeIframeOnlyStream'] as bool?,
+      manifestName: json['manifestName'] as String?,
+      playlistType: (json['playlistType'] as String?)?.toPlaylistType(),
+      playlistWindowSeconds: json['playlistWindowSeconds'] as int?,
+      programDateTimeIntervalSeconds:
+          json['programDateTimeIntervalSeconds'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final adMarkers = this.adMarkers;
@@ -2216,6 +2532,19 @@ class IngestEndpoint {
       username: json['username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final password = this.password;
+    final url = this.url;
+    final username = this.username;
+    return {
+      if (id != null) 'id': id,
+      if (password != null) 'password': password,
+      if (url != null) 'url': url,
+      if (username != null) 'username': username,
+    };
+  }
 }
 
 /// Configure ingress access logging.
@@ -2261,6 +2590,15 @@ class ListChannelsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'channels': channels,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListHarvestJobsResponse {
@@ -2283,6 +2621,15 @@ class ListHarvestJobsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final harvestJobs = this.harvestJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (harvestJobs != null) 'harvestJobs': harvestJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2307,6 +2654,15 @@ class ListOriginEndpointsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final originEndpoints = this.originEndpoints;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (originEndpoints != null) 'originEndpoints': originEndpoints,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2320,6 +2676,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2521,6 +2884,44 @@ class OriginEndpoint {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final channelId = this.channelId;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final description = this.description;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final manifestName = this.manifestName;
+    final mssPackage = this.mssPackage;
+    final origination = this.origination;
+    final startoverWindowSeconds = this.startoverWindowSeconds;
+    final tags = this.tags;
+    final timeDelaySeconds = this.timeDelaySeconds;
+    final url = this.url;
+    final whitelist = this.whitelist;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (channelId != null) 'channelId': channelId,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (description != null) 'description': description,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (manifestName != null) 'manifestName': manifestName,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (origination != null) 'origination': origination.toValue(),
+      if (startoverWindowSeconds != null)
+        'startoverWindowSeconds': startoverWindowSeconds,
+      if (tags != null) 'tags': tags,
+      if (timeDelaySeconds != null) 'timeDelaySeconds': timeDelaySeconds,
+      if (url != null) 'url': url,
+      if (whitelist != null) 'whitelist': whitelist,
+    };
+  }
 }
 
 enum Origination {
@@ -2702,6 +3103,25 @@ class RotateChannelCredentialsResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class RotateIngestEndpointCredentialsResponse {
@@ -2747,6 +3167,25 @@ class RotateIngestEndpointCredentialsResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3037,6 +3476,25 @@ class UpdateChannelResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final egressAccessLogs = this.egressAccessLogs;
+    final hlsIngest = this.hlsIngest;
+    final id = this.id;
+    final ingressAccessLogs = this.ingressAccessLogs;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (hlsIngest != null) 'hlsIngest': hlsIngest,
+      if (id != null) 'id': id,
+      if (ingressAccessLogs != null) 'ingressAccessLogs': ingressAccessLogs,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateOriginEndpointResponse {
@@ -3138,6 +3596,44 @@ class UpdateOriginEndpointResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final channelId = this.channelId;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final description = this.description;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final manifestName = this.manifestName;
+    final mssPackage = this.mssPackage;
+    final origination = this.origination;
+    final startoverWindowSeconds = this.startoverWindowSeconds;
+    final tags = this.tags;
+    final timeDelaySeconds = this.timeDelaySeconds;
+    final url = this.url;
+    final whitelist = this.whitelist;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (channelId != null) 'channelId': channelId,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (description != null) 'description': description,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (manifestName != null) 'manifestName': manifestName,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (origination != null) 'origination': origination.toValue(),
+      if (startoverWindowSeconds != null)
+        'startoverWindowSeconds': startoverWindowSeconds,
+      if (tags != null) 'tags': tags,
+      if (timeDelaySeconds != null) 'timeDelaySeconds': timeDelaySeconds,
+      if (url != null) 'url': url,
+      if (whitelist != null) 'whitelist': whitelist,
+    };
   }
 }
 

@@ -1138,6 +1138,17 @@ class BatchCreateTableRowsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdRows = this.createdRows;
+    final workbookCursor = this.workbookCursor;
+    final failedBatchItems = this.failedBatchItems;
+    return {
+      'createdRows': createdRows,
+      'workbookCursor': workbookCursor,
+      if (failedBatchItems != null) 'failedBatchItems': failedBatchItems,
+    };
+  }
 }
 
 class BatchDeleteTableRowsResult {
@@ -1161,6 +1172,15 @@ class BatchDeleteTableRowsResult {
           .map((e) => FailedBatchItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workbookCursor = this.workbookCursor;
+    final failedBatchItems = this.failedBatchItems;
+    return {
+      'workbookCursor': workbookCursor,
+      if (failedBatchItems != null) 'failedBatchItems': failedBatchItems,
+    };
   }
 }
 
@@ -1187,6 +1207,15 @@ class BatchUpdateTableRowsResult {
           .map((e) => FailedBatchItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workbookCursor = this.workbookCursor;
+    final failedBatchItems = this.failedBatchItems;
+    return {
+      'workbookCursor': workbookCursor,
+      if (failedBatchItems != null) 'failedBatchItems': failedBatchItems,
+    };
   }
 }
 
@@ -1221,6 +1250,17 @@ class BatchUpsertTableRowsResult {
           .map((e) => FailedBatchItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rows = this.rows;
+    final workbookCursor = this.workbookCursor;
+    final failedBatchItems = this.failedBatchItems;
+    return {
+      'rows': rows,
+      'workbookCursor': workbookCursor,
+      if (failedBatchItems != null) 'failedBatchItems': failedBatchItems,
+    };
   }
 }
 
@@ -1305,6 +1345,19 @@ class Cell {
       rawValue: json['rawValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final formattedValue = this.formattedValue;
+    final formula = this.formula;
+    final rawValue = this.rawValue;
+    return {
+      if (format != null) 'format': format.toValue(),
+      if (formattedValue != null) 'formattedValue': formattedValue,
+      if (formula != null) 'formula': formula,
+      if (rawValue != null) 'rawValue': rawValue,
+    };
+  }
 }
 
 /// CellInput object contains the data needed to create or update cells in a
@@ -1317,6 +1370,12 @@ class CellInput {
   CellInput({
     this.fact,
   });
+  factory CellInput.fromJson(Map<String, dynamic> json) {
+    return CellInput(
+      fact: json['fact'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fact = this.fact;
     return {
@@ -1343,6 +1402,15 @@ class ColumnMetadata {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final name = this.name;
+    return {
+      'format': format.toValue(),
+      'name': name,
+    };
+  }
 }
 
 /// Data needed to create a single row in a table as part of the
@@ -1364,6 +1432,14 @@ class CreateRowData {
     required this.batchItemId,
     required this.cellsToCreate,
   });
+  factory CreateRowData.fromJson(Map<String, dynamic> json) {
+    return CreateRowData(
+      batchItemId: json['batchItemId'] as String,
+      cellsToCreate: (json['cellsToCreate'] as Map<String, dynamic>).map(
+          (k, e) => MapEntry(k, CellInput.fromJson(e as Map<String, dynamic>))),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final batchItemId = this.batchItemId;
     final cellsToCreate = this.cellsToCreate;
@@ -1398,6 +1474,17 @@ class DataItem {
       overrideFormat: (json['overrideFormat'] as String?)?.toFormat(),
       rawValue: json['rawValue'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final formattedValue = this.formattedValue;
+    final overrideFormat = this.overrideFormat;
+    final rawValue = this.rawValue;
+    return {
+      if (formattedValue != null) 'formattedValue': formattedValue,
+      if (overrideFormat != null) 'overrideFormat': overrideFormat.toValue(),
+      if (rawValue != null) 'rawValue': rawValue,
+    };
   }
 }
 
@@ -1472,6 +1559,17 @@ class DescribeTableDataImportJobResult {
       message: json['message'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobMetadata = this.jobMetadata;
+    final jobStatus = this.jobStatus;
+    final message = this.message;
+    return {
+      'jobMetadata': jobMetadata,
+      'jobStatus': jobStatus.toValue(),
+      'message': message,
+    };
+  }
 }
 
 /// An object that contains the options relating to the destination of the
@@ -1520,6 +1618,15 @@ class FailedBatchItem {
       id: json['id'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    return {
+      'errorMessage': errorMessage,
+      'id': id,
+    };
+  }
 }
 
 /// An object that represents a filter formula along with the id of the context
@@ -1542,6 +1649,13 @@ class Filter {
     required this.formula,
     this.contextRowId,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      formula: json['formula'] as String,
+      contextRowId: json['contextRowId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final formula = this.formula;
     final contextRowId = this.contextRowId;
@@ -1651,6 +1765,17 @@ class GetScreenDataResult {
       workbookCursor: json['workbookCursor'] as int,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final workbookCursor = this.workbookCursor;
+    final nextToken = this.nextToken;
+    return {
+      'results': results,
+      'workbookCursor': workbookCursor,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1767,6 +1892,15 @@ class ImportJobSubmitter {
       userArn: json['userArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final email = this.email;
+    final userArn = this.userArn;
+    return {
+      if (email != null) 'email': email,
+      if (userArn != null) 'userArn': userArn,
+    };
+  }
 }
 
 /// An object that contains the options specified by the sumitter of the import
@@ -1842,6 +1976,13 @@ class InvokeScreenAutomationResult {
       workbookCursor: json['workbookCursor'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workbookCursor = this.workbookCursor;
+    return {
+      'workbookCursor': workbookCursor,
+    };
+  }
 }
 
 class ListTableColumnsResult {
@@ -1872,6 +2013,17 @@ class ListTableColumnsResult {
       nextToken: json['nextToken'] as String?,
       workbookCursor: json['workbookCursor'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableColumns = this.tableColumns;
+    final nextToken = this.nextToken;
+    final workbookCursor = this.workbookCursor;
+    return {
+      'tableColumns': tableColumns,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (workbookCursor != null) 'workbookCursor': workbookCursor,
+    };
   }
 }
 
@@ -1922,6 +2074,21 @@ class ListTableRowsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final columnIds = this.columnIds;
+    final rows = this.rows;
+    final workbookCursor = this.workbookCursor;
+    final nextToken = this.nextToken;
+    final rowIdsNotFound = this.rowIdsNotFound;
+    return {
+      'columnIds': columnIds,
+      'rows': rows,
+      'workbookCursor': workbookCursor,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (rowIdsNotFound != null) 'rowIdsNotFound': rowIdsNotFound,
+    };
+  }
 }
 
 class ListTablesResult {
@@ -1952,6 +2119,17 @@ class ListTablesResult {
       nextToken: json['nextToken'] as String?,
       workbookCursor: json['workbookCursor'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tables = this.tables;
+    final nextToken = this.nextToken;
+    final workbookCursor = this.workbookCursor;
+    return {
+      'tables': tables,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (workbookCursor != null) 'workbookCursor': workbookCursor,
+    };
   }
 }
 
@@ -1992,6 +2170,19 @@ class QueryTableRowsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final columnIds = this.columnIds;
+    final rows = this.rows;
+    final workbookCursor = this.workbookCursor;
+    final nextToken = this.nextToken;
+    return {
+      'columnIds': columnIds,
+      'rows': rows,
+      'workbookCursor': workbookCursor,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A single row in the ResultSet.
@@ -2014,6 +2205,15 @@ class ResultRow {
           .toList(),
       rowId: json['rowId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataItems = this.dataItems;
+    final rowId = this.rowId;
+    return {
+      'dataItems': dataItems,
+      if (rowId != null) 'rowId': rowId,
+    };
   }
 }
 
@@ -2055,6 +2255,15 @@ class ResultSet {
           .map((e) => ResultRow.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final headers = this.headers;
+    final rows = this.rows;
+    return {
+      'headers': headers,
+      'rows': rows,
+    };
   }
 }
 
@@ -2100,6 +2309,15 @@ class StartTableDataImportJobResult {
       jobStatus: (json['jobStatus'] as String).toTableDataImportJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      'jobId': jobId,
+      'jobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 /// An object representing the properties of a table in a workbook.
@@ -2119,6 +2337,15 @@ class Table {
       tableId: json['tableId'] as String?,
       tableName: json['tableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableId = this.tableId;
+    final tableName = this.tableName;
+    return {
+      if (tableId != null) 'tableId': tableId,
+      if (tableName != null) 'tableName': tableName,
+    };
   }
 }
 
@@ -2145,6 +2372,17 @@ class TableColumn {
       tableColumnId: json['tableColumnId'] as String?,
       tableColumnName: json['tableColumnName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final tableColumnId = this.tableColumnId;
+    final tableColumnName = this.tableColumnName;
+    return {
+      if (format != null) 'format': format.toValue(),
+      if (tableColumnId != null) 'tableColumnId': tableColumnId,
+      if (tableColumnName != null) 'tableColumnName': tableColumnName,
+    };
   }
 }
 
@@ -2178,6 +2416,19 @@ class TableDataImportJobMetadata {
       submitter: ImportJobSubmitter.fromJson(
           json['submitter'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final importOptions = this.importOptions;
+    final submitTime = this.submitTime;
+    final submitter = this.submitter;
+    return {
+      'dataSource': dataSource,
+      'importOptions': importOptions,
+      'submitTime': unixTimestampToJson(submitTime),
+      'submitter': submitter,
+    };
   }
 }
 
@@ -2241,6 +2492,15 @@ class TableRow {
       rowId: json['rowId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final rowId = this.rowId;
+    return {
+      'cells': cells,
+      'rowId': rowId,
+    };
+  }
 }
 
 /// Data needed to create a single row in a table as part of the
@@ -2258,6 +2518,14 @@ class UpdateRowData {
     required this.cellsToUpdate,
     required this.rowId,
   });
+  factory UpdateRowData.fromJson(Map<String, dynamic> json) {
+    return UpdateRowData(
+      cellsToUpdate: (json['cellsToUpdate'] as Map<String, dynamic>).map(
+          (k, e) => MapEntry(k, CellInput.fromJson(e as Map<String, dynamic>))),
+      rowId: json['rowId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cellsToUpdate = this.cellsToUpdate;
     final rowId = this.rowId;
@@ -2328,6 +2596,15 @@ class UpsertRowData {
     required this.cellsToUpdate,
     required this.filter,
   });
+  factory UpsertRowData.fromJson(Map<String, dynamic> json) {
+    return UpsertRowData(
+      batchItemId: json['batchItemId'] as String,
+      cellsToUpdate: (json['cellsToUpdate'] as Map<String, dynamic>).map(
+          (k, e) => MapEntry(k, CellInput.fromJson(e as Map<String, dynamic>))),
+      filter: Filter.fromJson(json['filter'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final batchItemId = this.batchItemId;
     final cellsToUpdate = this.cellsToUpdate;
@@ -2365,6 +2642,15 @@ class UpsertRowsResult {
       upsertAction: (json['upsertAction'] as String).toUpsertAction(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rowIds = this.rowIds;
+    final upsertAction = this.upsertAction;
+    return {
+      'rowIds': rowIds,
+      'upsertAction': upsertAction.toValue(),
+    };
+  }
 }
 
 /// The input variables to the app to be used by the InvokeScreenAutomation
@@ -2376,6 +2662,12 @@ class VariableValue {
   VariableValue({
     required this.rawValue,
   });
+  factory VariableValue.fromJson(Map<String, dynamic> json) {
+    return VariableValue(
+      rawValue: json['rawValue'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final rawValue = this.rawValue;
     return {

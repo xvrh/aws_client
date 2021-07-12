@@ -3449,6 +3449,25 @@ class Application {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final enabled = this.enabled;
+    final iconURL = this.iconURL;
+    final launchParameters = this.launchParameters;
+    final launchPath = this.launchPath;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (displayName != null) 'DisplayName': displayName,
+      if (enabled != null) 'Enabled': enabled,
+      if (iconURL != null) 'IconURL': iconURL,
+      if (launchParameters != null) 'LaunchParameters': launchParameters,
+      if (launchPath != null) 'LaunchPath': launchPath,
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The persistent application settings for users of a stack.
@@ -3467,6 +3486,13 @@ class ApplicationSettings {
     required this.enabled,
     this.settingsGroup,
   });
+  factory ApplicationSettings.fromJson(Map<String, dynamic> json) {
+    return ApplicationSettings(
+      enabled: json['Enabled'] as bool,
+      settingsGroup: json['SettingsGroup'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final settingsGroup = this.settingsGroup;
@@ -3505,12 +3531,27 @@ class ApplicationSettingsResponse {
       settingsGroup: json['SettingsGroup'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final s3BucketName = this.s3BucketName;
+    final settingsGroup = this.settingsGroup;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (settingsGroup != null) 'SettingsGroup': settingsGroup,
+    };
+  }
 }
 
 class AssociateFleetResult {
   AssociateFleetResult();
   factory AssociateFleetResult.fromJson(Map<String, dynamic> _) {
     return AssociateFleetResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3563,6 +3604,13 @@ class BatchAssociateUserStackResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
+  }
 }
 
 class BatchDisassociateUserStackResult {
@@ -3581,6 +3629,13 @@ class BatchDisassociateUserStackResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
+  }
 }
 
 /// Describes the capacity for a fleet.
@@ -3591,6 +3646,12 @@ class ComputeCapacity {
   ComputeCapacity({
     required this.desiredInstances,
   });
+  factory ComputeCapacity.fromJson(Map<String, dynamic> json) {
+    return ComputeCapacity(
+      desiredInstances: json['DesiredInstances'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final desiredInstances = this.desiredInstances;
     return {
@@ -3628,6 +3689,19 @@ class ComputeCapacityStatus {
       running: json['Running'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final desired = this.desired;
+    final available = this.available;
+    final inUse = this.inUse;
+    final running = this.running;
+    return {
+      'Desired': desired,
+      if (available != null) 'Available': available,
+      if (inUse != null) 'InUse': inUse,
+      if (running != null) 'Running': running,
+    };
+  }
 }
 
 class CopyImageResponse {
@@ -3641,6 +3715,14 @@ class CopyImageResponse {
     return CopyImageResponse(
       destinationImageName: json['DestinationImageName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationImageName = this.destinationImageName;
+    return {
+      if (destinationImageName != null)
+        'DestinationImageName': destinationImageName,
+    };
   }
 }
 
@@ -3659,6 +3741,13 @@ class CreateDirectoryConfigResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryConfig = this.directoryConfig;
+    return {
+      if (directoryConfig != null) 'DirectoryConfig': directoryConfig,
+    };
+  }
 }
 
 class CreateFleetResult {
@@ -3675,6 +3764,13 @@ class CreateFleetResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleet = this.fleet;
+    return {
+      if (fleet != null) 'Fleet': fleet,
+    };
+  }
 }
 
 class CreateImageBuilderResult {
@@ -3690,6 +3786,13 @@ class CreateImageBuilderResult {
           ? ImageBuilder.fromJson(json['ImageBuilder'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageBuilder = this.imageBuilder;
+    return {
+      if (imageBuilder != null) 'ImageBuilder': imageBuilder,
+    };
   }
 }
 
@@ -3711,6 +3814,15 @@ class CreateImageBuilderStreamingURLResult {
       streamingURL: json['StreamingURL'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expires = this.expires;
+    final streamingURL = this.streamingURL;
+    return {
+      if (expires != null) 'Expires': unixTimestampToJson(expires),
+      if (streamingURL != null) 'StreamingURL': streamingURL,
+    };
+  }
 }
 
 class CreateStackResult {
@@ -3726,6 +3838,13 @@ class CreateStackResult {
           ? Stack.fromJson(json['Stack'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stack = this.stack;
+    return {
+      if (stack != null) 'Stack': stack,
+    };
   }
 }
 
@@ -3746,6 +3865,15 @@ class CreateStreamingURLResult {
       streamingURL: json['StreamingURL'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expires = this.expires;
+    final streamingURL = this.streamingURL;
+    return {
+      if (expires != null) 'Expires': unixTimestampToJson(expires),
+      if (streamingURL != null) 'StreamingURL': streamingURL,
+    };
+  }
 }
 
 class CreateUpdatedImageResult {
@@ -3764,6 +3892,15 @@ class CreateUpdatedImageResult {
           ? Image.fromJson(json['image'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final canUpdateImage = this.canUpdateImage;
+    final image = this.image;
+    return {
+      if (canUpdateImage != null) 'canUpdateImage': canUpdateImage,
+      if (image != null) 'image': image,
+    };
   }
 }
 
@@ -3793,12 +3930,25 @@ class CreateUsageReportSubscriptionResult {
       schedule: (json['Schedule'] as String?)?.toUsageReportSchedule(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3BucketName = this.s3BucketName;
+    final schedule = this.schedule;
+    return {
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (schedule != null) 'Schedule': schedule.toValue(),
+    };
+  }
 }
 
 class CreateUserResult {
   CreateUserResult();
   factory CreateUserResult.fromJson(Map<String, dynamic> _) {
     return CreateUserResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3807,12 +3957,20 @@ class DeleteDirectoryConfigResult {
   factory DeleteDirectoryConfigResult.fromJson(Map<String, dynamic> _) {
     return DeleteDirectoryConfigResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteFleetResult {
   DeleteFleetResult();
   factory DeleteFleetResult.fromJson(Map<String, dynamic> _) {
     return DeleteFleetResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3830,12 +3988,23 @@ class DeleteImageBuilderResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageBuilder = this.imageBuilder;
+    return {
+      if (imageBuilder != null) 'ImageBuilder': imageBuilder,
+    };
+  }
 }
 
 class DeleteImagePermissionsResult {
   DeleteImagePermissionsResult();
   factory DeleteImagePermissionsResult.fromJson(Map<String, dynamic> _) {
     return DeleteImagePermissionsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3853,12 +4022,23 @@ class DeleteImageResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final image = this.image;
+    return {
+      if (image != null) 'Image': image,
+    };
+  }
 }
 
 class DeleteStackResult {
   DeleteStackResult();
   factory DeleteStackResult.fromJson(Map<String, dynamic> _) {
     return DeleteStackResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3867,12 +4047,20 @@ class DeleteUsageReportSubscriptionResult {
   factory DeleteUsageReportSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return DeleteUsageReportSubscriptionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteUserResult {
   DeleteUserResult();
   factory DeleteUserResult.fromJson(Map<String, dynamic> _) {
     return DeleteUserResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3899,6 +4087,15 @@ class DescribeDirectoryConfigsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryConfigs = this.directoryConfigs;
+    final nextToken = this.nextToken;
+    return {
+      if (directoryConfigs != null) 'DirectoryConfigs': directoryConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFleetsResult {
@@ -3922,6 +4119,15 @@ class DescribeFleetsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleets = this.fleets;
+    final nextToken = this.nextToken;
+    return {
+      if (fleets != null) 'Fleets': fleets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeImageBuildersResult {
@@ -3944,6 +4150,15 @@ class DescribeImageBuildersResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageBuilders = this.imageBuilders;
+    final nextToken = this.nextToken;
+    return {
+      if (imageBuilders != null) 'ImageBuilders': imageBuilders,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3974,6 +4189,18 @@ class DescribeImagePermissionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final nextToken = this.nextToken;
+    final sharedImagePermissionsList = this.sharedImagePermissionsList;
+    return {
+      if (name != null) 'Name': name,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sharedImagePermissionsList != null)
+        'SharedImagePermissionsList': sharedImagePermissionsList,
+    };
+  }
 }
 
 class DescribeImagesResult {
@@ -3996,6 +4223,15 @@ class DescribeImagesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final nextToken = this.nextToken;
+    return {
+      if (images != null) 'Images': images,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4020,6 +4256,15 @@ class DescribeSessionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sessions = this.sessions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sessions != null) 'Sessions': sessions,
+    };
+  }
 }
 
 class DescribeStacksResult {
@@ -4042,6 +4287,15 @@ class DescribeStacksResult {
           .map((e) => Stack.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stacks = this.stacks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stacks != null) 'Stacks': stacks,
+    };
   }
 }
 
@@ -4068,6 +4322,16 @@ class DescribeUsageReportSubscriptionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final usageReportSubscriptions = this.usageReportSubscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (usageReportSubscriptions != null)
+        'UsageReportSubscriptions': usageReportSubscriptions,
+    };
+  }
 }
 
 class DescribeUserStackAssociationsResult {
@@ -4092,6 +4356,16 @@ class DescribeUserStackAssociationsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userStackAssociations = this.userStackAssociations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userStackAssociations != null)
+        'UserStackAssociations': userStackAssociations,
+    };
+  }
 }
 
 class DescribeUsersResult {
@@ -4114,6 +4388,15 @@ class DescribeUsersResult {
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -4154,6 +4437,23 @@ class DirectoryConfig {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryName = this.directoryName;
+    final createdTime = this.createdTime;
+    final organizationalUnitDistinguishedNames =
+        this.organizationalUnitDistinguishedNames;
+    final serviceAccountCredentials = this.serviceAccountCredentials;
+    return {
+      'DirectoryName': directoryName,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (organizationalUnitDistinguishedNames != null)
+        'OrganizationalUnitDistinguishedNames':
+            organizationalUnitDistinguishedNames,
+      if (serviceAccountCredentials != null)
+        'ServiceAccountCredentials': serviceAccountCredentials,
+    };
+  }
 }
 
 class DisableUserResult {
@@ -4161,12 +4461,20 @@ class DisableUserResult {
   factory DisableUserResult.fromJson(Map<String, dynamic> _) {
     return DisableUserResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateFleetResult {
   DisassociateFleetResult();
   factory DisassociateFleetResult.fromJson(Map<String, dynamic> _) {
     return DisassociateFleetResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4209,12 +4517,20 @@ class EnableUserResult {
   factory EnableUserResult.fromJson(Map<String, dynamic> _) {
     return EnableUserResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ExpireSessionResult {
   ExpireSessionResult();
   factory ExpireSessionResult.fromJson(Map<String, dynamic> _) {
     return ExpireSessionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4500,6 +4816,55 @@ class Fleet {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final computeCapacityStatus = this.computeCapacityStatus;
+    final instanceType = this.instanceType;
+    final name = this.name;
+    final state = this.state;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final disconnectTimeoutInSeconds = this.disconnectTimeoutInSeconds;
+    final displayName = this.displayName;
+    final domainJoinInfo = this.domainJoinInfo;
+    final enableDefaultInternetAccess = this.enableDefaultInternetAccess;
+    final fleetErrors = this.fleetErrors;
+    final fleetType = this.fleetType;
+    final iamRoleArn = this.iamRoleArn;
+    final idleDisconnectTimeoutInSeconds = this.idleDisconnectTimeoutInSeconds;
+    final imageArn = this.imageArn;
+    final imageName = this.imageName;
+    final maxUserDurationInSeconds = this.maxUserDurationInSeconds;
+    final streamView = this.streamView;
+    final vpcConfig = this.vpcConfig;
+    return {
+      'Arn': arn,
+      'ComputeCapacityStatus': computeCapacityStatus,
+      'InstanceType': instanceType,
+      'Name': name,
+      'State': state.toValue(),
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (disconnectTimeoutInSeconds != null)
+        'DisconnectTimeoutInSeconds': disconnectTimeoutInSeconds,
+      if (displayName != null) 'DisplayName': displayName,
+      if (domainJoinInfo != null) 'DomainJoinInfo': domainJoinInfo,
+      if (enableDefaultInternetAccess != null)
+        'EnableDefaultInternetAccess': enableDefaultInternetAccess,
+      if (fleetErrors != null) 'FleetErrors': fleetErrors,
+      if (fleetType != null) 'FleetType': fleetType.toValue(),
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (idleDisconnectTimeoutInSeconds != null)
+        'IdleDisconnectTimeoutInSeconds': idleDisconnectTimeoutInSeconds,
+      if (imageArn != null) 'ImageArn': imageArn,
+      if (imageName != null) 'ImageName': imageName,
+      if (maxUserDurationInSeconds != null)
+        'MaxUserDurationInSeconds': maxUserDurationInSeconds,
+      if (streamView != null) 'StreamView': streamView.toValue(),
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// The fleet attribute.
@@ -4558,6 +4923,15 @@ class FleetError {
       errorCode: (json['ErrorCode'] as String?)?.toFleetErrorCode(),
       errorMessage: json['ErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 
@@ -4907,6 +5281,49 @@ class Image {
       visibility: (json['Visibility'] as String?)?.toVisibilityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final applications = this.applications;
+    final appstreamAgentVersion = this.appstreamAgentVersion;
+    final arn = this.arn;
+    final baseImageArn = this.baseImageArn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final imageBuilderName = this.imageBuilderName;
+    final imageBuilderSupported = this.imageBuilderSupported;
+    final imageErrors = this.imageErrors;
+    final imagePermissions = this.imagePermissions;
+    final platform = this.platform;
+    final publicBaseImageReleasedDate = this.publicBaseImageReleasedDate;
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final visibility = this.visibility;
+    return {
+      'Name': name,
+      if (applications != null) 'Applications': applications,
+      if (appstreamAgentVersion != null)
+        'AppstreamAgentVersion': appstreamAgentVersion,
+      if (arn != null) 'Arn': arn,
+      if (baseImageArn != null) 'BaseImageArn': baseImageArn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (imageBuilderName != null) 'ImageBuilderName': imageBuilderName,
+      if (imageBuilderSupported != null)
+        'ImageBuilderSupported': imageBuilderSupported,
+      if (imageErrors != null) 'ImageErrors': imageErrors,
+      if (imagePermissions != null) 'ImagePermissions': imagePermissions,
+      if (platform != null) 'Platform': platform.toValue(),
+      if (publicBaseImageReleasedDate != null)
+        'PublicBaseImageReleasedDate':
+            unixTimestampToJson(publicBaseImageReleasedDate),
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (visibility != null) 'Visibility': visibility.toValue(),
+    };
+  }
 }
 
 /// Describes a virtual machine that is used to create an image.
@@ -5140,6 +5557,50 @@ class ImageBuilder {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final accessEndpoints = this.accessEndpoints;
+    final appstreamAgentVersion = this.appstreamAgentVersion;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final domainJoinInfo = this.domainJoinInfo;
+    final enableDefaultInternetAccess = this.enableDefaultInternetAccess;
+    final iamRoleArn = this.iamRoleArn;
+    final imageArn = this.imageArn;
+    final imageBuilderErrors = this.imageBuilderErrors;
+    final instanceType = this.instanceType;
+    final networkAccessConfiguration = this.networkAccessConfiguration;
+    final platform = this.platform;
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final vpcConfig = this.vpcConfig;
+    return {
+      'Name': name,
+      if (accessEndpoints != null) 'AccessEndpoints': accessEndpoints,
+      if (appstreamAgentVersion != null)
+        'AppstreamAgentVersion': appstreamAgentVersion,
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (domainJoinInfo != null) 'DomainJoinInfo': domainJoinInfo,
+      if (enableDefaultInternetAccess != null)
+        'EnableDefaultInternetAccess': enableDefaultInternetAccess,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (imageArn != null) 'ImageArn': imageArn,
+      if (imageBuilderErrors != null) 'ImageBuilderErrors': imageBuilderErrors,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (networkAccessConfiguration != null)
+        'NetworkAccessConfiguration': networkAccessConfiguration,
+      if (platform != null) 'Platform': platform.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 enum ImageBuilderState {
@@ -5232,6 +5693,15 @@ class ImageBuilderStateChangeReason {
       code: (json['Code'] as String?)?.toImageBuilderStateChangeReasonCode(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5364,6 +5834,15 @@ class ImageStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum ImageStateChangeReasonCode {
@@ -5421,6 +5900,15 @@ class LastReportGenerationExecutionError {
       errorMessage: json['ErrorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
+  }
 }
 
 class ListAssociatedFleetsResult {
@@ -5443,6 +5931,15 @@ class ListAssociatedFleetsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final names = this.names;
+    final nextToken = this.nextToken;
+    return {
+      if (names != null) 'Names': names,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5467,6 +5964,15 @@ class ListAssociatedStacksResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final names = this.names;
+    final nextToken = this.nextToken;
+    return {
+      if (names != null) 'Names': names,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5481,6 +5987,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5532,6 +6045,16 @@ class NetworkAccessConfiguration {
       eniId: json['EniId'] as String?,
       eniPrivateIpAddress: json['EniPrivateIpAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eniId = this.eniId;
+    final eniPrivateIpAddress = this.eniPrivateIpAddress;
+    return {
+      if (eniId != null) 'EniId': eniId,
+      if (eniPrivateIpAddress != null)
+        'EniPrivateIpAddress': eniPrivateIpAddress,
+    };
   }
 }
 
@@ -5618,6 +6141,18 @@ class ResourceError {
       errorMessage: json['ErrorMessage'] as String?,
       errorTimestamp: timeStampFromJson(json['ErrorTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final errorTimestamp = this.errorTimestamp;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (errorTimestamp != null)
+        'ErrorTimestamp': unixTimestampToJson(errorTimestamp),
+    };
   }
 }
 
@@ -5726,6 +6261,34 @@ class Session {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetName = this.fleetName;
+    final id = this.id;
+    final stackName = this.stackName;
+    final state = this.state;
+    final userId = this.userId;
+    final authenticationType = this.authenticationType;
+    final connectionState = this.connectionState;
+    final maxExpirationTime = this.maxExpirationTime;
+    final networkAccessConfiguration = this.networkAccessConfiguration;
+    final startTime = this.startTime;
+    return {
+      'FleetName': fleetName,
+      'Id': id,
+      'StackName': stackName,
+      'State': state.toValue(),
+      'UserId': userId,
+      if (authenticationType != null)
+        'AuthenticationType': authenticationType.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (maxExpirationTime != null)
+        'MaxExpirationTime': unixTimestampToJson(maxExpirationTime),
+      if (networkAccessConfiguration != null)
+        'NetworkAccessConfiguration': networkAccessConfiguration,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 enum SessionConnectionState {
@@ -5809,6 +6372,15 @@ class SharedImagePermissions {
           json['imagePermissions'] as Map<String, dynamic>),
       sharedAccountId: json['sharedAccountId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imagePermissions = this.imagePermissions;
+    final sharedAccountId = this.sharedAccountId;
+    return {
+      'imagePermissions': imagePermissions,
+      'sharedAccountId': sharedAccountId,
+    };
   }
 }
 
@@ -5908,6 +6480,38 @@ class Stack {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final accessEndpoints = this.accessEndpoints;
+    final applicationSettings = this.applicationSettings;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final embedHostDomains = this.embedHostDomains;
+    final feedbackURL = this.feedbackURL;
+    final redirectURL = this.redirectURL;
+    final stackErrors = this.stackErrors;
+    final storageConnectors = this.storageConnectors;
+    final userSettings = this.userSettings;
+    return {
+      'Name': name,
+      if (accessEndpoints != null) 'AccessEndpoints': accessEndpoints,
+      if (applicationSettings != null)
+        'ApplicationSettings': applicationSettings,
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (embedHostDomains != null) 'EmbedHostDomains': embedHostDomains,
+      if (feedbackURL != null) 'FeedbackURL': feedbackURL,
+      if (redirectURL != null) 'RedirectURL': redirectURL,
+      if (stackErrors != null) 'StackErrors': stackErrors,
+      if (storageConnectors != null) 'StorageConnectors': storageConnectors,
+      if (userSettings != null) 'UserSettings': userSettings,
+    };
+  }
 }
 
 enum StackAttribute {
@@ -6001,6 +6605,15 @@ class StackError {
       errorMessage: json['ErrorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
+  }
 }
 
 enum StackErrorCode {
@@ -6036,6 +6649,10 @@ class StartFleetResult {
   factory StartFleetResult.fromJson(Map<String, dynamic> _) {
     return StartFleetResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartImageBuilderResult {
@@ -6052,12 +6669,23 @@ class StartImageBuilderResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageBuilder = this.imageBuilder;
+    return {
+      if (imageBuilder != null) 'ImageBuilder': imageBuilder,
+    };
+  }
 }
 
 class StopFleetResult {
   StopFleetResult();
   factory StopFleetResult.fromJson(Map<String, dynamic> _) {
     return StopFleetResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6074,6 +6702,13 @@ class StopImageBuilderResult {
           ? ImageBuilder.fromJson(json['ImageBuilder'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageBuilder = this.imageBuilder;
+    return {
+      if (imageBuilder != null) 'ImageBuilder': imageBuilder,
+    };
   }
 }
 
@@ -6183,12 +6818,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6207,6 +6850,13 @@ class UpdateDirectoryConfigResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryConfig = this.directoryConfig;
+    return {
+      if (directoryConfig != null) 'DirectoryConfig': directoryConfig,
+    };
+  }
 }
 
 class UpdateFleetResult {
@@ -6223,12 +6873,23 @@ class UpdateFleetResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleet = this.fleet;
+    return {
+      if (fleet != null) 'Fleet': fleet,
+    };
+  }
 }
 
 class UpdateImagePermissionsResult {
   UpdateImagePermissionsResult();
   factory UpdateImagePermissionsResult.fromJson(Map<String, dynamic> _) {
     return UpdateImagePermissionsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6245,6 +6906,13 @@ class UpdateStackResult {
           ? Stack.fromJson(json['Stack'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stack = this.stack;
+    return {
+      if (stack != null) 'Stack': stack,
+    };
   }
 }
 
@@ -6345,6 +7013,20 @@ class UsageReportSubscription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastGeneratedReportDate = this.lastGeneratedReportDate;
+    final s3BucketName = this.s3BucketName;
+    final schedule = this.schedule;
+    final subscriptionErrors = this.subscriptionErrors;
+    return {
+      if (lastGeneratedReportDate != null)
+        'LastGeneratedReportDate': unixTimestampToJson(lastGeneratedReportDate),
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (schedule != null) 'Schedule': schedule.toValue(),
+      if (subscriptionErrors != null) 'SubscriptionErrors': subscriptionErrors,
+    };
+  }
 }
 
 /// Describes a user in the user pool.
@@ -6417,6 +7099,27 @@ class User {
       status: json['Status'] as String?,
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authenticationType = this.authenticationType;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final enabled = this.enabled;
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      'AuthenticationType': authenticationType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (enabled != null) 'Enabled': enabled,
+      if (firstName != null) 'FirstName': firstName,
+      if (lastName != null) 'LastName': lastName,
+      if (status != null) 'Status': status,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -6528,6 +7231,18 @@ class UserStackAssociationError {
               json['UserStackAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final userStackAssociation = this.userStackAssociation;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (userStackAssociation != null)
+        'UserStackAssociation': userStackAssociation,
+    };
   }
 }
 

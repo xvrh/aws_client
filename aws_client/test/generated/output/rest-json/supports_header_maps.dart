@@ -60,6 +60,13 @@ class OutputShape {
     this.allHeaders,
     this.prefixedHeaders,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> _) {
+    return OutputShape();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

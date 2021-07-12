@@ -311,11 +311,27 @@ class Artifact {
     this.description,
     this.url,
   });
+  factory Artifact.fromJson(Map<String, dynamic> json) {
+    return Artifact(
+      description: json['Description'] as String?,
+      url: json['URL'] as String?,
+    );
+  }
+
   factory Artifact.fromXml(_s.XmlElement elem) {
     return Artifact(
       description: _s.extractXmlStringValue(elem, 'Description'),
       url: _s.extractXmlStringValue(elem, 'URL'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final url = this.url;
+    return {
+      if (description != null) 'Description': description,
+      if (url != null) 'URL': url,
+    };
   }
 }
 
@@ -326,10 +342,23 @@ class BucketPermissionException implements _s.AwsException {
   BucketPermissionException({
     this.message,
   });
+  factory BucketPermissionException.fromJson(Map<String, dynamic> json) {
+    return BucketPermissionException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory BucketPermissionException.fromXml(_s.XmlElement elem) {
     return BucketPermissionException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -340,10 +369,23 @@ class CancelJobOutput {
   CancelJobOutput({
     this.success,
   });
+  factory CancelJobOutput.fromJson(Map<String, dynamic> json) {
+    return CancelJobOutput(
+      success: json['Success'] as bool?,
+    );
+  }
+
   factory CancelJobOutput.fromXml(_s.XmlElement elem) {
     return CancelJobOutput(
       success: _s.extractXmlBoolValue(elem, 'Success'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'Success': success,
+    };
   }
 }
 
@@ -354,10 +396,23 @@ class CanceledJobIdException implements _s.AwsException {
   CanceledJobIdException({
     this.message,
   });
+  factory CanceledJobIdException.fromJson(Map<String, dynamic> json) {
+    return CanceledJobIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory CanceledJobIdException.fromXml(_s.XmlElement elem) {
     return CanceledJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -378,6 +433,20 @@ class CreateJobOutput {
     this.signatureFileContents,
     this.warningMessage,
   });
+  factory CreateJobOutput.fromJson(Map<String, dynamic> json) {
+    return CreateJobOutput(
+      artifactList: (json['ArtifactList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Artifact.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      jobId: json['JobId'] as String?,
+      jobType: (json['JobType'] as String?)?.toJobType(),
+      signature: json['Signature'] as String?,
+      signatureFileContents: json['SignatureFileContents'] as String?,
+      warningMessage: json['WarningMessage'] as String?,
+    );
+  }
+
   factory CreateJobOutput.fromXml(_s.XmlElement elem) {
     return CreateJobOutput(
       artifactList: _s.extractXmlChild(elem, 'ArtifactList')?.let((elem) =>
@@ -390,6 +459,24 @@ class CreateJobOutput {
       warningMessage: _s.extractXmlStringValue(elem, 'WarningMessage'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    final signature = this.signature;
+    final signatureFileContents = this.signatureFileContents;
+    final warningMessage = this.warningMessage;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (signature != null) 'Signature': signature,
+      if (signatureFileContents != null)
+        'SignatureFileContents': signatureFileContents,
+      if (warningMessage != null) 'WarningMessage': warningMessage,
+    };
+  }
 }
 
 /// Each account can create only a certain number of jobs per day. If you need
@@ -401,10 +488,23 @@ class CreateJobQuotaExceededException implements _s.AwsException {
   CreateJobQuotaExceededException({
     this.message,
   });
+  factory CreateJobQuotaExceededException.fromJson(Map<String, dynamic> json) {
+    return CreateJobQuotaExceededException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory CreateJobQuotaExceededException.fromXml(_s.XmlElement elem) {
     return CreateJobQuotaExceededException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -415,10 +515,23 @@ class ExpiredJobIdException implements _s.AwsException {
   ExpiredJobIdException({
     this.message,
   });
+  factory ExpiredJobIdException.fromJson(Map<String, dynamic> json) {
+    return ExpiredJobIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory ExpiredJobIdException.fromXml(_s.XmlElement elem) {
     return ExpiredJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -430,11 +543,27 @@ class GetShippingLabelOutput {
     this.shippingLabelURL,
     this.warning,
   });
+  factory GetShippingLabelOutput.fromJson(Map<String, dynamic> json) {
+    return GetShippingLabelOutput(
+      shippingLabelURL: json['ShippingLabelURL'] as String?,
+      warning: json['Warning'] as String?,
+    );
+  }
+
   factory GetShippingLabelOutput.fromXml(_s.XmlElement elem) {
     return GetShippingLabelOutput(
       shippingLabelURL: _s.extractXmlStringValue(elem, 'ShippingLabelURL'),
       warning: _s.extractXmlStringValue(elem, 'Warning'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shippingLabelURL = this.shippingLabelURL;
+    final warning = this.warning;
+    return {
+      if (shippingLabelURL != null) 'ShippingLabelURL': shippingLabelURL,
+      if (warning != null) 'Warning': warning,
+    };
   }
 }
 
@@ -475,6 +604,30 @@ class GetStatusOutput {
     this.signatureFileContents,
     this.trackingNumber,
   });
+  factory GetStatusOutput.fromJson(Map<String, dynamic> json) {
+    return GetStatusOutput(
+      artifactList: (json['ArtifactList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Artifact.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      carrier: json['Carrier'] as String?,
+      creationDate: timeStampFromJson(json['CreationDate']),
+      currentManifest: json['CurrentManifest'] as String?,
+      errorCount: json['ErrorCount'] as int?,
+      jobId: json['JobId'] as String?,
+      jobType: (json['JobType'] as String?)?.toJobType(),
+      locationCode: json['LocationCode'] as String?,
+      locationMessage: json['LocationMessage'] as String?,
+      logBucket: json['LogBucket'] as String?,
+      logKey: json['LogKey'] as String?,
+      progressCode: json['ProgressCode'] as String?,
+      progressMessage: json['ProgressMessage'] as String?,
+      signature: json['Signature'] as String?,
+      signatureFileContents: json['SignatureFileContents'] as String?,
+      trackingNumber: json['TrackingNumber'] as String?,
+    );
+  }
+
   factory GetStatusOutput.fromXml(_s.XmlElement elem) {
     return GetStatusOutput(
       artifactList: _s.extractXmlChild(elem, 'ArtifactList')?.let((elem) =>
@@ -497,6 +650,45 @@ class GetStatusOutput {
       trackingNumber: _s.extractXmlStringValue(elem, 'TrackingNumber'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final carrier = this.carrier;
+    final creationDate = this.creationDate;
+    final currentManifest = this.currentManifest;
+    final errorCount = this.errorCount;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    final locationCode = this.locationCode;
+    final locationMessage = this.locationMessage;
+    final logBucket = this.logBucket;
+    final logKey = this.logKey;
+    final progressCode = this.progressCode;
+    final progressMessage = this.progressMessage;
+    final signature = this.signature;
+    final signatureFileContents = this.signatureFileContents;
+    final trackingNumber = this.trackingNumber;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (carrier != null) 'Carrier': carrier,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (currentManifest != null) 'CurrentManifest': currentManifest,
+      if (errorCount != null) 'ErrorCount': errorCount,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (locationCode != null) 'LocationCode': locationCode,
+      if (locationMessage != null) 'LocationMessage': locationMessage,
+      if (logBucket != null) 'LogBucket': logBucket,
+      if (logKey != null) 'LogKey': logKey,
+      if (progressCode != null) 'ProgressCode': progressCode,
+      if (progressMessage != null) 'ProgressMessage': progressMessage,
+      if (signature != null) 'Signature': signature,
+      if (signatureFileContents != null)
+        'SignatureFileContents': signatureFileContents,
+      if (trackingNumber != null) 'TrackingNumber': trackingNumber,
+    };
+  }
 }
 
 /// The AWS Access Key ID specified in the request did not match the manifest's
@@ -508,10 +700,23 @@ class InvalidAccessKeyIdException implements _s.AwsException {
   InvalidAccessKeyIdException({
     this.message,
   });
+  factory InvalidAccessKeyIdException.fromJson(Map<String, dynamic> json) {
+    return InvalidAccessKeyIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidAccessKeyIdException.fromXml(_s.XmlElement elem) {
     return InvalidAccessKeyIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -522,10 +727,23 @@ class InvalidAddressException implements _s.AwsException {
   InvalidAddressException({
     this.message,
   });
+  factory InvalidAddressException.fromJson(Map<String, dynamic> json) {
+    return InvalidAddressException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidAddressException.fromXml(_s.XmlElement elem) {
     return InvalidAddressException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -536,10 +754,23 @@ class InvalidCustomsException implements _s.AwsException {
   InvalidCustomsException({
     this.message,
   });
+  factory InvalidCustomsException.fromJson(Map<String, dynamic> json) {
+    return InvalidCustomsException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidCustomsException.fromXml(_s.XmlElement elem) {
     return InvalidCustomsException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -550,10 +781,23 @@ class InvalidFileSystemException implements _s.AwsException {
   InvalidFileSystemException({
     this.message,
   });
+  factory InvalidFileSystemException.fromJson(Map<String, dynamic> json) {
+    return InvalidFileSystemException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidFileSystemException.fromXml(_s.XmlElement elem) {
     return InvalidFileSystemException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -564,10 +808,23 @@ class InvalidJobIdException implements _s.AwsException {
   InvalidJobIdException({
     this.message,
   });
+  factory InvalidJobIdException.fromJson(Map<String, dynamic> json) {
+    return InvalidJobIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidJobIdException.fromXml(_s.XmlElement elem) {
     return InvalidJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -578,10 +835,23 @@ class InvalidManifestFieldException implements _s.AwsException {
   InvalidManifestFieldException({
     this.message,
   });
+  factory InvalidManifestFieldException.fromJson(Map<String, dynamic> json) {
+    return InvalidManifestFieldException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidManifestFieldException.fromXml(_s.XmlElement elem) {
     return InvalidManifestFieldException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -592,10 +862,23 @@ class InvalidParameterException implements _s.AwsException {
   InvalidParameterException({
     this.message,
   });
+  factory InvalidParameterException.fromJson(Map<String, dynamic> json) {
+    return InvalidParameterException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidParameterException.fromXml(_s.XmlElement elem) {
     return InvalidParameterException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -606,10 +889,23 @@ class InvalidVersionException implements _s.AwsException {
   InvalidVersionException({
     this.message,
   });
+  factory InvalidVersionException.fromJson(Map<String, dynamic> json) {
+    return InvalidVersionException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory InvalidVersionException.fromXml(_s.XmlElement elem) {
     return InvalidVersionException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -626,6 +922,15 @@ class Job {
     this.jobId,
     this.jobType,
   });
+  factory Job.fromJson(Map<String, dynamic> json) {
+    return Job(
+      creationDate: timeStampFromJson(json['CreationDate']),
+      isCanceled: json['IsCanceled'] as bool?,
+      jobId: json['JobId'] as String?,
+      jobType: (json['JobType'] as String?)?.toJobType(),
+    );
+  }
+
   factory Job.fromXml(_s.XmlElement elem) {
     return Job(
       creationDate: _s.extractXmlDateTimeValue(elem, 'CreationDate'),
@@ -633,6 +938,20 @@ class Job {
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
       jobType: _s.extractXmlStringValue(elem, 'JobType')?.toJobType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final isCanceled = this.isCanceled;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (isCanceled != null) 'IsCanceled': isCanceled,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+    };
   }
 }
 
@@ -674,12 +993,31 @@ class ListJobsOutput {
     this.isTruncated,
     this.jobs,
   });
+  factory ListJobsOutput.fromJson(Map<String, dynamic> json) {
+    return ListJobsOutput(
+      isTruncated: json['IsTruncated'] as bool?,
+      jobs: (json['Jobs'] as List?)
+          ?.whereNotNull()
+          .map((e) => Job.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListJobsOutput.fromXml(_s.XmlElement elem) {
     return ListJobsOutput(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       jobs: _s.extractXmlChild(elem, 'Jobs')?.let((elem) =>
           elem.findElements('member').map((c) => Job.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final jobs = this.jobs;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobs != null) 'Jobs': jobs,
+    };
   }
 }
 
@@ -690,10 +1028,23 @@ class MalformedManifestException implements _s.AwsException {
   MalformedManifestException({
     this.message,
   });
+  factory MalformedManifestException.fromJson(Map<String, dynamic> json) {
+    return MalformedManifestException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory MalformedManifestException.fromXml(_s.XmlElement elem) {
     return MalformedManifestException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -704,10 +1055,23 @@ class MissingCustomsException implements _s.AwsException {
   MissingCustomsException({
     this.message,
   });
+  factory MissingCustomsException.fromJson(Map<String, dynamic> json) {
+    return MissingCustomsException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory MissingCustomsException.fromXml(_s.XmlElement elem) {
     return MissingCustomsException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -719,10 +1083,23 @@ class MissingManifestFieldException implements _s.AwsException {
   MissingManifestFieldException({
     this.message,
   });
+  factory MissingManifestFieldException.fromJson(Map<String, dynamic> json) {
+    return MissingManifestFieldException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory MissingManifestFieldException.fromXml(_s.XmlElement elem) {
     return MissingManifestFieldException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -733,10 +1110,23 @@ class MissingParameterException implements _s.AwsException {
   MissingParameterException({
     this.message,
   });
+  factory MissingParameterException.fromJson(Map<String, dynamic> json) {
+    return MissingParameterException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory MissingParameterException.fromXml(_s.XmlElement elem) {
     return MissingParameterException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -748,10 +1138,23 @@ class MultipleRegionsException implements _s.AwsException {
   MultipleRegionsException({
     this.message,
   });
+  factory MultipleRegionsException.fromJson(Map<String, dynamic> json) {
+    return MultipleRegionsException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory MultipleRegionsException.fromXml(_s.XmlElement elem) {
     return MultipleRegionsException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -765,10 +1168,23 @@ class NoSuchBucketException implements _s.AwsException {
   NoSuchBucketException({
     this.message,
   });
+  factory NoSuchBucketException.fromJson(Map<String, dynamic> json) {
+    return NoSuchBucketException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory NoSuchBucketException.fromXml(_s.XmlElement elem) {
     return NoSuchBucketException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -779,10 +1195,23 @@ class UnableToCancelJobIdException implements _s.AwsException {
   UnableToCancelJobIdException({
     this.message,
   });
+  factory UnableToCancelJobIdException.fromJson(Map<String, dynamic> json) {
+    return UnableToCancelJobIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory UnableToCancelJobIdException.fromXml(_s.XmlElement elem) {
     return UnableToCancelJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -793,10 +1222,23 @@ class UnableToUpdateJobIdException implements _s.AwsException {
   UnableToUpdateJobIdException({
     this.message,
   });
+  factory UnableToUpdateJobIdException.fromJson(Map<String, dynamic> json) {
+    return UnableToUpdateJobIdException(
+      message: json['message'] as String?,
+    );
+  }
+
   factory UnableToUpdateJobIdException.fromXml(_s.XmlElement elem) {
     return UnableToUpdateJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -811,6 +1253,17 @@ class UpdateJobOutput {
     this.success,
     this.warningMessage,
   });
+  factory UpdateJobOutput.fromJson(Map<String, dynamic> json) {
+    return UpdateJobOutput(
+      artifactList: (json['ArtifactList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Artifact.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      success: json['Success'] as bool?,
+      warningMessage: json['WarningMessage'] as String?,
+    );
+  }
+
   factory UpdateJobOutput.fromXml(_s.XmlElement elem) {
     return UpdateJobOutput(
       artifactList: _s.extractXmlChild(elem, 'ArtifactList')?.let((elem) =>
@@ -818,6 +1271,17 @@ class UpdateJobOutput {
       success: _s.extractXmlBoolValue(elem, 'Success'),
       warningMessage: _s.extractXmlStringValue(elem, 'WarningMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final success = this.success;
+    final warningMessage = this.warningMessage;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (success != null) 'Success': success,
+      if (warningMessage != null) 'WarningMessage': warningMessage,
+    };
   }
 }
 

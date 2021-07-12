@@ -1169,6 +1169,19 @@ class AutoScalingGroupConfiguration {
       minSize: json['minSize'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final desiredCapacity = this.desiredCapacity;
+    final instanceType = this.instanceType;
+    final maxSize = this.maxSize;
+    final minSize = this.minSize;
+    return {
+      if (desiredCapacity != null) 'desiredCapacity': desiredCapacity,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (maxSize != null) 'maxSize': maxSize,
+      if (minSize != null) 'minSize': minSize,
+    };
+  }
 }
 
 /// Describes an Auto Scaling group recommendation.
@@ -1256,6 +1269,35 @@ class AutoScalingGroupRecommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final autoScalingGroupArn = this.autoScalingGroupArn;
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final currentConfiguration = this.currentConfiguration;
+    final finding = this.finding;
+    final lastRefreshTimestamp = this.lastRefreshTimestamp;
+    final lookBackPeriodInDays = this.lookBackPeriodInDays;
+    final recommendationOptions = this.recommendationOptions;
+    final utilizationMetrics = this.utilizationMetrics;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (autoScalingGroupArn != null)
+        'autoScalingGroupArn': autoScalingGroupArn,
+      if (autoScalingGroupName != null)
+        'autoScalingGroupName': autoScalingGroupName,
+      if (currentConfiguration != null)
+        'currentConfiguration': currentConfiguration,
+      if (finding != null) 'finding': finding.toValue(),
+      if (lastRefreshTimestamp != null)
+        'lastRefreshTimestamp': unixTimestampToJson(lastRefreshTimestamp),
+      if (lookBackPeriodInDays != null)
+        'lookBackPeriodInDays': lookBackPeriodInDays,
+      if (recommendationOptions != null)
+        'recommendationOptions': recommendationOptions,
+      if (utilizationMetrics != null) 'utilizationMetrics': utilizationMetrics,
+    };
+  }
 }
 
 /// Describes a recommendation option for an Auto Scaling group.
@@ -1319,6 +1361,20 @@ class AutoScalingGroupRecommendationOption {
       rank: json['rank'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final performanceRisk = this.performanceRisk;
+    final projectedUtilizationMetrics = this.projectedUtilizationMetrics;
+    final rank = this.rank;
+    return {
+      if (configuration != null) 'configuration': configuration,
+      if (performanceRisk != null) 'performanceRisk': performanceRisk,
+      if (projectedUtilizationMetrics != null)
+        'projectedUtilizationMetrics': projectedUtilizationMetrics,
+      if (rank != null) 'rank': rank,
+    };
+  }
 }
 
 class DescribeRecommendationExportJobsResponse {
@@ -1344,6 +1400,16 @@ class DescribeRecommendationExportJobsResponse {
               RecommendationExportJob.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendationExportJobs = this.recommendationExportJobs;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recommendationExportJobs != null)
+        'recommendationExportJobs': recommendationExportJobs,
+    };
   }
 }
 
@@ -1372,6 +1438,16 @@ class EBSFilter {
     this.name,
     this.values,
   });
+  factory EBSFilter.fromJson(Map<String, dynamic> json) {
+    return EBSFilter(
+      name: (json['name'] as String?)?.toEBSFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1543,6 +1619,17 @@ class EBSUtilizationMetric {
       value: json['value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final statistic = this.statistic;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (statistic != null) 'statistic': statistic.toValue(),
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 class ExportAutoScalingGroupRecommendationsResponse {
@@ -1570,6 +1657,15 @@ class ExportAutoScalingGroupRecommendationsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final s3Destination = this.s3Destination;
+    return {
+      if (jobId != null) 'jobId': jobId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+    };
+  }
 }
 
 /// Describes the destination of the recommendations export and metadata files.
@@ -1588,6 +1684,13 @@ class ExportDestination {
           ? S3Destination.fromJson(json['s3'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3 = this.s3;
+    return {
+      if (s3 != null) 's3': s3,
+    };
   }
 }
 
@@ -1612,6 +1715,15 @@ class ExportEBSVolumeRecommendationsResponse {
               json['s3Destination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final s3Destination = this.s3Destination;
+    return {
+      if (jobId != null) 'jobId': jobId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+    };
   }
 }
 
@@ -1640,6 +1752,15 @@ class ExportEC2InstanceRecommendationsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final s3Destination = this.s3Destination;
+    return {
+      if (jobId != null) 'jobId': jobId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+    };
+  }
 }
 
 class ExportLambdaFunctionRecommendationsResponse {
@@ -1663,6 +1784,15 @@ class ExportLambdaFunctionRecommendationsResponse {
               json['s3Destination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final s3Destination = this.s3Destination;
+    return {
+      if (jobId != null) 'jobId': jobId,
+      if (s3Destination != null) 's3Destination': s3Destination,
+    };
   }
 }
 
@@ -2691,6 +2821,16 @@ class Filter {
     this.name,
     this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: (json['name'] as String?)?.toFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -2839,6 +2979,19 @@ class GetAutoScalingGroupRecommendationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupRecommendations =
+        this.autoScalingGroupRecommendations;
+    final errors = this.errors;
+    final nextToken = this.nextToken;
+    return {
+      if (autoScalingGroupRecommendations != null)
+        'autoScalingGroupRecommendations': autoScalingGroupRecommendations,
+      if (errors != null) 'errors': errors,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEBSVolumeRecommendationsResponse {
@@ -2876,6 +3029,18 @@ class GetEBSVolumeRecommendationsResponse {
           .map((e) => VolumeRecommendation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final nextToken = this.nextToken;
+    final volumeRecommendations = this.volumeRecommendations;
+    return {
+      if (errors != null) 'errors': errors,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (volumeRecommendations != null)
+        'volumeRecommendations': volumeRecommendations,
+    };
   }
 }
 
@@ -2916,6 +3081,18 @@ class GetEC2InstanceRecommendationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final instanceRecommendations = this.instanceRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      if (errors != null) 'errors': errors,
+      if (instanceRecommendations != null)
+        'instanceRecommendations': instanceRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEC2RecommendationProjectedMetricsResponse {
@@ -2936,6 +3113,15 @@ class GetEC2RecommendationProjectedMetricsResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommendedOptionProjectedMetrics =
+        this.recommendedOptionProjectedMetrics;
+    return {
+      if (recommendedOptionProjectedMetrics != null)
+        'recommendedOptionProjectedMetrics': recommendedOptionProjectedMetrics,
+    };
   }
 }
 
@@ -2966,6 +3152,18 @@ class GetEnrollmentStatusResponse {
       statusReason: json['statusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberAccountsEnrolled = this.memberAccountsEnrolled;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (memberAccountsEnrolled != null)
+        'memberAccountsEnrolled': memberAccountsEnrolled,
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
+  }
 }
 
 class GetLambdaFunctionRecommendationsResponse {
@@ -2993,6 +3191,16 @@ class GetLambdaFunctionRecommendationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lambdaFunctionRecommendations = this.lambdaFunctionRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      if (lambdaFunctionRecommendations != null)
+        'lambdaFunctionRecommendations': lambdaFunctionRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3023,6 +3231,17 @@ class GetRecommendationError {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final identifier = this.identifier;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (identifier != null) 'identifier': identifier,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class GetRecommendationSummariesResponse {
@@ -3048,6 +3267,16 @@ class GetRecommendationSummariesResponse {
           .map((e) => RecommendationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendationSummaries = this.recommendationSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recommendationSummaries != null)
+        'recommendationSummaries': recommendationSummaries,
+    };
   }
 }
 
@@ -3298,6 +3527,40 @@ class InstanceRecommendation {
           .map((e) => UtilizationMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final currentInstanceType = this.currentInstanceType;
+    final finding = this.finding;
+    final findingReasonCodes = this.findingReasonCodes;
+    final instanceArn = this.instanceArn;
+    final instanceName = this.instanceName;
+    final lastRefreshTimestamp = this.lastRefreshTimestamp;
+    final lookBackPeriodInDays = this.lookBackPeriodInDays;
+    final recommendationOptions = this.recommendationOptions;
+    final recommendationSources = this.recommendationSources;
+    final utilizationMetrics = this.utilizationMetrics;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (currentInstanceType != null)
+        'currentInstanceType': currentInstanceType,
+      if (finding != null) 'finding': finding.toValue(),
+      if (findingReasonCodes != null)
+        'findingReasonCodes':
+            findingReasonCodes.map((e) => e.toValue()).toList(),
+      if (instanceArn != null) 'instanceArn': instanceArn,
+      if (instanceName != null) 'instanceName': instanceName,
+      if (lastRefreshTimestamp != null)
+        'lastRefreshTimestamp': unixTimestampToJson(lastRefreshTimestamp),
+      if (lookBackPeriodInDays != null)
+        'lookBackPeriodInDays': lookBackPeriodInDays,
+      if (recommendationOptions != null)
+        'recommendationOptions': recommendationOptions,
+      if (recommendationSources != null)
+        'recommendationSources': recommendationSources,
+      if (utilizationMetrics != null) 'utilizationMetrics': utilizationMetrics,
+    };
   }
 }
 
@@ -3574,6 +3837,24 @@ class InstanceRecommendationOption {
       rank: json['rank'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceType = this.instanceType;
+    final performanceRisk = this.performanceRisk;
+    final platformDifferences = this.platformDifferences;
+    final projectedUtilizationMetrics = this.projectedUtilizationMetrics;
+    final rank = this.rank;
+    return {
+      if (instanceType != null) 'instanceType': instanceType,
+      if (performanceRisk != null) 'performanceRisk': performanceRisk,
+      if (platformDifferences != null)
+        'platformDifferences':
+            platformDifferences.map((e) => e.toValue()).toList(),
+      if (projectedUtilizationMetrics != null)
+        'projectedUtilizationMetrics': projectedUtilizationMetrics,
+      if (rank != null) 'rank': rank,
+    };
+  }
 }
 
 /// Describes a filter that returns a more specific list of recommendation
@@ -3620,6 +3901,16 @@ class JobFilter {
     this.name,
     this.values,
   });
+  factory JobFilter.fromJson(Map<String, dynamic> json) {
+    return JobFilter(
+      name: (json['name'] as String?)?.toJobFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3780,6 +4071,17 @@ class LambdaFunctionMemoryProjectedMetric {
       value: json['value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final statistic = this.statistic;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (statistic != null) 'statistic': statistic.toValue(),
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes a recommendation option for an AWS Lambda function.
@@ -3813,6 +4115,18 @@ class LambdaFunctionMemoryRecommendationOption {
               .toList(),
       rank: json['rank'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memorySize = this.memorySize;
+    final projectedUtilizationMetrics = this.projectedUtilizationMetrics;
+    final rank = this.rank;
+    return {
+      if (memorySize != null) 'memorySize': memorySize,
+      if (projectedUtilizationMetrics != null)
+        'projectedUtilizationMetrics': projectedUtilizationMetrics,
+      if (rank != null) 'rank': rank,
+    };
   }
 }
 
@@ -4022,6 +4336,40 @@ class LambdaFunctionRecommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final currentMemorySize = this.currentMemorySize;
+    final finding = this.finding;
+    final findingReasonCodes = this.findingReasonCodes;
+    final functionArn = this.functionArn;
+    final functionVersion = this.functionVersion;
+    final lastRefreshTimestamp = this.lastRefreshTimestamp;
+    final lookbackPeriodInDays = this.lookbackPeriodInDays;
+    final memorySizeRecommendationOptions =
+        this.memorySizeRecommendationOptions;
+    final numberOfInvocations = this.numberOfInvocations;
+    final utilizationMetrics = this.utilizationMetrics;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (currentMemorySize != null) 'currentMemorySize': currentMemorySize,
+      if (finding != null) 'finding': finding.toValue(),
+      if (findingReasonCodes != null)
+        'findingReasonCodes':
+            findingReasonCodes.map((e) => e.toValue()).toList(),
+      if (functionArn != null) 'functionArn': functionArn,
+      if (functionVersion != null) 'functionVersion': functionVersion,
+      if (lastRefreshTimestamp != null)
+        'lastRefreshTimestamp': unixTimestampToJson(lastRefreshTimestamp),
+      if (lookbackPeriodInDays != null)
+        'lookbackPeriodInDays': lookbackPeriodInDays,
+      if (memorySizeRecommendationOptions != null)
+        'memorySizeRecommendationOptions': memorySizeRecommendationOptions,
+      if (numberOfInvocations != null)
+        'numberOfInvocations': numberOfInvocations,
+      if (utilizationMetrics != null) 'utilizationMetrics': utilizationMetrics,
+    };
+  }
 }
 
 /// Describes a filter that returns a more specific list of AWS Lambda function
@@ -4067,6 +4415,18 @@ class LambdaFunctionRecommendationFilter {
     this.name,
     this.values,
   });
+  factory LambdaFunctionRecommendationFilter.fromJson(
+      Map<String, dynamic> json) {
+    return LambdaFunctionRecommendationFilter(
+      name:
+          (json['name'] as String?)?.toLambdaFunctionRecommendationFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4233,6 +4593,17 @@ class LambdaFunctionUtilizationMetric {
           (json['statistic'] as String?)?.toLambdaFunctionMetricStatistic(),
       value: json['value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final statistic = this.statistic;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (statistic != null) 'statistic': statistic.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -4469,6 +4840,18 @@ class ProjectedMetric {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final timestamps = this.timestamps;
+    final values = this.values;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (timestamps != null)
+        'timestamps': timestamps.map(unixTimestampToJson).toList(),
+      if (values != null) 'values': values,
+    };
+  }
 }
 
 /// A summary of a finding reason code.
@@ -4488,6 +4871,15 @@ class ReasonCodeSummary {
       name: (json['name'] as String?)?.toFindingReasonCode(),
       value: json['value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -4544,6 +4936,27 @@ class RecommendationExportJob {
       status: (json['status'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final destination = this.destination;
+    final failureReason = this.failureReason;
+    final jobId = this.jobId;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    return {
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (destination != null) 'destination': destination,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobId != null) 'jobId': jobId,
+      if (lastUpdatedTimestamp != null)
+        'lastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes the source of a recommendation, such as an Amazon EC2 instance or
@@ -4565,6 +4978,17 @@ class RecommendationSource {
       recommendationSourceType: (json['recommendationSourceType'] as String?)
           ?.toRecommendationSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommendationSourceArn = this.recommendationSourceArn;
+    final recommendationSourceType = this.recommendationSourceType;
+    return {
+      if (recommendationSourceArn != null)
+        'recommendationSourceArn': recommendationSourceArn,
+      if (recommendationSourceType != null)
+        'recommendationSourceType': recommendationSourceType.toValue(),
+    };
   }
 }
 
@@ -4634,6 +5058,18 @@ class RecommendationSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final recommendationResourceType = this.recommendationResourceType;
+    final summaries = this.summaries;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (recommendationResourceType != null)
+        'recommendationResourceType': recommendationResourceType.toValue(),
+      if (summaries != null) 'summaries': summaries,
+    };
+  }
 }
 
 /// Describes a projected utilization metric of a recommendation option.
@@ -4677,6 +5113,18 @@ class RecommendedOptionProjectedMetric {
       rank: json['rank'] as int?,
       recommendedInstanceType: json['recommendedInstanceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectedMetrics = this.projectedMetrics;
+    final rank = this.rank;
+    final recommendedInstanceType = this.recommendedInstanceType;
+    return {
+      if (projectedMetrics != null) 'projectedMetrics': projectedMetrics,
+      if (rank != null) 'rank': rank,
+      if (recommendedInstanceType != null)
+        'recommendedInstanceType': recommendedInstanceType,
+    };
   }
 }
 
@@ -4747,6 +5195,17 @@ class S3Destination {
       metadataKey: json['metadataKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    final metadataKey = this.metadataKey;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (key != null) 'key': key,
+      if (metadataKey != null) 'metadataKey': metadataKey,
+    };
+  }
 }
 
 /// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
@@ -4774,6 +5233,13 @@ class S3DestinationConfig {
     this.bucket,
     this.keyPrefix,
   });
+  factory S3DestinationConfig.fromJson(Map<String, dynamic> json) {
+    return S3DestinationConfig(
+      bucket: json['bucket'] as String?,
+      keyPrefix: json['keyPrefix'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final keyPrefix = this.keyPrefix;
@@ -4848,6 +5314,18 @@ class Summary {
       value: json['value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final reasonCodeSummaries = this.reasonCodeSummaries;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (reasonCodeSummaries != null)
+        'reasonCodeSummaries': reasonCodeSummaries,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 class UpdateEnrollmentStatusResponse {
@@ -4868,6 +5346,15 @@ class UpdateEnrollmentStatusResponse {
       status: (json['status'] as String?)?.toStatus(),
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -5020,6 +5507,17 @@ class UtilizationMetric {
       value: json['value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final statistic = this.statistic;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (statistic != null) 'statistic': statistic.toValue(),
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes the configuration of an Amazon Elastic Block Store (Amazon EBS)
@@ -5065,6 +5563,25 @@ class VolumeConfiguration {
       volumeSize: json['volumeSize'] as int?,
       volumeType: json['volumeType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeBaselineIOPS = this.volumeBaselineIOPS;
+    final volumeBaselineThroughput = this.volumeBaselineThroughput;
+    final volumeBurstIOPS = this.volumeBurstIOPS;
+    final volumeBurstThroughput = this.volumeBurstThroughput;
+    final volumeSize = this.volumeSize;
+    final volumeType = this.volumeType;
+    return {
+      if (volumeBaselineIOPS != null) 'volumeBaselineIOPS': volumeBaselineIOPS,
+      if (volumeBaselineThroughput != null)
+        'volumeBaselineThroughput': volumeBaselineThroughput,
+      if (volumeBurstIOPS != null) 'volumeBurstIOPS': volumeBurstIOPS,
+      if (volumeBurstThroughput != null)
+        'volumeBurstThroughput': volumeBurstThroughput,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+      if (volumeType != null) 'volumeType': volumeType,
+    };
   }
 }
 
@@ -5144,6 +5661,31 @@ class VolumeRecommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final currentConfiguration = this.currentConfiguration;
+    final finding = this.finding;
+    final lastRefreshTimestamp = this.lastRefreshTimestamp;
+    final lookBackPeriodInDays = this.lookBackPeriodInDays;
+    final utilizationMetrics = this.utilizationMetrics;
+    final volumeArn = this.volumeArn;
+    final volumeRecommendationOptions = this.volumeRecommendationOptions;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (currentConfiguration != null)
+        'currentConfiguration': currentConfiguration,
+      if (finding != null) 'finding': finding.toValue(),
+      if (lastRefreshTimestamp != null)
+        'lastRefreshTimestamp': unixTimestampToJson(lastRefreshTimestamp),
+      if (lookBackPeriodInDays != null)
+        'lookBackPeriodInDays': lookBackPeriodInDays,
+      if (utilizationMetrics != null) 'utilizationMetrics': utilizationMetrics,
+      if (volumeArn != null) 'volumeArn': volumeArn,
+      if (volumeRecommendationOptions != null)
+        'volumeRecommendationOptions': volumeRecommendationOptions,
+    };
+  }
 }
 
 /// Describes a recommendation option for an Amazon Elastic Block Store (Amazon
@@ -5183,6 +5725,17 @@ class VolumeRecommendationOption {
       performanceRisk: json['performanceRisk'] as double?,
       rank: json['rank'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final performanceRisk = this.performanceRisk;
+    final rank = this.rank;
+    return {
+      if (configuration != null) 'configuration': configuration,
+      if (performanceRisk != null) 'performanceRisk': performanceRisk,
+      if (rank != null) 'rank': rank,
+    };
   }
 }
 

@@ -59,6 +59,13 @@ class OutputShape {
       strType: json['StrType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final strType = this.strType;
+    return {
+      if (strType != null) 'StrType': strType,
+    };
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

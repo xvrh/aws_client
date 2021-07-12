@@ -1502,6 +1502,17 @@ class BatchError {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (arn != null) 'arn': arn,
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class BatchGetChannelResponse {
@@ -1526,6 +1537,15 @@ class BatchGetChannelResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final errors = this.errors;
+    return {
+      if (channels != null) 'channels': channels,
+      if (errors != null) 'errors': errors,
+    };
+  }
 }
 
 class BatchGetStreamKeyResponse {
@@ -1547,6 +1567,15 @@ class BatchGetStreamKeyResponse {
           .map((e) => StreamKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final streamKeys = this.streamKeys;
+    return {
+      if (errors != null) 'errors': errors,
+      if (streamKeys != null) 'streamKeys': streamKeys,
+    };
   }
 }
 
@@ -1628,6 +1657,30 @@ class Channel {
       type: (json['type'] as String?)?.toChannelType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorized = this.authorized;
+    final ingestEndpoint = this.ingestEndpoint;
+    final latencyMode = this.latencyMode;
+    final name = this.name;
+    final playbackUrl = this.playbackUrl;
+    final recordingConfigurationArn = this.recordingConfigurationArn;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorized != null) 'authorized': authorized,
+      if (ingestEndpoint != null) 'ingestEndpoint': ingestEndpoint,
+      if (latencyMode != null) 'latencyMode': latencyMode.toValue(),
+      if (name != null) 'name': name,
+      if (playbackUrl != null) 'playbackUrl': playbackUrl,
+      if (recordingConfigurationArn != null)
+        'recordingConfigurationArn': recordingConfigurationArn,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum ChannelLatencyMode {
@@ -1704,6 +1757,24 @@ class ChannelSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorized = this.authorized;
+    final latencyMode = this.latencyMode;
+    final name = this.name;
+    final recordingConfigurationArn = this.recordingConfigurationArn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorized != null) 'authorized': authorized,
+      if (latencyMode != null) 'latencyMode': latencyMode.toValue(),
+      if (name != null) 'name': name,
+      if (recordingConfigurationArn != null)
+        'recordingConfigurationArn': recordingConfigurationArn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum ChannelType {
@@ -1752,6 +1823,15 @@ class CreateChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    final streamKey = this.streamKey;
+    return {
+      if (channel != null) 'channel': channel,
+      if (streamKey != null) 'streamKey': streamKey,
+    };
+  }
 }
 
 class CreateRecordingConfigurationResponse {
@@ -1769,6 +1849,14 @@ class CreateRecordingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recordingConfiguration = this.recordingConfiguration;
+    return {
+      if (recordingConfiguration != null)
+        'recordingConfiguration': recordingConfiguration,
+    };
+  }
 }
 
 class CreateStreamKeyResponse {
@@ -1785,12 +1873,23 @@ class CreateStreamKeyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamKey = this.streamKey;
+    return {
+      if (streamKey != null) 'streamKey': streamKey,
+    };
+  }
 }
 
 class DeletePlaybackKeyPairResponse {
   DeletePlaybackKeyPairResponse();
   factory DeletePlaybackKeyPairResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaybackKeyPairResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1834,6 +1933,13 @@ class GetChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'channel': channel,
+    };
+  }
 }
 
 class GetPlaybackKeyPairResponse {
@@ -1848,6 +1954,13 @@ class GetPlaybackKeyPairResponse {
           ? PlaybackKeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyPair = this.keyPair;
+    return {
+      if (keyPair != null) 'keyPair': keyPair,
+    };
   }
 }
 
@@ -1866,6 +1979,14 @@ class GetRecordingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recordingConfiguration = this.recordingConfiguration;
+    return {
+      if (recordingConfiguration != null)
+        'recordingConfiguration': recordingConfiguration,
+    };
+  }
 }
 
 class GetStreamKeyResponse {
@@ -1880,6 +2001,13 @@ class GetStreamKeyResponse {
           ? StreamKey.fromJson(json['streamKey'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamKey = this.streamKey;
+    return {
+      if (streamKey != null) 'streamKey': streamKey,
+    };
   }
 }
 
@@ -1896,6 +2024,13 @@ class GetStreamResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stream = this.stream;
+    return {
+      if (stream != null) 'stream': stream,
+    };
+  }
 }
 
 class ImportPlaybackKeyPairResponse {
@@ -1910,6 +2045,13 @@ class ImportPlaybackKeyPairResponse {
           ? PlaybackKeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyPair = this.keyPair;
+    return {
+      if (keyPair != null) 'keyPair': keyPair,
+    };
   }
 }
 
@@ -1934,6 +2076,15 @@ class ListChannelsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      'channels': channels,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPlaybackKeyPairsResponse {
@@ -1957,6 +2108,15 @@ class ListPlaybackKeyPairsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyPairs = this.keyPairs;
+    final nextToken = this.nextToken;
+    return {
+      'keyPairs': keyPairs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1983,6 +2143,15 @@ class ListRecordingConfigurationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recordingConfigurations = this.recordingConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      'recordingConfigurations': recordingConfigurations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListStreamKeysResponse {
@@ -2005,6 +2174,15 @@ class ListStreamKeysResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamKeys = this.streamKeys;
+    final nextToken = this.nextToken;
+    return {
+      'streamKeys': streamKeys,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2029,6 +2207,15 @@ class ListStreamsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streams = this.streams;
+    final nextToken = this.nextToken;
+    return {
+      'streams': streams,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2048,6 +2235,15 @@ class ListTagsForResourceResponse {
           .map((k, e) => MapEntry(k, e as String)),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final nextToken = this.nextToken;
+    return {
+      'tags': tags,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2081,6 +2277,19 @@ class PlaybackKeyPair {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final fingerprint = this.fingerprint;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (fingerprint != null) 'fingerprint': fingerprint,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Summary information about a playback key pair.
@@ -2107,6 +2316,17 @@ class PlaybackKeyPairSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2149,6 +2369,21 @@ class RecordingConfiguration {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final destinationConfiguration = this.destinationConfiguration;
+    final state = this.state;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'destinationConfiguration': destinationConfiguration,
+      'state': state.toValue(),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2225,6 +2460,21 @@ class RecordingConfigurationSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final destinationConfiguration = this.destinationConfiguration;
+    final state = this.state;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'destinationConfiguration': destinationConfiguration,
+      'state': state.toValue(),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A complex type that describes an S3 location where recorded videos will be
@@ -2254,6 +2504,10 @@ class StopStreamResponse {
   StopStreamResponse();
   factory StopStreamResponse.fromJson(Map<String, dynamic> _) {
     return StopStreamResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2296,6 +2550,23 @@ class Stream {
       state: (json['state'] as String?)?.toStreamState(),
       viewerCount: json['viewerCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final health = this.health;
+    final playbackUrl = this.playbackUrl;
+    final startTime = this.startTime;
+    final state = this.state;
+    final viewerCount = this.viewerCount;
+    return {
+      if (channelArn != null) 'channelArn': channelArn,
+      if (health != null) 'health': health.toValue(),
+      if (playbackUrl != null) 'playbackUrl': playbackUrl,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'state': state.toValue(),
+      if (viewerCount != null) 'viewerCount': viewerCount,
+    };
   }
 }
 
@@ -2361,6 +2632,19 @@ class StreamKey {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelArn = this.channelArn;
+    final tags = this.tags;
+    final value = this.value;
+    return {
+      if (arn != null) 'arn': arn,
+      if (channelArn != null) 'channelArn': channelArn,
+      if (tags != null) 'tags': tags,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Summary information about a stream key.
@@ -2386,6 +2670,17 @@ class StreamKeySummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelArn = this.channelArn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (channelArn != null) 'channelArn': channelArn,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2451,6 +2746,21 @@ class StreamSummary {
       viewerCount: json['viewerCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final health = this.health;
+    final startTime = this.startTime;
+    final state = this.state;
+    final viewerCount = this.viewerCount;
+    return {
+      if (channelArn != null) 'channelArn': channelArn,
+      if (health != null) 'health': health.toValue(),
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'state': state.toValue(),
+      if (viewerCount != null) 'viewerCount': viewerCount,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -2458,12 +2768,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2479,6 +2797,13 @@ class UpdateChannelResponse {
           ? Channel.fromJson(json['channel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'channel': channel,
+    };
   }
 }
 

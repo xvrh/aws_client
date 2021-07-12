@@ -163,6 +163,10 @@ class QldbSession {
 /// Contains the details of the transaction to abort.
 class AbortTransactionRequest {
   AbortTransactionRequest();
+  factory AbortTransactionRequest.fromJson(Map<String, dynamic> _) {
+    return AbortTransactionRequest();
+  }
+
   Map<String, dynamic> toJson() {
     return {};
   }
@@ -183,6 +187,13 @@ class AbortTransactionResult {
               json['TimingInformation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timingInformation = this.timingInformation;
+    return {
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+    };
   }
 }
 
@@ -206,6 +217,13 @@ class CommitTransactionRequest {
     required this.commitDigest,
     required this.transactionId,
   });
+  factory CommitTransactionRequest.fromJson(Map<String, dynamic> json) {
+    return CommitTransactionRequest(
+      commitDigest: _s.decodeUint8List(json['CommitDigest']! as String),
+      transactionId: json['TransactionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final commitDigest = this.commitDigest;
     final transactionId = this.transactionId;
@@ -249,11 +267,28 @@ class CommitTransactionResult {
       transactionId: json['TransactionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitDigest = this.commitDigest;
+    final consumedIOs = this.consumedIOs;
+    final timingInformation = this.timingInformation;
+    final transactionId = this.transactionId;
+    return {
+      if (commitDigest != null) 'CommitDigest': base64Encode(commitDigest),
+      if (consumedIOs != null) 'ConsumedIOs': consumedIOs,
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+      if (transactionId != null) 'TransactionId': transactionId,
+    };
+  }
 }
 
 /// Specifies a request to end the session.
 class EndSessionRequest {
   EndSessionRequest();
+  factory EndSessionRequest.fromJson(Map<String, dynamic> _) {
+    return EndSessionRequest();
+  }
+
   Map<String, dynamic> toJson() {
     return {};
   }
@@ -275,6 +310,13 @@ class EndSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timingInformation = this.timingInformation;
+    return {
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+    };
+  }
 }
 
 /// Specifies a request to execute a statement.
@@ -293,6 +335,17 @@ class ExecuteStatementRequest {
     required this.transactionId,
     this.parameters,
   });
+  factory ExecuteStatementRequest.fromJson(Map<String, dynamic> json) {
+    return ExecuteStatementRequest(
+      statement: json['Statement'] as String,
+      transactionId: json['TransactionId'] as String,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => ValueHolder.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final statement = this.statement;
     final transactionId = this.transactionId;
@@ -335,6 +388,17 @@ class ExecuteStatementResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedIOs = this.consumedIOs;
+    final firstPage = this.firstPage;
+    final timingInformation = this.timingInformation;
+    return {
+      if (consumedIOs != null) 'ConsumedIOs': consumedIOs,
+      if (firstPage != null) 'FirstPage': firstPage,
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+    };
+  }
 }
 
 /// Specifies the details of the page to be fetched.
@@ -349,6 +413,13 @@ class FetchPageRequest {
     required this.nextPageToken,
     required this.transactionId,
   });
+  factory FetchPageRequest.fromJson(Map<String, dynamic> json) {
+    return FetchPageRequest(
+      nextPageToken: json['NextPageToken'] as String,
+      transactionId: json['TransactionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final nextPageToken = this.nextPageToken;
     final transactionId = this.transactionId;
@@ -389,6 +460,17 @@ class FetchPageResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedIOs = this.consumedIOs;
+    final page = this.page;
+    final timingInformation = this.timingInformation;
+    return {
+      if (consumedIOs != null) 'ConsumedIOs': consumedIOs,
+      if (page != null) 'Page': page,
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+    };
+  }
 }
 
 /// Contains I/O usage metrics for a command that was invoked.
@@ -408,6 +490,15 @@ class IOUsage {
       readIOs: json['ReadIOs'] as int?,
       writeIOs: json['WriteIOs'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readIOs = this.readIOs;
+    final writeIOs = this.writeIOs;
+    return {
+      if (readIOs != null) 'ReadIOs': readIOs,
+      if (writeIOs != null) 'WriteIOs': writeIOs,
+    };
   }
 }
 
@@ -431,6 +522,15 @@ class Page {
           .map((e) => ValueHolder.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final values = this.values;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (values != null) 'Values': values,
+    };
   }
 }
 
@@ -498,6 +598,25 @@ class SendCommandResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortTransaction = this.abortTransaction;
+    final commitTransaction = this.commitTransaction;
+    final endSession = this.endSession;
+    final executeStatement = this.executeStatement;
+    final fetchPage = this.fetchPage;
+    final startSession = this.startSession;
+    final startTransaction = this.startTransaction;
+    return {
+      if (abortTransaction != null) 'AbortTransaction': abortTransaction,
+      if (commitTransaction != null) 'CommitTransaction': commitTransaction,
+      if (endSession != null) 'EndSession': endSession,
+      if (executeStatement != null) 'ExecuteStatement': executeStatement,
+      if (fetchPage != null) 'FetchPage': fetchPage,
+      if (startSession != null) 'StartSession': startSession,
+      if (startTransaction != null) 'StartTransaction': startTransaction,
+    };
+  }
 }
 
 /// Specifies a request to start a new session.
@@ -508,6 +627,12 @@ class StartSessionRequest {
   StartSessionRequest({
     required this.ledgerName,
   });
+  factory StartSessionRequest.fromJson(Map<String, dynamic> json) {
+    return StartSessionRequest(
+      ledgerName: json['LedgerName'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final ledgerName = this.ledgerName;
     return {
@@ -539,11 +664,24 @@ class StartSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sessionToken = this.sessionToken;
+    final timingInformation = this.timingInformation;
+    return {
+      if (sessionToken != null) 'SessionToken': sessionToken,
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+    };
+  }
 }
 
 /// Specifies a request to start a transaction.
 class StartTransactionRequest {
   StartTransactionRequest();
+  factory StartTransactionRequest.fromJson(Map<String, dynamic> _) {
+    return StartTransactionRequest();
+  }
+
   Map<String, dynamic> toJson() {
     return {};
   }
@@ -570,6 +708,15 @@ class StartTransactionResult {
       transactionId: json['TransactionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timingInformation = this.timingInformation;
+    final transactionId = this.transactionId;
+    return {
+      if (timingInformation != null) 'TimingInformation': timingInformation,
+      if (transactionId != null) 'TransactionId': transactionId,
+    };
+  }
 }
 
 /// Contains server-side performance information for a command. Amazon QLDB
@@ -587,6 +734,14 @@ class TimingInformation {
     return TimingInformation(
       processingTimeMilliseconds: json['ProcessingTimeMilliseconds'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processingTimeMilliseconds = this.processingTimeMilliseconds;
+    return {
+      if (processingTimeMilliseconds != null)
+        'ProcessingTimeMilliseconds': processingTimeMilliseconds,
+    };
   }
 }
 

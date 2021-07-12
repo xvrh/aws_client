@@ -1256,6 +1256,23 @@ class CreateDiscovererResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final discovererArn = this.discovererArn;
+    final discovererId = this.discovererId;
+    final sourceArn = this.sourceArn;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (discovererArn != null) 'DiscovererArn': discovererArn,
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateRegistryResponse {
@@ -1285,6 +1302,19 @@ class CreateRegistryResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final registryArn = this.registryArn;
+    final registryName = this.registryName;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (registryArn != null) 'RegistryArn': registryArn,
+      if (registryName != null) 'RegistryName': registryName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1334,6 +1364,28 @@ class CreateSchemaResponse {
       versionCreatedDate: timeStampFromJson(json['VersionCreatedDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastModified = this.lastModified;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersion = this.schemaVersion;
+    final tags = this.tags;
+    final type = this.type;
+    final versionCreatedDate = this.versionCreatedDate;
+    return {
+      if (description != null) 'Description': description,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'Type': type,
+      if (versionCreatedDate != null)
+        'VersionCreatedDate': iso8601ToJson(versionCreatedDate),
+    };
+  }
 }
 
 class DescribeCodeBindingResponse {
@@ -1362,6 +1414,19 @@ class DescribeCodeBindingResponse {
       schemaVersion: json['SchemaVersion'] as String?,
       status: (json['Status'] as String?)?.toCodeGenerationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModified = this.lastModified;
+    final schemaVersion = this.schemaVersion;
+    final status = this.status;
+    return {
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1403,6 +1468,23 @@ class DescribeDiscovererResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final discovererArn = this.discovererArn;
+    final discovererId = this.discovererId;
+    final sourceArn = this.sourceArn;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (discovererArn != null) 'DiscovererArn': discovererArn,
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribeRegistryResponse {
@@ -1432,6 +1514,19 @@ class DescribeRegistryResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final registryArn = this.registryArn;
+    final registryName = this.registryName;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (registryArn != null) 'RegistryArn': registryArn,
+      if (registryName != null) 'RegistryName': registryName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1487,6 +1582,30 @@ class DescribeSchemaResponse {
       type: json['Type'] as String?,
       versionCreatedDate: timeStampFromJson(json['VersionCreatedDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final description = this.description;
+    final lastModified = this.lastModified;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersion = this.schemaVersion;
+    final tags = this.tags;
+    final type = this.type;
+    final versionCreatedDate = this.versionCreatedDate;
+    return {
+      if (content != null) 'Content': content,
+      if (description != null) 'Description': description,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'Type': type,
+      if (versionCreatedDate != null)
+        'VersionCreatedDate': iso8601ToJson(versionCreatedDate),
+    };
   }
 }
 
@@ -1551,6 +1670,21 @@ class DiscovererSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final discovererArn = this.discovererArn;
+    final discovererId = this.discovererId;
+    final sourceArn = this.sourceArn;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (discovererArn != null) 'DiscovererArn': discovererArn,
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ExportSchemaResponse {
@@ -1576,6 +1710,21 @@ class ExportSchemaResponse {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersion = this.schemaVersion;
+    final type = this.type;
+    return {
+      if (content != null) 'Content': content,
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 class GetCodeBindingSourceResponse {
@@ -1584,6 +1733,18 @@ class GetCodeBindingSourceResponse {
   GetCodeBindingSourceResponse({
     this.body,
   });
+  factory GetCodeBindingSourceResponse.fromJson(Map<String, dynamic> json) {
+    return GetCodeBindingSourceResponse(
+      body: _s.decodeNullableUint8List(json['Body'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'Body': base64Encode(body),
+    };
+  }
 }
 
 class GetDiscoveredSchemaResponse {
@@ -1597,6 +1758,13 @@ class GetDiscoveredSchemaResponse {
     return GetDiscoveredSchemaResponse(
       content: json['Content'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'Content': content,
+    };
   }
 }
 
@@ -1617,6 +1785,15 @@ class GetResourcePolicyResponse {
           json['Policy'] == null ? null : jsonDecode(json['Policy'] as String),
       revisionId: json['RevisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      if (policy != null) 'Policy': jsonEncode(policy),
+      if (revisionId != null) 'RevisionId': revisionId,
+    };
   }
 }
 
@@ -1642,6 +1819,15 @@ class ListDiscoverersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final discoverers = this.discoverers;
+    final nextToken = this.nextToken;
+    return {
+      if (discoverers != null) 'Discoverers': discoverers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRegistriesResponse {
@@ -1665,6 +1851,15 @@ class ListRegistriesResponse {
           .map((e) => RegistrySummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final registries = this.registries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (registries != null) 'Registries': registries,
+    };
   }
 }
 
@@ -1690,6 +1885,15 @@ class ListSchemaVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemaVersions = this.schemaVersions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemaVersions != null) 'SchemaVersions': schemaVersions,
+    };
+  }
 }
 
 class ListSchemasResponse {
@@ -1714,6 +1918,15 @@ class ListSchemasResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemas = this.schemas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemas != null) 'Schemas': schemas,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1727,6 +1940,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1757,6 +1977,19 @@ class PutCodeBindingResponse {
       status: (json['Status'] as String?)?.toCodeGenerationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModified = this.lastModified;
+    final schemaVersion = this.schemaVersion;
+    final status = this.status;
+    return {
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class PutResourcePolicyResponse {
@@ -1776,6 +2009,15 @@ class PutResourcePolicyResponse {
           json['Policy'] == null ? null : jsonDecode(json['Policy'] as String),
       revisionId: json['RevisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      if (policy != null) 'Policy': jsonEncode(policy),
+      if (revisionId != null) 'RevisionId': revisionId,
+    };
   }
 }
 
@@ -1801,6 +2043,17 @@ class RegistrySummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final registryArn = this.registryArn;
+    final registryName = this.registryName;
+    final tags = this.tags;
+    return {
+      if (registryArn != null) 'RegistryArn': registryArn,
+      if (registryName != null) 'RegistryName': registryName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1838,6 +2091,21 @@ class SchemaSummary {
       versionCount: json['VersionCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModified = this.lastModified;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final tags = this.tags;
+    final versionCount = this.versionCount;
+    return {
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (tags != null) 'tags': tags,
+      if (versionCount != null) 'VersionCount': versionCount,
+    };
+  }
 }
 
 class SchemaVersionSummary {
@@ -1866,6 +2134,19 @@ class SchemaVersionSummary {
       schemaVersion: json['SchemaVersion'] as String?,
       type: (json['Type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersion = this.schemaVersion;
+    final type = this.type;
+    return {
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1900,6 +2181,19 @@ class SearchSchemaSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final registryName = this.registryName;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersions = this.schemaVersions;
+    return {
+      if (registryName != null) 'RegistryName': registryName,
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersions != null) 'SchemaVersions': schemaVersions,
+    };
+  }
 }
 
 class SearchSchemaVersionSummary {
@@ -1923,6 +2217,17 @@ class SearchSchemaVersionSummary {
       schemaVersion: json['SchemaVersion'] as String?,
       type: (json['Type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final schemaVersion = this.schemaVersion;
+    final type = this.type;
+    return {
+      if (createdDate != null) 'CreatedDate': iso8601ToJson(createdDate),
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1948,6 +2253,15 @@ class SearchSchemasResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemas = this.schemas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemas != null) 'Schemas': schemas,
+    };
+  }
 }
 
 class StartDiscovererResponse {
@@ -1967,6 +2281,15 @@ class StartDiscovererResponse {
       state: (json['State'] as String?)?.toDiscovererState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final discovererId = this.discovererId;
+    final state = this.state;
+    return {
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class StopDiscovererResponse {
@@ -1985,6 +2308,15 @@ class StopDiscovererResponse {
       discovererId: json['DiscovererId'] as String?,
       state: (json['State'] as String?)?.toDiscovererState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final discovererId = this.discovererId;
+    final state = this.state;
+    return {
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -2054,6 +2386,23 @@ class UpdateDiscovererResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final discovererArn = this.discovererArn;
+    final discovererId = this.discovererId;
+    final sourceArn = this.sourceArn;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (discovererArn != null) 'DiscovererArn': discovererArn,
+      if (discovererId != null) 'DiscovererId': discovererId,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateRegistryResponse {
@@ -2083,6 +2432,19 @@ class UpdateRegistryResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final registryArn = this.registryArn;
+    final registryName = this.registryName;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (registryArn != null) 'RegistryArn': registryArn,
+      if (registryName != null) 'RegistryName': registryName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2131,6 +2493,28 @@ class UpdateSchemaResponse {
       type: json['Type'] as String?,
       versionCreatedDate: timeStampFromJson(json['VersionCreatedDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastModified = this.lastModified;
+    final schemaArn = this.schemaArn;
+    final schemaName = this.schemaName;
+    final schemaVersion = this.schemaVersion;
+    final tags = this.tags;
+    final type = this.type;
+    final versionCreatedDate = this.versionCreatedDate;
+    return {
+      if (description != null) 'Description': description,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (schemaVersion != null) 'SchemaVersion': schemaVersion,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'Type': type,
+      if (versionCreatedDate != null)
+        'VersionCreatedDate': iso8601ToJson(versionCreatedDate),
+    };
   }
 }
 

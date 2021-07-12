@@ -460,6 +460,13 @@ class CreateOutpostOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final outpost = this.outpost;
+    return {
+      if (outpost != null) 'Outpost': outpost,
+    };
+  }
 }
 
 class DeleteOutpostOutput {
@@ -467,12 +474,20 @@ class DeleteOutpostOutput {
   factory DeleteOutpostOutput.fromJson(Map<String, dynamic> _) {
     return DeleteOutpostOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSiteOutput {
   DeleteSiteOutput();
   factory DeleteSiteOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSiteOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -499,6 +514,19 @@ class GetOutpostInstanceTypesOutput {
       outpostId: json['OutpostId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceTypes = this.instanceTypes;
+    final nextToken = this.nextToken;
+    final outpostArn = this.outpostArn;
+    final outpostId = this.outpostId;
+    return {
+      if (instanceTypes != null) 'InstanceTypes': instanceTypes,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (outpostArn != null) 'OutpostArn': outpostArn,
+      if (outpostId != null) 'OutpostId': outpostId,
+    };
+  }
 }
 
 class GetOutpostOutput {
@@ -514,6 +542,13 @@ class GetOutpostOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final outpost = this.outpost;
+    return {
+      if (outpost != null) 'Outpost': outpost,
+    };
+  }
 }
 
 /// Information about an instance type.
@@ -527,6 +562,13 @@ class InstanceTypeItem {
     return InstanceTypeItem(
       instanceType: json['InstanceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceType = this.instanceType;
+    return {
+      if (instanceType != null) 'InstanceType': instanceType,
+    };
   }
 }
 
@@ -547,6 +589,15 @@ class ListOutpostsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final outposts = this.outposts;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (outposts != null) 'Outposts': outposts,
+    };
+  }
 }
 
 class ListSitesOutput {
@@ -566,6 +617,15 @@ class ListSitesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sites = this.sites;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sites != null) 'Sites': sites,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -580,6 +640,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -628,6 +695,33 @@ class Outpost {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final description = this.description;
+    final lifeCycleStatus = this.lifeCycleStatus;
+    final name = this.name;
+    final outpostArn = this.outpostArn;
+    final outpostId = this.outpostId;
+    final ownerId = this.ownerId;
+    final siteArn = this.siteArn;
+    final siteId = this.siteId;
+    final tags = this.tags;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'AvailabilityZoneId': availabilityZoneId,
+      if (description != null) 'Description': description,
+      if (lifeCycleStatus != null) 'LifeCycleStatus': lifeCycleStatus,
+      if (name != null) 'Name': name,
+      if (outpostArn != null) 'OutpostArn': outpostArn,
+      if (outpostId != null) 'OutpostId': outpostId,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (siteArn != null) 'SiteArn': siteArn,
+      if (siteId != null) 'SiteId': siteId,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Information about a site.
@@ -660,6 +754,23 @@ class Site {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final description = this.description;
+    final name = this.name;
+    final siteArn = this.siteArn;
+    final siteId = this.siteId;
+    final tags = this.tags;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (siteArn != null) 'SiteArn': siteArn,
+      if (siteId != null) 'SiteId': siteId,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -667,12 +778,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

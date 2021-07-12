@@ -232,6 +232,18 @@ class GetMediaOutput {
     this.contentType,
     this.payload,
   });
+  factory GetMediaOutput.fromJson(Map<String, dynamic> json) {
+    return GetMediaOutput(
+      payload: _s.decodeNullableUint8List(json['Payload'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 /// Identifies the chunk on the Kinesis video stream where you want the
@@ -305,6 +317,16 @@ class StartSelector {
     this.continuationToken,
     this.startTimestamp,
   });
+  factory StartSelector.fromJson(Map<String, dynamic> json) {
+    return StartSelector(
+      startSelectorType:
+          (json['StartSelectorType'] as String).toStartSelectorType(),
+      afterFragmentNumber: json['AfterFragmentNumber'] as String?,
+      continuationToken: json['ContinuationToken'] as String?,
+      startTimestamp: timeStampFromJson(json['StartTimestamp']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final startSelectorType = this.startSelectorType;
     final afterFragmentNumber = this.afterFragmentNumber;

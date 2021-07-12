@@ -719,6 +719,21 @@ class AnalyzeDocumentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analyzeDocumentModelVersion = this.analyzeDocumentModelVersion;
+    final blocks = this.blocks;
+    final documentMetadata = this.documentMetadata;
+    final humanLoopActivationOutput = this.humanLoopActivationOutput;
+    return {
+      if (analyzeDocumentModelVersion != null)
+        'AnalyzeDocumentModelVersion': analyzeDocumentModelVersion,
+      if (blocks != null) 'Blocks': blocks,
+      if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
+      if (humanLoopActivationOutput != null)
+        'HumanLoopActivationOutput': humanLoopActivationOutput,
+    };
+  }
 }
 
 /// A <code>Block</code> represents items that are recognized in a document
@@ -925,6 +940,40 @@ class Block {
       textType: (json['TextType'] as String?)?.toTextType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blockType = this.blockType;
+    final columnIndex = this.columnIndex;
+    final columnSpan = this.columnSpan;
+    final confidence = this.confidence;
+    final entityTypes = this.entityTypes;
+    final geometry = this.geometry;
+    final id = this.id;
+    final page = this.page;
+    final relationships = this.relationships;
+    final rowIndex = this.rowIndex;
+    final rowSpan = this.rowSpan;
+    final selectionStatus = this.selectionStatus;
+    final text = this.text;
+    final textType = this.textType;
+    return {
+      if (blockType != null) 'BlockType': blockType.toValue(),
+      if (columnIndex != null) 'ColumnIndex': columnIndex,
+      if (columnSpan != null) 'ColumnSpan': columnSpan,
+      if (confidence != null) 'Confidence': confidence,
+      if (entityTypes != null)
+        'EntityTypes': entityTypes.map((e) => e.toValue()).toList(),
+      if (geometry != null) 'Geometry': geometry,
+      if (id != null) 'Id': id,
+      if (page != null) 'Page': page,
+      if (relationships != null) 'Relationships': relationships,
+      if (rowIndex != null) 'RowIndex': rowIndex,
+      if (rowSpan != null) 'RowSpan': rowSpan,
+      if (selectionStatus != null) 'SelectionStatus': selectionStatus.toValue(),
+      if (text != null) 'Text': text,
+      if (textType != null) 'TextType': textType.toValue(),
+    };
+  }
 }
 
 enum BlockType {
@@ -1026,6 +1075,19 @@ class BoundingBox {
       width: json['Width'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final height = this.height;
+    final left = this.left;
+    final top = this.top;
+    final width = this.width;
+    return {
+      if (height != null) 'Height': height,
+      if (left != null) 'Left': left,
+      if (top != null) 'Top': top,
+      if (width != null) 'Width': width,
+    };
+  }
 }
 
 enum ContentClassifier {
@@ -1087,6 +1149,18 @@ class DetectDocumentTextResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blocks = this.blocks;
+    final detectDocumentTextModelVersion = this.detectDocumentTextModelVersion;
+    final documentMetadata = this.documentMetadata;
+    return {
+      if (blocks != null) 'Blocks': blocks,
+      if (detectDocumentTextModelVersion != null)
+        'DetectDocumentTextModelVersion': detectDocumentTextModelVersion,
+      if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
+    };
+  }
 }
 
 /// The input document, either as bytes or as an S3 object.
@@ -1129,6 +1203,15 @@ class Document {
     this.bytes,
     this.s3Object,
   });
+  factory Document.fromJson(Map<String, dynamic> json) {
+    return Document(
+      bytes: _s.decodeNullableUint8List(json['Bytes'] as String?),
+      s3Object: json['S3Object'] != null
+          ? S3Object.fromJson(json['S3Object'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bytes = this.bytes;
     final s3Object = this.s3Object;
@@ -1151,6 +1234,14 @@ class DocumentLocation {
   DocumentLocation({
     this.s3Object,
   });
+  factory DocumentLocation.fromJson(Map<String, dynamic> json) {
+    return DocumentLocation(
+      s3Object: json['S3Object'] != null
+          ? S3Object.fromJson(json['S3Object'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Object = this.s3Object;
     return {
@@ -1171,6 +1262,13 @@ class DocumentMetadata {
     return DocumentMetadata(
       pages: json['Pages'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pages = this.pages;
+    return {
+      if (pages != null) 'Pages': pages,
+    };
   }
 }
 
@@ -1256,6 +1354,15 @@ class Geometry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final polygon = this.polygon;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (polygon != null) 'Polygon': polygon,
+    };
+  }
 }
 
 class GetDocumentAnalysisResponse {
@@ -1314,6 +1421,26 @@ class GetDocumentAnalysisResponse {
           .map((e) => Warning.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analyzeDocumentModelVersion = this.analyzeDocumentModelVersion;
+    final blocks = this.blocks;
+    final documentMetadata = this.documentMetadata;
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final warnings = this.warnings;
+    return {
+      if (analyzeDocumentModelVersion != null)
+        'AnalyzeDocumentModelVersion': analyzeDocumentModelVersion,
+      if (blocks != null) 'Blocks': blocks,
+      if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (warnings != null) 'Warnings': warnings,
+    };
   }
 }
 
@@ -1375,6 +1502,26 @@ class GetDocumentTextDetectionResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blocks = this.blocks;
+    final detectDocumentTextModelVersion = this.detectDocumentTextModelVersion;
+    final documentMetadata = this.documentMetadata;
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final warnings = this.warnings;
+    return {
+      if (blocks != null) 'Blocks': blocks,
+      if (detectDocumentTextModelVersion != null)
+        'DetectDocumentTextModelVersion': detectDocumentTextModelVersion,
+      if (documentMetadata != null) 'DocumentMetadata': documentMetadata,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (warnings != null) 'Warnings': warnings,
+    };
+  }
 }
 
 /// Shows the results of the human in the loop evaluation. If there is no
@@ -1410,6 +1557,21 @@ class HumanLoopActivationOutput {
       humanLoopArn: json['HumanLoopArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final humanLoopActivationConditionsEvaluationResults =
+        this.humanLoopActivationConditionsEvaluationResults;
+    final humanLoopActivationReasons = this.humanLoopActivationReasons;
+    final humanLoopArn = this.humanLoopArn;
+    return {
+      if (humanLoopActivationConditionsEvaluationResults != null)
+        'HumanLoopActivationConditionsEvaluationResults':
+            jsonEncode(humanLoopActivationConditionsEvaluationResults),
+      if (humanLoopActivationReasons != null)
+        'HumanLoopActivationReasons': humanLoopActivationReasons,
+      if (humanLoopArn != null) 'HumanLoopArn': humanLoopArn,
+    };
+  }
 }
 
 /// Sets up the human review workflow the document will be sent to if one of the
@@ -1431,6 +1593,17 @@ class HumanLoopConfig {
     required this.humanLoopName,
     this.dataAttributes,
   });
+  factory HumanLoopConfig.fromJson(Map<String, dynamic> json) {
+    return HumanLoopConfig(
+      flowDefinitionArn: json['FlowDefinitionArn'] as String,
+      humanLoopName: json['HumanLoopName'] as String,
+      dataAttributes: json['DataAttributes'] != null
+          ? HumanLoopDataAttributes.fromJson(
+              json['DataAttributes'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final flowDefinitionArn = this.flowDefinitionArn;
     final humanLoopName = this.humanLoopName;
@@ -1453,6 +1626,15 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     this.contentClassifiers,
   });
+  factory HumanLoopDataAttributes.fromJson(Map<String, dynamic> json) {
+    return HumanLoopDataAttributes(
+      contentClassifiers: (json['ContentClassifiers'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toContentClassifier())
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final contentClassifiers = this.contentClassifiers;
     return {
@@ -1516,6 +1698,13 @@ class NotificationChannel {
     required this.roleArn,
     required this.sNSTopicArn,
   });
+  factory NotificationChannel.fromJson(Map<String, dynamic> json) {
+    return NotificationChannel(
+      roleArn: json['RoleArn'] as String,
+      sNSTopicArn: json['SNSTopicArn'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final roleArn = this.roleArn;
     final sNSTopicArn = this.sNSTopicArn;
@@ -1540,6 +1729,13 @@ class OutputConfig {
     required this.s3Bucket,
     this.s3Prefix,
   });
+  factory OutputConfig.fromJson(Map<String, dynamic> json) {
+    return OutputConfig(
+      s3Bucket: json['S3Bucket'] as String,
+      s3Prefix: json['S3Prefix'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Bucket = this.s3Bucket;
     final s3Prefix = this.s3Prefix;
@@ -1577,6 +1773,15 @@ class Point {
       y: json['Y'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final x = this.x;
+    final y = this.y;
+    return {
+      if (x != null) 'X': x,
+      if (y != null) 'Y': y,
+    };
+  }
 }
 
 /// Information about how blocks are related to each other. A <code>Block</code>
@@ -1611,6 +1816,15 @@ class Relationship {
           .toList(),
       type: (json['Type'] as String?)?.toRelationshipType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final type = this.type;
+    return {
+      if (ids != null) 'Ids': ids,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1671,6 +1885,14 @@ class S3Object {
     this.name,
     this.version,
   });
+  factory S3Object.fromJson(Map<String, dynamic> json) {
+    return S3Object(
+      bucket: json['Bucket'] as String?,
+      name: json['Name'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final name = this.name;
@@ -1726,6 +1948,13 @@ class StartDocumentAnalysisResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartDocumentTextDetectionResponse {
@@ -1743,6 +1972,13 @@ class StartDocumentTextDetectionResponse {
     return StartDocumentTextDetectionResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -1796,6 +2032,15 @@ class Warning {
           .map((e) => e as int)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final pages = this.pages;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (pages != null) 'Pages': pages,
+    };
   }
 }
 

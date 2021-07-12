@@ -1293,6 +1293,27 @@ class BackendJobRespObj {
       updateTime: json['updateTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final createTime = this.createTime;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      'appId': appId,
+      'backendEnvironmentName': backendEnvironmentName,
+      if (createTime != null) 'createTime': createTime,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+      if (updateTime != null) 'updateTime': updateTime,
+    };
+  }
 }
 
 class CloneBackendResponse {
@@ -1332,6 +1353,24 @@ class CloneBackendResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class CreateBackendAPIResponse {
@@ -1370,6 +1409,24 @@ class CreateBackendAPIResponse {
       operation: json['operation'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -1684,6 +1741,24 @@ class CreateBackendAuthResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the Amazon Cognito user pool configuration for the auth resource
@@ -1800,6 +1875,20 @@ class CreateBackendConfigResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final jobId = this.jobId;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (jobId != null) 'jobId': jobId,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class CreateBackendResponse {
@@ -1839,6 +1928,24 @@ class CreateBackendResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class CreateTokenResponse {
@@ -1867,6 +1974,19 @@ class CreateTokenResponse {
       sessionId: json['sessionId'] as String?,
       ttl: json['ttl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final challengeCode = this.challengeCode;
+    final sessionId = this.sessionId;
+    final ttl = this.ttl;
+    return {
+      if (appId != null) 'appId': appId,
+      if (challengeCode != null) 'challengeCode': challengeCode,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (ttl != null) 'ttl': ttl,
+    };
   }
 }
 
@@ -1907,6 +2027,24 @@ class DeleteBackendAPIResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DeleteBackendAuthResponse {
@@ -1945,6 +2083,24 @@ class DeleteBackendAuthResponse {
       operation: json['operation'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -1985,6 +2141,24 @@ class DeleteBackendResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DeleteTokenResponse {
@@ -1998,6 +2172,13 @@ class DeleteTokenResponse {
     return DeleteTokenResponse(
       isSuccess: json['isSuccess'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isSuccess = this.isSuccess;
+    return {
+      if (isSuccess != null) 'isSuccess': isSuccess,
+    };
   }
 }
 
@@ -2096,6 +2277,24 @@ class GenerateBackendAPIModelsResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class GetBackendAPIModelsResponse {
@@ -2114,6 +2313,15 @@ class GetBackendAPIModelsResponse {
       models: json['models'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final status = this.status;
+    return {
+      if (models != null) 'models': models,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -2152,6 +2360,22 @@ class GetBackendAPIResponse {
       resourceName: json['resourceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final resourceConfig = this.resourceConfig;
+    final resourceName = this.resourceName;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (resourceConfig != null) 'resourceConfig': resourceConfig,
+      if (resourceName != null) 'resourceName': resourceName,
+    };
+  }
 }
 
 class GetBackendAuthResponse {
@@ -2189,6 +2413,22 @@ class GetBackendAuthResponse {
           : null,
       resourceName: json['resourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final resourceConfig = this.resourceConfig;
+    final resourceName = this.resourceName;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (resourceConfig != null) 'resourceConfig': resourceConfig,
+      if (resourceName != null) 'resourceName': resourceName,
+    };
   }
 }
 
@@ -2239,6 +2479,28 @@ class GetBackendJobResponse {
       updateTime: json['updateTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final createTime = this.createTime;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (createTime != null) 'createTime': createTime,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+      if (updateTime != null) 'updateTime': updateTime,
+    };
+  }
 }
 
 class GetBackendResponse {
@@ -2281,6 +2543,25 @@ class GetBackendResponse {
       error: json['error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amplifyMetaConfig = this.amplifyMetaConfig;
+    final appId = this.appId;
+    final appName = this.appName;
+    final backendEnvironmentList = this.backendEnvironmentList;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    return {
+      if (amplifyMetaConfig != null) 'amplifyMetaConfig': amplifyMetaConfig,
+      if (appId != null) 'appId': appId,
+      if (appName != null) 'appName': appName,
+      if (backendEnvironmentList != null)
+        'backendEnvironmentList': backendEnvironmentList,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 class GetTokenResponse {
@@ -2309,6 +2590,19 @@ class GetTokenResponse {
       sessionId: json['sessionId'] as String?,
       ttl: json['ttl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final challengeCode = this.challengeCode;
+    final sessionId = this.sessionId;
+    final ttl = this.ttl;
+    return {
+      if (appId != null) 'appId': appId,
+      if (challengeCode != null) 'challengeCode': challengeCode,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (ttl != null) 'ttl': ttl,
+    };
   }
 }
 
@@ -2349,6 +2643,24 @@ class ImportBackendAuthResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class ListBackendJobsResponse {
@@ -2370,6 +2682,15 @@ class ListBackendJobsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2551,6 +2872,21 @@ class RemoveAllBackendsResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class RemoveBackendConfigResponse {
@@ -2564,6 +2900,13 @@ class RemoveBackendConfigResponse {
     return RemoveBackendConfigResponse(
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    return {
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2609,6 +2952,10 @@ extension on String {
 /// project.
 class ResourceConfig {
   ResourceConfig();
+  factory ResourceConfig.fromJson(Map<String, dynamic> _) {
+    return ResourceConfig();
+  }
+
   Map<String, dynamic> toJson() {
     return {};
   }
@@ -2837,6 +3184,24 @@ class UpdateBackendAPIResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the forgot password policy for authenticating into the Amplify
@@ -2859,6 +3224,20 @@ class UpdateBackendAuthForgotPasswordConfig {
     this.emailSettings,
     this.smsSettings,
   });
+  factory UpdateBackendAuthForgotPasswordConfig.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateBackendAuthForgotPasswordConfig(
+      deliveryMethod: (json['deliveryMethod'] as String?)?.toDeliveryMethod(),
+      emailSettings: json['emailSettings'] != null
+          ? EmailSettings.fromJson(
+              json['emailSettings'] as Map<String, dynamic>)
+          : null,
+      smsSettings: json['smsSettings'] != null
+          ? SmsSettings.fromJson(json['smsSettings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final deliveryMethod = this.deliveryMethod;
     final emailSettings = this.emailSettings;
@@ -2881,6 +3260,13 @@ class UpdateBackendAuthIdentityPoolConfig {
   UpdateBackendAuthIdentityPoolConfig({
     this.unauthenticatedLogin,
   });
+  factory UpdateBackendAuthIdentityPoolConfig.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateBackendAuthIdentityPoolConfig(
+      unauthenticatedLogin: json['unauthenticatedLogin'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final unauthenticatedLogin = this.unauthenticatedLogin;
     return {
@@ -2904,6 +3290,15 @@ class UpdateBackendAuthMFAConfig {
     this.mFAMode,
     this.settings,
   });
+  factory UpdateBackendAuthMFAConfig.fromJson(Map<String, dynamic> json) {
+    return UpdateBackendAuthMFAConfig(
+      mFAMode: (json['MFAMode'] as String?)?.toMFAMode(),
+      settings: json['settings'] != null
+          ? Settings.fromJson(json['settings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final mFAMode = this.mFAMode;
     final settings = this.settings;
@@ -2946,6 +3341,29 @@ class UpdateBackendAuthOAuthConfig {
     this.redirectSignOutURIs,
     this.socialProviderSettings,
   });
+  factory UpdateBackendAuthOAuthConfig.fromJson(Map<String, dynamic> json) {
+    return UpdateBackendAuthOAuthConfig(
+      domainPrefix: json['domainPrefix'] as String?,
+      oAuthGrantType: (json['oAuthGrantType'] as String?)?.toOAuthGrantType(),
+      oAuthScopes: (json['oAuthScopes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toOAuthScopesElement())
+          .toList(),
+      redirectSignInURIs: (json['redirectSignInURIs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      redirectSignOutURIs: (json['redirectSignOutURIs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      socialProviderSettings: json['socialProviderSettings'] != null
+          ? SocialProviderSettings.fromJson(
+              json['socialProviderSettings'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final domainPrefix = this.domainPrefix;
     final oAuthGrantType = this.oAuthGrantType;
@@ -2982,6 +3400,17 @@ class UpdateBackendAuthPasswordPolicyConfig {
     this.additionalConstraints,
     this.minimumLength,
   });
+  factory UpdateBackendAuthPasswordPolicyConfig.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateBackendAuthPasswordPolicyConfig(
+      additionalConstraints: (json['additionalConstraints'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toAdditionalConstraintsElement())
+          .toList(),
+      minimumLength: json['minimumLength'] as double?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final additionalConstraints = this.additionalConstraints;
     final minimumLength = this.minimumLength;
@@ -3019,6 +3448,19 @@ class UpdateBackendAuthResourceConfig {
     required this.userPoolConfigs,
     this.identityPoolConfigs,
   });
+  factory UpdateBackendAuthResourceConfig.fromJson(Map<String, dynamic> json) {
+    return UpdateBackendAuthResourceConfig(
+      authResources: (json['authResources'] as String).toAuthResources(),
+      service: (json['service'] as String).toService(),
+      userPoolConfigs: UpdateBackendAuthUserPoolConfig.fromJson(
+          json['userPoolConfigs'] as Map<String, dynamic>),
+      identityPoolConfigs: json['identityPoolConfigs'] != null
+          ? UpdateBackendAuthIdentityPoolConfig.fromJson(
+              json['identityPoolConfigs'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final authResources = this.authResources;
     final service = this.service;
@@ -3071,6 +3513,24 @@ class UpdateBackendAuthResponse {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the Amazon Cognito user pool configuration for the authorization
@@ -3098,6 +3558,27 @@ class UpdateBackendAuthUserPoolConfig {
     this.oAuth,
     this.passwordPolicy,
   });
+  factory UpdateBackendAuthUserPoolConfig.fromJson(Map<String, dynamic> json) {
+    return UpdateBackendAuthUserPoolConfig(
+      forgotPassword: json['forgotPassword'] != null
+          ? UpdateBackendAuthForgotPasswordConfig.fromJson(
+              json['forgotPassword'] as Map<String, dynamic>)
+          : null,
+      mfa: json['mfa'] != null
+          ? UpdateBackendAuthMFAConfig.fromJson(
+              json['mfa'] as Map<String, dynamic>)
+          : null,
+      oAuth: json['oAuth'] != null
+          ? UpdateBackendAuthOAuthConfig.fromJson(
+              json['oAuth'] as Map<String, dynamic>)
+          : null,
+      passwordPolicy: json['passwordPolicy'] != null
+          ? UpdateBackendAuthPasswordPolicyConfig.fromJson(
+              json['passwordPolicy'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final forgotPassword = this.forgotPassword;
     final mfa = this.mfa;
@@ -3142,6 +3623,20 @@ class UpdateBackendConfigResponse {
               json['loginAuthConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendManagerAppId = this.backendManagerAppId;
+    final error = this.error;
+    final loginAuthConfig = this.loginAuthConfig;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendManagerAppId != null)
+        'backendManagerAppId': backendManagerAppId,
+      if (error != null) 'error': error,
+      if (loginAuthConfig != null) 'loginAuthConfig': loginAuthConfig,
+    };
   }
 }
 
@@ -3191,6 +3686,28 @@ class UpdateBackendJobResponse {
       status: json['status'] as String?,
       updateTime: json['updateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final backendEnvironmentName = this.backendEnvironmentName;
+    final createTime = this.createTime;
+    final error = this.error;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      if (appId != null) 'appId': appId,
+      if (backendEnvironmentName != null)
+        'backendEnvironmentName': backendEnvironmentName,
+      if (createTime != null) 'createTime': createTime,
+      if (error != null) 'error': error,
+      if (jobId != null) 'jobId': jobId,
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+      if (updateTime != null) 'updateTime': updateTime,
+    };
   }
 }
 

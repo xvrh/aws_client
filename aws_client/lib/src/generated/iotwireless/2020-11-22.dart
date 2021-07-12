@@ -2524,6 +2524,15 @@ class AssociateAwsAccountWithPartnerAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final sidewalk = this.sidewalk;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+    };
+  }
 }
 
 class AssociateWirelessDeviceWithThingResponse {
@@ -2531,6 +2540,10 @@ class AssociateWirelessDeviceWithThingResponse {
   factory AssociateWirelessDeviceWithThingResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateWirelessDeviceWithThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2547,6 +2560,13 @@ class AssociateWirelessGatewayWithCertificateResponse {
       iotCertificateId: json['IotCertificateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iotCertificateId = this.iotCertificateId;
+    return {
+      if (iotCertificateId != null) 'IotCertificateId': iotCertificateId,
+    };
+  }
 }
 
 class AssociateWirelessGatewayWithThingResponse {
@@ -2554,6 +2574,10 @@ class AssociateWirelessGatewayWithThingResponse {
   factory AssociateWirelessGatewayWithThingResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateWirelessGatewayWithThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2609,6 +2633,15 @@ class CertificateList {
       value: json['Value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final signingAlg = this.signingAlg;
+    final value = this.value;
+    return {
+      'SigningAlg': signingAlg.toValue(),
+      'Value': value,
+    };
+  }
 }
 
 enum ConnectionStatus {
@@ -2656,6 +2689,15 @@ class CreateDestinationResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateDeviceProfileResponse {
@@ -2674,6 +2716,15 @@ class CreateDeviceProfileResponse {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -2694,6 +2745,15 @@ class CreateServiceProfileResponse {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class CreateWirelessDeviceResponse {
@@ -2712,6 +2772,15 @@ class CreateWirelessDeviceResponse {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -2732,6 +2801,15 @@ class CreateWirelessGatewayResponse {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class CreateWirelessGatewayTaskDefinitionResponse {
@@ -2751,6 +2829,15 @@ class CreateWirelessGatewayTaskDefinitionResponse {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -2773,12 +2860,27 @@ class CreateWirelessGatewayTaskResponse {
           json['WirelessGatewayTaskDefinitionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final wirelessGatewayTaskDefinitionId =
+        this.wirelessGatewayTaskDefinitionId;
+    return {
+      if (status != null) 'Status': status.toValue(),
+      if (wirelessGatewayTaskDefinitionId != null)
+        'WirelessGatewayTaskDefinitionId': wirelessGatewayTaskDefinitionId,
+    };
+  }
 }
 
 class DeleteDestinationResponse {
   DeleteDestinationResponse();
   factory DeleteDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2787,12 +2889,20 @@ class DeleteDeviceProfileResponse {
   factory DeleteDeviceProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteServiceProfileResponse {
   DeleteServiceProfileResponse();
   factory DeleteServiceProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServiceProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2801,12 +2911,20 @@ class DeleteWirelessDeviceResponse {
   factory DeleteWirelessDeviceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessDeviceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWirelessGatewayResponse {
   DeleteWirelessGatewayResponse();
   factory DeleteWirelessGatewayResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessGatewayResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2816,12 +2934,20 @@ class DeleteWirelessGatewayTaskDefinitionResponse {
       Map<String, dynamic> _) {
     return DeleteWirelessGatewayTaskDefinitionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWirelessGatewayTaskResponse {
   DeleteWirelessGatewayTaskResponse();
   factory DeleteWirelessGatewayTaskResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessGatewayTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2863,6 +2989,23 @@ class Destinations {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final expression = this.expression;
+    final expressionType = this.expressionType;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (expression != null) 'Expression': expression,
+      if (expressionType != null) 'ExpressionType': expressionType.toValue(),
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 /// Describes a device profile.
@@ -2887,6 +3030,17 @@ class DeviceProfile {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -2935,6 +3089,10 @@ class DisassociateAwsAccountFromPartnerAccountResponse {
       Map<String, dynamic> _) {
     return DisassociateAwsAccountFromPartnerAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateWirelessDeviceFromThingResponse {
@@ -2942,6 +3100,10 @@ class DisassociateWirelessDeviceFromThingResponse {
   factory DisassociateWirelessDeviceFromThingResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWirelessDeviceFromThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2951,6 +3113,10 @@ class DisassociateWirelessGatewayFromCertificateResponse {
       Map<String, dynamic> _) {
     return DisassociateWirelessGatewayFromCertificateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateWirelessGatewayFromThingResponse {
@@ -2958,6 +3124,10 @@ class DisassociateWirelessGatewayFromThingResponse {
   factory DisassociateWirelessGatewayFromThingResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWirelessGatewayFromThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3070,6 +3240,23 @@ class GetDestinationResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final expression = this.expression;
+    final expressionType = this.expressionType;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (expression != null) 'Expression': expression,
+      if (expressionType != null) 'ExpressionType': expressionType.toValue(),
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class GetDeviceProfileResponse {
@@ -3102,6 +3289,19 @@ class GetDeviceProfileResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class GetLogLevelsByResourceTypesResponse {
@@ -3130,6 +3330,19 @@ class GetLogLevelsByResourceTypesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultLogLevel = this.defaultLogLevel;
+    final wirelessDeviceLogOptions = this.wirelessDeviceLogOptions;
+    final wirelessGatewayLogOptions = this.wirelessGatewayLogOptions;
+    return {
+      if (defaultLogLevel != null) 'DefaultLogLevel': defaultLogLevel.toValue(),
+      if (wirelessDeviceLogOptions != null)
+        'WirelessDeviceLogOptions': wirelessDeviceLogOptions,
+      if (wirelessGatewayLogOptions != null)
+        'WirelessGatewayLogOptions': wirelessGatewayLogOptions,
+    };
+  }
 }
 
 class GetPartnerAccountResponse {
@@ -3152,6 +3365,15 @@ class GetPartnerAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountLinked = this.accountLinked;
+    final sidewalk = this.sidewalk;
+    return {
+      if (accountLinked != null) 'AccountLinked': accountLinked,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+    };
+  }
 }
 
 class GetResourceLogLevelResponse {
@@ -3164,6 +3386,13 @@ class GetResourceLogLevelResponse {
     return GetResourceLogLevelResponse(
       logLevel: (json['LogLevel'] as String?)?.toLogLevel(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    return {
+      if (logLevel != null) 'LogLevel': logLevel.toValue(),
+    };
   }
 }
 
@@ -3189,6 +3418,17 @@ class GetServiceEndpointResponse {
       serviceType:
           (json['ServiceType'] as String?)?.toWirelessGatewayServiceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverTrust = this.serverTrust;
+    final serviceEndpoint = this.serviceEndpoint;
+    final serviceType = this.serviceType;
+    return {
+      if (serverTrust != null) 'ServerTrust': serverTrust,
+      if (serviceEndpoint != null) 'ServiceEndpoint': serviceEndpoint,
+      if (serviceType != null) 'ServiceType': serviceType.toValue(),
+    };
   }
 }
 
@@ -3221,6 +3461,19 @@ class GetServiceProfileResponse {
           : null,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3286,6 +3539,31 @@ class GetWirelessDeviceResponse {
       type: (json['Type'] as String?)?.toWirelessDeviceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final destinationName = this.destinationName;
+    final id = this.id;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    final sidewalk = this.sidewalk;
+    final thingArn = this.thingArn;
+    final thingName = this.thingName;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (destinationName != null) 'DestinationName': destinationName,
+      if (id != null) 'Id': id,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+      if (thingArn != null) 'ThingArn': thingArn,
+      if (thingName != null) 'ThingName': thingName,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 class GetWirelessDeviceStatisticsResponse {
@@ -3322,6 +3600,20 @@ class GetWirelessDeviceStatisticsResponse {
       wirelessDeviceId: json['WirelessDeviceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUplinkReceivedAt = this.lastUplinkReceivedAt;
+    final loRaWAN = this.loRaWAN;
+    final sidewalk = this.sidewalk;
+    final wirelessDeviceId = this.wirelessDeviceId;
+    return {
+      if (lastUplinkReceivedAt != null)
+        'LastUplinkReceivedAt': lastUplinkReceivedAt,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+      if (wirelessDeviceId != null) 'WirelessDeviceId': wirelessDeviceId,
+    };
+  }
 }
 
 class GetWirelessGatewayCertificateResponse {
@@ -3344,6 +3636,17 @@ class GetWirelessGatewayCertificateResponse {
           json['LoRaWANNetworkServerCertificateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iotCertificateId = this.iotCertificateId;
+    final loRaWANNetworkServerCertificateId =
+        this.loRaWANNetworkServerCertificateId;
+    return {
+      if (iotCertificateId != null) 'IotCertificateId': iotCertificateId,
+      if (loRaWANNetworkServerCertificateId != null)
+        'LoRaWANNetworkServerCertificateId': loRaWANNetworkServerCertificateId,
+    };
+  }
 }
 
 class GetWirelessGatewayFirmwareInformationResponse {
@@ -3361,6 +3664,13 @@ class GetWirelessGatewayFirmwareInformationResponse {
               json['LoRaWAN'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loRaWAN = this.loRaWAN;
+    return {
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+    };
   }
 }
 
@@ -3409,6 +3719,25 @@ class GetWirelessGatewayResponse {
       thingName: json['ThingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    final thingArn = this.thingArn;
+    final thingName = this.thingName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+      if (thingArn != null) 'ThingArn': thingArn,
+      if (thingName != null) 'ThingName': thingName,
+    };
+  }
 }
 
 class GetWirelessGatewayStatisticsResponse {
@@ -3434,6 +3763,19 @@ class GetWirelessGatewayStatisticsResponse {
       lastUplinkReceivedAt: json['LastUplinkReceivedAt'] as String?,
       wirelessGatewayId: json['WirelessGatewayId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionStatus = this.connectionStatus;
+    final lastUplinkReceivedAt = this.lastUplinkReceivedAt;
+    final wirelessGatewayId = this.wirelessGatewayId;
+    return {
+      if (connectionStatus != null)
+        'ConnectionStatus': connectionStatus.toValue(),
+      if (lastUplinkReceivedAt != null)
+        'LastUplinkReceivedAt': lastUplinkReceivedAt,
+      if (wirelessGatewayId != null) 'WirelessGatewayId': wirelessGatewayId,
+    };
   }
 }
 
@@ -3470,6 +3812,19 @@ class GetWirelessGatewayTaskDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final autoCreateTasks = this.autoCreateTasks;
+    final name = this.name;
+    final update = this.update;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (autoCreateTasks != null) 'AutoCreateTasks': autoCreateTasks,
+      if (name != null) 'Name': name,
+      if (update != null) 'Update': update,
+    };
+  }
 }
 
 class GetWirelessGatewayTaskResponse {
@@ -3505,6 +3860,24 @@ class GetWirelessGatewayTaskResponse {
           json['WirelessGatewayTaskDefinitionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUplinkReceivedAt = this.lastUplinkReceivedAt;
+    final status = this.status;
+    final taskCreatedAt = this.taskCreatedAt;
+    final wirelessGatewayId = this.wirelessGatewayId;
+    final wirelessGatewayTaskDefinitionId =
+        this.wirelessGatewayTaskDefinitionId;
+    return {
+      if (lastUplinkReceivedAt != null)
+        'LastUplinkReceivedAt': lastUplinkReceivedAt,
+      if (status != null) 'Status': status.toValue(),
+      if (taskCreatedAt != null) 'TaskCreatedAt': taskCreatedAt,
+      if (wirelessGatewayId != null) 'WirelessGatewayId': wirelessGatewayId,
+      if (wirelessGatewayTaskDefinitionId != null)
+        'WirelessGatewayTaskDefinitionId': wirelessGatewayTaskDefinitionId,
+    };
+  }
 }
 
 class ListDestinationsResponse {
@@ -3528,6 +3901,15 @@ class ListDestinationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationList = this.destinationList;
+    final nextToken = this.nextToken;
+    return {
+      if (destinationList != null) 'DestinationList': destinationList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDeviceProfilesResponse {
@@ -3550,6 +3932,15 @@ class ListDeviceProfilesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceProfileList = this.deviceProfileList;
+    final nextToken = this.nextToken;
+    return {
+      if (deviceProfileList != null) 'DeviceProfileList': deviceProfileList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3575,6 +3966,15 @@ class ListPartnerAccountsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sidewalk = this.sidewalk;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+    };
+  }
 }
 
 class ListServiceProfilesResponse {
@@ -3598,6 +3998,15 @@ class ListServiceProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceProfileList = this.serviceProfileList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceProfileList != null) 'ServiceProfileList': serviceProfileList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3615,6 +4024,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3639,6 +4055,15 @@ class ListWirelessDevicesResponse {
               WirelessDeviceStatistics.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final wirelessDeviceList = this.wirelessDeviceList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (wirelessDeviceList != null) 'WirelessDeviceList': wirelessDeviceList,
+    };
   }
 }
 
@@ -3665,6 +4090,15 @@ class ListWirelessGatewayTaskDefinitionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskDefinitions = this.taskDefinitions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (taskDefinitions != null) 'TaskDefinitions': taskDefinitions,
+    };
+  }
 }
 
 class ListWirelessGatewaysResponse {
@@ -3688,6 +4122,16 @@ class ListWirelessGatewaysResponse {
               WirelessGatewayStatistics.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final wirelessGatewayList = this.wirelessGatewayList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (wirelessGatewayList != null)
+        'WirelessGatewayList': wirelessGatewayList,
+    };
   }
 }
 
@@ -3804,6 +4248,23 @@ class LoRaWANDeviceMetadata {
           .toList(),
       timestamp: json['Timestamp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataRate = this.dataRate;
+    final devEui = this.devEui;
+    final fPort = this.fPort;
+    final frequency = this.frequency;
+    final gateways = this.gateways;
+    final timestamp = this.timestamp;
+    return {
+      if (dataRate != null) 'DataRate': dataRate,
+      if (devEui != null) 'DevEui': devEui,
+      if (fPort != null) 'FPort': fPort,
+      if (frequency != null) 'Frequency': frequency,
+      if (gateways != null) 'Gateways': gateways,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -4030,6 +4491,13 @@ class LoRaWANGatewayCurrentVersion {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentVersion = this.currentVersion;
+    return {
+      if (currentVersion != null) 'CurrentVersion': currentVersion,
+    };
+  }
 }
 
 /// LoRaWAN gateway metatdata.
@@ -4054,6 +4522,17 @@ class LoRaWANGatewayMetadata {
       rssi: json['Rssi'] as double?,
       snr: json['Snr'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayEui = this.gatewayEui;
+    final rssi = this.rssi;
+    final snr = this.snr;
+    return {
+      if (gatewayEui != null) 'GatewayEui': gatewayEui,
+      if (rssi != null) 'Rssi': rssi,
+      if (snr != null) 'Snr': snr,
+    };
   }
 }
 
@@ -4196,6 +4675,51 @@ class LoRaWANGetServiceProfileInfo {
       ulRatePolicy: json['UlRatePolicy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addGwMetadata = this.addGwMetadata;
+    final channelMask = this.channelMask;
+    final devStatusReqFreq = this.devStatusReqFreq;
+    final dlBucketSize = this.dlBucketSize;
+    final dlRate = this.dlRate;
+    final dlRatePolicy = this.dlRatePolicy;
+    final drMax = this.drMax;
+    final drMin = this.drMin;
+    final hrAllowed = this.hrAllowed;
+    final minGwDiversity = this.minGwDiversity;
+    final nwkGeoLoc = this.nwkGeoLoc;
+    final prAllowed = this.prAllowed;
+    final raAllowed = this.raAllowed;
+    final reportDevStatusBattery = this.reportDevStatusBattery;
+    final reportDevStatusMargin = this.reportDevStatusMargin;
+    final targetPer = this.targetPer;
+    final ulBucketSize = this.ulBucketSize;
+    final ulRate = this.ulRate;
+    final ulRatePolicy = this.ulRatePolicy;
+    return {
+      if (addGwMetadata != null) 'AddGwMetadata': addGwMetadata,
+      if (channelMask != null) 'ChannelMask': channelMask,
+      if (devStatusReqFreq != null) 'DevStatusReqFreq': devStatusReqFreq,
+      if (dlBucketSize != null) 'DlBucketSize': dlBucketSize,
+      if (dlRate != null) 'DlRate': dlRate,
+      if (dlRatePolicy != null) 'DlRatePolicy': dlRatePolicy,
+      if (drMax != null) 'DrMax': drMax,
+      if (drMin != null) 'DrMin': drMin,
+      if (hrAllowed != null) 'HrAllowed': hrAllowed,
+      if (minGwDiversity != null) 'MinGwDiversity': minGwDiversity,
+      if (nwkGeoLoc != null) 'NwkGeoLoc': nwkGeoLoc,
+      if (prAllowed != null) 'PrAllowed': prAllowed,
+      if (raAllowed != null) 'RaAllowed': raAllowed,
+      if (reportDevStatusBattery != null)
+        'ReportDevStatusBattery': reportDevStatusBattery,
+      if (reportDevStatusMargin != null)
+        'ReportDevStatusMargin': reportDevStatusMargin,
+      if (targetPer != null) 'TargetPer': targetPer,
+      if (ulBucketSize != null) 'UlBucketSize': ulBucketSize,
+      if (ulRate != null) 'UlRate': ulRate,
+      if (ulRatePolicy != null) 'UlRatePolicy': ulRatePolicy,
+    };
+  }
 }
 
 /// LoRaWAN object for list functions.
@@ -4211,6 +4735,13 @@ class LoRaWANListDevice {
       devEui: json['DevEui'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devEui = this.devEui;
+    return {
+      if (devEui != null) 'DevEui': devEui,
+    };
+  }
 }
 
 /// LoRaWAN router info.
@@ -4221,6 +4752,12 @@ class LoRaWANSendDataToDevice {
   LoRaWANSendDataToDevice({
     this.fPort,
   });
+  factory LoRaWANSendDataToDevice.fromJson(Map<String, dynamic> json) {
+    return LoRaWANSendDataToDevice(
+      fPort: json['FPort'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fPort = this.fPort;
     return {
@@ -4237,6 +4774,12 @@ class LoRaWANServiceProfile {
   LoRaWANServiceProfile({
     this.addGwMetadata,
   });
+  factory LoRaWANServiceProfile.fromJson(Map<String, dynamic> json) {
+    return LoRaWANServiceProfile(
+      addGwMetadata: json['AddGwMetadata'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final addGwMetadata = this.addGwMetadata;
     return {
@@ -4257,6 +4800,13 @@ class LoRaWANUpdateDevice {
     this.deviceProfileId,
     this.serviceProfileId,
   });
+  factory LoRaWANUpdateDevice.fromJson(Map<String, dynamic> json) {
+    return LoRaWANUpdateDevice(
+      deviceProfileId: json['DeviceProfileId'] as String?,
+      serviceProfileId: json['ServiceProfileId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final deviceProfileId = this.deviceProfileId;
     final serviceProfileId = this.serviceProfileId;
@@ -4339,6 +4889,15 @@ class LoRaWANUpdateGatewayTaskEntry {
               json['UpdateVersion'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentVersion = this.currentVersion;
+    final updateVersion = this.updateVersion;
+    return {
+      if (currentVersion != null) 'CurrentVersion': currentVersion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
   }
 }
 
@@ -4508,6 +5067,10 @@ class PutResourceLogLevelResponse {
   factory PutResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
     return PutResourceLogLevelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ResetAllResourceLogLevelsResponse {
@@ -4515,12 +5078,20 @@ class ResetAllResourceLogLevelsResponse {
   factory ResetAllResourceLogLevelsResponse.fromJson(Map<String, dynamic> _) {
     return ResetAllResourceLogLevelsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ResetResourceLogLevelResponse {
   ResetResourceLogLevelResponse();
   factory ResetResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
     return ResetResourceLogLevelResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4535,6 +5106,13 @@ class SendDataToWirelessDeviceResponse {
     return SendDataToWirelessDeviceResponse(
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -4560,6 +5138,17 @@ class ServiceProfile {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -4689,6 +5278,17 @@ class SidewalkAccountInfoWithFingerprint {
       fingerprint: json['Fingerprint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amazonId = this.amazonId;
+    final arn = this.arn;
+    final fingerprint = this.fingerprint;
+    return {
+      if (amazonId != null) 'AmazonId': amazonId,
+      if (arn != null) 'Arn': arn,
+      if (fingerprint != null) 'Fingerprint': fingerprint,
+    };
+  }
 }
 
 /// Sidewalk device object.
@@ -4716,6 +5316,18 @@ class SidewalkDevice {
       sidewalkId: json['SidewalkId'] as String?,
       sidewalkManufacturingSn: json['SidewalkManufacturingSn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceCertificates = this.deviceCertificates;
+    final sidewalkId = this.sidewalkId;
+    final sidewalkManufacturingSn = this.sidewalkManufacturingSn;
+    return {
+      if (deviceCertificates != null) 'DeviceCertificates': deviceCertificates,
+      if (sidewalkId != null) 'SidewalkId': sidewalkId,
+      if (sidewalkManufacturingSn != null)
+        'SidewalkManufacturingSn': sidewalkManufacturingSn,
+    };
   }
 }
 
@@ -4746,6 +5358,19 @@ class SidewalkDeviceMetadata {
       event: (json['Event'] as String?)?.toEvent(),
       rssi: json['Rssi'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batteryLevel = this.batteryLevel;
+    final deviceState = this.deviceState;
+    final event = this.event;
+    final rssi = this.rssi;
+    return {
+      if (batteryLevel != null) 'BatteryLevel': batteryLevel.toValue(),
+      if (deviceState != null) 'DeviceState': deviceState.toValue(),
+      if (event != null) 'Event': event.toValue(),
+      if (rssi != null) 'Rssi': rssi,
+    };
   }
 }
 
@@ -4780,6 +5405,20 @@ class SidewalkListDevice {
       sidewalkManufacturingSn: json['SidewalkManufacturingSn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amazonId = this.amazonId;
+    final deviceCertificates = this.deviceCertificates;
+    final sidewalkId = this.sidewalkId;
+    final sidewalkManufacturingSn = this.sidewalkManufacturingSn;
+    return {
+      if (amazonId != null) 'AmazonId': amazonId,
+      if (deviceCertificates != null) 'DeviceCertificates': deviceCertificates,
+      if (sidewalkId != null) 'SidewalkId': sidewalkId,
+      if (sidewalkManufacturingSn != null)
+        'SidewalkManufacturingSn': sidewalkManufacturingSn,
+    };
+  }
 }
 
 /// Information about a Sidewalk router.
@@ -4793,6 +5432,13 @@ class SidewalkSendDataToDevice {
     this.messageType,
     this.seq,
   });
+  factory SidewalkSendDataToDevice.fromJson(Map<String, dynamic> json) {
+    return SidewalkSendDataToDevice(
+      messageType: (json['MessageType'] as String?)?.toMessageType(),
+      seq: json['Seq'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final messageType = this.messageType;
     final seq = this.seq;
@@ -4811,6 +5457,12 @@ class SidewalkUpdateAccount {
   SidewalkUpdateAccount({
     this.appServerPrivateKey,
   });
+  factory SidewalkUpdateAccount.fromJson(Map<String, dynamic> json) {
+    return SidewalkUpdateAccount(
+      appServerPrivateKey: json['AppServerPrivateKey'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final appServerPrivateKey = this.appServerPrivateKey;
     return {
@@ -4883,6 +5535,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class TestWirelessDeviceResponse {
@@ -4897,6 +5553,13 @@ class TestWirelessDeviceResponse {
       result: json['Result'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'Result': result,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -4904,12 +5567,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDestinationResponse {
   UpdateDestinationResponse();
   factory UpdateDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4919,12 +5590,20 @@ class UpdateLogLevelsByResourceTypesResponse {
       Map<String, dynamic> _) {
     return UpdateLogLevelsByResourceTypesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePartnerAccountResponse {
   UpdatePartnerAccountResponse();
   factory UpdatePartnerAccountResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePartnerAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4933,12 +5612,20 @@ class UpdateWirelessDeviceResponse {
   factory UpdateWirelessDeviceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateWirelessDeviceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateWirelessGatewayResponse {
   UpdateWirelessGatewayResponse();
   factory UpdateWirelessGatewayResponse.fromJson(Map<String, dynamic> _) {
     return UpdateWirelessGatewayResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5006,6 +5693,17 @@ class UpdateWirelessGatewayTaskEntry {
               json['LoRaWAN'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final loRaWAN = this.loRaWAN;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+    };
   }
 }
 
@@ -5207,6 +5905,28 @@ class WirelessDeviceStatistics {
           : null,
       type: (json['Type'] as String?)?.toWirelessDeviceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final destinationName = this.destinationName;
+    final id = this.id;
+    final lastUplinkReceivedAt = this.lastUplinkReceivedAt;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    final sidewalk = this.sidewalk;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (destinationName != null) 'DestinationName': destinationName,
+      if (id != null) 'Id': id,
+      if (lastUplinkReceivedAt != null)
+        'LastUplinkReceivedAt': lastUplinkReceivedAt,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+      if (sidewalk != null) 'Sidewalk': sidewalk,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5433,6 +6153,24 @@ class WirelessGatewayStatistics {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final lastUplinkReceivedAt = this.lastUplinkReceivedAt;
+    final loRaWAN = this.loRaWAN;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lastUplinkReceivedAt != null)
+        'LastUplinkReceivedAt': lastUplinkReceivedAt,
+      if (loRaWAN != null) 'LoRaWAN': loRaWAN,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum WirelessGatewayTaskDefinitionType {
@@ -5543,6 +6281,19 @@ class WirelessMetadata {
     this.loRaWAN,
     this.sidewalk,
   });
+  factory WirelessMetadata.fromJson(Map<String, dynamic> json) {
+    return WirelessMetadata(
+      loRaWAN: json['LoRaWAN'] != null
+          ? LoRaWANSendDataToDevice.fromJson(
+              json['LoRaWAN'] as Map<String, dynamic>)
+          : null,
+      sidewalk: json['Sidewalk'] != null
+          ? SidewalkSendDataToDevice.fromJson(
+              json['Sidewalk'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final loRaWAN = this.loRaWAN;
     final sidewalk = this.sidewalk;

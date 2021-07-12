@@ -1440,6 +1440,15 @@ class ActionTarget {
       resourceId: json['ResourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final resourceId = this.resourceId;
+    return {
+      if (description != null) 'Description': description,
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
+  }
 }
 
 /// An individual Firewall Manager application.
@@ -1591,6 +1600,19 @@ class AppsListDataSummary {
       listName: json['ListName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appsList = this.appsList;
+    final listArn = this.listArn;
+    final listId = this.listId;
+    final listName = this.listName;
+    return {
+      if (appsList != null) 'AppsList': appsList,
+      if (listArn != null) 'ListArn': listArn,
+      if (listId != null) 'ListId': listId,
+      if (listName != null) 'ListName': listName,
+    };
+  }
 }
 
 /// Violation detail for an EC2 instance resource.
@@ -1616,6 +1638,17 @@ class AwsEc2InstanceViolation {
       violationTarget: json['ViolationTarget'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsEc2NetworkInterfaceViolations =
+        this.awsEc2NetworkInterfaceViolations;
+    final violationTarget = this.violationTarget;
+    return {
+      if (awsEc2NetworkInterfaceViolations != null)
+        'AwsEc2NetworkInterfaceViolations': awsEc2NetworkInterfaceViolations,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
+  }
 }
 
 /// Violation detail for network interfaces associated with an EC2 instance.
@@ -1639,6 +1672,16 @@ class AwsEc2NetworkInterfaceViolation {
           .toList(),
       violationTarget: json['ViolationTarget'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final violatingSecurityGroups = this.violatingSecurityGroups;
+    final violationTarget = this.violationTarget;
+    return {
+      if (violatingSecurityGroups != null)
+        'ViolatingSecurityGroups': violatingSecurityGroups,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
   }
 }
 
@@ -1682,6 +1725,23 @@ class AwsVPCSecurityGroupViolation {
       violationTargetDescription: json['ViolationTargetDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final partialMatches = this.partialMatches;
+    final possibleSecurityGroupRemediationActions =
+        this.possibleSecurityGroupRemediationActions;
+    final violationTarget = this.violationTarget;
+    final violationTargetDescription = this.violationTargetDescription;
+    return {
+      if (partialMatches != null) 'PartialMatches': partialMatches,
+      if (possibleSecurityGroupRemediationActions != null)
+        'PossibleSecurityGroupRemediationActions':
+            possibleSecurityGroupRemediationActions,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (violationTargetDescription != null)
+        'ViolationTargetDescription': violationTargetDescription,
+    };
+  }
 }
 
 /// Details of the resource that is not protected by the policy.
@@ -1712,6 +1772,17 @@ class ComplianceViolator {
       violationReason:
           (json['ViolationReason'] as String?)?.toViolationReason(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final violationReason = this.violationReason;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (violationReason != null) 'ViolationReason': violationReason.toValue(),
+    };
   }
 }
 
@@ -1833,6 +1904,16 @@ class DnsDuplicateRuleGroupViolation {
       violationTargetDescription: json['ViolationTargetDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final violationTarget = this.violationTarget;
+    final violationTargetDescription = this.violationTargetDescription;
+    return {
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (violationTargetDescription != null)
+        'ViolationTargetDescription': violationTargetDescription,
+    };
+  }
 }
 
 /// The VPC that Firewall Manager was applying a DNS Fireall policy to reached
@@ -1861,6 +1942,21 @@ class DnsRuleGroupLimitExceededViolation {
       violationTarget: json['ViolationTarget'] as String?,
       violationTargetDescription: json['ViolationTargetDescription'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final numberOfRuleGroupsAlreadyAssociated =
+        this.numberOfRuleGroupsAlreadyAssociated;
+    final violationTarget = this.violationTarget;
+    final violationTargetDescription = this.violationTargetDescription;
+    return {
+      if (numberOfRuleGroupsAlreadyAssociated != null)
+        'NumberOfRuleGroupsAlreadyAssociated':
+            numberOfRuleGroupsAlreadyAssociated,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (violationTargetDescription != null)
+        'ViolationTargetDescription': violationTargetDescription,
+    };
   }
 }
 
@@ -1907,6 +2003,25 @@ class DnsRuleGroupPriorityConflictViolation {
       violationTargetDescription: json['ViolationTargetDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conflictingPolicyId = this.conflictingPolicyId;
+    final conflictingPriority = this.conflictingPriority;
+    final unavailablePriorities = this.unavailablePriorities;
+    final violationTarget = this.violationTarget;
+    final violationTargetDescription = this.violationTargetDescription;
+    return {
+      if (conflictingPolicyId != null)
+        'ConflictingPolicyId': conflictingPolicyId,
+      if (conflictingPriority != null)
+        'ConflictingPriority': conflictingPriority,
+      if (unavailablePriorities != null)
+        'UnavailablePriorities': unavailablePriorities,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (violationTargetDescription != null)
+        'ViolationTargetDescription': violationTargetDescription,
+    };
+  }
 }
 
 /// The action of associating an EC2 resource, such as a subnet or internet
@@ -1947,6 +2062,19 @@ class EC2AssociateRouteTableAction {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final description = this.description;
+    final gatewayId = this.gatewayId;
+    final subnetId = this.subnetId;
+    return {
+      'RouteTableId': routeTableId,
+      if (description != null) 'Description': description,
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
+  }
 }
 
 /// An action that copies the EC2 route table for use in remediation.
@@ -1975,6 +2103,17 @@ class EC2CopyRouteTableAction {
       vpcId: ActionTarget.fromJson(json['VpcId'] as Map<String, dynamic>),
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final vpcId = this.vpcId;
+    final description = this.description;
+    return {
+      'RouteTableId': routeTableId,
+      'VpcId': vpcId,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -2029,6 +2168,28 @@ class EC2CreateRouteAction {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final description = this.description;
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationIpv6CidrBlock = this.destinationIpv6CidrBlock;
+    final destinationPrefixListId = this.destinationPrefixListId;
+    final gatewayId = this.gatewayId;
+    final vpcEndpointId = this.vpcEndpointId;
+    return {
+      'RouteTableId': routeTableId,
+      if (description != null) 'Description': description,
+      if (destinationCidrBlock != null)
+        'DestinationCidrBlock': destinationCidrBlock,
+      if (destinationIpv6CidrBlock != null)
+        'DestinationIpv6CidrBlock': destinationIpv6CidrBlock,
+      if (destinationPrefixListId != null)
+        'DestinationPrefixListId': destinationPrefixListId,
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (vpcEndpointId != null) 'VpcEndpointId': vpcEndpointId,
+    };
+  }
 }
 
 /// Information about the CreateRouteTable action in Amazon EC2.
@@ -2048,6 +2209,15 @@ class EC2CreateRouteTableAction {
       vpcId: ActionTarget.fromJson(json['VpcId'] as Map<String, dynamic>),
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcId = this.vpcId;
+    final description = this.description;
+    return {
+      'VpcId': vpcId,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -2086,6 +2256,24 @@ class EC2DeleteRouteAction {
       destinationIpv6CidrBlock: json['DestinationIpv6CidrBlock'] as String?,
       destinationPrefixListId: json['DestinationPrefixListId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final description = this.description;
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationIpv6CidrBlock = this.destinationIpv6CidrBlock;
+    final destinationPrefixListId = this.destinationPrefixListId;
+    return {
+      'RouteTableId': routeTableId,
+      if (description != null) 'Description': description,
+      if (destinationCidrBlock != null)
+        'DestinationCidrBlock': destinationCidrBlock,
+      if (destinationIpv6CidrBlock != null)
+        'DestinationIpv6CidrBlock': destinationIpv6CidrBlock,
+      if (destinationPrefixListId != null)
+        'DestinationPrefixListId': destinationPrefixListId,
+    };
   }
 }
 
@@ -2134,6 +2322,26 @@ class EC2ReplaceRouteAction {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final description = this.description;
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationIpv6CidrBlock = this.destinationIpv6CidrBlock;
+    final destinationPrefixListId = this.destinationPrefixListId;
+    final gatewayId = this.gatewayId;
+    return {
+      'RouteTableId': routeTableId,
+      if (description != null) 'Description': description,
+      if (destinationCidrBlock != null)
+        'DestinationCidrBlock': destinationCidrBlock,
+      if (destinationIpv6CidrBlock != null)
+        'DestinationIpv6CidrBlock': destinationIpv6CidrBlock,
+      if (destinationPrefixListId != null)
+        'DestinationPrefixListId': destinationPrefixListId,
+      if (gatewayId != null) 'GatewayId': gatewayId,
+    };
+  }
 }
 
 /// Information about the ReplaceRouteTableAssociation action in Amazon EC2.
@@ -2162,6 +2370,17 @@ class EC2ReplaceRouteTableAssociationAction {
           ActionTarget.fromJson(json['RouteTableId'] as Map<String, dynamic>),
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final routeTableId = this.routeTableId;
+    final description = this.description;
+    return {
+      'AssociationId': associationId,
+      'RouteTableId': routeTableId,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -2196,6 +2415,19 @@ class EvaluationResult {
       evaluationLimitExceeded: json['EvaluationLimitExceeded'] as bool?,
       violatorCount: json['ViolatorCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceStatus = this.complianceStatus;
+    final evaluationLimitExceeded = this.evaluationLimitExceeded;
+    final violatorCount = this.violatorCount;
+    return {
+      if (complianceStatus != null)
+        'ComplianceStatus': complianceStatus.toValue(),
+      if (evaluationLimitExceeded != null)
+        'EvaluationLimitExceeded': evaluationLimitExceeded,
+      if (violatorCount != null) 'ViolatorCount': violatorCount,
+    };
   }
 }
 
@@ -2243,6 +2475,24 @@ class ExpectedRoute {
       routeTableId: json['RouteTableId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedTargets = this.allowedTargets;
+    final contributingSubnets = this.contributingSubnets;
+    final ipV4Cidr = this.ipV4Cidr;
+    final ipV6Cidr = this.ipV6Cidr;
+    final prefixListId = this.prefixListId;
+    final routeTableId = this.routeTableId;
+    return {
+      if (allowedTargets != null) 'AllowedTargets': allowedTargets,
+      if (contributingSubnets != null)
+        'ContributingSubnets': contributingSubnets,
+      if (ipV4Cidr != null) 'IpV4Cidr': ipV4Cidr,
+      if (ipV6Cidr != null) 'IpV6Cidr': ipV6Cidr,
+      if (prefixListId != null) 'PrefixListId': prefixListId,
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+    };
+  }
 }
 
 class GetAdminAccountResponse {
@@ -2263,6 +2513,15 @@ class GetAdminAccountResponse {
       adminAccount: json['AdminAccount'] as String?,
       roleStatus: (json['RoleStatus'] as String?)?.toAccountRoleStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adminAccount = this.adminAccount;
+    final roleStatus = this.roleStatus;
+    return {
+      if (adminAccount != null) 'AdminAccount': adminAccount,
+      if (roleStatus != null) 'RoleStatus': roleStatus.toValue(),
+    };
   }
 }
 
@@ -2285,6 +2544,15 @@ class GetAppsListResponse {
       appsListArn: json['AppsListArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appsList = this.appsList;
+    final appsListArn = this.appsListArn;
+    return {
+      if (appsList != null) 'AppsList': appsList,
+      if (appsListArn != null) 'AppsListArn': appsListArn,
+    };
+  }
 }
 
 class GetComplianceDetailResponse {
@@ -2302,6 +2570,14 @@ class GetComplianceDetailResponse {
               json['PolicyComplianceDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyComplianceDetail = this.policyComplianceDetail;
+    return {
+      if (policyComplianceDetail != null)
+        'PolicyComplianceDetail': policyComplianceDetail,
+    };
   }
 }
 
@@ -2321,6 +2597,15 @@ class GetNotificationChannelResponse {
       snsRoleName: json['SnsRoleName'] as String?,
       snsTopicArn: json['SnsTopicArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snsRoleName = this.snsRoleName;
+    final snsTopicArn = this.snsTopicArn;
+    return {
+      if (snsRoleName != null) 'SnsRoleName': snsRoleName,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+    };
   }
 }
 
@@ -2342,6 +2627,15 @@ class GetPolicyResponse {
           : null,
       policyArn: json['PolicyArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final policyArn = this.policyArn;
+    return {
+      if (policy != null) 'Policy': policy,
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
   }
 }
 
@@ -2403,6 +2697,19 @@ class GetProtectionStatusResponse {
       serviceType: (json['ServiceType'] as String?)?.toSecurityServiceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminAccountId = this.adminAccountId;
+    final data = this.data;
+    final nextToken = this.nextToken;
+    final serviceType = this.serviceType;
+    return {
+      if (adminAccountId != null) 'AdminAccountId': adminAccountId,
+      if (data != null) 'Data': data,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceType != null) 'ServiceType': serviceType.toValue(),
+    };
+  }
 }
 
 class GetProtocolsListResponse {
@@ -2425,6 +2732,15 @@ class GetProtocolsListResponse {
       protocolsListArn: json['ProtocolsListArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final protocolsList = this.protocolsList;
+    final protocolsListArn = this.protocolsListArn;
+    return {
+      if (protocolsList != null) 'ProtocolsList': protocolsList,
+      if (protocolsListArn != null) 'ProtocolsListArn': protocolsListArn,
+    };
+  }
 }
 
 class GetViolationDetailsResponse {
@@ -2441,6 +2757,13 @@ class GetViolationDetailsResponse {
               json['ViolationDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final violationDetail = this.violationDetail;
+    return {
+      if (violationDetail != null) 'ViolationDetail': violationDetail,
+    };
   }
 }
 
@@ -2466,6 +2789,15 @@ class ListAppsListsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appsLists = this.appsLists;
+    final nextToken = this.nextToken;
+    return {
+      if (appsLists != null) 'AppsLists': appsLists,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2496,6 +2828,16 @@ class ListComplianceStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policyComplianceStatusList = this.policyComplianceStatusList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policyComplianceStatusList != null)
+        'PolicyComplianceStatusList': policyComplianceStatusList,
+    };
+  }
 }
 
 class ListMemberAccountsResponse {
@@ -2522,6 +2864,15 @@ class ListMemberAccountsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memberAccounts = this.memberAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (memberAccounts != null) 'MemberAccounts': memberAccounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2550,6 +2901,15 @@ class ListPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policyList = this.policyList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policyList != null) 'PolicyList': policyList,
+    };
+  }
 }
 
 class ListProtocolsListsResponse {
@@ -2576,6 +2936,15 @@ class ListProtocolsListsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final protocolsLists = this.protocolsLists;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (protocolsLists != null) 'ProtocolsLists': protocolsLists,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2592,6 +2961,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -2627,6 +3003,19 @@ class NetworkFirewallBlackHoleRouteDetectedViolation {
       violationTarget: json['ViolationTarget'] as String?,
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routeTableId = this.routeTableId;
+    final violatingRoutes = this.violatingRoutes;
+    final violationTarget = this.violationTarget;
+    final vpcId = this.vpcId;
+    return {
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+      if (violatingRoutes != null) 'ViolatingRoutes': violatingRoutes,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -2736,6 +3125,52 @@ class NetworkFirewallInternetTrafficNotInspectedViolation {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actualFirewallSubnetRoutes = this.actualFirewallSubnetRoutes;
+    final actualInternetGatewayRoutes = this.actualInternetGatewayRoutes;
+    final currentFirewallSubnetRouteTable =
+        this.currentFirewallSubnetRouteTable;
+    final currentInternetGatewayRouteTable =
+        this.currentInternetGatewayRouteTable;
+    final expectedFirewallEndpoint = this.expectedFirewallEndpoint;
+    final expectedFirewallSubnetRoutes = this.expectedFirewallSubnetRoutes;
+    final expectedInternetGatewayRoutes = this.expectedInternetGatewayRoutes;
+    final firewallSubnetId = this.firewallSubnetId;
+    final internetGatewayId = this.internetGatewayId;
+    final isRouteTableUsedInDifferentAZ = this.isRouteTableUsedInDifferentAZ;
+    final routeTableId = this.routeTableId;
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetId = this.subnetId;
+    final violatingRoutes = this.violatingRoutes;
+    final vpcId = this.vpcId;
+    return {
+      if (actualFirewallSubnetRoutes != null)
+        'ActualFirewallSubnetRoutes': actualFirewallSubnetRoutes,
+      if (actualInternetGatewayRoutes != null)
+        'ActualInternetGatewayRoutes': actualInternetGatewayRoutes,
+      if (currentFirewallSubnetRouteTable != null)
+        'CurrentFirewallSubnetRouteTable': currentFirewallSubnetRouteTable,
+      if (currentInternetGatewayRouteTable != null)
+        'CurrentInternetGatewayRouteTable': currentInternetGatewayRouteTable,
+      if (expectedFirewallEndpoint != null)
+        'ExpectedFirewallEndpoint': expectedFirewallEndpoint,
+      if (expectedFirewallSubnetRoutes != null)
+        'ExpectedFirewallSubnetRoutes': expectedFirewallSubnetRoutes,
+      if (expectedInternetGatewayRoutes != null)
+        'ExpectedInternetGatewayRoutes': expectedInternetGatewayRoutes,
+      if (firewallSubnetId != null) 'FirewallSubnetId': firewallSubnetId,
+      if (internetGatewayId != null) 'InternetGatewayId': internetGatewayId,
+      if (isRouteTableUsedInDifferentAZ != null)
+        'IsRouteTableUsedInDifferentAZ': isRouteTableUsedInDifferentAZ,
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (violatingRoutes != null) 'ViolatingRoutes': violatingRoutes,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -2854,6 +3289,56 @@ class NetworkFirewallInvalidRouteConfigurationViolation {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actualFirewallEndpoint = this.actualFirewallEndpoint;
+    final actualFirewallSubnetId = this.actualFirewallSubnetId;
+    final actualFirewallSubnetRoutes = this.actualFirewallSubnetRoutes;
+    final actualInternetGatewayRoutes = this.actualInternetGatewayRoutes;
+    final affectedSubnets = this.affectedSubnets;
+    final currentFirewallSubnetRouteTable =
+        this.currentFirewallSubnetRouteTable;
+    final currentInternetGatewayRouteTable =
+        this.currentInternetGatewayRouteTable;
+    final expectedFirewallEndpoint = this.expectedFirewallEndpoint;
+    final expectedFirewallSubnetId = this.expectedFirewallSubnetId;
+    final expectedFirewallSubnetRoutes = this.expectedFirewallSubnetRoutes;
+    final expectedInternetGatewayRoutes = this.expectedInternetGatewayRoutes;
+    final internetGatewayId = this.internetGatewayId;
+    final isRouteTableUsedInDifferentAZ = this.isRouteTableUsedInDifferentAZ;
+    final routeTableId = this.routeTableId;
+    final violatingRoute = this.violatingRoute;
+    final vpcId = this.vpcId;
+    return {
+      if (actualFirewallEndpoint != null)
+        'ActualFirewallEndpoint': actualFirewallEndpoint,
+      if (actualFirewallSubnetId != null)
+        'ActualFirewallSubnetId': actualFirewallSubnetId,
+      if (actualFirewallSubnetRoutes != null)
+        'ActualFirewallSubnetRoutes': actualFirewallSubnetRoutes,
+      if (actualInternetGatewayRoutes != null)
+        'ActualInternetGatewayRoutes': actualInternetGatewayRoutes,
+      if (affectedSubnets != null) 'AffectedSubnets': affectedSubnets,
+      if (currentFirewallSubnetRouteTable != null)
+        'CurrentFirewallSubnetRouteTable': currentFirewallSubnetRouteTable,
+      if (currentInternetGatewayRouteTable != null)
+        'CurrentInternetGatewayRouteTable': currentInternetGatewayRouteTable,
+      if (expectedFirewallEndpoint != null)
+        'ExpectedFirewallEndpoint': expectedFirewallEndpoint,
+      if (expectedFirewallSubnetId != null)
+        'ExpectedFirewallSubnetId': expectedFirewallSubnetId,
+      if (expectedFirewallSubnetRoutes != null)
+        'ExpectedFirewallSubnetRoutes': expectedFirewallSubnetRoutes,
+      if (expectedInternetGatewayRoutes != null)
+        'ExpectedInternetGatewayRoutes': expectedInternetGatewayRoutes,
+      if (internetGatewayId != null) 'InternetGatewayId': internetGatewayId,
+      if (isRouteTableUsedInDifferentAZ != null)
+        'IsRouteTableUsedInDifferentAZ': isRouteTableUsedInDifferentAZ,
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+      if (violatingRoute != null) 'ViolatingRoute': violatingRoute,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Violation detail for Network Firewall for a subnet that's not associated to
@@ -2893,6 +3378,21 @@ class NetworkFirewallMissingExpectedRTViolation {
       violationTarget: json['ViolationTarget'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final currentRouteTable = this.currentRouteTable;
+    final expectedRouteTable = this.expectedRouteTable;
+    final vpc = this.vpc;
+    final violationTarget = this.violationTarget;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (currentRouteTable != null) 'CurrentRouteTable': currentRouteTable,
+      if (expectedRouteTable != null) 'ExpectedRouteTable': expectedRouteTable,
+      if (vpc != null) 'VPC': vpc,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
+  }
 }
 
 /// Violation detail for an expected route missing in Network Firewall.
@@ -2921,6 +3421,17 @@ class NetworkFirewallMissingExpectedRoutesViolation {
       violationTarget: json['ViolationTarget'] as String?,
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expectedRoutes = this.expectedRoutes;
+    final violationTarget = this.violationTarget;
+    final vpcId = this.vpcId;
+    return {
+      if (expectedRoutes != null) 'ExpectedRoutes': expectedRoutes,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -2954,6 +3465,20 @@ class NetworkFirewallMissingFirewallViolation {
       violationTarget: json['ViolationTarget'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final targetViolationReason = this.targetViolationReason;
+    final vpc = this.vpc;
+    final violationTarget = this.violationTarget;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (targetViolationReason != null)
+        'TargetViolationReason': targetViolationReason,
+      if (vpc != null) 'VPC': vpc,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
+  }
 }
 
 /// Violation detail for Network Firewall for an Availability Zone that's
@@ -2985,6 +3510,20 @@ class NetworkFirewallMissingSubnetViolation {
       vpc: json['VPC'] as String?,
       violationTarget: json['ViolationTarget'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final targetViolationReason = this.targetViolationReason;
+    final vpc = this.vpc;
+    final violationTarget = this.violationTarget;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (targetViolationReason != null)
+        'TargetViolationReason': targetViolationReason,
+      if (vpc != null) 'VPC': vpc,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
   }
 }
 
@@ -3042,6 +3581,26 @@ class NetworkFirewallPolicyDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statefulRuleGroups = this.statefulRuleGroups;
+    final statelessCustomActions = this.statelessCustomActions;
+    final statelessDefaultActions = this.statelessDefaultActions;
+    final statelessFragmentDefaultActions =
+        this.statelessFragmentDefaultActions;
+    final statelessRuleGroups = this.statelessRuleGroups;
+    return {
+      if (statefulRuleGroups != null) 'StatefulRuleGroups': statefulRuleGroups,
+      if (statelessCustomActions != null)
+        'StatelessCustomActions': statelessCustomActions,
+      if (statelessDefaultActions != null)
+        'StatelessDefaultActions': statelessDefaultActions,
+      if (statelessFragmentDefaultActions != null)
+        'StatelessFragmentDefaultActions': statelessFragmentDefaultActions,
+      if (statelessRuleGroups != null)
+        'StatelessRuleGroups': statelessRuleGroups,
+    };
+  }
 }
 
 /// Violation detail for Network Firewall for a firewall policy that has a
@@ -3076,6 +3635,19 @@ class NetworkFirewallPolicyModifiedViolation {
           : null,
       violationTarget: json['ViolationTarget'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentPolicyDescription = this.currentPolicyDescription;
+    final expectedPolicyDescription = this.expectedPolicyDescription;
+    final violationTarget = this.violationTarget;
+    return {
+      if (currentPolicyDescription != null)
+        'CurrentPolicyDescription': currentPolicyDescription,
+      if (expectedPolicyDescription != null)
+        'ExpectedPolicyDescription': expectedPolicyDescription,
+      if (violationTarget != null) 'ViolationTarget': violationTarget,
+    };
   }
 }
 
@@ -3116,6 +3688,21 @@ class NetworkFirewallUnexpectedFirewallRoutesViolation {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallEndpoint = this.firewallEndpoint;
+    final firewallSubnetId = this.firewallSubnetId;
+    final routeTableId = this.routeTableId;
+    final violatingRoutes = this.violatingRoutes;
+    final vpcId = this.vpcId;
+    return {
+      if (firewallEndpoint != null) 'FirewallEndpoint': firewallEndpoint,
+      if (firewallSubnetId != null) 'FirewallSubnetId': firewallSubnetId,
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+      if (violatingRoutes != null) 'ViolatingRoutes': violatingRoutes,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Violation detail for an unexpected gateway route that’s present in a route
@@ -3151,6 +3738,19 @@ class NetworkFirewallUnexpectedGatewayRoutesViolation {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayId = this.gatewayId;
+    final routeTableId = this.routeTableId;
+    final violatingRoutes = this.violatingRoutes;
+    final vpcId = this.vpcId;
+    return {
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (routeTableId != null) 'RouteTableId': routeTableId,
+      if (violatingRoutes != null) 'ViolatingRoutes': violatingRoutes,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// The reference rule that partially matches the <code>ViolationTarget</code>
@@ -3175,6 +3775,16 @@ class PartialMatch {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reference = this.reference;
+    final targetViolationReasons = this.targetViolationReasons;
+    return {
+      if (reference != null) 'Reference': reference,
+      if (targetViolationReasons != null)
+        'TargetViolationReasons': targetViolationReasons,
+    };
   }
 }
 
@@ -3423,6 +4033,27 @@ class PolicyComplianceDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationLimitExceeded = this.evaluationLimitExceeded;
+    final expiredAt = this.expiredAt;
+    final issueInfoMap = this.issueInfoMap;
+    final memberAccount = this.memberAccount;
+    final policyId = this.policyId;
+    final policyOwner = this.policyOwner;
+    final violators = this.violators;
+    return {
+      if (evaluationLimitExceeded != null)
+        'EvaluationLimitExceeded': evaluationLimitExceeded,
+      if (expiredAt != null) 'ExpiredAt': unixTimestampToJson(expiredAt),
+      if (issueInfoMap != null)
+        'IssueInfoMap': issueInfoMap.map((k, e) => MapEntry(k.toValue(), e)),
+      if (memberAccount != null) 'MemberAccount': memberAccount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyOwner != null) 'PolicyOwner': policyOwner,
+      if (violators != null) 'Violators': violators,
+    };
+  }
 }
 
 /// Indicates whether the account is compliant with the specified policy. An
@@ -3475,6 +4106,26 @@ class PolicyComplianceStatus {
       policyName: json['PolicyName'] as String?,
       policyOwner: json['PolicyOwner'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResults = this.evaluationResults;
+    final issueInfoMap = this.issueInfoMap;
+    final lastUpdated = this.lastUpdated;
+    final memberAccount = this.memberAccount;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final policyOwner = this.policyOwner;
+    return {
+      if (evaluationResults != null) 'EvaluationResults': evaluationResults,
+      if (issueInfoMap != null)
+        'IssueInfoMap': issueInfoMap.map((k, e) => MapEntry(k.toValue(), e)),
+      if (lastUpdated != null) 'LastUpdated': unixTimestampToJson(lastUpdated),
+      if (memberAccount != null) 'MemberAccount': memberAccount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyOwner != null) 'PolicyOwner': policyOwner,
+    };
   }
 }
 
@@ -3559,6 +4210,24 @@ class PolicySummary {
           (json['SecurityServiceType'] as String?)?.toSecurityServiceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final remediationEnabled = this.remediationEnabled;
+    final resourceType = this.resourceType;
+    final securityServiceType = this.securityServiceType;
+    return {
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (remediationEnabled != null) 'RemediationEnabled': remediationEnabled,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (securityServiceType != null)
+        'SecurityServiceType': securityServiceType.toValue(),
+    };
+  }
 }
 
 /// A list of remediation actions.
@@ -3588,6 +4257,17 @@ class PossibleRemediationAction {
       isDefaultAction: json['IsDefaultAction'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final orderedRemediationActions = this.orderedRemediationActions;
+    final description = this.description;
+    final isDefaultAction = this.isDefaultAction;
+    return {
+      'OrderedRemediationActions': orderedRemediationActions,
+      if (description != null) 'Description': description,
+      if (isDefaultAction != null) 'IsDefaultAction': isDefaultAction,
+    };
+  }
 }
 
 /// A list of possible remediation action lists. Each individual possible
@@ -3612,6 +4292,15 @@ class PossibleRemediationActions {
           .toList(),
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final description = this.description;
+    return {
+      if (actions != null) 'Actions': actions,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -3720,6 +4409,19 @@ class ProtocolsListDataSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listArn = this.listArn;
+    final listId = this.listId;
+    final listName = this.listName;
+    final protocolsList = this.protocolsList;
+    return {
+      if (listArn != null) 'ListArn': listArn,
+      if (listId != null) 'ListId': listId,
+      if (listName != null) 'ListName': listName,
+      if (protocolsList != null) 'ProtocolsList': protocolsList,
+    };
+  }
 }
 
 class PutAppsListResponse {
@@ -3740,6 +4442,15 @@ class PutAppsListResponse {
           : null,
       appsListArn: json['AppsListArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appsList = this.appsList;
+    final appsListArn = this.appsListArn;
+    return {
+      if (appsList != null) 'AppsList': appsList,
+      if (appsListArn != null) 'AppsListArn': appsListArn,
+    };
   }
 }
 
@@ -3762,6 +4473,15 @@ class PutPolicyResponse {
       policyArn: json['PolicyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final policyArn = this.policyArn;
+    return {
+      if (policy != null) 'Policy': policy,
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
+  }
 }
 
 class PutProtocolsListResponse {
@@ -3783,6 +4503,15 @@ class PutProtocolsListResponse {
           : null,
       protocolsListArn: json['ProtocolsListArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protocolsList = this.protocolsList;
+    final protocolsListArn = this.protocolsListArn;
+    return {
+      if (protocolsList != null) 'ProtocolsList': protocolsList,
+      if (protocolsListArn != null) 'ProtocolsListArn': protocolsListArn,
+    };
   }
 }
 
@@ -3860,6 +4589,36 @@ class RemediationAction {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eC2AssociateRouteTableAction = this.eC2AssociateRouteTableAction;
+    final eC2CopyRouteTableAction = this.eC2CopyRouteTableAction;
+    final eC2CreateRouteAction = this.eC2CreateRouteAction;
+    final eC2CreateRouteTableAction = this.eC2CreateRouteTableAction;
+    final eC2DeleteRouteAction = this.eC2DeleteRouteAction;
+    final eC2ReplaceRouteAction = this.eC2ReplaceRouteAction;
+    final eC2ReplaceRouteTableAssociationAction =
+        this.eC2ReplaceRouteTableAssociationAction;
+    return {
+      if (description != null) 'Description': description,
+      if (eC2AssociateRouteTableAction != null)
+        'EC2AssociateRouteTableAction': eC2AssociateRouteTableAction,
+      if (eC2CopyRouteTableAction != null)
+        'EC2CopyRouteTableAction': eC2CopyRouteTableAction,
+      if (eC2CreateRouteAction != null)
+        'EC2CreateRouteAction': eC2CreateRouteAction,
+      if (eC2CreateRouteTableAction != null)
+        'EC2CreateRouteTableAction': eC2CreateRouteTableAction,
+      if (eC2DeleteRouteAction != null)
+        'EC2DeleteRouteAction': eC2DeleteRouteAction,
+      if (eC2ReplaceRouteAction != null)
+        'EC2ReplaceRouteAction': eC2ReplaceRouteAction,
+      if (eC2ReplaceRouteTableAssociationAction != null)
+        'EC2ReplaceRouteTableAssociationAction':
+            eC2ReplaceRouteTableAssociationAction,
+    };
+  }
 }
 
 enum RemediationActionType {
@@ -3910,6 +4669,15 @@ class RemediationActionWithOrder {
               json['RemediationAction'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final order = this.order;
+    final remediationAction = this.remediationAction;
+    return {
+      if (order != null) 'Order': order,
+      if (remediationAction != null) 'RemediationAction': remediationAction,
+    };
   }
 }
 
@@ -4146,6 +4914,87 @@ class ResourceViolation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsEc2InstanceViolation = this.awsEc2InstanceViolation;
+    final awsEc2NetworkInterfaceViolation =
+        this.awsEc2NetworkInterfaceViolation;
+    final awsVPCSecurityGroupViolation = this.awsVPCSecurityGroupViolation;
+    final dnsDuplicateRuleGroupViolation = this.dnsDuplicateRuleGroupViolation;
+    final dnsRuleGroupLimitExceededViolation =
+        this.dnsRuleGroupLimitExceededViolation;
+    final dnsRuleGroupPriorityConflictViolation =
+        this.dnsRuleGroupPriorityConflictViolation;
+    final networkFirewallBlackHoleRouteDetectedViolation =
+        this.networkFirewallBlackHoleRouteDetectedViolation;
+    final networkFirewallInternetTrafficNotInspectedViolation =
+        this.networkFirewallInternetTrafficNotInspectedViolation;
+    final networkFirewallInvalidRouteConfigurationViolation =
+        this.networkFirewallInvalidRouteConfigurationViolation;
+    final networkFirewallMissingExpectedRTViolation =
+        this.networkFirewallMissingExpectedRTViolation;
+    final networkFirewallMissingExpectedRoutesViolation =
+        this.networkFirewallMissingExpectedRoutesViolation;
+    final networkFirewallMissingFirewallViolation =
+        this.networkFirewallMissingFirewallViolation;
+    final networkFirewallMissingSubnetViolation =
+        this.networkFirewallMissingSubnetViolation;
+    final networkFirewallPolicyModifiedViolation =
+        this.networkFirewallPolicyModifiedViolation;
+    final networkFirewallUnexpectedFirewallRoutesViolation =
+        this.networkFirewallUnexpectedFirewallRoutesViolation;
+    final networkFirewallUnexpectedGatewayRoutesViolation =
+        this.networkFirewallUnexpectedGatewayRoutesViolation;
+    final possibleRemediationActions = this.possibleRemediationActions;
+    return {
+      if (awsEc2InstanceViolation != null)
+        'AwsEc2InstanceViolation': awsEc2InstanceViolation,
+      if (awsEc2NetworkInterfaceViolation != null)
+        'AwsEc2NetworkInterfaceViolation': awsEc2NetworkInterfaceViolation,
+      if (awsVPCSecurityGroupViolation != null)
+        'AwsVPCSecurityGroupViolation': awsVPCSecurityGroupViolation,
+      if (dnsDuplicateRuleGroupViolation != null)
+        'DnsDuplicateRuleGroupViolation': dnsDuplicateRuleGroupViolation,
+      if (dnsRuleGroupLimitExceededViolation != null)
+        'DnsRuleGroupLimitExceededViolation':
+            dnsRuleGroupLimitExceededViolation,
+      if (dnsRuleGroupPriorityConflictViolation != null)
+        'DnsRuleGroupPriorityConflictViolation':
+            dnsRuleGroupPriorityConflictViolation,
+      if (networkFirewallBlackHoleRouteDetectedViolation != null)
+        'NetworkFirewallBlackHoleRouteDetectedViolation':
+            networkFirewallBlackHoleRouteDetectedViolation,
+      if (networkFirewallInternetTrafficNotInspectedViolation != null)
+        'NetworkFirewallInternetTrafficNotInspectedViolation':
+            networkFirewallInternetTrafficNotInspectedViolation,
+      if (networkFirewallInvalidRouteConfigurationViolation != null)
+        'NetworkFirewallInvalidRouteConfigurationViolation':
+            networkFirewallInvalidRouteConfigurationViolation,
+      if (networkFirewallMissingExpectedRTViolation != null)
+        'NetworkFirewallMissingExpectedRTViolation':
+            networkFirewallMissingExpectedRTViolation,
+      if (networkFirewallMissingExpectedRoutesViolation != null)
+        'NetworkFirewallMissingExpectedRoutesViolation':
+            networkFirewallMissingExpectedRoutesViolation,
+      if (networkFirewallMissingFirewallViolation != null)
+        'NetworkFirewallMissingFirewallViolation':
+            networkFirewallMissingFirewallViolation,
+      if (networkFirewallMissingSubnetViolation != null)
+        'NetworkFirewallMissingSubnetViolation':
+            networkFirewallMissingSubnetViolation,
+      if (networkFirewallPolicyModifiedViolation != null)
+        'NetworkFirewallPolicyModifiedViolation':
+            networkFirewallPolicyModifiedViolation,
+      if (networkFirewallUnexpectedFirewallRoutesViolation != null)
+        'NetworkFirewallUnexpectedFirewallRoutesViolation':
+            networkFirewallUnexpectedFirewallRoutesViolation,
+      if (networkFirewallUnexpectedGatewayRoutesViolation != null)
+        'NetworkFirewallUnexpectedGatewayRoutesViolation':
+            networkFirewallUnexpectedGatewayRoutesViolation,
+      if (possibleRemediationActions != null)
+        'PossibleRemediationActions': possibleRemediationActions,
+    };
+  }
 }
 
 /// Describes a route in a route table.
@@ -4176,6 +5025,19 @@ class Route {
       target: json['Target'] as String?,
       targetType: (json['TargetType'] as String?)?.toTargetType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final destinationType = this.destinationType;
+    final target = this.target;
+    final targetType = this.targetType;
+    return {
+      if (destination != null) 'Destination': destination,
+      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (target != null) 'Target': target,
+      if (targetType != null) 'TargetType': targetType.toValue(),
+    };
   }
 }
 
@@ -4212,6 +5074,20 @@ class SecurityGroupRemediationAction {
               json['RemediationResult'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final isDefaultAction = this.isDefaultAction;
+    final remediationActionType = this.remediationActionType;
+    final remediationResult = this.remediationResult;
+    return {
+      if (description != null) 'Description': description,
+      if (isDefaultAction != null) 'IsDefaultAction': isDefaultAction,
+      if (remediationActionType != null)
+        'RemediationActionType': remediationActionType.toValue(),
+      if (remediationResult != null) 'RemediationResult': remediationResult,
+    };
   }
 }
 
@@ -4255,6 +5131,23 @@ class SecurityGroupRuleDescription {
       protocol: json['Protocol'] as String?,
       toPort: json['ToPort'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final iPV4Range = this.iPV4Range;
+    final iPV6Range = this.iPV6Range;
+    final prefixListId = this.prefixListId;
+    final protocol = this.protocol;
+    final toPort = this.toPort;
+    return {
+      if (fromPort != null) 'FromPort': fromPort,
+      if (iPV4Range != null) 'IPV4Range': iPV4Range,
+      if (iPV6Range != null) 'IPV6Range': iPV6Range,
+      if (prefixListId != null) 'PrefixListId': prefixListId,
+      if (protocol != null) 'Protocol': protocol,
+      if (toPort != null) 'ToPort': toPort,
+    };
   }
 }
 
@@ -4436,6 +5329,15 @@ class StatefulRuleGroup {
       ruleGroupName: json['RuleGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final ruleGroupName = this.ruleGroupName;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (ruleGroupName != null) 'RuleGroupName': ruleGroupName,
+    };
+  }
 }
 
 /// Network Firewall stateless rule group, used in a
@@ -4462,6 +5364,17 @@ class StatelessRuleGroup {
       resourceId: json['ResourceId'] as String?,
       ruleGroupName: json['RuleGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final priority = this.priority;
+    final resourceId = this.resourceId;
+    final ruleGroupName = this.ruleGroupName;
+    return {
+      if (priority != null) 'Priority': priority,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (ruleGroupName != null) 'RuleGroupName': ruleGroupName,
+    };
   }
 }
 
@@ -4507,6 +5420,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4583,6 +5500,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Violations for a resource based on the specified Firewall Manager policy and
@@ -4636,6 +5557,26 @@ class ViolationDetail {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memberAccount = this.memberAccount;
+    final policyId = this.policyId;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final resourceViolations = this.resourceViolations;
+    final resourceDescription = this.resourceDescription;
+    final resourceTags = this.resourceTags;
+    return {
+      'MemberAccount': memberAccount,
+      'PolicyId': policyId,
+      'ResourceId': resourceId,
+      'ResourceType': resourceType,
+      'ResourceViolations': resourceViolations,
+      if (resourceDescription != null)
+        'ResourceDescription': resourceDescription,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+    };
   }
 }
 

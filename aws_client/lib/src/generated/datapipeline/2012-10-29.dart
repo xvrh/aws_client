@@ -1217,6 +1217,10 @@ class ActivatePipelineOutput {
   factory ActivatePipelineOutput.fromJson(Map<String, dynamic> _) {
     return ActivatePipelineOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of AddTags.
@@ -1224,6 +1228,10 @@ class AddTagsOutput {
   AddTagsOutput();
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1241,6 +1249,13 @@ class CreatePipelineOutput {
       pipelineId: json['pipelineId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineId = this.pipelineId;
+    return {
+      'pipelineId': pipelineId,
+    };
+  }
 }
 
 /// Contains the output of DeactivatePipeline.
@@ -1248,6 +1263,10 @@ class DeactivatePipelineOutput {
   DeactivatePipelineOutput();
   factory DeactivatePipelineOutput.fromJson(Map<String, dynamic> _) {
     return DeactivatePipelineOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1279,6 +1298,17 @@ class DescribeObjectsOutput {
       marker: json['marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineObjects = this.pipelineObjects;
+    final hasMoreResults = this.hasMoreResults;
+    final marker = this.marker;
+    return {
+      'pipelineObjects': pipelineObjects,
+      if (hasMoreResults != null) 'hasMoreResults': hasMoreResults,
+      if (marker != null) 'marker': marker,
+    };
+  }
 }
 
 /// Contains the output of DescribePipelines.
@@ -1297,6 +1327,13 @@ class DescribePipelinesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineDescriptionList = this.pipelineDescriptionList;
+    return {
+      'pipelineDescriptionList': pipelineDescriptionList,
+    };
+  }
 }
 
 /// Contains the output of EvaluateExpression.
@@ -1311,6 +1348,13 @@ class EvaluateExpressionOutput {
     return EvaluateExpressionOutput(
       evaluatedExpression: json['evaluatedExpression'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluatedExpression = this.evaluatedExpression;
+    return {
+      'evaluatedExpression': evaluatedExpression,
+    };
   }
 }
 
@@ -1384,6 +1428,17 @@ class GetPipelineDefinitionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterObjects = this.parameterObjects;
+    final parameterValues = this.parameterValues;
+    final pipelineObjects = this.pipelineObjects;
+    return {
+      if (parameterObjects != null) 'parameterObjects': parameterObjects,
+      if (parameterValues != null) 'parameterValues': parameterValues,
+      if (pipelineObjects != null) 'pipelineObjects': pipelineObjects,
+    };
+  }
 }
 
 ///
@@ -1410,6 +1465,13 @@ class InstanceIdentity {
     this.document,
     this.signature,
   });
+  factory InstanceIdentity.fromJson(Map<String, dynamic> json) {
+    return InstanceIdentity(
+      document: json['document'] as String?,
+      signature: json['signature'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final document = this.document;
     final signature = this.signature;
@@ -1450,6 +1512,17 @@ class ListPipelinesOutput {
       hasMoreResults: json['hasMoreResults'] as bool?,
       marker: json['marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineIdList = this.pipelineIdList;
+    final hasMoreResults = this.hasMoreResults;
+    final marker = this.marker;
+    return {
+      'pipelineIdList': pipelineIdList,
+      if (hasMoreResults != null) 'hasMoreResults': hasMoreResults,
+      if (marker != null) 'marker': marker,
+    };
   }
 }
 
@@ -1501,6 +1574,16 @@ class Operator {
     this.type,
     this.values,
   });
+  factory Operator.fromJson(Map<String, dynamic> json) {
+    return Operator(
+      type: (json['type'] as String?)?.toOperatorType(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final values = this.values;
@@ -1689,6 +1772,21 @@ class PipelineDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fields = this.fields;
+    final name = this.name;
+    final pipelineId = this.pipelineId;
+    final description = this.description;
+    final tags = this.tags;
+    return {
+      'fields': fields,
+      'name': name,
+      'pipelineId': pipelineId,
+      if (description != null) 'description': description,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Contains the name and identifier of a pipeline.
@@ -1709,6 +1807,15 @@ class PipelineIdName {
       id: json['id'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1772,6 +1879,13 @@ class PollForTaskOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskObject = this.taskObject;
+    return {
+      if (taskObject != null) 'taskObject': taskObject,
+    };
+  }
 }
 
 /// Contains the output of PutPipelineDefinition.
@@ -1807,6 +1921,17 @@ class PutPipelineDefinitionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errored = this.errored;
+    final validationErrors = this.validationErrors;
+    final validationWarnings = this.validationWarnings;
+    return {
+      'errored': errored,
+      if (validationErrors != null) 'validationErrors': validationErrors,
+      if (validationWarnings != null) 'validationWarnings': validationWarnings,
+    };
+  }
 }
 
 /// Defines the query to run against an object.
@@ -1818,6 +1943,15 @@ class Query {
   Query({
     this.selectors,
   });
+  factory Query.fromJson(Map<String, dynamic> json) {
+    return Query(
+      selectors: (json['selectors'] as List?)
+          ?.whereNotNull()
+          .map((e) => Selector.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final selectors = this.selectors;
     return {
@@ -1855,6 +1989,17 @@ class QueryObjectsOutput {
       marker: json['marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hasMoreResults = this.hasMoreResults;
+    final ids = this.ids;
+    final marker = this.marker;
+    return {
+      if (hasMoreResults != null) 'hasMoreResults': hasMoreResults,
+      if (ids != null) 'ids': ids,
+      if (marker != null) 'marker': marker,
+    };
+  }
 }
 
 /// Contains the output of RemoveTags.
@@ -1862,6 +2007,10 @@ class RemoveTagsOutput {
   RemoveTagsOutput();
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1879,6 +2028,13 @@ class ReportTaskProgressOutput {
       canceled: json['canceled'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canceled = this.canceled;
+    return {
+      'canceled': canceled,
+    };
+  }
 }
 
 /// Contains the output of ReportTaskRunnerHeartbeat.
@@ -1893,6 +2049,13 @@ class ReportTaskRunnerHeartbeatOutput {
     return ReportTaskRunnerHeartbeatOutput(
       terminate: json['terminate'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final terminate = this.terminate;
+    return {
+      'terminate': terminate,
+    };
   }
 }
 
@@ -1910,6 +2073,15 @@ class Selector {
     this.fieldName,
     this.operator,
   });
+  factory Selector.fromJson(Map<String, dynamic> json) {
+    return Selector(
+      fieldName: json['fieldName'] as String?,
+      operator: json['operator'] != null
+          ? Operator.fromJson(json['operator'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fieldName = this.fieldName;
     final operator = this.operator;
@@ -1925,6 +2097,10 @@ class SetTaskStatusOutput {
   SetTaskStatusOutput();
   factory SetTaskStatusOutput.fromJson(Map<String, dynamic> _) {
     return SetTaskStatusOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2002,6 +2178,19 @@ class TaskObject {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attemptId = this.attemptId;
+    final objects = this.objects;
+    final pipelineId = this.pipelineId;
+    final taskId = this.taskId;
+    return {
+      if (attemptId != null) 'attemptId': attemptId,
+      if (objects != null) 'objects': objects,
+      if (pipelineId != null) 'pipelineId': pipelineId,
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 enum TaskStatus {
@@ -2066,6 +2255,17 @@ class ValidatePipelineDefinitionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errored = this.errored;
+    final validationErrors = this.validationErrors;
+    final validationWarnings = this.validationWarnings;
+    return {
+      'errored': errored,
+      if (validationErrors != null) 'validationErrors': validationErrors,
+      if (validationWarnings != null) 'validationWarnings': validationWarnings,
+    };
+  }
 }
 
 /// Defines a validation error. Validation errors prevent pipeline activation.
@@ -2091,6 +2291,15 @@ class ValidationError {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final id = this.id;
+    return {
+      if (errors != null) 'errors': errors,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// Defines a validation warning. Validation warnings do not prevent pipeline
@@ -2115,6 +2324,15 @@ class ValidationWarning {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final warnings = this.warnings;
+    return {
+      if (id != null) 'id': id,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 

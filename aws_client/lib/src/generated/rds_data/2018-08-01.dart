@@ -681,6 +681,13 @@ class BatchExecuteStatementResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final updateResults = this.updateResults;
+    return {
+      if (updateResults != null) 'updateResults': updateResults,
+    };
+  }
 }
 
 /// The response elements represent the output of a request to start a SQL
@@ -696,6 +703,13 @@ class BeginTransactionResponse {
     return BeginTransactionResponse(
       transactionId: json['transactionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionId = this.transactionId;
+    return {
+      if (transactionId != null) 'transactionId': transactionId,
+    };
   }
 }
 
@@ -777,6 +791,40 @@ class ColumnMetadata {
       typeName: json['typeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arrayBaseColumnType = this.arrayBaseColumnType;
+    final isAutoIncrement = this.isAutoIncrement;
+    final isCaseSensitive = this.isCaseSensitive;
+    final isCurrency = this.isCurrency;
+    final isSigned = this.isSigned;
+    final label = this.label;
+    final name = this.name;
+    final nullable = this.nullable;
+    final precision = this.precision;
+    final scale = this.scale;
+    final schemaName = this.schemaName;
+    final tableName = this.tableName;
+    final type = this.type;
+    final typeName = this.typeName;
+    return {
+      if (arrayBaseColumnType != null)
+        'arrayBaseColumnType': arrayBaseColumnType,
+      if (isAutoIncrement != null) 'isAutoIncrement': isAutoIncrement,
+      if (isCaseSensitive != null) 'isCaseSensitive': isCaseSensitive,
+      if (isCurrency != null) 'isCurrency': isCurrency,
+      if (isSigned != null) 'isSigned': isSigned,
+      if (label != null) 'label': label,
+      if (name != null) 'name': name,
+      if (nullable != null) 'nullable': nullable,
+      if (precision != null) 'precision': precision,
+      if (scale != null) 'scale': scale,
+      if (schemaName != null) 'schemaName': schemaName,
+      if (tableName != null) 'tableName': tableName,
+      if (type != null) 'type': type,
+      if (typeName != null) 'typeName': typeName,
+    };
+  }
 }
 
 /// The response elements represent the output of a commit transaction request.
@@ -791,6 +839,13 @@ class CommitTransactionResponse {
     return CommitTransactionResponse(
       transactionStatus: json['transactionStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionStatus = this.transactionStatus;
+    return {
+      if (transactionStatus != null) 'transactionStatus': transactionStatus,
+    };
   }
 }
 
@@ -838,6 +893,14 @@ class ExecuteSqlResponse {
           .map((e) => SqlStatementResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sqlStatementResults = this.sqlStatementResults;
+    return {
+      if (sqlStatementResults != null)
+        'sqlStatementResults': sqlStatementResults,
+    };
   }
 }
 
@@ -888,6 +951,20 @@ class ExecuteStatementResponse {
               .toList())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnMetadata = this.columnMetadata;
+    final generatedFields = this.generatedFields;
+    final numberOfRecordsUpdated = this.numberOfRecordsUpdated;
+    final records = this.records;
+    return {
+      if (columnMetadata != null) 'columnMetadata': columnMetadata,
+      if (generatedFields != null) 'generatedFields': generatedFields,
+      if (numberOfRecordsUpdated != null)
+        'numberOfRecordsUpdated': numberOfRecordsUpdated,
+      if (records != null) 'records': records,
+    };
   }
 }
 
@@ -973,6 +1050,13 @@ class Record {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final values = this.values;
+    return {
+      if (values != null) 'values': values,
+    };
+  }
 }
 
 /// The result set returned by a SQL statement.
@@ -999,6 +1083,15 @@ class ResultFrame {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final records = this.records;
+    final resultSetMetadata = this.resultSetMetadata;
+    return {
+      if (records != null) 'records': records,
+      if (resultSetMetadata != null) 'resultSetMetadata': resultSetMetadata,
+    };
+  }
 }
 
 /// The metadata of the result set returned by a SQL statement.
@@ -1022,6 +1115,15 @@ class ResultSetMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final columnCount = this.columnCount;
+    final columnMetadata = this.columnMetadata;
+    return {
+      if (columnCount != null) 'columnCount': columnCount,
+      if (columnMetadata != null) 'columnMetadata': columnMetadata,
+    };
+  }
 }
 
 /// Options that control how the result set is returned.
@@ -1041,6 +1143,13 @@ class ResultSetOptions {
   ResultSetOptions({
     this.decimalReturnType,
   });
+  factory ResultSetOptions.fromJson(Map<String, dynamic> json) {
+    return ResultSetOptions(
+      decimalReturnType:
+          (json['decimalReturnType'] as String?)?.toDecimalReturnType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final decimalReturnType = this.decimalReturnType;
     return {
@@ -1063,6 +1172,13 @@ class RollbackTransactionResponse {
     return RollbackTransactionResponse(
       transactionStatus: json['transactionStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionStatus = this.transactionStatus;
+    return {
+      if (transactionStatus != null) 'transactionStatus': transactionStatus,
+    };
   }
 }
 
@@ -1113,6 +1229,16 @@ class SqlParameter {
     this.typeHint,
     this.value,
   });
+  factory SqlParameter.fromJson(Map<String, dynamic> json) {
+    return SqlParameter(
+      name: json['name'] as String?,
+      typeHint: (json['typeHint'] as String?)?.toTypeHint(),
+      value: json['value'] != null
+          ? Field.fromJson(json['value'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final typeHint = this.typeHint;
@@ -1147,6 +1273,16 @@ class SqlStatementResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final numberOfRecordsUpdated = this.numberOfRecordsUpdated;
+    final resultFrame = this.resultFrame;
+    return {
+      if (numberOfRecordsUpdated != null)
+        'numberOfRecordsUpdated': numberOfRecordsUpdated,
+      if (resultFrame != null) 'resultFrame': resultFrame,
+    };
+  }
 }
 
 /// A structure value returned by a call.
@@ -1164,6 +1300,13 @@ class StructValue {
           .map((e) => Value.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'attributes': attributes,
+    };
   }
 }
 
@@ -1231,6 +1374,13 @@ class UpdateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final generatedFields = this.generatedFields;
+    return {
+      if (generatedFields != null) 'generatedFields': generatedFields,
+    };
+  }
 }
 
 /// Contains the value of a column.
@@ -1297,6 +1447,31 @@ class Value {
           ? StructValue.fromJson(json['structValue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arrayValues = this.arrayValues;
+    final bigIntValue = this.bigIntValue;
+    final bitValue = this.bitValue;
+    final blobValue = this.blobValue;
+    final doubleValue = this.doubleValue;
+    final intValue = this.intValue;
+    final isNull = this.isNull;
+    final realValue = this.realValue;
+    final stringValue = this.stringValue;
+    final structValue = this.structValue;
+    return {
+      if (arrayValues != null) 'arrayValues': arrayValues,
+      if (bigIntValue != null) 'bigIntValue': bigIntValue,
+      if (bitValue != null) 'bitValue': bitValue,
+      if (blobValue != null) 'blobValue': base64Encode(blobValue),
+      if (doubleValue != null) 'doubleValue': doubleValue,
+      if (intValue != null) 'intValue': intValue,
+      if (isNull != null) 'isNull': isNull,
+      if (realValue != null) 'realValue': realValue,
+      if (stringValue != null) 'stringValue': stringValue,
+      if (structValue != null) 'structValue': structValue,
+    };
   }
 }
 

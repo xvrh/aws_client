@@ -737,6 +737,18 @@ class ComplianceDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceStatus = this.complianceStatus;
+    final keysWithNoncompliantValues = this.keysWithNoncompliantValues;
+    final noncompliantKeys = this.noncompliantKeys;
+    return {
+      if (complianceStatus != null) 'ComplianceStatus': complianceStatus,
+      if (keysWithNoncompliantValues != null)
+        'KeysWithNoncompliantValues': keysWithNoncompliantValues,
+      if (noncompliantKeys != null) 'NoncompliantKeys': noncompliantKeys,
+    };
+  }
 }
 
 class DescribeReportCreationOutput {
@@ -780,6 +792,17 @@ class DescribeReportCreationOutput {
       s3Location: json['S3Location'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final s3Location = this.s3Location;
+    final status = this.status;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (s3Location != null) 'S3Location': s3Location,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -868,6 +891,17 @@ class FailureInfo {
       statusCode: json['StatusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final statusCode = this.statusCode;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
+  }
 }
 
 class GetComplianceSummaryOutput {
@@ -892,6 +926,15 @@ class GetComplianceSummaryOutput {
           .map((e) => Summary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final summaryList = this.summaryList;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (summaryList != null) 'SummaryList': summaryList,
+    };
   }
 }
 
@@ -919,6 +962,16 @@ class GetResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final resourceTagMappingList = this.resourceTagMappingList;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (resourceTagMappingList != null)
+        'ResourceTagMappingList': resourceTagMappingList,
+    };
+  }
 }
 
 class GetTagKeysOutput {
@@ -943,6 +996,15 @@ class GetTagKeysOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final tagKeys = this.tagKeys;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (tagKeys != null) 'TagKeys': tagKeys,
+    };
   }
 }
 
@@ -969,6 +1031,15 @@ class GetTagValuesOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final tagValues = this.tagValues;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (tagValues != null) 'TagValues': tagValues,
+    };
   }
 }
 
@@ -1036,12 +1107,27 @@ class ResourceTagMapping {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceDetails = this.complianceDetails;
+    final resourceARN = this.resourceARN;
+    final tags = this.tags;
+    return {
+      if (complianceDetails != null) 'ComplianceDetails': complianceDetails,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class StartReportCreationOutput {
   StartReportCreationOutput();
   factory StartReportCreationOutput.fromJson(Map<String, dynamic> _) {
     return StartReportCreationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1086,6 +1172,24 @@ class Summary {
       targetIdType: (json['TargetIdType'] as String?)?.toTargetIdType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdated = this.lastUpdated;
+    final nonCompliantResources = this.nonCompliantResources;
+    final region = this.region;
+    final resourceType = this.resourceType;
+    final targetId = this.targetId;
+    final targetIdType = this.targetIdType;
+    return {
+      if (lastUpdated != null) 'LastUpdated': lastUpdated,
+      if (nonCompliantResources != null)
+        'NonCompliantResources': nonCompliantResources,
+      if (region != null) 'Region': region,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (targetId != null) 'TargetId': targetId,
+      if (targetIdType != null) 'TargetIdType': targetIdType.toValue(),
+    };
+  }
 }
 
 /// The metadata that you apply to AWS resources to help you categorize and
@@ -1112,6 +1216,15 @@ class Tag {
       value: json['Value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
 }
 
 /// A list of tags (keys and values) that are used to specify the associated
@@ -1129,6 +1242,16 @@ class TagFilter {
     this.key,
     this.values,
   });
+  factory TagFilter.fromJson(Map<String, dynamic> json) {
+    return TagFilter(
+      key: json['Key'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final values = this.values;
@@ -1156,6 +1279,13 @@ class TagResourcesOutput {
           ?.map((k, e) =>
               MapEntry(k, FailureInfo.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedResourcesMap = this.failedResourcesMap;
+    return {
+      if (failedResourcesMap != null) 'FailedResourcesMap': failedResourcesMap,
+    };
   }
 }
 
@@ -1209,6 +1339,13 @@ class UntagResourcesOutput {
           ?.map((k, e) =>
               MapEntry(k, FailureInfo.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedResourcesMap = this.failedResourcesMap;
+    return {
+      if (failedResourcesMap != null) 'FailedResourcesMap': failedResourcesMap,
+    };
   }
 }
 

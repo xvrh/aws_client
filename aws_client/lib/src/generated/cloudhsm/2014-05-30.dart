@@ -1168,6 +1168,13 @@ class AddTagsToResourceResponse {
       status: json['Status'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
+  }
 }
 
 enum ClientVersion {
@@ -1244,6 +1251,13 @@ class CreateHapgResponse {
       hapgArn: json['HapgArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hapgArn = this.hapgArn;
+    return {
+      if (hapgArn != null) 'HapgArn': hapgArn,
+    };
+  }
 }
 
 /// Contains the output of the <code>CreateHsm</code> operation.
@@ -1258,6 +1272,13 @@ class CreateHsmResponse {
     return CreateHsmResponse(
       hsmArn: json['HsmArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmArn = this.hsmArn;
+    return {
+      if (hsmArn != null) 'HsmArn': hsmArn,
+    };
   }
 }
 
@@ -1274,6 +1295,13 @@ class CreateLunaClientResponse {
       clientArn: json['ClientArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientArn = this.clientArn;
+    return {
+      if (clientArn != null) 'ClientArn': clientArn,
+    };
+  }
 }
 
 /// Contains the output of the <a>DeleteHapg</a> action.
@@ -1288,6 +1316,13 @@ class DeleteHapgResponse {
     return DeleteHapgResponse(
       status: json['Status'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
   }
 }
 
@@ -1304,6 +1339,13 @@ class DeleteHsmResponse {
       status: json['Status'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
+  }
 }
 
 class DeleteLunaClientResponse {
@@ -1317,6 +1359,13 @@ class DeleteLunaClientResponse {
     return DeleteLunaClientResponse(
       status: json['Status'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
   }
 }
 
@@ -1385,6 +1434,34 @@ class DescribeHapgResponse {
           .toList(),
       state: (json['State'] as String?)?.toCloudHsmObjectState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hapgArn = this.hapgArn;
+    final hapgSerial = this.hapgSerial;
+    final hsmsLastActionFailed = this.hsmsLastActionFailed;
+    final hsmsPendingDeletion = this.hsmsPendingDeletion;
+    final hsmsPendingRegistration = this.hsmsPendingRegistration;
+    final label = this.label;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    final partitionSerialList = this.partitionSerialList;
+    final state = this.state;
+    return {
+      if (hapgArn != null) 'HapgArn': hapgArn,
+      if (hapgSerial != null) 'HapgSerial': hapgSerial,
+      if (hsmsLastActionFailed != null)
+        'HsmsLastActionFailed': hsmsLastActionFailed,
+      if (hsmsPendingDeletion != null)
+        'HsmsPendingDeletion': hsmsPendingDeletion,
+      if (hsmsPendingRegistration != null)
+        'HsmsPendingRegistration': hsmsPendingRegistration,
+      if (label != null) 'Label': label,
+      if (lastModifiedTimestamp != null)
+        'LastModifiedTimestamp': lastModifiedTimestamp,
+      if (partitionSerialList != null)
+        'PartitionSerialList': partitionSerialList,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -1503,6 +1580,57 @@ class DescribeHsmResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final eniId = this.eniId;
+    final eniIp = this.eniIp;
+    final hsmArn = this.hsmArn;
+    final hsmType = this.hsmType;
+    final iamRoleArn = this.iamRoleArn;
+    final partitions = this.partitions;
+    final serialNumber = this.serialNumber;
+    final serverCertLastUpdated = this.serverCertLastUpdated;
+    final serverCertUri = this.serverCertUri;
+    final softwareVersion = this.softwareVersion;
+    final sshKeyLastUpdated = this.sshKeyLastUpdated;
+    final sshPublicKey = this.sshPublicKey;
+    final status = this.status;
+    final statusDetails = this.statusDetails;
+    final subnetId = this.subnetId;
+    final subscriptionEndDate = this.subscriptionEndDate;
+    final subscriptionStartDate = this.subscriptionStartDate;
+    final subscriptionType = this.subscriptionType;
+    final vendorName = this.vendorName;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (eniId != null) 'EniId': eniId,
+      if (eniIp != null) 'EniIp': eniIp,
+      if (hsmArn != null) 'HsmArn': hsmArn,
+      if (hsmType != null) 'HsmType': hsmType,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (partitions != null) 'Partitions': partitions,
+      if (serialNumber != null) 'SerialNumber': serialNumber,
+      if (serverCertLastUpdated != null)
+        'ServerCertLastUpdated': serverCertLastUpdated,
+      if (serverCertUri != null) 'ServerCertUri': serverCertUri,
+      if (softwareVersion != null) 'SoftwareVersion': softwareVersion,
+      if (sshKeyLastUpdated != null) 'SshKeyLastUpdated': sshKeyLastUpdated,
+      if (sshPublicKey != null) 'SshPublicKey': sshPublicKey,
+      if (status != null) 'Status': status.toValue(),
+      if (statusDetails != null) 'StatusDetails': statusDetails,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (subscriptionEndDate != null)
+        'SubscriptionEndDate': subscriptionEndDate,
+      if (subscriptionStartDate != null)
+        'SubscriptionStartDate': subscriptionStartDate,
+      if (subscriptionType != null)
+        'SubscriptionType': subscriptionType.toValue(),
+      if (vendorName != null) 'VendorName': vendorName,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class DescribeLunaClientResponse {
@@ -1537,6 +1665,23 @@ class DescribeLunaClientResponse {
       lastModifiedTimestamp: json['LastModifiedTimestamp'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final certificateFingerprint = this.certificateFingerprint;
+    final clientArn = this.clientArn;
+    final label = this.label;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateFingerprint != null)
+        'CertificateFingerprint': certificateFingerprint,
+      if (clientArn != null) 'ClientArn': clientArn,
+      if (label != null) 'Label': label,
+      if (lastModifiedTimestamp != null)
+        'LastModifiedTimestamp': lastModifiedTimestamp,
+    };
+  }
 }
 
 class GetConfigResponse {
@@ -1560,6 +1705,17 @@ class GetConfigResponse {
       configFile: json['ConfigFile'] as String?,
       configType: json['ConfigType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configCred = this.configCred;
+    final configFile = this.configFile;
+    final configType = this.configType;
+    return {
+      if (configCred != null) 'ConfigCred': configCred,
+      if (configFile != null) 'ConfigFile': configFile,
+      if (configType != null) 'ConfigType': configType,
+    };
   }
 }
 
@@ -1631,6 +1787,13 @@ class ListAvailableZonesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aZList = this.aZList;
+    return {
+      if (aZList != null) 'AZList': aZList,
+    };
+  }
 }
 
 class ListHapgsResponse {
@@ -1653,6 +1816,15 @@ class ListHapgsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hapgList = this.hapgList;
+    final nextToken = this.nextToken;
+    return {
+      'HapgList': hapgList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1678,6 +1850,15 @@ class ListHsmsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hsmList = this.hsmList;
+    final nextToken = this.nextToken;
+    return {
+      if (hsmList != null) 'HsmList': hsmList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLunaClientsResponse {
@@ -1701,6 +1882,15 @@ class ListLunaClientsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientList = this.clientList;
+    final nextToken = this.nextToken;
+    return {
+      'ClientList': clientList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1718,6 +1908,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      'TagList': tagList,
+    };
+  }
 }
 
 class ModifyHapgResponse {
@@ -1731,6 +1928,13 @@ class ModifyHapgResponse {
     return ModifyHapgResponse(
       hapgArn: json['HapgArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hapgArn = this.hapgArn;
+    return {
+      if (hapgArn != null) 'HapgArn': hapgArn,
+    };
   }
 }
 
@@ -1747,6 +1951,13 @@ class ModifyHsmResponse {
       hsmArn: json['HsmArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hsmArn = this.hsmArn;
+    return {
+      if (hsmArn != null) 'HsmArn': hsmArn,
+    };
+  }
 }
 
 class ModifyLunaClientResponse {
@@ -1761,6 +1972,13 @@ class ModifyLunaClientResponse {
       clientArn: json['ClientArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientArn = this.clientArn;
+    return {
+      if (clientArn != null) 'ClientArn': clientArn,
+    };
+  }
 }
 
 class RemoveTagsFromResourceResponse {
@@ -1774,6 +1992,13 @@ class RemoveTagsFromResourceResponse {
     return RemoveTagsFromResourceResponse(
       status: json['Status'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
   }
 }
 

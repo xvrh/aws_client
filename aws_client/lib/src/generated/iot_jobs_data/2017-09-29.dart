@@ -310,6 +310,13 @@ class DescribeJobExecutionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final execution = this.execution;
+    return {
+      if (execution != null) 'execution': execution,
+    };
+  }
 }
 
 class GetPendingJobExecutionsResponse {
@@ -334,6 +341,15 @@ class GetPendingJobExecutionsResponse {
           .map((e) => JobExecutionSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inProgressJobs = this.inProgressJobs;
+    final queuedJobs = this.queuedJobs;
+    return {
+      if (inProgressJobs != null) 'inProgressJobs': inProgressJobs,
+      if (queuedJobs != null) 'queuedJobs': queuedJobs,
+    };
   }
 }
 
@@ -411,6 +427,35 @@ class JobExecution {
       versionNumber: json['versionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approximateSecondsBeforeTimedOut =
+        this.approximateSecondsBeforeTimedOut;
+    final executionNumber = this.executionNumber;
+    final jobDocument = this.jobDocument;
+    final jobId = this.jobId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final queuedAt = this.queuedAt;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final statusDetails = this.statusDetails;
+    final thingName = this.thingName;
+    final versionNumber = this.versionNumber;
+    return {
+      if (approximateSecondsBeforeTimedOut != null)
+        'approximateSecondsBeforeTimedOut': approximateSecondsBeforeTimedOut,
+      if (executionNumber != null) 'executionNumber': executionNumber,
+      if (jobDocument != null) 'jobDocument': jobDocument,
+      if (jobId != null) 'jobId': jobId,
+      if (lastUpdatedAt != null) 'lastUpdatedAt': lastUpdatedAt,
+      if (queuedAt != null) 'queuedAt': queuedAt,
+      if (startedAt != null) 'startedAt': startedAt,
+      if (status != null) 'status': status.toValue(),
+      if (statusDetails != null) 'statusDetails': statusDetails,
+      if (thingName != null) 'thingName': thingName,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
+  }
 }
 
 /// Contains data about the state of a job execution.
@@ -439,6 +484,17 @@ class JobExecutionState {
           ?.map((k, e) => MapEntry(k, e as String)),
       versionNumber: json['versionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusDetails = this.statusDetails;
+    final versionNumber = this.versionNumber;
+    return {
+      if (status != null) 'status': status.toValue(),
+      if (statusDetails != null) 'statusDetails': statusDetails,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
   }
 }
 
@@ -541,6 +597,23 @@ class JobExecutionSummary {
       versionNumber: json['versionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionNumber = this.executionNumber;
+    final jobId = this.jobId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final queuedAt = this.queuedAt;
+    final startedAt = this.startedAt;
+    final versionNumber = this.versionNumber;
+    return {
+      if (executionNumber != null) 'executionNumber': executionNumber,
+      if (jobId != null) 'jobId': jobId,
+      if (lastUpdatedAt != null) 'lastUpdatedAt': lastUpdatedAt,
+      if (queuedAt != null) 'queuedAt': queuedAt,
+      if (startedAt != null) 'startedAt': startedAt,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
+  }
 }
 
 class StartNextPendingJobExecutionResponse {
@@ -557,6 +630,13 @@ class StartNextPendingJobExecutionResponse {
           ? JobExecution.fromJson(json['execution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final execution = this.execution;
+    return {
+      if (execution != null) 'execution': execution,
+    };
   }
 }
 
@@ -579,6 +659,15 @@ class UpdateJobExecutionResponse {
           : null,
       jobDocument: json['jobDocument'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionState = this.executionState;
+    final jobDocument = this.jobDocument;
+    return {
+      if (executionState != null) 'executionState': executionState,
+      if (jobDocument != null) 'jobDocument': jobDocument,
+    };
   }
 }
 

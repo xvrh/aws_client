@@ -458,6 +458,13 @@ class AcknowledgeActionConfiguration {
       note: json['note'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final note = this.note;
+    return {
+      if (note != null) 'note': note,
+    };
+  }
 }
 
 /// Information needed to acknowledge the alarm.
@@ -482,6 +489,15 @@ class AcknowledgeAlarmActionRequest {
     this.keyValue,
     this.note,
   });
+  factory AcknowledgeAlarmActionRequest.fromJson(Map<String, dynamic> json) {
+    return AcknowledgeAlarmActionRequest(
+      alarmModelName: json['alarmModelName'] as String,
+      requestId: json['requestId'] as String,
+      keyValue: json['keyValue'] as String?,
+      note: json['note'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final alarmModelName = this.alarmModelName;
     final requestId = this.requestId;
@@ -542,6 +558,27 @@ class Alarm {
       lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
       severity: json['severity'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelName = this.alarmModelName;
+    final alarmModelVersion = this.alarmModelVersion;
+    final alarmState = this.alarmState;
+    final creationTime = this.creationTime;
+    final keyValue = this.keyValue;
+    final lastUpdateTime = this.lastUpdateTime;
+    final severity = this.severity;
+    return {
+      if (alarmModelName != null) 'alarmModelName': alarmModelName,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (alarmState != null) 'alarmState': alarmState,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (keyValue != null) 'keyValue': keyValue,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (severity != null) 'severity': severity,
+    };
   }
 }
 
@@ -615,6 +652,19 @@ class AlarmState {
           ? SystemEvent.fromJson(json['systemEvent'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerAction = this.customerAction;
+    final ruleEvaluation = this.ruleEvaluation;
+    final stateName = this.stateName;
+    final systemEvent = this.systemEvent;
+    return {
+      if (customerAction != null) 'customerAction': customerAction,
+      if (ruleEvaluation != null) 'ruleEvaluation': ruleEvaluation,
+      if (stateName != null) 'stateName': stateName.toValue(),
+      if (systemEvent != null) 'systemEvent': systemEvent,
+    };
   }
 }
 
@@ -740,6 +790,25 @@ class AlarmSummary {
       stateName: (json['stateName'] as String?)?.toAlarmStateName(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelName = this.alarmModelName;
+    final alarmModelVersion = this.alarmModelVersion;
+    final creationTime = this.creationTime;
+    final keyValue = this.keyValue;
+    final lastUpdateTime = this.lastUpdateTime;
+    final stateName = this.stateName;
+    return {
+      if (alarmModelName != null) 'alarmModelName': alarmModelName,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (keyValue != null) 'keyValue': keyValue,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (stateName != null) 'stateName': stateName.toValue(),
+    };
+  }
 }
 
 class BatchAcknowledgeAlarmResponse {
@@ -759,6 +828,13 @@ class BatchAcknowledgeAlarmResponse {
               BatchAlarmActionErrorEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
   }
 }
 
@@ -808,6 +884,17 @@ class BatchAlarmActionErrorEntry {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final requestId = this.requestId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class BatchDisableAlarmResponse {
@@ -828,6 +915,13 @@ class BatchDisableAlarmResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
+  }
 }
 
 class BatchEnableAlarmResponse {
@@ -847,6 +941,13 @@ class BatchEnableAlarmResponse {
               BatchAlarmActionErrorEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
   }
 }
 
@@ -874,6 +975,17 @@ class BatchPutMessageErrorEntry {
       messageId: json['messageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final messageId = this.messageId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (messageId != null) 'messageId': messageId,
+    };
+  }
 }
 
 class BatchPutMessageResponse {
@@ -892,6 +1004,14 @@ class BatchPutMessageResponse {
                   BatchPutMessageErrorEntry.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchPutMessageErrorEntries = this.batchPutMessageErrorEntries;
+    return {
+      if (batchPutMessageErrorEntries != null)
+        'BatchPutMessageErrorEntries': batchPutMessageErrorEntries,
+    };
   }
 }
 
@@ -913,6 +1033,13 @@ class BatchResetAlarmResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
+  }
 }
 
 class BatchSnoozeAlarmResponse {
@@ -932,6 +1059,13 @@ class BatchSnoozeAlarmResponse {
               BatchAlarmActionErrorEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
   }
 }
 
@@ -961,6 +1095,17 @@ class BatchUpdateDetectorErrorEntry {
       messageId: json['messageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final messageId = this.messageId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (messageId != null) 'messageId': messageId,
+    };
+  }
 }
 
 class BatchUpdateDetectorResponse {
@@ -980,6 +1125,15 @@ class BatchUpdateDetectorResponse {
               BatchUpdateDetectorErrorEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchUpdateDetectorErrorEntries =
+        this.batchUpdateDetectorErrorEntries;
+    return {
+      if (batchUpdateDetectorErrorEntries != null)
+        'batchUpdateDetectorErrorEntries': batchUpdateDetectorErrorEntries,
+    };
   }
 }
 
@@ -1112,6 +1266,28 @@ class CustomerAction {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acknowledgeActionConfiguration = this.acknowledgeActionConfiguration;
+    final actionName = this.actionName;
+    final disableActionConfiguration = this.disableActionConfiguration;
+    final enableActionConfiguration = this.enableActionConfiguration;
+    final resetActionConfiguration = this.resetActionConfiguration;
+    final snoozeActionConfiguration = this.snoozeActionConfiguration;
+    return {
+      if (acknowledgeActionConfiguration != null)
+        'acknowledgeActionConfiguration': acknowledgeActionConfiguration,
+      if (actionName != null) 'actionName': actionName.toValue(),
+      if (disableActionConfiguration != null)
+        'disableActionConfiguration': disableActionConfiguration,
+      if (enableActionConfiguration != null)
+        'enableActionConfiguration': enableActionConfiguration,
+      if (resetActionConfiguration != null)
+        'resetActionConfiguration': resetActionConfiguration,
+      if (snoozeActionConfiguration != null)
+        'snoozeActionConfiguration': snoozeActionConfiguration,
+    };
+  }
 }
 
 enum CustomerActionName {
@@ -1171,6 +1347,13 @@ class DescribeAlarmResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarm = this.alarm;
+    return {
+      if (alarm != null) 'alarm': alarm,
+    };
+  }
 }
 
 class DescribeDetectorResponse {
@@ -1186,6 +1369,13 @@ class DescribeDetectorResponse {
           ? Detector.fromJson(json['detector'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detector = this.detector;
+    return {
+      if (detector != null) 'detector': detector,
+    };
   }
 }
 
@@ -1230,6 +1420,26 @@ class Detector {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final detectorModelName = this.detectorModelName;
+    final detectorModelVersion = this.detectorModelVersion;
+    final keyValue = this.keyValue;
+    final lastUpdateTime = this.lastUpdateTime;
+    final state = this.state;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (detectorModelName != null) 'detectorModelName': detectorModelName,
+      if (detectorModelVersion != null)
+        'detectorModelVersion': detectorModelVersion,
+      if (keyValue != null) 'keyValue': keyValue,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 /// Information about the current state of the detector instance.
@@ -1261,6 +1471,17 @@ class DetectorState {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stateName = this.stateName;
+    final timers = this.timers;
+    final variables = this.variables;
+    return {
+      'stateName': stateName,
+      'timers': timers,
+      'variables': variables,
+    };
+  }
 }
 
 /// The new state, variable values, and timer settings of the detector
@@ -1282,6 +1503,20 @@ class DetectorStateDefinition {
     required this.timers,
     required this.variables,
   });
+  factory DetectorStateDefinition.fromJson(Map<String, dynamic> json) {
+    return DetectorStateDefinition(
+      stateName: json['stateName'] as String,
+      timers: (json['timers'] as List)
+          .whereNotNull()
+          .map((e) => TimerDefinition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      variables: (json['variables'] as List)
+          .whereNotNull()
+          .map((e) => VariableDefinition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final stateName = this.stateName;
     final timers = this.timers;
@@ -1306,6 +1541,13 @@ class DetectorStateSummary {
     return DetectorStateSummary(
       stateName: json['stateName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stateName = this.stateName;
+    return {
+      if (stateName != null) 'stateName': stateName,
+    };
   }
 }
 
@@ -1350,6 +1592,26 @@ class DetectorSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final detectorModelName = this.detectorModelName;
+    final detectorModelVersion = this.detectorModelVersion;
+    final keyValue = this.keyValue;
+    final lastUpdateTime = this.lastUpdateTime;
+    final state = this.state;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (detectorModelName != null) 'detectorModelName': detectorModelName,
+      if (detectorModelVersion != null)
+        'detectorModelVersion': detectorModelVersion,
+      if (keyValue != null) 'keyValue': keyValue,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 /// Contains the configuration information of a disable action.
@@ -1364,6 +1626,13 @@ class DisableActionConfiguration {
     return DisableActionConfiguration(
       note: json['note'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final note = this.note;
+    return {
+      if (note != null) 'note': note,
+    };
   }
 }
 
@@ -1389,6 +1658,15 @@ class DisableAlarmActionRequest {
     this.keyValue,
     this.note,
   });
+  factory DisableAlarmActionRequest.fromJson(Map<String, dynamic> json) {
+    return DisableAlarmActionRequest(
+      alarmModelName: json['alarmModelName'] as String,
+      requestId: json['requestId'] as String,
+      keyValue: json['keyValue'] as String?,
+      note: json['note'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final alarmModelName = this.alarmModelName;
     final requestId = this.requestId;
@@ -1416,6 +1694,13 @@ class EnableActionConfiguration {
       note: json['note'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final note = this.note;
+    return {
+      if (note != null) 'note': note,
+    };
+  }
 }
 
 /// Information needed to enable the alarm.
@@ -1440,6 +1725,15 @@ class EnableAlarmActionRequest {
     this.keyValue,
     this.note,
   });
+  factory EnableAlarmActionRequest.fromJson(Map<String, dynamic> json) {
+    return EnableAlarmActionRequest(
+      alarmModelName: json['alarmModelName'] as String,
+      requestId: json['requestId'] as String,
+      keyValue: json['keyValue'] as String?,
+      note: json['note'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final alarmModelName = this.alarmModelName;
     final requestId = this.requestId;
@@ -1541,6 +1835,15 @@ class ListAlarmsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmSummaries = this.alarmSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (alarmSummaries != null) 'alarmSummaries': alarmSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDetectorsResponse {
@@ -1563,6 +1866,15 @@ class ListDetectorsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorSummaries = this.detectorSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (detectorSummaries != null) 'detectorSummaries': detectorSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1588,6 +1900,17 @@ class Message {
     required this.payload,
     this.timestamp,
   });
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      inputName: json['inputName'] as String,
+      messageId: json['messageId'] as String,
+      payload: _s.decodeUint8List(json['payload']! as String),
+      timestamp: json['timestamp'] != null
+          ? TimestampValue.fromJson(json['timestamp'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final inputName = this.inputName;
     final messageId = this.messageId;
@@ -1615,6 +1938,13 @@ class ResetActionConfiguration {
       note: json['note'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final note = this.note;
+    return {
+      if (note != null) 'note': note,
+    };
+  }
 }
 
 /// Information needed to reset the alarm.
@@ -1639,6 +1969,15 @@ class ResetAlarmActionRequest {
     this.keyValue,
     this.note,
   });
+  factory ResetAlarmActionRequest.fromJson(Map<String, dynamic> json) {
+    return ResetAlarmActionRequest(
+      alarmModelName: json['alarmModelName'] as String,
+      requestId: json['requestId'] as String,
+      keyValue: json['keyValue'] as String?,
+      note: json['note'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final alarmModelName = this.alarmModelName;
     final requestId = this.requestId;
@@ -1669,6 +2008,14 @@ class RuleEvaluation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final simpleRuleEvaluation = this.simpleRuleEvaluation;
+    return {
+      if (simpleRuleEvaluation != null)
+        'simpleRuleEvaluation': simpleRuleEvaluation,
+    };
+  }
 }
 
 /// Information needed to compare two values with a comparison operator.
@@ -1695,6 +2042,17 @@ class SimpleRuleEvaluation {
       thresholdValue: json['thresholdValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputPropertyValue = this.inputPropertyValue;
+    final operator = this.operator;
+    final thresholdValue = this.thresholdValue;
+    return {
+      if (inputPropertyValue != null) 'inputPropertyValue': inputPropertyValue,
+      if (operator != null) 'operator': operator.toValue(),
+      if (thresholdValue != null) 'thresholdValue': thresholdValue,
+    };
+  }
 }
 
 /// Contains the configuration information of a snooze action.
@@ -1715,6 +2073,15 @@ class SnoozeActionConfiguration {
       note: json['note'] as String?,
       snoozeDuration: json['snoozeDuration'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final note = this.note;
+    final snoozeDuration = this.snoozeDuration;
+    return {
+      if (note != null) 'note': note,
+      if (snoozeDuration != null) 'snoozeDuration': snoozeDuration,
+    };
   }
 }
 
@@ -1745,6 +2112,16 @@ class SnoozeAlarmActionRequest {
     this.keyValue,
     this.note,
   });
+  factory SnoozeAlarmActionRequest.fromJson(Map<String, dynamic> json) {
+    return SnoozeAlarmActionRequest(
+      alarmModelName: json['alarmModelName'] as String,
+      requestId: json['requestId'] as String,
+      snoozeDuration: json['snoozeDuration'] as int,
+      keyValue: json['keyValue'] as String?,
+      note: json['note'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final alarmModelName = this.alarmModelName;
     final requestId = this.requestId;
@@ -1776,6 +2153,13 @@ class StateChangeConfiguration {
       triggerType: (json['triggerType'] as String?)?.toTriggerType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final triggerType = this.triggerType;
+    return {
+      if (triggerType != null) 'triggerType': triggerType.toValue(),
+    };
+  }
 }
 
 /// Contains information about alarm state changes.
@@ -1800,6 +2184,16 @@ class SystemEvent {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventType = this.eventType;
+    final stateChangeConfiguration = this.stateChangeConfiguration;
+    return {
+      if (eventType != null) 'eventType': eventType.toValue(),
+      if (stateChangeConfiguration != null)
+        'stateChangeConfiguration': stateChangeConfiguration,
+    };
+  }
 }
 
 /// The current state of a timer.
@@ -1820,6 +2214,15 @@ class Timer {
       timestamp: nonNullableTimeStampFromJson(json['timestamp'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final timestamp = this.timestamp;
+    return {
+      'name': name,
+      'timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 /// The new setting of a timer.
@@ -1835,6 +2238,13 @@ class TimerDefinition {
     required this.name,
     required this.seconds,
   });
+  factory TimerDefinition.fromJson(Map<String, dynamic> json) {
+    return TimerDefinition(
+      name: json['name'] as String,
+      seconds: json['seconds'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final seconds = this.seconds;
@@ -1853,6 +2263,12 @@ class TimestampValue {
   TimestampValue({
     this.timeInMillis,
   });
+  factory TimestampValue.fromJson(Map<String, dynamic> json) {
+    return TimestampValue(
+      timeInMillis: json['timeInMillis'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final timeInMillis = this.timeInMillis;
     return {
@@ -1907,6 +2323,16 @@ class UpdateDetectorRequest {
     required this.state,
     this.keyValue,
   });
+  factory UpdateDetectorRequest.fromJson(Map<String, dynamic> json) {
+    return UpdateDetectorRequest(
+      detectorModelName: json['detectorModelName'] as String,
+      messageId: json['messageId'] as String,
+      state: DetectorStateDefinition.fromJson(
+          json['state'] as Map<String, dynamic>),
+      keyValue: json['keyValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final detectorModelName = this.detectorModelName;
     final messageId = this.messageId;
@@ -1939,6 +2365,15 @@ class Variable {
       value: json['value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'name': name,
+      'value': value,
+    };
+  }
 }
 
 /// The new value of the variable.
@@ -1953,6 +2388,13 @@ class VariableDefinition {
     required this.name,
     required this.value,
   });
+  factory VariableDefinition.fromJson(Map<String, dynamic> json) {
+    return VariableDefinition(
+      name: json['name'] as String,
+      value: json['value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;

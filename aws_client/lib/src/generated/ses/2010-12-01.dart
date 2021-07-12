@@ -3675,6 +3675,13 @@ class AddHeaderAction {
     required this.headerName,
     required this.headerValue,
   });
+  factory AddHeaderAction.fromJson(Map<String, dynamic> json) {
+    return AddHeaderAction(
+      headerName: json['HeaderName'] as String,
+      headerValue: json['HeaderValue'] as String,
+    );
+  }
+
   factory AddHeaderAction.fromXml(_s.XmlElement elem) {
     return AddHeaderAction(
       headerName: _s.extractXmlStringValue(elem, 'HeaderName')!,
@@ -3737,6 +3744,17 @@ class Body {
     this.html,
     this.text,
   });
+  factory Body.fromJson(Map<String, dynamic> json) {
+    return Body(
+      html: json['Html'] != null
+          ? Content.fromJson(json['Html'] as Map<String, dynamic>)
+          : null,
+      text: json['Text'] != null
+          ? Content.fromJson(json['Text'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final html = this.html;
     final text = this.text;
@@ -3786,6 +3804,16 @@ class BounceAction {
     this.statusCode,
     this.topicArn,
   });
+  factory BounceAction.fromJson(Map<String, dynamic> json) {
+    return BounceAction(
+      message: json['Message'] as String,
+      sender: json['Sender'] as String,
+      smtpReplyCode: json['SmtpReplyCode'] as String,
+      statusCode: json['StatusCode'] as String?,
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory BounceAction.fromXml(_s.XmlElement elem) {
     return BounceAction(
       message: _s.extractXmlStringValue(elem, 'Message')!,
@@ -3893,6 +3921,18 @@ class BouncedRecipientInfo {
     this.recipientArn,
     this.recipientDsnFields,
   });
+  factory BouncedRecipientInfo.fromJson(Map<String, dynamic> json) {
+    return BouncedRecipientInfo(
+      recipient: json['Recipient'] as String,
+      bounceType: (json['BounceType'] as String?)?.toBounceType(),
+      recipientArn: json['RecipientArn'] as String?,
+      recipientDsnFields: json['RecipientDsnFields'] != null
+          ? RecipientDsnFields.fromJson(
+              json['RecipientDsnFields'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final recipient = this.recipient;
     final bounceType = this.bounceType;
@@ -3928,6 +3968,18 @@ class BulkEmailDestination {
     this.replacementTags,
     this.replacementTemplateData,
   });
+  factory BulkEmailDestination.fromJson(Map<String, dynamic> json) {
+    return BulkEmailDestination(
+      destination:
+          Destination.fromJson(json['Destination'] as Map<String, dynamic>),
+      replacementTags: (json['ReplacementTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => MessageTag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      replacementTemplateData: json['ReplacementTemplateData'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final replacementTags = this.replacementTags;
@@ -4024,12 +4076,31 @@ class BulkEmailDestinationStatus {
     this.messageId,
     this.status,
   });
+  factory BulkEmailDestinationStatus.fromJson(Map<String, dynamic> json) {
+    return BulkEmailDestinationStatus(
+      error: json['Error'] as String?,
+      messageId: json['MessageId'] as String?,
+      status: (json['Status'] as String?)?.toBulkEmailStatus(),
+    );
+  }
+
   factory BulkEmailDestinationStatus.fromXml(_s.XmlElement elem) {
     return BulkEmailDestinationStatus(
       error: _s.extractXmlStringValue(elem, 'Error'),
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       status: _s.extractXmlStringValue(elem, 'Status')?.toBulkEmailStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final messageId = this.messageId;
+    final status = this.status;
+    return {
+      if (error != null) 'Error': error,
+      if (messageId != null) 'MessageId': messageId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -4124,10 +4195,18 @@ extension on String {
 /// An empty element returned on a successful request.
 class CloneReceiptRuleSetResponse {
   CloneReceiptRuleSetResponse();
+  factory CloneReceiptRuleSetResponse.fromJson(Map<String, dynamic> _) {
+    return CloneReceiptRuleSetResponse();
+  }
+
   factory CloneReceiptRuleSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CloneReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4147,6 +4226,16 @@ class CloudWatchDestination {
   CloudWatchDestination({
     required this.dimensionConfigurations,
   });
+  factory CloudWatchDestination.fromJson(Map<String, dynamic> json) {
+    return CloudWatchDestination(
+      dimensionConfigurations: (json['DimensionConfigurations'] as List)
+          .whereNotNull()
+          .map((e) => CloudWatchDimensionConfiguration.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CloudWatchDestination.fromXml(_s.XmlElement elem) {
     return CloudWatchDestination(
       dimensionConfigurations: _s
@@ -4215,6 +4304,15 @@ class CloudWatchDimensionConfiguration {
     required this.dimensionName,
     required this.dimensionValueSource,
   });
+  factory CloudWatchDimensionConfiguration.fromJson(Map<String, dynamic> json) {
+    return CloudWatchDimensionConfiguration(
+      defaultDimensionValue: json['DefaultDimensionValue'] as String,
+      dimensionName: json['DimensionName'] as String,
+      dimensionValueSource:
+          (json['DimensionValueSource'] as String).toDimensionValueSource(),
+    );
+  }
+
   factory CloudWatchDimensionConfiguration.fromXml(_s.XmlElement elem) {
     return CloudWatchDimensionConfiguration(
       defaultDimensionValue:
@@ -4265,6 +4363,12 @@ class ConfigurationSet {
   ConfigurationSet({
     required this.name,
   });
+  factory ConfigurationSet.fromJson(Map<String, dynamic> json) {
+    return ConfigurationSet(
+      name: json['Name'] as String,
+    );
+  }
+
   factory ConfigurationSet.fromXml(_s.XmlElement elem) {
     return ConfigurationSet(
       name: _s.extractXmlStringValue(elem, 'Name')!,
@@ -4333,6 +4437,13 @@ class Content {
     required this.data,
     this.charset,
   });
+  factory Content.fromJson(Map<String, dynamic> json) {
+    return Content(
+      data: json['Data'] as String,
+      charset: json['Charset'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final charset = this.charset;
@@ -4346,69 +4457,127 @@ class Content {
 /// An empty element returned on a successful request.
 class CreateConfigurationSetEventDestinationResponse {
   CreateConfigurationSetEventDestinationResponse();
+  factory CreateConfigurationSetEventDestinationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return CreateConfigurationSetEventDestinationResponse();
+  }
+
   factory CreateConfigurationSetEventDestinationResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateConfigurationSetEventDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class CreateConfigurationSetResponse {
   CreateConfigurationSetResponse();
+  factory CreateConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
+    return CreateConfigurationSetResponse();
+  }
+
   factory CreateConfigurationSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class CreateConfigurationSetTrackingOptionsResponse {
   CreateConfigurationSetTrackingOptionsResponse();
+  factory CreateConfigurationSetTrackingOptionsResponse.fromJson(
+      Map<String, dynamic> _) {
+    return CreateConfigurationSetTrackingOptionsResponse();
+  }
+
   factory CreateConfigurationSetTrackingOptionsResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateConfigurationSetTrackingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class CreateReceiptFilterResponse {
   CreateReceiptFilterResponse();
+  factory CreateReceiptFilterResponse.fromJson(Map<String, dynamic> _) {
+    return CreateReceiptFilterResponse();
+  }
+
   factory CreateReceiptFilterResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateReceiptFilterResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class CreateReceiptRuleResponse {
   CreateReceiptRuleResponse();
+  factory CreateReceiptRuleResponse.fromJson(Map<String, dynamic> _) {
+    return CreateReceiptRuleResponse();
+  }
+
   factory CreateReceiptRuleResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateReceiptRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class CreateReceiptRuleSetResponse {
   CreateReceiptRuleSetResponse();
+  factory CreateReceiptRuleSetResponse.fromJson(Map<String, dynamic> _) {
+    return CreateReceiptRuleSetResponse();
+  }
+
   factory CreateReceiptRuleSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateReceiptRuleSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateTemplateResponse {
   CreateTemplateResponse();
+  factory CreateTemplateResponse.fromJson(Map<String, dynamic> _) {
+    return CreateTemplateResponse();
+  }
+
   factory CreateTemplateResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4476,6 +4645,16 @@ class CustomVerificationEmailTemplate {
     this.templateName,
     this.templateSubject,
   });
+  factory CustomVerificationEmailTemplate.fromJson(Map<String, dynamic> json) {
+    return CustomVerificationEmailTemplate(
+      failureRedirectionURL: json['FailureRedirectionURL'] as String?,
+      fromEmailAddress: json['FromEmailAddress'] as String?,
+      successRedirectionURL: json['SuccessRedirectionURL'] as String?,
+      templateName: json['TemplateName'] as String?,
+      templateSubject: json['TemplateSubject'] as String?,
+    );
+  }
+
   factory CustomVerificationEmailTemplate.fromXml(_s.XmlElement elem) {
     return CustomVerificationEmailTemplate(
       failureRedirectionURL:
@@ -4487,94 +4666,185 @@ class CustomVerificationEmailTemplate {
       templateSubject: _s.extractXmlStringValue(elem, 'TemplateSubject'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
+  }
 }
 
 /// An empty element returned on a successful request.
 class DeleteConfigurationSetEventDestinationResponse {
   DeleteConfigurationSetEventDestinationResponse();
+  factory DeleteConfigurationSetEventDestinationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DeleteConfigurationSetEventDestinationResponse();
+  }
+
   factory DeleteConfigurationSetEventDestinationResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteConfigurationSetEventDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteConfigurationSetResponse {
   DeleteConfigurationSetResponse();
+  factory DeleteConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteConfigurationSetResponse();
+  }
+
   factory DeleteConfigurationSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteConfigurationSetTrackingOptionsResponse {
   DeleteConfigurationSetTrackingOptionsResponse();
+  factory DeleteConfigurationSetTrackingOptionsResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DeleteConfigurationSetTrackingOptionsResponse();
+  }
+
   factory DeleteConfigurationSetTrackingOptionsResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteConfigurationSetTrackingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteIdentityPolicyResponse {
   DeleteIdentityPolicyResponse();
+  factory DeleteIdentityPolicyResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteIdentityPolicyResponse();
+  }
+
   factory DeleteIdentityPolicyResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteIdentityPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteIdentityResponse {
   DeleteIdentityResponse();
+  factory DeleteIdentityResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteIdentityResponse();
+  }
+
   factory DeleteIdentityResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteReceiptFilterResponse {
   DeleteReceiptFilterResponse();
+  factory DeleteReceiptFilterResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteReceiptFilterResponse();
+  }
+
   factory DeleteReceiptFilterResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteReceiptFilterResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteReceiptRuleResponse {
   DeleteReceiptRuleResponse();
+  factory DeleteReceiptRuleResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteReceiptRuleResponse();
+  }
+
   factory DeleteReceiptRuleResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteReceiptRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class DeleteReceiptRuleSetResponse {
   DeleteReceiptRuleSetResponse();
+  factory DeleteReceiptRuleSetResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteReceiptRuleSetResponse();
+  }
+
   factory DeleteReceiptRuleSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteReceiptRuleSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTemplateResponse {
   DeleteTemplateResponse();
+  factory DeleteTemplateResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteTemplateResponse();
+  }
+
   factory DeleteTemplateResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4591,6 +4861,12 @@ class DeliveryOptions {
   DeliveryOptions({
     this.tlsPolicy,
   });
+  factory DeliveryOptions.fromJson(Map<String, dynamic> json) {
+    return DeliveryOptions(
+      tlsPolicy: (json['TlsPolicy'] as String?)?.toTlsPolicy(),
+    );
+  }
+
   factory DeliveryOptions.fromXml(_s.XmlElement elem) {
     return DeliveryOptions(
       tlsPolicy: _s.extractXmlStringValue(elem, 'TlsPolicy')?.toTlsPolicy(),
@@ -4620,6 +4896,20 @@ class DescribeActiveReceiptRuleSetResponse {
     this.metadata,
     this.rules,
   });
+  factory DescribeActiveReceiptRuleSetResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeActiveReceiptRuleSetResponse(
+      metadata: json['Metadata'] != null
+          ? ReceiptRuleSetMetadata.fromJson(
+              json['Metadata'] as Map<String, dynamic>)
+          : null,
+      rules: (json['Rules'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReceiptRule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeActiveReceiptRuleSetResponse.fromXml(_s.XmlElement elem) {
     return DescribeActiveReceiptRuleSetResponse(
       metadata: _s
@@ -4630,6 +4920,15 @@ class DescribeActiveReceiptRuleSetResponse {
           .map((c) => ReceiptRule.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final rules = this.rules;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4661,6 +4960,31 @@ class DescribeConfigurationSetResponse {
     this.reputationOptions,
     this.trackingOptions,
   });
+  factory DescribeConfigurationSetResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeConfigurationSetResponse(
+      configurationSet: json['ConfigurationSet'] != null
+          ? ConfigurationSet.fromJson(
+              json['ConfigurationSet'] as Map<String, dynamic>)
+          : null,
+      deliveryOptions: json['DeliveryOptions'] != null
+          ? DeliveryOptions.fromJson(
+              json['DeliveryOptions'] as Map<String, dynamic>)
+          : null,
+      eventDestinations: (json['EventDestinations'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventDestination.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reputationOptions: json['ReputationOptions'] != null
+          ? ReputationOptions.fromJson(
+              json['ReputationOptions'] as Map<String, dynamic>)
+          : null,
+      trackingOptions: json['TrackingOptions'] != null
+          ? TrackingOptions.fromJson(
+              json['TrackingOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeConfigurationSetResponse.fromXml(_s.XmlElement elem) {
     return DescribeConfigurationSetResponse(
       configurationSet: _s
@@ -4682,6 +5006,21 @@ class DescribeConfigurationSetResponse {
           ?.let((e) => TrackingOptions.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSet = this.configurationSet;
+    final deliveryOptions = this.deliveryOptions;
+    final eventDestinations = this.eventDestinations;
+    final reputationOptions = this.reputationOptions;
+    final trackingOptions = this.trackingOptions;
+    return {
+      if (configurationSet != null) 'ConfigurationSet': configurationSet,
+      if (deliveryOptions != null) 'DeliveryOptions': deliveryOptions,
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+      if (reputationOptions != null) 'ReputationOptions': reputationOptions,
+      if (trackingOptions != null) 'TrackingOptions': trackingOptions,
+    };
+  }
 }
 
 /// Represents the details of a receipt rule.
@@ -4694,11 +5033,26 @@ class DescribeReceiptRuleResponse {
   DescribeReceiptRuleResponse({
     this.rule,
   });
+  factory DescribeReceiptRuleResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeReceiptRuleResponse(
+      rule: json['Rule'] != null
+          ? ReceiptRule.fromJson(json['Rule'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeReceiptRuleResponse.fromXml(_s.XmlElement elem) {
     return DescribeReceiptRuleResponse(
       rule:
           _s.extractXmlChild(elem, 'Rule')?.let((e) => ReceiptRule.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -4715,6 +5069,19 @@ class DescribeReceiptRuleSetResponse {
     this.metadata,
     this.rules,
   });
+  factory DescribeReceiptRuleSetResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeReceiptRuleSetResponse(
+      metadata: json['Metadata'] != null
+          ? ReceiptRuleSetMetadata.fromJson(
+              json['Metadata'] as Map<String, dynamic>)
+          : null,
+      rules: (json['Rules'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReceiptRule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeReceiptRuleSetResponse.fromXml(_s.XmlElement elem) {
     return DescribeReceiptRuleSetResponse(
       metadata: _s
@@ -4725,6 +5092,15 @@ class DescribeReceiptRuleSetResponse {
           .map((c) => ReceiptRule.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final rules = this.rules;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4756,6 +5132,23 @@ class Destination {
     this.ccAddresses,
     this.toAddresses,
   });
+  factory Destination.fromJson(Map<String, dynamic> json) {
+    return Destination(
+      bccAddresses: (json['BccAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      ccAddresses: (json['CcAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      toAddresses: (json['ToAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bccAddresses = this.bccAddresses;
     final ccAddresses = this.ccAddresses;
@@ -4900,6 +5293,29 @@ class EventDestination {
     this.kinesisFirehoseDestination,
     this.sNSDestination,
   });
+  factory EventDestination.fromJson(Map<String, dynamic> json) {
+    return EventDestination(
+      matchingEventTypes: (json['MatchingEventTypes'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toEventType())
+          .toList(),
+      name: json['Name'] as String,
+      cloudWatchDestination: json['CloudWatchDestination'] != null
+          ? CloudWatchDestination.fromJson(
+              json['CloudWatchDestination'] as Map<String, dynamic>)
+          : null,
+      enabled: json['Enabled'] as bool?,
+      kinesisFirehoseDestination: json['KinesisFirehoseDestination'] != null
+          ? KinesisFirehoseDestination.fromJson(
+              json['KinesisFirehoseDestination'] as Map<String, dynamic>)
+          : null,
+      sNSDestination: json['SNSDestination'] != null
+          ? SNSDestination.fromJson(
+              json['SNSDestination'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory EventDestination.fromXml(_s.XmlElement elem) {
     return EventDestination(
       matchingEventTypes: _s
@@ -5019,6 +5435,13 @@ class ExtensionField {
     required this.name,
     required this.value,
   });
+  factory ExtensionField.fromJson(Map<String, dynamic> json) {
+    return ExtensionField(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -5039,10 +5462,23 @@ class GetAccountSendingEnabledResponse {
   GetAccountSendingEnabledResponse({
     this.enabled,
   });
+  factory GetAccountSendingEnabledResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccountSendingEnabledResponse(
+      enabled: json['Enabled'] as bool?,
+    );
+  }
+
   factory GetAccountSendingEnabledResponse.fromXml(_s.XmlElement elem) {
     return GetAccountSendingEnabledResponse(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
   }
 }
 
@@ -5076,6 +5512,18 @@ class GetCustomVerificationEmailTemplateResponse {
     this.templateName,
     this.templateSubject,
   });
+  factory GetCustomVerificationEmailTemplateResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetCustomVerificationEmailTemplateResponse(
+      failureRedirectionURL: json['FailureRedirectionURL'] as String?,
+      fromEmailAddress: json['FromEmailAddress'] as String?,
+      successRedirectionURL: json['SuccessRedirectionURL'] as String?,
+      templateContent: json['TemplateContent'] as String?,
+      templateName: json['TemplateName'] as String?,
+      templateSubject: json['TemplateSubject'] as String?,
+    );
+  }
+
   factory GetCustomVerificationEmailTemplateResponse.fromXml(
       _s.XmlElement elem) {
     return GetCustomVerificationEmailTemplateResponse(
@@ -5088,6 +5536,25 @@ class GetCustomVerificationEmailTemplateResponse {
       templateName: _s.extractXmlStringValue(elem, 'TemplateName'),
       templateSubject: _s.extractXmlStringValue(elem, 'TemplateSubject'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateContent = this.templateContent;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateContent != null) 'TemplateContent': templateContent,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
   }
 }
 
@@ -5102,6 +5569,15 @@ class GetIdentityDkimAttributesResponse {
   GetIdentityDkimAttributesResponse({
     required this.dkimAttributes,
   });
+  factory GetIdentityDkimAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetIdentityDkimAttributesResponse(
+      dkimAttributes: (json['DkimAttributes'] as Map<String, dynamic>).map(
+          (k, e) => MapEntry(
+              k, IdentityDkimAttributes.fromJson(e as Map<String, dynamic>))),
+    );
+  }
+
   factory GetIdentityDkimAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetIdentityDkimAttributesResponse(
       dkimAttributes: Map.fromEntries(
@@ -5116,6 +5592,13 @@ class GetIdentityDkimAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimAttributes = this.dkimAttributes;
+    return {
+      'DkimAttributes': dkimAttributes,
+    };
+  }
 }
 
 /// Represents the custom MAIL FROM attributes for a list of identities.
@@ -5126,6 +5609,18 @@ class GetIdentityMailFromDomainAttributesResponse {
   GetIdentityMailFromDomainAttributesResponse({
     required this.mailFromDomainAttributes,
   });
+  factory GetIdentityMailFromDomainAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetIdentityMailFromDomainAttributesResponse(
+      mailFromDomainAttributes:
+          (json['MailFromDomainAttributes'] as Map<String, dynamic>).map(
+              (k, e) => MapEntry(
+                  k,
+                  IdentityMailFromDomainAttributes.fromJson(
+                      e as Map<String, dynamic>))),
+    );
+  }
+
   factory GetIdentityMailFromDomainAttributesResponse.fromXml(
       _s.XmlElement elem) {
     return GetIdentityMailFromDomainAttributesResponse(
@@ -5141,6 +5636,13 @@ class GetIdentityMailFromDomainAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mailFromDomainAttributes = this.mailFromDomainAttributes;
+    return {
+      'MailFromDomainAttributes': mailFromDomainAttributes,
+    };
+  }
 }
 
 /// Represents the notification attributes for a list of identities.
@@ -5151,6 +5653,18 @@ class GetIdentityNotificationAttributesResponse {
   GetIdentityNotificationAttributesResponse({
     required this.notificationAttributes,
   });
+  factory GetIdentityNotificationAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetIdentityNotificationAttributesResponse(
+      notificationAttributes:
+          (json['NotificationAttributes'] as Map<String, dynamic>).map((k, e) =>
+              MapEntry(
+                  k,
+                  IdentityNotificationAttributes.fromJson(
+                      e as Map<String, dynamic>))),
+    );
+  }
+
   factory GetIdentityNotificationAttributesResponse.fromXml(
       _s.XmlElement elem) {
     return GetIdentityNotificationAttributesResponse(
@@ -5166,6 +5680,13 @@ class GetIdentityNotificationAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notificationAttributes = this.notificationAttributes;
+    return {
+      'NotificationAttributes': notificationAttributes,
+    };
+  }
 }
 
 /// Represents the requested sending authorization policies.
@@ -5176,6 +5697,13 @@ class GetIdentityPoliciesResponse {
   GetIdentityPoliciesResponse({
     required this.policies,
   });
+  factory GetIdentityPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return GetIdentityPoliciesResponse(
+      policies: (json['Policies'] as Map<String, dynamic>)
+          .map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetIdentityPoliciesResponse.fromXml(_s.XmlElement elem) {
     return GetIdentityPoliciesResponse(
       policies: Map.fromEntries(
@@ -5189,6 +5717,13 @@ class GetIdentityPoliciesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      'Policies': policies,
+    };
+  }
 }
 
 /// The Amazon SES verification status of a list of identities. For domain
@@ -5200,6 +5735,18 @@ class GetIdentityVerificationAttributesResponse {
   GetIdentityVerificationAttributesResponse({
     required this.verificationAttributes,
   });
+  factory GetIdentityVerificationAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetIdentityVerificationAttributesResponse(
+      verificationAttributes:
+          (json['VerificationAttributes'] as Map<String, dynamic>).map((k, e) =>
+              MapEntry(
+                  k,
+                  IdentityVerificationAttributes.fromJson(
+                      e as Map<String, dynamic>))),
+    );
+  }
+
   factory GetIdentityVerificationAttributesResponse.fromXml(
       _s.XmlElement elem) {
     return GetIdentityVerificationAttributesResponse(
@@ -5214,6 +5761,13 @@ class GetIdentityVerificationAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verificationAttributes = this.verificationAttributes;
+    return {
+      'VerificationAttributes': verificationAttributes,
+    };
   }
 }
 
@@ -5240,12 +5794,31 @@ class GetSendQuotaResponse {
     this.maxSendRate,
     this.sentLast24Hours,
   });
+  factory GetSendQuotaResponse.fromJson(Map<String, dynamic> json) {
+    return GetSendQuotaResponse(
+      max24HourSend: json['Max24HourSend'] as double?,
+      maxSendRate: json['MaxSendRate'] as double?,
+      sentLast24Hours: json['SentLast24Hours'] as double?,
+    );
+  }
+
   factory GetSendQuotaResponse.fromXml(_s.XmlElement elem) {
     return GetSendQuotaResponse(
       max24HourSend: _s.extractXmlDoubleValue(elem, 'Max24HourSend'),
       maxSendRate: _s.extractXmlDoubleValue(elem, 'MaxSendRate'),
       sentLast24Hours: _s.extractXmlDoubleValue(elem, 'SentLast24Hours'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max24HourSend = this.max24HourSend;
+    final maxSendRate = this.maxSendRate;
+    final sentLast24Hours = this.sentLast24Hours;
+    return {
+      if (max24HourSend != null) 'Max24HourSend': max24HourSend,
+      if (maxSendRate != null) 'MaxSendRate': maxSendRate,
+      if (sentLast24Hours != null) 'SentLast24Hours': sentLast24Hours,
+    };
   }
 }
 
@@ -5258,6 +5831,15 @@ class GetSendStatisticsResponse {
   GetSendStatisticsResponse({
     this.sendDataPoints,
   });
+  factory GetSendStatisticsResponse.fromJson(Map<String, dynamic> json) {
+    return GetSendStatisticsResponse(
+      sendDataPoints: (json['SendDataPoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => SendDataPoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetSendStatisticsResponse.fromXml(_s.XmlElement elem) {
     return GetSendStatisticsResponse(
       sendDataPoints: _s.extractXmlChild(elem, 'SendDataPoints')?.let((elem) =>
@@ -5267,6 +5849,13 @@ class GetSendStatisticsResponse {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sendDataPoints = this.sendDataPoints;
+    return {
+      if (sendDataPoints != null) 'SendDataPoints': sendDataPoints,
+    };
+  }
 }
 
 class GetTemplateResponse {
@@ -5275,11 +5864,26 @@ class GetTemplateResponse {
   GetTemplateResponse({
     this.template,
   });
+  factory GetTemplateResponse.fromJson(Map<String, dynamic> json) {
+    return GetTemplateResponse(
+      template: json['Template'] != null
+          ? Template.fromJson(json['Template'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetTemplateResponse.fromXml(_s.XmlElement elem) {
     return GetTemplateResponse(
       template:
           _s.extractXmlChild(elem, 'Template')?.let((e) => Template.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final template = this.template;
+    return {
+      if (template != null) 'Template': template,
+    };
   }
 }
 
@@ -5313,6 +5917,18 @@ class IdentityDkimAttributes {
     required this.dkimVerificationStatus,
     this.dkimTokens,
   });
+  factory IdentityDkimAttributes.fromJson(Map<String, dynamic> json) {
+    return IdentityDkimAttributes(
+      dkimEnabled: json['DkimEnabled'] as bool,
+      dkimVerificationStatus:
+          (json['DkimVerificationStatus'] as String).toVerificationStatus(),
+      dkimTokens: (json['DkimTokens'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory IdentityDkimAttributes.fromXml(_s.XmlElement elem) {
     return IdentityDkimAttributes(
       dkimEnabled: _s.extractXmlBoolValue(elem, 'DkimEnabled')!,
@@ -5323,6 +5939,17 @@ class IdentityDkimAttributes {
           .extractXmlChild(elem, 'DkimTokens')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dkimEnabled = this.dkimEnabled;
+    final dkimVerificationStatus = this.dkimVerificationStatus;
+    final dkimTokens = this.dkimTokens;
+    return {
+      'DkimEnabled': dkimEnabled,
+      'DkimVerificationStatus': dkimVerificationStatus.toValue(),
+      if (dkimTokens != null) 'DkimTokens': dkimTokens,
+    };
   }
 }
 
@@ -5357,6 +5984,16 @@ class IdentityMailFromDomainAttributes {
     required this.mailFromDomain,
     required this.mailFromDomainStatus,
   });
+  factory IdentityMailFromDomainAttributes.fromJson(Map<String, dynamic> json) {
+    return IdentityMailFromDomainAttributes(
+      behaviorOnMXFailure:
+          (json['BehaviorOnMXFailure'] as String).toBehaviorOnMXFailure(),
+      mailFromDomain: json['MailFromDomain'] as String,
+      mailFromDomainStatus:
+          (json['MailFromDomainStatus'] as String).toCustomMailFromStatus(),
+    );
+  }
+
   factory IdentityMailFromDomainAttributes.fromXml(_s.XmlElement elem) {
     return IdentityMailFromDomainAttributes(
       behaviorOnMXFailure: _s
@@ -5367,6 +6004,17 @@ class IdentityMailFromDomainAttributes {
           .extractXmlStringValue(elem, 'MailFromDomainStatus')!
           .toCustomMailFromStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final behaviorOnMXFailure = this.behaviorOnMXFailure;
+    final mailFromDomain = this.mailFromDomain;
+    final mailFromDomainStatus = this.mailFromDomainStatus;
+    return {
+      'BehaviorOnMXFailure': behaviorOnMXFailure.toValue(),
+      'MailFromDomain': mailFromDomain,
+      'MailFromDomainStatus': mailFromDomainStatus.toValue(),
+    };
   }
 }
 
@@ -5424,6 +6072,21 @@ class IdentityNotificationAttributes {
     this.headersInComplaintNotificationsEnabled,
     this.headersInDeliveryNotificationsEnabled,
   });
+  factory IdentityNotificationAttributes.fromJson(Map<String, dynamic> json) {
+    return IdentityNotificationAttributes(
+      bounceTopic: json['BounceTopic'] as String,
+      complaintTopic: json['ComplaintTopic'] as String,
+      deliveryTopic: json['DeliveryTopic'] as String,
+      forwardingEnabled: json['ForwardingEnabled'] as bool,
+      headersInBounceNotificationsEnabled:
+          json['HeadersInBounceNotificationsEnabled'] as bool?,
+      headersInComplaintNotificationsEnabled:
+          json['HeadersInComplaintNotificationsEnabled'] as bool?,
+      headersInDeliveryNotificationsEnabled:
+          json['HeadersInDeliveryNotificationsEnabled'] as bool?,
+    );
+  }
+
   factory IdentityNotificationAttributes.fromXml(_s.XmlElement elem) {
     return IdentityNotificationAttributes(
       bounceTopic: _s.extractXmlStringValue(elem, 'BounceTopic')!,
@@ -5437,6 +6100,34 @@ class IdentityNotificationAttributes {
       headersInDeliveryNotificationsEnabled:
           _s.extractXmlBoolValue(elem, 'HeadersInDeliveryNotificationsEnabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bounceTopic = this.bounceTopic;
+    final complaintTopic = this.complaintTopic;
+    final deliveryTopic = this.deliveryTopic;
+    final forwardingEnabled = this.forwardingEnabled;
+    final headersInBounceNotificationsEnabled =
+        this.headersInBounceNotificationsEnabled;
+    final headersInComplaintNotificationsEnabled =
+        this.headersInComplaintNotificationsEnabled;
+    final headersInDeliveryNotificationsEnabled =
+        this.headersInDeliveryNotificationsEnabled;
+    return {
+      'BounceTopic': bounceTopic,
+      'ComplaintTopic': complaintTopic,
+      'DeliveryTopic': deliveryTopic,
+      'ForwardingEnabled': forwardingEnabled,
+      if (headersInBounceNotificationsEnabled != null)
+        'HeadersInBounceNotificationsEnabled':
+            headersInBounceNotificationsEnabled,
+      if (headersInComplaintNotificationsEnabled != null)
+        'HeadersInComplaintNotificationsEnabled':
+            headersInComplaintNotificationsEnabled,
+      if (headersInDeliveryNotificationsEnabled != null)
+        'HeadersInDeliveryNotificationsEnabled':
+            headersInDeliveryNotificationsEnabled,
+    };
   }
 }
 
@@ -5482,6 +6173,14 @@ class IdentityVerificationAttributes {
     required this.verificationStatus,
     this.verificationToken,
   });
+  factory IdentityVerificationAttributes.fromJson(Map<String, dynamic> json) {
+    return IdentityVerificationAttributes(
+      verificationStatus:
+          (json['VerificationStatus'] as String).toVerificationStatus(),
+      verificationToken: json['VerificationToken'] as String?,
+    );
+  }
+
   factory IdentityVerificationAttributes.fromXml(_s.XmlElement elem) {
     return IdentityVerificationAttributes(
       verificationStatus: _s
@@ -5489,6 +6188,15 @@ class IdentityVerificationAttributes {
           .toVerificationStatus(),
       verificationToken: _s.extractXmlStringValue(elem, 'VerificationToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verificationStatus = this.verificationStatus;
+    final verificationToken = this.verificationToken;
+    return {
+      'VerificationStatus': verificationStatus.toValue(),
+      if (verificationToken != null) 'VerificationToken': verificationToken,
+    };
   }
 }
 
@@ -5541,6 +6249,13 @@ class KinesisFirehoseDestination {
     required this.deliveryStreamARN,
     required this.iAMRoleARN,
   });
+  factory KinesisFirehoseDestination.fromJson(Map<String, dynamic> json) {
+    return KinesisFirehoseDestination(
+      deliveryStreamARN: json['DeliveryStreamARN'] as String,
+      iAMRoleARN: json['IAMRoleARN'] as String,
+    );
+  }
+
   factory KinesisFirehoseDestination.fromXml(_s.XmlElement elem) {
     return KinesisFirehoseDestination(
       deliveryStreamARN: _s.extractXmlStringValue(elem, 'DeliveryStreamARN')!,
@@ -5609,6 +6324,14 @@ class LambdaAction {
     this.invocationType,
     this.topicArn,
   });
+  factory LambdaAction.fromJson(Map<String, dynamic> json) {
+    return LambdaAction(
+      functionArn: json['FunctionArn'] as String,
+      invocationType: (json['InvocationType'] as String?)?.toInvocationType(),
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory LambdaAction.fromXml(_s.XmlElement elem) {
     return LambdaAction(
       functionArn: _s.extractXmlStringValue(elem, 'FunctionArn')!,
@@ -5648,6 +6371,16 @@ class ListConfigurationSetsResponse {
     this.configurationSets,
     this.nextToken,
   });
+  factory ListConfigurationSetsResponse.fromJson(Map<String, dynamic> json) {
+    return ListConfigurationSetsResponse(
+      configurationSets: (json['ConfigurationSets'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConfigurationSet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListConfigurationSetsResponse.fromXml(_s.XmlElement elem) {
     return ListConfigurationSetsResponse(
       configurationSets: _s.extractXmlChild(elem, 'ConfigurationSets')?.let(
@@ -5657,6 +6390,15 @@ class ListConfigurationSetsResponse {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5676,6 +6418,19 @@ class ListCustomVerificationEmailTemplatesResponse {
     this.customVerificationEmailTemplates,
     this.nextToken,
   });
+  factory ListCustomVerificationEmailTemplatesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListCustomVerificationEmailTemplatesResponse(
+      customVerificationEmailTemplates:
+          (json['CustomVerificationEmailTemplates'] as List?)
+              ?.whereNotNull()
+              .map((e) => CustomVerificationEmailTemplate.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListCustomVerificationEmailTemplatesResponse.fromXml(
       _s.XmlElement elem) {
     return ListCustomVerificationEmailTemplatesResponse(
@@ -5687,6 +6442,17 @@ class ListCustomVerificationEmailTemplatesResponse {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customVerificationEmailTemplates =
+        this.customVerificationEmailTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (customVerificationEmailTemplates != null)
+        'CustomVerificationEmailTemplates': customVerificationEmailTemplates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5703,12 +6469,31 @@ class ListIdentitiesResponse {
     required this.identities,
     this.nextToken,
   });
+  factory ListIdentitiesResponse.fromJson(Map<String, dynamic> json) {
+    return ListIdentitiesResponse(
+      identities: (json['Identities'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListIdentitiesResponse.fromXml(_s.XmlElement elem) {
     return ListIdentitiesResponse(
       identities: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'Identities')!, 'member'),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identities = this.identities;
+    final nextToken = this.nextToken;
+    return {
+      'Identities': identities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5720,11 +6505,27 @@ class ListIdentityPoliciesResponse {
   ListIdentityPoliciesResponse({
     required this.policyNames,
   });
+  factory ListIdentityPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListIdentityPoliciesResponse(
+      policyNames: (json['PolicyNames'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListIdentityPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListIdentityPoliciesResponse(
       policyNames: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'PolicyNames')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    return {
+      'PolicyNames': policyNames,
+    };
   }
 }
 
@@ -5737,6 +6538,15 @@ class ListReceiptFiltersResponse {
   ListReceiptFiltersResponse({
     this.filters,
   });
+  factory ListReceiptFiltersResponse.fromJson(Map<String, dynamic> json) {
+    return ListReceiptFiltersResponse(
+      filters: (json['Filters'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReceiptFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListReceiptFiltersResponse.fromXml(_s.XmlElement elem) {
     return ListReceiptFiltersResponse(
       filters: _s.extractXmlChild(elem, 'Filters')?.let((elem) => elem
@@ -5744,6 +6554,13 @@ class ListReceiptFiltersResponse {
           .map((c) => ReceiptFilter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    return {
+      if (filters != null) 'Filters': filters,
+    };
   }
 }
 
@@ -5764,6 +6581,17 @@ class ListReceiptRuleSetsResponse {
     this.nextToken,
     this.ruleSets,
   });
+  factory ListReceiptRuleSetsResponse.fromJson(Map<String, dynamic> json) {
+    return ListReceiptRuleSetsResponse(
+      nextToken: json['NextToken'] as String?,
+      ruleSets: (json['RuleSets'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ReceiptRuleSetMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListReceiptRuleSetsResponse.fromXml(_s.XmlElement elem) {
     return ListReceiptRuleSetsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -5772,6 +6600,15 @@ class ListReceiptRuleSetsResponse {
           .map((c) => ReceiptRuleSetMetadata.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final ruleSets = this.ruleSets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (ruleSets != null) 'RuleSets': ruleSets,
+    };
   }
 }
 
@@ -5789,6 +6626,16 @@ class ListTemplatesResponse {
     this.nextToken,
     this.templatesMetadata,
   });
+  factory ListTemplatesResponse.fromJson(Map<String, dynamic> json) {
+    return ListTemplatesResponse(
+      nextToken: json['NextToken'] as String?,
+      templatesMetadata: (json['TemplatesMetadata'] as List?)
+          ?.whereNotNull()
+          .map((e) => TemplateMetadata.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTemplatesResponse.fromXml(_s.XmlElement elem) {
     return ListTemplatesResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -5798,6 +6645,15 @@ class ListTemplatesResponse {
               .map((c) => TemplateMetadata.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final templatesMetadata = this.templatesMetadata;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (templatesMetadata != null) 'TemplatesMetadata': templatesMetadata,
+    };
   }
 }
 
@@ -5810,12 +6666,30 @@ class ListVerifiedEmailAddressesResponse {
   ListVerifiedEmailAddressesResponse({
     this.verifiedEmailAddresses,
   });
+  factory ListVerifiedEmailAddressesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListVerifiedEmailAddressesResponse(
+      verifiedEmailAddresses: (json['VerifiedEmailAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListVerifiedEmailAddressesResponse.fromXml(_s.XmlElement elem) {
     return ListVerifiedEmailAddressesResponse(
       verifiedEmailAddresses: _s
           .extractXmlChild(elem, 'VerifiedEmailAddresses')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verifiedEmailAddresses = this.verifiedEmailAddresses;
+    return {
+      if (verifiedEmailAddresses != null)
+        'VerifiedEmailAddresses': verifiedEmailAddresses,
+    };
   }
 }
 
@@ -5832,6 +6706,13 @@ class Message {
     required this.body,
     required this.subject,
   });
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      body: Body.fromJson(json['Body'] as Map<String, dynamic>),
+      subject: Content.fromJson(json['Subject'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final subject = this.subject;
@@ -5867,6 +6748,17 @@ class MessageDsn {
     this.arrivalDate,
     this.extensionFields,
   });
+  factory MessageDsn.fromJson(Map<String, dynamic> json) {
+    return MessageDsn(
+      reportingMta: json['ReportingMta'] as String,
+      arrivalDate: timeStampFromJson(json['ArrivalDate']),
+      extensionFields: (json['ExtensionFields'] as List?)
+          ?.whereNotNull()
+          .map((e) => ExtensionField.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final reportingMta = this.reportingMta;
     final arrivalDate = this.arrivalDate;
@@ -5918,6 +6810,13 @@ class MessageTag {
     required this.name,
     required this.value,
   });
+  factory MessageTag.fromJson(Map<String, dynamic> json) {
+    return MessageTag(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -5965,20 +6864,37 @@ extension on String {
 /// request fails.
 class PutConfigurationSetDeliveryOptionsResponse {
   PutConfigurationSetDeliveryOptionsResponse();
+  factory PutConfigurationSetDeliveryOptionsResponse.fromJson(
+      Map<String, dynamic> _) {
+    return PutConfigurationSetDeliveryOptionsResponse();
+  }
+
   factory PutConfigurationSetDeliveryOptionsResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutConfigurationSetDeliveryOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class PutIdentityPolicyResponse {
   PutIdentityPolicyResponse();
+  factory PutIdentityPolicyResponse.fromJson(Map<String, dynamic> _) {
+    return PutIdentityPolicyResponse();
+  }
+
   factory PutIdentityPolicyResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutIdentityPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6009,6 +6925,12 @@ class RawMessage {
   RawMessage({
     required this.data,
   });
+  factory RawMessage.fromJson(Map<String, dynamic> json) {
+    return RawMessage(
+      data: _s.decodeUint8List(json['Data']! as String),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -6061,6 +6983,34 @@ class ReceiptAction {
     this.stopAction,
     this.workmailAction,
   });
+  factory ReceiptAction.fromJson(Map<String, dynamic> json) {
+    return ReceiptAction(
+      addHeaderAction: json['AddHeaderAction'] != null
+          ? AddHeaderAction.fromJson(
+              json['AddHeaderAction'] as Map<String, dynamic>)
+          : null,
+      bounceAction: json['BounceAction'] != null
+          ? BounceAction.fromJson(json['BounceAction'] as Map<String, dynamic>)
+          : null,
+      lambdaAction: json['LambdaAction'] != null
+          ? LambdaAction.fromJson(json['LambdaAction'] as Map<String, dynamic>)
+          : null,
+      s3Action: json['S3Action'] != null
+          ? S3Action.fromJson(json['S3Action'] as Map<String, dynamic>)
+          : null,
+      sNSAction: json['SNSAction'] != null
+          ? SNSAction.fromJson(json['SNSAction'] as Map<String, dynamic>)
+          : null,
+      stopAction: json['StopAction'] != null
+          ? StopAction.fromJson(json['StopAction'] as Map<String, dynamic>)
+          : null,
+      workmailAction: json['WorkmailAction'] != null
+          ? WorkmailAction.fromJson(
+              json['WorkmailAction'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ReceiptAction.fromXml(_s.XmlElement elem) {
     return ReceiptAction(
       addHeaderAction: _s
@@ -6137,6 +7087,14 @@ class ReceiptFilter {
     required this.ipFilter,
     required this.name,
   });
+  factory ReceiptFilter.fromJson(Map<String, dynamic> json) {
+    return ReceiptFilter(
+      ipFilter:
+          ReceiptIpFilter.fromJson(json['IpFilter'] as Map<String, dynamic>),
+      name: json['Name'] as String,
+    );
+  }
+
   factory ReceiptFilter.fromXml(_s.XmlElement elem) {
     return ReceiptFilter(
       ipFilter: ReceiptIpFilter.fromXml(_s.extractXmlChild(elem, 'IpFilter')!),
@@ -6204,6 +7162,13 @@ class ReceiptIpFilter {
     required this.cidr,
     required this.policy,
   });
+  factory ReceiptIpFilter.fromJson(Map<String, dynamic> json) {
+    return ReceiptIpFilter(
+      cidr: json['Cidr'] as String,
+      policy: (json['Policy'] as String).toReceiptFilterPolicy(),
+    );
+  }
+
   factory ReceiptIpFilter.fromXml(_s.XmlElement elem) {
     return ReceiptIpFilter(
       cidr: _s.extractXmlStringValue(elem, 'Cidr')!,
@@ -6281,6 +7246,23 @@ class ReceiptRule {
     this.scanEnabled,
     this.tlsPolicy,
   });
+  factory ReceiptRule.fromJson(Map<String, dynamic> json) {
+    return ReceiptRule(
+      name: json['Name'] as String,
+      actions: (json['Actions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReceiptAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      enabled: json['Enabled'] as bool?,
+      recipients: (json['Recipients'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      scanEnabled: json['ScanEnabled'] as bool?,
+      tlsPolicy: (json['TlsPolicy'] as String?)?.toTlsPolicy(),
+    );
+  }
+
   factory ReceiptRule.fromXml(_s.XmlElement elem) {
     return ReceiptRule(
       name: _s.extractXmlStringValue(elem, 'Name')!,
@@ -6348,11 +7330,28 @@ class ReceiptRuleSetMetadata {
     this.createdTimestamp,
     this.name,
   });
+  factory ReceiptRuleSetMetadata.fromJson(Map<String, dynamic> json) {
+    return ReceiptRuleSetMetadata(
+      createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
+      name: json['Name'] as String?,
+    );
+  }
+
   factory ReceiptRuleSetMetadata.fromXml(_s.XmlElement elem) {
     return ReceiptRuleSetMetadata(
       createdTimestamp: _s.extractXmlDateTimeValue(elem, 'CreatedTimestamp'),
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -6413,6 +7412,21 @@ class RecipientDsnFields {
     this.lastAttemptDate,
     this.remoteMta,
   });
+  factory RecipientDsnFields.fromJson(Map<String, dynamic> json) {
+    return RecipientDsnFields(
+      action: (json['Action'] as String).toDsnAction(),
+      status: json['Status'] as String,
+      diagnosticCode: json['DiagnosticCode'] as String?,
+      extensionFields: (json['ExtensionFields'] as List?)
+          ?.whereNotNull()
+          .map((e) => ExtensionField.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      finalRecipient: json['FinalRecipient'] as String?,
+      lastAttemptDate: timeStampFromJson(json['LastAttemptDate']),
+      remoteMta: json['RemoteMta'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final status = this.status;
@@ -6437,10 +7451,18 @@ class RecipientDsnFields {
 /// An empty element returned on a successful request.
 class ReorderReceiptRuleSetResponse {
   ReorderReceiptRuleSetResponse();
+  factory ReorderReceiptRuleSetResponse.fromJson(Map<String, dynamic> _) {
+    return ReorderReceiptRuleSetResponse();
+  }
+
   factory ReorderReceiptRuleSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ReorderReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6479,6 +7501,14 @@ class ReputationOptions {
     this.reputationMetricsEnabled,
     this.sendingEnabled,
   });
+  factory ReputationOptions.fromJson(Map<String, dynamic> json) {
+    return ReputationOptions(
+      lastFreshStart: timeStampFromJson(json['LastFreshStart']),
+      reputationMetricsEnabled: json['ReputationMetricsEnabled'] as bool?,
+      sendingEnabled: json['SendingEnabled'] as bool?,
+    );
+  }
+
   factory ReputationOptions.fromXml(_s.XmlElement elem) {
     return ReputationOptions(
       lastFreshStart: _s.extractXmlDateTimeValue(elem, 'LastFreshStart'),
@@ -6486,6 +7516,19 @@ class ReputationOptions {
           _s.extractXmlBoolValue(elem, 'ReputationMetricsEnabled'),
       sendingEnabled: _s.extractXmlBoolValue(elem, 'SendingEnabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastFreshStart = this.lastFreshStart;
+    final reputationMetricsEnabled = this.reputationMetricsEnabled;
+    final sendingEnabled = this.sendingEnabled;
+    return {
+      if (lastFreshStart != null)
+        'LastFreshStart': unixTimestampToJson(lastFreshStart),
+      if (reputationMetricsEnabled != null)
+        'ReputationMetricsEnabled': reputationMetricsEnabled,
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+    };
   }
 }
 
@@ -6574,6 +7617,15 @@ class S3Action {
     this.objectKeyPrefix,
     this.topicArn,
   });
+  factory S3Action.fromJson(Map<String, dynamic> json) {
+    return S3Action(
+      bucketName: json['BucketName'] as String,
+      kmsKeyArn: json['KmsKeyArn'] as String?,
+      objectKeyPrefix: json['ObjectKeyPrefix'] as String?,
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory S3Action.fromXml(_s.XmlElement elem) {
     return S3Action(
       bucketName: _s.extractXmlStringValue(elem, 'BucketName')!,
@@ -6638,6 +7690,13 @@ class SNSAction {
     required this.topicArn,
     this.encoding,
   });
+  factory SNSAction.fromJson(Map<String, dynamic> json) {
+    return SNSAction(
+      topicArn: json['TopicArn'] as String,
+      encoding: (json['Encoding'] as String?)?.toSNSActionEncoding(),
+    );
+  }
+
   factory SNSAction.fromXml(_s.XmlElement elem) {
     return SNSAction(
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn')!,
@@ -6704,6 +7763,12 @@ class SNSDestination {
   SNSDestination({
     required this.topicARN,
   });
+  factory SNSDestination.fromJson(Map<String, dynamic> json) {
+    return SNSDestination(
+      topicARN: json['TopicARN'] as String,
+    );
+  }
+
   factory SNSDestination.fromXml(_s.XmlElement elem) {
     return SNSDestination(
       topicARN: _s.extractXmlStringValue(elem, 'TopicARN')!,
@@ -6726,10 +7791,23 @@ class SendBounceResponse {
   SendBounceResponse({
     this.messageId,
   });
+  factory SendBounceResponse.fromJson(Map<String, dynamic> json) {
+    return SendBounceResponse(
+      messageId: json['MessageId'] as String?,
+    );
+  }
+
   factory SendBounceResponse.fromXml(_s.XmlElement elem) {
     return SendBounceResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -6741,6 +7819,16 @@ class SendBulkTemplatedEmailResponse {
   SendBulkTemplatedEmailResponse({
     required this.status,
   });
+  factory SendBulkTemplatedEmailResponse.fromJson(Map<String, dynamic> json) {
+    return SendBulkTemplatedEmailResponse(
+      status: (json['Status'] as List)
+          .whereNotNull()
+          .map((e) =>
+              BulkEmailDestinationStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SendBulkTemplatedEmailResponse.fromXml(_s.XmlElement elem) {
     return SendBulkTemplatedEmailResponse(
       status: _s
@@ -6749,6 +7837,13 @@ class SendBulkTemplatedEmailResponse {
           .map((c) => BulkEmailDestinationStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
   }
 }
 
@@ -6761,10 +7856,24 @@ class SendCustomVerificationEmailResponse {
   SendCustomVerificationEmailResponse({
     this.messageId,
   });
+  factory SendCustomVerificationEmailResponse.fromJson(
+      Map<String, dynamic> json) {
+    return SendCustomVerificationEmailResponse(
+      messageId: json['MessageId'] as String?,
+    );
+  }
+
   factory SendCustomVerificationEmailResponse.fromXml(_s.XmlElement elem) {
     return SendCustomVerificationEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -6793,6 +7902,16 @@ class SendDataPoint {
     this.rejects,
     this.timestamp,
   });
+  factory SendDataPoint.fromJson(Map<String, dynamic> json) {
+    return SendDataPoint(
+      bounces: json['Bounces'] as int?,
+      complaints: json['Complaints'] as int?,
+      deliveryAttempts: json['DeliveryAttempts'] as int?,
+      rejects: json['Rejects'] as int?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+    );
+  }
+
   factory SendDataPoint.fromXml(_s.XmlElement elem) {
     return SendDataPoint(
       bounces: _s.extractXmlIntValue(elem, 'Bounces'),
@@ -6801,6 +7920,21 @@ class SendDataPoint {
       rejects: _s.extractXmlIntValue(elem, 'Rejects'),
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bounces = this.bounces;
+    final complaints = this.complaints;
+    final deliveryAttempts = this.deliveryAttempts;
+    final rejects = this.rejects;
+    final timestamp = this.timestamp;
+    return {
+      if (bounces != null) 'Bounces': bounces,
+      if (complaints != null) 'Complaints': complaints,
+      if (deliveryAttempts != null) 'DeliveryAttempts': deliveryAttempts,
+      if (rejects != null) 'Rejects': rejects,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -6813,10 +7947,23 @@ class SendEmailResponse {
   SendEmailResponse({
     required this.messageId,
   });
+  factory SendEmailResponse.fromJson(Map<String, dynamic> json) {
+    return SendEmailResponse(
+      messageId: json['MessageId'] as String,
+    );
+  }
+
   factory SendEmailResponse.fromXml(_s.XmlElement elem) {
     return SendEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
   }
 }
 
@@ -6829,10 +7976,23 @@ class SendRawEmailResponse {
   SendRawEmailResponse({
     required this.messageId,
   });
+  factory SendRawEmailResponse.fromJson(Map<String, dynamic> json) {
+    return SendRawEmailResponse(
+      messageId: json['MessageId'] as String,
+    );
+  }
+
   factory SendRawEmailResponse.fromXml(_s.XmlElement elem) {
     return SendRawEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
   }
 }
 
@@ -6844,80 +8004,152 @@ class SendTemplatedEmailResponse {
   SendTemplatedEmailResponse({
     required this.messageId,
   });
+  factory SendTemplatedEmailResponse.fromJson(Map<String, dynamic> json) {
+    return SendTemplatedEmailResponse(
+      messageId: json['MessageId'] as String,
+    );
+  }
+
   factory SendTemplatedEmailResponse.fromXml(_s.XmlElement elem) {
     return SendTemplatedEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
   }
 }
 
 /// An empty element returned on a successful request.
 class SetActiveReceiptRuleSetResponse {
   SetActiveReceiptRuleSetResponse();
+  factory SetActiveReceiptRuleSetResponse.fromJson(Map<String, dynamic> _) {
+    return SetActiveReceiptRuleSetResponse();
+  }
+
   factory SetActiveReceiptRuleSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetActiveReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetIdentityDkimEnabledResponse {
   SetIdentityDkimEnabledResponse();
+  factory SetIdentityDkimEnabledResponse.fromJson(Map<String, dynamic> _) {
+    return SetIdentityDkimEnabledResponse();
+  }
+
   factory SetIdentityDkimEnabledResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityDkimEnabledResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetIdentityFeedbackForwardingEnabledResponse {
   SetIdentityFeedbackForwardingEnabledResponse();
+  factory SetIdentityFeedbackForwardingEnabledResponse.fromJson(
+      Map<String, dynamic> _) {
+    return SetIdentityFeedbackForwardingEnabledResponse();
+  }
+
   factory SetIdentityFeedbackForwardingEnabledResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityFeedbackForwardingEnabledResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetIdentityHeadersInNotificationsEnabledResponse {
   SetIdentityHeadersInNotificationsEnabledResponse();
+  factory SetIdentityHeadersInNotificationsEnabledResponse.fromJson(
+      Map<String, dynamic> _) {
+    return SetIdentityHeadersInNotificationsEnabledResponse();
+  }
+
   factory SetIdentityHeadersInNotificationsEnabledResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityHeadersInNotificationsEnabledResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetIdentityMailFromDomainResponse {
   SetIdentityMailFromDomainResponse();
+  factory SetIdentityMailFromDomainResponse.fromJson(Map<String, dynamic> _) {
+    return SetIdentityMailFromDomainResponse();
+  }
+
   factory SetIdentityMailFromDomainResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityMailFromDomainResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetIdentityNotificationTopicResponse {
   SetIdentityNotificationTopicResponse();
+  factory SetIdentityNotificationTopicResponse.fromJson(
+      Map<String, dynamic> _) {
+    return SetIdentityNotificationTopicResponse();
+  }
+
   factory SetIdentityNotificationTopicResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityNotificationTopicResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class SetReceiptRulePositionResponse {
   SetReceiptRulePositionResponse();
+  factory SetReceiptRulePositionResponse.fromJson(Map<String, dynamic> _) {
+    return SetReceiptRulePositionResponse();
+  }
+
   factory SetReceiptRulePositionResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetReceiptRulePositionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6945,6 +8177,13 @@ class StopAction {
     required this.scope,
     this.topicArn,
   });
+  factory StopAction.fromJson(Map<String, dynamic> json) {
+    return StopAction(
+      scope: (json['Scope'] as String).toStopScope(),
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory StopAction.fromXml(_s.XmlElement elem) {
     return StopAction(
       scope: _s.extractXmlStringValue(elem, 'Scope')!.toStopScope(),
@@ -7009,6 +8248,15 @@ class Template {
     this.subjectPart,
     this.textPart,
   });
+  factory Template.fromJson(Map<String, dynamic> json) {
+    return Template(
+      templateName: json['TemplateName'] as String,
+      htmlPart: json['HtmlPart'] as String?,
+      subjectPart: json['SubjectPart'] as String?,
+      textPart: json['TextPart'] as String?,
+    );
+  }
+
   factory Template.fromXml(_s.XmlElement elem) {
     return Template(
       templateName: _s.extractXmlStringValue(elem, 'TemplateName')!,
@@ -7044,11 +8292,28 @@ class TemplateMetadata {
     this.createdTimestamp,
     this.name,
   });
+  factory TemplateMetadata.fromJson(Map<String, dynamic> json) {
+    return TemplateMetadata(
+      createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
+      name: json['Name'] as String?,
+    );
+  }
+
   factory TemplateMetadata.fromXml(_s.XmlElement elem) {
     return TemplateMetadata(
       createdTimestamp: _s.extractXmlDateTimeValue(elem, 'CreatedTimestamp'),
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -7060,10 +8325,23 @@ class TestRenderTemplateResponse {
   TestRenderTemplateResponse({
     this.renderedTemplate,
   });
+  factory TestRenderTemplateResponse.fromJson(Map<String, dynamic> json) {
+    return TestRenderTemplateResponse(
+      renderedTemplate: json['RenderedTemplate'] as String?,
+    );
+  }
+
   factory TestRenderTemplateResponse.fromXml(_s.XmlElement elem) {
     return TestRenderTemplateResponse(
       renderedTemplate: _s.extractXmlStringValue(elem, 'RenderedTemplate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final renderedTemplate = this.renderedTemplate;
+    return {
+      if (renderedTemplate != null) 'RenderedTemplate': renderedTemplate,
+    };
   }
 }
 
@@ -7111,6 +8389,12 @@ class TrackingOptions {
   TrackingOptions({
     this.customRedirectDomain,
   });
+  factory TrackingOptions.fromJson(Map<String, dynamic> json) {
+    return TrackingOptions(
+      customRedirectDomain: json['CustomRedirectDomain'] as String?,
+    );
+  }
+
   factory TrackingOptions.fromXml(_s.XmlElement elem) {
     return TrackingOptions(
       customRedirectDomain:
@@ -7130,39 +8414,73 @@ class TrackingOptions {
 /// An empty element returned on a successful request.
 class UpdateConfigurationSetEventDestinationResponse {
   UpdateConfigurationSetEventDestinationResponse();
+  factory UpdateConfigurationSetEventDestinationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return UpdateConfigurationSetEventDestinationResponse();
+  }
+
   factory UpdateConfigurationSetEventDestinationResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateConfigurationSetEventDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class UpdateConfigurationSetTrackingOptionsResponse {
   UpdateConfigurationSetTrackingOptionsResponse();
+  factory UpdateConfigurationSetTrackingOptionsResponse.fromJson(
+      Map<String, dynamic> _) {
+    return UpdateConfigurationSetTrackingOptionsResponse();
+  }
+
   factory UpdateConfigurationSetTrackingOptionsResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateConfigurationSetTrackingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element returned on a successful request.
 class UpdateReceiptRuleResponse {
   UpdateReceiptRuleResponse();
+  factory UpdateReceiptRuleResponse.fromJson(Map<String, dynamic> _) {
+    return UpdateReceiptRuleResponse();
+  }
+
   factory UpdateReceiptRuleResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateReceiptRuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTemplateResponse {
   UpdateTemplateResponse();
+  factory UpdateTemplateResponse.fromJson(Map<String, dynamic> _) {
+    return UpdateTemplateResponse();
+  }
+
   factory UpdateTemplateResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7232,11 +8550,27 @@ class VerifyDomainDkimResponse {
   VerifyDomainDkimResponse({
     required this.dkimTokens,
   });
+  factory VerifyDomainDkimResponse.fromJson(Map<String, dynamic> json) {
+    return VerifyDomainDkimResponse(
+      dkimTokens: (json['DkimTokens'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory VerifyDomainDkimResponse.fromXml(_s.XmlElement elem) {
     return VerifyDomainDkimResponse(
       dkimTokens: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'DkimTokens')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dkimTokens = this.dkimTokens;
+    return {
+      'DkimTokens': dkimTokens,
+    };
   }
 }
 
@@ -7257,20 +8591,41 @@ class VerifyDomainIdentityResponse {
   VerifyDomainIdentityResponse({
     required this.verificationToken,
   });
+  factory VerifyDomainIdentityResponse.fromJson(Map<String, dynamic> json) {
+    return VerifyDomainIdentityResponse(
+      verificationToken: json['VerificationToken'] as String,
+    );
+  }
+
   factory VerifyDomainIdentityResponse.fromXml(_s.XmlElement elem) {
     return VerifyDomainIdentityResponse(
       verificationToken: _s.extractXmlStringValue(elem, 'VerificationToken')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verificationToken = this.verificationToken;
+    return {
+      'VerificationToken': verificationToken,
+    };
   }
 }
 
 /// An empty element returned on a successful request.
 class VerifyEmailIdentityResponse {
   VerifyEmailIdentityResponse();
+  factory VerifyEmailIdentityResponse.fromJson(Map<String, dynamic> _) {
+    return VerifyEmailIdentityResponse();
+  }
+
   factory VerifyEmailIdentityResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return VerifyEmailIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7303,6 +8658,13 @@ class WorkmailAction {
     required this.organizationArn,
     this.topicArn,
   });
+  factory WorkmailAction.fromJson(Map<String, dynamic> json) {
+    return WorkmailAction(
+      organizationArn: json['OrganizationArn'] as String,
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory WorkmailAction.fromXml(_s.XmlElement elem) {
     return WorkmailAction(
       organizationArn: _s.extractXmlStringValue(elem, 'OrganizationArn')!,

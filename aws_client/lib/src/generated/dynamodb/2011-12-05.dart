@@ -890,6 +890,15 @@ class AttributeValueUpdate {
     this.action,
     this.value,
   });
+  factory AttributeValueUpdate.fromJson(Map<String, dynamic> json) {
+    return AttributeValueUpdate(
+      action: (json['Action'] as String?)?.toAttributeAction(),
+      value: json['Value'] != null
+          ? AttributeValue.fromJson(json['Value'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final value = this.value;
@@ -924,6 +933,15 @@ class BatchGetItemOutput {
               k, KeysAndAttributes.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final responses = this.responses;
+    final unprocessedKeys = this.unprocessedKeys;
+    return {
+      if (responses != null) 'Responses': responses,
+      if (unprocessedKeys != null) 'UnprocessedKeys': unprocessedKeys,
+    };
+  }
 }
 
 /// The item attributes from a response in a specific table, along with the read
@@ -945,6 +963,16 @@ class BatchResponse {
               MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    final items = this.items;
+    return {
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+      if (items != null) 'Items': items,
+    };
   }
 }
 
@@ -976,6 +1004,15 @@ class BatchWriteItemOutput {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final responses = this.responses;
+    final unprocessedItems = this.unprocessedItems;
+    return {
+      if (responses != null) 'Responses': responses,
+      if (unprocessedItems != null) 'UnprocessedItems': unprocessedItems,
+    };
+  }
 }
 
 class BatchWriteResponse {
@@ -988,6 +1025,14 @@ class BatchWriteResponse {
     return BatchWriteResponse(
       consumedCapacityUnits: json['ConsumedCapacityUnits'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    return {
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+    };
   }
 }
 
@@ -1104,6 +1149,17 @@ class Condition {
     required this.comparisonOperator,
     this.attributeValueList,
   });
+  factory Condition.fromJson(Map<String, dynamic> json) {
+    return Condition(
+      comparisonOperator:
+          (json['ComparisonOperator'] as String).toComparisonOperator(),
+      attributeValueList: (json['AttributeValueList'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttributeValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final comparisonOperator = this.comparisonOperator;
     final attributeValueList = this.attributeValueList;
@@ -1128,6 +1184,13 @@ class CreateTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
+  }
 }
 
 class DeleteItemOutput {
@@ -1148,6 +1211,16 @@ class DeleteItemOutput {
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
       consumedCapacityUnits: json['ConsumedCapacityUnits'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+    };
   }
 }
 
@@ -1187,6 +1260,13 @@ class DeleteTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
+  }
 }
 
 class DescribeTableOutput {
@@ -1201,6 +1281,13 @@ class DescribeTableOutput {
           ? TableDescription.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final table = this.table;
+    return {
+      if (table != null) 'Table': table,
+    };
   }
 }
 
@@ -1220,6 +1307,15 @@ class ExpectedAttributeValue {
     this.exists,
     this.value,
   });
+  factory ExpectedAttributeValue.fromJson(Map<String, dynamic> json) {
+    return ExpectedAttributeValue(
+      exists: json['Exists'] as bool?,
+      value: json['Value'] != null
+          ? AttributeValue.fromJson(json['Value'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final exists = this.exists;
     final value = this.value;
@@ -1246,6 +1342,16 @@ class GetItemOutput {
       item: (json['Item'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    final item = this.item;
+    return {
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+      if (item != null) 'Item': item,
+    };
   }
 }
 
@@ -1421,6 +1527,16 @@ class ListTablesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastEvaluatedTableName = this.lastEvaluatedTableName;
+    final tableNames = this.tableNames;
+    return {
+      if (lastEvaluatedTableName != null)
+        'LastEvaluatedTableName': lastEvaluatedTableName,
+      if (tableNames != null) 'TableNames': tableNames,
+    };
+  }
 }
 
 /// Provisioned throughput reserves the required read and write resources for
@@ -1447,6 +1563,13 @@ class ProvisionedThroughput {
     required this.readCapacityUnits,
     required this.writeCapacityUnits,
   });
+  factory ProvisionedThroughput.fromJson(Map<String, dynamic> json) {
+    return ProvisionedThroughput(
+      readCapacityUnits: json['ReadCapacityUnits'] as int,
+      writeCapacityUnits: json['WriteCapacityUnits'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final readCapacityUnits = this.readCapacityUnits;
     final writeCapacityUnits = this.writeCapacityUnits;
@@ -1480,6 +1603,24 @@ class ProvisionedThroughputDescription {
       writeCapacityUnits: json['WriteCapacityUnits'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastDecreaseDateTime = this.lastDecreaseDateTime;
+    final lastIncreaseDateTime = this.lastIncreaseDateTime;
+    final numberOfDecreasesToday = this.numberOfDecreasesToday;
+    final readCapacityUnits = this.readCapacityUnits;
+    final writeCapacityUnits = this.writeCapacityUnits;
+    return {
+      if (lastDecreaseDateTime != null)
+        'LastDecreaseDateTime': unixTimestampToJson(lastDecreaseDateTime),
+      if (lastIncreaseDateTime != null)
+        'LastIncreaseDateTime': unixTimestampToJson(lastIncreaseDateTime),
+      if (numberOfDecreasesToday != null)
+        'NumberOfDecreasesToday': numberOfDecreasesToday,
+      if (readCapacityUnits != null) 'ReadCapacityUnits': readCapacityUnits,
+      if (writeCapacityUnits != null) 'WriteCapacityUnits': writeCapacityUnits,
+    };
+  }
 }
 
 class PutItemOutput {
@@ -1499,6 +1640,16 @@ class PutItemOutput {
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
       consumedCapacityUnits: json['ConsumedCapacityUnits'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+    };
   }
 }
 
@@ -1558,6 +1709,20 @@ class QueryOutput {
           ? Key.fromJson(json['LastEvaluatedKey'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    final count = this.count;
+    final items = this.items;
+    final lastEvaluatedKey = this.lastEvaluatedKey;
+    return {
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+      if (count != null) 'Count': count,
+      if (items != null) 'Items': items,
+      if (lastEvaluatedKey != null) 'LastEvaluatedKey': lastEvaluatedKey,
+    };
   }
 }
 
@@ -1695,6 +1860,22 @@ class ScanOutput {
       scannedCount: json['ScannedCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    final count = this.count;
+    final items = this.items;
+    final lastEvaluatedKey = this.lastEvaluatedKey;
+    final scannedCount = this.scannedCount;
+    return {
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+      if (count != null) 'Count': count,
+      if (items != null) 'Items': items,
+      if (lastEvaluatedKey != null) 'LastEvaluatedKey': lastEvaluatedKey,
+      if (scannedCount != null) 'ScannedCount': scannedCount,
+    };
+  }
 }
 
 class TableDescription {
@@ -1732,6 +1913,27 @@ class TableDescription {
       tableSizeBytes: json['TableSizeBytes'] as int?,
       tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final itemCount = this.itemCount;
+    final keySchema = this.keySchema;
+    final provisionedThroughput = this.provisionedThroughput;
+    final tableName = this.tableName;
+    final tableSizeBytes = this.tableSizeBytes;
+    final tableStatus = this.tableStatus;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (provisionedThroughput != null)
+        'ProvisionedThroughput': provisionedThroughput,
+      if (tableName != null) 'TableName': tableName,
+      if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
+      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+    };
   }
 }
 
@@ -1791,6 +1993,16 @@ class UpdateItemOutput {
       consumedCapacityUnits: json['ConsumedCapacityUnits'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacityUnits = this.consumedCapacityUnits;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacityUnits != null)
+        'ConsumedCapacityUnits': consumedCapacityUnits,
+    };
+  }
 }
 
 class UpdateTableOutput {
@@ -1806,6 +2018,13 @@ class UpdateTableOutput {
               json['TableDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
   }
 }
 

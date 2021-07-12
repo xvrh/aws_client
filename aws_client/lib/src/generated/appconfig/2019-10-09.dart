@@ -1781,6 +1781,17 @@ class Application {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class Applications {
@@ -1804,6 +1815,15 @@ class Applications {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class Configuration {
@@ -1823,6 +1843,18 @@ class Configuration {
     this.content,
     this.contentType,
   });
+  factory Configuration.fromJson(Map<String, dynamic> json) {
+    return Configuration(
+      content: _s.decodeNullableUint8List(json['Content'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+    };
+  }
 }
 
 class ConfigurationProfile {
@@ -1871,6 +1903,25 @@ class ConfigurationProfile {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final description = this.description;
+    final id = this.id;
+    final locationUri = this.locationUri;
+    final name = this.name;
+    final retrievalRoleArn = this.retrievalRoleArn;
+    final validators = this.validators;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (name != null) 'Name': name,
+      if (retrievalRoleArn != null) 'RetrievalRoleArn': retrievalRoleArn,
+      if (validators != null) 'Validators': validators,
+    };
+  }
 }
 
 /// A summary of a configuration profile.
@@ -1909,6 +1960,22 @@ class ConfigurationProfileSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final id = this.id;
+    final locationUri = this.locationUri;
+    final name = this.name;
+    final validatorTypes = this.validatorTypes;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (id != null) 'Id': id,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (name != null) 'Name': name,
+      if (validatorTypes != null)
+        'ValidatorTypes': validatorTypes.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 class ConfigurationProfiles {
@@ -1932,6 +1999,15 @@ class ConfigurationProfiles {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2038,6 +2114,53 @@ class Deployment {
       state: (json['State'] as String?)?.toDeploymentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final completedAt = this.completedAt;
+    final configurationLocationUri = this.configurationLocationUri;
+    final configurationName = this.configurationName;
+    final configurationProfileId = this.configurationProfileId;
+    final configurationVersion = this.configurationVersion;
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final deploymentNumber = this.deploymentNumber;
+    final deploymentStrategyId = this.deploymentStrategyId;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final eventLog = this.eventLog;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final percentageComplete = this.percentageComplete;
+    final startedAt = this.startedAt;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (completedAt != null) 'CompletedAt': iso8601ToJson(completedAt),
+      if (configurationLocationUri != null)
+        'ConfigurationLocationUri': configurationLocationUri,
+      if (configurationName != null) 'ConfigurationName': configurationName,
+      if (configurationProfileId != null)
+        'ConfigurationProfileId': configurationProfileId,
+      if (configurationVersion != null)
+        'ConfigurationVersion': configurationVersion,
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (deploymentNumber != null) 'DeploymentNumber': deploymentNumber,
+      if (deploymentStrategyId != null)
+        'DeploymentStrategyId': deploymentStrategyId,
+      if (description != null) 'Description': description,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (eventLog != null) 'EventLog': eventLog,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+      if (startedAt != null) 'StartedAt': iso8601ToJson(startedAt),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// An object that describes a deployment event.
@@ -2073,6 +2196,19 @@ class DeploymentEvent {
       occurredAt: timeStampFromJson(json['OccurredAt']),
       triggeredBy: (json['TriggeredBy'] as String?)?.toTriggeredBy(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventType = this.eventType;
+    final occurredAt = this.occurredAt;
+    final triggeredBy = this.triggeredBy;
+    return {
+      if (description != null) 'Description': description,
+      if (eventType != null) 'EventType': eventType.toValue(),
+      if (occurredAt != null) 'OccurredAt': iso8601ToJson(occurredAt),
+      if (triggeredBy != null) 'TriggeredBy': triggeredBy.toValue(),
+    };
   }
 }
 
@@ -2193,6 +2329,15 @@ class DeploymentStrategies {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DeploymentStrategy {
@@ -2243,6 +2388,29 @@ class DeploymentStrategy {
       name: json['Name'] as String?,
       replicateTo: (json['ReplicateTo'] as String?)?.toReplicateTo(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final description = this.description;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final id = this.id;
+    final name = this.name;
+    final replicateTo = this.replicateTo;
+    return {
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (description != null) 'Description': description,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (replicateTo != null) 'ReplicateTo': replicateTo.toValue(),
+    };
   }
 }
 
@@ -2311,6 +2479,36 @@ class DeploymentSummary {
       state: (json['State'] as String?)?.toDeploymentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedAt = this.completedAt;
+    final configurationName = this.configurationName;
+    final configurationVersion = this.configurationVersion;
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final deploymentNumber = this.deploymentNumber;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final percentageComplete = this.percentageComplete;
+    final startedAt = this.startedAt;
+    final state = this.state;
+    return {
+      if (completedAt != null) 'CompletedAt': iso8601ToJson(completedAt),
+      if (configurationName != null) 'ConfigurationName': configurationName,
+      if (configurationVersion != null)
+        'ConfigurationVersion': configurationVersion,
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (deploymentNumber != null) 'DeploymentNumber': deploymentNumber,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+      if (startedAt != null) 'StartedAt': iso8601ToJson(startedAt),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class Deployments {
@@ -2333,6 +2531,15 @@ class Deployments {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2377,6 +2584,23 @@ class Environment {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toEnvironmentState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final description = this.description;
+    final id = this.id;
+    final monitors = this.monitors;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (monitors != null) 'Monitors': monitors,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -2439,6 +2663,15 @@ class Environments {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 enum GrowthType {
@@ -2498,6 +2731,18 @@ class HostedConfigurationVersion {
     this.description,
     this.versionNumber,
   });
+  factory HostedConfigurationVersion.fromJson(Map<String, dynamic> json) {
+    return HostedConfigurationVersion(
+      content: _s.decodeNullableUint8List(json['Content'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+    };
+  }
 }
 
 /// Information about the configuration.
@@ -2536,6 +2781,22 @@ class HostedConfigurationVersionSummary {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final configurationProfileId = this.configurationProfileId;
+    final contentType = this.contentType;
+    final description = this.description;
+    final versionNumber = this.versionNumber;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (configurationProfileId != null)
+        'ConfigurationProfileId': configurationProfileId,
+      if (contentType != null) 'ContentType': contentType,
+      if (description != null) 'Description': description,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 class HostedConfigurationVersions {
@@ -2559,6 +2820,15 @@ class HostedConfigurationVersions {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2633,6 +2903,13 @@ class ResourceTags {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 

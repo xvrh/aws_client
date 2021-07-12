@@ -64,11 +64,27 @@ class OutputShape {
     this.num,
     this.str,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      num: json['Num'] as int?,
+      str: json['Str'] as String?,
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       num: _s.extractXmlIntValue(elem, 'Num'),
       str: _s.extractXmlStringValue(elem, 'Str'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final num = this.num;
+    final str = this.str;
+    return {
+      if (num != null) 'Num': num,
+      if (str != null) 'Str': str,
+    };
   }
 }
 

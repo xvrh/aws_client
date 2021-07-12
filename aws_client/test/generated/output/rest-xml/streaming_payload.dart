@@ -55,6 +55,18 @@ class OutputShape {
   OutputShape({
     this.stream,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      stream: _s.decodeNullableUint8List(json['Stream'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stream = this.stream;
+    return {
+      if (stream != null) 'Stream': base64Encode(stream),
+    };
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

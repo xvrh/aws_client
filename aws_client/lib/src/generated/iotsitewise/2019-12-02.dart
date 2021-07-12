@@ -3926,6 +3926,25 @@ class AccessPolicySummary {
       lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final identity = this.identity;
+    final permission = this.permission;
+    final resource = this.resource;
+    final creationDate = this.creationDate;
+    final lastUpdateDate = this.lastUpdateDate;
+    return {
+      'id': id,
+      'identity': identity,
+      'permission': permission.toValue(),
+      'resource': resource,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastUpdateDate != null)
+        'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+    };
+  }
 }
 
 enum AggregateType {
@@ -4000,6 +4019,17 @@ class AggregatedValue {
       quality: (json['quality'] as String?)?.toQuality(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    final quality = this.quality;
+    return {
+      'timestamp': unixTimestampToJson(timestamp),
+      'value': value,
+      if (quality != null) 'quality': quality.toValue(),
+    };
+  }
 }
 
 /// Contains the (pre-calculated) aggregate values for an asset property.
@@ -4039,6 +4069,23 @@ class Aggregates {
       standardDeviation: json['standardDeviation'] as double?,
       sum: json['sum'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final count = this.count;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final standardDeviation = this.standardDeviation;
+    final sum = this.sum;
+    return {
+      if (average != null) 'average': average,
+      if (count != null) 'count': count,
+      if (maximum != null) 'maximum': maximum,
+      if (minimum != null) 'minimum': minimum,
+      if (standardDeviation != null) 'standardDeviation': standardDeviation,
+      if (sum != null) 'sum': sum,
+    };
   }
 }
 
@@ -4118,6 +4165,19 @@ class AssetCompositeModel {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final properties = this.properties;
+    final type = this.type;
+    final description = this.description;
+    return {
+      'name': name,
+      'properties': properties,
+      'type': type,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 enum AssetErrorCode {
@@ -4166,6 +4226,17 @@ class AssetErrorDetails {
       message: json['message'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetId = this.assetId;
+    final code = this.code;
+    final message = this.message;
+    return {
+      'assetId': assetId,
+      'code': code.toValue(),
+      'message': message,
+    };
+  }
 }
 
 /// Describes an asset hierarchy that contains a hierarchy's name and ID.
@@ -4190,6 +4261,15 @@ class AssetHierarchy {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final id = this.id;
+    return {
+      'name': name,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// Contains information about a parent asset and a child asset that are related
@@ -4210,6 +4290,15 @@ class AssetHierarchyInfo {
       childAssetId: json['childAssetId'] as String?,
       parentAssetId: json['parentAssetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final childAssetId = this.childAssetId;
+    final parentAssetId = this.parentAssetId;
+    return {
+      if (childAssetId != null) 'childAssetId': childAssetId,
+      if (parentAssetId != null) 'parentAssetId': parentAssetId,
+    };
   }
 }
 
@@ -4284,6 +4373,20 @@ class AssetModelCompositeModelDefinition {
     this.description,
     this.properties,
   });
+  factory AssetModelCompositeModelDefinition.fromJson(
+      Map<String, dynamic> json) {
+    return AssetModelCompositeModelDefinition(
+      name: json['name'] as String,
+      type: json['type'] as String,
+      description: json['description'] as String?,
+      properties: (json['properties'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AssetModelPropertyDefinition.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final type = this.type;
@@ -4359,6 +4462,13 @@ class AssetModelHierarchyDefinition {
     required this.childAssetModelId,
     required this.name,
   });
+  factory AssetModelHierarchyDefinition.fromJson(Map<String, dynamic> json) {
+    return AssetModelHierarchyDefinition(
+      childAssetModelId: json['childAssetModelId'] as String,
+      name: json['name'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final childAssetModelId = this.childAssetModelId;
     final name = this.name;
@@ -4464,6 +4574,16 @@ class AssetModelPropertyDefinition {
     this.dataTypeSpec,
     this.unit,
   });
+  factory AssetModelPropertyDefinition.fromJson(Map<String, dynamic> json) {
+    return AssetModelPropertyDefinition(
+      dataType: (json['dataType'] as String).toPropertyDataType(),
+      name: json['name'] as String,
+      type: PropertyType.fromJson(json['type'] as Map<String, dynamic>),
+      dataTypeSpec: json['dataTypeSpec'] as String?,
+      unit: json['unit'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataType = this.dataType;
     final name = this.name;
@@ -4551,6 +4671,15 @@ class AssetModelStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final error = this.error;
+    return {
+      'state': state.toValue(),
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains a summary of an asset model.
@@ -4601,6 +4730,25 @@ class AssetModelSummary {
       name: json['name'] as String,
       status: AssetModelStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'arn': arn,
+      'creationDate': unixTimestampToJson(creationDate),
+      'description': description,
+      'id': id,
+      'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      'name': name,
+      'status': status,
+    };
   }
 }
 
@@ -4658,6 +4806,25 @@ class AssetProperty {
           : null,
       unit: json['unit'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataType = this.dataType;
+    final id = this.id;
+    final name = this.name;
+    final alias = this.alias;
+    final dataTypeSpec = this.dataTypeSpec;
+    final notification = this.notification;
+    final unit = this.unit;
+    return {
+      'dataType': dataType.toValue(),
+      'id': id,
+      'name': name,
+      if (alias != null) 'alias': alias,
+      if (dataTypeSpec != null) 'dataTypeSpec': dataTypeSpec,
+      if (notification != null) 'notification': notification,
+      if (unit != null) 'unit': unit,
+    };
   }
 }
 
@@ -4731,6 +4898,15 @@ class AssetRelationshipSummary {
               json['hierarchyInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final relationshipType = this.relationshipType;
+    final hierarchyInfo = this.hierarchyInfo;
+    return {
+      'relationshipType': relationshipType.toValue(),
+      if (hierarchyInfo != null) 'hierarchyInfo': hierarchyInfo,
+    };
   }
 }
 
@@ -4823,6 +4999,15 @@ class AssetStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final error = this.error;
+    return {
+      'state': state.toValue(),
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains a summary of an asset.
@@ -4883,6 +5068,27 @@ class AssetSummary {
       status: AssetStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetModelId = this.assetModelId;
+    final creationDate = this.creationDate;
+    final hierarchies = this.hierarchies;
+    final id = this.id;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'arn': arn,
+      'assetModelId': assetModelId,
+      'creationDate': unixTimestampToJson(creationDate),
+      'hierarchies': hierarchies,
+      'id': id,
+      'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      'name': name,
+      'status': status,
+    };
+  }
 }
 
 /// Contains a summary of an associated asset.
@@ -4942,6 +5148,27 @@ class AssociatedAssetsSummary {
       name: json['name'] as String,
       status: AssetStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetModelId = this.assetModelId;
+    final creationDate = this.creationDate;
+    final hierarchies = this.hierarchies;
+    final id = this.id;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'arn': arn,
+      'assetModelId': assetModelId,
+      'creationDate': unixTimestampToJson(creationDate),
+      'hierarchies': hierarchies,
+      'id': id,
+      'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      'name': name,
+      'status': status,
+    };
   }
 }
 
@@ -5017,6 +5244,13 @@ class BatchAssociateProjectAssetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
+  }
 }
 
 class BatchDisassociateProjectAssetsResponse {
@@ -5034,6 +5268,13 @@ class BatchDisassociateProjectAssetsResponse {
           .map((e) => AssetErrorDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -5064,6 +5305,17 @@ class BatchPutAssetPropertyError {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final timestamps = this.timestamps;
+    return {
+      'errorCode': errorCode.toValue(),
+      'errorMessage': errorMessage,
+      'timestamps': timestamps,
+    };
+  }
 }
 
 /// Contains error information for asset property value entries that are
@@ -5090,6 +5342,15 @@ class BatchPutAssetPropertyErrorEntry {
               BatchPutAssetPropertyError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entryId = this.entryId;
+    final errors = this.errors;
+    return {
+      'entryId': entryId,
+      'errors': errors,
+    };
   }
 }
 
@@ -5176,6 +5437,13 @@ class BatchPutAssetPropertyValueResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      'errorEntries': errorEntries,
+    };
+  }
 }
 
 enum CapabilitySyncStatus {
@@ -5234,6 +5502,17 @@ class CompositeModelProperty {
       type: json['type'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetProperty = this.assetProperty;
+    final name = this.name;
+    final type = this.type;
+    return {
+      'assetProperty': assetProperty,
+      'name': name,
+      'type': type,
+    };
+  }
 }
 
 /// Contains the details of an IoT SiteWise configuration error.
@@ -5253,6 +5532,15 @@ class ConfigurationErrorDetails {
       code: (json['code'] as String).toErrorCode(),
       message: json['message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      'code': code.toValue(),
+      'message': message,
+    };
   }
 }
 
@@ -5310,6 +5598,15 @@ class ConfigurationStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final error = this.error;
+    return {
+      'state': state.toValue(),
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 class CreateAccessPolicyResponse {
@@ -5332,6 +5629,15 @@ class CreateAccessPolicyResponse {
       accessPolicyArn: json['accessPolicyArn'] as String,
       accessPolicyId: json['accessPolicyId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicyArn = this.accessPolicyArn;
+    final accessPolicyId = this.accessPolicyId;
+    return {
+      'accessPolicyArn': accessPolicyArn,
+      'accessPolicyId': accessPolicyId,
+    };
   }
 }
 
@@ -5364,6 +5670,17 @@ class CreateAssetModelResponse {
           json['assetModelStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetModelArn = this.assetModelArn;
+    final assetModelId = this.assetModelId;
+    final assetModelStatus = this.assetModelStatus;
+    return {
+      'assetModelArn': assetModelArn,
+      'assetModelId': assetModelId,
+      'assetModelStatus': assetModelStatus,
+    };
+  }
 }
 
 class CreateAssetResponse {
@@ -5395,6 +5712,17 @@ class CreateAssetResponse {
           AssetStatus.fromJson(json['assetStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetArn = this.assetArn;
+    final assetId = this.assetId;
+    final assetStatus = this.assetStatus;
+    return {
+      'assetArn': assetArn,
+      'assetId': assetId,
+      'assetStatus': assetStatus,
+    };
+  }
 }
 
 class CreateDashboardResponse {
@@ -5417,6 +5745,15 @@ class CreateDashboardResponse {
       dashboardArn: json['dashboardArn'] as String,
       dashboardId: json['dashboardId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardId = this.dashboardId;
+    return {
+      'dashboardArn': dashboardArn,
+      'dashboardId': dashboardId,
+    };
   }
 }
 
@@ -5441,6 +5778,15 @@ class CreateGatewayResponse {
       gatewayArn: json['gatewayArn'] as String,
       gatewayId: json['gatewayId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    final gatewayId = this.gatewayId;
+    return {
+      'gatewayArn': gatewayArn,
+      'gatewayId': gatewayId,
+    };
   }
 }
 
@@ -5486,6 +5832,21 @@ class CreatePortalResponse {
       ssoApplicationId: json['ssoApplicationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final portalId = this.portalId;
+    final portalStartUrl = this.portalStartUrl;
+    final portalStatus = this.portalStatus;
+    final ssoApplicationId = this.ssoApplicationId;
+    return {
+      'portalArn': portalArn,
+      'portalId': portalId,
+      'portalStartUrl': portalStartUrl,
+      'portalStatus': portalStatus,
+      'ssoApplicationId': ssoApplicationId,
+    };
+  }
 }
 
 class CreateProjectResponse {
@@ -5508,6 +5869,15 @@ class CreateProjectResponse {
       projectArn: json['projectArn'] as String,
       projectId: json['projectId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    final projectId = this.projectId;
+    return {
+      'projectArn': projectArn,
+      'projectId': projectId,
+    };
   }
 }
 
@@ -5581,12 +5951,33 @@ class DashboardSummary {
       lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final lastUpdateDate = this.lastUpdateDate;
+    return {
+      'id': id,
+      'name': name,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (lastUpdateDate != null)
+        'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+    };
+  }
 }
 
 class DeleteAccessPolicyResponse {
   DeleteAccessPolicyResponse();
   factory DeleteAccessPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccessPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5604,6 +5995,13 @@ class DeleteAssetModelResponse {
           json['assetModelStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetModelStatus = this.assetModelStatus;
+    return {
+      'assetModelStatus': assetModelStatus,
+    };
+  }
 }
 
 class DeleteAssetResponse {
@@ -5620,12 +6018,23 @@ class DeleteAssetResponse {
           AssetStatus.fromJson(json['assetStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetStatus = this.assetStatus;
+    return {
+      'assetStatus': assetStatus,
+    };
+  }
 }
 
 class DeleteDashboardResponse {
   DeleteDashboardResponse();
   factory DeleteDashboardResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDashboardResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5643,12 +6052,23 @@ class DeletePortalResponse {
           PortalStatus.fromJson(json['portalStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalStatus = this.portalStatus;
+    return {
+      'portalStatus': portalStatus,
+    };
+  }
 }
 
 class DeleteProjectResponse {
   DeleteProjectResponse();
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5705,6 +6125,26 @@ class DescribeAccessPolicyResponse {
       accessPolicyResource: Resource.fromJson(
           json['accessPolicyResource'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicyArn = this.accessPolicyArn;
+    final accessPolicyCreationDate = this.accessPolicyCreationDate;
+    final accessPolicyId = this.accessPolicyId;
+    final accessPolicyIdentity = this.accessPolicyIdentity;
+    final accessPolicyLastUpdateDate = this.accessPolicyLastUpdateDate;
+    final accessPolicyPermission = this.accessPolicyPermission;
+    final accessPolicyResource = this.accessPolicyResource;
+    return {
+      'accessPolicyArn': accessPolicyArn,
+      'accessPolicyCreationDate': unixTimestampToJson(accessPolicyCreationDate),
+      'accessPolicyId': accessPolicyId,
+      'accessPolicyIdentity': accessPolicyIdentity,
+      'accessPolicyLastUpdateDate':
+          unixTimestampToJson(accessPolicyLastUpdateDate),
+      'accessPolicyPermission': accessPolicyPermission.toValue(),
+      'accessPolicyResource': accessPolicyResource,
+    };
   }
 }
 
@@ -5790,6 +6230,32 @@ class DescribeAssetModelResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetModelArn = this.assetModelArn;
+    final assetModelCreationDate = this.assetModelCreationDate;
+    final assetModelDescription = this.assetModelDescription;
+    final assetModelHierarchies = this.assetModelHierarchies;
+    final assetModelId = this.assetModelId;
+    final assetModelLastUpdateDate = this.assetModelLastUpdateDate;
+    final assetModelName = this.assetModelName;
+    final assetModelProperties = this.assetModelProperties;
+    final assetModelStatus = this.assetModelStatus;
+    final assetModelCompositeModels = this.assetModelCompositeModels;
+    return {
+      'assetModelArn': assetModelArn,
+      'assetModelCreationDate': unixTimestampToJson(assetModelCreationDate),
+      'assetModelDescription': assetModelDescription,
+      'assetModelHierarchies': assetModelHierarchies,
+      'assetModelId': assetModelId,
+      'assetModelLastUpdateDate': unixTimestampToJson(assetModelLastUpdateDate),
+      'assetModelName': assetModelName,
+      'assetModelProperties': assetModelProperties,
+      'assetModelStatus': assetModelStatus,
+      if (assetModelCompositeModels != null)
+        'assetModelCompositeModels': assetModelCompositeModels,
+    };
+  }
 }
 
 class DescribeAssetPropertyResponse {
@@ -5833,6 +6299,21 @@ class DescribeAssetPropertyResponse {
               json['compositeModel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assetId = this.assetId;
+    final assetModelId = this.assetModelId;
+    final assetName = this.assetName;
+    final assetProperty = this.assetProperty;
+    final compositeModel = this.compositeModel;
+    return {
+      'assetId': assetId,
+      'assetModelId': assetModelId,
+      'assetName': assetName,
+      if (assetProperty != null) 'assetProperty': assetProperty,
+      if (compositeModel != null) 'compositeModel': compositeModel,
+    };
   }
 }
 
@@ -5915,6 +6396,32 @@ class DescribeAssetResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetArn = this.assetArn;
+    final assetCreationDate = this.assetCreationDate;
+    final assetHierarchies = this.assetHierarchies;
+    final assetId = this.assetId;
+    final assetLastUpdateDate = this.assetLastUpdateDate;
+    final assetModelId = this.assetModelId;
+    final assetName = this.assetName;
+    final assetProperties = this.assetProperties;
+    final assetStatus = this.assetStatus;
+    final assetCompositeModels = this.assetCompositeModels;
+    return {
+      'assetArn': assetArn,
+      'assetCreationDate': unixTimestampToJson(assetCreationDate),
+      'assetHierarchies': assetHierarchies,
+      'assetId': assetId,
+      'assetLastUpdateDate': unixTimestampToJson(assetLastUpdateDate),
+      'assetModelId': assetModelId,
+      'assetName': assetName,
+      'assetProperties': assetProperties,
+      'assetStatus': assetStatus,
+      if (assetCompositeModels != null)
+        'assetCompositeModels': assetCompositeModels,
+    };
+  }
 }
 
 class DescribeDashboardResponse {
@@ -5972,6 +6479,28 @@ class DescribeDashboardResponse {
       dashboardDescription: json['dashboardDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardCreationDate = this.dashboardCreationDate;
+    final dashboardDefinition = this.dashboardDefinition;
+    final dashboardId = this.dashboardId;
+    final dashboardLastUpdateDate = this.dashboardLastUpdateDate;
+    final dashboardName = this.dashboardName;
+    final projectId = this.projectId;
+    final dashboardDescription = this.dashboardDescription;
+    return {
+      'dashboardArn': dashboardArn,
+      'dashboardCreationDate': unixTimestampToJson(dashboardCreationDate),
+      'dashboardDefinition': dashboardDefinition,
+      'dashboardId': dashboardId,
+      'dashboardLastUpdateDate': unixTimestampToJson(dashboardLastUpdateDate),
+      'dashboardName': dashboardName,
+      'projectId': projectId,
+      if (dashboardDescription != null)
+        'dashboardDescription': dashboardDescription,
+    };
+  }
 }
 
 class DescribeDefaultEncryptionConfigurationResponse {
@@ -6000,6 +6529,17 @@ class DescribeDefaultEncryptionConfigurationResponse {
       encryptionType: (json['encryptionType'] as String).toEncryptionType(),
       kmsKeyArn: json['kmsKeyArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationStatus = this.configurationStatus;
+    final encryptionType = this.encryptionType;
+    final kmsKeyArn = this.kmsKeyArn;
+    return {
+      'configurationStatus': configurationStatus,
+      'encryptionType': encryptionType.toValue(),
+      if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
+    };
   }
 }
 
@@ -6049,6 +6589,19 @@ class DescribeGatewayCapabilityConfigurationResponse {
           (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
       gatewayId: json['gatewayId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capabilityConfiguration = this.capabilityConfiguration;
+    final capabilityNamespace = this.capabilityNamespace;
+    final capabilitySyncStatus = this.capabilitySyncStatus;
+    final gatewayId = this.gatewayId;
+    return {
+      'capabilityConfiguration': capabilityConfiguration,
+      'capabilityNamespace': capabilityNamespace,
+      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+      'gatewayId': gatewayId,
+    };
   }
 }
 
@@ -6110,6 +6663,25 @@ class DescribeGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final gatewayArn = this.gatewayArn;
+    final gatewayCapabilitySummaries = this.gatewayCapabilitySummaries;
+    final gatewayId = this.gatewayId;
+    final gatewayName = this.gatewayName;
+    final lastUpdateDate = this.lastUpdateDate;
+    final gatewayPlatform = this.gatewayPlatform;
+    return {
+      'creationDate': unixTimestampToJson(creationDate),
+      'gatewayArn': gatewayArn,
+      'gatewayCapabilitySummaries': gatewayCapabilitySummaries,
+      'gatewayId': gatewayId,
+      'gatewayName': gatewayName,
+      'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (gatewayPlatform != null) 'gatewayPlatform': gatewayPlatform,
+    };
+  }
 }
 
 class DescribeLoggingOptionsResponse {
@@ -6124,6 +6696,13 @@ class DescribeLoggingOptionsResponse {
       loggingOptions: LoggingOptions.fromJson(
           json['loggingOptions'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loggingOptions = this.loggingOptions;
+    return {
+      'loggingOptions': loggingOptions,
+    };
   }
 }
 
@@ -6235,6 +6814,43 @@ class DescribePortalResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final portalClientId = this.portalClientId;
+    final portalContactEmail = this.portalContactEmail;
+    final portalCreationDate = this.portalCreationDate;
+    final portalId = this.portalId;
+    final portalLastUpdateDate = this.portalLastUpdateDate;
+    final portalName = this.portalName;
+    final portalStartUrl = this.portalStartUrl;
+    final portalStatus = this.portalStatus;
+    final alarms = this.alarms;
+    final notificationSenderEmail = this.notificationSenderEmail;
+    final portalAuthMode = this.portalAuthMode;
+    final portalDescription = this.portalDescription;
+    final portalLogoImageLocation = this.portalLogoImageLocation;
+    final roleArn = this.roleArn;
+    return {
+      'portalArn': portalArn,
+      'portalClientId': portalClientId,
+      'portalContactEmail': portalContactEmail,
+      'portalCreationDate': unixTimestampToJson(portalCreationDate),
+      'portalId': portalId,
+      'portalLastUpdateDate': unixTimestampToJson(portalLastUpdateDate),
+      'portalName': portalName,
+      'portalStartUrl': portalStartUrl,
+      'portalStatus': portalStatus,
+      if (alarms != null) 'alarms': alarms,
+      if (notificationSenderEmail != null)
+        'notificationSenderEmail': notificationSenderEmail,
+      if (portalAuthMode != null) 'portalAuthMode': portalAuthMode.toValue(),
+      if (portalDescription != null) 'portalDescription': portalDescription,
+      if (portalLogoImageLocation != null)
+        'portalLogoImageLocation': portalLogoImageLocation,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class DescribeProjectResponse {
@@ -6285,6 +6901,25 @@ class DescribeProjectResponse {
       projectDescription: json['projectDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalId = this.portalId;
+    final projectArn = this.projectArn;
+    final projectCreationDate = this.projectCreationDate;
+    final projectId = this.projectId;
+    final projectLastUpdateDate = this.projectLastUpdateDate;
+    final projectName = this.projectName;
+    final projectDescription = this.projectDescription;
+    return {
+      'portalId': portalId,
+      'projectArn': projectArn,
+      'projectCreationDate': unixTimestampToJson(projectCreationDate),
+      'projectId': projectId,
+      'projectLastUpdateDate': unixTimestampToJson(projectLastUpdateDate),
+      'projectName': projectName,
+      if (projectDescription != null) 'projectDescription': projectDescription,
+    };
+  }
 }
 
 class DescribeStorageConfigurationResponse {
@@ -6330,6 +6965,20 @@ class DescribeStorageConfigurationResponse {
               json['multiLayerStorage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationStatus = this.configurationStatus;
+    final storageType = this.storageType;
+    final lastUpdateDate = this.lastUpdateDate;
+    final multiLayerStorage = this.multiLayerStorage;
+    return {
+      'configurationStatus': configurationStatus,
+      'storageType': storageType.toValue(),
+      if (lastUpdateDate != null)
+        'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
+    };
   }
 }
 
@@ -6407,6 +7056,15 @@ class ErrorDetails {
       message: json['message'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      'code': code.toValue(),
+      'message': message,
+    };
+  }
 }
 
 /// Contains expression variable information.
@@ -6476,6 +7134,15 @@ class GatewayCapabilitySummary {
           (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capabilityNamespace = this.capabilityNamespace;
+    final capabilitySyncStatus = this.capabilitySyncStatus;
+    return {
+      'capabilityNamespace': capabilityNamespace,
+      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+    };
+  }
 }
 
 /// Contains a gateway's platform information.
@@ -6543,6 +7210,22 @@ class GatewaySummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final gatewayId = this.gatewayId;
+    final gatewayName = this.gatewayName;
+    final lastUpdateDate = this.lastUpdateDate;
+    final gatewayCapabilitySummaries = this.gatewayCapabilitySummaries;
+    return {
+      'creationDate': unixTimestampToJson(creationDate),
+      'gatewayId': gatewayId,
+      'gatewayName': gatewayName,
+      'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (gatewayCapabilitySummaries != null)
+        'gatewayCapabilitySummaries': gatewayCapabilitySummaries,
+    };
+  }
 }
 
 class GetAssetPropertyAggregatesResponse {
@@ -6566,6 +7249,15 @@ class GetAssetPropertyAggregatesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedValues = this.aggregatedValues;
+    final nextToken = this.nextToken;
+    return {
+      'aggregatedValues': aggregatedValues,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6591,6 +7283,15 @@ class GetAssetPropertyValueHistoryResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetPropertyValueHistory = this.assetPropertyValueHistory;
+    final nextToken = this.nextToken;
+    return {
+      'assetPropertyValueHistory': assetPropertyValueHistory,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetAssetPropertyValueResponse {
@@ -6607,6 +7308,13 @@ class GetAssetPropertyValueResponse {
               json['propertyValue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final propertyValue = this.propertyValue;
+    return {
+      if (propertyValue != null) 'propertyValue': propertyValue,
+    };
   }
 }
 
@@ -6633,6 +7341,16 @@ class GetInterpolatedAssetPropertyValuesResponse {
               .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interpolatedAssetPropertyValues =
+        this.interpolatedAssetPropertyValues;
+    final nextToken = this.nextToken;
+    return {
+      'interpolatedAssetPropertyValues': interpolatedAssetPropertyValues,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6860,6 +7578,15 @@ class Image {
     this.file,
     this.id,
   });
+  factory Image.fromJson(Map<String, dynamic> json) {
+    return Image(
+      file: json['file'] != null
+          ? ImageFile.fromJson(json['file'] as Map<String, dynamic>)
+          : null,
+      id: json['id'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final file = this.file;
     final id = this.id;
@@ -6883,6 +7610,13 @@ class ImageFile {
     required this.data,
     required this.type,
   });
+  factory ImageFile.fromJson(Map<String, dynamic> json) {
+    return ImageFile(
+      data: _s.decodeUint8List(json['data']! as String),
+      type: (json['type'] as String).toImageFileType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final type = this.type;
@@ -6935,6 +7669,15 @@ class ImageLocation {
       url: json['url'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final url = this.url;
+    return {
+      'id': id,
+      'url': url,
+    };
+  }
 }
 
 /// Contains information about an interpolated asset property value.
@@ -6952,6 +7695,15 @@ class InterpolatedAssetPropertyValue {
           TimeInNanos.fromJson(json['timestamp'] as Map<String, dynamic>),
       value: Variant.fromJson(json['value'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      'timestamp': timestamp,
+      'value': value,
+    };
   }
 }
 
@@ -6976,6 +7728,15 @@ class ListAccessPoliciesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicySummaries = this.accessPolicySummaries;
+    final nextToken = this.nextToken;
+    return {
+      'accessPolicySummaries': accessPolicySummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssetModelsResponse {
@@ -6998,6 +7759,15 @@ class ListAssetModelsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assetModelSummaries = this.assetModelSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assetModelSummaries': assetModelSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7022,6 +7792,15 @@ class ListAssetRelationshipsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assetRelationshipSummaries = this.assetRelationshipSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assetRelationshipSummaries': assetRelationshipSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7074,6 +7853,15 @@ class ListAssetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetSummaries = this.assetSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assetSummaries': assetSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssociatedAssetsResponse {
@@ -7098,6 +7886,15 @@ class ListAssociatedAssetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetSummaries = this.assetSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assetSummaries': assetSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDashboardsResponse {
@@ -7120,6 +7917,15 @@ class ListDashboardsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardSummaries = this.dashboardSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'dashboardSummaries': dashboardSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7144,6 +7950,15 @@ class ListGatewaysResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewaySummaries = this.gatewaySummaries;
+    final nextToken = this.nextToken;
+    return {
+      'gatewaySummaries': gatewaySummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPortalsResponse {
@@ -7166,6 +7981,15 @@ class ListPortalsResponse {
           .map((e) => PortalSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final portalSummaries = this.portalSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (portalSummaries != null) 'portalSummaries': portalSummaries,
+    };
   }
 }
 
@@ -7190,6 +8014,15 @@ class ListProjectAssetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetIds = this.assetIds;
+    final nextToken = this.nextToken;
+    return {
+      'assetIds': assetIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListProjectsResponse {
@@ -7213,6 +8046,15 @@ class ListProjectsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectSummaries = this.projectSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'projectSummaries': projectSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -7230,6 +8072,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -7437,6 +8286,15 @@ class MonitorErrorDetails {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Contains information about the storage destination.
@@ -7575,6 +8433,15 @@ class PortalStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final error = this.error;
+    return {
+      'state': state.toValue(),
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains a portal summary.
@@ -7632,6 +8499,29 @@ class PortalSummary {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final startUrl = this.startUrl;
+    final status = this.status;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final lastUpdateDate = this.lastUpdateDate;
+    final roleArn = this.roleArn;
+    return {
+      'id': id,
+      'name': name,
+      'startUrl': startUrl,
+      'status': status,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (lastUpdateDate != null)
+        'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// Identifies a specific IoT SiteWise Monitor project.
@@ -7688,6 +8578,23 @@ class ProjectSummary {
       description: json['description'] as String?,
       lastUpdateDate: timeStampFromJson(json['lastUpdateDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final lastUpdateDate = this.lastUpdateDate;
+    return {
+      'id': id,
+      'name': name,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (lastUpdateDate != null)
+        'lastUpdateDate': unixTimestampToJson(lastUpdateDate),
+    };
   }
 }
 
@@ -7747,6 +8654,25 @@ class Property {
           : null,
       unit: json['unit'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataType = this.dataType;
+    final id = this.id;
+    final name = this.name;
+    final alias = this.alias;
+    final notification = this.notification;
+    final type = this.type;
+    final unit = this.unit;
+    return {
+      'dataType': dataType.toValue(),
+      'id': id,
+      'name': name,
+      if (alias != null) 'alias': alias,
+      if (notification != null) 'notification': notification,
+      if (type != null) 'type': type,
+      if (unit != null) 'unit': unit,
+    };
   }
 }
 
@@ -7815,6 +8741,15 @@ class PropertyNotification {
       state: (json['state'] as String).toPropertyNotificationState(),
       topic: json['topic'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final topic = this.topic;
+    return {
+      'state': state.toValue(),
+      'topic': topic,
+    };
   }
 }
 
@@ -7942,6 +8877,19 @@ class PutAssetPropertyValueEntry {
     this.propertyAlias,
     this.propertyId,
   });
+  factory PutAssetPropertyValueEntry.fromJson(Map<String, dynamic> json) {
+    return PutAssetPropertyValueEntry(
+      entryId: json['entryId'] as String,
+      propertyValues: (json['propertyValues'] as List)
+          .whereNotNull()
+          .map((e) => AssetPropertyValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      assetId: json['assetId'] as String?,
+      propertyAlias: json['propertyAlias'] as String?,
+      propertyId: json['propertyId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final entryId = this.entryId;
     final propertyValues = this.propertyValues;
@@ -7985,12 +8933,27 @@ class PutDefaultEncryptionConfigurationResponse {
       kmsKeyArn: json['kmsKeyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationStatus = this.configurationStatus;
+    final encryptionType = this.encryptionType;
+    final kmsKeyArn = this.kmsKeyArn;
+    return {
+      'configurationStatus': configurationStatus,
+      'encryptionType': encryptionType.toValue(),
+      if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
+    };
+  }
 }
 
 class PutLoggingOptionsResponse {
   PutLoggingOptionsResponse();
   factory PutLoggingOptionsResponse.fromJson(Map<String, dynamic> _) {
     return PutLoggingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8031,6 +8994,17 @@ class PutStorageConfigurationResponse {
               json['multiLayerStorage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationStatus = this.configurationStatus;
+    final storageType = this.storageType;
+    final multiLayerStorage = this.multiLayerStorage;
+    return {
+      'configurationStatus': configurationStatus,
+      'storageType': storageType.toValue(),
+      if (multiLayerStorage != null) 'multiLayerStorage': multiLayerStorage,
+    };
   }
 }
 
@@ -8160,6 +9134,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8357,12 +9335,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAccessPolicyResponse {
   UpdateAccessPolicyResponse();
   factory UpdateAccessPolicyResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAccessPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8380,6 +9366,13 @@ class UpdateAssetModelResponse {
           json['assetModelStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetModelStatus = this.assetModelStatus;
+    return {
+      'assetModelStatus': assetModelStatus,
+    };
+  }
 }
 
 class UpdateAssetResponse {
@@ -8396,12 +9389,23 @@ class UpdateAssetResponse {
           AssetStatus.fromJson(json['assetStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetStatus = this.assetStatus;
+    return {
+      'assetStatus': assetStatus,
+    };
+  }
 }
 
 class UpdateDashboardResponse {
   UpdateDashboardResponse();
   factory UpdateDashboardResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDashboardResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8442,6 +9446,15 @@ class UpdateGatewayCapabilityConfigurationResponse {
           (json['capabilitySyncStatus'] as String).toCapabilitySyncStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capabilityNamespace = this.capabilityNamespace;
+    final capabilitySyncStatus = this.capabilitySyncStatus;
+    return {
+      'capabilityNamespace': capabilityNamespace,
+      'capabilitySyncStatus': capabilitySyncStatus.toValue(),
+    };
+  }
 }
 
 class UpdatePortalResponse {
@@ -8458,12 +9471,23 @@ class UpdatePortalResponse {
           PortalStatus.fromJson(json['portalStatus'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalStatus = this.portalStatus;
+    return {
+      'portalStatus': portalStatus,
+    };
+  }
 }
 
 class UpdateProjectResponse {
   UpdateProjectResponse();
   factory UpdateProjectResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

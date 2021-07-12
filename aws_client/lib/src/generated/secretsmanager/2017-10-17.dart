@@ -2980,6 +2980,17 @@ class CancelRotateSecretResponse {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final versionId = this.versionId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class CreateSecretResponse {
@@ -3022,6 +3033,19 @@ class CreateSecretResponse {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final replicationStatus = this.replicationStatus;
+    final versionId = this.versionId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (replicationStatus != null) 'ReplicationStatus': replicationStatus,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
@@ -3041,6 +3065,15 @@ class DeleteResourcePolicyResponse {
       arn: json['ARN'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3068,6 +3101,18 @@ class DeleteSecretResponse {
       deletionDate: timeStampFromJson(json['DeletionDate']),
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final deletionDate = this.deletionDate;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3207,6 +3252,48 @@ class DescribeSecretResponse {
               k, (e as List).whereNotNull().map((e) => e as String).toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdDate = this.createdDate;
+    final deletedDate = this.deletedDate;
+    final description = this.description;
+    final kmsKeyId = this.kmsKeyId;
+    final lastAccessedDate = this.lastAccessedDate;
+    final lastChangedDate = this.lastChangedDate;
+    final lastRotatedDate = this.lastRotatedDate;
+    final name = this.name;
+    final owningService = this.owningService;
+    final primaryRegion = this.primaryRegion;
+    final replicationStatus = this.replicationStatus;
+    final rotationEnabled = this.rotationEnabled;
+    final rotationLambdaARN = this.rotationLambdaARN;
+    final rotationRules = this.rotationRules;
+    final tags = this.tags;
+    final versionIdsToStages = this.versionIdsToStages;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (deletedDate != null) 'DeletedDate': unixTimestampToJson(deletedDate),
+      if (description != null) 'Description': description,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastAccessedDate != null)
+        'LastAccessedDate': unixTimestampToJson(lastAccessedDate),
+      if (lastChangedDate != null)
+        'LastChangedDate': unixTimestampToJson(lastChangedDate),
+      if (lastRotatedDate != null)
+        'LastRotatedDate': unixTimestampToJson(lastRotatedDate),
+      if (name != null) 'Name': name,
+      if (owningService != null) 'OwningService': owningService,
+      if (primaryRegion != null) 'PrimaryRegion': primaryRegion,
+      if (replicationStatus != null) 'ReplicationStatus': replicationStatus,
+      if (rotationEnabled != null) 'RotationEnabled': rotationEnabled,
+      if (rotationLambdaARN != null) 'RotationLambdaARN': rotationLambdaARN,
+      if (rotationRules != null) 'RotationRules': rotationRules,
+      if (tags != null) 'Tags': tags,
+      if (versionIdsToStages != null) 'VersionIdsToStages': versionIdsToStages,
+    };
+  }
 }
 
 /// Allows you to add filters when you use the search function in Secrets
@@ -3225,6 +3312,16 @@ class Filter {
     this.key,
     this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      key: (json['Key'] as String?)?.toFilterNameStringType(),
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final values = this.values;
@@ -3295,6 +3392,13 @@ class GetRandomPasswordResponse {
       randomPassword: json['RandomPassword'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final randomPassword = this.randomPassword;
+    return {
+      if (randomPassword != null) 'RandomPassword': randomPassword,
+    };
+  }
 }
 
 class GetResourcePolicyResponse {
@@ -3326,6 +3430,17 @@ class GetResourcePolicyResponse {
       name: json['Name'] as String?,
       resourcePolicy: json['ResourcePolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (resourcePolicy != null) 'ResourcePolicy': resourcePolicy,
+    };
   }
 }
 
@@ -3398,6 +3513,25 @@ class GetSecretValueResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdDate = this.createdDate;
+    final name = this.name;
+    final secretBinary = this.secretBinary;
+    final secretString = this.secretString;
+    final versionId = this.versionId;
+    final versionStages = this.versionStages;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (name != null) 'Name': name,
+      if (secretBinary != null) 'SecretBinary': base64Encode(secretBinary),
+      if (secretString != null) 'SecretString': secretString,
+      if (versionId != null) 'VersionId': versionId,
+      if (versionStages != null) 'VersionStages': versionStages,
+    };
+  }
 }
 
 class ListSecretVersionIdsResponse {
@@ -3446,6 +3580,19 @@ class ListSecretVersionIdsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListSecretsResponse {
@@ -3475,6 +3622,15 @@ class ListSecretsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final secretList = this.secretList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (secretList != null) 'SecretList': secretList,
+    };
+  }
 }
 
 class PutResourcePolicyResponse {
@@ -3493,6 +3649,15 @@ class PutResourcePolicyResponse {
       arn: json['ARN'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3531,6 +3696,19 @@ class PutSecretValueResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final versionId = this.versionId;
+    final versionStages = this.versionStages;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (versionId != null) 'VersionId': versionId,
+      if (versionStages != null) 'VersionStages': versionStages,
+    };
+  }
 }
 
 class RemoveRegionsFromReplicationResponse {
@@ -3555,6 +3733,15 @@ class RemoveRegionsFromReplicationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final replicationStatus = this.replicationStatus;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (replicationStatus != null) 'ReplicationStatus': replicationStatus,
+    };
+  }
 }
 
 /// (Optional) Custom type consisting of a <code>Region</code> (required) and
@@ -3571,6 +3758,13 @@ class ReplicaRegionType {
     this.kmsKeyId,
     this.region,
   });
+  factory ReplicaRegionType.fromJson(Map<String, dynamic> json) {
+    return ReplicaRegionType(
+      kmsKeyId: json['KmsKeyId'] as String?,
+      region: json['Region'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final kmsKeyId = this.kmsKeyId;
     final region = this.region;
@@ -3603,6 +3797,15 @@ class ReplicateSecretToRegionsResponse {
           .map((e) => ReplicationStatusType.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final replicationStatus = this.replicationStatus;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (replicationStatus != null) 'ReplicationStatus': replicationStatus,
+    };
   }
 }
 
@@ -3642,6 +3845,22 @@ class ReplicationStatusType {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    final lastAccessedDate = this.lastAccessedDate;
+    final region = this.region;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastAccessedDate != null)
+        'LastAccessedDate': unixTimestampToJson(lastAccessedDate),
+      if (region != null) 'Region': region,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class RestoreSecretResponse {
@@ -3660,6 +3879,15 @@ class RestoreSecretResponse {
       arn: json['ARN'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3685,6 +3913,17 @@ class RotateSecretResponse {
       name: json['Name'] as String?,
       versionId: json['VersionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final versionId = this.versionId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (versionId != null) 'VersionId': versionId,
+    };
   }
 }
 
@@ -3848,6 +4087,47 @@ class SecretListEntry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdDate = this.createdDate;
+    final deletedDate = this.deletedDate;
+    final description = this.description;
+    final kmsKeyId = this.kmsKeyId;
+    final lastAccessedDate = this.lastAccessedDate;
+    final lastChangedDate = this.lastChangedDate;
+    final lastRotatedDate = this.lastRotatedDate;
+    final name = this.name;
+    final owningService = this.owningService;
+    final primaryRegion = this.primaryRegion;
+    final rotationEnabled = this.rotationEnabled;
+    final rotationLambdaARN = this.rotationLambdaARN;
+    final rotationRules = this.rotationRules;
+    final secretVersionsToStages = this.secretVersionsToStages;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (deletedDate != null) 'DeletedDate': unixTimestampToJson(deletedDate),
+      if (description != null) 'Description': description,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastAccessedDate != null)
+        'LastAccessedDate': unixTimestampToJson(lastAccessedDate),
+      if (lastChangedDate != null)
+        'LastChangedDate': unixTimestampToJson(lastChangedDate),
+      if (lastRotatedDate != null)
+        'LastRotatedDate': unixTimestampToJson(lastRotatedDate),
+      if (name != null) 'Name': name,
+      if (owningService != null) 'OwningService': owningService,
+      if (primaryRegion != null) 'PrimaryRegion': primaryRegion,
+      if (rotationEnabled != null) 'RotationEnabled': rotationEnabled,
+      if (rotationLambdaARN != null) 'RotationLambdaARN': rotationLambdaARN,
+      if (rotationRules != null) 'RotationRules': rotationRules,
+      if (secretVersionsToStages != null)
+        'SecretVersionsToStages': secretVersionsToStages,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A structure that contains information about one version of a secret.
@@ -3882,6 +4162,20 @@ class SecretVersionsListEntry {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final lastAccessedDate = this.lastAccessedDate;
+    final versionId = this.versionId;
+    final versionStages = this.versionStages;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (lastAccessedDate != null)
+        'LastAccessedDate': unixTimestampToJson(lastAccessedDate),
+      if (versionId != null) 'VersionId': versionId,
+      if (versionStages != null) 'VersionStages': versionStages,
+    };
   }
 }
 
@@ -3959,6 +4253,13 @@ class StopReplicationToReplicaResponse {
       arn: json['ARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'ARN': arn,
+    };
+  }
 }
 
 /// A structure that contains information about a tag.
@@ -4021,6 +4322,17 @@ class UpdateSecretResponse {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final versionId = this.versionId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class UpdateSecretVersionStageResponse {
@@ -4039,6 +4351,15 @@ class UpdateSecretVersionStageResponse {
       arn: json['ARN'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -4062,6 +4383,16 @@ class ValidateResourcePolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyValidationPassed = this.policyValidationPassed;
+    final validationErrors = this.validationErrors;
+    return {
+      if (policyValidationPassed != null)
+        'PolicyValidationPassed': policyValidationPassed,
+      if (validationErrors != null) 'ValidationErrors': validationErrors,
+    };
+  }
 }
 
 /// Displays errors that occurred during validation of the resource policy.
@@ -4082,6 +4413,15 @@ class ValidationErrorsEntry {
       checkName: json['CheckName'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkName = this.checkName;
+    final errorMessage = this.errorMessage;
+    return {
+      if (checkName != null) 'CheckName': checkName,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 

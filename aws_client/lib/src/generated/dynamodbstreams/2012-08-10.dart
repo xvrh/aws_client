@@ -453,6 +453,31 @@ class AttributeValue {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final b = this.b;
+    final boolValue = this.boolValue;
+    final bs = this.bs;
+    final l = this.l;
+    final m = this.m;
+    final n = this.n;
+    final ns = this.ns;
+    final nullValue = this.nullValue;
+    final s = this.s;
+    final ss = this.ss;
+    return {
+      if (b != null) 'B': base64Encode(b),
+      if (boolValue != null) 'BOOL': boolValue,
+      if (bs != null) 'BS': bs.map(base64Encode).toList(),
+      if (l != null) 'L': l,
+      if (m != null) 'M': m,
+      if (n != null) 'N': n,
+      if (ns != null) 'NS': ns,
+      if (nullValue != null) 'NULL': nullValue,
+      if (s != null) 'S': s,
+      if (ss != null) 'SS': ss,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeStream</code> operation.
@@ -473,6 +498,13 @@ class DescribeStreamOutput {
               json['StreamDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamDescription = this.streamDescription;
+    return {
+      if (streamDescription != null) 'StreamDescription': streamDescription,
+    };
   }
 }
 
@@ -500,6 +532,15 @@ class GetRecordsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextShardIterator = this.nextShardIterator;
+    final records = this.records;
+    return {
+      if (nextShardIterator != null) 'NextShardIterator': nextShardIterator,
+      if (records != null) 'Records': records,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetShardIterator</code> operation.
@@ -516,6 +557,13 @@ class GetShardIteratorOutput {
     return GetShardIteratorOutput(
       shardIterator: json['ShardIterator'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shardIterator = this.shardIterator;
+    return {
+      if (shardIterator != null) 'ShardIterator': shardIterator,
+    };
   }
 }
 
@@ -537,6 +585,15 @@ class Identity {
       principalId: json['PrincipalId'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final principalId = this.principalId;
+    final type = this.type;
+    return {
+      if (principalId != null) 'PrincipalId': principalId,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -588,6 +645,15 @@ class KeySchemaElement {
       attributeName: json['AttributeName'] as String,
       keyType: (json['KeyType'] as String).toKeyType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final keyType = this.keyType;
+    return {
+      'AttributeName': attributeName,
+      'KeyType': keyType.toValue(),
+    };
   }
 }
 
@@ -650,6 +716,16 @@ class ListStreamsOutput {
           .map((e) => Stream.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastEvaluatedStreamArn = this.lastEvaluatedStreamArn;
+    final streams = this.streams;
+    return {
+      if (lastEvaluatedStreamArn != null)
+        'LastEvaluatedStreamArn': lastEvaluatedStreamArn,
+      if (streams != null) 'Streams': streams,
+    };
   }
 }
 
@@ -769,6 +845,25 @@ class Record {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsRegion = this.awsRegion;
+    final dynamodb = this.dynamodb;
+    final eventID = this.eventID;
+    final eventName = this.eventName;
+    final eventSource = this.eventSource;
+    final eventVersion = this.eventVersion;
+    final userIdentity = this.userIdentity;
+    return {
+      if (awsRegion != null) 'awsRegion': awsRegion,
+      if (dynamodb != null) 'dynamodb': dynamodb,
+      if (eventID != null) 'eventID': eventID,
+      if (eventName != null) 'eventName': eventName.toValue(),
+      if (eventSource != null) 'eventSource': eventSource,
+      if (eventVersion != null) 'eventVersion': eventVersion,
+      if (userIdentity != null) 'userIdentity': userIdentity,
+    };
+  }
 }
 
 /// The beginning and ending sequence numbers for the stream records contained
@@ -791,6 +886,17 @@ class SequenceNumberRange {
       endingSequenceNumber: json['EndingSequenceNumber'] as String?,
       startingSequenceNumber: json['StartingSequenceNumber'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endingSequenceNumber = this.endingSequenceNumber;
+    final startingSequenceNumber = this.startingSequenceNumber;
+    return {
+      if (endingSequenceNumber != null)
+        'EndingSequenceNumber': endingSequenceNumber,
+      if (startingSequenceNumber != null)
+        'StartingSequenceNumber': startingSequenceNumber,
+    };
   }
 }
 
@@ -819,6 +925,18 @@ class Shard {
           : null,
       shardId: json['ShardId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final parentShardId = this.parentShardId;
+    final sequenceNumberRange = this.sequenceNumberRange;
+    final shardId = this.shardId;
+    return {
+      if (parentShardId != null) 'ParentShardId': parentShardId,
+      if (sequenceNumberRange != null)
+        'SequenceNumberRange': sequenceNumberRange,
+      if (shardId != null) 'ShardId': shardId,
+    };
   }
 }
 
@@ -899,6 +1017,17 @@ class Stream {
       streamLabel: json['StreamLabel'] as String?,
       tableName: json['TableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamArn = this.streamArn;
+    final streamLabel = this.streamLabel;
+    final tableName = this.tableName;
+    return {
+      if (streamArn != null) 'StreamArn': streamArn,
+      if (streamLabel != null) 'StreamLabel': streamLabel,
+      if (tableName != null) 'TableName': tableName,
+    };
   }
 }
 
@@ -1026,6 +1155,31 @@ class StreamDescription {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationRequestDateTime = this.creationRequestDateTime;
+    final keySchema = this.keySchema;
+    final lastEvaluatedShardId = this.lastEvaluatedShardId;
+    final shards = this.shards;
+    final streamArn = this.streamArn;
+    final streamLabel = this.streamLabel;
+    final streamStatus = this.streamStatus;
+    final streamViewType = this.streamViewType;
+    final tableName = this.tableName;
+    return {
+      if (creationRequestDateTime != null)
+        'CreationRequestDateTime': unixTimestampToJson(creationRequestDateTime),
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (lastEvaluatedShardId != null)
+        'LastEvaluatedShardId': lastEvaluatedShardId,
+      if (shards != null) 'Shards': shards,
+      if (streamArn != null) 'StreamArn': streamArn,
+      if (streamLabel != null) 'StreamLabel': streamLabel,
+      if (streamStatus != null) 'StreamStatus': streamStatus.toValue(),
+      if (streamViewType != null) 'StreamViewType': streamViewType.toValue(),
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 /// A description of a single data modification that was performed on an item in
@@ -1095,6 +1249,27 @@ class StreamRecord {
       sizeBytes: json['SizeBytes'] as int?,
       streamViewType: (json['StreamViewType'] as String?)?.toStreamViewType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateCreationDateTime = this.approximateCreationDateTime;
+    final keys = this.keys;
+    final newImage = this.newImage;
+    final oldImage = this.oldImage;
+    final sequenceNumber = this.sequenceNumber;
+    final sizeBytes = this.sizeBytes;
+    final streamViewType = this.streamViewType;
+    return {
+      if (approximateCreationDateTime != null)
+        'ApproximateCreationDateTime':
+            unixTimestampToJson(approximateCreationDateTime),
+      if (keys != null) 'Keys': keys,
+      if (newImage != null) 'NewImage': newImage,
+      if (oldImage != null) 'OldImage': oldImage,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+      if (sizeBytes != null) 'SizeBytes': sizeBytes,
+      if (streamViewType != null) 'StreamViewType': streamViewType.toValue(),
+    };
   }
 }
 

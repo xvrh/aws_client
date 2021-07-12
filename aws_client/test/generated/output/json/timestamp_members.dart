@@ -76,6 +76,19 @@ class OutputShape {
       timeFormat: timeStampFromJson(json['TimeFormat']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final structMember = this.structMember;
+    final timeArg = this.timeArg;
+    final timeCustom = this.timeCustom;
+    final timeFormat = this.timeFormat;
+    return {
+      if (structMember != null) 'StructMember': structMember,
+      if (timeArg != null) 'TimeArg': unixTimestampToJson(timeArg),
+      if (timeCustom != null) 'TimeCustom': rfc822ToJson(timeCustom),
+      if (timeFormat != null) 'TimeFormat': iso8601ToJson(timeFormat),
+    };
+  }
 }
 
 class TimeContainer {
@@ -91,6 +104,15 @@ class TimeContainer {
       bar: timeStampFromJson(json['bar']),
       foo: timeStampFromJson(json['foo']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bar = this.bar;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'bar': iso8601ToJson(bar),
+      if (foo != null) 'foo': unixTimestampToJson(foo),
+    };
   }
 }
 

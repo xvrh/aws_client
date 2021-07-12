@@ -2739,6 +2739,17 @@ class AcceptGrantResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (grantArn != null) 'GrantArn': grantArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum AllowedOperation {
@@ -2807,6 +2818,13 @@ class AutomatedDiscoveryInformation {
       lastRunTime: timeStampFromJson(json['LastRunTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastRunTime = this.lastRunTime;
+    return {
+      if (lastRunTime != null) 'LastRunTime': unixTimestampToJson(lastRunTime),
+    };
+  }
 }
 
 /// Details about a borrow configuration.
@@ -2842,6 +2860,10 @@ class CheckInLicenseResponse {
   CheckInLicenseResponse();
   factory CheckInLicenseResponse.fromJson(Map<String, dynamic> _) {
     return CheckInLicenseResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2898,6 +2920,29 @@ class CheckoutBorrowLicenseResponse {
       signedToken: json['SignedToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkoutMetadata = this.checkoutMetadata;
+    final entitlementsAllowed = this.entitlementsAllowed;
+    final expiration = this.expiration;
+    final issuedAt = this.issuedAt;
+    final licenseArn = this.licenseArn;
+    final licenseConsumptionToken = this.licenseConsumptionToken;
+    final nodeId = this.nodeId;
+    final signedToken = this.signedToken;
+    return {
+      if (checkoutMetadata != null) 'CheckoutMetadata': checkoutMetadata,
+      if (entitlementsAllowed != null)
+        'EntitlementsAllowed': entitlementsAllowed,
+      if (expiration != null) 'Expiration': expiration,
+      if (issuedAt != null) 'IssuedAt': issuedAt,
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (licenseConsumptionToken != null)
+        'LicenseConsumptionToken': licenseConsumptionToken,
+      if (nodeId != null) 'NodeId': nodeId,
+      if (signedToken != null) 'SignedToken': signedToken,
+    };
+  }
 }
 
 class CheckoutLicenseResponse {
@@ -2945,6 +2990,27 @@ class CheckoutLicenseResponse {
       signedToken: json['SignedToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkoutType = this.checkoutType;
+    final entitlementsAllowed = this.entitlementsAllowed;
+    final expiration = this.expiration;
+    final issuedAt = this.issuedAt;
+    final licenseConsumptionToken = this.licenseConsumptionToken;
+    final nodeId = this.nodeId;
+    final signedToken = this.signedToken;
+    return {
+      if (checkoutType != null) 'CheckoutType': checkoutType.toValue(),
+      if (entitlementsAllowed != null)
+        'EntitlementsAllowed': entitlementsAllowed,
+      if (expiration != null) 'Expiration': expiration,
+      if (issuedAt != null) 'IssuedAt': issuedAt,
+      if (licenseConsumptionToken != null)
+        'LicenseConsumptionToken': licenseConsumptionToken,
+      if (nodeId != null) 'NodeId': nodeId,
+      if (signedToken != null) 'SignedToken': signedToken,
+    };
+  }
 }
 
 enum CheckoutType {
@@ -2987,6 +3053,15 @@ class ConsumedLicenseSummary {
       consumedLicenses: json['ConsumedLicenses'] as int?,
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedLicenses = this.consumedLicenses;
+    final resourceType = this.resourceType;
+    return {
+      if (consumedLicenses != null) 'ConsumedLicenses': consumedLicenses,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -3056,6 +3131,17 @@ class CreateGrantResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (grantArn != null) 'GrantArn': grantArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateGrantVersionResponse {
@@ -3080,6 +3166,17 @@ class CreateGrantVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (grantArn != null) 'GrantArn': grantArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateLicenseConfigurationResponse {
@@ -3094,6 +3191,14 @@ class CreateLicenseConfigurationResponse {
     return CreateLicenseConfigurationResponse(
       licenseConfigurationArn: json['LicenseConfigurationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+    };
   }
 }
 
@@ -3110,6 +3215,15 @@ class CreateLicenseManagerReportGeneratorResponse {
       licenseManagerReportGeneratorArn:
           json['LicenseManagerReportGeneratorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final licenseManagerReportGeneratorArn =
+        this.licenseManagerReportGeneratorArn;
+    return {
+      if (licenseManagerReportGeneratorArn != null)
+        'LicenseManagerReportGeneratorArn': licenseManagerReportGeneratorArn,
+    };
   }
 }
 
@@ -3135,6 +3249,17 @@ class CreateLicenseResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseArn = this.licenseArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateLicenseVersionResponse {
@@ -3159,6 +3284,17 @@ class CreateLicenseVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseArn = this.licenseArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class CreateTokenResponse {
@@ -3182,6 +3318,17 @@ class CreateTokenResponse {
       tokenId: json['TokenId'] as String?,
       tokenType: (json['TokenType'] as String?)?.toTokenType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final token = this.token;
+    final tokenId = this.tokenId;
+    final tokenType = this.tokenType;
+    return {
+      if (token != null) 'Token': token,
+      if (tokenId != null) 'TokenId': tokenId,
+      if (tokenType != null) 'TokenType': tokenType.toValue(),
+    };
   }
 }
 
@@ -3236,12 +3383,27 @@ class DeleteGrantResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (grantArn != null) 'GrantArn': grantArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class DeleteLicenseConfigurationResponse {
   DeleteLicenseConfigurationResponse();
   factory DeleteLicenseConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLicenseConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3250,6 +3412,10 @@ class DeleteLicenseManagerReportGeneratorResponse {
   factory DeleteLicenseManagerReportGeneratorResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteLicenseManagerReportGeneratorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3270,12 +3436,25 @@ class DeleteLicenseResponse {
       status: (json['Status'] as String?)?.toLicenseDeletionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletionDate = this.deletionDate;
+    final status = this.status;
+    return {
+      if (deletionDate != null) 'DeletionDate': deletionDate,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DeleteTokenResponse {
   DeleteTokenResponse();
   factory DeleteTokenResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTokenResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3729,6 +3908,19 @@ class EntitlementUsage {
       maxCount: json['MaxCount'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedValue = this.consumedValue;
+    final name = this.name;
+    final unit = this.unit;
+    final maxCount = this.maxCount;
+    return {
+      'ConsumedValue': consumedValue,
+      'Name': name,
+      'Unit': unit.toValue(),
+      if (maxCount != null) 'MaxCount': maxCount,
+    };
+  }
 }
 
 class ExtendLicenseConsumptionResponse {
@@ -3748,6 +3940,16 @@ class ExtendLicenseConsumptionResponse {
       licenseConsumptionToken: json['LicenseConsumptionToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expiration = this.expiration;
+    final licenseConsumptionToken = this.licenseConsumptionToken;
+    return {
+      if (expiration != null) 'Expiration': expiration,
+      if (licenseConsumptionToken != null)
+        'LicenseConsumptionToken': licenseConsumptionToken,
+    };
+  }
 }
 
 /// A filter name and value pair that is used to return more specific results
@@ -3764,6 +3966,16 @@ class Filter {
     this.name,
     this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json['Name'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3786,6 +3998,13 @@ class GetAccessTokenResponse {
       accessToken: json['AccessToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    return {
+      if (accessToken != null) 'AccessToken': accessToken,
+    };
+  }
 }
 
 class GetGrantResponse {
@@ -3801,6 +4020,13 @@ class GetGrantResponse {
           ? Grant.fromJson(json['Grant'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grant = this.grant;
+    return {
+      if (grant != null) 'Grant': grant,
+    };
   }
 }
 
@@ -3918,6 +4144,54 @@ class GetLicenseConfigurationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automatedDiscoveryInformation = this.automatedDiscoveryInformation;
+    final consumedLicenseSummaryList = this.consumedLicenseSummaryList;
+    final consumedLicenses = this.consumedLicenses;
+    final description = this.description;
+    final disassociateWhenNotFound = this.disassociateWhenNotFound;
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    final licenseConfigurationId = this.licenseConfigurationId;
+    final licenseCount = this.licenseCount;
+    final licenseCountHardLimit = this.licenseCountHardLimit;
+    final licenseCountingType = this.licenseCountingType;
+    final licenseRules = this.licenseRules;
+    final managedResourceSummaryList = this.managedResourceSummaryList;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final productInformationList = this.productInformationList;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (automatedDiscoveryInformation != null)
+        'AutomatedDiscoveryInformation': automatedDiscoveryInformation,
+      if (consumedLicenseSummaryList != null)
+        'ConsumedLicenseSummaryList': consumedLicenseSummaryList,
+      if (consumedLicenses != null) 'ConsumedLicenses': consumedLicenses,
+      if (description != null) 'Description': description,
+      if (disassociateWhenNotFound != null)
+        'DisassociateWhenNotFound': disassociateWhenNotFound,
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+      if (licenseConfigurationId != null)
+        'LicenseConfigurationId': licenseConfigurationId,
+      if (licenseCount != null) 'LicenseCount': licenseCount,
+      if (licenseCountHardLimit != null)
+        'LicenseCountHardLimit': licenseCountHardLimit,
+      if (licenseCountingType != null)
+        'LicenseCountingType': licenseCountingType.toValue(),
+      if (licenseRules != null) 'LicenseRules': licenseRules,
+      if (managedResourceSummaryList != null)
+        'ManagedResourceSummaryList': managedResourceSummaryList,
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (productInformationList != null)
+        'ProductInformationList': productInformationList,
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class GetLicenseManagerReportGeneratorResponse {
@@ -3937,6 +4211,13 @@ class GetLicenseManagerReportGeneratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reportGenerator = this.reportGenerator;
+    return {
+      if (reportGenerator != null) 'ReportGenerator': reportGenerator,
+    };
+  }
 }
 
 class GetLicenseResponse {
@@ -3953,6 +4234,13 @@ class GetLicenseResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final license = this.license;
+    return {
+      if (license != null) 'License': license,
+    };
+  }
 }
 
 class GetLicenseUsageResponse {
@@ -3968,6 +4256,13 @@ class GetLicenseUsageResponse {
           ? LicenseUsage.fromJson(json['LicenseUsage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final licenseUsage = this.licenseUsage;
+    return {
+      if (licenseUsage != null) 'LicenseUsage': licenseUsage,
+    };
   }
 }
 
@@ -4010,6 +4305,24 @@ class GetServiceSettingsResponse {
       s3BucketArn: json['S3BucketArn'] as String?,
       snsTopicArn: json['SnsTopicArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enableCrossAccountsDiscovery = this.enableCrossAccountsDiscovery;
+    final licenseManagerResourceShareArn = this.licenseManagerResourceShareArn;
+    final organizationConfiguration = this.organizationConfiguration;
+    final s3BucketArn = this.s3BucketArn;
+    final snsTopicArn = this.snsTopicArn;
+    return {
+      if (enableCrossAccountsDiscovery != null)
+        'EnableCrossAccountsDiscovery': enableCrossAccountsDiscovery,
+      if (licenseManagerResourceShareArn != null)
+        'LicenseManagerResourceShareArn': licenseManagerResourceShareArn,
+      if (organizationConfiguration != null)
+        'OrganizationConfiguration': organizationConfiguration,
+      if (s3BucketArn != null) 'S3BucketArn': s3BucketArn,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+    };
   }
 }
 
@@ -4073,6 +4386,31 @@ class Grant {
       version: json['Version'] as String,
       statusReason: json['StatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final grantName = this.grantName;
+    final grantStatus = this.grantStatus;
+    final grantedOperations = this.grantedOperations;
+    final granteePrincipalArn = this.granteePrincipalArn;
+    final homeRegion = this.homeRegion;
+    final licenseArn = this.licenseArn;
+    final parentArn = this.parentArn;
+    final version = this.version;
+    final statusReason = this.statusReason;
+    return {
+      'GrantArn': grantArn,
+      'GrantName': grantName,
+      'GrantStatus': grantStatus.toValue(),
+      'GrantedOperations': grantedOperations.map((e) => e.toValue()).toList(),
+      'GranteePrincipalArn': granteePrincipalArn,
+      'HomeRegion': homeRegion,
+      'LicenseArn': licenseArn,
+      'ParentArn': parentArn,
+      'Version': version,
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -4239,6 +4577,42 @@ class GrantedLicense {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beneficiary = this.beneficiary;
+    final consumptionConfiguration = this.consumptionConfiguration;
+    final createTime = this.createTime;
+    final entitlements = this.entitlements;
+    final homeRegion = this.homeRegion;
+    final issuer = this.issuer;
+    final licenseArn = this.licenseArn;
+    final licenseMetadata = this.licenseMetadata;
+    final licenseName = this.licenseName;
+    final productName = this.productName;
+    final productSKU = this.productSKU;
+    final receivedMetadata = this.receivedMetadata;
+    final status = this.status;
+    final validity = this.validity;
+    final version = this.version;
+    return {
+      if (beneficiary != null) 'Beneficiary': beneficiary,
+      if (consumptionConfiguration != null)
+        'ConsumptionConfiguration': consumptionConfiguration,
+      if (createTime != null) 'CreateTime': createTime,
+      if (entitlements != null) 'Entitlements': entitlements,
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (issuer != null) 'Issuer': issuer,
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (licenseMetadata != null) 'LicenseMetadata': licenseMetadata,
+      if (licenseName != null) 'LicenseName': licenseName,
+      if (productName != null) 'ProductName': productName,
+      if (productSKU != null) 'ProductSKU': productSKU,
+      if (receivedMetadata != null) 'ReceivedMetadata': receivedMetadata,
+      if (status != null) 'Status': status.toValue(),
+      if (validity != null) 'Validity': validity,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// An inventory filter.
@@ -4257,6 +4631,14 @@ class InventoryFilter {
     required this.name,
     this.value,
   });
+  factory InventoryFilter.fromJson(Map<String, dynamic> json) {
+    return InventoryFilter(
+      condition: (json['Condition'] as String).toInventoryFilterCondition(),
+      name: json['Name'] as String,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final condition = this.condition;
     final name = this.name;
@@ -4321,6 +4703,13 @@ class Issuer {
     required this.name,
     this.signKey,
   });
+  factory Issuer.fromJson(Map<String, dynamic> json) {
+    return Issuer(
+      name: json['Name'] as String,
+      signKey: json['SignKey'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final signKey = this.signKey;
@@ -4355,6 +4744,17 @@ class IssuerDetails {
       name: json['Name'] as String?,
       signKey: json['SignKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyFingerprint = this.keyFingerprint;
+    final name = this.name;
+    final signKey = this.signKey;
+    return {
+      if (keyFingerprint != null) 'KeyFingerprint': keyFingerprint,
+      if (name != null) 'Name': name,
+      if (signKey != null) 'SignKey': signKey,
+    };
   }
 }
 
@@ -4449,6 +4849,40 @@ class License {
           : null,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final beneficiary = this.beneficiary;
+    final consumptionConfiguration = this.consumptionConfiguration;
+    final createTime = this.createTime;
+    final entitlements = this.entitlements;
+    final homeRegion = this.homeRegion;
+    final issuer = this.issuer;
+    final licenseArn = this.licenseArn;
+    final licenseMetadata = this.licenseMetadata;
+    final licenseName = this.licenseName;
+    final productName = this.productName;
+    final productSKU = this.productSKU;
+    final status = this.status;
+    final validity = this.validity;
+    final version = this.version;
+    return {
+      if (beneficiary != null) 'Beneficiary': beneficiary,
+      if (consumptionConfiguration != null)
+        'ConsumptionConfiguration': consumptionConfiguration,
+      if (createTime != null) 'CreateTime': createTime,
+      if (entitlements != null) 'Entitlements': entitlements,
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (issuer != null) 'Issuer': issuer,
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (licenseMetadata != null) 'LicenseMetadata': licenseMetadata,
+      if (licenseName != null) 'LicenseName': licenseName,
+      if (productName != null) 'ProductName': productName,
+      if (productSKU != null) 'ProductSKU': productSKU,
+      if (status != null) 'Status': status.toValue(),
+      if (validity != null) 'Validity': validity,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -4564,6 +4998,52 @@ class LicenseConfiguration {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automatedDiscoveryInformation = this.automatedDiscoveryInformation;
+    final consumedLicenseSummaryList = this.consumedLicenseSummaryList;
+    final consumedLicenses = this.consumedLicenses;
+    final description = this.description;
+    final disassociateWhenNotFound = this.disassociateWhenNotFound;
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    final licenseConfigurationId = this.licenseConfigurationId;
+    final licenseCount = this.licenseCount;
+    final licenseCountHardLimit = this.licenseCountHardLimit;
+    final licenseCountingType = this.licenseCountingType;
+    final licenseRules = this.licenseRules;
+    final managedResourceSummaryList = this.managedResourceSummaryList;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final productInformationList = this.productInformationList;
+    final status = this.status;
+    return {
+      if (automatedDiscoveryInformation != null)
+        'AutomatedDiscoveryInformation': automatedDiscoveryInformation,
+      if (consumedLicenseSummaryList != null)
+        'ConsumedLicenseSummaryList': consumedLicenseSummaryList,
+      if (consumedLicenses != null) 'ConsumedLicenses': consumedLicenses,
+      if (description != null) 'Description': description,
+      if (disassociateWhenNotFound != null)
+        'DisassociateWhenNotFound': disassociateWhenNotFound,
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+      if (licenseConfigurationId != null)
+        'LicenseConfigurationId': licenseConfigurationId,
+      if (licenseCount != null) 'LicenseCount': licenseCount,
+      if (licenseCountHardLimit != null)
+        'LicenseCountHardLimit': licenseCountHardLimit,
+      if (licenseCountingType != null)
+        'LicenseCountingType': licenseCountingType.toValue(),
+      if (licenseRules != null) 'LicenseRules': licenseRules,
+      if (managedResourceSummaryList != null)
+        'ManagedResourceSummaryList': managedResourceSummaryList,
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (productInformationList != null)
+        'ProductInformationList': productInformationList,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Describes an association with a license configuration.
@@ -4598,6 +5078,23 @@ class LicenseConfigurationAssociation {
       resourceOwnerId: json['ResourceOwnerId'] as String?,
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amiAssociationScope = this.amiAssociationScope;
+    final associationTime = this.associationTime;
+    final resourceArn = this.resourceArn;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    return {
+      if (amiAssociationScope != null)
+        'AmiAssociationScope': amiAssociationScope,
+      if (associationTime != null)
+        'AssociationTime': unixTimestampToJson(associationTime),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceOwnerId != null) 'ResourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -4668,6 +5165,24 @@ class LicenseConfigurationUsage {
       resourceStatus: json['ResourceStatus'] as String?,
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationTime = this.associationTime;
+    final consumedLicenses = this.consumedLicenses;
+    final resourceArn = this.resourceArn;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceStatus = this.resourceStatus;
+    final resourceType = this.resourceType;
+    return {
+      if (associationTime != null)
+        'AssociationTime': unixTimestampToJson(associationTime),
+      if (consumedLicenses != null) 'ConsumedLicenses': consumedLicenses,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceOwnerId != null) 'ResourceOwnerId': resourceOwnerId,
+      if (resourceStatus != null) 'ResourceStatus': resourceStatus,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -4788,6 +5303,28 @@ class LicenseOperationFailure {
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final failureTime = this.failureTime;
+    final metadataList = this.metadataList;
+    final operationName = this.operationName;
+    final operationRequestedBy = this.operationRequestedBy;
+    final resourceArn = this.resourceArn;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (failureTime != null) 'FailureTime': unixTimestampToJson(failureTime),
+      if (metadataList != null) 'MetadataList': metadataList,
+      if (operationName != null) 'OperationName': operationName,
+      if (operationRequestedBy != null)
+        'OperationRequestedBy': operationRequestedBy,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceOwnerId != null) 'ResourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
+  }
 }
 
 /// Details for associating a license configuration with a resource.
@@ -4889,6 +5426,13 @@ class LicenseUsage {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlementUsages = this.entitlementUsages;
+    return {
+      if (entitlementUsages != null) 'EntitlementUsages': entitlementUsages,
+    };
+  }
 }
 
 class ListAssociationsForLicenseConfigurationResponse {
@@ -4914,6 +5458,17 @@ class ListAssociationsForLicenseConfigurationResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationAssociations =
+        this.licenseConfigurationAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (licenseConfigurationAssociations != null)
+        'LicenseConfigurationAssociations': licenseConfigurationAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDistributedGrantsResponse {
@@ -4935,6 +5490,15 @@ class ListDistributedGrantsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final nextToken = this.nextToken;
+    return {
+      if (grants != null) 'Grants': grants,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4961,6 +5525,16 @@ class ListFailuresForLicenseConfigurationOperationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseOperationFailureList = this.licenseOperationFailureList;
+    final nextToken = this.nextToken;
+    return {
+      if (licenseOperationFailureList != null)
+        'LicenseOperationFailureList': licenseOperationFailureList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLicenseConfigurationsResponse {
@@ -4983,6 +5557,16 @@ class ListLicenseConfigurationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurations = this.licenseConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      if (licenseConfigurations != null)
+        'LicenseConfigurations': licenseConfigurations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5008,6 +5592,15 @@ class ListLicenseManagerReportGeneratorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportGenerators = this.reportGenerators;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reportGenerators != null) 'ReportGenerators': reportGenerators,
+    };
+  }
 }
 
 class ListLicenseSpecificationsForResourceResponse {
@@ -5031,6 +5624,16 @@ class ListLicenseSpecificationsForResourceResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseSpecifications = this.licenseSpecifications;
+    final nextToken = this.nextToken;
+    return {
+      if (licenseSpecifications != null)
+        'LicenseSpecifications': licenseSpecifications,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLicenseVersionsResponse {
@@ -5052,6 +5655,15 @@ class ListLicenseVersionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final licenses = this.licenses;
+    final nextToken = this.nextToken;
+    return {
+      if (licenses != null) 'Licenses': licenses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5075,6 +5687,15 @@ class ListLicensesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenses = this.licenses;
+    final nextToken = this.nextToken;
+    return {
+      if (licenses != null) 'Licenses': licenses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListReceivedGrantsResponse {
@@ -5096,6 +5717,15 @@ class ListReceivedGrantsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final nextToken = this.nextToken;
+    return {
+      if (grants != null) 'Grants': grants,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5119,6 +5749,15 @@ class ListReceivedLicensesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenses = this.licenses;
+    final nextToken = this.nextToken;
+    return {
+      if (licenses != null) 'Licenses': licenses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListResourceInventoryResponse {
@@ -5141,6 +5780,16 @@ class ListResourceInventoryResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceInventoryList = this.resourceInventoryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceInventoryList != null)
+        'ResourceInventoryList': resourceInventoryList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5157,6 +5806,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5179,6 +5835,15 @@ class ListTokensResponse {
           .map((e) => TokenData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tokens = this.tokens;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tokens != null) 'Tokens': tokens,
+    };
   }
 }
 
@@ -5205,6 +5870,16 @@ class ListUsageForLicenseConfigurationResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationUsageList = this.licenseConfigurationUsageList;
+    final nextToken = this.nextToken;
+    return {
+      if (licenseConfigurationUsageList != null)
+        'LicenseConfigurationUsageList': licenseConfigurationUsageList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Summary information about a managed resource.
@@ -5224,6 +5899,15 @@ class ManagedResourceSummary {
       associationCount: json['AssociationCount'] as int?,
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationCount = this.associationCount;
+    final resourceType = this.resourceType;
+    return {
+      if (associationCount != null) 'AssociationCount': associationCount,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -5474,6 +6158,19 @@ class ReceivedMetadata {
       receivedStatusReason: json['ReceivedStatusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedOperations = this.allowedOperations;
+    final receivedStatus = this.receivedStatus;
+    final receivedStatusReason = this.receivedStatusReason;
+    return {
+      if (allowedOperations != null)
+        'AllowedOperations': allowedOperations.map((e) => e.toValue()).toList(),
+      if (receivedStatus != null) 'ReceivedStatus': receivedStatus.toValue(),
+      if (receivedStatusReason != null)
+        'ReceivedStatusReason': receivedStatusReason,
+    };
+  }
 }
 
 enum ReceivedStatus {
@@ -5555,6 +6252,17 @@ class RejectGrantResponse {
       status: (json['Status'] as String?)?.toGrantStatus(),
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grantArn = this.grantArn;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (grantArn != null) 'GrantArn': grantArn,
+      if (status != null) 'Status': status.toValue(),
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5769,6 +6477,44 @@ class ReportGenerator {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final description = this.description;
+    final lastReportGenerationTime = this.lastReportGenerationTime;
+    final lastRunFailureReason = this.lastRunFailureReason;
+    final lastRunStatus = this.lastRunStatus;
+    final licenseManagerReportGeneratorArn =
+        this.licenseManagerReportGeneratorArn;
+    final reportContext = this.reportContext;
+    final reportCreatorAccount = this.reportCreatorAccount;
+    final reportFrequency = this.reportFrequency;
+    final reportGeneratorName = this.reportGeneratorName;
+    final reportType = this.reportType;
+    final s3Location = this.s3Location;
+    final tags = this.tags;
+    return {
+      if (createTime != null) 'CreateTime': createTime,
+      if (description != null) 'Description': description,
+      if (lastReportGenerationTime != null)
+        'LastReportGenerationTime': lastReportGenerationTime,
+      if (lastRunFailureReason != null)
+        'LastRunFailureReason': lastRunFailureReason,
+      if (lastRunStatus != null) 'LastRunStatus': lastRunStatus,
+      if (licenseManagerReportGeneratorArn != null)
+        'LicenseManagerReportGeneratorArn': licenseManagerReportGeneratorArn,
+      if (reportContext != null) 'ReportContext': reportContext,
+      if (reportCreatorAccount != null)
+        'ReportCreatorAccount': reportCreatorAccount,
+      if (reportFrequency != null) 'ReportFrequency': reportFrequency,
+      if (reportGeneratorName != null)
+        'ReportGeneratorName': reportGeneratorName,
+      if (reportType != null)
+        'ReportType': reportType.map((e) => e.toValue()).toList(),
+      if (s3Location != null) 'S3Location': s3Location,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum ReportType {
@@ -5837,6 +6583,24 @@ class ResourceInventory {
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final platformVersion = this.platformVersion;
+    final resourceArn = this.resourceArn;
+    final resourceId = this.resourceId;
+    final resourceOwningAccountId = this.resourceOwningAccountId;
+    final resourceType = this.resourceType;
+    return {
+      if (platform != null) 'Platform': platform,
+      if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceOwningAccountId != null)
+        'ResourceOwningAccountId': resourceOwningAccountId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
+  }
 }
 
 enum ResourceType {
@@ -5900,6 +6664,15 @@ class S3Location {
       keyPrefix: json['keyPrefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final keyPrefix = this.keyPrefix;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (keyPrefix != null) 'keyPrefix': keyPrefix,
+    };
+  }
 }
 
 /// Details about a tag for a license configuration.
@@ -5935,6 +6708,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5988,6 +6765,25 @@ class TokenData {
       tokenType: json['TokenType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expirationTime = this.expirationTime;
+    final licenseArn = this.licenseArn;
+    final roleArns = this.roleArns;
+    final status = this.status;
+    final tokenId = this.tokenId;
+    final tokenProperties = this.tokenProperties;
+    final tokenType = this.tokenType;
+    return {
+      if (expirationTime != null) 'ExpirationTime': expirationTime,
+      if (licenseArn != null) 'LicenseArn': licenseArn,
+      if (roleArns != null) 'RoleArns': roleArns,
+      if (status != null) 'Status': status,
+      if (tokenId != null) 'TokenId': tokenId,
+      if (tokenProperties != null) 'TokenProperties': tokenProperties,
+      if (tokenType != null) 'TokenType': tokenType,
+    };
+  }
 }
 
 enum TokenType {
@@ -6018,12 +6814,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLicenseConfigurationResponse {
   UpdateLicenseConfigurationResponse();
   factory UpdateLicenseConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLicenseConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6033,6 +6837,10 @@ class UpdateLicenseManagerReportGeneratorResponse {
       Map<String, dynamic> _) {
     return UpdateLicenseManagerReportGeneratorResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLicenseSpecificationsForResourceResponse {
@@ -6041,12 +6849,20 @@ class UpdateLicenseSpecificationsForResourceResponse {
       Map<String, dynamic> _) {
     return UpdateLicenseSpecificationsForResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateServiceSettingsResponse {
   UpdateServiceSettingsResponse();
   factory UpdateServiceSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateServiceSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

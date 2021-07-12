@@ -2130,6 +2130,15 @@ class BatchDeleteRecipeVersionResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final errors = this.errors;
+    return {
+      'Name': name,
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 enum CompressionFormat {
@@ -2254,6 +2263,13 @@ class CreateDatasetResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class CreateProfileJobResponse {
@@ -2267,6 +2283,13 @@ class CreateProfileJobResponse {
     return CreateProfileJobResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -2282,6 +2305,13 @@ class CreateProjectResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class CreateRecipeJobResponse {
@@ -2295,6 +2325,13 @@ class CreateRecipeJobResponse {
     return CreateRecipeJobResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -2310,6 +2347,13 @@ class CreateRecipeResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class CreateScheduleResponse {
@@ -2323,6 +2367,13 @@ class CreateScheduleResponse {
     return CreateScheduleResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -2651,6 +2702,38 @@ class Dataset {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final name = this.name;
+    final accountId = this.accountId;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final format = this.format;
+    final formatOptions = this.formatOptions;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final pathOptions = this.pathOptions;
+    final resourceArn = this.resourceArn;
+    final source = this.source;
+    final tags = this.tags;
+    return {
+      'Input': input,
+      'Name': name,
+      if (accountId != null) 'AccountId': accountId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (format != null) 'Format': format.toValue(),
+      if (formatOptions != null) 'FormatOptions': formatOptions,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (pathOptions != null) 'PathOptions': pathOptions,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (source != null) 'Source': source.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Represents a dataset paramater that defines type and conditions for a
@@ -2768,6 +2851,13 @@ class DeleteDatasetResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class DeleteJobResponse {
@@ -2782,6 +2872,13 @@ class DeleteJobResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class DeleteProjectResponse {
@@ -2795,6 +2892,13 @@ class DeleteProjectResponse {
     return DeleteProjectResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -2815,6 +2919,15 @@ class DeleteRecipeVersionResponse {
       recipeVersion: json['RecipeVersion'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final recipeVersion = this.recipeVersion;
+    return {
+      'Name': name,
+      'RecipeVersion': recipeVersion,
+    };
+  }
 }
 
 class DeleteScheduleResponse {
@@ -2828,6 +2941,13 @@ class DeleteScheduleResponse {
     return DeleteScheduleResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -2903,6 +3023,36 @@ class DescribeDatasetResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final format = this.format;
+    final formatOptions = this.formatOptions;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final pathOptions = this.pathOptions;
+    final resourceArn = this.resourceArn;
+    final source = this.source;
+    final tags = this.tags;
+    return {
+      'Input': input,
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (format != null) 'Format': format.toValue(),
+      if (formatOptions != null) 'FormatOptions': formatOptions,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (pathOptions != null) 'PathOptions': pathOptions,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (source != null) 'Source': source.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3056,6 +3206,54 @@ class DescribeJobResponse {
       type: (json['Type'] as String?)?.toJobType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final dataCatalogOutputs = this.dataCatalogOutputs;
+    final datasetName = this.datasetName;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final encryptionMode = this.encryptionMode;
+    final jobSample = this.jobSample;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final logSubscription = this.logSubscription;
+    final maxCapacity = this.maxCapacity;
+    final maxRetries = this.maxRetries;
+    final outputs = this.outputs;
+    final projectName = this.projectName;
+    final recipeReference = this.recipeReference;
+    final resourceArn = this.resourceArn;
+    final roleArn = this.roleArn;
+    final tags = this.tags;
+    final timeout = this.timeout;
+    final type = this.type;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (jobSample != null) 'JobSample': jobSample,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
+      if (maxCapacity != null) 'MaxCapacity': maxCapacity,
+      if (maxRetries != null) 'MaxRetries': maxRetries,
+      if (outputs != null) 'Outputs': outputs,
+      if (projectName != null) 'ProjectName': projectName,
+      if (recipeReference != null) 'RecipeReference': recipeReference,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (tags != null) 'Tags': tags,
+      if (timeout != null) 'Timeout': timeout,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 class DescribeJobRunResponse {
@@ -3161,6 +3359,43 @@ class DescribeJobRunResponse {
       state: (json['State'] as String?)?.toJobRunState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobName = this.jobName;
+    final attempt = this.attempt;
+    final completedOn = this.completedOn;
+    final dataCatalogOutputs = this.dataCatalogOutputs;
+    final datasetName = this.datasetName;
+    final errorMessage = this.errorMessage;
+    final executionTime = this.executionTime;
+    final jobSample = this.jobSample;
+    final logGroupName = this.logGroupName;
+    final logSubscription = this.logSubscription;
+    final outputs = this.outputs;
+    final recipeReference = this.recipeReference;
+    final runId = this.runId;
+    final startedBy = this.startedBy;
+    final startedOn = this.startedOn;
+    final state = this.state;
+    return {
+      'JobName': jobName,
+      if (attempt != null) 'Attempt': attempt,
+      if (completedOn != null) 'CompletedOn': unixTimestampToJson(completedOn),
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (executionTime != null) 'ExecutionTime': executionTime,
+      if (jobSample != null) 'JobSample': jobSample,
+      if (logGroupName != null) 'LogGroupName': logGroupName,
+      if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
+      if (outputs != null) 'Outputs': outputs,
+      if (recipeReference != null) 'RecipeReference': recipeReference,
+      if (runId != null) 'RunId': runId,
+      if (startedBy != null) 'StartedBy': startedBy,
+      if (startedOn != null) 'StartedOn': unixTimestampToJson(startedOn),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DescribeProjectResponse {
@@ -3254,6 +3489,40 @@ class DescribeProjectResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final datasetName = this.datasetName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final openDate = this.openDate;
+    final openedBy = this.openedBy;
+    final recipeName = this.recipeName;
+    final resourceArn = this.resourceArn;
+    final roleArn = this.roleArn;
+    final sample = this.sample;
+    final sessionStatus = this.sessionStatus;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (openDate != null) 'OpenDate': unixTimestampToJson(openDate),
+      if (openedBy != null) 'OpenedBy': openedBy,
+      if (recipeName != null) 'RecipeName': recipeName,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (sample != null) 'Sample': sample,
+      if (sessionStatus != null) 'SessionStatus': sessionStatus.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeRecipeResponse {
@@ -3333,6 +3602,39 @@ class DescribeRecipeResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final projectName = this.projectName;
+    final publishedBy = this.publishedBy;
+    final publishedDate = this.publishedDate;
+    final recipeVersion = this.recipeVersion;
+    final resourceArn = this.resourceArn;
+    final steps = this.steps;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (projectName != null) 'ProjectName': projectName,
+      if (publishedBy != null) 'PublishedBy': publishedBy,
+      if (publishedDate != null)
+        'PublishedDate': unixTimestampToJson(publishedDate),
+      if (recipeVersion != null) 'RecipeVersion': recipeVersion,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (steps != null) 'Steps': steps,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeScheduleResponse {
@@ -3393,6 +3695,30 @@ class DescribeScheduleResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final cronExpression = this.cronExpression;
+    final jobNames = this.jobNames;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (cronExpression != null) 'CronExpression': cronExpression,
+      if (jobNames != null) 'JobNames': jobNames,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3838,6 +4164,56 @@ class Job {
       type: (json['Type'] as String?)?.toJobType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final accountId = this.accountId;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final dataCatalogOutputs = this.dataCatalogOutputs;
+    final datasetName = this.datasetName;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final encryptionMode = this.encryptionMode;
+    final jobSample = this.jobSample;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final logSubscription = this.logSubscription;
+    final maxCapacity = this.maxCapacity;
+    final maxRetries = this.maxRetries;
+    final outputs = this.outputs;
+    final projectName = this.projectName;
+    final recipeReference = this.recipeReference;
+    final resourceArn = this.resourceArn;
+    final roleArn = this.roleArn;
+    final tags = this.tags;
+    final timeout = this.timeout;
+    final type = this.type;
+    return {
+      'Name': name,
+      if (accountId != null) 'AccountId': accountId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
+      if (jobSample != null) 'JobSample': jobSample,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
+      if (maxCapacity != null) 'MaxCapacity': maxCapacity,
+      if (maxRetries != null) 'MaxRetries': maxRetries,
+      if (outputs != null) 'Outputs': outputs,
+      if (projectName != null) 'ProjectName': projectName,
+      if (recipeReference != null) 'RecipeReference': recipeReference,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (tags != null) 'Tags': tags,
+      if (timeout != null) 'Timeout': timeout,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Represents one run of a DataBrew job.
@@ -3945,6 +4321,43 @@ class JobRun {
       startedOn: timeStampFromJson(json['StartedOn']),
       state: (json['State'] as String?)?.toJobRunState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attempt = this.attempt;
+    final completedOn = this.completedOn;
+    final dataCatalogOutputs = this.dataCatalogOutputs;
+    final datasetName = this.datasetName;
+    final errorMessage = this.errorMessage;
+    final executionTime = this.executionTime;
+    final jobName = this.jobName;
+    final jobSample = this.jobSample;
+    final logGroupName = this.logGroupName;
+    final logSubscription = this.logSubscription;
+    final outputs = this.outputs;
+    final recipeReference = this.recipeReference;
+    final runId = this.runId;
+    final startedBy = this.startedBy;
+    final startedOn = this.startedOn;
+    final state = this.state;
+    return {
+      if (attempt != null) 'Attempt': attempt,
+      if (completedOn != null) 'CompletedOn': unixTimestampToJson(completedOn),
+      if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (executionTime != null) 'ExecutionTime': executionTime,
+      if (jobName != null) 'JobName': jobName,
+      if (jobSample != null) 'JobSample': jobSample,
+      if (logGroupName != null) 'LogGroupName': logGroupName,
+      if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
+      if (outputs != null) 'Outputs': outputs,
+      if (recipeReference != null) 'RecipeReference': recipeReference,
+      if (runId != null) 'RunId': runId,
+      if (startedBy != null) 'StartedBy': startedBy,
+      if (startedOn != null) 'StartedOn': unixTimestampToJson(startedOn),
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -4121,6 +4534,15 @@ class ListDatasetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasets = this.datasets;
+    final nextToken = this.nextToken;
+    return {
+      'Datasets': datasets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListJobRunsResponse {
@@ -4143,6 +4565,15 @@ class ListJobRunsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobRuns = this.jobRuns;
+    final nextToken = this.nextToken;
+    return {
+      'JobRuns': jobRuns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4167,6 +4598,15 @@ class ListJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      'Jobs': jobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListProjectsResponse {
@@ -4189,6 +4629,15 @@ class ListProjectsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projects = this.projects;
+    final nextToken = this.nextToken;
+    return {
+      'Projects': projects,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4213,6 +4662,15 @@ class ListRecipeVersionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recipes = this.recipes;
+    final nextToken = this.nextToken;
+    return {
+      'Recipes': recipes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRecipesResponse {
@@ -4235,6 +4693,15 @@ class ListRecipesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recipes = this.recipes;
+    final nextToken = this.nextToken;
+    return {
+      'Recipes': recipes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4259,6 +4726,15 @@ class ListSchedulesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schedules = this.schedules;
+    final nextToken = this.nextToken;
+    return {
+      'Schedules': schedules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4273,6 +4749,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4665,6 +5148,40 @@ class Project {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final recipeName = this.recipeName;
+    final accountId = this.accountId;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final datasetName = this.datasetName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final openDate = this.openDate;
+    final openedBy = this.openedBy;
+    final resourceArn = this.resourceArn;
+    final roleArn = this.roleArn;
+    final sample = this.sample;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      'RecipeName': recipeName,
+      if (accountId != null) 'AccountId': accountId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (openDate != null) 'OpenDate': unixTimestampToJson(openDate),
+      if (openedBy != null) 'OpenedBy': openedBy,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (sample != null) 'Sample': sample,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class PublishRecipeResponse {
@@ -4678,6 +5195,13 @@ class PublishRecipeResponse {
     return PublishRecipeResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -4773,6 +5297,39 @@ class Recipe {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final projectName = this.projectName;
+    final publishedBy = this.publishedBy;
+    final publishedDate = this.publishedDate;
+    final recipeVersion = this.recipeVersion;
+    final resourceArn = this.resourceArn;
+    final steps = this.steps;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (projectName != null) 'ProjectName': projectName,
+      if (publishedBy != null) 'PublishedBy': publishedBy,
+      if (publishedDate != null)
+        'PublishedDate': unixTimestampToJson(publishedDate),
+      if (recipeVersion != null) 'RecipeVersion': recipeVersion,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (steps != null) 'Steps': steps,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4898,6 +5455,17 @@ class RecipeVersionErrorDetail {
       errorMessage: json['ErrorMessage'] as String?,
       recipeVersion: json['RecipeVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final recipeVersion = this.recipeVersion;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (recipeVersion != null) 'RecipeVersion': recipeVersion,
+    };
   }
 }
 
@@ -5110,6 +5678,32 @@ class Schedule {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final accountId = this.accountId;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final cronExpression = this.cronExpression;
+    final jobNames = this.jobNames;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      if (accountId != null) 'AccountId': accountId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (cronExpression != null) 'CronExpression': cronExpression,
+      if (jobNames != null) 'JobNames': jobNames,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class SendProjectSessionActionResponse {
@@ -5133,6 +5727,17 @@ class SendProjectSessionActionResponse {
       actionId: json['ActionId'] as int?,
       result: json['Result'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final actionId = this.actionId;
+    final result = this.result;
+    return {
+      'Name': name,
+      if (actionId != null) 'ActionId': actionId,
+      if (result != null) 'Result': result,
+    };
   }
 }
 
@@ -5249,6 +5854,13 @@ class StartJobRunResponse {
       runId: json['RunId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final runId = this.runId;
+    return {
+      'RunId': runId,
+    };
+  }
 }
 
 class StartProjectSessionResponse {
@@ -5268,6 +5880,15 @@ class StartProjectSessionResponse {
       clientSessionId: json['ClientSessionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final clientSessionId = this.clientSessionId;
+    return {
+      'Name': name,
+      if (clientSessionId != null) 'ClientSessionId': clientSessionId,
+    };
+  }
 }
 
 class StopJobRunResponse {
@@ -5282,6 +5903,13 @@ class StopJobRunResponse {
       runId: json['RunId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final runId = this.runId;
+    return {
+      'RunId': runId,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -5289,12 +5917,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5310,6 +5946,13 @@ class UpdateDatasetResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class UpdateProfileJobResponse {
@@ -5323,6 +5966,13 @@ class UpdateProfileJobResponse {
     return UpdateProfileJobResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -5343,6 +5993,16 @@ class UpdateProjectResponse {
       lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final lastModifiedDate = this.lastModifiedDate;
+    return {
+      'Name': name,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+    };
+  }
 }
 
 class UpdateRecipeJobResponse {
@@ -5356,6 +6016,13 @@ class UpdateRecipeJobResponse {
     return UpdateRecipeJobResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -5371,6 +6038,13 @@ class UpdateRecipeResponse {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
 }
 
 class UpdateScheduleResponse {
@@ -5384,6 +6058,13 @@ class UpdateScheduleResponse {
     return UpdateScheduleResponse(
       name: json['Name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 }
 
@@ -5405,6 +6086,17 @@ class ViewFrame {
     this.columnRange,
     this.hiddenColumns,
   });
+  factory ViewFrame.fromJson(Map<String, dynamic> json) {
+    return ViewFrame(
+      startColumnIndex: json['StartColumnIndex'] as int,
+      columnRange: json['ColumnRange'] as int?,
+      hiddenColumns: (json['HiddenColumns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final startColumnIndex = this.startColumnIndex;
     final columnRange = this.columnRange;

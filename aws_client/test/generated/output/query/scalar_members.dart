@@ -78,6 +78,20 @@ class OutputShape {
     this.timestamp,
     this.trueBool,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      char: json['Char'] as String?,
+      doubleValue: json['Double'] as double?,
+      falseBool: json['FalseBool'] as bool?,
+      float: json['Float'] as double?,
+      long: json['Long'] as int?,
+      num: json['FooNum'] as int?,
+      str: json['Str'] as String?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+      trueBool: json['TrueBool'] as bool?,
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       char: _s.extractXmlStringValue(elem, 'Char'),
@@ -90,6 +104,29 @@ class OutputShape {
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
       trueBool: _s.extractXmlBoolValue(elem, 'TrueBool'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final char = this.char;
+    final doubleValue = this.doubleValue;
+    final falseBool = this.falseBool;
+    final float = this.float;
+    final long = this.long;
+    final num = this.num;
+    final str = this.str;
+    final timestamp = this.timestamp;
+    final trueBool = this.trueBool;
+    return {
+      if (char != null) 'Char': char,
+      if (doubleValue != null) 'Double': doubleValue,
+      if (falseBool != null) 'FalseBool': falseBool,
+      if (float != null) 'Float': float,
+      if (long != null) 'Long': long,
+      if (num != null) 'FooNum': num,
+      if (str != null) 'Str': str,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (trueBool != null) 'TrueBool': trueBool,
+    };
   }
 }
 

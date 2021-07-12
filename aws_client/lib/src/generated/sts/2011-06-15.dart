@@ -1915,6 +1915,20 @@ class AssumeRoleResponse {
     this.packedPolicySize,
     this.sourceIdentity,
   });
+  factory AssumeRoleResponse.fromJson(Map<String, dynamic> json) {
+    return AssumeRoleResponse(
+      assumedRoleUser: json['AssumedRoleUser'] != null
+          ? AssumedRoleUser.fromJson(
+              json['AssumedRoleUser'] as Map<String, dynamic>)
+          : null,
+      credentials: json['Credentials'] != null
+          ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
+          : null,
+      packedPolicySize: json['PackedPolicySize'] as int?,
+      sourceIdentity: json['SourceIdentity'] as String?,
+    );
+  }
+
   factory AssumeRoleResponse.fromXml(_s.XmlElement elem) {
     return AssumeRoleResponse(
       assumedRoleUser: _s
@@ -1926,6 +1940,19 @@ class AssumeRoleResponse {
       packedPolicySize: _s.extractXmlIntValue(elem, 'PackedPolicySize'),
       sourceIdentity: _s.extractXmlStringValue(elem, 'SourceIdentity'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final credentials = this.credentials;
+    final packedPolicySize = this.packedPolicySize;
+    final sourceIdentity = this.sourceIdentity;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (credentials != null) 'Credentials': credentials,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+    };
   }
 }
 
@@ -2031,6 +2058,25 @@ class AssumeRoleWithSAMLResponse {
     this.subject,
     this.subjectType,
   });
+  factory AssumeRoleWithSAMLResponse.fromJson(Map<String, dynamic> json) {
+    return AssumeRoleWithSAMLResponse(
+      assumedRoleUser: json['AssumedRoleUser'] != null
+          ? AssumedRoleUser.fromJson(
+              json['AssumedRoleUser'] as Map<String, dynamic>)
+          : null,
+      audience: json['Audience'] as String?,
+      credentials: json['Credentials'] != null
+          ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
+          : null,
+      issuer: json['Issuer'] as String?,
+      nameQualifier: json['NameQualifier'] as String?,
+      packedPolicySize: json['PackedPolicySize'] as int?,
+      sourceIdentity: json['SourceIdentity'] as String?,
+      subject: json['Subject'] as String?,
+      subjectType: json['SubjectType'] as String?,
+    );
+  }
+
   factory AssumeRoleWithSAMLResponse.fromXml(_s.XmlElement elem) {
     return AssumeRoleWithSAMLResponse(
       assumedRoleUser: _s
@@ -2047,6 +2093,29 @@ class AssumeRoleWithSAMLResponse {
       subject: _s.extractXmlStringValue(elem, 'Subject'),
       subjectType: _s.extractXmlStringValue(elem, 'SubjectType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final audience = this.audience;
+    final credentials = this.credentials;
+    final issuer = this.issuer;
+    final nameQualifier = this.nameQualifier;
+    final packedPolicySize = this.packedPolicySize;
+    final sourceIdentity = this.sourceIdentity;
+    final subject = this.subject;
+    final subjectType = this.subjectType;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (audience != null) 'Audience': audience,
+      if (credentials != null) 'Credentials': credentials,
+      if (issuer != null) 'Issuer': issuer,
+      if (nameQualifier != null) 'NameQualifier': nameQualifier,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+      if (subject != null) 'Subject': subject,
+      if (subjectType != null) 'SubjectType': subjectType,
+    };
   }
 }
 
@@ -2133,6 +2202,25 @@ class AssumeRoleWithWebIdentityResponse {
     this.sourceIdentity,
     this.subjectFromWebIdentityToken,
   });
+  factory AssumeRoleWithWebIdentityResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssumeRoleWithWebIdentityResponse(
+      assumedRoleUser: json['AssumedRoleUser'] != null
+          ? AssumedRoleUser.fromJson(
+              json['AssumedRoleUser'] as Map<String, dynamic>)
+          : null,
+      audience: json['Audience'] as String?,
+      credentials: json['Credentials'] != null
+          ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
+          : null,
+      packedPolicySize: json['PackedPolicySize'] as int?,
+      provider: json['Provider'] as String?,
+      sourceIdentity: json['SourceIdentity'] as String?,
+      subjectFromWebIdentityToken:
+          json['SubjectFromWebIdentityToken'] as String?,
+    );
+  }
+
   factory AssumeRoleWithWebIdentityResponse.fromXml(_s.XmlElement elem) {
     return AssumeRoleWithWebIdentityResponse(
       assumedRoleUser: _s
@@ -2148,6 +2236,26 @@ class AssumeRoleWithWebIdentityResponse {
       subjectFromWebIdentityToken:
           _s.extractXmlStringValue(elem, 'SubjectFromWebIdentityToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final audience = this.audience;
+    final credentials = this.credentials;
+    final packedPolicySize = this.packedPolicySize;
+    final provider = this.provider;
+    final sourceIdentity = this.sourceIdentity;
+    final subjectFromWebIdentityToken = this.subjectFromWebIdentityToken;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (audience != null) 'Audience': audience,
+      if (credentials != null) 'Credentials': credentials,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (provider != null) 'Provider': provider,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+      if (subjectFromWebIdentityToken != null)
+        'SubjectFromWebIdentityToken': subjectFromWebIdentityToken,
+    };
   }
 }
 
@@ -2170,11 +2278,27 @@ class AssumedRoleUser {
     required this.arn,
     required this.assumedRoleId,
   });
+  factory AssumedRoleUser.fromJson(Map<String, dynamic> json) {
+    return AssumedRoleUser(
+      arn: json['Arn'] as String,
+      assumedRoleId: json['AssumedRoleId'] as String,
+    );
+  }
+
   factory AssumedRoleUser.fromXml(_s.XmlElement elem) {
     return AssumedRoleUser(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
       assumedRoleId: _s.extractXmlStringValue(elem, 'AssumedRoleId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assumedRoleId = this.assumedRoleId;
+    return {
+      'Arn': arn,
+      'AssumedRoleId': assumedRoleId,
+    };
   }
 }
 
@@ -2199,6 +2323,15 @@ class Credentials {
     required this.secretAccessKey,
     required this.sessionToken,
   });
+  factory Credentials.fromJson(Map<String, dynamic> json) {
+    return Credentials(
+      accessKeyId: json['AccessKeyId'] as String,
+      expiration: nonNullableTimeStampFromJson(json['Expiration'] as Object),
+      secretAccessKey: json['SecretAccessKey'] as String,
+      sessionToken: json['SessionToken'] as String,
+    );
+  }
+
   factory Credentials.fromXml(_s.XmlElement elem) {
     return Credentials(
       accessKeyId: _s.extractXmlStringValue(elem, 'AccessKeyId')!,
@@ -2206,6 +2339,19 @@ class Credentials {
       secretAccessKey: _s.extractXmlStringValue(elem, 'SecretAccessKey')!,
       sessionToken: _s.extractXmlStringValue(elem, 'SessionToken')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      'AccessKeyId': accessKeyId,
+      'Expiration': unixTimestampToJson(expiration),
+      'SecretAccessKey': secretAccessKey,
+      'SessionToken': sessionToken,
+    };
   }
 }
 
@@ -2219,10 +2365,24 @@ class DecodeAuthorizationMessageResponse {
   DecodeAuthorizationMessageResponse({
     this.decodedMessage,
   });
+  factory DecodeAuthorizationMessageResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DecodeAuthorizationMessageResponse(
+      decodedMessage: json['DecodedMessage'] as String?,
+    );
+  }
+
   factory DecodeAuthorizationMessageResponse.fromXml(_s.XmlElement elem) {
     return DecodeAuthorizationMessageResponse(
       decodedMessage: _s.extractXmlStringValue(elem, 'DecodedMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final decodedMessage = this.decodedMessage;
+    return {
+      if (decodedMessage != null) 'DecodedMessage': decodedMessage,
+    };
   }
 }
 
@@ -2243,11 +2403,27 @@ class FederatedUser {
     required this.arn,
     required this.federatedUserId,
   });
+  factory FederatedUser.fromJson(Map<String, dynamic> json) {
+    return FederatedUser(
+      arn: json['Arn'] as String,
+      federatedUserId: json['FederatedUserId'] as String,
+    );
+  }
+
   factory FederatedUser.fromXml(_s.XmlElement elem) {
     return FederatedUser(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
       federatedUserId: _s.extractXmlStringValue(elem, 'FederatedUserId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final federatedUserId = this.federatedUserId;
+    return {
+      'Arn': arn,
+      'FederatedUserId': federatedUserId,
+    };
   }
 }
 
@@ -2258,10 +2434,23 @@ class GetAccessKeyInfoResponse {
   GetAccessKeyInfoResponse({
     this.account,
   });
+  factory GetAccessKeyInfoResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccessKeyInfoResponse(
+      account: json['Account'] as String?,
+    );
+  }
+
   factory GetAccessKeyInfoResponse.fromXml(_s.XmlElement elem) {
     return GetAccessKeyInfoResponse(
       account: _s.extractXmlStringValue(elem, 'Account'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
   }
 }
 
@@ -2288,12 +2477,31 @@ class GetCallerIdentityResponse {
     this.arn,
     this.userId,
   });
+  factory GetCallerIdentityResponse.fromJson(Map<String, dynamic> json) {
+    return GetCallerIdentityResponse(
+      account: json['Account'] as String?,
+      arn: json['Arn'] as String?,
+      userId: json['UserId'] as String?,
+    );
+  }
+
   factory GetCallerIdentityResponse.fromXml(_s.XmlElement elem) {
     return GetCallerIdentityResponse(
       account: _s.extractXmlStringValue(elem, 'Account'),
       arn: _s.extractXmlStringValue(elem, 'Arn'),
       userId: _s.extractXmlStringValue(elem, 'UserId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final arn = this.arn;
+    final userId = this.userId;
+    return {
+      if (account != null) 'Account': account,
+      if (arn != null) 'Arn': arn,
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -2326,6 +2534,19 @@ class GetFederationTokenResponse {
     this.federatedUser,
     this.packedPolicySize,
   });
+  factory GetFederationTokenResponse.fromJson(Map<String, dynamic> json) {
+    return GetFederationTokenResponse(
+      credentials: json['Credentials'] != null
+          ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
+          : null,
+      federatedUser: json['FederatedUser'] != null
+          ? FederatedUser.fromJson(
+              json['FederatedUser'] as Map<String, dynamic>)
+          : null,
+      packedPolicySize: json['PackedPolicySize'] as int?,
+    );
+  }
+
   factory GetFederationTokenResponse.fromXml(_s.XmlElement elem) {
     return GetFederationTokenResponse(
       credentials: _s
@@ -2336,6 +2557,17 @@ class GetFederationTokenResponse {
           ?.let((e) => FederatedUser.fromXml(e)),
       packedPolicySize: _s.extractXmlIntValue(elem, 'PackedPolicySize'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final federatedUser = this.federatedUser;
+    final packedPolicySize = this.packedPolicySize;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+      if (federatedUser != null) 'FederatedUser': federatedUser,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+    };
   }
 }
 
@@ -2354,12 +2586,27 @@ class GetSessionTokenResponse {
   GetSessionTokenResponse({
     this.credentials,
   });
+  factory GetSessionTokenResponse.fromJson(Map<String, dynamic> json) {
+    return GetSessionTokenResponse(
+      credentials: json['Credentials'] != null
+          ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory GetSessionTokenResponse.fromXml(_s.XmlElement elem) {
     return GetSessionTokenResponse(
       credentials: _s
           .extractXmlChild(elem, 'Credentials')
           ?.let((e) => Credentials.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+    };
   }
 }
 
@@ -2376,6 +2623,12 @@ class PolicyDescriptorType {
   PolicyDescriptorType({
     this.arn,
   });
+  factory PolicyDescriptorType.fromJson(Map<String, dynamic> json) {
+    return PolicyDescriptorType(
+      arn: json['arn'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     return {
@@ -2410,6 +2663,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;

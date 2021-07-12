@@ -1866,6 +1866,58 @@ class AppSummary {
       totalServers: json['totalServers'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final importedAppId = this.importedAppId;
+    final lastModified = this.lastModified;
+    final latestReplicationTime = this.latestReplicationTime;
+    final launchConfigurationStatus = this.launchConfigurationStatus;
+    final launchDetails = this.launchDetails;
+    final launchStatus = this.launchStatus;
+    final launchStatusMessage = this.launchStatusMessage;
+    final name = this.name;
+    final replicationConfigurationStatus = this.replicationConfigurationStatus;
+    final replicationStatus = this.replicationStatus;
+    final replicationStatusMessage = this.replicationStatusMessage;
+    final roleName = this.roleName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final totalServerGroups = this.totalServerGroups;
+    final totalServers = this.totalServers;
+    return {
+      if (appId != null) 'appId': appId,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'description': description,
+      if (importedAppId != null) 'importedAppId': importedAppId,
+      if (lastModified != null)
+        'lastModified': unixTimestampToJson(lastModified),
+      if (latestReplicationTime != null)
+        'latestReplicationTime': unixTimestampToJson(latestReplicationTime),
+      if (launchConfigurationStatus != null)
+        'launchConfigurationStatus': launchConfigurationStatus.toValue(),
+      if (launchDetails != null) 'launchDetails': launchDetails,
+      if (launchStatus != null) 'launchStatus': launchStatus.toValue(),
+      if (launchStatusMessage != null)
+        'launchStatusMessage': launchStatusMessage,
+      if (name != null) 'name': name,
+      if (replicationConfigurationStatus != null)
+        'replicationConfigurationStatus':
+            replicationConfigurationStatus.toValue(),
+      if (replicationStatus != null)
+        'replicationStatus': replicationStatus.toValue(),
+      if (replicationStatusMessage != null)
+        'replicationStatusMessage': replicationStatusMessage,
+      if (roleName != null) 'roleName': roleName,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (totalServerGroups != null) 'totalServerGroups': totalServerGroups,
+      if (totalServers != null) 'totalServers': totalServers,
+    };
+  }
 }
 
 /// Configuration for validating an application.
@@ -1931,6 +1983,13 @@ class AppValidationOutput {
           ? SSMOutput.fromJson(json['ssmOutput'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ssmOutput = this.ssmOutput;
+    return {
+      if (ssmOutput != null) 'ssmOutput': ssmOutput,
+    };
   }
 }
 
@@ -2017,6 +2076,33 @@ class Connector {
       vmManagerName: json['vmManagerName'] as String?,
       vmManagerType: (json['vmManagerType'] as String?)?.toVmManagerType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedOn = this.associatedOn;
+    final capabilityList = this.capabilityList;
+    final connectorId = this.connectorId;
+    final ipAddress = this.ipAddress;
+    final macAddress = this.macAddress;
+    final status = this.status;
+    final version = this.version;
+    final vmManagerId = this.vmManagerId;
+    final vmManagerName = this.vmManagerName;
+    final vmManagerType = this.vmManagerType;
+    return {
+      if (associatedOn != null)
+        'associatedOn': unixTimestampToJson(associatedOn),
+      if (capabilityList != null)
+        'capabilityList': capabilityList.map((e) => e.toValue()).toList(),
+      if (connectorId != null) 'connectorId': connectorId,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (status != null) 'status': status.toValue(),
+      if (version != null) 'version': version,
+      if (vmManagerId != null) 'vmManagerId': vmManagerId,
+      if (vmManagerName != null) 'vmManagerName': vmManagerName,
+      if (vmManagerType != null) 'vmManagerType': vmManagerType.toValue(),
+    };
   }
 }
 
@@ -2121,6 +2207,17 @@ class CreateAppResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appSummary = this.appSummary;
+    final serverGroups = this.serverGroups;
+    final tags = this.tags;
+    return {
+      if (appSummary != null) 'appSummary': appSummary,
+      if (serverGroups != null) 'serverGroups': serverGroups,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateReplicationJobResponse {
@@ -2135,6 +2232,13 @@ class CreateReplicationJobResponse {
       replicationJobId: json['replicationJobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationJobId = this.replicationJobId;
+    return {
+      if (replicationJobId != null) 'replicationJobId': replicationJobId,
+    };
+  }
 }
 
 class DeleteAppLaunchConfigurationResponse {
@@ -2142,6 +2246,10 @@ class DeleteAppLaunchConfigurationResponse {
   factory DeleteAppLaunchConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteAppLaunchConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2151,12 +2259,20 @@ class DeleteAppReplicationConfigurationResponse {
       Map<String, dynamic> _) {
     return DeleteAppReplicationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAppResponse {
   DeleteAppResponse();
   factory DeleteAppResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAppResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2166,12 +2282,20 @@ class DeleteAppValidationConfigurationResponse {
       Map<String, dynamic> _) {
     return DeleteAppValidationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteReplicationJobResponse {
   DeleteReplicationJobResponse();
   factory DeleteReplicationJobResponse.fromJson(Map<String, dynamic> _) {
     return DeleteReplicationJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2180,12 +2304,20 @@ class DeleteServerCatalogResponse {
   factory DeleteServerCatalogResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServerCatalogResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateConnectorResponse {
   DisassociateConnectorResponse();
   factory DisassociateConnectorResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateConnectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2203,6 +2335,13 @@ class GenerateChangeSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+    };
+  }
 }
 
 class GenerateTemplateResponse {
@@ -2218,6 +2357,13 @@ class GenerateTemplateResponse {
           ? S3Location.fromJson(json['s3Location'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+    };
   }
 }
 
@@ -2256,6 +2402,21 @@ class GetAppLaunchConfigurationResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final autoLaunch = this.autoLaunch;
+    final roleName = this.roleName;
+    final serverGroupLaunchConfigurations =
+        this.serverGroupLaunchConfigurations;
+    return {
+      if (appId != null) 'appId': appId,
+      if (autoLaunch != null) 'autoLaunch': autoLaunch,
+      if (roleName != null) 'roleName': roleName,
+      if (serverGroupLaunchConfigurations != null)
+        'serverGroupLaunchConfigurations': serverGroupLaunchConfigurations,
+    };
+  }
 }
 
 class GetAppReplicationConfigurationResponse {
@@ -2277,6 +2438,16 @@ class GetAppReplicationConfigurationResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverGroupReplicationConfigurations =
+        this.serverGroupReplicationConfigurations;
+    return {
+      if (serverGroupReplicationConfigurations != null)
+        'serverGroupReplicationConfigurations':
+            serverGroupReplicationConfigurations,
+    };
   }
 }
 
@@ -2310,6 +2481,17 @@ class GetAppResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appSummary = this.appSummary;
+    final serverGroups = this.serverGroups;
+    final tags = this.tags;
+    return {
+      if (appSummary != null) 'appSummary': appSummary,
+      if (serverGroups != null) 'serverGroups': serverGroups,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetAppValidationConfigurationResponse {
@@ -2341,6 +2523,19 @@ class GetAppValidationConfigurationResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appValidationConfigurations = this.appValidationConfigurations;
+    final serverGroupValidationConfigurations =
+        this.serverGroupValidationConfigurations;
+    return {
+      if (appValidationConfigurations != null)
+        'appValidationConfigurations': appValidationConfigurations,
+      if (serverGroupValidationConfigurations != null)
+        'serverGroupValidationConfigurations':
+            serverGroupValidationConfigurations,
+    };
+  }
 }
 
 class GetAppValidationOutputResponse {
@@ -2357,6 +2552,14 @@ class GetAppValidationOutputResponse {
           .map((e) => ValidationOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final validationOutputList = this.validationOutputList;
+    return {
+      if (validationOutputList != null)
+        'validationOutputList': validationOutputList,
+    };
   }
 }
 
@@ -2381,6 +2584,15 @@ class GetConnectorsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorList = this.connectorList;
+    final nextToken = this.nextToken;
+    return {
+      if (connectorList != null) 'connectorList': connectorList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetReplicationJobsResponse {
@@ -2403,6 +2615,15 @@ class GetReplicationJobsResponse {
           .map((e) => ReplicationJob.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final replicationJobList = this.replicationJobList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (replicationJobList != null) 'replicationJobList': replicationJobList,
+    };
   }
 }
 
@@ -2434,6 +2655,17 @@ class GetReplicationRunsResponse {
           .map((e) => ReplicationRun.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final replicationJob = this.replicationJob;
+    final replicationRunList = this.replicationRunList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (replicationJob != null) 'replicationJob': replicationJob,
+      if (replicationRunList != null) 'replicationRunList': replicationRunList,
+    };
   }
 }
 
@@ -2469,12 +2701,31 @@ class GetServersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedOn = this.lastModifiedOn;
+    final nextToken = this.nextToken;
+    final serverCatalogStatus = this.serverCatalogStatus;
+    final serverList = this.serverList;
+    return {
+      if (lastModifiedOn != null)
+        'lastModifiedOn': unixTimestampToJson(lastModifiedOn),
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serverCatalogStatus != null)
+        'serverCatalogStatus': serverCatalogStatus.toValue(),
+      if (serverList != null) 'serverList': serverList,
+    };
+  }
 }
 
 class ImportAppCatalogResponse {
   ImportAppCatalogResponse();
   factory ImportAppCatalogResponse.fromJson(Map<String, dynamic> _) {
     return ImportAppCatalogResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2483,12 +2734,20 @@ class ImportServerCatalogResponse {
   factory ImportServerCatalogResponse.fromJson(Map<String, dynamic> _) {
     return ImportServerCatalogResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class LaunchAppResponse {
   LaunchAppResponse();
   factory LaunchAppResponse.fromJson(Map<String, dynamic> _) {
     return LaunchAppResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2514,6 +2773,18 @@ class LaunchDetails {
       stackId: json['stackId'] as String?,
       stackName: json['stackName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final latestLaunchTime = this.latestLaunchTime;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    return {
+      if (latestLaunchTime != null)
+        'latestLaunchTime': unixTimestampToJson(latestLaunchTime),
+      if (stackId != null) 'stackId': stackId,
+      if (stackName != null) 'stackName': stackName,
+    };
   }
 }
 
@@ -2566,6 +2837,15 @@ class ListAppsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apps = this.apps;
+    final nextToken = this.nextToken;
+    return {
+      if (apps != null) 'apps': apps,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains the status of validating an application.
@@ -2584,6 +2864,14 @@ class NotificationContext {
     this.statusMessage,
     this.validationId,
   });
+  factory NotificationContext.fromJson(Map<String, dynamic> json) {
+    return NotificationContext(
+      status: (json['status'] as String?)?.toValidationStatus(),
+      statusMessage: json['statusMessage'] as String?,
+      validationId: json['validationId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     final statusMessage = this.statusMessage;
@@ -2600,6 +2888,10 @@ class NotifyAppValidationOutputResponse {
   NotifyAppValidationOutputResponse();
   factory NotifyAppValidationOutputResponse.fromJson(Map<String, dynamic> _) {
     return NotifyAppValidationOutputResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2636,6 +2928,10 @@ class PutAppLaunchConfigurationResponse {
   factory PutAppLaunchConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return PutAppLaunchConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutAppReplicationConfigurationResponse {
@@ -2644,6 +2940,10 @@ class PutAppReplicationConfigurationResponse {
       Map<String, dynamic> _) {
     return PutAppReplicationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutAppValidationConfigurationResponse {
@@ -2651,6 +2951,10 @@ class PutAppValidationConfigurationResponse {
   factory PutAppValidationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return PutAppValidationConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2778,6 +3082,51 @@ class ReplicationJob {
           ? VmServer.fromJson(json['vmServer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final frequency = this.frequency;
+    final kmsKeyId = this.kmsKeyId;
+    final latestAmiId = this.latestAmiId;
+    final licenseType = this.licenseType;
+    final nextReplicationRunStartTime = this.nextReplicationRunStartTime;
+    final numberOfRecentAmisToKeep = this.numberOfRecentAmisToKeep;
+    final replicationJobId = this.replicationJobId;
+    final replicationRunList = this.replicationRunList;
+    final roleName = this.roleName;
+    final runOnce = this.runOnce;
+    final seedReplicationTime = this.seedReplicationTime;
+    final serverId = this.serverId;
+    final serverType = this.serverType;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    final vmServer = this.vmServer;
+    return {
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (frequency != null) 'frequency': frequency,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (latestAmiId != null) 'latestAmiId': latestAmiId,
+      if (licenseType != null) 'licenseType': licenseType.toValue(),
+      if (nextReplicationRunStartTime != null)
+        'nextReplicationRunStartTime':
+            unixTimestampToJson(nextReplicationRunStartTime),
+      if (numberOfRecentAmisToKeep != null)
+        'numberOfRecentAmisToKeep': numberOfRecentAmisToKeep,
+      if (replicationJobId != null) 'replicationJobId': replicationJobId,
+      if (replicationRunList != null) 'replicationRunList': replicationRunList,
+      if (roleName != null) 'roleName': roleName,
+      if (runOnce != null) 'runOnce': runOnce,
+      if (seedReplicationTime != null)
+        'seedReplicationTime': unixTimestampToJson(seedReplicationTime),
+      if (serverId != null) 'serverId': serverId,
+      if (serverType != null) 'serverType': serverType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (vmServer != null) 'vmServer': vmServer,
+    };
   }
 }
 
@@ -2923,6 +3272,35 @@ class ReplicationRun {
       type: (json['type'] as String?)?.toReplicationRunType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amiId = this.amiId;
+    final completedTime = this.completedTime;
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final kmsKeyId = this.kmsKeyId;
+    final replicationRunId = this.replicationRunId;
+    final scheduledStartTime = this.scheduledStartTime;
+    final stageDetails = this.stageDetails;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    final type = this.type;
+    return {
+      if (amiId != null) 'amiId': amiId,
+      if (completedTime != null)
+        'completedTime': unixTimestampToJson(completedTime),
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (replicationRunId != null) 'replicationRunId': replicationRunId,
+      if (scheduledStartTime != null)
+        'scheduledStartTime': unixTimestampToJson(scheduledStartTime),
+      if (stageDetails != null) 'stageDetails': stageDetails,
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Details of the current stage of a replication run.
@@ -2942,6 +3320,15 @@ class ReplicationRunStageDetails {
       stage: json['stage'] as String?,
       stageProgress: json['stageProgress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stage = this.stage;
+    final stageProgress = this.stageProgress;
+    return {
+      if (stage != null) 'stage': stage,
+      if (stageProgress != null) 'stageProgress': stageProgress,
+    };
   }
 }
 
@@ -3068,6 +3455,13 @@ class SSMOutput {
           ? S3Location.fromJson(json['s3Location'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+    };
   }
 }
 
@@ -3733,6 +4127,13 @@ class ServerValidationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'server': server,
+    };
+  }
 }
 
 enum ServerValidationStrategy {
@@ -3786,12 +4187,20 @@ class StartAppReplicationResponse {
   factory StartAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartAppReplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartOnDemandAppReplicationResponse {
   StartOnDemandAppReplicationResponse();
   factory StartOnDemandAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartOnDemandAppReplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3808,12 +4217,23 @@ class StartOnDemandReplicationRunResponse {
       replicationRunId: json['replicationRunId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationRunId = this.replicationRunId;
+    return {
+      if (replicationRunId != null) 'replicationRunId': replicationRunId,
+    };
+  }
 }
 
 class StopAppReplicationResponse {
   StopAppReplicationResponse();
   factory StopAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopAppReplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3851,6 +4271,10 @@ class TerminateAppResponse {
   factory TerminateAppResponse.fromJson(Map<String, dynamic> _) {
     return TerminateAppResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAppResponse {
@@ -3883,12 +4307,27 @@ class UpdateAppResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appSummary = this.appSummary;
+    final serverGroups = this.serverGroups;
+    final tags = this.tags;
+    return {
+      if (appSummary != null) 'appSummary': appSummary,
+      if (serverGroups != null) 'serverGroups': serverGroups,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateReplicationJobResponse {
   UpdateReplicationJobResponse();
   factory UpdateReplicationJobResponse.fromJson(Map<String, dynamic> _) {
     return UpdateReplicationJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3996,6 +4435,28 @@ class ValidationOutput {
       statusMessage: json['statusMessage'] as String?,
       validationId: json['validationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appValidationOutput = this.appValidationOutput;
+    final latestValidationTime = this.latestValidationTime;
+    final name = this.name;
+    final serverValidationOutput = this.serverValidationOutput;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final validationId = this.validationId;
+    return {
+      if (appValidationOutput != null)
+        'appValidationOutput': appValidationOutput,
+      if (latestValidationTime != null)
+        'latestValidationTime': unixTimestampToJson(latestValidationTime),
+      if (name != null) 'name': name,
+      if (serverValidationOutput != null)
+        'serverValidationOutput': serverValidationOutput,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (validationId != null) 'validationId': validationId,
+    };
   }
 }
 

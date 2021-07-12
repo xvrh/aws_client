@@ -274,6 +274,18 @@ class InvokeEndpointOutput {
     this.customAttributes,
     this.invokedProductionVariant,
   });
+  factory InvokeEndpointOutput.fromJson(Map<String, dynamic> json) {
+    return InvokeEndpointOutput(
+      body: _s.decodeUint8List(json['Body']! as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      'Body': base64Encode(body),
+    };
+  }
 }
 
 class InternalFailure extends _s.GenericAwsException {

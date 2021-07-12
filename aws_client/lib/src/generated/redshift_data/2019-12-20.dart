@@ -781,6 +781,13 @@ class CancelStatementResponse {
       status: json['Status'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// The properties (metadata) of a column.
@@ -855,6 +862,37 @@ class ColumnMetadata {
       tableName: json['tableName'] as String?,
       typeName: json['typeName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnDefault = this.columnDefault;
+    final isCaseSensitive = this.isCaseSensitive;
+    final isCurrency = this.isCurrency;
+    final isSigned = this.isSigned;
+    final label = this.label;
+    final length = this.length;
+    final name = this.name;
+    final nullable = this.nullable;
+    final precision = this.precision;
+    final scale = this.scale;
+    final schemaName = this.schemaName;
+    final tableName = this.tableName;
+    final typeName = this.typeName;
+    return {
+      if (columnDefault != null) 'columnDefault': columnDefault,
+      if (isCaseSensitive != null) 'isCaseSensitive': isCaseSensitive,
+      if (isCurrency != null) 'isCurrency': isCurrency,
+      if (isSigned != null) 'isSigned': isSigned,
+      if (label != null) 'label': label,
+      if (length != null) 'length': length,
+      if (name != null) 'name': name,
+      if (nullable != null) 'nullable': nullable,
+      if (precision != null) 'precision': precision,
+      if (scale != null) 'scale': scale,
+      if (schemaName != null) 'schemaName': schemaName,
+      if (tableName != null) 'tableName': tableName,
+      if (typeName != null) 'typeName': typeName,
+    };
   }
 }
 
@@ -989,6 +1027,45 @@ class DescribeStatementResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final clusterIdentifier = this.clusterIdentifier;
+    final createdAt = this.createdAt;
+    final database = this.database;
+    final dbUser = this.dbUser;
+    final duration = this.duration;
+    final error = this.error;
+    final hasResultSet = this.hasResultSet;
+    final queryParameters = this.queryParameters;
+    final queryString = this.queryString;
+    final redshiftPid = this.redshiftPid;
+    final redshiftQueryId = this.redshiftQueryId;
+    final resultRows = this.resultRows;
+    final resultSize = this.resultSize;
+    final secretArn = this.secretArn;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      'Id': id,
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (database != null) 'Database': database,
+      if (dbUser != null) 'DbUser': dbUser,
+      if (duration != null) 'Duration': duration,
+      if (error != null) 'Error': error,
+      if (hasResultSet != null) 'HasResultSet': hasResultSet,
+      if (queryParameters != null) 'QueryParameters': queryParameters,
+      if (queryString != null) 'QueryString': queryString,
+      if (redshiftPid != null) 'RedshiftPid': redshiftPid,
+      if (redshiftQueryId != null) 'RedshiftQueryId': redshiftQueryId,
+      if (resultRows != null) 'ResultRows': resultRows,
+      if (resultSize != null) 'ResultSize': resultSize,
+      if (secretArn != null) 'SecretArn': secretArn,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class DescribeTableResponse {
@@ -1020,6 +1097,17 @@ class DescribeTableResponse {
       nextToken: json['NextToken'] as String?,
       tableName: json['TableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnList = this.columnList;
+    final nextToken = this.nextToken;
+    final tableName = this.tableName;
+    return {
+      if (columnList != null) 'ColumnList': columnList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tableName != null) 'TableName': tableName,
+    };
   }
 }
 
@@ -1061,6 +1149,23 @@ class ExecuteStatementOutput {
       secretArn: json['SecretArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterIdentifier = this.clusterIdentifier;
+    final createdAt = this.createdAt;
+    final database = this.database;
+    final dbUser = this.dbUser;
+    final id = this.id;
+    final secretArn = this.secretArn;
+    return {
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (database != null) 'Database': database,
+      if (dbUser != null) 'DbUser': dbUser,
+      if (id != null) 'Id': id,
+      if (secretArn != null) 'SecretArn': secretArn,
+    };
+  }
 }
 
 /// A data value in a column.
@@ -1100,6 +1205,23 @@ class Field {
       longValue: json['longValue'] as int?,
       stringValue: json['stringValue'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blobValue = this.blobValue;
+    final booleanValue = this.booleanValue;
+    final doubleValue = this.doubleValue;
+    final isNull = this.isNull;
+    final longValue = this.longValue;
+    final stringValue = this.stringValue;
+    return {
+      if (blobValue != null) 'blobValue': base64Encode(blobValue),
+      if (booleanValue != null) 'booleanValue': booleanValue,
+      if (doubleValue != null) 'doubleValue': doubleValue,
+      if (isNull != null) 'isNull': isNull,
+      if (longValue != null) 'longValue': longValue,
+      if (stringValue != null) 'stringValue': stringValue,
+    };
   }
 }
 
@@ -1147,6 +1269,19 @@ class GetStatementResultResponse {
       totalNumRows: json['TotalNumRows'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final records = this.records;
+    final columnMetadata = this.columnMetadata;
+    final nextToken = this.nextToken;
+    final totalNumRows = this.totalNumRows;
+    return {
+      'Records': records,
+      if (columnMetadata != null) 'ColumnMetadata': columnMetadata,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalNumRows != null) 'TotalNumRows': totalNumRows,
+    };
+  }
 }
 
 class ListDatabasesResponse {
@@ -1173,6 +1308,15 @@ class ListDatabasesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databases = this.databases;
+    final nextToken = this.nextToken;
+    return {
+      if (databases != null) 'Databases': databases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1201,6 +1345,15 @@ class ListSchemasResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemas = this.schemas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemas != null) 'Schemas': schemas,
+    };
+  }
 }
 
 class ListStatementsResponse {
@@ -1228,6 +1381,15 @@ class ListStatementsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statements = this.statements;
+    final nextToken = this.nextToken;
+    return {
+      'Statements': statements,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTablesResponse {
@@ -1254,6 +1416,15 @@ class ListTablesResponse {
           .map((e) => TableMember.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tables = this.tables;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tables != null) 'Tables': tables,
+    };
   }
 }
 
@@ -1343,6 +1514,27 @@ class StatementData {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final createdAt = this.createdAt;
+    final queryParameters = this.queryParameters;
+    final queryString = this.queryString;
+    final secretArn = this.secretArn;
+    final statementName = this.statementName;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      'Id': id,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (queryParameters != null) 'QueryParameters': queryParameters,
+      if (queryString != null) 'QueryString': queryString,
+      if (secretArn != null) 'SecretArn': secretArn,
+      if (statementName != null) 'StatementName': statementName,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 enum StatusString {
@@ -1421,6 +1613,17 @@ class TableMember {
       schema: json['schema'] as String?,
       type: json['type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final schema = this.schema;
+    final type = this.type;
+    return {
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+      if (type != null) 'type': type,
+    };
   }
 }
 

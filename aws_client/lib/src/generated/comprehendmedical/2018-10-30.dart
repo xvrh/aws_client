@@ -1273,6 +1273,32 @@ class Attribute {
       type: (json['Type'] as String?)?.toEntitySubType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final category = this.category;
+    final endOffset = this.endOffset;
+    final id = this.id;
+    final relationshipScore = this.relationshipScore;
+    final relationshipType = this.relationshipType;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (category != null) 'Category': category.toValue(),
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (id != null) 'Id': id,
+      if (relationshipScore != null) 'RelationshipScore': relationshipScore,
+      if (relationshipType != null)
+        'RelationshipType': relationshipType.toValue(),
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum AttributeName {
@@ -1338,6 +1364,15 @@ class ComprehendMedicalAsyncJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+  factory ComprehendMedicalAsyncJobFilter.fromJson(Map<String, dynamic> json) {
+    return ComprehendMedicalAsyncJobFilter(
+      jobName: json['JobName'] as String?,
+      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      submitTimeAfter: timeStampFromJson(json['SubmitTimeAfter']),
+      submitTimeBefore: timeStampFromJson(json['SubmitTimeBefore']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -1451,6 +1486,40 @@ class ComprehendMedicalAsyncJobProperties {
       submitTime: timeStampFromJson(json['SubmitTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final expirationTime = this.expirationTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final kMSKey = this.kMSKey;
+    final languageCode = this.languageCode;
+    final manifestFilePath = this.manifestFilePath;
+    final message = this.message;
+    final modelVersion = this.modelVersion;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (manifestFilePath != null) 'ManifestFilePath': manifestFilePath,
+      if (message != null) 'Message': message,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+    };
+  }
 }
 
 class DescribeEntitiesDetectionV2JobResponse {
@@ -1471,6 +1540,16 @@ class DescribeEntitiesDetectionV2JobResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobProperties =
+        this.comprehendMedicalAsyncJobProperties;
+    return {
+      if (comprehendMedicalAsyncJobProperties != null)
+        'ComprehendMedicalAsyncJobProperties':
+            comprehendMedicalAsyncJobProperties,
+    };
   }
 }
 
@@ -1493,6 +1572,16 @@ class DescribeICD10CMInferenceJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobProperties =
+        this.comprehendMedicalAsyncJobProperties;
+    return {
+      if (comprehendMedicalAsyncJobProperties != null)
+        'ComprehendMedicalAsyncJobProperties':
+            comprehendMedicalAsyncJobProperties,
+    };
+  }
 }
 
 class DescribePHIDetectionJobResponse {
@@ -1512,6 +1601,16 @@ class DescribePHIDetectionJobResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobProperties =
+        this.comprehendMedicalAsyncJobProperties;
+    return {
+      if (comprehendMedicalAsyncJobProperties != null)
+        'ComprehendMedicalAsyncJobProperties':
+            comprehendMedicalAsyncJobProperties,
+    };
   }
 }
 
@@ -1533,6 +1632,16 @@ class DescribeRxNormInferenceJobResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobProperties =
+        this.comprehendMedicalAsyncJobProperties;
+    return {
+      if (comprehendMedicalAsyncJobProperties != null)
+        'ComprehendMedicalAsyncJobProperties':
+            comprehendMedicalAsyncJobProperties,
+    };
   }
 }
 
@@ -1578,6 +1687,19 @@ class DetectEntitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final modelVersion = this.modelVersion;
+    final paginationToken = this.paginationToken;
+    final unmappedAttributes = this.unmappedAttributes;
+    return {
+      'Entities': entities,
+      'ModelVersion': modelVersion,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (unmappedAttributes != null) 'UnmappedAttributes': unmappedAttributes,
+    };
+  }
 }
 
 class DetectEntitiesV2Response {
@@ -1621,6 +1743,19 @@ class DetectEntitiesV2Response {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final modelVersion = this.modelVersion;
+    final paginationToken = this.paginationToken;
+    final unmappedAttributes = this.unmappedAttributes;
+    return {
+      'Entities': entities,
+      'ModelVersion': modelVersion,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (unmappedAttributes != null) 'UnmappedAttributes': unmappedAttributes,
+    };
+  }
 }
 
 class DetectPHIResponse {
@@ -1654,6 +1789,17 @@ class DetectPHIResponse {
       modelVersion: json['ModelVersion'] as String,
       paginationToken: json['PaginationToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final modelVersion = this.modelVersion;
+    final paginationToken = this.paginationToken;
+    return {
+      'Entities': entities,
+      'ModelVersion': modelVersion,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+    };
   }
 }
 
@@ -1719,6 +1865,29 @@ class Entity {
           .toList(),
       type: (json['Type'] as String?)?.toEntitySubType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final beginOffset = this.beginOffset;
+    final category = this.category;
+    final endOffset = this.endOffset;
+    final id = this.id;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (category != null) 'Category': category.toValue(),
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (id != null) 'Id': id,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2036,6 +2205,32 @@ class ICD10CMAttribute {
       type: (json['Type'] as String?)?.toICD10CMAttributeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final category = this.category;
+    final endOffset = this.endOffset;
+    final id = this.id;
+    final relationshipScore = this.relationshipScore;
+    final relationshipType = this.relationshipType;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (category != null) 'Category': category.toValue(),
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (id != null) 'Id': id,
+      if (relationshipScore != null) 'RelationshipScore': relationshipScore,
+      if (relationshipType != null)
+        'RelationshipType': relationshipType.toValue(),
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ICD10CMAttributeType {
@@ -2116,6 +2311,17 @@ class ICD10CMConcept {
       description: json['Description'] as String?,
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final description = this.description;
+    final score = this.score;
+    return {
+      if (code != null) 'Code': code,
+      if (description != null) 'Description': description,
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -2201,6 +2407,31 @@ class ICD10CMEntity {
           .toList(),
       type: (json['Type'] as String?)?.toICD10CMEntityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final beginOffset = this.beginOffset;
+    final category = this.category;
+    final endOffset = this.endOffset;
+    final iCD10CMConcepts = this.iCD10CMConcepts;
+    final id = this.id;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (category != null) 'Category': category.toValue(),
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (iCD10CMConcepts != null) 'ICD10CMConcepts': iCD10CMConcepts,
+      if (id != null) 'Id': id,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2304,6 +2535,15 @@ class ICD10CMTrait {
       score: json['Score'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (score != null) 'Score': score,
+    };
+  }
 }
 
 enum ICD10CMTraitName {
@@ -2375,6 +2615,17 @@ class InferICD10CMResponse {
       paginationToken: json['PaginationToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final modelVersion = this.modelVersion;
+    final paginationToken = this.paginationToken;
+    return {
+      'Entities': entities,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+    };
+  }
 }
 
 class InferRxNormResponse {
@@ -2407,6 +2658,17 @@ class InferRxNormResponse {
       modelVersion: json['ModelVersion'] as String?,
       paginationToken: json['PaginationToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final modelVersion = this.modelVersion;
+    final paginationToken = this.paginationToken;
+    return {
+      'Entities': entities,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+    };
   }
 }
 
@@ -2544,6 +2806,18 @@ class ListEntitiesDetectionV2JobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobPropertiesList =
+        this.comprehendMedicalAsyncJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (comprehendMedicalAsyncJobPropertiesList != null)
+        'ComprehendMedicalAsyncJobPropertiesList':
+            comprehendMedicalAsyncJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListICD10CMInferenceJobsResponse {
@@ -2568,6 +2842,18 @@ class ListICD10CMInferenceJobsResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobPropertiesList =
+        this.comprehendMedicalAsyncJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (comprehendMedicalAsyncJobPropertiesList != null)
+        'ComprehendMedicalAsyncJobPropertiesList':
+            comprehendMedicalAsyncJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2594,6 +2880,18 @@ class ListPHIDetectionJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobPropertiesList =
+        this.comprehendMedicalAsyncJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (comprehendMedicalAsyncJobPropertiesList != null)
+        'ComprehendMedicalAsyncJobPropertiesList':
+            comprehendMedicalAsyncJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRxNormInferenceJobsResponse {
@@ -2618,6 +2916,18 @@ class ListRxNormInferenceJobsResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comprehendMedicalAsyncJobPropertiesList =
+        this.comprehendMedicalAsyncJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (comprehendMedicalAsyncJobPropertiesList != null)
+        'ComprehendMedicalAsyncJobPropertiesList':
+            comprehendMedicalAsyncJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2827,6 +3137,27 @@ class RxNormAttribute {
       type: (json['Type'] as String?)?.toRxNormAttributeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final id = this.id;
+    final relationshipScore = this.relationshipScore;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (id != null) 'Id': id,
+      if (relationshipScore != null) 'RelationshipScore': relationshipScore,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum RxNormAttributeType {
@@ -2906,6 +3237,17 @@ class RxNormConcept {
       description: json['Description'] as String?,
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final description = this.description;
+    final score = this.score;
+    return {
+      if (code != null) 'Code': code,
+      if (description != null) 'Description': description,
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -2990,6 +3332,31 @@ class RxNormEntity {
       type: (json['Type'] as String?)?.toRxNormEntityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final beginOffset = this.beginOffset;
+    final category = this.category;
+    final endOffset = this.endOffset;
+    final id = this.id;
+    final rxNormConcepts = this.rxNormConcepts;
+    final score = this.score;
+    final text = this.text;
+    final traits = this.traits;
+    final type = this.type;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (category != null) 'Category': category.toValue(),
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (id != null) 'Id': id,
+      if (rxNormConcepts != null) 'RxNormConcepts': rxNormConcepts,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (traits != null) 'Traits': traits,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum RxNormEntityCategory {
@@ -3064,6 +3431,15 @@ class RxNormTrait {
       score: json['Score'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (score != null) 'Score': score,
+    };
+  }
 }
 
 enum RxNormTraitName {
@@ -3103,6 +3479,13 @@ class StartEntitiesDetectionV2JobResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartICD10CMInferenceJobResponse {
@@ -3117,6 +3500,13 @@ class StartICD10CMInferenceJobResponse {
     return StartICD10CMInferenceJobResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -3133,6 +3523,13 @@ class StartPHIDetectionJobResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartRxNormInferenceJobResponse {
@@ -3146,6 +3543,13 @@ class StartRxNormInferenceJobResponse {
     return StartRxNormInferenceJobResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -3162,6 +3566,13 @@ class StopEntitiesDetectionV2JobResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StopICD10CMInferenceJobResponse {
@@ -3177,6 +3588,13 @@ class StopICD10CMInferenceJobResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StopPHIDetectionJobResponse {
@@ -3190,6 +3608,13 @@ class StopPHIDetectionJobResponse {
     return StopPHIDetectionJobResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -3205,6 +3630,13 @@ class StopRxNormInferenceJobResponse {
     return StopRxNormInferenceJobResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -3226,6 +3658,15 @@ class Trait {
       name: (json['Name'] as String?)?.toAttributeName(),
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -3250,6 +3691,15 @@ class UnmappedAttribute {
           : null,
       type: (json['Type'] as String?)?.toEntityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attribute = this.attribute;
+    final type = this.type;
+    return {
+      if (attribute != null) 'Attribute': attribute,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 

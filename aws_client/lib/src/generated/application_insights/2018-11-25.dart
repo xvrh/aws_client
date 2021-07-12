@@ -1710,6 +1710,27 @@ class ApplicationComponent {
       tier: (json['Tier'] as String?)?.toTier(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentName = this.componentName;
+    final componentRemarks = this.componentRemarks;
+    final detectedWorkload = this.detectedWorkload;
+    final monitor = this.monitor;
+    final osType = this.osType;
+    final resourceType = this.resourceType;
+    final tier = this.tier;
+    return {
+      if (componentName != null) 'ComponentName': componentName,
+      if (componentRemarks != null) 'ComponentRemarks': componentRemarks,
+      if (detectedWorkload != null)
+        'DetectedWorkload':
+            detectedWorkload.map((k, e) => MapEntry(k.toValue(), e)),
+      if (monitor != null) 'Monitor': monitor,
+      if (osType != null) 'OsType': osType.toValue(),
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (tier != null) 'Tier': tier.toValue(),
+    };
+  }
 }
 
 /// Describes the status of the application.
@@ -1763,6 +1784,23 @@ class ApplicationInfo {
       remarks: json['Remarks'] as String?,
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cWEMonitorEnabled = this.cWEMonitorEnabled;
+    final lifeCycle = this.lifeCycle;
+    final opsCenterEnabled = this.opsCenterEnabled;
+    final opsItemSNSTopicArn = this.opsItemSNSTopicArn;
+    final remarks = this.remarks;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (cWEMonitorEnabled != null) 'CWEMonitorEnabled': cWEMonitorEnabled,
+      if (lifeCycle != null) 'LifeCycle': lifeCycle,
+      if (opsCenterEnabled != null) 'OpsCenterEnabled': opsCenterEnabled,
+      if (opsItemSNSTopicArn != null) 'OpsItemSNSTopicArn': opsItemSNSTopicArn,
+      if (remarks != null) 'Remarks': remarks,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
   }
 }
 
@@ -1845,6 +1883,25 @@ class ConfigurationEvent {
       eventTime: timeStampFromJson(json['EventTime']),
       monitoredResourceARN: json['MonitoredResourceARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventDetail = this.eventDetail;
+    final eventResourceName = this.eventResourceName;
+    final eventResourceType = this.eventResourceType;
+    final eventStatus = this.eventStatus;
+    final eventTime = this.eventTime;
+    final monitoredResourceARN = this.monitoredResourceARN;
+    return {
+      if (eventDetail != null) 'EventDetail': eventDetail,
+      if (eventResourceName != null) 'EventResourceName': eventResourceName,
+      if (eventResourceType != null)
+        'EventResourceType': eventResourceType.toValue(),
+      if (eventStatus != null) 'EventStatus': eventStatus.toValue(),
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (monitoredResourceARN != null)
+        'MonitoredResourceARN': monitoredResourceARN,
+    };
   }
 }
 
@@ -1935,12 +1992,23 @@ class CreateApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationInfo = this.applicationInfo;
+    return {
+      if (applicationInfo != null) 'ApplicationInfo': applicationInfo,
+    };
+  }
 }
 
 class CreateComponentResponse {
   CreateComponentResponse();
   factory CreateComponentResponse.fromJson(Map<String, dynamic> _) {
     return CreateComponentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1963,12 +2031,25 @@ class CreateLogPatternResponse {
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logPattern = this.logPattern;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (logPattern != null) 'LogPattern': logPattern,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
+  }
 }
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1977,12 +2058,20 @@ class DeleteComponentResponse {
   factory DeleteComponentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteComponentResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteLogPatternResponse {
   DeleteLogPatternResponse();
   factory DeleteLogPatternResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLogPatternResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2001,6 +2090,13 @@ class DescribeApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationInfo = this.applicationInfo;
+    return {
+      if (applicationInfo != null) 'ApplicationInfo': applicationInfo,
+    };
+  }
 }
 
 class DescribeComponentConfigurationRecommendationResponse {
@@ -2016,6 +2112,14 @@ class DescribeComponentConfigurationRecommendationResponse {
     return DescribeComponentConfigurationRecommendationResponse(
       componentConfiguration: json['ComponentConfiguration'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final componentConfiguration = this.componentConfiguration;
+    return {
+      if (componentConfiguration != null)
+        'ComponentConfiguration': componentConfiguration,
+    };
   }
 }
 
@@ -2045,6 +2149,18 @@ class DescribeComponentConfigurationResponse {
       tier: (json['Tier'] as String?)?.toTier(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentConfiguration = this.componentConfiguration;
+    final monitor = this.monitor;
+    final tier = this.tier;
+    return {
+      if (componentConfiguration != null)
+        'ComponentConfiguration': componentConfiguration,
+      if (monitor != null) 'Monitor': monitor,
+      if (tier != null) 'Tier': tier.toValue(),
+    };
+  }
 }
 
 class DescribeComponentResponse {
@@ -2069,6 +2185,16 @@ class DescribeComponentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationComponent = this.applicationComponent;
+    final resourceList = this.resourceList;
+    return {
+      if (applicationComponent != null)
+        'ApplicationComponent': applicationComponent,
+      if (resourceList != null) 'ResourceList': resourceList,
+    };
+  }
 }
 
 class DescribeLogPatternResponse {
@@ -2090,6 +2216,15 @@ class DescribeLogPatternResponse {
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logPattern = this.logPattern;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (logPattern != null) 'LogPattern': logPattern,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
+  }
 }
 
 class DescribeObservationResponse {
@@ -2105,6 +2240,13 @@ class DescribeObservationResponse {
           ? Observation.fromJson(json['Observation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final observation = this.observation;
+    return {
+      if (observation != null) 'Observation': observation,
+    };
   }
 }
 
@@ -2124,6 +2266,14 @@ class DescribeProblemObservationsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final relatedObservations = this.relatedObservations;
+    return {
+      if (relatedObservations != null)
+        'RelatedObservations': relatedObservations,
+    };
+  }
 }
 
 class DescribeProblemResponse {
@@ -2139,6 +2289,13 @@ class DescribeProblemResponse {
           ? Problem.fromJson(json['Problem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final problem = this.problem;
+    return {
+      if (problem != null) 'Problem': problem,
+    };
   }
 }
 
@@ -2219,6 +2376,16 @@ class ListApplicationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationInfoList = this.applicationInfoList;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationInfoList != null)
+        'ApplicationInfoList': applicationInfoList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListComponentsResponse {
@@ -2240,6 +2407,16 @@ class ListComponentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationComponentList = this.applicationComponentList;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationComponentList != null)
+        'ApplicationComponentList': applicationComponentList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2267,6 +2444,15 @@ class ListConfigurationHistoryResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventList = this.eventList;
+    final nextToken = this.nextToken;
+    return {
+      if (eventList != null) 'EventList': eventList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2296,6 +2482,17 @@ class ListLogPatternSetsResponse {
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logPatternSets = this.logPatternSets;
+    final nextToken = this.nextToken;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (logPatternSets != null) 'LogPatternSets': logPatternSets,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
+  }
 }
 
 class ListLogPatternsResponse {
@@ -2324,6 +2521,17 @@ class ListLogPatternsResponse {
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logPatterns = this.logPatterns;
+    final nextToken = this.nextToken;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (logPatterns != null) 'LogPatterns': logPatterns,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
+  }
 }
 
 class ListProblemsResponse {
@@ -2347,6 +2555,15 @@ class ListProblemsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final problemList = this.problemList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (problemList != null) 'ProblemList': problemList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2365,6 +2582,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2446,6 +2670,19 @@ class LogPattern {
       patternSetName: json['PatternSetName'] as String?,
       rank: json['Rank'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pattern = this.pattern;
+    final patternName = this.patternName;
+    final patternSetName = this.patternSetName;
+    final rank = this.rank;
+    return {
+      if (pattern != null) 'Pattern': pattern,
+      if (patternName != null) 'PatternName': patternName,
+      if (patternSetName != null) 'PatternSetName': patternSetName,
+      if (rank != null) 'Rank': rank,
+    };
   }
 }
 
@@ -2694,6 +2931,112 @@ class Observation {
       xRayThrottlePercent: json['XRayThrottlePercent'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchEventDetailType = this.cloudWatchEventDetailType;
+    final cloudWatchEventId = this.cloudWatchEventId;
+    final cloudWatchEventSource = this.cloudWatchEventSource;
+    final codeDeployApplication = this.codeDeployApplication;
+    final codeDeployDeploymentGroup = this.codeDeployDeploymentGroup;
+    final codeDeployDeploymentId = this.codeDeployDeploymentId;
+    final codeDeployInstanceGroupId = this.codeDeployInstanceGroupId;
+    final codeDeployState = this.codeDeployState;
+    final ebsCause = this.ebsCause;
+    final ebsEvent = this.ebsEvent;
+    final ebsRequestId = this.ebsRequestId;
+    final ebsResult = this.ebsResult;
+    final ec2State = this.ec2State;
+    final endTime = this.endTime;
+    final healthEventArn = this.healthEventArn;
+    final healthEventDescription = this.healthEventDescription;
+    final healthEventTypeCategory = this.healthEventTypeCategory;
+    final healthEventTypeCode = this.healthEventTypeCode;
+    final healthService = this.healthService;
+    final id = this.id;
+    final lineTime = this.lineTime;
+    final logFilter = this.logFilter;
+    final logGroup = this.logGroup;
+    final logText = this.logText;
+    final metricName = this.metricName;
+    final metricNamespace = this.metricNamespace;
+    final rdsEventCategories = this.rdsEventCategories;
+    final rdsEventMessage = this.rdsEventMessage;
+    final s3EventName = this.s3EventName;
+    final sourceARN = this.sourceARN;
+    final sourceType = this.sourceType;
+    final startTime = this.startTime;
+    final statesArn = this.statesArn;
+    final statesExecutionArn = this.statesExecutionArn;
+    final statesInput = this.statesInput;
+    final statesStatus = this.statesStatus;
+    final unit = this.unit;
+    final value = this.value;
+    final xRayErrorPercent = this.xRayErrorPercent;
+    final xRayFaultPercent = this.xRayFaultPercent;
+    final xRayNodeName = this.xRayNodeName;
+    final xRayNodeType = this.xRayNodeType;
+    final xRayRequestAverageLatency = this.xRayRequestAverageLatency;
+    final xRayRequestCount = this.xRayRequestCount;
+    final xRayThrottlePercent = this.xRayThrottlePercent;
+    return {
+      if (cloudWatchEventDetailType != null)
+        'CloudWatchEventDetailType': cloudWatchEventDetailType,
+      if (cloudWatchEventId != null) 'CloudWatchEventId': cloudWatchEventId,
+      if (cloudWatchEventSource != null)
+        'CloudWatchEventSource': cloudWatchEventSource.toValue(),
+      if (codeDeployApplication != null)
+        'CodeDeployApplication': codeDeployApplication,
+      if (codeDeployDeploymentGroup != null)
+        'CodeDeployDeploymentGroup': codeDeployDeploymentGroup,
+      if (codeDeployDeploymentId != null)
+        'CodeDeployDeploymentId': codeDeployDeploymentId,
+      if (codeDeployInstanceGroupId != null)
+        'CodeDeployInstanceGroupId': codeDeployInstanceGroupId,
+      if (codeDeployState != null) 'CodeDeployState': codeDeployState,
+      if (ebsCause != null) 'EbsCause': ebsCause,
+      if (ebsEvent != null) 'EbsEvent': ebsEvent,
+      if (ebsRequestId != null) 'EbsRequestId': ebsRequestId,
+      if (ebsResult != null) 'EbsResult': ebsResult,
+      if (ec2State != null) 'Ec2State': ec2State,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (healthEventArn != null) 'HealthEventArn': healthEventArn,
+      if (healthEventDescription != null)
+        'HealthEventDescription': healthEventDescription,
+      if (healthEventTypeCategory != null)
+        'HealthEventTypeCategory': healthEventTypeCategory,
+      if (healthEventTypeCode != null)
+        'HealthEventTypeCode': healthEventTypeCode,
+      if (healthService != null) 'HealthService': healthService,
+      if (id != null) 'Id': id,
+      if (lineTime != null) 'LineTime': unixTimestampToJson(lineTime),
+      if (logFilter != null) 'LogFilter': logFilter.toValue(),
+      if (logGroup != null) 'LogGroup': logGroup,
+      if (logText != null) 'LogText': logText,
+      if (metricName != null) 'MetricName': metricName,
+      if (metricNamespace != null) 'MetricNamespace': metricNamespace,
+      if (rdsEventCategories != null) 'RdsEventCategories': rdsEventCategories,
+      if (rdsEventMessage != null) 'RdsEventMessage': rdsEventMessage,
+      if (s3EventName != null) 'S3EventName': s3EventName,
+      if (sourceARN != null) 'SourceARN': sourceARN,
+      if (sourceType != null) 'SourceType': sourceType,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (statesArn != null) 'StatesArn': statesArn,
+      if (statesExecutionArn != null) 'StatesExecutionArn': statesExecutionArn,
+      if (statesInput != null) 'StatesInput': statesInput,
+      if (statesStatus != null) 'StatesStatus': statesStatus,
+      if (unit != null) 'Unit': unit,
+      if (value != null) 'Value': value,
+      if (xRayErrorPercent != null) 'XRayErrorPercent': xRayErrorPercent,
+      if (xRayFaultPercent != null) 'XRayFaultPercent': xRayFaultPercent,
+      if (xRayNodeName != null) 'XRayNodeName': xRayNodeName,
+      if (xRayNodeType != null) 'XRayNodeType': xRayNodeType,
+      if (xRayRequestAverageLatency != null)
+        'XRayRequestAverageLatency': xRayRequestAverageLatency,
+      if (xRayRequestCount != null) 'XRayRequestCount': xRayRequestCount,
+      if (xRayThrottlePercent != null)
+        'XRayThrottlePercent': xRayThrottlePercent,
+    };
+  }
 }
 
 enum OsType {
@@ -2783,6 +3126,32 @@ class Problem {
       title: json['Title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final affectedResource = this.affectedResource;
+    final endTime = this.endTime;
+    final feedback = this.feedback;
+    final id = this.id;
+    final insights = this.insights;
+    final resourceGroupName = this.resourceGroupName;
+    final severityLevel = this.severityLevel;
+    final startTime = this.startTime;
+    final status = this.status;
+    final title = this.title;
+    return {
+      if (affectedResource != null) 'AffectedResource': affectedResource,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (feedback != null)
+        'Feedback': feedback.map((k, e) => MapEntry(k.toValue(), e.toValue())),
+      if (id != null) 'Id': id,
+      if (insights != null) 'Insights': insights,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+      if (severityLevel != null) 'SeverityLevel': severityLevel.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (title != null) 'Title': title,
+    };
+  }
 }
 
 /// Describes observations related to the problem.
@@ -2800,6 +3169,13 @@ class RelatedObservations {
           .map((e) => Observation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final observationList = this.observationList;
+    return {
+      if (observationList != null) 'ObservationList': observationList,
+    };
   }
 }
 
@@ -2934,6 +3310,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum Tier {
@@ -3019,6 +3399,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateApplicationResponse {
@@ -3036,6 +3420,13 @@ class UpdateApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationInfo = this.applicationInfo;
+    return {
+      if (applicationInfo != null) 'ApplicationInfo': applicationInfo,
+    };
+  }
 }
 
 class UpdateComponentConfigurationResponse {
@@ -3044,12 +3435,20 @@ class UpdateComponentConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateComponentConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateComponentResponse {
   UpdateComponentResponse();
   factory UpdateComponentResponse.fromJson(Map<String, dynamic> _) {
     return UpdateComponentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3071,6 +3470,15 @@ class UpdateLogPatternResponse {
           : null,
       resourceGroupName: json['ResourceGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logPattern = this.logPattern;
+    final resourceGroupName = this.resourceGroupName;
+    return {
+      if (logPattern != null) 'LogPattern': logPattern,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
+    };
   }
 }
 

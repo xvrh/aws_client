@@ -2228,6 +2228,17 @@ class AWSSessionCredentials {
       sessionToken: json['sessionToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      'accessKeyId': accessKeyId,
+      'secretAccessKey': secretAccessKey,
+      'sessionToken': sessionToken,
+    };
+  }
 }
 
 /// Represents the output of an AcknowledgeJob action.
@@ -2243,6 +2254,13 @@ class AcknowledgeJobOutput {
       status: (json['status'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Represents the output of an AcknowledgeThirdPartyJob action.
@@ -2257,6 +2275,13 @@ class AcknowledgeThirdPartyJobOutput {
     return AcknowledgeThirdPartyJobOutput(
       status: (json['status'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -2321,6 +2346,13 @@ class ActionConfiguration {
       configuration: (json['configuration'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    return {
+      if (configuration != null) 'configuration': configuration,
+    };
   }
 }
 
@@ -2455,6 +2487,15 @@ class ActionContext {
       actionExecutionId: json['actionExecutionId'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionExecutionId = this.actionExecutionId;
+    final name = this.name;
+    return {
+      if (actionExecutionId != null) 'actionExecutionId': actionExecutionId,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -2636,6 +2677,34 @@ class ActionExecution {
       token: json['token'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionExecutionId = this.actionExecutionId;
+    final errorDetails = this.errorDetails;
+    final externalExecutionId = this.externalExecutionId;
+    final externalExecutionUrl = this.externalExecutionUrl;
+    final lastStatusChange = this.lastStatusChange;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    final percentComplete = this.percentComplete;
+    final status = this.status;
+    final summary = this.summary;
+    final token = this.token;
+    return {
+      if (actionExecutionId != null) 'actionExecutionId': actionExecutionId,
+      if (errorDetails != null) 'errorDetails': errorDetails,
+      if (externalExecutionId != null)
+        'externalExecutionId': externalExecutionId,
+      if (externalExecutionUrl != null)
+        'externalExecutionUrl': externalExecutionUrl,
+      if (lastStatusChange != null)
+        'lastStatusChange': unixTimestampToJson(lastStatusChange),
+      if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
+      if (percentComplete != null) 'percentComplete': percentComplete,
+      if (status != null) 'status': status.toValue(),
+      if (summary != null) 'summary': summary,
+      if (token != null) 'token': token,
+    };
+  }
 }
 
 /// Returns information about an execution of an action, including the action
@@ -2705,6 +2774,33 @@ class ActionExecutionDetail {
       status: (json['status'] as String?)?.toActionExecutionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionExecutionId = this.actionExecutionId;
+    final actionName = this.actionName;
+    final input = this.input;
+    final lastUpdateTime = this.lastUpdateTime;
+    final output = this.output;
+    final pipelineExecutionId = this.pipelineExecutionId;
+    final pipelineVersion = this.pipelineVersion;
+    final stageName = this.stageName;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (actionExecutionId != null) 'actionExecutionId': actionExecutionId,
+      if (actionName != null) 'actionName': actionName,
+      if (input != null) 'input': input,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (output != null) 'output': output,
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+      if (pipelineVersion != null) 'pipelineVersion': pipelineVersion,
+      if (stageName != null) 'stageName': stageName,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Filter values for the action execution.
@@ -2715,6 +2811,12 @@ class ActionExecutionFilter {
   ActionExecutionFilter({
     this.pipelineExecutionId,
   });
+  factory ActionExecutionFilter.fromJson(Map<String, dynamic> json) {
+    return ActionExecutionFilter(
+      pipelineExecutionId: json['pipelineExecutionId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final pipelineExecutionId = this.pipelineExecutionId;
     return {
@@ -2778,6 +2880,26 @@ class ActionExecutionInput {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionTypeId = this.actionTypeId;
+    final configuration = this.configuration;
+    final inputArtifacts = this.inputArtifacts;
+    final namespace = this.namespace;
+    final region = this.region;
+    final resolvedConfiguration = this.resolvedConfiguration;
+    final roleArn = this.roleArn;
+    return {
+      if (actionTypeId != null) 'actionTypeId': actionTypeId,
+      if (configuration != null) 'configuration': configuration,
+      if (inputArtifacts != null) 'inputArtifacts': inputArtifacts,
+      if (namespace != null) 'namespace': namespace,
+      if (region != null) 'region': region,
+      if (resolvedConfiguration != null)
+        'resolvedConfiguration': resolvedConfiguration,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// Output details listed for an action execution, such as the action execution
@@ -2814,6 +2936,17 @@ class ActionExecutionOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionResult = this.executionResult;
+    final outputArtifacts = this.outputArtifacts;
+    final outputVariables = this.outputVariables;
+    return {
+      if (executionResult != null) 'executionResult': executionResult,
+      if (outputArtifacts != null) 'outputArtifacts': outputArtifacts,
+      if (outputVariables != null) 'outputVariables': outputVariables,
+    };
+  }
 }
 
 /// Execution result information, such as the external execution ID.
@@ -2839,6 +2972,20 @@ class ActionExecutionResult {
       externalExecutionSummary: json['externalExecutionSummary'] as String?,
       externalExecutionUrl: json['externalExecutionUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final externalExecutionId = this.externalExecutionId;
+    final externalExecutionSummary = this.externalExecutionSummary;
+    final externalExecutionUrl = this.externalExecutionUrl;
+    return {
+      if (externalExecutionId != null)
+        'externalExecutionId': externalExecutionId,
+      if (externalExecutionSummary != null)
+        'externalExecutionSummary': externalExecutionSummary,
+      if (externalExecutionUrl != null)
+        'externalExecutionUrl': externalExecutionUrl,
+    };
   }
 }
 
@@ -2993,6 +3140,21 @@ class ActionState {
       revisionUrl: json['revisionUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final currentRevision = this.currentRevision;
+    final entityUrl = this.entityUrl;
+    final latestExecution = this.latestExecution;
+    final revisionUrl = this.revisionUrl;
+    return {
+      if (actionName != null) 'actionName': actionName,
+      if (currentRevision != null) 'currentRevision': currentRevision,
+      if (entityUrl != null) 'entityUrl': entityUrl,
+      if (latestExecution != null) 'latestExecution': latestExecution,
+      if (revisionUrl != null) 'revisionUrl': revisionUrl,
+    };
+  }
 }
 
 /// Returns information about the details of an action type.
@@ -3037,6 +3199,22 @@ class ActionType {
               json['settings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final inputArtifactDetails = this.inputArtifactDetails;
+    final outputArtifactDetails = this.outputArtifactDetails;
+    final actionConfigurationProperties = this.actionConfigurationProperties;
+    final settings = this.settings;
+    return {
+      'id': id,
+      'inputArtifactDetails': inputArtifactDetails,
+      'outputArtifactDetails': outputArtifactDetails,
+      if (actionConfigurationProperties != null)
+        'actionConfigurationProperties': actionConfigurationProperties,
+      if (settings != null) 'settings': settings,
+    };
   }
 }
 
@@ -3575,6 +3753,13 @@ class ApprovalResult {
     required this.status,
     required this.summary,
   });
+  factory ApprovalResult.fromJson(Map<String, dynamic> json) {
+    return ApprovalResult(
+      status: (json['status'] as String).toApprovalStatus(),
+      summary: json['summary'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     final summary = this.summary;
@@ -3640,6 +3825,17 @@ class Artifact {
       revision: json['revision'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final name = this.name;
+    final revision = this.revision;
+    return {
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (revision != null) 'revision': revision,
+    };
+  }
 }
 
 /// Artifact details for the action execution, such as the artifact location.
@@ -3661,6 +3857,15 @@ class ArtifactDetail {
           ? S3Location.fromJson(json['s3location'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final s3location = this.s3location;
+    return {
+      if (name != null) 'name': name,
+      if (s3location != null) 's3location': s3location,
+    };
   }
 }
 
@@ -3713,6 +3918,15 @@ class ArtifactLocation {
           : null,
       type: (json['type'] as String?)?.toArtifactLocationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    final type = this.type;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -3785,6 +3999,24 @@ class ArtifactRevision {
       revisionSummary: json['revisionSummary'] as String?,
       revisionUrl: json['revisionUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final name = this.name;
+    final revisionChangeIdentifier = this.revisionChangeIdentifier;
+    final revisionId = this.revisionId;
+    final revisionSummary = this.revisionSummary;
+    final revisionUrl = this.revisionUrl;
+    return {
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (name != null) 'name': name,
+      if (revisionChangeIdentifier != null)
+        'revisionChangeIdentifier': revisionChangeIdentifier,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (revisionSummary != null) 'revisionSummary': revisionSummary,
+      if (revisionUrl != null) 'revisionUrl': revisionUrl,
+    };
   }
 }
 
@@ -3936,6 +4168,15 @@ class CreateCustomActionTypeOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionType = this.actionType;
+    final tags = this.tags;
+    return {
+      'actionType': actionType,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreatePipeline</code> action.
@@ -3963,6 +4204,15 @@ class CreatePipelineOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    final tags = this.tags;
+    return {
+      if (pipeline != null) 'pipeline': pipeline,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents information about a current revision.
@@ -3986,6 +4236,15 @@ class CurrentRevision {
     this.created,
     this.revisionSummary,
   });
+  factory CurrentRevision.fromJson(Map<String, dynamic> json) {
+    return CurrentRevision(
+      changeIdentifier: json['changeIdentifier'] as String,
+      revision: json['revision'] as String,
+      created: timeStampFromJson(json['created']),
+      revisionSummary: json['revisionSummary'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final changeIdentifier = this.changeIdentifier;
     final revision = this.revision;
@@ -4005,6 +4264,10 @@ class DeleteWebhookOutput {
   factory DeleteWebhookOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWebhookOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterWebhookWithThirdPartyOutput {
@@ -4012,6 +4275,10 @@ class DeregisterWebhookWithThirdPartyOutput {
   factory DeregisterWebhookWithThirdPartyOutput.fromJson(
       Map<String, dynamic> _) {
     return DeregisterWebhookWithThirdPartyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4093,6 +4360,15 @@ class ErrorDetails {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The details of the actions taken and results produced on an artifact as it
@@ -4114,6 +4390,14 @@ class ExecutionDetails {
     this.percentComplete,
     this.summary,
   });
+  factory ExecutionDetails.fromJson(Map<String, dynamic> json) {
+    return ExecutionDetails(
+      externalExecutionId: json['externalExecutionId'] as String?,
+      percentComplete: json['percentComplete'] as int?,
+      summary: json['summary'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final externalExecutionId = this.externalExecutionId;
     final percentComplete = this.percentComplete;
@@ -4147,6 +4431,15 @@ class ExecutionTrigger {
       triggerDetail: json['triggerDetail'] as String?,
       triggerType: (json['triggerType'] as String?)?.toTriggerType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final triggerDetail = this.triggerDetail;
+    final triggerType = this.triggerType;
+    return {
+      if (triggerDetail != null) 'triggerDetail': triggerDetail,
+      if (triggerType != null) 'triggerType': triggerType.toValue(),
+    };
   }
 }
 
@@ -4234,6 +4527,14 @@ class FailureDetails {
     required this.type,
     this.externalExecutionId,
   });
+  factory FailureDetails.fromJson(Map<String, dynamic> json) {
+    return FailureDetails(
+      message: json['message'] as String,
+      type: (json['type'] as String).toFailureType(),
+      externalExecutionId: json['externalExecutionId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final message = this.message;
     final type = this.type;
@@ -4311,6 +4612,13 @@ class GetActionTypeOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionType = this.actionType;
+    return {
+      if (actionType != null) 'actionType': actionType,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetJobDetails</code> action.
@@ -4332,6 +4640,13 @@ class GetJobDetailsOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDetails = this.jobDetails;
+    return {
+      if (jobDetails != null) 'jobDetails': jobDetails,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetPipelineExecution</code> action.
@@ -4349,6 +4664,13 @@ class GetPipelineExecutionOutput {
               json['pipelineExecution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecution = this.pipelineExecution;
+    return {
+      if (pipelineExecution != null) 'pipelineExecution': pipelineExecution,
+    };
   }
 }
 
@@ -4376,6 +4698,15 @@ class GetPipelineOutput {
               json['pipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final pipeline = this.pipeline;
+    return {
+      if (metadata != null) 'metadata': metadata,
+      if (pipeline != null) 'pipeline': pipeline,
+    };
   }
 }
 
@@ -4421,6 +4752,21 @@ class GetPipelineStateOutput {
       updated: timeStampFromJson(json['updated']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final pipelineName = this.pipelineName;
+    final pipelineVersion = this.pipelineVersion;
+    final stageStates = this.stageStates;
+    final updated = this.updated;
+    return {
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (pipelineName != null) 'pipelineName': pipelineName,
+      if (pipelineVersion != null) 'pipelineVersion': pipelineVersion,
+      if (stageStates != null) 'stageStates': stageStates,
+      if (updated != null) 'updated': unixTimestampToJson(updated),
+    };
+  }
 }
 
 /// Represents the output of a <code>GetThirdPartyJobDetails</code> action.
@@ -4438,6 +4784,13 @@ class GetThirdPartyJobDetailsOutput {
               json['jobDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobDetails = this.jobDetails;
+    return {
+      if (jobDetails != null) 'jobDetails': jobDetails,
+    };
   }
 }
 
@@ -4501,6 +4854,19 @@ class Job {
       id: json['id'] as String?,
       nonce: json['nonce'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final data = this.data;
+    final id = this.id;
+    final nonce = this.nonce;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (data != null) 'data': data,
+      if (id != null) 'id': id,
+      if (nonce != null) 'nonce': nonce,
+    };
   }
 }
 
@@ -4582,6 +4948,29 @@ class JobData {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionConfiguration = this.actionConfiguration;
+    final actionTypeId = this.actionTypeId;
+    final artifactCredentials = this.artifactCredentials;
+    final continuationToken = this.continuationToken;
+    final encryptionKey = this.encryptionKey;
+    final inputArtifacts = this.inputArtifacts;
+    final outputArtifacts = this.outputArtifacts;
+    final pipelineContext = this.pipelineContext;
+    return {
+      if (actionConfiguration != null)
+        'actionConfiguration': actionConfiguration,
+      if (actionTypeId != null) 'actionTypeId': actionTypeId,
+      if (artifactCredentials != null)
+        'artifactCredentials': artifactCredentials,
+      if (continuationToken != null) 'continuationToken': continuationToken,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (inputArtifacts != null) 'inputArtifacts': inputArtifacts,
+      if (outputArtifacts != null) 'outputArtifacts': outputArtifacts,
+      if (pipelineContext != null) 'pipelineContext': pipelineContext,
+    };
+  }
 }
 
 /// Represents information about the details of a job.
@@ -4609,6 +4998,17 @@ class JobDetails {
           : null,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final data = this.data;
+    final id = this.id;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (data != null) 'data': data,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -4750,6 +5150,16 @@ class ListActionExecutionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionExecutionDetails = this.actionExecutionDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (actionExecutionDetails != null)
+        'actionExecutionDetails': actionExecutionDetails,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a <code>ListActionTypes</code> action.
@@ -4774,6 +5184,15 @@ class ListActionTypesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionTypes = this.actionTypes;
+    final nextToken = this.nextToken;
+    return {
+      'actionTypes': actionTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4801,6 +5220,16 @@ class ListPipelineExecutionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineExecutionSummaries = this.pipelineExecutionSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (pipelineExecutionSummaries != null)
+        'pipelineExecutionSummaries': pipelineExecutionSummaries,
+    };
+  }
 }
 
 /// Represents the output of a <code>ListPipelines</code> action.
@@ -4826,6 +5255,15 @@ class ListPipelinesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelines = this.pipelines;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (pipelines != null) 'pipelines': pipelines,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -4850,6 +5288,15 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4906,6 +5353,26 @@ class ListWebhookItem {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final url = this.url;
+    final arn = this.arn;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final lastTriggered = this.lastTriggered;
+    final tags = this.tags;
+    return {
+      'definition': definition,
+      'url': url,
+      if (arn != null) 'arn': arn,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (lastTriggered != null)
+        'lastTriggered': unixTimestampToJson(lastTriggered),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListWebhooksOutput {
@@ -4930,6 +5397,15 @@ class ListWebhooksOutput {
           .map((e) => ListWebhookItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final webhooks = this.webhooks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (webhooks != null) 'webhooks': webhooks,
+    };
   }
 }
 
@@ -5007,6 +5483,22 @@ class PipelineContext {
           ? StageContext.fromJson(json['stage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final pipelineArn = this.pipelineArn;
+    final pipelineExecutionId = this.pipelineExecutionId;
+    final pipelineName = this.pipelineName;
+    final stage = this.stage;
+    return {
+      if (action != null) 'action': action,
+      if (pipelineArn != null) 'pipelineArn': pipelineArn,
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+      if (pipelineName != null) 'pipelineName': pipelineName,
+      if (stage != null) 'stage': stage,
+    };
   }
 }
 
@@ -5172,6 +5664,24 @@ class PipelineExecution {
       statusSummary: json['statusSummary'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactRevisions = this.artifactRevisions;
+    final pipelineExecutionId = this.pipelineExecutionId;
+    final pipelineName = this.pipelineName;
+    final pipelineVersion = this.pipelineVersion;
+    final status = this.status;
+    final statusSummary = this.statusSummary;
+    return {
+      if (artifactRevisions != null) 'artifactRevisions': artifactRevisions,
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+      if (pipelineName != null) 'pipelineName': pipelineName,
+      if (pipelineVersion != null) 'pipelineVersion': pipelineVersion,
+      if (status != null) 'status': status.toValue(),
+      if (statusSummary != null) 'statusSummary': statusSummary,
+    };
+  }
 }
 
 enum PipelineExecutionStatus {
@@ -5313,6 +5823,27 @@ class PipelineExecutionSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdateTime = this.lastUpdateTime;
+    final pipelineExecutionId = this.pipelineExecutionId;
+    final sourceRevisions = this.sourceRevisions;
+    final startTime = this.startTime;
+    final status = this.status;
+    final stopTrigger = this.stopTrigger;
+    final trigger = this.trigger;
+    return {
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+      if (sourceRevisions != null) 'sourceRevisions': sourceRevisions,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (stopTrigger != null) 'stopTrigger': stopTrigger,
+      if (trigger != null) 'trigger': trigger,
+    };
+  }
 }
 
 /// Information about a pipeline.
@@ -5337,6 +5868,17 @@ class PipelineMetadata {
       pipelineArn: json['pipelineArn'] as String?,
       updated: timeStampFromJson(json['updated']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final pipelineArn = this.pipelineArn;
+    final updated = this.updated;
+    return {
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (pipelineArn != null) 'pipelineArn': pipelineArn,
+      if (updated != null) 'updated': unixTimestampToJson(updated),
+    };
   }
 }
 
@@ -5368,6 +5910,19 @@ class PipelineSummary {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final name = this.name;
+    final updated = this.updated;
+    final version = this.version;
+    return {
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (name != null) 'name': name,
+      if (updated != null) 'updated': unixTimestampToJson(updated),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Represents the output of a <code>PollForJobs</code> action.
@@ -5386,6 +5941,13 @@ class PollForJobsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    return {
+      if (jobs != null) 'jobs': jobs,
+    };
+  }
 }
 
 /// Represents the output of a <code>PollForThirdPartyJobs</code> action.
@@ -5403,6 +5965,13 @@ class PollForThirdPartyJobsOutput {
           .map((e) => ThirdPartyJob.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    return {
+      if (jobs != null) 'jobs': jobs,
+    };
   }
 }
 
@@ -5425,6 +5994,16 @@ class PutActionRevisionOutput {
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final newRevision = this.newRevision;
+    final pipelineExecutionId = this.pipelineExecutionId;
+    return {
+      if (newRevision != null) 'newRevision': newRevision,
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+    };
+  }
 }
 
 /// Represents the output of a <code>PutApprovalResult</code> action.
@@ -5439,6 +6018,13 @@ class PutApprovalResultOutput {
     return PutApprovalResultOutput(
       approvedAt: timeStampFromJson(json['approvedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvedAt = this.approvedAt;
+    return {
+      if (approvedAt != null) 'approvedAt': unixTimestampToJson(approvedAt),
+    };
   }
 }
 
@@ -5457,12 +6043,23 @@ class PutWebhookOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      if (webhook != null) 'webhook': webhook,
+    };
+  }
 }
 
 class RegisterWebhookWithThirdPartyOutput {
   RegisterWebhookWithThirdPartyOutput();
   factory RegisterWebhookWithThirdPartyOutput.fromJson(Map<String, dynamic> _) {
     return RegisterWebhookWithThirdPartyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5478,6 +6075,14 @@ class RetryStageExecutionOutput {
     return RetryStageExecutionOutput(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionId = this.pipelineExecutionId;
+    return {
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+    };
   }
 }
 
@@ -5500,6 +6105,15 @@ class S3ArtifactLocation {
       objectKey: json['objectKey'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final objectKey = this.objectKey;
+    return {
+      'bucketName': bucketName,
+      'objectKey': objectKey,
+    };
+  }
 }
 
 /// The Amazon S3 artifact location for an action's artifacts.
@@ -5519,6 +6133,15 @@ class S3Location {
       bucket: json['bucket'] as String?,
       key: json['key'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (key != null) 'key': key,
+    };
   }
 }
 
@@ -5558,6 +6181,19 @@ class SourceRevision {
       revisionUrl: json['revisionUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final revisionId = this.revisionId;
+    final revisionSummary = this.revisionSummary;
+    final revisionUrl = this.revisionUrl;
+    return {
+      'actionName': actionName,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (revisionSummary != null) 'revisionSummary': revisionSummary,
+      if (revisionUrl != null) 'revisionUrl': revisionUrl,
+    };
+  }
 }
 
 /// Represents information about a stage to a job worker.
@@ -5572,6 +6208,13 @@ class StageContext {
     return StageContext(
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -5639,6 +6282,15 @@ class StageExecution {
       pipelineExecutionId: json['pipelineExecutionId'] as String,
       status: (json['status'] as String).toStageExecutionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionId = this.pipelineExecutionId;
+    final status = this.status;
+    return {
+      'pipelineExecutionId': pipelineExecutionId,
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -5757,6 +6409,22 @@ class StageState {
       stageName: json['stageName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionStates = this.actionStates;
+    final inboundExecution = this.inboundExecution;
+    final inboundTransitionState = this.inboundTransitionState;
+    final latestExecution = this.latestExecution;
+    final stageName = this.stageName;
+    return {
+      if (actionStates != null) 'actionStates': actionStates,
+      if (inboundExecution != null) 'inboundExecution': inboundExecution,
+      if (inboundTransitionState != null)
+        'inboundTransitionState': inboundTransitionState,
+      if (latestExecution != null) 'latestExecution': latestExecution,
+      if (stageName != null) 'stageName': stageName,
+    };
+  }
 }
 
 enum StageTransitionType {
@@ -5800,6 +6468,14 @@ class StartPipelineExecutionOutput {
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionId = this.pipelineExecutionId;
+    return {
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+    };
+  }
 }
 
 /// The interaction that stopped a pipeline execution.
@@ -5815,6 +6491,13 @@ class StopExecutionTrigger {
       reason: json['reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    return {
+      if (reason != null) 'reason': reason,
+    };
+  }
 }
 
 class StopPipelineExecutionOutput {
@@ -5828,6 +6511,14 @@ class StopPipelineExecutionOutput {
     return StopPipelineExecutionOutput(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionId = this.pipelineExecutionId;
+    return {
+      if (pipelineExecutionId != null)
+        'pipelineExecutionId': pipelineExecutionId,
+    };
   }
 }
 
@@ -5865,6 +6556,10 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A response to a <code>PollForThirdPartyJobs</code> request returned by AWS
@@ -5887,6 +6582,15 @@ class ThirdPartyJob {
       clientId: json['clientId'] as String?,
       jobId: json['jobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientId = this.clientId;
+    final jobId = this.jobId;
+    return {
+      if (clientId != null) 'clientId': clientId,
+      if (jobId != null) 'jobId': jobId,
+    };
   }
 }
 
@@ -5974,6 +6678,29 @@ class ThirdPartyJobData {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionConfiguration = this.actionConfiguration;
+    final actionTypeId = this.actionTypeId;
+    final artifactCredentials = this.artifactCredentials;
+    final continuationToken = this.continuationToken;
+    final encryptionKey = this.encryptionKey;
+    final inputArtifacts = this.inputArtifacts;
+    final outputArtifacts = this.outputArtifacts;
+    final pipelineContext = this.pipelineContext;
+    return {
+      if (actionConfiguration != null)
+        'actionConfiguration': actionConfiguration,
+      if (actionTypeId != null) 'actionTypeId': actionTypeId,
+      if (artifactCredentials != null)
+        'artifactCredentials': artifactCredentials,
+      if (continuationToken != null) 'continuationToken': continuationToken,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (inputArtifacts != null) 'inputArtifacts': inputArtifacts,
+      if (outputArtifacts != null) 'outputArtifacts': outputArtifacts,
+      if (pipelineContext != null) 'pipelineContext': pipelineContext,
+    };
+  }
 }
 
 /// The details of a job sent in response to a
@@ -6003,6 +6730,17 @@ class ThirdPartyJobDetails {
       id: json['id'] as String?,
       nonce: json['nonce'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    final id = this.id;
+    final nonce = this.nonce;
+    return {
+      if (data != null) 'data': data,
+      if (id != null) 'id': id,
+      if (nonce != null) 'nonce': nonce,
+    };
   }
 }
 
@@ -6035,6 +6773,20 @@ class TransitionState {
       lastChangedAt: timeStampFromJson(json['lastChangedAt']),
       lastChangedBy: json['lastChangedBy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disabledReason = this.disabledReason;
+    final enabled = this.enabled;
+    final lastChangedAt = this.lastChangedAt;
+    final lastChangedBy = this.lastChangedBy;
+    return {
+      if (disabledReason != null) 'disabledReason': disabledReason,
+      if (enabled != null) 'enabled': enabled,
+      if (lastChangedAt != null)
+        'lastChangedAt': unixTimestampToJson(lastChangedAt),
+      if (lastChangedBy != null) 'lastChangedBy': lastChangedBy,
+    };
   }
 }
 
@@ -6091,6 +6843,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the output of an <code>UpdatePipeline</code> action.
@@ -6108,6 +6864,13 @@ class UpdatePipelineOutput {
               json['pipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      if (pipeline != null) 'pipeline': pipeline,
+    };
   }
 }
 

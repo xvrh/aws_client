@@ -252,6 +252,13 @@ class CreateEndpointResult {
       endpointArn: json['EndpointArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
+  }
 }
 
 /// S3 on Outposts access points simplify managing data access at scale for
@@ -297,6 +304,24 @@ class Endpoint {
       outpostsId: json['OutpostsId'] as String?,
       status: (json['Status'] as String?)?.toEndpointStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final creationTime = this.creationTime;
+    final endpointArn = this.endpointArn;
+    final networkInterfaces = this.networkInterfaces;
+    final outpostsId = this.outpostsId;
+    final status = this.status;
+    return {
+      if (cidrBlock != null) 'CidrBlock': cidrBlock,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (networkInterfaces != null) 'NetworkInterfaces': networkInterfaces,
+      if (outpostsId != null) 'OutpostsId': outpostsId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -348,6 +373,15 @@ class ListEndpointsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The container for the network interface.
@@ -362,6 +396,13 @@ class NetworkInterface {
     return NetworkInterface(
       networkInterfaceId: json['NetworkInterfaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+    };
   }
 }
 

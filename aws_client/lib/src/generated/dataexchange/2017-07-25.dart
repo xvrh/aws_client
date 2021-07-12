@@ -852,6 +852,13 @@ class AssetDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3SnapshotAsset = this.s3SnapshotAsset;
+    return {
+      if (s3SnapshotAsset != null) 'S3SnapshotAsset': s3SnapshotAsset,
+    };
+  }
 }
 
 /// An asset in AWS Data Exchange is a piece of data that can be stored as an S3
@@ -920,6 +927,31 @@ class AssetEntry {
       updatedAt: nonNullableTimeStampFromJson(json['UpdatedAt'] as Object),
       sourceId: json['SourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetDetails = this.assetDetails;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final id = this.id;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final updatedAt = this.updatedAt;
+    final sourceId = this.sourceId;
+    return {
+      'Arn': arn,
+      'AssetDetails': assetDetails,
+      'AssetType': assetType.toValue(),
+      'CreatedAt': iso8601ToJson(createdAt),
+      'DataSetId': dataSetId,
+      'Id': id,
+      'Name': name,
+      'RevisionId': revisionId,
+      'UpdatedAt': iso8601ToJson(updatedAt),
+      if (sourceId != null) 'SourceId': sourceId,
+    };
   }
 }
 
@@ -1101,6 +1133,33 @@ class CreateDataSetResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final origin = this.origin;
+    final originDetails = this.originDetails;
+    final sourceId = this.sourceId;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assetType != null) 'AssetType': assetType.toValue(),
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (origin != null) 'Origin': origin.toValue(),
+      if (originDetails != null) 'OriginDetails': originDetails,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class CreateJobResponse {
@@ -1154,6 +1213,27 @@ class CreateJobResponse {
       type: (json['Type'] as String?)?.toType(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final details = this.details;
+    final errors = this.errors;
+    final id = this.id;
+    final state = this.state;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (details != null) 'Details': details,
+      if (errors != null) 'Errors': errors,
+      if (id != null) 'Id': id,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
   }
 }
 
@@ -1219,6 +1299,29 @@ class CreateRevisionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final comment = this.comment;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final finalized = this.finalized;
+    final id = this.id;
+    final sourceId = this.sourceId;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (comment != null) 'Comment': comment,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (finalized != null) 'Finalized': finalized,
+      if (id != null) 'Id': id,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
   }
 }
 
@@ -1288,6 +1391,31 @@ class DataSetEntry {
       sourceId: json['SourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final origin = this.origin;
+    final updatedAt = this.updatedAt;
+    final originDetails = this.originDetails;
+    final sourceId = this.sourceId;
+    return {
+      'Arn': arn,
+      'AssetType': assetType.toValue(),
+      'CreatedAt': iso8601ToJson(createdAt),
+      'Description': description,
+      'Id': id,
+      'Name': name,
+      'Origin': origin.toValue(),
+      'UpdatedAt': iso8601ToJson(updatedAt),
+      if (originDetails != null) 'OriginDetails': originDetails,
+      if (sourceId != null) 'SourceId': sourceId,
+    };
+  }
 }
 
 class Details {
@@ -1314,6 +1442,20 @@ class Details {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final importAssetFromSignedUrlJobErrorDetails =
+        this.importAssetFromSignedUrlJobErrorDetails;
+    final importAssetsFromS3JobErrorDetails =
+        this.importAssetsFromS3JobErrorDetails;
+    return {
+      if (importAssetFromSignedUrlJobErrorDetails != null)
+        'ImportAssetFromSignedUrlJobErrorDetails':
+            importAssetFromSignedUrlJobErrorDetails,
+      if (importAssetsFromS3JobErrorDetails != null)
+        'ImportAssetsFromS3JobErrorDetails': importAssetsFromS3JobErrorDetails,
+    };
+  }
 }
 
 /// Details of the operation to be performed by the job.
@@ -1332,6 +1474,15 @@ class ExportAssetToSignedUrlRequestDetails {
     required this.dataSetId,
     required this.revisionId,
   });
+  factory ExportAssetToSignedUrlRequestDetails.fromJson(
+      Map<String, dynamic> json) {
+    return ExportAssetToSignedUrlRequestDetails(
+      assetId: json['AssetId'] as String,
+      dataSetId: json['DataSetId'] as String,
+      revisionId: json['RevisionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final assetId = this.assetId;
     final dataSetId = this.dataSetId;
@@ -1378,6 +1529,22 @@ class ExportAssetToSignedUrlResponseDetails {
       signedUrlExpiresAt: timeStampFromJson(json['SignedUrlExpiresAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetId = this.assetId;
+    final dataSetId = this.dataSetId;
+    final revisionId = this.revisionId;
+    final signedUrl = this.signedUrl;
+    final signedUrlExpiresAt = this.signedUrlExpiresAt;
+    return {
+      'AssetId': assetId,
+      'DataSetId': dataSetId,
+      'RevisionId': revisionId,
+      if (signedUrl != null) 'SignedUrl': signedUrl,
+      if (signedUrlExpiresAt != null)
+        'SignedUrlExpiresAt': iso8601ToJson(signedUrlExpiresAt),
+    };
+  }
 }
 
 /// Details of the operation to be performed by the job.
@@ -1400,6 +1567,21 @@ class ExportAssetsToS3RequestDetails {
     required this.revisionId,
     this.encryption,
   });
+  factory ExportAssetsToS3RequestDetails.fromJson(Map<String, dynamic> json) {
+    return ExportAssetsToS3RequestDetails(
+      assetDestinations: (json['AssetDestinations'] as List)
+          .whereNotNull()
+          .map((e) => AssetDestinationEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dataSetId: json['DataSetId'] as String,
+      revisionId: json['RevisionId'] as String,
+      encryption: json['Encryption'] != null
+          ? ExportServerSideEncryption.fromJson(
+              json['Encryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final assetDestinations = this.assetDestinations;
     final dataSetId = this.dataSetId;
@@ -1448,6 +1630,19 @@ class ExportAssetsToS3ResponseDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetDestinations = this.assetDestinations;
+    final dataSetId = this.dataSetId;
+    final revisionId = this.revisionId;
+    final encryption = this.encryption;
+    return {
+      'AssetDestinations': assetDestinations,
+      'DataSetId': dataSetId,
+      'RevisionId': revisionId,
+      if (encryption != null) 'Encryption': encryption,
+    };
+  }
 }
 
 /// Details of the operation to be performed by the job.
@@ -1466,6 +1661,22 @@ class ExportRevisionsToS3RequestDetails {
     required this.revisionDestinations,
     this.encryption,
   });
+  factory ExportRevisionsToS3RequestDetails.fromJson(
+      Map<String, dynamic> json) {
+    return ExportRevisionsToS3RequestDetails(
+      dataSetId: json['DataSetId'] as String,
+      revisionDestinations: (json['RevisionDestinations'] as List)
+          .whereNotNull()
+          .map((e) =>
+              RevisionDestinationEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      encryption: json['Encryption'] != null
+          ? ExportServerSideEncryption.fromJson(
+              json['Encryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataSetId = this.dataSetId;
     final revisionDestinations = this.revisionDestinations;
@@ -1508,6 +1719,17 @@ class ExportRevisionsToS3ResponseDetails {
               json['Encryption'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSetId = this.dataSetId;
+    final revisionDestinations = this.revisionDestinations;
+    final encryption = this.encryption;
+    return {
+      'DataSetId': dataSetId,
+      'RevisionDestinations': revisionDestinations,
+      if (encryption != null) 'Encryption': encryption,
+    };
   }
 }
 
@@ -1609,6 +1831,31 @@ class GetAssetResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetDetails = this.assetDetails;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final id = this.id;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final sourceId = this.sourceId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assetDetails != null) 'AssetDetails': assetDetails,
+      if (assetType != null) 'AssetType': assetType.toValue(),
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (revisionId != null) 'RevisionId': revisionId,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class GetDataSetResponse {
@@ -1682,6 +1929,33 @@ class GetDataSetResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final origin = this.origin;
+    final originDetails = this.originDetails;
+    final sourceId = this.sourceId;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assetType != null) 'AssetType': assetType.toValue(),
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (origin != null) 'Origin': origin.toValue(),
+      if (originDetails != null) 'OriginDetails': originDetails,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class GetJobResponse {
@@ -1735,6 +2009,27 @@ class GetJobResponse {
       type: (json['Type'] as String?)?.toType(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final details = this.details;
+    final errors = this.errors;
+    final id = this.id;
+    final state = this.state;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (details != null) 'Details': details,
+      if (errors != null) 'Errors': errors,
+      if (id != null) 'Id': id,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
   }
 }
 
@@ -1801,6 +2096,29 @@ class GetRevisionResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final comment = this.comment;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final finalized = this.finalized;
+    final id = this.id;
+    final sourceId = this.sourceId;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (comment != null) 'Comment': comment,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (finalized != null) 'Finalized': finalized,
+      if (id != null) 'Id': id,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class ImportAssetFromSignedUrlJobErrorDetails {
@@ -1814,6 +2132,13 @@ class ImportAssetFromSignedUrlJobErrorDetails {
     return ImportAssetFromSignedUrlJobErrorDetails(
       assetName: json['AssetName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assetName = this.assetName;
+    return {
+      'AssetName': assetName,
+    };
   }
 }
 
@@ -1839,6 +2164,16 @@ class ImportAssetFromSignedUrlRequestDetails {
     required this.md5Hash,
     required this.revisionId,
   });
+  factory ImportAssetFromSignedUrlRequestDetails.fromJson(
+      Map<String, dynamic> json) {
+    return ImportAssetFromSignedUrlRequestDetails(
+      assetName: json['AssetName'] as String,
+      dataSetId: json['DataSetId'] as String,
+      md5Hash: json['Md5Hash'] as String,
+      revisionId: json['RevisionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final assetName = this.assetName;
     final dataSetId = this.dataSetId;
@@ -1894,6 +2229,24 @@ class ImportAssetFromSignedUrlResponseDetails {
       signedUrlExpiresAt: timeStampFromJson(json['SignedUrlExpiresAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assetName = this.assetName;
+    final dataSetId = this.dataSetId;
+    final revisionId = this.revisionId;
+    final md5Hash = this.md5Hash;
+    final signedUrl = this.signedUrl;
+    final signedUrlExpiresAt = this.signedUrlExpiresAt;
+    return {
+      'AssetName': assetName,
+      'DataSetId': dataSetId,
+      'RevisionId': revisionId,
+      if (md5Hash != null) 'Md5Hash': md5Hash,
+      if (signedUrl != null) 'SignedUrl': signedUrl,
+      if (signedUrlExpiresAt != null)
+        'SignedUrlExpiresAt': iso8601ToJson(signedUrlExpiresAt),
+    };
+  }
 }
 
 /// Details of the operation to be performed by the job.
@@ -1912,6 +2265,17 @@ class ImportAssetsFromS3RequestDetails {
     required this.dataSetId,
     required this.revisionId,
   });
+  factory ImportAssetsFromS3RequestDetails.fromJson(Map<String, dynamic> json) {
+    return ImportAssetsFromS3RequestDetails(
+      assetSources: (json['AssetSources'] as List)
+          .whereNotNull()
+          .map((e) => AssetSourceEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dataSetId: json['DataSetId'] as String,
+      revisionId: json['RevisionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final assetSources = this.assetSources;
     final dataSetId = this.dataSetId;
@@ -1950,6 +2314,17 @@ class ImportAssetsFromS3ResponseDetails {
       dataSetId: json['DataSetId'] as String,
       revisionId: json['RevisionId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assetSources = this.assetSources;
+    final dataSetId = this.dataSetId;
+    final revisionId = this.revisionId;
+    return {
+      'AssetSources': assetSources,
+      'DataSetId': dataSetId,
+      'RevisionId': revisionId,
+    };
   }
 }
 
@@ -2009,6 +2384,27 @@ class JobEntry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final details = this.details;
+    final id = this.id;
+    final state = this.state;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final errors = this.errors;
+    return {
+      'Arn': arn,
+      'CreatedAt': iso8601ToJson(createdAt),
+      'Details': details,
+      'Id': id,
+      'State': state.toValue(),
+      'Type': type.toValue(),
+      'UpdatedAt': iso8601ToJson(updatedAt),
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 /// An error that occurred with the job request.
@@ -2054,6 +2450,25 @@ class JobError {
       resourceType:
           (json['ResourceType'] as String?)?.toJobErrorResourceTypes(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final details = this.details;
+    final limitName = this.limitName;
+    final limitValue = this.limitValue;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      'Code': code.toValue(),
+      'Message': message,
+      if (details != null) 'Details': details,
+      if (limitName != null) 'LimitName': limitName.toValue(),
+      if (limitValue != null) 'LimitValue': limitValue,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -2136,6 +2551,15 @@ class ListDataSetRevisionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final revisions = this.revisions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (revisions != null) 'Revisions': revisions,
+    };
+  }
 }
 
 class ListDataSetsResponse {
@@ -2158,6 +2582,15 @@ class ListDataSetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSets = this.dataSets;
+    final nextToken = this.nextToken;
+    return {
+      if (dataSets != null) 'DataSets': dataSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2182,6 +2615,15 @@ class ListJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'Jobs': jobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRevisionAssetsResponse {
@@ -2205,6 +2647,15 @@ class ListRevisionAssetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assets = this.assets;
+    final nextToken = this.nextToken;
+    return {
+      if (assets != null) 'Assets': assets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2219,6 +2670,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2265,6 +2723,13 @@ class OriginDetails {
       productId: json['ProductId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final productId = this.productId;
+    return {
+      'ProductId': productId,
+    };
+  }
 }
 
 /// The details for the request.
@@ -2291,6 +2756,31 @@ class RequestDetails {
     this.importAssetFromSignedUrl,
     this.importAssetsFromS3,
   });
+  factory RequestDetails.fromJson(Map<String, dynamic> json) {
+    return RequestDetails(
+      exportAssetToSignedUrl: json['ExportAssetToSignedUrl'] != null
+          ? ExportAssetToSignedUrlRequestDetails.fromJson(
+              json['ExportAssetToSignedUrl'] as Map<String, dynamic>)
+          : null,
+      exportAssetsToS3: json['ExportAssetsToS3'] != null
+          ? ExportAssetsToS3RequestDetails.fromJson(
+              json['ExportAssetsToS3'] as Map<String, dynamic>)
+          : null,
+      exportRevisionsToS3: json['ExportRevisionsToS3'] != null
+          ? ExportRevisionsToS3RequestDetails.fromJson(
+              json['ExportRevisionsToS3'] as Map<String, dynamic>)
+          : null,
+      importAssetFromSignedUrl: json['ImportAssetFromSignedUrl'] != null
+          ? ImportAssetFromSignedUrlRequestDetails.fromJson(
+              json['ImportAssetFromSignedUrl'] as Map<String, dynamic>)
+          : null,
+      importAssetsFromS3: json['ImportAssetsFromS3'] != null
+          ? ImportAssetsFromS3RequestDetails.fromJson(
+              json['ImportAssetsFromS3'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final exportAssetToSignedUrl = this.exportAssetToSignedUrl;
     final exportAssetsToS3 = this.exportAssetsToS3;
@@ -2357,6 +2847,24 @@ class ResponseDetails {
               json['ImportAssetsFromS3'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportAssetToSignedUrl = this.exportAssetToSignedUrl;
+    final exportAssetsToS3 = this.exportAssetsToS3;
+    final exportRevisionsToS3 = this.exportRevisionsToS3;
+    final importAssetFromSignedUrl = this.importAssetFromSignedUrl;
+    final importAssetsFromS3 = this.importAssetsFromS3;
+    return {
+      if (exportAssetToSignedUrl != null)
+        'ExportAssetToSignedUrl': exportAssetToSignedUrl,
+      if (exportAssetsToS3 != null) 'ExportAssetsToS3': exportAssetsToS3,
+      if (exportRevisionsToS3 != null)
+        'ExportRevisionsToS3': exportRevisionsToS3,
+      if (importAssetFromSignedUrl != null)
+        'ImportAssetFromSignedUrl': importAssetFromSignedUrl,
+      if (importAssetsFromS3 != null) 'ImportAssetsFromS3': importAssetsFromS3,
+    };
   }
 }
 
@@ -2457,6 +2965,27 @@ class RevisionEntry {
       sourceId: json['SourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final id = this.id;
+    final updatedAt = this.updatedAt;
+    final comment = this.comment;
+    final finalized = this.finalized;
+    final sourceId = this.sourceId;
+    return {
+      'Arn': arn,
+      'CreatedAt': iso8601ToJson(createdAt),
+      'DataSetId': dataSetId,
+      'Id': id,
+      'UpdatedAt': iso8601ToJson(updatedAt),
+      if (comment != null) 'Comment': comment,
+      if (finalized != null) 'Finalized': finalized,
+      if (sourceId != null) 'SourceId': sourceId,
+    };
+  }
 }
 
 /// The S3 object that is the asset.
@@ -2471,6 +3000,13 @@ class S3SnapshotAsset {
     return S3SnapshotAsset(
       size: json['Size'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final size = this.size;
+    return {
+      'Size': size,
+    };
   }
 }
 
@@ -2507,6 +3043,10 @@ class StartJobResponse {
   StartJobResponse();
   factory StartJobResponse.fromJson(Map<String, dynamic> _) {
     return StartJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2665,6 +3205,31 @@ class UpdateAssetResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetDetails = this.assetDetails;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final id = this.id;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final sourceId = this.sourceId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assetDetails != null) 'AssetDetails': assetDetails,
+      if (assetType != null) 'AssetType': assetType.toValue(),
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (revisionId != null) 'RevisionId': revisionId,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class UpdateDataSetResponse {
@@ -2732,6 +3297,31 @@ class UpdateDataSetResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetType = this.assetType;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final origin = this.origin;
+    final originDetails = this.originDetails;
+    final sourceId = this.sourceId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assetType != null) 'AssetType': assetType.toValue(),
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (origin != null) 'Origin': origin.toValue(),
+      if (originDetails != null) 'OriginDetails': originDetails,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class UpdateRevisionResponse {
@@ -2790,6 +3380,27 @@ class UpdateRevisionResponse {
       sourceId: json['SourceId'] as String?,
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final comment = this.comment;
+    final createdAt = this.createdAt;
+    final dataSetId = this.dataSetId;
+    final finalized = this.finalized;
+    final id = this.id;
+    final sourceId = this.sourceId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (comment != null) 'Comment': comment,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (finalized != null) 'Finalized': finalized,
+      if (id != null) 'Id': id,
+      if (sourceId != null) 'SourceId': sourceId,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
   }
 }
 

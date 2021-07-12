@@ -86,6 +86,26 @@ class OutputShape {
     this.headerEnum,
     this.listEnums,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      fooEnum: (json['FooEnum'] as String?)?.toRESTJSONEnumType(),
+      listEnums: (json['ListEnums'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toRESTJSONEnumType())
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fooEnum = this.fooEnum;
+    final listEnums = this.listEnums;
+    return {
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        'ListEnums': listEnums.map((e) => e.toValue()).toList(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final fooEnum = this.fooEnum;
     final headerEnum = this.headerEnum;

@@ -127,6 +127,17 @@ class GetConnectionResponse {
       lastActiveAt: timeStampFromJson(json['lastActiveAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectedAt = this.connectedAt;
+    final identity = this.identity;
+    final lastActiveAt = this.lastActiveAt;
+    return {
+      if (connectedAt != null) 'connectedAt': iso8601ToJson(connectedAt),
+      if (identity != null) 'identity': identity,
+      if (lastActiveAt != null) 'lastActiveAt': iso8601ToJson(lastActiveAt),
+    };
+  }
 }
 
 class Identity {
@@ -146,6 +157,15 @@ class Identity {
       sourceIp: json['sourceIp'] as String,
       userAgent: json['userAgent'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceIp = this.sourceIp;
+    final userAgent = this.userAgent;
+    return {
+      'sourceIp': sourceIp,
+      'userAgent': userAgent,
+    };
   }
 }
 

@@ -286,6 +286,17 @@ class CreateWorkspaceResponse {
       workspaceId: json['workspaceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    return {
+      'arn': arn,
+      'status': status,
+      'workspaceId': workspaceId,
+    };
+  }
 }
 
 /// Represents the output of a DescribeWorkspace operation.
@@ -301,6 +312,13 @@ class DescribeWorkspaceResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -325,6 +343,15 @@ class ListWorkspacesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspaces = this.workspaces;
+    final nextToken = this.nextToken;
+    return {
+      'workspaces': workspaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -366,6 +393,23 @@ class WorkspaceDescription {
       prometheusEndpoint: json['prometheusEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    final alias = this.alias;
+    final prometheusEndpoint = this.prometheusEndpoint;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'status': status,
+      'workspaceId': workspaceId,
+      if (alias != null) 'alias': alias,
+      if (prometheusEndpoint != null) 'prometheusEndpoint': prometheusEndpoint,
+    };
+  }
 }
 
 /// Represents the status of a workspace.
@@ -380,6 +424,13 @@ class WorkspaceStatus {
     return WorkspaceStatus(
       statusCode: (json['statusCode'] as String).toWorkspaceStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    return {
+      'statusCode': statusCode.toValue(),
+    };
   }
 }
 
@@ -459,6 +510,21 @@ class WorkspaceSummary {
       workspaceId: json['workspaceId'] as String,
       alias: json['alias'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    final alias = this.alias;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'status': status,
+      'workspaceId': workspaceId,
+      if (alias != null) 'alias': alias,
+    };
   }
 }
 

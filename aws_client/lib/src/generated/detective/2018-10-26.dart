@@ -717,6 +717,13 @@ class Account {
     required this.accountId,
     required this.emailAddress,
   });
+  factory Account.fromJson(Map<String, dynamic> json) {
+    return Account(
+      accountId: json['AccountId'] as String,
+      emailAddress: json['EmailAddress'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final emailAddress = this.emailAddress;
@@ -738,6 +745,13 @@ class CreateGraphResponse {
     return CreateGraphResponse(
       graphArn: json['GraphArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final graphArn = this.graphArn;
+    return {
+      if (graphArn != null) 'GraphArn': graphArn,
+    };
   }
 }
 
@@ -769,6 +783,16 @@ class CreateMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (members != null) 'Members': members,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeleteMembersResponse {
@@ -796,6 +820,16 @@ class DeleteMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountIds = this.accountIds;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (accountIds != null) 'AccountIds': accountIds,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -827,6 +861,16 @@ class GetMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDetails = this.memberDetails;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (memberDetails != null) 'MemberDetails': memberDetails,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 /// A behavior graph in Detective.
@@ -847,6 +891,15 @@ class Graph {
       arn: json['Arn'] as String?,
       createdTime: timeStampFromJson(json['CreatedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': iso8601ToJson(createdTime),
+    };
   }
 }
 
@@ -871,6 +924,15 @@ class ListGraphsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final graphList = this.graphList;
+    final nextToken = this.nextToken;
+    return {
+      if (graphList != null) 'GraphList': graphList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListInvitationsResponse {
@@ -894,6 +956,15 @@ class ListInvitationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'Invitations': invitations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -923,6 +994,15 @@ class ListMembersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDetails = this.memberDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (memberDetails != null) 'MemberDetails': memberDetails,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -938,6 +1018,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1076,6 +1163,42 @@ class MemberDetail {
       volumeUsageUpdatedTime: timeStampFromJson(json['VolumeUsageUpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final administratorId = this.administratorId;
+    final disabledReason = this.disabledReason;
+    final emailAddress = this.emailAddress;
+    final graphArn = this.graphArn;
+    final invitedTime = this.invitedTime;
+    final masterId = this.masterId;
+    final percentOfGraphUtilization = this.percentOfGraphUtilization;
+    final percentOfGraphUtilizationUpdatedTime =
+        this.percentOfGraphUtilizationUpdatedTime;
+    final status = this.status;
+    final updatedTime = this.updatedTime;
+    final volumeUsageInBytes = this.volumeUsageInBytes;
+    final volumeUsageUpdatedTime = this.volumeUsageUpdatedTime;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (administratorId != null) 'AdministratorId': administratorId,
+      if (disabledReason != null) 'DisabledReason': disabledReason.toValue(),
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (graphArn != null) 'GraphArn': graphArn,
+      if (invitedTime != null) 'InvitedTime': iso8601ToJson(invitedTime),
+      if (masterId != null) 'MasterId': masterId,
+      if (percentOfGraphUtilization != null)
+        'PercentOfGraphUtilization': percentOfGraphUtilization,
+      if (percentOfGraphUtilizationUpdatedTime != null)
+        'PercentOfGraphUtilizationUpdatedTime':
+            iso8601ToJson(percentOfGraphUtilizationUpdatedTime),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTime != null) 'UpdatedTime': iso8601ToJson(updatedTime),
+      if (volumeUsageInBytes != null) 'VolumeUsageInBytes': volumeUsageInBytes,
+      if (volumeUsageUpdatedTime != null)
+        'VolumeUsageUpdatedTime': iso8601ToJson(volumeUsageUpdatedTime),
+    };
+  }
 }
 
 enum MemberDisabledReason {
@@ -1154,6 +1277,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A member account that was included in a request but for which the request
@@ -1175,12 +1302,25 @@ class UnprocessedAccount {
       reason: json['Reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final reason = this.reason;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (reason != null) 'Reason': reason,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

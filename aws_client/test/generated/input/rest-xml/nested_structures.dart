@@ -64,6 +64,24 @@ class InputShape {
     this.description,
     this.subStructure,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      description: json['Description'] as String?,
+      subStructure: json['SubStructure'] != null
+          ? SubStructure.fromJson(json['SubStructure'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final subStructure = this.subStructure;
+    return {
+      if (description != null) 'Description': description,
+      if (subStructure != null) 'SubStructure': subStructure,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final description = this.description;
     final subStructure = this.subStructure;
@@ -91,6 +109,22 @@ class SubStructure {
     this.bar,
     this.foo,
   });
+  factory SubStructure.fromJson(Map<String, dynamic> json) {
+    return SubStructure(
+      bar: json['Bar'] as String?,
+      foo: json['Foo'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bar = this.bar;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'Bar': bar,
+      if (foo != null) 'Foo': foo,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final bar = this.bar;
     final foo = this.foo;

@@ -62,12 +62,28 @@ class OutputShape {
   OutputShape({
     this.listMember,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      listMember: (json['ListMember'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       listMember: _s
           .extractXmlChild(elem, 'ListMember')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listMember = this.listMember;
+    return {
+      if (listMember != null) 'ListMember': listMember,
+    };
   }
 }
 

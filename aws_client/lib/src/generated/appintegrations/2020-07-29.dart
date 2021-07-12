@@ -477,12 +477,24 @@ class CreateEventIntegrationResponse {
       eventIntegrationArn: json['EventIntegrationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrationArn = this.eventIntegrationArn;
+    return {
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+    };
+  }
 }
 
 class DeleteEventIntegrationResponse {
   DeleteEventIntegrationResponse();
   factory DeleteEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEventIntegrationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -555,6 +567,24 @@ class EventIntegration {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventBridgeBus = this.eventBridgeBus;
+    final eventFilter = this.eventFilter;
+    final eventIntegrationArn = this.eventIntegrationArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (eventBridgeBus != null) 'EventBridgeBus': eventBridgeBus,
+      if (eventFilter != null) 'EventFilter': eventFilter,
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The Amazon AppIntegrations APIs are in preview release and are subject to
@@ -602,6 +632,28 @@ class EventIntegrationAssociation {
       eventIntegrationName: json['EventIntegrationName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientAssociationMetadata = this.clientAssociationMetadata;
+    final clientId = this.clientId;
+    final eventBridgeRuleName = this.eventBridgeRuleName;
+    final eventIntegrationAssociationArn = this.eventIntegrationAssociationArn;
+    final eventIntegrationAssociationId = this.eventIntegrationAssociationId;
+    final eventIntegrationName = this.eventIntegrationName;
+    return {
+      if (clientAssociationMetadata != null)
+        'ClientAssociationMetadata': clientAssociationMetadata,
+      if (clientId != null) 'ClientId': clientId,
+      if (eventBridgeRuleName != null)
+        'EventBridgeRuleName': eventBridgeRuleName,
+      if (eventIntegrationAssociationArn != null)
+        'EventIntegrationAssociationArn': eventIntegrationAssociationArn,
+      if (eventIntegrationAssociationId != null)
+        'EventIntegrationAssociationId': eventIntegrationAssociationId,
+      if (eventIntegrationName != null)
+        'EventIntegrationName': eventIntegrationName,
+    };
+  }
 }
 
 class GetEventIntegrationResponse {
@@ -644,6 +696,24 @@ class GetEventIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventBridgeBus = this.eventBridgeBus;
+    final eventFilter = this.eventFilter;
+    final eventIntegrationArn = this.eventIntegrationArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (eventBridgeBus != null) 'EventBridgeBus': eventBridgeBus,
+      if (eventFilter != null) 'EventFilter': eventFilter,
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListEventIntegrationAssociationsResponse {
@@ -670,6 +740,16 @@ class ListEventIntegrationAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrationAssociations = this.eventIntegrationAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (eventIntegrationAssociations != null)
+        'EventIntegrationAssociations': eventIntegrationAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEventIntegrationsResponse {
@@ -693,6 +773,15 @@ class ListEventIntegrationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrations = this.eventIntegrations;
+    final nextToken = this.nextToken;
+    return {
+      if (eventIntegrations != null) 'EventIntegrations': eventIntegrations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -708,12 +797,23 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -722,12 +822,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateEventIntegrationResponse {
   UpdateEventIntegrationResponse();
   factory UpdateEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEventIntegrationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

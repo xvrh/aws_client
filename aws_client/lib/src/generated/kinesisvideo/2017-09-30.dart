@@ -1334,6 +1334,27 @@ class ChannelInfo {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelARN = this.channelARN;
+    final channelName = this.channelName;
+    final channelStatus = this.channelStatus;
+    final channelType = this.channelType;
+    final creationTime = this.creationTime;
+    final singleMasterConfiguration = this.singleMasterConfiguration;
+    final version = this.version;
+    return {
+      if (channelARN != null) 'ChannelARN': channelARN,
+      if (channelName != null) 'ChannelName': channelName,
+      if (channelStatus != null) 'ChannelStatus': channelStatus.toValue(),
+      if (channelType != null) 'ChannelType': channelType.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (singleMasterConfiguration != null)
+        'SingleMasterConfiguration': singleMasterConfiguration,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// An optional input parameter for the <code>ListSignalingChannels</code> API.
@@ -1353,6 +1374,14 @@ class ChannelNameCondition {
     this.comparisonOperator,
     this.comparisonValue,
   });
+  factory ChannelNameCondition.fromJson(Map<String, dynamic> json) {
+    return ChannelNameCondition(
+      comparisonOperator:
+          (json['ComparisonOperator'] as String?)?.toComparisonOperator(),
+      comparisonValue: json['ComparisonValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final comparisonOperator = this.comparisonOperator;
     final comparisonValue = this.comparisonValue;
@@ -1478,6 +1507,13 @@ class CreateSignalingChannelOutput {
       channelARN: json['ChannelARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelARN = this.channelARN;
+    return {
+      if (channelARN != null) 'ChannelARN': channelARN,
+    };
+  }
 }
 
 class CreateStreamOutput {
@@ -1492,6 +1528,13 @@ class CreateStreamOutput {
       streamARN: json['StreamARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamARN = this.streamARN;
+    return {
+      if (streamARN != null) 'StreamARN': streamARN,
+    };
+  }
 }
 
 class DeleteSignalingChannelOutput {
@@ -1499,12 +1542,20 @@ class DeleteSignalingChannelOutput {
   factory DeleteSignalingChannelOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSignalingChannelOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteStreamOutput {
   DeleteStreamOutput();
   factory DeleteStreamOutput.fromJson(Map<String, dynamic> _) {
     return DeleteStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1523,6 +1574,13 @@ class DescribeSignalingChannelOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelInfo = this.channelInfo;
+    return {
+      if (channelInfo != null) 'ChannelInfo': channelInfo,
+    };
+  }
 }
 
 class DescribeStreamOutput {
@@ -1539,6 +1597,13 @@ class DescribeStreamOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamInfo = this.streamInfo;
+    return {
+      if (streamInfo != null) 'StreamInfo': streamInfo,
+    };
+  }
 }
 
 class GetDataEndpointOutput {
@@ -1553,6 +1618,13 @@ class GetDataEndpointOutput {
     return GetDataEndpointOutput(
       dataEndpoint: json['DataEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataEndpoint = this.dataEndpoint;
+    return {
+      if (dataEndpoint != null) 'DataEndpoint': dataEndpoint,
+    };
   }
 }
 
@@ -1572,6 +1644,14 @@ class GetSignalingChannelEndpointOutput {
               ResourceEndpointListItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceEndpointList = this.resourceEndpointList;
+    return {
+      if (resourceEndpointList != null)
+        'ResourceEndpointList': resourceEndpointList,
+    };
   }
 }
 
@@ -1596,6 +1676,15 @@ class ListSignalingChannelsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelInfoList = this.channelInfoList;
+    final nextToken = this.nextToken;
+    return {
+      if (channelInfoList != null) 'ChannelInfoList': channelInfoList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListStreamsOutput {
@@ -1618,6 +1707,15 @@ class ListStreamsOutput {
           .map((e) => StreamInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final streamInfoList = this.streamInfoList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (streamInfoList != null) 'StreamInfoList': streamInfoList,
+    };
   }
 }
 
@@ -1642,6 +1740,15 @@ class ListTagsForResourceOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListTagsForStreamOutput {
@@ -1663,6 +1770,15 @@ class ListTagsForStreamOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1686,6 +1802,15 @@ class ResourceEndpointListItem {
       protocol: (json['Protocol'] as String?)?.toChannelProtocol(),
       resourceEndpoint: json['ResourceEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protocol = this.protocol;
+    final resourceEndpoint = this.resourceEndpoint;
+    return {
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (resourceEndpoint != null) 'ResourceEndpoint': resourceEndpoint,
+    };
   }
 }
 
@@ -1711,6 +1836,17 @@ class SingleMasterChannelEndpointConfiguration {
     this.protocols,
     this.role,
   });
+  factory SingleMasterChannelEndpointConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return SingleMasterChannelEndpointConfiguration(
+      protocols: (json['Protocols'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toChannelProtocol())
+          .toList(),
+      role: (json['Role'] as String?)?.toChannelRole(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final protocols = this.protocols;
     final role = this.role;
@@ -1838,6 +1974,31 @@ class StreamInfo {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataRetentionInHours = this.dataRetentionInHours;
+    final deviceName = this.deviceName;
+    final kmsKeyId = this.kmsKeyId;
+    final mediaType = this.mediaType;
+    final status = this.status;
+    final streamARN = this.streamARN;
+    final streamName = this.streamName;
+    final version = this.version;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataRetentionInHours != null)
+        'DataRetentionInHours': dataRetentionInHours,
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (mediaType != null) 'MediaType': mediaType,
+      if (status != null) 'Status': status.toValue(),
+      if (streamARN != null) 'StreamARN': streamARN,
+      if (streamName != null) 'StreamName': streamName,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the condition that streams must satisfy to be returned when you
@@ -1858,6 +2019,14 @@ class StreamNameCondition {
     this.comparisonOperator,
     this.comparisonValue,
   });
+  factory StreamNameCondition.fromJson(Map<String, dynamic> json) {
+    return StreamNameCondition(
+      comparisonOperator:
+          (json['ComparisonOperator'] as String?)?.toComparisonOperator(),
+      comparisonValue: json['ComparisonValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final comparisonOperator = this.comparisonOperator;
     final comparisonValue = this.comparisonValue;
@@ -1883,6 +2052,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -1898,12 +2074,20 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class TagStreamOutput {
   TagStreamOutput();
   factory TagStreamOutput.fromJson(Map<String, dynamic> _) {
     return TagStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1912,12 +2096,20 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagStreamOutput {
   UntagStreamOutput();
   factory UntagStreamOutput.fromJson(Map<String, dynamic> _) {
     return UntagStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1954,6 +2146,10 @@ class UpdateDataRetentionOutput {
   factory UpdateDataRetentionOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDataRetentionOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateSignalingChannelOutput {
@@ -1961,12 +2157,20 @@ class UpdateSignalingChannelOutput {
   factory UpdateSignalingChannelOutput.fromJson(Map<String, dynamic> _) {
     return UpdateSignalingChannelOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateStreamOutput {
   UpdateStreamOutput();
   factory UpdateStreamOutput.fromJson(Map<String, dynamic> _) {
     return UpdateStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

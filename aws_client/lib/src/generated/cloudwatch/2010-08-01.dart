@@ -3175,6 +3175,18 @@ class AlarmHistoryItem {
     this.historySummary,
     this.timestamp,
   });
+  factory AlarmHistoryItem.fromJson(Map<String, dynamic> json) {
+    return AlarmHistoryItem(
+      alarmName: json['AlarmName'] as String?,
+      alarmType: (json['AlarmType'] as String?)?.toAlarmType(),
+      historyData: json['HistoryData'] as String?,
+      historyItemType:
+          (json['HistoryItemType'] as String?)?.toHistoryItemType(),
+      historySummary: json['HistorySummary'] as String?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+    );
+  }
+
   factory AlarmHistoryItem.fromXml(_s.XmlElement elem) {
     return AlarmHistoryItem(
       alarmName: _s.extractXmlStringValue(elem, 'AlarmName'),
@@ -3186,6 +3198,23 @@ class AlarmHistoryItem {
       historySummary: _s.extractXmlStringValue(elem, 'HistorySummary'),
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmName = this.alarmName;
+    final alarmType = this.alarmType;
+    final historyData = this.historyData;
+    final historyItemType = this.historyItemType;
+    final historySummary = this.historySummary;
+    final timestamp = this.timestamp;
+    return {
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (alarmType != null) 'AlarmType': alarmType.toValue(),
+      if (historyData != null) 'HistoryData': historyData,
+      if (historyItemType != null) 'HistoryItemType': historyItemType.toValue(),
+      if (historySummary != null) 'HistorySummary': historySummary,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -3250,6 +3279,24 @@ class AnomalyDetector {
     this.stat,
     this.stateValue,
   });
+  factory AnomalyDetector.fromJson(Map<String, dynamic> json) {
+    return AnomalyDetector(
+      configuration: json['Configuration'] != null
+          ? AnomalyDetectorConfiguration.fromJson(
+              json['Configuration'] as Map<String, dynamic>)
+          : null,
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricName: json['MetricName'] as String?,
+      namespace: json['Namespace'] as String?,
+      stat: json['Stat'] as String?,
+      stateValue:
+          (json['StateValue'] as String?)?.toAnomalyDetectorStateValue(),
+    );
+  }
+
   factory AnomalyDetector.fromXml(_s.XmlElement elem) {
     return AnomalyDetector(
       configuration: _s
@@ -3266,6 +3313,23 @@ class AnomalyDetector {
           .extractXmlStringValue(elem, 'StateValue')
           ?.toAnomalyDetectorStateValue(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final dimensions = this.dimensions;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final stat = this.stat;
+    final stateValue = this.stateValue;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (stat != null) 'Stat': stat,
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+    };
   }
 }
 
@@ -3292,6 +3356,16 @@ class AnomalyDetectorConfiguration {
     this.excludedTimeRanges,
     this.metricTimezone,
   });
+  factory AnomalyDetectorConfiguration.fromJson(Map<String, dynamic> json) {
+    return AnomalyDetectorConfiguration(
+      excludedTimeRanges: (json['ExcludedTimeRanges'] as List?)
+          ?.whereNotNull()
+          .map((e) => Range.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricTimezone: json['MetricTimezone'] as String?,
+    );
+  }
+
   factory AnomalyDetectorConfiguration.fromXml(_s.XmlElement elem) {
     return AnomalyDetectorConfiguration(
       excludedTimeRanges: _s.extractXmlChild(elem, 'ExcludedTimeRanges')?.let(
@@ -3460,6 +3534,34 @@ class CompositeAlarm {
     this.stateUpdatedTimestamp,
     this.stateValue,
   });
+  factory CompositeAlarm.fromJson(Map<String, dynamic> json) {
+    return CompositeAlarm(
+      actionsEnabled: json['ActionsEnabled'] as bool?,
+      alarmActions: (json['AlarmActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      alarmArn: json['AlarmArn'] as String?,
+      alarmConfigurationUpdatedTimestamp:
+          timeStampFromJson(json['AlarmConfigurationUpdatedTimestamp']),
+      alarmDescription: json['AlarmDescription'] as String?,
+      alarmName: json['AlarmName'] as String?,
+      alarmRule: json['AlarmRule'] as String?,
+      insufficientDataActions: (json['InsufficientDataActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      oKActions: (json['OKActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      stateReason: json['StateReason'] as String?,
+      stateReasonData: json['StateReasonData'] as String?,
+      stateUpdatedTimestamp: timeStampFromJson(json['StateUpdatedTimestamp']),
+      stateValue: (json['StateValue'] as String?)?.toStateValue(),
+    );
+  }
+
   factory CompositeAlarm.fromXml(_s.XmlElement elem) {
     return CompositeAlarm(
       actionsEnabled: _s.extractXmlBoolValue(elem, 'ActionsEnabled'),
@@ -3485,6 +3587,42 @@ class CompositeAlarm {
       stateValue: _s.extractXmlStringValue(elem, 'StateValue')?.toStateValue(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionsEnabled = this.actionsEnabled;
+    final alarmActions = this.alarmActions;
+    final alarmArn = this.alarmArn;
+    final alarmConfigurationUpdatedTimestamp =
+        this.alarmConfigurationUpdatedTimestamp;
+    final alarmDescription = this.alarmDescription;
+    final alarmName = this.alarmName;
+    final alarmRule = this.alarmRule;
+    final insufficientDataActions = this.insufficientDataActions;
+    final oKActions = this.oKActions;
+    final stateReason = this.stateReason;
+    final stateReasonData = this.stateReasonData;
+    final stateUpdatedTimestamp = this.stateUpdatedTimestamp;
+    final stateValue = this.stateValue;
+    return {
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled,
+      if (alarmActions != null) 'AlarmActions': alarmActions,
+      if (alarmArn != null) 'AlarmArn': alarmArn,
+      if (alarmConfigurationUpdatedTimestamp != null)
+        'AlarmConfigurationUpdatedTimestamp':
+            unixTimestampToJson(alarmConfigurationUpdatedTimestamp),
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (alarmRule != null) 'AlarmRule': alarmRule,
+      if (insufficientDataActions != null)
+        'InsufficientDataActions': insufficientDataActions,
+      if (oKActions != null) 'OKActions': oKActions,
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonData != null) 'StateReasonData': stateReasonData,
+      if (stateUpdatedTimestamp != null)
+        'StateUpdatedTimestamp': unixTimestampToJson(stateUpdatedTimestamp),
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+    };
+  }
 }
 
 /// Represents a specific dashboard.
@@ -3509,6 +3647,15 @@ class DashboardEntry {
     this.lastModified,
     this.size,
   });
+  factory DashboardEntry.fromJson(Map<String, dynamic> json) {
+    return DashboardEntry(
+      dashboardArn: json['DashboardArn'] as String?,
+      dashboardName: json['DashboardName'] as String?,
+      lastModified: timeStampFromJson(json['LastModified']),
+      size: json['Size'] as int?,
+    );
+  }
+
   factory DashboardEntry.fromXml(_s.XmlElement elem) {
     return DashboardEntry(
       dashboardArn: _s.extractXmlStringValue(elem, 'DashboardArn'),
@@ -3516,6 +3663,20 @@ class DashboardEntry {
       lastModified: _s.extractXmlDateTimeValue(elem, 'LastModified'),
       size: _s.extractXmlIntValue(elem, 'Size'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardName = this.dashboardName;
+    final lastModified = this.lastModified;
+    final size = this.size;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardName != null) 'DashboardName': dashboardName,
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (size != null) 'Size': size,
+    };
   }
 }
 
@@ -3531,11 +3692,27 @@ class DashboardValidationMessage {
     this.dataPath,
     this.message,
   });
+  factory DashboardValidationMessage.fromJson(Map<String, dynamic> json) {
+    return DashboardValidationMessage(
+      dataPath: json['DataPath'] as String?,
+      message: json['Message'] as String?,
+    );
+  }
+
   factory DashboardValidationMessage.fromXml(_s.XmlElement elem) {
     return DashboardValidationMessage(
       dataPath: _s.extractXmlStringValue(elem, 'DataPath'),
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataPath = this.dataPath;
+    final message = this.message;
+    return {
+      if (dataPath != null) 'DataPath': dataPath,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3576,6 +3753,20 @@ class Datapoint {
     this.timestamp,
     this.unit,
   });
+  factory Datapoint.fromJson(Map<String, dynamic> json) {
+    return Datapoint(
+      average: json['Average'] as double?,
+      extendedStatistics: (json['ExtendedStatistics'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as double)),
+      maximum: json['Maximum'] as double?,
+      minimum: json['Minimum'] as double?,
+      sampleCount: json['SampleCount'] as double?,
+      sum: json['Sum'] as double?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+      unit: (json['Unit'] as String?)?.toStandardUnit(),
+    );
+  }
+
   factory Datapoint.fromXml(_s.XmlElement elem) {
     return Datapoint(
       average: _s.extractXmlDoubleValue(elem, 'Average'),
@@ -3596,23 +3787,60 @@ class Datapoint {
       unit: _s.extractXmlStringValue(elem, 'Unit')?.toStandardUnit(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final extendedStatistics = this.extendedStatistics;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    final timestamp = this.timestamp;
+    final unit = this.unit;
+    return {
+      if (average != null) 'Average': average,
+      if (extendedStatistics != null) 'ExtendedStatistics': extendedStatistics,
+      if (maximum != null) 'Maximum': maximum,
+      if (minimum != null) 'Minimum': minimum,
+      if (sampleCount != null) 'SampleCount': sampleCount,
+      if (sum != null) 'Sum': sum,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (unit != null) 'Unit': unit.toValue(),
+    };
+  }
 }
 
 class DeleteAnomalyDetectorOutput {
   DeleteAnomalyDetectorOutput();
+  factory DeleteAnomalyDetectorOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteAnomalyDetectorOutput();
+  }
+
   factory DeleteAnomalyDetectorOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteAnomalyDetectorOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDashboardsOutput {
   DeleteDashboardsOutput();
+  factory DeleteDashboardsOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteDashboardsOutput();
+  }
+
   factory DeleteDashboardsOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteDashboardsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3624,6 +3852,15 @@ class DeleteInsightRulesOutput {
   DeleteInsightRulesOutput({
     this.failures,
   });
+  factory DeleteInsightRulesOutput.fromJson(Map<String, dynamic> json) {
+    return DeleteInsightRulesOutput(
+      failures: (json['Failures'] as List?)
+          ?.whereNotNull()
+          .map((e) => PartialFailure.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DeleteInsightRulesOutput.fromXml(_s.XmlElement elem) {
     return DeleteInsightRulesOutput(
       failures: _s.extractXmlChild(elem, 'Failures')?.let((elem) => elem
@@ -3632,14 +3869,29 @@ class DeleteInsightRulesOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 class DeleteMetricStreamOutput {
   DeleteMetricStreamOutput();
+  factory DeleteMetricStreamOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteMetricStreamOutput();
+  }
+
   factory DeleteMetricStreamOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteMetricStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3654,6 +3906,16 @@ class DescribeAlarmHistoryOutput {
     this.alarmHistoryItems,
     this.nextToken,
   });
+  factory DescribeAlarmHistoryOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAlarmHistoryOutput(
+      alarmHistoryItems: (json['AlarmHistoryItems'] as List?)
+          ?.whereNotNull()
+          .map((e) => AlarmHistoryItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory DescribeAlarmHistoryOutput.fromXml(_s.XmlElement elem) {
     return DescribeAlarmHistoryOutput(
       alarmHistoryItems: _s.extractXmlChild(elem, 'AlarmHistoryItems')?.let(
@@ -3664,6 +3926,15 @@ class DescribeAlarmHistoryOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmHistoryItems = this.alarmHistoryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (alarmHistoryItems != null) 'AlarmHistoryItems': alarmHistoryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAlarmsForMetricOutput {
@@ -3673,6 +3944,15 @@ class DescribeAlarmsForMetricOutput {
   DescribeAlarmsForMetricOutput({
     this.metricAlarms,
   });
+  factory DescribeAlarmsForMetricOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAlarmsForMetricOutput(
+      metricAlarms: (json['MetricAlarms'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricAlarm.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeAlarmsForMetricOutput.fromXml(_s.XmlElement elem) {
     return DescribeAlarmsForMetricOutput(
       metricAlarms: _s.extractXmlChild(elem, 'MetricAlarms')?.let((elem) => elem
@@ -3680,6 +3960,13 @@ class DescribeAlarmsForMetricOutput {
           .map((c) => MetricAlarm.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricAlarms = this.metricAlarms;
+    return {
+      if (metricAlarms != null) 'MetricAlarms': metricAlarms,
+    };
   }
 }
 
@@ -3698,6 +3985,20 @@ class DescribeAlarmsOutput {
     this.metricAlarms,
     this.nextToken,
   });
+  factory DescribeAlarmsOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAlarmsOutput(
+      compositeAlarms: (json['CompositeAlarms'] as List?)
+          ?.whereNotNull()
+          .map((e) => CompositeAlarm.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricAlarms: (json['MetricAlarms'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricAlarm.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory DescribeAlarmsOutput.fromXml(_s.XmlElement elem) {
     return DescribeAlarmsOutput(
       compositeAlarms: _s.extractXmlChild(elem, 'CompositeAlarms')?.let(
@@ -3711,6 +4012,17 @@ class DescribeAlarmsOutput {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compositeAlarms = this.compositeAlarms;
+    final metricAlarms = this.metricAlarms;
+    final nextToken = this.nextToken;
+    return {
+      if (compositeAlarms != null) 'CompositeAlarms': compositeAlarms,
+      if (metricAlarms != null) 'MetricAlarms': metricAlarms,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3726,6 +4038,16 @@ class DescribeAnomalyDetectorsOutput {
     this.anomalyDetectors,
     this.nextToken,
   });
+  factory DescribeAnomalyDetectorsOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAnomalyDetectorsOutput(
+      anomalyDetectors: (json['AnomalyDetectors'] as List?)
+          ?.whereNotNull()
+          .map((e) => AnomalyDetector.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory DescribeAnomalyDetectorsOutput.fromXml(_s.XmlElement elem) {
     return DescribeAnomalyDetectorsOutput(
       anomalyDetectors: _s.extractXmlChild(elem, 'AnomalyDetectors')?.let(
@@ -3735,6 +4057,15 @@ class DescribeAnomalyDetectorsOutput {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectors = this.anomalyDetectors;
+    final nextToken = this.nextToken;
+    return {
+      if (anomalyDetectors != null) 'AnomalyDetectors': anomalyDetectors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3750,6 +4081,16 @@ class DescribeInsightRulesOutput {
     this.insightRules,
     this.nextToken,
   });
+  factory DescribeInsightRulesOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeInsightRulesOutput(
+      insightRules: (json['InsightRules'] as List?)
+          ?.whereNotNull()
+          .map((e) => InsightRule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory DescribeInsightRulesOutput.fromXml(_s.XmlElement elem) {
     return DescribeInsightRulesOutput(
       insightRules: _s.extractXmlChild(elem, 'InsightRules')?.let((elem) => elem
@@ -3758,6 +4099,15 @@ class DescribeInsightRulesOutput {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightRules = this.insightRules;
+    final nextToken = this.nextToken;
+    return {
+      if (insightRules != null) 'InsightRules': insightRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3779,6 +4129,13 @@ class Dimension {
     required this.name,
     required this.value,
   });
+  factory Dimension.fromJson(Map<String, dynamic> json) {
+    return Dimension(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   factory Dimension.fromXml(_s.XmlElement elem) {
     return Dimension(
       name: _s.extractXmlStringValue(elem, 'Name')!,
@@ -3808,6 +4165,13 @@ class DimensionFilter {
     required this.name,
     this.value,
   });
+  factory DimensionFilter.fromJson(Map<String, dynamic> json) {
+    return DimensionFilter(
+      name: json['Name'] as String,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3826,6 +4190,15 @@ class DisableInsightRulesOutput {
   DisableInsightRulesOutput({
     this.failures,
   });
+  factory DisableInsightRulesOutput.fromJson(Map<String, dynamic> json) {
+    return DisableInsightRulesOutput(
+      failures: (json['Failures'] as List?)
+          ?.whereNotNull()
+          .map((e) => PartialFailure.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DisableInsightRulesOutput.fromXml(_s.XmlElement elem) {
     return DisableInsightRulesOutput(
       failures: _s.extractXmlChild(elem, 'Failures')?.let((elem) => elem
@@ -3833,6 +4206,13 @@ class DisableInsightRulesOutput {
           .map((c) => PartialFailure.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
   }
 }
 
@@ -3844,6 +4224,15 @@ class EnableInsightRulesOutput {
   EnableInsightRulesOutput({
     this.failures,
   });
+  factory EnableInsightRulesOutput.fromJson(Map<String, dynamic> json) {
+    return EnableInsightRulesOutput(
+      failures: (json['Failures'] as List?)
+          ?.whereNotNull()
+          .map((e) => PartialFailure.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EnableInsightRulesOutput.fromXml(_s.XmlElement elem) {
     return EnableInsightRulesOutput(
       failures: _s.extractXmlChild(elem, 'Failures')?.let((elem) => elem
@@ -3851,6 +4240,13 @@ class EnableInsightRulesOutput {
           .map((c) => PartialFailure.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
   }
 }
 
@@ -3873,12 +4269,31 @@ class GetDashboardOutput {
     this.dashboardBody,
     this.dashboardName,
   });
+  factory GetDashboardOutput.fromJson(Map<String, dynamic> json) {
+    return GetDashboardOutput(
+      dashboardArn: json['DashboardArn'] as String?,
+      dashboardBody: json['DashboardBody'] as String?,
+      dashboardName: json['DashboardName'] as String?,
+    );
+  }
+
   factory GetDashboardOutput.fromXml(_s.XmlElement elem) {
     return GetDashboardOutput(
       dashboardArn: _s.extractXmlStringValue(elem, 'DashboardArn'),
       dashboardBody: _s.extractXmlStringValue(elem, 'DashboardBody'),
       dashboardName: _s.extractXmlStringValue(elem, 'DashboardName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardBody = this.dashboardBody;
+    final dashboardName = this.dashboardName;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardBody != null) 'DashboardBody': dashboardBody,
+      if (dashboardName != null) 'DashboardName': dashboardName,
+    };
   }
 }
 
@@ -3916,6 +4331,28 @@ class GetInsightRuleReportOutput {
     this.keyLabels,
     this.metricDatapoints,
   });
+  factory GetInsightRuleReportOutput.fromJson(Map<String, dynamic> json) {
+    return GetInsightRuleReportOutput(
+      aggregateValue: json['AggregateValue'] as double?,
+      aggregationStatistic: json['AggregationStatistic'] as String?,
+      approximateUniqueCount: json['ApproximateUniqueCount'] as int?,
+      contributors: (json['Contributors'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => InsightRuleContributor.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      keyLabels: (json['KeyLabels'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      metricDatapoints: (json['MetricDatapoints'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              InsightRuleMetricDatapoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetInsightRuleReportOutput.fromXml(_s.XmlElement elem) {
     return GetInsightRuleReportOutput(
       aggregateValue: _s.extractXmlDoubleValue(elem, 'AggregateValue'),
@@ -3936,6 +4373,25 @@ class GetInsightRuleReportOutput {
               .map((c) => InsightRuleMetricDatapoint.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregateValue = this.aggregateValue;
+    final aggregationStatistic = this.aggregationStatistic;
+    final approximateUniqueCount = this.approximateUniqueCount;
+    final contributors = this.contributors;
+    final keyLabels = this.keyLabels;
+    final metricDatapoints = this.metricDatapoints;
+    return {
+      if (aggregateValue != null) 'AggregateValue': aggregateValue,
+      if (aggregationStatistic != null)
+        'AggregationStatistic': aggregationStatistic,
+      if (approximateUniqueCount != null)
+        'ApproximateUniqueCount': approximateUniqueCount,
+      if (contributors != null) 'Contributors': contributors,
+      if (keyLabels != null) 'KeyLabels': keyLabels,
+      if (metricDatapoints != null) 'MetricDatapoints': metricDatapoints,
+    };
   }
 }
 
@@ -3963,6 +4419,20 @@ class GetMetricDataOutput {
     this.metricDataResults,
     this.nextToken,
   });
+  factory GetMetricDataOutput.fromJson(Map<String, dynamic> json) {
+    return GetMetricDataOutput(
+      messages: (json['Messages'] as List?)
+          ?.whereNotNull()
+          .map((e) => MessageData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricDataResults: (json['MetricDataResults'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricDataResult.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory GetMetricDataOutput.fromXml(_s.XmlElement elem) {
     return GetMetricDataOutput(
       messages: _s.extractXmlChild(elem, 'Messages')?.let((elem) => elem
@@ -3977,6 +4447,17 @@ class GetMetricDataOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    final metricDataResults = this.metricDataResults;
+    final nextToken = this.nextToken;
+    return {
+      if (messages != null) 'Messages': messages,
+      if (metricDataResults != null) 'MetricDataResults': metricDataResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetMetricStatisticsOutput {
@@ -3990,6 +4471,16 @@ class GetMetricStatisticsOutput {
     this.datapoints,
     this.label,
   });
+  factory GetMetricStatisticsOutput.fromJson(Map<String, dynamic> json) {
+    return GetMetricStatisticsOutput(
+      datapoints: (json['Datapoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => Datapoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      label: json['Label'] as String?,
+    );
+  }
+
   factory GetMetricStatisticsOutput.fromXml(_s.XmlElement elem) {
     return GetMetricStatisticsOutput(
       datapoints: _s.extractXmlChild(elem, 'Datapoints')?.let((elem) => elem
@@ -3998,6 +4489,15 @@ class GetMetricStatisticsOutput {
           .toList()),
       label: _s.extractXmlStringValue(elem, 'Label'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datapoints = this.datapoints;
+    final label = this.label;
+    return {
+      if (datapoints != null) 'Datapoints': datapoints,
+      if (label != null) 'Label': label,
+    };
   }
 }
 
@@ -4050,6 +4550,28 @@ class GetMetricStreamOutput {
     this.roleArn,
     this.state,
   });
+  factory GetMetricStreamOutput.fromJson(Map<String, dynamic> json) {
+    return GetMetricStreamOutput(
+      arn: json['Arn'] as String?,
+      creationDate: timeStampFromJson(json['CreationDate']),
+      excludeFilters: (json['ExcludeFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricStreamFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      firehoseArn: json['FirehoseArn'] as String?,
+      includeFilters: (json['IncludeFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricStreamFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lastUpdateDate: timeStampFromJson(json['LastUpdateDate']),
+      name: json['Name'] as String?,
+      outputFormat:
+          (json['OutputFormat'] as String?)?.toMetricStreamOutputFormat(),
+      roleArn: json['RoleArn'] as String?,
+      state: json['State'] as String?,
+    );
+  }
+
   factory GetMetricStreamOutput.fromXml(_s.XmlElement elem) {
     return GetMetricStreamOutput(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -4074,6 +4596,33 @@ class GetMetricStreamOutput {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final excludeFilters = this.excludeFilters;
+    final firehoseArn = this.firehoseArn;
+    final includeFilters = this.includeFilters;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final outputFormat = this.outputFormat;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (excludeFilters != null) 'ExcludeFilters': excludeFilters,
+      if (firehoseArn != null) 'FirehoseArn': firehoseArn,
+      if (includeFilters != null) 'IncludeFilters': includeFilters,
+      if (lastUpdateDate != null)
+        'LastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (name != null) 'Name': name,
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 class GetMetricWidgetImageOutput {
@@ -4084,10 +4633,25 @@ class GetMetricWidgetImageOutput {
   GetMetricWidgetImageOutput({
     this.metricWidgetImage,
   });
+  factory GetMetricWidgetImageOutput.fromJson(Map<String, dynamic> json) {
+    return GetMetricWidgetImageOutput(
+      metricWidgetImage:
+          _s.decodeNullableUint8List(json['MetricWidgetImage'] as String?),
+    );
+  }
+
   factory GetMetricWidgetImageOutput.fromXml(_s.XmlElement elem) {
     return GetMetricWidgetImageOutput(
       metricWidgetImage: _s.extractXmlUint8ListValue(elem, 'MetricWidgetImage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricWidgetImage = this.metricWidgetImage;
+    return {
+      if (metricWidgetImage != null)
+        'MetricWidgetImage': base64Encode(metricWidgetImage),
+    };
   }
 }
 
@@ -4151,6 +4715,15 @@ class InsightRule {
     required this.schema,
     required this.state,
   });
+  factory InsightRule.fromJson(Map<String, dynamic> json) {
+    return InsightRule(
+      definition: json['Definition'] as String,
+      name: json['Name'] as String,
+      schema: json['Schema'] as String,
+      state: json['State'] as String,
+    );
+  }
+
   factory InsightRule.fromXml(_s.XmlElement elem) {
     return InsightRule(
       definition: _s.extractXmlStringValue(elem, 'Definition')!,
@@ -4158,6 +4731,19 @@ class InsightRule {
       schema: _s.extractXmlStringValue(elem, 'Schema')!,
       state: _s.extractXmlStringValue(elem, 'State')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final name = this.name;
+    final schema = this.schema;
+    final state = this.state;
+    return {
+      'Definition': definition,
+      'Name': name,
+      'Schema': schema,
+      'State': state,
+    };
   }
 }
 
@@ -4187,6 +4773,21 @@ class InsightRuleContributor {
     required this.datapoints,
     required this.keys,
   });
+  factory InsightRuleContributor.fromJson(Map<String, dynamic> json) {
+    return InsightRuleContributor(
+      approximateAggregateValue: json['ApproximateAggregateValue'] as double,
+      datapoints: (json['Datapoints'] as List)
+          .whereNotNull()
+          .map((e) => InsightRuleContributorDatapoint.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      keys: (json['Keys'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory InsightRuleContributor.fromXml(_s.XmlElement elem) {
     return InsightRuleContributor(
       approximateAggregateValue:
@@ -4199,6 +4800,17 @@ class InsightRuleContributor {
       keys: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'Keys')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateAggregateValue = this.approximateAggregateValue;
+    final datapoints = this.datapoints;
+    final keys = this.keys;
+    return {
+      'ApproximateAggregateValue': approximateAggregateValue,
+      'Datapoints': datapoints,
+      'Keys': keys,
+    };
   }
 }
 
@@ -4219,11 +4831,27 @@ class InsightRuleContributorDatapoint {
     required this.approximateValue,
     required this.timestamp,
   });
+  factory InsightRuleContributorDatapoint.fromJson(Map<String, dynamic> json) {
+    return InsightRuleContributorDatapoint(
+      approximateValue: json['ApproximateValue'] as double,
+      timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
+    );
+  }
+
   factory InsightRuleContributorDatapoint.fromXml(_s.XmlElement elem) {
     return InsightRuleContributorDatapoint(
       approximateValue: _s.extractXmlDoubleValue(elem, 'ApproximateValue')!,
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateValue = this.approximateValue;
+    final timestamp = this.timestamp;
+    return {
+      'ApproximateValue': approximateValue,
+      'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -4294,6 +4922,19 @@ class InsightRuleMetricDatapoint {
     this.sum,
     this.uniqueContributors,
   });
+  factory InsightRuleMetricDatapoint.fromJson(Map<String, dynamic> json) {
+    return InsightRuleMetricDatapoint(
+      timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
+      average: json['Average'] as double?,
+      maxContributorValue: json['MaxContributorValue'] as double?,
+      maximum: json['Maximum'] as double?,
+      minimum: json['Minimum'] as double?,
+      sampleCount: json['SampleCount'] as double?,
+      sum: json['Sum'] as double?,
+      uniqueContributors: json['UniqueContributors'] as double?,
+    );
+  }
+
   factory InsightRuleMetricDatapoint.fromXml(_s.XmlElement elem) {
     return InsightRuleMetricDatapoint(
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp')!,
@@ -4306,6 +4947,28 @@ class InsightRuleMetricDatapoint {
       sum: _s.extractXmlDoubleValue(elem, 'Sum'),
       uniqueContributors: _s.extractXmlDoubleValue(elem, 'UniqueContributors'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final average = this.average;
+    final maxContributorValue = this.maxContributorValue;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    final uniqueContributors = this.uniqueContributors;
+    return {
+      'Timestamp': unixTimestampToJson(timestamp),
+      if (average != null) 'Average': average,
+      if (maxContributorValue != null)
+        'MaxContributorValue': maxContributorValue,
+      if (maximum != null) 'Maximum': maximum,
+      if (minimum != null) 'Minimum': minimum,
+      if (sampleCount != null) 'SampleCount': sampleCount,
+      if (sum != null) 'Sum': sum,
+      if (uniqueContributors != null) 'UniqueContributors': uniqueContributors,
+    };
   }
 }
 
@@ -4329,6 +4992,12 @@ class LabelOptions {
   LabelOptions({
     this.timezone,
   });
+  factory LabelOptions.fromJson(Map<String, dynamic> json) {
+    return LabelOptions(
+      timezone: json['Timezone'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final timezone = this.timezone;
     return {
@@ -4348,6 +5017,16 @@ class ListDashboardsOutput {
     this.dashboardEntries,
     this.nextToken,
   });
+  factory ListDashboardsOutput.fromJson(Map<String, dynamic> json) {
+    return ListDashboardsOutput(
+      dashboardEntries: (json['DashboardEntries'] as List?)
+          ?.whereNotNull()
+          .map((e) => DashboardEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListDashboardsOutput.fromXml(_s.XmlElement elem) {
     return ListDashboardsOutput(
       dashboardEntries: _s.extractXmlChild(elem, 'DashboardEntries')?.let(
@@ -4357,6 +5036,15 @@ class ListDashboardsOutput {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardEntries = this.dashboardEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (dashboardEntries != null) 'DashboardEntries': dashboardEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4373,6 +5061,16 @@ class ListMetricStreamsOutput {
     this.entries,
     this.nextToken,
   });
+  factory ListMetricStreamsOutput.fromJson(Map<String, dynamic> json) {
+    return ListMetricStreamsOutput(
+      entries: (json['Entries'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricStreamEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListMetricStreamsOutput.fromXml(_s.XmlElement elem) {
     return ListMetricStreamsOutput(
       entries: _s.extractXmlChild(elem, 'Entries')?.let((elem) => elem
@@ -4381,6 +5079,15 @@ class ListMetricStreamsOutput {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      if (entries != null) 'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4395,12 +5102,31 @@ class ListMetricsOutput {
     this.metrics,
     this.nextToken,
   });
+  factory ListMetricsOutput.fromJson(Map<String, dynamic> json) {
+    return ListMetricsOutput(
+      metrics: (json['Metrics'] as List?)
+          ?.whereNotNull()
+          .map((e) => Metric.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListMetricsOutput.fromXml(_s.XmlElement elem) {
     return ListMetricsOutput(
       metrics: _s.extractXmlChild(elem, 'Metrics')?.let((elem) =>
           elem.findElements('member').map((c) => Metric.fromXml(c)).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metrics = this.metrics;
+    final nextToken = this.nextToken;
+    return {
+      if (metrics != null) 'Metrics': metrics,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4411,11 +5137,27 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+  factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceOutput(
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTagsForResourceOutput.fromXml(_s.XmlElement elem) {
     return ListTagsForResourceOutput(
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4432,11 +5174,27 @@ class MessageData {
     this.code,
     this.value,
   });
+  factory MessageData.fromJson(Map<String, dynamic> json) {
+    return MessageData(
+      code: json['Code'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory MessageData.fromXml(_s.XmlElement elem) {
     return MessageData(
       code: _s.extractXmlStringValue(elem, 'Code'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final value = this.value;
+    return {
+      if (code != null) 'Code': code,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -4456,6 +5214,17 @@ class Metric {
     this.metricName,
     this.namespace,
   });
+  factory Metric.fromJson(Map<String, dynamic> json) {
+    return Metric(
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricName: json['MetricName'] as String?,
+      namespace: json['Namespace'] as String?,
+    );
+  }
+
   factory Metric.fromXml(_s.XmlElement elem) {
     return Metric(
       dimensions: _s.extractXmlChild(elem, 'Dimensions')?.let((elem) => elem
@@ -4614,6 +5383,56 @@ class MetricAlarm {
     this.treatMissingData,
     this.unit,
   });
+  factory MetricAlarm.fromJson(Map<String, dynamic> json) {
+    return MetricAlarm(
+      actionsEnabled: json['ActionsEnabled'] as bool?,
+      alarmActions: (json['AlarmActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      alarmArn: json['AlarmArn'] as String?,
+      alarmConfigurationUpdatedTimestamp:
+          timeStampFromJson(json['AlarmConfigurationUpdatedTimestamp']),
+      alarmDescription: json['AlarmDescription'] as String?,
+      alarmName: json['AlarmName'] as String?,
+      comparisonOperator:
+          (json['ComparisonOperator'] as String?)?.toComparisonOperator(),
+      datapointsToAlarm: json['DatapointsToAlarm'] as int?,
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      evaluateLowSampleCountPercentile:
+          json['EvaluateLowSampleCountPercentile'] as String?,
+      evaluationPeriods: json['EvaluationPeriods'] as int?,
+      extendedStatistic: json['ExtendedStatistic'] as String?,
+      insufficientDataActions: (json['InsufficientDataActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      metricName: json['MetricName'] as String?,
+      metrics: (json['Metrics'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricDataQuery.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      namespace: json['Namespace'] as String?,
+      oKActions: (json['OKActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      period: json['Period'] as int?,
+      stateReason: json['StateReason'] as String?,
+      stateReasonData: json['StateReasonData'] as String?,
+      stateUpdatedTimestamp: timeStampFromJson(json['StateUpdatedTimestamp']),
+      stateValue: (json['StateValue'] as String?)?.toStateValue(),
+      statistic: (json['Statistic'] as String?)?.toStatistic(),
+      threshold: json['Threshold'] as double?,
+      thresholdMetricId: json['ThresholdMetricId'] as String?,
+      treatMissingData: json['TreatMissingData'] as String?,
+      unit: (json['Unit'] as String?)?.toStandardUnit(),
+    );
+  }
+
   factory MetricAlarm.fromXml(_s.XmlElement elem) {
     return MetricAlarm(
       actionsEnabled: _s.extractXmlBoolValue(elem, 'ActionsEnabled'),
@@ -4661,6 +5480,73 @@ class MetricAlarm {
       treatMissingData: _s.extractXmlStringValue(elem, 'TreatMissingData'),
       unit: _s.extractXmlStringValue(elem, 'Unit')?.toStandardUnit(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionsEnabled = this.actionsEnabled;
+    final alarmActions = this.alarmActions;
+    final alarmArn = this.alarmArn;
+    final alarmConfigurationUpdatedTimestamp =
+        this.alarmConfigurationUpdatedTimestamp;
+    final alarmDescription = this.alarmDescription;
+    final alarmName = this.alarmName;
+    final comparisonOperator = this.comparisonOperator;
+    final datapointsToAlarm = this.datapointsToAlarm;
+    final dimensions = this.dimensions;
+    final evaluateLowSampleCountPercentile =
+        this.evaluateLowSampleCountPercentile;
+    final evaluationPeriods = this.evaluationPeriods;
+    final extendedStatistic = this.extendedStatistic;
+    final insufficientDataActions = this.insufficientDataActions;
+    final metricName = this.metricName;
+    final metrics = this.metrics;
+    final namespace = this.namespace;
+    final oKActions = this.oKActions;
+    final period = this.period;
+    final stateReason = this.stateReason;
+    final stateReasonData = this.stateReasonData;
+    final stateUpdatedTimestamp = this.stateUpdatedTimestamp;
+    final stateValue = this.stateValue;
+    final statistic = this.statistic;
+    final threshold = this.threshold;
+    final thresholdMetricId = this.thresholdMetricId;
+    final treatMissingData = this.treatMissingData;
+    final unit = this.unit;
+    return {
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled,
+      if (alarmActions != null) 'AlarmActions': alarmActions,
+      if (alarmArn != null) 'AlarmArn': alarmArn,
+      if (alarmConfigurationUpdatedTimestamp != null)
+        'AlarmConfigurationUpdatedTimestamp':
+            unixTimestampToJson(alarmConfigurationUpdatedTimestamp),
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (comparisonOperator != null)
+        'ComparisonOperator': comparisonOperator.toValue(),
+      if (datapointsToAlarm != null) 'DatapointsToAlarm': datapointsToAlarm,
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (evaluateLowSampleCountPercentile != null)
+        'EvaluateLowSampleCountPercentile': evaluateLowSampleCountPercentile,
+      if (evaluationPeriods != null) 'EvaluationPeriods': evaluationPeriods,
+      if (extendedStatistic != null) 'ExtendedStatistic': extendedStatistic,
+      if (insufficientDataActions != null)
+        'InsufficientDataActions': insufficientDataActions,
+      if (metricName != null) 'MetricName': metricName,
+      if (metrics != null) 'Metrics': metrics,
+      if (namespace != null) 'Namespace': namespace,
+      if (oKActions != null) 'OKActions': oKActions,
+      if (period != null) 'Period': period,
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonData != null) 'StateReasonData': stateReasonData,
+      if (stateUpdatedTimestamp != null)
+        'StateUpdatedTimestamp': unixTimestampToJson(stateUpdatedTimestamp),
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+      if (statistic != null) 'Statistic': statistic.toValue(),
+      if (threshold != null) 'Threshold': threshold,
+      if (thresholdMetricId != null) 'ThresholdMetricId': thresholdMetricId,
+      if (treatMissingData != null) 'TreatMissingData': treatMissingData,
+      if (unit != null) 'Unit': unit.toValue(),
+    };
   }
 }
 
@@ -4764,6 +5650,19 @@ class MetricDataQuery {
     this.period,
     this.returnData,
   });
+  factory MetricDataQuery.fromJson(Map<String, dynamic> json) {
+    return MetricDataQuery(
+      id: json['Id'] as String,
+      expression: json['Expression'] as String?,
+      label: json['Label'] as String?,
+      metricStat: json['MetricStat'] != null
+          ? MetricStat.fromJson(json['MetricStat'] as Map<String, dynamic>)
+          : null,
+      period: json['Period'] as int?,
+      returnData: json['ReturnData'] as bool?,
+    );
+  }
+
   factory MetricDataQuery.fromXml(_s.XmlElement elem) {
     return MetricDataQuery(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -4837,6 +5736,26 @@ class MetricDataResult {
     this.timestamps,
     this.values,
   });
+  factory MetricDataResult.fromJson(Map<String, dynamic> json) {
+    return MetricDataResult(
+      id: json['Id'] as String?,
+      label: json['Label'] as String?,
+      messages: (json['Messages'] as List?)
+          ?.whereNotNull()
+          .map((e) => MessageData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      statusCode: (json['StatusCode'] as String?)?.toStatusCode(),
+      timestamps: (json['Timestamps'] as List?)
+          ?.whereNotNull()
+          .map(nonNullableTimeStampFromJson)
+          .toList(),
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
+
   factory MetricDataResult.fromXml(_s.XmlElement elem) {
     return MetricDataResult(
       id: _s.extractXmlStringValue(elem, 'Id'),
@@ -4853,6 +5772,24 @@ class MetricDataResult {
           .extractXmlChild(elem, 'Values')
           ?.let((elem) => _s.extractXmlDoubleListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final label = this.label;
+    final messages = this.messages;
+    final statusCode = this.statusCode;
+    final timestamps = this.timestamps;
+    final values = this.values;
+    return {
+      if (id != null) 'Id': id,
+      if (label != null) 'Label': label,
+      if (messages != null) 'Messages': messages,
+      if (statusCode != null) 'StatusCode': statusCode.toValue(),
+      if (timestamps != null)
+        'Timestamps': timestamps.map(unixTimestampToJson).toList(),
+      if (values != null) 'Values': values,
+    };
   }
 }
 
@@ -4933,6 +5870,32 @@ class MetricDatum {
     this.value,
     this.values,
   });
+  factory MetricDatum.fromJson(Map<String, dynamic> json) {
+    return MetricDatum(
+      metricName: json['MetricName'] as String,
+      counts: (json['Counts'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      statisticValues: json['StatisticValues'] != null
+          ? StatisticSet.fromJson(
+              json['StatisticValues'] as Map<String, dynamic>)
+          : null,
+      storageResolution: json['StorageResolution'] as int?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+      unit: (json['Unit'] as String?)?.toStandardUnit(),
+      value: json['Value'] as double?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final metricName = this.metricName;
     final counts = this.counts;
@@ -5013,6 +5976,15 @@ class MetricStat {
     required this.stat,
     this.unit,
   });
+  factory MetricStat.fromJson(Map<String, dynamic> json) {
+    return MetricStat(
+      metric: Metric.fromJson(json['Metric'] as Map<String, dynamic>),
+      period: json['Period'] as int,
+      stat: json['Stat'] as String,
+      unit: (json['Unit'] as String?)?.toStandardUnit(),
+    );
+  }
+
   factory MetricStat.fromXml(_s.XmlElement elem) {
     return MetricStat(
       metric: Metric.fromXml(_s.extractXmlChild(elem, 'Metric')!),
@@ -5073,6 +6045,19 @@ class MetricStreamEntry {
     this.outputFormat,
     this.state,
   });
+  factory MetricStreamEntry.fromJson(Map<String, dynamic> json) {
+    return MetricStreamEntry(
+      arn: json['Arn'] as String?,
+      creationDate: timeStampFromJson(json['CreationDate']),
+      firehoseArn: json['FirehoseArn'] as String?,
+      lastUpdateDate: timeStampFromJson(json['LastUpdateDate']),
+      name: json['Name'] as String?,
+      outputFormat:
+          (json['OutputFormat'] as String?)?.toMetricStreamOutputFormat(),
+      state: json['State'] as String?,
+    );
+  }
+
   factory MetricStreamEntry.fromXml(_s.XmlElement elem) {
     return MetricStreamEntry(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
@@ -5086,6 +6071,27 @@ class MetricStreamEntry {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final firehoseArn = this.firehoseArn;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final outputFormat = this.outputFormat;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (firehoseArn != null) 'FirehoseArn': firehoseArn,
+      if (lastUpdateDate != null)
+        'LastUpdateDate': unixTimestampToJson(lastUpdateDate),
+      if (name != null) 'Name': name,
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// This structure contains the name of one of the metric namespaces that is
@@ -5097,6 +6103,12 @@ class MetricStreamFilter {
   MetricStreamFilter({
     this.namespace,
   });
+  factory MetricStreamFilter.fromJson(Map<String, dynamic> json) {
+    return MetricStreamFilter(
+      namespace: json['Namespace'] as String?,
+    );
+  }
+
   factory MetricStreamFilter.fromXml(_s.XmlElement elem) {
     return MetricStreamFilter(
       namespace: _s.extractXmlStringValue(elem, 'Namespace'),
@@ -5161,6 +6173,15 @@ class PartialFailure {
     this.failureDescription,
     this.failureResource,
   });
+  factory PartialFailure.fromJson(Map<String, dynamic> json) {
+    return PartialFailure(
+      exceptionType: json['ExceptionType'] as String?,
+      failureCode: json['FailureCode'] as String?,
+      failureDescription: json['FailureDescription'] as String?,
+      failureResource: json['FailureResource'] as String?,
+    );
+  }
+
   factory PartialFailure.fromXml(_s.XmlElement elem) {
     return PartialFailure(
       exceptionType: _s.extractXmlStringValue(elem, 'ExceptionType'),
@@ -5169,14 +6190,35 @@ class PartialFailure {
       failureResource: _s.extractXmlStringValue(elem, 'FailureResource'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exceptionType = this.exceptionType;
+    final failureCode = this.failureCode;
+    final failureDescription = this.failureDescription;
+    final failureResource = this.failureResource;
+    return {
+      if (exceptionType != null) 'ExceptionType': exceptionType,
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (failureResource != null) 'FailureResource': failureResource,
+    };
+  }
 }
 
 class PutAnomalyDetectorOutput {
   PutAnomalyDetectorOutput();
+  factory PutAnomalyDetectorOutput.fromJson(Map<String, dynamic> _) {
+    return PutAnomalyDetectorOutput();
+  }
+
   factory PutAnomalyDetectorOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutAnomalyDetectorOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5195,6 +6237,17 @@ class PutDashboardOutput {
   PutDashboardOutput({
     this.dashboardValidationMessages,
   });
+  factory PutDashboardOutput.fromJson(Map<String, dynamic> json) {
+    return PutDashboardOutput(
+      dashboardValidationMessages: (json['DashboardValidationMessages']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DashboardValidationMessage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory PutDashboardOutput.fromXml(_s.XmlElement elem) {
     return PutDashboardOutput(
       dashboardValidationMessages: _s
@@ -5205,14 +6258,30 @@ class PutDashboardOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardValidationMessages = this.dashboardValidationMessages;
+    return {
+      if (dashboardValidationMessages != null)
+        'DashboardValidationMessages': dashboardValidationMessages,
+    };
+  }
 }
 
 class PutInsightRuleOutput {
   PutInsightRuleOutput();
+  factory PutInsightRuleOutput.fromJson(Map<String, dynamic> _) {
+    return PutInsightRuleOutput();
+  }
+
   factory PutInsightRuleOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutInsightRuleOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5223,10 +6292,23 @@ class PutMetricStreamOutput {
   PutMetricStreamOutput({
     this.arn,
   });
+  factory PutMetricStreamOutput.fromJson(Map<String, dynamic> json) {
+    return PutMetricStreamOutput(
+      arn: json['Arn'] as String?,
+    );
+  }
+
   factory PutMetricStreamOutput.fromXml(_s.XmlElement elem) {
     return PutMetricStreamOutput(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -5247,6 +6329,13 @@ class Range {
     required this.endTime,
     required this.startTime,
   });
+  factory Range.fromJson(Map<String, dynamic> json) {
+    return Range(
+      endTime: nonNullableTimeStampFromJson(json['EndTime'] as Object),
+      startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
+    );
+  }
+
   factory Range.fromXml(_s.XmlElement elem) {
     return Range(
       endTime: _s.extractXmlDateTimeValue(elem, 'EndTime')!,
@@ -5470,10 +6559,18 @@ extension on String {
 
 class StartMetricStreamsOutput {
   StartMetricStreamsOutput();
+  factory StartMetricStreamsOutput.fromJson(Map<String, dynamic> _) {
+    return StartMetricStreamsOutput();
+  }
+
   factory StartMetricStreamsOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return StartMetricStreamsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5573,6 +6670,15 @@ class StatisticSet {
     required this.sampleCount,
     required this.sum,
   });
+  factory StatisticSet.fromJson(Map<String, dynamic> json) {
+    return StatisticSet(
+      maximum: json['Maximum'] as double,
+      minimum: json['Minimum'] as double,
+      sampleCount: json['SampleCount'] as double,
+      sum: json['Sum'] as double,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final maximum = this.maximum;
     final minimum = this.minimum;
@@ -5622,10 +6728,18 @@ extension on String {
 
 class StopMetricStreamsOutput {
   StopMetricStreamsOutput();
+  factory StopMetricStreamsOutput.fromJson(Map<String, dynamic> _) {
+    return StopMetricStreamsOutput();
+  }
+
   factory StopMetricStreamsOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return StopMetricStreamsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5642,6 +6756,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key')!,
@@ -5661,19 +6782,35 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+  factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return TagResourceOutput();
+  }
+
   factory TagResourceOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceOutput {
   UntagResourceOutput();
+  factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
+    return UntagResourceOutput();
+  }
+
   factory UntagResourceOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UntagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

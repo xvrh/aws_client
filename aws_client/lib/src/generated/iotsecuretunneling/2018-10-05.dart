@@ -312,6 +312,10 @@ class CloseTunnelResponse {
   factory CloseTunnelResponse.fromJson(Map<String, dynamic> _) {
     return CloseTunnelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The state of a connection.
@@ -332,6 +336,16 @@ class ConnectionState {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
       status: (json['status'] as String?)?.toConnectionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final status = this.status;
+    return {
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -376,6 +390,13 @@ class DescribeTunnelResponse {
           ? Tunnel.fromJson(json['tunnel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tunnel = this.tunnel;
+    return {
+      if (tunnel != null) 'tunnel': tunnel,
+    };
   }
 }
 
@@ -430,6 +451,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListTunnelsResponse {
@@ -451,6 +479,15 @@ class ListTunnelsResponse {
           .map((e) => TunnelSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tunnelSummaries = this.tunnelSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tunnelSummaries != null) 'tunnelSummaries': tunnelSummaries,
+    };
   }
 }
 
@@ -483,6 +520,20 @@ class OpenTunnelResponse {
       tunnelArn: json['tunnelArn'] as String?,
       tunnelId: json['tunnelId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationAccessToken = this.destinationAccessToken;
+    final sourceAccessToken = this.sourceAccessToken;
+    final tunnelArn = this.tunnelArn;
+    final tunnelId = this.tunnelId;
+    return {
+      if (destinationAccessToken != null)
+        'destinationAccessToken': destinationAccessToken,
+      if (sourceAccessToken != null) 'sourceAccessToken': sourceAccessToken,
+      if (tunnelArn != null) 'tunnelArn': tunnelArn,
+      if (tunnelId != null) 'tunnelId': tunnelId,
+    };
   }
 }
 
@@ -520,6 +571,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -629,6 +684,36 @@ class Tunnel {
       tunnelId: json['tunnelId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final destinationConfig = this.destinationConfig;
+    final destinationConnectionState = this.destinationConnectionState;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final sourceConnectionState = this.sourceConnectionState;
+    final status = this.status;
+    final tags = this.tags;
+    final timeoutConfig = this.timeoutConfig;
+    final tunnelArn = this.tunnelArn;
+    final tunnelId = this.tunnelId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (destinationConfig != null) 'destinationConfig': destinationConfig,
+      if (destinationConnectionState != null)
+        'destinationConnectionState': destinationConnectionState,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (sourceConnectionState != null)
+        'sourceConnectionState': sourceConnectionState,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (timeoutConfig != null) 'timeoutConfig': timeoutConfig,
+      if (tunnelArn != null) 'tunnelArn': tunnelArn,
+      if (tunnelId != null) 'tunnelId': tunnelId,
+    };
+  }
 }
 
 enum TunnelStatus {
@@ -698,12 +783,34 @@ class TunnelSummary {
       tunnelId: json['tunnelId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final status = this.status;
+    final tunnelArn = this.tunnelArn;
+    final tunnelId = this.tunnelId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (status != null) 'status': status.toValue(),
+      if (tunnelArn != null) 'tunnelArn': tunnelArn,
+      if (tunnelId != null) 'tunnelId': tunnelId,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -64,6 +64,15 @@ class OutputShape {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blobMember = this.blobMember;
+    final structMember = this.structMember;
+    return {
+      if (blobMember != null) 'BlobMember': base64Encode(blobMember),
+      if (structMember != null) 'StructMember': structMember,
+    };
+  }
 }
 
 class BlobContainer {
@@ -76,6 +85,13 @@ class BlobContainer {
     return BlobContainer(
       foo: _s.decodeNullableUint8List(json['foo'] as String?),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'foo': base64Encode(foo),
+    };
   }
 }
 

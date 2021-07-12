@@ -590,12 +590,30 @@ class CreateSuiteDefinitionResponse {
       suiteDefinitionName: json['suiteDefinitionName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final suiteDefinitionArn = this.suiteDefinitionArn;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionName = this.suiteDefinitionName;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (suiteDefinitionArn != null) 'suiteDefinitionArn': suiteDefinitionArn,
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionName != null)
+        'suiteDefinitionName': suiteDefinitionName,
+    };
+  }
 }
 
 class DeleteSuiteDefinitionResponse {
   DeleteSuiteDefinitionResponse();
   factory DeleteSuiteDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSuiteDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -679,6 +697,30 @@ class GetSuiteDefinitionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final latestVersion = this.latestVersion;
+    final suiteDefinitionArn = this.suiteDefinitionArn;
+    final suiteDefinitionConfiguration = this.suiteDefinitionConfiguration;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionVersion = this.suiteDefinitionVersion;
+    final tags = this.tags;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastModifiedAt != null)
+        'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      if (latestVersion != null) 'latestVersion': latestVersion,
+      if (suiteDefinitionArn != null) 'suiteDefinitionArn': suiteDefinitionArn,
+      if (suiteDefinitionConfiguration != null)
+        'suiteDefinitionConfiguration': suiteDefinitionConfiguration,
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionVersion != null)
+        'suiteDefinitionVersion': suiteDefinitionVersion,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetSuiteRunReportResponse {
@@ -693,6 +735,14 @@ class GetSuiteRunReportResponse {
       qualificationReportDownloadUrl:
           json['qualificationReportDownloadUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final qualificationReportDownloadUrl = this.qualificationReportDownloadUrl;
+    return {
+      if (qualificationReportDownloadUrl != null)
+        'qualificationReportDownloadUrl': qualificationReportDownloadUrl,
+    };
   }
 }
 
@@ -764,6 +814,35 @@ class GetSuiteRunResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final errorReason = this.errorReason;
+    final startTime = this.startTime;
+    final status = this.status;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionVersion = this.suiteDefinitionVersion;
+    final suiteRunArn = this.suiteRunArn;
+    final suiteRunConfiguration = this.suiteRunConfiguration;
+    final suiteRunId = this.suiteRunId;
+    final tags = this.tags;
+    final testResult = this.testResult;
+    return {
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (errorReason != null) 'errorReason': errorReason,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionVersion != null)
+        'suiteDefinitionVersion': suiteDefinitionVersion,
+      if (suiteRunArn != null) 'suiteRunArn': suiteRunArn,
+      if (suiteRunConfiguration != null)
+        'suiteRunConfiguration': suiteRunConfiguration,
+      if (suiteRunId != null) 'suiteRunId': suiteRunId,
+      if (tags != null) 'tags': tags,
+      if (testResult != null) 'testResult': testResult,
+    };
+  }
 }
 
 /// Show Group Result.
@@ -792,6 +871,17 @@ class GroupResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final tests = this.tests;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (tests != null) 'tests': tests,
+    };
+  }
 }
 
 class ListSuiteDefinitionsResponse {
@@ -817,6 +907,16 @@ class ListSuiteDefinitionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final suiteDefinitionInformationList = this.suiteDefinitionInformationList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (suiteDefinitionInformationList != null)
+        'suiteDefinitionInformationList': suiteDefinitionInformationList,
+    };
+  }
 }
 
 class ListSuiteRunsResponse {
@@ -840,6 +940,15 @@ class ListSuiteRunsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final suiteRunsList = this.suiteRunsList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (suiteRunsList != null) 'suiteRunsList': suiteRunsList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -854,6 +963,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -878,6 +994,17 @@ class StartSuiteRunResponse {
       suiteRunArn: json['suiteRunArn'] as String?,
       suiteRunId: json['suiteRunId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final suiteRunArn = this.suiteRunArn;
+    final suiteRunId = this.suiteRunId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (suiteRunArn != null) 'suiteRunArn': suiteRunArn,
+      if (suiteRunId != null) 'suiteRunId': suiteRunId,
+    };
   }
 }
 
@@ -948,6 +1075,10 @@ class StopSuiteRunResponse {
   StopSuiteRunResponse();
   factory StopSuiteRunResponse.fromJson(Map<String, dynamic> _) {
     return StopSuiteRunResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1042,6 +1173,23 @@ class SuiteDefinitionInformation {
       suiteDefinitionId: json['suiteDefinitionId'] as String?,
       suiteDefinitionName: json['suiteDefinitionName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final defaultDevices = this.defaultDevices;
+    final intendedForQualification = this.intendedForQualification;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionName = this.suiteDefinitionName;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (defaultDevices != null) 'defaultDevices': defaultDevices,
+      if (intendedForQualification != null)
+        'intendedForQualification': intendedForQualification,
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionName != null)
+        'suiteDefinitionName': suiteDefinitionName,
+    };
   }
 }
 
@@ -1138,6 +1286,33 @@ class SuiteRunInformation {
       suiteRunId: json['suiteRunId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final endAt = this.endAt;
+    final failed = this.failed;
+    final passed = this.passed;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionName = this.suiteDefinitionName;
+    final suiteDefinitionVersion = this.suiteDefinitionVersion;
+    final suiteRunId = this.suiteRunId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (endAt != null) 'endAt': unixTimestampToJson(endAt),
+      if (failed != null) 'failed': failed,
+      if (passed != null) 'passed': passed,
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'status': status.toValue(),
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionName != null)
+        'suiteDefinitionName': suiteDefinitionName,
+      if (suiteDefinitionVersion != null)
+        'suiteDefinitionVersion': suiteDefinitionVersion,
+      if (suiteRunId != null) 'suiteRunId': suiteRunId,
+    };
+  }
 }
 
 enum SuiteRunStatus {
@@ -1208,6 +1383,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Provides test case run.
@@ -1263,6 +1442,31 @@ class TestCaseRun {
       warnings: json['warnings'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final failure = this.failure;
+    final logUrl = this.logUrl;
+    final startTime = this.startTime;
+    final status = this.status;
+    final testCaseDefinitionId = this.testCaseDefinitionId;
+    final testCaseDefinitionName = this.testCaseDefinitionName;
+    final testCaseRunId = this.testCaseRunId;
+    final warnings = this.warnings;
+    return {
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (failure != null) 'failure': failure,
+      if (logUrl != null) 'logUrl': logUrl,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (testCaseDefinitionId != null)
+        'testCaseDefinitionId': testCaseDefinitionId,
+      if (testCaseDefinitionName != null)
+        'testCaseDefinitionName': testCaseDefinitionName,
+      if (testCaseRunId != null) 'testCaseRunId': testCaseRunId,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 /// Show each group result.
@@ -1281,12 +1485,23 @@ class TestResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    return {
+      if (groups != null) 'groups': groups,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1326,6 +1541,26 @@ class UpdateSuiteDefinitionResponse {
       suiteDefinitionName: json['suiteDefinitionName'] as String?,
       suiteDefinitionVersion: json['suiteDefinitionVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final suiteDefinitionArn = this.suiteDefinitionArn;
+    final suiteDefinitionId = this.suiteDefinitionId;
+    final suiteDefinitionName = this.suiteDefinitionName;
+    final suiteDefinitionVersion = this.suiteDefinitionVersion;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (suiteDefinitionArn != null) 'suiteDefinitionArn': suiteDefinitionArn,
+      if (suiteDefinitionId != null) 'suiteDefinitionId': suiteDefinitionId,
+      if (suiteDefinitionName != null)
+        'suiteDefinitionName': suiteDefinitionName,
+      if (suiteDefinitionVersion != null)
+        'suiteDefinitionVersion': suiteDefinitionVersion,
+    };
   }
 }
 

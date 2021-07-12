@@ -1408,6 +1408,13 @@ class CreateDatasetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetMetadata = this.datasetMetadata;
+    return {
+      if (datasetMetadata != null) 'DatasetMetadata': datasetMetadata,
+    };
+  }
 }
 
 class CreateModelResponse {
@@ -1425,6 +1432,13 @@ class CreateModelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelMetadata = this.modelMetadata;
+    return {
+      if (modelMetadata != null) 'ModelMetadata': modelMetadata,
+    };
+  }
 }
 
 class CreateProjectResponse {
@@ -1441,6 +1455,13 @@ class CreateProjectResponse {
               json['ProjectMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectMetadata = this.projectMetadata;
+    return {
+      if (projectMetadata != null) 'ProjectMetadata': projectMetadata,
+    };
   }
 }
 
@@ -1493,6 +1514,27 @@ class DatasetDescription {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetType = this.datasetType;
+    final imageStats = this.imageStats;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final projectName = this.projectName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetType != null) 'DatasetType': datasetType,
+      if (imageStats != null) 'ImageStats': imageStats,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (projectName != null) 'ProjectName': projectName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Location information about a manifest file. You can use a manifest file to
@@ -1504,6 +1546,14 @@ class DatasetGroundTruthManifest {
   DatasetGroundTruthManifest({
     this.s3Object,
   });
+  factory DatasetGroundTruthManifest.fromJson(Map<String, dynamic> json) {
+    return DatasetGroundTruthManifest(
+      s3Object: json['S3Object'] != null
+          ? InputS3Object.fromJson(json['S3Object'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Object = this.s3Object;
     return {
@@ -1540,6 +1590,19 @@ class DatasetImageStats {
       total: json['Total'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomaly = this.anomaly;
+    final labeled = this.labeled;
+    final normal = this.normal;
+    final total = this.total;
+    return {
+      if (anomaly != null) 'Anomaly': anomaly,
+      if (labeled != null) 'Labeled': labeled,
+      if (normal != null) 'Normal': normal,
+      if (total != null) 'Total': total,
+    };
+  }
 }
 
 /// Sumary information for an Amazon Lookout for Vision dataset.
@@ -1570,6 +1633,20 @@ class DatasetMetadata {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetType = this.datasetType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetType != null) 'DatasetType': datasetType,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Information about the location of a manifest file that Amazon Lookout for
@@ -1581,6 +1658,15 @@ class DatasetSource {
   DatasetSource({
     this.groundTruthManifest,
   });
+  factory DatasetSource.fromJson(Map<String, dynamic> json) {
+    return DatasetSource(
+      groundTruthManifest: json['GroundTruthManifest'] != null
+          ? DatasetGroundTruthManifest.fromJson(
+              json['GroundTruthManifest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final groundTruthManifest = this.groundTruthManifest;
     return {
@@ -1663,6 +1749,10 @@ class DeleteDatasetResponse {
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDatasetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteModelResponse {
@@ -1677,6 +1767,13 @@ class DeleteModelResponse {
       modelArn: json['ModelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelArn = this.modelArn;
+    return {
+      if (modelArn != null) 'ModelArn': modelArn,
+    };
+  }
 }
 
 class DeleteProjectResponse {
@@ -1690,6 +1787,13 @@ class DeleteProjectResponse {
     return DeleteProjectResponse(
       projectArn: json['ProjectArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    return {
+      if (projectArn != null) 'ProjectArn': projectArn,
+    };
   }
 }
 
@@ -1708,6 +1812,13 @@ class DescribeDatasetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetDescription = this.datasetDescription;
+    return {
+      if (datasetDescription != null) 'DatasetDescription': datasetDescription,
+    };
+  }
 }
 
 class DescribeModelResponse {
@@ -1724,6 +1835,13 @@ class DescribeModelResponse {
               json['ModelDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelDescription = this.modelDescription;
+    return {
+      if (modelDescription != null) 'ModelDescription': modelDescription,
+    };
   }
 }
 
@@ -1742,6 +1860,13 @@ class DescribeProjectResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectDescription = this.projectDescription;
+    return {
+      if (projectDescription != null) 'ProjectDescription': projectDescription,
+    };
+  }
 }
 
 class DetectAnomaliesResponse {
@@ -1758,6 +1883,14 @@ class DetectAnomaliesResponse {
               json['DetectAnomalyResult'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectAnomalyResult = this.detectAnomalyResult;
+    return {
+      if (detectAnomalyResult != null)
+        'DetectAnomalyResult': detectAnomalyResult,
+    };
   }
 }
 
@@ -1789,6 +1922,17 @@ class DetectAnomalyResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final isAnomalous = this.isAnomalous;
+    final source = this.source;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (isAnomalous != null) 'IsAnomalous': isAnomalous,
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// The source for an image.
@@ -1803,6 +1947,13 @@ class ImageSource {
     return ImageSource(
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -1822,6 +1973,14 @@ class InputS3Object {
     required this.key,
     this.versionId,
   });
+  factory InputS3Object.fromJson(Map<String, dynamic> json) {
+    return InputS3Object(
+      bucket: json['Bucket'] as String,
+      key: json['Key'] as String,
+      versionId: json['VersionId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final key = this.key;
@@ -1856,6 +2015,15 @@ class ListDatasetEntriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetEntries = this.datasetEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetEntries != null) 'DatasetEntries': datasetEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelsResponse {
@@ -1879,6 +2047,15 @@ class ListModelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      if (models != null) 'Models': models,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1904,6 +2081,15 @@ class ListProjectsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (projects != null) 'Projects': projects,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1920,6 +2106,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2004,6 +2197,37 @@ class ModelDescription {
       status: (json['Status'] as String?)?.toModelStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final evaluationEndTimestamp = this.evaluationEndTimestamp;
+    final evaluationManifest = this.evaluationManifest;
+    final evaluationResult = this.evaluationResult;
+    final kmsKeyId = this.kmsKeyId;
+    final modelArn = this.modelArn;
+    final modelVersion = this.modelVersion;
+    final outputConfig = this.outputConfig;
+    final performance = this.performance;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'Description': description,
+      if (evaluationEndTimestamp != null)
+        'EvaluationEndTimestamp': unixTimestampToJson(evaluationEndTimestamp),
+      if (evaluationManifest != null) 'EvaluationManifest': evaluationManifest,
+      if (evaluationResult != null) 'EvaluationResult': evaluationResult,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (outputConfig != null) 'OutputConfig': outputConfig,
+      if (performance != null) 'Performance': performance,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -2097,6 +2321,26 @@ class ModelMetadata {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final modelArn = this.modelArn;
+    final modelVersion = this.modelVersion;
+    final performance = this.performance;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'Description': description,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (performance != null) 'Performance': performance,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Information about the evaluation performance of a trained model.
@@ -2121,6 +2365,17 @@ class ModelPerformance {
       precision: json['Precision'] as double?,
       recall: json['Recall'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final f1Score = this.f1Score;
+    final precision = this.precision;
+    final recall = this.recall;
+    return {
+      if (f1Score != null) 'F1Score': f1Score,
+      if (precision != null) 'Precision': precision,
+      if (recall != null) 'Recall': recall,
+    };
   }
 }
 
@@ -2228,6 +2483,15 @@ class OutputS3Object {
       key: json['Key'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      'Bucket': bucket,
+      'Key': key,
+    };
+  }
 }
 
 /// Describe an Amazon Lookout for Vision project. For more information, see
@@ -2262,6 +2526,20 @@ class ProjectDescription {
       projectName: json['ProjectName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasets = this.datasets;
+    final projectArn = this.projectArn;
+    final projectName = this.projectName;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasets != null) 'Datasets': datasets,
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (projectName != null) 'ProjectName': projectName,
+    };
+  }
 }
 
 /// Metadata about an Amazon Lookout for Vision project.
@@ -2286,6 +2564,18 @@ class ProjectMetadata {
       projectArn: json['ProjectArn'] as String?,
       projectName: json['ProjectName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final projectArn = this.projectArn;
+    final projectName = this.projectName;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (projectName != null) 'ProjectName': projectName,
+    };
   }
 }
 
@@ -2331,6 +2621,13 @@ class StartModelResponse {
       status: (json['Status'] as String?)?.toModelHostingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class StopModelResponse {
@@ -2344,6 +2641,13 @@ class StopModelResponse {
     return StopModelResponse(
       status: (json['Status'] as String?)?.toModelHostingStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2382,12 +2686,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2402,6 +2714,13 @@ class UpdateDatasetEntriesResponse {
     return UpdateDatasetEntriesResponse(
       status: (json['Status'] as String?)?.toDatasetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 

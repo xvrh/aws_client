@@ -1340,6 +1340,19 @@ class ApplicationState {
       lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final applicationStatus = this.applicationStatus;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (applicationStatus != null)
+        'ApplicationStatus': applicationStatus.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+    };
+  }
 }
 
 enum ApplicationStatus {
@@ -1380,6 +1393,10 @@ class AssociateCreatedArtifactResult {
   factory AssociateCreatedArtifactResult.fromJson(Map<String, dynamic> _) {
     return AssociateCreatedArtifactResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateDiscoveredResourceResult {
@@ -1387,12 +1404,20 @@ class AssociateDiscoveredResourceResult {
   factory AssociateDiscoveredResourceResult.fromJson(Map<String, dynamic> _) {
     return AssociateDiscoveredResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateProgressUpdateStreamResult {
   CreateProgressUpdateStreamResult();
   factory CreateProgressUpdateStreamResult.fromJson(Map<String, dynamic> _) {
     return CreateProgressUpdateStreamResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1432,6 +1457,10 @@ class DeleteProgressUpdateStreamResult {
   factory DeleteProgressUpdateStreamResult.fromJson(Map<String, dynamic> _) {
     return DeleteProgressUpdateStreamResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeApplicationStateResult {
@@ -1452,6 +1481,17 @@ class DescribeApplicationStateResult {
       lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationStatus = this.applicationStatus;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    return {
+      if (applicationStatus != null)
+        'ApplicationStatus': applicationStatus.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+    };
+  }
 }
 
 class DescribeMigrationTaskResult {
@@ -1469,12 +1509,23 @@ class DescribeMigrationTaskResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final migrationTask = this.migrationTask;
+    return {
+      if (migrationTask != null) 'MigrationTask': migrationTask,
+    };
+  }
 }
 
 class DisassociateCreatedArtifactResult {
   DisassociateCreatedArtifactResult();
   factory DisassociateCreatedArtifactResult.fromJson(Map<String, dynamic> _) {
     return DisassociateCreatedArtifactResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1483,6 +1534,10 @@ class DisassociateDiscoveredResourceResult {
   factory DisassociateDiscoveredResourceResult.fromJson(
       Map<String, dynamic> _) {
     return DisassociateDiscoveredResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1522,6 +1577,10 @@ class ImportMigrationTaskResult {
   factory ImportMigrationTaskResult.fromJson(Map<String, dynamic> _) {
     return ImportMigrationTaskResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ListApplicationStatesResult {
@@ -1545,6 +1604,16 @@ class ListApplicationStatesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationStateList = this.applicationStateList;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationStateList != null)
+        'ApplicationStateList': applicationStateList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1570,6 +1639,16 @@ class ListCreatedArtifactsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdArtifactList = this.createdArtifactList;
+    final nextToken = this.nextToken;
+    return {
+      if (createdArtifactList != null)
+        'CreatedArtifactList': createdArtifactList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDiscoveredResourcesResult {
@@ -1593,6 +1672,16 @@ class ListDiscoveredResourcesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final discoveredResourceList = this.discoveredResourceList;
+    final nextToken = this.nextToken;
+    return {
+      if (discoveredResourceList != null)
+        'DiscoveredResourceList': discoveredResourceList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1620,6 +1709,16 @@ class ListMigrationTasksResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final migrationTaskSummaryList = this.migrationTaskSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (migrationTaskSummaryList != null)
+        'MigrationTaskSummaryList': migrationTaskSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListProgressUpdateStreamsResult {
@@ -1645,6 +1744,17 @@ class ListProgressUpdateStreamsResult {
               ProgressUpdateStreamSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final progressUpdateStreamSummaryList =
+        this.progressUpdateStreamSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (progressUpdateStreamSummaryList != null)
+        'ProgressUpdateStreamSummaryList': progressUpdateStreamSummaryList,
+    };
   }
 }
 
@@ -1688,6 +1798,24 @@ class MigrationTask {
           : null,
       updateDateTime: timeStampFromJson(json['UpdateDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final migrationTaskName = this.migrationTaskName;
+    final progressUpdateStream = this.progressUpdateStream;
+    final resourceAttributeList = this.resourceAttributeList;
+    final task = this.task;
+    final updateDateTime = this.updateDateTime;
+    return {
+      if (migrationTaskName != null) 'MigrationTaskName': migrationTaskName,
+      if (progressUpdateStream != null)
+        'ProgressUpdateStream': progressUpdateStream,
+      if (resourceAttributeList != null)
+        'ResourceAttributeList': resourceAttributeList,
+      if (task != null) 'Task': task,
+      if (updateDateTime != null)
+        'UpdateDateTime': unixTimestampToJson(updateDateTime),
+    };
   }
 }
 
@@ -1733,6 +1861,25 @@ class MigrationTaskSummary {
       updateDateTime: timeStampFromJson(json['UpdateDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final migrationTaskName = this.migrationTaskName;
+    final progressPercent = this.progressPercent;
+    final progressUpdateStream = this.progressUpdateStream;
+    final status = this.status;
+    final statusDetail = this.statusDetail;
+    final updateDateTime = this.updateDateTime;
+    return {
+      if (migrationTaskName != null) 'MigrationTaskName': migrationTaskName,
+      if (progressPercent != null) 'ProgressPercent': progressPercent,
+      if (progressUpdateStream != null)
+        'ProgressUpdateStream': progressUpdateStream,
+      if (status != null) 'Status': status.toValue(),
+      if (statusDetail != null) 'StatusDetail': statusDetail,
+      if (updateDateTime != null)
+        'UpdateDateTime': unixTimestampToJson(updateDateTime),
+    };
+  }
 }
 
 class NotifyApplicationStateResult {
@@ -1740,12 +1887,20 @@ class NotifyApplicationStateResult {
   factory NotifyApplicationStateResult.fromJson(Map<String, dynamic> _) {
     return NotifyApplicationStateResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class NotifyMigrationTaskStateResult {
   NotifyMigrationTaskStateResult();
   factory NotifyMigrationTaskStateResult.fromJson(Map<String, dynamic> _) {
     return NotifyMigrationTaskStateResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1764,12 +1919,24 @@ class ProgressUpdateStreamSummary {
       progressUpdateStreamName: json['ProgressUpdateStreamName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final progressUpdateStreamName = this.progressUpdateStreamName;
+    return {
+      if (progressUpdateStreamName != null)
+        'ProgressUpdateStreamName': progressUpdateStreamName,
+    };
+  }
 }
 
 class PutResourceAttributesResult {
   PutResourceAttributesResult();
   factory PutResourceAttributesResult.fromJson(Map<String, dynamic> _) {
     return PutResourceAttributesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

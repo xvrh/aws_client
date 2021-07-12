@@ -3598,6 +3598,25 @@ class AccountDetails {
       websiteURL: json['WebsiteURL'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalContactEmailAddresses =
+        this.additionalContactEmailAddresses;
+    final contactLanguage = this.contactLanguage;
+    final mailType = this.mailType;
+    final reviewDetails = this.reviewDetails;
+    final useCaseDescription = this.useCaseDescription;
+    final websiteURL = this.websiteURL;
+    return {
+      if (additionalContactEmailAddresses != null)
+        'AdditionalContactEmailAddresses': additionalContactEmailAddresses,
+      if (contactLanguage != null) 'ContactLanguage': contactLanguage.toValue(),
+      if (mailType != null) 'MailType': mailType.toValue(),
+      if (reviewDetails != null) 'ReviewDetails': reviewDetails,
+      if (useCaseDescription != null) 'UseCaseDescription': useCaseDescription,
+      if (websiteURL != null) 'WebsiteURL': websiteURL,
+    };
+  }
 }
 
 /// The action that you want to take if the required MX record can't be found
@@ -3663,6 +3682,17 @@ class BlacklistEntry {
       rblName: json['RblName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final listingTime = this.listingTime;
+    final rblName = this.rblName;
+    return {
+      if (description != null) 'Description': description,
+      if (listingTime != null) 'ListingTime': unixTimestampToJson(listingTime),
+      if (rblName != null) 'RblName': rblName,
+    };
+  }
 }
 
 /// Represents the body of the email message.
@@ -3681,6 +3711,17 @@ class Body {
     this.html,
     this.text,
   });
+  factory Body.fromJson(Map<String, dynamic> json) {
+    return Body(
+      html: json['Html'] != null
+          ? Content.fromJson(json['Html'] as Map<String, dynamic>)
+          : null,
+      text: json['Text'] != null
+          ? Content.fromJson(json['Text'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final html = this.html;
     final text = this.text;
@@ -3700,6 +3741,14 @@ class BulkEmailContent {
   BulkEmailContent({
     this.template,
   });
+  factory BulkEmailContent.fromJson(Map<String, dynamic> json) {
+    return BulkEmailContent(
+      template: json['Template'] != null
+          ? Template.fromJson(json['Template'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final template = this.template;
     return {
@@ -3738,6 +3787,21 @@ class BulkEmailEntry {
     this.replacementEmailContent,
     this.replacementTags,
   });
+  factory BulkEmailEntry.fromJson(Map<String, dynamic> json) {
+    return BulkEmailEntry(
+      destination:
+          Destination.fromJson(json['Destination'] as Map<String, dynamic>),
+      replacementEmailContent: json['ReplacementEmailContent'] != null
+          ? ReplacementEmailContent.fromJson(
+              json['ReplacementEmailContent'] as Map<String, dynamic>)
+          : null,
+      replacementTags: (json['ReplacementTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => MessageTag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final replacementEmailContent = this.replacementEmailContent;
@@ -3841,6 +3905,17 @@ class BulkEmailEntryResult {
       messageId: json['MessageId'] as String?,
       status: (json['Status'] as String?)?.toBulkEmailStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final messageId = this.messageId;
+    final status = this.status;
+    return {
+      if (error != null) 'Error': error,
+      if (messageId != null) 'MessageId': messageId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -4068,6 +4143,23 @@ class Contact {
       unsubscribeAll: json['UnsubscribeAll'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final topicDefaultPreferences = this.topicDefaultPreferences;
+    final topicPreferences = this.topicPreferences;
+    final unsubscribeAll = this.unsubscribeAll;
+    return {
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (topicDefaultPreferences != null)
+        'TopicDefaultPreferences': topicDefaultPreferences,
+      if (topicPreferences != null) 'TopicPreferences': topicPreferences,
+      if (unsubscribeAll != null) 'UnsubscribeAll': unsubscribeAll,
+    };
+  }
 }
 
 enum ContactLanguage {
@@ -4116,6 +4208,16 @@ class ContactList {
       contactListName: json['ContactListName'] as String?,
       lastUpdatedTimestamp: timeStampFromJson(json['LastUpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactListName = this.contactListName;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    return {
+      if (contactListName != null) 'ContactListName': contactListName,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+    };
   }
 }
 
@@ -4205,6 +4307,13 @@ class Content {
     required this.data,
     this.charset,
   });
+  factory Content.fromJson(Map<String, dynamic> json) {
+    return Content(
+      data: json['Data'] as String,
+      charset: json['Charset'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final charset = this.charset;
@@ -4223,6 +4332,10 @@ class CreateConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return CreateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4232,6 +4345,10 @@ class CreateConfigurationSetResponse {
   factory CreateConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return CreateConfigurationSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateContactListResponse {
@@ -4239,12 +4356,20 @@ class CreateContactListResponse {
   factory CreateContactListResponse.fromJson(Map<String, dynamic> _) {
     return CreateContactListResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateContactResponse {
   CreateContactResponse();
   factory CreateContactResponse.fromJson(Map<String, dynamic> _) {
     return CreateContactResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4256,6 +4381,10 @@ class CreateCustomVerificationEmailTemplateResponse {
       Map<String, dynamic> _) {
     return CreateCustomVerificationEmailTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4264,6 +4393,10 @@ class CreateDedicatedIpPoolResponse {
   CreateDedicatedIpPoolResponse();
   factory CreateDedicatedIpPoolResponse.fromJson(Map<String, dynamic> _) {
     return CreateDedicatedIpPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4292,6 +4425,15 @@ class CreateDeliverabilityTestReportResponse {
       reportId: json['ReportId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestStatus = this.deliverabilityTestStatus;
+    final reportId = this.reportId;
+    return {
+      'DeliverabilityTestStatus': deliverabilityTestStatus.toValue(),
+      'ReportId': reportId,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4300,6 +4442,10 @@ class CreateEmailIdentityPolicyResponse {
   CreateEmailIdentityPolicyResponse();
   factory CreateEmailIdentityPolicyResponse.fromJson(Map<String, dynamic> _) {
     return CreateEmailIdentityPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4337,6 +4483,18 @@ class CreateEmailIdentityResponse {
       verifiedForSendingStatus: json['VerifiedForSendingStatus'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimAttributes = this.dkimAttributes;
+    final identityType = this.identityType;
+    final verifiedForSendingStatus = this.verifiedForSendingStatus;
+    return {
+      if (dkimAttributes != null) 'DkimAttributes': dkimAttributes,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (verifiedForSendingStatus != null)
+        'VerifiedForSendingStatus': verifiedForSendingStatus,
+    };
+  }
 }
 
 /// If the action is successful, the service sends back an HTTP 200 response
@@ -4345,6 +4503,10 @@ class CreateEmailTemplateResponse {
   CreateEmailTemplateResponse();
   factory CreateEmailTemplateResponse.fromJson(Map<String, dynamic> _) {
     return CreateEmailTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4361,6 +4523,13 @@ class CreateImportJobResponse {
     return CreateImportJobResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -4400,6 +4569,23 @@ class CustomVerificationEmailTemplateMetadata {
       templateSubject: json['TemplateSubject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
+  }
 }
 
 /// An object that contains information about the volume of email sent on each
@@ -4433,6 +4619,18 @@ class DailyVolume {
               json['VolumeStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainIspPlacements = this.domainIspPlacements;
+    final startDate = this.startDate;
+    final volumeStatistics = this.volumeStatistics;
+    return {
+      if (domainIspPlacements != null)
+        'DomainIspPlacements': domainIspPlacements,
+      if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
+      if (volumeStatistics != null) 'VolumeStatistics': volumeStatistics,
+    };
   }
 }
 
@@ -4513,6 +4711,19 @@ class DedicatedIp {
       poolName: json['PoolName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ip = this.ip;
+    final warmupPercentage = this.warmupPercentage;
+    final warmupStatus = this.warmupStatus;
+    final poolName = this.poolName;
+    return {
+      'Ip': ip,
+      'WarmupPercentage': warmupPercentage,
+      'WarmupStatus': warmupStatus.toValue(),
+      if (poolName != null) 'PoolName': poolName,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4523,6 +4734,10 @@ class DeleteConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return DeleteConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4532,6 +4747,10 @@ class DeleteConfigurationSetResponse {
   factory DeleteConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConfigurationSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteContactListResponse {
@@ -4539,12 +4758,20 @@ class DeleteContactListResponse {
   factory DeleteContactListResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContactListResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteContactResponse {
   DeleteContactResponse();
   factory DeleteContactResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContactResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4556,6 +4783,10 @@ class DeleteCustomVerificationEmailTemplateResponse {
       Map<String, dynamic> _) {
     return DeleteCustomVerificationEmailTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4564,6 +4795,10 @@ class DeleteDedicatedIpPoolResponse {
   DeleteDedicatedIpPoolResponse();
   factory DeleteDedicatedIpPoolResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDedicatedIpPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4574,6 +4809,10 @@ class DeleteEmailIdentityPolicyResponse {
   factory DeleteEmailIdentityPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEmailIdentityPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4582,6 +4821,10 @@ class DeleteEmailIdentityResponse {
   DeleteEmailIdentityResponse();
   factory DeleteEmailIdentityResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEmailIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4592,6 +4835,10 @@ class DeleteEmailTemplateResponse {
   factory DeleteEmailTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEmailTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4600,6 +4847,10 @@ class DeleteSuppressedDestinationResponse {
   DeleteSuppressedDestinationResponse();
   factory DeleteSuppressedDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSuppressedDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4688,6 +4939,24 @@ class DeliverabilityTestReport {
       reportName: json['ReportName'] as String?,
       subject: json['Subject'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final deliverabilityTestStatus = this.deliverabilityTestStatus;
+    final fromEmailAddress = this.fromEmailAddress;
+    final reportId = this.reportId;
+    final reportName = this.reportName;
+    final subject = this.subject;
+    return {
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (deliverabilityTestStatus != null)
+        'DeliverabilityTestStatus': deliverabilityTestStatus.toValue(),
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (reportId != null) 'ReportId': reportId,
+      if (reportName != null) 'ReportName': reportName,
+      if (subject != null) 'Subject': subject,
+    };
   }
 }
 
@@ -4779,6 +5048,23 @@ class Destination {
     this.ccAddresses,
     this.toAddresses,
   });
+  factory Destination.fromJson(Map<String, dynamic> json) {
+    return Destination(
+      bccAddresses: (json['BccAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      ccAddresses: (json['CcAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      toAddresses: (json['ToAddresses'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bccAddresses = this.bccAddresses;
     final ccAddresses = this.ccAddresses;
@@ -4930,6 +5216,20 @@ class DkimAttributes {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final signingAttributesOrigin = this.signingAttributesOrigin;
+    final signingEnabled = this.signingEnabled;
+    final status = this.status;
+    final tokens = this.tokens;
+    return {
+      if (signingAttributesOrigin != null)
+        'SigningAttributesOrigin': signingAttributesOrigin.toValue(),
+      if (signingEnabled != null) 'SigningEnabled': signingEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (tokens != null) 'Tokens': tokens,
+    };
+  }
 }
 
 /// An object that contains information about the tokens used for setting up
@@ -4949,6 +5249,13 @@ class DkimSigningAttributes {
     required this.domainSigningPrivateKey,
     required this.domainSigningSelector,
   });
+  factory DkimSigningAttributes.fromJson(Map<String, dynamic> json) {
+    return DkimSigningAttributes(
+      domainSigningPrivateKey: json['DomainSigningPrivateKey'] as String,
+      domainSigningSelector: json['DomainSigningSelector'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final domainSigningPrivateKey = this.domainSigningPrivateKey;
     final domainSigningSelector = this.domainSigningSelector;
@@ -5158,6 +5465,41 @@ class DomainDeliverabilityCampaign {
       subject: json['Subject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignId = this.campaignId;
+    final deleteRate = this.deleteRate;
+    final esps = this.esps;
+    final firstSeenDateTime = this.firstSeenDateTime;
+    final fromAddress = this.fromAddress;
+    final imageUrl = this.imageUrl;
+    final inboxCount = this.inboxCount;
+    final lastSeenDateTime = this.lastSeenDateTime;
+    final projectedVolume = this.projectedVolume;
+    final readDeleteRate = this.readDeleteRate;
+    final readRate = this.readRate;
+    final sendingIps = this.sendingIps;
+    final spamCount = this.spamCount;
+    final subject = this.subject;
+    return {
+      if (campaignId != null) 'CampaignId': campaignId,
+      if (deleteRate != null) 'DeleteRate': deleteRate,
+      if (esps != null) 'Esps': esps,
+      if (firstSeenDateTime != null)
+        'FirstSeenDateTime': unixTimestampToJson(firstSeenDateTime),
+      if (fromAddress != null) 'FromAddress': fromAddress,
+      if (imageUrl != null) 'ImageUrl': imageUrl,
+      if (inboxCount != null) 'InboxCount': inboxCount,
+      if (lastSeenDateTime != null)
+        'LastSeenDateTime': unixTimestampToJson(lastSeenDateTime),
+      if (projectedVolume != null) 'ProjectedVolume': projectedVolume,
+      if (readDeleteRate != null) 'ReadDeleteRate': readDeleteRate,
+      if (readRate != null) 'ReadRate': readRate,
+      if (sendingIps != null) 'SendingIps': sendingIps,
+      if (spamCount != null) 'SpamCount': spamCount,
+      if (subject != null) 'Subject': subject,
+    };
+  }
 }
 
 /// An object that contains information about the Deliverability dashboard
@@ -5249,6 +5591,21 @@ class DomainIspPlacement {
       spamRawCount: json['SpamRawCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inboxPercentage = this.inboxPercentage;
+    final inboxRawCount = this.inboxRawCount;
+    final ispName = this.ispName;
+    final spamPercentage = this.spamPercentage;
+    final spamRawCount = this.spamRawCount;
+    return {
+      if (inboxPercentage != null) 'InboxPercentage': inboxPercentage,
+      if (inboxRawCount != null) 'InboxRawCount': inboxRawCount,
+      if (ispName != null) 'IspName': ispName,
+      if (spamPercentage != null) 'SpamPercentage': spamPercentage,
+      if (spamRawCount != null) 'SpamRawCount': spamRawCount,
+    };
+  }
 }
 
 /// An object that defines the entire content of the email, including the
@@ -5302,6 +5659,20 @@ class EmailContent {
     this.simple,
     this.template,
   });
+  factory EmailContent.fromJson(Map<String, dynamic> json) {
+    return EmailContent(
+      raw: json['Raw'] != null
+          ? RawMessage.fromJson(json['Raw'] as Map<String, dynamic>)
+          : null,
+      simple: json['Simple'] != null
+          ? Message.fromJson(json['Simple'] as Map<String, dynamic>)
+          : null,
+      template: json['Template'] != null
+          ? Template.fromJson(json['Template'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final raw = this.raw;
     final simple = this.simple;
@@ -5369,6 +5740,16 @@ class EmailTemplateMetadata {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       templateName: json['TemplateName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final templateName = this.templateName;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (templateName != null) 'TemplateName': templateName,
+    };
   }
 }
 
@@ -5451,6 +5832,28 @@ class EventDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final matchingEventTypes = this.matchingEventTypes;
+    final name = this.name;
+    final cloudWatchDestination = this.cloudWatchDestination;
+    final enabled = this.enabled;
+    final kinesisFirehoseDestination = this.kinesisFirehoseDestination;
+    final pinpointDestination = this.pinpointDestination;
+    final snsDestination = this.snsDestination;
+    return {
+      'MatchingEventTypes': matchingEventTypes.map((e) => e.toValue()).toList(),
+      'Name': name,
+      if (cloudWatchDestination != null)
+        'CloudWatchDestination': cloudWatchDestination,
+      if (enabled != null) 'Enabled': enabled,
+      if (kinesisFirehoseDestination != null)
+        'KinesisFirehoseDestination': kinesisFirehoseDestination,
+      if (pinpointDestination != null)
+        'PinpointDestination': pinpointDestination,
+      if (snsDestination != null) 'SnsDestination': snsDestination,
+    };
+  }
 }
 
 /// An object that defines the event destination. Specifically, it defines which
@@ -5500,6 +5903,32 @@ class EventDestinationDefinition {
     this.pinpointDestination,
     this.snsDestination,
   });
+  factory EventDestinationDefinition.fromJson(Map<String, dynamic> json) {
+    return EventDestinationDefinition(
+      cloudWatchDestination: json['CloudWatchDestination'] != null
+          ? CloudWatchDestination.fromJson(
+              json['CloudWatchDestination'] as Map<String, dynamic>)
+          : null,
+      enabled: json['Enabled'] as bool?,
+      kinesisFirehoseDestination: json['KinesisFirehoseDestination'] != null
+          ? KinesisFirehoseDestination.fromJson(
+              json['KinesisFirehoseDestination'] as Map<String, dynamic>)
+          : null,
+      matchingEventTypes: (json['MatchingEventTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventType())
+          .toList(),
+      pinpointDestination: json['PinpointDestination'] != null
+          ? PinpointDestination.fromJson(
+              json['PinpointDestination'] as Map<String, dynamic>)
+          : null,
+      snsDestination: json['SnsDestination'] != null
+          ? SnsDestination.fromJson(
+              json['SnsDestination'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cloudWatchDestination = this.cloudWatchDestination;
     final enabled = this.enabled;
@@ -5612,6 +6041,15 @@ class FailureInfo {
       failedRecordsS3Url: json['FailedRecordsS3Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final failedRecordsS3Url = this.failedRecordsS3Url;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (failedRecordsS3Url != null) 'FailedRecordsS3Url': failedRecordsS3Url,
+    };
+  }
 }
 
 /// A list of details about the email-sending capabilities of your Amazon SES
@@ -5701,6 +6139,28 @@ class GetAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIpAutoWarmupEnabled = this.dedicatedIpAutoWarmupEnabled;
+    final details = this.details;
+    final enforcementStatus = this.enforcementStatus;
+    final productionAccessEnabled = this.productionAccessEnabled;
+    final sendQuota = this.sendQuota;
+    final sendingEnabled = this.sendingEnabled;
+    final suppressionAttributes = this.suppressionAttributes;
+    return {
+      if (dedicatedIpAutoWarmupEnabled != null)
+        'DedicatedIpAutoWarmupEnabled': dedicatedIpAutoWarmupEnabled,
+      if (details != null) 'Details': details,
+      if (enforcementStatus != null) 'EnforcementStatus': enforcementStatus,
+      if (productionAccessEnabled != null)
+        'ProductionAccessEnabled': productionAccessEnabled,
+      if (sendQuota != null) 'SendQuota': sendQuota,
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+      if (suppressionAttributes != null)
+        'SuppressionAttributes': suppressionAttributes,
+    };
+  }
 }
 
 /// An object that contains information about blacklist events.
@@ -5724,6 +6184,13 @@ class GetBlacklistReportsResponse {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blacklistReport = this.blacklistReport;
+    return {
+      'BlacklistReport': blacklistReport,
+    };
+  }
 }
 
 /// Information about an event destination for a configuration set.
@@ -5743,6 +6210,13 @@ class GetConfigurationSetEventDestinationsResponse {
           .map((e) => EventDestination.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventDestinations = this.eventDestinations;
+    return {
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+    };
   }
 }
 
@@ -5813,6 +6287,26 @@ class GetConfigurationSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetName = this.configurationSetName;
+    final deliveryOptions = this.deliveryOptions;
+    final reputationOptions = this.reputationOptions;
+    final sendingOptions = this.sendingOptions;
+    final suppressionOptions = this.suppressionOptions;
+    final tags = this.tags;
+    final trackingOptions = this.trackingOptions;
+    return {
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (deliveryOptions != null) 'DeliveryOptions': deliveryOptions,
+      if (reputationOptions != null) 'ReputationOptions': reputationOptions,
+      if (sendingOptions != null) 'SendingOptions': sendingOptions,
+      if (suppressionOptions != null) 'SuppressionOptions': suppressionOptions,
+      if (tags != null) 'Tags': tags,
+      if (trackingOptions != null) 'TrackingOptions': trackingOptions,
+    };
+  }
 }
 
 class GetContactListResponse {
@@ -5858,6 +6352,25 @@ class GetContactListResponse {
           .map((e) => Topic.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactListName = this.contactListName;
+    final createdTimestamp = this.createdTimestamp;
+    final description = this.description;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final tags = this.tags;
+    final topics = this.topics;
+    return {
+      if (contactListName != null) 'ContactListName': contactListName,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (description != null) 'Description': description,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (tags != null) 'Tags': tags,
+      if (topics != null) 'Topics': topics,
+    };
   }
 }
 
@@ -5915,6 +6428,30 @@ class GetContactResponse {
       unsubscribeAll: json['UnsubscribeAll'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributesData = this.attributesData;
+    final contactListName = this.contactListName;
+    final createdTimestamp = this.createdTimestamp;
+    final emailAddress = this.emailAddress;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final topicDefaultPreferences = this.topicDefaultPreferences;
+    final topicPreferences = this.topicPreferences;
+    final unsubscribeAll = this.unsubscribeAll;
+    return {
+      if (attributesData != null) 'AttributesData': attributesData,
+      if (contactListName != null) 'ContactListName': contactListName,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (topicDefaultPreferences != null)
+        'TopicDefaultPreferences': topicDefaultPreferences,
+      if (topicPreferences != null) 'TopicPreferences': topicPreferences,
+      if (unsubscribeAll != null) 'UnsubscribeAll': unsubscribeAll,
+    };
+  }
 }
 
 /// The following elements are returned by the service.
@@ -5958,6 +6495,25 @@ class GetCustomVerificationEmailTemplateResponse {
       templateSubject: json['TemplateSubject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateContent = this.templateContent;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateContent != null) 'TemplateContent': templateContent,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
+  }
 }
 
 /// Information about a dedicated IP address.
@@ -5974,6 +6530,13 @@ class GetDedicatedIpResponse {
           ? DedicatedIp.fromJson(json['DedicatedIp'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIp = this.dedicatedIp;
+    return {
+      if (dedicatedIp != null) 'DedicatedIp': dedicatedIp,
+    };
   }
 }
 
@@ -6001,6 +6564,15 @@ class GetDedicatedIpsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIps = this.dedicatedIps;
+    final nextToken = this.nextToken;
+    return {
+      if (dedicatedIps != null) 'DedicatedIps': dedicatedIps,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6060,6 +6632,26 @@ class GetDeliverabilityDashboardOptionsResponse {
       subscriptionExpiryDate: timeStampFromJson(json['SubscriptionExpiryDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardEnabled = this.dashboardEnabled;
+    final accountStatus = this.accountStatus;
+    final activeSubscribedDomains = this.activeSubscribedDomains;
+    final pendingExpirationSubscribedDomains =
+        this.pendingExpirationSubscribedDomains;
+    final subscriptionExpiryDate = this.subscriptionExpiryDate;
+    return {
+      'DashboardEnabled': dashboardEnabled,
+      if (accountStatus != null) 'AccountStatus': accountStatus.toValue(),
+      if (activeSubscribedDomains != null)
+        'ActiveSubscribedDomains': activeSubscribedDomains,
+      if (pendingExpirationSubscribedDomains != null)
+        'PendingExpirationSubscribedDomains':
+            pendingExpirationSubscribedDomains,
+      if (subscriptionExpiryDate != null)
+        'SubscriptionExpiryDate': unixTimestampToJson(subscriptionExpiryDate),
+    };
+  }
 }
 
 /// The results of the predictive inbox placement test.
@@ -6109,6 +6701,21 @@ class GetDeliverabilityTestReportResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestReport = this.deliverabilityTestReport;
+    final ispPlacements = this.ispPlacements;
+    final overallPlacement = this.overallPlacement;
+    final message = this.message;
+    final tags = this.tags;
+    return {
+      'DeliverabilityTestReport': deliverabilityTestReport,
+      'IspPlacements': ispPlacements,
+      'OverallPlacement': overallPlacement,
+      if (message != null) 'Message': message,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// An object that contains all the deliverability data for a specific campaign.
@@ -6127,6 +6734,13 @@ class GetDomainDeliverabilityCampaignResponse {
       domainDeliverabilityCampaign: DomainDeliverabilityCampaign.fromJson(
           json['DomainDeliverabilityCampaign'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainDeliverabilityCampaign = this.domainDeliverabilityCampaign;
+    return {
+      'DomainDeliverabilityCampaign': domainDeliverabilityCampaign,
+    };
   }
 }
 
@@ -6158,6 +6772,15 @@ class GetDomainStatisticsReportResponse {
           OverallVolume.fromJson(json['OverallVolume'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dailyVolumes = this.dailyVolumes;
+    final overallVolume = this.overallVolume;
+    return {
+      'DailyVolumes': dailyVolumes,
+      'OverallVolume': overallVolume,
+    };
+  }
 }
 
 /// Identity policies associated with email identity.
@@ -6173,6 +6796,13 @@ class GetEmailIdentityPoliciesResponse {
       policies: (json['Policies'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      if (policies != null) 'Policies': policies,
+    };
   }
 }
 
@@ -6252,6 +6882,30 @@ class GetEmailIdentityResponse {
       verifiedForSendingStatus: json['VerifiedForSendingStatus'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetName = this.configurationSetName;
+    final dkimAttributes = this.dkimAttributes;
+    final feedbackForwardingStatus = this.feedbackForwardingStatus;
+    final identityType = this.identityType;
+    final mailFromAttributes = this.mailFromAttributes;
+    final policies = this.policies;
+    final tags = this.tags;
+    final verifiedForSendingStatus = this.verifiedForSendingStatus;
+    return {
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (dkimAttributes != null) 'DkimAttributes': dkimAttributes,
+      if (feedbackForwardingStatus != null)
+        'FeedbackForwardingStatus': feedbackForwardingStatus,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (mailFromAttributes != null) 'MailFromAttributes': mailFromAttributes,
+      if (policies != null) 'Policies': policies,
+      if (tags != null) 'Tags': tags,
+      if (verifiedForSendingStatus != null)
+        'VerifiedForSendingStatus': verifiedForSendingStatus,
+    };
+  }
 }
 
 /// The following element is returned by the service.
@@ -6273,6 +6927,15 @@ class GetEmailTemplateResponse {
           json['TemplateContent'] as Map<String, dynamic>),
       templateName: json['TemplateName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final templateContent = this.templateContent;
+    final templateName = this.templateName;
+    return {
+      'TemplateContent': templateContent,
+      'TemplateName': templateName,
+    };
   }
 }
 
@@ -6339,6 +7002,32 @@ class GetImportJobResponse {
       processedRecordsCount: json['ProcessedRecordsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedTimestamp = this.completedTimestamp;
+    final createdTimestamp = this.createdTimestamp;
+    final failedRecordsCount = this.failedRecordsCount;
+    final failureInfo = this.failureInfo;
+    final importDataSource = this.importDataSource;
+    final importDestination = this.importDestination;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    final processedRecordsCount = this.processedRecordsCount;
+    return {
+      if (completedTimestamp != null)
+        'CompletedTimestamp': unixTimestampToJson(completedTimestamp),
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (failedRecordsCount != null) 'FailedRecordsCount': failedRecordsCount,
+      if (failureInfo != null) 'FailureInfo': failureInfo,
+      if (importDataSource != null) 'ImportDataSource': importDataSource,
+      if (importDestination != null) 'ImportDestination': importDestination,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (processedRecordsCount != null)
+        'ProcessedRecordsCount': processedRecordsCount,
+    };
+  }
 }
 
 /// Information about the suppressed email address.
@@ -6354,6 +7043,13 @@ class GetSuppressedDestinationResponse {
       suppressedDestination: SuppressedDestination.fromJson(
           json['SuppressedDestination'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suppressedDestination = this.suppressedDestination;
+    return {
+      'SuppressedDestination': suppressedDestination,
+    };
   }
 }
 
@@ -6397,6 +7093,17 @@ class IdentityInfo {
       identityType: (json['IdentityType'] as String?)?.toIdentityType(),
       sendingEnabled: json['SendingEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityName = this.identityName;
+    final identityType = this.identityType;
+    final sendingEnabled = this.sendingEnabled;
+    return {
+      if (identityName != null) 'IdentityName': identityName,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+    };
   }
 }
 
@@ -6567,6 +7274,20 @@ class ImportJobSummary {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final importDestination = this.importDestination;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (importDestination != null) 'ImportDestination': importDestination,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 /// An object that contains information about the inbox placement data settings
@@ -6626,6 +7347,16 @@ class IspPlacement {
               json['PlacementStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ispName = this.ispName;
+    final placementStatistics = this.placementStatistics;
+    return {
+      if (ispName != null) 'IspName': ispName,
+      if (placementStatistics != null)
+        'PlacementStatistics': placementStatistics,
+    };
   }
 }
 
@@ -6727,6 +7458,15 @@ class ListConfigurationSetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListContactListsResponse {
@@ -6752,6 +7492,15 @@ class ListContactListsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactLists = this.contactLists;
+    final nextToken = this.nextToken;
+    return {
+      if (contactLists != null) 'ContactLists': contactLists,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A filter that can be applied to a list of contacts.
@@ -6767,6 +7516,16 @@ class ListContactsFilter {
     this.filteredStatus,
     this.topicFilter,
   });
+  factory ListContactsFilter.fromJson(Map<String, dynamic> json) {
+    return ListContactsFilter(
+      filteredStatus:
+          (json['FilteredStatus'] as String?)?.toSubscriptionStatus(),
+      topicFilter: json['TopicFilter'] != null
+          ? TopicFilter.fromJson(json['TopicFilter'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final filteredStatus = this.filteredStatus;
     final topicFilter = this.topicFilter;
@@ -6800,6 +7559,15 @@ class ListContactsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contacts = this.contacts;
+    final nextToken = this.nextToken;
+    return {
+      if (contacts != null) 'Contacts': contacts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The following elements are returned by the service.
@@ -6831,6 +7599,17 @@ class ListCustomVerificationEmailTemplatesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customVerificationEmailTemplates =
+        this.customVerificationEmailTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (customVerificationEmailTemplates != null)
+        'CustomVerificationEmailTemplates': customVerificationEmailTemplates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of dedicated IP pools.
@@ -6857,6 +7636,15 @@ class ListDedicatedIpPoolsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIpPools = this.dedicatedIpPools;
+    final nextToken = this.nextToken;
+    return {
+      if (dedicatedIpPools != null) 'DedicatedIpPools': dedicatedIpPools,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6887,6 +7675,15 @@ class ListDeliverabilityTestReportsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestReports = this.deliverabilityTestReports;
+    final nextToken = this.nextToken;
+    return {
+      'DeliverabilityTestReports': deliverabilityTestReports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6920,6 +7717,15 @@ class ListDomainDeliverabilityCampaignsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainDeliverabilityCampaigns = this.domainDeliverabilityCampaigns;
+    final nextToken = this.nextToken;
+    return {
+      'DomainDeliverabilityCampaigns': domainDeliverabilityCampaigns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of all of the identities that you've attempted to verify, regardless
@@ -6948,6 +7754,15 @@ class ListEmailIdentitiesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emailIdentities = this.emailIdentities;
+    final nextToken = this.nextToken;
+    return {
+      if (emailIdentities != null) 'EmailIdentities': emailIdentities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The following elements are returned by the service.
@@ -6973,6 +7788,15 @@ class ListEmailTemplatesResponse {
           .map((e) => EmailTemplateMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final templatesMetadata = this.templatesMetadata;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (templatesMetadata != null) 'TemplatesMetadata': templatesMetadata,
+    };
   }
 }
 
@@ -7001,6 +7825,15 @@ class ListImportJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final importJobs = this.importJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (importJobs != null) 'ImportJobs': importJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// An object used to specify a list or topic to which an email belongs, which
@@ -7016,6 +7849,13 @@ class ListManagementOptions {
     required this.contactListName,
     this.topicName,
   });
+  factory ListManagementOptions.fromJson(Map<String, dynamic> json) {
+    return ListManagementOptions(
+      contactListName: json['ContactListName'] as String,
+      topicName: json['TopicName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final contactListName = this.contactListName;
     final topicName = this.topicName;
@@ -7054,6 +7894,16 @@ class ListSuppressedDestinationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final suppressedDestinationSummaries = this.suppressedDestinationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (suppressedDestinationSummaries != null)
+        'SuppressedDestinationSummaries': suppressedDestinationSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -7072,6 +7922,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
   }
 }
 
@@ -7129,6 +7986,17 @@ class MailFromAttributes {
       mailFromDomainStatus:
           (json['MailFromDomainStatus'] as String).toMailFromDomainStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final behaviorOnMxFailure = this.behaviorOnMxFailure;
+    final mailFromDomain = this.mailFromDomain;
+    final mailFromDomainStatus = this.mailFromDomainStatus;
+    return {
+      'BehaviorOnMxFailure': behaviorOnMxFailure.toValue(),
+      'MailFromDomain': mailFromDomain,
+      'MailFromDomainStatus': mailFromDomainStatus.toValue(),
+    };
   }
 }
 
@@ -7236,6 +8104,13 @@ class Message {
     required this.body,
     required this.subject,
   });
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      body: Body.fromJson(json['Body'] as Map<String, dynamic>),
+      subject: Content.fromJson(json['Subject'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final subject = this.subject;
@@ -7281,6 +8156,13 @@ class MessageTag {
     required this.name,
     required this.value,
   });
+  factory MessageTag.fromJson(Map<String, dynamic> json) {
+    return MessageTag(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -7323,6 +8205,18 @@ class OverallVolume {
               json['VolumeStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainIspPlacements = this.domainIspPlacements;
+    final readRatePercent = this.readRatePercent;
+    final volumeStatistics = this.volumeStatistics;
+    return {
+      if (domainIspPlacements != null)
+        'DomainIspPlacements': domainIspPlacements,
+      if (readRatePercent != null) 'ReadRatePercent': readRatePercent,
+      if (volumeStatistics != null) 'VolumeStatistics': volumeStatistics,
+    };
   }
 }
 
@@ -7392,6 +8286,21 @@ class PlacementStatistics {
       spfPercentage: json['SpfPercentage'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimPercentage = this.dkimPercentage;
+    final inboxPercentage = this.inboxPercentage;
+    final missingPercentage = this.missingPercentage;
+    final spamPercentage = this.spamPercentage;
+    final spfPercentage = this.spfPercentage;
+    return {
+      if (dkimPercentage != null) 'DkimPercentage': dkimPercentage,
+      if (inboxPercentage != null) 'InboxPercentage': inboxPercentage,
+      if (missingPercentage != null) 'MissingPercentage': missingPercentage,
+      if (spamPercentage != null) 'SpamPercentage': spamPercentage,
+      if (spfPercentage != null) 'SpfPercentage': spfPercentage,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7402,6 +8311,10 @@ class PutAccountDedicatedIpWarmupAttributesResponse {
       Map<String, dynamic> _) {
     return PutAccountDedicatedIpWarmupAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7411,6 +8324,10 @@ class PutAccountDetailsResponse {
   factory PutAccountDetailsResponse.fromJson(Map<String, dynamic> _) {
     return PutAccountDetailsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7419,6 +8336,10 @@ class PutAccountSendingAttributesResponse {
   PutAccountSendingAttributesResponse();
   factory PutAccountSendingAttributesResponse.fromJson(Map<String, dynamic> _) {
     return PutAccountSendingAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7430,6 +8351,10 @@ class PutAccountSuppressionAttributesResponse {
       Map<String, dynamic> _) {
     return PutAccountSuppressionAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7439,6 +8364,10 @@ class PutConfigurationSetDeliveryOptionsResponse {
   factory PutConfigurationSetDeliveryOptionsResponse.fromJson(
       Map<String, dynamic> _) {
     return PutConfigurationSetDeliveryOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7450,6 +8379,10 @@ class PutConfigurationSetReputationOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetReputationOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7459,6 +8392,10 @@ class PutConfigurationSetSendingOptionsResponse {
   factory PutConfigurationSetSendingOptionsResponse.fromJson(
       Map<String, dynamic> _) {
     return PutConfigurationSetSendingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7470,6 +8407,10 @@ class PutConfigurationSetSuppressionOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetSuppressionOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7480,6 +8421,10 @@ class PutConfigurationSetTrackingOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetTrackingOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7488,6 +8433,10 @@ class PutDedicatedIpInPoolResponse {
   PutDedicatedIpInPoolResponse();
   factory PutDedicatedIpInPoolResponse.fromJson(Map<String, dynamic> _) {
     return PutDedicatedIpInPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7499,6 +8448,10 @@ class PutDedicatedIpWarmupAttributesResponse {
       Map<String, dynamic> _) {
     return PutDedicatedIpWarmupAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A response that indicates whether the Deliverability dashboard is enabled.
@@ -7507,6 +8460,10 @@ class PutDeliverabilityDashboardOptionResponse {
   factory PutDeliverabilityDashboardOptionResponse.fromJson(
       Map<String, dynamic> _) {
     return PutDeliverabilityDashboardOptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7518,6 +8475,10 @@ class PutEmailIdentityConfigurationSetAttributesResponse {
       Map<String, dynamic> _) {
     return PutEmailIdentityConfigurationSetAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7527,6 +8488,10 @@ class PutEmailIdentityDkimAttributesResponse {
   factory PutEmailIdentityDkimAttributesResponse.fromJson(
       Map<String, dynamic> _) {
     return PutEmailIdentityDkimAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7604,6 +8569,15 @@ class PutEmailIdentityDkimSigningAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimStatus = this.dkimStatus;
+    final dkimTokens = this.dkimTokens;
+    return {
+      if (dkimStatus != null) 'DkimStatus': dkimStatus.toValue(),
+      if (dkimTokens != null) 'DkimTokens': dkimTokens,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7613,6 +8587,10 @@ class PutEmailIdentityFeedbackAttributesResponse {
   factory PutEmailIdentityFeedbackAttributesResponse.fromJson(
       Map<String, dynamic> _) {
     return PutEmailIdentityFeedbackAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7624,6 +8602,10 @@ class PutEmailIdentityMailFromAttributesResponse {
       Map<String, dynamic> _) {
     return PutEmailIdentityMailFromAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -7632,6 +8614,10 @@ class PutSuppressedDestinationResponse {
   PutSuppressedDestinationResponse();
   factory PutSuppressedDestinationResponse.fromJson(Map<String, dynamic> _) {
     return PutSuppressedDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7671,6 +8657,12 @@ class RawMessage {
   RawMessage({
     required this.data,
   });
+  factory RawMessage.fromJson(Map<String, dynamic> json) {
+    return RawMessage(
+      data: _s.decodeUint8List(json['Data']! as String),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -7690,6 +8682,15 @@ class ReplacementEmailContent {
   ReplacementEmailContent({
     this.replacementTemplate,
   });
+  factory ReplacementEmailContent.fromJson(Map<String, dynamic> json) {
+    return ReplacementEmailContent(
+      replacementTemplate: json['ReplacementTemplate'] != null
+          ? ReplacementTemplate.fromJson(
+              json['ReplacementTemplate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final replacementTemplate = this.replacementTemplate;
     return {
@@ -7710,6 +8711,12 @@ class ReplacementTemplate {
   ReplacementTemplate({
     this.replacementTemplateData,
   });
+  factory ReplacementTemplate.fromJson(Map<String, dynamic> json) {
+    return ReplacementTemplate(
+      replacementTemplateData: json['ReplacementTemplateData'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final replacementTemplateData = this.replacementTemplateData;
     return {
@@ -7793,6 +8800,15 @@ class ReviewDetails {
       status: (json['Status'] as String?)?.toReviewStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final caseId = this.caseId;
+    final status = this.status;
+    return {
+      if (caseId != null) 'CaseId': caseId,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum ReviewStatus {
@@ -7848,6 +8864,13 @@ class SendBulkEmailResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bulkEmailEntryResults = this.bulkEmailEntryResults;
+    return {
+      'BulkEmailEntryResults': bulkEmailEntryResults,
+    };
+  }
 }
 
 /// The following element is returned by the service.
@@ -7864,6 +8887,13 @@ class SendCustomVerificationEmailResponse {
     return SendCustomVerificationEmailResponse(
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -7886,6 +8916,13 @@ class SendEmailResponse {
     return SendEmailResponse(
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -7916,6 +8953,17 @@ class SendQuota {
       maxSendRate: json['MaxSendRate'] as double?,
       sentLast24Hours: json['SentLast24Hours'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max24HourSend = this.max24HourSend;
+    final maxSendRate = this.maxSendRate;
+    final sentLast24Hours = this.sentLast24Hours;
+    return {
+      if (max24HourSend != null) 'Max24HourSend': max24HourSend,
+      if (maxSendRate != null) 'MaxSendRate': maxSendRate,
+      if (sentLast24Hours != null) 'SentLast24Hours': sentLast24Hours,
+    };
   }
 }
 
@@ -8034,6 +9082,19 @@ class SuppressedDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final lastUpdateTime = this.lastUpdateTime;
+    final reason = this.reason;
+    final attributes = this.attributes;
+    return {
+      'EmailAddress': emailAddress,
+      'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      'Reason': reason.toValue(),
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// An object that contains additional attributes that are related an email
@@ -8056,6 +9117,15 @@ class SuppressedDestinationAttributes {
       feedbackId: json['FeedbackId'] as String?,
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final feedbackId = this.feedbackId;
+    final messageId = this.messageId;
+    return {
+      if (feedbackId != null) 'FeedbackId': feedbackId,
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -8084,6 +9154,17 @@ class SuppressedDestinationSummary {
           nonNullableTimeStampFromJson(json['LastUpdateTime'] as Object),
       reason: (json['Reason'] as String).toSuppressionListReason(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final lastUpdateTime = this.lastUpdateTime;
+    final reason = this.reason;
+    return {
+      'EmailAddress': emailAddress,
+      'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      'Reason': reason.toValue(),
+    };
   }
 }
 
@@ -8118,6 +9199,14 @@ class SuppressionAttributes {
           .map((e) => (e as String).toSuppressionListReason())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suppressedReasons = this.suppressedReasons;
+    return {
+      if (suppressedReasons != null)
+        'SuppressedReasons': suppressedReasons.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -8354,6 +9443,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An object that defines the email template to use for an email message, and
@@ -8380,6 +9473,14 @@ class Template {
     this.templateData,
     this.templateName,
   });
+  factory Template.fromJson(Map<String, dynamic> json) {
+    return Template(
+      templateArn: json['TemplateArn'] as String?,
+      templateData: json['TemplateData'] as String?,
+      templateName: json['TemplateName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final templateArn = this.templateArn;
     final templateData = this.templateData;
@@ -8406,6 +9507,13 @@ class TestRenderEmailTemplateResponse {
     return TestRenderEmailTemplateResponse(
       renderedTemplate: json['RenderedTemplate'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final renderedTemplate = this.renderedTemplate;
+    return {
+      'RenderedTemplate': renderedTemplate,
+    };
   }
 }
 
@@ -8502,6 +9610,14 @@ class TopicFilter {
     this.topicName,
     this.useDefaultIfPreferenceUnavailable,
   });
+  factory TopicFilter.fromJson(Map<String, dynamic> json) {
+    return TopicFilter(
+      topicName: json['TopicName'] as String?,
+      useDefaultIfPreferenceUnavailable:
+          json['UseDefaultIfPreferenceUnavailable'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final topicName = this.topicName;
     final useDefaultIfPreferenceUnavailable =
@@ -8580,6 +9696,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -8590,6 +9710,10 @@ class UpdateConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return UpdateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactListResponse {
@@ -8597,12 +9721,20 @@ class UpdateContactListResponse {
   factory UpdateContactListResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactListResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactResponse {
   UpdateContactResponse();
   factory UpdateContactResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8614,6 +9746,10 @@ class UpdateCustomVerificationEmailTemplateResponse {
       Map<String, dynamic> _) {
     return UpdateCustomVerificationEmailTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -8623,6 +9759,10 @@ class UpdateEmailIdentityPolicyResponse {
   factory UpdateEmailIdentityPolicyResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEmailIdentityPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// If the action is successful, the service sends back an HTTP 200 response
@@ -8631,6 +9771,10 @@ class UpdateEmailTemplateResponse {
   UpdateEmailTemplateResponse();
   factory UpdateEmailTemplateResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEmailTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8665,6 +9809,19 @@ class VolumeStatistics {
       projectedSpam: json['ProjectedSpam'] as int?,
       spamRawCount: json['SpamRawCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inboxRawCount = this.inboxRawCount;
+    final projectedInbox = this.projectedInbox;
+    final projectedSpam = this.projectedSpam;
+    final spamRawCount = this.spamRawCount;
+    return {
+      if (inboxRawCount != null) 'InboxRawCount': inboxRawCount,
+      if (projectedInbox != null) 'ProjectedInbox': projectedInbox,
+      if (projectedSpam != null) 'ProjectedSpam': projectedSpam,
+      if (spamRawCount != null) 'SpamRawCount': spamRawCount,
+    };
   }
 }
 

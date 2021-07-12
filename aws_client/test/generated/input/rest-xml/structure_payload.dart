@@ -88,6 +88,19 @@ class FooShape {
   FooShape({
     this.baz,
   });
+  factory FooShape.fromJson(Map<String, dynamic> json) {
+    return FooShape(
+      baz: json['baz'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baz = this.baz;
+    return {
+      if (baz != null) 'baz': baz,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final baz = this.baz;
     final $children = <_s.XmlNode>[

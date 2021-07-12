@@ -1231,11 +1231,27 @@ class AccessPoliciesStatus {
     required this.options,
     required this.status,
   });
+  factory AccessPoliciesStatus.fromJson(Map<String, dynamic> json) {
+    return AccessPoliciesStatus(
+      options: json['Options'] as String,
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory AccessPoliciesStatus.fromXml(_s.XmlElement elem) {
     return AccessPoliciesStatus(
       options: _s.extractXmlStringValue(elem, 'Options')!,
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1328,6 +1344,18 @@ class AnalysisOptions {
     this.stopwords,
     this.synonyms,
   });
+  factory AnalysisOptions.fromJson(Map<String, dynamic> json) {
+    return AnalysisOptions(
+      algorithmicStemming:
+          (json['AlgorithmicStemming'] as String?)?.toAlgorithmicStemming(),
+      japaneseTokenizationDictionary:
+          json['JapaneseTokenizationDictionary'] as String?,
+      stemmingDictionary: json['StemmingDictionary'] as String?,
+      stopwords: json['Stopwords'] as String?,
+      synonyms: json['Synonyms'] as String?,
+    );
+  }
+
   factory AnalysisOptions.fromXml(_s.XmlElement elem) {
     return AnalysisOptions(
       algorithmicStemming: _s
@@ -1375,6 +1403,18 @@ class AnalysisScheme {
     required this.analysisSchemeName,
     this.analysisOptions,
   });
+  factory AnalysisScheme.fromJson(Map<String, dynamic> json) {
+    return AnalysisScheme(
+      analysisSchemeLanguage:
+          (json['AnalysisSchemeLanguage'] as String).toAnalysisSchemeLanguage(),
+      analysisSchemeName: json['AnalysisSchemeName'] as String,
+      analysisOptions: json['AnalysisOptions'] != null
+          ? AnalysisOptions.fromJson(
+              json['AnalysisOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AnalysisScheme.fromXml(_s.XmlElement elem) {
     return AnalysisScheme(
       analysisSchemeLanguage: _s
@@ -1603,11 +1643,27 @@ class AnalysisSchemeStatus {
     required this.options,
     required this.status,
   });
+  factory AnalysisSchemeStatus.fromJson(Map<String, dynamic> json) {
+    return AnalysisSchemeStatus(
+      options: AnalysisScheme.fromJson(json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory AnalysisSchemeStatus.fromXml(_s.XmlElement elem) {
     return AnalysisSchemeStatus(
       options: AnalysisScheme.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1621,11 +1677,27 @@ class AvailabilityOptionsStatus {
     required this.options,
     required this.status,
   });
+  factory AvailabilityOptionsStatus.fromJson(Map<String, dynamic> json) {
+    return AvailabilityOptionsStatus(
+      options: json['Options'] as bool,
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory AvailabilityOptionsStatus.fromXml(_s.XmlElement elem) {
     return AvailabilityOptionsStatus(
       options: _s.extractXmlBoolValue(elem, 'Options')!,
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1637,12 +1709,28 @@ class BuildSuggestersResponse {
   BuildSuggestersResponse({
     this.fieldNames,
   });
+  factory BuildSuggestersResponse.fromJson(Map<String, dynamic> json) {
+    return BuildSuggestersResponse(
+      fieldNames: (json['FieldNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory BuildSuggestersResponse.fromXml(_s.XmlElement elem) {
     return BuildSuggestersResponse(
       fieldNames: _s
           .extractXmlChild(elem, 'FieldNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+    };
   }
 }
 
@@ -1654,12 +1742,27 @@ class CreateDomainResponse {
   CreateDomainResponse({
     this.domainStatus,
   });
+  factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
+    return CreateDomainResponse(
+      domainStatus: json['DomainStatus'] != null
+          ? DomainStatus.fromJson(json['DomainStatus'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDomainResponse.fromXml(_s.XmlElement elem) {
     return CreateDomainResponse(
       domainStatus: _s
           .extractXmlChild(elem, 'DomainStatus')
           ?.let((e) => DomainStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -1689,6 +1792,16 @@ class DateArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+  factory DateArrayOptions.fromJson(Map<String, dynamic> json) {
+    return DateArrayOptions(
+      defaultValue: json['DefaultValue'] as String?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sourceFields: json['SourceFields'] as String?,
+    );
+  }
+
   factory DateArrayOptions.fromXml(_s.XmlElement elem) {
     return DateArrayOptions(
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
@@ -1744,6 +1857,17 @@ class DateOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory DateOptions.fromJson(Map<String, dynamic> json) {
+    return DateOptions(
+      defaultValue: json['DefaultValue'] as String?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory DateOptions.fromXml(_s.XmlElement elem) {
     return DateOptions(
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
@@ -1781,11 +1905,25 @@ class DefineAnalysisSchemeResponse {
   DefineAnalysisSchemeResponse({
     required this.analysisScheme,
   });
+  factory DefineAnalysisSchemeResponse.fromJson(Map<String, dynamic> json) {
+    return DefineAnalysisSchemeResponse(
+      analysisScheme: AnalysisSchemeStatus.fromJson(
+          json['AnalysisScheme'] as Map<String, dynamic>),
+    );
+  }
+
   factory DefineAnalysisSchemeResponse.fromXml(_s.XmlElement elem) {
     return DefineAnalysisSchemeResponse(
       analysisScheme: AnalysisSchemeStatus.fromXml(
           _s.extractXmlChild(elem, 'AnalysisScheme')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisScheme = this.analysisScheme;
+    return {
+      'AnalysisScheme': analysisScheme,
+    };
   }
 }
 
@@ -1797,11 +1935,25 @@ class DefineExpressionResponse {
   DefineExpressionResponse({
     required this.expression,
   });
+  factory DefineExpressionResponse.fromJson(Map<String, dynamic> json) {
+    return DefineExpressionResponse(
+      expression:
+          ExpressionStatus.fromJson(json['Expression'] as Map<String, dynamic>),
+    );
+  }
+
   factory DefineExpressionResponse.fromXml(_s.XmlElement elem) {
     return DefineExpressionResponse(
       expression:
           ExpressionStatus.fromXml(_s.extractXmlChild(elem, 'Expression')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    return {
+      'Expression': expression,
+    };
   }
 }
 
@@ -1813,11 +1965,25 @@ class DefineIndexFieldResponse {
   DefineIndexFieldResponse({
     required this.indexField,
   });
+  factory DefineIndexFieldResponse.fromJson(Map<String, dynamic> json) {
+    return DefineIndexFieldResponse(
+      indexField:
+          IndexFieldStatus.fromJson(json['IndexField'] as Map<String, dynamic>),
+    );
+  }
+
   factory DefineIndexFieldResponse.fromXml(_s.XmlElement elem) {
     return DefineIndexFieldResponse(
       indexField:
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
   }
 }
 
@@ -1829,11 +1995,25 @@ class DefineSuggesterResponse {
   DefineSuggesterResponse({
     required this.suggester,
   });
+  factory DefineSuggesterResponse.fromJson(Map<String, dynamic> json) {
+    return DefineSuggesterResponse(
+      suggester:
+          SuggesterStatus.fromJson(json['Suggester'] as Map<String, dynamic>),
+    );
+  }
+
   factory DefineSuggesterResponse.fromXml(_s.XmlElement elem) {
     return DefineSuggesterResponse(
       suggester:
           SuggesterStatus.fromXml(_s.extractXmlChild(elem, 'Suggester')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggester = this.suggester;
+    return {
+      'Suggester': suggester,
+    };
   }
 }
 
@@ -1846,11 +2026,25 @@ class DeleteAnalysisSchemeResponse {
   DeleteAnalysisSchemeResponse({
     required this.analysisScheme,
   });
+  factory DeleteAnalysisSchemeResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteAnalysisSchemeResponse(
+      analysisScheme: AnalysisSchemeStatus.fromJson(
+          json['AnalysisScheme'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteAnalysisSchemeResponse.fromXml(_s.XmlElement elem) {
     return DeleteAnalysisSchemeResponse(
       analysisScheme: AnalysisSchemeStatus.fromXml(
           _s.extractXmlChild(elem, 'AnalysisScheme')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisScheme = this.analysisScheme;
+    return {
+      'AnalysisScheme': analysisScheme,
+    };
   }
 }
 
@@ -1863,12 +2057,27 @@ class DeleteDomainResponse {
   DeleteDomainResponse({
     this.domainStatus,
   });
+  factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteDomainResponse(
+      domainStatus: json['DomainStatus'] != null
+          ? DomainStatus.fromJson(json['DomainStatus'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteDomainResponse.fromXml(_s.XmlElement elem) {
     return DeleteDomainResponse(
       domainStatus: _s
           .extractXmlChild(elem, 'DomainStatus')
           ?.let((e) => DomainStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -1881,11 +2090,25 @@ class DeleteExpressionResponse {
   DeleteExpressionResponse({
     required this.expression,
   });
+  factory DeleteExpressionResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteExpressionResponse(
+      expression:
+          ExpressionStatus.fromJson(json['Expression'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteExpressionResponse.fromXml(_s.XmlElement elem) {
     return DeleteExpressionResponse(
       expression:
           ExpressionStatus.fromXml(_s.extractXmlChild(elem, 'Expression')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    return {
+      'Expression': expression,
+    };
   }
 }
 
@@ -1897,11 +2120,25 @@ class DeleteIndexFieldResponse {
   DeleteIndexFieldResponse({
     required this.indexField,
   });
+  factory DeleteIndexFieldResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteIndexFieldResponse(
+      indexField:
+          IndexFieldStatus.fromJson(json['IndexField'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteIndexFieldResponse.fromXml(_s.XmlElement elem) {
     return DeleteIndexFieldResponse(
       indexField:
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
   }
 }
 
@@ -1914,11 +2151,25 @@ class DeleteSuggesterResponse {
   DeleteSuggesterResponse({
     required this.suggester,
   });
+  factory DeleteSuggesterResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteSuggesterResponse(
+      suggester:
+          SuggesterStatus.fromJson(json['Suggester'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteSuggesterResponse.fromXml(_s.XmlElement elem) {
     return DeleteSuggesterResponse(
       suggester:
           SuggesterStatus.fromXml(_s.extractXmlChild(elem, 'Suggester')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggester = this.suggester;
+    return {
+      'Suggester': suggester,
+    };
   }
 }
 
@@ -1931,6 +2182,15 @@ class DescribeAnalysisSchemesResponse {
   DescribeAnalysisSchemesResponse({
     required this.analysisSchemes,
   });
+  factory DescribeAnalysisSchemesResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeAnalysisSchemesResponse(
+      analysisSchemes: (json['AnalysisSchemes'] as List)
+          .whereNotNull()
+          .map((e) => AnalysisSchemeStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeAnalysisSchemesResponse.fromXml(_s.XmlElement elem) {
     return DescribeAnalysisSchemesResponse(
       analysisSchemes: _s
@@ -1939,6 +2199,13 @@ class DescribeAnalysisSchemesResponse {
           .map((c) => AnalysisSchemeStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisSchemes = this.analysisSchemes;
+    return {
+      'AnalysisSchemes': analysisSchemes,
+    };
   }
 }
 
@@ -1953,12 +2220,30 @@ class DescribeAvailabilityOptionsResponse {
   DescribeAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+  factory DescribeAvailabilityOptionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeAvailabilityOptionsResponse(
+      availabilityOptions: json['AvailabilityOptions'] != null
+          ? AvailabilityOptionsStatus.fromJson(
+              json['AvailabilityOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeAvailabilityOptionsResponse.fromXml(_s.XmlElement elem) {
     return DescribeAvailabilityOptionsResponse(
       availabilityOptions: _s
           .extractXmlChild(elem, 'AvailabilityOptions')
           ?.let((e) => AvailabilityOptionsStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
   }
 }
 
@@ -1971,12 +2256,30 @@ class DescribeDomainEndpointOptionsResponse {
   DescribeDomainEndpointOptionsResponse({
     this.domainEndpointOptions,
   });
+  factory DescribeDomainEndpointOptionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeDomainEndpointOptionsResponse(
+      domainEndpointOptions: json['DomainEndpointOptions'] != null
+          ? DomainEndpointOptionsStatus.fromJson(
+              json['DomainEndpointOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeDomainEndpointOptionsResponse.fromXml(_s.XmlElement elem) {
     return DescribeDomainEndpointOptionsResponse(
       domainEndpointOptions: _s
           .extractXmlChild(elem, 'DomainEndpointOptions')
           ?.let((e) => DomainEndpointOptionsStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainEndpointOptions = this.domainEndpointOptions;
+    return {
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+    };
   }
 }
 
@@ -1988,6 +2291,15 @@ class DescribeDomainsResponse {
   DescribeDomainsResponse({
     required this.domainStatusList,
   });
+  factory DescribeDomainsResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeDomainsResponse(
+      domainStatusList: (json['DomainStatusList'] as List)
+          .whereNotNull()
+          .map((e) => DomainStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeDomainsResponse.fromXml(_s.XmlElement elem) {
     return DescribeDomainsResponse(
       domainStatusList: _s
@@ -1996,6 +2308,13 @@ class DescribeDomainsResponse {
           .map((c) => DomainStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatusList = this.domainStatusList;
+    return {
+      'DomainStatusList': domainStatusList,
+    };
   }
 }
 
@@ -2008,6 +2327,15 @@ class DescribeExpressionsResponse {
   DescribeExpressionsResponse({
     required this.expressions,
   });
+  factory DescribeExpressionsResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeExpressionsResponse(
+      expressions: (json['Expressions'] as List)
+          .whereNotNull()
+          .map((e) => ExpressionStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeExpressionsResponse.fromXml(_s.XmlElement elem) {
     return DescribeExpressionsResponse(
       expressions: _s
@@ -2016,6 +2344,13 @@ class DescribeExpressionsResponse {
           .map((c) => ExpressionStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expressions = this.expressions;
+    return {
+      'Expressions': expressions,
+    };
   }
 }
 
@@ -2028,6 +2363,15 @@ class DescribeIndexFieldsResponse {
   DescribeIndexFieldsResponse({
     required this.indexFields,
   });
+  factory DescribeIndexFieldsResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeIndexFieldsResponse(
+      indexFields: (json['IndexFields'] as List)
+          .whereNotNull()
+          .map((e) => IndexFieldStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeIndexFieldsResponse.fromXml(_s.XmlElement elem) {
     return DescribeIndexFieldsResponse(
       indexFields: _s
@@ -2036,6 +2380,13 @@ class DescribeIndexFieldsResponse {
           .map((c) => IndexFieldStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexFields = this.indexFields;
+    return {
+      'IndexFields': indexFields,
+    };
   }
 }
 
@@ -2047,11 +2398,26 @@ class DescribeScalingParametersResponse {
   DescribeScalingParametersResponse({
     required this.scalingParameters,
   });
+  factory DescribeScalingParametersResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeScalingParametersResponse(
+      scalingParameters: ScalingParametersStatus.fromJson(
+          json['ScalingParameters'] as Map<String, dynamic>),
+    );
+  }
+
   factory DescribeScalingParametersResponse.fromXml(_s.XmlElement elem) {
     return DescribeScalingParametersResponse(
       scalingParameters: ScalingParametersStatus.fromXml(
           _s.extractXmlChild(elem, 'ScalingParameters')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scalingParameters = this.scalingParameters;
+    return {
+      'ScalingParameters': scalingParameters,
+    };
   }
 }
 
@@ -2063,11 +2429,26 @@ class DescribeServiceAccessPoliciesResponse {
   DescribeServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+  factory DescribeServiceAccessPoliciesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeServiceAccessPoliciesResponse(
+      accessPolicies: AccessPoliciesStatus.fromJson(
+          json['AccessPolicies'] as Map<String, dynamic>),
+    );
+  }
+
   factory DescribeServiceAccessPoliciesResponse.fromXml(_s.XmlElement elem) {
     return DescribeServiceAccessPoliciesResponse(
       accessPolicies: AccessPoliciesStatus.fromXml(
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
   }
 }
 
@@ -2079,6 +2460,15 @@ class DescribeSuggestersResponse {
   DescribeSuggestersResponse({
     required this.suggesters,
   });
+  factory DescribeSuggestersResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeSuggestersResponse(
+      suggesters: (json['Suggesters'] as List)
+          .whereNotNull()
+          .map((e) => SuggesterStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeSuggestersResponse.fromXml(_s.XmlElement elem) {
     return DescribeSuggestersResponse(
       suggesters: _s
@@ -2087,6 +2477,13 @@ class DescribeSuggestersResponse {
           .map((c) => SuggesterStatus.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggesters = this.suggesters;
+    return {
+      'Suggesters': suggesters,
+    };
   }
 }
 
@@ -2117,6 +2514,15 @@ class DocumentSuggesterOptions {
     this.fuzzyMatching,
     this.sortExpression,
   });
+  factory DocumentSuggesterOptions.fromJson(Map<String, dynamic> json) {
+    return DocumentSuggesterOptions(
+      sourceField: json['SourceField'] as String,
+      fuzzyMatching:
+          (json['FuzzyMatching'] as String?)?.toSuggesterFuzzyMatching(),
+      sortExpression: json['SortExpression'] as String?,
+    );
+  }
+
   factory DocumentSuggesterOptions.fromXml(_s.XmlElement elem) {
     return DocumentSuggesterOptions(
       sourceField: _s.extractXmlStringValue(elem, 'SourceField')!,
@@ -2151,6 +2557,14 @@ class DomainEndpointOptions {
     this.enforceHTTPS,
     this.tLSSecurityPolicy,
   });
+  factory DomainEndpointOptions.fromJson(Map<String, dynamic> json) {
+    return DomainEndpointOptions(
+      enforceHTTPS: json['EnforceHTTPS'] as bool?,
+      tLSSecurityPolicy:
+          (json['TLSSecurityPolicy'] as String?)?.toTLSSecurityPolicy(),
+    );
+  }
+
   factory DomainEndpointOptions.fromXml(_s.XmlElement elem) {
     return DomainEndpointOptions(
       enforceHTTPS: _s.extractXmlBoolValue(elem, 'EnforceHTTPS'),
@@ -2183,12 +2597,29 @@ class DomainEndpointOptionsStatus {
     required this.options,
     required this.status,
   });
+  factory DomainEndpointOptionsStatus.fromJson(Map<String, dynamic> json) {
+    return DomainEndpointOptionsStatus(
+      options: DomainEndpointOptions.fromJson(
+          json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory DomainEndpointOptionsStatus.fromXml(_s.XmlElement elem) {
     return DomainEndpointOptionsStatus(
       options:
           DomainEndpointOptions.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -2251,6 +2682,31 @@ class DomainStatus {
     this.searchPartitionCount,
     this.searchService,
   });
+  factory DomainStatus.fromJson(Map<String, dynamic> json) {
+    return DomainStatus(
+      domainId: json['DomainId'] as String,
+      domainName: json['DomainName'] as String,
+      requiresIndexDocuments: json['RequiresIndexDocuments'] as bool,
+      arn: json['ARN'] as String?,
+      created: json['Created'] as bool?,
+      deleted: json['Deleted'] as bool?,
+      docService: json['DocService'] != null
+          ? ServiceEndpoint.fromJson(json['DocService'] as Map<String, dynamic>)
+          : null,
+      limits: json['Limits'] != null
+          ? Limits.fromJson(json['Limits'] as Map<String, dynamic>)
+          : null,
+      processing: json['Processing'] as bool?,
+      searchInstanceCount: json['SearchInstanceCount'] as int?,
+      searchInstanceType: json['SearchInstanceType'] as String?,
+      searchPartitionCount: json['SearchPartitionCount'] as int?,
+      searchService: json['SearchService'] != null
+          ? ServiceEndpoint.fromJson(
+              json['SearchService'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DomainStatus.fromXml(_s.XmlElement elem) {
     return DomainStatus(
       domainId: _s.extractXmlStringValue(elem, 'DomainId')!,
@@ -2272,6 +2728,39 @@ class DomainStatus {
           .extractXmlChild(elem, 'SearchService')
           ?.let((e) => ServiceEndpoint.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final requiresIndexDocuments = this.requiresIndexDocuments;
+    final arn = this.arn;
+    final created = this.created;
+    final deleted = this.deleted;
+    final docService = this.docService;
+    final limits = this.limits;
+    final processing = this.processing;
+    final searchInstanceCount = this.searchInstanceCount;
+    final searchInstanceType = this.searchInstanceType;
+    final searchPartitionCount = this.searchPartitionCount;
+    final searchService = this.searchService;
+    return {
+      'DomainId': domainId,
+      'DomainName': domainName,
+      'RequiresIndexDocuments': requiresIndexDocuments,
+      if (arn != null) 'ARN': arn,
+      if (created != null) 'Created': created,
+      if (deleted != null) 'Deleted': deleted,
+      if (docService != null) 'DocService': docService,
+      if (limits != null) 'Limits': limits,
+      if (processing != null) 'Processing': processing,
+      if (searchInstanceCount != null)
+        'SearchInstanceCount': searchInstanceCount,
+      if (searchInstanceType != null) 'SearchInstanceType': searchInstanceType,
+      if (searchPartitionCount != null)
+        'SearchPartitionCount': searchPartitionCount,
+      if (searchService != null) 'SearchService': searchService,
+    };
   }
 }
 
@@ -2302,6 +2791,16 @@ class DoubleArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+  factory DoubleArrayOptions.fromJson(Map<String, dynamic> json) {
+    return DoubleArrayOptions(
+      defaultValue: json['DefaultValue'] as double?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sourceFields: json['SourceFields'] as String?,
+    );
+  }
+
   factory DoubleArrayOptions.fromXml(_s.XmlElement elem) {
     return DoubleArrayOptions(
       defaultValue: _s.extractXmlDoubleValue(elem, 'DefaultValue'),
@@ -2360,6 +2859,17 @@ class DoubleOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory DoubleOptions.fromJson(Map<String, dynamic> json) {
+    return DoubleOptions(
+      defaultValue: json['DefaultValue'] as double?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory DoubleOptions.fromXml(_s.XmlElement elem) {
     return DoubleOptions(
       defaultValue: _s.extractXmlDoubleValue(elem, 'DefaultValue'),
@@ -2400,6 +2910,13 @@ class Expression {
     required this.expressionName,
     required this.expressionValue,
   });
+  factory Expression.fromJson(Map<String, dynamic> json) {
+    return Expression(
+      expressionName: json['ExpressionName'] as String,
+      expressionValue: json['ExpressionValue'] as String,
+    );
+  }
+
   factory Expression.fromXml(_s.XmlElement elem) {
     return Expression(
       expressionName: _s.extractXmlStringValue(elem, 'ExpressionName')!,
@@ -2428,11 +2945,27 @@ class ExpressionStatus {
     required this.options,
     required this.status,
   });
+  factory ExpressionStatus.fromJson(Map<String, dynamic> json) {
+    return ExpressionStatus(
+      options: Expression.fromJson(json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory ExpressionStatus.fromXml(_s.XmlElement elem) {
     return ExpressionStatus(
       options: Expression.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -2445,12 +2978,28 @@ class IndexDocumentsResponse {
   IndexDocumentsResponse({
     this.fieldNames,
   });
+  factory IndexDocumentsResponse.fromJson(Map<String, dynamic> json) {
+    return IndexDocumentsResponse(
+      fieldNames: (json['FieldNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory IndexDocumentsResponse.fromXml(_s.XmlElement elem) {
     return IndexDocumentsResponse(
       fieldNames: _s
           .extractXmlChild(elem, 'FieldNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+    };
   }
 }
 
@@ -2501,6 +3050,54 @@ class IndexField {
     this.textArrayOptions,
     this.textOptions,
   });
+  factory IndexField.fromJson(Map<String, dynamic> json) {
+    return IndexField(
+      indexFieldName: json['IndexFieldName'] as String,
+      indexFieldType: (json['IndexFieldType'] as String).toIndexFieldType(),
+      dateArrayOptions: json['DateArrayOptions'] != null
+          ? DateArrayOptions.fromJson(
+              json['DateArrayOptions'] as Map<String, dynamic>)
+          : null,
+      dateOptions: json['DateOptions'] != null
+          ? DateOptions.fromJson(json['DateOptions'] as Map<String, dynamic>)
+          : null,
+      doubleArrayOptions: json['DoubleArrayOptions'] != null
+          ? DoubleArrayOptions.fromJson(
+              json['DoubleArrayOptions'] as Map<String, dynamic>)
+          : null,
+      doubleOptions: json['DoubleOptions'] != null
+          ? DoubleOptions.fromJson(
+              json['DoubleOptions'] as Map<String, dynamic>)
+          : null,
+      intArrayOptions: json['IntArrayOptions'] != null
+          ? IntArrayOptions.fromJson(
+              json['IntArrayOptions'] as Map<String, dynamic>)
+          : null,
+      intOptions: json['IntOptions'] != null
+          ? IntOptions.fromJson(json['IntOptions'] as Map<String, dynamic>)
+          : null,
+      latLonOptions: json['LatLonOptions'] != null
+          ? LatLonOptions.fromJson(
+              json['LatLonOptions'] as Map<String, dynamic>)
+          : null,
+      literalArrayOptions: json['LiteralArrayOptions'] != null
+          ? LiteralArrayOptions.fromJson(
+              json['LiteralArrayOptions'] as Map<String, dynamic>)
+          : null,
+      literalOptions: json['LiteralOptions'] != null
+          ? LiteralOptions.fromJson(
+              json['LiteralOptions'] as Map<String, dynamic>)
+          : null,
+      textArrayOptions: json['TextArrayOptions'] != null
+          ? TextArrayOptions.fromJson(
+              json['TextArrayOptions'] as Map<String, dynamic>)
+          : null,
+      textOptions: json['TextOptions'] != null
+          ? TextOptions.fromJson(json['TextOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory IndexField.fromXml(_s.XmlElement elem) {
     return IndexField(
       indexFieldName: _s.extractXmlStringValue(elem, 'IndexFieldName')!,
@@ -2584,11 +3181,27 @@ class IndexFieldStatus {
     required this.options,
     required this.status,
   });
+  factory IndexFieldStatus.fromJson(Map<String, dynamic> json) {
+    return IndexFieldStatus(
+      options: IndexField.fromJson(json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory IndexFieldStatus.fromXml(_s.XmlElement elem) {
     return IndexFieldStatus(
       options: IndexField.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -2696,6 +3309,16 @@ class IntArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+  factory IntArrayOptions.fromJson(Map<String, dynamic> json) {
+    return IntArrayOptions(
+      defaultValue: json['DefaultValue'] as int?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sourceFields: json['SourceFields'] as String?,
+    );
+  }
+
   factory IntArrayOptions.fromXml(_s.XmlElement elem) {
     return IntArrayOptions(
       defaultValue: _s.extractXmlIntValue(elem, 'DefaultValue'),
@@ -2754,6 +3377,17 @@ class IntOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory IntOptions.fromJson(Map<String, dynamic> json) {
+    return IntOptions(
+      defaultValue: json['DefaultValue'] as int?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory IntOptions.fromXml(_s.XmlElement elem) {
     return IntOptions(
       defaultValue: _s.extractXmlIntValue(elem, 'DefaultValue'),
@@ -2812,6 +3446,17 @@ class LatLonOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory LatLonOptions.fromJson(Map<String, dynamic> json) {
+    return LatLonOptions(
+      defaultValue: json['DefaultValue'] as String?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory LatLonOptions.fromXml(_s.XmlElement elem) {
     return LatLonOptions(
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
@@ -2849,6 +3494,13 @@ class Limits {
     required this.maximumPartitionCount,
     required this.maximumReplicationCount,
   });
+  factory Limits.fromJson(Map<String, dynamic> json) {
+    return Limits(
+      maximumPartitionCount: json['MaximumPartitionCount'] as int,
+      maximumReplicationCount: json['MaximumReplicationCount'] as int,
+    );
+  }
+
   factory Limits.fromXml(_s.XmlElement elem) {
     return Limits(
       maximumPartitionCount:
@@ -2856,6 +3508,15 @@ class Limits {
       maximumReplicationCount:
           _s.extractXmlIntValue(elem, 'MaximumReplicationCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maximumPartitionCount = this.maximumPartitionCount;
+    final maximumReplicationCount = this.maximumReplicationCount;
+    return {
+      'MaximumPartitionCount': maximumPartitionCount,
+      'MaximumReplicationCount': maximumReplicationCount,
+    };
   }
 }
 
@@ -2868,6 +3529,13 @@ class ListDomainNamesResponse {
   ListDomainNamesResponse({
     this.domainNames,
   });
+  factory ListDomainNamesResponse.fromJson(Map<String, dynamic> json) {
+    return ListDomainNamesResponse(
+      domainNames: (json['DomainNames'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory ListDomainNamesResponse.fromXml(_s.XmlElement elem) {
     return ListDomainNamesResponse(
       domainNames: Map.fromEntries(
@@ -2880,6 +3548,13 @@ class ListDomainNamesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainNames = this.domainNames;
+    return {
+      if (domainNames != null) 'DomainNames': domainNames,
+    };
   }
 }
 
@@ -2909,6 +3584,16 @@ class LiteralArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+  factory LiteralArrayOptions.fromJson(Map<String, dynamic> json) {
+    return LiteralArrayOptions(
+      defaultValue: json['DefaultValue'] as String?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sourceFields: json['SourceFields'] as String?,
+    );
+  }
+
   factory LiteralArrayOptions.fromXml(_s.XmlElement elem) {
     return LiteralArrayOptions(
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
@@ -2963,6 +3648,17 @@ class LiteralOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory LiteralOptions.fromJson(Map<String, dynamic> json) {
+    return LiteralOptions(
+      defaultValue: json['DefaultValue'] as String?,
+      facetEnabled: json['FacetEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      searchEnabled: json['SearchEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory LiteralOptions.fromXml(_s.XmlElement elem) {
     return LiteralOptions(
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
@@ -3079,6 +3775,17 @@ class OptionStatus {
     this.pendingDeletion,
     this.updateVersion,
   });
+  factory OptionStatus.fromJson(Map<String, dynamic> json) {
+    return OptionStatus(
+      creationDate:
+          nonNullableTimeStampFromJson(json['CreationDate'] as Object),
+      state: (json['State'] as String).toOptionState(),
+      updateDate: nonNullableTimeStampFromJson(json['UpdateDate'] as Object),
+      pendingDeletion: json['PendingDeletion'] as bool?,
+      updateVersion: json['UpdateVersion'] as int?,
+    );
+  }
+
   factory OptionStatus.fromXml(_s.XmlElement elem) {
     return OptionStatus(
       creationDate: _s.extractXmlDateTimeValue(elem, 'CreationDate')!,
@@ -3087,6 +3794,21 @@ class OptionStatus {
       pendingDeletion: _s.extractXmlBoolValue(elem, 'PendingDeletion'),
       updateVersion: _s.extractXmlIntValue(elem, 'UpdateVersion'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final state = this.state;
+    final updateDate = this.updateDate;
+    final pendingDeletion = this.pendingDeletion;
+    final updateVersion = this.updateVersion;
+    return {
+      'CreationDate': unixTimestampToJson(creationDate),
+      'State': state.toValue(),
+      'UpdateDate': unixTimestampToJson(updateDate),
+      if (pendingDeletion != null) 'PendingDeletion': pendingDeletion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
   }
 }
 
@@ -3214,6 +3936,15 @@ class ScalingParameters {
     this.desiredPartitionCount,
     this.desiredReplicationCount,
   });
+  factory ScalingParameters.fromJson(Map<String, dynamic> json) {
+    return ScalingParameters(
+      desiredInstanceType:
+          (json['DesiredInstanceType'] as String?)?.toPartitionInstanceType(),
+      desiredPartitionCount: json['DesiredPartitionCount'] as int?,
+      desiredReplicationCount: json['DesiredReplicationCount'] as int?,
+    );
+  }
+
   factory ScalingParameters.fromXml(_s.XmlElement elem) {
     return ScalingParameters(
       desiredInstanceType: _s
@@ -3250,11 +3981,28 @@ class ScalingParametersStatus {
     required this.options,
     required this.status,
   });
+  factory ScalingParametersStatus.fromJson(Map<String, dynamic> json) {
+    return ScalingParametersStatus(
+      options:
+          ScalingParameters.fromJson(json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory ScalingParametersStatus.fromXml(_s.XmlElement elem) {
     return ScalingParametersStatus(
       options: ScalingParameters.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -3265,10 +4013,23 @@ class ServiceEndpoint {
   ServiceEndpoint({
     this.endpoint,
   });
+  factory ServiceEndpoint.fromJson(Map<String, dynamic> json) {
+    return ServiceEndpoint(
+      endpoint: json['Endpoint'] as String?,
+    );
+  }
+
   factory ServiceEndpoint.fromXml(_s.XmlElement elem) {
     return ServiceEndpoint(
       endpoint: _s.extractXmlStringValue(elem, 'Endpoint'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -3284,6 +4045,14 @@ class Suggester {
     required this.documentSuggesterOptions,
     required this.suggesterName,
   });
+  factory Suggester.fromJson(Map<String, dynamic> json) {
+    return Suggester(
+      documentSuggesterOptions: DocumentSuggesterOptions.fromJson(
+          json['DocumentSuggesterOptions'] as Map<String, dynamic>),
+      suggesterName: json['SuggesterName'] as String,
+    );
+  }
+
   factory Suggester.fromXml(_s.XmlElement elem) {
     return Suggester(
       documentSuggesterOptions: DocumentSuggesterOptions.fromXml(
@@ -3344,11 +4113,27 @@ class SuggesterStatus {
     required this.options,
     required this.status,
   });
+  factory SuggesterStatus.fromJson(Map<String, dynamic> json) {
+    return SuggesterStatus(
+      options: Suggester.fromJson(json['Options'] as Map<String, dynamic>),
+      status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory SuggesterStatus.fromXml(_s.XmlElement elem) {
     return SuggesterStatus(
       options: Suggester.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -3408,6 +4193,16 @@ class TextArrayOptions {
     this.returnEnabled,
     this.sourceFields,
   });
+  factory TextArrayOptions.fromJson(Map<String, dynamic> json) {
+    return TextArrayOptions(
+      analysisScheme: json['AnalysisScheme'] as String?,
+      defaultValue: json['DefaultValue'] as String?,
+      highlightEnabled: json['HighlightEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      sourceFields: json['SourceFields'] as String?,
+    );
+  }
+
   factory TextArrayOptions.fromXml(_s.XmlElement elem) {
     return TextArrayOptions(
       analysisScheme: _s.extractXmlStringValue(elem, 'AnalysisScheme'),
@@ -3462,6 +4257,17 @@ class TextOptions {
     this.sortEnabled,
     this.sourceField,
   });
+  factory TextOptions.fromJson(Map<String, dynamic> json) {
+    return TextOptions(
+      analysisScheme: json['AnalysisScheme'] as String?,
+      defaultValue: json['DefaultValue'] as String?,
+      highlightEnabled: json['HighlightEnabled'] as bool?,
+      returnEnabled: json['ReturnEnabled'] as bool?,
+      sortEnabled: json['SortEnabled'] as bool?,
+      sourceField: json['SourceField'] as String?,
+    );
+  }
+
   factory TextOptions.fromXml(_s.XmlElement elem) {
     return TextOptions(
       analysisScheme: _s.extractXmlStringValue(elem, 'AnalysisScheme'),
@@ -3501,12 +4307,30 @@ class UpdateAvailabilityOptionsResponse {
   UpdateAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+  factory UpdateAvailabilityOptionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateAvailabilityOptionsResponse(
+      availabilityOptions: json['AvailabilityOptions'] != null
+          ? AvailabilityOptionsStatus.fromJson(
+              json['AvailabilityOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory UpdateAvailabilityOptionsResponse.fromXml(_s.XmlElement elem) {
     return UpdateAvailabilityOptionsResponse(
       availabilityOptions: _s
           .extractXmlChild(elem, 'AvailabilityOptions')
           ?.let((e) => AvailabilityOptionsStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
   }
 }
 
@@ -3519,12 +4343,30 @@ class UpdateDomainEndpointOptionsResponse {
   UpdateDomainEndpointOptionsResponse({
     this.domainEndpointOptions,
   });
+  factory UpdateDomainEndpointOptionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateDomainEndpointOptionsResponse(
+      domainEndpointOptions: json['DomainEndpointOptions'] != null
+          ? DomainEndpointOptionsStatus.fromJson(
+              json['DomainEndpointOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory UpdateDomainEndpointOptionsResponse.fromXml(_s.XmlElement elem) {
     return UpdateDomainEndpointOptionsResponse(
       domainEndpointOptions: _s
           .extractXmlChild(elem, 'DomainEndpointOptions')
           ?.let((e) => DomainEndpointOptionsStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainEndpointOptions = this.domainEndpointOptions;
+    return {
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+    };
   }
 }
 
@@ -3536,11 +4378,25 @@ class UpdateScalingParametersResponse {
   UpdateScalingParametersResponse({
     required this.scalingParameters,
   });
+  factory UpdateScalingParametersResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateScalingParametersResponse(
+      scalingParameters: ScalingParametersStatus.fromJson(
+          json['ScalingParameters'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateScalingParametersResponse.fromXml(_s.XmlElement elem) {
     return UpdateScalingParametersResponse(
       scalingParameters: ScalingParametersStatus.fromXml(
           _s.extractXmlChild(elem, 'ScalingParameters')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scalingParameters = this.scalingParameters;
+    return {
+      'ScalingParameters': scalingParameters,
+    };
   }
 }
 
@@ -3553,11 +4409,26 @@ class UpdateServiceAccessPoliciesResponse {
   UpdateServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+  factory UpdateServiceAccessPoliciesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateServiceAccessPoliciesResponse(
+      accessPolicies: AccessPoliciesStatus.fromJson(
+          json['AccessPolicies'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateServiceAccessPoliciesResponse.fromXml(_s.XmlElement elem) {
     return UpdateServiceAccessPoliciesResponse(
       accessPolicies: AccessPoliciesStatus.fromXml(
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
   }
 }
 

@@ -97,12 +97,27 @@ class OutputShape {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listMember = this.listMember;
+    final listMemberMap = this.listMemberMap;
+    final listMemberStruct = this.listMemberStruct;
+    return {
+      if (listMember != null) 'ListMember': listMember,
+      if (listMemberMap != null) 'ListMemberMap': listMemberMap,
+      if (listMemberStruct != null) 'ListMemberStruct': listMemberStruct,
+    };
+  }
 }
 
 class StructType {
   StructType();
   factory StructType.fromJson(Map<String, dynamic> _) {
     return StructType();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

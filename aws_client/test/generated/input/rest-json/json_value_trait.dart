@@ -112,6 +112,20 @@ class BodyStructure {
     this.bodyField,
     this.bodyListField,
   });
+  factory BodyStructure.fromJson(Map<String, dynamic> json) {
+    return BodyStructure(
+      bodyField: json['BodyField'] == null
+          ? null
+          : jsonDecode(json['BodyField'] as String),
+      bodyListField: json['BodyListField'] == null
+          ? null
+          : (json['BodyListField'] as List)
+              .map((v) => jsonDecode(v as String))
+              .toList()
+              .cast<Object>(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bodyField = this.bodyField;
     final bodyListField = this.bodyListField;

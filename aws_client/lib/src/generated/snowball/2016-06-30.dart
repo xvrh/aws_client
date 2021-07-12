@@ -1909,12 +1909,20 @@ class CancelClusterResult {
   factory CancelClusterResult.fromJson(Map<String, dynamic> _) {
     return CancelClusterResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CancelJobResult {
   CancelJobResult();
   factory CancelJobResult.fromJson(Map<String, dynamic> _) {
     return CancelJobResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1948,6 +1956,20 @@ class ClusterListEntry {
       creationDate: timeStampFromJson(json['CreationDate']),
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterId = this.clusterId;
+    final clusterState = this.clusterState;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    return {
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (clusterState != null) 'ClusterState': clusterState.toValue(),
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -2079,6 +2101,44 @@ class ClusterMetadata {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressId = this.addressId;
+    final clusterId = this.clusterId;
+    final clusterState = this.clusterState;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final forwardingAddressId = this.forwardingAddressId;
+    final jobType = this.jobType;
+    final kmsKeyARN = this.kmsKeyARN;
+    final notification = this.notification;
+    final onDeviceServiceConfiguration = this.onDeviceServiceConfiguration;
+    final resources = this.resources;
+    final roleARN = this.roleARN;
+    final shippingOption = this.shippingOption;
+    final snowballType = this.snowballType;
+    final taxDocuments = this.taxDocuments;
+    return {
+      if (addressId != null) 'AddressId': addressId,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (clusterState != null) 'ClusterState': clusterState.toValue(),
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (forwardingAddressId != null)
+        'ForwardingAddressId': forwardingAddressId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (kmsKeyARN != null) 'KmsKeyARN': kmsKeyARN,
+      if (notification != null) 'Notification': notification,
+      if (onDeviceServiceConfiguration != null)
+        'OnDeviceServiceConfiguration': onDeviceServiceConfiguration,
+      if (resources != null) 'Resources': resources,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (shippingOption != null) 'ShippingOption': shippingOption.toValue(),
+      if (snowballType != null) 'SnowballType': snowballType.toValue(),
+      if (taxDocuments != null) 'TaxDocuments': taxDocuments,
+    };
+  }
 }
 
 enum ClusterState {
@@ -2145,6 +2205,15 @@ class CompatibleImage {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amiId = this.amiId;
+    final name = this.name;
+    return {
+      if (amiId != null) 'AmiId': amiId,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateAddressResult {
@@ -2161,6 +2230,13 @@ class CreateAddressResult {
       addressId: json['AddressId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressId = this.addressId;
+    return {
+      if (addressId != null) 'AddressId': addressId,
+    };
+  }
 }
 
 class CreateClusterResult {
@@ -2174,6 +2250,13 @@ class CreateClusterResult {
     return CreateClusterResult(
       clusterId: json['ClusterId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterId = this.clusterId;
+    return {
+      if (clusterId != null) 'ClusterId': clusterId,
+    };
   }
 }
 
@@ -2190,6 +2273,13 @@ class CreateJobResult {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class CreateLongTermPricingResult {
@@ -2203,6 +2293,13 @@ class CreateLongTermPricingResult {
     return CreateLongTermPricingResult(
       longTermPricingId: json['LongTermPricingId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final longTermPricingId = this.longTermPricingId;
+    return {
+      if (longTermPricingId != null) 'LongTermPricingId': longTermPricingId,
+    };
   }
 }
 
@@ -2218,6 +2315,13 @@ class CreateReturnShippingLabelResult {
     return CreateReturnShippingLabelResult(
       status: (json['Status'] as String?)?.toShippingLabelStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2256,6 +2360,19 @@ class DataTransfer {
       totalObjects: json['TotalObjects'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bytesTransferred = this.bytesTransferred;
+    final objectsTransferred = this.objectsTransferred;
+    final totalBytes = this.totalBytes;
+    final totalObjects = this.totalObjects;
+    return {
+      if (bytesTransferred != null) 'BytesTransferred': bytesTransferred,
+      if (objectsTransferred != null) 'ObjectsTransferred': objectsTransferred,
+      if (totalBytes != null) 'TotalBytes': totalBytes,
+      if (totalObjects != null) 'TotalObjects': totalObjects,
+    };
+  }
 }
 
 class DescribeAddressResult {
@@ -2272,6 +2389,13 @@ class DescribeAddressResult {
           ? Address.fromJson(json['Address'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    return {
+      if (address != null) 'Address': address,
+    };
   }
 }
 
@@ -2298,6 +2422,15 @@ class DescribeAddressesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addresses = this.addresses;
+    final nextToken = this.nextToken;
+    return {
+      if (addresses != null) 'Addresses': addresses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClusterResult {
@@ -2315,6 +2448,13 @@ class DescribeClusterResult {
               json['ClusterMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterMetadata = this.clusterMetadata;
+    return {
+      if (clusterMetadata != null) 'ClusterMetadata': clusterMetadata,
+    };
   }
 }
 
@@ -2342,6 +2482,15 @@ class DescribeJobResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobMetadata = this.jobMetadata;
+    final subJobMetadata = this.subJobMetadata;
+    return {
+      if (jobMetadata != null) 'JobMetadata': jobMetadata,
+      if (subJobMetadata != null) 'SubJobMetadata': subJobMetadata,
+    };
+  }
 }
 
 class DescribeReturnShippingLabelResult {
@@ -2362,6 +2511,16 @@ class DescribeReturnShippingLabelResult {
       expirationDate: timeStampFromJson(json['ExpirationDate']),
       status: (json['Status'] as String?)?.toShippingLabelStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expirationDate = this.expirationDate;
+    final status = this.status;
+    return {
+      if (expirationDate != null)
+        'ExpirationDate': unixTimestampToJson(expirationDate),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2487,6 +2646,13 @@ class GetJobManifestResult {
       manifestURI: json['ManifestURI'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final manifestURI = this.manifestURI;
+    return {
+      if (manifestURI != null) 'ManifestURI': manifestURI,
+    };
+  }
 }
 
 class GetJobUnlockCodeResult {
@@ -2502,6 +2668,13 @@ class GetJobUnlockCodeResult {
     return GetJobUnlockCodeResult(
       unlockCode: json['UnlockCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unlockCode = this.unlockCode;
+    return {
+      if (unlockCode != null) 'UnlockCode': unlockCode,
+    };
   }
 }
 
@@ -2523,6 +2696,15 @@ class GetSnowballUsageResult {
       snowballsInUse: json['SnowballsInUse'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snowballLimit = this.snowballLimit;
+    final snowballsInUse = this.snowballsInUse;
+    return {
+      if (snowballLimit != null) 'SnowballLimit': snowballLimit,
+      if (snowballsInUse != null) 'SnowballsInUse': snowballsInUse,
+    };
+  }
 }
 
 class GetSoftwareUpdatesResult {
@@ -2540,6 +2722,13 @@ class GetSoftwareUpdatesResult {
     return GetSoftwareUpdatesResult(
       updatesURI: json['UpdatesURI'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final updatesURI = this.updatesURI;
+    return {
+      if (updatesURI != null) 'UpdatesURI': updatesURI,
+    };
   }
 }
 
@@ -2617,6 +2806,26 @@ class JobListEntry {
       snowballType: (json['SnowballType'] as String?)?.toSnowballType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final isMaster = this.isMaster;
+    final jobId = this.jobId;
+    final jobState = this.jobState;
+    final jobType = this.jobType;
+    final snowballType = this.snowballType;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (isMaster != null) 'IsMaster': isMaster,
+      if (jobId != null) 'JobId': jobId,
+      if (jobState != null) 'JobState': jobState.toValue(),
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (snowballType != null) 'SnowballType': snowballType.toValue(),
+    };
+  }
 }
 
 /// Contains job logs. Whenever a Snow device is used to import data into or
@@ -2661,6 +2870,18 @@ class JobLogs {
       jobFailureLogURI: json['JobFailureLogURI'] as String?,
       jobSuccessLogURI: json['JobSuccessLogURI'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobCompletionReportURI = this.jobCompletionReportURI;
+    final jobFailureLogURI = this.jobFailureLogURI;
+    final jobSuccessLogURI = this.jobSuccessLogURI;
+    return {
+      if (jobCompletionReportURI != null)
+        'JobCompletionReportURI': jobCompletionReportURI,
+      if (jobFailureLogURI != null) 'JobFailureLogURI': jobFailureLogURI,
+      if (jobSuccessLogURI != null) 'JobSuccessLogURI': jobSuccessLogURI,
+    };
   }
 }
 
@@ -2836,6 +3057,62 @@ class JobMetadata {
           ? TaxDocuments.fromJson(json['TaxDocuments'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addressId = this.addressId;
+    final clusterId = this.clusterId;
+    final creationDate = this.creationDate;
+    final dataTransferProgress = this.dataTransferProgress;
+    final description = this.description;
+    final deviceConfiguration = this.deviceConfiguration;
+    final forwardingAddressId = this.forwardingAddressId;
+    final jobId = this.jobId;
+    final jobLogInfo = this.jobLogInfo;
+    final jobState = this.jobState;
+    final jobType = this.jobType;
+    final kmsKeyARN = this.kmsKeyARN;
+    final longTermPricingId = this.longTermPricingId;
+    final notification = this.notification;
+    final onDeviceServiceConfiguration = this.onDeviceServiceConfiguration;
+    final remoteManagement = this.remoteManagement;
+    final resources = this.resources;
+    final roleARN = this.roleARN;
+    final shippingDetails = this.shippingDetails;
+    final snowballCapacityPreference = this.snowballCapacityPreference;
+    final snowballType = this.snowballType;
+    final taxDocuments = this.taxDocuments;
+    return {
+      if (addressId != null) 'AddressId': addressId,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (dataTransferProgress != null)
+        'DataTransferProgress': dataTransferProgress,
+      if (description != null) 'Description': description,
+      if (deviceConfiguration != null)
+        'DeviceConfiguration': deviceConfiguration,
+      if (forwardingAddressId != null)
+        'ForwardingAddressId': forwardingAddressId,
+      if (jobId != null) 'JobId': jobId,
+      if (jobLogInfo != null) 'JobLogInfo': jobLogInfo,
+      if (jobState != null) 'JobState': jobState.toValue(),
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (kmsKeyARN != null) 'KmsKeyARN': kmsKeyARN,
+      if (longTermPricingId != null) 'LongTermPricingId': longTermPricingId,
+      if (notification != null) 'Notification': notification,
+      if (onDeviceServiceConfiguration != null)
+        'OnDeviceServiceConfiguration': onDeviceServiceConfiguration,
+      if (remoteManagement != null)
+        'RemoteManagement': remoteManagement.toValue(),
+      if (resources != null) 'Resources': resources,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (shippingDetails != null) 'ShippingDetails': shippingDetails,
+      if (snowballCapacityPreference != null)
+        'SnowballCapacityPreference': snowballCapacityPreference.toValue(),
+      if (snowballType != null) 'SnowballType': snowballType.toValue(),
+      if (taxDocuments != null) 'TaxDocuments': taxDocuments,
+    };
   }
 }
 
@@ -3096,6 +3373,15 @@ class ListClusterJobsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobListEntries = this.jobListEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (jobListEntries != null) 'JobListEntries': jobListEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListClustersResult {
@@ -3122,6 +3408,15 @@ class ListClustersResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterListEntries = this.clusterListEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (clusterListEntries != null) 'ClusterListEntries': clusterListEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCompatibleImagesResult {
@@ -3145,6 +3440,15 @@ class ListCompatibleImagesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compatibleImages = this.compatibleImages;
+    final nextToken = this.nextToken;
+    return {
+      if (compatibleImages != null) 'CompatibleImages': compatibleImages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3173,6 +3477,15 @@ class ListJobsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobListEntries = this.jobListEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (jobListEntries != null) 'JobListEntries': jobListEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLongTermPricingResult {
@@ -3197,6 +3510,16 @@ class ListLongTermPricingResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final longTermPricingEntries = this.longTermPricingEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (longTermPricingEntries != null)
+        'LongTermPricingEntries': longTermPricingEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3266,6 +3589,37 @@ class LongTermPricingListEntry {
       replacementJob: json['ReplacementJob'] as String?,
       snowballType: (json['SnowballType'] as String?)?.toSnowballType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentActiveJob = this.currentActiveJob;
+    final isLongTermPricingAutoRenew = this.isLongTermPricingAutoRenew;
+    final jobIds = this.jobIds;
+    final longTermPricingEndDate = this.longTermPricingEndDate;
+    final longTermPricingId = this.longTermPricingId;
+    final longTermPricingStartDate = this.longTermPricingStartDate;
+    final longTermPricingStatus = this.longTermPricingStatus;
+    final longTermPricingType = this.longTermPricingType;
+    final replacementJob = this.replacementJob;
+    final snowballType = this.snowballType;
+    return {
+      if (currentActiveJob != null) 'CurrentActiveJob': currentActiveJob,
+      if (isLongTermPricingAutoRenew != null)
+        'IsLongTermPricingAutoRenew': isLongTermPricingAutoRenew,
+      if (jobIds != null) 'JobIds': jobIds,
+      if (longTermPricingEndDate != null)
+        'LongTermPricingEndDate': unixTimestampToJson(longTermPricingEndDate),
+      if (longTermPricingId != null) 'LongTermPricingId': longTermPricingId,
+      if (longTermPricingStartDate != null)
+        'LongTermPricingStartDate':
+            unixTimestampToJson(longTermPricingStartDate),
+      if (longTermPricingStatus != null)
+        'LongTermPricingStatus': longTermPricingStatus,
+      if (longTermPricingType != null)
+        'LongTermPricingType': longTermPricingType.toValue(),
+      if (replacementJob != null) 'ReplacementJob': replacementJob,
+      if (snowballType != null) 'SnowballType': snowballType.toValue(),
+    };
   }
 }
 
@@ -3516,6 +3870,15 @@ class Shipment {
       trackingNumber: json['TrackingNumber'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final trackingNumber = this.trackingNumber;
+    return {
+      if (status != null) 'Status': status,
+      if (trackingNumber != null) 'TrackingNumber': trackingNumber,
+    };
+  }
 }
 
 enum ShipmentState {
@@ -3599,6 +3962,17 @@ class ShippingDetails {
           : null,
       shippingOption: (json['ShippingOption'] as String?)?.toShippingOption(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inboundShipment = this.inboundShipment;
+    final outboundShipment = this.outboundShipment;
+    final shippingOption = this.shippingOption;
+    return {
+      if (inboundShipment != null) 'InboundShipment': inboundShipment,
+      if (outboundShipment != null) 'OutboundShipment': outboundShipment,
+      if (shippingOption != null) 'ShippingOption': shippingOption.toValue(),
+    };
   }
 }
 
@@ -3931,12 +4305,20 @@ class UpdateClusterResult {
   factory UpdateClusterResult.fromJson(Map<String, dynamic> _) {
     return UpdateClusterResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateJobResult {
   UpdateJobResult();
   factory UpdateJobResult.fromJson(Map<String, dynamic> _) {
     return UpdateJobResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3945,12 +4327,20 @@ class UpdateJobShipmentStateResult {
   factory UpdateJobShipmentStateResult.fromJson(Map<String, dynamic> _) {
     return UpdateJobShipmentStateResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLongTermPricingResult {
   UpdateLongTermPricingResult();
   factory UpdateLongTermPricingResult.fromJson(Map<String, dynamic> _) {
     return UpdateLongTermPricingResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -3708,6 +3708,34 @@ class AccessControlRule {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final dateCreated = this.dateCreated;
+    final dateModified = this.dateModified;
+    final description = this.description;
+    final effect = this.effect;
+    final ipRanges = this.ipRanges;
+    final name = this.name;
+    final notActions = this.notActions;
+    final notIpRanges = this.notIpRanges;
+    final notUserIds = this.notUserIds;
+    final userIds = this.userIds;
+    return {
+      if (actions != null) 'Actions': actions,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateModified != null)
+        'DateModified': unixTimestampToJson(dateModified),
+      if (description != null) 'Description': description,
+      if (effect != null) 'Effect': effect.toValue(),
+      if (ipRanges != null) 'IpRanges': ipRanges,
+      if (name != null) 'Name': name,
+      if (notActions != null) 'NotActions': notActions,
+      if (notIpRanges != null) 'NotIpRanges': notIpRanges,
+      if (notUserIds != null) 'NotUserIds': notUserIds,
+      if (userIds != null) 'UserIds': userIds,
+    };
+  }
 }
 
 enum AccessControlRuleEffect {
@@ -3743,12 +3771,20 @@ class AssociateDelegateToResourceResponse {
   factory AssociateDelegateToResourceResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDelegateToResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateMemberToGroupResponse {
   AssociateMemberToGroupResponse();
   factory AssociateMemberToGroupResponse.fromJson(Map<String, dynamic> _) {
     return AssociateMemberToGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3799,12 +3835,20 @@ class CancelMailboxExportJobResponse {
   factory CancelMailboxExportJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelMailboxExportJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateAliasResponse {
   CreateAliasResponse();
   factory CreateAliasResponse.fromJson(Map<String, dynamic> _) {
     return CreateAliasResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3819,6 +3863,13 @@ class CreateGroupResponse {
     return CreateGroupResponse(
       groupId: json['GroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    return {
+      if (groupId != null) 'GroupId': groupId,
+    };
   }
 }
 
@@ -3835,6 +3886,14 @@ class CreateMobileDeviceAccessRuleResponse {
       mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mobileDeviceAccessRuleId = this.mobileDeviceAccessRuleId;
+    return {
+      if (mobileDeviceAccessRuleId != null)
+        'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
+    };
+  }
 }
 
 class CreateOrganizationResponse {
@@ -3848,6 +3907,13 @@ class CreateOrganizationResponse {
     return CreateOrganizationResponse(
       organizationId: json['OrganizationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organizationId = this.organizationId;
+    return {
+      if (organizationId != null) 'OrganizationId': organizationId,
+    };
   }
 }
 
@@ -3863,6 +3929,13 @@ class CreateResourceResponse {
       resourceId: json['ResourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -3876,6 +3949,13 @@ class CreateUserResponse {
     return CreateUserResponse(
       userId: json['UserId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    return {
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -3898,12 +3978,25 @@ class Delegate {
       type: (json['Type'] as String).toMemberType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final type = this.type;
+    return {
+      'Id': id,
+      'Type': type.toValue(),
+    };
+  }
 }
 
 class DeleteAccessControlRuleResponse {
   DeleteAccessControlRuleResponse();
   factory DeleteAccessControlRuleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccessControlRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3912,12 +4005,20 @@ class DeleteAliasResponse {
   factory DeleteAliasResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAliasResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteGroupResponse {
   DeleteGroupResponse();
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3926,6 +4027,10 @@ class DeleteMailboxPermissionsResponse {
   factory DeleteMailboxPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMailboxPermissionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteMobileDeviceAccessRuleResponse {
@@ -3933,6 +4038,10 @@ class DeleteMobileDeviceAccessRuleResponse {
   factory DeleteMobileDeviceAccessRuleResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteMobileDeviceAccessRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3953,12 +4062,25 @@ class DeleteOrganizationResponse {
       state: json['State'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationId = this.organizationId;
+    final state = this.state;
+    return {
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 class DeleteResourceResponse {
   DeleteResourceResponse();
   factory DeleteResourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3967,6 +4089,10 @@ class DeleteRetentionPolicyResponse {
   factory DeleteRetentionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRetentionPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteUserResponse {
@@ -3974,12 +4100,20 @@ class DeleteUserResponse {
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterFromWorkMailResponse {
   DeregisterFromWorkMailResponse();
   factory DeregisterFromWorkMailResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterFromWorkMailResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4022,6 +4156,24 @@ class DescribeGroupResponse {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toEntityState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final groupId = this.groupId;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (groupId != null) 'GroupId': groupId,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -4095,6 +4247,35 @@ class DescribeMailboxExportJobResponse {
       state: (json['State'] as String?)?.toMailboxExportJobState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final endTime = this.endTime;
+    final entityId = this.entityId;
+    final errorInfo = this.errorInfo;
+    final estimatedProgress = this.estimatedProgress;
+    final kmsKeyArn = this.kmsKeyArn;
+    final roleArn = this.roleArn;
+    final s3BucketName = this.s3BucketName;
+    final s3Path = this.s3Path;
+    final s3Prefix = this.s3Prefix;
+    final startTime = this.startTime;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (entityId != null) 'EntityId': entityId,
+      if (errorInfo != null) 'ErrorInfo': errorInfo,
+      if (estimatedProgress != null) 'EstimatedProgress': estimatedProgress,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3Path != null) 'S3Path': s3Path,
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DescribeOrganizationResponse {
@@ -4152,6 +4333,30 @@ class DescribeOrganizationResponse {
       state: json['State'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final alias = this.alias;
+    final completedDate = this.completedDate;
+    final defaultMailDomain = this.defaultMailDomain;
+    final directoryId = this.directoryId;
+    final directoryType = this.directoryType;
+    final errorMessage = this.errorMessage;
+    final organizationId = this.organizationId;
+    final state = this.state;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (alias != null) 'Alias': alias,
+      if (completedDate != null)
+        'CompletedDate': unixTimestampToJson(completedDate),
+      if (defaultMailDomain != null) 'DefaultMailDomain': defaultMailDomain,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (directoryType != null) 'DirectoryType': directoryType,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 class DescribeResourceResponse {
@@ -4206,6 +4411,28 @@ class DescribeResourceResponse {
       state: (json['State'] as String?)?.toEntityState(),
       type: (json['Type'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bookingOptions = this.bookingOptions;
+    final disabledDate = this.disabledDate;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final name = this.name;
+    final resourceId = this.resourceId;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (bookingOptions != null) 'BookingOptions': bookingOptions,
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (name != null) 'Name': name,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -4264,6 +4491,28 @@ class DescribeUserResponse {
       userRole: (json['UserRole'] as String?)?.toUserRole(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final displayName = this.displayName;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final name = this.name;
+    final state = this.state;
+    final userId = this.userId;
+    final userRole = this.userRole;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (displayName != null) 'DisplayName': displayName,
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (userId != null) 'UserId': userId,
+      if (userRole != null) 'UserRole': userRole.toValue(),
+    };
+  }
 }
 
 class DisassociateDelegateFromResourceResponse {
@@ -4272,12 +4521,20 @@ class DisassociateDelegateFromResourceResponse {
       Map<String, dynamic> _) {
     return DisassociateDelegateFromResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateMemberFromGroupResponse {
   DisassociateMemberFromGroupResponse();
   factory DisassociateMemberFromGroupResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMemberFromGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4300,6 +4557,13 @@ class Domain {
     this.domainName,
     this.hostedZoneId,
   });
+  factory Domain.fromJson(Map<String, dynamic> json) {
+    return Domain(
+      domainName: json['DomainName'] as String?,
+      hostedZoneId: json['HostedZoneId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final domainName = this.domainName;
     final hostedZoneId = this.hostedZoneId;
@@ -4444,6 +4708,15 @@ class GetAccessControlEffectResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final effect = this.effect;
+    final matchedRules = this.matchedRules;
+    return {
+      if (effect != null) 'Effect': effect.toValue(),
+      if (matchedRules != null) 'MatchedRules': matchedRules,
+    };
+  }
 }
 
 class GetDefaultRetentionPolicyResponse {
@@ -4477,6 +4750,20 @@ class GetDefaultRetentionPolicyResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final folderConfigurations = this.folderConfigurations;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (description != null) 'Description': description,
+      if (folderConfigurations != null)
+        'FolderConfigurations': folderConfigurations,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class GetMailboxDetailsResponse {
@@ -4495,6 +4782,15 @@ class GetMailboxDetailsResponse {
       mailboxQuota: json['MailboxQuota'] as int?,
       mailboxSize: json['MailboxSize'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mailboxQuota = this.mailboxQuota;
+    final mailboxSize = this.mailboxSize;
+    return {
+      if (mailboxQuota != null) 'MailboxQuota': mailboxQuota,
+      if (mailboxSize != null) 'MailboxSize': mailboxSize,
+    };
   }
 }
 
@@ -4522,6 +4818,15 @@ class GetMobileDeviceAccessEffectResponse {
               MobileDeviceAccessMatchedRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effect = this.effect;
+    final matchedRules = this.matchedRules;
+    return {
+      if (effect != null) 'Effect': effect.toValue(),
+      if (matchedRules != null) 'MatchedRules': matchedRules,
+    };
   }
 }
 
@@ -4563,6 +4868,24 @@ class Group {
       state: (json['State'] as String?)?.toEntityState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class ListAccessControlRulesResponse {
@@ -4579,6 +4902,13 @@ class ListAccessControlRulesResponse {
           .map((e) => AccessControlRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4603,6 +4933,15 @@ class ListAliasesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final nextToken = this.nextToken;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGroupMembersResponse {
@@ -4625,6 +4964,15 @@ class ListGroupMembersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'Members': members,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4649,6 +4997,15 @@ class ListGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMailboxExportJobsResponse {
@@ -4670,6 +5027,15 @@ class ListMailboxExportJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'Jobs': jobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4694,6 +5060,15 @@ class ListMailboxPermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissions != null) 'Permissions': permissions,
+    };
+  }
 }
 
 class ListMobileDeviceAccessRulesResponse {
@@ -4713,6 +5088,13 @@ class ListMobileDeviceAccessRulesResponse {
               (e) => MobileDeviceAccessRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4738,6 +5120,16 @@ class ListOrganizationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationSummaries = this.organizationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationSummaries != null)
+        'OrganizationSummaries': organizationSummaries,
+    };
+  }
 }
 
 class ListResourceDelegatesResponse {
@@ -4761,6 +5153,15 @@ class ListResourceDelegatesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegates = this.delegates;
+    final nextToken = this.nextToken;
+    return {
+      if (delegates != null) 'Delegates': delegates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4786,6 +5187,15 @@ class ListResourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resources != null) 'Resources': resources,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4802,6 +5212,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4825,6 +5242,15 @@ class ListUsersResponse {
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -4882,6 +5308,29 @@ class MailboxExportJob {
       startTime: timeStampFromJson(json['StartTime']),
       state: (json['State'] as String?)?.toMailboxExportJobState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final endTime = this.endTime;
+    final entityId = this.entityId;
+    final estimatedProgress = this.estimatedProgress;
+    final jobId = this.jobId;
+    final s3BucketName = this.s3BucketName;
+    final s3Path = this.s3Path;
+    final startTime = this.startTime;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (entityId != null) 'EntityId': entityId,
+      if (estimatedProgress != null) 'EstimatedProgress': estimatedProgress,
+      if (jobId != null) 'JobId': jobId,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3Path != null) 'S3Path': s3Path,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -4961,6 +5410,24 @@ class Member {
       type: (json['Type'] as String?)?.toMemberType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final enabledDate = this.enabledDate;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum MemberType {
@@ -5008,6 +5475,16 @@ class MobileDeviceAccessMatchedRule {
       mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mobileDeviceAccessRuleId = this.mobileDeviceAccessRuleId;
+    final name = this.name;
+    return {
+      if (mobileDeviceAccessRuleId != null)
+        'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5118,6 +5595,44 @@ class MobileDeviceAccessRule {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dateCreated = this.dateCreated;
+    final dateModified = this.dateModified;
+    final description = this.description;
+    final deviceModels = this.deviceModels;
+    final deviceOperatingSystems = this.deviceOperatingSystems;
+    final deviceTypes = this.deviceTypes;
+    final deviceUserAgents = this.deviceUserAgents;
+    final effect = this.effect;
+    final mobileDeviceAccessRuleId = this.mobileDeviceAccessRuleId;
+    final name = this.name;
+    final notDeviceModels = this.notDeviceModels;
+    final notDeviceOperatingSystems = this.notDeviceOperatingSystems;
+    final notDeviceTypes = this.notDeviceTypes;
+    final notDeviceUserAgents = this.notDeviceUserAgents;
+    return {
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateModified != null)
+        'DateModified': unixTimestampToJson(dateModified),
+      if (description != null) 'Description': description,
+      if (deviceModels != null) 'DeviceModels': deviceModels,
+      if (deviceOperatingSystems != null)
+        'DeviceOperatingSystems': deviceOperatingSystems,
+      if (deviceTypes != null) 'DeviceTypes': deviceTypes,
+      if (deviceUserAgents != null) 'DeviceUserAgents': deviceUserAgents,
+      if (effect != null) 'Effect': effect.toValue(),
+      if (mobileDeviceAccessRuleId != null)
+        'MobileDeviceAccessRuleId': mobileDeviceAccessRuleId,
+      if (name != null) 'Name': name,
+      if (notDeviceModels != null) 'NotDeviceModels': notDeviceModels,
+      if (notDeviceOperatingSystems != null)
+        'NotDeviceOperatingSystems': notDeviceOperatingSystems,
+      if (notDeviceTypes != null) 'NotDeviceTypes': notDeviceTypes,
+      if (notDeviceUserAgents != null)
+        'NotDeviceUserAgents': notDeviceUserAgents,
+    };
+  }
 }
 
 enum MobileDeviceAccessRuleEffect {
@@ -5183,6 +5698,21 @@ class OrganizationSummary {
       state: json['State'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final defaultMailDomain = this.defaultMailDomain;
+    final errorMessage = this.errorMessage;
+    final organizationId = this.organizationId;
+    final state = this.state;
+    return {
+      if (alias != null) 'Alias': alias,
+      if (defaultMailDomain != null) 'DefaultMailDomain': defaultMailDomain,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// Permission granted to a user, group, or resource to access a certain aspect
@@ -5217,6 +5747,17 @@ class Permission {
           .map((e) => (e as String).toPermissionType())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final granteeId = this.granteeId;
+    final granteeType = this.granteeType;
+    final permissionValues = this.permissionValues;
+    return {
+      'GranteeId': granteeId,
+      'GranteeType': granteeType.toValue(),
+      'PermissionValues': permissionValues.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -5258,12 +5799,20 @@ class PutAccessControlRuleResponse {
   factory PutAccessControlRuleResponse.fromJson(Map<String, dynamic> _) {
     return PutAccessControlRuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutMailboxPermissionsResponse {
   PutMailboxPermissionsResponse();
   factory PutMailboxPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return PutMailboxPermissionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5272,6 +5821,10 @@ class PutRetentionPolicyResponse {
   factory PutRetentionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutRetentionPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RegisterToWorkMailResponse {
@@ -5279,12 +5832,20 @@ class RegisterToWorkMailResponse {
   factory RegisterToWorkMailResponse.fromJson(Map<String, dynamic> _) {
     return RegisterToWorkMailResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ResetPasswordResponse {
   ResetPasswordResponse();
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> _) {
     return ResetPasswordResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5330,6 +5891,26 @@ class Resource {
       state: (json['State'] as String?)?.toEntityState(),
       type: (json['Type'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5406,6 +5987,13 @@ class StartMailboxExportJobResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 /// Describes a tag applied to a resource.
@@ -5442,6 +6030,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
@@ -5449,12 +6041,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateMailboxQuotaResponse {
   UpdateMailboxQuotaResponse();
   factory UpdateMailboxQuotaResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMailboxQuotaResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5464,6 +6064,10 @@ class UpdateMobileDeviceAccessRuleResponse {
       Map<String, dynamic> _) {
     return UpdateMobileDeviceAccessRuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePrimaryEmailAddressResponse {
@@ -5471,12 +6075,20 @@ class UpdatePrimaryEmailAddressResponse {
   factory UpdatePrimaryEmailAddressResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePrimaryEmailAddressResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateResourceResponse {
   UpdateResourceResponse();
   factory UpdateResourceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5527,6 +6139,28 @@ class User {
       state: (json['State'] as String?)?.toEntityState(),
       userRole: (json['UserRole'] as String?)?.toUserRole(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disabledDate = this.disabledDate;
+    final displayName = this.displayName;
+    final email = this.email;
+    final enabledDate = this.enabledDate;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final userRole = this.userRole;
+    return {
+      if (disabledDate != null)
+        'DisabledDate': unixTimestampToJson(disabledDate),
+      if (displayName != null) 'DisplayName': displayName,
+      if (email != null) 'Email': email,
+      if (enabledDate != null) 'EnabledDate': unixTimestampToJson(enabledDate),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (userRole != null) 'UserRole': userRole.toValue(),
+    };
   }
 }
 

@@ -1353,6 +1353,13 @@ class CreateDeliveryStreamOutput {
       deliveryStreamARN: json['DeliveryStreamARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStreamARN = this.deliveryStreamARN;
+    return {
+      if (deliveryStreamARN != null) 'DeliveryStreamARN': deliveryStreamARN,
+    };
+  }
 }
 
 /// Specifies that you want Kinesis Data Firehose to convert data from the JSON
@@ -1429,6 +1436,10 @@ class DeleteDeliveryStreamOutput {
   DeleteDeliveryStreamOutput();
   factory DeleteDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return DeleteDeliveryStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1542,6 +1553,40 @@ class DeliveryStreamDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStreamARN = this.deliveryStreamARN;
+    final deliveryStreamName = this.deliveryStreamName;
+    final deliveryStreamStatus = this.deliveryStreamStatus;
+    final deliveryStreamType = this.deliveryStreamType;
+    final destinations = this.destinations;
+    final hasMoreDestinations = this.hasMoreDestinations;
+    final versionId = this.versionId;
+    final createTimestamp = this.createTimestamp;
+    final deliveryStreamEncryptionConfiguration =
+        this.deliveryStreamEncryptionConfiguration;
+    final failureDescription = this.failureDescription;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final source = this.source;
+    return {
+      'DeliveryStreamARN': deliveryStreamARN,
+      'DeliveryStreamName': deliveryStreamName,
+      'DeliveryStreamStatus': deliveryStreamStatus.toValue(),
+      'DeliveryStreamType': deliveryStreamType.toValue(),
+      'Destinations': destinations,
+      'HasMoreDestinations': hasMoreDestinations,
+      'VersionId': versionId,
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (deliveryStreamEncryptionConfiguration != null)
+        'DeliveryStreamEncryptionConfiguration':
+            deliveryStreamEncryptionConfiguration,
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// Contains information about the server-side encryption (SSE) status for the
@@ -1596,6 +1641,19 @@ class DeliveryStreamEncryptionConfiguration {
       status: (json['Status'] as String?)?.toDeliveryStreamEncryptionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureDescription = this.failureDescription;
+    final keyARN = this.keyARN;
+    final keyType = this.keyType;
+    final status = this.status;
+    return {
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (keyARN != null) 'KeyARN': keyARN,
+      if (keyType != null) 'KeyType': keyType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Specifies the type and Amazon Resource Name (ARN) of the CMK to use for
@@ -1642,6 +1700,14 @@ class DeliveryStreamEncryptionConfigurationInput {
     required this.keyType,
     this.keyARN,
   });
+  factory DeliveryStreamEncryptionConfigurationInput.fromJson(
+      Map<String, dynamic> json) {
+    return DeliveryStreamEncryptionConfigurationInput(
+      keyType: (json['KeyType'] as String).toKeyType(),
+      keyARN: json['KeyARN'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final keyType = this.keyType;
     final keyARN = this.keyARN;
@@ -1878,6 +1944,13 @@ class DescribeDeliveryStreamOutput {
           json['DeliveryStreamDescription'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStreamDescription = this.deliveryStreamDescription;
+    return {
+      'DeliveryStreamDescription': deliveryStreamDescription,
+    };
+  }
 }
 
 /// The deserializer you want Kinesis Data Firehose to use for converting the
@@ -1997,6 +2070,36 @@ class DestinationDescription {
               json['SplunkDestinationDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    final elasticsearchDestinationDescription =
+        this.elasticsearchDestinationDescription;
+    final extendedS3DestinationDescription =
+        this.extendedS3DestinationDescription;
+    final httpEndpointDestinationDescription =
+        this.httpEndpointDestinationDescription;
+    final redshiftDestinationDescription = this.redshiftDestinationDescription;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    final splunkDestinationDescription = this.splunkDestinationDescription;
+    return {
+      'DestinationId': destinationId,
+      if (elasticsearchDestinationDescription != null)
+        'ElasticsearchDestinationDescription':
+            elasticsearchDestinationDescription,
+      if (extendedS3DestinationDescription != null)
+        'ExtendedS3DestinationDescription': extendedS3DestinationDescription,
+      if (httpEndpointDestinationDescription != null)
+        'HttpEndpointDestinationDescription':
+            httpEndpointDestinationDescription,
+      if (redshiftDestinationDescription != null)
+        'RedshiftDestinationDescription': redshiftDestinationDescription,
+      if (s3DestinationDescription != null)
+        'S3DestinationDescription': s3DestinationDescription,
+      if (splunkDestinationDescription != null)
+        'SplunkDestinationDescription': splunkDestinationDescription,
+    };
   }
 }
 
@@ -2132,6 +2235,43 @@ class ElasticsearchDestinationConfiguration {
     this.typeName,
     this.vpcConfiguration,
   });
+  factory ElasticsearchDestinationConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return ElasticsearchDestinationConfiguration(
+      indexName: json['IndexName'] as String,
+      roleARN: json['RoleARN'] as String,
+      s3Configuration: S3DestinationConfiguration.fromJson(
+          json['S3Configuration'] as Map<String, dynamic>),
+      bufferingHints: json['BufferingHints'] != null
+          ? ElasticsearchBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterEndpoint: json['ClusterEndpoint'] as String?,
+      domainARN: json['DomainARN'] as String?,
+      indexRotationPeriod: (json['IndexRotationPeriod'] as String?)
+          ?.toElasticsearchIndexRotationPeriod(),
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? ElasticsearchRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode:
+          (json['S3BackupMode'] as String?)?.toElasticsearchS3BackupMode(),
+      typeName: json['TypeName'] as String?,
+      vpcConfiguration: json['VpcConfiguration'] != null
+          ? VpcConfiguration.fromJson(
+              json['VpcConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final roleARN = this.roleARN;
@@ -2272,6 +2412,42 @@ class ElasticsearchDestinationDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bufferingHints = this.bufferingHints;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final clusterEndpoint = this.clusterEndpoint;
+    final domainARN = this.domainARN;
+    final indexName = this.indexName;
+    final indexRotationPeriod = this.indexRotationPeriod;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final roleARN = this.roleARN;
+    final s3BackupMode = this.s3BackupMode;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    final typeName = this.typeName;
+    final vpcConfigurationDescription = this.vpcConfigurationDescription;
+    return {
+      if (bufferingHints != null) 'BufferingHints': bufferingHints,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (clusterEndpoint != null) 'ClusterEndpoint': clusterEndpoint,
+      if (domainARN != null) 'DomainARN': domainARN,
+      if (indexName != null) 'IndexName': indexName,
+      if (indexRotationPeriod != null)
+        'IndexRotationPeriod': indexRotationPeriod.toValue(),
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+      if (s3DestinationDescription != null)
+        'S3DestinationDescription': s3DestinationDescription,
+      if (typeName != null) 'TypeName': typeName,
+      if (vpcConfigurationDescription != null)
+        'VpcConfigurationDescription': vpcConfigurationDescription,
+    };
+  }
 }
 
 /// Describes an update for a destination in Amazon ES.
@@ -2352,6 +2528,38 @@ class ElasticsearchDestinationUpdate {
     this.s3Update,
     this.typeName,
   });
+  factory ElasticsearchDestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return ElasticsearchDestinationUpdate(
+      bufferingHints: json['BufferingHints'] != null
+          ? ElasticsearchBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterEndpoint: json['ClusterEndpoint'] as String?,
+      domainARN: json['DomainARN'] as String?,
+      indexName: json['IndexName'] as String?,
+      indexRotationPeriod: (json['IndexRotationPeriod'] as String?)
+          ?.toElasticsearchIndexRotationPeriod(),
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? ElasticsearchRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3Update: json['S3Update'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3Update'] as Map<String, dynamic>)
+          : null,
+      typeName: json['TypeName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bufferingHints = this.bufferingHints;
     final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
@@ -2587,6 +2795,45 @@ class ExtendedS3DestinationConfiguration {
     this.s3BackupConfiguration,
     this.s3BackupMode,
   });
+  factory ExtendedS3DestinationConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return ExtendedS3DestinationConfiguration(
+      bucketARN: json['BucketARN'] as String,
+      roleARN: json['RoleARN'] as String,
+      bufferingHints: json['BufferingHints'] != null
+          ? BufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      compressionFormat:
+          (json['CompressionFormat'] as String?)?.toCompressionFormat(),
+      dataFormatConversionConfiguration:
+          json['DataFormatConversionConfiguration'] != null
+              ? DataFormatConversionConfiguration.fromJson(
+                  json['DataFormatConversionConfiguration']
+                      as Map<String, dynamic>)
+              : null,
+      encryptionConfiguration: json['EncryptionConfiguration'] != null
+          ? EncryptionConfiguration.fromJson(
+              json['EncryptionConfiguration'] as Map<String, dynamic>)
+          : null,
+      errorOutputPrefix: json['ErrorOutputPrefix'] as String?,
+      prefix: json['Prefix'] as String?,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      s3BackupConfiguration: json['S3BackupConfiguration'] != null
+          ? S3DestinationConfiguration.fromJson(
+              json['S3BackupConfiguration'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toS3BackupMode(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final roleARN = this.roleARN;
@@ -2724,6 +2971,40 @@ class ExtendedS3DestinationDescription {
       s3BackupMode: (json['S3BackupMode'] as String?)?.toS3BackupMode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final bufferingHints = this.bufferingHints;
+    final compressionFormat = this.compressionFormat;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final roleARN = this.roleARN;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final dataFormatConversionConfiguration =
+        this.dataFormatConversionConfiguration;
+    final errorOutputPrefix = this.errorOutputPrefix;
+    final prefix = this.prefix;
+    final processingConfiguration = this.processingConfiguration;
+    final s3BackupDescription = this.s3BackupDescription;
+    final s3BackupMode = this.s3BackupMode;
+    return {
+      'BucketARN': bucketARN,
+      'BufferingHints': bufferingHints,
+      'CompressionFormat': compressionFormat.toValue(),
+      'EncryptionConfiguration': encryptionConfiguration,
+      'RoleARN': roleARN,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (dataFormatConversionConfiguration != null)
+        'DataFormatConversionConfiguration': dataFormatConversionConfiguration,
+      if (errorOutputPrefix != null) 'ErrorOutputPrefix': errorOutputPrefix,
+      if (prefix != null) 'Prefix': prefix,
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (s3BackupDescription != null)
+        'S3BackupDescription': s3BackupDescription,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+    };
+  }
 }
 
 /// Describes an update for a destination in Amazon S3.
@@ -2795,6 +3076,44 @@ class ExtendedS3DestinationUpdate {
     this.s3BackupMode,
     this.s3BackupUpdate,
   });
+  factory ExtendedS3DestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return ExtendedS3DestinationUpdate(
+      bucketARN: json['BucketARN'] as String?,
+      bufferingHints: json['BufferingHints'] != null
+          ? BufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      compressionFormat:
+          (json['CompressionFormat'] as String?)?.toCompressionFormat(),
+      dataFormatConversionConfiguration:
+          json['DataFormatConversionConfiguration'] != null
+              ? DataFormatConversionConfiguration.fromJson(
+                  json['DataFormatConversionConfiguration']
+                      as Map<String, dynamic>)
+              : null,
+      encryptionConfiguration: json['EncryptionConfiguration'] != null
+          ? EncryptionConfiguration.fromJson(
+              json['EncryptionConfiguration'] as Map<String, dynamic>)
+          : null,
+      errorOutputPrefix: json['ErrorOutputPrefix'] as String?,
+      prefix: json['Prefix'] as String?,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toS3BackupMode(),
+      s3BackupUpdate: json['S3BackupUpdate'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3BackupUpdate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final bufferingHints = this.bufferingHints;
@@ -2851,6 +3170,15 @@ class FailureDescription {
       details: json['Details'] as String,
       type: (json['Type'] as String).toDeliveryStreamFailureType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final type = this.type;
+    return {
+      'Details': details,
+      'Type': type.toValue(),
+    };
   }
 }
 
@@ -3008,6 +3336,14 @@ class HttpEndpointConfiguration {
     this.accessKey,
     this.name,
   });
+  factory HttpEndpointConfiguration.fromJson(Map<String, dynamic> json) {
+    return HttpEndpointConfiguration(
+      url: json['Url'] as String,
+      accessKey: json['AccessKey'] as String?,
+      name: json['Name'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final url = this.url;
     final accessKey = this.accessKey;
@@ -3037,6 +3373,15 @@ class HttpEndpointDescription {
       name: json['Name'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final url = this.url;
+    return {
+      if (name != null) 'Name': name,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -3088,6 +3433,39 @@ class HttpEndpointDestinationConfiguration {
     this.roleARN,
     this.s3BackupMode,
   });
+  factory HttpEndpointDestinationConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return HttpEndpointDestinationConfiguration(
+      endpointConfiguration: HttpEndpointConfiguration.fromJson(
+          json['EndpointConfiguration'] as Map<String, dynamic>),
+      s3Configuration: S3DestinationConfiguration.fromJson(
+          json['S3Configuration'] as Map<String, dynamic>),
+      bufferingHints: json['BufferingHints'] != null
+          ? HttpEndpointBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      requestConfiguration: json['RequestConfiguration'] != null
+          ? HttpEndpointRequestConfiguration.fromJson(
+              json['RequestConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? HttpEndpointRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3BackupMode:
+          (json['S3BackupMode'] as String?)?.toHttpEndpointS3BackupMode(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endpointConfiguration = this.endpointConfiguration;
     final s3Configuration = this.s3Configuration;
@@ -3199,6 +3577,34 @@ class HttpEndpointDestinationDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bufferingHints = this.bufferingHints;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final endpointConfiguration = this.endpointConfiguration;
+    final processingConfiguration = this.processingConfiguration;
+    final requestConfiguration = this.requestConfiguration;
+    final retryOptions = this.retryOptions;
+    final roleARN = this.roleARN;
+    final s3BackupMode = this.s3BackupMode;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    return {
+      if (bufferingHints != null) 'BufferingHints': bufferingHints,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (endpointConfiguration != null)
+        'EndpointConfiguration': endpointConfiguration,
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (requestConfiguration != null)
+        'RequestConfiguration': requestConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+      if (s3DestinationDescription != null)
+        'S3DestinationDescription': s3DestinationDescription,
+    };
+  }
 }
 
 /// Updates the specified HTTP endpoint destination.
@@ -3249,6 +3655,42 @@ class HttpEndpointDestinationUpdate {
     this.s3BackupMode,
     this.s3Update,
   });
+  factory HttpEndpointDestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return HttpEndpointDestinationUpdate(
+      bufferingHints: json['BufferingHints'] != null
+          ? HttpEndpointBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      endpointConfiguration: json['EndpointConfiguration'] != null
+          ? HttpEndpointConfiguration.fromJson(
+              json['EndpointConfiguration'] as Map<String, dynamic>)
+          : null,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      requestConfiguration: json['RequestConfiguration'] != null
+          ? HttpEndpointRequestConfiguration.fromJson(
+              json['RequestConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? HttpEndpointRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3BackupMode:
+          (json['S3BackupMode'] as String?)?.toHttpEndpointS3BackupMode(),
+      s3Update: json['S3Update'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3Update'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bufferingHints = this.bufferingHints;
     final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
@@ -3472,6 +3914,13 @@ class KinesisStreamSourceConfiguration {
     required this.kinesisStreamARN,
     required this.roleARN,
   });
+  factory KinesisStreamSourceConfiguration.fromJson(Map<String, dynamic> json) {
+    return KinesisStreamSourceConfiguration(
+      kinesisStreamARN: json['KinesisStreamARN'] as String,
+      roleARN: json['RoleARN'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final kinesisStreamARN = this.kinesisStreamARN;
     final roleARN = this.roleARN;
@@ -3513,6 +3962,18 @@ class KinesisStreamSourceDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStartTimestamp = this.deliveryStartTimestamp;
+    final kinesisStreamARN = this.kinesisStreamARN;
+    final roleARN = this.roleARN;
+    return {
+      if (deliveryStartTimestamp != null)
+        'DeliveryStartTimestamp': unixTimestampToJson(deliveryStartTimestamp),
+      if (kinesisStreamARN != null) 'KinesisStreamARN': kinesisStreamARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 class ListDeliveryStreamsOutput {
@@ -3534,6 +3995,15 @@ class ListDeliveryStreamsOutput {
           .toList(),
       hasMoreDeliveryStreams: json['HasMoreDeliveryStreams'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStreamNames = this.deliveryStreamNames;
+    final hasMoreDeliveryStreams = this.hasMoreDeliveryStreams;
+    return {
+      'DeliveryStreamNames': deliveryStreamNames,
+      'HasMoreDeliveryStreams': hasMoreDeliveryStreams,
+    };
   }
 }
 
@@ -3560,6 +4030,15 @@ class ListTagsForDeliveryStreamOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hasMoreTags = this.hasMoreTags;
+    final tags = this.tags;
+    return {
+      'HasMoreTags': hasMoreTags,
+      'Tags': tags,
+    };
   }
 }
 
@@ -4178,6 +4657,17 @@ class PutRecordBatchOutput {
       encrypted: json['Encrypted'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedPutCount = this.failedPutCount;
+    final requestResponses = this.requestResponses;
+    final encrypted = this.encrypted;
+    return {
+      'FailedPutCount': failedPutCount,
+      'RequestResponses': requestResponses,
+      if (encrypted != null) 'Encrypted': encrypted,
+    };
+  }
 }
 
 /// Contains the result for an individual record from a <a>PutRecordBatch</a>
@@ -4206,6 +4696,17 @@ class PutRecordBatchResponseEntry {
       recordId: json['RecordId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final recordId = this.recordId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (recordId != null) 'RecordId': recordId,
+    };
+  }
 }
 
 class PutRecordOutput {
@@ -4226,6 +4727,15 @@ class PutRecordOutput {
       encrypted: json['Encrypted'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recordId = this.recordId;
+    final encrypted = this.encrypted;
+    return {
+      'RecordId': recordId,
+      if (encrypted != null) 'Encrypted': encrypted,
+    };
+  }
 }
 
 /// The unit of data in a delivery stream.
@@ -4237,6 +4747,12 @@ class Record {
   Record({
     required this.data,
   });
+  factory Record.fromJson(Map<String, dynamic> json) {
+    return Record(
+      data: _s.decodeUint8List(json['Data']! as String),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -4306,6 +4822,36 @@ class RedshiftDestinationConfiguration {
     this.s3BackupConfiguration,
     this.s3BackupMode,
   });
+  factory RedshiftDestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return RedshiftDestinationConfiguration(
+      clusterJDBCURL: json['ClusterJDBCURL'] as String,
+      copyCommand:
+          CopyCommand.fromJson(json['CopyCommand'] as Map<String, dynamic>),
+      password: json['Password'] as String,
+      roleARN: json['RoleARN'] as String,
+      s3Configuration: S3DestinationConfiguration.fromJson(
+          json['S3Configuration'] as Map<String, dynamic>),
+      username: json['Username'] as String,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? RedshiftRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      s3BackupConfiguration: json['S3BackupConfiguration'] != null
+          ? S3DestinationConfiguration.fromJson(
+              json['S3BackupConfiguration'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toRedshiftS3BackupMode(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clusterJDBCURL = this.clusterJDBCURL;
     final copyCommand = this.copyCommand;
@@ -4413,6 +4959,34 @@ class RedshiftDestinationDescription {
       s3BackupMode: (json['S3BackupMode'] as String?)?.toRedshiftS3BackupMode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterJDBCURL = this.clusterJDBCURL;
+    final copyCommand = this.copyCommand;
+    final roleARN = this.roleARN;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    final username = this.username;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final s3BackupDescription = this.s3BackupDescription;
+    final s3BackupMode = this.s3BackupMode;
+    return {
+      'ClusterJDBCURL': clusterJDBCURL,
+      'CopyCommand': copyCommand,
+      'RoleARN': roleARN,
+      'S3DestinationDescription': s3DestinationDescription,
+      'Username': username,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (s3BackupDescription != null)
+        'S3BackupDescription': s3BackupDescription,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+    };
+  }
 }
 
 /// Describes an update for a destination in Amazon Redshift.
@@ -4474,6 +5048,39 @@ class RedshiftDestinationUpdate {
     this.s3Update,
     this.username,
   });
+  factory RedshiftDestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return RedshiftDestinationUpdate(
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterJDBCURL: json['ClusterJDBCURL'] as String?,
+      copyCommand: json['CopyCommand'] != null
+          ? CopyCommand.fromJson(json['CopyCommand'] as Map<String, dynamic>)
+          : null,
+      password: json['Password'] as String?,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? RedshiftRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toRedshiftS3BackupMode(),
+      s3BackupUpdate: json['S3BackupUpdate'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3BackupUpdate'] as Map<String, dynamic>)
+          : null,
+      s3Update: json['S3Update'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3Update'] as Map<String, dynamic>)
+          : null,
+      username: json['Username'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
     final clusterJDBCURL = this.clusterJDBCURL;
@@ -4643,6 +5250,29 @@ class S3DestinationConfiguration {
     this.errorOutputPrefix,
     this.prefix,
   });
+  factory S3DestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return S3DestinationConfiguration(
+      bucketARN: json['BucketARN'] as String,
+      roleARN: json['RoleARN'] as String,
+      bufferingHints: json['BufferingHints'] != null
+          ? BufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      compressionFormat:
+          (json['CompressionFormat'] as String?)?.toCompressionFormat(),
+      encryptionConfiguration: json['EncryptionConfiguration'] != null
+          ? EncryptionConfiguration.fromJson(
+              json['EncryptionConfiguration'] as Map<String, dynamic>)
+          : null,
+      errorOutputPrefix: json['ErrorOutputPrefix'] as String?,
+      prefix: json['Prefix'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final roleARN = this.roleARN;
@@ -4737,6 +5367,28 @@ class S3DestinationDescription {
       prefix: json['Prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final bufferingHints = this.bufferingHints;
+    final compressionFormat = this.compressionFormat;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final roleARN = this.roleARN;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final errorOutputPrefix = this.errorOutputPrefix;
+    final prefix = this.prefix;
+    return {
+      'BucketARN': bucketARN,
+      'BufferingHints': bufferingHints,
+      'CompressionFormat': compressionFormat.toValue(),
+      'EncryptionConfiguration': encryptionConfiguration,
+      'RoleARN': roleARN,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (errorOutputPrefix != null) 'ErrorOutputPrefix': errorOutputPrefix,
+      if (prefix != null) 'Prefix': prefix,
+    };
+  }
 }
 
 /// Describes an update for a destination in Amazon S3.
@@ -4795,6 +5447,29 @@ class S3DestinationUpdate {
     this.prefix,
     this.roleARN,
   });
+  factory S3DestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return S3DestinationUpdate(
+      bucketARN: json['BucketARN'] as String?,
+      bufferingHints: json['BufferingHints'] != null
+          ? BufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      compressionFormat:
+          (json['CompressionFormat'] as String?)?.toCompressionFormat(),
+      encryptionConfiguration: json['EncryptionConfiguration'] != null
+          ? EncryptionConfiguration.fromJson(
+              json['EncryptionConfiguration'] as Map<String, dynamic>)
+          : null,
+      errorOutputPrefix: json['ErrorOutputPrefix'] as String?,
+      prefix: json['Prefix'] as String?,
+      roleARN: json['RoleARN'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final bufferingHints = this.bufferingHints;
@@ -4949,6 +5624,14 @@ class SourceDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kinesisStreamSourceDescription = this.kinesisStreamSourceDescription;
+    return {
+      if (kinesisStreamSourceDescription != null)
+        'KinesisStreamSourceDescription': kinesisStreamSourceDescription,
+    };
+  }
 }
 
 /// Describes the configuration of a destination in Splunk.
@@ -5007,6 +5690,31 @@ class SplunkDestinationConfiguration {
     this.retryOptions,
     this.s3BackupMode,
   });
+  factory SplunkDestinationConfiguration.fromJson(Map<String, dynamic> json) {
+    return SplunkDestinationConfiguration(
+      hECEndpoint: json['HECEndpoint'] as String,
+      hECEndpointType: (json['HECEndpointType'] as String).toHECEndpointType(),
+      hECToken: json['HECToken'] as String,
+      s3Configuration: S3DestinationConfiguration.fromJson(
+          json['S3Configuration'] as Map<String, dynamic>),
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      hECAcknowledgmentTimeoutInSeconds:
+          json['HECAcknowledgmentTimeoutInSeconds'] as int?,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? SplunkRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toSplunkS3BackupMode(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final hECEndpoint = this.hECEndpoint;
     final hECEndpointType = this.hECEndpointType;
@@ -5113,6 +5821,34 @@ class SplunkDestinationDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final hECAcknowledgmentTimeoutInSeconds =
+        this.hECAcknowledgmentTimeoutInSeconds;
+    final hECEndpoint = this.hECEndpoint;
+    final hECEndpointType = this.hECEndpointType;
+    final hECToken = this.hECToken;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final s3BackupMode = this.s3BackupMode;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    return {
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (hECAcknowledgmentTimeoutInSeconds != null)
+        'HECAcknowledgmentTimeoutInSeconds': hECAcknowledgmentTimeoutInSeconds,
+      if (hECEndpoint != null) 'HECEndpoint': hECEndpoint,
+      if (hECEndpointType != null) 'HECEndpointType': hECEndpointType.toValue(),
+      if (hECToken != null) 'HECToken': hECToken,
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+      if (s3DestinationDescription != null)
+        'S3DestinationDescription': s3DestinationDescription,
+    };
+  }
 }
 
 /// Describes an update for a destination in Splunk.
@@ -5170,6 +5906,34 @@ class SplunkDestinationUpdate {
     this.s3BackupMode,
     this.s3Update,
   });
+  factory SplunkDestinationUpdate.fromJson(Map<String, dynamic> json) {
+    return SplunkDestinationUpdate(
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      hECAcknowledgmentTimeoutInSeconds:
+          json['HECAcknowledgmentTimeoutInSeconds'] as int?,
+      hECEndpoint: json['HECEndpoint'] as String?,
+      hECEndpointType:
+          (json['HECEndpointType'] as String?)?.toHECEndpointType(),
+      hECToken: json['HECToken'] as String?,
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? SplunkRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode: (json['S3BackupMode'] as String?)?.toSplunkS3BackupMode(),
+      s3Update: json['S3Update'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3Update'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
     final hECAcknowledgmentTimeoutInSeconds =
@@ -5257,12 +6021,20 @@ class StartDeliveryStreamEncryptionOutput {
   factory StartDeliveryStreamEncryptionOutput.fromJson(Map<String, dynamic> _) {
     return StartDeliveryStreamEncryptionOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopDeliveryStreamEncryptionOutput {
   StopDeliveryStreamEncryptionOutput();
   factory StopDeliveryStreamEncryptionOutput.fromJson(Map<String, dynamic> _) {
     return StopDeliveryStreamEncryptionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5304,6 +6076,10 @@ class TagDeliveryStreamOutput {
   factory TagDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return TagDeliveryStreamOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagDeliveryStreamOutput {
@@ -5311,12 +6087,20 @@ class UntagDeliveryStreamOutput {
   factory UntagDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return UntagDeliveryStreamOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDestinationOutput {
   UpdateDestinationOutput();
   factory UpdateDestinationOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDestinationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5396,6 +6180,20 @@ class VpcConfiguration {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+  factory VpcConfiguration.fromJson(Map<String, dynamic> json) {
+    return VpcConfiguration(
+      roleARN: json['RoleARN'] as String,
+      securityGroupIds: (json['SecurityGroupIds'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      subnetIds: (json['SubnetIds'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final roleARN = this.roleARN;
     final securityGroupIds = this.securityGroupIds;
@@ -5501,6 +6299,19 @@ class VpcConfigurationDescription {
           .toList(),
       vpcId: json['VpcId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleARN = this.roleARN;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      'RoleARN': roleARN,
+      'SecurityGroupIds': securityGroupIds,
+      'SubnetIds': subnetIds,
+      'VpcId': vpcId,
+    };
   }
 }
 

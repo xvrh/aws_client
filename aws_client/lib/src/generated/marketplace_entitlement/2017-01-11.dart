@@ -150,6 +150,22 @@ class Entitlement {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerIdentifier = this.customerIdentifier;
+    final dimension = this.dimension;
+    final expirationDate = this.expirationDate;
+    final productCode = this.productCode;
+    final value = this.value;
+    return {
+      if (customerIdentifier != null) 'CustomerIdentifier': customerIdentifier,
+      if (dimension != null) 'Dimension': dimension,
+      if (expirationDate != null)
+        'ExpirationDate': unixTimestampToJson(expirationDate),
+      if (productCode != null) 'ProductCode': productCode,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The EntitlementValue represents the amount of capacity that the customer is
@@ -184,6 +200,19 @@ class EntitlementValue {
       integerValue: json['IntegerValue'] as int?,
       stringValue: json['StringValue'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final booleanValue = this.booleanValue;
+    final doubleValue = this.doubleValue;
+    final integerValue = this.integerValue;
+    final stringValue = this.stringValue;
+    return {
+      if (booleanValue != null) 'BooleanValue': booleanValue,
+      if (doubleValue != null) 'DoubleValue': doubleValue,
+      if (integerValue != null) 'IntegerValue': integerValue,
+      if (stringValue != null) 'StringValue': stringValue,
+    };
   }
 }
 
@@ -241,6 +270,15 @@ class GetEntitlementsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlements = this.entitlements;
+    final nextToken = this.nextToken;
+    return {
+      if (entitlements != null) 'Entitlements': entitlements,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// An internal error has occurred. Retry your request. If the problem persists,
@@ -256,6 +294,13 @@ class InternalServiceErrorException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// One or more parameters in your request was invalid.
@@ -270,6 +315,13 @@ class InvalidParameterException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The calls to the GetEntitlements API are throttled.
@@ -283,6 +335,13 @@ class ThrottlingException implements _s.AwsException {
     return ThrottlingException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 

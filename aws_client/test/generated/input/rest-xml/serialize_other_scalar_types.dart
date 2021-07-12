@@ -71,6 +71,28 @@ class InputShape {
     this.second,
     this.third,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      first: json['First'] as bool?,
+      fourth: json['Fourth'] as int?,
+      second: json['Second'] as bool?,
+      third: json['Third'] as double?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final first = this.first;
+    final fourth = this.fourth;
+    final second = this.second;
+    final third = this.third;
+    return {
+      if (first != null) 'First': first,
+      if (fourth != null) 'Fourth': fourth,
+      if (second != null) 'Second': second,
+      if (third != null) 'Third': third,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final first = this.first;
     final fourth = this.fourth;

@@ -4825,11 +4825,27 @@ class AccountLimit {
     required this.type,
     required this.value,
   });
+  factory AccountLimit.fromJson(Map<String, dynamic> json) {
+    return AccountLimit(
+      type: (json['Type'] as String).toAccountLimitType(),
+      value: json['Value'] as int,
+    );
+  }
+
   factory AccountLimit.fromXml(_s.XmlElement elem) {
     return AccountLimit(
       type: _s.extractXmlStringValue(elem, 'Type')!.toAccountLimitType(),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 
@@ -4882,10 +4898,24 @@ class ActivateKeySigningKeyResponse {
   ActivateKeySigningKeyResponse({
     required this.changeInfo,
   });
+  factory ActivateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
+    return ActivateKeySigningKeyResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory ActivateKeySigningKeyResponse.fromXml(_s.XmlElement elem) {
     return ActivateKeySigningKeyResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -4926,11 +4956,27 @@ class AlarmIdentifier {
     required this.name,
     required this.region,
   });
+  factory AlarmIdentifier.fromJson(Map<String, dynamic> json) {
+    return AlarmIdentifier(
+      name: json['Name'] as String,
+      region: (json['Region'] as String).toCloudWatchRegion(),
+    );
+  }
+
   factory AlarmIdentifier.fromXml(_s.XmlElement elem) {
     return AlarmIdentifier(
       name: _s.extractXmlStringValue(elem, 'Name')!,
       region: _s.extractXmlStringValue(elem, 'Region')!.toCloudWatchRegion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final region = this.region;
+    return {
+      'Name': name,
+      'Region': region.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5319,6 +5365,14 @@ class AliasTarget {
     required this.evaluateTargetHealth,
     required this.hostedZoneId,
   });
+  factory AliasTarget.fromJson(Map<String, dynamic> json) {
+    return AliasTarget(
+      dNSName: json['DNSName'] as String,
+      evaluateTargetHealth: json['EvaluateTargetHealth'] as bool,
+      hostedZoneId: json['HostedZoneId'] as String,
+    );
+  }
+
   factory AliasTarget.fromXml(_s.XmlElement elem) {
     return AliasTarget(
       dNSName: _s.extractXmlStringValue(elem, 'DNSName')!,
@@ -5326,6 +5380,17 @@ class AliasTarget {
           _s.extractXmlBoolValue(elem, 'EvaluateTargetHealth')!,
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    final evaluateTargetHealth = this.evaluateTargetHealth;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'DNSName': dNSName,
+      'EvaluateTargetHealth': evaluateTargetHealth,
+      'HostedZoneId': hostedZoneId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5370,6 +5435,23 @@ class AssociateVPCWithHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+  factory AssociateVPCWithHostedZoneRequest.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateVPCWithHostedZoneRequest(
+      vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    final comment = this.comment;
+    return {
+      'VPC': vpc,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -5398,10 +5480,25 @@ class AssociateVPCWithHostedZoneResponse {
   AssociateVPCWithHostedZoneResponse({
     required this.changeInfo,
   });
+  factory AssociateVPCWithHostedZoneResponse.fromJson(
+      Map<String, dynamic> json) {
+    return AssociateVPCWithHostedZoneResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory AssociateVPCWithHostedZoneResponse.fromXml(_s.XmlElement elem) {
     return AssociateVPCWithHostedZoneResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -5441,6 +5538,23 @@ class Change {
     required this.action,
     required this.resourceRecordSet,
   });
+  factory Change.fromJson(Map<String, dynamic> json) {
+    return Change(
+      action: (json['Action'] as String).toChangeAction(),
+      resourceRecordSet: ResourceRecordSet.fromJson(
+          json['ResourceRecordSet'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final resourceRecordSet = this.resourceRecordSet;
+    return {
+      'Action': action.toValue(),
+      'ResourceRecordSet': resourceRecordSet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final action = this.action;
     final resourceRecordSet = this.resourceRecordSet;
@@ -5505,6 +5619,25 @@ class ChangeBatch {
     required this.changes,
     this.comment,
   });
+  factory ChangeBatch.fromJson(Map<String, dynamic> json) {
+    return ChangeBatch(
+      changes: (json['Changes'] as List)
+          .whereNotNull()
+          .map((e) => Change.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changes = this.changes;
+    final comment = this.comment;
+    return {
+      'Changes': changes,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final changes = this.changes;
     final comment = this.comment;
@@ -5555,6 +5688,15 @@ class ChangeInfo {
     required this.submittedAt,
     this.comment,
   });
+  factory ChangeInfo.fromJson(Map<String, dynamic> json) {
+    return ChangeInfo(
+      id: json['Id'] as String,
+      status: (json['Status'] as String).toChangeStatus(),
+      submittedAt: nonNullableTimeStampFromJson(json['SubmittedAt'] as Object),
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory ChangeInfo.fromXml(_s.XmlElement elem) {
     return ChangeInfo(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -5562,6 +5704,19 @@ class ChangeInfo {
       submittedAt: _s.extractXmlDateTimeValue(elem, 'SubmittedAt')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final status = this.status;
+    final submittedAt = this.submittedAt;
+    final comment = this.comment;
+    return {
+      'Id': id,
+      'Status': status.toValue(),
+      'SubmittedAt': unixTimestampToJson(submittedAt),
+      if (comment != null) 'Comment': comment,
+    };
   }
 }
 
@@ -5579,6 +5734,20 @@ class ChangeResourceRecordSetsRequest {
     required this.changeBatch,
     required this.hostedZoneId,
   });
+  factory ChangeResourceRecordSetsRequest.fromJson(Map<String, dynamic> json) {
+    return ChangeResourceRecordSetsRequest(
+      changeBatch:
+          ChangeBatch.fromJson(json['ChangeBatch'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeBatch = this.changeBatch;
+    return {
+      'ChangeBatch': changeBatch,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final changeBatch = this.changeBatch;
     final hostedZoneId = this.hostedZoneId;
@@ -5609,10 +5778,24 @@ class ChangeResourceRecordSetsResponse {
   ChangeResourceRecordSetsResponse({
     required this.changeInfo,
   });
+  factory ChangeResourceRecordSetsResponse.fromJson(Map<String, dynamic> json) {
+    return ChangeResourceRecordSetsResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory ChangeResourceRecordSetsResponse.fromXml(_s.XmlElement elem) {
     return ChangeResourceRecordSetsResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -5679,6 +5862,28 @@ class ChangeTagsForResourceRequest {
     this.addTags,
     this.removeTagKeys,
   });
+  factory ChangeTagsForResourceRequest.fromJson(Map<String, dynamic> json) {
+    return ChangeTagsForResourceRequest(
+      addTags: (json['AddTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      removeTagKeys: (json['RemoveTagKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addTags = this.addTags;
+    final removeTagKeys = this.removeTagKeys;
+    return {
+      if (addTags != null) 'AddTags': addTags,
+      if (removeTagKeys != null) 'RemoveTagKeys': removeTagKeys,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final resourceId = this.resourceId;
     final resourceType = this.resourceType;
@@ -5706,10 +5911,18 @@ class ChangeTagsForResourceRequest {
 /// Empty response for the request.
 class ChangeTagsForResourceResponse {
   ChangeTagsForResourceResponse();
+  factory ChangeTagsForResourceResponse.fromJson(Map<String, dynamic> _) {
+    return ChangeTagsForResourceResponse();
+  }
+
   factory ChangeTagsForResourceResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ChangeTagsForResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5764,6 +5977,23 @@ class CloudWatchAlarmConfiguration {
     required this.threshold,
     this.dimensions,
   });
+  factory CloudWatchAlarmConfiguration.fromJson(Map<String, dynamic> json) {
+    return CloudWatchAlarmConfiguration(
+      comparisonOperator:
+          (json['ComparisonOperator'] as String).toComparisonOperator(),
+      evaluationPeriods: json['EvaluationPeriods'] as int,
+      metricName: json['MetricName'] as String,
+      namespace: json['Namespace'] as String,
+      period: json['Period'] as int,
+      statistic: (json['Statistic'] as String).toStatistic(),
+      threshold: json['Threshold'] as double,
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CloudWatchAlarmConfiguration.fromXml(_s.XmlElement elem) {
     return CloudWatchAlarmConfiguration(
       comparisonOperator: _s
@@ -5780,6 +6010,27 @@ class CloudWatchAlarmConfiguration {
           .map((c) => Dimension.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comparisonOperator = this.comparisonOperator;
+    final evaluationPeriods = this.evaluationPeriods;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final period = this.period;
+    final statistic = this.statistic;
+    final threshold = this.threshold;
+    final dimensions = this.dimensions;
+    return {
+      'ComparisonOperator': comparisonOperator.toValue(),
+      'EvaluationPeriods': evaluationPeriods,
+      'MetricName': metricName,
+      'Namespace': namespace,
+      'Period': period,
+      'Statistic': statistic.toValue(),
+      'Threshold': threshold,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
   }
 }
 
@@ -6013,6 +6264,23 @@ class CreateHealthCheckRequest {
     required this.callerReference,
     required this.healthCheckConfig,
   });
+  factory CreateHealthCheckRequest.fromJson(Map<String, dynamic> json) {
+    return CreateHealthCheckRequest(
+      callerReference: json['CallerReference'] as String,
+      healthCheckConfig: HealthCheckConfig.fromJson(
+          json['HealthCheckConfig'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final healthCheckConfig = this.healthCheckConfig;
+    return {
+      'CallerReference': callerReference,
+      'HealthCheckConfig': healthCheckConfig,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final healthCheckConfig = this.healthCheckConfig;
@@ -6043,6 +6311,19 @@ class CreateHealthCheckResponse {
     required this.healthCheck,
     required this.location,
   });
+  factory CreateHealthCheckResponse.fromJson(Map<String, dynamic> json) {
+    return CreateHealthCheckResponse(
+      healthCheck:
+          HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      'HealthCheck': healthCheck,
+    };
+  }
 }
 
 /// A complex type that contains information about the request to create a
@@ -6105,6 +6386,36 @@ class CreateHostedZoneRequest {
     this.hostedZoneConfig,
     this.vpc,
   });
+  factory CreateHostedZoneRequest.fromJson(Map<String, dynamic> json) {
+    return CreateHostedZoneRequest(
+      callerReference: json['CallerReference'] as String,
+      name: json['Name'] as String,
+      delegationSetId: json['DelegationSetId'] as String?,
+      hostedZoneConfig: json['HostedZoneConfig'] != null
+          ? HostedZoneConfig.fromJson(
+              json['HostedZoneConfig'] as Map<String, dynamic>)
+          : null,
+      vpc: json['VPC'] != null
+          ? VPC.fromJson(json['VPC'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final name = this.name;
+    final delegationSetId = this.delegationSetId;
+    final hostedZoneConfig = this.hostedZoneConfig;
+    final vpc = this.vpc;
+    return {
+      'CallerReference': callerReference,
+      'Name': name,
+      if (delegationSetId != null) 'DelegationSetId': delegationSetId,
+      if (hostedZoneConfig != null) 'HostedZoneConfig': hostedZoneConfig,
+      if (vpc != null) 'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final name = this.name;
@@ -6156,6 +6467,32 @@ class CreateHostedZoneResponse {
     required this.location,
     this.vpc,
   });
+  factory CreateHostedZoneResponse.fromJson(Map<String, dynamic> json) {
+    return CreateHostedZoneResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+      delegationSet:
+          DelegationSet.fromJson(json['DelegationSet'] as Map<String, dynamic>),
+      hostedZone:
+          HostedZone.fromJson(json['HostedZone'] as Map<String, dynamic>),
+      vpc: json['VPC'] != null
+          ? VPC.fromJson(json['VPC'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    final delegationSet = this.delegationSet;
+    final hostedZone = this.hostedZone;
+    final vpc = this.vpc;
+    return {
+      'ChangeInfo': changeInfo,
+      'DelegationSet': delegationSet,
+      'HostedZone': hostedZone,
+      if (vpc != null) 'VPC': vpc,
+    };
+  }
 }
 
 class CreateKeySigningKeyRequest {
@@ -6223,6 +6560,31 @@ class CreateKeySigningKeyRequest {
     required this.name,
     required this.status,
   });
+  factory CreateKeySigningKeyRequest.fromJson(Map<String, dynamic> json) {
+    return CreateKeySigningKeyRequest(
+      callerReference: json['CallerReference'] as String,
+      hostedZoneId: json['HostedZoneId'] as String,
+      keyManagementServiceArn: json['KeyManagementServiceArn'] as String,
+      name: json['Name'] as String,
+      status: json['Status'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final hostedZoneId = this.hostedZoneId;
+    final keyManagementServiceArn = this.keyManagementServiceArn;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'CallerReference': callerReference,
+      'HostedZoneId': hostedZoneId,
+      'KeyManagementServiceArn': keyManagementServiceArn,
+      'Name': name,
+      'Status': status,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final hostedZoneId = this.hostedZoneId;
@@ -6262,6 +6624,23 @@ class CreateKeySigningKeyResponse {
     required this.keySigningKey,
     required this.location,
   });
+  factory CreateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
+    return CreateKeySigningKeyResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+      keySigningKey:
+          KeySigningKey.fromJson(json['KeySigningKey'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    final keySigningKey = this.keySigningKey;
+    return {
+      'ChangeInfo': changeInfo,
+      'KeySigningKey': keySigningKey,
+    };
+  }
 }
 
 class CreateQueryLoggingConfigRequest {
@@ -6285,6 +6664,22 @@ class CreateQueryLoggingConfigRequest {
     required this.cloudWatchLogsLogGroupArn,
     required this.hostedZoneId,
   });
+  factory CreateQueryLoggingConfigRequest.fromJson(Map<String, dynamic> json) {
+    return CreateQueryLoggingConfigRequest(
+      cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String,
+      hostedZoneId: json['HostedZoneId'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      'HostedZoneId': hostedZoneId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
     final hostedZoneId = this.hostedZoneId;
@@ -6317,6 +6712,19 @@ class CreateQueryLoggingConfigResponse {
     required this.location,
     required this.queryLoggingConfig,
   });
+  factory CreateQueryLoggingConfigResponse.fromJson(Map<String, dynamic> json) {
+    return CreateQueryLoggingConfigResponse(
+      queryLoggingConfig: QueryLoggingConfig.fromJson(
+          json['QueryLoggingConfig'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryLoggingConfig = this.queryLoggingConfig;
+    return {
+      'QueryLoggingConfig': queryLoggingConfig,
+    };
+  }
 }
 
 class CreateReusableDelegationSetRequest {
@@ -6337,6 +6745,23 @@ class CreateReusableDelegationSetRequest {
     required this.callerReference,
     this.hostedZoneId,
   });
+  factory CreateReusableDelegationSetRequest.fromJson(
+      Map<String, dynamic> json) {
+    return CreateReusableDelegationSetRequest(
+      callerReference: json['CallerReference'] as String,
+      hostedZoneId: json['HostedZoneId'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'CallerReference': callerReference,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final hostedZoneId = this.hostedZoneId;
@@ -6367,6 +6792,20 @@ class CreateReusableDelegationSetResponse {
     required this.delegationSet,
     required this.location,
   });
+  factory CreateReusableDelegationSetResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateReusableDelegationSetResponse(
+      delegationSet:
+          DelegationSet.fromJson(json['DelegationSet'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegationSet = this.delegationSet;
+    return {
+      'DelegationSet': delegationSet,
+    };
+  }
 }
 
 /// A complex type that contains information about the resource record sets that
@@ -6401,6 +6840,32 @@ class CreateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+  factory CreateTrafficPolicyInstanceRequest.fromJson(
+      Map<String, dynamic> json) {
+    return CreateTrafficPolicyInstanceRequest(
+      hostedZoneId: json['HostedZoneId'] as String,
+      name: json['Name'] as String,
+      ttl: json['TTL'] as int,
+      trafficPolicyId: json['TrafficPolicyId'] as String,
+      trafficPolicyVersion: json['TrafficPolicyVersion'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final name = this.name;
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Name': name,
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final name = this.name;
@@ -6438,6 +6903,20 @@ class CreateTrafficPolicyInstanceResponse {
     required this.location,
     required this.trafficPolicyInstance,
   });
+  factory CreateTrafficPolicyInstanceResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateTrafficPolicyInstanceResponse(
+      trafficPolicyInstance: TrafficPolicyInstance.fromJson(
+          json['TrafficPolicyInstance'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
+  }
 }
 
 /// A complex type that contains information about the traffic policy that you
@@ -6460,6 +6939,25 @@ class CreateTrafficPolicyRequest {
     required this.name,
     this.comment,
   });
+  factory CreateTrafficPolicyRequest.fromJson(Map<String, dynamic> json) {
+    return CreateTrafficPolicyRequest(
+      document: json['Document'] as String,
+      name: json['Name'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final document = this.document;
     final name = this.name;
@@ -6493,6 +6991,19 @@ class CreateTrafficPolicyResponse {
     required this.location,
     required this.trafficPolicy,
   });
+  factory CreateTrafficPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return CreateTrafficPolicyResponse(
+      trafficPolicy:
+          TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
+  }
 }
 
 /// A complex type that contains information about the traffic policy that you
@@ -6516,6 +7027,23 @@ class CreateTrafficPolicyVersionRequest {
     required this.id,
     this.comment,
   });
+  factory CreateTrafficPolicyVersionRequest.fromJson(
+      Map<String, dynamic> json) {
+    return CreateTrafficPolicyVersionRequest(
+      document: json['Document'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final document = this.document;
     final id = this.id;
@@ -6549,6 +7077,20 @@ class CreateTrafficPolicyVersionResponse {
     required this.location,
     required this.trafficPolicy,
   });
+  factory CreateTrafficPolicyVersionResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateTrafficPolicyVersionResponse(
+      trafficPolicy:
+          TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
+  }
 }
 
 /// A complex type that contains information about the request to authorize
@@ -6568,6 +7110,20 @@ class CreateVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+  factory CreateVPCAssociationAuthorizationRequest.fromJson(
+      Map<String, dynamic> json) {
+    return CreateVPCAssociationAuthorizationRequest(
+      vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    return {
+      'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6598,12 +7154,29 @@ class CreateVPCAssociationAuthorizationResponse {
     required this.hostedZoneId,
     required this.vpc,
   });
+  factory CreateVPCAssociationAuthorizationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreateVPCAssociationAuthorizationResponse(
+      hostedZoneId: json['HostedZoneId'] as String,
+      vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
+    );
+  }
+
   factory CreateVPCAssociationAuthorizationResponse.fromXml(
       _s.XmlElement elem) {
     return CreateVPCAssociationAuthorizationResponse(
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
       vpc: VPC.fromXml(_s.extractXmlChild(elem, 'VPC')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'VPC': vpc,
+    };
   }
 }
 
@@ -6639,11 +7212,27 @@ class DNSSECStatus {
     this.serveSignature,
     this.statusMessage,
   });
+  factory DNSSECStatus.fromJson(Map<String, dynamic> json) {
+    return DNSSECStatus(
+      serveSignature: json['ServeSignature'] as String?,
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+
   factory DNSSECStatus.fromXml(_s.XmlElement elem) {
     return DNSSECStatus(
       serveSignature: _s.extractXmlStringValue(elem, 'ServeSignature'),
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serveSignature = this.serveSignature;
+    final statusMessage = this.statusMessage;
+    return {
+      if (serveSignature != null) 'ServeSignature': serveSignature,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -6653,10 +7242,24 @@ class DeactivateKeySigningKeyResponse {
   DeactivateKeySigningKeyResponse({
     required this.changeInfo,
   });
+  factory DeactivateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
+    return DeactivateKeySigningKeyResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeactivateKeySigningKeyResponse.fromXml(_s.XmlElement elem) {
     return DeactivateKeySigningKeyResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6680,6 +7283,17 @@ class DelegationSet {
     this.callerReference,
     this.id,
   });
+  factory DelegationSet.fromJson(Map<String, dynamic> json) {
+    return DelegationSet(
+      nameServers: (json['NameServers'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      callerReference: json['CallerReference'] as String?,
+      id: json['Id'] as String?,
+    );
+  }
+
   factory DelegationSet.fromXml(_s.XmlElement elem) {
     return DelegationSet(
       nameServers: _s.extractXmlStringListValues(
@@ -6688,15 +7302,34 @@ class DelegationSet {
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nameServers = this.nameServers;
+    final callerReference = this.callerReference;
+    final id = this.id;
+    return {
+      'NameServers': nameServers,
+      if (callerReference != null) 'CallerReference': callerReference,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// An empty element.
 class DeleteHealthCheckResponse {
   DeleteHealthCheckResponse();
+  factory DeleteHealthCheckResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteHealthCheckResponse();
+  }
+
   factory DeleteHealthCheckResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteHealthCheckResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6710,10 +7343,24 @@ class DeleteHostedZoneResponse {
   DeleteHostedZoneResponse({
     required this.changeInfo,
   });
+  factory DeleteHostedZoneResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteHostedZoneResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteHostedZoneResponse.fromXml(_s.XmlElement elem) {
     return DeleteHostedZoneResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6723,49 +7370,95 @@ class DeleteKeySigningKeyResponse {
   DeleteKeySigningKeyResponse({
     required this.changeInfo,
   });
+  factory DeleteKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteKeySigningKeyResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory DeleteKeySigningKeyResponse.fromXml(_s.XmlElement elem) {
     return DeleteKeySigningKeyResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
+  }
 }
 
 class DeleteQueryLoggingConfigResponse {
   DeleteQueryLoggingConfigResponse();
+  factory DeleteQueryLoggingConfigResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteQueryLoggingConfigResponse();
+  }
+
   factory DeleteQueryLoggingConfigResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteQueryLoggingConfigResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element.
 class DeleteReusableDelegationSetResponse {
   DeleteReusableDelegationSetResponse();
+  factory DeleteReusableDelegationSetResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteReusableDelegationSetResponse();
+  }
+
   factory DeleteReusableDelegationSetResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteReusableDelegationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element.
 class DeleteTrafficPolicyInstanceResponse {
   DeleteTrafficPolicyInstanceResponse();
+  factory DeleteTrafficPolicyInstanceResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteTrafficPolicyInstanceResponse();
+  }
+
   factory DeleteTrafficPolicyInstanceResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteTrafficPolicyInstanceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// An empty element.
 class DeleteTrafficPolicyResponse {
   DeleteTrafficPolicyResponse();
+  factory DeleteTrafficPolicyResponse.fromJson(Map<String, dynamic> _) {
+    return DeleteTrafficPolicyResponse();
+  }
+
   factory DeleteTrafficPolicyResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteTrafficPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6787,6 +7480,20 @@ class DeleteVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+  factory DeleteVPCAssociationAuthorizationRequest.fromJson(
+      Map<String, dynamic> json) {
+    return DeleteVPCAssociationAuthorizationRequest(
+      vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    return {
+      'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6807,10 +7514,19 @@ class DeleteVPCAssociationAuthorizationRequest {
 /// Empty response for the request.
 class DeleteVPCAssociationAuthorizationResponse {
   DeleteVPCAssociationAuthorizationResponse();
+  factory DeleteVPCAssociationAuthorizationResponse.fromJson(
+      Map<String, dynamic> _) {
+    return DeleteVPCAssociationAuthorizationResponse();
+  }
+
   factory DeleteVPCAssociationAuthorizationResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteVPCAssociationAuthorizationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6829,11 +7545,27 @@ class Dimension {
     required this.name,
     required this.value,
   });
+  factory Dimension.fromJson(Map<String, dynamic> json) {
+    return Dimension(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   factory Dimension.fromXml(_s.XmlElement elem) {
     return Dimension(
       name: _s.extractXmlStringValue(elem, 'Name')!,
       value: _s.extractXmlStringValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
+    };
   }
 }
 
@@ -6843,10 +7575,24 @@ class DisableHostedZoneDNSSECResponse {
   DisableHostedZoneDNSSECResponse({
     required this.changeInfo,
   });
+  factory DisableHostedZoneDNSSECResponse.fromJson(Map<String, dynamic> json) {
+    return DisableHostedZoneDNSSECResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory DisableHostedZoneDNSSECResponse.fromXml(_s.XmlElement elem) {
     return DisableHostedZoneDNSSECResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6868,6 +7614,23 @@ class DisassociateVPCFromHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+  factory DisassociateVPCFromHostedZoneRequest.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateVPCFromHostedZoneRequest(
+      vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    final comment = this.comment;
+    return {
+      'VPC': vpc,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6897,10 +7660,25 @@ class DisassociateVPCFromHostedZoneResponse {
   DisassociateVPCFromHostedZoneResponse({
     required this.changeInfo,
   });
+  factory DisassociateVPCFromHostedZoneResponse.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateVPCFromHostedZoneResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory DisassociateVPCFromHostedZoneResponse.fromXml(_s.XmlElement elem) {
     return DisassociateVPCFromHostedZoneResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6910,10 +7688,24 @@ class EnableHostedZoneDNSSECResponse {
   EnableHostedZoneDNSSECResponse({
     required this.changeInfo,
   });
+  factory EnableHostedZoneDNSSECResponse.fromJson(Map<String, dynamic> json) {
+    return EnableHostedZoneDNSSECResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory EnableHostedZoneDNSSECResponse.fromXml(_s.XmlElement elem) {
     return EnableHostedZoneDNSSECResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6974,12 +7766,31 @@ class GeoLocation {
     this.countryCode,
     this.subdivisionCode,
   });
+  factory GeoLocation.fromJson(Map<String, dynamic> json) {
+    return GeoLocation(
+      continentCode: json['ContinentCode'] as String?,
+      countryCode: json['CountryCode'] as String?,
+      subdivisionCode: json['SubdivisionCode'] as String?,
+    );
+  }
+
   factory GeoLocation.fromXml(_s.XmlElement elem) {
     return GeoLocation(
       continentCode: _s.extractXmlStringValue(elem, 'ContinentCode'),
       countryCode: _s.extractXmlStringValue(elem, 'CountryCode'),
       subdivisionCode: _s.extractXmlStringValue(elem, 'SubdivisionCode'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continentCode = this.continentCode;
+    final countryCode = this.countryCode;
+    final subdivisionCode = this.subdivisionCode;
+    return {
+      if (continentCode != null) 'ContinentCode': continentCode,
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (subdivisionCode != null) 'SubdivisionCode': subdivisionCode,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7041,6 +7852,17 @@ class GeoLocationDetails {
     this.subdivisionCode,
     this.subdivisionName,
   });
+  factory GeoLocationDetails.fromJson(Map<String, dynamic> json) {
+    return GeoLocationDetails(
+      continentCode: json['ContinentCode'] as String?,
+      continentName: json['ContinentName'] as String?,
+      countryCode: json['CountryCode'] as String?,
+      countryName: json['CountryName'] as String?,
+      subdivisionCode: json['SubdivisionCode'] as String?,
+      subdivisionName: json['SubdivisionName'] as String?,
+    );
+  }
+
   factory GeoLocationDetails.fromXml(_s.XmlElement elem) {
     return GeoLocationDetails(
       continentCode: _s.extractXmlStringValue(elem, 'ContinentCode'),
@@ -7050,6 +7872,23 @@ class GeoLocationDetails {
       subdivisionCode: _s.extractXmlStringValue(elem, 'SubdivisionCode'),
       subdivisionName: _s.extractXmlStringValue(elem, 'SubdivisionName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continentCode = this.continentCode;
+    final continentName = this.continentName;
+    final countryCode = this.countryCode;
+    final countryName = this.countryName;
+    final subdivisionCode = this.subdivisionCode;
+    final subdivisionName = this.subdivisionName;
+    return {
+      if (continentCode != null) 'ContinentCode': continentCode,
+      if (continentName != null) 'ContinentName': continentName,
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (countryName != null) 'CountryName': countryName,
+      if (subdivisionCode != null) 'SubdivisionCode': subdivisionCode,
+      if (subdivisionName != null) 'SubdivisionName': subdivisionName,
+    };
   }
 }
 
@@ -7072,11 +7911,27 @@ class GetAccountLimitResponse {
     required this.count,
     required this.limit,
   });
+  factory GetAccountLimitResponse.fromJson(Map<String, dynamic> json) {
+    return GetAccountLimitResponse(
+      count: json['Count'] as int,
+      limit: AccountLimit.fromJson(json['Limit'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetAccountLimitResponse.fromXml(_s.XmlElement elem) {
     return GetAccountLimitResponse(
       count: _s.extractXmlIntValue(elem, 'Count')!,
       limit: AccountLimit.fromXml(_s.extractXmlChild(elem, 'Limit')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
   }
 }
 
@@ -7088,10 +7943,24 @@ class GetChangeResponse {
   GetChangeResponse({
     required this.changeInfo,
   });
+  factory GetChangeResponse.fromJson(Map<String, dynamic> json) {
+    return GetChangeResponse(
+      changeInfo:
+          ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetChangeResponse.fromXml(_s.XmlElement elem) {
     return GetChangeResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -7104,11 +7973,27 @@ class GetCheckerIpRangesResponse {
   GetCheckerIpRangesResponse({
     required this.checkerIpRanges,
   });
+  factory GetCheckerIpRangesResponse.fromJson(Map<String, dynamic> json) {
+    return GetCheckerIpRangesResponse(
+      checkerIpRanges: (json['CheckerIpRanges'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory GetCheckerIpRangesResponse.fromXml(_s.XmlElement elem) {
     return GetCheckerIpRangesResponse(
       checkerIpRanges: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'CheckerIpRanges')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkerIpRanges = this.checkerIpRanges;
+    return {
+      'CheckerIpRanges': checkerIpRanges,
+    };
   }
 }
 
@@ -7123,6 +8008,16 @@ class GetDNSSECResponse {
     required this.keySigningKeys,
     required this.status,
   });
+  factory GetDNSSECResponse.fromJson(Map<String, dynamic> json) {
+    return GetDNSSECResponse(
+      keySigningKeys: (json['KeySigningKeys'] as List)
+          .whereNotNull()
+          .map((e) => KeySigningKey.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      status: DNSSECStatus.fromJson(json['Status'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetDNSSECResponse.fromXml(_s.XmlElement elem) {
     return GetDNSSECResponse(
       keySigningKeys: _s
@@ -7132,6 +8027,15 @@ class GetDNSSECResponse {
           .toList(),
       status: DNSSECStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keySigningKeys = this.keySigningKeys;
+    final status = this.status;
+    return {
+      'KeySigningKeys': keySigningKeys,
+      'Status': status,
+    };
   }
 }
 
@@ -7145,11 +8049,25 @@ class GetGeoLocationResponse {
   GetGeoLocationResponse({
     required this.geoLocationDetails,
   });
+  factory GetGeoLocationResponse.fromJson(Map<String, dynamic> json) {
+    return GetGeoLocationResponse(
+      geoLocationDetails: GeoLocationDetails.fromJson(
+          json['GeoLocationDetails'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetGeoLocationResponse.fromXml(_s.XmlElement elem) {
     return GetGeoLocationResponse(
       geoLocationDetails: GeoLocationDetails.fromXml(
           _s.extractXmlChild(elem, 'GeoLocationDetails')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final geoLocationDetails = this.geoLocationDetails;
+    return {
+      'GeoLocationDetails': geoLocationDetails,
+    };
   }
 }
 
@@ -7162,10 +8080,23 @@ class GetHealthCheckCountResponse {
   GetHealthCheckCountResponse({
     required this.healthCheckCount,
   });
+  factory GetHealthCheckCountResponse.fromJson(Map<String, dynamic> json) {
+    return GetHealthCheckCountResponse(
+      healthCheckCount: json['HealthCheckCount'] as int,
+    );
+  }
+
   factory GetHealthCheckCountResponse.fromXml(_s.XmlElement elem) {
     return GetHealthCheckCountResponse(
       healthCheckCount: _s.extractXmlIntValue(elem, 'HealthCheckCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckCount = this.healthCheckCount;
+    return {
+      'HealthCheckCount': healthCheckCount,
+    };
   }
 }
 
@@ -7179,6 +8110,17 @@ class GetHealthCheckLastFailureReasonResponse {
   GetHealthCheckLastFailureReasonResponse({
     required this.healthCheckObservations,
   });
+  factory GetHealthCheckLastFailureReasonResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetHealthCheckLastFailureReasonResponse(
+      healthCheckObservations: (json['HealthCheckObservations'] as List)
+          .whereNotNull()
+          .map(
+              (e) => HealthCheckObservation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetHealthCheckLastFailureReasonResponse.fromXml(_s.XmlElement elem) {
     return GetHealthCheckLastFailureReasonResponse(
       healthCheckObservations: _s
@@ -7187,6 +8129,13 @@ class GetHealthCheckLastFailureReasonResponse {
           .map((c) => HealthCheckObservation.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckObservations = this.healthCheckObservations;
+    return {
+      'HealthCheckObservations': healthCheckObservations,
+    };
   }
 }
 
@@ -7200,11 +8149,25 @@ class GetHealthCheckResponse {
   GetHealthCheckResponse({
     required this.healthCheck,
   });
+  factory GetHealthCheckResponse.fromJson(Map<String, dynamic> json) {
+    return GetHealthCheckResponse(
+      healthCheck:
+          HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetHealthCheckResponse.fromXml(_s.XmlElement elem) {
     return GetHealthCheckResponse(
       healthCheck:
           HealthCheck.fromXml(_s.extractXmlChild(elem, 'HealthCheck')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      'HealthCheck': healthCheck,
+    };
   }
 }
 
@@ -7219,6 +8182,16 @@ class GetHealthCheckStatusResponse {
   GetHealthCheckStatusResponse({
     required this.healthCheckObservations,
   });
+  factory GetHealthCheckStatusResponse.fromJson(Map<String, dynamic> json) {
+    return GetHealthCheckStatusResponse(
+      healthCheckObservations: (json['HealthCheckObservations'] as List)
+          .whereNotNull()
+          .map(
+              (e) => HealthCheckObservation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetHealthCheckStatusResponse.fromXml(_s.XmlElement elem) {
     return GetHealthCheckStatusResponse(
       healthCheckObservations: _s
@@ -7227,6 +8200,13 @@ class GetHealthCheckStatusResponse {
           .map((c) => HealthCheckObservation.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckObservations = this.healthCheckObservations;
+    return {
+      'HealthCheckObservations': healthCheckObservations,
+    };
   }
 }
 
@@ -7240,10 +8220,23 @@ class GetHostedZoneCountResponse {
   GetHostedZoneCountResponse({
     required this.hostedZoneCount,
   });
+  factory GetHostedZoneCountResponse.fromJson(Map<String, dynamic> json) {
+    return GetHostedZoneCountResponse(
+      hostedZoneCount: json['HostedZoneCount'] as int,
+    );
+  }
+
   factory GetHostedZoneCountResponse.fromXml(_s.XmlElement elem) {
     return GetHostedZoneCountResponse(
       hostedZoneCount: _s.extractXmlIntValue(elem, 'HostedZoneCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneCount = this.hostedZoneCount;
+    return {
+      'HostedZoneCount': hostedZoneCount,
+    };
   }
 }
 
@@ -7266,11 +8259,27 @@ class GetHostedZoneLimitResponse {
     required this.count,
     required this.limit,
   });
+  factory GetHostedZoneLimitResponse.fromJson(Map<String, dynamic> json) {
+    return GetHostedZoneLimitResponse(
+      count: json['Count'] as int,
+      limit: HostedZoneLimit.fromJson(json['Limit'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetHostedZoneLimitResponse.fromXml(_s.XmlElement elem) {
     return GetHostedZoneLimitResponse(
       count: _s.extractXmlIntValue(elem, 'Count')!,
       limit: HostedZoneLimit.fromXml(_s.extractXmlChild(elem, 'Limit')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
   }
 }
 
@@ -7294,6 +8303,21 @@ class GetHostedZoneResponse {
     this.delegationSet,
     this.vPCs,
   });
+  factory GetHostedZoneResponse.fromJson(Map<String, dynamic> json) {
+    return GetHostedZoneResponse(
+      hostedZone:
+          HostedZone.fromJson(json['HostedZone'] as Map<String, dynamic>),
+      delegationSet: json['DelegationSet'] != null
+          ? DelegationSet.fromJson(
+              json['DelegationSet'] as Map<String, dynamic>)
+          : null,
+      vPCs: (json['VPCs'] as List?)
+          ?.whereNotNull()
+          .map((e) => VPC.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetHostedZoneResponse.fromXml(_s.XmlElement elem) {
     return GetHostedZoneResponse(
       hostedZone: HostedZone.fromXml(_s.extractXmlChild(elem, 'HostedZone')!),
@@ -7303,6 +8327,17 @@ class GetHostedZoneResponse {
       vPCs: _s.extractXmlChild(elem, 'VPCs')?.let((elem) =>
           elem.findElements('VPC').map((c) => VPC.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZone = this.hostedZone;
+    final delegationSet = this.delegationSet;
+    final vPCs = this.vPCs;
+    return {
+      'HostedZone': hostedZone,
+      if (delegationSet != null) 'DelegationSet': delegationSet,
+      if (vPCs != null) 'VPCs': vPCs,
+    };
   }
 }
 
@@ -7316,11 +8351,25 @@ class GetQueryLoggingConfigResponse {
   GetQueryLoggingConfigResponse({
     required this.queryLoggingConfig,
   });
+  factory GetQueryLoggingConfigResponse.fromJson(Map<String, dynamic> json) {
+    return GetQueryLoggingConfigResponse(
+      queryLoggingConfig: QueryLoggingConfig.fromJson(
+          json['QueryLoggingConfig'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetQueryLoggingConfigResponse.fromXml(_s.XmlElement elem) {
     return GetQueryLoggingConfigResponse(
       queryLoggingConfig: QueryLoggingConfig.fromXml(
           _s.extractXmlChild(elem, 'QueryLoggingConfig')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryLoggingConfig = this.queryLoggingConfig;
+    return {
+      'QueryLoggingConfig': queryLoggingConfig,
+    };
   }
 }
 
@@ -7338,12 +8387,30 @@ class GetReusableDelegationSetLimitResponse {
     required this.count,
     required this.limit,
   });
+  factory GetReusableDelegationSetLimitResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetReusableDelegationSetLimitResponse(
+      count: json['Count'] as int,
+      limit: ReusableDelegationSetLimit.fromJson(
+          json['Limit'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetReusableDelegationSetLimitResponse.fromXml(_s.XmlElement elem) {
     return GetReusableDelegationSetLimitResponse(
       count: _s.extractXmlIntValue(elem, 'Count')!,
       limit: ReusableDelegationSetLimit.fromXml(
           _s.extractXmlChild(elem, 'Limit')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
   }
 }
 
@@ -7356,11 +8423,25 @@ class GetReusableDelegationSetResponse {
   GetReusableDelegationSetResponse({
     required this.delegationSet,
   });
+  factory GetReusableDelegationSetResponse.fromJson(Map<String, dynamic> json) {
+    return GetReusableDelegationSetResponse(
+      delegationSet:
+          DelegationSet.fromJson(json['DelegationSet'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetReusableDelegationSetResponse.fromXml(_s.XmlElement elem) {
     return GetReusableDelegationSetResponse(
       delegationSet:
           DelegationSet.fromXml(_s.extractXmlChild(elem, 'DelegationSet')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegationSet = this.delegationSet;
+    return {
+      'DelegationSet': delegationSet,
+    };
   }
 }
 
@@ -7374,11 +8455,25 @@ class GetTrafficPolicyInstanceCountResponse {
   GetTrafficPolicyInstanceCountResponse({
     required this.trafficPolicyInstanceCount,
   });
+  factory GetTrafficPolicyInstanceCountResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetTrafficPolicyInstanceCountResponse(
+      trafficPolicyInstanceCount: json['TrafficPolicyInstanceCount'] as int,
+    );
+  }
+
   factory GetTrafficPolicyInstanceCountResponse.fromXml(_s.XmlElement elem) {
     return GetTrafficPolicyInstanceCountResponse(
       trafficPolicyInstanceCount:
           _s.extractXmlIntValue(elem, 'TrafficPolicyInstanceCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstanceCount = this.trafficPolicyInstanceCount;
+    return {
+      'TrafficPolicyInstanceCount': trafficPolicyInstanceCount,
+    };
   }
 }
 
@@ -7391,11 +8486,25 @@ class GetTrafficPolicyInstanceResponse {
   GetTrafficPolicyInstanceResponse({
     required this.trafficPolicyInstance,
   });
+  factory GetTrafficPolicyInstanceResponse.fromJson(Map<String, dynamic> json) {
+    return GetTrafficPolicyInstanceResponse(
+      trafficPolicyInstance: TrafficPolicyInstance.fromJson(
+          json['TrafficPolicyInstance'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetTrafficPolicyInstanceResponse.fromXml(_s.XmlElement elem) {
     return GetTrafficPolicyInstanceResponse(
       trafficPolicyInstance: TrafficPolicyInstance.fromXml(
           _s.extractXmlChild(elem, 'TrafficPolicyInstance')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
   }
 }
 
@@ -7407,11 +8516,25 @@ class GetTrafficPolicyResponse {
   GetTrafficPolicyResponse({
     required this.trafficPolicy,
   });
+  factory GetTrafficPolicyResponse.fromJson(Map<String, dynamic> json) {
+    return GetTrafficPolicyResponse(
+      trafficPolicy:
+          TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
+    );
+  }
+
   factory GetTrafficPolicyResponse.fromXml(_s.XmlElement elem) {
     return GetTrafficPolicyResponse(
       trafficPolicy:
           TrafficPolicy.fromXml(_s.extractXmlChild(elem, 'TrafficPolicy')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
   }
 }
 
@@ -7452,6 +8575,24 @@ class HealthCheck {
     this.cloudWatchAlarmConfiguration,
     this.linkedService,
   });
+  factory HealthCheck.fromJson(Map<String, dynamic> json) {
+    return HealthCheck(
+      callerReference: json['CallerReference'] as String,
+      healthCheckConfig: HealthCheckConfig.fromJson(
+          json['HealthCheckConfig'] as Map<String, dynamic>),
+      healthCheckVersion: json['HealthCheckVersion'] as int,
+      id: json['Id'] as String,
+      cloudWatchAlarmConfiguration: json['CloudWatchAlarmConfiguration'] != null
+          ? CloudWatchAlarmConfiguration.fromJson(
+              json['CloudWatchAlarmConfiguration'] as Map<String, dynamic>)
+          : null,
+      linkedService: json['LinkedService'] != null
+          ? LinkedService.fromJson(
+              json['LinkedService'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory HealthCheck.fromXml(_s.XmlElement elem) {
     return HealthCheck(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -7466,6 +8607,24 @@ class HealthCheck {
           .extractXmlChild(elem, 'LinkedService')
           ?.let((e) => LinkedService.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final healthCheckConfig = this.healthCheckConfig;
+    final healthCheckVersion = this.healthCheckVersion;
+    final id = this.id;
+    final cloudWatchAlarmConfiguration = this.cloudWatchAlarmConfiguration;
+    final linkedService = this.linkedService;
+    return {
+      'CallerReference': callerReference,
+      'HealthCheckConfig': healthCheckConfig,
+      'HealthCheckVersion': healthCheckVersion,
+      'Id': id,
+      if (cloudWatchAlarmConfiguration != null)
+        'CloudWatchAlarmConfiguration': cloudWatchAlarmConfiguration,
+      if (linkedService != null) 'LinkedService': linkedService,
+    };
   }
 }
 
@@ -7858,6 +9017,39 @@ class HealthCheckConfig {
     this.resourcePath,
     this.searchString,
   });
+  factory HealthCheckConfig.fromJson(Map<String, dynamic> json) {
+    return HealthCheckConfig(
+      type: (json['Type'] as String).toHealthCheckType(),
+      alarmIdentifier: json['AlarmIdentifier'] != null
+          ? AlarmIdentifier.fromJson(
+              json['AlarmIdentifier'] as Map<String, dynamic>)
+          : null,
+      childHealthChecks: (json['ChildHealthChecks'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      disabled: json['Disabled'] as bool?,
+      enableSNI: json['EnableSNI'] as bool?,
+      failureThreshold: json['FailureThreshold'] as int?,
+      fullyQualifiedDomainName: json['FullyQualifiedDomainName'] as String?,
+      healthThreshold: json['HealthThreshold'] as int?,
+      iPAddress: json['IPAddress'] as String?,
+      insufficientDataHealthStatus:
+          (json['InsufficientDataHealthStatus'] as String?)
+              ?.toInsufficientDataHealthStatus(),
+      inverted: json['Inverted'] as bool?,
+      measureLatency: json['MeasureLatency'] as bool?,
+      port: json['Port'] as int?,
+      regions: (json['Regions'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toHealthCheckRegion())
+          .toList(),
+      requestInterval: json['RequestInterval'] as int?,
+      resourcePath: json['ResourcePath'] as String?,
+      searchString: json['SearchString'] as String?,
+    );
+  }
+
   factory HealthCheckConfig.fromXml(_s.XmlElement elem) {
     return HealthCheckConfig(
       type: _s.extractXmlStringValue(elem, 'Type')!.toHealthCheckType(),
@@ -7887,6 +9079,47 @@ class HealthCheckConfig {
       resourcePath: _s.extractXmlStringValue(elem, 'ResourcePath'),
       searchString: _s.extractXmlStringValue(elem, 'SearchString'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final alarmIdentifier = this.alarmIdentifier;
+    final childHealthChecks = this.childHealthChecks;
+    final disabled = this.disabled;
+    final enableSNI = this.enableSNI;
+    final failureThreshold = this.failureThreshold;
+    final fullyQualifiedDomainName = this.fullyQualifiedDomainName;
+    final healthThreshold = this.healthThreshold;
+    final iPAddress = this.iPAddress;
+    final insufficientDataHealthStatus = this.insufficientDataHealthStatus;
+    final inverted = this.inverted;
+    final measureLatency = this.measureLatency;
+    final port = this.port;
+    final regions = this.regions;
+    final requestInterval = this.requestInterval;
+    final resourcePath = this.resourcePath;
+    final searchString = this.searchString;
+    return {
+      'Type': type.toValue(),
+      if (alarmIdentifier != null) 'AlarmIdentifier': alarmIdentifier,
+      if (childHealthChecks != null) 'ChildHealthChecks': childHealthChecks,
+      if (disabled != null) 'Disabled': disabled,
+      if (enableSNI != null) 'EnableSNI': enableSNI,
+      if (failureThreshold != null) 'FailureThreshold': failureThreshold,
+      if (fullyQualifiedDomainName != null)
+        'FullyQualifiedDomainName': fullyQualifiedDomainName,
+      if (healthThreshold != null) 'HealthThreshold': healthThreshold,
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (insufficientDataHealthStatus != null)
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+      if (inverted != null) 'Inverted': inverted,
+      if (measureLatency != null) 'MeasureLatency': measureLatency,
+      if (port != null) 'Port': port,
+      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (requestInterval != null) 'RequestInterval': requestInterval,
+      if (resourcePath != null) 'ResourcePath': resourcePath,
+      if (searchString != null) 'SearchString': searchString,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7974,6 +9207,16 @@ class HealthCheckObservation {
     this.region,
     this.statusReport,
   });
+  factory HealthCheckObservation.fromJson(Map<String, dynamic> json) {
+    return HealthCheckObservation(
+      iPAddress: json['IPAddress'] as String?,
+      region: (json['Region'] as String?)?.toHealthCheckRegion(),
+      statusReport: json['StatusReport'] != null
+          ? StatusReport.fromJson(json['StatusReport'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory HealthCheckObservation.fromXml(_s.XmlElement elem) {
     return HealthCheckObservation(
       iPAddress: _s.extractXmlStringValue(elem, 'IPAddress'),
@@ -7982,6 +9225,17 @@ class HealthCheckObservation {
           .extractXmlChild(elem, 'StatusReport')
           ?.let((e) => StatusReport.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iPAddress = this.iPAddress;
+    final region = this.region;
+    final statusReport = this.statusReport;
+    return {
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (region != null) 'Region': region.toValue(),
+      if (statusReport != null) 'StatusReport': statusReport,
+    };
   }
 }
 
@@ -8137,6 +9391,22 @@ class HostedZone {
     this.linkedService,
     this.resourceRecordSetCount,
   });
+  factory HostedZone.fromJson(Map<String, dynamic> json) {
+    return HostedZone(
+      callerReference: json['CallerReference'] as String,
+      id: json['Id'] as String,
+      name: json['Name'] as String,
+      config: json['Config'] != null
+          ? HostedZoneConfig.fromJson(json['Config'] as Map<String, dynamic>)
+          : null,
+      linkedService: json['LinkedService'] != null
+          ? LinkedService.fromJson(
+              json['LinkedService'] as Map<String, dynamic>)
+          : null,
+      resourceRecordSetCount: json['ResourceRecordSetCount'] as int?,
+    );
+  }
+
   factory HostedZone.fromXml(_s.XmlElement elem) {
     return HostedZone(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -8151,6 +9421,24 @@ class HostedZone {
       resourceRecordSetCount:
           _s.extractXmlIntValue(elem, 'ResourceRecordSetCount'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final id = this.id;
+    final name = this.name;
+    final config = this.config;
+    final linkedService = this.linkedService;
+    final resourceRecordSetCount = this.resourceRecordSetCount;
+    return {
+      'CallerReference': callerReference,
+      'Id': id,
+      'Name': name,
+      if (config != null) 'Config': config,
+      if (linkedService != null) 'LinkedService': linkedService,
+      if (resourceRecordSetCount != null)
+        'ResourceRecordSetCount': resourceRecordSetCount,
+    };
   }
 }
 
@@ -8168,11 +9456,27 @@ class HostedZoneConfig {
     this.comment,
     this.privateZone,
   });
+  factory HostedZoneConfig.fromJson(Map<String, dynamic> json) {
+    return HostedZoneConfig(
+      comment: json['Comment'] as String?,
+      privateZone: json['PrivateZone'] as bool?,
+    );
+  }
+
   factory HostedZoneConfig.fromXml(_s.XmlElement elem) {
     return HostedZoneConfig(
       comment: _s.extractXmlStringValue(elem, 'Comment'),
       privateZone: _s.extractXmlBoolValue(elem, 'PrivateZone'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final privateZone = this.privateZone;
+    return {
+      if (comment != null) 'Comment': comment,
+      if (privateZone != null) 'PrivateZone': privateZone,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8218,11 +9522,27 @@ class HostedZoneLimit {
     required this.type,
     required this.value,
   });
+  factory HostedZoneLimit.fromJson(Map<String, dynamic> json) {
+    return HostedZoneLimit(
+      type: (json['Type'] as String).toHostedZoneLimitType(),
+      value: json['Value'] as int,
+    );
+  }
+
   factory HostedZoneLimit.fromXml(_s.XmlElement elem) {
     return HostedZoneLimit(
       type: _s.extractXmlStringValue(elem, 'Type')!.toHostedZoneLimitType(),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 
@@ -8278,11 +9598,27 @@ class HostedZoneOwner {
     this.owningAccount,
     this.owningService,
   });
+  factory HostedZoneOwner.fromJson(Map<String, dynamic> json) {
+    return HostedZoneOwner(
+      owningAccount: json['OwningAccount'] as String?,
+      owningService: json['OwningService'] as String?,
+    );
+  }
+
   factory HostedZoneOwner.fromXml(_s.XmlElement elem) {
     return HostedZoneOwner(
       owningAccount: _s.extractXmlStringValue(elem, 'OwningAccount'),
       owningService: _s.extractXmlStringValue(elem, 'OwningService'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final owningAccount = this.owningAccount;
+    final owningService = this.owningService;
+    return {
+      if (owningAccount != null) 'OwningAccount': owningAccount,
+      if (owningService != null) 'OwningService': owningService,
+    };
   }
 }
 
@@ -8309,12 +9645,31 @@ class HostedZoneSummary {
     required this.name,
     required this.owner,
   });
+  factory HostedZoneSummary.fromJson(Map<String, dynamic> json) {
+    return HostedZoneSummary(
+      hostedZoneId: json['HostedZoneId'] as String,
+      name: json['Name'] as String,
+      owner: HostedZoneOwner.fromJson(json['Owner'] as Map<String, dynamic>),
+    );
+  }
+
   factory HostedZoneSummary.fromXml(_s.XmlElement elem) {
     return HostedZoneSummary(
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
       name: _s.extractXmlStringValue(elem, 'Name')!,
       owner: HostedZoneOwner.fromXml(_s.extractXmlChild(elem, 'Owner')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final name = this.name;
+    final owner = this.owner;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Name': name,
+      'Owner': owner,
+    };
   }
 }
 
@@ -8502,6 +9857,27 @@ class KeySigningKey {
     this.status,
     this.statusMessage,
   });
+  factory KeySigningKey.fromJson(Map<String, dynamic> json) {
+    return KeySigningKey(
+      createdDate: timeStampFromJson(json['CreatedDate']),
+      dNSKEYRecord: json['DNSKEYRecord'] as String?,
+      dSRecord: json['DSRecord'] as String?,
+      digestAlgorithmMnemonic: json['DigestAlgorithmMnemonic'] as String?,
+      digestAlgorithmType: json['DigestAlgorithmType'] as int?,
+      digestValue: json['DigestValue'] as String?,
+      flag: json['Flag'] as int?,
+      keyTag: json['KeyTag'] as int?,
+      kmsArn: json['KmsArn'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      name: json['Name'] as String?,
+      publicKey: json['PublicKey'] as String?,
+      signingAlgorithmMnemonic: json['SigningAlgorithmMnemonic'] as String?,
+      signingAlgorithmType: json['SigningAlgorithmType'] as int?,
+      status: json['Status'] as String?,
+      statusMessage: json['StatusMessage'] as String?,
+    );
+  }
+
   factory KeySigningKey.fromXml(_s.XmlElement elem) {
     return KeySigningKey(
       createdDate: _s.extractXmlDateTimeValue(elem, 'CreatedDate'),
@@ -8523,6 +9899,48 @@ class KeySigningKey {
       status: _s.extractXmlStringValue(elem, 'Status'),
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final dNSKEYRecord = this.dNSKEYRecord;
+    final dSRecord = this.dSRecord;
+    final digestAlgorithmMnemonic = this.digestAlgorithmMnemonic;
+    final digestAlgorithmType = this.digestAlgorithmType;
+    final digestValue = this.digestValue;
+    final flag = this.flag;
+    final keyTag = this.keyTag;
+    final kmsArn = this.kmsArn;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final publicKey = this.publicKey;
+    final signingAlgorithmMnemonic = this.signingAlgorithmMnemonic;
+    final signingAlgorithmType = this.signingAlgorithmType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (dNSKEYRecord != null) 'DNSKEYRecord': dNSKEYRecord,
+      if (dSRecord != null) 'DSRecord': dSRecord,
+      if (digestAlgorithmMnemonic != null)
+        'DigestAlgorithmMnemonic': digestAlgorithmMnemonic,
+      if (digestAlgorithmType != null)
+        'DigestAlgorithmType': digestAlgorithmType,
+      if (digestValue != null) 'DigestValue': digestValue,
+      if (flag != null) 'Flag': flag,
+      if (keyTag != null) 'KeyTag': keyTag,
+      if (kmsArn != null) 'KmsArn': kmsArn,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (name != null) 'Name': name,
+      if (publicKey != null) 'PublicKey': publicKey,
+      if (signingAlgorithmMnemonic != null)
+        'SigningAlgorithmMnemonic': signingAlgorithmMnemonic,
+      if (signingAlgorithmType != null)
+        'SigningAlgorithmType': signingAlgorithmType,
+      if (status != null) 'Status': status,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -8546,11 +9964,27 @@ class LinkedService {
     this.description,
     this.servicePrincipal,
   });
+  factory LinkedService.fromJson(Map<String, dynamic> json) {
+    return LinkedService(
+      description: json['Description'] as String?,
+      servicePrincipal: json['ServicePrincipal'] as String?,
+    );
+  }
+
   factory LinkedService.fromXml(_s.XmlElement elem) {
     return LinkedService(
       description: _s.extractXmlStringValue(elem, 'Description'),
       servicePrincipal: _s.extractXmlStringValue(elem, 'ServicePrincipal'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final servicePrincipal = this.servicePrincipal;
+    return {
+      if (description != null) 'Description': description,
+      if (servicePrincipal != null) 'ServicePrincipal': servicePrincipal,
+    };
   }
 }
 
@@ -8598,6 +10032,20 @@ class ListGeoLocationsResponse {
     this.nextCountryCode,
     this.nextSubdivisionCode,
   });
+  factory ListGeoLocationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListGeoLocationsResponse(
+      geoLocationDetailsList: (json['GeoLocationDetailsList'] as List)
+          .whereNotNull()
+          .map((e) => GeoLocationDetails.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      nextContinentCode: json['NextContinentCode'] as String?,
+      nextCountryCode: json['NextCountryCode'] as String?,
+      nextSubdivisionCode: json['NextSubdivisionCode'] as String?,
+    );
+  }
+
   factory ListGeoLocationsResponse.fromXml(_s.XmlElement elem) {
     return ListGeoLocationsResponse(
       geoLocationDetailsList: _s
@@ -8612,6 +10060,24 @@ class ListGeoLocationsResponse {
       nextSubdivisionCode:
           _s.extractXmlStringValue(elem, 'NextSubdivisionCode'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final geoLocationDetailsList = this.geoLocationDetailsList;
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final nextContinentCode = this.nextContinentCode;
+    final nextCountryCode = this.nextCountryCode;
+    final nextSubdivisionCode = this.nextSubdivisionCode;
+    return {
+      'GeoLocationDetailsList': geoLocationDetailsList,
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      if (nextContinentCode != null) 'NextContinentCode': nextContinentCode,
+      if (nextCountryCode != null) 'NextCountryCode': nextCountryCode,
+      if (nextSubdivisionCode != null)
+        'NextSubdivisionCode': nextSubdivisionCode,
+    };
   }
 }
 
@@ -8651,6 +10117,19 @@ class ListHealthChecksResponse {
     required this.maxItems,
     this.nextMarker,
   });
+  factory ListHealthChecksResponse.fromJson(Map<String, dynamic> json) {
+    return ListHealthChecksResponse(
+      healthChecks: (json['HealthChecks'] as List)
+          .whereNotNull()
+          .map((e) => HealthCheck.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as String,
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory ListHealthChecksResponse.fromXml(_s.XmlElement elem) {
     return ListHealthChecksResponse(
       healthChecks: _s
@@ -8663,6 +10142,21 @@ class ListHealthChecksResponse {
       maxItems: _s.extractXmlStringValue(elem, 'MaxItems')!,
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthChecks = this.healthChecks;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'HealthChecks': healthChecks,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -8724,6 +10218,21 @@ class ListHostedZonesByNameResponse {
     this.nextDNSName,
     this.nextHostedZoneId,
   });
+  factory ListHostedZonesByNameResponse.fromJson(Map<String, dynamic> json) {
+    return ListHostedZonesByNameResponse(
+      hostedZones: (json['HostedZones'] as List)
+          .whereNotNull()
+          .map((e) => HostedZone.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      dNSName: json['DNSName'] as String?,
+      hostedZoneId: json['HostedZoneId'] as String?,
+      nextDNSName: json['NextDNSName'] as String?,
+      nextHostedZoneId: json['NextHostedZoneId'] as String?,
+    );
+  }
+
   factory ListHostedZonesByNameResponse.fromXml(_s.XmlElement elem) {
     return ListHostedZonesByNameResponse(
       hostedZones: _s
@@ -8738,6 +10247,25 @@ class ListHostedZonesByNameResponse {
       nextDNSName: _s.extractXmlStringValue(elem, 'NextDNSName'),
       nextHostedZoneId: _s.extractXmlStringValue(elem, 'NextHostedZoneId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZones = this.hostedZones;
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final dNSName = this.dNSName;
+    final hostedZoneId = this.hostedZoneId;
+    final nextDNSName = this.nextDNSName;
+    final nextHostedZoneId = this.nextHostedZoneId;
+    return {
+      'HostedZones': hostedZones,
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      if (dNSName != null) 'DNSName': dNSName,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (nextDNSName != null) 'NextDNSName': nextDNSName,
+      if (nextHostedZoneId != null) 'NextHostedZoneId': nextHostedZoneId,
+    };
   }
 }
 
@@ -8761,6 +10289,17 @@ class ListHostedZonesByVPCResponse {
     required this.maxItems,
     this.nextToken,
   });
+  factory ListHostedZonesByVPCResponse.fromJson(Map<String, dynamic> json) {
+    return ListHostedZonesByVPCResponse(
+      hostedZoneSummaries: (json['HostedZoneSummaries'] as List)
+          .whereNotNull()
+          .map((e) => HostedZoneSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      maxItems: json['MaxItems'] as String,
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListHostedZonesByVPCResponse.fromXml(_s.XmlElement elem) {
     return ListHostedZonesByVPCResponse(
       hostedZoneSummaries: _s
@@ -8771,6 +10310,17 @@ class ListHostedZonesByVPCResponse {
       maxItems: _s.extractXmlStringValue(elem, 'MaxItems')!,
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneSummaries = this.hostedZoneSummaries;
+    final maxItems = this.maxItems;
+    final nextToken = this.nextToken;
+    return {
+      'HostedZoneSummaries': hostedZoneSummaries,
+      'MaxItems': maxItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8811,6 +10361,19 @@ class ListHostedZonesResponse {
     required this.maxItems,
     this.nextMarker,
   });
+  factory ListHostedZonesResponse.fromJson(Map<String, dynamic> json) {
+    return ListHostedZonesResponse(
+      hostedZones: (json['HostedZones'] as List)
+          .whereNotNull()
+          .map((e) => HostedZone.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as String,
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory ListHostedZonesResponse.fromXml(_s.XmlElement elem) {
     return ListHostedZonesResponse(
       hostedZones: _s
@@ -8823,6 +10386,21 @@ class ListHostedZonesResponse {
       maxItems: _s.extractXmlStringValue(elem, 'MaxItems')!,
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZones = this.hostedZones;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'HostedZones': hostedZones,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -8849,6 +10427,16 @@ class ListQueryLoggingConfigsResponse {
     required this.queryLoggingConfigs,
     this.nextToken,
   });
+  factory ListQueryLoggingConfigsResponse.fromJson(Map<String, dynamic> json) {
+    return ListQueryLoggingConfigsResponse(
+      queryLoggingConfigs: (json['QueryLoggingConfigs'] as List)
+          .whereNotNull()
+          .map((e) => QueryLoggingConfig.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListQueryLoggingConfigsResponse.fromXml(_s.XmlElement elem) {
     return ListQueryLoggingConfigsResponse(
       queryLoggingConfigs: _s
@@ -8858,6 +10446,15 @@ class ListQueryLoggingConfigsResponse {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryLoggingConfigs = this.queryLoggingConfigs;
+    final nextToken = this.nextToken;
+    return {
+      'QueryLoggingConfigs': queryLoggingConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8902,6 +10499,20 @@ class ListResourceRecordSetsResponse {
     this.nextRecordName,
     this.nextRecordType,
   });
+  factory ListResourceRecordSetsResponse.fromJson(Map<String, dynamic> json) {
+    return ListResourceRecordSetsResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      resourceRecordSets: (json['ResourceRecordSets'] as List)
+          .whereNotNull()
+          .map((e) => ResourceRecordSet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextRecordIdentifier: json['NextRecordIdentifier'] as String?,
+      nextRecordName: json['NextRecordName'] as String?,
+      nextRecordType: (json['NextRecordType'] as String?)?.toRRType(),
+    );
+  }
+
   factory ListResourceRecordSetsResponse.fromXml(_s.XmlElement elem) {
     return ListResourceRecordSetsResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -8917,6 +10528,24 @@ class ListResourceRecordSetsResponse {
       nextRecordType:
           _s.extractXmlStringValue(elem, 'NextRecordType')?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final resourceRecordSets = this.resourceRecordSets;
+    final nextRecordIdentifier = this.nextRecordIdentifier;
+    final nextRecordName = this.nextRecordName;
+    final nextRecordType = this.nextRecordType;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'ResourceRecordSets': resourceRecordSets,
+      if (nextRecordIdentifier != null)
+        'NextRecordIdentifier': nextRecordIdentifier,
+      if (nextRecordName != null) 'NextRecordName': nextRecordName,
+      if (nextRecordType != null) 'NextRecordType': nextRecordType.toValue(),
+    };
   }
 }
 
@@ -8956,6 +10585,20 @@ class ListReusableDelegationSetsResponse {
     required this.maxItems,
     this.nextMarker,
   });
+  factory ListReusableDelegationSetsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListReusableDelegationSetsResponse(
+      delegationSets: (json['DelegationSets'] as List)
+          .whereNotNull()
+          .map((e) => DelegationSet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as String,
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory ListReusableDelegationSetsResponse.fromXml(_s.XmlElement elem) {
     return ListReusableDelegationSetsResponse(
       delegationSets: _s
@@ -8969,6 +10612,21 @@ class ListReusableDelegationSetsResponse {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegationSets = this.delegationSets;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'DelegationSets': delegationSets,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// A complex type that contains information about the health checks or hosted
@@ -8981,11 +10639,25 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     required this.resourceTagSet,
   });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      resourceTagSet: ResourceTagSet.fromJson(
+          json['ResourceTagSet'] as Map<String, dynamic>),
+    );
+  }
+
   factory ListTagsForResourceResponse.fromXml(_s.XmlElement elem) {
     return ListTagsForResourceResponse(
       resourceTagSet:
           ResourceTagSet.fromXml(_s.extractXmlChild(elem, 'ResourceTagSet')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTagSet = this.resourceTagSet;
+    return {
+      'ResourceTagSet': resourceTagSet,
+    };
   }
 }
 
@@ -9012,6 +10684,22 @@ class ListTagsForResourcesRequest {
     required this.resourceIds,
     required this.resourceType,
   });
+  factory ListTagsForResourcesRequest.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourcesRequest(
+      resourceIds: (json['ResourceIds'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceIds = this.resourceIds;
+    return {
+      'ResourceIds': resourceIds,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final resourceIds = this.resourceIds;
     final resourceType = this.resourceType;
@@ -9039,6 +10727,15 @@ class ListTagsForResourcesResponse {
   ListTagsForResourcesResponse({
     required this.resourceTagSets,
   });
+  factory ListTagsForResourcesResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourcesResponse(
+      resourceTagSets: (json['ResourceTagSets'] as List)
+          .whereNotNull()
+          .map((e) => ResourceTagSet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTagsForResourcesResponse.fromXml(_s.XmlElement elem) {
     return ListTagsForResourcesResponse(
       resourceTagSets: _s
@@ -9047,6 +10744,13 @@ class ListTagsForResourcesResponse {
           .map((c) => ResourceTagSet.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTagSets = this.resourceTagSets;
+    return {
+      'ResourceTagSets': resourceTagSets,
+    };
   }
 }
 
@@ -9078,6 +10782,18 @@ class ListTrafficPoliciesResponse {
     required this.trafficPolicyIdMarker,
     required this.trafficPolicySummaries,
   });
+  factory ListTrafficPoliciesResponse.fromJson(Map<String, dynamic> json) {
+    return ListTrafficPoliciesResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      trafficPolicyIdMarker: json['TrafficPolicyIdMarker'] as String,
+      trafficPolicySummaries: (json['TrafficPolicySummaries'] as List)
+          .whereNotNull()
+          .map((e) => TrafficPolicySummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTrafficPoliciesResponse.fromXml(_s.XmlElement elem) {
     return ListTrafficPoliciesResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -9090,6 +10806,19 @@ class ListTrafficPoliciesResponse {
           .map((c) => TrafficPolicySummary.fromXml(c))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyIdMarker = this.trafficPolicyIdMarker;
+    final trafficPolicySummaries = this.trafficPolicySummaries;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyIdMarker': trafficPolicyIdMarker,
+      'TrafficPolicySummaries': trafficPolicySummaries,
+    };
   }
 }
 
@@ -9132,6 +10861,22 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+  factory ListTrafficPolicyInstancesByHostedZoneResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListTrafficPolicyInstancesByHostedZoneResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      trafficPolicyInstances: (json['TrafficPolicyInstances'] as List)
+          .whereNotNull()
+          .map((e) => TrafficPolicyInstance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      trafficPolicyInstanceNameMarker:
+          json['TrafficPolicyInstanceNameMarker'] as String?,
+      trafficPolicyInstanceTypeMarker:
+          (json['TrafficPolicyInstanceTypeMarker'] as String?)?.toRRType(),
+    );
+  }
+
   factory ListTrafficPolicyInstancesByHostedZoneResponse.fromXml(
       _s.XmlElement elem) {
     return ListTrafficPolicyInstancesByHostedZoneResponse(
@@ -9148,6 +10893,26 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
           .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
           ?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
   }
 }
 
@@ -9196,6 +10961,23 @@ class ListTrafficPolicyInstancesByPolicyResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+  factory ListTrafficPolicyInstancesByPolicyResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListTrafficPolicyInstancesByPolicyResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      trafficPolicyInstances: (json['TrafficPolicyInstances'] as List)
+          .whereNotNull()
+          .map((e) => TrafficPolicyInstance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      hostedZoneIdMarker: json['HostedZoneIdMarker'] as String?,
+      trafficPolicyInstanceNameMarker:
+          json['TrafficPolicyInstanceNameMarker'] as String?,
+      trafficPolicyInstanceTypeMarker:
+          (json['TrafficPolicyInstanceTypeMarker'] as String?)?.toRRType(),
+    );
+  }
+
   factory ListTrafficPolicyInstancesByPolicyResponse.fromXml(
       _s.XmlElement elem) {
     return ListTrafficPolicyInstancesByPolicyResponse(
@@ -9213,6 +10995,28 @@ class ListTrafficPolicyInstancesByPolicyResponse {
           .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
           ?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final hostedZoneIdMarker = this.hostedZoneIdMarker;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (hostedZoneIdMarker != null) 'HostedZoneIdMarker': hostedZoneIdMarker,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
   }
 }
 
@@ -9263,6 +11067,23 @@ class ListTrafficPolicyInstancesResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+  factory ListTrafficPolicyInstancesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListTrafficPolicyInstancesResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      trafficPolicyInstances: (json['TrafficPolicyInstances'] as List)
+          .whereNotNull()
+          .map((e) => TrafficPolicyInstance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      hostedZoneIdMarker: json['HostedZoneIdMarker'] as String?,
+      trafficPolicyInstanceNameMarker:
+          json['TrafficPolicyInstanceNameMarker'] as String?,
+      trafficPolicyInstanceTypeMarker:
+          (json['TrafficPolicyInstanceTypeMarker'] as String?)?.toRRType(),
+    );
+  }
+
   factory ListTrafficPolicyInstancesResponse.fromXml(_s.XmlElement elem) {
     return ListTrafficPolicyInstancesResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -9279,6 +11100,28 @@ class ListTrafficPolicyInstancesResponse {
           .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
           ?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final hostedZoneIdMarker = this.hostedZoneIdMarker;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (hostedZoneIdMarker != null) 'HostedZoneIdMarker': hostedZoneIdMarker,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
   }
 }
 
@@ -9317,6 +11160,19 @@ class ListTrafficPolicyVersionsResponse {
     required this.trafficPolicies,
     required this.trafficPolicyVersionMarker,
   });
+  factory ListTrafficPolicyVersionsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListTrafficPolicyVersionsResponse(
+      isTruncated: json['IsTruncated'] as bool,
+      maxItems: json['MaxItems'] as String,
+      trafficPolicies: (json['TrafficPolicies'] as List)
+          .whereNotNull()
+          .map((e) => TrafficPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      trafficPolicyVersionMarker: json['TrafficPolicyVersionMarker'] as String,
+    );
+  }
+
   factory ListTrafficPolicyVersionsResponse.fromXml(_s.XmlElement elem) {
     return ListTrafficPolicyVersionsResponse(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -9329,6 +11185,19 @@ class ListTrafficPolicyVersionsResponse {
       trafficPolicyVersionMarker:
           _s.extractXmlStringValue(elem, 'TrafficPolicyVersionMarker')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicies = this.trafficPolicies;
+    final trafficPolicyVersionMarker = this.trafficPolicyVersionMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicies': trafficPolicies,
+      'TrafficPolicyVersionMarker': trafficPolicyVersionMarker,
+    };
   }
 }
 
@@ -9353,6 +11222,18 @@ class ListVPCAssociationAuthorizationsResponse {
     required this.vPCs,
     this.nextToken,
   });
+  factory ListVPCAssociationAuthorizationsResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListVPCAssociationAuthorizationsResponse(
+      hostedZoneId: json['HostedZoneId'] as String,
+      vPCs: (json['VPCs'] as List)
+          .whereNotNull()
+          .map((e) => VPC.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListVPCAssociationAuthorizationsResponse.fromXml(_s.XmlElement elem) {
     return ListVPCAssociationAuthorizationsResponse(
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
@@ -9363,6 +11244,17 @@ class ListVPCAssociationAuthorizationsResponse {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vPCs = this.vPCs;
+    final nextToken = this.nextToken;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'VPCs': vPCs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -9384,6 +11276,14 @@ class QueryLoggingConfig {
     required this.hostedZoneId,
     required this.id,
   });
+  factory QueryLoggingConfig.fromJson(Map<String, dynamic> json) {
+    return QueryLoggingConfig(
+      cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String,
+      hostedZoneId: json['HostedZoneId'] as String,
+      id: json['Id'] as String,
+    );
+  }
+
   factory QueryLoggingConfig.fromXml(_s.XmlElement elem) {
     return QueryLoggingConfig(
       cloudWatchLogsLogGroupArn:
@@ -9391,6 +11291,17 @@ class QueryLoggingConfig {
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final hostedZoneId = this.hostedZoneId;
+    final id = this.id;
+    return {
+      'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      'HostedZoneId': hostedZoneId,
+      'Id': id,
+    };
   }
 }
 
@@ -9538,10 +11449,23 @@ class ResourceRecord {
   ResourceRecord({
     required this.value,
   });
+  factory ResourceRecord.fromJson(Map<String, dynamic> json) {
+    return ResourceRecord(
+      value: json['Value'] as String,
+    );
+  }
+
   factory ResourceRecord.fromXml(_s.XmlElement elem) {
     return ResourceRecord(
       value: _s.extractXmlStringValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      'Value': value,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10160,6 +12084,31 @@ class ResourceRecordSet {
     this.trafficPolicyInstanceId,
     this.weight,
   });
+  factory ResourceRecordSet.fromJson(Map<String, dynamic> json) {
+    return ResourceRecordSet(
+      name: json['Name'] as String,
+      type: (json['Type'] as String).toRRType(),
+      aliasTarget: json['AliasTarget'] != null
+          ? AliasTarget.fromJson(json['AliasTarget'] as Map<String, dynamic>)
+          : null,
+      failover: (json['Failover'] as String?)?.toResourceRecordSetFailover(),
+      geoLocation: json['GeoLocation'] != null
+          ? GeoLocation.fromJson(json['GeoLocation'] as Map<String, dynamic>)
+          : null,
+      healthCheckId: json['HealthCheckId'] as String?,
+      multiValueAnswer: json['MultiValueAnswer'] as bool?,
+      region: (json['Region'] as String?)?.toResourceRecordSetRegion(),
+      resourceRecords: (json['ResourceRecords'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourceRecord.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      setIdentifier: json['SetIdentifier'] as String?,
+      ttl: json['TTL'] as int?,
+      trafficPolicyInstanceId: json['TrafficPolicyInstanceId'] as String?,
+      weight: json['Weight'] as int?,
+    );
+  }
+
   factory ResourceRecordSet.fromXml(_s.XmlElement elem) {
     return ResourceRecordSet(
       name: _s.extractXmlStringValue(elem, 'Name')!,
@@ -10188,6 +12137,38 @@ class ResourceRecordSet {
           _s.extractXmlStringValue(elem, 'TrafficPolicyInstanceId'),
       weight: _s.extractXmlIntValue(elem, 'Weight'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final aliasTarget = this.aliasTarget;
+    final failover = this.failover;
+    final geoLocation = this.geoLocation;
+    final healthCheckId = this.healthCheckId;
+    final multiValueAnswer = this.multiValueAnswer;
+    final region = this.region;
+    final resourceRecords = this.resourceRecords;
+    final setIdentifier = this.setIdentifier;
+    final ttl = this.ttl;
+    final trafficPolicyInstanceId = this.trafficPolicyInstanceId;
+    final weight = this.weight;
+    return {
+      'Name': name,
+      'Type': type.toValue(),
+      if (aliasTarget != null) 'AliasTarget': aliasTarget,
+      if (failover != null) 'Failover': failover.toValue(),
+      if (geoLocation != null) 'GeoLocation': geoLocation,
+      if (healthCheckId != null) 'HealthCheckId': healthCheckId,
+      if (multiValueAnswer != null) 'MultiValueAnswer': multiValueAnswer,
+      if (region != null) 'Region': region.toValue(),
+      if (resourceRecords != null) 'ResourceRecords': resourceRecords,
+      if (setIdentifier != null) 'SetIdentifier': setIdentifier,
+      if (ttl != null) 'TTL': ttl,
+      if (trafficPolicyInstanceId != null)
+        'TrafficPolicyInstanceId': trafficPolicyInstanceId,
+      if (weight != null) 'Weight': weight,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10424,6 +12405,17 @@ class ResourceTagSet {
     this.resourceType,
     this.tags,
   });
+  factory ResourceTagSet.fromJson(Map<String, dynamic> json) {
+    return ResourceTagSet(
+      resourceId: json['ResourceId'] as String?,
+      resourceType: (json['ResourceType'] as String?)?.toTagResourceType(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ResourceTagSet.fromXml(_s.XmlElement elem) {
     return ResourceTagSet(
       resourceId: _s.extractXmlStringValue(elem, 'ResourceId'),
@@ -10432,6 +12424,17 @@ class ResourceTagSet {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -10452,6 +12455,13 @@ class ReusableDelegationSetLimit {
     required this.type,
     required this.value,
   });
+  factory ReusableDelegationSetLimit.fromJson(Map<String, dynamic> json) {
+    return ReusableDelegationSetLimit(
+      type: (json['Type'] as String).toReusableDelegationSetLimitType(),
+      value: json['Value'] as int,
+    );
+  }
+
   factory ReusableDelegationSetLimit.fromXml(_s.XmlElement elem) {
     return ReusableDelegationSetLimit(
       type: _s
@@ -10459,6 +12469,15 @@ class ReusableDelegationSetLimit {
           .toReusableDelegationSetLimitType(),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 
@@ -10547,11 +12566,27 @@ class StatusReport {
     this.checkedTime,
     this.status,
   });
+  factory StatusReport.fromJson(Map<String, dynamic> json) {
+    return StatusReport(
+      checkedTime: timeStampFromJson(json['CheckedTime']),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory StatusReport.fromXml(_s.XmlElement elem) {
     return StatusReport(
       checkedTime: _s.extractXmlDateTimeValue(elem, 'CheckedTime'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkedTime = this.checkedTime;
+    final status = this.status;
+    return {
+      if (checkedTime != null) 'CheckedTime': unixTimestampToJson(checkedTime),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -10602,11 +12637,27 @@ class Tag {
     this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10691,6 +12742,20 @@ class TestDNSAnswerResponse {
     required this.recordType,
     required this.responseCode,
   });
+  factory TestDNSAnswerResponse.fromJson(Map<String, dynamic> json) {
+    return TestDNSAnswerResponse(
+      nameserver: json['Nameserver'] as String,
+      protocol: json['Protocol'] as String,
+      recordData: (json['RecordData'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      recordName: json['RecordName'] as String,
+      recordType: (json['RecordType'] as String).toRRType(),
+      responseCode: json['ResponseCode'] as String,
+    );
+  }
+
   factory TestDNSAnswerResponse.fromXml(_s.XmlElement elem) {
     return TestDNSAnswerResponse(
       nameserver: _s.extractXmlStringValue(elem, 'Nameserver')!,
@@ -10701,6 +12766,23 @@ class TestDNSAnswerResponse {
       recordType: _s.extractXmlStringValue(elem, 'RecordType')!.toRRType(),
       responseCode: _s.extractXmlStringValue(elem, 'ResponseCode')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nameserver = this.nameserver;
+    final protocol = this.protocol;
+    final recordData = this.recordData;
+    final recordName = this.recordName;
+    final recordType = this.recordType;
+    final responseCode = this.responseCode;
+    return {
+      'Nameserver': nameserver,
+      'Protocol': protocol,
+      'RecordData': recordData,
+      'RecordName': recordName,
+      'RecordType': recordType.toValue(),
+      'ResponseCode': responseCode,
+    };
   }
 }
 
@@ -10741,6 +12823,17 @@ class TrafficPolicy {
     required this.version,
     this.comment,
   });
+  factory TrafficPolicy.fromJson(Map<String, dynamic> json) {
+    return TrafficPolicy(
+      document: json['Document'] as String,
+      id: json['Id'] as String,
+      name: json['Name'] as String,
+      type: (json['Type'] as String).toRRType(),
+      version: json['Version'] as int,
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory TrafficPolicy.fromXml(_s.XmlElement elem) {
     return TrafficPolicy(
       document: _s.extractXmlStringValue(elem, 'Document')!,
@@ -10750,6 +12843,23 @@ class TrafficPolicy {
       version: _s.extractXmlIntValue(elem, 'Version')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    final version = this.version;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      'Id': id,
+      'Name': name,
+      'Type': type.toValue(),
+      'Version': version,
+      if (comment != null) 'Comment': comment,
+    };
   }
 }
 
@@ -10814,6 +12924,20 @@ class TrafficPolicyInstance {
     required this.trafficPolicyType,
     required this.trafficPolicyVersion,
   });
+  factory TrafficPolicyInstance.fromJson(Map<String, dynamic> json) {
+    return TrafficPolicyInstance(
+      hostedZoneId: json['HostedZoneId'] as String,
+      id: json['Id'] as String,
+      message: json['Message'] as String,
+      name: json['Name'] as String,
+      state: json['State'] as String,
+      ttl: json['TTL'] as int,
+      trafficPolicyId: json['TrafficPolicyId'] as String,
+      trafficPolicyType: (json['TrafficPolicyType'] as String).toRRType(),
+      trafficPolicyVersion: json['TrafficPolicyVersion'] as int,
+    );
+  }
+
   factory TrafficPolicyInstance.fromXml(_s.XmlElement elem) {
     return TrafficPolicyInstance(
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
@@ -10828,6 +12952,29 @@ class TrafficPolicyInstance {
       trafficPolicyVersion:
           _s.extractXmlIntValue(elem, 'TrafficPolicyVersion')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final id = this.id;
+    final message = this.message;
+    final name = this.name;
+    final state = this.state;
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyType = this.trafficPolicyType;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Id': id,
+      'Message': message,
+      'Name': name,
+      'State': state,
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyType': trafficPolicyType.toValue(),
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
   }
 }
 
@@ -10859,6 +13006,16 @@ class TrafficPolicySummary {
     required this.trafficPolicyCount,
     required this.type,
   });
+  factory TrafficPolicySummary.fromJson(Map<String, dynamic> json) {
+    return TrafficPolicySummary(
+      id: json['Id'] as String,
+      latestVersion: json['LatestVersion'] as int,
+      name: json['Name'] as String,
+      trafficPolicyCount: json['TrafficPolicyCount'] as int,
+      type: (json['Type'] as String).toRRType(),
+    );
+  }
+
   factory TrafficPolicySummary.fromXml(_s.XmlElement elem) {
     return TrafficPolicySummary(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -10867,6 +13024,21 @@ class TrafficPolicySummary {
       trafficPolicyCount: _s.extractXmlIntValue(elem, 'TrafficPolicyCount')!,
       type: _s.extractXmlStringValue(elem, 'Type')!.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final latestVersion = this.latestVersion;
+    final name = this.name;
+    final trafficPolicyCount = this.trafficPolicyCount;
+    final type = this.type;
+    return {
+      'Id': id,
+      'LatestVersion': latestVersion,
+      'Name': name,
+      'TrafficPolicyCount': trafficPolicyCount,
+      'Type': type.toValue(),
+    };
   }
 }
 
@@ -11251,6 +13423,81 @@ class UpdateHealthCheckRequest {
     this.resourcePath,
     this.searchString,
   });
+  factory UpdateHealthCheckRequest.fromJson(Map<String, dynamic> json) {
+    return UpdateHealthCheckRequest(
+      alarmIdentifier: json['AlarmIdentifier'] != null
+          ? AlarmIdentifier.fromJson(
+              json['AlarmIdentifier'] as Map<String, dynamic>)
+          : null,
+      childHealthChecks: (json['ChildHealthChecks'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      disabled: json['Disabled'] as bool?,
+      enableSNI: json['EnableSNI'] as bool?,
+      failureThreshold: json['FailureThreshold'] as int?,
+      fullyQualifiedDomainName: json['FullyQualifiedDomainName'] as String?,
+      healthCheckVersion: json['HealthCheckVersion'] as int?,
+      healthThreshold: json['HealthThreshold'] as int?,
+      iPAddress: json['IPAddress'] as String?,
+      insufficientDataHealthStatus:
+          (json['InsufficientDataHealthStatus'] as String?)
+              ?.toInsufficientDataHealthStatus(),
+      inverted: json['Inverted'] as bool?,
+      port: json['Port'] as int?,
+      regions: (json['Regions'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toHealthCheckRegion())
+          .toList(),
+      resetElements: (json['ResetElements'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toResettableElementName())
+          .toList(),
+      resourcePath: json['ResourcePath'] as String?,
+      searchString: json['SearchString'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmIdentifier = this.alarmIdentifier;
+    final childHealthChecks = this.childHealthChecks;
+    final disabled = this.disabled;
+    final enableSNI = this.enableSNI;
+    final failureThreshold = this.failureThreshold;
+    final fullyQualifiedDomainName = this.fullyQualifiedDomainName;
+    final healthCheckVersion = this.healthCheckVersion;
+    final healthThreshold = this.healthThreshold;
+    final iPAddress = this.iPAddress;
+    final insufficientDataHealthStatus = this.insufficientDataHealthStatus;
+    final inverted = this.inverted;
+    final port = this.port;
+    final regions = this.regions;
+    final resetElements = this.resetElements;
+    final resourcePath = this.resourcePath;
+    final searchString = this.searchString;
+    return {
+      if (alarmIdentifier != null) 'AlarmIdentifier': alarmIdentifier,
+      if (childHealthChecks != null) 'ChildHealthChecks': childHealthChecks,
+      if (disabled != null) 'Disabled': disabled,
+      if (enableSNI != null) 'EnableSNI': enableSNI,
+      if (failureThreshold != null) 'FailureThreshold': failureThreshold,
+      if (fullyQualifiedDomainName != null)
+        'FullyQualifiedDomainName': fullyQualifiedDomainName,
+      if (healthCheckVersion != null) 'HealthCheckVersion': healthCheckVersion,
+      if (healthThreshold != null) 'HealthThreshold': healthThreshold,
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (insufficientDataHealthStatus != null)
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+      if (inverted != null) 'Inverted': inverted,
+      if (port != null) 'Port': port,
+      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (resetElements != null)
+        'ResetElements': resetElements.map((e) => e.toValue()).toList(),
+      if (resourcePath != null) 'ResourcePath': resourcePath,
+      if (searchString != null) 'SearchString': searchString,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final healthCheckId = this.healthCheckId;
     final alarmIdentifier = this.alarmIdentifier;
@@ -11329,11 +13576,25 @@ class UpdateHealthCheckResponse {
   UpdateHealthCheckResponse({
     required this.healthCheck,
   });
+  factory UpdateHealthCheckResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateHealthCheckResponse(
+      healthCheck:
+          HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateHealthCheckResponse.fromXml(_s.XmlElement elem) {
     return UpdateHealthCheckResponse(
       healthCheck:
           HealthCheck.fromXml(_s.extractXmlChild(elem, 'HealthCheck')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      'HealthCheck': healthCheck,
+    };
   }
 }
 
@@ -11351,6 +13612,19 @@ class UpdateHostedZoneCommentRequest {
     required this.id,
     this.comment,
   });
+  factory UpdateHostedZoneCommentRequest.fromJson(Map<String, dynamic> json) {
+    return UpdateHostedZoneCommentRequest(
+      comment: json['Comment'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final comment = this.comment;
@@ -11378,10 +13652,24 @@ class UpdateHostedZoneCommentResponse {
   UpdateHostedZoneCommentResponse({
     required this.hostedZone,
   });
+  factory UpdateHostedZoneCommentResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateHostedZoneCommentResponse(
+      hostedZone:
+          HostedZone.fromJson(json['HostedZone'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateHostedZoneCommentResponse.fromXml(_s.XmlElement elem) {
     return UpdateHostedZoneCommentResponse(
       hostedZone: HostedZone.fromXml(_s.extractXmlChild(elem, 'HostedZone')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZone = this.hostedZone;
+    return {
+      'HostedZone': hostedZone,
+    };
   }
 }
 
@@ -11404,6 +13692,20 @@ class UpdateTrafficPolicyCommentRequest {
     required this.id,
     required this.version,
   });
+  factory UpdateTrafficPolicyCommentRequest.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateTrafficPolicyCommentRequest(
+      comment: json['Comment'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final comment = this.comment;
     final id = this.id;
@@ -11431,11 +13733,26 @@ class UpdateTrafficPolicyCommentResponse {
   UpdateTrafficPolicyCommentResponse({
     required this.trafficPolicy,
   });
+  factory UpdateTrafficPolicyCommentResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateTrafficPolicyCommentResponse(
+      trafficPolicy:
+          TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateTrafficPolicyCommentResponse.fromXml(_s.XmlElement elem) {
     return UpdateTrafficPolicyCommentResponse(
       trafficPolicy:
           TrafficPolicy.fromXml(_s.extractXmlChild(elem, 'TrafficPolicy')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
   }
 }
 
@@ -11463,6 +13780,26 @@ class UpdateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+  factory UpdateTrafficPolicyInstanceRequest.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateTrafficPolicyInstanceRequest(
+      ttl: json['TTL'] as int,
+      trafficPolicyId: json['TrafficPolicyId'] as String,
+      trafficPolicyVersion: json['TrafficPolicyVersion'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final ttl = this.ttl;
@@ -11494,11 +13831,26 @@ class UpdateTrafficPolicyInstanceResponse {
   UpdateTrafficPolicyInstanceResponse({
     required this.trafficPolicyInstance,
   });
+  factory UpdateTrafficPolicyInstanceResponse.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateTrafficPolicyInstanceResponse(
+      trafficPolicyInstance: TrafficPolicyInstance.fromJson(
+          json['TrafficPolicyInstance'] as Map<String, dynamic>),
+    );
+  }
+
   factory UpdateTrafficPolicyInstanceResponse.fromXml(_s.XmlElement elem) {
     return UpdateTrafficPolicyInstanceResponse(
       trafficPolicyInstance: TrafficPolicyInstance.fromXml(
           _s.extractXmlChild(elem, 'TrafficPolicyInstance')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
   }
 }
 
@@ -11514,11 +13866,27 @@ class VPC {
     this.vPCId,
     this.vPCRegion,
   });
+  factory VPC.fromJson(Map<String, dynamic> json) {
+    return VPC(
+      vPCId: json['VPCId'] as String?,
+      vPCRegion: (json['VPCRegion'] as String?)?.toVPCRegion(),
+    );
+  }
+
   factory VPC.fromXml(_s.XmlElement elem) {
     return VPC(
       vPCId: _s.extractXmlStringValue(elem, 'VPCId'),
       vPCRegion: _s.extractXmlStringValue(elem, 'VPCRegion')?.toVPCRegion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vPCId = this.vPCId;
+    final vPCRegion = this.vPCRegion;
+    return {
+      if (vPCId != null) 'VPCId': vPCId,
+      if (vPCRegion != null) 'VPCRegion': vPCRegion.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {

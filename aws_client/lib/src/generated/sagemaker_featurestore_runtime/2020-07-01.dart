@@ -301,6 +301,19 @@ class BatchGetRecordError {
           json['RecordIdentifierValueAsString'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final featureGroupName = this.featureGroupName;
+    final recordIdentifierValueAsString = this.recordIdentifierValueAsString;
+    return {
+      'ErrorCode': errorCode,
+      'ErrorMessage': errorMessage,
+      'FeatureGroupName': featureGroupName,
+      'RecordIdentifierValueAsString': recordIdentifierValueAsString,
+    };
+  }
 }
 
 /// The identifier that identifies the batch of Records you are retrieving in a
@@ -383,6 +396,17 @@ class BatchGetRecordResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final records = this.records;
+    final unprocessedIdentifiers = this.unprocessedIdentifiers;
+    return {
+      'Errors': errors,
+      'Records': records,
+      'UnprocessedIdentifiers': unprocessedIdentifiers,
+    };
+  }
 }
 
 /// The output of Records that have been retrieved in a batch.
@@ -412,6 +436,17 @@ class BatchGetRecordResultDetail {
       recordIdentifierValueAsString:
           json['RecordIdentifierValueAsString'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final featureGroupName = this.featureGroupName;
+    final record = this.record;
+    final recordIdentifierValueAsString = this.recordIdentifierValueAsString;
+    return {
+      'FeatureGroupName': featureGroupName,
+      'Record': record,
+      'RecordIdentifierValueAsString': recordIdentifierValueAsString,
+    };
   }
 }
 
@@ -460,6 +495,13 @@ class GetRecordResponse {
           .map((e) => FeatureValue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final record = this.record;
+    return {
+      if (record != null) 'Record': record,
+    };
   }
 }
 

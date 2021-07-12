@@ -3583,6 +3583,18 @@ class AssetSummary {
       size: json['size'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final hashes = this.hashes;
+    final size = this.size;
+    return {
+      'name': name,
+      if (hashes != null)
+        'hashes': hashes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (size != null) 'size': size,
+    };
+  }
 }
 
 class AssociateExternalConnectionResult {
@@ -3600,6 +3612,13 @@ class AssociateExternalConnectionResult {
               json['repository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
   }
 }
 
@@ -3650,6 +3669,15 @@ class CopyPackageVersionsResult {
                   e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedVersions = this.failedVersions;
+    final successfulVersions = this.successfulVersions;
+    return {
+      if (failedVersions != null) 'failedVersions': failedVersions,
+      if (successfulVersions != null) 'successfulVersions': successfulVersions,
+    };
+  }
 }
 
 class CreateDomainResult {
@@ -3665,6 +3693,13 @@ class CreateDomainResult {
           ? DomainDescription.fromJson(json['domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -3683,6 +3718,13 @@ class CreateRepositoryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
+  }
 }
 
 class DeleteDomainPermissionsPolicyResult {
@@ -3700,6 +3742,13 @@ class DeleteDomainPermissionsPolicyResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
+  }
 }
 
 class DeleteDomainResult {
@@ -3715,6 +3764,13 @@ class DeleteDomainResult {
           ? DomainDescription.fromJson(json['domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -3763,6 +3819,15 @@ class DeletePackageVersionsResult {
                   e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedVersions = this.failedVersions;
+    final successfulVersions = this.successfulVersions;
+    return {
+      if (failedVersions != null) 'failedVersions': failedVersions,
+      if (successfulVersions != null) 'successfulVersions': successfulVersions,
+    };
+  }
 }
 
 class DeleteRepositoryPermissionsPolicyResult {
@@ -3779,6 +3844,13 @@ class DeleteRepositoryPermissionsPolicyResult {
           ? ResourcePolicy.fromJson(json['policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -3797,6 +3869,13 @@ class DeleteRepositoryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
+  }
 }
 
 class DescribeDomainResult {
@@ -3811,6 +3890,13 @@ class DescribeDomainResult {
           ? DomainDescription.fromJson(json['domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -3828,6 +3914,13 @@ class DescribePackageVersionResult {
       packageVersion: PackageVersionDescription.fromJson(
           json['packageVersion'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageVersion = this.packageVersion;
+    return {
+      'packageVersion': packageVersion,
+    };
   }
 }
 
@@ -3847,6 +3940,13 @@ class DescribeRepositoryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
+  }
 }
 
 class DisassociateExternalConnectionResult {
@@ -3864,6 +3964,13 @@ class DisassociateExternalConnectionResult {
               json['repository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
   }
 }
 
@@ -3912,6 +4019,15 @@ class DisposePackageVersionsResult {
               SuccessfulPackageVersionInfo.fromJson(
                   e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedVersions = this.failedVersions;
+    final successfulVersions = this.successfulVersions;
+    return {
+      if (failedVersions != null) 'failedVersions': failedVersions,
+      if (successfulVersions != null) 'successfulVersions': successfulVersions,
+    };
   }
 }
 
@@ -3979,6 +4095,29 @@ class DomainDescription {
       s3BucketArn: json['s3BucketArn'] as String?,
       status: (json['status'] as String?)?.toDomainStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assetSizeBytes = this.assetSizeBytes;
+    final createdTime = this.createdTime;
+    final encryptionKey = this.encryptionKey;
+    final name = this.name;
+    final owner = this.owner;
+    final repositoryCount = this.repositoryCount;
+    final s3BucketArn = this.s3BucketArn;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (assetSizeBytes != null) 'assetSizeBytes': assetSizeBytes,
+      if (createdTime != null) 'createdTime': unixTimestampToJson(createdTime),
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (repositoryCount != null) 'repositoryCount': repositoryCount,
+      if (s3BucketArn != null) 's3BucketArn': s3BucketArn,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4061,6 +4200,23 @@ class DomainSummary {
       status: (json['status'] as String?)?.toDomainStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final encryptionKey = this.encryptionKey;
+    final name = this.name;
+    final owner = this.owner;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': unixTimestampToJson(createdTime),
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum ExternalConnectionStatus {
@@ -4104,6 +4260,15 @@ class GetAuthorizationTokenResult {
       expiration: timeStampFromJson(json['expiration']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizationToken = this.authorizationToken;
+    final expiration = this.expiration;
+    return {
+      if (authorizationToken != null) 'authorizationToken': authorizationToken,
+      if (expiration != null) 'expiration': unixTimestampToJson(expiration),
+    };
+  }
 }
 
 class GetDomainPermissionsPolicyResult {
@@ -4119,6 +4284,13 @@ class GetDomainPermissionsPolicyResult {
           ? ResourcePolicy.fromJson(json['policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -4142,6 +4314,18 @@ class GetPackageVersionAssetResult {
     this.packageVersion,
     this.packageVersionRevision,
   });
+  factory GetPackageVersionAssetResult.fromJson(Map<String, dynamic> json) {
+    return GetPackageVersionAssetResult(
+      asset: _s.decodeNullableUint8List(json['asset'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final asset = this.asset;
+    return {
+      if (asset != null) 'asset': base64Encode(asset),
+    };
+  }
 }
 
 class GetPackageVersionReadmeResult {
@@ -4208,6 +4392,23 @@ class GetPackageVersionReadmeResult {
       versionRevision: json['versionRevision'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final namespace = this.namespace;
+    final package = this.package;
+    final readme = this.readme;
+    final version = this.version;
+    final versionRevision = this.versionRevision;
+    return {
+      if (format != null) 'format': format.toValue(),
+      if (namespace != null) 'namespace': namespace,
+      if (package != null) 'package': package,
+      if (readme != null) 'readme': readme,
+      if (version != null) 'version': version,
+      if (versionRevision != null) 'versionRevision': versionRevision,
+    };
+  }
 }
 
 class GetRepositoryEndpointResult {
@@ -4221,6 +4422,13 @@ class GetRepositoryEndpointResult {
     return GetRepositoryEndpointResult(
       repositoryEndpoint: json['repositoryEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryEndpoint = this.repositoryEndpoint;
+    return {
+      if (repositoryEndpoint != null) 'repositoryEndpoint': repositoryEndpoint,
+    };
   }
 }
 
@@ -4238,6 +4446,13 @@ class GetRepositoryPermissionsPolicyResult {
           ? ResourcePolicy.fromJson(json['policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -4297,6 +4512,15 @@ class LicenseInfo {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final url = this.url;
+    return {
+      if (name != null) 'name': name,
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 class ListDomainsResult {
@@ -4321,6 +4545,15 @@ class ListDomainsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domains = this.domains;
+    final nextToken = this.nextToken;
+    return {
+      if (domains != null) 'domains': domains,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4385,6 +4618,25 @@ class ListPackageVersionAssetsResult {
       version: json['version'] as String?,
       versionRevision: json['versionRevision'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assets = this.assets;
+    final format = this.format;
+    final namespace = this.namespace;
+    final nextToken = this.nextToken;
+    final package = this.package;
+    final version = this.version;
+    final versionRevision = this.versionRevision;
+    return {
+      if (assets != null) 'assets': assets,
+      if (format != null) 'format': format.toValue(),
+      if (namespace != null) 'namespace': namespace,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (package != null) 'package': package,
+      if (version != null) 'version': version,
+      if (versionRevision != null) 'versionRevision': versionRevision,
+    };
   }
 }
 
@@ -4464,6 +4716,25 @@ class ListPackageVersionDependenciesResult {
       version: json['version'] as String?,
       versionRevision: json['versionRevision'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dependencies = this.dependencies;
+    final format = this.format;
+    final namespace = this.namespace;
+    final nextToken = this.nextToken;
+    final package = this.package;
+    final version = this.version;
+    final versionRevision = this.versionRevision;
+    return {
+      if (dependencies != null) 'dependencies': dependencies,
+      if (format != null) 'format': format.toValue(),
+      if (namespace != null) 'namespace': namespace,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (package != null) 'package': package,
+      if (version != null) 'version': version,
+      if (versionRevision != null) 'versionRevision': versionRevision,
+    };
   }
 }
 
@@ -4548,6 +4819,24 @@ class ListPackageVersionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultDisplayVersion = this.defaultDisplayVersion;
+    final format = this.format;
+    final namespace = this.namespace;
+    final nextToken = this.nextToken;
+    final package = this.package;
+    final versions = this.versions;
+    return {
+      if (defaultDisplayVersion != null)
+        'defaultDisplayVersion': defaultDisplayVersion,
+      if (format != null) 'format': format.toValue(),
+      if (namespace != null) 'namespace': namespace,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (package != null) 'package': package,
+      if (versions != null) 'versions': versions,
+    };
+  }
 }
 
 class ListPackagesResult {
@@ -4573,6 +4862,15 @@ class ListPackagesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final packages = this.packages;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (packages != null) 'packages': packages,
+    };
+  }
 }
 
 class ListRepositoriesInDomainResult {
@@ -4595,6 +4893,15 @@ class ListRepositoriesInDomainResult {
           .map((e) => RepositorySummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositories = this.repositories;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (repositories != null) 'repositories': repositories,
+    };
   }
 }
 
@@ -4621,6 +4928,15 @@ class ListRepositoriesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositories = this.repositories;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (repositories != null) 'repositories': repositories,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -4637,6 +4953,13 @@ class ListTagsForResourceResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4687,6 +5010,19 @@ class PackageDependency {
       package: json['package'] as String?,
       versionRequirement: json['versionRequirement'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dependencyType = this.dependencyType;
+    final namespace = this.namespace;
+    final package = this.package;
+    final versionRequirement = this.versionRequirement;
+    return {
+      if (dependencyType != null) 'dependencyType': dependencyType,
+      if (namespace != null) 'namespace': namespace,
+      if (package != null) 'package': package,
+      if (versionRequirement != null) 'versionRequirement': versionRequirement,
+    };
   }
 }
 
@@ -4778,6 +5114,17 @@ class PackageSummary {
       namespace: json['namespace'] as String?,
       package: json['package'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final namespace = this.namespace;
+    final package = this.package;
+    return {
+      if (format != null) 'format': format.toValue(),
+      if (namespace != null) 'namespace': namespace,
+      if (package != null) 'package': package,
+    };
   }
 }
 
@@ -4906,6 +5253,37 @@ class PackageVersionDescription {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final format = this.format;
+    final homePage = this.homePage;
+    final licenses = this.licenses;
+    final namespace = this.namespace;
+    final packageName = this.packageName;
+    final publishedTime = this.publishedTime;
+    final revision = this.revision;
+    final sourceCodeRepository = this.sourceCodeRepository;
+    final status = this.status;
+    final summary = this.summary;
+    final version = this.version;
+    return {
+      if (displayName != null) 'displayName': displayName,
+      if (format != null) 'format': format.toValue(),
+      if (homePage != null) 'homePage': homePage,
+      if (licenses != null) 'licenses': licenses,
+      if (namespace != null) 'namespace': namespace,
+      if (packageName != null) 'packageName': packageName,
+      if (publishedTime != null)
+        'publishedTime': unixTimestampToJson(publishedTime),
+      if (revision != null) 'revision': revision,
+      if (sourceCodeRepository != null)
+        'sourceCodeRepository': sourceCodeRepository,
+      if (status != null) 'status': status.toValue(),
+      if (summary != null) 'summary': summary,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// An error associated with package.
@@ -4946,6 +5324,15 @@ class PackageVersionError {
       errorCode: (json['errorCode'] as String?)?.toPackageVersionErrorCode(),
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -5113,6 +5500,17 @@ class PackageVersionSummary {
       revision: json['revision'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final version = this.version;
+    final revision = this.revision;
+    return {
+      'status': status.toValue(),
+      'version': version,
+      if (revision != null) 'revision': revision,
+    };
+  }
 }
 
 class PutDomainPermissionsPolicyResult {
@@ -5128,6 +5526,13 @@ class PutDomainPermissionsPolicyResult {
           ? ResourcePolicy.fromJson(json['policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -5145,6 +5550,13 @@ class PutRepositoryPermissionsPolicyResult {
           ? ResourcePolicy.fromJson(json['policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -5216,6 +5628,29 @@ class RepositoryDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administratorAccount = this.administratorAccount;
+    final arn = this.arn;
+    final description = this.description;
+    final domainName = this.domainName;
+    final domainOwner = this.domainOwner;
+    final externalConnections = this.externalConnections;
+    final name = this.name;
+    final upstreams = this.upstreams;
+    return {
+      if (administratorAccount != null)
+        'administratorAccount': administratorAccount,
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (domainName != null) 'domainName': domainName,
+      if (domainOwner != null) 'domainOwner': domainOwner,
+      if (externalConnections != null)
+        'externalConnections': externalConnections,
+      if (name != null) 'name': name,
+      if (upstreams != null) 'upstreams': upstreams,
+    };
+  }
 }
 
 /// Contains information about the external connection of a repository.
@@ -5255,6 +5690,18 @@ class RepositoryExternalConnectionInfo {
       packageFormat: (json['packageFormat'] as String?)?.toPackageFormat(),
       status: (json['status'] as String?)?.toExternalConnectionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final externalConnectionName = this.externalConnectionName;
+    final packageFormat = this.packageFormat;
+    final status = this.status;
+    return {
+      if (externalConnectionName != null)
+        'externalConnectionName': externalConnectionName,
+      if (packageFormat != null) 'packageFormat': packageFormat.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -5300,6 +5747,24 @@ class RepositorySummary {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administratorAccount = this.administratorAccount;
+    final arn = this.arn;
+    final description = this.description;
+    final domainName = this.domainName;
+    final domainOwner = this.domainOwner;
+    final name = this.name;
+    return {
+      if (administratorAccount != null)
+        'administratorAccount': administratorAccount,
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (domainName != null) 'domainName': domainName,
+      if (domainOwner != null) 'domainOwner': domainOwner,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// An AWS CodeArtifact resource policy that contains a resource ARN, document
@@ -5325,6 +5790,17 @@ class ResourcePolicy {
       resourceArn: json['resourceArn'] as String?,
       revision: json['revision'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final resourceArn = this.resourceArn;
+    final revision = this.revision;
+    return {
+      if (document != null) 'document': document,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revision != null) 'revision': revision,
+    };
   }
 }
 
@@ -5364,6 +5840,15 @@ class SuccessfulPackageVersionInfo {
       status: (json['status'] as String?)?.toPackageVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final revision = this.revision;
+    final status = this.status;
+    return {
+      if (revision != null) 'revision': revision,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// A tag is a key-value pair that can be used to manage, search for, or filter
@@ -5401,12 +5886,20 @@ class TagResourceResult {
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResult {
   UntagResourceResult();
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5436,6 +5929,15 @@ class UpdatePackageVersionsStatusResult {
                   e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedVersions = this.failedVersions;
+    final successfulVersions = this.successfulVersions;
+    return {
+      if (failedVersions != null) 'failedVersions': failedVersions,
+      if (successfulVersions != null) 'successfulVersions': successfulVersions,
+    };
+  }
 }
 
 class UpdateRepositoryResult {
@@ -5453,6 +5955,13 @@ class UpdateRepositoryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
+  }
 }
 
 /// Information about an upstream repository. A list of
@@ -5467,6 +5976,12 @@ class UpstreamRepository {
   UpstreamRepository({
     required this.repositoryName,
   });
+  factory UpstreamRepository.fromJson(Map<String, dynamic> json) {
+    return UpstreamRepository(
+      repositoryName: json['repositoryName'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final repositoryName = this.repositoryName;
     return {
@@ -5487,6 +6002,13 @@ class UpstreamRepositoryInfo {
     return UpstreamRepositoryInfo(
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryName = this.repositoryName;
+    return {
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 

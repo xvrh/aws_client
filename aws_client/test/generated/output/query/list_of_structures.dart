@@ -62,6 +62,15 @@ class OutputShape {
   OutputShape({
     this.list,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      list: (json['List'] as List?)
+          ?.whereNotNull()
+          .map((e) => StructureShape.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       list: _s.extractXmlChild(elem, 'List')?.let((elem) => elem
@@ -69,6 +78,13 @@ class OutputShape {
           .map((c) => StructureShape.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final list = this.list;
+    return {
+      if (list != null) 'List': list,
+    };
   }
 }
 
@@ -82,12 +98,31 @@ class StructureShape {
     this.baz,
     this.foo,
   });
+  factory StructureShape.fromJson(Map<String, dynamic> json) {
+    return StructureShape(
+      bar: json['Bar'] as String?,
+      baz: json['Baz'] as String?,
+      foo: json['Foo'] as String?,
+    );
+  }
+
   factory StructureShape.fromXml(_s.XmlElement elem) {
     return StructureShape(
       bar: _s.extractXmlStringValue(elem, 'Bar'),
       baz: _s.extractXmlStringValue(elem, 'Baz'),
       foo: _s.extractXmlStringValue(elem, 'Foo'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bar = this.bar;
+    final baz = this.baz;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'Bar': bar,
+      if (baz != null) 'Baz': baz,
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

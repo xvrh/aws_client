@@ -67,6 +67,17 @@ class OutputShape {
     this.timeCustom,
     this.timeFormat,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      structMember: json['StructMember'] != null
+          ? TimeContainer.fromJson(json['StructMember'] as Map<String, dynamic>)
+          : null,
+      timeArg: timeStampFromJson(json['TimeArg']),
+      timeCustom: timeStampFromJson(json['TimeCustom']),
+      timeFormat: timeStampFromJson(json['TimeFormat']),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       structMember: _s
@@ -79,6 +90,19 @@ class OutputShape {
           parser: _s.timeStampFromJson),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final structMember = this.structMember;
+    final timeArg = this.timeArg;
+    final timeCustom = this.timeCustom;
+    final timeFormat = this.timeFormat;
+    return {
+      if (structMember != null) 'StructMember': structMember,
+      if (timeArg != null) 'TimeArg': unixTimestampToJson(timeArg),
+      if (timeCustom != null) 'TimeCustom': rfc822ToJson(timeCustom),
+      if (timeFormat != null) 'TimeFormat': unixTimestampToJson(timeFormat),
+    };
+  }
 }
 
 class TimeContainer {
@@ -89,12 +113,28 @@ class TimeContainer {
     this.bar,
     this.foo,
   });
+  factory TimeContainer.fromJson(Map<String, dynamic> json) {
+    return TimeContainer(
+      bar: timeStampFromJson(json['bar']),
+      foo: timeStampFromJson(json['foo']),
+    );
+  }
+
   factory TimeContainer.fromXml(_s.XmlElement elem) {
     return TimeContainer(
       bar:
           _s.extractXmlDateTimeValue(elem, 'bar', parser: _s.timeStampFromJson),
       foo: _s.extractXmlDateTimeValue(elem, 'foo'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bar = this.bar;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'bar': unixTimestampToJson(bar),
+      if (foo != null) 'foo': unixTimestampToJson(foo),
+    };
   }
 }
 

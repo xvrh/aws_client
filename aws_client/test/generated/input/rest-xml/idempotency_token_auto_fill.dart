@@ -68,6 +68,19 @@ class InputShape {
   InputShape({
     this.token,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      token: json['Token'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final token = this.token;
+    return {
+      if (token != null) 'Token': token,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final token = this.token;
     final $children = <_s.XmlNode>[

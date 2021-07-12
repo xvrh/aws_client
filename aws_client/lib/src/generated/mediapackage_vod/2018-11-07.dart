@@ -643,6 +643,27 @@ class AssetShallow {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final packagingGroupId = this.packagingGroupId;
+    final resourceId = this.resourceId;
+    final sourceArn = this.sourceArn;
+    final sourceRoleArn = this.sourceRoleArn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (id != null) 'id': id,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (sourceArn != null) 'sourceArn': sourceArn,
+      if (sourceRoleArn != null) 'sourceRoleArn': sourceRoleArn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// CDN Authorization credentials
@@ -803,6 +824,23 @@ class ConfigureLogsResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final domainName = this.domainName;
+    final egressAccessLogs = this.egressAccessLogs;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (domainName != null) 'domainName': domainName,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateAssetResponse {
@@ -859,6 +897,29 @@ class CreateAssetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final egressEndpoints = this.egressEndpoints;
+    final id = this.id;
+    final packagingGroupId = this.packagingGroupId;
+    final resourceId = this.resourceId;
+    final sourceArn = this.sourceArn;
+    final sourceRoleArn = this.sourceRoleArn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (id != null) 'id': id,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (sourceArn != null) 'sourceArn': sourceArn,
+      if (sourceRoleArn != null) 'sourceRoleArn': sourceRoleArn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreatePackagingConfigurationResponse {
@@ -908,6 +969,27 @@ class CreatePackagingConfigurationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final mssPackage = this.mssPackage;
+    final packagingGroupId = this.packagingGroupId;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreatePackagingGroupResponse {
@@ -947,6 +1029,23 @@ class CreatePackagingGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final domainName = this.domainName;
+    final egressAccessLogs = this.egressAccessLogs;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (domainName != null) 'domainName': domainName,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1121,6 +1220,10 @@ class DeleteAssetResponse {
   factory DeleteAssetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePackagingConfigurationResponse {
@@ -1129,12 +1232,20 @@ class DeletePackagingConfigurationResponse {
       Map<String, dynamic> _) {
     return DeletePackagingConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePackagingGroupResponse {
   DeletePackagingGroupResponse();
   factory DeletePackagingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeletePackagingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1192,6 +1303,29 @@ class DescribeAssetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final egressEndpoints = this.egressEndpoints;
+    final id = this.id;
+    final packagingGroupId = this.packagingGroupId;
+    final resourceId = this.resourceId;
+    final sourceArn = this.sourceArn;
+    final sourceRoleArn = this.sourceRoleArn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (id != null) 'id': id,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (sourceArn != null) 'sourceArn': sourceArn,
+      if (sourceRoleArn != null) 'sourceRoleArn': sourceRoleArn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribePackagingConfigurationResponse {
@@ -1241,6 +1375,27 @@ class DescribePackagingConfigurationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final mssPackage = this.mssPackage;
+    final packagingGroupId = this.packagingGroupId;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribePackagingGroupResponse {
@@ -1280,6 +1435,23 @@ class DescribePackagingGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final domainName = this.domainName;
+    final egressAccessLogs = this.egressAccessLogs;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (domainName != null) 'domainName': domainName,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1322,6 +1494,16 @@ class EgressEndpoint {
       packagingConfigurationId: json['packagingConfigurationId'] as String?,
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packagingConfigurationId = this.packagingConfigurationId;
+    final url = this.url;
+    return {
+      if (packagingConfigurationId != null)
+        'packagingConfigurationId': packagingConfigurationId,
+      if (url != null) 'url': url,
+    };
   }
 }
 
@@ -1542,6 +1724,15 @@ class ListAssetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assets = this.assets;
+    final nextToken = this.nextToken;
+    return {
+      if (assets != null) 'assets': assets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPackagingConfigurationsResponse {
@@ -1567,6 +1758,16 @@ class ListPackagingConfigurationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final packagingConfigurations = this.packagingConfigurations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (packagingConfigurations != null)
+        'packagingConfigurations': packagingConfigurations,
+    };
+  }
 }
 
 class ListPackagingGroupsResponse {
@@ -1590,6 +1791,15 @@ class ListPackagingGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final packagingGroups = this.packagingGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (packagingGroups != null) 'packagingGroups': packagingGroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1604,6 +1814,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1774,6 +1991,27 @@ class PackagingConfiguration {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cmafPackage = this.cmafPackage;
+    final dashPackage = this.dashPackage;
+    final hlsPackage = this.hlsPackage;
+    final id = this.id;
+    final mssPackage = this.mssPackage;
+    final packagingGroupId = this.packagingGroupId;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cmafPackage != null) 'cmafPackage': cmafPackage,
+      if (dashPackage != null) 'dashPackage': dashPackage,
+      if (hlsPackage != null) 'hlsPackage': hlsPackage,
+      if (id != null) 'id': id,
+      if (mssPackage != null) 'mssPackage': mssPackage,
+      if (packagingGroupId != null) 'packagingGroupId': packagingGroupId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A MediaPackage VOD PackagingGroup resource.
@@ -1814,6 +2052,23 @@ class PackagingGroup {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final domainName = this.domainName;
+    final egressAccessLogs = this.egressAccessLogs;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (domainName != null) 'domainName': domainName,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2027,6 +2282,23 @@ class UpdatePackagingGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authorization = this.authorization;
+    final domainName = this.domainName;
+    final egressAccessLogs = this.egressAccessLogs;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authorization != null) 'authorization': authorization,
+      if (domainName != null) 'domainName': domainName,
+      if (egressAccessLogs != null) 'egressAccessLogs': egressAccessLogs,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

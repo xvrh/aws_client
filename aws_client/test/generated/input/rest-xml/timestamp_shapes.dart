@@ -118,6 +118,25 @@ class InputShape {
     this.timeFormatInHeader,
     this.timeFormatInQuery,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      timeArg: timeStampFromJson(json['TimeArg']),
+      timeCustom: timeStampFromJson(json['TimeCustom']),
+      timeFormat: timeStampFromJson(json['TimeFormat']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timeArg = this.timeArg;
+    final timeCustom = this.timeCustom;
+    final timeFormat = this.timeFormat;
+    return {
+      if (timeArg != null) 'TimeArg': unixTimestampToJson(timeArg),
+      if (timeCustom != null) 'TimeCustom': rfc822ToJson(timeCustom),
+      if (timeFormat != null) 'TimeFormat': rfc822ToJson(timeFormat),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final timeArg = this.timeArg;
     final timeArgInHeader = this.timeArgInHeader;

@@ -2954,6 +2954,15 @@ class AcceptDirectConnectGatewayAssociationProposalResult {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociation =
+        this.directConnectGatewayAssociation;
+    return {
+      if (directConnectGatewayAssociation != null)
+        'directConnectGatewayAssociation': directConnectGatewayAssociation,
+    };
+  }
 }
 
 enum AddressFamily {
@@ -2999,6 +3008,13 @@ class AllocateTransitVirtualInterfaceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterface = this.virtualInterface;
+    return {
+      if (virtualInterface != null) 'virtualInterface': virtualInterface,
+    };
+  }
 }
 
 class AssociateMacSecKeyResponse {
@@ -3022,6 +3038,15 @@ class AssociateMacSecKeyResponse {
           .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionId = this.connectionId;
+    final macSecKeys = this.macSecKeys;
+    return {
+      if (connectionId != null) 'connectionId': connectionId,
+      if (macSecKeys != null) 'macSecKeys': macSecKeys,
+    };
   }
 }
 
@@ -3053,6 +3078,19 @@ class AssociatedGateway {
       region: json['region'] as String?,
       type: (json['type'] as String?)?.toGatewayType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final ownerAccount = this.ownerAccount;
+    final region = this.region;
+    final type = this.type;
+    return {
+      if (id != null) 'id': id,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (region != null) 'region': region,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -3145,6 +3183,29 @@ class BGPPeer {
       bgpStatus: (json['bgpStatus'] as String?)?.toBGPStatus(),
       customerAddress: json['customerAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addressFamily = this.addressFamily;
+    final amazonAddress = this.amazonAddress;
+    final asn = this.asn;
+    final authKey = this.authKey;
+    final awsDeviceV2 = this.awsDeviceV2;
+    final bgpPeerId = this.bgpPeerId;
+    final bgpPeerState = this.bgpPeerState;
+    final bgpStatus = this.bgpStatus;
+    final customerAddress = this.customerAddress;
+    return {
+      if (addressFamily != null) 'addressFamily': addressFamily.toValue(),
+      if (amazonAddress != null) 'amazonAddress': amazonAddress,
+      if (asn != null) 'asn': asn,
+      if (authKey != null) 'authKey': authKey,
+      if (awsDeviceV2 != null) 'awsDeviceV2': awsDeviceV2,
+      if (bgpPeerId != null) 'bgpPeerId': bgpPeerId,
+      if (bgpPeerState != null) 'bgpPeerState': bgpPeerState.toValue(),
+      if (bgpStatus != null) 'bgpStatus': bgpStatus.toValue(),
+      if (customerAddress != null) 'customerAddress': customerAddress,
+    };
   }
 }
 
@@ -3275,6 +3336,13 @@ class ConfirmConnectionResponse {
           (json['connectionState'] as String?)?.toConnectionState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionState = this.connectionState;
+    return {
+      if (connectionState != null) 'connectionState': connectionState.toValue(),
+    };
+  }
 }
 
 class ConfirmPrivateVirtualInterfaceResponse {
@@ -3332,6 +3400,14 @@ class ConfirmPrivateVirtualInterfaceResponse {
       virtualInterfaceState:
           (json['virtualInterfaceState'] as String?)?.toVirtualInterfaceState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceState = this.virtualInterfaceState;
+    return {
+      if (virtualInterfaceState != null)
+        'virtualInterfaceState': virtualInterfaceState.toValue(),
+    };
   }
 }
 
@@ -3391,6 +3467,14 @@ class ConfirmPublicVirtualInterfaceResponse {
           (json['virtualInterfaceState'] as String?)?.toVirtualInterfaceState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceState = this.virtualInterfaceState;
+    return {
+      if (virtualInterfaceState != null)
+        'virtualInterfaceState': virtualInterfaceState.toValue(),
+    };
+  }
 }
 
 class ConfirmTransitVirtualInterfaceResponse {
@@ -3448,6 +3532,14 @@ class ConfirmTransitVirtualInterfaceResponse {
       virtualInterfaceState:
           (json['virtualInterfaceState'] as String?)?.toVirtualInterfaceState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceState = this.virtualInterfaceState;
+    return {
+      if (virtualInterfaceState != null)
+        'virtualInterfaceState': virtualInterfaceState.toValue(),
+    };
   }
 }
 
@@ -3618,6 +3710,56 @@ class Connection {
       vlan: json['vlan'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsDevice = this.awsDevice;
+    final awsDeviceV2 = this.awsDeviceV2;
+    final bandwidth = this.bandwidth;
+    final connectionId = this.connectionId;
+    final connectionName = this.connectionName;
+    final connectionState = this.connectionState;
+    final encryptionMode = this.encryptionMode;
+    final hasLogicalRedundancy = this.hasLogicalRedundancy;
+    final jumboFrameCapable = this.jumboFrameCapable;
+    final lagId = this.lagId;
+    final loaIssueTime = this.loaIssueTime;
+    final location = this.location;
+    final macSecCapable = this.macSecCapable;
+    final macSecKeys = this.macSecKeys;
+    final ownerAccount = this.ownerAccount;
+    final partnerName = this.partnerName;
+    final portEncryptionStatus = this.portEncryptionStatus;
+    final providerName = this.providerName;
+    final region = this.region;
+    final tags = this.tags;
+    final vlan = this.vlan;
+    return {
+      if (awsDevice != null) 'awsDevice': awsDevice,
+      if (awsDeviceV2 != null) 'awsDeviceV2': awsDeviceV2,
+      if (bandwidth != null) 'bandwidth': bandwidth,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionName != null) 'connectionName': connectionName,
+      if (connectionState != null) 'connectionState': connectionState.toValue(),
+      if (encryptionMode != null) 'encryptionMode': encryptionMode,
+      if (hasLogicalRedundancy != null)
+        'hasLogicalRedundancy': hasLogicalRedundancy.toValue(),
+      if (jumboFrameCapable != null) 'jumboFrameCapable': jumboFrameCapable,
+      if (lagId != null) 'lagId': lagId,
+      if (loaIssueTime != null)
+        'loaIssueTime': unixTimestampToJson(loaIssueTime),
+      if (location != null) 'location': location,
+      if (macSecCapable != null) 'macSecCapable': macSecCapable,
+      if (macSecKeys != null) 'macSecKeys': macSecKeys,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (partnerName != null) 'partnerName': partnerName,
+      if (portEncryptionStatus != null)
+        'portEncryptionStatus': portEncryptionStatus,
+      if (providerName != null) 'providerName': providerName,
+      if (region != null) 'region': region,
+      if (tags != null) 'tags': tags,
+      if (vlan != null) 'vlan': vlan,
+    };
+  }
 }
 
 enum ConnectionState {
@@ -3698,6 +3840,13 @@ class Connections {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    return {
+      if (connections != null) 'connections': connections,
+    };
+  }
 }
 
 class CreateBGPPeerResponse {
@@ -3714,6 +3863,13 @@ class CreateBGPPeerResponse {
               json['virtualInterface'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterface = this.virtualInterface;
+    return {
+      if (virtualInterface != null) 'virtualInterface': virtualInterface,
+    };
   }
 }
 
@@ -3736,6 +3892,16 @@ class CreateDirectConnectGatewayAssociationProposalResult {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociationProposal =
+        this.directConnectGatewayAssociationProposal;
+    return {
+      if (directConnectGatewayAssociationProposal != null)
+        'directConnectGatewayAssociationProposal':
+            directConnectGatewayAssociationProposal,
+    };
+  }
 }
 
 class CreateDirectConnectGatewayAssociationResult {
@@ -3756,6 +3922,15 @@ class CreateDirectConnectGatewayAssociationResult {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociation =
+        this.directConnectGatewayAssociation;
+    return {
+      if (directConnectGatewayAssociation != null)
+        'directConnectGatewayAssociation': directConnectGatewayAssociation,
+    };
+  }
 }
 
 class CreateDirectConnectGatewayResult {
@@ -3772,6 +3947,14 @@ class CreateDirectConnectGatewayResult {
               json['directConnectGateway'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGateway = this.directConnectGateway;
+    return {
+      if (directConnectGateway != null)
+        'directConnectGateway': directConnectGateway,
+    };
   }
 }
 
@@ -3790,6 +3973,13 @@ class CreateTransitVirtualInterfaceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterface = this.virtualInterface;
+    return {
+      if (virtualInterface != null) 'virtualInterface': virtualInterface,
+    };
+  }
 }
 
 class DeleteBGPPeerResponse {
@@ -3806,6 +3996,13 @@ class DeleteBGPPeerResponse {
               json['virtualInterface'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterface = this.virtualInterface;
+    return {
+      if (virtualInterface != null) 'virtualInterface': virtualInterface,
+    };
   }
 }
 
@@ -3828,6 +4025,16 @@ class DeleteDirectConnectGatewayAssociationProposalResult {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociationProposal =
+        this.directConnectGatewayAssociationProposal;
+    return {
+      if (directConnectGatewayAssociationProposal != null)
+        'directConnectGatewayAssociationProposal':
+            directConnectGatewayAssociationProposal,
+    };
+  }
 }
 
 class DeleteDirectConnectGatewayAssociationResult {
@@ -3848,6 +4055,15 @@ class DeleteDirectConnectGatewayAssociationResult {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociation =
+        this.directConnectGatewayAssociation;
+    return {
+      if (directConnectGatewayAssociation != null)
+        'directConnectGatewayAssociation': directConnectGatewayAssociation,
+    };
+  }
 }
 
 class DeleteDirectConnectGatewayResult {
@@ -3864,6 +4080,14 @@ class DeleteDirectConnectGatewayResult {
               json['directConnectGateway'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGateway = this.directConnectGateway;
+    return {
+      if (directConnectGateway != null)
+        'directConnectGateway': directConnectGateway,
+    };
   }
 }
 
@@ -3907,6 +4131,14 @@ class DeleteInterconnectResponse {
       interconnectState:
           (json['interconnectState'] as String?)?.toInterconnectState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interconnectState = this.interconnectState;
+    return {
+      if (interconnectState != null)
+        'interconnectState': interconnectState.toValue(),
+    };
   }
 }
 
@@ -3965,6 +4197,14 @@ class DeleteVirtualInterfaceResponse {
           (json['virtualInterfaceState'] as String?)?.toVirtualInterfaceState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceState = this.virtualInterfaceState;
+    return {
+      if (virtualInterfaceState != null)
+        'virtualInterfaceState': virtualInterfaceState.toValue(),
+    };
+  }
 }
 
 class DescribeConnectionLoaResponse {
@@ -3980,6 +4220,13 @@ class DescribeConnectionLoaResponse {
           ? Loa.fromJson(json['loa'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loa = this.loa;
+    return {
+      if (loa != null) 'loa': loa,
+    };
   }
 }
 
@@ -4008,6 +4255,18 @@ class DescribeDirectConnectGatewayAssociationProposalsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociationProposals =
+        this.directConnectGatewayAssociationProposals;
+    final nextToken = this.nextToken;
+    return {
+      if (directConnectGatewayAssociationProposals != null)
+        'directConnectGatewayAssociationProposals':
+            directConnectGatewayAssociationProposals,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDirectConnectGatewayAssociationsResult {
@@ -4032,6 +4291,17 @@ class DescribeDirectConnectGatewayAssociationsResult {
               .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociations =
+        this.directConnectGatewayAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (directConnectGatewayAssociations != null)
+        'directConnectGatewayAssociations': directConnectGatewayAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4058,6 +4328,17 @@ class DescribeDirectConnectGatewayAttachmentsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAttachments =
+        this.directConnectGatewayAttachments;
+    final nextToken = this.nextToken;
+    return {
+      if (directConnectGatewayAttachments != null)
+        'directConnectGatewayAttachments': directConnectGatewayAttachments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDirectConnectGatewaysResult {
@@ -4081,6 +4362,16 @@ class DescribeDirectConnectGatewaysResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGateways = this.directConnectGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (directConnectGateways != null)
+        'directConnectGateways': directConnectGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInterconnectLoaResponse {
@@ -4096,6 +4387,13 @@ class DescribeInterconnectLoaResponse {
           ? Loa.fromJson(json['loa'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loa = this.loa;
+    return {
+      if (loa != null) 'loa': loa,
+    };
   }
 }
 
@@ -4113,6 +4411,13 @@ class DescribeTagsResponse {
           .map((e) => ResourceTag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTags = this.resourceTags;
+    return {
+      if (resourceTags != null) 'resourceTags': resourceTags,
+    };
   }
 }
 
@@ -4174,6 +4479,26 @@ class DirectConnectGateway {
       ownerAccount: json['ownerAccount'] as String?,
       stateChangeError: json['stateChangeError'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amazonSideAsn = this.amazonSideAsn;
+    final directConnectGatewayId = this.directConnectGatewayId;
+    final directConnectGatewayName = this.directConnectGatewayName;
+    final directConnectGatewayState = this.directConnectGatewayState;
+    final ownerAccount = this.ownerAccount;
+    final stateChangeError = this.stateChangeError;
+    return {
+      if (amazonSideAsn != null) 'amazonSideAsn': amazonSideAsn,
+      if (directConnectGatewayId != null)
+        'directConnectGatewayId': directConnectGatewayId,
+      if (directConnectGatewayName != null)
+        'directConnectGatewayName': directConnectGatewayName,
+      if (directConnectGatewayState != null)
+        'directConnectGatewayState': directConnectGatewayState.toValue(),
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (stateChangeError != null) 'stateChangeError': stateChangeError,
+    };
   }
 }
 
@@ -4268,6 +4593,40 @@ class DirectConnectGatewayAssociation {
       virtualGatewayRegion: json['virtualGatewayRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedPrefixesToDirectConnectGateway =
+        this.allowedPrefixesToDirectConnectGateway;
+    final associatedGateway = this.associatedGateway;
+    final associationId = this.associationId;
+    final associationState = this.associationState;
+    final directConnectGatewayId = this.directConnectGatewayId;
+    final directConnectGatewayOwnerAccount =
+        this.directConnectGatewayOwnerAccount;
+    final stateChangeError = this.stateChangeError;
+    final virtualGatewayId = this.virtualGatewayId;
+    final virtualGatewayOwnerAccount = this.virtualGatewayOwnerAccount;
+    final virtualGatewayRegion = this.virtualGatewayRegion;
+    return {
+      if (allowedPrefixesToDirectConnectGateway != null)
+        'allowedPrefixesToDirectConnectGateway':
+            allowedPrefixesToDirectConnectGateway,
+      if (associatedGateway != null) 'associatedGateway': associatedGateway,
+      if (associationId != null) 'associationId': associationId,
+      if (associationState != null)
+        'associationState': associationState.toValue(),
+      if (directConnectGatewayId != null)
+        'directConnectGatewayId': directConnectGatewayId,
+      if (directConnectGatewayOwnerAccount != null)
+        'directConnectGatewayOwnerAccount': directConnectGatewayOwnerAccount,
+      if (stateChangeError != null) 'stateChangeError': stateChangeError,
+      if (virtualGatewayId != null) 'virtualGatewayId': virtualGatewayId,
+      if (virtualGatewayOwnerAccount != null)
+        'virtualGatewayOwnerAccount': virtualGatewayOwnerAccount,
+      if (virtualGatewayRegion != null)
+        'virtualGatewayRegion': virtualGatewayRegion,
+    };
+  }
 }
 
 /// Information about the proposal request to attach a virtual private gateway
@@ -4343,6 +4702,34 @@ class DirectConnectGatewayAssociationProposal {
               .map((e) => RouteFilterPrefix.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedGateway = this.associatedGateway;
+    final directConnectGatewayId = this.directConnectGatewayId;
+    final directConnectGatewayOwnerAccount =
+        this.directConnectGatewayOwnerAccount;
+    final existingAllowedPrefixesToDirectConnectGateway =
+        this.existingAllowedPrefixesToDirectConnectGateway;
+    final proposalId = this.proposalId;
+    final proposalState = this.proposalState;
+    final requestedAllowedPrefixesToDirectConnectGateway =
+        this.requestedAllowedPrefixesToDirectConnectGateway;
+    return {
+      if (associatedGateway != null) 'associatedGateway': associatedGateway,
+      if (directConnectGatewayId != null)
+        'directConnectGatewayId': directConnectGatewayId,
+      if (directConnectGatewayOwnerAccount != null)
+        'directConnectGatewayOwnerAccount': directConnectGatewayOwnerAccount,
+      if (existingAllowedPrefixesToDirectConnectGateway != null)
+        'existingAllowedPrefixesToDirectConnectGateway':
+            existingAllowedPrefixesToDirectConnectGateway,
+      if (proposalId != null) 'proposalId': proposalId,
+      if (proposalState != null) 'proposalState': proposalState.toValue(),
+      if (requestedAllowedPrefixesToDirectConnectGateway != null)
+        'requestedAllowedPrefixesToDirectConnectGateway':
+            requestedAllowedPrefixesToDirectConnectGateway,
+    };
   }
 }
 
@@ -4493,6 +4880,28 @@ class DirectConnectGatewayAttachment {
       virtualInterfaceRegion: json['virtualInterfaceRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentState = this.attachmentState;
+    final attachmentType = this.attachmentType;
+    final directConnectGatewayId = this.directConnectGatewayId;
+    final stateChangeError = this.stateChangeError;
+    final virtualInterfaceId = this.virtualInterfaceId;
+    final virtualInterfaceOwnerAccount = this.virtualInterfaceOwnerAccount;
+    final virtualInterfaceRegion = this.virtualInterfaceRegion;
+    return {
+      if (attachmentState != null) 'attachmentState': attachmentState.toValue(),
+      if (attachmentType != null) 'attachmentType': attachmentType.toValue(),
+      if (directConnectGatewayId != null)
+        'directConnectGatewayId': directConnectGatewayId,
+      if (stateChangeError != null) 'stateChangeError': stateChangeError,
+      if (virtualInterfaceId != null) 'virtualInterfaceId': virtualInterfaceId,
+      if (virtualInterfaceOwnerAccount != null)
+        'virtualInterfaceOwnerAccount': virtualInterfaceOwnerAccount,
+      if (virtualInterfaceRegion != null)
+        'virtualInterfaceRegion': virtualInterfaceRegion,
+    };
+  }
 }
 
 enum DirectConnectGatewayAttachmentState {
@@ -4622,6 +5031,15 @@ class DisassociateMacSecKeyResponse {
           .map((e) => MacSecKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionId = this.connectionId;
+    final macSecKeys = this.macSecKeys;
+    return {
+      if (connectionId != null) 'connectionId': connectionId,
+      if (macSecKeys != null) 'macSecKeys': macSecKeys,
+    };
   }
 }
 
@@ -4798,6 +5216,42 @@ class Interconnect {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsDevice = this.awsDevice;
+    final awsDeviceV2 = this.awsDeviceV2;
+    final bandwidth = this.bandwidth;
+    final hasLogicalRedundancy = this.hasLogicalRedundancy;
+    final interconnectId = this.interconnectId;
+    final interconnectName = this.interconnectName;
+    final interconnectState = this.interconnectState;
+    final jumboFrameCapable = this.jumboFrameCapable;
+    final lagId = this.lagId;
+    final loaIssueTime = this.loaIssueTime;
+    final location = this.location;
+    final providerName = this.providerName;
+    final region = this.region;
+    final tags = this.tags;
+    return {
+      if (awsDevice != null) 'awsDevice': awsDevice,
+      if (awsDeviceV2 != null) 'awsDeviceV2': awsDeviceV2,
+      if (bandwidth != null) 'bandwidth': bandwidth,
+      if (hasLogicalRedundancy != null)
+        'hasLogicalRedundancy': hasLogicalRedundancy.toValue(),
+      if (interconnectId != null) 'interconnectId': interconnectId,
+      if (interconnectName != null) 'interconnectName': interconnectName,
+      if (interconnectState != null)
+        'interconnectState': interconnectState.toValue(),
+      if (jumboFrameCapable != null) 'jumboFrameCapable': jumboFrameCapable,
+      if (lagId != null) 'lagId': lagId,
+      if (loaIssueTime != null)
+        'loaIssueTime': unixTimestampToJson(loaIssueTime),
+      if (location != null) 'location': location,
+      if (providerName != null) 'providerName': providerName,
+      if (region != null) 'region': region,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum InterconnectState {
@@ -4867,6 +5321,13 @@ class Interconnects {
           .map((e) => Interconnect.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interconnects = this.interconnects;
+    return {
+      if (interconnects != null) 'interconnects': interconnects,
+    };
   }
 }
 
@@ -5021,6 +5482,55 @@ class Lag {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowsHostedConnections = this.allowsHostedConnections;
+    final awsDevice = this.awsDevice;
+    final awsDeviceV2 = this.awsDeviceV2;
+    final connections = this.connections;
+    final connectionsBandwidth = this.connectionsBandwidth;
+    final encryptionMode = this.encryptionMode;
+    final hasLogicalRedundancy = this.hasLogicalRedundancy;
+    final jumboFrameCapable = this.jumboFrameCapable;
+    final lagId = this.lagId;
+    final lagName = this.lagName;
+    final lagState = this.lagState;
+    final location = this.location;
+    final macSecCapable = this.macSecCapable;
+    final macSecKeys = this.macSecKeys;
+    final minimumLinks = this.minimumLinks;
+    final numberOfConnections = this.numberOfConnections;
+    final ownerAccount = this.ownerAccount;
+    final providerName = this.providerName;
+    final region = this.region;
+    final tags = this.tags;
+    return {
+      if (allowsHostedConnections != null)
+        'allowsHostedConnections': allowsHostedConnections,
+      if (awsDevice != null) 'awsDevice': awsDevice,
+      if (awsDeviceV2 != null) 'awsDeviceV2': awsDeviceV2,
+      if (connections != null) 'connections': connections,
+      if (connectionsBandwidth != null)
+        'connectionsBandwidth': connectionsBandwidth,
+      if (encryptionMode != null) 'encryptionMode': encryptionMode,
+      if (hasLogicalRedundancy != null)
+        'hasLogicalRedundancy': hasLogicalRedundancy.toValue(),
+      if (jumboFrameCapable != null) 'jumboFrameCapable': jumboFrameCapable,
+      if (lagId != null) 'lagId': lagId,
+      if (lagName != null) 'lagName': lagName,
+      if (lagState != null) 'lagState': lagState.toValue(),
+      if (location != null) 'location': location,
+      if (macSecCapable != null) 'macSecCapable': macSecCapable,
+      if (macSecKeys != null) 'macSecKeys': macSecKeys,
+      if (minimumLinks != null) 'minimumLinks': minimumLinks,
+      if (numberOfConnections != null)
+        'numberOfConnections': numberOfConnections,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (providerName != null) 'providerName': providerName,
+      if (region != null) 'region': region,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum LagState {
@@ -5091,6 +5601,13 @@ class Lags {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lags = this.lags;
+    return {
+      if (lags != null) 'lags': lags,
+    };
+  }
 }
 
 class ListVirtualInterfaceTestHistoryResponse {
@@ -5117,6 +5634,16 @@ class ListVirtualInterfaceTestHistoryResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final virtualInterfaceTestHistory = this.virtualInterfaceTestHistory;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (virtualInterfaceTestHistory != null)
+        'virtualInterfaceTestHistory': virtualInterfaceTestHistory,
+    };
+  }
 }
 
 /// Information about a Letter of Authorization - Connecting Facility Assignment
@@ -5138,6 +5665,15 @@ class Loa {
       loaContent: _s.decodeNullableUint8List(json['loaContent'] as String?),
       loaContentType: (json['loaContentType'] as String?)?.toLoaContentType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loaContent = this.loaContent;
+    final loaContentType = this.loaContentType;
+    return {
+      if (loaContent != null) 'loaContent': base64Encode(loaContent),
+      if (loaContentType != null) 'loaContentType': loaContentType.toValue(),
+    };
   }
 }
 
@@ -5212,6 +5748,25 @@ class Location {
       region: json['region'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availableMacSecPortSpeeds = this.availableMacSecPortSpeeds;
+    final availablePortSpeeds = this.availablePortSpeeds;
+    final availableProviders = this.availableProviders;
+    final locationCode = this.locationCode;
+    final locationName = this.locationName;
+    final region = this.region;
+    return {
+      if (availableMacSecPortSpeeds != null)
+        'availableMacSecPortSpeeds': availableMacSecPortSpeeds,
+      if (availablePortSpeeds != null)
+        'availablePortSpeeds': availablePortSpeeds,
+      if (availableProviders != null) 'availableProviders': availableProviders,
+      if (locationCode != null) 'locationCode': locationCode,
+      if (locationName != null) 'locationName': locationName,
+      if (region != null) 'region': region,
+    };
+  }
 }
 
 class Locations {
@@ -5228,6 +5783,13 @@ class Locations {
           .map((e) => Location.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locations = this.locations;
+    return {
+      if (locations != null) 'locations': locations,
+    };
   }
 }
 
@@ -5281,6 +5843,19 @@ class MacSecKey {
       state: json['state'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ckn = this.ckn;
+    final secretARN = this.secretARN;
+    final startOn = this.startOn;
+    final state = this.state;
+    return {
+      if (ckn != null) 'ckn': ckn,
+      if (secretARN != null) 'secretARN': secretARN,
+      if (startOn != null) 'startOn': startOn,
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 /// Information about a new BGP peer.
@@ -5309,6 +5884,16 @@ class NewBGPPeer {
     this.authKey,
     this.customerAddress,
   });
+  factory NewBGPPeer.fromJson(Map<String, dynamic> json) {
+    return NewBGPPeer(
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      asn: json['asn'] as int?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final addressFamily = this.addressFamily;
     final amazonAddress = this.amazonAddress;
@@ -5380,6 +5965,25 @@ class NewPrivateVirtualInterface {
     this.tags,
     this.virtualGatewayId,
   });
+  factory NewPrivateVirtualInterface.fromJson(Map<String, dynamic> json) {
+    return NewPrivateVirtualInterface(
+      asn: json['asn'] as int,
+      virtualInterfaceName: json['virtualInterfaceName'] as String,
+      vlan: json['vlan'] as int,
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      directConnectGatewayId: json['directConnectGatewayId'] as String?,
+      mtu: json['mtu'] as int?,
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      virtualGatewayId: json['virtualGatewayId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final asn = this.asn;
     final virtualInterfaceName = this.virtualInterfaceName;
@@ -5457,6 +6061,24 @@ class NewPrivateVirtualInterfaceAllocation {
     this.mtu,
     this.tags,
   });
+  factory NewPrivateVirtualInterfaceAllocation.fromJson(
+      Map<String, dynamic> json) {
+    return NewPrivateVirtualInterfaceAllocation(
+      asn: json['asn'] as int,
+      virtualInterfaceName: json['virtualInterfaceName'] as String,
+      vlan: json['vlan'] as int,
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      mtu: json['mtu'] as int?,
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final asn = this.asn;
     final virtualInterfaceName = this.virtualInterfaceName;
@@ -5528,6 +6150,26 @@ class NewPublicVirtualInterface {
     this.routeFilterPrefixes,
     this.tags,
   });
+  factory NewPublicVirtualInterface.fromJson(Map<String, dynamic> json) {
+    return NewPublicVirtualInterface(
+      asn: json['asn'] as int,
+      virtualInterfaceName: json['virtualInterfaceName'] as String,
+      vlan: json['vlan'] as int,
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      routeFilterPrefixes: (json['routeFilterPrefixes'] as List?)
+          ?.whereNotNull()
+          .map((e) => RouteFilterPrefix.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final asn = this.asn;
     final virtualInterfaceName = this.virtualInterfaceName;
@@ -5601,6 +6243,27 @@ class NewPublicVirtualInterfaceAllocation {
     this.routeFilterPrefixes,
     this.tags,
   });
+  factory NewPublicVirtualInterfaceAllocation.fromJson(
+      Map<String, dynamic> json) {
+    return NewPublicVirtualInterfaceAllocation(
+      asn: json['asn'] as int,
+      virtualInterfaceName: json['virtualInterfaceName'] as String,
+      vlan: json['vlan'] as int,
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      routeFilterPrefixes: (json['routeFilterPrefixes'] as List?)
+          ?.whereNotNull()
+          .map((e) => RouteFilterPrefix.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final asn = this.asn;
     final virtualInterfaceName = this.virtualInterfaceName;
@@ -5677,6 +6340,24 @@ class NewTransitVirtualInterface {
     this.virtualInterfaceName,
     this.vlan,
   });
+  factory NewTransitVirtualInterface.fromJson(Map<String, dynamic> json) {
+    return NewTransitVirtualInterface(
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      asn: json['asn'] as int?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      directConnectGatewayId: json['directConnectGatewayId'] as String?,
+      mtu: json['mtu'] as int?,
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      virtualInterfaceName: json['virtualInterfaceName'] as String?,
+      vlan: json['vlan'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final addressFamily = this.addressFamily;
     final amazonAddress = this.amazonAddress;
@@ -5753,6 +6434,24 @@ class NewTransitVirtualInterfaceAllocation {
     this.virtualInterfaceName,
     this.vlan,
   });
+  factory NewTransitVirtualInterfaceAllocation.fromJson(
+      Map<String, dynamic> json) {
+    return NewTransitVirtualInterfaceAllocation(
+      addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
+      amazonAddress: json['amazonAddress'] as String?,
+      asn: json['asn'] as int?,
+      authKey: json['authKey'] as String?,
+      customerAddress: json['customerAddress'] as String?,
+      mtu: json['mtu'] as int?,
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      virtualInterfaceName: json['virtualInterfaceName'] as String?,
+      vlan: json['vlan'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final addressFamily = this.addressFamily;
     final amazonAddress = this.amazonAddress;
@@ -5799,6 +6498,15 @@ class ResourceTag {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Information about a route filter prefix that a customer can advertise
@@ -5840,6 +6548,14 @@ class StartBgpFailoverTestResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceTest = this.virtualInterfaceTest;
+    return {
+      if (virtualInterfaceTest != null)
+        'virtualInterfaceTest': virtualInterfaceTest,
+    };
+  }
 }
 
 class StopBgpFailoverTestResponse {
@@ -5856,6 +6572,14 @@ class StopBgpFailoverTestResponse {
               json['virtualInterfaceTest'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaceTest = this.virtualInterfaceTest;
+    return {
+      if (virtualInterfaceTest != null)
+        'virtualInterfaceTest': virtualInterfaceTest,
+    };
   }
 }
 
@@ -5893,12 +6617,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5918,6 +6650,15 @@ class UpdateDirectConnectGatewayAssociationResult {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directConnectGatewayAssociation =
+        this.directConnectGatewayAssociation;
+    return {
+      if (directConnectGatewayAssociation != null)
+        'directConnectGatewayAssociation': directConnectGatewayAssociation,
+    };
   }
 }
 
@@ -5958,6 +6699,16 @@ class VirtualGateway {
       virtualGatewayState: json['virtualGatewayState'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualGatewayId = this.virtualGatewayId;
+    final virtualGatewayState = this.virtualGatewayState;
+    return {
+      if (virtualGatewayId != null) 'virtualGatewayId': virtualGatewayId,
+      if (virtualGatewayState != null)
+        'virtualGatewayState': virtualGatewayState,
+    };
+  }
 }
 
 class VirtualGateways {
@@ -5974,6 +6725,13 @@ class VirtualGateways {
           .map((e) => VirtualGateway.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualGateways = this.virtualGateways;
+    return {
+      if (virtualGateways != null) 'virtualGateways': virtualGateways,
+    };
   }
 }
 
@@ -6167,6 +6925,65 @@ class VirtualInterface {
       vlan: json['vlan'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressFamily = this.addressFamily;
+    final amazonAddress = this.amazonAddress;
+    final amazonSideAsn = this.amazonSideAsn;
+    final asn = this.asn;
+    final authKey = this.authKey;
+    final awsDeviceV2 = this.awsDeviceV2;
+    final bgpPeers = this.bgpPeers;
+    final connectionId = this.connectionId;
+    final customerAddress = this.customerAddress;
+    final customerRouterConfig = this.customerRouterConfig;
+    final directConnectGatewayId = this.directConnectGatewayId;
+    final jumboFrameCapable = this.jumboFrameCapable;
+    final location = this.location;
+    final mtu = this.mtu;
+    final ownerAccount = this.ownerAccount;
+    final region = this.region;
+    final routeFilterPrefixes = this.routeFilterPrefixes;
+    final tags = this.tags;
+    final virtualGatewayId = this.virtualGatewayId;
+    final virtualInterfaceId = this.virtualInterfaceId;
+    final virtualInterfaceName = this.virtualInterfaceName;
+    final virtualInterfaceState = this.virtualInterfaceState;
+    final virtualInterfaceType = this.virtualInterfaceType;
+    final vlan = this.vlan;
+    return {
+      if (addressFamily != null) 'addressFamily': addressFamily.toValue(),
+      if (amazonAddress != null) 'amazonAddress': amazonAddress,
+      if (amazonSideAsn != null) 'amazonSideAsn': amazonSideAsn,
+      if (asn != null) 'asn': asn,
+      if (authKey != null) 'authKey': authKey,
+      if (awsDeviceV2 != null) 'awsDeviceV2': awsDeviceV2,
+      if (bgpPeers != null) 'bgpPeers': bgpPeers,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (customerAddress != null) 'customerAddress': customerAddress,
+      if (customerRouterConfig != null)
+        'customerRouterConfig': customerRouterConfig,
+      if (directConnectGatewayId != null)
+        'directConnectGatewayId': directConnectGatewayId,
+      if (jumboFrameCapable != null) 'jumboFrameCapable': jumboFrameCapable,
+      if (location != null) 'location': location,
+      if (mtu != null) 'mtu': mtu,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (region != null) 'region': region,
+      if (routeFilterPrefixes != null)
+        'routeFilterPrefixes': routeFilterPrefixes,
+      if (tags != null) 'tags': tags,
+      if (virtualGatewayId != null) 'virtualGatewayId': virtualGatewayId,
+      if (virtualInterfaceId != null) 'virtualInterfaceId': virtualInterfaceId,
+      if (virtualInterfaceName != null)
+        'virtualInterfaceName': virtualInterfaceName,
+      if (virtualInterfaceState != null)
+        'virtualInterfaceState': virtualInterfaceState.toValue(),
+      if (virtualInterfaceType != null)
+        'virtualInterfaceType': virtualInterfaceType,
+      if (vlan != null) 'vlan': vlan,
+    };
+  }
 }
 
 enum VirtualInterfaceState {
@@ -6284,6 +7101,28 @@ class VirtualInterfaceTestHistory {
       virtualInterfaceId: json['virtualInterfaceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bgpPeers = this.bgpPeers;
+    final endTime = this.endTime;
+    final ownerAccount = this.ownerAccount;
+    final startTime = this.startTime;
+    final status = this.status;
+    final testDurationInMinutes = this.testDurationInMinutes;
+    final testId = this.testId;
+    final virtualInterfaceId = this.virtualInterfaceId;
+    return {
+      if (bgpPeers != null) 'bgpPeers': bgpPeers,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status,
+      if (testDurationInMinutes != null)
+        'testDurationInMinutes': testDurationInMinutes,
+      if (testId != null) 'testId': testId,
+      if (virtualInterfaceId != null) 'virtualInterfaceId': virtualInterfaceId,
+    };
+  }
 }
 
 class VirtualInterfaces {
@@ -6300,6 +7139,13 @@ class VirtualInterfaces {
           .map((e) => VirtualInterface.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualInterfaces = this.virtualInterfaces;
+    return {
+      if (virtualInterfaces != null) 'virtualInterfaces': virtualInterfaces,
+    };
   }
 }
 

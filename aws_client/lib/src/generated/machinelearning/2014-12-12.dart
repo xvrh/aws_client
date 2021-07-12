@@ -2610,6 +2610,15 @@ class AddTagsOutput {
       resourceType: (json['ResourceType'] as String?)?.toTaggableResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
+  }
 }
 
 /// The function used to train an <code>MLModel</code>. Training choices
@@ -2763,6 +2772,46 @@ class BatchPrediction {
       totalRecordCount: json['TotalRecordCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictionDataSourceId = this.batchPredictionDataSourceId;
+    final batchPredictionId = this.batchPredictionId;
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final invalidRecordCount = this.invalidRecordCount;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final mLModelId = this.mLModelId;
+    final message = this.message;
+    final name = this.name;
+    final outputUri = this.outputUri;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final totalRecordCount = this.totalRecordCount;
+    return {
+      if (batchPredictionDataSourceId != null)
+        'BatchPredictionDataSourceId': batchPredictionDataSourceId,
+      if (batchPredictionId != null) 'BatchPredictionId': batchPredictionId,
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (invalidRecordCount != null) 'InvalidRecordCount': invalidRecordCount,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (outputUri != null) 'OutputUri': outputUri,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (totalRecordCount != null) 'TotalRecordCount': totalRecordCount,
+    };
+  }
 }
 
 /// A list of the variables to use in searching or filtering
@@ -2877,6 +2926,13 @@ class CreateBatchPredictionOutput {
       batchPredictionId: json['BatchPredictionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictionId = this.batchPredictionId;
+    return {
+      if (batchPredictionId != null) 'BatchPredictionId': batchPredictionId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateDataSourceFromRDS</code> operation,
@@ -2903,6 +2959,13 @@ class CreateDataSourceFromRDSOutput {
       dataSourceId: json['DataSourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceId = this.dataSourceId;
+    return {
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateDataSourceFromRedshift</code>
@@ -2926,6 +2989,13 @@ class CreateDataSourceFromRedshiftOutput {
       dataSourceId: json['DataSourceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceId = this.dataSourceId;
+    return {
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateDataSourceFromS3</code> operation,
@@ -2947,6 +3017,13 @@ class CreateDataSourceFromS3Output {
     return CreateDataSourceFromS3Output(
       dataSourceId: json['DataSourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceId = this.dataSourceId;
+    return {
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+    };
   }
 }
 
@@ -2970,6 +3047,13 @@ class CreateEvaluationOutput {
       evaluationId: json['EvaluationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationId = this.evaluationId;
+    return {
+      if (evaluationId != null) 'EvaluationId': evaluationId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateMLModel</code> operation, and is an
@@ -2991,6 +3075,13 @@ class CreateMLModelOutput {
     return CreateMLModelOutput(
       mLModelId: json['MLModelId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mLModelId = this.mLModelId;
+    return {
+      if (mLModelId != null) 'MLModelId': mLModelId,
+    };
   }
 }
 
@@ -3023,6 +3114,16 @@ class CreateRealtimeEndpointOutput {
               json['RealtimeEndpointInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mLModelId = this.mLModelId;
+    final realtimeEndpointInfo = this.realtimeEndpointInfo;
+    return {
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (realtimeEndpointInfo != null)
+        'RealtimeEndpointInfo': realtimeEndpointInfo,
+    };
   }
 }
 
@@ -3151,6 +3252,48 @@ class DataSource {
       status: (json['Status'] as String?)?.toEntityStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeStatistics = this.computeStatistics;
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final dataLocationS3 = this.dataLocationS3;
+    final dataRearrangement = this.dataRearrangement;
+    final dataSizeInBytes = this.dataSizeInBytes;
+    final dataSourceId = this.dataSourceId;
+    final finishedAt = this.finishedAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final message = this.message;
+    final name = this.name;
+    final numberOfFiles = this.numberOfFiles;
+    final rDSMetadata = this.rDSMetadata;
+    final redshiftMetadata = this.redshiftMetadata;
+    final roleARN = this.roleARN;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      if (computeStatistics != null) 'ComputeStatistics': computeStatistics,
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (dataLocationS3 != null) 'DataLocationS3': dataLocationS3,
+      if (dataRearrangement != null) 'DataRearrangement': dataRearrangement,
+      if (dataSizeInBytes != null) 'DataSizeInBytes': dataSizeInBytes,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (numberOfFiles != null) 'NumberOfFiles': numberOfFiles,
+      if (rDSMetadata != null) 'RDSMetadata': rDSMetadata,
+      if (redshiftMetadata != null) 'RedshiftMetadata': redshiftMetadata,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A list of the variables to use in searching or filtering
@@ -3248,6 +3391,13 @@ class DeleteBatchPredictionOutput {
       batchPredictionId: json['BatchPredictionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictionId = this.batchPredictionId;
+    return {
+      if (batchPredictionId != null) 'BatchPredictionId': batchPredictionId,
+    };
+  }
 }
 
 /// Represents the output of a <code>DeleteDataSource</code> operation.
@@ -3264,6 +3414,13 @@ class DeleteDataSourceOutput {
     return DeleteDataSourceOutput(
       dataSourceId: json['DataSourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceId = this.dataSourceId;
+    return {
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+    };
   }
 }
 
@@ -3288,6 +3445,13 @@ class DeleteEvaluationOutput {
       evaluationId: json['EvaluationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationId = this.evaluationId;
+    return {
+      if (evaluationId != null) 'EvaluationId': evaluationId,
+    };
+  }
 }
 
 /// Represents the output of a <code>DeleteMLModel</code> operation.
@@ -3308,6 +3472,13 @@ class DeleteMLModelOutput {
     return DeleteMLModelOutput(
       mLModelId: json['MLModelId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mLModelId = this.mLModelId;
+    return {
+      if (mLModelId != null) 'MLModelId': mLModelId,
+    };
   }
 }
 
@@ -3337,6 +3508,16 @@ class DeleteRealtimeEndpointOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mLModelId = this.mLModelId;
+    final realtimeEndpointInfo = this.realtimeEndpointInfo;
+    return {
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (realtimeEndpointInfo != null)
+        'RealtimeEndpointInfo': realtimeEndpointInfo,
+    };
+  }
 }
 
 /// Amazon ML returns the following elements.
@@ -3356,6 +3537,15 @@ class DeleteTagsOutput {
       resourceId: json['ResourceId'] as String?,
       resourceType: (json['ResourceType'] as String?)?.toTaggableResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -3383,6 +3573,15 @@ class DescribeBatchPredictionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
+  }
 }
 
 /// Represents the query results from a <a>DescribeDataSources</a> operation.
@@ -3407,6 +3606,15 @@ class DescribeDataSourcesOutput {
           .map((e) => DataSource.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
   }
 }
 
@@ -3433,6 +3641,15 @@ class DescribeEvaluationsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeMLModels</code> operation. The
@@ -3457,6 +3674,15 @@ class DescribeMLModelsOutput {
           .map((e) => MLModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
   }
 }
 
@@ -3485,6 +3711,17 @@ class DescribeTagsOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3718,6 +3955,42 @@ class Evaluation {
       startedAt: timeStampFromJson(json['StartedAt']),
       status: (json['Status'] as String?)?.toEntityStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final evaluationDataSourceId = this.evaluationDataSourceId;
+    final evaluationId = this.evaluationId;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final mLModelId = this.mLModelId;
+    final message = this.message;
+    final name = this.name;
+    final performanceMetrics = this.performanceMetrics;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (evaluationDataSourceId != null)
+        'EvaluationDataSourceId': evaluationDataSourceId,
+      if (evaluationId != null) 'EvaluationId': evaluationId,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (performanceMetrics != null) 'PerformanceMetrics': performanceMetrics,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3955,6 +4228,48 @@ class GetBatchPredictionOutput {
       totalRecordCount: json['TotalRecordCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictionDataSourceId = this.batchPredictionDataSourceId;
+    final batchPredictionId = this.batchPredictionId;
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final invalidRecordCount = this.invalidRecordCount;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final logUri = this.logUri;
+    final mLModelId = this.mLModelId;
+    final message = this.message;
+    final name = this.name;
+    final outputUri = this.outputUri;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final totalRecordCount = this.totalRecordCount;
+    return {
+      if (batchPredictionDataSourceId != null)
+        'BatchPredictionDataSourceId': batchPredictionDataSourceId,
+      if (batchPredictionId != null) 'BatchPredictionId': batchPredictionId,
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (invalidRecordCount != null) 'InvalidRecordCount': invalidRecordCount,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (logUri != null) 'LogUri': logUri,
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (outputUri != null) 'OutputUri': outputUri,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (totalRecordCount != null) 'TotalRecordCount': totalRecordCount,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetDataSource</code> operation and
@@ -4110,6 +4425,52 @@ class GetDataSourceOutput {
       status: (json['Status'] as String?)?.toEntityStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeStatistics = this.computeStatistics;
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final dataLocationS3 = this.dataLocationS3;
+    final dataRearrangement = this.dataRearrangement;
+    final dataSizeInBytes = this.dataSizeInBytes;
+    final dataSourceId = this.dataSourceId;
+    final dataSourceSchema = this.dataSourceSchema;
+    final finishedAt = this.finishedAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final logUri = this.logUri;
+    final message = this.message;
+    final name = this.name;
+    final numberOfFiles = this.numberOfFiles;
+    final rDSMetadata = this.rDSMetadata;
+    final redshiftMetadata = this.redshiftMetadata;
+    final roleARN = this.roleARN;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      if (computeStatistics != null) 'ComputeStatistics': computeStatistics,
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (dataLocationS3 != null) 'DataLocationS3': dataLocationS3,
+      if (dataRearrangement != null) 'DataRearrangement': dataRearrangement,
+      if (dataSizeInBytes != null) 'DataSizeInBytes': dataSizeInBytes,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (dataSourceSchema != null) 'DataSourceSchema': dataSourceSchema,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (logUri != null) 'LogUri': logUri,
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (numberOfFiles != null) 'NumberOfFiles': numberOfFiles,
+      if (rDSMetadata != null) 'RDSMetadata': rDSMetadata,
+      if (redshiftMetadata != null) 'RedshiftMetadata': redshiftMetadata,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Represents the output of a <code>GetEvaluation</code> operation and
@@ -4258,6 +4619,44 @@ class GetEvaluationOutput {
       startedAt: timeStampFromJson(json['StartedAt']),
       status: (json['Status'] as String?)?.toEntityStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final evaluationDataSourceId = this.evaluationDataSourceId;
+    final evaluationId = this.evaluationId;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final logUri = this.logUri;
+    final mLModelId = this.mLModelId;
+    final message = this.message;
+    final name = this.name;
+    final performanceMetrics = this.performanceMetrics;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (evaluationDataSourceId != null)
+        'EvaluationDataSourceId': evaluationDataSourceId,
+      if (evaluationId != null) 'EvaluationId': evaluationId,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (logUri != null) 'LogUri': logUri,
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (performanceMetrics != null) 'PerformanceMetrics': performanceMetrics,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -4497,6 +4896,58 @@ class GetMLModelOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final endpointInfo = this.endpointInfo;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final logUri = this.logUri;
+    final mLModelId = this.mLModelId;
+    final mLModelType = this.mLModelType;
+    final message = this.message;
+    final name = this.name;
+    final recipe = this.recipe;
+    final schema = this.schema;
+    final scoreThreshold = this.scoreThreshold;
+    final scoreThresholdLastUpdatedAt = this.scoreThresholdLastUpdatedAt;
+    final sizeInBytes = this.sizeInBytes;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final trainingDataSourceId = this.trainingDataSourceId;
+    final trainingParameters = this.trainingParameters;
+    return {
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (endpointInfo != null) 'EndpointInfo': endpointInfo,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (logUri != null) 'LogUri': logUri,
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (mLModelType != null) 'MLModelType': mLModelType.toValue(),
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (recipe != null) 'Recipe': recipe,
+      if (schema != null) 'Schema': schema,
+      if (scoreThreshold != null) 'ScoreThreshold': scoreThreshold,
+      if (scoreThresholdLastUpdatedAt != null)
+        'ScoreThresholdLastUpdatedAt':
+            unixTimestampToJson(scoreThresholdLastUpdatedAt),
+      if (sizeInBytes != null) 'SizeInBytes': sizeInBytes,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (trainingDataSourceId != null)
+        'TrainingDataSourceId': trainingDataSourceId,
+      if (trainingParameters != null) 'TrainingParameters': trainingParameters,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetMLModel</code> operation.
@@ -4704,6 +5155,54 @@ class MLModel {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithm = this.algorithm;
+    final computeTime = this.computeTime;
+    final createdAt = this.createdAt;
+    final createdByIamUser = this.createdByIamUser;
+    final endpointInfo = this.endpointInfo;
+    final finishedAt = this.finishedAt;
+    final inputDataLocationS3 = this.inputDataLocationS3;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final mLModelId = this.mLModelId;
+    final mLModelType = this.mLModelType;
+    final message = this.message;
+    final name = this.name;
+    final scoreThreshold = this.scoreThreshold;
+    final scoreThresholdLastUpdatedAt = this.scoreThresholdLastUpdatedAt;
+    final sizeInBytes = this.sizeInBytes;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final trainingDataSourceId = this.trainingDataSourceId;
+    final trainingParameters = this.trainingParameters;
+    return {
+      if (algorithm != null) 'Algorithm': algorithm.toValue(),
+      if (computeTime != null) 'ComputeTime': computeTime,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (createdByIamUser != null) 'CreatedByIamUser': createdByIamUser,
+      if (endpointInfo != null) 'EndpointInfo': endpointInfo,
+      if (finishedAt != null) 'FinishedAt': unixTimestampToJson(finishedAt),
+      if (inputDataLocationS3 != null)
+        'InputDataLocationS3': inputDataLocationS3,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (mLModelId != null) 'MLModelId': mLModelId,
+      if (mLModelType != null) 'MLModelType': mLModelType.toValue(),
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (scoreThreshold != null) 'ScoreThreshold': scoreThreshold,
+      if (scoreThresholdLastUpdatedAt != null)
+        'ScoreThresholdLastUpdatedAt':
+            unixTimestampToJson(scoreThresholdLastUpdatedAt),
+      if (sizeInBytes != null) 'SizeInBytes': sizeInBytes,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (trainingDataSourceId != null)
+        'TrainingDataSourceId': trainingDataSourceId,
+      if (trainingParameters != null) 'TrainingParameters': trainingParameters,
+    };
+  }
 }
 
 enum MLModelFilterVariable {
@@ -4841,6 +5340,13 @@ class PerformanceMetrics {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final properties = this.properties;
+    return {
+      if (properties != null) 'Properties': properties,
+    };
+  }
 }
 
 class PredictOutput {
@@ -4855,6 +5361,13 @@ class PredictOutput {
           ? Prediction.fromJson(json['Prediction'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prediction = this.prediction;
+    return {
+      if (prediction != null) 'Prediction': prediction,
+    };
   }
 }
 
@@ -4905,6 +5418,20 @@ class Prediction {
           ?.map((k, e) => MapEntry(k, e as double)),
       predictedValue: json['predictedValue'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final predictedLabel = this.predictedLabel;
+    final predictedScores = this.predictedScores;
+    final predictedValue = this.predictedValue;
+    return {
+      if (details != null)
+        'details': details.map((k, e) => MapEntry(k.toValue(), e)),
+      if (predictedLabel != null) 'predictedLabel': predictedLabel,
+      if (predictedScores != null) 'predictedScores': predictedScores,
+      if (predictedValue != null) 'predictedValue': predictedValue,
+    };
   }
 }
 
@@ -5102,6 +5629,27 @@ class RDSDataSpec {
     this.dataSchema,
     this.dataSchemaUri,
   });
+  factory RDSDataSpec.fromJson(Map<String, dynamic> json) {
+    return RDSDataSpec(
+      databaseCredentials: RDSDatabaseCredentials.fromJson(
+          json['DatabaseCredentials'] as Map<String, dynamic>),
+      databaseInformation: RDSDatabase.fromJson(
+          json['DatabaseInformation'] as Map<String, dynamic>),
+      resourceRole: json['ResourceRole'] as String,
+      s3StagingLocation: json['S3StagingLocation'] as String,
+      securityGroupIds: (json['SecurityGroupIds'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      selectSqlQuery: json['SelectSqlQuery'] as String,
+      serviceRole: json['ServiceRole'] as String,
+      subnetId: json['SubnetId'] as String,
+      dataRearrangement: json['DataRearrangement'] as String?,
+      dataSchema: json['DataSchema'] as String?,
+      dataSchemaUri: json['DataSchemaUri'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final databaseCredentials = this.databaseCredentials;
     final databaseInformation = this.databaseInformation;
@@ -5167,6 +5715,13 @@ class RDSDatabaseCredentials {
     required this.password,
     required this.username,
   });
+  factory RDSDatabaseCredentials.fromJson(Map<String, dynamic> json) {
+    return RDSDatabaseCredentials(
+      password: json['Password'] as String,
+      username: json['Username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -5227,6 +5782,23 @@ class RDSMetadata {
       serviceRole: json['ServiceRole'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataPipelineId = this.dataPipelineId;
+    final database = this.database;
+    final databaseUserName = this.databaseUserName;
+    final resourceRole = this.resourceRole;
+    final selectSqlQuery = this.selectSqlQuery;
+    final serviceRole = this.serviceRole;
+    return {
+      if (dataPipelineId != null) 'DataPipelineId': dataPipelineId,
+      if (database != null) 'Database': database,
+      if (databaseUserName != null) 'DatabaseUserName': databaseUserName,
+      if (resourceRole != null) 'ResourceRole': resourceRole,
+      if (selectSqlQuery != null) 'SelectSqlQuery': selectSqlQuery,
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+    };
+  }
 }
 
 /// Describes the real-time endpoint information for an <code>MLModel</code>.
@@ -5276,6 +5848,20 @@ class RealtimeEndpointInfo {
       endpointUrl: json['EndpointUrl'] as String?,
       peakRequestsPerSecond: json['PeakRequestsPerSecond'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final endpointStatus = this.endpointStatus;
+    final endpointUrl = this.endpointUrl;
+    final peakRequestsPerSecond = this.peakRequestsPerSecond;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (endpointStatus != null) 'EndpointStatus': endpointStatus.toValue(),
+      if (endpointUrl != null) 'EndpointUrl': endpointUrl,
+      if (peakRequestsPerSecond != null)
+        'PeakRequestsPerSecond': peakRequestsPerSecond,
+    };
   }
 }
 
@@ -5483,6 +6069,20 @@ class RedshiftDataSpec {
     this.dataSchema,
     this.dataSchemaUri,
   });
+  factory RedshiftDataSpec.fromJson(Map<String, dynamic> json) {
+    return RedshiftDataSpec(
+      databaseCredentials: RedshiftDatabaseCredentials.fromJson(
+          json['DatabaseCredentials'] as Map<String, dynamic>),
+      databaseInformation: RedshiftDatabase.fromJson(
+          json['DatabaseInformation'] as Map<String, dynamic>),
+      s3StagingLocation: json['S3StagingLocation'] as String,
+      selectSqlQuery: json['SelectSqlQuery'] as String,
+      dataRearrangement: json['DataRearrangement'] as String?,
+      dataSchema: json['DataSchema'] as String?,
+      dataSchemaUri: json['DataSchemaUri'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final databaseCredentials = this.databaseCredentials;
     final databaseInformation = this.databaseInformation;
@@ -5540,6 +6140,13 @@ class RedshiftDatabaseCredentials {
     required this.password,
     required this.username,
   });
+  factory RedshiftDatabaseCredentials.fromJson(Map<String, dynamic> json) {
+    return RedshiftDatabaseCredentials(
+      password: json['Password'] as String,
+      username: json['Username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -5573,6 +6180,17 @@ class RedshiftMetadata {
           : null,
       selectSqlQuery: json['SelectSqlQuery'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseUserName = this.databaseUserName;
+    final redshiftDatabase = this.redshiftDatabase;
+    final selectSqlQuery = this.selectSqlQuery;
+    return {
+      if (databaseUserName != null) 'DatabaseUserName': databaseUserName,
+      if (redshiftDatabase != null) 'RedshiftDatabase': redshiftDatabase,
+      if (selectSqlQuery != null) 'SelectSqlQuery': selectSqlQuery,
+    };
   }
 }
 
@@ -5727,6 +6345,15 @@ class S3DataSpec {
     this.dataSchema,
     this.dataSchemaLocationS3,
   });
+  factory S3DataSpec.fromJson(Map<String, dynamic> json) {
+    return S3DataSpec(
+      dataLocationS3: json['DataLocationS3'] as String,
+      dataRearrangement: json['DataRearrangement'] as String?,
+      dataSchema: json['DataSchema'] as String?,
+      dataSchemaLocationS3: json['DataSchemaLocationS3'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataLocationS3 = this.dataLocationS3;
     final dataRearrangement = this.dataRearrangement;
@@ -5869,6 +6496,13 @@ class UpdateBatchPredictionOutput {
       batchPredictionId: json['BatchPredictionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictionId = this.batchPredictionId;
+    return {
+      if (batchPredictionId != null) 'BatchPredictionId': batchPredictionId,
+    };
+  }
 }
 
 /// Represents the output of an <code>UpdateDataSource</code> operation.
@@ -5888,6 +6522,13 @@ class UpdateDataSourceOutput {
     return UpdateDataSourceOutput(
       dataSourceId: json['DataSourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceId = this.dataSourceId;
+    return {
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+    };
   }
 }
 
@@ -5909,6 +6550,13 @@ class UpdateEvaluationOutput {
       evaluationId: json['EvaluationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationId = this.evaluationId;
+    return {
+      if (evaluationId != null) 'EvaluationId': evaluationId,
+    };
+  }
 }
 
 /// Represents the output of an <code>UpdateMLModel</code> operation.
@@ -5928,6 +6576,13 @@ class UpdateMLModelOutput {
     return UpdateMLModelOutput(
       mLModelId: json['MLModelId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mLModelId = this.mLModelId;
+    return {
+      if (mLModelId != null) 'MLModelId': mLModelId,
+    };
   }
 }
 

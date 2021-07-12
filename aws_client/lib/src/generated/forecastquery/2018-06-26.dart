@@ -151,6 +151,15 @@ class DataPoint {
       value: json['Value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      if (timestamp != null) 'Timestamp': timestamp,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Provides information about a forecast. Returned as part of the
@@ -187,6 +196,13 @@ class Forecast {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final predictions = this.predictions;
+    return {
+      if (predictions != null) 'Predictions': predictions,
+    };
+  }
 }
 
 class QueryForecastResponse {
@@ -202,6 +218,13 @@ class QueryForecastResponse {
           ? Forecast.fromJson(json['Forecast'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forecast = this.forecast;
+    return {
+      if (forecast != null) 'Forecast': forecast,
+    };
   }
 }
 

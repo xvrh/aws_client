@@ -2249,6 +2249,13 @@ class ArchiveCreationOutput {
     this.checksum,
     this.location,
   });
+  factory ArchiveCreationOutput.fromJson(Map<String, dynamic> _) {
+    return ArchiveCreationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains information about the comma-separated value (CSV) file to select
@@ -2430,6 +2437,13 @@ class CreateVaultOutput {
   CreateVaultOutput({
     this.location,
   });
+  factory CreateVaultOutput.fromJson(Map<String, dynamic> _) {
+    return CreateVaultOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Data retrieval policy.
@@ -2540,6 +2554,23 @@ class DescribeVaultOutput {
       vaultARN: json['VaultARN'] as String?,
       vaultName: json['VaultName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastInventoryDate = this.lastInventoryDate;
+    final numberOfArchives = this.numberOfArchives;
+    final sizeInBytes = this.sizeInBytes;
+    final vaultARN = this.vaultARN;
+    final vaultName = this.vaultName;
+    return {
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (lastInventoryDate != null) 'LastInventoryDate': lastInventoryDate,
+      if (numberOfArchives != null) 'NumberOfArchives': numberOfArchives,
+      if (sizeInBytes != null) 'SizeInBytes': sizeInBytes,
+      if (vaultARN != null) 'VaultARN': vaultARN,
+      if (vaultName != null) 'VaultName': vaultName,
+    };
   }
 }
 
@@ -2684,6 +2715,13 @@ class GetDataRetrievalPolicyOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -2748,6 +2786,18 @@ class GetJobOutputOutput {
     this.contentType,
     this.status,
   });
+  factory GetJobOutputOutput.fromJson(Map<String, dynamic> json) {
+    return GetJobOutputOutput(
+      body: _s.decodeNullableUint8List(json['body'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'body': base64Encode(body),
+    };
+  }
 }
 
 /// Output for GetVaultAccessPolicy.
@@ -2758,6 +2808,20 @@ class GetVaultAccessPolicyOutput {
   GetVaultAccessPolicyOutput({
     this.policy,
   });
+  factory GetVaultAccessPolicyOutput.fromJson(Map<String, dynamic> json) {
+    return GetVaultAccessPolicyOutput(
+      policy: json['policy'] != null
+          ? VaultAccessPolicy.fromJson(json['policy'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -2791,6 +2855,19 @@ class GetVaultLockOutput {
       state: json['State'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final expirationDate = this.expirationDate;
+    final policy = this.policy;
+    final state = this.state;
+    return {
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (expirationDate != null) 'ExpirationDate': expirationDate,
+      if (policy != null) 'Policy': policy,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -2801,6 +2878,22 @@ class GetVaultNotificationsOutput {
   GetVaultNotificationsOutput({
     this.vaultNotificationConfig,
   });
+  factory GetVaultNotificationsOutput.fromJson(Map<String, dynamic> json) {
+    return GetVaultNotificationsOutput(
+      vaultNotificationConfig: json['vaultNotificationConfig'] != null
+          ? VaultNotificationConfig.fromJson(
+              json['vaultNotificationConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vaultNotificationConfig = this.vaultNotificationConfig;
+    return {
+      if (vaultNotificationConfig != null)
+        'vaultNotificationConfig': vaultNotificationConfig,
+    };
+  }
 }
 
 /// Contains the description of an Amazon S3 Glacier job.
@@ -2975,6 +3068,56 @@ class GlacierJobDescription {
       vaultARN: json['VaultARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final archiveId = this.archiveId;
+    final archiveSHA256TreeHash = this.archiveSHA256TreeHash;
+    final archiveSizeInBytes = this.archiveSizeInBytes;
+    final completed = this.completed;
+    final completionDate = this.completionDate;
+    final creationDate = this.creationDate;
+    final inventoryRetrievalParameters = this.inventoryRetrievalParameters;
+    final inventorySizeInBytes = this.inventorySizeInBytes;
+    final jobDescription = this.jobDescription;
+    final jobId = this.jobId;
+    final jobOutputPath = this.jobOutputPath;
+    final outputLocation = this.outputLocation;
+    final retrievalByteRange = this.retrievalByteRange;
+    final sHA256TreeHash = this.sHA256TreeHash;
+    final sNSTopic = this.sNSTopic;
+    final selectParameters = this.selectParameters;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final tier = this.tier;
+    final vaultARN = this.vaultARN;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (archiveId != null) 'ArchiveId': archiveId,
+      if (archiveSHA256TreeHash != null)
+        'ArchiveSHA256TreeHash': archiveSHA256TreeHash,
+      if (archiveSizeInBytes != null) 'ArchiveSizeInBytes': archiveSizeInBytes,
+      if (completed != null) 'Completed': completed,
+      if (completionDate != null) 'CompletionDate': completionDate,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (inventoryRetrievalParameters != null)
+        'InventoryRetrievalParameters': inventoryRetrievalParameters,
+      if (inventorySizeInBytes != null)
+        'InventorySizeInBytes': inventorySizeInBytes,
+      if (jobDescription != null) 'JobDescription': jobDescription,
+      if (jobId != null) 'JobId': jobId,
+      if (jobOutputPath != null) 'JobOutputPath': jobOutputPath,
+      if (outputLocation != null) 'OutputLocation': outputLocation,
+      if (retrievalByteRange != null) 'RetrievalByteRange': retrievalByteRange,
+      if (sHA256TreeHash != null) 'SHA256TreeHash': sHA256TreeHash,
+      if (sNSTopic != null) 'SNSTopic': sNSTopic,
+      if (selectParameters != null) 'SelectParameters': selectParameters,
+      if (statusCode != null) 'StatusCode': statusCode.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (tier != null) 'Tier': tier,
+      if (vaultARN != null) 'VaultARN': vaultARN,
+    };
+  }
 }
 
 /// Contains information about a grant.
@@ -3074,6 +3217,13 @@ class InitiateJobOutput {
     this.jobOutputPath,
     this.location,
   });
+  factory InitiateJobOutput.fromJson(Map<String, dynamic> _) {
+    return InitiateJobOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The Amazon S3 Glacier response to your request.
@@ -3089,6 +3239,13 @@ class InitiateMultipartUploadOutput {
     this.location,
     this.uploadId,
   });
+  factory InitiateMultipartUploadOutput.fromJson(Map<String, dynamic> _) {
+    return InitiateMultipartUploadOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -3099,6 +3256,13 @@ class InitiateVaultLockOutput {
   InitiateVaultLockOutput({
     this.lockId,
   });
+  factory InitiateVaultLockOutput.fromJson(Map<String, dynamic> _) {
+    return InitiateVaultLockOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes how the archive is serialized.
@@ -3172,6 +3336,21 @@ class InventoryRetrievalJobDescription {
       startDate: json['StartDate'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endDate = this.endDate;
+    final format = this.format;
+    final limit = this.limit;
+    final marker = this.marker;
+    final startDate = this.startDate;
+    return {
+      if (endDate != null) 'EndDate': endDate,
+      if (format != null) 'Format': format,
+      if (limit != null) 'Limit': limit,
+      if (marker != null) 'Marker': marker,
+      if (startDate != null) 'StartDate': startDate,
+    };
+  }
 }
 
 /// Provides options for specifying a range inventory retrieval job.
@@ -3203,6 +3382,15 @@ class InventoryRetrievalJobInput {
     this.marker,
     this.startDate,
   });
+  factory InventoryRetrievalJobInput.fromJson(Map<String, dynamic> json) {
+    return InventoryRetrievalJobInput(
+      endDate: json['EndDate'] as String?,
+      limit: json['Limit'] as String?,
+      marker: json['Marker'] as String?,
+      startDate: json['StartDate'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endDate = this.endDate;
     final limit = this.limit;
@@ -3288,6 +3476,30 @@ class JobParameters {
     this.tier,
     this.type,
   });
+  factory JobParameters.fromJson(Map<String, dynamic> json) {
+    return JobParameters(
+      archiveId: json['ArchiveId'] as String?,
+      description: json['Description'] as String?,
+      format: json['Format'] as String?,
+      inventoryRetrievalParameters: json['InventoryRetrievalParameters'] != null
+          ? InventoryRetrievalJobInput.fromJson(
+              json['InventoryRetrievalParameters'] as Map<String, dynamic>)
+          : null,
+      outputLocation: json['OutputLocation'] != null
+          ? OutputLocation.fromJson(
+              json['OutputLocation'] as Map<String, dynamic>)
+          : null,
+      retrievalByteRange: json['RetrievalByteRange'] as String?,
+      sNSTopic: json['SNSTopic'] as String?,
+      selectParameters: json['SelectParameters'] != null
+          ? SelectParameters.fromJson(
+              json['SelectParameters'] as Map<String, dynamic>)
+          : null,
+      tier: json['Tier'] as String?,
+      type: json['Type'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final archiveId = this.archiveId;
     final description = this.description;
@@ -3340,6 +3552,15 @@ class ListJobsOutput {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobList = this.jobList;
+    final marker = this.marker;
+    return {
+      if (jobList != null) 'JobList': jobList,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -3365,6 +3586,15 @@ class ListMultipartUploadsOutput {
           .map((e) => UploadListElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final uploadsList = this.uploadsList;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (uploadsList != null) 'UploadsList': uploadsList,
+    };
   }
 }
 
@@ -3421,6 +3651,25 @@ class ListPartsOutput {
       vaultARN: json['VaultARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archiveDescription = this.archiveDescription;
+    final creationDate = this.creationDate;
+    final marker = this.marker;
+    final multipartUploadId = this.multipartUploadId;
+    final partSizeInBytes = this.partSizeInBytes;
+    final parts = this.parts;
+    final vaultARN = this.vaultARN;
+    return {
+      if (archiveDescription != null) 'ArchiveDescription': archiveDescription,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (marker != null) 'Marker': marker,
+      if (multipartUploadId != null) 'MultipartUploadId': multipartUploadId,
+      if (partSizeInBytes != null) 'PartSizeInBytes': partSizeInBytes,
+      if (parts != null) 'Parts': parts,
+      if (vaultARN != null) 'VaultARN': vaultARN,
+    };
+  }
 }
 
 class ListProvisionedCapacityOutput {
@@ -3439,6 +3688,14 @@ class ListProvisionedCapacityOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final provisionedCapacityList = this.provisionedCapacityList;
+    return {
+      if (provisionedCapacityList != null)
+        'ProvisionedCapacityList': provisionedCapacityList,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -3454,6 +3711,13 @@ class ListTagsForVaultOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3478,6 +3742,15 @@ class ListVaultsOutput {
           .map((e) => DescribeVaultOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final vaultList = this.vaultList;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (vaultList != null) 'VaultList': vaultList,
+    };
   }
 }
 
@@ -3549,6 +3822,15 @@ class PartListElement {
       sHA256TreeHash: json['SHA256TreeHash'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rangeInBytes = this.rangeInBytes;
+    final sHA256TreeHash = this.sHA256TreeHash;
+    return {
+      if (rangeInBytes != null) 'RangeInBytes': rangeInBytes,
+      if (sHA256TreeHash != null) 'SHA256TreeHash': sHA256TreeHash,
+    };
+  }
 }
 
 enum Permission {
@@ -3619,6 +3901,17 @@ class ProvisionedCapacityDescription {
       startDate: json['StartDate'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityId = this.capacityId;
+    final expirationDate = this.expirationDate;
+    final startDate = this.startDate;
+    return {
+      if (capacityId != null) 'CapacityId': capacityId,
+      if (expirationDate != null) 'ExpirationDate': expirationDate,
+      if (startDate != null) 'StartDate': startDate,
+    };
+  }
 }
 
 class PurchaseProvisionedCapacityOutput {
@@ -3628,6 +3921,13 @@ class PurchaseProvisionedCapacityOutput {
   PurchaseProvisionedCapacityOutput({
     this.capacityId,
   });
+  factory PurchaseProvisionedCapacityOutput.fromJson(Map<String, dynamic> _) {
+    return PurchaseProvisionedCapacityOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum QuoteFields {
@@ -3923,6 +4223,21 @@ class UploadListElement {
       vaultARN: json['VaultARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archiveDescription = this.archiveDescription;
+    final creationDate = this.creationDate;
+    final multipartUploadId = this.multipartUploadId;
+    final partSizeInBytes = this.partSizeInBytes;
+    final vaultARN = this.vaultARN;
+    return {
+      if (archiveDescription != null) 'ArchiveDescription': archiveDescription,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (multipartUploadId != null) 'MultipartUploadId': multipartUploadId,
+      if (partSizeInBytes != null) 'PartSizeInBytes': partSizeInBytes,
+      if (vaultARN != null) 'VaultARN': vaultARN,
+    };
+  }
 }
 
 /// Contains the Amazon S3 Glacier response to your request.
@@ -3933,6 +4248,13 @@ class UploadMultipartPartOutput {
   UploadMultipartPartOutput({
     this.checksum,
   });
+  factory UploadMultipartPartOutput.fromJson(Map<String, dynamic> _) {
+    return UploadMultipartPartOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the vault access policy.
@@ -3965,6 +4287,12 @@ class VaultLockPolicy {
   VaultLockPolicy({
     this.policy,
   });
+  factory VaultLockPolicy.fromJson(Map<String, dynamic> json) {
+    return VaultLockPolicy(
+      policy: json['Policy'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final policy = this.policy;
     return {

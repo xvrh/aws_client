@@ -1609,12 +1609,20 @@ class AssociateDRTLogBucketResponse {
   factory AssociateDRTLogBucketResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDRTLogBucketResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateDRTRoleResponse {
   AssociateDRTRoleResponse();
   factory AssociateDRTRoleResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDRTRoleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1623,6 +1631,10 @@ class AssociateHealthCheckResponse {
   factory AssociateHealthCheckResponse.fromJson(Map<String, dynamic> _) {
     return AssociateHealthCheckResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateProactiveEngagementDetailsResponse {
@@ -1630,6 +1642,10 @@ class AssociateProactiveEngagementDetailsResponse {
   factory AssociateProactiveEngagementDetailsResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateProactiveEngagementDetailsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1697,6 +1713,27 @@ class AttackDetail {
           .map((e) => SubResourceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attackCounters = this.attackCounters;
+    final attackId = this.attackId;
+    final attackProperties = this.attackProperties;
+    final endTime = this.endTime;
+    final mitigations = this.mitigations;
+    final resourceArn = this.resourceArn;
+    final startTime = this.startTime;
+    final subResources = this.subResources;
+    return {
+      if (attackCounters != null) 'AttackCounters': attackCounters,
+      if (attackId != null) 'AttackId': attackId,
+      if (attackProperties != null) 'AttackProperties': attackProperties,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (mitigations != null) 'Mitigations': mitigations,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (subResources != null) 'SubResources': subResources,
+    };
   }
 }
 
@@ -1771,6 +1808,22 @@ class AttackProperty {
       total: json['Total'] as int?,
       unit: (json['Unit'] as String?)?.toUnit(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attackLayer = this.attackLayer;
+    final attackPropertyIdentifier = this.attackPropertyIdentifier;
+    final topContributors = this.topContributors;
+    final total = this.total;
+    final unit = this.unit;
+    return {
+      if (attackLayer != null) 'AttackLayer': attackLayer.toValue(),
+      if (attackPropertyIdentifier != null)
+        'AttackPropertyIdentifier': attackPropertyIdentifier.toValue(),
+      if (topContributors != null) 'TopContributors': topContributors,
+      if (total != null) 'Total': total,
+      if (unit != null) 'Unit': unit.toValue(),
+    };
   }
 }
 
@@ -1856,6 +1909,15 @@ class AttackStatisticsDataItem {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attackCount = this.attackCount;
+    final attackVolume = this.attackVolume;
+    return {
+      'AttackCount': attackCount,
+      if (attackVolume != null) 'AttackVolume': attackVolume,
+    };
+  }
 }
 
 /// Summarizes all DDoS attacks for a specified time period.
@@ -1898,6 +1960,21 @@ class AttackSummary {
       resourceArn: json['ResourceArn'] as String?,
       startTime: timeStampFromJson(json['StartTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attackId = this.attackId;
+    final attackVectors = this.attackVectors;
+    final endTime = this.endTime;
+    final resourceArn = this.resourceArn;
+    final startTime = this.startTime;
+    return {
+      if (attackId != null) 'AttackId': attackId,
+      if (attackVectors != null) 'AttackVectors': attackVectors,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
   }
 }
 
@@ -1971,6 +2048,13 @@ class AttackVectorDescription {
       vectorType: json['VectorType'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vectorType = this.vectorType;
+    return {
+      'VectorType': vectorType,
+    };
+  }
 }
 
 /// Information about the volume of attacks during the time period, included in
@@ -2012,6 +2096,17 @@ class AttackVolume {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bitsPerSecond = this.bitsPerSecond;
+    final packetsPerSecond = this.packetsPerSecond;
+    final requestsPerSecond = this.requestsPerSecond;
+    return {
+      if (bitsPerSecond != null) 'BitsPerSecond': bitsPerSecond,
+      if (packetsPerSecond != null) 'PacketsPerSecond': packetsPerSecond,
+      if (requestsPerSecond != null) 'RequestsPerSecond': requestsPerSecond,
+    };
+  }
 }
 
 /// Statistics objects for the various data types in <a>AttackVolume</a>.
@@ -2026,6 +2121,13 @@ class AttackVolumeStatistics {
     return AttackVolumeStatistics(
       max: json['Max'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    return {
+      'Max': max,
+    };
   }
 }
 
@@ -2079,12 +2181,25 @@ class Contributor {
       value: json['Value'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class CreateProtectionGroupResponse {
   CreateProtectionGroupResponse();
   factory CreateProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return CreateProtectionGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2100,12 +2215,23 @@ class CreateProtectionResponse {
       protectionId: json['ProtectionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final protectionId = this.protectionId;
+    return {
+      if (protectionId != null) 'ProtectionId': protectionId,
+    };
+  }
 }
 
 class CreateSubscriptionResponse {
   CreateSubscriptionResponse();
   factory CreateSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return CreateSubscriptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2114,12 +2240,20 @@ class DeleteProtectionGroupResponse {
   factory DeleteProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProtectionGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProtectionResponse {
   DeleteProtectionResponse();
   factory DeleteProtectionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProtectionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2128,6 +2262,10 @@ class DeleteSubscriptionResponse {
   DeleteSubscriptionResponse();
   factory DeleteSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSubscriptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2144,6 +2282,13 @@ class DescribeAttackResponse {
           ? AttackDetail.fromJson(json['Attack'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attack = this.attack;
+    return {
+      if (attack != null) 'Attack': attack,
+    };
   }
 }
 
@@ -2165,6 +2310,15 @@ class DescribeAttackStatisticsResponse {
           .toList(),
       timeRange: TimeRange.fromJson(json['TimeRange'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataItems = this.dataItems;
+    final timeRange = this.timeRange;
+    return {
+      'DataItems': dataItems,
+      'TimeRange': timeRange,
+    };
   }
 }
 
@@ -2189,6 +2343,15 @@ class DescribeDRTAccessResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logBucketList = this.logBucketList;
+    final roleArn = this.roleArn;
+    return {
+      if (logBucketList != null) 'LogBucketList': logBucketList,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class DescribeEmergencyContactSettingsResponse {
@@ -2209,6 +2372,14 @@ class DescribeEmergencyContactSettingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emergencyContactList = this.emergencyContactList;
+    return {
+      if (emergencyContactList != null)
+        'EmergencyContactList': emergencyContactList,
+    };
+  }
 }
 
 class DescribeProtectionGroupResponse {
@@ -2226,6 +2397,13 @@ class DescribeProtectionGroupResponse {
           json['ProtectionGroup'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final protectionGroup = this.protectionGroup;
+    return {
+      'ProtectionGroup': protectionGroup,
+    };
+  }
 }
 
 class DescribeProtectionResponse {
@@ -2241,6 +2419,13 @@ class DescribeProtectionResponse {
           ? Protection.fromJson(json['Protection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protection = this.protection;
+    return {
+      if (protection != null) 'Protection': protection,
+    };
   }
 }
 
@@ -2258,12 +2443,23 @@ class DescribeSubscriptionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subscription = this.subscription;
+    return {
+      if (subscription != null) 'Subscription': subscription,
+    };
+  }
 }
 
 class DisableProactiveEngagementResponse {
   DisableProactiveEngagementResponse();
   factory DisableProactiveEngagementResponse.fromJson(Map<String, dynamic> _) {
     return DisableProactiveEngagementResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2272,6 +2468,10 @@ class DisassociateDRTLogBucketResponse {
   factory DisassociateDRTLogBucketResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDRTLogBucketResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateDRTRoleResponse {
@@ -2279,12 +2479,20 @@ class DisassociateDRTRoleResponse {
   factory DisassociateDRTRoleResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDRTRoleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateHealthCheckResponse {
   DisassociateHealthCheckResponse();
   factory DisassociateHealthCheckResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateHealthCheckResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2331,6 +2539,10 @@ class EnableProactiveEngagementResponse {
   factory EnableProactiveEngagementResponse.fromJson(Map<String, dynamic> _) {
     return EnableProactiveEngagementResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class GetSubscriptionStateResponse {
@@ -2345,6 +2557,13 @@ class GetSubscriptionStateResponse {
       subscriptionState:
           (json['SubscriptionState'] as String).toSubscriptionState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionState = this.subscriptionState;
+    return {
+      'SubscriptionState': subscriptionState.toValue(),
+    };
   }
 }
 
@@ -2366,6 +2585,15 @@ class Limit {
       max: json['Max'] as int?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final type = this.type;
+    return {
+      if (max != null) 'Max': max,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -2397,6 +2625,15 @@ class ListAttacksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attackSummaries = this.attackSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (attackSummaries != null) 'AttackSummaries': attackSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListProtectionGroupsResponse {
@@ -2421,6 +2658,15 @@ class ListProtectionGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protectionGroups = this.protectionGroups;
+    final nextToken = this.nextToken;
+    return {
+      'ProtectionGroups': protectionGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2454,6 +2700,15 @@ class ListProtectionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final protections = this.protections;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (protections != null) 'Protections': protections,
+    };
+  }
 }
 
 class ListResourcesInProtectionGroupResponse {
@@ -2481,6 +2736,15 @@ class ListResourcesInProtectionGroupResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArns = this.resourceArns;
+    final nextToken = this.nextToken;
+    return {
+      'ResourceArns': resourceArns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2498,6 +2762,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The mitigation applied to a DDoS attack.
@@ -2512,6 +2783,13 @@ class Mitigation {
     return Mitigation(
       mitigationName: json['MitigationName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mitigationName = this.mitigationName;
+    return {
+      if (mitigationName != null) 'MitigationName': mitigationName,
+    };
   }
 }
 
@@ -2634,6 +2912,21 @@ class Protection {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckIds = this.healthCheckIds;
+    final id = this.id;
+    final name = this.name;
+    final protectionArn = this.protectionArn;
+    final resourceArn = this.resourceArn;
+    return {
+      if (healthCheckIds != null) 'HealthCheckIds': healthCheckIds,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (protectionArn != null) 'ProtectionArn': protectionArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 /// A grouping of protected resources that you and AWS Shield Advanced can
@@ -2712,6 +3005,23 @@ class ProtectionGroup {
           (json['ResourceType'] as String?)?.toProtectedResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregation = this.aggregation;
+    final members = this.members;
+    final pattern = this.pattern;
+    final protectionGroupId = this.protectionGroupId;
+    final protectionGroupArn = this.protectionGroupArn;
+    final resourceType = this.resourceType;
+    return {
+      'Aggregation': aggregation.toValue(),
+      'Members': members,
+      'Pattern': pattern.toValue(),
+      'ProtectionGroupId': protectionGroupId,
+      if (protectionGroupArn != null) 'ProtectionGroupArn': protectionGroupArn,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
+  }
 }
 
 enum ProtectionGroupAggregation {
@@ -2762,6 +3072,13 @@ class ProtectionGroupArbitraryPatternLimits {
       maxMembers: json['MaxMembers'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxMembers = this.maxMembers;
+    return {
+      'MaxMembers': maxMembers,
+    };
+  }
 }
 
 /// Limits settings on protection groups for your subscription.
@@ -2783,6 +3100,15 @@ class ProtectionGroupLimits {
       patternTypeLimits: ProtectionGroupPatternTypeLimits.fromJson(
           json['PatternTypeLimits'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxProtectionGroups = this.maxProtectionGroups;
+    final patternTypeLimits = this.patternTypeLimits;
+    return {
+      'MaxProtectionGroups': maxProtectionGroups,
+      'PatternTypeLimits': patternTypeLimits,
+    };
   }
 }
 
@@ -2834,6 +3160,13 @@ class ProtectionGroupPatternTypeLimits {
           json['ArbitraryPatternLimits'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arbitraryPatternLimits = this.arbitraryPatternLimits;
+    return {
+      'ArbitraryPatternLimits': arbitraryPatternLimits,
+    };
+  }
 }
 
 /// Limits settings on protections for your subscription.
@@ -2851,6 +3184,13 @@ class ProtectionLimits {
           .map((e) => Limit.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protectedResourceTypeLimits = this.protectedResourceTypeLimits;
+    return {
+      'ProtectedResourceTypeLimits': protectedResourceTypeLimits,
+    };
   }
 }
 
@@ -2888,6 +3228,19 @@ class SubResourceSummary {
       id: json['Id'] as String?,
       type: (json['Type'] as String?)?.toSubResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attackVectors = this.attackVectors;
+    final counters = this.counters;
+    final id = this.id;
+    final type = this.type;
+    return {
+      if (attackVectors != null) 'AttackVectors': attackVectors,
+      if (counters != null) 'Counters': counters,
+      if (id != null) 'Id': id,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2992,6 +3345,29 @@ class Subscription {
       timeCommitmentInSeconds: json['TimeCommitmentInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionLimits = this.subscriptionLimits;
+    final autoRenew = this.autoRenew;
+    final endTime = this.endTime;
+    final limits = this.limits;
+    final proactiveEngagementStatus = this.proactiveEngagementStatus;
+    final startTime = this.startTime;
+    final subscriptionArn = this.subscriptionArn;
+    final timeCommitmentInSeconds = this.timeCommitmentInSeconds;
+    return {
+      'SubscriptionLimits': subscriptionLimits,
+      if (autoRenew != null) 'AutoRenew': autoRenew.toValue(),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (limits != null) 'Limits': limits,
+      if (proactiveEngagementStatus != null)
+        'ProactiveEngagementStatus': proactiveEngagementStatus.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+      if (timeCommitmentInSeconds != null)
+        'TimeCommitmentInSeconds': timeCommitmentInSeconds,
+    };
+  }
 }
 
 /// Limits settings for your subscription.
@@ -3013,6 +3389,15 @@ class SubscriptionLimits {
       protectionLimits: ProtectionLimits.fromJson(
           json['ProtectionLimits'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final protectionGroupLimits = this.protectionGroupLimits;
+    final protectionLimits = this.protectionLimits;
+    return {
+      'ProtectionGroupLimits': protectionGroupLimits,
+      'ProtectionLimits': protectionLimits,
+    };
   }
 }
 
@@ -3065,6 +3450,15 @@ class SummarizedAttackVector {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vectorType = this.vectorType;
+    final vectorCounters = this.vectorCounters;
+    return {
+      'VectorType': vectorType,
+      if (vectorCounters != null) 'VectorCounters': vectorCounters,
+    };
+  }
 }
 
 /// The counter that describes a DDoS attack.
@@ -3104,6 +3498,23 @@ class SummarizedCounter {
       sum: json['Sum'] as double?,
       unit: json['Unit'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final max = this.max;
+    final n = this.n;
+    final name = this.name;
+    final sum = this.sum;
+    final unit = this.unit;
+    return {
+      if (average != null) 'Average': average,
+      if (max != null) 'Max': max,
+      if (n != null) 'N': n,
+      if (name != null) 'Name': name,
+      if (sum != null) 'Sum': sum,
+      if (unit != null) 'Unit': unit,
+    };
   }
 }
 
@@ -3151,6 +3562,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3229,6 +3644,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateEmergencyContactSettingsResponse {
@@ -3237,6 +3656,10 @@ class UpdateEmergencyContactSettingsResponse {
       Map<String, dynamic> _) {
     return UpdateEmergencyContactSettingsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateProtectionGroupResponse {
@@ -3244,12 +3667,20 @@ class UpdateProtectionGroupResponse {
   factory UpdateProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProtectionGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateSubscriptionResponse {
   UpdateSubscriptionResponse();
   factory UpdateSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSubscriptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -53,11 +53,27 @@ class OutputShape {
   OutputShape({
     this.listItems,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      listItems: (json['ItemsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => ItemShape.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       listItems: _s.extractXmlChild(elem, 'ItemsList')?.let((elem) =>
           elem.findElements('Item').map((c) => ItemShape.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listItems = this.listItems;
+    return {
+      if (listItems != null) 'ItemsList': listItems,
+    };
   }
 }
 
@@ -67,12 +83,27 @@ class ItemShape {
   ItemShape({
     this.itemDetail,
   });
+  factory ItemShape.fromJson(Map<String, dynamic> json) {
+    return ItemShape(
+      itemDetail: json['ItemDetail'] != null
+          ? ItemDetailShape.fromJson(json['ItemDetail'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ItemShape.fromXml(_s.XmlElement elem) {
     return ItemShape(
       itemDetail: _s
           .extractXmlChild(elem, 'ItemDetail')
           ?.let((e) => ItemDetailShape.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final itemDetail = this.itemDetail;
+    return {
+      if (itemDetail != null) 'ItemDetail': itemDetail,
+    };
   }
 }
 
@@ -84,11 +115,27 @@ class ItemDetailShape {
     required this.type,
     this.id,
   });
+  factory ItemDetailShape.fromJson(Map<String, dynamic> json) {
+    return ItemDetailShape(
+      type: (json['xsi:type'] as String).toItemType(),
+      id: json['ID'] as String?,
+    );
+  }
+
   factory ItemDetailShape.fromXml(_s.XmlElement elem) {
     return ItemDetailShape(
       type: _s.extractXmlStringAttribute(elem, 'xsi:type')!.toItemType(),
       id: _s.extractXmlStringValue(elem, 'ID'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final id = this.id;
+    return {
+      'xsi:type': type.toValue(),
+      if (id != null) 'ID': id,
+    };
   }
 }
 

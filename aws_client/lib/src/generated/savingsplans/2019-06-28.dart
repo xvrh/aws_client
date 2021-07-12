@@ -518,6 +518,13 @@ class CreateSavingsPlanResponse {
       savingsPlanId: json['savingsPlanId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final savingsPlanId = this.savingsPlanId;
+    return {
+      if (savingsPlanId != null) 'savingsPlanId': savingsPlanId,
+    };
+  }
 }
 
 enum CurrencyCode {
@@ -553,6 +560,10 @@ class DeleteQueuedSavingsPlanResponse {
   factory DeleteQueuedSavingsPlanResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQueuedSavingsPlanResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeSavingsPlanRatesResponse {
@@ -581,6 +592,17 @@ class DescribeSavingsPlanRatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final savingsPlanId = this.savingsPlanId;
+    final searchResults = this.searchResults;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (savingsPlanId != null) 'savingsPlanId': savingsPlanId,
+      if (searchResults != null) 'searchResults': searchResults,
+    };
+  }
 }
 
 class DescribeSavingsPlansOfferingRatesResponse {
@@ -606,6 +628,15 @@ class DescribeSavingsPlansOfferingRatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final searchResults = this.searchResults;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (searchResults != null) 'searchResults': searchResults,
+    };
+  }
 }
 
 class DescribeSavingsPlansOfferingsResponse {
@@ -630,6 +661,15 @@ class DescribeSavingsPlansOfferingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final searchResults = this.searchResults;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (searchResults != null) 'searchResults': searchResults,
+    };
+  }
 }
 
 class DescribeSavingsPlansResponse {
@@ -653,6 +693,15 @@ class DescribeSavingsPlansResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final savingsPlans = this.savingsPlans;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (savingsPlans != null) 'savingsPlans': savingsPlans,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -667,6 +716,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -708,6 +764,23 @@ class ParentSavingsPlanOffering {
       planDescription: json['planDescription'] as String?,
       planType: (json['planType'] as String?)?.toSavingsPlanType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currency = this.currency;
+    final durationSeconds = this.durationSeconds;
+    final offeringId = this.offeringId;
+    final paymentOption = this.paymentOption;
+    final planDescription = this.planDescription;
+    final planType = this.planType;
+    return {
+      if (currency != null) 'currency': currency.toValue(),
+      if (durationSeconds != null) 'durationSeconds': durationSeconds,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (planDescription != null) 'planDescription': planDescription,
+      if (planType != null) 'planType': planType.toValue(),
+    };
   }
 }
 
@@ -815,6 +888,51 @@ class SavingsPlan {
       upfrontPaymentAmount: json['upfrontPaymentAmount'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitment = this.commitment;
+    final currency = this.currency;
+    final description = this.description;
+    final ec2InstanceFamily = this.ec2InstanceFamily;
+    final end = this.end;
+    final offeringId = this.offeringId;
+    final paymentOption = this.paymentOption;
+    final productTypes = this.productTypes;
+    final recurringPaymentAmount = this.recurringPaymentAmount;
+    final region = this.region;
+    final savingsPlanArn = this.savingsPlanArn;
+    final savingsPlanId = this.savingsPlanId;
+    final savingsPlanType = this.savingsPlanType;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final termDurationInSeconds = this.termDurationInSeconds;
+    final upfrontPaymentAmount = this.upfrontPaymentAmount;
+    return {
+      if (commitment != null) 'commitment': commitment,
+      if (currency != null) 'currency': currency.toValue(),
+      if (description != null) 'description': description,
+      if (ec2InstanceFamily != null) 'ec2InstanceFamily': ec2InstanceFamily,
+      if (end != null) 'end': end,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (productTypes != null)
+        'productTypes': productTypes.map((e) => e.toValue()).toList(),
+      if (recurringPaymentAmount != null)
+        'recurringPaymentAmount': recurringPaymentAmount,
+      if (region != null) 'region': region,
+      if (savingsPlanArn != null) 'savingsPlanArn': savingsPlanArn,
+      if (savingsPlanId != null) 'savingsPlanId': savingsPlanId,
+      if (savingsPlanType != null) 'savingsPlanType': savingsPlanType.toValue(),
+      if (start != null) 'start': start,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (termDurationInSeconds != null)
+        'termDurationInSeconds': termDurationInSeconds,
+      if (upfrontPaymentAmount != null)
+        'upfrontPaymentAmount': upfrontPaymentAmount,
+    };
+  }
 }
 
 /// Information about a filter.
@@ -829,6 +947,16 @@ class SavingsPlanFilter {
     this.name,
     this.values,
   });
+  factory SavingsPlanFilter.fromJson(Map<String, dynamic> json) {
+    return SavingsPlanFilter(
+      name: (json['name'] as String?)?.toSavingsPlansFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -910,6 +1038,34 @@ class SavingsPlanOffering {
       usageType: json['usageType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currency = this.currency;
+    final description = this.description;
+    final durationSeconds = this.durationSeconds;
+    final offeringId = this.offeringId;
+    final operation = this.operation;
+    final paymentOption = this.paymentOption;
+    final planType = this.planType;
+    final productTypes = this.productTypes;
+    final properties = this.properties;
+    final serviceCode = this.serviceCode;
+    final usageType = this.usageType;
+    return {
+      if (currency != null) 'currency': currency.toValue(),
+      if (description != null) 'description': description,
+      if (durationSeconds != null) 'durationSeconds': durationSeconds,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (operation != null) 'operation': operation,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (planType != null) 'planType': planType.toValue(),
+      if (productTypes != null)
+        'productTypes': productTypes.map((e) => e.toValue()).toList(),
+      if (properties != null) 'properties': properties,
+      if (serviceCode != null) 'serviceCode': serviceCode,
+      if (usageType != null) 'usageType': usageType,
+    };
+  }
 }
 
 enum SavingsPlanOfferingFilterAttribute {
@@ -953,6 +1109,16 @@ class SavingsPlanOfferingFilterElement {
     this.name,
     this.values,
   });
+  factory SavingsPlanOfferingFilterElement.fromJson(Map<String, dynamic> json) {
+    return SavingsPlanOfferingFilterElement(
+      name: (json['name'] as String?)?.toSavingsPlanOfferingFilterAttribute(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -980,6 +1146,15 @@ class SavingsPlanOfferingProperty {
       name: (json['name'] as String?)?.toSavingsPlanOfferingPropertyKey(),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -1068,6 +1243,28 @@ class SavingsPlanOfferingRate {
       usageType: json['usageType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    final productType = this.productType;
+    final properties = this.properties;
+    final rate = this.rate;
+    final savingsPlanOffering = this.savingsPlanOffering;
+    final serviceCode = this.serviceCode;
+    final unit = this.unit;
+    final usageType = this.usageType;
+    return {
+      if (operation != null) 'operation': operation,
+      if (productType != null) 'productType': productType.toValue(),
+      if (properties != null) 'properties': properties,
+      if (rate != null) 'rate': rate,
+      if (savingsPlanOffering != null)
+        'savingsPlanOffering': savingsPlanOffering,
+      if (serviceCode != null) 'serviceCode': serviceCode.toValue(),
+      if (unit != null) 'unit': unit.toValue(),
+      if (usageType != null) 'usageType': usageType,
+    };
+  }
 }
 
 /// Information about a filter.
@@ -1082,6 +1279,17 @@ class SavingsPlanOfferingRateFilterElement {
     this.name,
     this.values,
   });
+  factory SavingsPlanOfferingRateFilterElement.fromJson(
+      Map<String, dynamic> json) {
+    return SavingsPlanOfferingRateFilterElement(
+      name: (json['name'] as String?)?.toSavingsPlanRateFilterAttribute(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1109,6 +1317,15 @@ class SavingsPlanOfferingRateProperty {
       name: json['name'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -1236,6 +1453,27 @@ class SavingsPlanRate {
       usageType: json['usageType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currency = this.currency;
+    final operation = this.operation;
+    final productType = this.productType;
+    final properties = this.properties;
+    final rate = this.rate;
+    final serviceCode = this.serviceCode;
+    final unit = this.unit;
+    final usageType = this.usageType;
+    return {
+      if (currency != null) 'currency': currency.toValue(),
+      if (operation != null) 'operation': operation,
+      if (productType != null) 'productType': productType.toValue(),
+      if (properties != null) 'properties': properties,
+      if (rate != null) 'rate': rate,
+      if (serviceCode != null) 'serviceCode': serviceCode.toValue(),
+      if (unit != null) 'unit': unit.toValue(),
+      if (usageType != null) 'usageType': usageType,
+    };
+  }
 }
 
 /// Information about a filter.
@@ -1250,6 +1488,16 @@ class SavingsPlanRateFilter {
     this.name,
     this.values,
   });
+  factory SavingsPlanRateFilter.fromJson(Map<String, dynamic> json) {
+    return SavingsPlanRateFilter(
+      name: (json['name'] as String?)?.toSavingsPlanRateFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1384,6 +1632,15 @@ class SavingsPlanRateProperty {
       name: (json['name'] as String?)?.toSavingsPlanRatePropertyKey(),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -1655,12 +1912,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

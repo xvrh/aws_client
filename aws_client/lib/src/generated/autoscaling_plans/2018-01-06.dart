@@ -496,6 +496,13 @@ class CreateScalingPlanResponse {
       scalingPlanVersion: json['ScalingPlanVersion'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scalingPlanVersion = this.scalingPlanVersion;
+    return {
+      'ScalingPlanVersion': scalingPlanVersion,
+    };
+  }
 }
 
 /// Represents a CloudWatch metric of your choosing that can be used for
@@ -689,12 +696,25 @@ class Datapoint {
       value: json['Value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class DeleteScalingPlanResponse {
   DeleteScalingPlanResponse();
   factory DeleteScalingPlanResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScalingPlanResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -720,6 +740,16 @@ class DescribeScalingPlanResourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingPlanResources = this.scalingPlanResources;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingPlanResources != null)
+        'ScalingPlanResources': scalingPlanResources,
+    };
+  }
 }
 
 class DescribeScalingPlansResponse {
@@ -742,6 +772,15 @@ class DescribeScalingPlansResponse {
           .map((e) => ScalingPlan.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingPlans = this.scalingPlans;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingPlans != null) 'ScalingPlans': scalingPlans,
+    };
   }
 }
 
@@ -798,6 +837,13 @@ class GetScalingPlanResourceForecastDataResponse {
           .map((e) => Datapoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datapoints = this.datapoints;
+    return {
+      'Datapoints': datapoints,
+    };
   }
 }
 
@@ -1668,6 +1714,29 @@ class ScalingPlan {
       statusStartTime: timeStampFromJson(json['StatusStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationSource = this.applicationSource;
+    final scalingInstructions = this.scalingInstructions;
+    final scalingPlanName = this.scalingPlanName;
+    final scalingPlanVersion = this.scalingPlanVersion;
+    final statusCode = this.statusCode;
+    final creationTime = this.creationTime;
+    final statusMessage = this.statusMessage;
+    final statusStartTime = this.statusStartTime;
+    return {
+      'ApplicationSource': applicationSource,
+      'ScalingInstructions': scalingInstructions,
+      'ScalingPlanName': scalingPlanName,
+      'ScalingPlanVersion': scalingPlanVersion,
+      'StatusCode': statusCode.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (statusStartTime != null)
+        'StatusStartTime': unixTimestampToJson(statusStartTime),
+    };
+  }
 }
 
 /// Represents a scalable resource.
@@ -1809,6 +1878,28 @@ class ScalingPlanResource {
       scalingStatusMessage: json['ScalingStatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final scalableDimension = this.scalableDimension;
+    final scalingPlanName = this.scalingPlanName;
+    final scalingPlanVersion = this.scalingPlanVersion;
+    final scalingStatusCode = this.scalingStatusCode;
+    final serviceNamespace = this.serviceNamespace;
+    final scalingPolicies = this.scalingPolicies;
+    final scalingStatusMessage = this.scalingStatusMessage;
+    return {
+      'ResourceId': resourceId,
+      'ScalableDimension': scalableDimension.toValue(),
+      'ScalingPlanName': scalingPlanName,
+      'ScalingPlanVersion': scalingPlanVersion,
+      'ScalingStatusCode': scalingStatusCode.toValue(),
+      'ServiceNamespace': serviceNamespace.toValue(),
+      if (scalingPolicies != null) 'ScalingPolicies': scalingPolicies,
+      if (scalingStatusMessage != null)
+        'ScalingStatusMessage': scalingStatusMessage,
+    };
+  }
 }
 
 enum ScalingPlanStatusCode {
@@ -1895,6 +1986,18 @@ class ScalingPolicy {
               json['TargetTrackingConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyName = this.policyName;
+    final policyType = this.policyType;
+    final targetTrackingConfiguration = this.targetTrackingConfiguration;
+    return {
+      'PolicyName': policyName,
+      'PolicyType': policyType.toValue(),
+      if (targetTrackingConfiguration != null)
+        'TargetTrackingConfiguration': targetTrackingConfiguration,
+    };
   }
 }
 
@@ -2151,6 +2254,10 @@ class UpdateScalingPlanResponse {
   UpdateScalingPlanResponse();
   factory UpdateScalingPlanResponse.fromJson(Map<String, dynamic> _) {
     return UpdateScalingPlanResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

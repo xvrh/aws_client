@@ -1030,6 +1030,28 @@ class AffectedEntity {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final entityArn = this.entityArn;
+    final entityUrl = this.entityUrl;
+    final entityValue = this.entityValue;
+    final eventArn = this.eventArn;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final statusCode = this.statusCode;
+    final tags = this.tags;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (entityArn != null) 'entityArn': entityArn,
+      if (entityUrl != null) 'entityUrl': entityUrl,
+      if (entityValue != null) 'entityValue': entityValue,
+      if (eventArn != null) 'eventArn': eventArn,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A range of dates and times that is used by the <a
@@ -1055,6 +1077,13 @@ class DateTimeRange {
     this.from,
     this.to,
   });
+  factory DateTimeRange.fromJson(Map<String, dynamic> json) {
+    return DateTimeRange(
+      from: timeStampFromJson(json['from']),
+      to: timeStampFromJson(json['to']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final from = this.from;
     final to = this.to;
@@ -1115,6 +1144,17 @@ class DescribeAffectedAccountsForOrganizationResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final affectedAccounts = this.affectedAccounts;
+    final eventScopeCode = this.eventScopeCode;
+    final nextToken = this.nextToken;
+    return {
+      if (affectedAccounts != null) 'affectedAccounts': affectedAccounts,
+      if (eventScopeCode != null) 'eventScopeCode': eventScopeCode.toValue(),
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAffectedEntitiesForOrganizationResponse {
@@ -1156,6 +1196,17 @@ class DescribeAffectedEntitiesForOrganizationResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final failedSet = this.failedSet;
+    final nextToken = this.nextToken;
+    return {
+      if (entities != null) 'entities': entities,
+      if (failedSet != null) 'failedSet': failedSet,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAffectedEntitiesResponse {
@@ -1182,6 +1233,15 @@ class DescribeAffectedEntitiesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final nextToken = this.nextToken;
+    return {
+      if (entities != null) 'entities': entities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeEntityAggregatesResponse {
@@ -1198,6 +1258,13 @@ class DescribeEntityAggregatesResponse {
           .map((e) => EntityAggregate.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entityAggregates = this.entityAggregates;
+    return {
+      if (entityAggregates != null) 'entityAggregates': entityAggregates,
+    };
   }
 }
 
@@ -1225,6 +1292,15 @@ class DescribeEventAggregatesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventAggregates = this.eventAggregates;
+    final nextToken = this.nextToken;
+    return {
+      if (eventAggregates != null) 'eventAggregates': eventAggregates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1254,6 +1330,15 @@ class DescribeEventDetailsForOrganizationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedSet = this.failedSet;
+    final successfulSet = this.successfulSet;
+    return {
+      if (failedSet != null) 'failedSet': failedSet,
+      if (successfulSet != null) 'successfulSet': successfulSet,
+    };
+  }
 }
 
 class DescribeEventDetailsResponse {
@@ -1278,6 +1363,15 @@ class DescribeEventDetailsResponse {
           .map((e) => EventDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedSet = this.failedSet;
+    final successfulSet = this.successfulSet;
+    return {
+      if (failedSet != null) 'failedSet': failedSet,
+      if (successfulSet != null) 'successfulSet': successfulSet,
+    };
   }
 }
 
@@ -1310,6 +1404,15 @@ class DescribeEventTypesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTypes = this.eventTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (eventTypes != null) 'eventTypes': eventTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeEventsForOrganizationResponse {
@@ -1337,6 +1440,15 @@ class DescribeEventsForOrganizationResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'events': events,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeEventsResponse {
@@ -1363,6 +1475,15 @@ class DescribeEventsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'events': events,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeHealthServiceStatusForOrganizationResponse {
@@ -1381,6 +1502,16 @@ class DescribeHealthServiceStatusForOrganizationResponse {
       healthServiceAccessStatusForOrganization:
           json['healthServiceAccessStatusForOrganization'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthServiceAccessStatusForOrganization =
+        this.healthServiceAccessStatusForOrganization;
+    return {
+      if (healthServiceAccessStatusForOrganization != null)
+        'healthServiceAccessStatusForOrganization':
+            healthServiceAccessStatusForOrganization,
+    };
   }
 }
 
@@ -1410,6 +1541,15 @@ class EntityAggregate {
       count: json['count'] as int?,
       eventArn: json['eventArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final eventArn = this.eventArn;
+    return {
+      if (count != null) 'count': count,
+      if (eventArn != null) 'eventArn': eventArn,
+    };
   }
 }
 
@@ -1449,6 +1589,36 @@ class EntityFilter {
     this.statusCodes,
     this.tags,
   });
+  factory EntityFilter.fromJson(Map<String, dynamic> json) {
+    return EntityFilter(
+      eventArns: (json['eventArns'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      entityArns: (json['entityArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      entityValues: (json['entityValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      lastUpdatedTimes: (json['lastUpdatedTimes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DateTimeRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      statusCodes: (json['statusCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEntityStatusCode())
+          .toList(),
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as Map<String, dynamic>)
+              .map((k, e) => MapEntry(k, e as String)))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final eventArns = this.eventArns;
     final entityArns = this.entityArns;
@@ -1583,6 +1753,35 @@ class Event {
       statusCode: (json['statusCode'] as String?)?.toEventStatusCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZone = this.availabilityZone;
+    final endTime = this.endTime;
+    final eventScopeCode = this.eventScopeCode;
+    final eventTypeCategory = this.eventTypeCategory;
+    final eventTypeCode = this.eventTypeCode;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final region = this.region;
+    final service = this.service;
+    final startTime = this.startTime;
+    final statusCode = this.statusCode;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (eventScopeCode != null) 'eventScopeCode': eventScopeCode.toValue(),
+      if (eventTypeCategory != null)
+        'eventTypeCategory': eventTypeCategory.toValue(),
+      if (eventTypeCode != null) 'eventTypeCode': eventTypeCode,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (region != null) 'region': region,
+      if (service != null) 'service': service,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+    };
+  }
 }
 
 /// The values used to filter results from the <a
@@ -1607,6 +1806,13 @@ class EventAccountFilter {
     required this.eventArn,
     this.awsAccountId,
   });
+  factory EventAccountFilter.fromJson(Map<String, dynamic> json) {
+    return EventAccountFilter(
+      eventArn: json['eventArn'] as String,
+      awsAccountId: json['awsAccountId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final eventArn = this.eventArn;
     final awsAccountId = this.awsAccountId;
@@ -1637,6 +1843,15 @@ class EventAggregate {
       count: json['count'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregateValue = this.aggregateValue;
+    final count = this.count;
+    return {
+      if (aggregateValue != null) 'aggregateValue': aggregateValue,
+      if (count != null) 'count': count,
+    };
+  }
 }
 
 /// The detailed description of the event. Included in the information returned
@@ -1654,6 +1869,13 @@ class EventDescription {
     return EventDescription(
       latestDescription: json['latestDescription'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final latestDescription = this.latestDescription;
+    return {
+      if (latestDescription != null) 'latestDescription': latestDescription,
+    };
   }
 }
 
@@ -1692,6 +1914,17 @@ class EventDetails {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final eventDescription = this.eventDescription;
+    final eventMetadata = this.eventMetadata;
+    return {
+      if (event != null) 'event': event,
+      if (eventDescription != null) 'eventDescription': eventDescription,
+      if (eventMetadata != null) 'eventMetadata': eventMetadata,
+    };
+  }
 }
 
 /// Error information returned when a <a
@@ -1724,6 +1957,17 @@ class EventDetailsErrorItem {
       errorName: json['errorName'] as String?,
       eventArn: json['eventArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final errorName = this.errorName;
+    final eventArn = this.eventArn;
+    return {
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (errorName != null) 'errorName': errorName,
+      if (eventArn != null) 'eventArn': eventArn,
+    };
   }
 }
 
@@ -1796,6 +2040,64 @@ class EventFilter {
     this.startTimes,
     this.tags,
   });
+  factory EventFilter.fromJson(Map<String, dynamic> json) {
+    return EventFilter(
+      availabilityZones: (json['availabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      endTimes: (json['endTimes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DateTimeRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      entityArns: (json['entityArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      entityValues: (json['entityValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventArns: (json['eventArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventStatusCodes: (json['eventStatusCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventStatusCode())
+          .toList(),
+      eventTypeCategories: (json['eventTypeCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventTypeCategory())
+          .toList(),
+      eventTypeCodes: (json['eventTypeCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      lastUpdatedTimes: (json['lastUpdatedTimes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DateTimeRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      regions: (json['regions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      services: (json['services'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      startTimes: (json['startTimes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DateTimeRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as Map<String, dynamic>)
+              .map((k, e) => MapEntry(k, e as String)))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final availabilityZones = this.availabilityZones;
     final endTimes = this.endTimes;
@@ -1873,6 +2175,17 @@ class EventType {
       service: json['service'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final code = this.code;
+    final service = this.service;
+    return {
+      if (category != null) 'category': category.toValue(),
+      if (code != null) 'code': code,
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 /// The values to use to filter results from the <a
@@ -1895,6 +2208,23 @@ class EventTypeFilter {
     this.eventTypeCodes,
     this.services,
   });
+  factory EventTypeFilter.fromJson(Map<String, dynamic> json) {
+    return EventTypeFilter(
+      eventTypeCategories: (json['eventTypeCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventTypeCategory())
+          .toList(),
+      eventTypeCodes: (json['eventTypeCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      services: (json['services'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final eventTypeCategories = this.eventTypeCategories;
     final eventTypeCodes = this.eventTypeCodes;
@@ -1947,6 +2277,19 @@ class OrganizationAffectedEntitiesErrorItem {
       errorName: json['errorName'] as String?,
       eventArn: json['eventArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final errorMessage = this.errorMessage;
+    final errorName = this.errorName;
+    final eventArn = this.eventArn;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (errorName != null) 'errorName': errorName,
+      if (eventArn != null) 'eventArn': eventArn,
+    };
   }
 }
 
@@ -2040,6 +2383,33 @@ class OrganizationEvent {
       statusCode: (json['statusCode'] as String?)?.toEventStatusCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final endTime = this.endTime;
+    final eventScopeCode = this.eventScopeCode;
+    final eventTypeCategory = this.eventTypeCategory;
+    final eventTypeCode = this.eventTypeCode;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final region = this.region;
+    final service = this.service;
+    final startTime = this.startTime;
+    final statusCode = this.statusCode;
+    return {
+      if (arn != null) 'arn': arn,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (eventScopeCode != null) 'eventScopeCode': eventScopeCode.toValue(),
+      if (eventTypeCategory != null)
+        'eventTypeCategory': eventTypeCategory.toValue(),
+      if (eventTypeCode != null) 'eventTypeCode': eventTypeCode,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (region != null) 'region': region,
+      if (service != null) 'service': service,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+    };
+  }
 }
 
 /// Detailed information about an event. A combination of an <a
@@ -2077,6 +2447,19 @@ class OrganizationEventDetails {
       eventMetadata: (json['eventMetadata'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final event = this.event;
+    final eventDescription = this.eventDescription;
+    final eventMetadata = this.eventMetadata;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (event != null) 'event': event,
+      if (eventDescription != null) 'eventDescription': eventDescription,
+      if (eventMetadata != null) 'eventMetadata': eventMetadata,
+    };
   }
 }
 
@@ -2139,6 +2522,19 @@ class OrganizationEventDetailsErrorItem {
       eventArn: json['eventArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final errorMessage = this.errorMessage;
+    final errorName = this.errorName;
+    final eventArn = this.eventArn;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (errorName != null) 'errorName': errorName,
+      if (eventArn != null) 'eventArn': eventArn,
+    };
+  }
 }
 
 /// The values to filter results from the <a
@@ -2189,6 +2585,53 @@ class OrganizationEventFilter {
     this.services,
     this.startTime,
   });
+  factory OrganizationEventFilter.fromJson(Map<String, dynamic> json) {
+    return OrganizationEventFilter(
+      awsAccountIds: (json['awsAccountIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      endTime: json['endTime'] != null
+          ? DateTimeRange.fromJson(json['endTime'] as Map<String, dynamic>)
+          : null,
+      entityArns: (json['entityArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      entityValues: (json['entityValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventStatusCodes: (json['eventStatusCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventStatusCode())
+          .toList(),
+      eventTypeCategories: (json['eventTypeCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventTypeCategory())
+          .toList(),
+      eventTypeCodes: (json['eventTypeCodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      lastUpdatedTime: json['lastUpdatedTime'] != null
+          ? DateTimeRange.fromJson(
+              json['lastUpdatedTime'] as Map<String, dynamic>)
+          : null,
+      regions: (json['regions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      services: (json['services'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      startTime: json['startTime'] != null
+          ? DateTimeRange.fromJson(json['startTime'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final awsAccountIds = this.awsAccountIds;
     final endTime = this.endTime;

@@ -2894,6 +2894,28 @@ class BotAliasMetadata {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botName = this.botName;
+    final botVersion = this.botVersion;
+    final checksum = this.checksum;
+    final conversationLogs = this.conversationLogs;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    return {
+      if (botName != null) 'botName': botName,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (checksum != null) 'checksum': checksum,
+      if (conversationLogs != null) 'conversationLogs': conversationLogs,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Represents an association between an Amazon Lex bot and an external
@@ -2973,6 +2995,29 @@ class BotChannelAssociation {
       type: (json['type'] as String?)?.toChannelType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botAlias = this.botAlias;
+    final botConfiguration = this.botConfiguration;
+    final botName = this.botName;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final failureReason = this.failureReason;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (botAlias != null) 'botAlias': botAlias,
+      if (botConfiguration != null) 'botConfiguration': botConfiguration,
+      if (botName != null) 'botName': botName,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Provides information about a bot. .
@@ -3015,6 +3060,24 @@ class BotMetadata {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Provides metadata for a built-in intent.
@@ -3041,6 +3104,16 @@ class BuiltinIntentMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final signature = this.signature;
+    final supportedLocales = this.supportedLocales;
+    return {
+      if (signature != null) 'signature': signature,
+      if (supportedLocales != null)
+        'supportedLocales': supportedLocales.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Provides information about a slot used in a built-in intent.
@@ -3055,6 +3128,13 @@ class BuiltinIntentSlot {
     return BuiltinIntentSlot(
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -3081,6 +3161,16 @@ class BuiltinSlotTypeMetadata {
           .map((e) => (e as String).toLocale())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final signature = this.signature;
+    final supportedLocales = this.supportedLocales;
+    return {
+      if (signature != null) 'signature': signature,
+      if (supportedLocales != null)
+        'supportedLocales': supportedLocales.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -3237,6 +3327,16 @@ class ConversationLogsRequest {
     required this.iamRoleArn,
     required this.logSettings,
   });
+  factory ConversationLogsRequest.fromJson(Map<String, dynamic> json) {
+    return ConversationLogsRequest(
+      iamRoleArn: json['iamRoleArn'] as String,
+      logSettings: (json['logSettings'] as List)
+          .whereNotNull()
+          .map((e) => LogSettingsRequest.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final iamRoleArn = this.iamRoleArn;
     final logSettings = this.logSettings;
@@ -3268,6 +3368,15 @@ class ConversationLogsResponse {
           .map((e) => LogSettingsResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iamRoleArn = this.iamRoleArn;
+    final logSettings = this.logSettings;
+    return {
+      if (iamRoleArn != null) 'iamRoleArn': iamRoleArn,
+      if (logSettings != null) 'logSettings': logSettings,
+    };
   }
 }
 
@@ -3409,6 +3518,49 @@ class CreateBotVersionResponse {
       voiceId: json['voiceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortStatement = this.abortStatement;
+    final checksum = this.checksum;
+    final childDirected = this.childDirected;
+    final clarificationPrompt = this.clarificationPrompt;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final detectSentiment = this.detectSentiment;
+    final enableModelImprovements = this.enableModelImprovements;
+    final failureReason = this.failureReason;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final intents = this.intents;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final locale = this.locale;
+    final name = this.name;
+    final status = this.status;
+    final version = this.version;
+    final voiceId = this.voiceId;
+    return {
+      if (abortStatement != null) 'abortStatement': abortStatement,
+      if (checksum != null) 'checksum': checksum,
+      if (childDirected != null) 'childDirected': childDirected,
+      if (clarificationPrompt != null)
+        'clarificationPrompt': clarificationPrompt,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (detectSentiment != null) 'detectSentiment': detectSentiment,
+      if (enableModelImprovements != null)
+        'enableModelImprovements': enableModelImprovements,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (intents != null) 'intents': intents,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (locale != null) 'locale': locale.toValue(),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (version != null) 'version': version,
+      if (voiceId != null) 'voiceId': voiceId,
+    };
+  }
 }
 
 class CreateIntentVersionResponse {
@@ -3549,6 +3701,52 @@ class CreateIntentVersionResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final conclusionStatement = this.conclusionStatement;
+    final confirmationPrompt = this.confirmationPrompt;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final followUpPrompt = this.followUpPrompt;
+    final fulfillmentActivity = this.fulfillmentActivity;
+    final inputContexts = this.inputContexts;
+    final kendraConfiguration = this.kendraConfiguration;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final rejectionStatement = this.rejectionStatement;
+    final sampleUtterances = this.sampleUtterances;
+    final slots = this.slots;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (conclusionStatement != null)
+        'conclusionStatement': conclusionStatement,
+      if (confirmationPrompt != null) 'confirmationPrompt': confirmationPrompt,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (followUpPrompt != null) 'followUpPrompt': followUpPrompt,
+      if (fulfillmentActivity != null)
+        'fulfillmentActivity': fulfillmentActivity,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (rejectionStatement != null) 'rejectionStatement': rejectionStatement,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+      if (slots != null) 'slots': slots,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class CreateSlotTypeVersionResponse {
@@ -3617,6 +3815,35 @@ class CreateSlotTypeVersionResponse {
           ?.toSlotValueSelectionStrategy(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final enumerationValues = this.enumerationValues;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeConfigurations = this.slotTypeConfigurations;
+    final valueSelectionStrategy = this.valueSelectionStrategy;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (enumerationValues != null) 'enumerationValues': enumerationValues,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeConfigurations != null)
+        'slotTypeConfigurations': slotTypeConfigurations,
+      if (valueSelectionStrategy != null)
+        'valueSelectionStrategy': valueSelectionStrategy.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3926,6 +4153,28 @@ class GetBotAliasResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botName = this.botName;
+    final botVersion = this.botVersion;
+    final checksum = this.checksum;
+    final conversationLogs = this.conversationLogs;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    return {
+      if (botName != null) 'botName': botName,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (checksum != null) 'checksum': checksum,
+      if (conversationLogs != null) 'conversationLogs': conversationLogs,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class GetBotAliasesResponse {
@@ -3951,6 +4200,15 @@ class GetBotAliasesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAliases = this.botAliases;
+    final nextToken = this.nextToken;
+    return {
+      if (botAliases != null) 'BotAliases': botAliases,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4024,6 +4282,29 @@ class GetBotChannelAssociationResponse {
       type: (json['type'] as String?)?.toChannelType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botAlias = this.botAlias;
+    final botConfiguration = this.botConfiguration;
+    final botName = this.botName;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final failureReason = this.failureReason;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (botAlias != null) 'botAlias': botAlias,
+      if (botConfiguration != null) 'botConfiguration': botConfiguration,
+      if (botName != null) 'botName': botName,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 class GetBotChannelAssociationsResponse {
@@ -4050,6 +4331,16 @@ class GetBotChannelAssociationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botChannelAssociations = this.botChannelAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (botChannelAssociations != null)
+        'botChannelAssociations': botChannelAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4217,6 +4508,52 @@ class GetBotResponse {
       voiceId: json['voiceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortStatement = this.abortStatement;
+    final checksum = this.checksum;
+    final childDirected = this.childDirected;
+    final clarificationPrompt = this.clarificationPrompt;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final detectSentiment = this.detectSentiment;
+    final enableModelImprovements = this.enableModelImprovements;
+    final failureReason = this.failureReason;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final intents = this.intents;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final locale = this.locale;
+    final name = this.name;
+    final nluIntentConfidenceThreshold = this.nluIntentConfidenceThreshold;
+    final status = this.status;
+    final version = this.version;
+    final voiceId = this.voiceId;
+    return {
+      if (abortStatement != null) 'abortStatement': abortStatement,
+      if (checksum != null) 'checksum': checksum,
+      if (childDirected != null) 'childDirected': childDirected,
+      if (clarificationPrompt != null)
+        'clarificationPrompt': clarificationPrompt,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (detectSentiment != null) 'detectSentiment': detectSentiment,
+      if (enableModelImprovements != null)
+        'enableModelImprovements': enableModelImprovements,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (intents != null) 'intents': intents,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (locale != null) 'locale': locale.toValue(),
+      if (name != null) 'name': name,
+      if (nluIntentConfidenceThreshold != null)
+        'nluIntentConfidenceThreshold': nluIntentConfidenceThreshold,
+      if (status != null) 'status': status.toValue(),
+      if (version != null) 'version': version,
+      if (voiceId != null) 'voiceId': voiceId,
+    };
+  }
 }
 
 class GetBotVersionsResponse {
@@ -4243,6 +4580,15 @@ class GetBotVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bots = this.bots;
+    final nextToken = this.nextToken;
+    return {
+      if (bots != null) 'bots': bots,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetBotsResponse {
@@ -4265,6 +4611,15 @@ class GetBotsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bots = this.bots;
+    final nextToken = this.nextToken;
+    return {
+      if (bots != null) 'bots': bots,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4297,6 +4652,18 @@ class GetBuiltinIntentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final signature = this.signature;
+    final slots = this.slots;
+    final supportedLocales = this.supportedLocales;
+    return {
+      if (signature != null) 'signature': signature,
+      if (slots != null) 'slots': slots,
+      if (supportedLocales != null)
+        'supportedLocales': supportedLocales.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 class GetBuiltinIntentsResponse {
@@ -4323,6 +4690,15 @@ class GetBuiltinIntentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final intents = this.intents;
+    final nextToken = this.nextToken;
+    return {
+      if (intents != null) 'intents': intents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetBuiltinSlotTypesResponse {
@@ -4347,6 +4723,15 @@ class GetBuiltinSlotTypesResponse {
               BuiltinSlotTypeMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final slotTypes = this.slotTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (slotTypes != null) 'slotTypes': slotTypes,
+    };
   }
 }
 
@@ -4408,6 +4793,25 @@ class GetExportResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportStatus = this.exportStatus;
+    final exportType = this.exportType;
+    final failureReason = this.failureReason;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final url = this.url;
+    final version = this.version;
+    return {
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+      if (exportType != null) 'exportType': exportType.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (url != null) 'url': url,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class GetImportResponse {
@@ -4456,6 +4860,25 @@ class GetImportResponse {
       name: json['name'] as String?,
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final failureReason = this.failureReason;
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    final mergeStrategy = this.mergeStrategy;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+      if (mergeStrategy != null) 'mergeStrategy': mergeStrategy.toValue(),
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -4600,6 +5023,52 @@ class GetIntentResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final conclusionStatement = this.conclusionStatement;
+    final confirmationPrompt = this.confirmationPrompt;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final followUpPrompt = this.followUpPrompt;
+    final fulfillmentActivity = this.fulfillmentActivity;
+    final inputContexts = this.inputContexts;
+    final kendraConfiguration = this.kendraConfiguration;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final rejectionStatement = this.rejectionStatement;
+    final sampleUtterances = this.sampleUtterances;
+    final slots = this.slots;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (conclusionStatement != null)
+        'conclusionStatement': conclusionStatement,
+      if (confirmationPrompt != null) 'confirmationPrompt': confirmationPrompt,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (followUpPrompt != null) 'followUpPrompt': followUpPrompt,
+      if (fulfillmentActivity != null)
+        'fulfillmentActivity': fulfillmentActivity,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (rejectionStatement != null) 'rejectionStatement': rejectionStatement,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+      if (slots != null) 'slots': slots,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class GetIntentVersionsResponse {
@@ -4626,6 +5095,15 @@ class GetIntentVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final intents = this.intents;
+    final nextToken = this.nextToken;
+    return {
+      if (intents != null) 'intents': intents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetIntentsResponse {
@@ -4649,6 +5127,15 @@ class GetIntentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final intents = this.intents;
+    final nextToken = this.nextToken;
+    return {
+      if (intents != null) 'intents': intents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4719,6 +5206,35 @@ class GetSlotTypeResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final enumerationValues = this.enumerationValues;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeConfigurations = this.slotTypeConfigurations;
+    final valueSelectionStrategy = this.valueSelectionStrategy;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (enumerationValues != null) 'enumerationValues': enumerationValues,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeConfigurations != null)
+        'slotTypeConfigurations': slotTypeConfigurations,
+      if (valueSelectionStrategy != null)
+        'valueSelectionStrategy': valueSelectionStrategy.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class GetSlotTypeVersionsResponse {
@@ -4745,6 +5261,15 @@ class GetSlotTypeVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final slotTypes = this.slotTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (slotTypes != null) 'slotTypes': slotTypes,
+    };
+  }
 }
 
 class GetSlotTypesResponse {
@@ -4768,6 +5293,15 @@ class GetSlotTypesResponse {
           .map((e) => SlotTypeMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final slotTypes = this.slotTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (slotTypes != null) 'slotTypes': slotTypes,
+    };
   }
 }
 
@@ -4794,6 +5328,15 @@ class GetUtterancesViewResponse {
           .map((e) => UtteranceList.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botName = this.botName;
+    final utterances = this.utterances;
+    return {
+      if (botName != null) 'botName': botName,
+      if (utterances != null) 'utterances': utterances,
+    };
   }
 }
 
@@ -4916,6 +5459,22 @@ class IntentMetadata {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Provides configuration information for the AMAZON.KendraSearchIntent intent.
@@ -4986,6 +5545,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5088,6 +5654,15 @@ class LogSettingsRequest {
     required this.resourceArn,
     this.kmsKeyArn,
   });
+  factory LogSettingsRequest.fromJson(Map<String, dynamic> json) {
+    return LogSettingsRequest(
+      destination: (json['destination'] as String).toDestination(),
+      logType: (json['logType'] as String).toLogType(),
+      resourceArn: json['resourceArn'] as String,
+      kmsKeyArn: json['kmsKeyArn'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final logType = this.logType;
@@ -5138,6 +5713,21 @@ class LogSettingsResponse {
       resourceArn: json['resourceArn'] as String?,
       resourcePrefix: json['resourcePrefix'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final kmsKeyArn = this.kmsKeyArn;
+    final logType = this.logType;
+    final resourceArn = this.resourceArn;
+    final resourcePrefix = this.resourcePrefix;
+    return {
+      if (destination != null) 'destination': destination.toValue(),
+      if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
+      if (logType != null) 'logType': logType.toValue(),
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (resourcePrefix != null) 'resourcePrefix': resourcePrefix,
+    };
   }
 }
 
@@ -5440,6 +6030,30 @@ class PutBotAliasResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botName = this.botName;
+    final botVersion = this.botVersion;
+    final checksum = this.checksum;
+    final conversationLogs = this.conversationLogs;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (botName != null) 'botName': botName,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (checksum != null) 'checksum': checksum,
+      if (conversationLogs != null) 'conversationLogs': conversationLogs,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class PutBotResponse {
@@ -5625,6 +6239,56 @@ class PutBotResponse {
       voiceId: json['voiceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortStatement = this.abortStatement;
+    final checksum = this.checksum;
+    final childDirected = this.childDirected;
+    final clarificationPrompt = this.clarificationPrompt;
+    final createVersion = this.createVersion;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final detectSentiment = this.detectSentiment;
+    final enableModelImprovements = this.enableModelImprovements;
+    final failureReason = this.failureReason;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final intents = this.intents;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final locale = this.locale;
+    final name = this.name;
+    final nluIntentConfidenceThreshold = this.nluIntentConfidenceThreshold;
+    final status = this.status;
+    final tags = this.tags;
+    final version = this.version;
+    final voiceId = this.voiceId;
+    return {
+      if (abortStatement != null) 'abortStatement': abortStatement,
+      if (checksum != null) 'checksum': checksum,
+      if (childDirected != null) 'childDirected': childDirected,
+      if (clarificationPrompt != null)
+        'clarificationPrompt': clarificationPrompt,
+      if (createVersion != null) 'createVersion': createVersion,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (detectSentiment != null) 'detectSentiment': detectSentiment,
+      if (enableModelImprovements != null)
+        'enableModelImprovements': enableModelImprovements,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (intents != null) 'intents': intents,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (locale != null) 'locale': locale.toValue(),
+      if (name != null) 'name': name,
+      if (nluIntentConfidenceThreshold != null)
+        'nluIntentConfidenceThreshold': nluIntentConfidenceThreshold,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (voiceId != null) 'voiceId': voiceId,
+    };
+  }
 }
 
 class PutIntentResponse {
@@ -5778,6 +6442,54 @@ class PutIntentResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final conclusionStatement = this.conclusionStatement;
+    final confirmationPrompt = this.confirmationPrompt;
+    final createVersion = this.createVersion;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final followUpPrompt = this.followUpPrompt;
+    final fulfillmentActivity = this.fulfillmentActivity;
+    final inputContexts = this.inputContexts;
+    final kendraConfiguration = this.kendraConfiguration;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final rejectionStatement = this.rejectionStatement;
+    final sampleUtterances = this.sampleUtterances;
+    final slots = this.slots;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (conclusionStatement != null)
+        'conclusionStatement': conclusionStatement,
+      if (confirmationPrompt != null) 'confirmationPrompt': confirmationPrompt,
+      if (createVersion != null) 'createVersion': createVersion,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (followUpPrompt != null) 'followUpPrompt': followUpPrompt,
+      if (fulfillmentActivity != null)
+        'fulfillmentActivity': fulfillmentActivity,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (rejectionStatement != null) 'rejectionStatement': rejectionStatement,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+      if (slots != null) 'slots': slots,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class PutSlotTypeResponse {
@@ -5854,6 +6566,37 @@ class PutSlotTypeResponse {
           ?.toSlotValueSelectionStrategy(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final createVersion = this.createVersion;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final enumerationValues = this.enumerationValues;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeConfigurations = this.slotTypeConfigurations;
+    final valueSelectionStrategy = this.valueSelectionStrategy;
+    final version = this.version;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (createVersion != null) 'createVersion': createVersion,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (enumerationValues != null) 'enumerationValues': enumerationValues,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeConfigurations != null)
+        'slotTypeConfigurations': slotTypeConfigurations,
+      if (valueSelectionStrategy != null)
+        'valueSelectionStrategy': valueSelectionStrategy.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -6168,6 +6911,22 @@ class SlotTypeMetadata {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Provides a regular expression used to validate the value of a slot.
@@ -6293,6 +7052,25 @@ class StartImportResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    final mergeStrategy = this.mergeStrategy;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+      if (mergeStrategy != null) 'mergeStrategy': mergeStrategy.toValue(),
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6441,12 +7219,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6484,6 +7270,23 @@ class UtteranceData {
       utteranceString: json['utteranceString'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final distinctUsers = this.distinctUsers;
+    final firstUtteredDate = this.firstUtteredDate;
+    final lastUtteredDate = this.lastUtteredDate;
+    final utteranceString = this.utteranceString;
+    return {
+      if (count != null) 'count': count,
+      if (distinctUsers != null) 'distinctUsers': distinctUsers,
+      if (firstUtteredDate != null)
+        'firstUtteredDate': unixTimestampToJson(firstUtteredDate),
+      if (lastUtteredDate != null)
+        'lastUtteredDate': unixTimestampToJson(lastUtteredDate),
+      if (utteranceString != null) 'utteranceString': utteranceString,
+    };
+  }
 }
 
 /// Provides a list of utterances that have been made to a specific version of
@@ -6509,6 +7312,15 @@ class UtteranceList {
           .map((e) => UtteranceData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botVersion = this.botVersion;
+    final utterances = this.utterances;
+    return {
+      if (botVersion != null) 'botVersion': botVersion,
+      if (utterances != null) 'utterances': utterances,
+    };
   }
 }
 

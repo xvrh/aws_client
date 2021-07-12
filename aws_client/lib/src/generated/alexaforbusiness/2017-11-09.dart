@@ -4479,6 +4479,17 @@ class AddressBook {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressBookArn = this.addressBookArn;
+    final description = this.description;
+    final name = this.name;
+    return {
+      if (addressBookArn != null) 'AddressBookArn': addressBookArn,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information related to an address book.
@@ -4504,12 +4515,27 @@ class AddressBookData {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressBookArn = this.addressBookArn;
+    final description = this.description;
+    final name = this.name;
+    return {
+      if (addressBookArn != null) 'AddressBookArn': addressBookArn,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class ApproveSkillResponse {
   ApproveSkillResponse();
   factory ApproveSkillResponse.fromJson(Map<String, dynamic> _) {
     return ApproveSkillResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4519,6 +4545,10 @@ class AssociateContactWithAddressBookResponse {
       Map<String, dynamic> _) {
     return AssociateContactWithAddressBookResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateDeviceWithNetworkProfileResponse {
@@ -4527,6 +4557,10 @@ class AssociateDeviceWithNetworkProfileResponse {
       Map<String, dynamic> _) {
     return AssociateDeviceWithNetworkProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateDeviceWithRoomResponse {
@@ -4534,12 +4568,20 @@ class AssociateDeviceWithRoomResponse {
   factory AssociateDeviceWithRoomResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDeviceWithRoomResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateSkillGroupWithRoomResponse {
   AssociateSkillGroupWithRoomResponse();
   factory AssociateSkillGroupWithRoomResponse.fromJson(Map<String, dynamic> _) {
     return AssociateSkillGroupWithRoomResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4549,12 +4591,20 @@ class AssociateSkillWithSkillGroupResponse {
       Map<String, dynamic> _) {
     return AssociateSkillWithSkillGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateSkillWithUsersResponse {
   AssociateSkillWithUsersResponse();
   factory AssociateSkillWithUsersResponse.fromJson(Map<String, dynamic> _) {
     return AssociateSkillWithUsersResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4585,6 +4635,13 @@ class Audio {
     required this.locale,
     required this.location,
   });
+  factory Audio.fromJson(Map<String, dynamic> json) {
+    return Audio(
+      locale: (json['Locale'] as String).toLocale(),
+      location: json['Location'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final locale = this.locale;
     final location = this.location;
@@ -4632,6 +4689,22 @@ class BusinessReport {
           : null,
       status: (json['Status'] as String?)?.toBusinessReportStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliveryTime = this.deliveryTime;
+    final downloadUrl = this.downloadUrl;
+    final failureCode = this.failureCode;
+    final s3Location = this.s3Location;
+    final status = this.status;
+    return {
+      if (deliveryTime != null)
+        'DeliveryTime': unixTimestampToJson(deliveryTime),
+      if (downloadUrl != null) 'DownloadUrl': downloadUrl,
+      if (failureCode != null) 'FailureCode': failureCode.toValue(),
+      if (s3Location != null) 'S3Location': s3Location,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -4791,6 +4864,15 @@ class BusinessReportS3Location {
       path: json['Path'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final path = this.path;
+    return {
+      if (bucketName != null) 'BucketName': bucketName,
+      if (path != null) 'Path': path,
+    };
+  }
 }
 
 /// The schedule of the usage report.
@@ -4852,6 +4934,27 @@ class BusinessReportSchedule {
       scheduleName: json['ScheduleName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentRange = this.contentRange;
+    final format = this.format;
+    final lastBusinessReport = this.lastBusinessReport;
+    final recurrence = this.recurrence;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final scheduleArn = this.scheduleArn;
+    final scheduleName = this.scheduleName;
+    return {
+      if (contentRange != null) 'ContentRange': contentRange,
+      if (format != null) 'Format': format.toValue(),
+      if (lastBusinessReport != null) 'LastBusinessReport': lastBusinessReport,
+      if (recurrence != null) 'Recurrence': recurrence,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (scheduleArn != null) 'ScheduleArn': scheduleArn,
+      if (scheduleName != null) 'ScheduleName': scheduleName,
+    };
+  }
 }
 
 enum BusinessReportStatus {
@@ -4905,6 +5008,15 @@ class Category {
       categoryId: json['CategoryId'] as int?,
       categoryName: json['CategoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categoryId = this.categoryId;
+    final categoryName = this.categoryName;
+    return {
+      if (categoryId != null) 'CategoryId': categoryId,
+      if (categoryName != null) 'CategoryName': categoryName,
+    };
   }
 }
 
@@ -5013,6 +5125,23 @@ class ConferenceProvider {
           : null,
       type: (json['Type'] as String?)?.toConferenceProviderType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final iPDialIn = this.iPDialIn;
+    final meetingSetting = this.meetingSetting;
+    final name = this.name;
+    final pSTNDialIn = this.pSTNDialIn;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (iPDialIn != null) 'IPDialIn': iPDialIn,
+      if (meetingSetting != null) 'MeetingSetting': meetingSetting,
+      if (name != null) 'Name': name,
+      if (pSTNDialIn != null) 'PSTNDialIn': pSTNDialIn,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5164,6 +5293,25 @@ class Contact {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final displayName = this.displayName;
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumbers = this.phoneNumbers;
+    final sipAddresses = this.sipAddresses;
+    return {
+      if (contactArn != null) 'ContactArn': contactArn,
+      if (displayName != null) 'DisplayName': displayName,
+      if (firstName != null) 'FirstName': firstName,
+      if (lastName != null) 'LastName': lastName,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+      if (sipAddresses != null) 'SipAddresses': sipAddresses,
+    };
+  }
 }
 
 /// Information related to a contact.
@@ -5218,6 +5366,25 @@ class ContactData {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final displayName = this.displayName;
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumbers = this.phoneNumbers;
+    final sipAddresses = this.sipAddresses;
+    return {
+      if (contactArn != null) 'ContactArn': contactArn,
+      if (displayName != null) 'DisplayName': displayName,
+      if (firstName != null) 'FirstName': firstName,
+      if (lastName != null) 'LastName': lastName,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+      if (sipAddresses != null) 'SipAddresses': sipAddresses,
+    };
+  }
 }
 
 /// The content definition. This can contain only one text, SSML, or audio list
@@ -5237,6 +5404,23 @@ class Content {
     this.ssmlList,
     this.textList,
   });
+  factory Content.fromJson(Map<String, dynamic> json) {
+    return Content(
+      audioList: (json['AudioList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Audio.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      ssmlList: (json['SsmlList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Ssml.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      textList: (json['TextList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Text.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final audioList = this.audioList;
     final ssmlList = this.ssmlList;
@@ -5261,6 +5445,13 @@ class CreateAddressBookResponse {
       addressBookArn: json['AddressBookArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressBookArn = this.addressBookArn;
+    return {
+      if (addressBookArn != null) 'AddressBookArn': addressBookArn,
+    };
+  }
 }
 
 class CreateBusinessReportScheduleResponse {
@@ -5276,6 +5467,13 @@ class CreateBusinessReportScheduleResponse {
       scheduleArn: json['ScheduleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scheduleArn = this.scheduleArn;
+    return {
+      if (scheduleArn != null) 'ScheduleArn': scheduleArn,
+    };
+  }
 }
 
 class CreateConferenceProviderResponse {
@@ -5290,6 +5488,14 @@ class CreateConferenceProviderResponse {
       conferenceProviderArn: json['ConferenceProviderArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conferenceProviderArn = this.conferenceProviderArn;
+    return {
+      if (conferenceProviderArn != null)
+        'ConferenceProviderArn': conferenceProviderArn,
+    };
+  }
 }
 
 class CreateContactResponse {
@@ -5303,6 +5509,13 @@ class CreateContactResponse {
     return CreateContactResponse(
       contactArn: json['ContactArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    return {
+      if (contactArn != null) 'ContactArn': contactArn,
+    };
   }
 }
 
@@ -5324,6 +5537,18 @@ class CreateEndOfMeetingReminder {
     required this.reminderAtMinutes,
     required this.reminderType,
   });
+  factory CreateEndOfMeetingReminder.fromJson(Map<String, dynamic> json) {
+    return CreateEndOfMeetingReminder(
+      enabled: json['Enabled'] as bool,
+      reminderAtMinutes: (json['ReminderAtMinutes'] as List)
+          .whereNotNull()
+          .map((e) => e as int)
+          .toList(),
+      reminderType:
+          (json['ReminderType'] as String).toEndOfMeetingReminderType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final reminderAtMinutes = this.reminderAtMinutes;
@@ -5348,6 +5573,13 @@ class CreateGatewayGroupResponse {
       gatewayGroupArn: json['GatewayGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayGroupArn = this.gatewayGroupArn;
+    return {
+      if (gatewayGroupArn != null) 'GatewayGroupArn': gatewayGroupArn,
+    };
+  }
 }
 
 /// Creates settings for the instant booking feature that are applied to a room
@@ -5365,6 +5597,13 @@ class CreateInstantBooking {
     required this.durationInMinutes,
     required this.enabled,
   });
+  factory CreateInstantBooking.fromJson(Map<String, dynamic> json) {
+    return CreateInstantBooking(
+      durationInMinutes: json['DurationInMinutes'] as int,
+      enabled: json['Enabled'] as bool,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final durationInMinutes = this.durationInMinutes;
     final enabled = this.enabled;
@@ -5398,6 +5637,25 @@ class CreateMeetingRoomConfiguration {
     this.requireCheckIn,
     this.roomUtilizationMetricsEnabled,
   });
+  factory CreateMeetingRoomConfiguration.fromJson(Map<String, dynamic> json) {
+    return CreateMeetingRoomConfiguration(
+      endOfMeetingReminder: json['EndOfMeetingReminder'] != null
+          ? CreateEndOfMeetingReminder.fromJson(
+              json['EndOfMeetingReminder'] as Map<String, dynamic>)
+          : null,
+      instantBooking: json['InstantBooking'] != null
+          ? CreateInstantBooking.fromJson(
+              json['InstantBooking'] as Map<String, dynamic>)
+          : null,
+      requireCheckIn: json['RequireCheckIn'] != null
+          ? CreateRequireCheckIn.fromJson(
+              json['RequireCheckIn'] as Map<String, dynamic>)
+          : null,
+      roomUtilizationMetricsEnabled:
+          json['RoomUtilizationMetricsEnabled'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endOfMeetingReminder = this.endOfMeetingReminder;
     final instantBooking = this.instantBooking;
@@ -5426,6 +5684,13 @@ class CreateNetworkProfileResponse {
       networkProfileArn: json['NetworkProfileArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkProfileArn = this.networkProfileArn;
+    return {
+      if (networkProfileArn != null) 'NetworkProfileArn': networkProfileArn,
+    };
+  }
 }
 
 class CreateProfileResponse {
@@ -5439,6 +5704,13 @@ class CreateProfileResponse {
     return CreateProfileResponse(
       profileArn: json['ProfileArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileArn = this.profileArn;
+    return {
+      if (profileArn != null) 'ProfileArn': profileArn,
+    };
   }
 }
 
@@ -5457,6 +5729,13 @@ class CreateRequireCheckIn {
     required this.enabled,
     required this.releaseAfterMinutes,
   });
+  factory CreateRequireCheckIn.fromJson(Map<String, dynamic> json) {
+    return CreateRequireCheckIn(
+      enabled: json['Enabled'] as bool,
+      releaseAfterMinutes: json['ReleaseAfterMinutes'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final releaseAfterMinutes = this.releaseAfterMinutes;
@@ -5479,6 +5758,13 @@ class CreateRoomResponse {
       roomArn: json['RoomArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roomArn = this.roomArn;
+    return {
+      if (roomArn != null) 'RoomArn': roomArn,
+    };
+  }
 }
 
 class CreateSkillGroupResponse {
@@ -5492,6 +5778,13 @@ class CreateSkillGroupResponse {
     return CreateSkillGroupResponse(
       skillGroupArn: json['SkillGroupArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final skillGroupArn = this.skillGroupArn;
+    return {
+      if (skillGroupArn != null) 'SkillGroupArn': skillGroupArn,
+    };
   }
 }
 
@@ -5507,12 +5800,23 @@ class CreateUserResponse {
       userArn: json['UserArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userArn = this.userArn;
+    return {
+      if (userArn != null) 'UserArn': userArn,
+    };
+  }
 }
 
 class DeleteAddressBookResponse {
   DeleteAddressBookResponse();
   factory DeleteAddressBookResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAddressBookResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5522,12 +5826,20 @@ class DeleteBusinessReportScheduleResponse {
       Map<String, dynamic> _) {
     return DeleteBusinessReportScheduleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteConferenceProviderResponse {
   DeleteConferenceProviderResponse();
   factory DeleteConferenceProviderResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConferenceProviderResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5536,12 +5848,20 @@ class DeleteContactResponse {
   factory DeleteContactResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContactResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDeviceResponse {
   DeleteDeviceResponse();
   factory DeleteDeviceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5550,12 +5870,20 @@ class DeleteDeviceUsageDataResponse {
   factory DeleteDeviceUsageDataResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceUsageDataResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteGatewayGroupResponse {
   DeleteGatewayGroupResponse();
   factory DeleteGatewayGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGatewayGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5564,12 +5892,20 @@ class DeleteNetworkProfileResponse {
   factory DeleteNetworkProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteNetworkProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProfileResponse {
   DeleteProfileResponse();
   factory DeleteProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5578,12 +5914,20 @@ class DeleteRoomResponse {
   factory DeleteRoomResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoomResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRoomSkillParameterResponse {
   DeleteRoomSkillParameterResponse();
   factory DeleteRoomSkillParameterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoomSkillParameterResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5592,6 +5936,10 @@ class DeleteSkillAuthorizationResponse {
   factory DeleteSkillAuthorizationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSkillAuthorizationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSkillGroupResponse {
@@ -5599,12 +5947,20 @@ class DeleteSkillGroupResponse {
   factory DeleteSkillGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSkillGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteUserResponse {
   DeleteUserResponse();
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5635,6 +5991,19 @@ class DeveloperInfo {
       privacyPolicy: json['PrivacyPolicy'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final developerName = this.developerName;
+    final email = this.email;
+    final privacyPolicy = this.privacyPolicy;
+    final url = this.url;
+    return {
+      if (developerName != null) 'DeveloperName': developerName,
+      if (email != null) 'Email': email,
+      if (privacyPolicy != null) 'PrivacyPolicy': privacyPolicy,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -5702,6 +6071,31 @@ class Device {
       roomArn: json['RoomArn'] as String?,
       softwareVersion: json['SoftwareVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final deviceSerialNumber = this.deviceSerialNumber;
+    final deviceStatus = this.deviceStatus;
+    final deviceStatusInfo = this.deviceStatusInfo;
+    final deviceType = this.deviceType;
+    final macAddress = this.macAddress;
+    final networkProfileInfo = this.networkProfileInfo;
+    final roomArn = this.roomArn;
+    final softwareVersion = this.softwareVersion;
+    return {
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (deviceSerialNumber != null) 'DeviceSerialNumber': deviceSerialNumber,
+      if (deviceStatus != null) 'DeviceStatus': deviceStatus.toValue(),
+      if (deviceStatusInfo != null) 'DeviceStatusInfo': deviceStatusInfo,
+      if (deviceType != null) 'DeviceType': deviceType,
+      if (macAddress != null) 'MacAddress': macAddress,
+      if (networkProfileInfo != null) 'NetworkProfileInfo': networkProfileInfo,
+      if (roomArn != null) 'RoomArn': roomArn,
+      if (softwareVersion != null) 'SoftwareVersion': softwareVersion,
+    };
   }
 }
 
@@ -5781,6 +6175,37 @@ class DeviceData {
       softwareVersion: json['SoftwareVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final deviceSerialNumber = this.deviceSerialNumber;
+    final deviceStatus = this.deviceStatus;
+    final deviceStatusInfo = this.deviceStatusInfo;
+    final deviceType = this.deviceType;
+    final macAddress = this.macAddress;
+    final networkProfileArn = this.networkProfileArn;
+    final networkProfileName = this.networkProfileName;
+    final roomArn = this.roomArn;
+    final roomName = this.roomName;
+    final softwareVersion = this.softwareVersion;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (deviceSerialNumber != null) 'DeviceSerialNumber': deviceSerialNumber,
+      if (deviceStatus != null) 'DeviceStatus': deviceStatus.toValue(),
+      if (deviceStatusInfo != null) 'DeviceStatusInfo': deviceStatusInfo,
+      if (deviceType != null) 'DeviceType': deviceType,
+      if (macAddress != null) 'MacAddress': macAddress,
+      if (networkProfileArn != null) 'NetworkProfileArn': networkProfileArn,
+      if (networkProfileName != null) 'NetworkProfileName': networkProfileName,
+      if (roomArn != null) 'RoomArn': roomArn,
+      if (roomName != null) 'RoomName': roomName,
+      if (softwareVersion != null) 'SoftwareVersion': softwareVersion,
+    };
+  }
 }
 
 /// The list of device events.
@@ -5805,6 +6230,17 @@ class DeviceEvent {
       type: (json['Type'] as String?)?.toDeviceEventType(),
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (type != null) 'Type': type.toValue(),
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -5859,6 +6295,19 @@ class DeviceNetworkProfileInfo {
           timeStampFromJson(json['CertificateExpirationTime']),
       networkProfileArn: json['NetworkProfileArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateExpirationTime = this.certificateExpirationTime;
+    final networkProfileArn = this.networkProfileArn;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (certificateExpirationTime != null)
+        'CertificateExpirationTime':
+            unixTimestampToJson(certificateExpirationTime),
+      if (networkProfileArn != null) 'NetworkProfileArn': networkProfileArn,
+    };
   }
 }
 
@@ -5922,6 +6371,15 @@ class DeviceStatusDetail {
       code: (json['Code'] as String?)?.toDeviceStatusDetailCode(),
       feature: (json['Feature'] as String?)?.toFeature(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final feature = this.feature;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (feature != null) 'Feature': feature.toValue(),
+    };
   }
 }
 
@@ -6056,6 +6514,21 @@ class DeviceStatusInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionStatus = this.connectionStatus;
+    final connectionStatusUpdatedTime = this.connectionStatusUpdatedTime;
+    final deviceStatusDetails = this.deviceStatusDetails;
+    return {
+      if (connectionStatus != null)
+        'ConnectionStatus': connectionStatus.toValue(),
+      if (connectionStatusUpdatedTime != null)
+        'ConnectionStatusUpdatedTime':
+            unixTimestampToJson(connectionStatusUpdatedTime),
+      if (deviceStatusDetails != null)
+        'DeviceStatusDetails': deviceStatusDetails,
+    };
+  }
 }
 
 enum DeviceUsageType {
@@ -6087,12 +6560,20 @@ class DisassociateContactFromAddressBookResponse {
       Map<String, dynamic> _) {
     return DisassociateContactFromAddressBookResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateDeviceFromRoomResponse {
   DisassociateDeviceFromRoomResponse();
   factory DisassociateDeviceFromRoomResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDeviceFromRoomResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6102,12 +6583,20 @@ class DisassociateSkillFromSkillGroupResponse {
       Map<String, dynamic> _) {
     return DisassociateSkillFromSkillGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateSkillFromUsersResponse {
   DisassociateSkillFromUsersResponse();
   factory DisassociateSkillFromUsersResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateSkillFromUsersResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6116,6 +6605,10 @@ class DisassociateSkillGroupFromRoomResponse {
   factory DisassociateSkillGroupFromRoomResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateSkillGroupFromRoomResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6231,6 +6724,17 @@ class EndOfMeetingReminder {
       reminderType:
           (json['ReminderType'] as String?)?.toEndOfMeetingReminderType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final reminderAtMinutes = this.reminderAtMinutes;
+    final reminderType = this.reminderType;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (reminderAtMinutes != null) 'ReminderAtMinutes': reminderAtMinutes,
+      if (reminderType != null) 'ReminderType': reminderType.toValue(),
+    };
   }
 }
 
@@ -6387,6 +6891,16 @@ class Filter {
     required this.key,
     required this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      key: json['Key'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final values = this.values;
@@ -6401,6 +6915,10 @@ class ForgetSmartHomeAppliancesResponse {
   ForgetSmartHomeAppliancesResponse();
   factory ForgetSmartHomeAppliancesResponse.fromJson(Map<String, dynamic> _) {
     return ForgetSmartHomeAppliancesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6438,6 +6956,21 @@ class Gateway {
       softwareVersion: json['SoftwareVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final gatewayGroupArn = this.gatewayGroupArn;
+    final name = this.name;
+    final softwareVersion = this.softwareVersion;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (gatewayGroupArn != null) 'GatewayGroupArn': gatewayGroupArn,
+      if (name != null) 'Name': name,
+      if (softwareVersion != null) 'SoftwareVersion': softwareVersion,
+    };
+  }
 }
 
 /// The details of the gateway group.
@@ -6463,6 +6996,17 @@ class GatewayGroup {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The summary of a gateway group.
@@ -6487,6 +7031,17 @@ class GatewayGroupSummary {
       description: json['Description'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -6524,6 +7079,21 @@ class GatewaySummary {
       softwareVersion: json['SoftwareVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final gatewayGroupArn = this.gatewayGroupArn;
+    final name = this.name;
+    final softwareVersion = this.softwareVersion;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (gatewayGroupArn != null) 'GatewayGroupArn': gatewayGroupArn,
+      if (name != null) 'Name': name,
+      if (softwareVersion != null) 'SoftwareVersion': softwareVersion,
+    };
+  }
 }
 
 class GetAddressBookResponse {
@@ -6539,6 +7109,13 @@ class GetAddressBookResponse {
           ? AddressBook.fromJson(json['AddressBook'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addressBook = this.addressBook;
+    return {
+      if (addressBook != null) 'AddressBook': addressBook,
+    };
   }
 }
 
@@ -6557,6 +7134,13 @@ class GetConferencePreferenceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final preference = this.preference;
+    return {
+      if (preference != null) 'Preference': preference,
+    };
+  }
 }
 
 class GetConferenceProviderResponse {
@@ -6574,6 +7158,13 @@ class GetConferenceProviderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conferenceProvider = this.conferenceProvider;
+    return {
+      if (conferenceProvider != null) 'ConferenceProvider': conferenceProvider,
+    };
+  }
 }
 
 class GetContactResponse {
@@ -6589,6 +7180,13 @@ class GetContactResponse {
           ? Contact.fromJson(json['Contact'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contact = this.contact;
+    return {
+      if (contact != null) 'Contact': contact,
+    };
   }
 }
 
@@ -6606,6 +7204,13 @@ class GetDeviceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
+  }
 }
 
 class GetGatewayGroupResponse {
@@ -6620,6 +7225,13 @@ class GetGatewayGroupResponse {
           ? GatewayGroup.fromJson(json['GatewayGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayGroup = this.gatewayGroup;
+    return {
+      if (gatewayGroup != null) 'GatewayGroup': gatewayGroup,
+    };
   }
 }
 
@@ -6636,6 +7248,13 @@ class GetGatewayResponse {
           ? Gateway.fromJson(json['Gateway'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gateway = this.gateway;
+    return {
+      if (gateway != null) 'Gateway': gateway,
+    };
   }
 }
 
@@ -6667,6 +7286,17 @@ class GetInvitationConfigurationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactEmail = this.contactEmail;
+    final organizationName = this.organizationName;
+    final privateSkillIds = this.privateSkillIds;
+    return {
+      if (contactEmail != null) 'ContactEmail': contactEmail,
+      if (organizationName != null) 'OrganizationName': organizationName,
+      if (privateSkillIds != null) 'PrivateSkillIds': privateSkillIds,
+    };
+  }
 }
 
 class GetNetworkProfileResponse {
@@ -6684,6 +7314,13 @@ class GetNetworkProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkProfile = this.networkProfile;
+    return {
+      if (networkProfile != null) 'NetworkProfile': networkProfile,
+    };
+  }
 }
 
 class GetProfileResponse {
@@ -6700,6 +7337,13 @@ class GetProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final profile = this.profile;
+    return {
+      if (profile != null) 'Profile': profile,
+    };
+  }
 }
 
 class GetRoomResponse {
@@ -6715,6 +7359,13 @@ class GetRoomResponse {
           ? Room.fromJson(json['Room'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final room = this.room;
+    return {
+      if (room != null) 'Room': room,
+    };
   }
 }
 
@@ -6733,6 +7384,13 @@ class GetRoomSkillParameterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roomSkillParameter = this.roomSkillParameter;
+    return {
+      if (roomSkillParameter != null) 'RoomSkillParameter': roomSkillParameter,
+    };
+  }
 }
 
 class GetSkillGroupResponse {
@@ -6748,6 +7406,13 @@ class GetSkillGroupResponse {
           ? SkillGroup.fromJson(json['SkillGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final skillGroup = this.skillGroup;
+    return {
+      if (skillGroup != null) 'SkillGroup': skillGroup,
+    };
   }
 }
 
@@ -6801,6 +7466,15 @@ class InstantBooking {
       enabled: json['Enabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationInMinutes = this.durationInMinutes;
+    final enabled = this.enabled;
+    return {
+      if (durationInMinutes != null) 'DurationInMinutes': durationInMinutes,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 class ListBusinessReportSchedulesResponse {
@@ -6825,6 +7499,16 @@ class ListBusinessReportSchedulesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final businessReportSchedules = this.businessReportSchedules;
+    final nextToken = this.nextToken;
+    return {
+      if (businessReportSchedules != null)
+        'BusinessReportSchedules': businessReportSchedules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListConferenceProvidersResponse {
@@ -6846,6 +7530,16 @@ class ListConferenceProvidersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conferenceProviders = this.conferenceProviders;
+    final nextToken = this.nextToken;
+    return {
+      if (conferenceProviders != null)
+        'ConferenceProviders': conferenceProviders,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6869,6 +7563,15 @@ class ListDeviceEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceEvents = this.deviceEvents;
+    final nextToken = this.nextToken;
+    return {
+      if (deviceEvents != null) 'DeviceEvents': deviceEvents,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGatewayGroupsResponse {
@@ -6890,6 +7593,15 @@ class ListGatewayGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayGroups = this.gatewayGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (gatewayGroups != null) 'GatewayGroups': gatewayGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6913,6 +7625,15 @@ class ListGatewaysResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gateways = this.gateways;
+    final nextToken = this.nextToken;
+    return {
+      if (gateways != null) 'Gateways': gateways,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSkillsResponse {
@@ -6934,6 +7655,15 @@ class ListSkillsResponse {
           .map((e) => SkillSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final skillSummaries = this.skillSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (skillSummaries != null) 'SkillSummaries': skillSummaries,
+    };
   }
 }
 
@@ -6958,6 +7688,15 @@ class ListSkillsStoreCategoriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categoryList = this.categoryList;
+    final nextToken = this.nextToken;
+    return {
+      if (categoryList != null) 'CategoryList': categoryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSkillsStoreSkillsByCategoryResponse {
@@ -6981,6 +7720,15 @@ class ListSkillsStoreSkillsByCategoryResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final skillsStoreSkills = this.skillsStoreSkills;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (skillsStoreSkills != null) 'SkillsStoreSkills': skillsStoreSkills,
+    };
+  }
 }
 
 class ListSmartHomeAppliancesResponse {
@@ -7003,6 +7751,16 @@ class ListSmartHomeAppliancesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final smartHomeAppliances = this.smartHomeAppliances;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (smartHomeAppliances != null)
+        'SmartHomeAppliances': smartHomeAppliances,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -7024,6 +7782,15 @@ class ListTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7093,6 +7860,21 @@ class MeetingRoomConfiguration {
       roomUtilizationMetricsEnabled:
           json['RoomUtilizationMetricsEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endOfMeetingReminder = this.endOfMeetingReminder;
+    final instantBooking = this.instantBooking;
+    final requireCheckIn = this.requireCheckIn;
+    final roomUtilizationMetricsEnabled = this.roomUtilizationMetricsEnabled;
+    return {
+      if (endOfMeetingReminder != null)
+        'EndOfMeetingReminder': endOfMeetingReminder,
+      if (instantBooking != null) 'InstantBooking': instantBooking,
+      if (requireCheckIn != null) 'RequireCheckIn': requireCheckIn,
+      if (roomUtilizationMetricsEnabled != null)
+        'RoomUtilizationMetricsEnabled': roomUtilizationMetricsEnabled,
+    };
   }
 }
 
@@ -7224,6 +8006,32 @@ class NetworkProfile {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorityArn = this.certificateAuthorityArn;
+    final currentPassword = this.currentPassword;
+    final description = this.description;
+    final eapMethod = this.eapMethod;
+    final networkProfileArn = this.networkProfileArn;
+    final networkProfileName = this.networkProfileName;
+    final nextPassword = this.nextPassword;
+    final securityType = this.securityType;
+    final ssid = this.ssid;
+    final trustAnchors = this.trustAnchors;
+    return {
+      if (certificateAuthorityArn != null)
+        'CertificateAuthorityArn': certificateAuthorityArn,
+      if (currentPassword != null) 'CurrentPassword': currentPassword,
+      if (description != null) 'Description': description,
+      if (eapMethod != null) 'EapMethod': eapMethod.toValue(),
+      if (networkProfileArn != null) 'NetworkProfileArn': networkProfileArn,
+      if (networkProfileName != null) 'NetworkProfileName': networkProfileName,
+      if (nextPassword != null) 'NextPassword': nextPassword,
+      if (securityType != null) 'SecurityType': securityType.toValue(),
+      if (ssid != null) 'Ssid': ssid,
+      if (trustAnchors != null) 'TrustAnchors': trustAnchors,
+    };
+  }
 }
 
 /// The data associated with a network profile.
@@ -7272,6 +8080,26 @@ class NetworkProfileData {
       securityType: (json['SecurityType'] as String?)?.toNetworkSecurityType(),
       ssid: json['Ssid'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorityArn = this.certificateAuthorityArn;
+    final description = this.description;
+    final eapMethod = this.eapMethod;
+    final networkProfileArn = this.networkProfileArn;
+    final networkProfileName = this.networkProfileName;
+    final securityType = this.securityType;
+    final ssid = this.ssid;
+    return {
+      if (certificateAuthorityArn != null)
+        'CertificateAuthorityArn': certificateAuthorityArn,
+      if (description != null) 'Description': description,
+      if (eapMethod != null) 'EapMethod': eapMethod.toValue(),
+      if (networkProfileArn != null) 'NetworkProfileArn': networkProfileArn,
+      if (networkProfileName != null) 'NetworkProfileName': networkProfileName,
+      if (securityType != null) 'SecurityType': securityType.toValue(),
+      if (ssid != null) 'Ssid': ssid,
+    };
   }
 }
 
@@ -7516,6 +8344,42 @@ class Profile {
       wakeWord: (json['WakeWord'] as String?)?.toWakeWord(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final addressBookArn = this.addressBookArn;
+    final dataRetentionOptIn = this.dataRetentionOptIn;
+    final distanceUnit = this.distanceUnit;
+    final isDefault = this.isDefault;
+    final locale = this.locale;
+    final maxVolumeLimit = this.maxVolumeLimit;
+    final meetingRoomConfiguration = this.meetingRoomConfiguration;
+    final pSTNEnabled = this.pSTNEnabled;
+    final profileArn = this.profileArn;
+    final profileName = this.profileName;
+    final setupModeDisabled = this.setupModeDisabled;
+    final temperatureUnit = this.temperatureUnit;
+    final timezone = this.timezone;
+    final wakeWord = this.wakeWord;
+    return {
+      if (address != null) 'Address': address,
+      if (addressBookArn != null) 'AddressBookArn': addressBookArn,
+      if (dataRetentionOptIn != null) 'DataRetentionOptIn': dataRetentionOptIn,
+      if (distanceUnit != null) 'DistanceUnit': distanceUnit.toValue(),
+      if (isDefault != null) 'IsDefault': isDefault,
+      if (locale != null) 'Locale': locale,
+      if (maxVolumeLimit != null) 'MaxVolumeLimit': maxVolumeLimit,
+      if (meetingRoomConfiguration != null)
+        'MeetingRoomConfiguration': meetingRoomConfiguration,
+      if (pSTNEnabled != null) 'PSTNEnabled': pSTNEnabled,
+      if (profileArn != null) 'ProfileArn': profileArn,
+      if (profileName != null) 'ProfileName': profileName,
+      if (setupModeDisabled != null) 'SetupModeDisabled': setupModeDisabled,
+      if (temperatureUnit != null) 'TemperatureUnit': temperatureUnit.toValue(),
+      if (timezone != null) 'Timezone': timezone,
+      if (wakeWord != null) 'WakeWord': wakeWord.toValue(),
+    };
+  }
 }
 
 /// The data of a room profile.
@@ -7573,12 +8437,39 @@ class ProfileData {
       wakeWord: (json['WakeWord'] as String?)?.toWakeWord(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final distanceUnit = this.distanceUnit;
+    final isDefault = this.isDefault;
+    final locale = this.locale;
+    final profileArn = this.profileArn;
+    final profileName = this.profileName;
+    final temperatureUnit = this.temperatureUnit;
+    final timezone = this.timezone;
+    final wakeWord = this.wakeWord;
+    return {
+      if (address != null) 'Address': address,
+      if (distanceUnit != null) 'DistanceUnit': distanceUnit.toValue(),
+      if (isDefault != null) 'IsDefault': isDefault,
+      if (locale != null) 'Locale': locale,
+      if (profileArn != null) 'ProfileArn': profileArn,
+      if (profileName != null) 'ProfileName': profileName,
+      if (temperatureUnit != null) 'TemperatureUnit': temperatureUnit.toValue(),
+      if (timezone != null) 'Timezone': timezone,
+      if (wakeWord != null) 'WakeWord': wakeWord.toValue(),
+    };
+  }
 }
 
 class PutConferencePreferenceResponse {
   PutConferencePreferenceResponse();
   factory PutConferencePreferenceResponse.fromJson(Map<String, dynamic> _) {
     return PutConferencePreferenceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7587,6 +8478,10 @@ class PutInvitationConfigurationResponse {
   factory PutInvitationConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return PutInvitationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutRoomSkillParameterResponse {
@@ -7594,12 +8489,20 @@ class PutRoomSkillParameterResponse {
   factory PutRoomSkillParameterResponse.fromJson(Map<String, dynamic> _) {
     return PutRoomSkillParameterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutSkillAuthorizationResponse {
   PutSkillAuthorizationResponse();
   factory PutSkillAuthorizationResponse.fromJson(Map<String, dynamic> _) {
     return PutSkillAuthorizationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7615,12 +8518,23 @@ class RegisterAVSDeviceResponse {
       deviceArn: json['DeviceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    return {
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+    };
+  }
 }
 
 class RejectSkillResponse {
   RejectSkillResponse();
   factory RejectSkillResponse.fromJson(Map<String, dynamic> _) {
     return RejectSkillResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7644,6 +8558,16 @@ class RequireCheckIn {
       enabled: json['Enabled'] as bool?,
       releaseAfterMinutes: json['ReleaseAfterMinutes'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final releaseAfterMinutes = this.releaseAfterMinutes;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (releaseAfterMinutes != null)
+        'ReleaseAfterMinutes': releaseAfterMinutes,
+    };
   }
 }
 
@@ -7705,12 +8629,28 @@ class ResolveRoomResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roomArn = this.roomArn;
+    final roomName = this.roomName;
+    final roomSkillParameters = this.roomSkillParameters;
+    return {
+      if (roomArn != null) 'RoomArn': roomArn,
+      if (roomName != null) 'RoomName': roomName,
+      if (roomSkillParameters != null)
+        'RoomSkillParameters': roomSkillParameters,
+    };
+  }
 }
 
 class RevokeInvitationResponse {
   RevokeInvitationResponse();
   factory RevokeInvitationResponse.fromJson(Map<String, dynamic> _) {
     return RevokeInvitationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7746,6 +8686,21 @@ class Room {
       roomArn: json['RoomArn'] as String?,
       roomName: json['RoomName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final profileArn = this.profileArn;
+    final providerCalendarId = this.providerCalendarId;
+    final roomArn = this.roomArn;
+    final roomName = this.roomName;
+    return {
+      if (description != null) 'Description': description,
+      if (profileArn != null) 'ProfileArn': profileArn,
+      if (providerCalendarId != null) 'ProviderCalendarId': providerCalendarId,
+      if (roomArn != null) 'RoomArn': roomArn,
+      if (roomName != null) 'RoomName': roomName,
+    };
   }
 }
 
@@ -7786,6 +8741,23 @@ class RoomData {
       roomArn: json['RoomArn'] as String?,
       roomName: json['RoomName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final profileArn = this.profileArn;
+    final profileName = this.profileName;
+    final providerCalendarId = this.providerCalendarId;
+    final roomArn = this.roomArn;
+    final roomName = this.roomName;
+    return {
+      if (description != null) 'Description': description,
+      if (profileArn != null) 'ProfileArn': profileArn,
+      if (profileName != null) 'ProfileName': profileName,
+      if (providerCalendarId != null) 'ProviderCalendarId': providerCalendarId,
+      if (roomArn != null) 'RoomArn': roomArn,
+      if (roomName != null) 'RoomName': roomName,
+    };
   }
 }
 
@@ -7845,6 +8817,17 @@ class SearchAddressBooksResponse {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addressBooks = this.addressBooks;
+    final nextToken = this.nextToken;
+    final totalCount = this.totalCount;
+    return {
+      if (addressBooks != null) 'AddressBooks': addressBooks,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 class SearchContactsResponse {
@@ -7872,6 +8855,17 @@ class SearchContactsResponse {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contacts = this.contacts;
+    final nextToken = this.nextToken;
+    final totalCount = this.totalCount;
+    return {
+      if (contacts != null) 'Contacts': contacts,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 class SearchDevicesResponse {
@@ -7898,6 +8892,17 @@ class SearchDevicesResponse {
       nextToken: json['NextToken'] as String?,
       totalCount: json['TotalCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    final totalCount = this.totalCount;
+    return {
+      if (devices != null) 'Devices': devices,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
   }
 }
 
@@ -7930,6 +8935,17 @@ class SearchNetworkProfilesResponse {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkProfiles = this.networkProfiles;
+    final nextToken = this.nextToken;
+    final totalCount = this.totalCount;
+    return {
+      if (networkProfiles != null) 'NetworkProfiles': networkProfiles,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 class SearchProfilesResponse {
@@ -7956,6 +8972,17 @@ class SearchProfilesResponse {
           .toList(),
       totalCount: json['TotalCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final profiles = this.profiles;
+    final totalCount = this.totalCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (profiles != null) 'Profiles': profiles,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
   }
 }
 
@@ -7984,6 +9011,17 @@ class SearchRoomsResponse {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rooms = this.rooms;
+    final totalCount = this.totalCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (rooms != null) 'Rooms': rooms,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 class SearchSkillGroupsResponse {
@@ -8010,6 +9048,17 @@ class SearchSkillGroupsResponse {
           .toList(),
       totalCount: json['TotalCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final skillGroups = this.skillGroups;
+    final totalCount = this.totalCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (skillGroups != null) 'SkillGroups': skillGroups,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
   }
 }
 
@@ -8038,6 +9087,17 @@ class SearchUsersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final totalCount = this.totalCount;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (totalCount != null) 'TotalCount': totalCount,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 class SendAnnouncementResponse {
@@ -8052,12 +9112,23 @@ class SendAnnouncementResponse {
       announcementArn: json['AnnouncementArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final announcementArn = this.announcementArn;
+    return {
+      if (announcementArn != null) 'AnnouncementArn': announcementArn,
+    };
+  }
 }
 
 class SendInvitationResponse {
   SendInvitationResponse();
   factory SendInvitationResponse.fromJson(Map<String, dynamic> _) {
     return SendInvitationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8191,6 +9262,33 @@ class SkillDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bulletPoints = this.bulletPoints;
+    final developerInfo = this.developerInfo;
+    final endUserLicenseAgreement = this.endUserLicenseAgreement;
+    final genericKeywords = this.genericKeywords;
+    final invocationPhrase = this.invocationPhrase;
+    final newInThisVersionBulletPoints = this.newInThisVersionBulletPoints;
+    final productDescription = this.productDescription;
+    final releaseDate = this.releaseDate;
+    final reviews = this.reviews;
+    final skillTypes = this.skillTypes;
+    return {
+      if (bulletPoints != null) 'BulletPoints': bulletPoints,
+      if (developerInfo != null) 'DeveloperInfo': developerInfo,
+      if (endUserLicenseAgreement != null)
+        'EndUserLicenseAgreement': endUserLicenseAgreement,
+      if (genericKeywords != null) 'GenericKeywords': genericKeywords,
+      if (invocationPhrase != null) 'InvocationPhrase': invocationPhrase,
+      if (newInThisVersionBulletPoints != null)
+        'NewInThisVersionBulletPoints': newInThisVersionBulletPoints,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (releaseDate != null) 'ReleaseDate': releaseDate,
+      if (reviews != null) 'Reviews': reviews,
+      if (skillTypes != null) 'SkillTypes': skillTypes,
+    };
+  }
 }
 
 /// A skill group with attributes.
@@ -8216,6 +9314,17 @@ class SkillGroup {
       skillGroupName: json['SkillGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final skillGroupArn = this.skillGroupArn;
+    final skillGroupName = this.skillGroupName;
+    return {
+      if (description != null) 'Description': description,
+      if (skillGroupArn != null) 'SkillGroupArn': skillGroupArn,
+      if (skillGroupName != null) 'SkillGroupName': skillGroupName,
+    };
+  }
 }
 
 /// The attributes of a skill group.
@@ -8240,6 +9349,17 @@ class SkillGroupData {
       skillGroupArn: json['SkillGroupArn'] as String?,
       skillGroupName: json['SkillGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final skillGroupArn = this.skillGroupArn;
+    final skillGroupName = this.skillGroupName;
+    return {
+      if (description != null) 'Description': description,
+      if (skillGroupArn != null) 'SkillGroupArn': skillGroupArn,
+      if (skillGroupName != null) 'SkillGroupName': skillGroupName,
+    };
   }
 }
 
@@ -8276,6 +9396,21 @@ class SkillSummary {
       skillType: (json['SkillType'] as String?)?.toSkillType(),
       supportsLinking: json['SupportsLinking'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enablementType = this.enablementType;
+    final skillId = this.skillId;
+    final skillName = this.skillName;
+    final skillType = this.skillType;
+    final supportsLinking = this.supportsLinking;
+    return {
+      if (enablementType != null) 'EnablementType': enablementType.toValue(),
+      if (skillId != null) 'SkillId': skillId,
+      if (skillName != null) 'SkillName': skillName,
+      if (skillType != null) 'SkillType': skillType.toValue(),
+      if (supportsLinking != null) 'SupportsLinking': supportsLinking,
+    };
   }
 }
 
@@ -8388,6 +9523,25 @@ class SkillsStoreSkill {
       supportsLinking: json['SupportsLinking'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iconUrl = this.iconUrl;
+    final sampleUtterances = this.sampleUtterances;
+    final shortDescription = this.shortDescription;
+    final skillDetails = this.skillDetails;
+    final skillId = this.skillId;
+    final skillName = this.skillName;
+    final supportsLinking = this.supportsLinking;
+    return {
+      if (iconUrl != null) 'IconUrl': iconUrl,
+      if (sampleUtterances != null) 'SampleUtterances': sampleUtterances,
+      if (shortDescription != null) 'ShortDescription': shortDescription,
+      if (skillDetails != null) 'SkillDetails': skillDetails,
+      if (skillId != null) 'SkillId': skillId,
+      if (skillName != null) 'SkillName': skillName,
+      if (supportsLinking != null) 'SupportsLinking': supportsLinking,
+    };
+  }
 }
 
 /// A smart home appliance that can connect to a central system. Any domestic
@@ -8414,6 +9568,17 @@ class SmartHomeAppliance {
       manufacturerName: json['ManufacturerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final friendlyName = this.friendlyName;
+    final manufacturerName = this.manufacturerName;
+    return {
+      if (description != null) 'Description': description,
+      if (friendlyName != null) 'FriendlyName': friendlyName,
+      if (manufacturerName != null) 'ManufacturerName': manufacturerName,
+    };
+  }
 }
 
 /// An object representing a sort criteria.
@@ -8428,6 +9593,13 @@ class Sort {
     required this.key,
     required this.value,
   });
+  factory Sort.fromJson(Map<String, dynamic> json) {
+    return Sort(
+      key: json['Key'] as String,
+      value: (json['Value'] as String).toSortValue(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -8481,6 +9653,13 @@ class Ssml {
     required this.locale,
     required this.value,
   });
+  factory Ssml.fromJson(Map<String, dynamic> json) {
+    return Ssml(
+      locale: (json['Locale'] as String).toLocale(),
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final locale = this.locale;
     final value = this.value;
@@ -8496,6 +9675,10 @@ class StartDeviceSyncResponse {
   factory StartDeviceSyncResponse.fromJson(Map<String, dynamic> _) {
     return StartDeviceSyncResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartSmartHomeApplianceDiscoveryResponse {
@@ -8503,6 +9686,10 @@ class StartSmartHomeApplianceDiscoveryResponse {
   factory StartSmartHomeApplianceDiscoveryResponse.fromJson(
       Map<String, dynamic> _) {
     return StartSmartHomeApplianceDiscoveryResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8539,6 +9726,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8582,6 +9773,13 @@ class Text {
     required this.locale,
     required this.value,
   });
+  factory Text.fromJson(Map<String, dynamic> json) {
+    return Text(
+      locale: (json['Locale'] as String).toLocale(),
+      value: json['Value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final locale = this.locale;
     final value = this.value;
@@ -8597,12 +9795,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAddressBookResponse {
   UpdateAddressBookResponse();
   factory UpdateAddressBookResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAddressBookResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8612,12 +9818,20 @@ class UpdateBusinessReportScheduleResponse {
       Map<String, dynamic> _) {
     return UpdateBusinessReportScheduleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateConferenceProviderResponse {
   UpdateConferenceProviderResponse();
   factory UpdateConferenceProviderResponse.fromJson(Map<String, dynamic> _) {
     return UpdateConferenceProviderResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8626,12 +9840,20 @@ class UpdateContactResponse {
   factory UpdateContactResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDeviceResponse {
   UpdateDeviceResponse();
   factory UpdateDeviceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8655,6 +9877,18 @@ class UpdateEndOfMeetingReminder {
     this.reminderAtMinutes,
     this.reminderType,
   });
+  factory UpdateEndOfMeetingReminder.fromJson(Map<String, dynamic> json) {
+    return UpdateEndOfMeetingReminder(
+      enabled: json['Enabled'] as bool?,
+      reminderAtMinutes: (json['ReminderAtMinutes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as int)
+          .toList(),
+      reminderType:
+          (json['ReminderType'] as String?)?.toEndOfMeetingReminderType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final reminderAtMinutes = this.reminderAtMinutes;
@@ -8672,12 +9906,20 @@ class UpdateGatewayGroupResponse {
   factory UpdateGatewayGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateGatewayGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateGatewayResponse {
   UpdateGatewayResponse();
   factory UpdateGatewayResponse.fromJson(Map<String, dynamic> _) {
     return UpdateGatewayResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8696,6 +9938,13 @@ class UpdateInstantBooking {
     this.durationInMinutes,
     this.enabled,
   });
+  factory UpdateInstantBooking.fromJson(Map<String, dynamic> json) {
+    return UpdateInstantBooking(
+      durationInMinutes: json['DurationInMinutes'] as int?,
+      enabled: json['Enabled'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final durationInMinutes = this.durationInMinutes;
     final enabled = this.enabled;
@@ -8732,6 +9981,25 @@ class UpdateMeetingRoomConfiguration {
     this.requireCheckIn,
     this.roomUtilizationMetricsEnabled,
   });
+  factory UpdateMeetingRoomConfiguration.fromJson(Map<String, dynamic> json) {
+    return UpdateMeetingRoomConfiguration(
+      endOfMeetingReminder: json['EndOfMeetingReminder'] != null
+          ? UpdateEndOfMeetingReminder.fromJson(
+              json['EndOfMeetingReminder'] as Map<String, dynamic>)
+          : null,
+      instantBooking: json['InstantBooking'] != null
+          ? UpdateInstantBooking.fromJson(
+              json['InstantBooking'] as Map<String, dynamic>)
+          : null,
+      requireCheckIn: json['RequireCheckIn'] != null
+          ? UpdateRequireCheckIn.fromJson(
+              json['RequireCheckIn'] as Map<String, dynamic>)
+          : null,
+      roomUtilizationMetricsEnabled:
+          json['RoomUtilizationMetricsEnabled'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endOfMeetingReminder = this.endOfMeetingReminder;
     final instantBooking = this.instantBooking;
@@ -8753,12 +10021,20 @@ class UpdateNetworkProfileResponse {
   factory UpdateNetworkProfileResponse.fromJson(Map<String, dynamic> _) {
     return UpdateNetworkProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateProfileResponse {
   UpdateProfileResponse();
   factory UpdateProfileResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8777,6 +10053,13 @@ class UpdateRequireCheckIn {
     this.enabled,
     this.releaseAfterMinutes,
   });
+  factory UpdateRequireCheckIn.fromJson(Map<String, dynamic> json) {
+    return UpdateRequireCheckIn(
+      enabled: json['Enabled'] as bool?,
+      releaseAfterMinutes: json['ReleaseAfterMinutes'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final releaseAfterMinutes = this.releaseAfterMinutes;
@@ -8793,12 +10076,20 @@ class UpdateRoomResponse {
   factory UpdateRoomResponse.fromJson(Map<String, dynamic> _) {
     return UpdateRoomResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateSkillGroupResponse {
   UpdateSkillGroupResponse();
   factory UpdateSkillGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSkillGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8840,6 +10131,24 @@ class UserData {
       lastName: json['LastName'] as String?,
       userArn: json['UserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final email = this.email;
+    final enrollmentId = this.enrollmentId;
+    final enrollmentStatus = this.enrollmentStatus;
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    final userArn = this.userArn;
+    return {
+      if (email != null) 'Email': email,
+      if (enrollmentId != null) 'EnrollmentId': enrollmentId,
+      if (enrollmentStatus != null)
+        'EnrollmentStatus': enrollmentStatus.toValue(),
+      if (firstName != null) 'FirstName': firstName,
+      if (lastName != null) 'LastName': lastName,
+      if (userArn != null) 'UserArn': userArn,
+    };
   }
 }
 

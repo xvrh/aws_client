@@ -88,6 +88,22 @@ class InputShape {
     this.description,
     this.name,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      description: json['Description'] as String?,
+      name: json['Name'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final description = this.description;
     final name = this.name;

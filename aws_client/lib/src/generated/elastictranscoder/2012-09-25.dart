@@ -1826,6 +1826,10 @@ class CancelJobResponse {
   factory CancelJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The file format of the output captions. If you leave this value blank,
@@ -2276,6 +2280,37 @@ class CreateJobOutput {
     this.thumbnailPattern,
     this.watermarks,
   });
+  factory CreateJobOutput.fromJson(Map<String, dynamic> json) {
+    return CreateJobOutput(
+      albumArt: json['AlbumArt'] != null
+          ? JobAlbumArt.fromJson(json['AlbumArt'] as Map<String, dynamic>)
+          : null,
+      captions: json['Captions'] != null
+          ? Captions.fromJson(json['Captions'] as Map<String, dynamic>)
+          : null,
+      composition: (json['Composition'] as List?)
+          ?.whereNotNull()
+          .map((e) => Clip.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      encryption: json['Encryption'] != null
+          ? Encryption.fromJson(json['Encryption'] as Map<String, dynamic>)
+          : null,
+      key: json['Key'] as String?,
+      presetId: json['PresetId'] as String?,
+      rotate: json['Rotate'] as String?,
+      segmentDuration: json['SegmentDuration'] as String?,
+      thumbnailEncryption: json['ThumbnailEncryption'] != null
+          ? Encryption.fromJson(
+              json['ThumbnailEncryption'] as Map<String, dynamic>)
+          : null,
+      thumbnailPattern: json['ThumbnailPattern'] as String?,
+      watermarks: (json['Watermarks'] as List?)
+          ?.whereNotNull()
+          .map((e) => JobWatermark.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final albumArt = this.albumArt;
     final captions = this.captions;
@@ -2388,6 +2423,24 @@ class CreateJobPlaylist {
     this.outputKeys,
     this.playReadyDrm,
   });
+  factory CreateJobPlaylist.fromJson(Map<String, dynamic> json) {
+    return CreateJobPlaylist(
+      format: json['Format'] as String?,
+      hlsContentProtection: json['HlsContentProtection'] != null
+          ? HlsContentProtection.fromJson(
+              json['HlsContentProtection'] as Map<String, dynamic>)
+          : null,
+      name: json['Name'] as String?,
+      outputKeys: (json['OutputKeys'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      playReadyDrm: json['PlayReadyDrm'] != null
+          ? PlayReadyDrm.fromJson(json['PlayReadyDrm'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final format = this.format;
     final hlsContentProtection = this.hlsContentProtection;
@@ -2421,6 +2474,13 @@ class CreateJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
+  }
 }
 
 /// When you create a pipeline, Elastic Transcoder returns the values that you
@@ -2453,6 +2513,15 @@ class CreatePipelineResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    final warnings = this.warnings;
+    return {
+      if (pipeline != null) 'Pipeline': pipeline,
+      if (warnings != null) 'Warnings': warnings,
+    };
+  }
 }
 
 /// The <code>CreatePresetResponse</code> structure.
@@ -2479,6 +2548,15 @@ class CreatePresetResponse {
       warning: json['Warning'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final preset = this.preset;
+    final warning = this.warning;
+    return {
+      if (preset != null) 'Preset': preset,
+      if (warning != null) 'Warning': warning,
+    };
+  }
 }
 
 /// The <code>DeletePipelineResponse</code> structure.
@@ -2487,6 +2565,10 @@ class DeletePipelineResponse {
   factory DeletePipelineResponse.fromJson(Map<String, dynamic> _) {
     return DeletePipelineResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The <code>DeletePresetResponse</code> structure.
@@ -2494,6 +2576,10 @@ class DeletePresetResponse {
   DeletePresetResponse();
   factory DeletePresetResponse.fromJson(Map<String, dynamic> _) {
     return DeletePresetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2943,6 +3029,35 @@ class Job {
       userMetadata: (json['UserMetadata'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final input = this.input;
+    final inputs = this.inputs;
+    final output = this.output;
+    final outputKeyPrefix = this.outputKeyPrefix;
+    final outputs = this.outputs;
+    final pipelineId = this.pipelineId;
+    final playlists = this.playlists;
+    final status = this.status;
+    final timing = this.timing;
+    final userMetadata = this.userMetadata;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (input != null) 'Input': input,
+      if (inputs != null) 'Inputs': inputs,
+      if (output != null) 'Output': output,
+      if (outputKeyPrefix != null) 'OutputKeyPrefix': outputKeyPrefix,
+      if (outputs != null) 'Outputs': outputs,
+      if (pipelineId != null) 'PipelineId': pipelineId,
+      if (playlists != null) 'Playlists': playlists,
+      if (status != null) 'Status': status,
+      if (timing != null) 'Timing': timing,
+      if (userMetadata != null) 'UserMetadata': userMetadata,
+    };
   }
 }
 
@@ -3500,6 +3615,55 @@ class JobOutput {
       width: json['Width'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final albumArt = this.albumArt;
+    final appliedColorSpaceConversion = this.appliedColorSpaceConversion;
+    final captions = this.captions;
+    final composition = this.composition;
+    final duration = this.duration;
+    final durationMillis = this.durationMillis;
+    final encryption = this.encryption;
+    final fileSize = this.fileSize;
+    final frameRate = this.frameRate;
+    final height = this.height;
+    final id = this.id;
+    final key = this.key;
+    final presetId = this.presetId;
+    final rotate = this.rotate;
+    final segmentDuration = this.segmentDuration;
+    final status = this.status;
+    final statusDetail = this.statusDetail;
+    final thumbnailEncryption = this.thumbnailEncryption;
+    final thumbnailPattern = this.thumbnailPattern;
+    final watermarks = this.watermarks;
+    final width = this.width;
+    return {
+      if (albumArt != null) 'AlbumArt': albumArt,
+      if (appliedColorSpaceConversion != null)
+        'AppliedColorSpaceConversion': appliedColorSpaceConversion,
+      if (captions != null) 'Captions': captions,
+      if (composition != null) 'Composition': composition,
+      if (duration != null) 'Duration': duration,
+      if (durationMillis != null) 'DurationMillis': durationMillis,
+      if (encryption != null) 'Encryption': encryption,
+      if (fileSize != null) 'FileSize': fileSize,
+      if (frameRate != null) 'FrameRate': frameRate,
+      if (height != null) 'Height': height,
+      if (id != null) 'Id': id,
+      if (key != null) 'Key': key,
+      if (presetId != null) 'PresetId': presetId,
+      if (rotate != null) 'Rotate': rotate,
+      if (segmentDuration != null) 'SegmentDuration': segmentDuration,
+      if (status != null) 'Status': status,
+      if (statusDetail != null) 'StatusDetail': statusDetail,
+      if (thumbnailEncryption != null)
+        'ThumbnailEncryption': thumbnailEncryption,
+      if (thumbnailPattern != null) 'ThumbnailPattern': thumbnailPattern,
+      if (watermarks != null) 'Watermarks': watermarks,
+      if (width != null) 'Width': width,
+    };
+  }
 }
 
 /// Watermarks can be in .png or .jpg format. If you want to display a watermark
@@ -3576,6 +3740,15 @@ class ListJobsByPipelineResponse {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (jobs != null) 'Jobs': jobs,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 /// The <code>ListJobsByStatusResponse</code> structure.
@@ -3601,6 +3774,15 @@ class ListJobsByStatusResponse {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (jobs != null) 'Jobs': jobs,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -3628,6 +3810,15 @@ class ListPipelinesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final pipelines = this.pipelines;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (pipelines != null) 'Pipelines': pipelines,
+    };
+  }
 }
 
 /// The <code>ListPresetsResponse</code> structure.
@@ -3653,6 +3844,15 @@ class ListPresetsResponse {
           .map((e) => Preset.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final presets = this.presets;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (presets != null) 'Presets': presets,
+    };
   }
 }
 
@@ -4048,6 +4248,33 @@ class Pipeline {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final awsKmsKeyArn = this.awsKmsKeyArn;
+    final contentConfig = this.contentConfig;
+    final id = this.id;
+    final inputBucket = this.inputBucket;
+    final name = this.name;
+    final notifications = this.notifications;
+    final outputBucket = this.outputBucket;
+    final role = this.role;
+    final status = this.status;
+    final thumbnailConfig = this.thumbnailConfig;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (awsKmsKeyArn != null) 'AwsKmsKeyArn': awsKmsKeyArn,
+      if (contentConfig != null) 'ContentConfig': contentConfig,
+      if (id != null) 'Id': id,
+      if (inputBucket != null) 'InputBucket': inputBucket,
+      if (name != null) 'Name': name,
+      if (notifications != null) 'Notifications': notifications,
+      if (outputBucket != null) 'OutputBucket': outputBucket,
+      if (role != null) 'Role': role,
+      if (status != null) 'Status': status,
+      if (thumbnailConfig != null) 'ThumbnailConfig': thumbnailConfig,
+    };
+  }
 }
 
 /// The <code>PipelineOutputConfig</code> structure.
@@ -4335,6 +4562,26 @@ class Playlist {
       statusDetail: json['StatusDetail'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final hlsContentProtection = this.hlsContentProtection;
+    final name = this.name;
+    final outputKeys = this.outputKeys;
+    final playReadyDrm = this.playReadyDrm;
+    final status = this.status;
+    final statusDetail = this.statusDetail;
+    return {
+      if (format != null) 'Format': format,
+      if (hlsContentProtection != null)
+        'HlsContentProtection': hlsContentProtection,
+      if (name != null) 'Name': name,
+      if (outputKeys != null) 'OutputKeys': outputKeys,
+      if (playReadyDrm != null) 'PlayReadyDrm': playReadyDrm,
+      if (status != null) 'Status': status,
+      if (statusDetail != null) 'StatusDetail': statusDetail,
+    };
+  }
 }
 
 /// Presets are templates that contain most of the settings for transcoding
@@ -4409,6 +4656,29 @@ class Preset {
           ? VideoParameters.fromJson(json['Video'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final audio = this.audio;
+    final container = this.container;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final thumbnails = this.thumbnails;
+    final type = this.type;
+    final video = this.video;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (audio != null) 'Audio': audio,
+      if (container != null) 'Container': container,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (thumbnails != null) 'Thumbnails': thumbnails,
+      if (type != null) 'Type': type,
+      if (video != null) 'Video': video,
+    };
   }
 }
 
@@ -4693,6 +4963,13 @@ class ReadJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
+  }
 }
 
 /// The <code>ReadPipelineResponse</code> structure.
@@ -4723,6 +5000,15 @@ class ReadPipelineResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    final warnings = this.warnings;
+    return {
+      if (pipeline != null) 'Pipeline': pipeline,
+      if (warnings != null) 'Warnings': warnings,
+    };
+  }
 }
 
 /// The <code>ReadPresetResponse</code> structure.
@@ -4739,6 +5025,13 @@ class ReadPresetResponse {
           ? Preset.fromJson(json['Preset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preset = this.preset;
+    return {
+      if (preset != null) 'Preset': preset,
+    };
   }
 }
 
@@ -4766,6 +5059,15 @@ class TestRoleResponse {
           .toList(),
       success: json['Success'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    final success = this.success;
+    return {
+      if (messages != null) 'Messages': messages,
+      if (success != null) 'Success': success,
+    };
   }
 }
 
@@ -4978,6 +5280,17 @@ class Timing {
       submitTimeMillis: json['SubmitTimeMillis'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finishTimeMillis = this.finishTimeMillis;
+    final startTimeMillis = this.startTimeMillis;
+    final submitTimeMillis = this.submitTimeMillis;
+    return {
+      if (finishTimeMillis != null) 'FinishTimeMillis': finishTimeMillis,
+      if (startTimeMillis != null) 'StartTimeMillis': startTimeMillis,
+      if (submitTimeMillis != null) 'SubmitTimeMillis': submitTimeMillis,
+    };
+  }
 }
 
 /// The <code>UpdatePipelineNotificationsResponse</code> structure.
@@ -4996,6 +5309,13 @@ class UpdatePipelineNotificationsResponse {
           ? Pipeline.fromJson(json['Pipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      if (pipeline != null) 'Pipeline': pipeline,
+    };
   }
 }
 
@@ -5028,6 +5348,15 @@ class UpdatePipelineResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    final warnings = this.warnings;
+    return {
+      if (pipeline != null) 'Pipeline': pipeline,
+      if (warnings != null) 'Warnings': warnings,
+    };
+  }
 }
 
 /// When you update status for a pipeline, Elastic Transcoder returns the values
@@ -5045,6 +5374,13 @@ class UpdatePipelineStatusResponse {
           ? Pipeline.fromJson(json['Pipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      if (pipeline != null) 'Pipeline': pipeline,
+    };
   }
 }
 
@@ -5714,6 +6050,15 @@ class Warning {
       code: json['Code'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code,
+      if (message != null) 'Message': message,
+    };
   }
 }
 

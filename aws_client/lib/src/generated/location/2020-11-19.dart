@@ -2790,6 +2790,10 @@ class AssociateTrackerConsumerResponse {
   factory AssociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
     return AssociateTrackerConsumerResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the tracker resource details.
@@ -2809,6 +2813,15 @@ class BatchDeleteDevicePositionHistoryError {
       error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final error = this.error;
+    return {
+      'DeviceId': deviceId,
+      'Error': error,
+    };
+  }
 }
 
 class BatchDeleteDevicePositionHistoryResponse {
@@ -2827,6 +2840,13 @@ class BatchDeleteDevicePositionHistoryResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'Errors': errors,
+    };
   }
 }
 
@@ -2849,6 +2869,15 @@ class BatchDeleteGeofenceError {
       geofenceId: json['GeofenceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final geofenceId = this.geofenceId;
+    return {
+      'Error': error,
+      'GeofenceId': geofenceId,
+    };
+  }
 }
 
 class BatchDeleteGeofenceResponse {
@@ -2866,6 +2895,13 @@ class BatchDeleteGeofenceResponse {
               BatchDeleteGeofenceError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'Errors': errors,
+    };
   }
 }
 
@@ -2895,6 +2931,17 @@ class BatchEvaluateGeofencesError {
       sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final error = this.error;
+    final sampleTime = this.sampleTime;
+    return {
+      'DeviceId': deviceId,
+      'Error': error,
+      'SampleTime': iso8601ToJson(sampleTime),
+    };
+  }
 }
 
 class BatchEvaluateGeofencesResponse {
@@ -2913,6 +2960,13 @@ class BatchEvaluateGeofencesResponse {
               BatchEvaluateGeofencesError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'Errors': errors,
+    };
   }
 }
 
@@ -2933,6 +2987,15 @@ class BatchGetDevicePositionError {
       deviceId: json['DeviceId'] as String,
       error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final error = this.error;
+    return {
+      'DeviceId': deviceId,
+      'Error': error,
+    };
   }
 }
 
@@ -2962,6 +3025,15 @@ class BatchGetDevicePositionResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devicePositions = this.devicePositions;
+    final errors = this.errors;
+    return {
+      'DevicePositions': devicePositions,
+      'Errors': errors,
+    };
+  }
 }
 
 /// Contains the batch request error details associated with the request.
@@ -2981,6 +3053,15 @@ class BatchItemError {
       code: (json['Code'] as String?)?.toBatchItemErrorCode(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3051,6 +3132,15 @@ class BatchPutGeofenceError {
       geofenceId: json['GeofenceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final geofenceId = this.geofenceId;
+    return {
+      'Error': error,
+      'GeofenceId': geofenceId,
+    };
+  }
 }
 
 /// Contains geofence geometry details.
@@ -3070,6 +3160,14 @@ class BatchPutGeofenceRequestEntry {
     required this.geofenceId,
     required this.geometry,
   });
+  factory BatchPutGeofenceRequestEntry.fromJson(Map<String, dynamic> json) {
+    return BatchPutGeofenceRequestEntry(
+      geofenceId: json['GeofenceId'] as String,
+      geometry:
+          GeofenceGeometry.fromJson(json['Geometry'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final geofenceId = this.geofenceId;
     final geometry = this.geometry;
@@ -3106,6 +3204,15 @@ class BatchPutGeofenceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final successes = this.successes;
+    return {
+      'Errors': errors,
+      'Successes': successes,
+    };
+  }
 }
 
 /// Contains a summary of each geofence that was successfully stored in a given
@@ -3136,6 +3243,17 @@ class BatchPutGeofenceSuccess {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final geofenceId = this.geofenceId;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'GeofenceId': geofenceId,
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 /// Contains error details for each device that failed to update its position.
@@ -3164,6 +3282,17 @@ class BatchUpdateDevicePositionError {
       sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final error = this.error;
+    final sampleTime = this.sampleTime;
+    return {
+      'DeviceId': deviceId,
+      'Error': error,
+      'SampleTime': iso8601ToJson(sampleTime),
+    };
+  }
 }
 
 class BatchUpdateDevicePositionResponse {
@@ -3182,6 +3311,13 @@ class BatchUpdateDevicePositionResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'Errors': errors,
+    };
   }
 }
 
@@ -3206,6 +3342,13 @@ class CalculateRouteCarModeOptions {
     this.avoidFerries,
     this.avoidTolls,
   });
+  factory CalculateRouteCarModeOptions.fromJson(Map<String, dynamic> json) {
+    return CalculateRouteCarModeOptions(
+      avoidFerries: json['AvoidFerries'] as bool?,
+      avoidTolls: json['AvoidTolls'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final avoidFerries = this.avoidFerries;
     final avoidTolls = this.avoidTolls;
@@ -3271,6 +3414,15 @@ class CalculateRouteResponse {
       summary: CalculateRouteSummary.fromJson(
           json['Summary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final legs = this.legs;
+    final summary = this.summary;
+    return {
+      'Legs': legs,
+      'Summary': summary,
+    };
   }
 }
 
@@ -3358,6 +3510,21 @@ class CalculateRouteSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final distance = this.distance;
+    final distanceUnit = this.distanceUnit;
+    final durationSeconds = this.durationSeconds;
+    final routeBBox = this.routeBBox;
+    return {
+      'DataSource': dataSource,
+      'Distance': distance,
+      'DistanceUnit': distanceUnit.toValue(),
+      'DurationSeconds': durationSeconds,
+      'RouteBBox': routeBBox,
+    };
+  }
 }
 
 /// Contains details about additional route preferences for requests that
@@ -3392,6 +3559,19 @@ class CalculateRouteTruckModeOptions {
     this.dimensions,
     this.weight,
   });
+  factory CalculateRouteTruckModeOptions.fromJson(Map<String, dynamic> json) {
+    return CalculateRouteTruckModeOptions(
+      avoidFerries: json['AvoidFerries'] as bool?,
+      avoidTolls: json['AvoidTolls'] as bool?,
+      dimensions: json['Dimensions'] != null
+          ? TruckDimensions.fromJson(json['Dimensions'] as Map<String, dynamic>)
+          : null,
+      weight: json['Weight'] != null
+          ? TruckWeight.fromJson(json['Weight'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final avoidFerries = this.avoidFerries;
     final avoidTolls = this.avoidTolls;
@@ -3438,6 +3618,17 @@ class CreateGeofenceCollectionResponse {
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectionArn = this.collectionArn;
+    final collectionName = this.collectionName;
+    final createTime = this.createTime;
+    return {
+      'CollectionArn': collectionArn,
+      'CollectionName': collectionName,
+      'CreateTime': iso8601ToJson(createTime),
+    };
+  }
 }
 
 class CreateMapResponse {
@@ -3470,6 +3661,17 @@ class CreateMapResponse {
       mapArn: json['MapArn'] as String,
       mapName: json['MapName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final mapArn = this.mapArn;
+    final mapName = this.mapName;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'MapArn': mapArn,
+      'MapName': mapName,
+    };
   }
 }
 
@@ -3504,6 +3706,17 @@ class CreatePlaceIndexResponse {
       indexArn: json['IndexArn'] as String,
       indexName: json['IndexName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final indexArn = this.indexArn;
+    final indexName = this.indexName;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'IndexArn': indexArn,
+      'IndexName': indexName,
+    };
   }
 }
 
@@ -3551,6 +3764,17 @@ class CreateRouteCalculatorResponse {
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final calculatorArn = this.calculatorArn;
+    final calculatorName = this.calculatorName;
+    final createTime = this.createTime;
+    return {
+      'CalculatorArn': calculatorArn,
+      'CalculatorName': calculatorName,
+      'CreateTime': iso8601ToJson(createTime),
+    };
+  }
 }
 
 class CreateTrackerResponse {
@@ -3584,6 +3808,17 @@ class CreateTrackerResponse {
       trackerArn: json['TrackerArn'] as String,
       trackerName: json['TrackerName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final trackerArn = this.trackerArn;
+    final trackerName = this.trackerName;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'TrackerArn': trackerArn,
+      'TrackerName': trackerName,
+    };
   }
 }
 
@@ -3631,12 +3866,20 @@ class DeleteGeofenceCollectionResponse {
   factory DeleteGeofenceCollectionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGeofenceCollectionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteMapResponse {
   DeleteMapResponse();
   factory DeleteMapResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMapResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3645,6 +3888,10 @@ class DeletePlaceIndexResponse {
   factory DeletePlaceIndexResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaceIndexResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRouteCalculatorResponse {
@@ -3652,12 +3899,20 @@ class DeleteRouteCalculatorResponse {
   factory DeleteRouteCalculatorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRouteCalculatorResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTrackerResponse {
   DeleteTrackerResponse();
   factory DeleteTrackerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrackerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3733,6 +3988,30 @@ class DescribeGeofenceCollectionResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectionArn = this.collectionArn;
+    final collectionName = this.collectionName;
+    final createTime = this.createTime;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    final kmsKeyId = this.kmsKeyId;
+    final pricingPlanDataSource = this.pricingPlanDataSource;
+    final tags = this.tags;
+    return {
+      'CollectionArn': collectionArn,
+      'CollectionName': collectionName,
+      'CreateTime': iso8601ToJson(createTime),
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (pricingPlanDataSource != null)
+        'PricingPlanDataSource': pricingPlanDataSource,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeMapResponse {
@@ -3803,6 +4082,29 @@ class DescribeMapResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final description = this.description;
+    final mapArn = this.mapArn;
+    final mapName = this.mapName;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    final tags = this.tags;
+    return {
+      'Configuration': configuration,
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'Description': description,
+      'MapArn': mapArn,
+      'MapName': mapName,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3888,6 +4190,29 @@ class DescribePlaceIndexResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final dataSourceConfiguration = this.dataSourceConfiguration;
+    final description = this.description;
+    final indexArn = this.indexArn;
+    final indexName = this.indexName;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    final tags = this.tags;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'DataSourceConfiguration': dataSourceConfiguration,
+      'Description': description,
+      'IndexArn': indexArn,
+      'IndexName': indexName,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3980,6 +4305,27 @@ class DescribeRouteCalculatorResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final calculatorArn = this.calculatorArn;
+    final calculatorName = this.calculatorName;
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    final tags = this.tags;
+    return {
+      'CalculatorArn': calculatorArn,
+      'CalculatorName': calculatorName,
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeTrackerResponse {
@@ -4053,6 +4399,30 @@ class DescribeTrackerResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final trackerArn = this.trackerArn;
+    final trackerName = this.trackerName;
+    final updateTime = this.updateTime;
+    final kmsKeyId = this.kmsKeyId;
+    final pricingPlanDataSource = this.pricingPlanDataSource;
+    final tags = this.tags;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'TrackerArn': trackerArn,
+      'TrackerName': trackerName,
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (pricingPlanDataSource != null)
+        'PricingPlanDataSource': pricingPlanDataSource,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains the device position details.
@@ -4091,6 +4461,19 @@ class DevicePosition {
       deviceId: json['DeviceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final position = this.position;
+    final receivedTime = this.receivedTime;
+    final sampleTime = this.sampleTime;
+    final deviceId = this.deviceId;
+    return {
+      'Position': position,
+      'ReceivedTime': iso8601ToJson(receivedTime),
+      'SampleTime': iso8601ToJson(sampleTime),
+      if (deviceId != null) 'DeviceId': deviceId,
+    };
+  }
 }
 
 /// Contains the position update details for a device.
@@ -4113,6 +4496,17 @@ class DevicePositionUpdate {
     required this.position,
     required this.sampleTime,
   });
+  factory DevicePositionUpdate.fromJson(Map<String, dynamic> json) {
+    return DevicePositionUpdate(
+      deviceId: json['DeviceId'] as String,
+      position: (json['Position'] as List)
+          .whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+      sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final deviceId = this.deviceId;
     final position = this.position;
@@ -4157,6 +4551,10 @@ class DisassociateTrackerConsumerResponse {
   DisassociateTrackerConsumerResponse();
   factory DisassociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateTrackerConsumerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4253,6 +4651,15 @@ class GetDevicePositionHistoryResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devicePositions = this.devicePositions;
+    final nextToken = this.nextToken;
+    return {
+      'DevicePositions': devicePositions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetDevicePositionResponse {
@@ -4289,6 +4696,19 @@ class GetDevicePositionResponse {
       sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
       deviceId: json['DeviceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final position = this.position;
+    final receivedTime = this.receivedTime;
+    final sampleTime = this.sampleTime;
+    final deviceId = this.deviceId;
+    return {
+      'Position': position,
+      'ReceivedTime': iso8601ToJson(receivedTime),
+      'SampleTime': iso8601ToJson(sampleTime),
+      if (deviceId != null) 'DeviceId': deviceId,
+    };
   }
 }
 
@@ -4348,6 +4768,21 @@ class GetGeofenceResponse {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final geofenceId = this.geofenceId;
+    final geometry = this.geometry;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'GeofenceId': geofenceId,
+      'Geometry': geometry,
+      'Status': status,
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class GetMapGlyphsResponse {
@@ -4362,6 +4797,18 @@ class GetMapGlyphsResponse {
     this.blob,
     this.contentType,
   });
+  factory GetMapGlyphsResponse.fromJson(Map<String, dynamic> json) {
+    return GetMapGlyphsResponse(
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
+  }
 }
 
 class GetMapSpritesResponse {
@@ -4377,6 +4824,18 @@ class GetMapSpritesResponse {
     this.blob,
     this.contentType,
   });
+  factory GetMapSpritesResponse.fromJson(Map<String, dynamic> json) {
+    return GetMapSpritesResponse(
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
+  }
 }
 
 class GetMapStyleDescriptorResponse {
@@ -4391,6 +4850,18 @@ class GetMapStyleDescriptorResponse {
     this.blob,
     this.contentType,
   });
+  factory GetMapStyleDescriptorResponse.fromJson(Map<String, dynamic> json) {
+    return GetMapStyleDescriptorResponse(
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
+  }
 }
 
 class GetMapTileResponse {
@@ -4405,6 +4876,18 @@ class GetMapTileResponse {
     this.blob,
     this.contentType,
   });
+  factory GetMapTileResponse.fromJson(Map<String, dynamic> json) {
+    return GetMapTileResponse(
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
+  }
 }
 
 enum IntendedUse {
@@ -4538,6 +5021,23 @@ class Leg {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distance = this.distance;
+    final durationSeconds = this.durationSeconds;
+    final endPosition = this.endPosition;
+    final startPosition = this.startPosition;
+    final steps = this.steps;
+    final geometry = this.geometry;
+    return {
+      'Distance': distance,
+      'DurationSeconds': durationSeconds,
+      'EndPosition': endPosition,
+      'StartPosition': startPosition,
+      'Steps': steps,
+      if (geometry != null) 'Geometry': geometry,
+    };
+  }
 }
 
 /// Contains the geometry details for each path between a pair of positions.
@@ -4568,6 +5068,13 @@ class LegGeometry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lineString = this.lineString;
+    return {
+      if (lineString != null) 'LineString': lineString,
+    };
+  }
 }
 
 class ListDevicePositionsResponse {
@@ -4594,6 +5101,15 @@ class ListDevicePositionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4625,6 +5141,17 @@ class ListDevicePositionsResponseEntry {
       sampleTime: nonNullableTimeStampFromJson(json['SampleTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final position = this.position;
+    final sampleTime = this.sampleTime;
+    return {
+      'DeviceId': deviceId,
+      'Position': position,
+      'SampleTime': iso8601ToJson(sampleTime),
+    };
+  }
 }
 
 class ListGeofenceCollectionsResponse {
@@ -4648,6 +5175,15 @@ class ListGeofenceCollectionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4697,6 +5233,24 @@ class ListGeofenceCollectionsResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final collectionName = this.collectionName;
+    final createTime = this.createTime;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    final pricingPlanDataSource = this.pricingPlanDataSource;
+    return {
+      'CollectionName': collectionName,
+      'CreateTime': iso8601ToJson(createTime),
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (pricingPlanDataSource != null)
+        'PricingPlanDataSource': pricingPlanDataSource,
+    };
   }
 }
 
@@ -4757,6 +5311,21 @@ class ListGeofenceResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final geofenceId = this.geofenceId;
+    final geometry = this.geometry;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'GeofenceId': geofenceId,
+      'Geometry': geometry,
+      'Status': status,
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class ListGeofencesResponse {
@@ -4781,6 +5350,15 @@ class ListGeofencesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMapsResponse {
@@ -4803,6 +5381,15 @@ class ListMapsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4852,6 +5439,23 @@ class ListMapsResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final description = this.description;
+    final mapName = this.mapName;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'Description': description,
+      'MapName': mapName,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class ListPlaceIndexesResponse {
@@ -4875,6 +5479,15 @@ class ListPlaceIndexesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4937,6 +5550,23 @@ class ListPlaceIndexesResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final description = this.description;
+    final indexName = this.indexName;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'Description': description,
+      'IndexName': indexName,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class ListRouteCalculatorsResponse {
@@ -4960,6 +5590,15 @@ class ListRouteCalculatorsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5035,6 +5674,23 @@ class ListRouteCalculatorsResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final calculatorName = this.calculatorName;
+    final createTime = this.createTime;
+    final dataSource = this.dataSource;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final updateTime = this.updateTime;
+    return {
+      'CalculatorName': calculatorName,
+      'CreateTime': iso8601ToJson(createTime),
+      'DataSource': dataSource,
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5050,6 +5706,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5074,6 +5737,15 @@ class ListTrackerConsumersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumerArns = this.consumerArns;
+    final nextToken = this.nextToken;
+    return {
+      'ConsumerArns': consumerArns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5100,6 +5772,15 @@ class ListTrackersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5148,6 +5829,24 @@ class ListTrackersResponseEntry {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
       pricingPlanDataSource: json['PricingPlanDataSource'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final description = this.description;
+    final pricingPlan = this.pricingPlan;
+    final trackerName = this.trackerName;
+    final updateTime = this.updateTime;
+    final pricingPlanDataSource = this.pricingPlanDataSource;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'Description': description,
+      'PricingPlan': pricingPlan.toValue(),
+      'TrackerName': trackerName,
+      'UpdateTime': iso8601ToJson(updateTime),
+      if (pricingPlanDataSource != null)
+        'PricingPlanDataSource': pricingPlanDataSource,
+    };
   }
 }
 
@@ -5251,6 +5950,31 @@ class Place {
       subRegion: json['SubRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geometry = this.geometry;
+    final addressNumber = this.addressNumber;
+    final country = this.country;
+    final label = this.label;
+    final municipality = this.municipality;
+    final neighborhood = this.neighborhood;
+    final postalCode = this.postalCode;
+    final region = this.region;
+    final street = this.street;
+    final subRegion = this.subRegion;
+    return {
+      'Geometry': geometry,
+      if (addressNumber != null) 'AddressNumber': addressNumber,
+      if (country != null) 'Country': country,
+      if (label != null) 'Label': label,
+      if (municipality != null) 'Municipality': municipality,
+      if (neighborhood != null) 'Neighborhood': neighborhood,
+      if (postalCode != null) 'PostalCode': postalCode,
+      if (region != null) 'Region': region,
+      if (street != null) 'Street': street,
+      if (subRegion != null) 'SubRegion': subRegion,
+    };
+  }
 }
 
 /// Places uses a point geometry to specify a location or a Place.
@@ -5279,6 +6003,13 @@ class PlaceGeometry {
           .map((e) => e as double)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final point = this.point;
+    return {
+      if (point != null) 'Point': point,
+    };
   }
 }
 
@@ -5341,6 +6072,17 @@ class PutGeofenceResponse {
       updateTime: nonNullableTimeStampFromJson(json['UpdateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final geofenceId = this.geofenceId;
+    final updateTime = this.updateTime;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'GeofenceId': geofenceId,
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 /// Specifies a single point of interest, or Place as a result of a search query
@@ -5357,6 +6099,13 @@ class SearchForPositionResult {
       place: Place.fromJson(json['Place'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final place = this.place;
+    return {
+      'Place': place,
+    };
+  }
 }
 
 /// Contains relevant Places returned by calling
@@ -5372,6 +6121,13 @@ class SearchForTextResult {
     return SearchForTextResult(
       place: Place.fromJson(json['Place'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final place = this.place;
+    return {
+      'Place': place,
+    };
   }
 }
 
@@ -5398,6 +6154,15 @@ class SearchPlaceIndexForPositionResponse {
       summary: SearchPlaceIndexForPositionSummary.fromJson(
           json['Summary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final summary = this.summary;
+    return {
+      'Results': results,
+      'Summary': summary,
+    };
   }
 }
 
@@ -5444,6 +6209,17 @@ class SearchPlaceIndexForPositionSummary {
       maxResults: json['MaxResults'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final position = this.position;
+    final maxResults = this.maxResults;
+    return {
+      'DataSource': dataSource,
+      'Position': position,
+      if (maxResults != null) 'MaxResults': maxResults,
+    };
+  }
 }
 
 class SearchPlaceIndexForTextResponse {
@@ -5470,6 +6246,15 @@ class SearchPlaceIndexForTextResponse {
       summary: SearchPlaceIndexForTextSummary.fromJson(
           json['Summary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final summary = this.summary;
+    return {
+      'Results': results,
+      'Summary': summary,
+    };
   }
 }
 
@@ -5547,6 +6332,25 @@ class SearchPlaceIndexForTextSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final text = this.text;
+    final biasPosition = this.biasPosition;
+    final filterBBox = this.filterBBox;
+    final filterCountries = this.filterCountries;
+    final maxResults = this.maxResults;
+    final resultBBox = this.resultBBox;
+    return {
+      'DataSource': dataSource,
+      'Text': text,
+      if (biasPosition != null) 'BiasPosition': biasPosition,
+      if (filterBBox != null) 'FilterBBox': filterBBox,
+      if (filterCountries != null) 'FilterCountries': filterCountries,
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (resultBBox != null) 'ResultBBox': resultBBox,
+    };
+  }
 }
 
 /// Represents an element of a leg within a route. A step contains instructions
@@ -5600,12 +6404,31 @@ class Step {
       geometryOffset: json['GeometryOffset'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distance = this.distance;
+    final durationSeconds = this.durationSeconds;
+    final endPosition = this.endPosition;
+    final startPosition = this.startPosition;
+    final geometryOffset = this.geometryOffset;
+    return {
+      'Distance': distance,
+      'DurationSeconds': durationSeconds,
+      'EndPosition': endPosition,
+      'StartPosition': startPosition,
+      if (geometryOffset != null) 'GeometryOffset': geometryOffset,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5685,6 +6508,15 @@ class TruckDimensions {
     this.unit,
     this.width,
   });
+  factory TruckDimensions.fromJson(Map<String, dynamic> json) {
+    return TruckDimensions(
+      height: json['Height'] as double?,
+      length: json['Length'] as double?,
+      unit: (json['Unit'] as String?)?.toDimensionUnit(),
+      width: json['Width'] as double?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final height = this.height;
     final length = this.length;
@@ -5721,6 +6553,13 @@ class TruckWeight {
     this.total,
     this.unit,
   });
+  factory TruckWeight.fromJson(Map<String, dynamic> json) {
+    return TruckWeight(
+      total: json['Total'] as double?,
+      unit: (json['Unit'] as String?)?.toVehicleWeightUnit(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final total = this.total;
     final unit = this.unit;
@@ -5735,6 +6574,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -5430,12 +5430,29 @@ class AddSourceIdentifierToSubscriptionResult {
   AddSourceIdentifierToSubscriptionResult({
     this.eventSubscription,
   });
+  factory AddSourceIdentifierToSubscriptionResult.fromJson(
+      Map<String, dynamic> json) {
+    return AddSourceIdentifierToSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AddSourceIdentifierToSubscriptionResult.fromXml(_s.XmlElement elem) {
     return AddSourceIdentifierToSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -5473,12 +5490,33 @@ class ApplyPendingMaintenanceActionResult {
   ApplyPendingMaintenanceActionResult({
     this.resourcePendingMaintenanceActions,
   });
+  factory ApplyPendingMaintenanceActionResult.fromJson(
+      Map<String, dynamic> json) {
+    return ApplyPendingMaintenanceActionResult(
+      resourcePendingMaintenanceActions:
+          json['ResourcePendingMaintenanceActions'] != null
+              ? ResourcePendingMaintenanceActions.fromJson(
+                  json['ResourcePendingMaintenanceActions']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory ApplyPendingMaintenanceActionResult.fromXml(_s.XmlElement elem) {
     return ApplyPendingMaintenanceActionResult(
       resourcePendingMaintenanceActions: _s
           .extractXmlChild(elem, 'ResourcePendingMaintenanceActions')
           ?.let((e) => ResourcePendingMaintenanceActions.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePendingMaintenanceActions =
+        this.resourcePendingMaintenanceActions;
+    return {
+      if (resourcePendingMaintenanceActions != null)
+        'ResourcePendingMaintenanceActions': resourcePendingMaintenanceActions,
+    };
   }
 }
 
@@ -5490,10 +5528,23 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+  factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
+    return AvailabilityZone(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory AvailabilityZone.fromXml(_s.XmlElement elem) {
     return AvailabilityZone(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5509,12 +5560,29 @@ class CharacterSet {
     this.characterSetDescription,
     this.characterSetName,
   });
+  factory CharacterSet.fromJson(Map<String, dynamic> json) {
+    return CharacterSet(
+      characterSetDescription: json['CharacterSetDescription'] as String?,
+      characterSetName: json['CharacterSetName'] as String?,
+    );
+  }
+
   factory CharacterSet.fromXml(_s.XmlElement elem) {
     return CharacterSet(
       characterSetDescription:
           _s.extractXmlStringValue(elem, 'CharacterSetDescription'),
       characterSetName: _s.extractXmlStringValue(elem, 'CharacterSetName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final characterSetDescription = this.characterSetDescription;
+    final characterSetName = this.characterSetName;
+    return {
+      if (characterSetDescription != null)
+        'CharacterSetDescription': characterSetDescription,
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+    };
   }
 }
 
@@ -5534,6 +5602,20 @@ class CloudwatchLogsExportConfiguration {
     this.disableLogTypes,
     this.enableLogTypes,
   });
+  factory CloudwatchLogsExportConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return CloudwatchLogsExportConfiguration(
+      disableLogTypes: (json['DisableLogTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      enableLogTypes: (json['EnableLogTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final disableLogTypes = this.disableLogTypes;
     final enableLogTypes = this.enableLogTypes;
@@ -5550,12 +5632,30 @@ class CopyDBClusterParameterGroupResult {
   CopyDBClusterParameterGroupResult({
     this.dBClusterParameterGroup,
   });
+  factory CopyDBClusterParameterGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return CopyDBClusterParameterGroupResult(
+      dBClusterParameterGroup: json['DBClusterParameterGroup'] != null
+          ? DBClusterParameterGroup.fromJson(
+              json['DBClusterParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CopyDBClusterParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CopyDBClusterParameterGroupResult(
       dBClusterParameterGroup: _s
           .extractXmlChild(elem, 'DBClusterParameterGroup')
           ?.let((e) => DBClusterParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    return {
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+    };
   }
 }
 
@@ -5565,12 +5665,28 @@ class CopyDBClusterSnapshotResult {
   CopyDBClusterSnapshotResult({
     this.dBClusterSnapshot,
   });
+  factory CopyDBClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CopyDBClusterSnapshotResult(
+      dBClusterSnapshot: json['DBClusterSnapshot'] != null
+          ? DBClusterSnapshot.fromJson(
+              json['DBClusterSnapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CopyDBClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return CopyDBClusterSnapshotResult(
       dBClusterSnapshot: _s
           .extractXmlChild(elem, 'DBClusterSnapshot')
           ?.let((e) => DBClusterSnapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
   }
 }
 
@@ -5580,12 +5696,28 @@ class CopyDBParameterGroupResult {
   CopyDBParameterGroupResult({
     this.dBParameterGroup,
   });
+  factory CopyDBParameterGroupResult.fromJson(Map<String, dynamic> json) {
+    return CopyDBParameterGroupResult(
+      dBParameterGroup: json['DBParameterGroup'] != null
+          ? DBParameterGroup.fromJson(
+              json['DBParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CopyDBParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CopyDBParameterGroupResult(
       dBParameterGroup: _s
           .extractXmlChild(elem, 'DBParameterGroup')
           ?.let((e) => DBParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroup = this.dBParameterGroup;
+    return {
+      if (dBParameterGroup != null) 'DBParameterGroup': dBParameterGroup,
+    };
   }
 }
 
@@ -5664,6 +5796,29 @@ class CreateDBClusterEndpointOutput {
     this.staticMembers,
     this.status,
   });
+  factory CreateDBClusterEndpointOutput.fromJson(Map<String, dynamic> json) {
+    return CreateDBClusterEndpointOutput(
+      customEndpointType: json['CustomEndpointType'] as String?,
+      dBClusterEndpointArn: json['DBClusterEndpointArn'] as String?,
+      dBClusterEndpointIdentifier:
+          json['DBClusterEndpointIdentifier'] as String?,
+      dBClusterEndpointResourceIdentifier:
+          json['DBClusterEndpointResourceIdentifier'] as String?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      endpoint: json['Endpoint'] as String?,
+      endpointType: json['EndpointType'] as String?,
+      excludedMembers: (json['ExcludedMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      staticMembers: (json['StaticMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory CreateDBClusterEndpointOutput.fromXml(_s.XmlElement elem) {
     return CreateDBClusterEndpointOutput(
       customEndpointType: _s.extractXmlStringValue(elem, 'CustomEndpointType'),
@@ -5686,6 +5841,37 @@ class CreateDBClusterEndpointOutput {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customEndpointType = this.customEndpointType;
+    final dBClusterEndpointArn = this.dBClusterEndpointArn;
+    final dBClusterEndpointIdentifier = this.dBClusterEndpointIdentifier;
+    final dBClusterEndpointResourceIdentifier =
+        this.dBClusterEndpointResourceIdentifier;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final endpoint = this.endpoint;
+    final endpointType = this.endpointType;
+    final excludedMembers = this.excludedMembers;
+    final staticMembers = this.staticMembers;
+    final status = this.status;
+    return {
+      if (customEndpointType != null) 'CustomEndpointType': customEndpointType,
+      if (dBClusterEndpointArn != null)
+        'DBClusterEndpointArn': dBClusterEndpointArn,
+      if (dBClusterEndpointIdentifier != null)
+        'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (dBClusterEndpointResourceIdentifier != null)
+        'DBClusterEndpointResourceIdentifier':
+            dBClusterEndpointResourceIdentifier,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (excludedMembers != null) 'ExcludedMembers': excludedMembers,
+      if (staticMembers != null) 'StaticMembers': staticMembers,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class CreateDBClusterParameterGroupResult {
@@ -5694,12 +5880,30 @@ class CreateDBClusterParameterGroupResult {
   CreateDBClusterParameterGroupResult({
     this.dBClusterParameterGroup,
   });
+  factory CreateDBClusterParameterGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateDBClusterParameterGroupResult(
+      dBClusterParameterGroup: json['DBClusterParameterGroup'] != null
+          ? DBClusterParameterGroup.fromJson(
+              json['DBClusterParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBClusterParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CreateDBClusterParameterGroupResult(
       dBClusterParameterGroup: _s
           .extractXmlChild(elem, 'DBClusterParameterGroup')
           ?.let((e) => DBClusterParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    return {
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+    };
   }
 }
 
@@ -5709,12 +5913,27 @@ class CreateDBClusterResult {
   CreateDBClusterResult({
     this.dBCluster,
   });
+  factory CreateDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return CreateDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBClusterResult.fromXml(_s.XmlElement elem) {
     return CreateDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -5724,12 +5943,28 @@ class CreateDBClusterSnapshotResult {
   CreateDBClusterSnapshotResult({
     this.dBClusterSnapshot,
   });
+  factory CreateDBClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CreateDBClusterSnapshotResult(
+      dBClusterSnapshot: json['DBClusterSnapshot'] != null
+          ? DBClusterSnapshot.fromJson(
+              json['DBClusterSnapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return CreateDBClusterSnapshotResult(
       dBClusterSnapshot: _s
           .extractXmlChild(elem, 'DBClusterSnapshot')
           ?.let((e) => DBClusterSnapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
   }
 }
 
@@ -5739,12 +5974,27 @@ class CreateDBInstanceResult {
   CreateDBInstanceResult({
     this.dBInstance,
   });
+  factory CreateDBInstanceResult.fromJson(Map<String, dynamic> json) {
+    return CreateDBInstanceResult(
+      dBInstance: json['DBInstance'] != null
+          ? DBInstance.fromJson(json['DBInstance'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBInstanceResult.fromXml(_s.XmlElement elem) {
     return CreateDBInstanceResult(
       dBInstance: _s
           .extractXmlChild(elem, 'DBInstance')
           ?.let((e) => DBInstance.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
   }
 }
 
@@ -5754,12 +6004,28 @@ class CreateDBParameterGroupResult {
   CreateDBParameterGroupResult({
     this.dBParameterGroup,
   });
+  factory CreateDBParameterGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateDBParameterGroupResult(
+      dBParameterGroup: json['DBParameterGroup'] != null
+          ? DBParameterGroup.fromJson(
+              json['DBParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CreateDBParameterGroupResult(
       dBParameterGroup: _s
           .extractXmlChild(elem, 'DBParameterGroup')
           ?.let((e) => DBParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroup = this.dBParameterGroup;
+    return {
+      if (dBParameterGroup != null) 'DBParameterGroup': dBParameterGroup,
+    };
   }
 }
 
@@ -5769,12 +6035,28 @@ class CreateDBSubnetGroupResult {
   CreateDBSubnetGroupResult({
     this.dBSubnetGroup,
   });
+  factory CreateDBSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateDBSubnetGroupResult(
+      dBSubnetGroup: json['DBSubnetGroup'] != null
+          ? DBSubnetGroup.fromJson(
+              json['DBSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateDBSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return CreateDBSubnetGroupResult(
       dBSubnetGroup: _s
           .extractXmlChild(elem, 'DBSubnetGroup')
           ?.let((e) => DBSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroup = this.dBSubnetGroup;
+    return {
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+    };
   }
 }
 
@@ -5784,12 +6066,28 @@ class CreateEventSubscriptionResult {
   CreateEventSubscriptionResult({
     this.eventSubscription,
   });
+  factory CreateEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
+    return CreateEventSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateEventSubscriptionResult.fromXml(_s.XmlElement elem) {
     return CreateEventSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -5995,6 +6293,78 @@ class DBCluster {
     this.storageEncrypted,
     this.vpcSecurityGroups,
   });
+  factory DBCluster.fromJson(Map<String, dynamic> json) {
+    return DBCluster(
+      allocatedStorage: json['AllocatedStorage'] as int?,
+      associatedRoles: (json['AssociatedRoles'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBClusterRole.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      automaticRestartTime: timeStampFromJson(json['AutomaticRestartTime']),
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      backupRetentionPeriod: json['BackupRetentionPeriod'] as int?,
+      characterSetName: json['CharacterSetName'] as String?,
+      cloneGroupId: json['CloneGroupId'] as String?,
+      clusterCreateTime: timeStampFromJson(json['ClusterCreateTime']),
+      copyTagsToSnapshot: json['CopyTagsToSnapshot'] as bool?,
+      crossAccountClone: json['CrossAccountClone'] as bool?,
+      dBClusterArn: json['DBClusterArn'] as String?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      dBClusterMembers: (json['DBClusterMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBClusterMember.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBClusterOptionGroupMemberships: (json['DBClusterOptionGroupMemberships']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DBClusterOptionGroupStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBClusterParameterGroup: json['DBClusterParameterGroup'] as String?,
+      dBSubnetGroup: json['DBSubnetGroup'] as String?,
+      databaseName: json['DatabaseName'] as String?,
+      dbClusterResourceId: json['DbClusterResourceId'] as String?,
+      deletionProtection: json['DeletionProtection'] as bool?,
+      earliestRestorableTime: timeStampFromJson(json['EarliestRestorableTime']),
+      enabledCloudwatchLogsExports:
+          (json['EnabledCloudwatchLogsExports'] as List?)
+              ?.whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      endpoint: json['Endpoint'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      hostedZoneId: json['HostedZoneId'] as String?,
+      iAMDatabaseAuthenticationEnabled:
+          json['IAMDatabaseAuthenticationEnabled'] as bool?,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      latestRestorableTime: timeStampFromJson(json['LatestRestorableTime']),
+      masterUsername: json['MasterUsername'] as String?,
+      multiAZ: json['MultiAZ'] as bool?,
+      percentProgress: json['PercentProgress'] as String?,
+      port: json['Port'] as int?,
+      preferredBackupWindow: json['PreferredBackupWindow'] as String?,
+      preferredMaintenanceWindow: json['PreferredMaintenanceWindow'] as String?,
+      readReplicaIdentifiers: (json['ReadReplicaIdentifiers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      readerEndpoint: json['ReaderEndpoint'] as String?,
+      replicationSourceIdentifier:
+          json['ReplicationSourceIdentifier'] as String?,
+      status: json['Status'] as String?,
+      storageEncrypted: json['StorageEncrypted'] as bool?,
+      vpcSecurityGroups: (json['VpcSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              VpcSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DBCluster.fromXml(_s.XmlElement elem) {
     return DBCluster(
       allocatedStorage: _s.extractXmlIntValue(elem, 'AllocatedStorage'),
@@ -6073,6 +6443,108 @@ class DBCluster {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final associatedRoles = this.associatedRoles;
+    final automaticRestartTime = this.automaticRestartTime;
+    final availabilityZones = this.availabilityZones;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final characterSetName = this.characterSetName;
+    final cloneGroupId = this.cloneGroupId;
+    final clusterCreateTime = this.clusterCreateTime;
+    final copyTagsToSnapshot = this.copyTagsToSnapshot;
+    final crossAccountClone = this.crossAccountClone;
+    final dBClusterArn = this.dBClusterArn;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBClusterMembers = this.dBClusterMembers;
+    final dBClusterOptionGroupMemberships =
+        this.dBClusterOptionGroupMemberships;
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    final dBSubnetGroup = this.dBSubnetGroup;
+    final databaseName = this.databaseName;
+    final dbClusterResourceId = this.dbClusterResourceId;
+    final deletionProtection = this.deletionProtection;
+    final earliestRestorableTime = this.earliestRestorableTime;
+    final enabledCloudwatchLogsExports = this.enabledCloudwatchLogsExports;
+    final endpoint = this.endpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final hostedZoneId = this.hostedZoneId;
+    final iAMDatabaseAuthenticationEnabled =
+        this.iAMDatabaseAuthenticationEnabled;
+    final kmsKeyId = this.kmsKeyId;
+    final latestRestorableTime = this.latestRestorableTime;
+    final masterUsername = this.masterUsername;
+    final multiAZ = this.multiAZ;
+    final percentProgress = this.percentProgress;
+    final port = this.port;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final readReplicaIdentifiers = this.readReplicaIdentifiers;
+    final readerEndpoint = this.readerEndpoint;
+    final replicationSourceIdentifier = this.replicationSourceIdentifier;
+    final status = this.status;
+    final storageEncrypted = this.storageEncrypted;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (associatedRoles != null) 'AssociatedRoles': associatedRoles,
+      if (automaticRestartTime != null)
+        'AutomaticRestartTime': unixTimestampToJson(automaticRestartTime),
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+      if (cloneGroupId != null) 'CloneGroupId': cloneGroupId,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': unixTimestampToJson(clusterCreateTime),
+      if (copyTagsToSnapshot != null) 'CopyTagsToSnapshot': copyTagsToSnapshot,
+      if (crossAccountClone != null) 'CrossAccountClone': crossAccountClone,
+      if (dBClusterArn != null) 'DBClusterArn': dBClusterArn,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBClusterMembers != null) 'DBClusterMembers': dBClusterMembers,
+      if (dBClusterOptionGroupMemberships != null)
+        'DBClusterOptionGroupMemberships': dBClusterOptionGroupMemberships,
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (dbClusterResourceId != null)
+        'DbClusterResourceId': dbClusterResourceId,
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (earliestRestorableTime != null)
+        'EarliestRestorableTime': unixTimestampToJson(earliestRestorableTime),
+      if (enabledCloudwatchLogsExports != null)
+        'EnabledCloudwatchLogsExports': enabledCloudwatchLogsExports,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (iAMDatabaseAuthenticationEnabled != null)
+        'IAMDatabaseAuthenticationEnabled': iAMDatabaseAuthenticationEnabled,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (latestRestorableTime != null)
+        'LatestRestorableTime': unixTimestampToJson(latestRestorableTime),
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (percentProgress != null) 'PercentProgress': percentProgress,
+      if (port != null) 'Port': port,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (readReplicaIdentifiers != null)
+        'ReadReplicaIdentifiers': readReplicaIdentifiers,
+      if (readerEndpoint != null) 'ReaderEndpoint': readerEndpoint,
+      if (replicationSourceIdentifier != null)
+        'ReplicationSourceIdentifier': replicationSourceIdentifier,
+      if (status != null) 'Status': status,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 /// This data type represents the information you need to connect to an Amazon
@@ -6150,6 +6622,29 @@ class DBClusterEndpoint {
     this.staticMembers,
     this.status,
   });
+  factory DBClusterEndpoint.fromJson(Map<String, dynamic> json) {
+    return DBClusterEndpoint(
+      customEndpointType: json['CustomEndpointType'] as String?,
+      dBClusterEndpointArn: json['DBClusterEndpointArn'] as String?,
+      dBClusterEndpointIdentifier:
+          json['DBClusterEndpointIdentifier'] as String?,
+      dBClusterEndpointResourceIdentifier:
+          json['DBClusterEndpointResourceIdentifier'] as String?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      endpoint: json['Endpoint'] as String?,
+      endpointType: json['EndpointType'] as String?,
+      excludedMembers: (json['ExcludedMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      staticMembers: (json['StaticMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DBClusterEndpoint.fromXml(_s.XmlElement elem) {
     return DBClusterEndpoint(
       customEndpointType: _s.extractXmlStringValue(elem, 'CustomEndpointType'),
@@ -6172,6 +6667,37 @@ class DBClusterEndpoint {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customEndpointType = this.customEndpointType;
+    final dBClusterEndpointArn = this.dBClusterEndpointArn;
+    final dBClusterEndpointIdentifier = this.dBClusterEndpointIdentifier;
+    final dBClusterEndpointResourceIdentifier =
+        this.dBClusterEndpointResourceIdentifier;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final endpoint = this.endpoint;
+    final endpointType = this.endpointType;
+    final excludedMembers = this.excludedMembers;
+    final staticMembers = this.staticMembers;
+    final status = this.status;
+    return {
+      if (customEndpointType != null) 'CustomEndpointType': customEndpointType,
+      if (dBClusterEndpointArn != null)
+        'DBClusterEndpointArn': dBClusterEndpointArn,
+      if (dBClusterEndpointIdentifier != null)
+        'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (dBClusterEndpointResourceIdentifier != null)
+        'DBClusterEndpointResourceIdentifier':
+            dBClusterEndpointResourceIdentifier,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (excludedMembers != null) 'ExcludedMembers': excludedMembers,
+      if (staticMembers != null) 'StaticMembers': staticMembers,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class DBClusterEndpointMessage {
@@ -6189,6 +6715,16 @@ class DBClusterEndpointMessage {
     this.dBClusterEndpoints,
     this.marker,
   });
+  factory DBClusterEndpointMessage.fromJson(Map<String, dynamic> json) {
+    return DBClusterEndpointMessage(
+      dBClusterEndpoints: (json['DBClusterEndpoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBClusterEndpoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBClusterEndpointMessage.fromXml(_s.XmlElement elem) {
     return DBClusterEndpointMessage(
       dBClusterEndpoints: _s.extractXmlChild(elem, 'DBClusterEndpoints')?.let(
@@ -6198,6 +6734,15 @@ class DBClusterEndpointMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterEndpoints = this.dBClusterEndpoints;
+    final marker = this.marker;
+    return {
+      if (dBClusterEndpoints != null) 'DBClusterEndpoints': dBClusterEndpoints,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6224,6 +6769,16 @@ class DBClusterMember {
     this.isClusterWriter,
     this.promotionTier,
   });
+  factory DBClusterMember.fromJson(Map<String, dynamic> json) {
+    return DBClusterMember(
+      dBClusterParameterGroupStatus:
+          json['DBClusterParameterGroupStatus'] as String?,
+      dBInstanceIdentifier: json['DBInstanceIdentifier'] as String?,
+      isClusterWriter: json['IsClusterWriter'] as bool?,
+      promotionTier: json['PromotionTier'] as int?,
+    );
+  }
+
   factory DBClusterMember.fromXml(_s.XmlElement elem) {
     return DBClusterMember(
       dBClusterParameterGroupStatus:
@@ -6233,6 +6788,21 @@ class DBClusterMember {
       isClusterWriter: _s.extractXmlBoolValue(elem, 'IsClusterWriter'),
       promotionTier: _s.extractXmlIntValue(elem, 'PromotionTier'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupStatus = this.dBClusterParameterGroupStatus;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final isClusterWriter = this.isClusterWriter;
+    final promotionTier = this.promotionTier;
+    return {
+      if (dBClusterParameterGroupStatus != null)
+        'DBClusterParameterGroupStatus': dBClusterParameterGroupStatus,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (isClusterWriter != null) 'IsClusterWriter': isClusterWriter,
+      if (promotionTier != null) 'PromotionTier': promotionTier,
+    };
   }
 }
 
@@ -6248,6 +6818,16 @@ class DBClusterMessage {
     this.dBClusters,
     this.marker,
   });
+  factory DBClusterMessage.fromJson(Map<String, dynamic> json) {
+    return DBClusterMessage(
+      dBClusters: (json['DBClusters'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBCluster.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBClusterMessage.fromXml(_s.XmlElement elem) {
     return DBClusterMessage(
       dBClusters: _s.extractXmlChild(elem, 'DBClusters')?.let((elem) => elem
@@ -6256,6 +6836,15 @@ class DBClusterMessage {
           .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusters = this.dBClusters;
+    final marker = this.marker;
+    return {
+      if (dBClusters != null) 'DBClusters': dBClusters,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6271,12 +6860,29 @@ class DBClusterOptionGroupStatus {
     this.dBClusterOptionGroupName,
     this.status,
   });
+  factory DBClusterOptionGroupStatus.fromJson(Map<String, dynamic> json) {
+    return DBClusterOptionGroupStatus(
+      dBClusterOptionGroupName: json['DBClusterOptionGroupName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DBClusterOptionGroupStatus.fromXml(_s.XmlElement elem) {
     return DBClusterOptionGroupStatus(
       dBClusterOptionGroupName:
           _s.extractXmlStringValue(elem, 'DBClusterOptionGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterOptionGroupName = this.dBClusterOptionGroupName;
+    final status = this.status;
+    return {
+      if (dBClusterOptionGroupName != null)
+        'DBClusterOptionGroupName': dBClusterOptionGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -6305,6 +6911,16 @@ class DBClusterParameterGroup {
     this.dBParameterGroupFamily,
     this.description,
   });
+  factory DBClusterParameterGroup.fromJson(Map<String, dynamic> json) {
+    return DBClusterParameterGroup(
+      dBClusterParameterGroupArn: json['DBClusterParameterGroupArn'] as String?,
+      dBClusterParameterGroupName:
+          json['DBClusterParameterGroupName'] as String?,
+      dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
+      description: json['Description'] as String?,
+    );
+  }
+
   factory DBClusterParameterGroup.fromXml(_s.XmlElement elem) {
     return DBClusterParameterGroup(
       dBClusterParameterGroupArn:
@@ -6315,6 +6931,22 @@ class DBClusterParameterGroup {
           _s.extractXmlStringValue(elem, 'DBParameterGroupFamily'),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupArn = this.dBClusterParameterGroupArn;
+    final dBClusterParameterGroupName = this.dBClusterParameterGroupName;
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final description = this.description;
+    return {
+      if (dBClusterParameterGroupArn != null)
+        'DBClusterParameterGroupArn': dBClusterParameterGroupArn,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -6332,6 +6964,16 @@ class DBClusterParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+  factory DBClusterParameterGroupDetails.fromJson(Map<String, dynamic> json) {
+    return DBClusterParameterGroupDetails(
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DBClusterParameterGroupDetails.fromXml(_s.XmlElement elem) {
     return DBClusterParameterGroupDetails(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -6340,6 +6982,15 @@ class DBClusterParameterGroupDetails {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -6366,11 +7017,27 @@ class DBClusterParameterGroupNameMessage {
   DBClusterParameterGroupNameMessage({
     this.dBClusterParameterGroupName,
   });
+  factory DBClusterParameterGroupNameMessage.fromJson(
+      Map<String, dynamic> json) {
+    return DBClusterParameterGroupNameMessage(
+      dBClusterParameterGroupName:
+          json['DBClusterParameterGroupName'] as String?,
+    );
+  }
+
   factory DBClusterParameterGroupNameMessage.fromXml(_s.XmlElement elem) {
     return DBClusterParameterGroupNameMessage(
       dBClusterParameterGroupName:
           _s.extractXmlStringValue(elem, 'DBClusterParameterGroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupName = this.dBClusterParameterGroupName;
+    return {
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+    };
   }
 }
 
@@ -6388,6 +7055,17 @@ class DBClusterParameterGroupsMessage {
     this.dBClusterParameterGroups,
     this.marker,
   });
+  factory DBClusterParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
+    return DBClusterParameterGroupsMessage(
+      dBClusterParameterGroups: (json['DBClusterParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DBClusterParameterGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBClusterParameterGroupsMessage.fromXml(_s.XmlElement elem) {
     return DBClusterParameterGroupsMessage(
       dBClusterParameterGroups: _s
@@ -6398,6 +7076,16 @@ class DBClusterParameterGroupsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroups = this.dBClusterParameterGroups;
+    final marker = this.marker;
+    return {
+      if (dBClusterParameterGroups != null)
+        'DBClusterParameterGroups': dBClusterParameterGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6438,12 +7126,31 @@ class DBClusterRole {
     this.roleArn,
     this.status,
   });
+  factory DBClusterRole.fromJson(Map<String, dynamic> json) {
+    return DBClusterRole(
+      featureName: json['FeatureName'] as String?,
+      roleArn: json['RoleArn'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DBClusterRole.fromXml(_s.XmlElement elem) {
     return DBClusterRole(
       featureName: _s.extractXmlStringValue(elem, 'FeatureName'),
       roleArn: _s.extractXmlStringValue(elem, 'RoleArn'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final featureName = this.featureName;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (featureName != null) 'FeatureName': featureName,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -6558,6 +7265,36 @@ class DBClusterSnapshot {
     this.storageEncrypted,
     this.vpcId,
   });
+  factory DBClusterSnapshot.fromJson(Map<String, dynamic> json) {
+    return DBClusterSnapshot(
+      allocatedStorage: json['AllocatedStorage'] as int?,
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      clusterCreateTime: timeStampFromJson(json['ClusterCreateTime']),
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      dBClusterSnapshotArn: json['DBClusterSnapshotArn'] as String?,
+      dBClusterSnapshotIdentifier:
+          json['DBClusterSnapshotIdentifier'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      iAMDatabaseAuthenticationEnabled:
+          json['IAMDatabaseAuthenticationEnabled'] as bool?,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      licenseModel: json['LicenseModel'] as String?,
+      masterUsername: json['MasterUsername'] as String?,
+      percentProgress: json['PercentProgress'] as int?,
+      port: json['Port'] as int?,
+      snapshotCreateTime: timeStampFromJson(json['SnapshotCreateTime']),
+      snapshotType: json['SnapshotType'] as String?,
+      sourceDBClusterSnapshotArn: json['SourceDBClusterSnapshotArn'] as String?,
+      status: json['Status'] as String?,
+      storageEncrypted: json['StorageEncrypted'] as bool?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory DBClusterSnapshot.fromXml(_s.XmlElement elem) {
     return DBClusterSnapshot(
       allocatedStorage: _s.extractXmlIntValue(elem, 'AllocatedStorage'),
@@ -6589,6 +7326,59 @@ class DBClusterSnapshot {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final availabilityZones = this.availabilityZones;
+    final clusterCreateTime = this.clusterCreateTime;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBClusterSnapshotArn = this.dBClusterSnapshotArn;
+    final dBClusterSnapshotIdentifier = this.dBClusterSnapshotIdentifier;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final iAMDatabaseAuthenticationEnabled =
+        this.iAMDatabaseAuthenticationEnabled;
+    final kmsKeyId = this.kmsKeyId;
+    final licenseModel = this.licenseModel;
+    final masterUsername = this.masterUsername;
+    final percentProgress = this.percentProgress;
+    final port = this.port;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    final snapshotType = this.snapshotType;
+    final sourceDBClusterSnapshotArn = this.sourceDBClusterSnapshotArn;
+    final status = this.status;
+    final storageEncrypted = this.storageEncrypted;
+    final vpcId = this.vpcId;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': unixTimestampToJson(clusterCreateTime),
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBClusterSnapshotArn != null)
+        'DBClusterSnapshotArn': dBClusterSnapshotArn,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iAMDatabaseAuthenticationEnabled != null)
+        'IAMDatabaseAuthenticationEnabled': iAMDatabaseAuthenticationEnabled,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (percentProgress != null) 'PercentProgress': percentProgress,
+      if (port != null) 'Port': port,
+      if (snapshotCreateTime != null)
+        'SnapshotCreateTime': unixTimestampToJson(snapshotCreateTime),
+      if (snapshotType != null) 'SnapshotType': snapshotType,
+      if (sourceDBClusterSnapshotArn != null)
+        'SourceDBClusterSnapshotArn': sourceDBClusterSnapshotArn,
+      if (status != null) 'Status': status,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Contains the name and values of a manual DB cluster snapshot attribute.
@@ -6618,12 +7408,31 @@ class DBClusterSnapshotAttribute {
     this.attributeName,
     this.attributeValues,
   });
+  factory DBClusterSnapshotAttribute.fromJson(Map<String, dynamic> json) {
+    return DBClusterSnapshotAttribute(
+      attributeName: json['AttributeName'] as String?,
+      attributeValues: (json['AttributeValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory DBClusterSnapshotAttribute.fromXml(_s.XmlElement elem) {
     return DBClusterSnapshotAttribute(
       attributeName: _s.extractXmlStringValue(elem, 'AttributeName'),
       attributeValues: _s.extractXmlChild(elem, 'AttributeValues')?.let(
           (elem) => _s.extractXmlStringListValues(elem, 'AttributeValue')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValues = this.attributeValues;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeValues != null) 'AttributeValues': attributeValues,
+    };
   }
 }
 
@@ -6645,6 +7454,20 @@ class DBClusterSnapshotAttributesResult {
     this.dBClusterSnapshotAttributes,
     this.dBClusterSnapshotIdentifier,
   });
+  factory DBClusterSnapshotAttributesResult.fromJson(
+      Map<String, dynamic> json) {
+    return DBClusterSnapshotAttributesResult(
+      dBClusterSnapshotAttributes: (json['DBClusterSnapshotAttributes']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DBClusterSnapshotAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBClusterSnapshotIdentifier:
+          json['DBClusterSnapshotIdentifier'] as String?,
+    );
+  }
+
   factory DBClusterSnapshotAttributesResult.fromXml(_s.XmlElement elem) {
     return DBClusterSnapshotAttributesResult(
       dBClusterSnapshotAttributes: _s
@@ -6656,6 +7479,17 @@ class DBClusterSnapshotAttributesResult {
       dBClusterSnapshotIdentifier:
           _s.extractXmlStringValue(elem, 'DBClusterSnapshotIdentifier'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributes = this.dBClusterSnapshotAttributes;
+    final dBClusterSnapshotIdentifier = this.dBClusterSnapshotIdentifier;
+    return {
+      if (dBClusterSnapshotAttributes != null)
+        'DBClusterSnapshotAttributes': dBClusterSnapshotAttributes,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+    };
   }
 }
 
@@ -6673,6 +7507,16 @@ class DBClusterSnapshotMessage {
     this.dBClusterSnapshots,
     this.marker,
   });
+  factory DBClusterSnapshotMessage.fromJson(Map<String, dynamic> json) {
+    return DBClusterSnapshotMessage(
+      dBClusterSnapshots: (json['DBClusterSnapshots'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBClusterSnapshot.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBClusterSnapshotMessage.fromXml(_s.XmlElement elem) {
     return DBClusterSnapshotMessage(
       dBClusterSnapshots: _s.extractXmlChild(elem, 'DBClusterSnapshots')?.let(
@@ -6682,6 +7526,15 @@ class DBClusterSnapshotMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshots = this.dBClusterSnapshots;
+    final marker = this.marker;
+    return {
+      if (dBClusterSnapshots != null) 'DBClusterSnapshots': dBClusterSnapshots,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6742,6 +7595,39 @@ class DBEngineVersion {
     this.supportsReadReplica,
     this.validUpgradeTarget,
   });
+  factory DBEngineVersion.fromJson(Map<String, dynamic> json) {
+    return DBEngineVersion(
+      dBEngineDescription: json['DBEngineDescription'] as String?,
+      dBEngineVersionDescription: json['DBEngineVersionDescription'] as String?,
+      dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
+      defaultCharacterSet: json['DefaultCharacterSet'] != null
+          ? CharacterSet.fromJson(
+              json['DefaultCharacterSet'] as Map<String, dynamic>)
+          : null,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      exportableLogTypes: (json['ExportableLogTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      supportedCharacterSets: (json['SupportedCharacterSets'] as List?)
+          ?.whereNotNull()
+          .map((e) => CharacterSet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      supportedTimezones: (json['SupportedTimezones'] as List?)
+          ?.whereNotNull()
+          .map((e) => Timezone.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      supportsLogExportsToCloudwatchLogs:
+          json['SupportsLogExportsToCloudwatchLogs'] as bool?,
+      supportsReadReplica: json['SupportsReadReplica'] as bool?,
+      validUpgradeTarget: (json['ValidUpgradeTarget'] as List?)
+          ?.whereNotNull()
+          .map((e) => UpgradeTarget.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DBEngineVersion.fromXml(_s.XmlElement elem) {
     return DBEngineVersion(
       dBEngineDescription:
@@ -6779,6 +7665,44 @@ class DBEngineVersion {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBEngineDescription = this.dBEngineDescription;
+    final dBEngineVersionDescription = this.dBEngineVersionDescription;
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final defaultCharacterSet = this.defaultCharacterSet;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final exportableLogTypes = this.exportableLogTypes;
+    final supportedCharacterSets = this.supportedCharacterSets;
+    final supportedTimezones = this.supportedTimezones;
+    final supportsLogExportsToCloudwatchLogs =
+        this.supportsLogExportsToCloudwatchLogs;
+    final supportsReadReplica = this.supportsReadReplica;
+    final validUpgradeTarget = this.validUpgradeTarget;
+    return {
+      if (dBEngineDescription != null)
+        'DBEngineDescription': dBEngineDescription,
+      if (dBEngineVersionDescription != null)
+        'DBEngineVersionDescription': dBEngineVersionDescription,
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (defaultCharacterSet != null)
+        'DefaultCharacterSet': defaultCharacterSet,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (exportableLogTypes != null) 'ExportableLogTypes': exportableLogTypes,
+      if (supportedCharacterSets != null)
+        'SupportedCharacterSets': supportedCharacterSets,
+      if (supportedTimezones != null) 'SupportedTimezones': supportedTimezones,
+      if (supportsLogExportsToCloudwatchLogs != null)
+        'SupportsLogExportsToCloudwatchLogs':
+            supportsLogExportsToCloudwatchLogs,
+      if (supportsReadReplica != null)
+        'SupportsReadReplica': supportsReadReplica,
+      if (validUpgradeTarget != null) 'ValidUpgradeTarget': validUpgradeTarget,
+    };
+  }
 }
 
 class DBEngineVersionMessage {
@@ -6794,6 +7718,16 @@ class DBEngineVersionMessage {
     this.dBEngineVersions,
     this.marker,
   });
+  factory DBEngineVersionMessage.fromJson(Map<String, dynamic> json) {
+    return DBEngineVersionMessage(
+      dBEngineVersions: (json['DBEngineVersions'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBEngineVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBEngineVersionMessage.fromXml(_s.XmlElement elem) {
     return DBEngineVersionMessage(
       dBEngineVersions: _s.extractXmlChild(elem, 'DBEngineVersions')?.let(
@@ -6803,6 +7737,15 @@ class DBEngineVersionMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBEngineVersions = this.dBEngineVersions;
+    final marker = this.marker;
+    return {
+      if (dBEngineVersions != null) 'DBEngineVersions': dBEngineVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7057,6 +8000,109 @@ class DBInstance {
     this.timezone,
     this.vpcSecurityGroups,
   });
+  factory DBInstance.fromJson(Map<String, dynamic> json) {
+    return DBInstance(
+      allocatedStorage: json['AllocatedStorage'] as int?,
+      autoMinorVersionUpgrade: json['AutoMinorVersionUpgrade'] as bool?,
+      availabilityZone: json['AvailabilityZone'] as String?,
+      backupRetentionPeriod: json['BackupRetentionPeriod'] as int?,
+      cACertificateIdentifier: json['CACertificateIdentifier'] as String?,
+      characterSetName: json['CharacterSetName'] as String?,
+      copyTagsToSnapshot: json['CopyTagsToSnapshot'] as bool?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      dBInstanceArn: json['DBInstanceArn'] as String?,
+      dBInstanceClass: json['DBInstanceClass'] as String?,
+      dBInstanceIdentifier: json['DBInstanceIdentifier'] as String?,
+      dBInstanceStatus: json['DBInstanceStatus'] as String?,
+      dBName: json['DBName'] as String?,
+      dBParameterGroups: (json['DBParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => DBParameterGroupStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBSecurityGroups: (json['DBSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DBSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBSubnetGroup: json['DBSubnetGroup'] != null
+          ? DBSubnetGroup.fromJson(
+              json['DBSubnetGroup'] as Map<String, dynamic>)
+          : null,
+      dbInstancePort: json['DbInstancePort'] as int?,
+      dbiResourceId: json['DbiResourceId'] as String?,
+      deletionProtection: json['DeletionProtection'] as bool?,
+      domainMemberships: (json['DomainMemberships'] as List?)
+          ?.whereNotNull()
+          .map((e) => DomainMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      enabledCloudwatchLogsExports:
+          (json['EnabledCloudwatchLogsExports'] as List?)
+              ?.whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      endpoint: json['Endpoint'] != null
+          ? Endpoint.fromJson(json['Endpoint'] as Map<String, dynamic>)
+          : null,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      enhancedMonitoringResourceArn:
+          json['EnhancedMonitoringResourceArn'] as String?,
+      iAMDatabaseAuthenticationEnabled:
+          json['IAMDatabaseAuthenticationEnabled'] as bool?,
+      instanceCreateTime: timeStampFromJson(json['InstanceCreateTime']),
+      iops: json['Iops'] as int?,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      latestRestorableTime: timeStampFromJson(json['LatestRestorableTime']),
+      licenseModel: json['LicenseModel'] as String?,
+      masterUsername: json['MasterUsername'] as String?,
+      monitoringInterval: json['MonitoringInterval'] as int?,
+      monitoringRoleArn: json['MonitoringRoleArn'] as String?,
+      multiAZ: json['MultiAZ'] as bool?,
+      optionGroupMemberships: (json['OptionGroupMemberships'] as List?)
+          ?.whereNotNull()
+          .map((e) => OptionGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pendingModifiedValues: json['PendingModifiedValues'] != null
+          ? PendingModifiedValues.fromJson(
+              json['PendingModifiedValues'] as Map<String, dynamic>)
+          : null,
+      performanceInsightsEnabled: json['PerformanceInsightsEnabled'] as bool?,
+      performanceInsightsKMSKeyId:
+          json['PerformanceInsightsKMSKeyId'] as String?,
+      preferredBackupWindow: json['PreferredBackupWindow'] as String?,
+      preferredMaintenanceWindow: json['PreferredMaintenanceWindow'] as String?,
+      promotionTier: json['PromotionTier'] as int?,
+      publiclyAccessible: json['PubliclyAccessible'] as bool?,
+      readReplicaDBClusterIdentifiers:
+          (json['ReadReplicaDBClusterIdentifiers'] as List?)
+              ?.whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      readReplicaDBInstanceIdentifiers:
+          (json['ReadReplicaDBInstanceIdentifiers'] as List?)
+              ?.whereNotNull()
+              .map((e) => e as String)
+              .toList(),
+      readReplicaSourceDBInstanceIdentifier:
+          json['ReadReplicaSourceDBInstanceIdentifier'] as String?,
+      secondaryAvailabilityZone: json['SecondaryAvailabilityZone'] as String?,
+      statusInfos: (json['StatusInfos'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBInstanceStatusInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      storageEncrypted: json['StorageEncrypted'] as bool?,
+      storageType: json['StorageType'] as String?,
+      tdeCredentialArn: json['TdeCredentialArn'] as String?,
+      timezone: json['Timezone'] as String?,
+      vpcSecurityGroups: (json['VpcSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              VpcSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DBInstance.fromXml(_s.XmlElement elem) {
     return DBInstance(
       allocatedStorage: _s.extractXmlIntValue(elem, 'AllocatedStorage'),
@@ -7166,6 +8212,142 @@ class DBInstance {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final availabilityZone = this.availabilityZone;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final cACertificateIdentifier = this.cACertificateIdentifier;
+    final characterSetName = this.characterSetName;
+    final copyTagsToSnapshot = this.copyTagsToSnapshot;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBInstanceArn = this.dBInstanceArn;
+    final dBInstanceClass = this.dBInstanceClass;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final dBInstanceStatus = this.dBInstanceStatus;
+    final dBName = this.dBName;
+    final dBParameterGroups = this.dBParameterGroups;
+    final dBSecurityGroups = this.dBSecurityGroups;
+    final dBSubnetGroup = this.dBSubnetGroup;
+    final dbInstancePort = this.dbInstancePort;
+    final dbiResourceId = this.dbiResourceId;
+    final deletionProtection = this.deletionProtection;
+    final domainMemberships = this.domainMemberships;
+    final enabledCloudwatchLogsExports = this.enabledCloudwatchLogsExports;
+    final endpoint = this.endpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final enhancedMonitoringResourceArn = this.enhancedMonitoringResourceArn;
+    final iAMDatabaseAuthenticationEnabled =
+        this.iAMDatabaseAuthenticationEnabled;
+    final instanceCreateTime = this.instanceCreateTime;
+    final iops = this.iops;
+    final kmsKeyId = this.kmsKeyId;
+    final latestRestorableTime = this.latestRestorableTime;
+    final licenseModel = this.licenseModel;
+    final masterUsername = this.masterUsername;
+    final monitoringInterval = this.monitoringInterval;
+    final monitoringRoleArn = this.monitoringRoleArn;
+    final multiAZ = this.multiAZ;
+    final optionGroupMemberships = this.optionGroupMemberships;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final performanceInsightsEnabled = this.performanceInsightsEnabled;
+    final performanceInsightsKMSKeyId = this.performanceInsightsKMSKeyId;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final promotionTier = this.promotionTier;
+    final publiclyAccessible = this.publiclyAccessible;
+    final readReplicaDBClusterIdentifiers =
+        this.readReplicaDBClusterIdentifiers;
+    final readReplicaDBInstanceIdentifiers =
+        this.readReplicaDBInstanceIdentifiers;
+    final readReplicaSourceDBInstanceIdentifier =
+        this.readReplicaSourceDBInstanceIdentifier;
+    final secondaryAvailabilityZone = this.secondaryAvailabilityZone;
+    final statusInfos = this.statusInfos;
+    final storageEncrypted = this.storageEncrypted;
+    final storageType = this.storageType;
+    final tdeCredentialArn = this.tdeCredentialArn;
+    final timezone = this.timezone;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+      if (copyTagsToSnapshot != null) 'CopyTagsToSnapshot': copyTagsToSnapshot,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBInstanceArn != null) 'DBInstanceArn': dBInstanceArn,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBInstanceStatus != null) 'DBInstanceStatus': dBInstanceStatus,
+      if (dBName != null) 'DBName': dBName,
+      if (dBParameterGroups != null) 'DBParameterGroups': dBParameterGroups,
+      if (dBSecurityGroups != null) 'DBSecurityGroups': dBSecurityGroups,
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+      if (dbInstancePort != null) 'DbInstancePort': dbInstancePort,
+      if (dbiResourceId != null) 'DbiResourceId': dbiResourceId,
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (domainMemberships != null) 'DomainMemberships': domainMemberships,
+      if (enabledCloudwatchLogsExports != null)
+        'EnabledCloudwatchLogsExports': enabledCloudwatchLogsExports,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (enhancedMonitoringResourceArn != null)
+        'EnhancedMonitoringResourceArn': enhancedMonitoringResourceArn,
+      if (iAMDatabaseAuthenticationEnabled != null)
+        'IAMDatabaseAuthenticationEnabled': iAMDatabaseAuthenticationEnabled,
+      if (instanceCreateTime != null)
+        'InstanceCreateTime': unixTimestampToJson(instanceCreateTime),
+      if (iops != null) 'Iops': iops,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (latestRestorableTime != null)
+        'LatestRestorableTime': unixTimestampToJson(latestRestorableTime),
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (monitoringInterval != null) 'MonitoringInterval': monitoringInterval,
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (optionGroupMemberships != null)
+        'OptionGroupMemberships': optionGroupMemberships,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (performanceInsightsEnabled != null)
+        'PerformanceInsightsEnabled': performanceInsightsEnabled,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (promotionTier != null) 'PromotionTier': promotionTier,
+      if (publiclyAccessible != null) 'PubliclyAccessible': publiclyAccessible,
+      if (readReplicaDBClusterIdentifiers != null)
+        'ReadReplicaDBClusterIdentifiers': readReplicaDBClusterIdentifiers,
+      if (readReplicaDBInstanceIdentifiers != null)
+        'ReadReplicaDBInstanceIdentifiers': readReplicaDBInstanceIdentifiers,
+      if (readReplicaSourceDBInstanceIdentifier != null)
+        'ReadReplicaSourceDBInstanceIdentifier':
+            readReplicaSourceDBInstanceIdentifier,
+      if (secondaryAvailabilityZone != null)
+        'SecondaryAvailabilityZone': secondaryAvailabilityZone,
+      if (statusInfos != null) 'StatusInfos': statusInfos,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (storageType != null) 'StorageType': storageType,
+      if (tdeCredentialArn != null) 'TdeCredentialArn': tdeCredentialArn,
+      if (timezone != null) 'Timezone': timezone,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 class DBInstanceMessage {
@@ -7181,6 +8363,16 @@ class DBInstanceMessage {
     this.dBInstances,
     this.marker,
   });
+  factory DBInstanceMessage.fromJson(Map<String, dynamic> json) {
+    return DBInstanceMessage(
+      dBInstances: (json['DBInstances'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBInstance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBInstanceMessage.fromXml(_s.XmlElement elem) {
     return DBInstanceMessage(
       dBInstances: _s.extractXmlChild(elem, 'DBInstances')?.let((elem) => elem
@@ -7189,6 +8381,15 @@ class DBInstanceMessage {
           .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstances = this.dBInstances;
+    final marker = this.marker;
+    return {
+      if (dBInstances != null) 'DBInstances': dBInstances,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7215,6 +8416,15 @@ class DBInstanceStatusInfo {
     this.status,
     this.statusType,
   });
+  factory DBInstanceStatusInfo.fromJson(Map<String, dynamic> json) {
+    return DBInstanceStatusInfo(
+      message: json['Message'] as String?,
+      normal: json['Normal'] as bool?,
+      status: json['Status'] as String?,
+      statusType: json['StatusType'] as String?,
+    );
+  }
+
   factory DBInstanceStatusInfo.fromXml(_s.XmlElement elem) {
     return DBInstanceStatusInfo(
       message: _s.extractXmlStringValue(elem, 'Message'),
@@ -7222,6 +8432,19 @@ class DBInstanceStatusInfo {
       status: _s.extractXmlStringValue(elem, 'Status'),
       statusType: _s.extractXmlStringValue(elem, 'StatusType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final normal = this.normal;
+    final status = this.status;
+    final statusType = this.statusType;
+    return {
+      if (message != null) 'Message': message,
+      if (normal != null) 'Normal': normal,
+      if (status != null) 'Status': status,
+      if (statusType != null) 'StatusType': statusType,
+    };
   }
 }
 
@@ -7249,6 +8472,15 @@ class DBParameterGroup {
     this.dBParameterGroupName,
     this.description,
   });
+  factory DBParameterGroup.fromJson(Map<String, dynamic> json) {
+    return DBParameterGroup(
+      dBParameterGroupArn: json['DBParameterGroupArn'] as String?,
+      dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
+      dBParameterGroupName: json['DBParameterGroupName'] as String?,
+      description: json['Description'] as String?,
+    );
+  }
+
   factory DBParameterGroup.fromXml(_s.XmlElement elem) {
     return DBParameterGroup(
       dBParameterGroupArn:
@@ -7259,6 +8491,22 @@ class DBParameterGroup {
           _s.extractXmlStringValue(elem, 'DBParameterGroupName'),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroupArn = this.dBParameterGroupArn;
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final dBParameterGroupName = this.dBParameterGroupName;
+    final description = this.description;
+    return {
+      if (dBParameterGroupArn != null)
+        'DBParameterGroupArn': dBParameterGroupArn,
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -7275,6 +8523,16 @@ class DBParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+  factory DBParameterGroupDetails.fromJson(Map<String, dynamic> json) {
+    return DBParameterGroupDetails(
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DBParameterGroupDetails.fromXml(_s.XmlElement elem) {
     return DBParameterGroupDetails(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -7283,6 +8541,15 @@ class DBParameterGroupDetails {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -7293,11 +8560,25 @@ class DBParameterGroupNameMessage {
   DBParameterGroupNameMessage({
     this.dBParameterGroupName,
   });
+  factory DBParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
+    return DBParameterGroupNameMessage(
+      dBParameterGroupName: json['DBParameterGroupName'] as String?,
+    );
+  }
+
   factory DBParameterGroupNameMessage.fromXml(_s.XmlElement elem) {
     return DBParameterGroupNameMessage(
       dBParameterGroupName:
           _s.extractXmlStringValue(elem, 'DBParameterGroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroupName = this.dBParameterGroupName;
+    return {
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+    };
   }
 }
 
@@ -7330,6 +8611,13 @@ class DBParameterGroupStatus {
     this.dBParameterGroupName,
     this.parameterApplyStatus,
   });
+  factory DBParameterGroupStatus.fromJson(Map<String, dynamic> json) {
+    return DBParameterGroupStatus(
+      dBParameterGroupName: json['DBParameterGroupName'] as String?,
+      parameterApplyStatus: json['ParameterApplyStatus'] as String?,
+    );
+  }
+
   factory DBParameterGroupStatus.fromXml(_s.XmlElement elem) {
     return DBParameterGroupStatus(
       dBParameterGroupName:
@@ -7337,6 +8625,17 @@ class DBParameterGroupStatus {
       parameterApplyStatus:
           _s.extractXmlStringValue(elem, 'ParameterApplyStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroupName = this.dBParameterGroupName;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    return {
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+    };
   }
 }
 
@@ -7353,6 +8652,16 @@ class DBParameterGroupsMessage {
     this.dBParameterGroups,
     this.marker,
   });
+  factory DBParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
+    return DBParameterGroupsMessage(
+      dBParameterGroups: (json['DBParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBParameterGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBParameterGroupsMessage.fromXml(_s.XmlElement elem) {
     return DBParameterGroupsMessage(
       dBParameterGroups: _s.extractXmlChild(elem, 'DBParameterGroups')?.let(
@@ -7362,6 +8671,15 @@ class DBParameterGroupsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroups = this.dBParameterGroups;
+    final marker = this.marker;
+    return {
+      if (dBParameterGroups != null) 'DBParameterGroups': dBParameterGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7377,12 +8695,29 @@ class DBSecurityGroupMembership {
     this.dBSecurityGroupName,
     this.status,
   });
+  factory DBSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return DBSecurityGroupMembership(
+      dBSecurityGroupName: json['DBSecurityGroupName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DBSecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return DBSecurityGroupMembership(
       dBSecurityGroupName:
           _s.extractXmlStringValue(elem, 'DBSecurityGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSecurityGroupName = this.dBSecurityGroupName;
+    final status = this.status;
+    return {
+      if (dBSecurityGroupName != null)
+        'DBSecurityGroupName': dBSecurityGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7417,6 +8752,20 @@ class DBSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+  factory DBSubnetGroup.fromJson(Map<String, dynamic> json) {
+    return DBSubnetGroup(
+      dBSubnetGroupArn: json['DBSubnetGroupArn'] as String?,
+      dBSubnetGroupDescription: json['DBSubnetGroupDescription'] as String?,
+      dBSubnetGroupName: json['DBSubnetGroupName'] as String?,
+      subnetGroupStatus: json['SubnetGroupStatus'] as String?,
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => Subnet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory DBSubnetGroup.fromXml(_s.XmlElement elem) {
     return DBSubnetGroup(
       dBSubnetGroupArn: _s.extractXmlStringValue(elem, 'DBSubnetGroupArn'),
@@ -7428,6 +8777,24 @@ class DBSubnetGroup {
           elem.findElements('Subnet').map((c) => Subnet.fromXml(c)).toList()),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroupArn = this.dBSubnetGroupArn;
+    final dBSubnetGroupDescription = this.dBSubnetGroupDescription;
+    final dBSubnetGroupName = this.dBSubnetGroupName;
+    final subnetGroupStatus = this.subnetGroupStatus;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (dBSubnetGroupArn != null) 'DBSubnetGroupArn': dBSubnetGroupArn,
+      if (dBSubnetGroupDescription != null)
+        'DBSubnetGroupDescription': dBSubnetGroupDescription,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (subnetGroupStatus != null) 'SubnetGroupStatus': subnetGroupStatus,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -7444,6 +8811,16 @@ class DBSubnetGroupMessage {
     this.dBSubnetGroups,
     this.marker,
   });
+  factory DBSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
+    return DBSubnetGroupMessage(
+      dBSubnetGroups: (json['DBSubnetGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => DBSubnetGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DBSubnetGroupMessage.fromXml(_s.XmlElement elem) {
     return DBSubnetGroupMessage(
       dBSubnetGroups: _s.extractXmlChild(elem, 'DBSubnetGroups')?.let((elem) =>
@@ -7453,6 +8830,15 @@ class DBSubnetGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroups = this.dBSubnetGroups;
+    final marker = this.marker;
+    return {
+      if (dBSubnetGroups != null) 'DBSubnetGroups': dBSubnetGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7531,6 +8917,29 @@ class DeleteDBClusterEndpointOutput {
     this.staticMembers,
     this.status,
   });
+  factory DeleteDBClusterEndpointOutput.fromJson(Map<String, dynamic> json) {
+    return DeleteDBClusterEndpointOutput(
+      customEndpointType: json['CustomEndpointType'] as String?,
+      dBClusterEndpointArn: json['DBClusterEndpointArn'] as String?,
+      dBClusterEndpointIdentifier:
+          json['DBClusterEndpointIdentifier'] as String?,
+      dBClusterEndpointResourceIdentifier:
+          json['DBClusterEndpointResourceIdentifier'] as String?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      endpoint: json['Endpoint'] as String?,
+      endpointType: json['EndpointType'] as String?,
+      excludedMembers: (json['ExcludedMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      staticMembers: (json['StaticMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DeleteDBClusterEndpointOutput.fromXml(_s.XmlElement elem) {
     return DeleteDBClusterEndpointOutput(
       customEndpointType: _s.extractXmlStringValue(elem, 'CustomEndpointType'),
@@ -7553,6 +8962,37 @@ class DeleteDBClusterEndpointOutput {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customEndpointType = this.customEndpointType;
+    final dBClusterEndpointArn = this.dBClusterEndpointArn;
+    final dBClusterEndpointIdentifier = this.dBClusterEndpointIdentifier;
+    final dBClusterEndpointResourceIdentifier =
+        this.dBClusterEndpointResourceIdentifier;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final endpoint = this.endpoint;
+    final endpointType = this.endpointType;
+    final excludedMembers = this.excludedMembers;
+    final staticMembers = this.staticMembers;
+    final status = this.status;
+    return {
+      if (customEndpointType != null) 'CustomEndpointType': customEndpointType,
+      if (dBClusterEndpointArn != null)
+        'DBClusterEndpointArn': dBClusterEndpointArn,
+      if (dBClusterEndpointIdentifier != null)
+        'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (dBClusterEndpointResourceIdentifier != null)
+        'DBClusterEndpointResourceIdentifier':
+            dBClusterEndpointResourceIdentifier,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (excludedMembers != null) 'ExcludedMembers': excludedMembers,
+      if (staticMembers != null) 'StaticMembers': staticMembers,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class DeleteDBClusterResult {
@@ -7561,12 +9001,27 @@ class DeleteDBClusterResult {
   DeleteDBClusterResult({
     this.dBCluster,
   });
+  factory DeleteDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return DeleteDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteDBClusterResult.fromXml(_s.XmlElement elem) {
     return DeleteDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -7576,12 +9031,28 @@ class DeleteDBClusterSnapshotResult {
   DeleteDBClusterSnapshotResult({
     this.dBClusterSnapshot,
   });
+  factory DeleteDBClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return DeleteDBClusterSnapshotResult(
+      dBClusterSnapshot: json['DBClusterSnapshot'] != null
+          ? DBClusterSnapshot.fromJson(
+              json['DBClusterSnapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteDBClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return DeleteDBClusterSnapshotResult(
       dBClusterSnapshot: _s
           .extractXmlChild(elem, 'DBClusterSnapshot')
           ?.let((e) => DBClusterSnapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
   }
 }
 
@@ -7591,12 +9062,27 @@ class DeleteDBInstanceResult {
   DeleteDBInstanceResult({
     this.dBInstance,
   });
+  factory DeleteDBInstanceResult.fromJson(Map<String, dynamic> json) {
+    return DeleteDBInstanceResult(
+      dBInstance: json['DBInstance'] != null
+          ? DBInstance.fromJson(json['DBInstance'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteDBInstanceResult.fromXml(_s.XmlElement elem) {
     return DeleteDBInstanceResult(
       dBInstance: _s
           .extractXmlChild(elem, 'DBInstance')
           ?.let((e) => DBInstance.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
   }
 }
 
@@ -7606,12 +9092,28 @@ class DeleteEventSubscriptionResult {
   DeleteEventSubscriptionResult({
     this.eventSubscription,
   });
+  factory DeleteEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
+    return DeleteEventSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteEventSubscriptionResult.fromXml(_s.XmlElement elem) {
     return DeleteEventSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -7621,6 +9123,18 @@ class DescribeDBClusterSnapshotAttributesResult {
   DescribeDBClusterSnapshotAttributesResult({
     this.dBClusterSnapshotAttributesResult,
   });
+  factory DescribeDBClusterSnapshotAttributesResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeDBClusterSnapshotAttributesResult(
+      dBClusterSnapshotAttributesResult:
+          json['DBClusterSnapshotAttributesResult'] != null
+              ? DBClusterSnapshotAttributesResult.fromJson(
+                  json['DBClusterSnapshotAttributesResult']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory DescribeDBClusterSnapshotAttributesResult.fromXml(
       _s.XmlElement elem) {
     return DescribeDBClusterSnapshotAttributesResult(
@@ -7628,6 +9142,15 @@ class DescribeDBClusterSnapshotAttributesResult {
           .extractXmlChild(elem, 'DBClusterSnapshotAttributesResult')
           ?.let((e) => DBClusterSnapshotAttributesResult.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributesResult =
+        this.dBClusterSnapshotAttributesResult;
+    return {
+      if (dBClusterSnapshotAttributesResult != null)
+        'DBClusterSnapshotAttributesResult': dBClusterSnapshotAttributesResult,
+    };
   }
 }
 
@@ -7637,6 +9160,16 @@ class DescribeEngineDefaultClusterParametersResult {
   DescribeEngineDefaultClusterParametersResult({
     this.engineDefaults,
   });
+  factory DescribeEngineDefaultClusterParametersResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeEngineDefaultClusterParametersResult(
+      engineDefaults: json['EngineDefaults'] != null
+          ? EngineDefaults.fromJson(
+              json['EngineDefaults'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeEngineDefaultClusterParametersResult.fromXml(
       _s.XmlElement elem) {
     return DescribeEngineDefaultClusterParametersResult(
@@ -7644,6 +9177,13 @@ class DescribeEngineDefaultClusterParametersResult {
           .extractXmlChild(elem, 'EngineDefaults')
           ?.let((e) => EngineDefaults.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineDefaults = this.engineDefaults;
+    return {
+      if (engineDefaults != null) 'EngineDefaults': engineDefaults,
+    };
   }
 }
 
@@ -7653,12 +9193,29 @@ class DescribeEngineDefaultParametersResult {
   DescribeEngineDefaultParametersResult({
     this.engineDefaults,
   });
+  factory DescribeEngineDefaultParametersResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeEngineDefaultParametersResult(
+      engineDefaults: json['EngineDefaults'] != null
+          ? EngineDefaults.fromJson(
+              json['EngineDefaults'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeEngineDefaultParametersResult.fromXml(_s.XmlElement elem) {
     return DescribeEngineDefaultParametersResult(
       engineDefaults: _s
           .extractXmlChild(elem, 'EngineDefaults')
           ?.let((e) => EngineDefaults.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineDefaults = this.engineDefaults;
+    return {
+      if (engineDefaults != null) 'EngineDefaults': engineDefaults,
+    };
   }
 }
 
@@ -7669,6 +9226,18 @@ class DescribeValidDBInstanceModificationsResult {
   DescribeValidDBInstanceModificationsResult({
     this.validDBInstanceModificationsMessage,
   });
+  factory DescribeValidDBInstanceModificationsResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeValidDBInstanceModificationsResult(
+      validDBInstanceModificationsMessage:
+          json['ValidDBInstanceModificationsMessage'] != null
+              ? ValidDBInstanceModificationsMessage.fromJson(
+                  json['ValidDBInstanceModificationsMessage']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory DescribeValidDBInstanceModificationsResult.fromXml(
       _s.XmlElement elem) {
     return DescribeValidDBInstanceModificationsResult(
@@ -7676,6 +9245,16 @@ class DescribeValidDBInstanceModificationsResult {
           .extractXmlChild(elem, 'ValidDBInstanceModificationsMessage')
           ?.let((e) => ValidDBInstanceModificationsMessage.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final validDBInstanceModificationsMessage =
+        this.validDBInstanceModificationsMessage;
+    return {
+      if (validDBInstanceModificationsMessage != null)
+        'ValidDBInstanceModificationsMessage':
+            validDBInstanceModificationsMessage,
+    };
   }
 }
 
@@ -7701,6 +9280,15 @@ class DomainMembership {
     this.iAMRoleName,
     this.status,
   });
+  factory DomainMembership.fromJson(Map<String, dynamic> json) {
+    return DomainMembership(
+      domain: json['Domain'] as String?,
+      fqdn: json['FQDN'] as String?,
+      iAMRoleName: json['IAMRoleName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory DomainMembership.fromXml(_s.XmlElement elem) {
     return DomainMembership(
       domain: _s.extractXmlStringValue(elem, 'Domain'),
@@ -7708,6 +9296,19 @@ class DomainMembership {
       iAMRoleName: _s.extractXmlStringValue(elem, 'IAMRoleName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    final fqdn = this.fqdn;
+    final iAMRoleName = this.iAMRoleName;
+    final status = this.status;
+    return {
+      if (domain != null) 'Domain': domain,
+      if (fqdn != null) 'FQDN': fqdn,
+      if (iAMRoleName != null) 'IAMRoleName': iAMRoleName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7723,11 +9324,27 @@ class DoubleRange {
     this.from,
     this.to,
   });
+  factory DoubleRange.fromJson(Map<String, dynamic> json) {
+    return DoubleRange(
+      from: json['From'] as double?,
+      to: json['To'] as double?,
+    );
+  }
+
   factory DoubleRange.fromXml(_s.XmlElement elem) {
     return DoubleRange(
       from: _s.extractXmlDoubleValue(elem, 'From'),
       to: _s.extractXmlDoubleValue(elem, 'To'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final from = this.from;
+    final to = this.to;
+    return {
+      if (from != null) 'From': from,
+      if (to != null) 'To': to,
+    };
   }
 }
 
@@ -7750,12 +9367,31 @@ class Endpoint {
     this.hostedZoneId,
     this.port,
   });
+  factory Endpoint.fromJson(Map<String, dynamic> json) {
+    return Endpoint(
+      address: json['Address'] as String?,
+      hostedZoneId: json['HostedZoneId'] as String?,
+      port: json['Port'] as int?,
+    );
+  }
+
   factory Endpoint.fromXml(_s.XmlElement elem) {
     return Endpoint(
       address: _s.extractXmlStringValue(elem, 'Address'),
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId'),
       port: _s.extractXmlIntValue(elem, 'Port'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final hostedZoneId = this.hostedZoneId;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -7779,6 +9415,17 @@ class EngineDefaults {
     this.marker,
     this.parameters,
   });
+  factory EngineDefaults.fromJson(Map<String, dynamic> json) {
+    return EngineDefaults(
+      dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EngineDefaults.fromXml(_s.XmlElement elem) {
     return EngineDefaults(
       dBParameterGroupFamily:
@@ -7789,6 +9436,18 @@ class EngineDefaults {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -7821,6 +9480,20 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      date: timeStampFromJson(json['Date']),
+      eventCategories: (json['EventCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      message: json['Message'] as String?,
+      sourceArn: json['SourceArn'] as String?,
+      sourceIdentifier: json['SourceIdentifier'] as String?,
+      sourceType: (json['SourceType'] as String?)?.toSourceType(),
+    );
+  }
+
   factory Event.fromXml(_s.XmlElement elem) {
     return Event(
       date: _s.extractXmlDateTimeValue(elem, 'Date'),
@@ -7832,6 +9505,23 @@ class Event {
       sourceIdentifier: _s.extractXmlStringValue(elem, 'SourceIdentifier'),
       sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final eventCategories = this.eventCategories;
+    final message = this.message;
+    final sourceArn = this.sourceArn;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (message != null) 'Message': message,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
   }
 }
 
@@ -7848,6 +9538,16 @@ class EventCategoriesMap {
     this.eventCategories,
     this.sourceType,
   });
+  factory EventCategoriesMap.fromJson(Map<String, dynamic> json) {
+    return EventCategoriesMap(
+      eventCategories: (json['EventCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      sourceType: json['SourceType'] as String?,
+    );
+  }
+
   factory EventCategoriesMap.fromXml(_s.XmlElement elem) {
     return EventCategoriesMap(
       eventCategories: _s
@@ -7855,6 +9555,15 @@ class EventCategoriesMap {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'EventCategory')),
       sourceType: _s.extractXmlStringValue(elem, 'SourceType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategories = this.eventCategories;
+    final sourceType = this.sourceType;
+    return {
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -7865,6 +9574,15 @@ class EventCategoriesMessage {
   EventCategoriesMessage({
     this.eventCategoriesMapList,
   });
+  factory EventCategoriesMessage.fromJson(Map<String, dynamic> json) {
+    return EventCategoriesMessage(
+      eventCategoriesMapList: (json['EventCategoriesMapList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventCategoriesMap.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EventCategoriesMessage.fromXml(_s.XmlElement elem) {
     return EventCategoriesMessage(
       eventCategoriesMapList: _s
@@ -7874,6 +9592,14 @@ class EventCategoriesMessage {
               .map((c) => EventCategoriesMap.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategoriesMapList = this.eventCategoriesMapList;
+    return {
+      if (eventCategoriesMapList != null)
+        'EventCategoriesMapList': eventCategoriesMapList,
+    };
   }
 }
 
@@ -7933,6 +9659,27 @@ class EventSubscription {
     this.status,
     this.subscriptionCreationTime,
   });
+  factory EventSubscription.fromJson(Map<String, dynamic> json) {
+    return EventSubscription(
+      custSubscriptionId: json['CustSubscriptionId'] as String?,
+      customerAwsId: json['CustomerAwsId'] as String?,
+      enabled: json['Enabled'] as bool?,
+      eventCategoriesList: (json['EventCategoriesList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventSubscriptionArn: json['EventSubscriptionArn'] as String?,
+      snsTopicArn: json['SnsTopicArn'] as String?,
+      sourceIdsList: (json['SourceIdsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      sourceType: json['SourceType'] as String?,
+      status: json['Status'] as String?,
+      subscriptionCreationTime: json['SubscriptionCreationTime'] as String?,
+    );
+  }
+
   factory EventSubscription.fromXml(_s.XmlElement elem) {
     return EventSubscription(
       custSubscriptionId: _s.extractXmlStringValue(elem, 'CustSubscriptionId'),
@@ -7953,6 +9700,34 @@ class EventSubscription {
           _s.extractXmlStringValue(elem, 'SubscriptionCreationTime'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final custSubscriptionId = this.custSubscriptionId;
+    final customerAwsId = this.customerAwsId;
+    final enabled = this.enabled;
+    final eventCategoriesList = this.eventCategoriesList;
+    final eventSubscriptionArn = this.eventSubscriptionArn;
+    final snsTopicArn = this.snsTopicArn;
+    final sourceIdsList = this.sourceIdsList;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final subscriptionCreationTime = this.subscriptionCreationTime;
+    return {
+      if (custSubscriptionId != null) 'CustSubscriptionId': custSubscriptionId,
+      if (customerAwsId != null) 'CustomerAwsId': customerAwsId,
+      if (enabled != null) 'Enabled': enabled,
+      if (eventCategoriesList != null)
+        'EventCategoriesList': eventCategoriesList,
+      if (eventSubscriptionArn != null)
+        'EventSubscriptionArn': eventSubscriptionArn,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (sourceIdsList != null) 'SourceIdsList': sourceIdsList,
+      if (sourceType != null) 'SourceType': sourceType,
+      if (status != null) 'Status': status,
+      if (subscriptionCreationTime != null)
+        'SubscriptionCreationTime': subscriptionCreationTime,
+    };
+  }
 }
 
 class EventSubscriptionsMessage {
@@ -7969,6 +9744,16 @@ class EventSubscriptionsMessage {
     this.eventSubscriptionsList,
     this.marker,
   });
+  factory EventSubscriptionsMessage.fromJson(Map<String, dynamic> json) {
+    return EventSubscriptionsMessage(
+      eventSubscriptionsList: (json['EventSubscriptionsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventSubscription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EventSubscriptionsMessage.fromXml(_s.XmlElement elem) {
     return EventSubscriptionsMessage(
       eventSubscriptionsList: _s
@@ -7979,6 +9764,16 @@ class EventSubscriptionsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscriptionsList = this.eventSubscriptionsList;
+    final marker = this.marker;
+    return {
+      if (eventSubscriptionsList != null)
+        'EventSubscriptionsList': eventSubscriptionsList,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7995,12 +9790,31 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+  factory EventsMessage.fromJson(Map<String, dynamic> json) {
+    return EventsMessage(
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) => Event.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EventsMessage.fromXml(_s.XmlElement elem) {
     return EventsMessage(
       events: _s.extractXmlChild(elem, 'Events')?.let((elem) =>
           elem.findElements('Event').map((c) => Event.fromXml(c)).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -8010,12 +9824,27 @@ class FailoverDBClusterResult {
   FailoverDBClusterResult({
     this.dBCluster,
   });
+  factory FailoverDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return FailoverDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory FailoverDBClusterResult.fromXml(_s.XmlElement elem) {
     return FailoverDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8031,6 +9860,16 @@ class Filter {
     required this.name,
     required this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json['Name'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -8116,6 +9955,29 @@ class ModifyDBClusterEndpointOutput {
     this.staticMembers,
     this.status,
   });
+  factory ModifyDBClusterEndpointOutput.fromJson(Map<String, dynamic> json) {
+    return ModifyDBClusterEndpointOutput(
+      customEndpointType: json['CustomEndpointType'] as String?,
+      dBClusterEndpointArn: json['DBClusterEndpointArn'] as String?,
+      dBClusterEndpointIdentifier:
+          json['DBClusterEndpointIdentifier'] as String?,
+      dBClusterEndpointResourceIdentifier:
+          json['DBClusterEndpointResourceIdentifier'] as String?,
+      dBClusterIdentifier: json['DBClusterIdentifier'] as String?,
+      endpoint: json['Endpoint'] as String?,
+      endpointType: json['EndpointType'] as String?,
+      excludedMembers: (json['ExcludedMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      staticMembers: (json['StaticMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory ModifyDBClusterEndpointOutput.fromXml(_s.XmlElement elem) {
     return ModifyDBClusterEndpointOutput(
       customEndpointType: _s.extractXmlStringValue(elem, 'CustomEndpointType'),
@@ -8138,6 +10000,37 @@ class ModifyDBClusterEndpointOutput {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customEndpointType = this.customEndpointType;
+    final dBClusterEndpointArn = this.dBClusterEndpointArn;
+    final dBClusterEndpointIdentifier = this.dBClusterEndpointIdentifier;
+    final dBClusterEndpointResourceIdentifier =
+        this.dBClusterEndpointResourceIdentifier;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final endpoint = this.endpoint;
+    final endpointType = this.endpointType;
+    final excludedMembers = this.excludedMembers;
+    final staticMembers = this.staticMembers;
+    final status = this.status;
+    return {
+      if (customEndpointType != null) 'CustomEndpointType': customEndpointType,
+      if (dBClusterEndpointArn != null)
+        'DBClusterEndpointArn': dBClusterEndpointArn,
+      if (dBClusterEndpointIdentifier != null)
+        'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (dBClusterEndpointResourceIdentifier != null)
+        'DBClusterEndpointResourceIdentifier':
+            dBClusterEndpointResourceIdentifier,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (excludedMembers != null) 'ExcludedMembers': excludedMembers,
+      if (staticMembers != null) 'StaticMembers': staticMembers,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class ModifyDBClusterResult {
@@ -8146,12 +10039,27 @@ class ModifyDBClusterResult {
   ModifyDBClusterResult({
     this.dBCluster,
   });
+  factory ModifyDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return ModifyDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyDBClusterResult.fromXml(_s.XmlElement elem) {
     return ModifyDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8161,12 +10069,33 @@ class ModifyDBClusterSnapshotAttributeResult {
   ModifyDBClusterSnapshotAttributeResult({
     this.dBClusterSnapshotAttributesResult,
   });
+  factory ModifyDBClusterSnapshotAttributeResult.fromJson(
+      Map<String, dynamic> json) {
+    return ModifyDBClusterSnapshotAttributeResult(
+      dBClusterSnapshotAttributesResult:
+          json['DBClusterSnapshotAttributesResult'] != null
+              ? DBClusterSnapshotAttributesResult.fromJson(
+                  json['DBClusterSnapshotAttributesResult']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory ModifyDBClusterSnapshotAttributeResult.fromXml(_s.XmlElement elem) {
     return ModifyDBClusterSnapshotAttributeResult(
       dBClusterSnapshotAttributesResult: _s
           .extractXmlChild(elem, 'DBClusterSnapshotAttributesResult')
           ?.let((e) => DBClusterSnapshotAttributesResult.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributesResult =
+        this.dBClusterSnapshotAttributesResult;
+    return {
+      if (dBClusterSnapshotAttributesResult != null)
+        'DBClusterSnapshotAttributesResult': dBClusterSnapshotAttributesResult,
+    };
   }
 }
 
@@ -8176,12 +10105,27 @@ class ModifyDBInstanceResult {
   ModifyDBInstanceResult({
     this.dBInstance,
   });
+  factory ModifyDBInstanceResult.fromJson(Map<String, dynamic> json) {
+    return ModifyDBInstanceResult(
+      dBInstance: json['DBInstance'] != null
+          ? DBInstance.fromJson(json['DBInstance'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyDBInstanceResult.fromXml(_s.XmlElement elem) {
     return ModifyDBInstanceResult(
       dBInstance: _s
           .extractXmlChild(elem, 'DBInstance')
           ?.let((e) => DBInstance.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
   }
 }
 
@@ -8191,12 +10135,28 @@ class ModifyDBSubnetGroupResult {
   ModifyDBSubnetGroupResult({
     this.dBSubnetGroup,
   });
+  factory ModifyDBSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return ModifyDBSubnetGroupResult(
+      dBSubnetGroup: json['DBSubnetGroup'] != null
+          ? DBSubnetGroup.fromJson(
+              json['DBSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyDBSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return ModifyDBSubnetGroupResult(
       dBSubnetGroup: _s
           .extractXmlChild(elem, 'DBSubnetGroup')
           ?.let((e) => DBSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroup = this.dBSubnetGroup;
+    return {
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+    };
   }
 }
 
@@ -8206,12 +10166,28 @@ class ModifyEventSubscriptionResult {
   ModifyEventSubscriptionResult({
     this.eventSubscription,
   });
+  factory ModifyEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
+    return ModifyEventSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyEventSubscriptionResult.fromXml(_s.XmlElement elem) {
     return ModifyEventSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -8227,11 +10203,27 @@ class OptionGroupMembership {
     this.optionGroupName,
     this.status,
   });
+  factory OptionGroupMembership.fromJson(Map<String, dynamic> json) {
+    return OptionGroupMembership(
+      optionGroupName: json['OptionGroupName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory OptionGroupMembership.fromXml(_s.XmlElement elem) {
     return OptionGroupMembership(
       optionGroupName: _s.extractXmlStringValue(elem, 'OptionGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final optionGroupName = this.optionGroupName;
+    final status = this.status;
+    return {
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -8323,6 +10315,35 @@ class OrderableDBInstanceOption {
     this.supportsStorageEncryption,
     this.vpc,
   });
+  factory OrderableDBInstanceOption.fromJson(Map<String, dynamic> json) {
+    return OrderableDBInstanceOption(
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => AvailabilityZone.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dBInstanceClass: json['DBInstanceClass'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      licenseModel: json['LicenseModel'] as String?,
+      maxIopsPerDbInstance: json['MaxIopsPerDbInstance'] as int?,
+      maxIopsPerGib: json['MaxIopsPerGib'] as double?,
+      maxStorageSize: json['MaxStorageSize'] as int?,
+      minIopsPerDbInstance: json['MinIopsPerDbInstance'] as int?,
+      minIopsPerGib: json['MinIopsPerGib'] as double?,
+      minStorageSize: json['MinStorageSize'] as int?,
+      multiAZCapable: json['MultiAZCapable'] as bool?,
+      readReplicaCapable: json['ReadReplicaCapable'] as bool?,
+      storageType: json['StorageType'] as String?,
+      supportsEnhancedMonitoring: json['SupportsEnhancedMonitoring'] as bool?,
+      supportsIAMDatabaseAuthentication:
+          json['SupportsIAMDatabaseAuthentication'] as bool?,
+      supportsIops: json['SupportsIops'] as bool?,
+      supportsPerformanceInsights: json['SupportsPerformanceInsights'] as bool?,
+      supportsStorageEncryption: json['SupportsStorageEncryption'] as bool?,
+      vpc: json['Vpc'] as bool?,
+    );
+  }
+
   factory OrderableDBInstanceOption.fromXml(_s.XmlElement elem) {
     return OrderableDBInstanceOption(
       availabilityZones: _s.extractXmlChild(elem, 'AvailabilityZones')?.let(
@@ -8355,6 +10376,58 @@ class OrderableDBInstanceOption {
       vpc: _s.extractXmlBoolValue(elem, 'Vpc'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final dBInstanceClass = this.dBInstanceClass;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final licenseModel = this.licenseModel;
+    final maxIopsPerDbInstance = this.maxIopsPerDbInstance;
+    final maxIopsPerGib = this.maxIopsPerGib;
+    final maxStorageSize = this.maxStorageSize;
+    final minIopsPerDbInstance = this.minIopsPerDbInstance;
+    final minIopsPerGib = this.minIopsPerGib;
+    final minStorageSize = this.minStorageSize;
+    final multiAZCapable = this.multiAZCapable;
+    final readReplicaCapable = this.readReplicaCapable;
+    final storageType = this.storageType;
+    final supportsEnhancedMonitoring = this.supportsEnhancedMonitoring;
+    final supportsIAMDatabaseAuthentication =
+        this.supportsIAMDatabaseAuthentication;
+    final supportsIops = this.supportsIops;
+    final supportsPerformanceInsights = this.supportsPerformanceInsights;
+    final supportsStorageEncryption = this.supportsStorageEncryption;
+    final vpc = this.vpc;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (maxIopsPerDbInstance != null)
+        'MaxIopsPerDbInstance': maxIopsPerDbInstance,
+      if (maxIopsPerGib != null) 'MaxIopsPerGib': maxIopsPerGib,
+      if (maxStorageSize != null) 'MaxStorageSize': maxStorageSize,
+      if (minIopsPerDbInstance != null)
+        'MinIopsPerDbInstance': minIopsPerDbInstance,
+      if (minIopsPerGib != null) 'MinIopsPerGib': minIopsPerGib,
+      if (minStorageSize != null) 'MinStorageSize': minStorageSize,
+      if (multiAZCapable != null) 'MultiAZCapable': multiAZCapable,
+      if (readReplicaCapable != null) 'ReadReplicaCapable': readReplicaCapable,
+      if (storageType != null) 'StorageType': storageType,
+      if (supportsEnhancedMonitoring != null)
+        'SupportsEnhancedMonitoring': supportsEnhancedMonitoring,
+      if (supportsIAMDatabaseAuthentication != null)
+        'SupportsIAMDatabaseAuthentication': supportsIAMDatabaseAuthentication,
+      if (supportsIops != null) 'SupportsIops': supportsIops,
+      if (supportsPerformanceInsights != null)
+        'SupportsPerformanceInsights': supportsPerformanceInsights,
+      if (supportsStorageEncryption != null)
+        'SupportsStorageEncryption': supportsStorageEncryption,
+      if (vpc != null) 'Vpc': vpc,
+    };
+  }
 }
 
 class OrderableDBInstanceOptionsMessage {
@@ -8372,6 +10445,18 @@ class OrderableDBInstanceOptionsMessage {
     this.marker,
     this.orderableDBInstanceOptions,
   });
+  factory OrderableDBInstanceOptionsMessage.fromJson(
+      Map<String, dynamic> json) {
+    return OrderableDBInstanceOptionsMessage(
+      marker: json['Marker'] as String?,
+      orderableDBInstanceOptions: (json['OrderableDBInstanceOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              OrderableDBInstanceOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory OrderableDBInstanceOptionsMessage.fromXml(_s.XmlElement elem) {
     return OrderableDBInstanceOptionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -8382,6 +10467,16 @@ class OrderableDBInstanceOptionsMessage {
               .map((c) => OrderableDBInstanceOption.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final orderableDBInstanceOptions = this.orderableDBInstanceOptions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (orderableDBInstanceOptions != null)
+        'OrderableDBInstanceOptions': orderableDBInstanceOptions,
+    };
   }
 }
 
@@ -8431,6 +10526,21 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+  factory Parameter.fromJson(Map<String, dynamic> json) {
+    return Parameter(
+      allowedValues: json['AllowedValues'] as String?,
+      applyMethod: (json['ApplyMethod'] as String?)?.toApplyMethod(),
+      applyType: json['ApplyType'] as String?,
+      dataType: json['DataType'] as String?,
+      description: json['Description'] as String?,
+      isModifiable: json['IsModifiable'] as bool?,
+      minimumEngineVersion: json['MinimumEngineVersion'] as String?,
+      parameterName: json['ParameterName'] as String?,
+      parameterValue: json['ParameterValue'] as String?,
+      source: json['Source'] as String?,
+    );
+  }
+
   factory Parameter.fromXml(_s.XmlElement elem) {
     return Parameter(
       allowedValues: _s.extractXmlStringValue(elem, 'AllowedValues'),
@@ -8490,6 +10600,19 @@ class PendingCloudwatchLogsExports {
     this.logTypesToDisable,
     this.logTypesToEnable,
   });
+  factory PendingCloudwatchLogsExports.fromJson(Map<String, dynamic> json) {
+    return PendingCloudwatchLogsExports(
+      logTypesToDisable: (json['LogTypesToDisable'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      logTypesToEnable: (json['LogTypesToEnable'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory PendingCloudwatchLogsExports.fromXml(_s.XmlElement elem) {
     return PendingCloudwatchLogsExports(
       logTypesToDisable: _s
@@ -8499,6 +10622,15 @@ class PendingCloudwatchLogsExports {
           .extractXmlChild(elem, 'LogTypesToEnable')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logTypesToDisable = this.logTypesToDisable;
+    final logTypesToEnable = this.logTypesToEnable;
+    return {
+      if (logTypesToDisable != null) 'LogTypesToDisable': logTypesToDisable,
+      if (logTypesToEnable != null) 'LogTypesToEnable': logTypesToEnable,
+    };
   }
 }
 
@@ -8543,6 +10675,17 @@ class PendingMaintenanceAction {
     this.forcedApplyDate,
     this.optInStatus,
   });
+  factory PendingMaintenanceAction.fromJson(Map<String, dynamic> json) {
+    return PendingMaintenanceAction(
+      action: json['Action'] as String?,
+      autoAppliedAfterDate: timeStampFromJson(json['AutoAppliedAfterDate']),
+      currentApplyDate: timeStampFromJson(json['CurrentApplyDate']),
+      description: json['Description'] as String?,
+      forcedApplyDate: timeStampFromJson(json['ForcedApplyDate']),
+      optInStatus: json['OptInStatus'] as String?,
+    );
+  }
+
   factory PendingMaintenanceAction.fromXml(_s.XmlElement elem) {
     return PendingMaintenanceAction(
       action: _s.extractXmlStringValue(elem, 'Action'),
@@ -8553,6 +10696,26 @@ class PendingMaintenanceAction {
       forcedApplyDate: _s.extractXmlDateTimeValue(elem, 'ForcedApplyDate'),
       optInStatus: _s.extractXmlStringValue(elem, 'OptInStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final autoAppliedAfterDate = this.autoAppliedAfterDate;
+    final currentApplyDate = this.currentApplyDate;
+    final description = this.description;
+    final forcedApplyDate = this.forcedApplyDate;
+    final optInStatus = this.optInStatus;
+    return {
+      if (action != null) 'Action': action,
+      if (autoAppliedAfterDate != null)
+        'AutoAppliedAfterDate': unixTimestampToJson(autoAppliedAfterDate),
+      if (currentApplyDate != null)
+        'CurrentApplyDate': unixTimestampToJson(currentApplyDate),
+      if (description != null) 'Description': description,
+      if (forcedApplyDate != null)
+        'ForcedApplyDate': unixTimestampToJson(forcedApplyDate),
+      if (optInStatus != null) 'OptInStatus': optInStatus,
+    };
   }
 }
 
@@ -8570,6 +10733,17 @@ class PendingMaintenanceActionsMessage {
     this.marker,
     this.pendingMaintenanceActions,
   });
+  factory PendingMaintenanceActionsMessage.fromJson(Map<String, dynamic> json) {
+    return PendingMaintenanceActionsMessage(
+      marker: json['Marker'] as String?,
+      pendingMaintenanceActions: (json['PendingMaintenanceActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourcePendingMaintenanceActions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory PendingMaintenanceActionsMessage.fromXml(_s.XmlElement elem) {
     return PendingMaintenanceActionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -8580,6 +10754,16 @@ class PendingMaintenanceActionsMessage {
               .map((c) => ResourcePendingMaintenanceActions.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final pendingMaintenanceActions = this.pendingMaintenanceActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (pendingMaintenanceActions != null)
+        'PendingMaintenanceActions': pendingMaintenanceActions,
+    };
   }
 }
 
@@ -8651,6 +10835,28 @@ class PendingModifiedValues {
     this.port,
     this.storageType,
   });
+  factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
+    return PendingModifiedValues(
+      allocatedStorage: json['AllocatedStorage'] as int?,
+      backupRetentionPeriod: json['BackupRetentionPeriod'] as int?,
+      cACertificateIdentifier: json['CACertificateIdentifier'] as String?,
+      dBInstanceClass: json['DBInstanceClass'] as String?,
+      dBInstanceIdentifier: json['DBInstanceIdentifier'] as String?,
+      dBSubnetGroupName: json['DBSubnetGroupName'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      iops: json['Iops'] as int?,
+      licenseModel: json['LicenseModel'] as String?,
+      masterUserPassword: json['MasterUserPassword'] as String?,
+      multiAZ: json['MultiAZ'] as bool?,
+      pendingCloudwatchLogsExports: json['PendingCloudwatchLogsExports'] != null
+          ? PendingCloudwatchLogsExports.fromJson(
+              json['PendingCloudwatchLogsExports'] as Map<String, dynamic>)
+          : null,
+      port: json['Port'] as int?,
+      storageType: json['StorageType'] as String?,
+    );
+  }
+
   factory PendingModifiedValues.fromXml(_s.XmlElement elem) {
     return PendingModifiedValues(
       allocatedStorage: _s.extractXmlIntValue(elem, 'AllocatedStorage'),
@@ -8674,6 +10880,43 @@ class PendingModifiedValues {
       storageType: _s.extractXmlStringValue(elem, 'StorageType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final cACertificateIdentifier = this.cACertificateIdentifier;
+    final dBInstanceClass = this.dBInstanceClass;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final dBSubnetGroupName = this.dBSubnetGroupName;
+    final engineVersion = this.engineVersion;
+    final iops = this.iops;
+    final licenseModel = this.licenseModel;
+    final masterUserPassword = this.masterUserPassword;
+    final multiAZ = this.multiAZ;
+    final pendingCloudwatchLogsExports = this.pendingCloudwatchLogsExports;
+    final port = this.port;
+    final storageType = this.storageType;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (pendingCloudwatchLogsExports != null)
+        'PendingCloudwatchLogsExports': pendingCloudwatchLogsExports,
+      if (port != null) 'Port': port,
+      if (storageType != null) 'StorageType': storageType,
+    };
+  }
 }
 
 class PromoteReadReplicaDBClusterResult {
@@ -8682,12 +10925,28 @@ class PromoteReadReplicaDBClusterResult {
   PromoteReadReplicaDBClusterResult({
     this.dBCluster,
   });
+  factory PromoteReadReplicaDBClusterResult.fromJson(
+      Map<String, dynamic> json) {
+    return PromoteReadReplicaDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory PromoteReadReplicaDBClusterResult.fromXml(_s.XmlElement elem) {
     return PromoteReadReplicaDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8710,12 +10969,31 @@ class Range {
     this.step,
     this.to,
   });
+  factory Range.fromJson(Map<String, dynamic> json) {
+    return Range(
+      from: json['From'] as int?,
+      step: json['Step'] as int?,
+      to: json['To'] as int?,
+    );
+  }
+
   factory Range.fromXml(_s.XmlElement elem) {
     return Range(
       from: _s.extractXmlIntValue(elem, 'From'),
       step: _s.extractXmlIntValue(elem, 'Step'),
       to: _s.extractXmlIntValue(elem, 'To'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final from = this.from;
+    final step = this.step;
+    final to = this.to;
+    return {
+      if (from != null) 'From': from,
+      if (step != null) 'Step': step,
+      if (to != null) 'To': to,
+    };
   }
 }
 
@@ -8725,12 +11003,27 @@ class RebootDBInstanceResult {
   RebootDBInstanceResult({
     this.dBInstance,
   });
+  factory RebootDBInstanceResult.fromJson(Map<String, dynamic> json) {
+    return RebootDBInstanceResult(
+      dBInstance: json['DBInstance'] != null
+          ? DBInstance.fromJson(json['DBInstance'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RebootDBInstanceResult.fromXml(_s.XmlElement elem) {
     return RebootDBInstanceResult(
       dBInstance: _s
           .extractXmlChild(elem, 'DBInstance')
           ?.let((e) => DBInstance.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
   }
 }
 
@@ -8740,6 +11033,16 @@ class RemoveSourceIdentifierFromSubscriptionResult {
   RemoveSourceIdentifierFromSubscriptionResult({
     this.eventSubscription,
   });
+  factory RemoveSourceIdentifierFromSubscriptionResult.fromJson(
+      Map<String, dynamic> json) {
+    return RemoveSourceIdentifierFromSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RemoveSourceIdentifierFromSubscriptionResult.fromXml(
       _s.XmlElement elem) {
     return RemoveSourceIdentifierFromSubscriptionResult(
@@ -8747,6 +11050,13 @@ class RemoveSourceIdentifierFromSubscriptionResult {
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -8763,6 +11073,19 @@ class ResourcePendingMaintenanceActions {
     this.pendingMaintenanceActionDetails,
     this.resourceIdentifier,
   });
+  factory ResourcePendingMaintenanceActions.fromJson(
+      Map<String, dynamic> json) {
+    return ResourcePendingMaintenanceActions(
+      pendingMaintenanceActionDetails:
+          (json['PendingMaintenanceActionDetails'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  PendingMaintenanceAction.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      resourceIdentifier: json['ResourceIdentifier'] as String?,
+    );
+  }
+
   factory ResourcePendingMaintenanceActions.fromXml(_s.XmlElement elem) {
     return ResourcePendingMaintenanceActions(
       pendingMaintenanceActionDetails: _s
@@ -8774,6 +11097,17 @@ class ResourcePendingMaintenanceActions {
       resourceIdentifier: _s.extractXmlStringValue(elem, 'ResourceIdentifier'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pendingMaintenanceActionDetails =
+        this.pendingMaintenanceActionDetails;
+    final resourceIdentifier = this.resourceIdentifier;
+    return {
+      if (pendingMaintenanceActionDetails != null)
+        'PendingMaintenanceActionDetails': pendingMaintenanceActionDetails,
+      if (resourceIdentifier != null) 'ResourceIdentifier': resourceIdentifier,
+    };
+  }
 }
 
 class RestoreDBClusterFromSnapshotResult {
@@ -8782,12 +11116,28 @@ class RestoreDBClusterFromSnapshotResult {
   RestoreDBClusterFromSnapshotResult({
     this.dBCluster,
   });
+  factory RestoreDBClusterFromSnapshotResult.fromJson(
+      Map<String, dynamic> json) {
+    return RestoreDBClusterFromSnapshotResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RestoreDBClusterFromSnapshotResult.fromXml(_s.XmlElement elem) {
     return RestoreDBClusterFromSnapshotResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8797,12 +11147,28 @@ class RestoreDBClusterToPointInTimeResult {
   RestoreDBClusterToPointInTimeResult({
     this.dBCluster,
   });
+  factory RestoreDBClusterToPointInTimeResult.fromJson(
+      Map<String, dynamic> json) {
+    return RestoreDBClusterToPointInTimeResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RestoreDBClusterToPointInTimeResult.fromXml(_s.XmlElement elem) {
     return RestoreDBClusterToPointInTimeResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8860,12 +11226,27 @@ class StartDBClusterResult {
   StartDBClusterResult({
     this.dBCluster,
   });
+  factory StartDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return StartDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory StartDBClusterResult.fromXml(_s.XmlElement elem) {
     return StartDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8875,12 +11256,27 @@ class StopDBClusterResult {
   StopDBClusterResult({
     this.dBCluster,
   });
+  factory StopDBClusterResult.fromJson(Map<String, dynamic> json) {
+    return StopDBClusterResult(
+      dBCluster: json['DBCluster'] != null
+          ? DBCluster.fromJson(json['DBCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory StopDBClusterResult.fromXml(_s.XmlElement elem) {
     return StopDBClusterResult(
       dBCluster: _s
           .extractXmlChild(elem, 'DBCluster')
           ?.let((e) => DBCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -8903,6 +11299,17 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+  factory Subnet.fromJson(Map<String, dynamic> json) {
+    return Subnet(
+      subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
+          ? AvailabilityZone.fromJson(
+              json['SubnetAvailabilityZone'] as Map<String, dynamic>)
+          : null,
+      subnetIdentifier: json['SubnetIdentifier'] as String?,
+      subnetStatus: json['SubnetStatus'] as String?,
+    );
+  }
+
   factory Subnet.fromXml(_s.XmlElement elem) {
     return Subnet(
       subnetAvailabilityZone: _s
@@ -8911,6 +11318,18 @@ class Subnet {
       subnetIdentifier: _s.extractXmlStringValue(elem, 'SubnetIdentifier'),
       subnetStatus: _s.extractXmlStringValue(elem, 'SubnetStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetStatus = this.subnetStatus;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetStatus != null) 'SubnetStatus': subnetStatus,
+    };
   }
 }
 
@@ -8935,6 +11354,13 @@ class Tag {
     this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key'),
@@ -8959,11 +11385,27 @@ class TagListMessage {
   TagListMessage({
     this.tagList,
   });
+  factory TagListMessage.fromJson(Map<String, dynamic> json) {
+    return TagListMessage(
+      tagList: (json['TagList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory TagListMessage.fromXml(_s.XmlElement elem) {
     return TagListMessage(
       tagList: _s.extractXmlChild(elem, 'TagList')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -8975,10 +11417,23 @@ class Timezone {
   Timezone({
     this.timezoneName,
   });
+  factory Timezone.fromJson(Map<String, dynamic> json) {
+    return Timezone(
+      timezoneName: json['TimezoneName'] as String?,
+    );
+  }
+
   factory Timezone.fromXml(_s.XmlElement elem) {
     return Timezone(
       timezoneName: _s.extractXmlStringValue(elem, 'TimezoneName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timezoneName = this.timezoneName;
+    return {
+      if (timezoneName != null) 'TimezoneName': timezoneName,
+    };
   }
 }
 
@@ -9008,6 +11463,16 @@ class UpgradeTarget {
     this.engineVersion,
     this.isMajorVersionUpgrade,
   });
+  factory UpgradeTarget.fromJson(Map<String, dynamic> json) {
+    return UpgradeTarget(
+      autoUpgrade: json['AutoUpgrade'] as bool?,
+      description: json['Description'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      isMajorVersionUpgrade: json['IsMajorVersionUpgrade'] as bool?,
+    );
+  }
+
   factory UpgradeTarget.fromXml(_s.XmlElement elem) {
     return UpgradeTarget(
       autoUpgrade: _s.extractXmlBoolValue(elem, 'AutoUpgrade'),
@@ -9017,6 +11482,22 @@ class UpgradeTarget {
       isMajorVersionUpgrade:
           _s.extractXmlBoolValue(elem, 'IsMajorVersionUpgrade'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoUpgrade = this.autoUpgrade;
+    final description = this.description;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final isMajorVersionUpgrade = this.isMajorVersionUpgrade;
+    return {
+      if (autoUpgrade != null) 'AutoUpgrade': autoUpgrade,
+      if (description != null) 'Description': description,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (isMajorVersionUpgrade != null)
+        'IsMajorVersionUpgrade': isMajorVersionUpgrade,
+    };
   }
 }
 
@@ -9031,6 +11512,16 @@ class ValidDBInstanceModificationsMessage {
   ValidDBInstanceModificationsMessage({
     this.storage,
   });
+  factory ValidDBInstanceModificationsMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ValidDBInstanceModificationsMessage(
+      storage: (json['Storage'] as List?)
+          ?.whereNotNull()
+          .map((e) => ValidStorageOptions.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ValidDBInstanceModificationsMessage.fromXml(_s.XmlElement elem) {
     return ValidDBInstanceModificationsMessage(
       storage: _s.extractXmlChild(elem, 'Storage')?.let((elem) => elem
@@ -9038,6 +11529,13 @@ class ValidDBInstanceModificationsMessage {
           .map((c) => ValidStorageOptions.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final storage = this.storage;
+    return {
+      if (storage != null) 'Storage': storage,
+    };
   }
 }
 
@@ -9066,6 +11564,24 @@ class ValidStorageOptions {
     this.storageSize,
     this.storageType,
   });
+  factory ValidStorageOptions.fromJson(Map<String, dynamic> json) {
+    return ValidStorageOptions(
+      iopsToStorageRatio: (json['IopsToStorageRatio'] as List?)
+          ?.whereNotNull()
+          .map((e) => DoubleRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      provisionedIops: (json['ProvisionedIops'] as List?)
+          ?.whereNotNull()
+          .map((e) => Range.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      storageSize: (json['StorageSize'] as List?)
+          ?.whereNotNull()
+          .map((e) => Range.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      storageType: json['StorageType'] as String?,
+    );
+  }
+
   factory ValidStorageOptions.fromXml(_s.XmlElement elem) {
     return ValidStorageOptions(
       iopsToStorageRatio: _s.extractXmlChild(elem, 'IopsToStorageRatio')?.let(
@@ -9080,6 +11596,19 @@ class ValidStorageOptions {
           elem.findElements('Range').map((c) => Range.fromXml(c)).toList()),
       storageType: _s.extractXmlStringValue(elem, 'StorageType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iopsToStorageRatio = this.iopsToStorageRatio;
+    final provisionedIops = this.provisionedIops;
+    final storageSize = this.storageSize;
+    final storageType = this.storageType;
+    return {
+      if (iopsToStorageRatio != null) 'IopsToStorageRatio': iopsToStorageRatio,
+      if (provisionedIops != null) 'ProvisionedIops': provisionedIops,
+      if (storageSize != null) 'StorageSize': storageSize,
+      if (storageType != null) 'StorageType': storageType,
+    };
   }
 }
 
@@ -9096,11 +11625,27 @@ class VpcSecurityGroupMembership {
     this.status,
     this.vpcSecurityGroupId,
   });
+  factory VpcSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return VpcSecurityGroupMembership(
+      status: json['Status'] as String?,
+      vpcSecurityGroupId: json['VpcSecurityGroupId'] as String?,
+    );
+  }
+
   factory VpcSecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return VpcSecurityGroupMembership(
       status: _s.extractXmlStringValue(elem, 'Status'),
       vpcSecurityGroupId: _s.extractXmlStringValue(elem, 'VpcSecurityGroupId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final vpcSecurityGroupId = this.vpcSecurityGroupId;
+    return {
+      if (status != null) 'Status': status,
+      if (vpcSecurityGroupId != null) 'VpcSecurityGroupId': vpcSecurityGroupId,
+    };
   }
 }
 

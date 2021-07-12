@@ -2374,6 +2374,17 @@ class AgentListEntry {
       status: (json['Status'] as String?)?.toAgentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentArn = this.agentArn;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (agentArn != null) 'AgentArn': agentArn,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum AgentStatus {
@@ -2437,6 +2448,10 @@ class CancelTaskExecutionResponse {
   factory CancelTaskExecutionResponse.fromJson(Map<String, dynamic> _) {
     return CancelTaskExecutionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// CreateAgentResponse
@@ -2452,6 +2467,13 @@ class CreateAgentResponse {
     return CreateAgentResponse(
       agentArn: json['AgentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentArn = this.agentArn;
+    return {
+      if (agentArn != null) 'AgentArn': agentArn,
+    };
   }
 }
 
@@ -2469,6 +2491,13 @@ class CreateLocationEfsResponse {
       locationArn: json['LocationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
+  }
 }
 
 class CreateLocationFsxWindowsResponse {
@@ -2483,6 +2512,13 @@ class CreateLocationFsxWindowsResponse {
     return CreateLocationFsxWindowsResponse(
       locationArn: json['LocationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
   }
 }
 
@@ -2499,6 +2535,13 @@ class CreateLocationNfsResponse {
     return CreateLocationNfsResponse(
       locationArn: json['LocationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
   }
 }
 
@@ -2517,6 +2560,13 @@ class CreateLocationObjectStorageResponse {
       locationArn: json['LocationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
+  }
 }
 
 /// CreateLocationS3Response
@@ -2532,6 +2582,13 @@ class CreateLocationS3Response {
     return CreateLocationS3Response(
       locationArn: json['LocationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
   }
 }
 
@@ -2549,6 +2606,13 @@ class CreateLocationSmbResponse {
       locationArn: json['LocationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+    };
+  }
 }
 
 /// CreateTaskResponse
@@ -2564,12 +2628,23 @@ class CreateTaskResponse {
       taskArn: json['TaskArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskArn = this.taskArn;
+    return {
+      if (taskArn != null) 'TaskArn': taskArn,
+    };
+  }
 }
 
 class DeleteAgentResponse {
   DeleteAgentResponse();
   factory DeleteAgentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAgentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2578,12 +2653,20 @@ class DeleteLocationResponse {
   factory DeleteLocationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLocationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTaskResponse {
   DeleteTaskResponse();
   factory DeleteTaskResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2639,6 +2722,27 @@ class DescribeAgentResponse {
       status: (json['Status'] as String?)?.toAgentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentArn = this.agentArn;
+    final creationTime = this.creationTime;
+    final endpointType = this.endpointType;
+    final lastConnectionTime = this.lastConnectionTime;
+    final name = this.name;
+    final privateLinkConfig = this.privateLinkConfig;
+    final status = this.status;
+    return {
+      if (agentArn != null) 'AgentArn': agentArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (lastConnectionTime != null)
+        'LastConnectionTime': unixTimestampToJson(lastConnectionTime),
+      if (name != null) 'Name': name,
+      if (privateLinkConfig != null) 'PrivateLinkConfig': privateLinkConfig,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// DescribeLocationEfsResponse
@@ -2668,6 +2772,20 @@ class DescribeLocationEfsResponse {
       locationArn: json['LocationArn'] as String?,
       locationUri: json['LocationUri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final ec2Config = this.ec2Config;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (ec2Config != null) 'Ec2Config': ec2Config,
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+    };
   }
 }
 
@@ -2716,6 +2834,24 @@ class DescribeLocationFsxWindowsResponse {
       user: json['User'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final domain = this.domain;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    final securityGroupArns = this.securityGroupArns;
+    final user = this.user;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domain != null) 'Domain': domain,
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (securityGroupArns != null) 'SecurityGroupArns': securityGroupArns,
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// DescribeLocationNfsResponse
@@ -2753,6 +2889,22 @@ class DescribeLocationNfsResponse {
           ? OnPremConfig.fromJson(json['OnPremConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    final mountOptions = this.mountOptions;
+    final onPremConfig = this.onPremConfig;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (mountOptions != null) 'MountOptions': mountOptions,
+      if (onPremConfig != null) 'OnPremConfig': onPremConfig,
+    };
   }
 }
 
@@ -2813,6 +2965,26 @@ class DescribeLocationObjectStorageResponse {
           (json['ServerProtocol'] as String?)?.toObjectStorageServerProtocol(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKey = this.accessKey;
+    final agentArns = this.agentArns;
+    final creationTime = this.creationTime;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    final serverPort = this.serverPort;
+    final serverProtocol = this.serverProtocol;
+    return {
+      if (accessKey != null) 'AccessKey': accessKey,
+      if (agentArns != null) 'AgentArns': agentArns,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (serverPort != null) 'ServerPort': serverPort,
+      if (serverProtocol != null) 'ServerProtocol': serverProtocol.toValue(),
+    };
+  }
 }
 
 /// DescribeLocationS3Response
@@ -2867,6 +3039,24 @@ class DescribeLocationS3Response {
       s3StorageClass: (json['S3StorageClass'] as String?)?.toS3StorageClass(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentArns = this.agentArns;
+    final creationTime = this.creationTime;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    final s3Config = this.s3Config;
+    final s3StorageClass = this.s3StorageClass;
+    return {
+      if (agentArns != null) 'AgentArns': agentArns,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (s3Config != null) 'S3Config': s3Config,
+      if (s3StorageClass != null) 'S3StorageClass': s3StorageClass.toValue(),
+    };
+  }
 }
 
 /// DescribeLocationSmbResponse
@@ -2920,6 +3110,26 @@ class DescribeLocationSmbResponse {
           : null,
       user: json['User'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentArns = this.agentArns;
+    final creationTime = this.creationTime;
+    final domain = this.domain;
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    final mountOptions = this.mountOptions;
+    final user = this.user;
+    return {
+      if (agentArns != null) 'AgentArns': agentArns,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domain != null) 'Domain': domain,
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (mountOptions != null) 'MountOptions': mountOptions,
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -3033,6 +3243,37 @@ class DescribeTaskExecutionResponse {
       status: (json['Status'] as String?)?.toTaskExecutionStatus(),
       taskExecutionArn: json['TaskExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytesTransferred = this.bytesTransferred;
+    final bytesWritten = this.bytesWritten;
+    final estimatedBytesToTransfer = this.estimatedBytesToTransfer;
+    final estimatedFilesToTransfer = this.estimatedFilesToTransfer;
+    final excludes = this.excludes;
+    final filesTransferred = this.filesTransferred;
+    final includes = this.includes;
+    final options = this.options;
+    final result = this.result;
+    final startTime = this.startTime;
+    final status = this.status;
+    final taskExecutionArn = this.taskExecutionArn;
+    return {
+      if (bytesTransferred != null) 'BytesTransferred': bytesTransferred,
+      if (bytesWritten != null) 'BytesWritten': bytesWritten,
+      if (estimatedBytesToTransfer != null)
+        'EstimatedBytesToTransfer': estimatedBytesToTransfer,
+      if (estimatedFilesToTransfer != null)
+        'EstimatedFilesToTransfer': estimatedFilesToTransfer,
+      if (excludes != null) 'Excludes': excludes,
+      if (filesTransferred != null) 'FilesTransferred': filesTransferred,
+      if (includes != null) 'Includes': includes,
+      if (options != null) 'Options': options,
+      if (result != null) 'Result': result,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (taskExecutionArn != null) 'TaskExecutionArn': taskExecutionArn,
+    };
   }
 }
 
@@ -3158,6 +3399,48 @@ class DescribeTaskResponse {
       status: (json['Status'] as String?)?.toTaskStatus(),
       taskArn: json['TaskArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogGroupArn = this.cloudWatchLogGroupArn;
+    final creationTime = this.creationTime;
+    final currentTaskExecutionArn = this.currentTaskExecutionArn;
+    final destinationLocationArn = this.destinationLocationArn;
+    final destinationNetworkInterfaceArns =
+        this.destinationNetworkInterfaceArns;
+    final errorCode = this.errorCode;
+    final errorDetail = this.errorDetail;
+    final excludes = this.excludes;
+    final name = this.name;
+    final options = this.options;
+    final schedule = this.schedule;
+    final sourceLocationArn = this.sourceLocationArn;
+    final sourceNetworkInterfaceArns = this.sourceNetworkInterfaceArns;
+    final status = this.status;
+    final taskArn = this.taskArn;
+    return {
+      if (cloudWatchLogGroupArn != null)
+        'CloudWatchLogGroupArn': cloudWatchLogGroupArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (currentTaskExecutionArn != null)
+        'CurrentTaskExecutionArn': currentTaskExecutionArn,
+      if (destinationLocationArn != null)
+        'DestinationLocationArn': destinationLocationArn,
+      if (destinationNetworkInterfaceArns != null)
+        'DestinationNetworkInterfaceArns': destinationNetworkInterfaceArns,
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorDetail != null) 'ErrorDetail': errorDetail,
+      if (excludes != null) 'Excludes': excludes,
+      if (name != null) 'Name': name,
+      if (options != null) 'Options': options,
+      if (schedule != null) 'Schedule': schedule,
+      if (sourceLocationArn != null) 'SourceLocationArn': sourceLocationArn,
+      if (sourceNetworkInterfaceArns != null)
+        'SourceNetworkInterfaceArns': sourceNetworkInterfaceArns,
+      if (status != null) 'Status': status.toValue(),
+      if (taskArn != null) 'TaskArn': taskArn,
+    };
   }
 }
 
@@ -3349,6 +3632,15 @@ class ListAgentsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agents = this.agents;
+    final nextToken = this.nextToken;
+    return {
+      if (agents != null) 'Agents': agents,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// ListLocationsResponse
@@ -3373,6 +3665,15 @@ class ListLocationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locations = this.locations;
+    final nextToken = this.nextToken;
+    return {
+      if (locations != null) 'Locations': locations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// ListTagsForResourceResponse
@@ -3396,6 +3697,15 @@ class ListTagsForResourceResponse {
           .map((e) => TagListEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3422,6 +3732,15 @@ class ListTaskExecutionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskExecutions = this.taskExecutions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (taskExecutions != null) 'TaskExecutions': taskExecutions,
+    };
+  }
 }
 
 /// ListTasksResponse
@@ -3445,6 +3764,15 @@ class ListTasksResponse {
           .map((e) => TaskListEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tasks != null) 'Tasks': tasks,
+    };
   }
 }
 
@@ -3474,6 +3802,17 @@ class LocationFilter {
     required this.operator,
     required this.values,
   });
+  factory LocationFilter.fromJson(Map<String, dynamic> json) {
+    return LocationFilter(
+      name: (json['Name'] as String).toLocationFilterName(),
+      operator: (json['Operator'] as String).toOperator(),
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -3562,6 +3901,15 @@ class LocationListEntry {
       locationArn: json['LocationArn'] as String?,
       locationUri: json['LocationUri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationArn = this.locationArn;
+    final locationUri = this.locationUri;
+    return {
+      if (locationArn != null) 'LocationArn': locationArn,
+      if (locationUri != null) 'LocationUri': locationUri,
+    };
   }
 }
 
@@ -4354,6 +4702,20 @@ class PrivateLinkConfig {
       vpcEndpointId: json['VpcEndpointId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final privateLinkEndpoint = this.privateLinkEndpoint;
+    final securityGroupArns = this.securityGroupArns;
+    final subnetArns = this.subnetArns;
+    final vpcEndpointId = this.vpcEndpointId;
+    return {
+      if (privateLinkEndpoint != null)
+        'PrivateLinkEndpoint': privateLinkEndpoint,
+      if (securityGroupArns != null) 'SecurityGroupArns': securityGroupArns,
+      if (subnetArns != null) 'SubnetArns': subnetArns,
+      if (vpcEndpointId != null) 'VpcEndpointId': vpcEndpointId,
+    };
+  }
 }
 
 /// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
@@ -4544,6 +4906,13 @@ class StartTaskExecutionResponse {
       taskExecutionArn: json['TaskExecutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskExecutionArn = this.taskExecutionArn;
+    return {
+      if (taskExecutionArn != null) 'TaskExecutionArn': taskExecutionArn,
+    };
+  }
 }
 
 /// Represents a single entry in a list of AWS resource tags.
@@ -4584,6 +4953,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents a single entry in a list of task executions.
@@ -4607,6 +4980,15 @@ class TaskExecutionListEntry {
       status: (json['Status'] as String?)?.toTaskExecutionStatus(),
       taskExecutionArn: json['TaskExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final taskExecutionArn = this.taskExecutionArn;
+    return {
+      if (status != null) 'Status': status.toValue(),
+      if (taskExecutionArn != null) 'TaskExecutionArn': taskExecutionArn,
+    };
   }
 }
 
@@ -4670,6 +5052,29 @@ class TaskExecutionResultDetail {
       verifyDuration: json['VerifyDuration'] as int?,
       verifyStatus: (json['VerifyStatus'] as String?)?.toPhaseStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorDetail = this.errorDetail;
+    final prepareDuration = this.prepareDuration;
+    final prepareStatus = this.prepareStatus;
+    final totalDuration = this.totalDuration;
+    final transferDuration = this.transferDuration;
+    final transferStatus = this.transferStatus;
+    final verifyDuration = this.verifyDuration;
+    final verifyStatus = this.verifyStatus;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorDetail != null) 'ErrorDetail': errorDetail,
+      if (prepareDuration != null) 'PrepareDuration': prepareDuration,
+      if (prepareStatus != null) 'PrepareStatus': prepareStatus.toValue(),
+      if (totalDuration != null) 'TotalDuration': totalDuration,
+      if (transferDuration != null) 'TransferDuration': transferDuration,
+      if (transferStatus != null) 'TransferStatus': transferStatus.toValue(),
+      if (verifyDuration != null) 'VerifyDuration': verifyDuration,
+      if (verifyStatus != null) 'VerifyStatus': verifyStatus.toValue(),
+    };
   }
 }
 
@@ -4753,6 +5158,17 @@ class TaskFilter {
     required this.operator,
     required this.values,
   });
+  factory TaskFilter.fromJson(Map<String, dynamic> json) {
+    return TaskFilter(
+      name: (json['Name'] as String).toTaskFilterName(),
+      operator: (json['Operator'] as String).toOperator(),
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -4819,6 +5235,17 @@ class TaskListEntry {
       status: (json['Status'] as String?)?.toTaskStatus(),
       taskArn: json['TaskArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    final taskArn = this.taskArn;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (taskArn != null) 'TaskArn': taskArn,
+    };
   }
 }
 
@@ -4990,12 +5417,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAgentResponse {
   UpdateAgentResponse();
   factory UpdateAgentResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAgentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5004,12 +5439,20 @@ class UpdateLocationNfsResponse {
   factory UpdateLocationNfsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationNfsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLocationObjectStorageResponse {
   UpdateLocationObjectStorageResponse();
   factory UpdateLocationObjectStorageResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationObjectStorageResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5018,6 +5461,10 @@ class UpdateLocationSmbResponse {
   factory UpdateLocationSmbResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationSmbResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTaskExecutionResponse {
@@ -5025,12 +5472,20 @@ class UpdateTaskExecutionResponse {
   factory UpdateTaskExecutionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTaskExecutionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTaskResponse {
   UpdateTaskResponse();
   factory UpdateTaskResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

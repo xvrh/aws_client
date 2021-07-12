@@ -408,6 +408,13 @@ class DeleteReportDefinitionResponse {
       responseMessage: json['ResponseMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final responseMessage = this.responseMessage;
+    return {
+      if (responseMessage != null) 'ResponseMessage': responseMessage,
+    };
+  }
 }
 
 /// If the action is successful, the service sends back an HTTP 200 response.
@@ -431,12 +438,25 @@ class DescribeReportDefinitionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportDefinitions = this.reportDefinitions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reportDefinitions != null) 'ReportDefinitions': reportDefinitions,
+    };
+  }
 }
 
 class ModifyReportDefinitionResponse {
   ModifyReportDefinitionResponse();
   factory ModifyReportDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return ModifyReportDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -446,6 +466,10 @@ class PutReportDefinitionResponse {
   PutReportDefinitionResponse();
   factory PutReportDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return PutReportDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

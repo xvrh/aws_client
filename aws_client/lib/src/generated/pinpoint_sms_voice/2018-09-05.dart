@@ -298,6 +298,12 @@ class CallInstructionsMessageType {
   CallInstructionsMessageType({
     this.text,
   });
+  factory CallInstructionsMessageType.fromJson(Map<String, dynamic> json) {
+    return CallInstructionsMessageType(
+      text: json['Text'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final text = this.text;
     return {
@@ -347,6 +353,10 @@ class CreateConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return CreateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty object that indicates that the configuration set was successfully
@@ -355,6 +365,10 @@ class CreateConfigurationSetResponse {
   CreateConfigurationSetResponse();
   factory CreateConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return CreateConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -366,6 +380,10 @@ class DeleteConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return DeleteConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty object that indicates that the configuration set was deleted
@@ -374,6 +392,10 @@ class DeleteConfigurationSetResponse {
   DeleteConfigurationSetResponse();
   factory DeleteConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -422,6 +444,27 @@ class EventDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsDestination = this.cloudWatchLogsDestination;
+    final enabled = this.enabled;
+    final kinesisFirehoseDestination = this.kinesisFirehoseDestination;
+    final matchingEventTypes = this.matchingEventTypes;
+    final name = this.name;
+    final snsDestination = this.snsDestination;
+    return {
+      if (cloudWatchLogsDestination != null)
+        'CloudWatchLogsDestination': cloudWatchLogsDestination,
+      if (enabled != null) 'Enabled': enabled,
+      if (kinesisFirehoseDestination != null)
+        'KinesisFirehoseDestination': kinesisFirehoseDestination,
+      if (matchingEventTypes != null)
+        'MatchingEventTypes':
+            matchingEventTypes.map((e) => e.toValue()).toList(),
+      if (name != null) 'Name': name,
+      if (snsDestination != null) 'SnsDestination': snsDestination,
+    };
+  }
 }
 
 /// An object that defines a single event destination.
@@ -443,6 +486,28 @@ class EventDestinationDefinition {
     this.matchingEventTypes,
     this.snsDestination,
   });
+  factory EventDestinationDefinition.fromJson(Map<String, dynamic> json) {
+    return EventDestinationDefinition(
+      cloudWatchLogsDestination: json['CloudWatchLogsDestination'] != null
+          ? CloudWatchLogsDestination.fromJson(
+              json['CloudWatchLogsDestination'] as Map<String, dynamic>)
+          : null,
+      enabled: json['Enabled'] as bool?,
+      kinesisFirehoseDestination: json['KinesisFirehoseDestination'] != null
+          ? KinesisFirehoseDestination.fromJson(
+              json['KinesisFirehoseDestination'] as Map<String, dynamic>)
+          : null,
+      matchingEventTypes: (json['MatchingEventTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEventType())
+          .toList(),
+      snsDestination: json['SnsDestination'] != null
+          ? SnsDestination.fromJson(
+              json['SnsDestination'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cloudWatchLogsDestination = this.cloudWatchLogsDestination;
     final enabled = this.enabled;
@@ -533,6 +598,13 @@ class GetConfigurationSetEventDestinationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventDestinations = this.eventDestinations;
+    return {
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+    };
+  }
 }
 
 /// An object that contains information about an event destination that sends
@@ -591,6 +663,15 @@ class ListConfigurationSetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// An object that defines a message that contains unformatted text.
@@ -611,6 +692,14 @@ class PlainTextMessageType {
     this.text,
     this.voiceId,
   });
+  factory PlainTextMessageType.fromJson(Map<String, dynamic> json) {
+    return PlainTextMessageType(
+      languageCode: json['LanguageCode'] as String?,
+      text: json['Text'] as String?,
+      voiceId: json['VoiceId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final languageCode = this.languageCode;
     final text = this.text;
@@ -641,6 +730,14 @@ class SSMLMessageType {
     this.text,
     this.voiceId,
   });
+  factory SSMLMessageType.fromJson(Map<String, dynamic> json) {
+    return SSMLMessageType(
+      languageCode: json['LanguageCode'] as String?,
+      text: json['Text'] as String?,
+      voiceId: json['VoiceId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final languageCode = this.languageCode;
     final text = this.text;
@@ -666,6 +763,13 @@ class SendVoiceMessageResponse {
     return SendVoiceMessageResponse(
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -701,6 +805,10 @@ class UpdateConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return UpdateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An object that contains a voice message and information about the recipient
@@ -715,6 +823,23 @@ class VoiceMessageContent {
     this.plainTextMessage,
     this.sSMLMessage,
   });
+  factory VoiceMessageContent.fromJson(Map<String, dynamic> json) {
+    return VoiceMessageContent(
+      callInstructionsMessage: json['CallInstructionsMessage'] != null
+          ? CallInstructionsMessageType.fromJson(
+              json['CallInstructionsMessage'] as Map<String, dynamic>)
+          : null,
+      plainTextMessage: json['PlainTextMessage'] != null
+          ? PlainTextMessageType.fromJson(
+              json['PlainTextMessage'] as Map<String, dynamic>)
+          : null,
+      sSMLMessage: json['SSMLMessage'] != null
+          ? SSMLMessageType.fromJson(
+              json['SSMLMessage'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final callInstructionsMessage = this.callInstructionsMessage;
     final plainTextMessage = this.plainTextMessage;

@@ -2198,6 +2198,15 @@ class AddProfileKeyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyName = this.keyName;
+    final values = this.values;
+    return {
+      if (keyName != null) 'KeyName': keyName,
+      if (values != null) 'Values': values,
+    };
+  }
 }
 
 /// A generic address associated with the customer that is not mailing,
@@ -2310,6 +2319,18 @@ class ConnectorOperator {
     this.serviceNow,
     this.zendesk,
   });
+  factory ConnectorOperator.fromJson(Map<String, dynamic> json) {
+    return ConnectorOperator(
+      marketo: (json['Marketo'] as String?)?.toMarketoConnectorOperator(),
+      s3: (json['S3'] as String?)?.toS3ConnectorOperator(),
+      salesforce:
+          (json['Salesforce'] as String?)?.toSalesforceConnectorOperator(),
+      serviceNow:
+          (json['ServiceNow'] as String?)?.toServiceNowConnectorOperator(),
+      zendesk: (json['Zendesk'] as String?)?.toZendeskConnectorOperator(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final marketo = this.marketo;
     final s3 = this.s3;
@@ -2381,6 +2402,28 @@ class CreateDomainResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final defaultExpirationDays = this.defaultExpirationDays;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final deadLetterQueueUrl = this.deadLetterQueueUrl;
+    final defaultEncryptionKey = this.defaultEncryptionKey;
+    final matching = this.matching;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DefaultExpirationDays': defaultExpirationDays,
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (deadLetterQueueUrl != null) 'DeadLetterQueueUrl': deadLetterQueueUrl,
+      if (defaultEncryptionKey != null)
+        'DefaultEncryptionKey': defaultEncryptionKey,
+      if (matching != null) 'Matching': matching,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateProfileResponse {
@@ -2394,6 +2437,13 @@ class CreateProfileResponse {
     return CreateProfileResponse(
       profileId: json['ProfileId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileId = this.profileId;
+    return {
+      'ProfileId': profileId,
+    };
   }
 }
 
@@ -2437,6 +2487,13 @@ class DeleteDomainResponse {
       message: json['Message'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      'Message': message,
+    };
+  }
 }
 
 class DeleteIntegrationResponse {
@@ -2450,6 +2507,13 @@ class DeleteIntegrationResponse {
     return DeleteIntegrationResponse(
       message: json['Message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      'Message': message,
+    };
   }
 }
 
@@ -2465,6 +2529,13 @@ class DeleteProfileKeyResponse {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class DeleteProfileObjectResponse {
@@ -2478,6 +2549,13 @@ class DeleteProfileObjectResponse {
     return DeleteProfileObjectResponse(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -2493,6 +2571,13 @@ class DeleteProfileObjectTypeResponse {
       message: json['Message'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      'Message': message,
+    };
+  }
 }
 
 class DeleteProfileResponse {
@@ -2506,6 +2591,13 @@ class DeleteProfileResponse {
     return DeleteProfileResponse(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -2539,6 +2631,20 @@ class DomainStats {
       profileCount: json['ProfileCount'] as int?,
       totalSize: json['TotalSize'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meteringProfileCount = this.meteringProfileCount;
+    final objectCount = this.objectCount;
+    final profileCount = this.profileCount;
+    final totalSize = this.totalSize;
+    return {
+      if (meteringProfileCount != null)
+        'MeteringProfileCount': meteringProfileCount,
+      if (objectCount != null) 'ObjectCount': objectCount,
+      if (profileCount != null) 'ProfileCount': profileCount,
+      if (totalSize != null) 'TotalSize': totalSize,
+    };
   }
 }
 
@@ -2673,6 +2779,33 @@ class FieldSourceProfileIds {
     this.phoneNumber,
     this.shippingAddress,
   });
+  factory FieldSourceProfileIds.fromJson(Map<String, dynamic> json) {
+    return FieldSourceProfileIds(
+      accountNumber: json['AccountNumber'] as String?,
+      additionalInformation: json['AdditionalInformation'] as String?,
+      address: json['Address'] as String?,
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      billingAddress: json['BillingAddress'] as String?,
+      birthDate: json['BirthDate'] as String?,
+      businessEmailAddress: json['BusinessEmailAddress'] as String?,
+      businessName: json['BusinessName'] as String?,
+      businessPhoneNumber: json['BusinessPhoneNumber'] as String?,
+      emailAddress: json['EmailAddress'] as String?,
+      firstName: json['FirstName'] as String?,
+      gender: json['Gender'] as String?,
+      homePhoneNumber: json['HomePhoneNumber'] as String?,
+      lastName: json['LastName'] as String?,
+      mailingAddress: json['MailingAddress'] as String?,
+      middleName: json['MiddleName'] as String?,
+      mobilePhoneNumber: json['MobilePhoneNumber'] as String?,
+      partyType: json['PartyType'] as String?,
+      personalEmailAddress: json['PersonalEmailAddress'] as String?,
+      phoneNumber: json['PhoneNumber'] as String?,
+      shippingAddress: json['ShippingAddress'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountNumber = this.accountNumber;
     final additionalInformation = this.additionalInformation;
@@ -2759,6 +2892,22 @@ class FlowDefinition {
     required this.triggerConfig,
     this.description,
   });
+  factory FlowDefinition.fromJson(Map<String, dynamic> json) {
+    return FlowDefinition(
+      flowName: json['FlowName'] as String,
+      kmsArn: json['KmsArn'] as String,
+      sourceFlowConfig: SourceFlowConfig.fromJson(
+          json['SourceFlowConfig'] as Map<String, dynamic>),
+      tasks: (json['Tasks'] as List)
+          .whereNotNull()
+          .map((e) => Task.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      triggerConfig:
+          TriggerConfig.fromJson(json['TriggerConfig'] as Map<String, dynamic>),
+      description: json['Description'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final flowName = this.flowName;
     final kmsArn = this.kmsArn;
@@ -2872,6 +3021,31 @@ class GetDomainResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final deadLetterQueueUrl = this.deadLetterQueueUrl;
+    final defaultEncryptionKey = this.defaultEncryptionKey;
+    final defaultExpirationDays = this.defaultExpirationDays;
+    final matching = this.matching;
+    final stats = this.stats;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (deadLetterQueueUrl != null) 'DeadLetterQueueUrl': deadLetterQueueUrl,
+      if (defaultEncryptionKey != null)
+        'DefaultEncryptionKey': defaultEncryptionKey,
+      if (defaultExpirationDays != null)
+        'DefaultExpirationDays': defaultExpirationDays,
+      if (matching != null) 'Matching': matching,
+      if (stats != null) 'Stats': stats,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class GetIntegrationResponse {
@@ -2913,6 +3087,23 @@ class GetIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final objectTypeName = this.objectTypeName;
+    final uri = this.uri;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'ObjectTypeName': objectTypeName,
+      'Uri': uri,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class GetMatchesResponse {
@@ -2945,6 +3136,20 @@ class GetMatchesResponse {
       nextToken: json['NextToken'] as String?,
       potentialMatches: json['PotentialMatches'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final matchGenerationDate = this.matchGenerationDate;
+    final matches = this.matches;
+    final nextToken = this.nextToken;
+    final potentialMatches = this.potentialMatches;
+    return {
+      if (matchGenerationDate != null)
+        'MatchGenerationDate': unixTimestampToJson(matchGenerationDate),
+      if (matches != null) 'Matches': matches,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (potentialMatches != null) 'PotentialMatches': potentialMatches,
+    };
   }
 }
 
@@ -3023,6 +3228,35 @@ class GetProfileObjectTypeResponse {
       templateId: json['TemplateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final objectTypeName = this.objectTypeName;
+    final allowProfileCreation = this.allowProfileCreation;
+    final createdAt = this.createdAt;
+    final encryptionKey = this.encryptionKey;
+    final expirationDays = this.expirationDays;
+    final fields = this.fields;
+    final keys = this.keys;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final tags = this.tags;
+    final templateId = this.templateId;
+    return {
+      'Description': description,
+      'ObjectTypeName': objectTypeName,
+      if (allowProfileCreation != null)
+        'AllowProfileCreation': allowProfileCreation,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (encryptionKey != null) 'EncryptionKey': encryptionKey,
+      if (expirationDays != null) 'ExpirationDays': expirationDays,
+      if (fields != null) 'Fields': fields,
+      if (keys != null) 'Keys': keys,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (tags != null) 'Tags': tags,
+      if (templateId != null) 'TemplateId': templateId,
+    };
+  }
 }
 
 class GetProfileObjectTypeTemplateResponse {
@@ -3074,6 +3308,24 @@ class GetProfileObjectTypeTemplateResponse {
       templateId: json['TemplateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowProfileCreation = this.allowProfileCreation;
+    final fields = this.fields;
+    final keys = this.keys;
+    final sourceName = this.sourceName;
+    final sourceObject = this.sourceObject;
+    final templateId = this.templateId;
+    return {
+      if (allowProfileCreation != null)
+        'AllowProfileCreation': allowProfileCreation,
+      if (fields != null) 'Fields': fields,
+      if (keys != null) 'Keys': keys,
+      if (sourceName != null) 'SourceName': sourceName,
+      if (sourceObject != null) 'SourceObject': sourceObject,
+      if (templateId != null) 'TemplateId': templateId,
+    };
+  }
 }
 
 /// Specifies the configuration used when importing incremental records from the
@@ -3086,6 +3338,12 @@ class IncrementalPullConfig {
   IncrementalPullConfig({
     this.datetimeTypeFieldName,
   });
+  factory IncrementalPullConfig.fromJson(Map<String, dynamic> json) {
+    return IncrementalPullConfig(
+      datetimeTypeFieldName: json['DatetimeTypeFieldName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final datetimeTypeFieldName = this.datetimeTypeFieldName;
     return {
@@ -3114,6 +3372,15 @@ class ListAccountIntegrationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3147,6 +3414,19 @@ class ListDomainItem {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListDomainsResponse {
@@ -3168,6 +3448,15 @@ class ListDomainsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3211,6 +3500,23 @@ class ListIntegrationItem {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final objectTypeName = this.objectTypeName;
+    final uri = this.uri;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'ObjectTypeName': objectTypeName,
+      'Uri': uri,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListIntegrationsResponse {
@@ -3232,6 +3538,15 @@ class ListIntegrationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3269,6 +3584,22 @@ class ListProfileObjectTypeItem {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final objectTypeName = this.objectTypeName;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final tags = this.tags;
+    return {
+      'Description': description,
+      'ObjectTypeName': objectTypeName,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A ProfileObjectTypeTemplate in a list of ProfileObjectTypeTemplates.
@@ -3295,6 +3626,17 @@ class ListProfileObjectTypeTemplateItem {
       templateId: json['TemplateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourceName = this.sourceName;
+    final sourceObject = this.sourceObject;
+    final templateId = this.templateId;
+    return {
+      if (sourceName != null) 'SourceName': sourceName,
+      if (sourceObject != null) 'SourceObject': sourceObject,
+      if (templateId != null) 'TemplateId': templateId,
+    };
+  }
 }
 
 class ListProfileObjectTypeTemplatesResponse {
@@ -3319,6 +3661,15 @@ class ListProfileObjectTypeTemplatesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListProfileObjectTypesResponse {
@@ -3341,6 +3692,15 @@ class ListProfileObjectTypesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3368,6 +3728,18 @@ class ListProfileObjectsItem {
       profileObjectUniqueKey: json['ProfileObjectUniqueKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final object = this.object;
+    final objectTypeName = this.objectTypeName;
+    final profileObjectUniqueKey = this.profileObjectUniqueKey;
+    return {
+      if (object != null) 'Object': object,
+      if (objectTypeName != null) 'ObjectTypeName': objectTypeName,
+      if (profileObjectUniqueKey != null)
+        'ProfileObjectUniqueKey': profileObjectUniqueKey,
+    };
+  }
 }
 
 class ListProfileObjectsResponse {
@@ -3391,6 +3763,15 @@ class ListProfileObjectsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3405,6 +3786,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3514,6 +3902,12 @@ class MarketoSourceProperties {
   MarketoSourceProperties({
     required this.object,
   });
+  factory MarketoSourceProperties.fromJson(Map<String, dynamic> json) {
+    return MarketoSourceProperties(
+      object: json['Object'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final object = this.object;
     return {
@@ -3543,6 +3937,15 @@ class MatchItem {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final matchId = this.matchId;
+    final profileIds = this.profileIds;
+    return {
+      if (matchId != null) 'MatchId': matchId,
+      if (profileIds != null) 'ProfileIds': profileIds,
+    };
+  }
 }
 
 /// The flag that enables the matching process of duplicate profiles.
@@ -3553,6 +3956,12 @@ class MatchingRequest {
   MatchingRequest({
     required this.enabled,
   });
+  factory MatchingRequest.fromJson(Map<String, dynamic> json) {
+    return MatchingRequest(
+      enabled: json['Enabled'] as bool,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     return {
@@ -3574,6 +3983,13 @@ class MatchingResponse {
       enabled: json['Enabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 class MergeProfilesResponse {
@@ -3587,6 +4003,13 @@ class MergeProfilesResponse {
     return MergeProfilesResponse(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3926,6 +4349,59 @@ class Profile {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountNumber = this.accountNumber;
+    final additionalInformation = this.additionalInformation;
+    final address = this.address;
+    final attributes = this.attributes;
+    final billingAddress = this.billingAddress;
+    final birthDate = this.birthDate;
+    final businessEmailAddress = this.businessEmailAddress;
+    final businessName = this.businessName;
+    final businessPhoneNumber = this.businessPhoneNumber;
+    final emailAddress = this.emailAddress;
+    final firstName = this.firstName;
+    final gender = this.gender;
+    final homePhoneNumber = this.homePhoneNumber;
+    final lastName = this.lastName;
+    final mailingAddress = this.mailingAddress;
+    final middleName = this.middleName;
+    final mobilePhoneNumber = this.mobilePhoneNumber;
+    final partyType = this.partyType;
+    final personalEmailAddress = this.personalEmailAddress;
+    final phoneNumber = this.phoneNumber;
+    final profileId = this.profileId;
+    final shippingAddress = this.shippingAddress;
+    return {
+      if (accountNumber != null) 'AccountNumber': accountNumber,
+      if (additionalInformation != null)
+        'AdditionalInformation': additionalInformation,
+      if (address != null) 'Address': address,
+      if (attributes != null) 'Attributes': attributes,
+      if (billingAddress != null) 'BillingAddress': billingAddress,
+      if (birthDate != null) 'BirthDate': birthDate,
+      if (businessEmailAddress != null)
+        'BusinessEmailAddress': businessEmailAddress,
+      if (businessName != null) 'BusinessName': businessName,
+      if (businessPhoneNumber != null)
+        'BusinessPhoneNumber': businessPhoneNumber,
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (firstName != null) 'FirstName': firstName,
+      if (gender != null) 'Gender': gender.toValue(),
+      if (homePhoneNumber != null) 'HomePhoneNumber': homePhoneNumber,
+      if (lastName != null) 'LastName': lastName,
+      if (mailingAddress != null) 'MailingAddress': mailingAddress,
+      if (middleName != null) 'MiddleName': middleName,
+      if (mobilePhoneNumber != null) 'MobilePhoneNumber': mobilePhoneNumber,
+      if (partyType != null) 'PartyType': partyType.toValue(),
+      if (personalEmailAddress != null)
+        'PersonalEmailAddress': personalEmailAddress,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (profileId != null) 'ProfileId': profileId,
+      if (shippingAddress != null) 'ShippingAddress': shippingAddress,
+    };
+  }
 }
 
 class PutIntegrationResponse {
@@ -3967,6 +4443,23 @@ class PutIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final objectTypeName = this.objectTypeName;
+    final uri = this.uri;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'ObjectTypeName': objectTypeName,
+      'Uri': uri,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class PutProfileObjectResponse {
@@ -3980,6 +4473,14 @@ class PutProfileObjectResponse {
     return PutProfileObjectResponse(
       profileObjectUniqueKey: json['ProfileObjectUniqueKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileObjectUniqueKey = this.profileObjectUniqueKey;
+    return {
+      if (profileObjectUniqueKey != null)
+        'ProfileObjectUniqueKey': profileObjectUniqueKey,
+    };
   }
 }
 
@@ -4057,6 +4558,35 @@ class PutProfileObjectTypeResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       templateId: json['TemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final objectTypeName = this.objectTypeName;
+    final allowProfileCreation = this.allowProfileCreation;
+    final createdAt = this.createdAt;
+    final encryptionKey = this.encryptionKey;
+    final expirationDays = this.expirationDays;
+    final fields = this.fields;
+    final keys = this.keys;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final tags = this.tags;
+    final templateId = this.templateId;
+    return {
+      'Description': description,
+      'ObjectTypeName': objectTypeName,
+      if (allowProfileCreation != null)
+        'AllowProfileCreation': allowProfileCreation,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (encryptionKey != null) 'EncryptionKey': encryptionKey,
+      if (expirationDays != null) 'ExpirationDays': expirationDays,
+      if (fields != null) 'Fields': fields,
+      if (keys != null) 'Keys': keys,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (tags != null) 'Tags': tags,
+      if (templateId != null) 'TemplateId': templateId,
+    };
   }
 }
 
@@ -4192,6 +4722,13 @@ class S3SourceProperties {
     required this.bucketName,
     this.bucketPrefix,
   });
+  factory S3SourceProperties.fromJson(Map<String, dynamic> json) {
+    return S3SourceProperties(
+      bucketName: json['BucketName'] as String,
+      bucketPrefix: json['BucketPrefix'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketName = this.bucketName;
     final bucketPrefix = this.bucketPrefix;
@@ -4342,6 +4879,14 @@ class SalesforceSourceProperties {
     this.enableDynamicFieldUpdate,
     this.includeDeletedRecords,
   });
+  factory SalesforceSourceProperties.fromJson(Map<String, dynamic> json) {
+    return SalesforceSourceProperties(
+      object: json['Object'] as String,
+      enableDynamicFieldUpdate: json['EnableDynamicFieldUpdate'] as bool?,
+      includeDeletedRecords: json['IncludeDeletedRecords'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final object = this.object;
     final enableDynamicFieldUpdate = this.enableDynamicFieldUpdate;
@@ -4394,6 +4939,18 @@ class ScheduledTriggerProperties {
     this.scheduleStartTime,
     this.timezone,
   });
+  factory ScheduledTriggerProperties.fromJson(Map<String, dynamic> json) {
+    return ScheduledTriggerProperties(
+      scheduleExpression: json['ScheduleExpression'] as String,
+      dataPullMode: (json['DataPullMode'] as String?)?.toDataPullMode(),
+      firstExecutionFrom: timeStampFromJson(json['FirstExecutionFrom']),
+      scheduleEndTime: timeStampFromJson(json['ScheduleEndTime']),
+      scheduleOffset: json['ScheduleOffset'] as int?,
+      scheduleStartTime: timeStampFromJson(json['ScheduleStartTime']),
+      timezone: json['Timezone'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final scheduleExpression = this.scheduleExpression;
     final dataPullMode = this.dataPullMode;
@@ -4436,6 +4993,15 @@ class SearchProfilesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4570,6 +5136,12 @@ class ServiceNowSourceProperties {
   ServiceNowSourceProperties({
     required this.object,
   });
+  factory ServiceNowSourceProperties.fromJson(Map<String, dynamic> json) {
+    return ServiceNowSourceProperties(
+      object: json['Object'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final object = this.object;
     return {
@@ -4605,6 +5177,30 @@ class SourceConnectorProperties {
     this.serviceNow,
     this.zendesk,
   });
+  factory SourceConnectorProperties.fromJson(Map<String, dynamic> json) {
+    return SourceConnectorProperties(
+      marketo: json['Marketo'] != null
+          ? MarketoSourceProperties.fromJson(
+              json['Marketo'] as Map<String, dynamic>)
+          : null,
+      s3: json['S3'] != null
+          ? S3SourceProperties.fromJson(json['S3'] as Map<String, dynamic>)
+          : null,
+      salesforce: json['Salesforce'] != null
+          ? SalesforceSourceProperties.fromJson(
+              json['Salesforce'] as Map<String, dynamic>)
+          : null,
+      serviceNow: json['ServiceNow'] != null
+          ? ServiceNowSourceProperties.fromJson(
+              json['ServiceNow'] as Map<String, dynamic>)
+          : null,
+      zendesk: json['Zendesk'] != null
+          ? ZendeskSourceProperties.fromJson(
+              json['Zendesk'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final marketo = this.marketo;
     final s3 = this.s3;
@@ -4689,6 +5285,19 @@ class SourceFlowConfig {
     this.connectorProfileName,
     this.incrementalPullConfig,
   });
+  factory SourceFlowConfig.fromJson(Map<String, dynamic> json) {
+    return SourceFlowConfig(
+      connectorType: (json['ConnectorType'] as String).toSourceConnectorType(),
+      sourceConnectorProperties: SourceConnectorProperties.fromJson(
+          json['SourceConnectorProperties'] as Map<String, dynamic>),
+      connectorProfileName: json['ConnectorProfileName'] as String?,
+      incrementalPullConfig: json['IncrementalPullConfig'] != null
+          ? IncrementalPullConfig.fromJson(
+              json['IncrementalPullConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final connectorType = this.connectorType;
     final sourceConnectorProperties = this.sourceConnectorProperties;
@@ -4753,6 +5362,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A class for modeling different type of tasks. Task implementation varies
@@ -4782,6 +5395,23 @@ class Task {
     this.destinationField,
     this.taskProperties,
   });
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      sourceFields: (json['SourceFields'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      taskType: (json['TaskType'] as String).toTaskType(),
+      connectorOperator: json['ConnectorOperator'] != null
+          ? ConnectorOperator.fromJson(
+              json['ConnectorOperator'] as Map<String, dynamic>)
+          : null,
+      destinationField: json['DestinationField'] as String?,
+      taskProperties: (json['TaskProperties'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k.toOperatorPropertiesKeys(), e as String)),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final sourceFields = this.sourceFields;
     final taskType = this.taskType;
@@ -4867,6 +5497,16 @@ class TriggerConfig {
     required this.triggerType,
     this.triggerProperties,
   });
+  factory TriggerConfig.fromJson(Map<String, dynamic> json) {
+    return TriggerConfig(
+      triggerType: (json['TriggerType'] as String).toTriggerType(),
+      triggerProperties: json['TriggerProperties'] != null
+          ? TriggerProperties.fromJson(
+              json['TriggerProperties'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final triggerType = this.triggerType;
     final triggerProperties = this.triggerProperties;
@@ -4887,6 +5527,15 @@ class TriggerProperties {
   TriggerProperties({
     this.scheduled,
   });
+  factory TriggerProperties.fromJson(Map<String, dynamic> json) {
+    return TriggerProperties(
+      scheduled: json['Scheduled'] != null
+          ? ScheduledTriggerProperties.fromJson(
+              json['Scheduled'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final scheduled = this.scheduled;
     return {
@@ -4932,6 +5581,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4979,6 +5632,21 @@ class UpdateAddress {
     this.province,
     this.state,
   });
+  factory UpdateAddress.fromJson(Map<String, dynamic> json) {
+    return UpdateAddress(
+      address1: json['Address1'] as String?,
+      address2: json['Address2'] as String?,
+      address3: json['Address3'] as String?,
+      address4: json['Address4'] as String?,
+      city: json['City'] as String?,
+      country: json['Country'] as String?,
+      county: json['County'] as String?,
+      postalCode: json['PostalCode'] as String?,
+      province: json['Province'] as String?,
+      state: json['State'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final address1 = this.address1;
     final address2 = this.address2;
@@ -5060,6 +5728,29 @@ class UpdateDomainResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final deadLetterQueueUrl = this.deadLetterQueueUrl;
+    final defaultEncryptionKey = this.defaultEncryptionKey;
+    final defaultExpirationDays = this.defaultExpirationDays;
+    final matching = this.matching;
+    final tags = this.tags;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'DomainName': domainName,
+      'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (deadLetterQueueUrl != null) 'DeadLetterQueueUrl': deadLetterQueueUrl,
+      if (defaultEncryptionKey != null)
+        'DefaultEncryptionKey': defaultEncryptionKey,
+      if (defaultExpirationDays != null)
+        'DefaultExpirationDays': defaultExpirationDays,
+      if (matching != null) 'Matching': matching,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class UpdateProfileResponse {
@@ -5073,6 +5764,13 @@ class UpdateProfileResponse {
     return UpdateProfileResponse(
       profileId: json['ProfileId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileId = this.profileId;
+    return {
+      'ProfileId': profileId,
+    };
   }
 }
 
@@ -5172,6 +5870,12 @@ class ZendeskSourceProperties {
   ZendeskSourceProperties({
     required this.object,
   });
+  factory ZendeskSourceProperties.fromJson(Map<String, dynamic> json) {
+    return ZendeskSourceProperties(
+      object: json['Object'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final object = this.object;
     return {

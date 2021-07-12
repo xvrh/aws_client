@@ -1375,6 +1375,10 @@ class AddTagsResponse {
   factory AddTagsResponse.fromJson(Map<String, dynamic> _) {
     return AddTagsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Advanced event selectors let you create fine-grained selectors for the
@@ -1725,6 +1729,42 @@ class CreateTrailResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 /// The Amazon S3 buckets, AWS Lambda functions, or Amazon DynamoDB tables that
@@ -1876,6 +1916,10 @@ class DeleteTrailResponse {
   factory DeleteTrailResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrailResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -1899,6 +1943,13 @@ class DescribeTrailsResponse {
           .map((e) => Trail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trailList = this.trailList;
+    return {
+      if (trailList != null) 'trailList': trailList,
+    };
   }
 }
 
@@ -1961,6 +2012,29 @@ class Event {
           .toList(),
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final cloudTrailEvent = this.cloudTrailEvent;
+    final eventId = this.eventId;
+    final eventName = this.eventName;
+    final eventSource = this.eventSource;
+    final eventTime = this.eventTime;
+    final readOnly = this.readOnly;
+    final resources = this.resources;
+    final username = this.username;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (cloudTrailEvent != null) 'CloudTrailEvent': cloudTrailEvent,
+      if (eventId != null) 'EventId': eventId,
+      if (eventName != null) 'EventName': eventName,
+      if (eventSource != null) 'EventSource': eventSource,
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (resources != null) 'Resources': resources,
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -2109,6 +2183,18 @@ class GetEventSelectorsResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final eventSelectors = this.eventSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (eventSelectors != null) 'EventSelectors': eventSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 class GetInsightSelectorsResponse {
@@ -2134,6 +2220,15 @@ class GetInsightSelectorsResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insightSelectors = this.insightSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (insightSelectors != null) 'InsightSelectors': insightSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 class GetTrailResponse {
@@ -2148,6 +2243,13 @@ class GetTrailResponse {
           ? Trail.fromJson(json['Trail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trail = this.trail;
+    return {
+      if (trail != null) 'Trail': trail,
+    };
   }
 }
 
@@ -2281,6 +2383,65 @@ class GetTrailStatusResponse {
       timeLoggingStopped: json['TimeLoggingStopped'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isLogging = this.isLogging;
+    final latestCloudWatchLogsDeliveryError =
+        this.latestCloudWatchLogsDeliveryError;
+    final latestCloudWatchLogsDeliveryTime =
+        this.latestCloudWatchLogsDeliveryTime;
+    final latestDeliveryAttemptSucceeded = this.latestDeliveryAttemptSucceeded;
+    final latestDeliveryAttemptTime = this.latestDeliveryAttemptTime;
+    final latestDeliveryError = this.latestDeliveryError;
+    final latestDeliveryTime = this.latestDeliveryTime;
+    final latestDigestDeliveryError = this.latestDigestDeliveryError;
+    final latestDigestDeliveryTime = this.latestDigestDeliveryTime;
+    final latestNotificationAttemptSucceeded =
+        this.latestNotificationAttemptSucceeded;
+    final latestNotificationAttemptTime = this.latestNotificationAttemptTime;
+    final latestNotificationError = this.latestNotificationError;
+    final latestNotificationTime = this.latestNotificationTime;
+    final startLoggingTime = this.startLoggingTime;
+    final stopLoggingTime = this.stopLoggingTime;
+    final timeLoggingStarted = this.timeLoggingStarted;
+    final timeLoggingStopped = this.timeLoggingStopped;
+    return {
+      if (isLogging != null) 'IsLogging': isLogging,
+      if (latestCloudWatchLogsDeliveryError != null)
+        'LatestCloudWatchLogsDeliveryError': latestCloudWatchLogsDeliveryError,
+      if (latestCloudWatchLogsDeliveryTime != null)
+        'LatestCloudWatchLogsDeliveryTime':
+            unixTimestampToJson(latestCloudWatchLogsDeliveryTime),
+      if (latestDeliveryAttemptSucceeded != null)
+        'LatestDeliveryAttemptSucceeded': latestDeliveryAttemptSucceeded,
+      if (latestDeliveryAttemptTime != null)
+        'LatestDeliveryAttemptTime': latestDeliveryAttemptTime,
+      if (latestDeliveryError != null)
+        'LatestDeliveryError': latestDeliveryError,
+      if (latestDeliveryTime != null)
+        'LatestDeliveryTime': unixTimestampToJson(latestDeliveryTime),
+      if (latestDigestDeliveryError != null)
+        'LatestDigestDeliveryError': latestDigestDeliveryError,
+      if (latestDigestDeliveryTime != null)
+        'LatestDigestDeliveryTime':
+            unixTimestampToJson(latestDigestDeliveryTime),
+      if (latestNotificationAttemptSucceeded != null)
+        'LatestNotificationAttemptSucceeded':
+            latestNotificationAttemptSucceeded,
+      if (latestNotificationAttemptTime != null)
+        'LatestNotificationAttemptTime': latestNotificationAttemptTime,
+      if (latestNotificationError != null)
+        'LatestNotificationError': latestNotificationError,
+      if (latestNotificationTime != null)
+        'LatestNotificationTime': unixTimestampToJson(latestNotificationTime),
+      if (startLoggingTime != null)
+        'StartLoggingTime': unixTimestampToJson(startLoggingTime),
+      if (stopLoggingTime != null)
+        'StopLoggingTime': unixTimestampToJson(stopLoggingTime),
+      if (timeLoggingStarted != null) 'TimeLoggingStarted': timeLoggingStarted,
+      if (timeLoggingStopped != null) 'TimeLoggingStopped': timeLoggingStopped,
+    };
+  }
 }
 
 /// A JSON string that contains a list of insight types that are logged on a
@@ -2355,6 +2516,15 @@ class ListPublicKeysResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final publicKeyList = this.publicKeyList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (publicKeyList != null) 'PublicKeyList': publicKeyList,
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -2378,6 +2548,15 @@ class ListTagsResponse {
           .map((e) => ResourceTag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceTagList = this.resourceTagList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceTagList != null) 'ResourceTagList': resourceTagList,
+    };
   }
 }
 
@@ -2406,6 +2585,15 @@ class ListTrailsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trails = this.trails;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (trails != null) 'Trails': trails,
+    };
+  }
 }
 
 /// Specifies an attribute and value that filter the events returned.
@@ -2420,6 +2608,13 @@ class LookupAttribute {
     required this.attributeKey,
     required this.attributeValue,
   });
+  factory LookupAttribute.fromJson(Map<String, dynamic> json) {
+    return LookupAttribute(
+      attributeKey: (json['AttributeKey'] as String).toLookupAttributeKey(),
+      attributeValue: json['AttributeValue'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attributeKey = this.attributeKey;
     final attributeValue = this.attributeValue;
@@ -2516,6 +2711,15 @@ class LookupEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Contains information about a returned public key.
@@ -2545,6 +2749,21 @@ class PublicKey {
       validityStartTime: timeStampFromJson(json['ValidityStartTime']),
       value: _s.decodeNullableUint8List(json['Value'] as String?),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fingerprint = this.fingerprint;
+    final validityEndTime = this.validityEndTime;
+    final validityStartTime = this.validityStartTime;
+    final value = this.value;
+    return {
+      if (fingerprint != null) 'Fingerprint': fingerprint,
+      if (validityEndTime != null)
+        'ValidityEndTime': unixTimestampToJson(validityEndTime),
+      if (validityStartTime != null)
+        'ValidityStartTime': unixTimestampToJson(validityStartTime),
+      if (value != null) 'Value': base64Encode(value),
+    };
   }
 }
 
@@ -2579,6 +2798,18 @@ class PutEventSelectorsResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final eventSelectors = this.eventSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (eventSelectors != null) 'EventSelectors': eventSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 class PutInsightSelectorsResponse {
@@ -2603,6 +2834,15 @@ class PutInsightSelectorsResponse {
           .toList(),
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightSelectors = this.insightSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (insightSelectors != null) 'InsightSelectors': insightSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -2646,6 +2886,10 @@ class RemoveTagsResponse {
   factory RemoveTagsResponse.fromJson(Map<String, dynamic> _) {
     return RemoveTagsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Specifies the type and name of a resource referenced by an event.
@@ -2675,6 +2919,15 @@ class Resource {
       resourceType: json['ResourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceName != null) 'ResourceName': resourceName,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// A resource tag.
@@ -2698,6 +2951,15 @@ class ResourceTag {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final tagsList = this.tagsList;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (tagsList != null) 'TagsList': tagsList,
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -2707,6 +2969,10 @@ class StartLoggingResponse {
   factory StartLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StartLoggingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -2715,6 +2981,10 @@ class StopLoggingResponse {
   StopLoggingResponse();
   factory StopLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StopLoggingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2859,6 +3129,50 @@ class Trail {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final hasCustomEventSelectors = this.hasCustomEventSelectors;
+    final hasInsightSelectors = this.hasInsightSelectors;
+    final homeRegion = this.homeRegion;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (hasCustomEventSelectors != null)
+        'HasCustomEventSelectors': hasCustomEventSelectors,
+      if (hasInsightSelectors != null)
+        'HasInsightSelectors': hasInsightSelectors,
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 /// Information about a CloudTrail trail, including the trail's name, home
@@ -2884,6 +3198,17 @@ class TrailInfo {
       name: json['Name'] as String?,
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final homeRegion = this.homeRegion;
+    final name = this.name;
+    final trailARN = this.trailARN;
+    return {
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (name != null) 'Name': name,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -2976,6 +3301,42 @@ class UpdateTrailResponse {
       snsTopicName: json['SnsTopicName'] as String?,
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 

@@ -2871,6 +2871,10 @@ class AcceptInvitationResponse {
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains information on the current access control policies for the bucket.
@@ -2892,6 +2896,17 @@ class AccessControlList {
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
       allowsPublicWriteAccess: json['allowsPublicWriteAccess'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowsPublicReadAccess = this.allowsPublicReadAccess;
+    final allowsPublicWriteAccess = this.allowsPublicWriteAccess;
+    return {
+      if (allowsPublicReadAccess != null)
+        'allowsPublicReadAccess': allowsPublicReadAccess,
+      if (allowsPublicWriteAccess != null)
+        'allowsPublicWriteAccess': allowsPublicWriteAccess,
+    };
   }
 }
 
@@ -2923,6 +2938,19 @@ class AccessKeyDetails {
       userType: json['userType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final principalId = this.principalId;
+    final userName = this.userName;
+    final userType = this.userType;
+    return {
+      if (accessKeyId != null) 'accessKeyId': accessKeyId,
+      if (principalId != null) 'principalId': principalId,
+      if (userName != null) 'userName': userName,
+      if (userType != null) 'userType': userType,
+    };
+  }
 }
 
 /// Contains information about the account.
@@ -2937,6 +2965,13 @@ class AccountDetail {
     required this.accountId,
     required this.email,
   });
+  factory AccountDetail.fromJson(Map<String, dynamic> json) {
+    return AccountDetail(
+      accountId: json['accountId'] as String,
+      email: json['email'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final email = this.email;
@@ -2963,6 +2998,13 @@ class AccountLevelPermissions {
               json['blockPublicAccess'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAccess = this.blockPublicAccess;
+    return {
+      if (blockPublicAccess != null) 'blockPublicAccess': blockPublicAccess,
+    };
   }
 }
 
@@ -3011,6 +3053,22 @@ class Action {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionType = this.actionType;
+    final awsApiCallAction = this.awsApiCallAction;
+    final dnsRequestAction = this.dnsRequestAction;
+    final networkConnectionAction = this.networkConnectionAction;
+    final portProbeAction = this.portProbeAction;
+    return {
+      if (actionType != null) 'actionType': actionType,
+      if (awsApiCallAction != null) 'awsApiCallAction': awsApiCallAction,
+      if (dnsRequestAction != null) 'dnsRequestAction': dnsRequestAction,
+      if (networkConnectionAction != null)
+        'networkConnectionAction': networkConnectionAction,
+      if (portProbeAction != null) 'portProbeAction': portProbeAction,
+    };
+  }
 }
 
 /// The account within the organization specified as the GuardDuty delegated
@@ -3031,6 +3089,15 @@ class AdminAccount {
       adminAccountId: json['adminAccountId'] as String?,
       adminStatus: (json['adminStatus'] as String?)?.toAdminStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adminAccountId = this.adminAccountId;
+    final adminStatus = this.adminStatus;
+    return {
+      if (adminAccountId != null) 'adminAccountId': adminAccountId,
+      if (adminStatus != null) 'adminStatus': adminStatus.toValue(),
+    };
   }
 }
 
@@ -3066,6 +3133,10 @@ class ArchiveFindingsResponse {
   ArchiveFindingsResponse();
   factory ArchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return ArchiveFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3113,6 +3184,23 @@ class AwsApiCallAction {
       serviceName: json['serviceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final api = this.api;
+    final callerType = this.callerType;
+    final domainDetails = this.domainDetails;
+    final errorCode = this.errorCode;
+    final remoteIpDetails = this.remoteIpDetails;
+    final serviceName = this.serviceName;
+    return {
+      if (api != null) 'api': api,
+      if (callerType != null) 'callerType': callerType,
+      if (domainDetails != null) 'domainDetails': domainDetails,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+      if (serviceName != null) 'serviceName': serviceName,
+    };
+  }
 }
 
 /// Contains information on how the bucker owner's S3 Block Public Access
@@ -3147,6 +3235,20 @@ class BlockPublicAccess {
       ignorePublicAcls: json['ignorePublicAcls'] as bool?,
       restrictPublicBuckets: json['restrictPublicBuckets'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAcls = this.blockPublicAcls;
+    final blockPublicPolicy = this.blockPublicPolicy;
+    final ignorePublicAcls = this.ignorePublicAcls;
+    final restrictPublicBuckets = this.restrictPublicBuckets;
+    return {
+      if (blockPublicAcls != null) 'blockPublicAcls': blockPublicAcls,
+      if (blockPublicPolicy != null) 'blockPublicPolicy': blockPublicPolicy,
+      if (ignorePublicAcls != null) 'ignorePublicAcls': ignorePublicAcls,
+      if (restrictPublicBuckets != null)
+        'restrictPublicBuckets': restrictPublicBuckets,
+    };
   }
 }
 
@@ -3183,6 +3285,17 @@ class BucketLevelPermissions {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessControlList = this.accessControlList;
+    final blockPublicAccess = this.blockPublicAccess;
+    final bucketPolicy = this.bucketPolicy;
+    return {
+      if (accessControlList != null) 'accessControlList': accessControlList,
+      if (blockPublicAccess != null) 'blockPublicAccess': blockPublicAccess,
+      if (bucketPolicy != null) 'bucketPolicy': bucketPolicy,
+    };
+  }
 }
 
 /// Contains information on the current bucket policies for the S3 bucket.
@@ -3205,6 +3318,17 @@ class BucketPolicy {
       allowsPublicWriteAccess: json['allowsPublicWriteAccess'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowsPublicReadAccess = this.allowsPublicReadAccess;
+    final allowsPublicWriteAccess = this.allowsPublicWriteAccess;
+    return {
+      if (allowsPublicReadAccess != null)
+        'allowsPublicReadAccess': allowsPublicReadAccess,
+      if (allowsPublicWriteAccess != null)
+        'allowsPublicWriteAccess': allowsPublicWriteAccess,
+    };
+  }
 }
 
 /// Contains information about the city associated with the IP address.
@@ -3219,6 +3343,13 @@ class City {
     return City(
       cityName: json['cityName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cityName = this.cityName;
+    return {
+      if (cityName != null) 'cityName': cityName,
+    };
   }
 }
 
@@ -3235,6 +3366,13 @@ class CloudTrailConfigurationResult {
     return CloudTrailConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -3380,6 +3518,15 @@ class Country {
       countryName: json['countryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final countryCode = this.countryCode;
+    final countryName = this.countryName;
+    return {
+      if (countryCode != null) 'countryCode': countryCode,
+      if (countryName != null) 'countryName': countryName,
+    };
+  }
 }
 
 class CreateDetectorResponse {
@@ -3393,6 +3540,13 @@ class CreateDetectorResponse {
     return CreateDetectorResponse(
       detectorId: json['detectorId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorId = this.detectorId;
+    return {
+      if (detectorId != null) 'detectorId': detectorId,
+    };
   }
 }
 
@@ -3408,6 +3562,13 @@ class CreateFilterResponse {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
 }
 
 class CreateIPSetResponse {
@@ -3421,6 +3582,13 @@ class CreateIPSetResponse {
     return CreateIPSetResponse(
       ipSetId: json['ipSetId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipSetId = this.ipSetId;
+    return {
+      'ipSetId': ipSetId,
+    };
   }
 }
 
@@ -3441,6 +3609,13 @@ class CreateMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class CreatePublishingDestinationResponse {
@@ -3456,12 +3631,23 @@ class CreatePublishingDestinationResponse {
       destinationId: json['destinationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    return {
+      'destinationId': destinationId,
+    };
+  }
 }
 
 class CreateSampleFindingsResponse {
   CreateSampleFindingsResponse();
   factory CreateSampleFindingsResponse.fromJson(Map<String, dynamic> _) {
     return CreateSampleFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3477,6 +3663,13 @@ class CreateThreatIntelSetResponse {
       threatIntelSetId: json['threatIntelSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelSetId = this.threatIntelSetId;
+    return {
+      'threatIntelSetId': threatIntelSetId,
+    };
+  }
 }
 
 /// Contains information on the status of DNS logs as a data source.
@@ -3491,6 +3684,13 @@ class DNSLogsConfigurationResult {
     return DNSLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -3540,6 +3740,14 @@ class DataSourceConfigurations {
   DataSourceConfigurations({
     this.s3Logs,
   });
+  factory DataSourceConfigurations.fromJson(Map<String, dynamic> json) {
+    return DataSourceConfigurations(
+      s3Logs: json['s3Logs'] != null
+          ? S3LogsConfiguration.fromJson(json['s3Logs'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Logs = this.s3Logs;
     return {
@@ -3583,6 +3791,19 @@ class DataSourceConfigurationsResult {
       s3Logs: S3LogsConfigurationResult.fromJson(
           json['s3Logs'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudTrail = this.cloudTrail;
+    final dNSLogs = this.dNSLogs;
+    final flowLogs = this.flowLogs;
+    final s3Logs = this.s3Logs;
+    return {
+      'cloudTrail': cloudTrail,
+      'dnsLogs': dNSLogs,
+      'flowLogs': flowLogs,
+      's3Logs': s3Logs,
+    };
   }
 }
 
@@ -3630,6 +3851,13 @@ class DeclineInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 /// Contains information on the server side encryption method used in the S3
@@ -3654,12 +3882,25 @@ class DefaultServerSideEncryption {
       kmsMasterKeyArn: json['kmsMasterKeyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryptionType = this.encryptionType;
+    final kmsMasterKeyArn = this.kmsMasterKeyArn;
+    return {
+      if (encryptionType != null) 'encryptionType': encryptionType,
+      if (kmsMasterKeyArn != null) 'kmsMasterKeyArn': kmsMasterKeyArn,
+    };
+  }
 }
 
 class DeleteDetectorResponse {
   DeleteDetectorResponse();
   factory DeleteDetectorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3668,12 +3909,20 @@ class DeleteFilterResponse {
   factory DeleteFilterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFilterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteIPSetResponse {
   DeleteIPSetResponse();
   factory DeleteIPSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIPSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3693,6 +3942,13 @@ class DeleteInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeleteMembersResponse {
@@ -3710,6 +3966,13 @@ class DeleteMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeletePublishingDestinationResponse {
@@ -3717,12 +3980,20 @@ class DeletePublishingDestinationResponse {
   factory DeletePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeletePublishingDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteThreatIntelSetResponse {
   DeleteThreatIntelSetResponse();
   factory DeleteThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThreatIntelSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3753,6 +4024,17 @@ class DescribeOrganizationConfigurationResponse {
               json['dataSources'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    final memberAccountLimitReached = this.memberAccountLimitReached;
+    final dataSources = this.dataSources;
+    return {
+      'autoEnable': autoEnable,
+      'memberAccountLimitReached': memberAccountLimitReached,
+      if (dataSources != null) 'dataSources': dataSources,
+    };
   }
 }
 
@@ -3795,6 +4077,22 @@ class DescribePublishingDestinationResponse {
       status: (json['status'] as String).toPublishingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    final destinationProperties = this.destinationProperties;
+    final destinationType = this.destinationType;
+    final publishingFailureStartTimestamp =
+        this.publishingFailureStartTimestamp;
+    final status = this.status;
+    return {
+      'destinationId': destinationId,
+      'destinationProperties': destinationProperties,
+      'destinationType': destinationType.toValue(),
+      'publishingFailureStartTimestamp': publishingFailureStartTimestamp,
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains information about the publishing destination, including the ID,
@@ -3821,6 +4119,17 @@ class Destination {
       destinationType: (json['destinationType'] as String).toDestinationType(),
       status: (json['status'] as String).toPublishingStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    final destinationType = this.destinationType;
+    final status = this.status;
+    return {
+      'destinationId': destinationId,
+      'destinationType': destinationType.toValue(),
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -3912,6 +4221,10 @@ class DisableOrganizationAdminAccountResponse {
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateFromMasterAccountResponse {
@@ -3919,6 +4232,10 @@ class DisassociateFromMasterAccountResponse {
   factory DisassociateFromMasterAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3938,6 +4255,13 @@ class DisassociateMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 /// Contains information about the DNS_REQUEST action described in this finding.
@@ -3952,6 +4276,13 @@ class DnsRequestAction {
     return DnsRequestAction(
       domain: json['domain'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -3968,6 +4299,13 @@ class DomainDetails {
       domain: json['domain'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
+  }
 }
 
 class EnableOrganizationAdminAccountResponse {
@@ -3975,6 +4313,10 @@ class EnableOrganizationAdminAccountResponse {
   factory EnableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3994,6 +4336,14 @@ class Evidence {
               ThreatIntelligenceDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelligenceDetails = this.threatIntelligenceDetails;
+    return {
+      if (threatIntelligenceDetails != null)
+        'threatIntelligenceDetails': threatIntelligenceDetails,
+    };
   }
 }
 
@@ -4135,6 +4485,41 @@ class Finding {
       title: json['title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final region = this.region;
+    final resource = this.resource;
+    final schemaVersion = this.schemaVersion;
+    final severity = this.severity;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final confidence = this.confidence;
+    final description = this.description;
+    final partition = this.partition;
+    final service = this.service;
+    final title = this.title;
+    return {
+      'accountId': accountId,
+      'arn': arn,
+      'createdAt': createdAt,
+      'id': id,
+      'region': region,
+      'resource': resource,
+      'schemaVersion': schemaVersion,
+      'severity': severity,
+      'type': type,
+      'updatedAt': updatedAt,
+      if (confidence != null) 'confidence': confidence,
+      if (description != null) 'description': description,
+      if (partition != null) 'partition': partition,
+      if (service != null) 'service': service,
+      if (title != null) 'title': title,
+    };
+  }
 }
 
 /// Contains information about the criteria used for querying findings.
@@ -4231,6 +4616,13 @@ class FindingStatistics {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final countBySeverity = this.countBySeverity;
+    return {
+      if (countBySeverity != null) 'countBySeverity': countBySeverity,
+    };
+  }
 }
 
 /// Contains information on the status of VPC flow logs as a data source.
@@ -4245,6 +4637,13 @@ class FlowLogsConfigurationResult {
     return FlowLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -4265,6 +4664,15 @@ class GeoLocation {
       lat: json['lat'] as double?,
       lon: json['lon'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lat = this.lat;
+    final lon = this.lon;
+    return {
+      if (lat != null) 'lat': lat,
+      if (lon != null) 'lon': lon,
+    };
   }
 }
 
@@ -4316,6 +4724,26 @@ class GetDetectorResponse {
       updatedAt: json['updatedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceRole = this.serviceRole;
+    final status = this.status;
+    final createdAt = this.createdAt;
+    final dataSources = this.dataSources;
+    final findingPublishingFrequency = this.findingPublishingFrequency;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      'serviceRole': serviceRole,
+      'status': status.toValue(),
+      if (createdAt != null) 'createdAt': createdAt,
+      if (dataSources != null) 'dataSources': dataSources,
+      if (findingPublishingFrequency != null)
+        'findingPublishingFrequency': findingPublishingFrequency.toValue(),
+      if (tags != null) 'tags': tags,
+      if (updatedAt != null) 'updatedAt': updatedAt,
+    };
+  }
 }
 
 class GetFilterResponse {
@@ -4359,6 +4787,23 @@ class GetFilterResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final findingCriteria = this.findingCriteria;
+    final name = this.name;
+    final description = this.description;
+    final rank = this.rank;
+    final tags = this.tags;
+    return {
+      'action': action.toValue(),
+      'findingCriteria': findingCriteria,
+      'name': name,
+      if (description != null) 'description': description,
+      if (rank != null) 'rank': rank,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetFindingsResponse {
@@ -4376,6 +4821,13 @@ class GetFindingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findings = this.findings;
+    return {
+      'findings': findings,
+    };
+  }
 }
 
 class GetFindingsStatisticsResponse {
@@ -4390,6 +4842,13 @@ class GetFindingsStatisticsResponse {
       findingStatistics: FindingStatistics.fromJson(
           json['findingStatistics'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingStatistics = this.findingStatistics;
+    return {
+      'findingStatistics': findingStatistics,
+    };
   }
 }
 
@@ -4427,6 +4886,21 @@ class GetIPSetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final location = this.location;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'format': format.toValue(),
+      'location': location,
+      'name': name,
+      'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetInvitationsCountResponse {
@@ -4441,6 +4915,13 @@ class GetInvitationsCountResponse {
       invitationsCount: json['invitationsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invitationsCount = this.invitationsCount;
+    return {
+      if (invitationsCount != null) 'invitationsCount': invitationsCount,
+    };
+  }
 }
 
 class GetMasterAccountResponse {
@@ -4454,6 +4935,13 @@ class GetMasterAccountResponse {
     return GetMasterAccountResponse(
       master: Master.fromJson(json['master'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final master = this.master;
+    return {
+      'master': master,
+    };
   }
 }
 
@@ -4483,6 +4971,15 @@ class GetMemberDetectorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDataSourceConfigurations = this.memberDataSourceConfigurations;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'members': memberDataSourceConfigurations,
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class GetMembersResponse {
@@ -4508,6 +5005,15 @@ class GetMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'members': members,
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -4547,6 +5053,21 @@ class GetThreatIntelSetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final location = this.location;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'format': format.toValue(),
+      'location': location,
+      'name': name,
+      'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetUsageStatisticsResponse {
@@ -4571,6 +5092,15 @@ class GetUsageStatisticsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final usageStatistics = this.usageStatistics;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (usageStatistics != null) 'usageStatistics': usageStatistics,
+    };
+  }
 }
 
 /// Contains information about the EC2 instance profile.
@@ -4590,6 +5120,15 @@ class IamInstanceProfile {
       arn: json['arn'] as String?,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -4679,6 +5218,37 @@ class InstanceDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageDescription = this.imageDescription;
+    final imageId = this.imageId;
+    final instanceId = this.instanceId;
+    final instanceState = this.instanceState;
+    final instanceType = this.instanceType;
+    final launchTime = this.launchTime;
+    final networkInterfaces = this.networkInterfaces;
+    final outpostArn = this.outpostArn;
+    final platform = this.platform;
+    final productCodes = this.productCodes;
+    final tags = this.tags;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageDescription != null) 'imageDescription': imageDescription,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceState != null) 'instanceState': instanceState,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (launchTime != null) 'launchTime': launchTime,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (platform != null) 'platform': platform,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Contains information about the invitation to become a member account.
@@ -4710,6 +5280,19 @@ class Invitation {
       relationshipStatus: json['relationshipStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (invitationId != null) 'invitationId': invitationId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+      if (relationshipStatus != null) 'relationshipStatus': relationshipStatus,
+    };
+  }
 }
 
 class InviteMembersResponse {
@@ -4727,6 +5310,13 @@ class InviteMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -4852,6 +5442,15 @@ class ListDetectorsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorIds = this.detectorIds;
+    final nextToken = this.nextToken;
+    return {
+      'detectorIds': detectorIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFiltersResponse {
@@ -4874,6 +5473,15 @@ class ListFiltersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filterNames = this.filterNames;
+    final nextToken = this.nextToken;
+    return {
+      'filterNames': filterNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4898,6 +5506,15 @@ class ListFindingsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingIds = this.findingIds;
+    final nextToken = this.nextToken;
+    return {
+      'findingIds': findingIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListIPSetsResponse {
@@ -4920,6 +5537,15 @@ class ListIPSetsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipSetIds = this.ipSetIds;
+    final nextToken = this.nextToken;
+    return {
+      'ipSetIds': ipSetIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4944,6 +5570,15 @@ class ListInvitationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'invitations': invitations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListMembersResponse {
@@ -4966,6 +5601,15 @@ class ListMembersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'members': members,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4990,6 +5634,15 @@ class ListOrganizationAdminAccountsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adminAccounts = this.adminAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (adminAccounts != null) 'adminAccounts': adminAccounts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5018,6 +5671,15 @@ class ListPublishingDestinationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinations = this.destinations;
+    final nextToken = this.nextToken;
+    return {
+      'destinations': destinations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5032,6 +5694,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5056,6 +5725,15 @@ class ListThreatIntelSetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelSetIds = this.threatIntelSetIds;
+    final nextToken = this.nextToken;
+    return {
+      'threatIntelSetIds': threatIntelSetIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains information about the local IP address of the connection.
@@ -5070,6 +5748,13 @@ class LocalIpDetails {
     return LocalIpDetails(
       ipAddressV4: json['ipAddressV4'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddressV4 = this.ipAddressV4;
+    return {
+      if (ipAddressV4 != null) 'ipAddressV4': ipAddressV4,
+    };
   }
 }
 
@@ -5090,6 +5775,15 @@ class LocalPortDetails {
       port: json['port'] as int?,
       portName: json['portName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'port': port,
+      if (portName != null) 'portName': portName,
+    };
   }
 }
 
@@ -5121,6 +5815,19 @@ class Master {
       invitedAt: json['invitedAt'] as String?,
       relationshipStatus: json['relationshipStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (invitationId != null) 'invitationId': invitationId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+      if (relationshipStatus != null) 'relationshipStatus': relationshipStatus,
+    };
   }
 }
 
@@ -5167,6 +5874,25 @@ class Member {
       invitedAt: json['invitedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final email = this.email;
+    final masterId = this.masterId;
+    final relationshipStatus = this.relationshipStatus;
+    final updatedAt = this.updatedAt;
+    final detectorId = this.detectorId;
+    final invitedAt = this.invitedAt;
+    return {
+      'accountId': accountId,
+      'email': email,
+      'masterId': masterId,
+      'relationshipStatus': relationshipStatus,
+      'updatedAt': updatedAt,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+    };
+  }
 }
 
 /// Contains information on which data sources are enabled for a member account.
@@ -5187,6 +5913,15 @@ class MemberDataSourceConfiguration {
       dataSources: DataSourceConfigurationsResult.fromJson(
           json['dataSources'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final dataSources = this.dataSources;
+    return {
+      'accountId': accountId,
+      'dataSources': dataSources,
+    };
   }
 }
 
@@ -5245,6 +5980,26 @@ class NetworkConnectionAction {
               json['remotePortDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final connectionDirection = this.connectionDirection;
+    final localIpDetails = this.localIpDetails;
+    final localPortDetails = this.localPortDetails;
+    final protocol = this.protocol;
+    final remoteIpDetails = this.remoteIpDetails;
+    final remotePortDetails = this.remotePortDetails;
+    return {
+      if (blocked != null) 'blocked': blocked,
+      if (connectionDirection != null)
+        'connectionDirection': connectionDirection,
+      if (localIpDetails != null) 'localIpDetails': localIpDetails,
+      if (localPortDetails != null) 'localPortDetails': localPortDetails,
+      if (protocol != null) 'protocol': protocol,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+      if (remotePortDetails != null) 'remotePortDetails': remotePortDetails,
+    };
   }
 }
 
@@ -5317,6 +6072,31 @@ class NetworkInterface {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipv6Addresses = this.ipv6Addresses;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (ipv6Addresses != null) 'ipv6Addresses': ipv6Addresses,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null) 'privateIpAddresses': privateIpAddresses,
+      if (publicDnsName != null) 'publicDnsName': publicDnsName,
+      if (publicIp != null) 'publicIp': publicIp,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum OrderBy {
@@ -5376,6 +6156,19 @@ class Organization {
       org: json['org'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final asn = this.asn;
+    final asnOrg = this.asnOrg;
+    final isp = this.isp;
+    final org = this.org;
+    return {
+      if (asn != null) 'asn': asn,
+      if (asnOrg != null) 'asnOrg': asnOrg,
+      if (isp != null) 'isp': isp,
+      if (org != null) 'org': org,
+    };
+  }
 }
 
 /// An object that contains information on which data sources will be configured
@@ -5388,6 +6181,16 @@ class OrganizationDataSourceConfigurations {
   OrganizationDataSourceConfigurations({
     this.s3Logs,
   });
+  factory OrganizationDataSourceConfigurations.fromJson(
+      Map<String, dynamic> json) {
+    return OrganizationDataSourceConfigurations(
+      s3Logs: json['s3Logs'] != null
+          ? OrganizationS3LogsConfiguration.fromJson(
+              json['s3Logs'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Logs = this.s3Logs;
     return {
@@ -5412,6 +6215,13 @@ class OrganizationDataSourceConfigurationsResult {
           json['s3Logs'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Logs = this.s3Logs;
+    return {
+      's3Logs': s3Logs,
+    };
+  }
 }
 
 /// Describes whether S3 data event logs will be automatically enabled for new
@@ -5424,6 +6234,12 @@ class OrganizationS3LogsConfiguration {
   OrganizationS3LogsConfiguration({
     required this.autoEnable,
   });
+  factory OrganizationS3LogsConfiguration.fromJson(Map<String, dynamic> json) {
+    return OrganizationS3LogsConfiguration(
+      autoEnable: json['autoEnable'] as bool,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final autoEnable = this.autoEnable;
     return {
@@ -5448,6 +6264,13 @@ class OrganizationS3LogsConfigurationResult {
       autoEnable: json['autoEnable'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      'autoEnable': autoEnable,
+    };
+  }
 }
 
 /// Contains information on the owner of the bucket.
@@ -5465,6 +6288,13 @@ class Owner {
     return Owner(
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -5492,6 +6322,17 @@ class PermissionConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountLevelPermissions = this.accountLevelPermissions;
+    final bucketLevelPermissions = this.bucketLevelPermissions;
+    return {
+      if (accountLevelPermissions != null)
+        'accountLevelPermissions': accountLevelPermissions,
+      if (bucketLevelPermissions != null)
+        'bucketLevelPermissions': bucketLevelPermissions,
+    };
+  }
 }
 
 /// Contains information about the PORT_PROBE action described in the finding.
@@ -5515,6 +6356,15 @@ class PortProbeAction {
           .map((e) => PortProbeDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final portProbeDetails = this.portProbeDetails;
+    return {
+      if (blocked != null) 'blocked': blocked,
+      if (portProbeDetails != null) 'portProbeDetails': portProbeDetails,
+    };
   }
 }
 
@@ -5550,6 +6400,17 @@ class PortProbeDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final localIpDetails = this.localIpDetails;
+    final localPortDetails = this.localPortDetails;
+    final remoteIpDetails = this.remoteIpDetails;
+    return {
+      if (localIpDetails != null) 'localIpDetails': localIpDetails,
+      if (localPortDetails != null) 'localPortDetails': localPortDetails,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+    };
+  }
 }
 
 /// Contains other private IP address information of the EC2 instance.
@@ -5570,6 +6431,15 @@ class PrivateIpAddressDetails {
       privateIpAddress: json['privateIpAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 /// Contains information about the product code for the EC2 instance.
@@ -5589,6 +6459,15 @@ class ProductCode {
       code: json['code'] as String?,
       productType: json['productType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final productType = this.productType;
+    return {
+      if (code != null) 'code': code,
+      if (productType != null) 'productType': productType,
+    };
   }
 }
 
@@ -5613,6 +6492,17 @@ class PublicAccess {
               json['permissionConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effectivePermission = this.effectivePermission;
+    final permissionConfiguration = this.permissionConfiguration;
+    return {
+      if (effectivePermission != null)
+        'effectivePermission': effectivePermission,
+      if (permissionConfiguration != null)
+        'permissionConfiguration': permissionConfiguration,
+    };
   }
 }
 
@@ -5695,6 +6585,21 @@ class RemoteIpDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final geoLocation = this.geoLocation;
+    final ipAddressV4 = this.ipAddressV4;
+    final organization = this.organization;
+    return {
+      if (city != null) 'city': city,
+      if (country != null) 'country': country,
+      if (geoLocation != null) 'geoLocation': geoLocation,
+      if (ipAddressV4 != null) 'ipAddressV4': ipAddressV4,
+      if (organization != null) 'organization': organization,
+    };
+  }
 }
 
 /// Contains information about the remote port.
@@ -5714,6 +6619,15 @@ class RemotePortDetails {
       port: json['port'] as int?,
       portName: json['portName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'port': port,
+      if (portName != null) 'portName': portName,
+    };
   }
 }
 
@@ -5756,6 +6670,19 @@ class Resource {
           .map((e) => S3BucketDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyDetails = this.accessKeyDetails;
+    final instanceDetails = this.instanceDetails;
+    final resourceType = this.resourceType;
+    final s3BucketDetails = this.s3BucketDetails;
+    return {
+      if (accessKeyDetails != null) 'accessKeyDetails': accessKeyDetails,
+      if (instanceDetails != null) 'instanceDetails': instanceDetails,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (s3BucketDetails != null) 's3BucketDetails': s3BucketDetails,
+    };
   }
 }
 
@@ -5817,6 +6744,28 @@ class S3BucketDetail {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final defaultServerSideEncryption = this.defaultServerSideEncryption;
+    final name = this.name;
+    final owner = this.owner;
+    final publicAccess = this.publicAccess;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (defaultServerSideEncryption != null)
+        'defaultServerSideEncryption': defaultServerSideEncryption,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (publicAccess != null) 'publicAccess': publicAccess,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Describes whether S3 data event logs will be enabled as a data source.
@@ -5827,6 +6776,12 @@ class S3LogsConfiguration {
   S3LogsConfiguration({
     required this.enable,
   });
+  factory S3LogsConfiguration.fromJson(Map<String, dynamic> json) {
+    return S3LogsConfiguration(
+      enable: json['enable'] as bool,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final enable = this.enable;
     return {
@@ -5849,6 +6804,13 @@ class S3LogsConfigurationResult {
       status: (json['status'] as String).toDataSourceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains information about the security groups associated with the EC2
@@ -5869,6 +6831,15 @@ class SecurityGroup {
       groupId: json['groupId'] as String?,
       groupName: json['groupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
   }
 }
 
@@ -5936,6 +6907,31 @@ class Service {
       userFeedback: json['userFeedback'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final archived = this.archived;
+    final count = this.count;
+    final detectorId = this.detectorId;
+    final eventFirstSeen = this.eventFirstSeen;
+    final eventLastSeen = this.eventLastSeen;
+    final evidence = this.evidence;
+    final resourceRole = this.resourceRole;
+    final serviceName = this.serviceName;
+    final userFeedback = this.userFeedback;
+    return {
+      if (action != null) 'action': action,
+      if (archived != null) 'archived': archived,
+      if (count != null) 'count': count,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (eventFirstSeen != null) 'eventFirstSeen': eventFirstSeen,
+      if (eventLastSeen != null) 'eventLastSeen': eventLastSeen,
+      if (evidence != null) 'evidence': evidence,
+      if (resourceRole != null) 'resourceRole': resourceRole,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (userFeedback != null) 'userFeedback': userFeedback,
+    };
+  }
 }
 
 /// Contains information about the criteria used for sorting findings.
@@ -5951,6 +6947,13 @@ class SortCriteria {
     this.attributeName,
     this.orderBy,
   });
+  factory SortCriteria.fromJson(Map<String, dynamic> json) {
+    return SortCriteria(
+      attributeName: json['attributeName'] as String?,
+      orderBy: (json['orderBy'] as String?)?.toOrderBy(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attributeName = this.attributeName;
     final orderBy = this.orderBy;
@@ -5977,6 +6980,13 @@ class StartMonitoringMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class StopMonitoringMembersResponse {
@@ -5995,6 +7005,13 @@ class StopMonitoringMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -6016,12 +7033,25 @@ class Tag {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6149,6 +7179,15 @@ class ThreatIntelligenceDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final threatListName = this.threatListName;
+    final threatNames = this.threatNames;
+    return {
+      if (threatListName != null) 'threatListName': threatListName,
+      if (threatNames != null) 'threatNames': threatNames,
+    };
+  }
 }
 
 /// Contains the total usage with the corresponding currency unit for that
@@ -6170,12 +7209,25 @@ class Total {
       unit: json['unit'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final unit = this.unit;
+    return {
+      if (amount != null) 'amount': amount,
+      if (unit != null) 'unit': unit,
+    };
+  }
 }
 
 class UnarchiveFindingsResponse {
   UnarchiveFindingsResponse();
   factory UnarchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return UnarchiveFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6197,6 +7249,15 @@ class UnprocessedAccount {
       result: json['result'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final result = this.result;
+    return {
+      'accountId': accountId,
+      'result': result,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -6204,12 +7265,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDetectorResponse {
   UpdateDetectorResponse();
   factory UpdateDetectorResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6225,6 +7294,13 @@ class UpdateFilterResponse {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
 }
 
 class UpdateFindingsFeedbackResponse {
@@ -6232,12 +7308,20 @@ class UpdateFindingsFeedbackResponse {
   factory UpdateFindingsFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFindingsFeedbackResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateIPSetResponse {
   UpdateIPSetResponse();
   factory UpdateIPSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateIPSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6257,6 +7341,13 @@ class UpdateMemberDetectorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class UpdateOrganizationConfigurationResponse {
@@ -6265,6 +7356,10 @@ class UpdateOrganizationConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePublishingDestinationResponse {
@@ -6272,12 +7367,20 @@ class UpdatePublishingDestinationResponse {
   factory UpdatePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePublishingDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateThreatIntelSetResponse {
   UpdateThreatIntelSetResponse();
   factory UpdateThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateThreatIntelSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6301,6 +7404,15 @@ class UsageAccountResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final total = this.total;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 /// Contains information about the criteria used to query usage statistics.
@@ -6320,6 +7432,23 @@ class UsageCriteria {
     this.accountIds,
     this.resources,
   });
+  factory UsageCriteria.fromJson(Map<String, dynamic> json) {
+    return UsageCriteria(
+      dataSources: (json['dataSources'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toDataSource())
+          .toList(),
+      accountIds: (json['accountIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      resources: (json['resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataSources = this.dataSources;
     final accountIds = this.accountIds;
@@ -6352,6 +7481,15 @@ class UsageDataSourceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final total = this.total;
+    return {
+      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 /// Contains information on the sum of usage based on an AWS resource.
@@ -6373,6 +7511,15 @@ class UsageResourceResult {
           ? Total.fromJson(json['total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final total = this.total;
+    return {
+      if (resource != null) 'resource': resource,
+      if (total != null) 'total': total,
+    };
   }
 }
 
@@ -6455,6 +7602,19 @@ class UsageStatistics {
           .map((e) => UsageResourceResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sumByAccount = this.sumByAccount;
+    final sumByDataSource = this.sumByDataSource;
+    final sumByResource = this.sumByResource;
+    final topResources = this.topResources;
+    return {
+      if (sumByAccount != null) 'sumByAccount': sumByAccount,
+      if (sumByDataSource != null) 'sumByDataSource': sumByDataSource,
+      if (sumByResource != null) 'sumByResource': sumByResource,
+      if (topResources != null) 'topResources': topResources,
+    };
   }
 }
 

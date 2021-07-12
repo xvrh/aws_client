@@ -2742,6 +2742,13 @@ class BatchDeleteWorldsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedWorlds = this.unprocessedWorlds;
+    return {
+      if (unprocessedWorlds != null) 'unprocessedWorlds': unprocessedWorlds,
+    };
+  }
 }
 
 class BatchDescribeSimulationJobResponse {
@@ -2767,6 +2774,15 @@ class BatchDescribeSimulationJobResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final unprocessedJobs = this.unprocessedJobs;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (unprocessedJobs != null) 'unprocessedJobs': unprocessedJobs,
+    };
   }
 }
 
@@ -2816,12 +2832,20 @@ class CancelDeploymentJobResponse {
   factory CancelDeploymentJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelDeploymentJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CancelSimulationJobBatchResponse {
   CancelSimulationJobBatchResponse();
   factory CancelSimulationJobBatchResponse.fromJson(Map<String, dynamic> _) {
     return CancelSimulationJobBatchResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2830,6 +2854,10 @@ class CancelSimulationJobResponse {
   factory CancelSimulationJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelSimulationJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CancelWorldExportJobResponse {
@@ -2837,12 +2865,20 @@ class CancelWorldExportJobResponse {
   factory CancelWorldExportJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelWorldExportJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CancelWorldGenerationJobResponse {
   CancelWorldGenerationJobResponse();
   factory CancelWorldGenerationJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelWorldGenerationJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2887,6 +2923,14 @@ class ComputeResponse {
     return ComputeResponse(
       simulationUnitLimit: json['simulationUnitLimit'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final simulationUnitLimit = this.simulationUnitLimit;
+    return {
+      if (simulationUnitLimit != null)
+        'simulationUnitLimit': simulationUnitLimit,
+    };
   }
 }
 
@@ -2986,6 +3030,30 @@ class CreateDeploymentJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentApplicationConfigs = this.deploymentApplicationConfigs;
+    final deploymentConfig = this.deploymentConfig;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final fleet = this.fleet;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (deploymentApplicationConfigs != null)
+        'deploymentApplicationConfigs': deploymentApplicationConfigs,
+      if (deploymentConfig != null) 'deploymentConfig': deploymentConfig,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (fleet != null) 'fleet': fleet,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateFleetResponse {
@@ -3015,6 +3083,19 @@ class CreateFleetResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3073,6 +3154,28 @@ class CreateRobotApplicationResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final sources = this.sources;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class CreateRobotApplicationVersionResponse {
@@ -3125,6 +3228,26 @@ class CreateRobotApplicationVersionResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final sources = this.sources;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class CreateRobotResponse {
@@ -3165,6 +3288,23 @@ class CreateRobotResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final greengrassGroupId = this.greengrassGroupId;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (greengrassGroupId != null) 'greengrassGroupId': greengrassGroupId,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3240,6 +3380,33 @@ class CreateSimulationApplicationResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final renderingEngine = this.renderingEngine;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final simulationSoftwareSuite = this.simulationSoftwareSuite;
+    final sources = this.sources;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (renderingEngine != null) 'renderingEngine': renderingEngine,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (simulationSoftwareSuite != null)
+        'simulationSoftwareSuite': simulationSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class CreateSimulationApplicationVersionResponse {
@@ -3307,6 +3474,31 @@ class CreateSimulationApplicationVersionResponse {
           .toList(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final renderingEngine = this.renderingEngine;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final simulationSoftwareSuite = this.simulationSoftwareSuite;
+    final sources = this.sources;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (renderingEngine != null) 'renderingEngine': renderingEngine,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (simulationSoftwareSuite != null)
+        'simulationSoftwareSuite': simulationSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3466,6 +3658,52 @@ class CreateSimulationJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final compute = this.compute;
+    final dataSources = this.dataSources;
+    final failureBehavior = this.failureBehavior;
+    final failureCode = this.failureCode;
+    final iamRole = this.iamRole;
+    final lastStartedAt = this.lastStartedAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final loggingConfig = this.loggingConfig;
+    final maxJobDurationInSeconds = this.maxJobDurationInSeconds;
+    final outputLocation = this.outputLocation;
+    final robotApplications = this.robotApplications;
+    final simulationApplications = this.simulationApplications;
+    final simulationTimeMillis = this.simulationTimeMillis;
+    final status = this.status;
+    final tags = this.tags;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (compute != null) 'compute': compute,
+      if (dataSources != null) 'dataSources': dataSources,
+      if (failureBehavior != null) 'failureBehavior': failureBehavior.toValue(),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (iamRole != null) 'iamRole': iamRole,
+      if (lastStartedAt != null)
+        'lastStartedAt': unixTimestampToJson(lastStartedAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (loggingConfig != null) 'loggingConfig': loggingConfig,
+      if (maxJobDurationInSeconds != null)
+        'maxJobDurationInSeconds': maxJobDurationInSeconds,
+      if (outputLocation != null) 'outputLocation': outputLocation,
+      if (robotApplications != null) 'robotApplications': robotApplications,
+      if (simulationApplications != null)
+        'simulationApplications': simulationApplications,
+      if (simulationTimeMillis != null)
+        'simulationTimeMillis': simulationTimeMillis,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
+  }
 }
 
 class CreateWorldExportJobResponse {
@@ -3553,6 +3791,27 @@ class CreateWorldExportJobResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final failureCode = this.failureCode;
+    final iamRole = this.iamRole;
+    final outputLocation = this.outputLocation;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (iamRole != null) 'iamRole': iamRole,
+      if (outputLocation != null) 'outputLocation': outputLocation,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3645,6 +3904,29 @@ class CreateWorldGenerationJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final failureCode = this.failureCode;
+    final status = this.status;
+    final tags = this.tags;
+    final template = this.template;
+    final worldCount = this.worldCount;
+    final worldTags = this.worldTags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (template != null) 'template': template,
+      if (worldCount != null) 'worldCount': worldCount,
+      if (worldTags != null) 'worldTags': worldTags,
+    };
+  }
 }
 
 class CreateWorldTemplateResponse {
@@ -3683,6 +3965,21 @@ class CreateWorldTemplateResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Information about a data source.
@@ -3710,6 +4007,17 @@ class DataSource {
           .map((e) => S3KeyOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final s3Bucket = this.s3Bucket;
+    final s3Keys = this.s3Keys;
+    return {
+      if (name != null) 'name': name,
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Keys != null) 's3Keys': s3Keys,
+    };
   }
 }
 
@@ -3757,12 +4065,20 @@ class DeleteFleetResponse {
   factory DeleteFleetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFleetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRobotApplicationResponse {
   DeleteRobotApplicationResponse();
   factory DeleteRobotApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRobotApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3771,6 +4087,10 @@ class DeleteRobotResponse {
   factory DeleteRobotResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRobotResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSimulationApplicationResponse {
@@ -3778,12 +4098,20 @@ class DeleteSimulationApplicationResponse {
   factory DeleteSimulationApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSimulationApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWorldTemplateResponse {
   DeleteWorldTemplateResponse();
   factory DeleteWorldTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorldTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3934,6 +4262,28 @@ class DeploymentJob {
       fleet: json['fleet'] as String?,
       status: (json['status'] as String?)?.toDeploymentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentApplicationConfigs = this.deploymentApplicationConfigs;
+    final deploymentConfig = this.deploymentConfig;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final fleet = this.fleet;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (deploymentApplicationConfigs != null)
+        'deploymentApplicationConfigs': deploymentApplicationConfigs,
+      if (deploymentConfig != null) 'deploymentConfig': deploymentConfig,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (fleet != null) 'fleet': fleet,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4196,6 +4546,15 @@ class DeregisterRobotResponse {
       robot: json['robot'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleet = this.fleet;
+    final robot = this.robot;
+    return {
+      if (fleet != null) 'fleet': fleet,
+      if (robot != null) 'robot': robot,
+    };
+  }
 }
 
 class DescribeDeploymentJobResponse {
@@ -4268,6 +4627,33 @@ class DescribeDeploymentJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentApplicationConfigs = this.deploymentApplicationConfigs;
+    final deploymentConfig = this.deploymentConfig;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final fleet = this.fleet;
+    final robotDeploymentSummary = this.robotDeploymentSummary;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (deploymentApplicationConfigs != null)
+        'deploymentApplicationConfigs': deploymentApplicationConfigs,
+      if (deploymentConfig != null) 'deploymentConfig': deploymentConfig,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (fleet != null) 'fleet': fleet,
+      if (robotDeploymentSummary != null)
+        'robotDeploymentSummary': robotDeploymentSummary,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribeFleetResponse {
@@ -4321,6 +4707,29 @@ class DescribeFleetResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastDeploymentJob = this.lastDeploymentJob;
+    final lastDeploymentStatus = this.lastDeploymentStatus;
+    final lastDeploymentTime = this.lastDeploymentTime;
+    final name = this.name;
+    final robots = this.robots;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastDeploymentJob != null) 'lastDeploymentJob': lastDeploymentJob,
+      if (lastDeploymentStatus != null)
+        'lastDeploymentStatus': lastDeploymentStatus.toValue(),
+      if (lastDeploymentTime != null)
+        'lastDeploymentTime': unixTimestampToJson(lastDeploymentTime),
+      if (name != null) 'name': name,
+      if (robots != null) 'robots': robots,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4378,6 +4787,28 @@ class DescribeRobotApplicationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final sources = this.sources;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -4438,6 +4869,32 @@ class DescribeRobotResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final fleetArn = this.fleetArn;
+    final greengrassGroupId = this.greengrassGroupId;
+    final lastDeploymentJob = this.lastDeploymentJob;
+    final lastDeploymentTime = this.lastDeploymentTime;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fleetArn != null) 'fleetArn': fleetArn,
+      if (greengrassGroupId != null) 'greengrassGroupId': greengrassGroupId,
+      if (lastDeploymentJob != null) 'lastDeploymentJob': lastDeploymentJob,
+      if (lastDeploymentTime != null)
+        'lastDeploymentTime': unixTimestampToJson(lastDeploymentTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4512,6 +4969,33 @@ class DescribeSimulationApplicationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final renderingEngine = this.renderingEngine;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final simulationSoftwareSuite = this.simulationSoftwareSuite;
+    final sources = this.sources;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (renderingEngine != null) 'renderingEngine': renderingEngine,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (simulationSoftwareSuite != null)
+        'simulationSoftwareSuite': simulationSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -4634,6 +5118,36 @@ class DescribeSimulationJobBatchResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final batchPolicy = this.batchPolicy;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final createdRequests = this.createdRequests;
+    final failedRequests = this.failedRequests;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final pendingRequests = this.pendingRequests;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (batchPolicy != null) 'batchPolicy': batchPolicy,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdRequests != null) 'createdRequests': createdRequests,
+      if (failedRequests != null) 'failedRequests': failedRequests,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (pendingRequests != null) 'pendingRequests': pendingRequests,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4814,6 +5328,58 @@ class DescribeSimulationJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final compute = this.compute;
+    final dataSources = this.dataSources;
+    final failureBehavior = this.failureBehavior;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final iamRole = this.iamRole;
+    final lastStartedAt = this.lastStartedAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final loggingConfig = this.loggingConfig;
+    final maxJobDurationInSeconds = this.maxJobDurationInSeconds;
+    final name = this.name;
+    final networkInterface = this.networkInterface;
+    final outputLocation = this.outputLocation;
+    final robotApplications = this.robotApplications;
+    final simulationApplications = this.simulationApplications;
+    final simulationTimeMillis = this.simulationTimeMillis;
+    final status = this.status;
+    final tags = this.tags;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (compute != null) 'compute': compute,
+      if (dataSources != null) 'dataSources': dataSources,
+      if (failureBehavior != null) 'failureBehavior': failureBehavior.toValue(),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (iamRole != null) 'iamRole': iamRole,
+      if (lastStartedAt != null)
+        'lastStartedAt': unixTimestampToJson(lastStartedAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (loggingConfig != null) 'loggingConfig': loggingConfig,
+      if (maxJobDurationInSeconds != null)
+        'maxJobDurationInSeconds': maxJobDurationInSeconds,
+      if (name != null) 'name': name,
+      if (networkInterface != null) 'networkInterface': networkInterface,
+      if (outputLocation != null) 'outputLocation': outputLocation,
+      if (robotApplications != null) 'robotApplications': robotApplications,
+      if (simulationApplications != null)
+        'simulationApplications': simulationApplications,
+      if (simulationTimeMillis != null)
+        'simulationTimeMillis': simulationTimeMillis,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
+  }
 }
 
 class DescribeWorldExportJobResponse {
@@ -4909,6 +5475,31 @@ class DescribeWorldExportJobResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final iamRole = this.iamRole;
+    final outputLocation = this.outputLocation;
+    final status = this.status;
+    final tags = this.tags;
+    final worlds = this.worlds;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (iamRole != null) 'iamRole': iamRole,
+      if (outputLocation != null) 'outputLocation': outputLocation,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (worlds != null) 'worlds': worlds,
+    };
   }
 }
 
@@ -5015,6 +5606,34 @@ class DescribeWorldGenerationJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final finishedWorldsSummary = this.finishedWorldsSummary;
+    final status = this.status;
+    final tags = this.tags;
+    final template = this.template;
+    final worldCount = this.worldCount;
+    final worldTags = this.worldTags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (finishedWorldsSummary != null)
+        'finishedWorldsSummary': finishedWorldsSummary,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (template != null) 'template': template,
+      if (worldCount != null) 'worldCount': worldCount,
+      if (worldTags != null) 'worldTags': worldTags,
+    };
+  }
 }
 
 class DescribeWorldResponse {
@@ -5050,6 +5669,21 @@ class DescribeWorldResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       template: json['template'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final generationJob = this.generationJob;
+    final tags = this.tags;
+    final template = this.template;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (generationJob != null) 'generationJob': generationJob,
+      if (tags != null) 'tags': tags,
+      if (template != null) 'template': template,
+    };
   }
 }
 
@@ -5094,6 +5728,24 @@ class DescribeWorldTemplateResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5157,6 +5809,19 @@ class FailedCreateSimulationJobRequest {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedAt = this.failedAt;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final request = this.request;
+    return {
+      if (failedAt != null) 'failedAt': unixTimestampToJson(failedAt),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (request != null) 'request': request,
+    };
+  }
 }
 
 enum FailureBehavior {
@@ -5208,6 +5873,15 @@ class FailureSummary {
       totalFailureCount: json['totalFailureCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final totalFailureCount = this.totalFailureCount;
+    return {
+      if (failures != null) 'failures': failures,
+      if (totalFailureCount != null) 'totalFailureCount': totalFailureCount,
+    };
+  }
 }
 
 /// Information about a filter.
@@ -5222,6 +5896,16 @@ class Filter {
     this.name,
     this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json['name'] as String?,
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -5260,6 +5944,17 @@ class FinishedWorldsSummary {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureSummary = this.failureSummary;
+    final finishedCount = this.finishedCount;
+    final succeededWorlds = this.succeededWorlds;
+    return {
+      if (failureSummary != null) 'failureSummary': failureSummary,
+      if (finishedCount != null) 'finishedCount': finishedCount,
+      if (succeededWorlds != null) 'succeededWorlds': succeededWorlds,
+    };
   }
 }
 
@@ -5302,6 +5997,25 @@ class Fleet {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastDeploymentJob = this.lastDeploymentJob;
+    final lastDeploymentStatus = this.lastDeploymentStatus;
+    final lastDeploymentTime = this.lastDeploymentTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastDeploymentJob != null) 'lastDeploymentJob': lastDeploymentJob,
+      if (lastDeploymentStatus != null)
+        'lastDeploymentStatus': lastDeploymentStatus.toValue(),
+      if (lastDeploymentTime != null)
+        'lastDeploymentTime': unixTimestampToJson(lastDeploymentTime),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class GetWorldTemplateBodyResponse {
@@ -5315,6 +6029,13 @@ class GetWorldTemplateBodyResponse {
     return GetWorldTemplateBodyResponse(
       templateBody: json['templateBody'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final templateBody = this.templateBody;
+    return {
+      if (templateBody != null) 'templateBody': templateBody,
+    };
   }
 }
 
@@ -5404,6 +6125,15 @@ class ListDeploymentJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentJobs = this.deploymentJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (deploymentJobs != null) 'deploymentJobs': deploymentJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFleetsResponse {
@@ -5430,6 +6160,15 @@ class ListFleetsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetDetails = this.fleetDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetDetails != null) 'fleetDetails': fleetDetails,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5459,6 +6198,16 @@ class ListRobotApplicationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final robotApplicationSummaries = this.robotApplicationSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (robotApplicationSummaries != null)
+        'robotApplicationSummaries': robotApplicationSummaries,
+    };
+  }
 }
 
 class ListRobotsResponse {
@@ -5485,6 +6234,15 @@ class ListRobotsResponse {
           .map((e) => Robot.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final robots = this.robots;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (robots != null) 'robots': robots,
+    };
   }
 }
 
@@ -5517,6 +6275,16 @@ class ListSimulationApplicationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final simulationApplicationSummaries = this.simulationApplicationSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (simulationApplicationSummaries != null)
+        'simulationApplicationSummaries': simulationApplicationSummaries,
+    };
+  }
 }
 
 class ListSimulationJobBatchesResponse {
@@ -5546,6 +6314,16 @@ class ListSimulationJobBatchesResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final simulationJobBatchSummaries = this.simulationJobBatchSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (simulationJobBatchSummaries != null)
+        'simulationJobBatchSummaries': simulationJobBatchSummaries,
+    };
+  }
 }
 
 class ListSimulationJobsResponse {
@@ -5573,6 +6351,15 @@ class ListSimulationJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final simulationJobSummaries = this.simulationJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'simulationJobSummaries': simulationJobSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5587,6 +6374,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5614,6 +6408,15 @@ class ListWorldExportJobsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final worldExportJobSummaries = this.worldExportJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'worldExportJobSummaries': worldExportJobSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5644,6 +6447,15 @@ class ListWorldGenerationJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final worldGenerationJobSummaries = this.worldGenerationJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'worldGenerationJobSummaries': worldGenerationJobSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListWorldTemplatesResponse {
@@ -5671,6 +6483,15 @@ class ListWorldTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final templateSummaries = this.templateSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (templateSummaries != null) 'templateSummaries': templateSummaries,
+    };
+  }
 }
 
 class ListWorldsResponse {
@@ -5697,6 +6518,15 @@ class ListWorldsResponse {
           .map((e) => WorldSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final worldSummaries = this.worldSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (worldSummaries != null) 'worldSummaries': worldSummaries,
+    };
   }
 }
 
@@ -5744,6 +6574,17 @@ class NetworkInterface {
       privateIpAddress: json['privateIpAddress'] as String?,
       publicIpAddress: json['publicIpAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final publicIpAddress = this.publicIpAddress;
+    return {
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (publicIpAddress != null) 'publicIpAddress': publicIpAddress,
+    };
   }
 }
 
@@ -5886,6 +6727,20 @@ class ProgressDetail {
       targetResource: json['targetResource'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentProgress = this.currentProgress;
+    final estimatedTimeRemainingSeconds = this.estimatedTimeRemainingSeconds;
+    final percentDone = this.percentDone;
+    final targetResource = this.targetResource;
+    return {
+      if (currentProgress != null) 'currentProgress': currentProgress.toValue(),
+      if (estimatedTimeRemainingSeconds != null)
+        'estimatedTimeRemainingSeconds': estimatedTimeRemainingSeconds,
+      if (percentDone != null) 'percentDone': percentDone,
+      if (targetResource != null) 'targetResource': targetResource,
+    };
+  }
 }
 
 class RegisterRobotResponse {
@@ -5904,6 +6759,15 @@ class RegisterRobotResponse {
       fleet: json['fleet'] as String?,
       robot: json['robot'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleet = this.fleet;
+    final robot = this.robot;
+    return {
+      if (fleet != null) 'fleet': fleet,
+      if (robot != null) 'robot': robot,
+    };
   }
 }
 
@@ -5964,6 +6828,10 @@ class RestartSimulationJobResponse {
   factory RestartSimulationJobResponse.fromJson(Map<String, dynamic> _) {
     return RestartSimulationJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about a robot.
@@ -6018,6 +6886,30 @@ class Robot {
       name: json['name'] as String?,
       status: (json['status'] as String?)?.toRobotStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final fleetArn = this.fleetArn;
+    final greenGrassGroupId = this.greenGrassGroupId;
+    final lastDeploymentJob = this.lastDeploymentJob;
+    final lastDeploymentTime = this.lastDeploymentTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fleetArn != null) 'fleetArn': fleetArn,
+      if (greenGrassGroupId != null) 'greenGrassGroupId': greenGrassGroupId,
+      if (lastDeploymentJob != null) 'lastDeploymentJob': lastDeploymentJob,
+      if (lastDeploymentTime != null)
+        'lastDeploymentTime': unixTimestampToJson(lastDeploymentTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -6138,6 +7030,22 @@ class RobotApplicationSummary {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Information about a robot deployment.
@@ -6185,6 +7093,27 @@ class RobotDeployment {
           : null,
       status: (json['status'] as String?)?.toRobotStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final deploymentFinishTime = this.deploymentFinishTime;
+    final deploymentStartTime = this.deploymentStartTime;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final progressDetail = this.progressDetail;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (deploymentFinishTime != null)
+        'deploymentFinishTime': unixTimestampToJson(deploymentFinishTime),
+      if (deploymentStartTime != null)
+        'deploymentStartTime': unixTimestampToJson(deploymentStartTime),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (progressDetail != null) 'progressDetail': progressDetail,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -6407,6 +7336,15 @@ class S3KeyOutput {
       s3Key: json['s3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final etag = this.etag;
+    final s3Key = this.s3Key;
+    return {
+      if (etag != null) 'etag': etag,
+      if (s3Key != null) 's3Key': s3Key,
+    };
+  }
 }
 
 /// Information about an S3 object.
@@ -6580,6 +7518,25 @@ class SimulationApplicationSummary {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final simulationSoftwareSuite = this.simulationSoftwareSuite;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (simulationSoftwareSuite != null)
+        'simulationSoftwareSuite': simulationSoftwareSuite,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Information about a simulation job.
@@ -6732,6 +7689,58 @@ class SimulationJob {
               json['vpcConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final compute = this.compute;
+    final dataSources = this.dataSources;
+    final failureBehavior = this.failureBehavior;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final iamRole = this.iamRole;
+    final lastStartedAt = this.lastStartedAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final loggingConfig = this.loggingConfig;
+    final maxJobDurationInSeconds = this.maxJobDurationInSeconds;
+    final name = this.name;
+    final networkInterface = this.networkInterface;
+    final outputLocation = this.outputLocation;
+    final robotApplications = this.robotApplications;
+    final simulationApplications = this.simulationApplications;
+    final simulationTimeMillis = this.simulationTimeMillis;
+    final status = this.status;
+    final tags = this.tags;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (compute != null) 'compute': compute,
+      if (dataSources != null) 'dataSources': dataSources,
+      if (failureBehavior != null) 'failureBehavior': failureBehavior.toValue(),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (iamRole != null) 'iamRole': iamRole,
+      if (lastStartedAt != null)
+        'lastStartedAt': unixTimestampToJson(lastStartedAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (loggingConfig != null) 'loggingConfig': loggingConfig,
+      if (maxJobDurationInSeconds != null)
+        'maxJobDurationInSeconds': maxJobDurationInSeconds,
+      if (name != null) 'name': name,
+      if (networkInterface != null) 'networkInterface': networkInterface,
+      if (outputLocation != null) 'outputLocation': outputLocation,
+      if (robotApplications != null) 'robotApplications': robotApplications,
+      if (simulationApplications != null)
+        'simulationApplications': simulationApplications,
+      if (simulationTimeMillis != null)
+        'simulationTimeMillis': simulationTimeMillis,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
   }
 }
 
@@ -6896,6 +7905,28 @@ class SimulationJobBatchSummary {
       pendingRequestCount: json['pendingRequestCount'] as int?,
       status: (json['status'] as String?)?.toSimulationJobBatchStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final createdRequestCount = this.createdRequestCount;
+    final failedRequestCount = this.failedRequestCount;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final pendingRequestCount = this.pendingRequestCount;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdRequestCount != null)
+        'createdRequestCount': createdRequestCount,
+      if (failedRequestCount != null) 'failedRequestCount': failedRequestCount,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (pendingRequestCount != null)
+        'pendingRequestCount': pendingRequestCount,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -7328,6 +8359,28 @@ class SimulationJobSummary {
       status: (json['status'] as String?)?.toSimulationJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSourceNames = this.dataSourceNames;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final robotApplicationNames = this.robotApplicationNames;
+    final simulationApplicationNames = this.simulationApplicationNames;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dataSourceNames != null) 'dataSourceNames': dataSourceNames,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (robotApplicationNames != null)
+        'robotApplicationNames': robotApplicationNames,
+      if (simulationApplicationNames != null)
+        'simulationApplicationNames': simulationApplicationNames,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Information about a simulation software suite.
@@ -7416,6 +8469,19 @@ class Source {
       s3Key: json['s3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final etag = this.etag;
+    final s3Bucket = this.s3Bucket;
+    final s3Key = this.s3Key;
+    return {
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (etag != null) 'etag': etag,
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Key != null) 's3Key': s3Key,
+    };
+  }
 }
 
 /// Information about a source configuration.
@@ -7434,6 +8500,14 @@ class SourceConfig {
     this.s3Bucket,
     this.s3Key,
   });
+  factory SourceConfig.fromJson(Map<String, dynamic> json) {
+    return SourceConfig(
+      architecture: (json['architecture'] as String?)?.toArchitecture(),
+      s3Bucket: json['s3Bucket'] as String?,
+      s3Key: json['s3Key'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final architecture = this.architecture;
     final s3Bucket = this.s3Bucket;
@@ -7558,6 +8632,33 @@ class StartSimulationJobBatchResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final batchPolicy = this.batchPolicy;
+    final clientRequestToken = this.clientRequestToken;
+    final createdAt = this.createdAt;
+    final createdRequests = this.createdRequests;
+    final failedRequests = this.failedRequests;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final pendingRequests = this.pendingRequests;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (batchPolicy != null) 'batchPolicy': batchPolicy,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdRequests != null) 'createdRequests': createdRequests,
+      if (failedRequests != null) 'failedRequests': failedRequests,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (pendingRequests != null) 'pendingRequests': pendingRequests,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class SyncDeploymentJobResponse {
@@ -7646,12 +8747,38 @@ class SyncDeploymentJobResponse {
       status: (json['status'] as String?)?.toDeploymentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentApplicationConfigs = this.deploymentApplicationConfigs;
+    final deploymentConfig = this.deploymentConfig;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final fleet = this.fleet;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (deploymentApplicationConfigs != null)
+        'deploymentApplicationConfigs': deploymentApplicationConfigs,
+      if (deploymentConfig != null) 'deploymentConfig': deploymentConfig,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (fleet != null) 'fleet': fleet,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7667,6 +8794,13 @@ class TemplateLocation {
     required this.s3Bucket,
     required this.s3Key,
   });
+  factory TemplateLocation.fromJson(Map<String, dynamic> json) {
+    return TemplateLocation(
+      s3Bucket: json['s3Bucket'] as String,
+      s3Key: json['s3Key'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Bucket = this.s3Bucket;
     final s3Key = this.s3Key;
@@ -7705,6 +8839,20 @@ class TemplateSummary {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -7771,6 +8919,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateRobotApplicationResponse {
@@ -7821,6 +8973,26 @@ class UpdateRobotApplicationResponse {
           .toList(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final sources = this.sources;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -7890,6 +9062,31 @@ class UpdateSimulationApplicationResponse {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final renderingEngine = this.renderingEngine;
+    final revisionId = this.revisionId;
+    final robotSoftwareSuite = this.robotSoftwareSuite;
+    final simulationSoftwareSuite = this.simulationSoftwareSuite;
+    final sources = this.sources;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+      if (renderingEngine != null) 'renderingEngine': renderingEngine,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (robotSoftwareSuite != null) 'robotSoftwareSuite': robotSoftwareSuite,
+      if (simulationSoftwareSuite != null)
+        'simulationSoftwareSuite': simulationSoftwareSuite,
+      if (sources != null) 'sources': sources,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class UpdateWorldTemplateResponse {
@@ -7920,6 +9117,20 @@ class UpdateWorldTemplateResponse {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -8089,6 +9300,19 @@ class VPCConfigResponse {
           .toList(),
       vpcId: json['vpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assignPublicIp = this.assignPublicIp;
+    final securityGroups = this.securityGroups;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (assignPublicIp != null) 'assignPublicIp': assignPublicIp,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnets != null) 'subnets': subnets,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
   }
 }
 
@@ -8295,6 +9519,19 @@ class WorldExportJobSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final worlds = this.worlds;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (status != null) 'status': status.toValue(),
+      if (worlds != null) 'worlds': worlds,
+    };
+  }
 }
 
 /// Information about a failed world.
@@ -8333,6 +9570,18 @@ class WorldFailure {
       failureCount: json['failureCount'] as int?,
       sampleFailureReason: json['sampleFailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final failureCount = this.failureCount;
+    final sampleFailureReason = this.sampleFailureReason;
+    return {
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureCount != null) 'failureCount': failureCount,
+      if (sampleFailureReason != null)
+        'sampleFailureReason': sampleFailureReason,
+    };
   }
 }
 
@@ -8499,6 +9748,26 @@ class WorldGenerationJobSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final failedWorldCount = this.failedWorldCount;
+    final status = this.status;
+    final succeededWorldCount = this.succeededWorldCount;
+    final template = this.template;
+    final worldCount = this.worldCount;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (failedWorldCount != null) 'failedWorldCount': failedWorldCount,
+      if (status != null) 'status': status.toValue(),
+      if (succeededWorldCount != null)
+        'succeededWorldCount': succeededWorldCount,
+      if (template != null) 'template': template,
+      if (worldCount != null) 'worldCount': worldCount,
+    };
+  }
 }
 
 /// Information about a world.
@@ -8528,6 +9797,19 @@ class WorldSummary {
       generationJob: json['generationJob'] as String?,
       template: json['template'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final generationJob = this.generationJob;
+    final template = this.template;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (generationJob != null) 'generationJob': generationJob,
+      if (template != null) 'template': template,
+    };
   }
 }
 

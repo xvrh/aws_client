@@ -53,10 +53,23 @@ class OutputShape {
   OutputShape({
     this.foo,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      foo: json['Foo'] as String?,
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       foo: _s.extractXmlStringValue(elem, 'Foo'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

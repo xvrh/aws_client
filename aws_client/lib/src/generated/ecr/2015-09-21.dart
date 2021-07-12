@@ -2065,6 +2065,15 @@ class Attribute {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// An object representing authorization data for an Amazon ECR registry.
@@ -2097,6 +2106,17 @@ class AuthorizationData {
       proxyEndpoint: json['proxyEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizationToken = this.authorizationToken;
+    final expiresAt = this.expiresAt;
+    final proxyEndpoint = this.proxyEndpoint;
+    return {
+      if (authorizationToken != null) 'authorizationToken': authorizationToken,
+      if (expiresAt != null) 'expiresAt': unixTimestampToJson(expiresAt),
+      if (proxyEndpoint != null) 'proxyEndpoint': proxyEndpoint,
+    };
+  }
 }
 
 class BatchCheckLayerAvailabilityResponse {
@@ -2124,6 +2144,15 @@ class BatchCheckLayerAvailabilityResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final layers = this.layers;
+    return {
+      if (failures != null) 'failures': failures,
+      if (layers != null) 'layers': layers,
+    };
+  }
 }
 
 class BatchDeleteImageResponse {
@@ -2148,6 +2177,15 @@ class BatchDeleteImageResponse {
           .map((e) => ImageIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final imageIds = this.imageIds;
+    return {
+      if (failures != null) 'failures': failures,
+      if (imageIds != null) 'imageIds': imageIds,
+    };
   }
 }
 
@@ -2174,6 +2212,15 @@ class BatchGetImageResponse {
           .map((e) => Image.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final images = this.images;
+    return {
+      if (failures != null) 'failures': failures,
+      if (images != null) 'images': images,
+    };
   }
 }
 
@@ -2204,6 +2251,19 @@ class CompleteLayerUploadResponse {
       uploadId: json['uploadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final layerDigest = this.layerDigest;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    final uploadId = this.uploadId;
+    return {
+      if (layerDigest != null) 'layerDigest': layerDigest,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (uploadId != null) 'uploadId': uploadId,
+    };
+  }
 }
 
 class CreateRepositoryResponse {
@@ -2219,6 +2279,13 @@ class CreateRepositoryResponse {
           ? Repository.fromJson(json['repository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
   }
 }
 
@@ -2249,6 +2316,21 @@ class DeleteLifecyclePolicyResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastEvaluatedAt = this.lastEvaluatedAt;
+    final lifecyclePolicyText = this.lifecyclePolicyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (lastEvaluatedAt != null)
+        'lastEvaluatedAt': unixTimestampToJson(lastEvaluatedAt),
+      if (lifecyclePolicyText != null)
+        'lifecyclePolicyText': lifecyclePolicyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class DeleteRegistryPolicyResponse {
@@ -2267,6 +2349,15 @@ class DeleteRegistryPolicyResponse {
       policyText: json['policyText'] as String?,
       registryId: json['registryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+    };
   }
 }
 
@@ -2292,6 +2383,17 @@ class DeleteRepositoryPolicyResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class DeleteRepositoryResponse {
@@ -2307,6 +2409,13 @@ class DeleteRepositoryResponse {
           ? Repository.fromJson(json['repository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
   }
 }
 
@@ -2359,6 +2468,23 @@ class DescribeImageScanFindingsResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final imageScanFindings = this.imageScanFindings;
+    final imageScanStatus = this.imageScanStatus;
+    final nextToken = this.nextToken;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (imageScanFindings != null) 'imageScanFindings': imageScanFindings,
+      if (imageScanStatus != null) 'imageScanStatus': imageScanStatus,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// An object representing a filter on a <a>DescribeImages</a> operation.
@@ -2371,6 +2497,12 @@ class DescribeImagesFilter {
   DescribeImagesFilter({
     this.tagStatus,
   });
+  factory DescribeImagesFilter.fromJson(Map<String, dynamic> json) {
+    return DescribeImagesFilter(
+      tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final tagStatus = this.tagStatus;
     return {
@@ -2403,6 +2535,15 @@ class DescribeImagesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageDetails = this.imageDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (imageDetails != null) 'imageDetails': imageDetails,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeRegistryResponse {
@@ -2424,6 +2565,16 @@ class DescribeRegistryResponse {
               json['replicationConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final registryId = this.registryId;
+    final replicationConfiguration = this.replicationConfiguration;
+    return {
+      if (registryId != null) 'registryId': registryId,
+      if (replicationConfiguration != null)
+        'replicationConfiguration': replicationConfiguration,
+    };
   }
 }
 
@@ -2450,6 +2601,15 @@ class DescribeRepositoriesResponse {
           .map((e) => Repository.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositories = this.repositories;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (repositories != null) 'repositories': repositories,
+    };
   }
 }
 
@@ -2612,6 +2772,13 @@ class GetAuthorizationTokenResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizationData = this.authorizationData;
+    return {
+      if (authorizationData != null) 'authorizationData': authorizationData,
+    };
+  }
 }
 
 class GetDownloadUrlForLayerResponse {
@@ -2630,6 +2797,15 @@ class GetDownloadUrlForLayerResponse {
       downloadUrl: json['downloadUrl'] as String?,
       layerDigest: json['layerDigest'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final downloadUrl = this.downloadUrl;
+    final layerDigest = this.layerDigest;
+    return {
+      if (downloadUrl != null) 'downloadUrl': downloadUrl,
+      if (layerDigest != null) 'layerDigest': layerDigest,
+    };
   }
 }
 
@@ -2688,6 +2864,26 @@ class GetLifecyclePolicyPreviewResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecyclePolicyText = this.lifecyclePolicyText;
+    final nextToken = this.nextToken;
+    final previewResults = this.previewResults;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    final status = this.status;
+    final summary = this.summary;
+    return {
+      if (lifecyclePolicyText != null)
+        'lifecyclePolicyText': lifecyclePolicyText,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (previewResults != null) 'previewResults': previewResults,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (status != null) 'status': status.toValue(),
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 class GetLifecyclePolicyResponse {
@@ -2717,6 +2913,21 @@ class GetLifecyclePolicyResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastEvaluatedAt = this.lastEvaluatedAt;
+    final lifecyclePolicyText = this.lifecyclePolicyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (lastEvaluatedAt != null)
+        'lastEvaluatedAt': unixTimestampToJson(lastEvaluatedAt),
+      if (lifecyclePolicyText != null)
+        'lifecyclePolicyText': lifecyclePolicyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class GetRegistryPolicyResponse {
@@ -2735,6 +2946,15 @@ class GetRegistryPolicyResponse {
       policyText: json['policyText'] as String?,
       registryId: json['registryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+    };
   }
 }
 
@@ -2759,6 +2979,17 @@ class GetRepositoryPolicyResponse {
       registryId: json['registryId'] as String?,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -2797,6 +3028,22 @@ class Image {
       registryId: json['registryId'] as String?,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final imageManifest = this.imageManifest;
+    final imageManifestMediaType = this.imageManifestMediaType;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (imageManifest != null) 'imageManifest': imageManifest,
+      if (imageManifestMediaType != null)
+        'imageManifestMediaType': imageManifestMediaType,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -2901,6 +3148,34 @@ class ImageDetail {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactMediaType = this.artifactMediaType;
+    final imageDigest = this.imageDigest;
+    final imageManifestMediaType = this.imageManifestMediaType;
+    final imagePushedAt = this.imagePushedAt;
+    final imageScanFindingsSummary = this.imageScanFindingsSummary;
+    final imageScanStatus = this.imageScanStatus;
+    final imageSizeInBytes = this.imageSizeInBytes;
+    final imageTags = this.imageTags;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (artifactMediaType != null) 'artifactMediaType': artifactMediaType,
+      if (imageDigest != null) 'imageDigest': imageDigest,
+      if (imageManifestMediaType != null)
+        'imageManifestMediaType': imageManifestMediaType,
+      if (imagePushedAt != null)
+        'imagePushedAt': unixTimestampToJson(imagePushedAt),
+      if (imageScanFindingsSummary != null)
+        'imageScanFindingsSummary': imageScanFindingsSummary,
+      if (imageScanStatus != null) 'imageScanStatus': imageScanStatus,
+      if (imageSizeInBytes != null) 'imageSizeInBytes': imageSizeInBytes,
+      if (imageTags != null) 'imageTags': imageTags,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// An object representing an Amazon ECR image failure.
@@ -2927,6 +3202,17 @@ class ImageFailure {
           ? ImageIdentifier.fromJson(json['imageId'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final imageId = this.imageId;
+    return {
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (imageId != null) 'imageId': imageId,
+    };
   }
 }
 
@@ -3048,6 +3334,21 @@ class ImageScanFinding {
       uri: json['uri'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final description = this.description;
+    final name = this.name;
+    final severity = this.severity;
+    final uri = this.uri;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (severity != null) 'severity': severity.toValue(),
+      if (uri != null) 'uri': uri,
+    };
+  }
 }
 
 /// The details of an image scan.
@@ -3084,6 +3385,24 @@ class ImageScanFindings {
           timeStampFromJson(json['vulnerabilitySourceUpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingSeverityCounts = this.findingSeverityCounts;
+    final findings = this.findings;
+    final imageScanCompletedAt = this.imageScanCompletedAt;
+    final vulnerabilitySourceUpdatedAt = this.vulnerabilitySourceUpdatedAt;
+    return {
+      if (findingSeverityCounts != null)
+        'findingSeverityCounts':
+            findingSeverityCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (findings != null) 'findings': findings,
+      if (imageScanCompletedAt != null)
+        'imageScanCompletedAt': unixTimestampToJson(imageScanCompletedAt),
+      if (vulnerabilitySourceUpdatedAt != null)
+        'vulnerabilitySourceUpdatedAt':
+            unixTimestampToJson(vulnerabilitySourceUpdatedAt),
+    };
+  }
 }
 
 /// A summary of the last completed image scan.
@@ -3112,6 +3431,22 @@ class ImageScanFindingsSummary {
           timeStampFromJson(json['vulnerabilitySourceUpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingSeverityCounts = this.findingSeverityCounts;
+    final imageScanCompletedAt = this.imageScanCompletedAt;
+    final vulnerabilitySourceUpdatedAt = this.vulnerabilitySourceUpdatedAt;
+    return {
+      if (findingSeverityCounts != null)
+        'findingSeverityCounts':
+            findingSeverityCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (imageScanCompletedAt != null)
+        'imageScanCompletedAt': unixTimestampToJson(imageScanCompletedAt),
+      if (vulnerabilitySourceUpdatedAt != null)
+        'vulnerabilitySourceUpdatedAt':
+            unixTimestampToJson(vulnerabilitySourceUpdatedAt),
+    };
+  }
 }
 
 /// The current status of an image scan.
@@ -3131,6 +3466,15 @@ class ImageScanStatus {
       description: json['description'] as String?,
       status: (json['status'] as String?)?.toScanStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final status = this.status;
+    return {
+      if (description != null) 'description': description,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3206,6 +3550,15 @@ class InitiateLayerUploadResponse {
       uploadId: json['uploadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final partSize = this.partSize;
+    final uploadId = this.uploadId;
+    return {
+      if (partSize != null) 'partSize': partSize,
+      if (uploadId != null) 'uploadId': uploadId,
+    };
+  }
 }
 
 /// An object representing an Amazon ECR image layer.
@@ -3238,6 +3591,20 @@ class Layer {
       layerSize: json['layerSize'] as int?,
       mediaType: json['mediaType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final layerAvailability = this.layerAvailability;
+    final layerDigest = this.layerDigest;
+    final layerSize = this.layerSize;
+    final mediaType = this.mediaType;
+    return {
+      if (layerAvailability != null)
+        'layerAvailability': layerAvailability.toValue(),
+      if (layerDigest != null) 'layerDigest': layerDigest,
+      if (layerSize != null) 'layerSize': layerSize,
+      if (mediaType != null) 'mediaType': mediaType,
+    };
   }
 }
 
@@ -3292,6 +3659,17 @@ class LayerFailure {
       layerDigest: json['layerDigest'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final layerDigest = this.layerDigest;
+    return {
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (layerDigest != null) 'layerDigest': layerDigest,
+    };
+  }
 }
 
 enum LayerFailureCode {
@@ -3330,6 +3708,12 @@ class LifecyclePolicyPreviewFilter {
   LifecyclePolicyPreviewFilter({
     this.tagStatus,
   });
+  factory LifecyclePolicyPreviewFilter.fromJson(Map<String, dynamic> json) {
+    return LifecyclePolicyPreviewFilter(
+      tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final tagStatus = this.tagStatus;
     return {
@@ -3377,6 +3761,23 @@ class LifecyclePolicyPreviewResult {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final appliedRulePriority = this.appliedRulePriority;
+    final imageDigest = this.imageDigest;
+    final imagePushedAt = this.imagePushedAt;
+    final imageTags = this.imageTags;
+    return {
+      if (action != null) 'action': action,
+      if (appliedRulePriority != null)
+        'appliedRulePriority': appliedRulePriority,
+      if (imageDigest != null) 'imageDigest': imageDigest,
+      if (imagePushedAt != null)
+        'imagePushedAt': unixTimestampToJson(imagePushedAt),
+      if (imageTags != null) 'imageTags': imageTags,
+    };
   }
 }
 
@@ -3431,6 +3832,14 @@ class LifecyclePolicyPreviewSummary {
       expiringImageTotalCount: json['expiringImageTotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expiringImageTotalCount = this.expiringImageTotalCount;
+    return {
+      if (expiringImageTotalCount != null)
+        'expiringImageTotalCount': expiringImageTotalCount,
+    };
+  }
 }
 
 /// The type of action to be taken.
@@ -3446,6 +3855,13 @@ class LifecyclePolicyRuleAction {
       type: (json['type'] as String?)?.toImageActionType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// An object representing a filter on a <a>ListImages</a> operation.
@@ -3458,6 +3874,12 @@ class ListImagesFilter {
   ListImagesFilter({
     this.tagStatus,
   });
+  factory ListImagesFilter.fromJson(Map<String, dynamic> json) {
+    return ListImagesFilter(
+      tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final tagStatus = this.tagStatus;
     return {
@@ -3490,6 +3912,15 @@ class ListImagesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageIds = this.imageIds;
+    final nextToken = this.nextToken;
+    return {
+      if (imageIds != null) 'imageIds': imageIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3507,6 +3938,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class PutImageResponse {
@@ -3522,6 +3960,13 @@ class PutImageResponse {
           ? Image.fromJson(json['image'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final image = this.image;
+    return {
+      if (image != null) 'image': image,
+    };
   }
 }
 
@@ -3551,6 +3996,18 @@ class PutImageScanningConfigurationResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageScanningConfiguration = this.imageScanningConfiguration;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (imageScanningConfiguration != null)
+        'imageScanningConfiguration': imageScanningConfiguration,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class PutImageTagMutabilityResponse {
@@ -3576,6 +4033,18 @@ class PutImageTagMutabilityResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageTagMutability = this.imageTagMutability;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (imageTagMutability != null)
+        'imageTagMutability': imageTagMutability.toValue(),
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class PutLifecyclePolicyResponse {
@@ -3600,6 +4069,18 @@ class PutLifecyclePolicyResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecyclePolicyText = this.lifecyclePolicyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (lifecyclePolicyText != null)
+        'lifecyclePolicyText': lifecyclePolicyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class PutRegistryPolicyResponse {
@@ -3619,6 +4100,15 @@ class PutRegistryPolicyResponse {
       registryId: json['registryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+    };
+  }
 }
 
 class PutReplicationConfigurationResponse {
@@ -3636,6 +4126,14 @@ class PutReplicationConfigurationResponse {
               json['replicationConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationConfiguration = this.replicationConfiguration;
+    return {
+      if (replicationConfiguration != null)
+        'replicationConfiguration': replicationConfiguration,
+    };
   }
 }
 
@@ -3785,6 +4283,30 @@ class Repository {
       repositoryUri: json['repositoryUri'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final imageScanningConfiguration = this.imageScanningConfiguration;
+    final imageTagMutability = this.imageTagMutability;
+    final registryId = this.registryId;
+    final repositoryArn = this.repositoryArn;
+    final repositoryName = this.repositoryName;
+    final repositoryUri = this.repositoryUri;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (encryptionConfiguration != null)
+        'encryptionConfiguration': encryptionConfiguration,
+      if (imageScanningConfiguration != null)
+        'imageScanningConfiguration': imageScanningConfiguration,
+      if (imageTagMutability != null)
+        'imageTagMutability': imageTagMutability.toValue(),
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryArn != null) 'repositoryArn': repositoryArn,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (repositoryUri != null) 'repositoryUri': repositoryUri,
+    };
+  }
 }
 
 enum ScanStatus {
@@ -3842,6 +4364,17 @@ class SetRepositoryPolicyResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyText = this.policyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (policyText != null) 'policyText': policyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class StartImageScanResponse {
@@ -3875,6 +4408,19 @@ class StartImageScanResponse {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final imageScanStatus = this.imageScanStatus;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (imageScanStatus != null) 'imageScanStatus': imageScanStatus,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class StartLifecyclePolicyPreviewResponse {
@@ -3904,6 +4450,20 @@ class StartLifecyclePolicyPreviewResponse {
       repositoryName: json['repositoryName'] as String?,
       status: (json['status'] as String?)?.toLifecyclePolicyPreviewStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lifecyclePolicyText = this.lifecyclePolicyText;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    final status = this.status;
+    return {
+      if (lifecyclePolicyText != null)
+        'lifecyclePolicyText': lifecyclePolicyText,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3946,6 +4506,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum TagStatus {
@@ -3986,6 +4550,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UploadLayerPartResponse {
@@ -4014,6 +4582,19 @@ class UploadLayerPartResponse {
       repositoryName: json['repositoryName'] as String?,
       uploadId: json['uploadId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastByteReceived = this.lastByteReceived;
+    final registryId = this.registryId;
+    final repositoryName = this.repositoryName;
+    final uploadId = this.uploadId;
+    return {
+      if (lastByteReceived != null) 'lastByteReceived': lastByteReceived,
+      if (registryId != null) 'registryId': registryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (uploadId != null) 'uploadId': uploadId,
+    };
   }
 }
 

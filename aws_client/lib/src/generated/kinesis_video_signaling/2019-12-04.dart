@@ -202,6 +202,13 @@ class GetIceServerConfigResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iceServerList = this.iceServerList;
+    return {
+      if (iceServerList != null) 'IceServerList': iceServerList,
+    };
+  }
 }
 
 /// A structure for the ICE server connection data.
@@ -239,6 +246,19 @@ class IceServer {
       username: json['Username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final password = this.password;
+    final ttl = this.ttl;
+    final uris = this.uris;
+    final username = this.username;
+    return {
+      if (password != null) 'Password': password,
+      if (ttl != null) 'Ttl': ttl,
+      if (uris != null) 'Uris': uris,
+      if (username != null) 'Username': username,
+    };
+  }
 }
 
 class SendAlexaOfferToMasterResponse {
@@ -252,6 +272,13 @@ class SendAlexaOfferToMasterResponse {
     return SendAlexaOfferToMasterResponse(
       answer: json['Answer'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final answer = this.answer;
+    return {
+      if (answer != null) 'Answer': answer,
+    };
   }
 }
 

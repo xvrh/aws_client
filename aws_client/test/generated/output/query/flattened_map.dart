@@ -62,6 +62,13 @@ class OutputShape {
   OutputShape({
     this.map,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      map: (json['Map'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       map: Map.fromEntries(
@@ -73,6 +80,13 @@ class OutputShape {
             ),
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final map = this.map;
+    return {
+      if (map != null) 'Map': map,
+    };
   }
 }
 

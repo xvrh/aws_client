@@ -169,6 +169,15 @@ class EdgeMetric {
     this.timestamp,
     this.value,
   });
+  factory EdgeMetric.fromJson(Map<String, dynamic> json) {
+    return EdgeMetric(
+      dimension: json['Dimension'] as String?,
+      metricName: json['MetricName'] as String?,
+      timestamp: timeStampFromJson(json['Timestamp']),
+      value: json['Value'] as double?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dimension = this.dimension;
     final metricName = this.metricName;
@@ -201,6 +210,15 @@ class GetDeviceRegistrationResult {
       deviceRegistration: json['DeviceRegistration'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheTTL = this.cacheTTL;
+    final deviceRegistration = this.deviceRegistration;
+    return {
+      if (cacheTTL != null) 'CacheTTL': cacheTTL,
+      if (deviceRegistration != null) 'DeviceRegistration': deviceRegistration,
+    };
+  }
 }
 
 /// Information about a model deployed on an edge device that is registered with
@@ -228,6 +246,19 @@ class Model {
     this.modelName,
     this.modelVersion,
   });
+  factory Model.fromJson(Map<String, dynamic> json) {
+    return Model(
+      latestInference: timeStampFromJson(json['LatestInference']),
+      latestSampleTime: timeStampFromJson(json['LatestSampleTime']),
+      modelMetrics: (json['ModelMetrics'] as List?)
+          ?.whereNotNull()
+          .map((e) => EdgeMetric.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      modelName: json['ModelName'] as String?,
+      modelVersion: json['ModelVersion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final latestInference = this.latestInference;
     final latestSampleTime = this.latestSampleTime;

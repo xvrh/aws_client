@@ -55,6 +55,21 @@ class Grant {
   Grant({
     this.grantee,
   });
+  factory Grant.fromJson(Map<String, dynamic> json) {
+    return Grant(
+      grantee: json['Grantee'] != null
+          ? Grantee.fromJson(json['Grantee'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grantee = this.grantee;
+    return {
+      if (grantee != null) 'Grantee': grantee,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final grantee = this.grantee;
     final $children = <_s.XmlNode>[
@@ -79,6 +94,22 @@ class Grantee {
     this.emailAddress,
     this.type,
   });
+  factory Grantee.fromJson(Map<String, dynamic> json) {
+    return Grantee(
+      emailAddress: json['EmailAddress'] as String?,
+      type: json['xsi:type'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final type = this.type;
+    return {
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (type != null) 'xsi:type': type,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final emailAddress = this.emailAddress;
     final type = this.type;

@@ -64,6 +64,12 @@ class StructType {
   StructType({
     this.scalarArg,
   });
+  factory StructType.fromJson(Map<String, dynamic> json) {
+    return StructType(
+      scalarArg: json['ScalarArg'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final scalarArg = this.scalarArg;
     return {

@@ -907,6 +907,13 @@ class AddNotificationChannelResponse {
       id: json['Id'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
+  }
 }
 
 /// A time range that specifies when DevOps Guru opens and then closes an
@@ -929,6 +936,15 @@ class AnomalyReportedTimeRange {
       openTime: nonNullableTimeStampFromJson(json['OpenTime'] as Object),
       closeTime: timeStampFromJson(json['CloseTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final openTime = this.openTime;
+    final closeTime = this.closeTime;
+    return {
+      'OpenTime': unixTimestampToJson(openTime),
+      if (closeTime != null) 'CloseTime': unixTimestampToJson(closeTime),
+    };
   }
 }
 
@@ -984,6 +1000,13 @@ class AnomalySourceDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchMetrics = this.cloudWatchMetrics;
+    return {
+      if (cloudWatchMetrics != null) 'CloudWatchMetrics': cloudWatchMetrics,
+    };
+  }
 }
 
 enum AnomalyStatus {
@@ -1035,6 +1058,15 @@ class AnomalyTimeRange {
       endTime: timeStampFromJson(json['EndTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final endTime = this.endTime;
+    return {
+      'StartTime': unixTimestampToJson(startTime),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+    };
+  }
 }
 
 /// Information about AWS CloudFormation stacks. You can use up to 500 stacks to
@@ -1085,6 +1117,13 @@ class CloudFormationCollectionFilter {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackNames = this.stackNames;
+    return {
+      if (stackNames != null) 'StackNames': stackNames,
+    };
   }
 }
 
@@ -1144,6 +1183,15 @@ class CloudFormationHealth {
       stackName: json['StackName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insight = this.insight;
+    final stackName = this.stackName;
+    return {
+      if (insight != null) 'Insight': insight,
+      if (stackName != null) 'StackName': stackName,
+    };
+  }
 }
 
 /// Information about an Amazon CloudWatch metric.
@@ -1195,6 +1243,23 @@ class CloudWatchMetricsDetail {
       unit: json['Unit'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final period = this.period;
+    final stat = this.stat;
+    final unit = this.unit;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (period != null) 'Period': period,
+      if (stat != null) 'Stat': stat.toValue(),
+      if (unit != null) 'Unit': unit,
+    };
+  }
 }
 
 /// The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
@@ -1220,6 +1285,15 @@ class CloudWatchMetricsDimension {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -1388,6 +1462,15 @@ class CostEstimationTimeRange {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    return {
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 class DescribeAccountHealthResponse {
@@ -1421,6 +1504,19 @@ class DescribeAccountHealthResponse {
       resourceHours: json['ResourceHours'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricsAnalyzed = this.metricsAnalyzed;
+    final openProactiveInsights = this.openProactiveInsights;
+    final openReactiveInsights = this.openReactiveInsights;
+    final resourceHours = this.resourceHours;
+    return {
+      'MetricsAnalyzed': metricsAnalyzed,
+      'OpenProactiveInsights': openProactiveInsights,
+      'OpenReactiveInsights': openReactiveInsights,
+      'ResourceHours': resourceHours,
+    };
+  }
 }
 
 class DescribeAccountOverviewResponse {
@@ -1449,6 +1545,18 @@ class DescribeAccountOverviewResponse {
       reactiveInsights: json['ReactiveInsights'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meanTimeToRecoverInMilliseconds =
+        this.meanTimeToRecoverInMilliseconds;
+    final proactiveInsights = this.proactiveInsights;
+    final reactiveInsights = this.reactiveInsights;
+    return {
+      'MeanTimeToRecoverInMilliseconds': meanTimeToRecoverInMilliseconds,
+      'ProactiveInsights': proactiveInsights,
+      'ReactiveInsights': reactiveInsights,
+    };
+  }
 }
 
 class DescribeAnomalyResponse {
@@ -1475,6 +1583,15 @@ class DescribeAnomalyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final proactiveAnomaly = this.proactiveAnomaly;
+    final reactiveAnomaly = this.reactiveAnomaly;
+    return {
+      if (proactiveAnomaly != null) 'ProactiveAnomaly': proactiveAnomaly,
+      if (reactiveAnomaly != null) 'ReactiveAnomaly': reactiveAnomaly,
+    };
+  }
 }
 
 class DescribeFeedbackResponse {
@@ -1490,6 +1607,13 @@ class DescribeFeedbackResponse {
               json['InsightFeedback'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightFeedback = this.insightFeedback;
+    return {
+      if (insightFeedback != null) 'InsightFeedback': insightFeedback,
+    };
   }
 }
 
@@ -1516,6 +1640,15 @@ class DescribeInsightResponse {
               json['ReactiveInsight'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proactiveInsight = this.proactiveInsight;
+    final reactiveInsight = this.reactiveInsight;
+    return {
+      if (proactiveInsight != null) 'ProactiveInsight': proactiveInsight,
+      if (reactiveInsight != null) 'ReactiveInsight': reactiveInsight,
+    };
   }
 }
 
@@ -1552,6 +1685,17 @@ class DescribeResourceCollectionHealthResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudFormation = this.cloudFormation;
+    final nextToken = this.nextToken;
+    final service = this.service;
+    return {
+      'CloudFormation': cloudFormation,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (service != null) 'Service': service,
+    };
+  }
 }
 
 class DescribeServiceIntegrationResponse {
@@ -1569,6 +1713,13 @@ class DescribeServiceIntegrationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceIntegration = this.serviceIntegration;
+    return {
+      if (serviceIntegration != null) 'ServiceIntegration': serviceIntegration,
+    };
+  }
 }
 
 /// A range of time that specifies when anomalous behavior in an anomaly or
@@ -1584,6 +1735,13 @@ class EndTimeRange {
     this.fromTime,
     this.toTime,
   });
+  factory EndTimeRange.fromJson(Map<String, dynamic> json) {
+    return EndTimeRange(
+      fromTime: timeStampFromJson(json['FromTime']),
+      toTime: timeStampFromJson(json['ToTime']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fromTime = this.fromTime;
     final toTime = this.toTime;
@@ -1650,6 +1808,27 @@ class Event {
           .toList(),
       time: timeStampFromJson(json['Time']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final eventClass = this.eventClass;
+    final eventSource = this.eventSource;
+    final id = this.id;
+    final name = this.name;
+    final resourceCollection = this.resourceCollection;
+    final resources = this.resources;
+    final time = this.time;
+    return {
+      if (dataSource != null) 'DataSource': dataSource.toValue(),
+      if (eventClass != null) 'EventClass': eventClass.toValue(),
+      if (eventSource != null) 'EventSource': eventSource,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (resources != null) 'Resources': resources,
+      if (time != null) 'Time': unixTimestampToJson(time),
+    };
   }
 }
 
@@ -1749,6 +1928,17 @@ class EventResource {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// The time range during which an AWS event occurred. AWS resource events and
@@ -1765,6 +1955,13 @@ class EventTimeRange {
     required this.fromTime,
     required this.toTime,
   });
+  factory EventTimeRange.fromJson(Map<String, dynamic> json) {
+    return EventTimeRange(
+      fromTime: nonNullableTimeStampFromJson(json['FromTime'] as Object),
+      toTime: nonNullableTimeStampFromJson(json['ToTime'] as Object),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fromTime = this.fromTime;
     final toTime = this.toTime;
@@ -1828,6 +2025,23 @@ class GetCostEstimationResponse {
       totalCost: json['TotalCost'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final costs = this.costs;
+    final nextToken = this.nextToken;
+    final resourceCollection = this.resourceCollection;
+    final status = this.status;
+    final timeRange = this.timeRange;
+    final totalCost = this.totalCost;
+    return {
+      if (costs != null) 'Costs': costs,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (status != null) 'Status': status.toValue(),
+      if (timeRange != null) 'TimeRange': timeRange,
+      if (totalCost != null) 'TotalCost': totalCost,
+    };
+  }
 }
 
 class GetResourceCollectionResponse {
@@ -1853,6 +2067,15 @@ class GetResourceCollectionResponse {
               json['ResourceCollection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceCollection = this.resourceCollection;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+    };
   }
 }
 
@@ -1953,6 +2176,21 @@ class InsightHealth {
       openReactiveInsights: json['OpenReactiveInsights'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meanTimeToRecoverInMilliseconds =
+        this.meanTimeToRecoverInMilliseconds;
+    final openProactiveInsights = this.openProactiveInsights;
+    final openReactiveInsights = this.openReactiveInsights;
+    return {
+      if (meanTimeToRecoverInMilliseconds != null)
+        'MeanTimeToRecoverInMilliseconds': meanTimeToRecoverInMilliseconds,
+      if (openProactiveInsights != null)
+        'OpenProactiveInsights': openProactiveInsights,
+      if (openReactiveInsights != null)
+        'OpenReactiveInsights': openReactiveInsights,
+    };
+  }
 }
 
 enum InsightSeverity {
@@ -2035,6 +2273,15 @@ class InsightTimeRange {
       endTime: timeStampFromJson(json['EndTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final endTime = this.endTime;
+    return {
+      'StartTime': unixTimestampToJson(startTime),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+    };
+  }
 }
 
 enum InsightType {
@@ -2098,6 +2345,17 @@ class ListAnomaliesForInsightResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proactiveAnomalies = this.proactiveAnomalies;
+    final reactiveAnomalies = this.reactiveAnomalies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proactiveAnomalies != null) 'ProactiveAnomalies': proactiveAnomalies,
+      if (reactiveAnomalies != null) 'ReactiveAnomalies': reactiveAnomalies,
+    };
+  }
 }
 
 /// Filters you can use to specify which events are returned when
@@ -2129,6 +2387,23 @@ class ListEventsFilters {
     this.insightId,
     this.resourceCollection,
   });
+  factory ListEventsFilters.fromJson(Map<String, dynamic> json) {
+    return ListEventsFilters(
+      dataSource: (json['DataSource'] as String?)?.toEventDataSource(),
+      eventClass: (json['EventClass'] as String?)?.toEventClass(),
+      eventSource: json['EventSource'] as String?,
+      eventTimeRange: json['EventTimeRange'] != null
+          ? EventTimeRange.fromJson(
+              json['EventTimeRange'] as Map<String, dynamic>)
+          : null,
+      insightId: json['InsightId'] as String?,
+      resourceCollection: json['ResourceCollection'] != null
+          ? ResourceCollection.fromJson(
+              json['ResourceCollection'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataSource = this.dataSource;
     final eventClass = this.eventClass;
@@ -2168,6 +2443,15 @@ class ListEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Used to filter for insights that have any status.
@@ -2184,6 +2468,14 @@ class ListInsightsAnyStatusFilter {
     required this.startTimeRange,
     required this.type,
   });
+  factory ListInsightsAnyStatusFilter.fromJson(Map<String, dynamic> json) {
+    return ListInsightsAnyStatusFilter(
+      startTimeRange: StartTimeRange.fromJson(
+          json['StartTimeRange'] as Map<String, dynamic>),
+      type: (json['Type'] as String).toInsightType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final startTimeRange = this.startTimeRange;
     final type = this.type;
@@ -2208,6 +2500,14 @@ class ListInsightsClosedStatusFilter {
     required this.endTimeRange,
     required this.type,
   });
+  factory ListInsightsClosedStatusFilter.fromJson(Map<String, dynamic> json) {
+    return ListInsightsClosedStatusFilter(
+      endTimeRange:
+          EndTimeRange.fromJson(json['EndTimeRange'] as Map<String, dynamic>),
+      type: (json['Type'] as String).toInsightType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endTimeRange = this.endTimeRange;
     final type = this.type;
@@ -2227,6 +2527,12 @@ class ListInsightsOngoingStatusFilter {
   ListInsightsOngoingStatusFilter({
     required this.type,
   });
+  factory ListInsightsOngoingStatusFilter.fromJson(Map<String, dynamic> json) {
+    return ListInsightsOngoingStatusFilter(
+      type: (json['Type'] as String).toInsightType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     return {
@@ -2266,6 +2572,17 @@ class ListInsightsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proactiveInsights = this.proactiveInsights;
+    final reactiveInsights = this.reactiveInsights;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proactiveInsights != null) 'ProactiveInsights': proactiveInsights,
+      if (reactiveInsights != null) 'ReactiveInsights': reactiveInsights,
+    };
+  }
 }
 
 /// A filter used by <code>ListInsights</code> to specify which insights to
@@ -2288,6 +2605,23 @@ class ListInsightsStatusFilter {
     this.closed,
     this.ongoing,
   });
+  factory ListInsightsStatusFilter.fromJson(Map<String, dynamic> json) {
+    return ListInsightsStatusFilter(
+      any: json['Any'] != null
+          ? ListInsightsAnyStatusFilter.fromJson(
+              json['Any'] as Map<String, dynamic>)
+          : null,
+      closed: json['Closed'] != null
+          ? ListInsightsClosedStatusFilter.fromJson(
+              json['Closed'] as Map<String, dynamic>)
+          : null,
+      ongoing: json['Ongoing'] != null
+          ? ListInsightsOngoingStatusFilter.fromJson(
+              json['Ongoing'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final any = this.any;
     final closed = this.closed;
@@ -2321,6 +2655,15 @@ class ListNotificationChannelsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRecommendationsResponse {
@@ -2343,6 +2686,15 @@ class ListRecommendationsResponse {
           .map((e) => Recommendation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendations = this.recommendations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (recommendations != null) 'Recommendations': recommendations,
+    };
   }
 }
 
@@ -2456,6 +2808,15 @@ class NotificationChannel {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final config = this.config;
+    final id = this.id;
+    return {
+      if (config != null) 'Config': config,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// Information about notification channels you have configured with DevOps
@@ -2511,6 +2872,13 @@ class OpsCenterIntegration {
       optInStatus: (json['OptInStatus'] as String?)?.toOptInStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final optInStatus = this.optInStatus;
+    return {
+      if (optInStatus != null) 'OptInStatus': optInStatus.toValue(),
+    };
+  }
 }
 
 /// Information about whether DevOps Guru is configured to create an OpsItem in
@@ -2523,6 +2891,12 @@ class OpsCenterIntegrationConfig {
   OpsCenterIntegrationConfig({
     this.optInStatus,
   });
+  factory OpsCenterIntegrationConfig.fromJson(Map<String, dynamic> json) {
+    return OpsCenterIntegrationConfig(
+      optInStatus: (json['OptInStatus'] as String?)?.toOptInStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final optInStatus = this.optInStatus;
     return {
@@ -2580,6 +2954,15 @@ class PredictionTimeRange {
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
       endTime: timeStampFromJson(json['EndTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final endTime = this.endTime;
+    return {
+      'StartTime': unixTimestampToJson(startTime),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+    };
   }
 }
 
@@ -2661,6 +3044,36 @@ class ProactiveAnomaly {
       updateTime: timeStampFromJson(json['UpdateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyReportedTimeRange = this.anomalyReportedTimeRange;
+    final anomalyTimeRange = this.anomalyTimeRange;
+    final associatedInsightId = this.associatedInsightId;
+    final id = this.id;
+    final limit = this.limit;
+    final predictionTimeRange = this.predictionTimeRange;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final sourceDetails = this.sourceDetails;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      if (anomalyReportedTimeRange != null)
+        'AnomalyReportedTimeRange': anomalyReportedTimeRange,
+      if (anomalyTimeRange != null) 'AnomalyTimeRange': anomalyTimeRange,
+      if (associatedInsightId != null)
+        'AssociatedInsightId': associatedInsightId,
+      if (id != null) 'Id': id,
+      if (limit != null) 'Limit': limit,
+      if (predictionTimeRange != null)
+        'PredictionTimeRange': predictionTimeRange,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (sourceDetails != null) 'SourceDetails': sourceDetails,
+      if (status != null) 'Status': status.toValue(),
+      if (updateTime != null) 'UpdateTime': unixTimestampToJson(updateTime),
+    };
+  }
 }
 
 /// Details about a proactive anomaly. This object is returned by
@@ -2741,6 +3154,36 @@ class ProactiveAnomalySummary {
       updateTime: timeStampFromJson(json['UpdateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyReportedTimeRange = this.anomalyReportedTimeRange;
+    final anomalyTimeRange = this.anomalyTimeRange;
+    final associatedInsightId = this.associatedInsightId;
+    final id = this.id;
+    final limit = this.limit;
+    final predictionTimeRange = this.predictionTimeRange;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final sourceDetails = this.sourceDetails;
+    final status = this.status;
+    final updateTime = this.updateTime;
+    return {
+      if (anomalyReportedTimeRange != null)
+        'AnomalyReportedTimeRange': anomalyReportedTimeRange,
+      if (anomalyTimeRange != null) 'AnomalyTimeRange': anomalyTimeRange,
+      if (associatedInsightId != null)
+        'AssociatedInsightId': associatedInsightId,
+      if (id != null) 'Id': id,
+      if (limit != null) 'Limit': limit,
+      if (predictionTimeRange != null)
+        'PredictionTimeRange': predictionTimeRange,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (sourceDetails != null) 'SourceDetails': sourceDetails,
+      if (status != null) 'Status': status.toValue(),
+      if (updateTime != null) 'UpdateTime': unixTimestampToJson(updateTime),
+    };
+  }
 }
 
 /// Details about a proactive insight. This object is returned by
@@ -2796,6 +3239,28 @@ class ProactiveInsight {
       ssmOpsItemId: json['SsmOpsItemId'] as String?,
       status: (json['Status'] as String?)?.toInsightStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final insightTimeRange = this.insightTimeRange;
+    final name = this.name;
+    final predictionTimeRange = this.predictionTimeRange;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final ssmOpsItemId = this.ssmOpsItemId;
+    final status = this.status;
+    return {
+      if (id != null) 'Id': id,
+      if (insightTimeRange != null) 'InsightTimeRange': insightTimeRange,
+      if (name != null) 'Name': name,
+      if (predictionTimeRange != null)
+        'PredictionTimeRange': predictionTimeRange,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (ssmOpsItemId != null) 'SsmOpsItemId': ssmOpsItemId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2854,12 +3319,38 @@ class ProactiveInsightSummary {
       status: (json['Status'] as String?)?.toInsightStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final insightTimeRange = this.insightTimeRange;
+    final name = this.name;
+    final predictionTimeRange = this.predictionTimeRange;
+    final resourceCollection = this.resourceCollection;
+    final serviceCollection = this.serviceCollection;
+    final severity = this.severity;
+    final status = this.status;
+    return {
+      if (id != null) 'Id': id,
+      if (insightTimeRange != null) 'InsightTimeRange': insightTimeRange,
+      if (name != null) 'Name': name,
+      if (predictionTimeRange != null)
+        'PredictionTimeRange': predictionTimeRange,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (serviceCollection != null) 'ServiceCollection': serviceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class PutFeedbackResponse {
   PutFeedbackResponse();
   factory PutFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return PutFeedbackResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2923,6 +3414,29 @@ class ReactiveAnomaly {
       status: (json['Status'] as String?)?.toAnomalyStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyReportedTimeRange = this.anomalyReportedTimeRange;
+    final anomalyTimeRange = this.anomalyTimeRange;
+    final associatedInsightId = this.associatedInsightId;
+    final id = this.id;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final sourceDetails = this.sourceDetails;
+    final status = this.status;
+    return {
+      if (anomalyReportedTimeRange != null)
+        'AnomalyReportedTimeRange': anomalyReportedTimeRange,
+      if (anomalyTimeRange != null) 'AnomalyTimeRange': anomalyTimeRange,
+      if (associatedInsightId != null)
+        'AssociatedInsightId': associatedInsightId,
+      if (id != null) 'Id': id,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (sourceDetails != null) 'SourceDetails': sourceDetails,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Details about a reactive anomaly. This object is returned by
@@ -2985,6 +3499,29 @@ class ReactiveAnomalySummary {
       status: (json['Status'] as String?)?.toAnomalyStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyReportedTimeRange = this.anomalyReportedTimeRange;
+    final anomalyTimeRange = this.anomalyTimeRange;
+    final associatedInsightId = this.associatedInsightId;
+    final id = this.id;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final sourceDetails = this.sourceDetails;
+    final status = this.status;
+    return {
+      if (anomalyReportedTimeRange != null)
+        'AnomalyReportedTimeRange': anomalyReportedTimeRange,
+      if (anomalyTimeRange != null) 'AnomalyTimeRange': anomalyTimeRange,
+      if (associatedInsightId != null)
+        'AssociatedInsightId': associatedInsightId,
+      if (id != null) 'Id': id,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (sourceDetails != null) 'SourceDetails': sourceDetails,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Information about a reactive insight. This object is returned by
@@ -3034,6 +3571,25 @@ class ReactiveInsight {
       ssmOpsItemId: json['SsmOpsItemId'] as String?,
       status: (json['Status'] as String?)?.toInsightStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final insightTimeRange = this.insightTimeRange;
+    final name = this.name;
+    final resourceCollection = this.resourceCollection;
+    final severity = this.severity;
+    final ssmOpsItemId = this.ssmOpsItemId;
+    final status = this.status;
+    return {
+      if (id != null) 'Id': id,
+      if (insightTimeRange != null) 'InsightTimeRange': insightTimeRange,
+      if (name != null) 'Name': name,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (ssmOpsItemId != null) 'SsmOpsItemId': ssmOpsItemId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3086,6 +3642,25 @@ class ReactiveInsightSummary {
       status: (json['Status'] as String?)?.toInsightStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final insightTimeRange = this.insightTimeRange;
+    final name = this.name;
+    final resourceCollection = this.resourceCollection;
+    final serviceCollection = this.serviceCollection;
+    final severity = this.severity;
+    final status = this.status;
+    return {
+      if (id != null) 'Id': id,
+      if (insightTimeRange != null) 'InsightTimeRange': insightTimeRange,
+      if (name != null) 'Name': name,
+      if (resourceCollection != null) 'ResourceCollection': resourceCollection,
+      if (serviceCollection != null) 'ServiceCollection': serviceCollection,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Recommendation information to help you remediate detected anomalous behavior
@@ -3137,6 +3712,23 @@ class Recommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final link = this.link;
+    final name = this.name;
+    final reason = this.reason;
+    final relatedAnomalies = this.relatedAnomalies;
+    final relatedEvents = this.relatedEvents;
+    return {
+      if (description != null) 'Description': description,
+      if (link != null) 'Link': link,
+      if (name != null) 'Name': name,
+      if (reason != null) 'Reason': reason,
+      if (relatedAnomalies != null) 'RelatedAnomalies': relatedAnomalies,
+      if (relatedEvents != null) 'RelatedEvents': relatedEvents,
+    };
+  }
 }
 
 /// Information about an anomaly that is related to a recommendation.
@@ -3167,6 +3759,15 @@ class RecommendationRelatedAnomaly {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resources = this.resources;
+    final sourceDetails = this.sourceDetails;
+    return {
+      if (resources != null) 'Resources': resources,
+      if (sourceDetails != null) 'SourceDetails': sourceDetails,
+    };
+  }
 }
 
 /// Information about a resource in which DevOps Guru detected anomalous
@@ -3188,6 +3789,15 @@ class RecommendationRelatedAnomalyResource {
       name: json['Name'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -3214,6 +3824,13 @@ class RecommendationRelatedAnomalySourceDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchMetrics = this.cloudWatchMetrics;
+    return {
+      if (cloudWatchMetrics != null) 'CloudWatchMetrics': cloudWatchMetrics,
+    };
+  }
 }
 
 /// Information about an Amazon CloudWatch metric that is analyzed by DevOps
@@ -3236,6 +3853,15 @@ class RecommendationRelatedCloudWatchMetricsSourceDetail {
       metricName: json['MetricName'] as String?,
       namespace: json['Namespace'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    return {
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+    };
   }
 }
 
@@ -3264,6 +3890,15 @@ class RecommendationRelatedEvent {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final resources = this.resources;
+    return {
+      if (name != null) 'Name': name,
+      if (resources != null) 'Resources': resources,
+    };
+  }
 }
 
 /// Information about an AWS resource that emitted and event that is related to
@@ -3288,12 +3923,25 @@ class RecommendationRelatedEventResource {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 class RemoveNotificationChannelResponse {
   RemoveNotificationChannelResponse();
   factory RemoveNotificationChannelResponse.fromJson(Map<String, dynamic> _) {
     return RemoveNotificationChannelResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3348,6 +3996,13 @@ class ResourceCollectionFilter {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudFormation = this.cloudFormation;
+    return {
+      if (cloudFormation != null) 'CloudFormation': cloudFormation,
+    };
+  }
 }
 
 enum ResourceCollectionType {
@@ -3398,6 +4053,27 @@ class SearchInsightsFilters {
     this.severities,
     this.statuses,
   });
+  factory SearchInsightsFilters.fromJson(Map<String, dynamic> json) {
+    return SearchInsightsFilters(
+      resourceCollection: json['ResourceCollection'] != null
+          ? ResourceCollection.fromJson(
+              json['ResourceCollection'] as Map<String, dynamic>)
+          : null,
+      serviceCollection: json['ServiceCollection'] != null
+          ? ServiceCollection.fromJson(
+              json['ServiceCollection'] as Map<String, dynamic>)
+          : null,
+      severities: (json['Severities'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toInsightSeverity())
+          .toList(),
+      statuses: (json['Statuses'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toInsightStatus())
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final resourceCollection = this.resourceCollection;
     final serviceCollection = this.serviceCollection;
@@ -3444,6 +4120,17 @@ class SearchInsightsResponse {
               (e) => ReactiveInsightSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proactiveInsights = this.proactiveInsights;
+    final reactiveInsights = this.reactiveInsights;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proactiveInsights != null) 'ProactiveInsights': proactiveInsights,
+      if (reactiveInsights != null) 'ReactiveInsights': reactiveInsights,
+    };
   }
 }
 
@@ -3496,6 +4183,15 @@ class ServiceHealth {
       serviceName: (json['ServiceName'] as String?)?.toServiceName(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insight = this.insight;
+    final serviceName = this.serviceName;
+    return {
+      if (insight != null) 'Insight': insight,
+      if (serviceName != null) 'ServiceName': serviceName.toValue(),
+    };
+  }
 }
 
 /// Contains the number of open proactive and reactive insights in an analyzed
@@ -3517,6 +4213,17 @@ class ServiceInsightHealth {
       openReactiveInsights: json['OpenReactiveInsights'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final openProactiveInsights = this.openProactiveInsights;
+    final openReactiveInsights = this.openReactiveInsights;
+    return {
+      if (openProactiveInsights != null)
+        'OpenProactiveInsights': openProactiveInsights,
+      if (openReactiveInsights != null)
+        'OpenReactiveInsights': openReactiveInsights,
+    };
+  }
 }
 
 /// Information about the integration of DevOps Guru with another AWS service,
@@ -3536,6 +4243,13 @@ class ServiceIntegrationConfig {
               json['OpsCenter'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final opsCenter = this.opsCenter;
+    return {
+      if (opsCenter != null) 'OpsCenter': opsCenter,
+    };
   }
 }
 
@@ -3730,6 +4444,21 @@ class ServiceResourceCost {
       unitCost: json['UnitCost'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cost = this.cost;
+    final count = this.count;
+    final state = this.state;
+    final type = this.type;
+    final unitCost = this.unitCost;
+    return {
+      if (cost != null) 'Cost': cost,
+      if (count != null) 'Count': count,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type,
+      if (unitCost != null) 'UnitCost': unitCost,
+    };
+  }
 }
 
 /// Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification
@@ -3774,6 +4503,10 @@ class StartCostEstimationResponse {
   factory StartCostEstimationResponse.fromJson(Map<String, dynamic> _) {
     return StartCostEstimationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A time range used to specify when the behavior of an insight or anomaly
@@ -3789,6 +4522,13 @@ class StartTimeRange {
     this.fromTime,
     this.toTime,
   });
+  factory StartTimeRange.fromJson(Map<String, dynamic> json) {
+    return StartTimeRange(
+      fromTime: timeStampFromJson(json['FromTime']),
+      toTime: timeStampFromJson(json['ToTime']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fromTime = this.fromTime;
     final toTime = this.toTime;
@@ -3809,6 +4549,16 @@ class UpdateCloudFormationCollectionFilter {
   UpdateCloudFormationCollectionFilter({
     this.stackNames,
   });
+  factory UpdateCloudFormationCollectionFilter.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateCloudFormationCollectionFilter(
+      stackNames: (json['StackNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final stackNames = this.stackNames;
     return {
@@ -3855,6 +4605,15 @@ class UpdateResourceCollectionFilter {
   UpdateResourceCollectionFilter({
     this.cloudFormation,
   });
+  factory UpdateResourceCollectionFilter.fromJson(Map<String, dynamic> json) {
+    return UpdateResourceCollectionFilter(
+      cloudFormation: json['CloudFormation'] != null
+          ? UpdateCloudFormationCollectionFilter.fromJson(
+              json['CloudFormation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cloudFormation = this.cloudFormation;
     return {
@@ -3868,6 +4627,10 @@ class UpdateResourceCollectionResponse {
   factory UpdateResourceCollectionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceCollectionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about updating the integration status of an AWS service, such as
@@ -3878,6 +4641,15 @@ class UpdateServiceIntegrationConfig {
   UpdateServiceIntegrationConfig({
     this.opsCenter,
   });
+  factory UpdateServiceIntegrationConfig.fromJson(Map<String, dynamic> json) {
+    return UpdateServiceIntegrationConfig(
+      opsCenter: json['OpsCenter'] != null
+          ? OpsCenterIntegrationConfig.fromJson(
+              json['OpsCenter'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final opsCenter = this.opsCenter;
     return {
@@ -3890,6 +4662,10 @@ class UpdateServiceIntegrationResponse {
   UpdateServiceIntegrationResponse();
   factory UpdateServiceIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateServiceIntegrationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

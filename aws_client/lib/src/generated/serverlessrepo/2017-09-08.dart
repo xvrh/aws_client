@@ -902,6 +902,15 @@ class ApplicationDependencySummary {
       semanticVersion: json['semanticVersion'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final semanticVersion = this.semanticVersion;
+    return {
+      'applicationId': applicationId,
+      'semanticVersion': semanticVersion,
+    };
+  }
 }
 
 /// Policy statement applied to the application.
@@ -1026,6 +1035,27 @@ class ApplicationSummary {
           .toList(),
       spdxLicenseId: json['spdxLicenseId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final author = this.author;
+    final description = this.description;
+    final name = this.name;
+    final creationTime = this.creationTime;
+    final homePageUrl = this.homePageUrl;
+    final labels = this.labels;
+    final spdxLicenseId = this.spdxLicenseId;
+    return {
+      'applicationId': applicationId,
+      'author': author,
+      'description': description,
+      'name': name,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (homePageUrl != null) 'homePageUrl': homePageUrl,
+      if (labels != null) 'labels': labels,
+      if (spdxLicenseId != null) 'spdxLicenseId': spdxLicenseId,
+    };
   }
 }
 
@@ -1170,6 +1200,37 @@ class CreateApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final author = this.author;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final homePageUrl = this.homePageUrl;
+    final isVerifiedAuthor = this.isVerifiedAuthor;
+    final labels = this.labels;
+    final licenseUrl = this.licenseUrl;
+    final name = this.name;
+    final readmeUrl = this.readmeUrl;
+    final spdxLicenseId = this.spdxLicenseId;
+    final verifiedAuthorUrl = this.verifiedAuthorUrl;
+    final version = this.version;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (author != null) 'author': author,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (description != null) 'description': description,
+      if (homePageUrl != null) 'homePageUrl': homePageUrl,
+      if (isVerifiedAuthor != null) 'isVerifiedAuthor': isVerifiedAuthor,
+      if (labels != null) 'labels': labels,
+      if (licenseUrl != null) 'licenseUrl': licenseUrl,
+      if (name != null) 'name': name,
+      if (readmeUrl != null) 'readmeUrl': readmeUrl,
+      if (spdxLicenseId != null) 'spdxLicenseId': spdxLicenseId,
+      if (verifiedAuthorUrl != null) 'verifiedAuthorUrl': verifiedAuthorUrl,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class CreateApplicationVersionResponse {
@@ -1293,6 +1354,33 @@ class CreateApplicationVersionResponse {
       templateUrl: json['templateUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final parameterDefinitions = this.parameterDefinitions;
+    final requiredCapabilities = this.requiredCapabilities;
+    final resourcesSupported = this.resourcesSupported;
+    final semanticVersion = this.semanticVersion;
+    final sourceCodeArchiveUrl = this.sourceCodeArchiveUrl;
+    final sourceCodeUrl = this.sourceCodeUrl;
+    final templateUrl = this.templateUrl;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (parameterDefinitions != null)
+        'parameterDefinitions': parameterDefinitions,
+      if (requiredCapabilities != null)
+        'requiredCapabilities':
+            requiredCapabilities.map((e) => e.toValue()).toList(),
+      if (resourcesSupported != null) 'resourcesSupported': resourcesSupported,
+      if (semanticVersion != null) 'semanticVersion': semanticVersion,
+      if (sourceCodeArchiveUrl != null)
+        'sourceCodeArchiveUrl': sourceCodeArchiveUrl,
+      if (sourceCodeUrl != null) 'sourceCodeUrl': sourceCodeUrl,
+      if (templateUrl != null) 'templateUrl': templateUrl,
+    };
+  }
 }
 
 class CreateCloudFormationChangeSetResponse {
@@ -1330,6 +1418,19 @@ class CreateCloudFormationChangeSetResponse {
       semanticVersion: json['semanticVersion'] as String?,
       stackId: json['stackId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final changeSetId = this.changeSetId;
+    final semanticVersion = this.semanticVersion;
+    final stackId = this.stackId;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (changeSetId != null) 'changeSetId': changeSetId,
+      if (semanticVersion != null) 'semanticVersion': semanticVersion,
+      if (stackId != null) 'stackId': stackId,
+    };
   }
 }
 
@@ -1388,6 +1489,25 @@ class CreateCloudFormationTemplateResponse {
       templateUrl: json['templateUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final semanticVersion = this.semanticVersion;
+    final status = this.status;
+    final templateId = this.templateId;
+    final templateUrl = this.templateUrl;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (expirationTime != null) 'expirationTime': expirationTime,
+      if (semanticVersion != null) 'semanticVersion': semanticVersion,
+      if (status != null) 'status': status.toValue(),
+      if (templateId != null) 'templateId': templateId,
+      if (templateUrl != null) 'templateUrl': templateUrl,
+    };
+  }
 }
 
 class GetApplicationPolicyResponse {
@@ -1405,6 +1525,13 @@ class GetApplicationPolicyResponse {
               ApplicationPolicyStatement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statements = this.statements;
+    return {
+      if (statements != null) 'statements': statements,
+    };
   }
 }
 
@@ -1510,6 +1637,37 @@ class GetApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final author = this.author;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final homePageUrl = this.homePageUrl;
+    final isVerifiedAuthor = this.isVerifiedAuthor;
+    final labels = this.labels;
+    final licenseUrl = this.licenseUrl;
+    final name = this.name;
+    final readmeUrl = this.readmeUrl;
+    final spdxLicenseId = this.spdxLicenseId;
+    final verifiedAuthorUrl = this.verifiedAuthorUrl;
+    final version = this.version;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (author != null) 'author': author,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (description != null) 'description': description,
+      if (homePageUrl != null) 'homePageUrl': homePageUrl,
+      if (isVerifiedAuthor != null) 'isVerifiedAuthor': isVerifiedAuthor,
+      if (labels != null) 'labels': labels,
+      if (licenseUrl != null) 'licenseUrl': licenseUrl,
+      if (name != null) 'name': name,
+      if (readmeUrl != null) 'readmeUrl': readmeUrl,
+      if (spdxLicenseId != null) 'spdxLicenseId': spdxLicenseId,
+      if (verifiedAuthorUrl != null) 'verifiedAuthorUrl': verifiedAuthorUrl,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class GetCloudFormationTemplateResponse {
@@ -1567,6 +1725,25 @@ class GetCloudFormationTemplateResponse {
       templateUrl: json['templateUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final semanticVersion = this.semanticVersion;
+    final status = this.status;
+    final templateId = this.templateId;
+    final templateUrl = this.templateUrl;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (expirationTime != null) 'expirationTime': expirationTime,
+      if (semanticVersion != null) 'semanticVersion': semanticVersion,
+      if (status != null) 'status': status.toValue(),
+      if (templateId != null) 'templateId': templateId,
+      if (templateUrl != null) 'templateUrl': templateUrl,
+    };
+  }
 }
 
 class ListApplicationDependenciesResponse {
@@ -1591,6 +1768,15 @@ class ListApplicationDependenciesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dependencies = this.dependencies;
+    final nextToken = this.nextToken;
+    return {
+      if (dependencies != null) 'dependencies': dependencies,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListApplicationVersionsResponse {
@@ -1613,6 +1799,15 @@ class ListApplicationVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (versions != null) 'versions': versions,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -1634,6 +1829,15 @@ class ListApplicationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final nextToken = this.nextToken;
+    return {
+      if (applications != null) 'applications': applications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1777,6 +1981,38 @@ class ParameterDefinition {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final referencedByResources = this.referencedByResources;
+    final allowedPattern = this.allowedPattern;
+    final allowedValues = this.allowedValues;
+    final constraintDescription = this.constraintDescription;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final maxLength = this.maxLength;
+    final maxValue = this.maxValue;
+    final minLength = this.minLength;
+    final minValue = this.minValue;
+    final noEcho = this.noEcho;
+    final type = this.type;
+    return {
+      'name': name,
+      'referencedByResources': referencedByResources,
+      if (allowedPattern != null) 'allowedPattern': allowedPattern,
+      if (allowedValues != null) 'allowedValues': allowedValues,
+      if (constraintDescription != null)
+        'constraintDescription': constraintDescription,
+      if (defaultValue != null) 'defaultValue': defaultValue,
+      if (description != null) 'description': description,
+      if (maxLength != null) 'maxLength': maxLength,
+      if (maxValue != null) 'maxValue': maxValue,
+      if (minLength != null) 'minLength': minLength,
+      if (minValue != null) 'minValue': minValue,
+      if (noEcho != null) 'noEcho': noEcho,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Parameter value of the application.
@@ -1793,6 +2029,13 @@ class ParameterValue {
     required this.name,
     required this.value,
   });
+  factory ParameterValue.fromJson(Map<String, dynamic> json) {
+    return ParameterValue(
+      name: json['name'] as String,
+      value: json['value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -1819,6 +2062,13 @@ class PutApplicationPolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statements = this.statements;
+    return {
+      if (statements != null) 'statements': statements,
+    };
+  }
 }
 
 /// This property corresponds to the <i>AWS CloudFormation <a
@@ -1841,6 +2091,16 @@ class RollbackConfiguration {
     this.monitoringTimeInMinutes,
     this.rollbackTriggers,
   });
+  factory RollbackConfiguration.fromJson(Map<String, dynamic> json) {
+    return RollbackConfiguration(
+      monitoringTimeInMinutes: json['monitoringTimeInMinutes'] as int?,
+      rollbackTriggers: (json['rollbackTriggers'] as List?)
+          ?.whereNotNull()
+          .map((e) => RollbackTrigger.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final monitoringTimeInMinutes = this.monitoringTimeInMinutes;
     final rollbackTriggers = this.rollbackTriggers;
@@ -1872,6 +2132,13 @@ class RollbackTrigger {
     required this.arn,
     required this.type,
   });
+  factory RollbackTrigger.fromJson(Map<String, dynamic> json) {
+    return RollbackTrigger(
+      arn: json['arn'] as String,
+      type: json['type'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final type = this.type;
@@ -1937,6 +2204,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['key'] as String,
+      value: json['value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -2048,6 +2322,37 @@ class UpdateApplicationResponse {
           ? Version.fromJson(json['version'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final author = this.author;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final homePageUrl = this.homePageUrl;
+    final isVerifiedAuthor = this.isVerifiedAuthor;
+    final labels = this.labels;
+    final licenseUrl = this.licenseUrl;
+    final name = this.name;
+    final readmeUrl = this.readmeUrl;
+    final spdxLicenseId = this.spdxLicenseId;
+    final verifiedAuthorUrl = this.verifiedAuthorUrl;
+    final version = this.version;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (author != null) 'author': author,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (description != null) 'description': description,
+      if (homePageUrl != null) 'homePageUrl': homePageUrl,
+      if (isVerifiedAuthor != null) 'isVerifiedAuthor': isVerifiedAuthor,
+      if (labels != null) 'labels': labels,
+      if (licenseUrl != null) 'licenseUrl': licenseUrl,
+      if (name != null) 'name': name,
+      if (readmeUrl != null) 'readmeUrl': readmeUrl,
+      if (spdxLicenseId != null) 'spdxLicenseId': spdxLicenseId,
+      if (verifiedAuthorUrl != null) 'verifiedAuthorUrl': verifiedAuthorUrl,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -2173,6 +2478,31 @@ class Version {
       sourceCodeUrl: json['sourceCodeUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final parameterDefinitions = this.parameterDefinitions;
+    final requiredCapabilities = this.requiredCapabilities;
+    final resourcesSupported = this.resourcesSupported;
+    final semanticVersion = this.semanticVersion;
+    final templateUrl = this.templateUrl;
+    final sourceCodeArchiveUrl = this.sourceCodeArchiveUrl;
+    final sourceCodeUrl = this.sourceCodeUrl;
+    return {
+      'applicationId': applicationId,
+      'creationTime': creationTime,
+      'parameterDefinitions': parameterDefinitions,
+      'requiredCapabilities':
+          requiredCapabilities.map((e) => e.toValue()).toList(),
+      'resourcesSupported': resourcesSupported,
+      'semanticVersion': semanticVersion,
+      'templateUrl': templateUrl,
+      if (sourceCodeArchiveUrl != null)
+        'sourceCodeArchiveUrl': sourceCodeArchiveUrl,
+      if (sourceCodeUrl != null) 'sourceCodeUrl': sourceCodeUrl,
+    };
+  }
 }
 
 /// An application version summary.
@@ -2207,6 +2537,19 @@ class VersionSummary {
       semanticVersion: json['semanticVersion'] as String,
       sourceCodeUrl: json['sourceCodeUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final semanticVersion = this.semanticVersion;
+    final sourceCodeUrl = this.sourceCodeUrl;
+    return {
+      'applicationId': applicationId,
+      'creationTime': creationTime,
+      'semanticVersion': semanticVersion,
+      if (sourceCodeUrl != null) 'sourceCodeUrl': sourceCodeUrl,
+    };
   }
 }
 

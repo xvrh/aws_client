@@ -62,6 +62,13 @@ class OutputShape {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listMember = this.listMember;
+    return {
+      if (listMember != null) 'ListMember': listMember,
+    };
+  }
 }
 
 class SingleStruct {
@@ -74,6 +81,13 @@ class SingleStruct {
     return SingleStruct(
       foo: json['Foo'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

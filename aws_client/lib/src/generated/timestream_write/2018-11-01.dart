@@ -920,6 +920,13 @@ class CreateDatabaseResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    return {
+      if (database != null) 'Database': database,
+    };
+  }
 }
 
 class CreateTableResponse {
@@ -935,6 +942,13 @@ class CreateTableResponse {
           ? Table.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final table = this.table;
+    return {
+      if (table != null) 'Table': table,
+    };
   }
 }
 
@@ -979,6 +993,25 @@ class Database {
       tableCount: json['TableCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final databaseName = this.databaseName;
+    final kmsKeyId = this.kmsKeyId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final tableCount = this.tableCount;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (tableCount != null) 'TableCount': tableCount,
+    };
+  }
 }
 
 class DescribeDatabaseResponse {
@@ -994,6 +1027,13 @@ class DescribeDatabaseResponse {
           ? Database.fromJson(json['Database'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    return {
+      if (database != null) 'Database': database,
+    };
   }
 }
 
@@ -1013,6 +1053,13 @@ class DescribeEndpointsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    return {
+      'Endpoints': endpoints,
+    };
+  }
 }
 
 class DescribeTableResponse {
@@ -1028,6 +1075,13 @@ class DescribeTableResponse {
           ? Table.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final table = this.table;
+    return {
+      if (table != null) 'Table': table,
+    };
   }
 }
 
@@ -1055,6 +1109,15 @@ class Dimension {
     required this.value,
     this.dimensionValueType,
   });
+  factory Dimension.fromJson(Map<String, dynamic> json) {
+    return Dimension(
+      name: json['Name'] as String,
+      value: json['Value'] as String,
+      dimensionValueType:
+          (json['DimensionValueType'] as String?)?.toDimensionValueType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -1110,6 +1173,15 @@ class Endpoint {
       cachePeriodInMinutes: json['CachePeriodInMinutes'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final cachePeriodInMinutes = this.cachePeriodInMinutes;
+    return {
+      'Address': address,
+      'CachePeriodInMinutes': cachePeriodInMinutes,
+    };
+  }
 }
 
 class ListDatabasesResponse {
@@ -1132,6 +1204,15 @@ class ListDatabasesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databases = this.databases;
+    final nextToken = this.nextToken;
+    return {
+      if (databases != null) 'Databases': databases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1156,6 +1237,15 @@ class ListTablesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tables = this.tables;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tables != null) 'Tables': tables,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1172,6 +1262,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1262,6 +1359,22 @@ class Record {
     this.timeUnit,
     this.version,
   });
+  factory Record.fromJson(Map<String, dynamic> json) {
+    return Record(
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      measureName: json['MeasureName'] as String?,
+      measureValue: json['MeasureValue'] as String?,
+      measureValueType:
+          (json['MeasureValueType'] as String?)?.toMeasureValueType(),
+      time: json['Time'] as String?,
+      timeUnit: (json['TimeUnit'] as String?)?.toTimeUnit(),
+      version: json['Version'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dimensions = this.dimensions;
     final measureName = this.measureName;
@@ -1374,6 +1487,28 @@ class Table {
       tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final databaseName = this.databaseName;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final retentionProperties = this.retentionProperties;
+    final tableName = this.tableName;
+    final tableStatus = this.tableStatus;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (retentionProperties != null)
+        'RetentionProperties': retentionProperties,
+      if (tableName != null) 'TableName': tableName,
+      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+    };
+  }
 }
 
 enum TableStatus {
@@ -1441,6 +1576,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum TimeUnit {
@@ -1486,6 +1625,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDatabaseResponse {
@@ -1500,6 +1643,13 @@ class UpdateDatabaseResponse {
           ? Database.fromJson(json['Database'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    return {
+      if (database != null) 'Database': database,
+    };
   }
 }
 
@@ -1516,6 +1666,13 @@ class UpdateTableResponse {
           ? Table.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final table = this.table;
+    return {
+      if (table != null) 'Table': table,
+    };
   }
 }
 

@@ -1728,6 +1728,14 @@ class AssociateCustomerGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociation = this.customerGatewayAssociation;
+    return {
+      if (customerGatewayAssociation != null)
+        'CustomerGatewayAssociation': customerGatewayAssociation,
+    };
+  }
 }
 
 class AssociateLinkResponse {
@@ -1744,6 +1752,13 @@ class AssociateLinkResponse {
               json['LinkAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociation = this.linkAssociation;
+    return {
+      if (linkAssociation != null) 'LinkAssociation': linkAssociation,
+    };
   }
 }
 
@@ -1765,6 +1780,16 @@ class AssociateTransitGatewayConnectPeerResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeerAssociation =
+        this.transitGatewayConnectPeerAssociation;
+    return {
+      if (transitGatewayConnectPeerAssociation != null)
+        'TransitGatewayConnectPeerAssociation':
+            transitGatewayConnectPeerAssociation,
+    };
   }
 }
 
@@ -1863,6 +1888,33 @@ class Connection {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectedDeviceId = this.connectedDeviceId;
+    final connectedLinkId = this.connectedLinkId;
+    final connectionArn = this.connectionArn;
+    final connectionId = this.connectionId;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (connectedDeviceId != null) 'ConnectedDeviceId': connectedDeviceId,
+      if (connectedLinkId != null) 'ConnectedLinkId': connectedLinkId,
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionId != null) 'ConnectionId': connectionId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum ConnectionState {
@@ -1917,6 +1969,13 @@ class CreateConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 class CreateDeviceResponse {
@@ -1932,6 +1991,13 @@ class CreateDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -1950,6 +2016,13 @@ class CreateGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class CreateLinkResponse {
@@ -1966,6 +2039,13 @@ class CreateLinkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
+  }
 }
 
 class CreateSiteResponse {
@@ -1981,6 +2061,13 @@ class CreateSiteResponse {
           ? Site.fromJson(json['Site'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
   }
 }
 
@@ -2016,6 +2103,21 @@ class CustomerGatewayAssociation {
       linkId: json['LinkId'] as String?,
       state: (json['State'] as String?)?.toCustomerGatewayAssociationState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayArn = this.customerGatewayArn;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    return {
+      if (customerGatewayArn != null) 'CustomerGatewayArn': customerGatewayArn,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -2072,6 +2174,13 @@ class DeleteConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 class DeleteDeviceResponse {
@@ -2087,6 +2196,13 @@ class DeleteDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -2105,6 +2221,13 @@ class DeleteGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class DeleteLinkResponse {
@@ -2120,6 +2243,13 @@ class DeleteLinkResponse {
           ? Link.fromJson(json['Link'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
   }
 }
 
@@ -2137,6 +2267,13 @@ class DeleteSiteResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
+  }
 }
 
 class DeregisterTransitGatewayResponse {
@@ -2153,6 +2290,14 @@ class DeregisterTransitGatewayResponse {
               json['TransitGatewayRegistration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRegistration = this.transitGatewayRegistration;
+    return {
+      if (transitGatewayRegistration != null)
+        'TransitGatewayRegistration': transitGatewayRegistration,
+    };
   }
 }
 
@@ -2175,6 +2320,15 @@ class DescribeGlobalNetworksResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalNetworks = this.globalNetworks;
+    final nextToken = this.nextToken;
+    return {
+      if (globalNetworks != null) 'GlobalNetworks': globalNetworks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2263,6 +2417,39 @@ class Device {
       vendor: json['Vendor'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsLocation = this.awsLocation;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final deviceArn = this.deviceArn;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final location = this.location;
+    final model = this.model;
+    final serialNumber = this.serialNumber;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    final vendor = this.vendor;
+    return {
+      if (awsLocation != null) 'AWSLocation': awsLocation,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (location != null) 'Location': location,
+      if (model != null) 'Model': model,
+      if (serialNumber != null) 'SerialNumber': serialNumber,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type,
+      if (vendor != null) 'Vendor': vendor,
+    };
+  }
 }
 
 enum DeviceState {
@@ -2319,6 +2506,14 @@ class DisassociateCustomerGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociation = this.customerGatewayAssociation;
+    return {
+      if (customerGatewayAssociation != null)
+        'CustomerGatewayAssociation': customerGatewayAssociation,
+    };
+  }
 }
 
 class DisassociateLinkResponse {
@@ -2335,6 +2530,13 @@ class DisassociateLinkResponse {
               json['LinkAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociation = this.linkAssociation;
+    return {
+      if (linkAssociation != null) 'LinkAssociation': linkAssociation,
+    };
   }
 }
 
@@ -2357,6 +2559,16 @@ class DisassociateTransitGatewayConnectPeerResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeerAssociation =
+        this.transitGatewayConnectPeerAssociation;
+    return {
+      if (transitGatewayConnectPeerAssociation != null)
+        'TransitGatewayConnectPeerAssociation':
+            transitGatewayConnectPeerAssociation,
+    };
+  }
 }
 
 class GetConnectionsResponse {
@@ -2378,6 +2590,15 @@ class GetConnectionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final nextToken = this.nextToken;
+    return {
+      if (connections != null) 'Connections': connections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2404,6 +2625,16 @@ class GetCustomerGatewayAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociations = this.customerGatewayAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (customerGatewayAssociations != null)
+        'CustomerGatewayAssociations': customerGatewayAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetDevicesResponse {
@@ -2425,6 +2656,15 @@ class GetDevicesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      if (devices != null) 'Devices': devices,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2448,6 +2688,15 @@ class GetLinkAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociations = this.linkAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (linkAssociations != null) 'LinkAssociations': linkAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetLinksResponse {
@@ -2470,6 +2719,15 @@ class GetLinksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final links = this.links;
+    final nextToken = this.nextToken;
+    return {
+      if (links != null) 'Links': links,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetSitesResponse {
@@ -2491,6 +2749,15 @@ class GetSitesResponse {
           .map((e) => Site.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sites = this.sites;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sites != null) 'Sites': sites,
+    };
   }
 }
 
@@ -2518,6 +2785,18 @@ class GetTransitGatewayConnectPeerAssociationsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayConnectPeerAssociations =
+        this.transitGatewayConnectPeerAssociations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transitGatewayConnectPeerAssociations != null)
+        'TransitGatewayConnectPeerAssociations':
+            transitGatewayConnectPeerAssociations,
+    };
+  }
 }
 
 class GetTransitGatewayRegistrationsResponse {
@@ -2542,6 +2821,16 @@ class GetTransitGatewayRegistrationsResponse {
               TransitGatewayRegistration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayRegistrations = this.transitGatewayRegistrations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transitGatewayRegistrations != null)
+        'TransitGatewayRegistrations': transitGatewayRegistrations,
+    };
   }
 }
 
@@ -2585,6 +2874,23 @@ class GlobalNetwork {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkArn = this.globalNetworkArn;
+    final globalNetworkId = this.globalNetworkId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkArn != null) 'GlobalNetworkArn': globalNetworkArn,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2694,6 +3000,33 @@ class Link {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bandwidth = this.bandwidth;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkId = this.globalNetworkId;
+    final linkArn = this.linkArn;
+    final linkId = this.linkId;
+    final provider = this.provider;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (bandwidth != null) 'Bandwidth': bandwidth,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkArn != null) 'LinkArn': linkArn,
+      if (linkId != null) 'LinkId': linkId,
+      if (provider != null) 'Provider': provider,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Describes the association between a device and a link.
@@ -2724,6 +3057,20 @@ class LinkAssociation {
           (json['LinkAssociationState'] as String?)?.toLinkAssociationState(),
       linkId: json['LinkId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkAssociationState = this.linkAssociationState;
+    final linkId = this.linkId;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkAssociationState != null)
+        'LinkAssociationState': linkAssociationState.toValue(),
+      if (linkId != null) 'LinkId': linkId,
+    };
   }
 }
 
@@ -2818,6 +3165,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 /// Describes a location.
@@ -2870,6 +3224,14 @@ class RegisterTransitGatewayResponse {
               json['TransitGatewayRegistration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRegistration = this.transitGatewayRegistration;
+    return {
+      if (transitGatewayRegistration != null)
+        'TransitGatewayRegistration': transitGatewayRegistration,
+    };
   }
 }
 
@@ -2925,6 +3287,27 @@ class Site {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkId = this.globalNetworkId;
+    final location = this.location;
+    final siteArn = this.siteArn;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (location != null) 'Location': location,
+      if (siteArn != null) 'SiteArn': siteArn,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3004,6 +3387,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes a transit gateway Connect peer association.
@@ -3041,6 +3428,22 @@ class TransitGatewayConnectPeerAssociation {
       transitGatewayConnectPeerArn:
           json['TransitGatewayConnectPeerArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    final transitGatewayConnectPeerArn = this.transitGatewayConnectPeerArn;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+      if (transitGatewayConnectPeerArn != null)
+        'TransitGatewayConnectPeerArn': transitGatewayConnectPeerArn,
+    };
   }
 }
 
@@ -3110,6 +3513,17 @@ class TransitGatewayRegistration {
       transitGatewayArn: json['TransitGatewayArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetworkId = this.globalNetworkId;
+    final state = this.state;
+    final transitGatewayArn = this.transitGatewayArn;
+    return {
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (state != null) 'State': state,
+      if (transitGatewayArn != null) 'TransitGatewayArn': transitGatewayArn,
+    };
+  }
 }
 
 enum TransitGatewayRegistrationState {
@@ -3175,12 +3589,25 @@ class TransitGatewayRegistrationStateReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3198,6 +3625,13 @@ class UpdateConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 class UpdateDeviceResponse {
@@ -3213,6 +3647,13 @@ class UpdateDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -3231,6 +3672,13 @@ class UpdateGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class UpdateLinkResponse {
@@ -3247,6 +3695,13 @@ class UpdateLinkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
+  }
 }
 
 class UpdateSiteResponse {
@@ -3262,6 +3717,13 @@ class UpdateSiteResponse {
           ? Site.fromJson(json['Site'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
   }
 }
 

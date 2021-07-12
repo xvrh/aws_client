@@ -2606,6 +2606,62 @@ class App {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appId = this.appId;
+    final createTime = this.createTime;
+    final defaultDomain = this.defaultDomain;
+    final description = this.description;
+    final enableBasicAuth = this.enableBasicAuth;
+    final enableBranchAutoBuild = this.enableBranchAutoBuild;
+    final environmentVariables = this.environmentVariables;
+    final name = this.name;
+    final platform = this.platform;
+    final repository = this.repository;
+    final updateTime = this.updateTime;
+    final autoBranchCreationConfig = this.autoBranchCreationConfig;
+    final autoBranchCreationPatterns = this.autoBranchCreationPatterns;
+    final basicAuthCredentials = this.basicAuthCredentials;
+    final buildSpec = this.buildSpec;
+    final customHeaders = this.customHeaders;
+    final customRules = this.customRules;
+    final enableAutoBranchCreation = this.enableAutoBranchCreation;
+    final enableBranchAutoDeletion = this.enableBranchAutoDeletion;
+    final iamServiceRoleArn = this.iamServiceRoleArn;
+    final productionBranch = this.productionBranch;
+    final tags = this.tags;
+    return {
+      'appArn': appArn,
+      'appId': appId,
+      'createTime': unixTimestampToJson(createTime),
+      'defaultDomain': defaultDomain,
+      'description': description,
+      'enableBasicAuth': enableBasicAuth,
+      'enableBranchAutoBuild': enableBranchAutoBuild,
+      'environmentVariables': environmentVariables,
+      'name': name,
+      'platform': platform.toValue(),
+      'repository': repository,
+      'updateTime': unixTimestampToJson(updateTime),
+      if (autoBranchCreationConfig != null)
+        'autoBranchCreationConfig': autoBranchCreationConfig,
+      if (autoBranchCreationPatterns != null)
+        'autoBranchCreationPatterns': autoBranchCreationPatterns,
+      if (basicAuthCredentials != null)
+        'basicAuthCredentials': basicAuthCredentials,
+      if (buildSpec != null) 'buildSpec': buildSpec,
+      if (customHeaders != null) 'customHeaders': customHeaders,
+      if (customRules != null) 'customRules': customRules,
+      if (enableAutoBranchCreation != null)
+        'enableAutoBranchCreation': enableAutoBranchCreation,
+      if (enableBranchAutoDeletion != null)
+        'enableBranchAutoDeletion': enableBranchAutoDeletion,
+      if (iamServiceRoleArn != null) 'iamServiceRoleArn': iamServiceRoleArn,
+      if (productionBranch != null) 'productionBranch': productionBranch,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes an artifact.
@@ -2625,6 +2681,15 @@ class Artifact {
       artifactFileName: json['artifactFileName'] as String,
       artifactId: json['artifactId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactFileName = this.artifactFileName;
+    final artifactId = this.artifactId;
+    return {
+      'artifactFileName': artifactFileName,
+      'artifactId': artifactId,
+    };
   }
 }
 
@@ -2764,6 +2829,24 @@ class BackendEnvironment {
       deploymentArtifacts: json['deploymentArtifacts'] as String?,
       stackName: json['stackName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backendEnvironmentArn = this.backendEnvironmentArn;
+    final createTime = this.createTime;
+    final environmentName = this.environmentName;
+    final updateTime = this.updateTime;
+    final deploymentArtifacts = this.deploymentArtifacts;
+    final stackName = this.stackName;
+    return {
+      'backendEnvironmentArn': backendEnvironmentArn,
+      'createTime': unixTimestampToJson(createTime),
+      'environmentName': environmentName,
+      'updateTime': unixTimestampToJson(updateTime),
+      if (deploymentArtifacts != null)
+        'deploymentArtifacts': deploymentArtifacts,
+      if (stackName != null) 'stackName': stackName,
+    };
   }
 }
 
@@ -2926,6 +3009,70 @@ class Branch {
       thumbnailUrl: json['thumbnailUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeJobId = this.activeJobId;
+    final branchArn = this.branchArn;
+    final branchName = this.branchName;
+    final createTime = this.createTime;
+    final customDomains = this.customDomains;
+    final description = this.description;
+    final displayName = this.displayName;
+    final enableAutoBuild = this.enableAutoBuild;
+    final enableBasicAuth = this.enableBasicAuth;
+    final enableNotification = this.enableNotification;
+    final enablePullRequestPreview = this.enablePullRequestPreview;
+    final environmentVariables = this.environmentVariables;
+    final framework = this.framework;
+    final stage = this.stage;
+    final totalNumberOfJobs = this.totalNumberOfJobs;
+    final ttl = this.ttl;
+    final updateTime = this.updateTime;
+    final associatedResources = this.associatedResources;
+    final backendEnvironmentArn = this.backendEnvironmentArn;
+    final basicAuthCredentials = this.basicAuthCredentials;
+    final buildSpec = this.buildSpec;
+    final destinationBranch = this.destinationBranch;
+    final enablePerformanceMode = this.enablePerformanceMode;
+    final pullRequestEnvironmentName = this.pullRequestEnvironmentName;
+    final sourceBranch = this.sourceBranch;
+    final tags = this.tags;
+    final thumbnailUrl = this.thumbnailUrl;
+    return {
+      'activeJobId': activeJobId,
+      'branchArn': branchArn,
+      'branchName': branchName,
+      'createTime': unixTimestampToJson(createTime),
+      'customDomains': customDomains,
+      'description': description,
+      'displayName': displayName,
+      'enableAutoBuild': enableAutoBuild,
+      'enableBasicAuth': enableBasicAuth,
+      'enableNotification': enableNotification,
+      'enablePullRequestPreview': enablePullRequestPreview,
+      'environmentVariables': environmentVariables,
+      'framework': framework,
+      'stage': stage.toValue(),
+      'totalNumberOfJobs': totalNumberOfJobs,
+      'ttl': ttl,
+      'updateTime': unixTimestampToJson(updateTime),
+      if (associatedResources != null)
+        'associatedResources': associatedResources,
+      if (backendEnvironmentArn != null)
+        'backendEnvironmentArn': backendEnvironmentArn,
+      if (basicAuthCredentials != null)
+        'basicAuthCredentials': basicAuthCredentials,
+      if (buildSpec != null) 'buildSpec': buildSpec,
+      if (destinationBranch != null) 'destinationBranch': destinationBranch,
+      if (enablePerformanceMode != null)
+        'enablePerformanceMode': enablePerformanceMode,
+      if (pullRequestEnvironmentName != null)
+        'pullRequestEnvironmentName': pullRequestEnvironmentName,
+      if (sourceBranch != null) 'sourceBranch': sourceBranch,
+      if (tags != null) 'tags': tags,
+      if (thumbnailUrl != null) 'thumbnailUrl': thumbnailUrl,
+    };
+  }
 }
 
 class CreateAppResult {
@@ -2938,6 +3085,13 @@ class CreateAppResult {
     return CreateAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
   }
 }
 
@@ -2955,6 +3109,13 @@ class CreateBackendEnvironmentResult {
           json['backendEnvironment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backendEnvironment = this.backendEnvironment;
+    return {
+      'backendEnvironment': backendEnvironment,
+    };
+  }
 }
 
 /// The result structure for create branch request.
@@ -2970,6 +3131,13 @@ class CreateBranchResult {
     return CreateBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    return {
+      'branch': branch,
+    };
   }
 }
 
@@ -2999,6 +3167,17 @@ class CreateDeploymentResult {
       jobId: json['jobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileUploadUrls = this.fileUploadUrls;
+    final zipUploadUrl = this.zipUploadUrl;
+    final jobId = this.jobId;
+    return {
+      'fileUploadUrls': fileUploadUrls,
+      'zipUploadUrl': zipUploadUrl,
+      if (jobId != null) 'jobId': jobId,
+    };
+  }
 }
 
 /// The result structure for the create domain association request.
@@ -3016,6 +3195,13 @@ class CreateDomainAssociationResult {
           json['domainAssociation'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociation = this.domainAssociation;
+    return {
+      'domainAssociation': domainAssociation,
+    };
+  }
 }
 
 /// The result structure for the create webhook request.
@@ -3030,6 +3216,13 @@ class CreateWebhookResult {
     return CreateWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      'webhook': webhook,
+    };
   }
 }
 
@@ -3100,6 +3293,13 @@ class DeleteAppResult {
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
+  }
 }
 
 /// The result structure of the delete backend environment result.
@@ -3115,6 +3315,13 @@ class DeleteBackendEnvironmentResult {
       backendEnvironment: BackendEnvironment.fromJson(
           json['backendEnvironment'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backendEnvironment = this.backendEnvironment;
+    return {
+      'backendEnvironment': backendEnvironment,
+    };
   }
 }
 
@@ -3132,6 +3339,13 @@ class DeleteBranchResult {
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    return {
+      'branch': branch,
+    };
+  }
 }
 
 class DeleteDomainAssociationResult {
@@ -3145,6 +3359,13 @@ class DeleteDomainAssociationResult {
       domainAssociation: DomainAssociation.fromJson(
           json['domainAssociation'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociation = this.domainAssociation;
+    return {
+      'domainAssociation': domainAssociation,
+    };
   }
 }
 
@@ -3161,6 +3382,13 @@ class DeleteJobResult {
           JobSummary.fromJson(json['jobSummary'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummary = this.jobSummary;
+    return {
+      'jobSummary': jobSummary,
+    };
+  }
 }
 
 /// The result structure for the delete webhook request.
@@ -3175,6 +3403,13 @@ class DeleteWebhookResult {
     return DeleteWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      'webhook': webhook,
+    };
   }
 }
 
@@ -3240,6 +3475,33 @@ class DomainAssociation {
       certificateVerificationDNSRecord:
           json['certificateVerificationDNSRecord'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociationArn = this.domainAssociationArn;
+    final domainName = this.domainName;
+    final domainStatus = this.domainStatus;
+    final enableAutoSubDomain = this.enableAutoSubDomain;
+    final statusReason = this.statusReason;
+    final subDomains = this.subDomains;
+    final autoSubDomainCreationPatterns = this.autoSubDomainCreationPatterns;
+    final autoSubDomainIAMRole = this.autoSubDomainIAMRole;
+    final certificateVerificationDNSRecord =
+        this.certificateVerificationDNSRecord;
+    return {
+      'domainAssociationArn': domainAssociationArn,
+      'domainName': domainName,
+      'domainStatus': domainStatus.toValue(),
+      'enableAutoSubDomain': enableAutoSubDomain,
+      'statusReason': statusReason,
+      'subDomains': subDomains,
+      if (autoSubDomainCreationPatterns != null)
+        'autoSubDomainCreationPatterns': autoSubDomainCreationPatterns,
+      if (autoSubDomainIAMRole != null)
+        'autoSubDomainIAMRole': autoSubDomainIAMRole,
+      if (certificateVerificationDNSRecord != null)
+        'certificateVerificationDNSRecord': certificateVerificationDNSRecord,
+    };
   }
 }
 
@@ -3314,6 +3576,13 @@ class GenerateAccessLogsResult {
       logUrl: json['logUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logUrl = this.logUrl;
+    return {
+      if (logUrl != null) 'logUrl': logUrl,
+    };
+  }
 }
 
 class GetAppResult {
@@ -3326,6 +3595,13 @@ class GetAppResult {
     return GetAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
   }
 }
 
@@ -3347,6 +3623,15 @@ class GetArtifactUrlResult {
       artifactUrl: json['artifactUrl'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactId = this.artifactId;
+    final artifactUrl = this.artifactUrl;
+    return {
+      'artifactId': artifactId,
+      'artifactUrl': artifactUrl,
+    };
+  }
 }
 
 /// The result structure for the get backend environment result.
@@ -3363,6 +3648,13 @@ class GetBackendEnvironmentResult {
           json['backendEnvironment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backendEnvironment = this.backendEnvironment;
+    return {
+      'backendEnvironment': backendEnvironment,
+    };
+  }
 }
 
 class GetBranchResult {
@@ -3375,6 +3667,13 @@ class GetBranchResult {
     return GetBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    return {
+      'branch': branch,
+    };
   }
 }
 
@@ -3393,6 +3692,13 @@ class GetDomainAssociationResult {
           json['domainAssociation'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociation = this.domainAssociation;
+    return {
+      'domainAssociation': domainAssociation,
+    };
+  }
 }
 
 class GetJobResult {
@@ -3405,6 +3711,13 @@ class GetJobResult {
     return GetJobResult(
       job: Job.fromJson(json['job'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      'job': job,
+    };
   }
 }
 
@@ -3420,6 +3733,13 @@ class GetWebhookResult {
     return GetWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      'webhook': webhook,
+    };
   }
 }
 
@@ -3443,6 +3763,15 @@ class Job {
           .toList(),
       summary: JobSummary.fromJson(json['summary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final steps = this.steps;
+    final summary = this.summary;
+    return {
+      'steps': steps,
+      'summary': summary,
+    };
   }
 }
 
@@ -3556,6 +3885,29 @@ class JobSummary {
       endTime: timeStampFromJson(json['endTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final commitMessage = this.commitMessage;
+    final commitTime = this.commitTime;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    final startTime = this.startTime;
+    final status = this.status;
+    final endTime = this.endTime;
+    return {
+      'commitId': commitId,
+      'commitMessage': commitMessage,
+      'commitTime': unixTimestampToJson(commitTime),
+      'jobArn': jobArn,
+      'jobId': jobId,
+      'jobType': jobType.toValue(),
+      'startTime': unixTimestampToJson(startTime),
+      'status': status.toValue(),
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+    };
+  }
 }
 
 enum JobType {
@@ -3619,6 +3971,15 @@ class ListAppsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apps = this.apps;
+    final nextToken = this.nextToken;
+    return {
+      'apps': apps,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The result structure for the list artifacts request.
@@ -3642,6 +4003,15 @@ class ListArtifactsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifacts = this.artifacts;
+    final nextToken = this.nextToken;
+    return {
+      'artifacts': artifacts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3667,6 +4037,15 @@ class ListBackendEnvironmentsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backendEnvironments = this.backendEnvironments;
+    final nextToken = this.nextToken;
+    return {
+      'backendEnvironments': backendEnvironments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The result structure for the list branches request.
@@ -3690,6 +4069,15 @@ class ListBranchesResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branches = this.branches;
+    final nextToken = this.nextToken;
+    return {
+      'branches': branches,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3715,6 +4103,15 @@ class ListDomainAssociationsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociations = this.domainAssociations;
+    final nextToken = this.nextToken;
+    return {
+      'domainAssociations': domainAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The maximum number of records to list in a single response.
@@ -3739,6 +4136,15 @@ class ListJobsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummaries = this.jobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'jobSummaries': jobSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The response for the list tags for resource request.
@@ -3754,6 +4160,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3778,6 +4191,15 @@ class ListWebhooksResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhooks = this.webhooks;
+    final nextToken = this.nextToken;
+    return {
+      'webhooks': webhooks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3831,6 +4253,20 @@ class ProductionBranch {
       status: json['status'] as String?,
       thumbnailUrl: json['thumbnailUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchName = this.branchName;
+    final lastDeployTime = this.lastDeployTime;
+    final status = this.status;
+    final thumbnailUrl = this.thumbnailUrl;
+    return {
+      if (branchName != null) 'branchName': branchName,
+      if (lastDeployTime != null)
+        'lastDeployTime': unixTimestampToJson(lastDeployTime),
+      if (status != null) 'status': status,
+      if (thumbnailUrl != null) 'thumbnailUrl': thumbnailUrl,
+    };
   }
 }
 
@@ -3891,6 +4327,13 @@ class StartDeploymentResult {
           JobSummary.fromJson(json['jobSummary'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummary = this.jobSummary;
+    return {
+      'jobSummary': jobSummary,
+    };
+  }
 }
 
 /// The result structure for the run job request.
@@ -3906,6 +4349,13 @@ class StartJobResult {
       jobSummary:
           JobSummary.fromJson(json['jobSummary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobSummary = this.jobSummary;
+    return {
+      'jobSummary': jobSummary,
+    };
   }
 }
 
@@ -3974,6 +4424,33 @@ class Step {
       testConfigUrl: json['testConfigUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    final status = this.status;
+    final stepName = this.stepName;
+    final artifactsUrl = this.artifactsUrl;
+    final context = this.context;
+    final logUrl = this.logUrl;
+    final screenshots = this.screenshots;
+    final statusReason = this.statusReason;
+    final testArtifactsUrl = this.testArtifactsUrl;
+    final testConfigUrl = this.testConfigUrl;
+    return {
+      'endTime': unixTimestampToJson(endTime),
+      'startTime': unixTimestampToJson(startTime),
+      'status': status.toValue(),
+      'stepName': stepName,
+      if (artifactsUrl != null) 'artifactsUrl': artifactsUrl,
+      if (context != null) 'context': context,
+      if (logUrl != null) 'logUrl': logUrl,
+      if (screenshots != null) 'screenshots': screenshots,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (testArtifactsUrl != null) 'testArtifactsUrl': testArtifactsUrl,
+      if (testConfigUrl != null) 'testConfigUrl': testConfigUrl,
+    };
+  }
 }
 
 /// The result structure for the stop job request.
@@ -3989,6 +4466,13 @@ class StopJobResult {
       jobSummary:
           JobSummary.fromJson(json['jobSummary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobSummary = this.jobSummary;
+    return {
+      'jobSummary': jobSummary,
+    };
   }
 }
 
@@ -4015,6 +4499,17 @@ class SubDomain {
           json['subDomainSetting'] as Map<String, dynamic>),
       verified: json['verified'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dnsRecord = this.dnsRecord;
+    final subDomainSetting = this.subDomainSetting;
+    final verified = this.verified;
+    return {
+      'dnsRecord': dnsRecord,
+      'subDomainSetting': subDomainSetting,
+      'verified': verified,
+    };
   }
 }
 
@@ -4053,6 +4548,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The response for the untag resource request.
@@ -4060,6 +4559,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4076,6 +4579,13 @@ class UpdateAppResult {
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
+  }
 }
 
 /// The result structure for the update branch request.
@@ -4091,6 +4601,13 @@ class UpdateBranchResult {
     return UpdateBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    return {
+      'branch': branch,
+    };
   }
 }
 
@@ -4109,6 +4626,13 @@ class UpdateDomainAssociationResult {
           json['domainAssociation'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainAssociation = this.domainAssociation;
+    return {
+      'domainAssociation': domainAssociation,
+    };
+  }
 }
 
 /// The result structure for the update webhook request.
@@ -4123,6 +4647,13 @@ class UpdateWebhookResult {
     return UpdateWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      'webhook': webhook,
+    };
   }
 }
 
@@ -4168,6 +4699,25 @@ class Webhook {
       webhookId: json['webhookId'] as String,
       webhookUrl: json['webhookUrl'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchName = this.branchName;
+    final createTime = this.createTime;
+    final description = this.description;
+    final updateTime = this.updateTime;
+    final webhookArn = this.webhookArn;
+    final webhookId = this.webhookId;
+    final webhookUrl = this.webhookUrl;
+    return {
+      'branchName': branchName,
+      'createTime': unixTimestampToJson(createTime),
+      'description': description,
+      'updateTime': unixTimestampToJson(updateTime),
+      'webhookArn': webhookArn,
+      'webhookId': webhookId,
+      'webhookUrl': webhookUrl,
+    };
   }
 }
 

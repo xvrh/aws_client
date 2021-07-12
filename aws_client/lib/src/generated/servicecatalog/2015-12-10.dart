@@ -7437,6 +7437,10 @@ class AcceptPortfolioShareOutput {
   factory AcceptPortfolioShareOutput.fromJson(Map<String, dynamic> _) {
     return AcceptPortfolioShareOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The access level to use to filter results.
@@ -7465,6 +7469,13 @@ class AccessLevelFilter {
     this.key,
     this.value,
   });
+  factory AccessLevelFilter.fromJson(Map<String, dynamic> json) {
+    return AccessLevelFilter(
+      key: (json['Key'] as String?)?.toAccessLevelFilterKey(),
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -7546,6 +7557,10 @@ class AssociateBudgetWithResourceOutput {
   factory AssociateBudgetWithResourceOutput.fromJson(Map<String, dynamic> _) {
     return AssociateBudgetWithResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociatePrincipalWithPortfolioOutput {
@@ -7554,12 +7569,20 @@ class AssociatePrincipalWithPortfolioOutput {
       Map<String, dynamic> _) {
     return AssociatePrincipalWithPortfolioOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateProductWithPortfolioOutput {
   AssociateProductWithPortfolioOutput();
   factory AssociateProductWithPortfolioOutput.fromJson(Map<String, dynamic> _) {
     return AssociateProductWithPortfolioOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7569,6 +7592,10 @@ class AssociateServiceActionWithProvisioningArtifactOutput {
       Map<String, dynamic> _) {
     return AssociateServiceActionWithProvisioningArtifactOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateTagOptionWithResourceOutput {
@@ -7576,6 +7603,10 @@ class AssociateTagOptionWithResourceOutput {
   factory AssociateTagOptionWithResourceOutput.fromJson(
       Map<String, dynamic> _) {
     return AssociateTagOptionWithResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7598,6 +7629,15 @@ class BatchAssociateServiceActionWithProvisioningArtifactOutput {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedServiceActionAssociations =
+        this.failedServiceActionAssociations;
+    return {
+      if (failedServiceActionAssociations != null)
+        'FailedServiceActionAssociations': failedServiceActionAssociations,
+    };
+  }
 }
 
 class BatchDisassociateServiceActionFromProvisioningArtifactOutput {
@@ -7619,6 +7659,15 @@ class BatchDisassociateServiceActionFromProvisioningArtifactOutput {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedServiceActionAssociations =
+        this.failedServiceActionAssociations;
+    return {
+      if (failedServiceActionAssociations != null)
+        'FailedServiceActionAssociations': failedServiceActionAssociations,
+    };
+  }
 }
 
 /// Information about a budget.
@@ -7633,6 +7682,13 @@ class BudgetDetail {
     return BudgetDetail(
       budgetName: json['BudgetName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budgetName = this.budgetName;
+    return {
+      if (budgetName != null) 'BudgetName': budgetName,
+    };
   }
 }
 
@@ -7681,6 +7737,13 @@ class CloudWatchDashboard {
     return CloudWatchDashboard(
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -7741,6 +7804,23 @@ class ConstraintDetail {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintId = this.constraintId;
+    final description = this.description;
+    final owner = this.owner;
+    final portfolioId = this.portfolioId;
+    final productId = this.productId;
+    final type = this.type;
+    return {
+      if (constraintId != null) 'ConstraintId': constraintId,
+      if (description != null) 'Description': description,
+      if (owner != null) 'Owner': owner,
+      if (portfolioId != null) 'PortfolioId': portfolioId,
+      if (productId != null) 'ProductId': productId,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Summary information about a constraint.
@@ -7775,6 +7855,15 @@ class ConstraintSummary {
       description: json['Description'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final type = this.type;
+    return {
+      if (description != null) 'Description': description,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -7812,6 +7901,13 @@ class CopyProductOutput {
     return CopyProductOutput(
       copyProductToken: json['CopyProductToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final copyProductToken = this.copyProductToken;
+    return {
+      if (copyProductToken != null) 'CopyProductToken': copyProductToken,
+    };
   }
 }
 
@@ -7873,6 +7969,18 @@ class CreateConstraintOutput {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintDetail = this.constraintDetail;
+    final constraintParameters = this.constraintParameters;
+    final status = this.status;
+    return {
+      if (constraintDetail != null) 'ConstraintDetail': constraintDetail,
+      if (constraintParameters != null)
+        'ConstraintParameters': constraintParameters,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreatePortfolioOutput {
@@ -7898,6 +8006,15 @@ class CreatePortfolioOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portfolioDetail = this.portfolioDetail;
+    final tags = this.tags;
+    return {
+      if (portfolioDetail != null) 'PortfolioDetail': portfolioDetail,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreatePortfolioShareOutput {
@@ -7912,6 +8029,14 @@ class CreatePortfolioShareOutput {
     return CreatePortfolioShareOutput(
       portfolioShareToken: json['PortfolioShareToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final portfolioShareToken = this.portfolioShareToken;
+    return {
+      if (portfolioShareToken != null)
+        'PortfolioShareToken': portfolioShareToken,
+    };
   }
 }
 
@@ -7945,6 +8070,18 @@ class CreateProductOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final productViewDetail = this.productViewDetail;
+    final provisioningArtifactDetail = this.provisioningArtifactDetail;
+    final tags = this.tags;
+    return {
+      if (productViewDetail != null) 'ProductViewDetail': productViewDetail,
+      if (provisioningArtifactDetail != null)
+        'ProvisioningArtifactDetail': provisioningArtifactDetail,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7980,6 +8117,23 @@ class CreateProvisionedProductPlanOutput {
       provisionedProductName: json['ProvisionedProductName'] as String?,
       provisioningArtifactId: json['ProvisioningArtifactId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final planId = this.planId;
+    final planName = this.planName;
+    final provisionProductId = this.provisionProductId;
+    final provisionedProductName = this.provisionedProductName;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    return {
+      if (planId != null) 'PlanId': planId,
+      if (planName != null) 'PlanName': planName,
+      if (provisionProductId != null) 'ProvisionProductId': provisionProductId,
+      if (provisionedProductName != null)
+        'ProvisionedProductName': provisionedProductName,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+    };
   }
 }
 
@@ -8022,6 +8176,18 @@ class CreateProvisioningArtifactOutput {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final info = this.info;
+    final provisioningArtifactDetail = this.provisioningArtifactDetail;
+    final status = this.status;
+    return {
+      if (info != null) 'Info': info,
+      if (provisioningArtifactDetail != null)
+        'ProvisioningArtifactDetail': provisioningArtifactDetail,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreateServiceActionOutput {
@@ -8038,6 +8204,14 @@ class CreateServiceActionOutput {
               json['ServiceActionDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceActionDetail = this.serviceActionDetail;
+    return {
+      if (serviceActionDetail != null)
+        'ServiceActionDetail': serviceActionDetail,
+    };
   }
 }
 
@@ -8056,6 +8230,13 @@ class CreateTagOptionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagOptionDetail = this.tagOptionDetail;
+    return {
+      if (tagOptionDetail != null) 'TagOptionDetail': tagOptionDetail,
+    };
+  }
 }
 
 class DeleteConstraintOutput {
@@ -8063,12 +8244,20 @@ class DeleteConstraintOutput {
   factory DeleteConstraintOutput.fromJson(Map<String, dynamic> _) {
     return DeleteConstraintOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePortfolioOutput {
   DeletePortfolioOutput();
   factory DeletePortfolioOutput.fromJson(Map<String, dynamic> _) {
     return DeletePortfolioOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8085,12 +8274,24 @@ class DeletePortfolioShareOutput {
       portfolioShareToken: json['PortfolioShareToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portfolioShareToken = this.portfolioShareToken;
+    return {
+      if (portfolioShareToken != null)
+        'PortfolioShareToken': portfolioShareToken,
+    };
+  }
 }
 
 class DeleteProductOutput {
   DeleteProductOutput();
   factory DeleteProductOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProductOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8099,12 +8300,20 @@ class DeleteProvisionedProductPlanOutput {
   factory DeleteProvisionedProductPlanOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProvisionedProductPlanOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProvisioningArtifactOutput {
   DeleteProvisioningArtifactOutput();
   factory DeleteProvisioningArtifactOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProvisioningArtifactOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8113,12 +8322,20 @@ class DeleteServiceActionOutput {
   factory DeleteServiceActionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteServiceActionOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTagOptionOutput {
   DeleteTagOptionOutput();
   factory DeleteTagOptionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTagOptionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8147,6 +8364,18 @@ class DescribeConstraintOutput {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintDetail = this.constraintDetail;
+    final constraintParameters = this.constraintParameters;
+    final status = this.status;
+    return {
+      if (constraintDetail != null) 'ConstraintDetail': constraintDetail,
+      if (constraintParameters != null)
+        'ConstraintParameters': constraintParameters,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DescribeCopyProductStatusOutput {
@@ -8171,6 +8400,18 @@ class DescribeCopyProductStatusOutput {
       statusDetail: json['StatusDetail'] as String?,
       targetProductId: json['TargetProductId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final copyProductStatus = this.copyProductStatus;
+    final statusDetail = this.statusDetail;
+    final targetProductId = this.targetProductId;
+    return {
+      if (copyProductStatus != null)
+        'CopyProductStatus': copyProductStatus.toValue(),
+      if (statusDetail != null) 'StatusDetail': statusDetail,
+      if (targetProductId != null) 'TargetProductId': targetProductId,
+    };
   }
 }
 
@@ -8213,6 +8454,19 @@ class DescribePortfolioOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final budgets = this.budgets;
+    final portfolioDetail = this.portfolioDetail;
+    final tagOptions = this.tagOptions;
+    final tags = this.tags;
+    return {
+      if (budgets != null) 'Budgets': budgets,
+      if (portfolioDetail != null) 'PortfolioDetail': portfolioDetail,
+      if (tagOptions != null) 'TagOptions': tagOptions,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribePortfolioShareStatusOutput {
@@ -8251,6 +8505,23 @@ class DescribePortfolioShareStatusOutput {
           : null,
       status: (json['Status'] as String?)?.toShareStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organizationNodeValue = this.organizationNodeValue;
+    final portfolioId = this.portfolioId;
+    final portfolioShareToken = this.portfolioShareToken;
+    final shareDetails = this.shareDetails;
+    final status = this.status;
+    return {
+      if (organizationNodeValue != null)
+        'OrganizationNodeValue': organizationNodeValue,
+      if (portfolioId != null) 'PortfolioId': portfolioId,
+      if (portfolioShareToken != null)
+        'PortfolioShareToken': portfolioShareToken,
+      if (shareDetails != null) 'ShareDetails': shareDetails,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -8313,6 +8584,16 @@ class DescribePortfolioSharesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final portfolioShareDetails = this.portfolioShareDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (portfolioShareDetails != null)
+        'PortfolioShareDetails': portfolioShareDetails,
+    };
+  }
 }
 
 class DescribeProductAsAdminOutput {
@@ -8365,6 +8646,22 @@ class DescribeProductAsAdminOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final budgets = this.budgets;
+    final productViewDetail = this.productViewDetail;
+    final provisioningArtifactSummaries = this.provisioningArtifactSummaries;
+    final tagOptions = this.tagOptions;
+    final tags = this.tags;
+    return {
+      if (budgets != null) 'Budgets': budgets,
+      if (productViewDetail != null) 'ProductViewDetail': productViewDetail,
+      if (provisioningArtifactSummaries != null)
+        'ProvisioningArtifactSummaries': provisioningArtifactSummaries,
+      if (tagOptions != null) 'TagOptions': tagOptions,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeProductOutput {
@@ -8406,6 +8703,20 @@ class DescribeProductOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final budgets = this.budgets;
+    final launchPaths = this.launchPaths;
+    final productViewSummary = this.productViewSummary;
+    final provisioningArtifacts = this.provisioningArtifacts;
+    return {
+      if (budgets != null) 'Budgets': budgets,
+      if (launchPaths != null) 'LaunchPaths': launchPaths,
+      if (productViewSummary != null) 'ProductViewSummary': productViewSummary,
+      if (provisioningArtifacts != null)
+        'ProvisioningArtifacts': provisioningArtifacts,
+    };
+  }
 }
 
 class DescribeProductViewOutput {
@@ -8431,6 +8742,16 @@ class DescribeProductViewOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final productViewSummary = this.productViewSummary;
+    final provisioningArtifacts = this.provisioningArtifacts;
+    return {
+      if (productViewSummary != null) 'ProductViewSummary': productViewSummary,
+      if (provisioningArtifacts != null)
+        'ProvisioningArtifacts': provisioningArtifacts,
+    };
+  }
 }
 
 class DescribeProvisionedProductOutput {
@@ -8455,6 +8776,17 @@ class DescribeProvisionedProductOutput {
               json['ProvisionedProductDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchDashboards = this.cloudWatchDashboards;
+    final provisionedProductDetail = this.provisionedProductDetail;
+    return {
+      if (cloudWatchDashboards != null)
+        'CloudWatchDashboards': cloudWatchDashboards,
+      if (provisionedProductDetail != null)
+        'ProvisionedProductDetail': provisionedProductDetail,
+    };
   }
 }
 
@@ -8490,6 +8822,18 @@ class DescribeProvisionedProductPlanOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisionedProductPlanDetails = this.provisionedProductPlanDetails;
+    final resourceChanges = this.resourceChanges;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisionedProductPlanDetails != null)
+        'ProvisionedProductPlanDetails': provisionedProductPlanDetails,
+      if (resourceChanges != null) 'ResourceChanges': resourceChanges,
+    };
+  }
 }
 
 class DescribeProvisioningArtifactOutput {
@@ -8518,6 +8862,18 @@ class DescribeProvisioningArtifactOutput {
           : null,
       status: (json['Status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final info = this.info;
+    final provisioningArtifactDetail = this.provisioningArtifactDetail;
+    final status = this.status;
+    return {
+      if (info != null) 'Info': info,
+      if (provisioningArtifactDetail != null)
+        'ProvisioningArtifactDetail': provisioningArtifactDetail,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -8586,6 +8942,28 @@ class DescribeProvisioningParametersOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintSummaries = this.constraintSummaries;
+    final provisioningArtifactOutputs = this.provisioningArtifactOutputs;
+    final provisioningArtifactParameters = this.provisioningArtifactParameters;
+    final provisioningArtifactPreferences =
+        this.provisioningArtifactPreferences;
+    final tagOptions = this.tagOptions;
+    final usageInstructions = this.usageInstructions;
+    return {
+      if (constraintSummaries != null)
+        'ConstraintSummaries': constraintSummaries,
+      if (provisioningArtifactOutputs != null)
+        'ProvisioningArtifactOutputs': provisioningArtifactOutputs,
+      if (provisioningArtifactParameters != null)
+        'ProvisioningArtifactParameters': provisioningArtifactParameters,
+      if (provisioningArtifactPreferences != null)
+        'ProvisioningArtifactPreferences': provisioningArtifactPreferences,
+      if (tagOptions != null) 'TagOptions': tagOptions,
+      if (usageInstructions != null) 'UsageInstructions': usageInstructions,
+    };
+  }
 }
 
 class DescribeRecordOutput {
@@ -8618,6 +8996,17 @@ class DescribeRecordOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final recordDetail = this.recordDetail;
+    final recordOutputs = this.recordOutputs;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+      if (recordOutputs != null) 'RecordOutputs': recordOutputs,
+    };
+  }
 }
 
 class DescribeServiceActionExecutionParametersOutput {
@@ -8636,6 +9025,14 @@ class DescribeServiceActionExecutionParametersOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceActionParameters = this.serviceActionParameters;
+    return {
+      if (serviceActionParameters != null)
+        'ServiceActionParameters': serviceActionParameters,
+    };
+  }
 }
 
 class DescribeServiceActionOutput {
@@ -8652,6 +9049,14 @@ class DescribeServiceActionOutput {
               json['ServiceActionDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceActionDetail = this.serviceActionDetail;
+    return {
+      if (serviceActionDetail != null)
+        'ServiceActionDetail': serviceActionDetail,
+    };
   }
 }
 
@@ -8670,12 +9075,23 @@ class DescribeTagOptionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagOptionDetail = this.tagOptionDetail;
+    return {
+      if (tagOptionDetail != null) 'TagOptionDetail': tagOptionDetail,
+    };
+  }
 }
 
 class DisableAWSOrganizationsAccessOutput {
   DisableAWSOrganizationsAccessOutput();
   factory DisableAWSOrganizationsAccessOutput.fromJson(Map<String, dynamic> _) {
     return DisableAWSOrganizationsAccessOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8685,6 +9101,10 @@ class DisassociateBudgetFromResourceOutput {
       Map<String, dynamic> _) {
     return DisassociateBudgetFromResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociatePrincipalFromPortfolioOutput {
@@ -8692,6 +9112,10 @@ class DisassociatePrincipalFromPortfolioOutput {
   factory DisassociatePrincipalFromPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociatePrincipalFromPortfolioOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8701,6 +9125,10 @@ class DisassociateProductFromPortfolioOutput {
       Map<String, dynamic> _) {
     return DisassociateProductFromPortfolioOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateServiceActionFromProvisioningArtifactOutput {
@@ -8708,6 +9136,10 @@ class DisassociateServiceActionFromProvisioningArtifactOutput {
   factory DisassociateServiceActionFromProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociateServiceActionFromProvisioningArtifactOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8717,12 +9149,20 @@ class DisassociateTagOptionFromResourceOutput {
       Map<String, dynamic> _) {
     return DisassociateTagOptionFromResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class EnableAWSOrganizationsAccessOutput {
   EnableAWSOrganizationsAccessOutput();
   factory EnableAWSOrganizationsAccessOutput.fromJson(Map<String, dynamic> _) {
     return EnableAWSOrganizationsAccessOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8769,6 +9209,13 @@ class ExecuteProvisionedProductPlanOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
+  }
 }
 
 class ExecuteProvisionedProductServiceActionOutput {
@@ -8786,6 +9233,13 @@ class ExecuteProvisionedProductServiceActionOutput {
           ? RecordDetail.fromJson(json['RecordDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
   }
 }
 
@@ -8815,6 +9269,17 @@ class ExecutionParameter {
       name: json['Name'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultValues = this.defaultValues;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (defaultValues != null) 'DefaultValues': defaultValues,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -8855,6 +9320,22 @@ class FailedServiceActionAssociation {
       serviceActionId: json['ServiceActionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final productId = this.productId;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    final serviceActionId = this.serviceActionId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (productId != null) 'ProductId': productId,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+      if (serviceActionId != null) 'ServiceActionId': serviceActionId,
+    };
+  }
 }
 
 class GetAWSOrganizationsAccessStatusOutput {
@@ -8869,6 +9350,13 @@ class GetAWSOrganizationsAccessStatusOutput {
     return GetAWSOrganizationsAccessStatusOutput(
       accessStatus: (json['AccessStatus'] as String?)?.toAccessStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessStatus = this.accessStatus;
+    return {
+      if (accessStatus != null) 'AccessStatus': accessStatus.toValue(),
+    };
   }
 }
 
@@ -8896,6 +9384,15 @@ class GetProvisionedProductOutputsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final outputs = this.outputs;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (outputs != null) 'Outputs': outputs,
+    };
+  }
 }
 
 class ImportAsProvisionedProductOutput {
@@ -8910,6 +9407,13 @@ class ImportAsProvisionedProductOutput {
           ? RecordDetail.fromJson(json['RecordDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
   }
 }
 
@@ -8930,6 +9434,15 @@ class LaunchPath {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8967,6 +9480,20 @@ class LaunchPathSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintSummaries = this.constraintSummaries;
+    final id = this.id;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (constraintSummaries != null)
+        'ConstraintSummaries': constraintSummaries,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListAcceptedPortfolioSharesOutput {
@@ -8991,6 +9518,15 @@ class ListAcceptedPortfolioSharesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final portfolioDetails = this.portfolioDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (portfolioDetails != null) 'PortfolioDetails': portfolioDetails,
+    };
+  }
 }
 
 class ListBudgetsForResourceOutput {
@@ -9013,6 +9549,15 @@ class ListBudgetsForResourceOutput {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budgets = this.budgets;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (budgets != null) 'Budgets': budgets,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -9038,6 +9583,15 @@ class ListConstraintsForPortfolioOutput {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintDetails = this.constraintDetails;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (constraintDetails != null) 'ConstraintDetails': constraintDetails,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 class ListLaunchPathsOutput {
@@ -9060,6 +9614,16 @@ class ListLaunchPathsOutput {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launchPathSummaries = this.launchPathSummaries;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (launchPathSummaries != null)
+        'LaunchPathSummaries': launchPathSummaries,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -9085,6 +9649,15 @@ class ListOrganizationPortfolioAccessOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final organizationNodes = this.organizationNodes;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (organizationNodes != null) 'OrganizationNodes': organizationNodes,
+    };
+  }
 }
 
 class ListPortfolioAccessOutput {
@@ -9107,6 +9680,15 @@ class ListPortfolioAccessOutput {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountIds = this.accountIds;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (accountIds != null) 'AccountIds': accountIds,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -9131,6 +9713,15 @@ class ListPortfoliosForProductOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final portfolioDetails = this.portfolioDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (portfolioDetails != null) 'PortfolioDetails': portfolioDetails,
+    };
+  }
 }
 
 class ListPortfoliosOutput {
@@ -9154,6 +9745,15 @@ class ListPortfoliosOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final portfolioDetails = this.portfolioDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (portfolioDetails != null) 'PortfolioDetails': portfolioDetails,
+    };
+  }
 }
 
 class ListPrincipalsForPortfolioOutput {
@@ -9176,6 +9776,15 @@ class ListPrincipalsForPortfolioOutput {
           .map((e) => Principal.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final principals = this.principals;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (principals != null) 'Principals': principals,
+    };
   }
 }
 
@@ -9201,6 +9810,16 @@ class ListProvisionedProductPlansOutput {
               ProvisionedProductPlanSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisionedProductPlans = this.provisionedProductPlans;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisionedProductPlans != null)
+        'ProvisionedProductPlans': provisionedProductPlans,
+    };
   }
 }
 
@@ -9228,6 +9847,16 @@ class ListProvisioningArtifactsForServiceActionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisioningArtifactViews = this.provisioningArtifactViews;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisioningArtifactViews != null)
+        'ProvisioningArtifactViews': provisioningArtifactViews,
+    };
+  }
 }
 
 class ListProvisioningArtifactsOutput {
@@ -9253,6 +9882,16 @@ class ListProvisioningArtifactsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisioningArtifactDetails = this.provisioningArtifactDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisioningArtifactDetails != null)
+        'ProvisioningArtifactDetails': provisioningArtifactDetails,
+    };
+  }
 }
 
 class ListRecordHistoryOutput {
@@ -9275,6 +9914,15 @@ class ListRecordHistoryOutput {
           .map((e) => RecordDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final recordDetails = this.recordDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (recordDetails != null) 'RecordDetails': recordDetails,
+    };
   }
 }
 
@@ -9301,6 +9949,13 @@ class ListRecordHistorySearchFilter {
     this.key,
     this.value,
   });
+  factory ListRecordHistorySearchFilter.fromJson(Map<String, dynamic> json) {
+    return ListRecordHistorySearchFilter(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -9332,6 +9987,15 @@ class ListResourcesForTagOptionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pageToken = this.pageToken;
+    final resourceDetails = this.resourceDetails;
+    return {
+      if (pageToken != null) 'PageToken': pageToken,
+      if (resourceDetails != null) 'ResourceDetails': resourceDetails,
+    };
+  }
 }
 
 class ListServiceActionsForProvisioningArtifactOutput {
@@ -9357,6 +10021,16 @@ class ListServiceActionsForProvisioningArtifactOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final serviceActionSummaries = this.serviceActionSummaries;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (serviceActionSummaries != null)
+        'ServiceActionSummaries': serviceActionSummaries,
+    };
+  }
 }
 
 class ListServiceActionsOutput {
@@ -9380,6 +10054,16 @@ class ListServiceActionsOutput {
           .map((e) => ServiceActionSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final serviceActionSummaries = this.serviceActionSummaries;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (serviceActionSummaries != null)
+        'ServiceActionSummaries': serviceActionSummaries,
+    };
   }
 }
 
@@ -9405,6 +10089,15 @@ class ListStackInstancesForProvisionedProductOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final stackInstances = this.stackInstances;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (stackInstances != null) 'StackInstances': stackInstances,
+    };
+  }
 }
 
 /// Filters to use when listing TagOptions.
@@ -9423,6 +10116,14 @@ class ListTagOptionsFilters {
     this.key,
     this.value,
   });
+  factory ListTagOptionsFilters.fromJson(Map<String, dynamic> json) {
+    return ListTagOptionsFilters(
+      active: json['Active'] as bool?,
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final active = this.active;
     final key = this.key;
@@ -9455,6 +10156,15 @@ class ListTagOptionsOutput {
           .map((e) => TagOptionDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pageToken = this.pageToken;
+    final tagOptionDetails = this.tagOptionDetails;
+    return {
+      if (pageToken != null) 'PageToken': pageToken,
+      if (tagOptionDetails != null) 'TagOptionDetails': tagOptionDetails,
+    };
   }
 }
 
@@ -9585,6 +10295,26 @@ class ParameterConstraints {
       minValue: json['MinValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedPattern = this.allowedPattern;
+    final allowedValues = this.allowedValues;
+    final constraintDescription = this.constraintDescription;
+    final maxLength = this.maxLength;
+    final maxValue = this.maxValue;
+    final minLength = this.minLength;
+    final minValue = this.minValue;
+    return {
+      if (allowedPattern != null) 'AllowedPattern': allowedPattern,
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (constraintDescription != null)
+        'ConstraintDescription': constraintDescription,
+      if (maxLength != null) 'MaxLength': maxLength,
+      if (maxValue != null) 'MaxValue': maxValue,
+      if (minLength != null) 'MinLength': minLength,
+      if (minValue != null) 'MinValue': minValue,
+    };
+  }
 }
 
 /// Information about a portfolio.
@@ -9624,6 +10354,23 @@ class PortfolioDetail {
       id: json['Id'] as String?,
       providerName: json['ProviderName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final id = this.id;
+    final providerName = this.providerName;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (id != null) 'Id': id,
+      if (providerName != null) 'ProviderName': providerName,
+    };
   }
 }
 
@@ -9667,6 +10414,19 @@ class PortfolioShareDetail {
       shareTagOptions: json['ShareTagOptions'] as bool?,
       type: (json['Type'] as String?)?.toDescribePortfolioShareType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accepted = this.accepted;
+    final principalId = this.principalId;
+    final shareTagOptions = this.shareTagOptions;
+    final type = this.type;
+    return {
+      if (accepted != null) 'Accepted': accepted,
+      if (principalId != null) 'PrincipalId': principalId,
+      if (shareTagOptions != null) 'ShareTagOptions': shareTagOptions,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -9720,6 +10480,15 @@ class Principal {
       principalARN: json['PrincipalARN'] as String?,
       principalType: (json['PrincipalType'] as String?)?.toPrincipalType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final principalARN = this.principalARN;
+    final principalType = this.principalType;
+    return {
+      if (principalARN != null) 'PrincipalARN': principalARN,
+      if (principalType != null) 'PrincipalType': principalType.toValue(),
+    };
   }
 }
 
@@ -9816,6 +10585,15 @@ class ProductViewAggregationValue {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approximateCount = this.approximateCount;
+    final value = this.value;
+    return {
+      if (approximateCount != null) 'ApproximateCount': approximateCount,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Information about a product view.
@@ -9861,6 +10639,19 @@ class ProductViewDetail {
           : null,
       status: (json['Status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final productARN = this.productARN;
+    final productViewSummary = this.productViewSummary;
+    final status = this.status;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (productARN != null) 'ProductARN': productARN,
+      if (productViewSummary != null) 'ProductViewSummary': productViewSummary,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -10006,6 +10797,33 @@ class ProductViewSummary {
       type: (json['Type'] as String?)?.toProductType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distributor = this.distributor;
+    final hasDefaultPath = this.hasDefaultPath;
+    final id = this.id;
+    final name = this.name;
+    final owner = this.owner;
+    final productId = this.productId;
+    final shortDescription = this.shortDescription;
+    final supportDescription = this.supportDescription;
+    final supportEmail = this.supportEmail;
+    final supportUrl = this.supportUrl;
+    final type = this.type;
+    return {
+      if (distributor != null) 'Distributor': distributor,
+      if (hasDefaultPath != null) 'HasDefaultPath': hasDefaultPath,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (productId != null) 'ProductId': productId,
+      if (shortDescription != null) 'ShortDescription': shortDescription,
+      if (supportDescription != null) 'SupportDescription': supportDescription,
+      if (supportEmail != null) 'SupportEmail': supportEmail,
+      if (supportUrl != null) 'SupportUrl': supportUrl,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum PropertyKey {
@@ -10049,6 +10867,13 @@ class ProvisionProductOutput {
           ? RecordDetail.fromJson(json['RecordDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
   }
 }
 
@@ -10226,6 +11051,55 @@ class ProvisionedProductAttribute {
       userArnSession: json['UserArnSession'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final idempotencyToken = this.idempotencyToken;
+    final lastProvisioningRecordId = this.lastProvisioningRecordId;
+    final lastRecordId = this.lastRecordId;
+    final lastSuccessfulProvisioningRecordId =
+        this.lastSuccessfulProvisioningRecordId;
+    final name = this.name;
+    final physicalId = this.physicalId;
+    final productId = this.productId;
+    final productName = this.productName;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    final provisioningArtifactName = this.provisioningArtifactName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final type = this.type;
+    final userArn = this.userArn;
+    final userArnSession = this.userArnSession;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (id != null) 'Id': id,
+      if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
+      if (lastProvisioningRecordId != null)
+        'LastProvisioningRecordId': lastProvisioningRecordId,
+      if (lastRecordId != null) 'LastRecordId': lastRecordId,
+      if (lastSuccessfulProvisioningRecordId != null)
+        'LastSuccessfulProvisioningRecordId':
+            lastSuccessfulProvisioningRecordId,
+      if (name != null) 'Name': name,
+      if (physicalId != null) 'PhysicalId': physicalId,
+      if (productId != null) 'ProductId': productId,
+      if (productName != null) 'ProductName': productName,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+      if (provisioningArtifactName != null)
+        'ProvisioningArtifactName': provisioningArtifactName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type,
+      if (userArn != null) 'UserArn': userArn,
+      if (userArnSession != null) 'UserArnSession': userArnSession,
+    };
+  }
 }
 
 /// Information about a provisioned product.
@@ -10374,6 +11248,44 @@ class ProvisionedProductDetail {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final idempotencyToken = this.idempotencyToken;
+    final lastProvisioningRecordId = this.lastProvisioningRecordId;
+    final lastRecordId = this.lastRecordId;
+    final lastSuccessfulProvisioningRecordId =
+        this.lastSuccessfulProvisioningRecordId;
+    final launchRoleArn = this.launchRoleArn;
+    final name = this.name;
+    final productId = this.productId;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (id != null) 'Id': id,
+      if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
+      if (lastProvisioningRecordId != null)
+        'LastProvisioningRecordId': lastProvisioningRecordId,
+      if (lastRecordId != null) 'LastRecordId': lastRecordId,
+      if (lastSuccessfulProvisioningRecordId != null)
+        'LastSuccessfulProvisioningRecordId':
+            lastSuccessfulProvisioningRecordId,
+      if (launchRoleArn != null) 'LaunchRoleArn': launchRoleArn,
+      if (name != null) 'Name': name,
+      if (productId != null) 'ProductId': productId,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Information about a plan.
@@ -10473,6 +11385,44 @@ class ProvisionedProductPlanDetails {
       updatedTime: timeStampFromJson(json['UpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final notificationArns = this.notificationArns;
+    final pathId = this.pathId;
+    final planId = this.planId;
+    final planName = this.planName;
+    final planType = this.planType;
+    final productId = this.productId;
+    final provisionProductId = this.provisionProductId;
+    final provisionProductName = this.provisionProductName;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    final provisioningParameters = this.provisioningParameters;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final updatedTime = this.updatedTime;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (notificationArns != null) 'NotificationArns': notificationArns,
+      if (pathId != null) 'PathId': pathId,
+      if (planId != null) 'PlanId': planId,
+      if (planName != null) 'PlanName': planName,
+      if (planType != null) 'PlanType': planType.toValue(),
+      if (productId != null) 'ProductId': productId,
+      if (provisionProductId != null) 'ProvisionProductId': provisionProductId,
+      if (provisionProductName != null)
+        'ProvisionProductName': provisionProductName,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+      if (provisioningParameters != null)
+        'ProvisioningParameters': provisioningParameters,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (tags != null) 'Tags': tags,
+      if (updatedTime != null) 'UpdatedTime': unixTimestampToJson(updatedTime),
+    };
+  }
 }
 
 enum ProvisionedProductPlanStatus {
@@ -10560,6 +11510,25 @@ class ProvisionedProductPlanSummary {
       provisionProductName: json['ProvisionProductName'] as String?,
       provisioningArtifactId: json['ProvisioningArtifactId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final planId = this.planId;
+    final planName = this.planName;
+    final planType = this.planType;
+    final provisionProductId = this.provisionProductId;
+    final provisionProductName = this.provisionProductName;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    return {
+      if (planId != null) 'PlanId': planId,
+      if (planName != null) 'PlanName': planName,
+      if (planType != null) 'PlanType': planType.toValue(),
+      if (provisionProductId != null) 'ProvisionProductId': provisionProductId,
+      if (provisionProductName != null)
+        'ProvisionProductName': provisionProductName,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+    };
   }
 }
 
@@ -10688,6 +11657,21 @@ class ProvisioningArtifact {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final guidance = this.guidance;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (guidance != null) 'Guidance': guidance.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information about a provisioning artifact (also known as a version) for a
@@ -10747,6 +11731,25 @@ class ProvisioningArtifactDetail {
       type: (json['Type'] as String?)?.toProvisioningArtifactType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final active = this.active;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final guidance = this.guidance;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (active != null) 'Active': active,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (guidance != null) 'Guidance': guidance.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ProvisioningArtifactGuidance {
@@ -10795,6 +11798,15 @@ class ProvisioningArtifactOutput {
       key: json['Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final key = this.key;
+    return {
+      if (description != null) 'Description': description,
+      if (key != null) 'Key': key,
+    };
+  }
 }
 
 /// Information about a parameter used to provision a product.
@@ -10840,6 +11852,24 @@ class ProvisioningArtifactParameter {
       parameterType: json['ParameterType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final isNoEcho = this.isNoEcho;
+    final parameterConstraints = this.parameterConstraints;
+    final parameterKey = this.parameterKey;
+    final parameterType = this.parameterType;
+    return {
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+      if (isNoEcho != null) 'IsNoEcho': isNoEcho,
+      if (parameterConstraints != null)
+        'ParameterConstraints': parameterConstraints,
+      if (parameterKey != null) 'ParameterKey': parameterKey,
+      if (parameterType != null) 'ParameterType': parameterType,
+    };
+  }
 }
 
 /// The user-defined preferences that will be applied during product
@@ -10882,6 +11912,15 @@ class ProvisioningArtifactPreferences {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackSetAccounts = this.stackSetAccounts;
+    final stackSetRegions = this.stackSetRegions;
+    return {
+      if (stackSetAccounts != null) 'StackSetAccounts': stackSetAccounts,
+      if (stackSetRegions != null) 'StackSetRegions': stackSetRegions,
+    };
   }
 }
 
@@ -10939,6 +11978,17 @@ class ProvisioningArtifactProperties {
     this.name,
     this.type,
   });
+  factory ProvisioningArtifactProperties.fromJson(Map<String, dynamic> json) {
+    return ProvisioningArtifactProperties(
+      info: (json['Info'] as Map<String, dynamic>)
+          .map((k, e) => MapEntry(k, e as String)),
+      description: json['Description'] as String?,
+      disableTemplateValidation: json['DisableTemplateValidation'] as bool?,
+      name: json['Name'] as String?,
+      type: (json['Type'] as String?)?.toProvisioningArtifactType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final info = this.info;
     final description = this.description;
@@ -11017,6 +12067,22 @@ class ProvisioningArtifactSummary {
               ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final provisioningArtifactMetadata = this.provisioningArtifactMetadata;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (provisioningArtifactMetadata != null)
+        'ProvisioningArtifactMetadata': provisioningArtifactMetadata,
+    };
+  }
 }
 
 enum ProvisioningArtifactType {
@@ -11078,6 +12144,16 @@ class ProvisioningArtifactView {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final productViewSummary = this.productViewSummary;
+    final provisioningArtifact = this.provisioningArtifact;
+    return {
+      if (productViewSummary != null) 'ProductViewSummary': productViewSummary,
+      if (provisioningArtifact != null)
+        'ProvisioningArtifact': provisioningArtifact,
+    };
+  }
 }
 
 /// Information about a parameter used to provision a product.
@@ -11092,6 +12168,13 @@ class ProvisioningParameter {
     this.key,
     this.value,
   });
+  factory ProvisioningParameter.fromJson(Map<String, dynamic> json) {
+    return ProvisioningParameter(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -11215,6 +12298,26 @@ class ProvisioningPreferences {
     this.stackSetMaxConcurrencyPercentage,
     this.stackSetRegions,
   });
+  factory ProvisioningPreferences.fromJson(Map<String, dynamic> json) {
+    return ProvisioningPreferences(
+      stackSetAccounts: (json['StackSetAccounts'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      stackSetFailureToleranceCount:
+          json['StackSetFailureToleranceCount'] as int?,
+      stackSetFailureTolerancePercentage:
+          json['StackSetFailureTolerancePercentage'] as int?,
+      stackSetMaxConcurrencyCount: json['StackSetMaxConcurrencyCount'] as int?,
+      stackSetMaxConcurrencyPercentage:
+          json['StackSetMaxConcurrencyPercentage'] as int?,
+      stackSetRegions: (json['StackSetRegions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final stackSetAccounts = this.stackSetAccounts;
     final stackSetFailureToleranceCount = this.stackSetFailureToleranceCount;
@@ -11359,6 +12462,43 @@ class RecordDetail {
       updatedTime: timeStampFromJson(json['UpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final launchRoleArn = this.launchRoleArn;
+    final pathId = this.pathId;
+    final productId = this.productId;
+    final provisionedProductId = this.provisionedProductId;
+    final provisionedProductName = this.provisionedProductName;
+    final provisionedProductType = this.provisionedProductType;
+    final provisioningArtifactId = this.provisioningArtifactId;
+    final recordErrors = this.recordErrors;
+    final recordId = this.recordId;
+    final recordTags = this.recordTags;
+    final recordType = this.recordType;
+    final status = this.status;
+    final updatedTime = this.updatedTime;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (launchRoleArn != null) 'LaunchRoleArn': launchRoleArn,
+      if (pathId != null) 'PathId': pathId,
+      if (productId != null) 'ProductId': productId,
+      if (provisionedProductId != null)
+        'ProvisionedProductId': provisionedProductId,
+      if (provisionedProductName != null)
+        'ProvisionedProductName': provisionedProductName,
+      if (provisionedProductType != null)
+        'ProvisionedProductType': provisionedProductType,
+      if (provisioningArtifactId != null)
+        'ProvisioningArtifactId': provisioningArtifactId,
+      if (recordErrors != null) 'RecordErrors': recordErrors,
+      if (recordId != null) 'RecordId': recordId,
+      if (recordTags != null) 'RecordTags': recordTags,
+      if (recordType != null) 'RecordType': recordType,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTime != null) 'UpdatedTime': unixTimestampToJson(updatedTime),
+    };
+  }
 }
 
 /// The error code and description resulting from an operation.
@@ -11378,6 +12518,15 @@ class RecordError {
       code: json['Code'] as String?,
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final description = this.description;
+    return {
+      if (code != null) 'Code': code,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -11405,6 +12554,17 @@ class RecordOutput {
       outputKey: json['OutputKey'] as String?,
       outputValue: json['OutputValue'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final outputKey = this.outputKey;
+    final outputValue = this.outputValue;
+    return {
+      if (description != null) 'Description': description,
+      if (outputKey != null) 'OutputKey': outputKey,
+      if (outputValue != null) 'OutputValue': outputValue,
+    };
   }
 }
 
@@ -11469,12 +12629,25 @@ class RecordTag {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class RejectPortfolioShareOutput {
   RejectPortfolioShareOutput();
   factory RejectPortfolioShareOutput.fromJson(Map<String, dynamic> _) {
     return RejectPortfolioShareOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11642,6 +12815,25 @@ class ResourceChange {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final details = this.details;
+    final logicalResourceId = this.logicalResourceId;
+    final physicalResourceId = this.physicalResourceId;
+    final replacement = this.replacement;
+    final resourceType = this.resourceType;
+    final scope = this.scope;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (details != null) 'Details': details,
+      if (logicalResourceId != null) 'LogicalResourceId': logicalResourceId,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (replacement != null) 'Replacement': replacement.toValue(),
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (scope != null) 'Scope': scope.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Information about a change to a resource attribute.
@@ -11671,6 +12863,17 @@ class ResourceChangeDetail {
               json['Target'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final causingEntity = this.causingEntity;
+    final evaluation = this.evaluation;
+    final target = this.target;
+    return {
+      if (causingEntity != null) 'CausingEntity': causingEntity,
+      if (evaluation != null) 'Evaluation': evaluation.toValue(),
+      if (target != null) 'Target': target,
+    };
   }
 }
 
@@ -11707,6 +12910,21 @@ class ResourceDetail {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information about a change to a resource attribute.
@@ -11735,6 +12953,18 @@ class ResourceTargetDefinition {
           (json['RequiresRecreation'] as String?)?.toRequiresRecreation(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attribute = this.attribute;
+    final name = this.name;
+    final requiresRecreation = this.requiresRecreation;
+    return {
+      if (attribute != null) 'Attribute': attribute.toValue(),
+      if (name != null) 'Name': name,
+      if (requiresRecreation != null)
+        'RequiresRecreation': requiresRecreation.toValue(),
+    };
+  }
 }
 
 class ScanProvisionedProductsOutput {
@@ -11759,6 +12989,16 @@ class ScanProvisionedProductsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisionedProducts = this.provisionedProducts;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisionedProducts != null)
+        'ProvisionedProducts': provisionedProducts,
+    };
+  }
 }
 
 class SearchProductsAsAdminOutput {
@@ -11781,6 +13021,15 @@ class SearchProductsAsAdminOutput {
           .map((e) => ProductViewDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final productViewDetails = this.productViewDetails;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (productViewDetails != null) 'ProductViewDetails': productViewDetails,
+    };
   }
 }
 
@@ -11818,6 +13067,19 @@ class SearchProductsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final productViewAggregations = this.productViewAggregations;
+    final productViewSummaries = this.productViewSummaries;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (productViewAggregations != null)
+        'ProductViewAggregations': productViewAggregations,
+      if (productViewSummaries != null)
+        'ProductViewSummaries': productViewSummaries,
+    };
+  }
 }
 
 class SearchProvisionedProductsOutput {
@@ -11847,6 +13109,18 @@ class SearchProvisionedProductsOutput {
       totalResultsCount: json['TotalResultsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final provisionedProducts = this.provisionedProducts;
+    final totalResultsCount = this.totalResultsCount;
+    return {
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (provisionedProducts != null)
+        'ProvisionedProducts': provisionedProducts,
+      if (totalResultsCount != null) 'TotalResultsCount': totalResultsCount,
+    };
+  }
 }
 
 /// A self-service action association consisting of the Action ID, the Product
@@ -11868,6 +13142,14 @@ class ServiceActionAssociation {
     required this.provisioningArtifactId,
     required this.serviceActionId,
   });
+  factory ServiceActionAssociation.fromJson(Map<String, dynamic> json) {
+    return ServiceActionAssociation(
+      productId: json['ProductId'] as String,
+      provisioningArtifactId: json['ProvisioningArtifactId'] as String,
+      serviceActionId: json['ServiceActionId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final productId = this.productId;
     final provisioningArtifactId = this.provisioningArtifactId;
@@ -12007,6 +13289,17 @@ class ServiceActionDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final serviceActionSummary = this.serviceActionSummary;
+    return {
+      if (definition != null)
+        'Definition': definition.map((k, e) => MapEntry(k.toValue(), e)),
+      if (serviceActionSummary != null)
+        'ServiceActionSummary': serviceActionSummary,
+    };
+  }
 }
 
 /// Detailed information about the self-service action.
@@ -12039,6 +13332,19 @@ class ServiceActionSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definitionType = this.definitionType;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (definitionType != null) 'DefinitionType': definitionType.toValue(),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information about the portfolio share operation.
@@ -12064,6 +13370,15 @@ class ShareDetails {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shareErrors = this.shareErrors;
+    final successfulShares = this.successfulShares;
+    return {
+      if (shareErrors != null) 'ShareErrors': shareErrors,
+      if (successfulShares != null) 'SuccessfulShares': successfulShares,
+    };
   }
 }
 
@@ -12092,6 +13407,17 @@ class ShareError {
       error: json['Error'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final error = this.error;
+    final message = this.message;
+    return {
+      if (accounts != null) 'Accounts': accounts,
+      if (error != null) 'Error': error,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -12218,6 +13544,18 @@ class StackInstance {
       stackInstanceStatus:
           (json['StackInstanceStatus'] as String?)?.toStackInstanceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final region = this.region;
+    final stackInstanceStatus = this.stackInstanceStatus;
+    return {
+      if (account != null) 'Account': account,
+      if (region != null) 'Region': region,
+      if (stackInstanceStatus != null)
+        'StackInstanceStatus': stackInstanceStatus.toValue(),
+    };
   }
 }
 
@@ -12383,6 +13721,21 @@ class TagOptionDetail {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final active = this.active;
+    final id = this.id;
+    final key = this.key;
+    final owner = this.owner;
+    final value = this.value;
+    return {
+      if (active != null) 'Active': active,
+      if (id != null) 'Id': id,
+      if (key != null) 'Key': key,
+      if (owner != null) 'Owner': owner,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Summary information about a TagOption.
@@ -12406,6 +13759,15 @@ class TagOptionSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final values = this.values;
+    return {
+      if (key != null) 'Key': key,
+      if (values != null) 'Values': values,
+    };
+  }
 }
 
 class TerminateProvisionedProductOutput {
@@ -12422,6 +13784,13 @@ class TerminateProvisionedProductOutput {
           ? RecordDetail.fromJson(json['RecordDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
   }
 }
 
@@ -12450,6 +13819,18 @@ class UpdateConstraintOutput {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraintDetail = this.constraintDetail;
+    final constraintParameters = this.constraintParameters;
+    final status = this.status;
+    return {
+      if (constraintDetail != null) 'ConstraintDetail': constraintDetail,
+      if (constraintParameters != null)
+        'ConstraintParameters': constraintParameters,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class UpdatePortfolioOutput {
@@ -12475,6 +13856,15 @@ class UpdatePortfolioOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portfolioDetail = this.portfolioDetail;
+    final tags = this.tags;
+    return {
+      if (portfolioDetail != null) 'PortfolioDetail': portfolioDetail,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class UpdatePortfolioShareOutput {
@@ -12496,6 +13886,16 @@ class UpdatePortfolioShareOutput {
       portfolioShareToken: json['PortfolioShareToken'] as String?,
       status: (json['Status'] as String?)?.toShareStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final portfolioShareToken = this.portfolioShareToken;
+    final status = this.status;
+    return {
+      if (portfolioShareToken != null)
+        'PortfolioShareToken': portfolioShareToken,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -12522,6 +13922,15 @@ class UpdateProductOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final productViewDetail = this.productViewDetail;
+    final tags = this.tags;
+    return {
+      if (productViewDetail != null) 'ProductViewDetail': productViewDetail,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class UpdateProvisionedProductOutput {
@@ -12537,6 +13946,13 @@ class UpdateProvisionedProductOutput {
           ? RecordDetail.fromJson(json['RecordDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recordDetail = this.recordDetail;
+    return {
+      if (recordDetail != null) 'RecordDetail': recordDetail,
+    };
   }
 }
 
@@ -12570,6 +13986,22 @@ class UpdateProvisionedProductPropertiesOutput {
       status: (json['Status'] as String?)?.toRecordStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final provisionedProductId = this.provisionedProductId;
+    final provisionedProductProperties = this.provisionedProductProperties;
+    final recordId = this.recordId;
+    final status = this.status;
+    return {
+      if (provisionedProductId != null)
+        'ProvisionedProductId': provisionedProductId,
+      if (provisionedProductProperties != null)
+        'ProvisionedProductProperties': provisionedProductProperties
+            .map((k, e) => MapEntry(k.toValue(), e)),
+      if (recordId != null) 'RecordId': recordId,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class UpdateProvisioningArtifactOutput {
@@ -12597,6 +14029,18 @@ class UpdateProvisioningArtifactOutput {
           : null,
       status: (json['Status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final info = this.info;
+    final provisioningArtifactDetail = this.provisioningArtifactDetail;
+    final status = this.status;
+    return {
+      if (info != null) 'Info': info,
+      if (provisioningArtifactDetail != null)
+        'ProvisioningArtifactDetail': provisioningArtifactDetail,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -12758,6 +14202,28 @@ class UpdateProvisioningPreferences {
     this.stackSetOperationType,
     this.stackSetRegions,
   });
+  factory UpdateProvisioningPreferences.fromJson(Map<String, dynamic> json) {
+    return UpdateProvisioningPreferences(
+      stackSetAccounts: (json['StackSetAccounts'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      stackSetFailureToleranceCount:
+          json['StackSetFailureToleranceCount'] as int?,
+      stackSetFailureTolerancePercentage:
+          json['StackSetFailureTolerancePercentage'] as int?,
+      stackSetMaxConcurrencyCount: json['StackSetMaxConcurrencyCount'] as int?,
+      stackSetMaxConcurrencyPercentage:
+          json['StackSetMaxConcurrencyPercentage'] as int?,
+      stackSetOperationType:
+          (json['StackSetOperationType'] as String?)?.toStackSetOperationType(),
+      stackSetRegions: (json['StackSetRegions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final stackSetAccounts = this.stackSetAccounts;
     final stackSetFailureToleranceCount = this.stackSetFailureToleranceCount;
@@ -12801,6 +14267,14 @@ class UpdateServiceActionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceActionDetail = this.serviceActionDetail;
+    return {
+      if (serviceActionDetail != null)
+        'ServiceActionDetail': serviceActionDetail,
+    };
+  }
 }
 
 class UpdateTagOptionOutput {
@@ -12817,6 +14291,13 @@ class UpdateTagOptionOutput {
               json['TagOptionDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagOptionDetail = this.tagOptionDetail;
+    return {
+      if (tagOptionDetail != null) 'TagOptionDetail': tagOptionDetail,
+    };
   }
 }
 
@@ -12837,6 +14318,15 @@ class UsageInstruction {
       type: json['Type'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (type != null) 'Type': type,
+      if (value != null) 'Value': value,
+    };
   }
 }
 

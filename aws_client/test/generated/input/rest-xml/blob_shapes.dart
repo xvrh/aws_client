@@ -60,6 +60,22 @@ class InputShape {
   InputShape({
     this.structureParam,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      structureParam: json['StructureParam'] != null
+          ? StructureShape.fromJson(
+              json['StructureParam'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final structureParam = this.structureParam;
+    return {
+      if (structureParam != null) 'StructureParam': structureParam,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final structureParam = this.structureParam;
     final $children = <_s.XmlNode>[
@@ -82,6 +98,19 @@ class StructureShape {
   StructureShape({
     this.b,
   });
+  factory StructureShape.fromJson(Map<String, dynamic> json) {
+    return StructureShape(
+      b: _s.decodeNullableUint8List(json['b'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final b = this.b;
+    return {
+      if (b != null) 'b': base64Encode(b),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final b = this.b;
     final $children = <_s.XmlNode>[

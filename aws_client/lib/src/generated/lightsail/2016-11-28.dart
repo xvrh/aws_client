@@ -9124,6 +9124,20 @@ class AddOn {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final nextSnapshotTimeOfDay = this.nextSnapshotTimeOfDay;
+    final snapshotTimeOfDay = this.snapshotTimeOfDay;
+    final status = this.status;
+    return {
+      if (name != null) 'name': name,
+      if (nextSnapshotTimeOfDay != null)
+        'nextSnapshotTimeOfDay': nextSnapshotTimeOfDay,
+      if (snapshotTimeOfDay != null) 'snapshotTimeOfDay': snapshotTimeOfDay,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes a request to enable, modify, or disable an add-on for an Amazon
@@ -9145,6 +9159,16 @@ class AddOnRequest {
     required this.addOnType,
     this.autoSnapshotAddOnRequest,
   });
+  factory AddOnRequest.fromJson(Map<String, dynamic> json) {
+    return AddOnRequest(
+      addOnType: (json['addOnType'] as String).toAddOnType(),
+      autoSnapshotAddOnRequest: json['autoSnapshotAddOnRequest'] != null
+          ? AutoSnapshotAddOnRequest.fromJson(
+              json['autoSnapshotAddOnRequest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final addOnType = this.addOnType;
     final autoSnapshotAddOnRequest = this.autoSnapshotAddOnRequest;
@@ -9380,6 +9404,58 @@ class Alarm {
       unit: (json['unit'] as String?)?.toMetricUnit(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final comparisonOperator = this.comparisonOperator;
+    final contactProtocols = this.contactProtocols;
+    final createdAt = this.createdAt;
+    final datapointsToAlarm = this.datapointsToAlarm;
+    final evaluationPeriods = this.evaluationPeriods;
+    final location = this.location;
+    final metricName = this.metricName;
+    final monitoredResourceInfo = this.monitoredResourceInfo;
+    final name = this.name;
+    final notificationEnabled = this.notificationEnabled;
+    final notificationTriggers = this.notificationTriggers;
+    final period = this.period;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final statistic = this.statistic;
+    final supportCode = this.supportCode;
+    final threshold = this.threshold;
+    final treatMissingData = this.treatMissingData;
+    final unit = this.unit;
+    return {
+      if (arn != null) 'arn': arn,
+      if (comparisonOperator != null)
+        'comparisonOperator': comparisonOperator.toValue(),
+      if (contactProtocols != null)
+        'contactProtocols': contactProtocols.map((e) => e.toValue()).toList(),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (datapointsToAlarm != null) 'datapointsToAlarm': datapointsToAlarm,
+      if (evaluationPeriods != null) 'evaluationPeriods': evaluationPeriods,
+      if (location != null) 'location': location,
+      if (metricName != null) 'metricName': metricName.toValue(),
+      if (monitoredResourceInfo != null)
+        'monitoredResourceInfo': monitoredResourceInfo,
+      if (name != null) 'name': name,
+      if (notificationEnabled != null)
+        'notificationEnabled': notificationEnabled,
+      if (notificationTriggers != null)
+        'notificationTriggers':
+            notificationTriggers.map((e) => e.toValue()).toList(),
+      if (period != null) 'period': period,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (statistic != null) 'statistic': statistic.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (threshold != null) 'threshold': threshold,
+      if (treatMissingData != null)
+        'treatMissingData': treatMissingData.toValue(),
+      if (unit != null) 'unit': unit.toValue(),
+    };
+  }
 }
 
 enum AlarmState {
@@ -9432,6 +9508,13 @@ class AllocateStaticIpResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class AttachCertificateToDistributionResult {
@@ -9450,6 +9533,13 @@ class AttachCertificateToDistributionResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -9470,6 +9560,13 @@ class AttachDiskResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class AttachInstancesToLoadBalancerResult {
@@ -9489,6 +9586,13 @@ class AttachInstancesToLoadBalancerResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -9513,6 +9617,13 @@ class AttachLoadBalancerTlsCertificateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class AttachStaticIpResult {
@@ -9531,6 +9642,13 @@ class AttachStaticIpResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -9552,6 +9670,15 @@ class AttachedDisk {
       path: json['path'] as String?,
       sizeInGb: json['sizeInGb'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    final sizeInGb = this.sizeInGb;
+    return {
+      if (path != null) 'path': path,
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+    };
   }
 }
 
@@ -9615,6 +9742,12 @@ class AutoSnapshotAddOnRequest {
   AutoSnapshotAddOnRequest({
     this.snapshotTimeOfDay,
   });
+  factory AutoSnapshotAddOnRequest.fromJson(Map<String, dynamic> json) {
+    return AutoSnapshotAddOnRequest(
+      snapshotTimeOfDay: json['snapshotTimeOfDay'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final snapshotTimeOfDay = this.snapshotTimeOfDay;
     return {
@@ -9654,6 +9787,19 @@ class AutoSnapshotDetails {
           .toList(),
       status: (json['status'] as String?)?.toAutoSnapshotStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final date = this.date;
+    final fromAttachedDisks = this.fromAttachedDisks;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (date != null) 'date': date,
+      if (fromAttachedDisks != null) 'fromAttachedDisks': fromAttachedDisks,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -9713,6 +9859,15 @@ class AvailabilityZone {
       state: json['state'] as String?,
       zoneName: json['zoneName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final zoneName = this.zoneName;
+    return {
+      if (state != null) 'state': state,
+      if (zoneName != null) 'zoneName': zoneName,
+    };
   }
 }
 
@@ -9822,6 +9977,35 @@ class Blueprint {
       versionCode: json['versionCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blueprintId = this.blueprintId;
+    final description = this.description;
+    final group = this.group;
+    final isActive = this.isActive;
+    final licenseUrl = this.licenseUrl;
+    final minPower = this.minPower;
+    final name = this.name;
+    final platform = this.platform;
+    final productUrl = this.productUrl;
+    final type = this.type;
+    final version = this.version;
+    final versionCode = this.versionCode;
+    return {
+      if (blueprintId != null) 'blueprintId': blueprintId,
+      if (description != null) 'description': description,
+      if (group != null) 'group': group,
+      if (isActive != null) 'isActive': isActive,
+      if (licenseUrl != null) 'licenseUrl': licenseUrl,
+      if (minPower != null) 'minPower': minPower,
+      if (name != null) 'name': name,
+      if (platform != null) 'platform': platform.toValue(),
+      if (productUrl != null) 'productUrl': productUrl,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+      if (versionCode != null) 'versionCode': versionCode,
+    };
+  }
 }
 
 enum BlueprintType {
@@ -9926,6 +10110,36 @@ class Bundle {
           .toList(),
       transferPerMonthInGb: json['transferPerMonthInGb'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final cpuCount = this.cpuCount;
+    final diskSizeInGb = this.diskSizeInGb;
+    final instanceType = this.instanceType;
+    final isActive = this.isActive;
+    final name = this.name;
+    final power = this.power;
+    final price = this.price;
+    final ramSizeInGb = this.ramSizeInGb;
+    final supportedPlatforms = this.supportedPlatforms;
+    final transferPerMonthInGb = this.transferPerMonthInGb;
+    return {
+      if (bundleId != null) 'bundleId': bundleId,
+      if (cpuCount != null) 'cpuCount': cpuCount,
+      if (diskSizeInGb != null) 'diskSizeInGb': diskSizeInGb,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (isActive != null) 'isActive': isActive,
+      if (name != null) 'name': name,
+      if (power != null) 'power': power,
+      if (price != null) 'price': price,
+      if (ramSizeInGb != null) 'ramSizeInGb': ramSizeInGb,
+      if (supportedPlatforms != null)
+        'supportedPlatforms':
+            supportedPlatforms.map((e) => e.toValue()).toList(),
+      if (transferPerMonthInGb != null)
+        'transferPerMonthInGb': transferPerMonthInGb,
+    };
   }
 }
 
@@ -10410,6 +10624,56 @@ class Certificate {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final domainValidationRecords = this.domainValidationRecords;
+    final eligibleToRenew = this.eligibleToRenew;
+    final inUseResourceCount = this.inUseResourceCount;
+    final issuedAt = this.issuedAt;
+    final issuerCA = this.issuerCA;
+    final keyAlgorithm = this.keyAlgorithm;
+    final name = this.name;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    final renewalSummary = this.renewalSummary;
+    final requestFailureReason = this.requestFailureReason;
+    final revocationReason = this.revocationReason;
+    final revokedAt = this.revokedAt;
+    final serialNumber = this.serialNumber;
+    final status = this.status;
+    final subjectAlternativeNames = this.subjectAlternativeNames;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (domainName != null) 'domainName': domainName,
+      if (domainValidationRecords != null)
+        'domainValidationRecords': domainValidationRecords,
+      if (eligibleToRenew != null) 'eligibleToRenew': eligibleToRenew,
+      if (inUseResourceCount != null) 'inUseResourceCount': inUseResourceCount,
+      if (issuedAt != null) 'issuedAt': unixTimestampToJson(issuedAt),
+      if (issuerCA != null) 'issuerCA': issuerCA,
+      if (keyAlgorithm != null) 'keyAlgorithm': keyAlgorithm,
+      if (name != null) 'name': name,
+      if (notAfter != null) 'notAfter': unixTimestampToJson(notAfter),
+      if (notBefore != null) 'notBefore': unixTimestampToJson(notBefore),
+      if (renewalSummary != null) 'renewalSummary': renewalSummary,
+      if (requestFailureReason != null)
+        'requestFailureReason': requestFailureReason,
+      if (revocationReason != null) 'revocationReason': revocationReason,
+      if (revokedAt != null) 'revokedAt': unixTimestampToJson(revokedAt),
+      if (serialNumber != null) 'serialNumber': serialNumber,
+      if (status != null) 'status': status.toValue(),
+      if (subjectAlternativeNames != null)
+        'subjectAlternativeNames': subjectAlternativeNames,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum CertificateStatus {
@@ -10507,6 +10771,21 @@ class CertificateSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateDetail = this.certificateDetail;
+    final certificateName = this.certificateName;
+    final domainName = this.domainName;
+    final tags = this.tags;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateDetail != null) 'certificateDetail': certificateDetail,
+      if (certificateName != null) 'certificateName': certificateName,
+      if (domainName != null) 'domainName': domainName,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CloseInstancePublicPortsResult {
@@ -10524,6 +10803,13 @@ class CloseInstancePublicPortsResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -10593,6 +10879,27 @@ class CloudFormationStackRecord {
       state: (json['state'] as String?)?.toRecordState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final destinationInfo = this.destinationInfo;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final sourceInfo = this.sourceInfo;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (destinationInfo != null) 'destinationInfo': destinationInfo,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sourceInfo != null) 'sourceInfo': sourceInfo,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Describes the source of a CloudFormation stack record (i.e., the export
@@ -10620,6 +10927,17 @@ class CloudFormationStackRecordSourceInfo {
       resourceType: (json['resourceType'] as String?)
           ?.toCloudFormationStackRecordSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -10761,6 +11079,29 @@ class ContactMethod {
       status: (json['status'] as String?)?.toContactMethodStatus(),
       supportCode: json['supportCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final contactEndpoint = this.contactEndpoint;
+    final createdAt = this.createdAt;
+    final location = this.location;
+    final name = this.name;
+    final protocol = this.protocol;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    final supportCode = this.supportCode;
+    return {
+      if (arn != null) 'arn': arn,
+      if (contactEndpoint != null) 'contactEndpoint': contactEndpoint,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+    };
   }
 }
 
@@ -10927,6 +11268,17 @@ class ContainerImage {
       digest: json['digest'] as String?,
       image: json['image'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final digest = this.digest;
+    final image = this.image;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (digest != null) 'digest': digest,
+      if (image != null) 'image': image,
+    };
   }
 }
 
@@ -11122,6 +11474,48 @@ class ContainerService {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final containerServiceName = this.containerServiceName;
+    final createdAt = this.createdAt;
+    final currentDeployment = this.currentDeployment;
+    final isDisabled = this.isDisabled;
+    final location = this.location;
+    final nextDeployment = this.nextDeployment;
+    final power = this.power;
+    final powerId = this.powerId;
+    final principalArn = this.principalArn;
+    final privateDomainName = this.privateDomainName;
+    final publicDomainNames = this.publicDomainNames;
+    final resourceType = this.resourceType;
+    final scale = this.scale;
+    final state = this.state;
+    final stateDetail = this.stateDetail;
+    final tags = this.tags;
+    final url = this.url;
+    return {
+      if (arn != null) 'arn': arn,
+      if (containerServiceName != null)
+        'containerServiceName': containerServiceName,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (currentDeployment != null) 'currentDeployment': currentDeployment,
+      if (isDisabled != null) 'isDisabled': isDisabled,
+      if (location != null) 'location': location,
+      if (nextDeployment != null) 'nextDeployment': nextDeployment,
+      if (power != null) 'power': power.toValue(),
+      if (powerId != null) 'powerId': powerId,
+      if (principalArn != null) 'principalArn': principalArn,
+      if (privateDomainName != null) 'privateDomainName': privateDomainName,
+      if (publicDomainNames != null) 'publicDomainNames': publicDomainNames,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (scale != null) 'scale': scale,
+      if (state != null) 'state': state.toValue(),
+      if (stateDetail != null) 'stateDetail': stateDetail,
+      if (tags != null) 'tags': tags,
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 /// Describes a container deployment configuration of an Amazon Lightsail
@@ -11188,6 +11582,21 @@ class ContainerServiceDeployment {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containers = this.containers;
+    final createdAt = this.createdAt;
+    final publicEndpoint = this.publicEndpoint;
+    final state = this.state;
+    final version = this.version;
+    return {
+      if (containers != null) 'containers': containers,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (publicEndpoint != null) 'publicEndpoint': publicEndpoint,
+      if (state != null) 'state': state.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Describes a container deployment configuration of an Amazon Lightsail
@@ -11207,6 +11616,18 @@ class ContainerServiceDeploymentRequest {
     this.containers,
     this.publicEndpoint,
   });
+  factory ContainerServiceDeploymentRequest.fromJson(
+      Map<String, dynamic> json) {
+    return ContainerServiceDeploymentRequest(
+      containers: (json['containers'] as Map<String, dynamic>?)?.map(
+          (k, e) => MapEntry(k, Container.fromJson(e as Map<String, dynamic>))),
+      publicEndpoint: json['publicEndpoint'] != null
+          ? EndpointRequest.fromJson(
+              json['publicEndpoint'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final containers = this.containers;
     final publicEndpoint = this.publicEndpoint;
@@ -11283,6 +11704,17 @@ class ContainerServiceEndpoint {
               json['healthCheck'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerName = this.containerName;
+    final containerPort = this.containerPort;
+    final healthCheck = this.healthCheck;
+    return {
+      if (containerName != null) 'containerName': containerName,
+      if (containerPort != null) 'containerPort': containerPort,
+      if (healthCheck != null) 'healthCheck': healthCheck,
+    };
   }
 }
 
@@ -11374,6 +11806,15 @@ class ContainerServiceLogEvent {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final message = this.message;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ContainerServiceMetricName {
@@ -11446,6 +11887,23 @@ class ContainerServicePower {
       price: json['price'] as double?,
       ramSizeInGb: json['ramSizeInGb'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cpuCount = this.cpuCount;
+    final isActive = this.isActive;
+    final name = this.name;
+    final powerId = this.powerId;
+    final price = this.price;
+    final ramSizeInGb = this.ramSizeInGb;
+    return {
+      if (cpuCount != null) 'cpuCount': cpuCount,
+      if (isActive != null) 'isActive': isActive,
+      if (name != null) 'name': name,
+      if (powerId != null) 'powerId': powerId,
+      if (price != null) 'price': price,
+      if (ramSizeInGb != null) 'ramSizeInGb': ramSizeInGb,
+    };
   }
 }
 
@@ -11571,6 +12029,19 @@ class ContainerServiceRegistryLogin {
       registry: json['registry'] as String?,
       username: json['username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expiresAt = this.expiresAt;
+    final password = this.password;
+    final registry = this.registry;
+    final username = this.username;
+    return {
+      if (expiresAt != null) 'expiresAt': unixTimestampToJson(expiresAt),
+      if (password != null) 'password': password,
+      if (registry != null) 'registry': registry,
+      if (username != null) 'username': username,
+    };
   }
 }
 
@@ -11703,6 +12174,15 @@ class ContainerServiceStateDetail {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ContainerServiceStateDetailCode {
@@ -11784,6 +12264,13 @@ class ContainerServicesListResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerServices = this.containerServices;
+    return {
+      if (containerServices != null) 'containerServices': containerServices,
+    };
+  }
 }
 
 /// Describes whether an Amazon Lightsail content delivery network (CDN)
@@ -11842,6 +12329,13 @@ class CopySnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateCertificateResult {
@@ -11869,6 +12363,15 @@ class CreateCertificateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final operations = this.operations;
+    return {
+      if (certificate != null) 'certificate': certificate,
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateCloudFormationStackResult {
@@ -11887,6 +12390,13 @@ class CreateCloudFormationStackResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -11907,6 +12417,13 @@ class CreateContactMethodResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateContainerServiceDeploymentResult {
@@ -11924,6 +12441,13 @@ class CreateContainerServiceDeploymentResult {
               json['containerService'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerService = this.containerService;
+    return {
+      if (containerService != null) 'containerService': containerService,
+    };
   }
 }
 
@@ -11944,6 +12468,13 @@ class CreateContainerServiceRegistryLoginResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final registryLogin = this.registryLogin;
+    return {
+      if (registryLogin != null) 'registryLogin': registryLogin,
+    };
+  }
 }
 
 class CreateContainerServiceResult {
@@ -11960,6 +12491,13 @@ class CreateContainerServiceResult {
               json['containerService'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerService = this.containerService;
+    return {
+      if (containerService != null) 'containerService': containerService,
+    };
   }
 }
 
@@ -11980,6 +12518,13 @@ class CreateDiskFromSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateDiskResult {
@@ -11999,6 +12544,13 @@ class CreateDiskResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateDiskSnapshotResult {
@@ -12017,6 +12569,13 @@ class CreateDiskSnapshotResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12044,6 +12603,15 @@ class CreateDistributionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    final operation = this.operation;
+    return {
+      if (distribution != null) 'distribution': distribution,
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class CreateDomainEntryResult {
@@ -12061,6 +12629,13 @@ class CreateDomainEntryResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -12080,6 +12655,13 @@ class CreateDomainResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class CreateInstanceSnapshotResult {
@@ -12098,6 +12680,13 @@ class CreateInstanceSnapshotResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12119,6 +12708,13 @@ class CreateInstancesFromSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateInstancesResult {
@@ -12137,6 +12733,13 @@ class CreateInstancesResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12174,6 +12777,19 @@ class CreateKeyPairResult {
       publicKeyBase64: json['publicKeyBase64'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyPair = this.keyPair;
+    final operation = this.operation;
+    final privateKeyBase64 = this.privateKeyBase64;
+    final publicKeyBase64 = this.publicKeyBase64;
+    return {
+      if (keyPair != null) 'keyPair': keyPair,
+      if (operation != null) 'operation': operation,
+      if (privateKeyBase64 != null) 'privateKeyBase64': privateKeyBase64,
+      if (publicKeyBase64 != null) 'publicKeyBase64': publicKeyBase64,
+    };
+  }
 }
 
 class CreateLoadBalancerResult {
@@ -12192,6 +12808,13 @@ class CreateLoadBalancerResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12213,6 +12836,13 @@ class CreateLoadBalancerTlsCertificateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateRelationalDatabaseFromSnapshotResult {
@@ -12233,6 +12863,13 @@ class CreateRelationalDatabaseFromSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class CreateRelationalDatabaseResult {
@@ -12251,6 +12888,13 @@ class CreateRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12272,6 +12916,13 @@ class CreateRelationalDatabaseSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteAlarmResult {
@@ -12290,6 +12941,13 @@ class DeleteAlarmResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12310,6 +12968,13 @@ class DeleteAutoSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteCertificateResult {
@@ -12328,6 +12993,13 @@ class DeleteCertificateResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12348,6 +13020,13 @@ class DeleteContactMethodResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteContainerImageResult {
@@ -12355,12 +13034,20 @@ class DeleteContainerImageResult {
   factory DeleteContainerImageResult.fromJson(Map<String, dynamic> _) {
     return DeleteContainerImageResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteContainerServiceResult {
   DeleteContainerServiceResult();
   factory DeleteContainerServiceResult.fromJson(Map<String, dynamic> _) {
     return DeleteContainerServiceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12381,6 +13068,13 @@ class DeleteDiskResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteDiskSnapshotResult {
@@ -12400,6 +13094,13 @@ class DeleteDiskSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteDistributionResult {
@@ -12417,6 +13118,13 @@ class DeleteDistributionResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -12436,6 +13144,13 @@ class DeleteDomainEntryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class DeleteDomainResult {
@@ -12453,6 +13168,13 @@ class DeleteDomainResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -12473,6 +13195,13 @@ class DeleteInstanceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteInstanceSnapshotResult {
@@ -12492,6 +13221,13 @@ class DeleteInstanceSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteKeyPairResult {
@@ -12509,6 +13245,13 @@ class DeleteKeyPairResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -12529,6 +13272,13 @@ class DeleteKnownHostKeysResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteLoadBalancerResult {
@@ -12547,6 +13297,13 @@ class DeleteLoadBalancerResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12568,6 +13325,13 @@ class DeleteLoadBalancerTlsCertificateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DeleteRelationalDatabaseResult {
@@ -12586,6 +13350,13 @@ class DeleteRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12607,6 +13378,13 @@ class DeleteRelationalDatabaseSnapshotResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 /// Describes the destination of a record.
@@ -12627,6 +13405,15 @@ class DestinationInfo {
       service: json['service'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final service = this.service;
+    return {
+      if (id != null) 'id': id,
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class DetachCertificateFromDistributionResult {
@@ -12646,6 +13433,13 @@ class DetachCertificateFromDistributionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class DetachDiskResult {
@@ -12664,6 +13458,13 @@ class DetachDiskResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12685,6 +13486,13 @@ class DetachInstancesFromLoadBalancerResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DetachStaticIpResult {
@@ -12704,6 +13512,13 @@ class DetachStaticIpResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class DisableAddOnResult {
@@ -12722,6 +13537,13 @@ class DisableAddOnResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -12842,6 +13664,45 @@ class Disk {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addOns = this.addOns;
+    final arn = this.arn;
+    final attachedTo = this.attachedTo;
+    final attachmentState = this.attachmentState;
+    final createdAt = this.createdAt;
+    final gbInUse = this.gbInUse;
+    final iops = this.iops;
+    final isAttached = this.isAttached;
+    final isSystemDisk = this.isSystemDisk;
+    final location = this.location;
+    final name = this.name;
+    final path = this.path;
+    final resourceType = this.resourceType;
+    final sizeInGb = this.sizeInGb;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (addOns != null) 'addOns': addOns,
+      if (arn != null) 'arn': arn,
+      if (attachedTo != null) 'attachedTo': attachedTo,
+      if (attachmentState != null) 'attachmentState': attachmentState,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (gbInUse != null) 'gbInUse': gbInUse,
+      if (iops != null) 'iops': iops,
+      if (isAttached != null) 'isAttached': isAttached,
+      if (isSystemDisk != null) 'isSystemDisk': isSystemDisk,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (path != null) 'path': path,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+      if (state != null) 'state': state.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes a disk.
@@ -12873,6 +13734,19 @@ class DiskInfo {
       sizeInGb: json['sizeInGb'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isSystemDisk = this.isSystemDisk;
+    final name = this.name;
+    final path = this.path;
+    final sizeInGb = this.sizeInGb;
+    return {
+      if (isSystemDisk != null) 'isSystemDisk': isSystemDisk,
+      if (name != null) 'name': name,
+      if (path != null) 'path': path,
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+    };
+  }
 }
 
 /// Describes a block storage disk mapping.
@@ -12888,6 +13762,13 @@ class DiskMap {
     this.newDiskName,
     this.originalDiskPath,
   });
+  factory DiskMap.fromJson(Map<String, dynamic> json) {
+    return DiskMap(
+      newDiskName: json['newDiskName'] as String?,
+      originalDiskPath: json['originalDiskPath'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final newDiskName = this.newDiskName;
     final originalDiskPath = this.originalDiskPath;
@@ -12995,6 +13876,41 @@ class DiskSnapshot {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final fromDiskArn = this.fromDiskArn;
+    final fromDiskName = this.fromDiskName;
+    final fromInstanceArn = this.fromInstanceArn;
+    final fromInstanceName = this.fromInstanceName;
+    final isFromAutoSnapshot = this.isFromAutoSnapshot;
+    final location = this.location;
+    final name = this.name;
+    final progress = this.progress;
+    final resourceType = this.resourceType;
+    final sizeInGb = this.sizeInGb;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fromDiskArn != null) 'fromDiskArn': fromDiskArn,
+      if (fromDiskName != null) 'fromDiskName': fromDiskName,
+      if (fromInstanceArn != null) 'fromInstanceArn': fromInstanceArn,
+      if (fromInstanceName != null) 'fromInstanceName': fromInstanceName,
+      if (isFromAutoSnapshot != null) 'isFromAutoSnapshot': isFromAutoSnapshot,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (progress != null) 'progress': progress,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+      if (state != null) 'state': state.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes a disk snapshot.
@@ -13009,6 +13925,13 @@ class DiskSnapshotInfo {
     return DiskSnapshotInfo(
       sizeInGb: json['sizeInGb'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sizeInGb = this.sizeInGb;
+    return {
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+    };
   }
 }
 
@@ -13127,6 +14050,22 @@ class DistributionBundle {
       transferPerMonthInGb: json['transferPerMonthInGb'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final isActive = this.isActive;
+    final name = this.name;
+    final price = this.price;
+    final transferPerMonthInGb = this.transferPerMonthInGb;
+    return {
+      if (bundleId != null) 'bundleId': bundleId,
+      if (isActive != null) 'isActive': isActive,
+      if (name != null) 'name': name,
+      if (price != null) 'price': price,
+      if (transferPerMonthInGb != null)
+        'transferPerMonthInGb': transferPerMonthInGb,
+    };
+  }
 }
 
 enum DistributionMetricName {
@@ -13239,6 +14178,27 @@ class Domain {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final domainEntries = this.domainEntries;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (domainEntries != null) 'domainEntries': domainEntries,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -13373,6 +14333,15 @@ class DomainValidationRecord {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final resourceRecord = this.resourceRecord;
+    return {
+      if (domainName != null) 'domainName': domainName,
+      if (resourceRecord != null) 'resourceRecord': resourceRecord,
+    };
+  }
 }
 
 class DownloadDefaultKeyPairResult {
@@ -13391,6 +14360,15 @@ class DownloadDefaultKeyPairResult {
       privateKeyBase64: json['privateKeyBase64'] as String?,
       publicKeyBase64: json['publicKeyBase64'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final privateKeyBase64 = this.privateKeyBase64;
+    final publicKeyBase64 = this.publicKeyBase64;
+    return {
+      if (privateKeyBase64 != null) 'privateKeyBase64': privateKeyBase64,
+      if (publicKeyBase64 != null) 'publicKeyBase64': publicKeyBase64,
+    };
   }
 }
 
@@ -13411,6 +14389,13 @@ class EnableAddOnResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 /// Describes the settings of a public endpoint for an Amazon Lightsail
@@ -13430,6 +14415,17 @@ class EndpointRequest {
     required this.containerPort,
     this.healthCheck,
   });
+  factory EndpointRequest.fromJson(Map<String, dynamic> json) {
+    return EndpointRequest(
+      containerName: json['containerName'] as String,
+      containerPort: json['containerPort'] as int,
+      healthCheck: json['healthCheck'] != null
+          ? ContainerServiceHealthCheckConfig.fromJson(
+              json['healthCheck'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final containerName = this.containerName;
     final containerPort = this.containerPort;
@@ -13499,6 +14495,27 @@ class ExportSnapshotRecord {
       state: (json['state'] as String?)?.toRecordState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final destinationInfo = this.destinationInfo;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final sourceInfo = this.sourceInfo;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (destinationInfo != null) 'destinationInfo': destinationInfo,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sourceInfo != null) 'sourceInfo': sourceInfo,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Describes the source of an export snapshot record.
@@ -13557,6 +14574,28 @@ class ExportSnapshotRecordSourceInfo {
           (json['resourceType'] as String?)?.toExportSnapshotRecordSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final diskSnapshotInfo = this.diskSnapshotInfo;
+    final fromResourceArn = this.fromResourceArn;
+    final fromResourceName = this.fromResourceName;
+    final instanceSnapshotInfo = this.instanceSnapshotInfo;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (diskSnapshotInfo != null) 'diskSnapshotInfo': diskSnapshotInfo,
+      if (fromResourceArn != null) 'fromResourceArn': fromResourceArn,
+      if (fromResourceName != null) 'fromResourceName': fromResourceName,
+      if (instanceSnapshotInfo != null)
+        'instanceSnapshotInfo': instanceSnapshotInfo,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 enum ExportSnapshotRecordSourceType {
@@ -13604,6 +14643,13 @@ class ExportSnapshotResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -13666,6 +14712,15 @@ class GetActiveNamesResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeNames = this.activeNames;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (activeNames != null) 'activeNames': activeNames,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetAlarmsResult {
@@ -13694,6 +14749,15 @@ class GetAlarmsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarms = this.alarms;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (alarms != null) 'alarms': alarms,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetAutoSnapshotsResult {
@@ -13721,6 +14785,17 @@ class GetAutoSnapshotsResult {
       resourceName: json['resourceName'] as String?,
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoSnapshots = this.autoSnapshots;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    return {
+      if (autoSnapshots != null) 'autoSnapshots': autoSnapshots,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -13751,6 +14826,15 @@ class GetBlueprintsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blueprints = this.blueprints;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (blueprints != null) 'blueprints': blueprints,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetBundlesResult {
@@ -13780,6 +14864,15 @@ class GetBundlesResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundles = this.bundles;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (bundles != null) 'bundles': bundles,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetCertificatesResult {
@@ -13796,6 +14889,13 @@ class GetCertificatesResult {
           .map((e) => CertificateSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    return {
+      if (certificates != null) 'certificates': certificates,
+    };
   }
 }
 
@@ -13827,6 +14927,16 @@ class GetCloudFormationStackRecordsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudFormationStackRecords = this.cloudFormationStackRecords;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (cloudFormationStackRecords != null)
+        'cloudFormationStackRecords': cloudFormationStackRecords,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetContactMethodsResult {
@@ -13843,6 +14953,13 @@ class GetContactMethodsResult {
           .map((e) => ContactMethod.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactMethods = this.contactMethods;
+    return {
+      if (contactMethods != null) 'contactMethods': contactMethods,
+    };
   }
 }
 
@@ -13863,6 +14980,13 @@ class GetContainerAPIMetadataResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    return {
+      if (metadata != null) 'metadata': metadata,
+    };
+  }
 }
 
 class GetContainerImagesResult {
@@ -13880,6 +15004,13 @@ class GetContainerImagesResult {
           .map((e) => ContainerImage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerImages = this.containerImages;
+    return {
+      if (containerImages != null) 'containerImages': containerImages,
+    };
   }
 }
 
@@ -13910,6 +15041,15 @@ class GetContainerLogResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logEvents = this.logEvents;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (logEvents != null) 'logEvents': logEvents,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetContainerServiceDeploymentsResult {
@@ -13928,6 +15068,13 @@ class GetContainerServiceDeploymentsResult {
               ContainerServiceDeployment.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    return {
+      if (deployments != null) 'deployments': deployments,
+    };
   }
 }
 
@@ -13953,6 +15100,15 @@ class GetContainerServiceMetricDataResult {
           (json['metricName'] as String?)?.toContainerServiceMetricName(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricData = this.metricData;
+    final metricName = this.metricName;
+    return {
+      if (metricData != null) 'metricData': metricData,
+      if (metricName != null) 'metricName': metricName.toValue(),
+    };
+  }
 }
 
 class GetContainerServicePowersResult {
@@ -13971,6 +15127,13 @@ class GetContainerServicePowersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final powers = this.powers;
+    return {
+      if (powers != null) 'powers': powers,
+    };
+  }
 }
 
 class GetDiskResult {
@@ -13987,6 +15150,13 @@ class GetDiskResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disk = this.disk;
+    return {
+      if (disk != null) 'disk': disk,
+    };
+  }
 }
 
 class GetDiskSnapshotResult {
@@ -14002,6 +15172,13 @@ class GetDiskSnapshotResult {
           ? DiskSnapshot.fromJson(json['diskSnapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final diskSnapshot = this.diskSnapshot;
+    return {
+      if (diskSnapshot != null) 'diskSnapshot': diskSnapshot,
+    };
   }
 }
 
@@ -14032,6 +15209,15 @@ class GetDiskSnapshotsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final diskSnapshots = this.diskSnapshots;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (diskSnapshots != null) 'diskSnapshots': diskSnapshots,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetDisksResult {
@@ -14060,6 +15246,15 @@ class GetDisksResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disks = this.disks;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (disks != null) 'disks': disks,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetDistributionBundlesResult {
@@ -14076,6 +15271,13 @@ class GetDistributionBundlesResult {
           .map((e) => DistributionBundle.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bundles = this.bundles;
+    return {
+      if (bundles != null) 'bundles': bundles,
+    };
   }
 }
 
@@ -14098,6 +15300,15 @@ class GetDistributionLatestCacheResetResult {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final status = this.status;
+    return {
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class GetDistributionMetricDataResult {
@@ -14119,6 +15330,15 @@ class GetDistributionMetricDataResult {
           .toList(),
       metricName: (json['metricName'] as String?)?.toDistributionMetricName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricData = this.metricData;
+    final metricName = this.metricName;
+    return {
+      if (metricData != null) 'metricData': metricData,
+      if (metricName != null) 'metricName': metricName.toValue(),
+    };
   }
 }
 
@@ -14148,6 +15368,15 @@ class GetDistributionsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distributions = this.distributions;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (distributions != null) 'distributions': distributions,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetDomainResult {
@@ -14164,6 +15393,13 @@ class GetDomainResult {
           ? Domain.fromJson(json['domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -14194,6 +15430,15 @@ class GetDomainsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domains = this.domains;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (domains != null) 'domains': domains,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetExportSnapshotRecordsResult {
@@ -14222,6 +15467,16 @@ class GetExportSnapshotRecordsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportSnapshotRecords = this.exportSnapshotRecords;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (exportSnapshotRecords != null)
+        'exportSnapshotRecords': exportSnapshotRecords,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetInstanceAccessDetailsResult {
@@ -14239,6 +15494,13 @@ class GetInstanceAccessDetailsResult {
               json['accessDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessDetails = this.accessDetails;
+    return {
+      if (accessDetails != null) 'accessDetails': accessDetails,
+    };
   }
 }
 
@@ -14262,6 +15524,15 @@ class GetInstanceMetricDataResult {
       metricName: (json['metricName'] as String?)?.toInstanceMetricName(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricData = this.metricData;
+    final metricName = this.metricName;
+    return {
+      if (metricData != null) 'metricData': metricData,
+      if (metricName != null) 'metricName': metricName.toValue(),
+    };
+  }
 }
 
 class GetInstancePortStatesResult {
@@ -14280,6 +15551,13 @@ class GetInstancePortStatesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portStates = this.portStates;
+    return {
+      if (portStates != null) 'portStates': portStates,
+    };
+  }
 }
 
 class GetInstanceResult {
@@ -14296,6 +15574,13 @@ class GetInstanceResult {
           ? Instance.fromJson(json['instance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instance = this.instance;
+    return {
+      if (instance != null) 'instance': instance,
+    };
   }
 }
 
@@ -14314,6 +15599,13 @@ class GetInstanceSnapshotResult {
               json['instanceSnapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceSnapshot = this.instanceSnapshot;
+    return {
+      if (instanceSnapshot != null) 'instanceSnapshot': instanceSnapshot,
+    };
   }
 }
 
@@ -14344,6 +15636,15 @@ class GetInstanceSnapshotsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceSnapshots = this.instanceSnapshots;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (instanceSnapshots != null) 'instanceSnapshots': instanceSnapshots,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetInstanceStateResult {
@@ -14359,6 +15660,13 @@ class GetInstanceStateResult {
           ? InstanceState.fromJson(json['state'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state,
+    };
   }
 }
 
@@ -14388,6 +15696,15 @@ class GetInstancesResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (instances != null) 'instances': instances,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetKeyPairResult {
@@ -14403,6 +15720,13 @@ class GetKeyPairResult {
           ? KeyPair.fromJson(json['keyPair'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyPair = this.keyPair;
+    return {
+      if (keyPair != null) 'keyPair': keyPair,
+    };
   }
 }
 
@@ -14432,6 +15756,15 @@ class GetKeyPairsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyPairs = this.keyPairs;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (keyPairs != null) 'keyPairs': keyPairs,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetLoadBalancerMetricDataResult {
@@ -14454,6 +15787,15 @@ class GetLoadBalancerMetricDataResult {
       metricName: (json['metricName'] as String?)?.toLoadBalancerMetricName(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricData = this.metricData;
+    final metricName = this.metricName;
+    return {
+      if (metricData != null) 'metricData': metricData,
+      if (metricName != null) 'metricName': metricName.toValue(),
+    };
+  }
 }
 
 class GetLoadBalancerResult {
@@ -14469,6 +15811,13 @@ class GetLoadBalancerResult {
           ? LoadBalancer.fromJson(json['loadBalancer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancer = this.loadBalancer;
+    return {
+      if (loadBalancer != null) 'loadBalancer': loadBalancer,
+    };
   }
 }
 
@@ -14489,6 +15838,13 @@ class GetLoadBalancerTlsCertificatesResult {
               LoadBalancerTlsCertificate.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tlsCertificates = this.tlsCertificates;
+    return {
+      if (tlsCertificates != null) 'tlsCertificates': tlsCertificates,
+    };
   }
 }
 
@@ -14518,6 +15874,15 @@ class GetLoadBalancersResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancers = this.loadBalancers;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (loadBalancers != null) 'loadBalancers': loadBalancers,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetOperationResult {
@@ -14535,6 +15900,13 @@ class GetOperationResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -14576,6 +15948,17 @@ class GetOperationsForResourceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageCount = this.nextPageCount;
+    final nextPageToken = this.nextPageToken;
+    final operations = this.operations;
+    return {
+      if (nextPageCount != null) 'nextPageCount': nextPageCount,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class GetOperationsResult {
@@ -14606,6 +15989,15 @@ class GetOperationsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final operations = this.operations;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class GetRegionsResult {
@@ -14623,6 +16015,13 @@ class GetRegionsResult {
           .map((e) => Region.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final regions = this.regions;
+    return {
+      if (regions != null) 'regions': regions,
+    };
   }
 }
 
@@ -14655,6 +16054,15 @@ class GetRelationalDatabaseBlueprintsResult {
       nextPageToken: json['nextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blueprints = this.blueprints;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (blueprints != null) 'blueprints': blueprints,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetRelationalDatabaseBundlesResult {
@@ -14685,6 +16093,15 @@ class GetRelationalDatabaseBundlesResult {
           .toList(),
       nextPageToken: json['nextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bundles = this.bundles;
+    final nextPageToken = this.nextPageToken;
+    return {
+      if (bundles != null) 'bundles': bundles,
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -14717,6 +16134,16 @@ class GetRelationalDatabaseEventsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final relationalDatabaseEvents = this.relationalDatabaseEvents;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (relationalDatabaseEvents != null)
+        'relationalDatabaseEvents': relationalDatabaseEvents,
+    };
+  }
 }
 
 class GetRelationalDatabaseLogEventsResult {
@@ -14748,6 +16175,17 @@ class GetRelationalDatabaseLogEventsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextBackwardToken = this.nextBackwardToken;
+    final nextForwardToken = this.nextForwardToken;
+    final resourceLogEvents = this.resourceLogEvents;
+    return {
+      if (nextBackwardToken != null) 'nextBackwardToken': nextBackwardToken,
+      if (nextForwardToken != null) 'nextForwardToken': nextForwardToken,
+      if (resourceLogEvents != null) 'resourceLogEvents': resourceLogEvents,
+    };
+  }
 }
 
 class GetRelationalDatabaseLogStreamsResult {
@@ -14766,6 +16204,13 @@ class GetRelationalDatabaseLogStreamsResult {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logStreams = this.logStreams;
+    return {
+      if (logStreams != null) 'logStreams': logStreams,
+    };
   }
 }
 
@@ -14787,6 +16232,15 @@ class GetRelationalDatabaseMasterUserPasswordResult {
       createdAt: timeStampFromJson(json['createdAt']),
       masterUserPassword: json['masterUserPassword'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final masterUserPassword = this.masterUserPassword;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (masterUserPassword != null) 'masterUserPassword': masterUserPassword,
+    };
   }
 }
 
@@ -14811,6 +16265,15 @@ class GetRelationalDatabaseMetricDataResult {
       metricName:
           (json['metricName'] as String?)?.toRelationalDatabaseMetricName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricData = this.metricData;
+    final metricName = this.metricName;
+    return {
+      if (metricData != null) 'metricData': metricData,
+      if (metricName != null) 'metricName': metricName.toValue(),
+    };
   }
 }
 
@@ -14843,6 +16306,15 @@ class GetRelationalDatabaseParametersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final parameters = this.parameters;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (parameters != null) 'parameters': parameters,
+    };
+  }
 }
 
 class GetRelationalDatabaseResult {
@@ -14859,6 +16331,13 @@ class GetRelationalDatabaseResult {
               json['relationalDatabase'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final relationalDatabase = this.relationalDatabase;
+    return {
+      if (relationalDatabase != null) 'relationalDatabase': relationalDatabase,
+    };
   }
 }
 
@@ -14877,6 +16356,14 @@ class GetRelationalDatabaseSnapshotResult {
               json['relationalDatabaseSnapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final relationalDatabaseSnapshot = this.relationalDatabaseSnapshot;
+    return {
+      if (relationalDatabaseSnapshot != null)
+        'relationalDatabaseSnapshot': relationalDatabaseSnapshot,
+    };
   }
 }
 
@@ -14910,6 +16397,16 @@ class GetRelationalDatabaseSnapshotsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final relationalDatabaseSnapshots = this.relationalDatabaseSnapshots;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (relationalDatabaseSnapshots != null)
+        'relationalDatabaseSnapshots': relationalDatabaseSnapshots,
+    };
+  }
 }
 
 class GetRelationalDatabasesResult {
@@ -14938,6 +16435,16 @@ class GetRelationalDatabasesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final relationalDatabases = this.relationalDatabases;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (relationalDatabases != null)
+        'relationalDatabases': relationalDatabases,
+    };
+  }
 }
 
 class GetStaticIpResult {
@@ -14954,6 +16461,13 @@ class GetStaticIpResult {
           ? StaticIp.fromJson(json['staticIp'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final staticIp = this.staticIp;
+    return {
+      if (staticIp != null) 'staticIp': staticIp,
+    };
   }
 }
 
@@ -14983,6 +16497,15 @@ class GetStaticIpsResult {
           .map((e) => StaticIp.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextPageToken = this.nextPageToken;
+    final staticIps = this.staticIps;
+    return {
+      if (nextPageToken != null) 'nextPageToken': nextPageToken,
+      if (staticIps != null) 'staticIps': staticIps,
+    };
   }
 }
 
@@ -15215,6 +16738,27 @@ class HostKeyAttributes {
       witnessedAt: timeStampFromJson(json['witnessedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithm = this.algorithm;
+    final fingerprintSHA1 = this.fingerprintSHA1;
+    final fingerprintSHA256 = this.fingerprintSHA256;
+    final notValidAfter = this.notValidAfter;
+    final notValidBefore = this.notValidBefore;
+    final publicKey = this.publicKey;
+    final witnessedAt = this.witnessedAt;
+    return {
+      if (algorithm != null) 'algorithm': algorithm,
+      if (fingerprintSHA1 != null) 'fingerprintSHA1': fingerprintSHA1,
+      if (fingerprintSHA256 != null) 'fingerprintSHA256': fingerprintSHA256,
+      if (notValidAfter != null)
+        'notValidAfter': unixTimestampToJson(notValidAfter),
+      if (notValidBefore != null)
+        'notValidBefore': unixTimestampToJson(notValidBefore),
+      if (publicKey != null) 'publicKey': publicKey,
+      if (witnessedAt != null) 'witnessedAt': unixTimestampToJson(witnessedAt),
+    };
+  }
 }
 
 class ImportKeyPairResult {
@@ -15232,6 +16776,13 @@ class ImportKeyPairResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -15257,6 +16808,15 @@ class InputOrigin {
     this.protocolPolicy,
     this.regionName,
   });
+  factory InputOrigin.fromJson(Map<String, dynamic> json) {
+    return InputOrigin(
+      name: json['name'] as String?,
+      protocolPolicy:
+          (json['protocolPolicy'] as String?)?.toOriginProtocolPolicyEnum(),
+      regionName: (json['regionName'] as String?)?.toRegionName(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final protocolPolicy = this.protocolPolicy;
@@ -15414,6 +16974,53 @@ class Instance {
       username: json['username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addOns = this.addOns;
+    final arn = this.arn;
+    final blueprintId = this.blueprintId;
+    final blueprintName = this.blueprintName;
+    final bundleId = this.bundleId;
+    final createdAt = this.createdAt;
+    final hardware = this.hardware;
+    final ipAddressType = this.ipAddressType;
+    final ipv6Addresses = this.ipv6Addresses;
+    final isStaticIp = this.isStaticIp;
+    final location = this.location;
+    final name = this.name;
+    final networking = this.networking;
+    final privateIpAddress = this.privateIpAddress;
+    final publicIpAddress = this.publicIpAddress;
+    final resourceType = this.resourceType;
+    final sshKeyName = this.sshKeyName;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    final username = this.username;
+    return {
+      if (addOns != null) 'addOns': addOns,
+      if (arn != null) 'arn': arn,
+      if (blueprintId != null) 'blueprintId': blueprintId,
+      if (blueprintName != null) 'blueprintName': blueprintName,
+      if (bundleId != null) 'bundleId': bundleId,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (hardware != null) 'hardware': hardware,
+      if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
+      if (ipv6Addresses != null) 'ipv6Addresses': ipv6Addresses,
+      if (isStaticIp != null) 'isStaticIp': isStaticIp,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (networking != null) 'networking': networking,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (publicIpAddress != null) 'publicIpAddress': publicIpAddress,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sshKeyName != null) 'sshKeyName': sshKeyName,
+      if (state != null) 'state': state,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+      if (username != null) 'username': username,
+    };
+  }
 }
 
 /// The parameters for gaining temporary access to one of your Amazon Lightsail
@@ -15499,6 +17106,31 @@ class InstanceAccessDetails {
       protocol: (json['protocol'] as String?)?.toInstanceAccessProtocol(),
       username: json['username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certKey = this.certKey;
+    final expiresAt = this.expiresAt;
+    final hostKeys = this.hostKeys;
+    final instanceName = this.instanceName;
+    final ipAddress = this.ipAddress;
+    final password = this.password;
+    final passwordData = this.passwordData;
+    final privateKey = this.privateKey;
+    final protocol = this.protocol;
+    final username = this.username;
+    return {
+      if (certKey != null) 'certKey': certKey,
+      if (expiresAt != null) 'expiresAt': unixTimestampToJson(expiresAt),
+      if (hostKeys != null) 'hostKeys': hostKeys,
+      if (instanceName != null) 'instanceName': instanceName,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (password != null) 'password': password,
+      if (passwordData != null) 'passwordData': passwordData,
+      if (privateKey != null) 'privateKey': privateKey,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (username != null) 'username': username,
+    };
   }
 }
 
@@ -15601,6 +17233,16 @@ class InstanceEntry {
     required this.sourceName,
     this.userData,
   });
+  factory InstanceEntry.fromJson(Map<String, dynamic> json) {
+    return InstanceEntry(
+      availabilityZone: json['availabilityZone'] as String,
+      instanceType: json['instanceType'] as String,
+      portInfoSource: (json['portInfoSource'] as String).toPortInfoSourceType(),
+      sourceName: json['sourceName'] as String,
+      userData: json['userData'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final availabilityZone = this.availabilityZone;
     final instanceType = this.instanceType;
@@ -15642,6 +17284,17 @@ class InstanceHardware {
           .toList(),
       ramSizeInGb: json['ramSizeInGb'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cpuCount = this.cpuCount;
+    final disks = this.disks;
+    final ramSizeInGb = this.ramSizeInGb;
+    return {
+      if (cpuCount != null) 'cpuCount': cpuCount,
+      if (disks != null) 'disks': disks,
+      if (ramSizeInGb != null) 'ramSizeInGb': ramSizeInGb,
+    };
   }
 }
 
@@ -15864,6 +17517,18 @@ class InstanceHealthSummary {
       instanceName: json['instanceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceHealth = this.instanceHealth;
+    final instanceHealthReason = this.instanceHealthReason;
+    final instanceName = this.instanceName;
+    return {
+      if (instanceHealth != null) 'instanceHealth': instanceHealth.toValue(),
+      if (instanceHealthReason != null)
+        'instanceHealthReason': instanceHealthReason.toValue(),
+      if (instanceName != null) 'instanceName': instanceName,
+    };
+  }
 }
 
 enum InstanceMetricName {
@@ -15948,6 +17613,15 @@ class InstanceNetworking {
           .map((e) => InstancePortInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monthlyTransfer = this.monthlyTransfer;
+    final ports = this.ports;
+    return {
+      if (monthlyTransfer != null) 'monthlyTransfer': monthlyTransfer,
+      if (ports != null) 'ports': ports,
+    };
   }
 }
 
@@ -16157,6 +17831,31 @@ class InstancePortInfo {
       toPort: json['toPort'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessDirection = this.accessDirection;
+    final accessFrom = this.accessFrom;
+    final accessType = this.accessType;
+    final cidrListAliases = this.cidrListAliases;
+    final cidrs = this.cidrs;
+    final commonName = this.commonName;
+    final fromPort = this.fromPort;
+    final ipv6Cidrs = this.ipv6Cidrs;
+    final protocol = this.protocol;
+    final toPort = this.toPort;
+    return {
+      if (accessDirection != null) 'accessDirection': accessDirection.toValue(),
+      if (accessFrom != null) 'accessFrom': accessFrom,
+      if (accessType != null) 'accessType': accessType.toValue(),
+      if (cidrListAliases != null) 'cidrListAliases': cidrListAliases,
+      if (cidrs != null) 'cidrs': cidrs,
+      if (commonName != null) 'commonName': commonName,
+      if (fromPort != null) 'fromPort': fromPort,
+      if (ipv6Cidrs != null) 'ipv6Cidrs': ipv6Cidrs,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (toPort != null) 'toPort': toPort,
+    };
+  }
 }
 
 /// Describes open ports on an instance, the IP addresses allowed to connect to
@@ -16321,6 +18020,25 @@ class InstancePortState {
       toPort: json['toPort'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cidrListAliases = this.cidrListAliases;
+    final cidrs = this.cidrs;
+    final fromPort = this.fromPort;
+    final ipv6Cidrs = this.ipv6Cidrs;
+    final protocol = this.protocol;
+    final state = this.state;
+    final toPort = this.toPort;
+    return {
+      if (cidrListAliases != null) 'cidrListAliases': cidrListAliases,
+      if (cidrs != null) 'cidrs': cidrs,
+      if (fromPort != null) 'fromPort': fromPort,
+      if (ipv6Cidrs != null) 'ipv6Cidrs': ipv6Cidrs,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (toPort != null) 'toPort': toPort,
+    };
+  }
 }
 
 /// Describes an instance snapshot.
@@ -16437,6 +18155,43 @@ class InstanceSnapshot {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final fromAttachedDisks = this.fromAttachedDisks;
+    final fromBlueprintId = this.fromBlueprintId;
+    final fromBundleId = this.fromBundleId;
+    final fromInstanceArn = this.fromInstanceArn;
+    final fromInstanceName = this.fromInstanceName;
+    final isFromAutoSnapshot = this.isFromAutoSnapshot;
+    final location = this.location;
+    final name = this.name;
+    final progress = this.progress;
+    final resourceType = this.resourceType;
+    final sizeInGb = this.sizeInGb;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fromAttachedDisks != null) 'fromAttachedDisks': fromAttachedDisks,
+      if (fromBlueprintId != null) 'fromBlueprintId': fromBlueprintId,
+      if (fromBundleId != null) 'fromBundleId': fromBundleId,
+      if (fromInstanceArn != null) 'fromInstanceArn': fromInstanceArn,
+      if (fromInstanceName != null) 'fromInstanceName': fromInstanceName,
+      if (isFromAutoSnapshot != null) 'isFromAutoSnapshot': isFromAutoSnapshot,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (progress != null) 'progress': progress,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+      if (state != null) 'state': state.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes an instance snapshot.
@@ -16467,6 +18222,17 @@ class InstanceSnapshotInfo {
           .map((e) => DiskInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fromBlueprintId = this.fromBlueprintId;
+    final fromBundleId = this.fromBundleId;
+    final fromDiskInfo = this.fromDiskInfo;
+    return {
+      if (fromBlueprintId != null) 'fromBlueprintId': fromBlueprintId,
+      if (fromBundleId != null) 'fromBundleId': fromBundleId,
+      if (fromDiskInfo != null) 'fromDiskInfo': fromDiskInfo,
+    };
   }
 }
 
@@ -16522,6 +18288,15 @@ class InstanceState {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 enum IpAddressType {
@@ -16564,6 +18339,13 @@ class IsVpcPeeredResult {
     return IsVpcPeeredResult(
       isPeered: json['isPeered'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isPeered = this.isPeered;
+    return {
+      if (isPeered != null) 'isPeered': isPeered,
+    };
   }
 }
 
@@ -16626,6 +18408,27 @@ class KeyPair {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final fingerprint = this.fingerprint;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fingerprint != null) 'fingerprint': fingerprint,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -16779,6 +18582,54 @@ class LightsailDistribution {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ableToUpdateBundle = this.ableToUpdateBundle;
+    final alternativeDomainNames = this.alternativeDomainNames;
+    final arn = this.arn;
+    final bundleId = this.bundleId;
+    final cacheBehaviorSettings = this.cacheBehaviorSettings;
+    final cacheBehaviors = this.cacheBehaviors;
+    final certificateName = this.certificateName;
+    final createdAt = this.createdAt;
+    final defaultCacheBehavior = this.defaultCacheBehavior;
+    final domainName = this.domainName;
+    final ipAddressType = this.ipAddressType;
+    final isEnabled = this.isEnabled;
+    final location = this.location;
+    final name = this.name;
+    final origin = this.origin;
+    final originPublicDNS = this.originPublicDNS;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (ableToUpdateBundle != null) 'ableToUpdateBundle': ableToUpdateBundle,
+      if (alternativeDomainNames != null)
+        'alternativeDomainNames': alternativeDomainNames,
+      if (arn != null) 'arn': arn,
+      if (bundleId != null) 'bundleId': bundleId,
+      if (cacheBehaviorSettings != null)
+        'cacheBehaviorSettings': cacheBehaviorSettings,
+      if (cacheBehaviors != null) 'cacheBehaviors': cacheBehaviors,
+      if (certificateName != null) 'certificateName': certificateName,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (defaultCacheBehavior != null)
+        'defaultCacheBehavior': defaultCacheBehavior,
+      if (domainName != null) 'domainName': domainName,
+      if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
+      if (isEnabled != null) 'isEnabled': isEnabled,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (origin != null) 'origin': origin,
+      if (originPublicDNS != null) 'originPublicDNS': originPublicDNS,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (status != null) 'status': status,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes the Lightsail load balancer.
@@ -16912,6 +18763,49 @@ class LoadBalancer {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final configurationOptions = this.configurationOptions;
+    final createdAt = this.createdAt;
+    final dnsName = this.dnsName;
+    final healthCheckPath = this.healthCheckPath;
+    final instanceHealthSummary = this.instanceHealthSummary;
+    final instancePort = this.instancePort;
+    final ipAddressType = this.ipAddressType;
+    final location = this.location;
+    final name = this.name;
+    final protocol = this.protocol;
+    final publicPorts = this.publicPorts;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    final tlsCertificateSummaries = this.tlsCertificateSummaries;
+    return {
+      if (arn != null) 'arn': arn,
+      if (configurationOptions != null)
+        'configurationOptions':
+            configurationOptions.map((k, e) => MapEntry(k.toValue(), e)),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (dnsName != null) 'dnsName': dnsName,
+      if (healthCheckPath != null) 'healthCheckPath': healthCheckPath,
+      if (instanceHealthSummary != null)
+        'instanceHealthSummary': instanceHealthSummary,
+      if (instancePort != null) 'instancePort': instancePort,
+      if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (publicPorts != null) 'publicPorts': publicPorts,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+      if (tlsCertificateSummaries != null)
+        'tlsCertificateSummaries': tlsCertificateSummaries,
+    };
   }
 }
 
@@ -17357,6 +19251,64 @@ class LoadBalancerTlsCertificate {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final domainValidationRecords = this.domainValidationRecords;
+    final failureReason = this.failureReason;
+    final isAttached = this.isAttached;
+    final issuedAt = this.issuedAt;
+    final issuer = this.issuer;
+    final keyAlgorithm = this.keyAlgorithm;
+    final loadBalancerName = this.loadBalancerName;
+    final location = this.location;
+    final name = this.name;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    final renewalSummary = this.renewalSummary;
+    final resourceType = this.resourceType;
+    final revocationReason = this.revocationReason;
+    final revokedAt = this.revokedAt;
+    final serial = this.serial;
+    final signatureAlgorithm = this.signatureAlgorithm;
+    final status = this.status;
+    final subject = this.subject;
+    final subjectAlternativeNames = this.subjectAlternativeNames;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (domainName != null) 'domainName': domainName,
+      if (domainValidationRecords != null)
+        'domainValidationRecords': domainValidationRecords,
+      if (failureReason != null) 'failureReason': failureReason.toValue(),
+      if (isAttached != null) 'isAttached': isAttached,
+      if (issuedAt != null) 'issuedAt': unixTimestampToJson(issuedAt),
+      if (issuer != null) 'issuer': issuer,
+      if (keyAlgorithm != null) 'keyAlgorithm': keyAlgorithm,
+      if (loadBalancerName != null) 'loadBalancerName': loadBalancerName,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (notAfter != null) 'notAfter': unixTimestampToJson(notAfter),
+      if (notBefore != null) 'notBefore': unixTimestampToJson(notBefore),
+      if (renewalSummary != null) 'renewalSummary': renewalSummary,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (revocationReason != null)
+        'revocationReason': revocationReason.toValue(),
+      if (revokedAt != null) 'revokedAt': unixTimestampToJson(revokedAt),
+      if (serial != null) 'serial': serial,
+      if (signatureAlgorithm != null) 'signatureAlgorithm': signatureAlgorithm,
+      if (status != null) 'status': status.toValue(),
+      if (subject != null) 'subject': subject,
+      if (subjectAlternativeNames != null)
+        'subjectAlternativeNames': subjectAlternativeNames,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum LoadBalancerTlsCertificateDomainStatus {
@@ -17415,6 +19367,16 @@ class LoadBalancerTlsCertificateDomainValidationOption {
           ?.toLoadBalancerTlsCertificateDomainStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final validationStatus = this.validationStatus;
+    return {
+      if (domainName != null) 'domainName': domainName,
+      if (validationStatus != null)
+        'validationStatus': validationStatus.toValue(),
+    };
+  }
 }
 
 /// Describes the validation record of each domain name in the SSL/TLS
@@ -17454,6 +19416,22 @@ class LoadBalancerTlsCertificateDomainValidationRecord {
           ?.toLoadBalancerTlsCertificateDomainStatus(),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final name = this.name;
+    final type = this.type;
+    final validationStatus = this.validationStatus;
+    final value = this.value;
+    return {
+      if (domainName != null) 'domainName': domainName,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type,
+      if (validationStatus != null)
+        'validationStatus': validationStatus.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -17632,6 +19610,16 @@ class LoadBalancerTlsCertificateRenewalSummary {
           ?.toLoadBalancerTlsCertificateRenewalStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainValidationOptions = this.domainValidationOptions;
+    final renewalStatus = this.renewalStatus;
+    return {
+      if (domainValidationOptions != null)
+        'domainValidationOptions': domainValidationOptions,
+      if (renewalStatus != null) 'renewalStatus': renewalStatus.toValue(),
+    };
+  }
 }
 
 enum LoadBalancerTlsCertificateRevocationReason {
@@ -17783,6 +19771,15 @@ class LoadBalancerTlsCertificateSummary {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isAttached = this.isAttached;
+    final name = this.name;
+    return {
+      if (isAttached != null) 'isAttached': isAttached,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes a database log event.
@@ -17802,6 +19799,15 @@ class LogEvent {
       createdAt: timeStampFromJson(json['createdAt']),
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final message = this.message;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -17847,6 +19853,25 @@ class MetricDatapoint {
       timestamp: timeStampFromJson(json['timestamp']),
       unit: (json['unit'] as String?)?.toMetricUnit(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    final timestamp = this.timestamp;
+    final unit = this.unit;
+    return {
+      if (average != null) 'average': average,
+      if (maximum != null) 'maximum': maximum,
+      if (minimum != null) 'minimum': minimum,
+      if (sampleCount != null) 'sampleCount': sampleCount,
+      if (sum != null) 'sum': sum,
+      if (timestamp != null) 'timestamp': unixTimestampToJson(timestamp),
+      if (unit != null) 'unit': unit.toValue(),
+    };
   }
 }
 
@@ -18220,6 +20245,17 @@ class MonitoredResourceInfo {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 /// Describes the monthly data transfer in and out of your virtual private
@@ -18235,6 +20271,14 @@ class MonthlyTransfer {
     return MonthlyTransfer(
       gbPerMonthAllocated: json['gbPerMonthAllocated'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gbPerMonthAllocated = this.gbPerMonthAllocated;
+    return {
+      if (gbPerMonthAllocated != null)
+        'gbPerMonthAllocated': gbPerMonthAllocated,
+    };
   }
 }
 
@@ -18291,6 +20335,13 @@ class OpenInstancePublicPortsResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -18365,6 +20416,36 @@ class Operation {
       status: (json['status'] as String?)?.toOperationStatus(),
       statusChangedAt: timeStampFromJson(json['statusChangedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final errorCode = this.errorCode;
+    final errorDetails = this.errorDetails;
+    final id = this.id;
+    final isTerminal = this.isTerminal;
+    final location = this.location;
+    final operationDetails = this.operationDetails;
+    final operationType = this.operationType;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    final statusChangedAt = this.statusChangedAt;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorDetails != null) 'errorDetails': errorDetails,
+      if (id != null) 'id': id,
+      if (isTerminal != null) 'isTerminal': isTerminal,
+      if (location != null) 'location': location,
+      if (operationDetails != null) 'operationDetails': operationDetails,
+      if (operationType != null) 'operationType': operationType.toValue(),
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (statusChangedAt != null)
+        'statusChangedAt': unixTimestampToJson(statusChangedAt),
+    };
   }
 }
 
@@ -18824,6 +20905,19 @@ class Origin {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final protocolPolicy = this.protocolPolicy;
+    final regionName = this.regionName;
+    final resourceType = this.resourceType;
+    return {
+      if (name != null) 'name': name,
+      if (protocolPolicy != null) 'protocolPolicy': protocolPolicy.toValue(),
+      if (regionName != null) 'regionName': regionName.toValue(),
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 enum OriginProtocolPolicyEnum {
@@ -18894,6 +20988,15 @@ class PasswordData {
       keyPairName: json['keyPairName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ciphertext = this.ciphertext;
+    final keyPairName = this.keyPairName;
+    return {
+      if (ciphertext != null) 'ciphertext': ciphertext,
+      if (keyPairName != null) 'keyPairName': keyPairName,
+    };
+  }
 }
 
 class PeerVpcResult {
@@ -18911,6 +21014,13 @@ class PeerVpcResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -18937,6 +21047,18 @@ class PendingMaintenanceAction {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final currentApplyDate = this.currentApplyDate;
+    final description = this.description;
+    return {
+      if (action != null) 'action': action,
+      if (currentApplyDate != null)
+        'currentApplyDate': unixTimestampToJson(currentApplyDate),
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// Describes a pending database value modification.
@@ -18962,6 +21084,18 @@ class PendingModifiedRelationalDatabaseValues {
       engineVersion: json['engineVersion'] as String?,
       masterUserPassword: json['masterUserPassword'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupRetentionEnabled = this.backupRetentionEnabled;
+    final engineVersion = this.engineVersion;
+    final masterUserPassword = this.masterUserPassword;
+    return {
+      if (backupRetentionEnabled != null)
+        'backupRetentionEnabled': backupRetentionEnabled,
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (masterUserPassword != null) 'masterUserPassword': masterUserPassword,
+    };
   }
 }
 
@@ -19139,6 +21273,26 @@ class PortInfo {
     this.protocol,
     this.toPort,
   });
+  factory PortInfo.fromJson(Map<String, dynamic> json) {
+    return PortInfo(
+      cidrListAliases: (json['cidrListAliases'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      cidrs: (json['cidrs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      fromPort: json['fromPort'] as int?,
+      ipv6Cidrs: (json['ipv6Cidrs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      protocol: (json['protocol'] as String?)?.toNetworkProtocol(),
+      toPort: json['toPort'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final cidrListAliases = this.cidrListAliases;
     final cidrs = this.cidrs;
@@ -19240,6 +21394,13 @@ class PutAlarmResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class PutInstancePublicPortsResult {
@@ -19257,6 +21418,13 @@ class PutInstancePublicPortsResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -19322,6 +21490,13 @@ class RebootInstanceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class RebootRelationalDatabaseResult {
@@ -19340,6 +21515,13 @@ class RebootRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -19423,6 +21605,26 @@ class Region {
               .map((e) => AvailabilityZone.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final continentCode = this.continentCode;
+    final description = this.description;
+    final displayName = this.displayName;
+    final name = this.name;
+    final relationalDatabaseAvailabilityZones =
+        this.relationalDatabaseAvailabilityZones;
+    return {
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (continentCode != null) 'continentCode': continentCode,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (name != null) 'name': name.toValue(),
+      if (relationalDatabaseAvailabilityZones != null)
+        'relationalDatabaseAvailabilityZones':
+            relationalDatabaseAvailabilityZones,
+    };
   }
 }
 
@@ -19527,6 +21729,13 @@ class RegisterContainerImageResult {
               json['containerImage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerImage = this.containerImage;
+    return {
+      if (containerImage != null) 'containerImage': containerImage,
+    };
   }
 }
 
@@ -19706,6 +21915,74 @@ class RelationalDatabase {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final backupRetentionEnabled = this.backupRetentionEnabled;
+    final caCertificateIdentifier = this.caCertificateIdentifier;
+    final createdAt = this.createdAt;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final hardware = this.hardware;
+    final latestRestorableTime = this.latestRestorableTime;
+    final location = this.location;
+    final masterDatabaseName = this.masterDatabaseName;
+    final masterEndpoint = this.masterEndpoint;
+    final masterUsername = this.masterUsername;
+    final name = this.name;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    final pendingMaintenanceActions = this.pendingMaintenanceActions;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final publiclyAccessible = this.publiclyAccessible;
+    final relationalDatabaseBlueprintId = this.relationalDatabaseBlueprintId;
+    final relationalDatabaseBundleId = this.relationalDatabaseBundleId;
+    final resourceType = this.resourceType;
+    final secondaryAvailabilityZone = this.secondaryAvailabilityZone;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (backupRetentionEnabled != null)
+        'backupRetentionEnabled': backupRetentionEnabled,
+      if (caCertificateIdentifier != null)
+        'caCertificateIdentifier': caCertificateIdentifier,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (engine != null) 'engine': engine,
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (hardware != null) 'hardware': hardware,
+      if (latestRestorableTime != null)
+        'latestRestorableTime': unixTimestampToJson(latestRestorableTime),
+      if (location != null) 'location': location,
+      if (masterDatabaseName != null) 'masterDatabaseName': masterDatabaseName,
+      if (masterEndpoint != null) 'masterEndpoint': masterEndpoint,
+      if (masterUsername != null) 'masterUsername': masterUsername,
+      if (name != null) 'name': name,
+      if (parameterApplyStatus != null)
+        'parameterApplyStatus': parameterApplyStatus,
+      if (pendingMaintenanceActions != null)
+        'pendingMaintenanceActions': pendingMaintenanceActions,
+      if (pendingModifiedValues != null)
+        'pendingModifiedValues': pendingModifiedValues,
+      if (preferredBackupWindow != null)
+        'preferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'preferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
+      if (relationalDatabaseBlueprintId != null)
+        'relationalDatabaseBlueprintId': relationalDatabaseBlueprintId,
+      if (relationalDatabaseBundleId != null)
+        'relationalDatabaseBundleId': relationalDatabaseBundleId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (secondaryAvailabilityZone != null)
+        'secondaryAvailabilityZone': secondaryAvailabilityZone,
+      if (state != null) 'state': state,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes a database image, or blueprint. A blueprint describes the major
@@ -19749,6 +22026,24 @@ class RelationalDatabaseBlueprint {
       engineVersionDescription: json['engineVersionDescription'] as String?,
       isEngineDefault: json['isEngineDefault'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blueprintId = this.blueprintId;
+    final engine = this.engine;
+    final engineDescription = this.engineDescription;
+    final engineVersion = this.engineVersion;
+    final engineVersionDescription = this.engineVersionDescription;
+    final isEngineDefault = this.isEngineDefault;
+    return {
+      if (blueprintId != null) 'blueprintId': blueprintId,
+      if (engine != null) 'engine': engine.toValue(),
+      if (engineDescription != null) 'engineDescription': engineDescription,
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (engineVersionDescription != null)
+        'engineVersionDescription': engineVersionDescription,
+      if (isEngineDefault != null) 'isEngineDefault': isEngineDefault,
+    };
   }
 }
 
@@ -19807,6 +22102,30 @@ class RelationalDatabaseBundle {
       transferPerMonthInGb: json['transferPerMonthInGb'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final cpuCount = this.cpuCount;
+    final diskSizeInGb = this.diskSizeInGb;
+    final isActive = this.isActive;
+    final isEncrypted = this.isEncrypted;
+    final name = this.name;
+    final price = this.price;
+    final ramSizeInGb = this.ramSizeInGb;
+    final transferPerMonthInGb = this.transferPerMonthInGb;
+    return {
+      if (bundleId != null) 'bundleId': bundleId,
+      if (cpuCount != null) 'cpuCount': cpuCount,
+      if (diskSizeInGb != null) 'diskSizeInGb': diskSizeInGb,
+      if (isActive != null) 'isActive': isActive,
+      if (isEncrypted != null) 'isEncrypted': isEncrypted,
+      if (name != null) 'name': name,
+      if (price != null) 'price': price,
+      if (ramSizeInGb != null) 'ramSizeInGb': ramSizeInGb,
+      if (transferPerMonthInGb != null)
+        'transferPerMonthInGb': transferPerMonthInGb,
+    };
+  }
 }
 
 /// Describes an endpoint for a database.
@@ -19826,6 +22145,15 @@ class RelationalDatabaseEndpoint {
       address: json['address'] as String?,
       port: json['port'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    return {
+      if (address != null) 'address': address,
+      if (port != null) 'port': port,
+    };
   }
 }
 
@@ -19883,6 +22211,19 @@ class RelationalDatabaseEvent {
       resource: json['resource'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final eventCategories = this.eventCategories;
+    final message = this.message;
+    final resource = this.resource;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (eventCategories != null) 'eventCategories': eventCategories,
+      if (message != null) 'message': message,
+      if (resource != null) 'resource': resource,
+    };
+  }
 }
 
 /// Describes the hardware of a database.
@@ -19907,6 +22248,17 @@ class RelationalDatabaseHardware {
       diskSizeInGb: json['diskSizeInGb'] as int?,
       ramSizeInGb: json['ramSizeInGb'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cpuCount = this.cpuCount;
+    final diskSizeInGb = this.diskSizeInGb;
+    final ramSizeInGb = this.ramSizeInGb;
+    return {
+      if (cpuCount != null) 'cpuCount': cpuCount,
+      if (diskSizeInGb != null) 'diskSizeInGb': diskSizeInGb,
+      if (ramSizeInGb != null) 'ramSizeInGb': ramSizeInGb,
+    };
   }
 }
 
@@ -20167,6 +22519,46 @@ class RelationalDatabaseSnapshot {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final fromRelationalDatabaseArn = this.fromRelationalDatabaseArn;
+    final fromRelationalDatabaseBlueprintId =
+        this.fromRelationalDatabaseBlueprintId;
+    final fromRelationalDatabaseBundleId = this.fromRelationalDatabaseBundleId;
+    final fromRelationalDatabaseName = this.fromRelationalDatabaseName;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final sizeInGb = this.sizeInGb;
+    final state = this.state;
+    final supportCode = this.supportCode;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (engine != null) 'engine': engine,
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (fromRelationalDatabaseArn != null)
+        'fromRelationalDatabaseArn': fromRelationalDatabaseArn,
+      if (fromRelationalDatabaseBlueprintId != null)
+        'fromRelationalDatabaseBlueprintId': fromRelationalDatabaseBlueprintId,
+      if (fromRelationalDatabaseBundleId != null)
+        'fromRelationalDatabaseBundleId': fromRelationalDatabaseBundleId,
+      if (fromRelationalDatabaseName != null)
+        'fromRelationalDatabaseName': fromRelationalDatabaseName,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sizeInGb != null) 'sizeInGb': sizeInGb,
+      if (state != null) 'state': state,
+      if (supportCode != null) 'supportCode': supportCode,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ReleaseStaticIpResult {
@@ -20185,6 +22577,13 @@ class ReleaseStaticIpResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20288,6 +22687,21 @@ class RenewalSummary {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainValidationRecords = this.domainValidationRecords;
+    final renewalStatus = this.renewalStatus;
+    final renewalStatusReason = this.renewalStatusReason;
+    final updatedAt = this.updatedAt;
+    return {
+      if (domainValidationRecords != null)
+        'domainValidationRecords': domainValidationRecords,
+      if (renewalStatus != null) 'renewalStatus': renewalStatus.toValue(),
+      if (renewalStatusReason != null)
+        'renewalStatusReason': renewalStatusReason,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class ResetDistributionCacheResult {
@@ -20317,6 +22731,17 @@ class ResetDistributionCacheResult {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final operation = this.operation;
+    final status = this.status;
+    return {
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (operation != null) 'operation': operation,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the resource location.
@@ -20337,6 +22762,15 @@ class ResourceLocation {
       availabilityZone: json['availabilityZone'] as String?,
       regionName: (json['regionName'] as String?)?.toRegionName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final regionName = this.regionName;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (regionName != null) 'regionName': regionName.toValue(),
+    };
   }
 }
 
@@ -20363,6 +22797,17 @@ class ResourceRecord {
       type: json['type'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (type != null) 'type': type,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -20497,6 +22942,13 @@ class SendContactMethodVerificationResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class SetIpAddressTypeResult {
@@ -20515,6 +22967,13 @@ class SetIpAddressTypeResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20535,6 +22994,13 @@ class StartInstanceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class StartRelationalDatabaseResult {
@@ -20553,6 +23019,13 @@ class StartRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20616,6 +23089,29 @@ class StaticIp {
       supportCode: json['supportCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedTo = this.attachedTo;
+    final createdAt = this.createdAt;
+    final ipAddress = this.ipAddress;
+    final isAttached = this.isAttached;
+    final location = this.location;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final supportCode = this.supportCode;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attachedTo != null) 'attachedTo': attachedTo,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (isAttached != null) 'isAttached': isAttached,
+      if (location != null) 'location': location,
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (supportCode != null) 'supportCode': supportCode,
+    };
+  }
 }
 
 class StopInstanceResult {
@@ -20635,6 +23131,13 @@ class StopInstanceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class StopRelationalDatabaseResult {
@@ -20653,6 +23156,13 @@ class StopRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20713,6 +23223,13 @@ class TagResourceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class TestAlarmResult {
@@ -20731,6 +23248,13 @@ class TestAlarmResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20788,6 +23312,13 @@ class UnpeerVpcResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class UntagResourceResult {
@@ -20807,6 +23338,13 @@ class UntagResourceResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class UpdateContainerServiceResult {
@@ -20824,6 +23362,13 @@ class UpdateContainerServiceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerService = this.containerService;
+    return {
+      if (containerService != null) 'containerService': containerService,
+    };
+  }
 }
 
 class UpdateDistributionBundleResult {
@@ -20838,6 +23383,13 @@ class UpdateDistributionBundleResult {
           ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
   }
 }
 
@@ -20857,6 +23409,13 @@ class UpdateDistributionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'operation': operation,
+    };
+  }
 }
 
 class UpdateDomainEntryResult {
@@ -20875,6 +23434,13 @@ class UpdateDomainEntryResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 
@@ -20896,6 +23462,13 @@ class UpdateLoadBalancerAttributeResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class UpdateRelationalDatabaseParametersResult {
@@ -20916,6 +23489,13 @@ class UpdateRelationalDatabaseParametersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
+  }
 }
 
 class UpdateRelationalDatabaseResult {
@@ -20934,6 +23514,13 @@ class UpdateRelationalDatabaseResult {
           .map((e) => Operation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    return {
+      if (operations != null) 'operations': operations,
+    };
   }
 }
 

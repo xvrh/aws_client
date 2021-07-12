@@ -1416,6 +1416,15 @@ class AccessLog {
     this.s3BucketName,
     this.s3BucketPrefix,
   });
+  factory AccessLog.fromJson(Map<String, dynamic> json) {
+    return AccessLog(
+      enabled: json['Enabled'] as bool,
+      emitInterval: json['EmitInterval'] as int?,
+      s3BucketName: json['S3BucketName'] as String?,
+      s3BucketPrefix: json['S3BucketPrefix'] as String?,
+    );
+  }
+
   factory AccessLog.fromXml(_s.XmlElement elem) {
     return AccessLog(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -1447,6 +1456,15 @@ class AddAvailabilityZonesOutput {
   AddAvailabilityZonesOutput({
     this.availabilityZones,
   });
+  factory AddAvailabilityZonesOutput.fromJson(Map<String, dynamic> json) {
+    return AddAvailabilityZonesOutput(
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory AddAvailabilityZonesOutput.fromXml(_s.XmlElement elem) {
     return AddAvailabilityZonesOutput(
       availabilityZones: _s
@@ -1454,15 +1472,30 @@ class AddAvailabilityZonesOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+    };
+  }
 }
 
 /// Contains the output of AddTags.
 class AddTagsOutput {
   AddTagsOutput();
+  factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
+    return AddTagsOutput();
+  }
+
   factory AddTagsOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return AddTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1490,6 +1523,13 @@ class AdditionalAttribute {
     this.key,
     this.value,
   });
+  factory AdditionalAttribute.fromJson(Map<String, dynamic> json) {
+    return AdditionalAttribute(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory AdditionalAttribute.fromXml(_s.XmlElement elem) {
     return AdditionalAttribute(
       key: _s.extractXmlStringValue(elem, 'Key'),
@@ -1520,11 +1560,27 @@ class AppCookieStickinessPolicy {
     this.cookieName,
     this.policyName,
   });
+  factory AppCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
+    return AppCookieStickinessPolicy(
+      cookieName: json['CookieName'] as String?,
+      policyName: json['PolicyName'] as String?,
+    );
+  }
+
   factory AppCookieStickinessPolicy.fromXml(_s.XmlElement elem) {
     return AppCookieStickinessPolicy(
       cookieName: _s.extractXmlStringValue(elem, 'CookieName'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cookieName = this.cookieName;
+    final policyName = this.policyName;
+    return {
+      if (cookieName != null) 'CookieName': cookieName,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -1536,12 +1592,29 @@ class ApplySecurityGroupsToLoadBalancerOutput {
   ApplySecurityGroupsToLoadBalancerOutput({
     this.securityGroups,
   });
+  factory ApplySecurityGroupsToLoadBalancerOutput.fromJson(
+      Map<String, dynamic> json) {
+    return ApplySecurityGroupsToLoadBalancerOutput(
+      securityGroups: (json['SecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ApplySecurityGroupsToLoadBalancerOutput.fromXml(_s.XmlElement elem) {
     return ApplySecurityGroupsToLoadBalancerOutput(
       securityGroups: _s
           .extractXmlChild(elem, 'SecurityGroups')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroups = this.securityGroups;
+    return {
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+    };
   }
 }
 
@@ -1553,12 +1626,29 @@ class AttachLoadBalancerToSubnetsOutput {
   AttachLoadBalancerToSubnetsOutput({
     this.subnets,
   });
+  factory AttachLoadBalancerToSubnetsOutput.fromJson(
+      Map<String, dynamic> json) {
+    return AttachLoadBalancerToSubnetsOutput(
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory AttachLoadBalancerToSubnetsOutput.fromXml(_s.XmlElement elem) {
     return AttachLoadBalancerToSubnetsOutput(
       subnets: _s
           .extractXmlChild(elem, 'Subnets')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnets = this.subnets;
+    return {
+      if (subnets != null) 'Subnets': subnets,
+    };
   }
 }
 
@@ -1574,6 +1664,16 @@ class BackendServerDescription {
     this.instancePort,
     this.policyNames,
   });
+  factory BackendServerDescription.fromJson(Map<String, dynamic> json) {
+    return BackendServerDescription(
+      instancePort: json['InstancePort'] as int?,
+      policyNames: (json['PolicyNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory BackendServerDescription.fromXml(_s.XmlElement elem) {
     return BackendServerDescription(
       instancePort: _s.extractXmlIntValue(elem, 'InstancePort'),
@@ -1581,6 +1681,15 @@ class BackendServerDescription {
           .extractXmlChild(elem, 'PolicyNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instancePort = this.instancePort;
+    final policyNames = this.policyNames;
+    return {
+      if (instancePort != null) 'InstancePort': instancePort,
+      if (policyNames != null) 'PolicyNames': policyNames,
+    };
   }
 }
 
@@ -1592,12 +1701,27 @@ class ConfigureHealthCheckOutput {
   ConfigureHealthCheckOutput({
     this.healthCheck,
   });
+  factory ConfigureHealthCheckOutput.fromJson(Map<String, dynamic> json) {
+    return ConfigureHealthCheckOutput(
+      healthCheck: json['HealthCheck'] != null
+          ? HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ConfigureHealthCheckOutput.fromXml(_s.XmlElement elem) {
     return ConfigureHealthCheckOutput(
       healthCheck: _s
           .extractXmlChild(elem, 'HealthCheck')
           ?.let((e) => HealthCheck.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      if (healthCheck != null) 'HealthCheck': healthCheck,
+    };
   }
 }
 
@@ -1614,6 +1738,13 @@ class ConnectionDraining {
     required this.enabled,
     this.timeout,
   });
+  factory ConnectionDraining.fromJson(Map<String, dynamic> json) {
+    return ConnectionDraining(
+      enabled: json['Enabled'] as bool,
+      timeout: json['Timeout'] as int?,
+    );
+  }
+
   factory ConnectionDraining.fromXml(_s.XmlElement elem) {
     return ConnectionDraining(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -1640,6 +1771,12 @@ class ConnectionSettings {
   ConnectionSettings({
     required this.idleTimeout,
   });
+  factory ConnectionSettings.fromJson(Map<String, dynamic> json) {
+    return ConnectionSettings(
+      idleTimeout: json['IdleTimeout'] as int,
+    );
+  }
+
   factory ConnectionSettings.fromXml(_s.XmlElement elem) {
     return ConnectionSettings(
       idleTimeout: _s.extractXmlIntValue(elem, 'IdleTimeout')!,
@@ -1662,50 +1799,97 @@ class CreateAccessPointOutput {
   CreateAccessPointOutput({
     this.dNSName,
   });
+  factory CreateAccessPointOutput.fromJson(Map<String, dynamic> json) {
+    return CreateAccessPointOutput(
+      dNSName: json['DNSName'] as String?,
+    );
+  }
+
   factory CreateAccessPointOutput.fromXml(_s.XmlElement elem) {
     return CreateAccessPointOutput(
       dNSName: _s.extractXmlStringValue(elem, 'DNSName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    return {
+      if (dNSName != null) 'DNSName': dNSName,
+    };
   }
 }
 
 /// Contains the output for CreateAppCookieStickinessPolicy.
 class CreateAppCookieStickinessPolicyOutput {
   CreateAppCookieStickinessPolicyOutput();
+  factory CreateAppCookieStickinessPolicyOutput.fromJson(
+      Map<String, dynamic> _) {
+    return CreateAppCookieStickinessPolicyOutput();
+  }
+
   factory CreateAppCookieStickinessPolicyOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateAppCookieStickinessPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output for CreateLBCookieStickinessPolicy.
 class CreateLBCookieStickinessPolicyOutput {
   CreateLBCookieStickinessPolicyOutput();
+  factory CreateLBCookieStickinessPolicyOutput.fromJson(
+      Map<String, dynamic> _) {
+    return CreateLBCookieStickinessPolicyOutput();
+  }
+
   factory CreateLBCookieStickinessPolicyOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateLBCookieStickinessPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the parameters for CreateLoadBalancerListener.
 class CreateLoadBalancerListenerOutput {
   CreateLoadBalancerListenerOutput();
+  factory CreateLoadBalancerListenerOutput.fromJson(Map<String, dynamic> _) {
+    return CreateLoadBalancerListenerOutput();
+  }
+
   factory CreateLoadBalancerListenerOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateLoadBalancerListenerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of CreateLoadBalancerPolicy.
 class CreateLoadBalancerPolicyOutput {
   CreateLoadBalancerPolicyOutput();
+  factory CreateLoadBalancerPolicyOutput.fromJson(Map<String, dynamic> _) {
+    return CreateLoadBalancerPolicyOutput();
+  }
+
   factory CreateLoadBalancerPolicyOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateLoadBalancerPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1718,6 +1902,12 @@ class CrossZoneLoadBalancing {
   CrossZoneLoadBalancing({
     required this.enabled,
   });
+  factory CrossZoneLoadBalancing.fromJson(Map<String, dynamic> json) {
+    return CrossZoneLoadBalancing(
+      enabled: json['Enabled'] as bool,
+    );
+  }
+
   factory CrossZoneLoadBalancing.fromXml(_s.XmlElement elem) {
     return CrossZoneLoadBalancing(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -1735,30 +1925,54 @@ class CrossZoneLoadBalancing {
 /// Contains the output of DeleteLoadBalancer.
 class DeleteAccessPointOutput {
   DeleteAccessPointOutput();
+  factory DeleteAccessPointOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteAccessPointOutput();
+  }
+
   factory DeleteAccessPointOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteAccessPointOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of DeleteLoadBalancerListeners.
 class DeleteLoadBalancerListenerOutput {
   DeleteLoadBalancerListenerOutput();
+  factory DeleteLoadBalancerListenerOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteLoadBalancerListenerOutput();
+  }
+
   factory DeleteLoadBalancerListenerOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteLoadBalancerListenerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of DeleteLoadBalancerPolicy.
 class DeleteLoadBalancerPolicyOutput {
   DeleteLoadBalancerPolicyOutput();
+  factory DeleteLoadBalancerPolicyOutput.fromJson(Map<String, dynamic> _) {
+    return DeleteLoadBalancerPolicyOutput();
+  }
+
   factory DeleteLoadBalancerPolicyOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteLoadBalancerPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1770,11 +1984,27 @@ class DeregisterEndPointsOutput {
   DeregisterEndPointsOutput({
     this.instances,
   });
+  factory DeregisterEndPointsOutput.fromJson(Map<String, dynamic> json) {
+    return DeregisterEndPointsOutput(
+      instances: (json['Instances'] as List?)
+          ?.whereNotNull()
+          .map((e) => Instance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DeregisterEndPointsOutput.fromXml(_s.XmlElement elem) {
     return DeregisterEndPointsOutput(
       instances: _s.extractXmlChild(elem, 'Instances')?.let((elem) =>
           elem.findElements('member').map((c) => Instance.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
   }
 }
 
@@ -1791,6 +2021,17 @@ class DescribeAccessPointsOutput {
     this.loadBalancerDescriptions,
     this.nextMarker,
   });
+  factory DescribeAccessPointsOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAccessPointsOutput(
+      loadBalancerDescriptions: (json['LoadBalancerDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LoadBalancerDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory DescribeAccessPointsOutput.fromXml(_s.XmlElement elem) {
     return DescribeAccessPointsOutput(
       loadBalancerDescriptions: _s
@@ -1801,6 +2042,16 @@ class DescribeAccessPointsOutput {
               .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerDescriptions = this.loadBalancerDescriptions;
+    final nextMarker = this.nextMarker;
+    return {
+      if (loadBalancerDescriptions != null)
+        'LoadBalancerDescriptions': loadBalancerDescriptions,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -1816,12 +2067,31 @@ class DescribeAccountLimitsOutput {
     this.limits,
     this.nextMarker,
   });
+  factory DescribeAccountLimitsOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeAccountLimitsOutput(
+      limits: (json['Limits'] as List?)
+          ?.whereNotNull()
+          .map((e) => Limit.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory DescribeAccountLimitsOutput.fromXml(_s.XmlElement elem) {
     return DescribeAccountLimitsOutput(
       limits: _s.extractXmlChild(elem, 'Limits')?.let((elem) =>
           elem.findElements('member').map((c) => Limit.fromXml(c)).toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final limits = this.limits;
+    final nextMarker = this.nextMarker;
+    return {
+      if (limits != null) 'Limits': limits,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -1833,6 +2103,15 @@ class DescribeEndPointStateOutput {
   DescribeEndPointStateOutput({
     this.instanceStates,
   });
+  factory DescribeEndPointStateOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeEndPointStateOutput(
+      instanceStates: (json['InstanceStates'] as List?)
+          ?.whereNotNull()
+          .map((e) => InstanceState.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeEndPointStateOutput.fromXml(_s.XmlElement elem) {
     return DescribeEndPointStateOutput(
       instanceStates: _s.extractXmlChild(elem, 'InstanceStates')?.let((elem) =>
@@ -1841,6 +2120,13 @@ class DescribeEndPointStateOutput {
               .map((c) => InstanceState.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceStates = this.instanceStates;
+    return {
+      if (instanceStates != null) 'InstanceStates': instanceStates,
+    };
   }
 }
 
@@ -1852,12 +2138,30 @@ class DescribeLoadBalancerAttributesOutput {
   DescribeLoadBalancerAttributesOutput({
     this.loadBalancerAttributes,
   });
+  factory DescribeLoadBalancerAttributesOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeLoadBalancerAttributesOutput(
+      loadBalancerAttributes: json['LoadBalancerAttributes'] != null
+          ? LoadBalancerAttributes.fromJson(
+              json['LoadBalancerAttributes'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeLoadBalancerAttributesOutput.fromXml(_s.XmlElement elem) {
     return DescribeLoadBalancerAttributesOutput(
       loadBalancerAttributes: _s
           .extractXmlChild(elem, 'LoadBalancerAttributes')
           ?.let((e) => LoadBalancerAttributes.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerAttributes = this.loadBalancerAttributes;
+    return {
+      if (loadBalancerAttributes != null)
+        'LoadBalancerAttributes': loadBalancerAttributes,
+    };
   }
 }
 
@@ -1869,6 +2173,16 @@ class DescribeLoadBalancerPoliciesOutput {
   DescribeLoadBalancerPoliciesOutput({
     this.policyDescriptions,
   });
+  factory DescribeLoadBalancerPoliciesOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeLoadBalancerPoliciesOutput(
+      policyDescriptions: (json['PolicyDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeLoadBalancerPoliciesOutput.fromXml(_s.XmlElement elem) {
     return DescribeLoadBalancerPoliciesOutput(
       policyDescriptions: _s.extractXmlChild(elem, 'PolicyDescriptions')?.let(
@@ -1877,6 +2191,13 @@ class DescribeLoadBalancerPoliciesOutput {
               .map((c) => PolicyDescription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDescriptions = this.policyDescriptions;
+    return {
+      if (policyDescriptions != null) 'PolicyDescriptions': policyDescriptions,
+    };
   }
 }
 
@@ -1888,6 +2209,16 @@ class DescribeLoadBalancerPolicyTypesOutput {
   DescribeLoadBalancerPolicyTypesOutput({
     this.policyTypeDescriptions,
   });
+  factory DescribeLoadBalancerPolicyTypesOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeLoadBalancerPolicyTypesOutput(
+      policyTypeDescriptions: (json['PolicyTypeDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => PolicyTypeDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeLoadBalancerPolicyTypesOutput.fromXml(_s.XmlElement elem) {
     return DescribeLoadBalancerPolicyTypesOutput(
       policyTypeDescriptions: _s
@@ -1897,6 +2228,14 @@ class DescribeLoadBalancerPolicyTypesOutput {
               .map((c) => PolicyTypeDescription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyTypeDescriptions = this.policyTypeDescriptions;
+    return {
+      if (policyTypeDescriptions != null)
+        'PolicyTypeDescriptions': policyTypeDescriptions,
+    };
   }
 }
 
@@ -1908,6 +2247,15 @@ class DescribeTagsOutput {
   DescribeTagsOutput({
     this.tagDescriptions,
   });
+  factory DescribeTagsOutput.fromJson(Map<String, dynamic> json) {
+    return DescribeTagsOutput(
+      tagDescriptions: (json['TagDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => TagDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeTagsOutput.fromXml(_s.XmlElement elem) {
     return DescribeTagsOutput(
       tagDescriptions: _s.extractXmlChild(elem, 'TagDescriptions')?.let(
@@ -1916,6 +2264,13 @@ class DescribeTagsOutput {
               .map((c) => TagDescription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagDescriptions = this.tagDescriptions;
+    return {
+      if (tagDescriptions != null) 'TagDescriptions': tagDescriptions,
+    };
   }
 }
 
@@ -1927,12 +2282,29 @@ class DetachLoadBalancerFromSubnetsOutput {
   DetachLoadBalancerFromSubnetsOutput({
     this.subnets,
   });
+  factory DetachLoadBalancerFromSubnetsOutput.fromJson(
+      Map<String, dynamic> json) {
+    return DetachLoadBalancerFromSubnetsOutput(
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory DetachLoadBalancerFromSubnetsOutput.fromXml(_s.XmlElement elem) {
     return DetachLoadBalancerFromSubnetsOutput(
       subnets: _s
           .extractXmlChild(elem, 'Subnets')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnets = this.subnets;
+    return {
+      if (subnets != null) 'Subnets': subnets,
+    };
   }
 }
 
@@ -1983,6 +2355,16 @@ class HealthCheck {
     required this.timeout,
     required this.unhealthyThreshold,
   });
+  factory HealthCheck.fromJson(Map<String, dynamic> json) {
+    return HealthCheck(
+      healthyThreshold: json['HealthyThreshold'] as int,
+      interval: json['Interval'] as int,
+      target: json['Target'] as String,
+      timeout: json['Timeout'] as int,
+      unhealthyThreshold: json['UnhealthyThreshold'] as int,
+    );
+  }
+
   factory HealthCheck.fromXml(_s.XmlElement elem) {
     return HealthCheck(
       healthyThreshold: _s.extractXmlIntValue(elem, 'HealthyThreshold')!,
@@ -2017,6 +2399,12 @@ class Instance {
   Instance({
     this.instanceId,
   });
+  factory Instance.fromJson(Map<String, dynamic> json) {
+    return Instance(
+      instanceId: json['InstanceId'] as String?,
+    );
+  }
+
   factory Instance.fromXml(_s.XmlElement elem) {
     return Instance(
       instanceId: _s.extractXmlStringValue(elem, 'InstanceId'),
@@ -2100,6 +2488,15 @@ class InstanceState {
     this.reasonCode,
     this.state,
   });
+  factory InstanceState.fromJson(Map<String, dynamic> json) {
+    return InstanceState(
+      description: json['Description'] as String?,
+      instanceId: json['InstanceId'] as String?,
+      reasonCode: json['ReasonCode'] as String?,
+      state: json['State'] as String?,
+    );
+  }
+
   factory InstanceState.fromXml(_s.XmlElement elem) {
     return InstanceState(
       description: _s.extractXmlStringValue(elem, 'Description'),
@@ -2107,6 +2504,19 @@ class InstanceState {
       reasonCode: _s.extractXmlStringValue(elem, 'ReasonCode'),
       state: _s.extractXmlStringValue(elem, 'State'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final instanceId = this.instanceId;
+    final reasonCode = this.reasonCode;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (reasonCode != null) 'ReasonCode': reasonCode,
+      if (state != null) 'State': state,
+    };
   }
 }
 
@@ -2125,12 +2535,29 @@ class LBCookieStickinessPolicy {
     this.cookieExpirationPeriod,
     this.policyName,
   });
+  factory LBCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
+    return LBCookieStickinessPolicy(
+      cookieExpirationPeriod: json['CookieExpirationPeriod'] as int?,
+      policyName: json['PolicyName'] as String?,
+    );
+  }
+
   factory LBCookieStickinessPolicy.fromXml(_s.XmlElement elem) {
     return LBCookieStickinessPolicy(
       cookieExpirationPeriod:
           _s.extractXmlIntValue(elem, 'CookieExpirationPeriod'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cookieExpirationPeriod = this.cookieExpirationPeriod;
+    final policyName = this.policyName;
+    return {
+      if (cookieExpirationPeriod != null)
+        'CookieExpirationPeriod': cookieExpirationPeriod,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -2159,11 +2586,27 @@ class Limit {
     this.max,
     this.name,
   });
+  factory Limit.fromJson(Map<String, dynamic> json) {
+    return Limit(
+      max: json['Max'] as String?,
+      name: json['Name'] as String?,
+    );
+  }
+
   factory Limit.fromXml(_s.XmlElement elem) {
     return Limit(
       max: _s.extractXmlStringValue(elem, 'Max'),
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final name = this.name;
+    return {
+      if (max != null) 'Max': max,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -2213,6 +2656,16 @@ class Listener {
     this.instanceProtocol,
     this.sSLCertificateId,
   });
+  factory Listener.fromJson(Map<String, dynamic> json) {
+    return Listener(
+      instancePort: json['InstancePort'] as int,
+      loadBalancerPort: json['LoadBalancerPort'] as int,
+      protocol: json['Protocol'] as String,
+      instanceProtocol: json['InstanceProtocol'] as String?,
+      sSLCertificateId: json['SSLCertificateId'] as String?,
+    );
+  }
+
   factory Listener.fromXml(_s.XmlElement elem) {
     return Listener(
       instancePort: _s.extractXmlIntValue(elem, 'InstancePort')!,
@@ -2251,6 +2704,18 @@ class ListenerDescription {
     this.listener,
     this.policyNames,
   });
+  factory ListenerDescription.fromJson(Map<String, dynamic> json) {
+    return ListenerDescription(
+      listener: json['Listener'] != null
+          ? Listener.fromJson(json['Listener'] as Map<String, dynamic>)
+          : null,
+      policyNames: (json['PolicyNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListenerDescription.fromXml(_s.XmlElement elem) {
     return ListenerDescription(
       listener:
@@ -2259,6 +2724,15 @@ class ListenerDescription {
           .extractXmlChild(elem, 'PolicyNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    final policyNames = this.policyNames;
+    return {
+      if (listener != null) 'Listener': listener,
+      if (policyNames != null) 'PolicyNames': policyNames,
+    };
   }
 }
 
@@ -2309,6 +2783,30 @@ class LoadBalancerAttributes {
     this.connectionSettings,
     this.crossZoneLoadBalancing,
   });
+  factory LoadBalancerAttributes.fromJson(Map<String, dynamic> json) {
+    return LoadBalancerAttributes(
+      accessLog: json['AccessLog'] != null
+          ? AccessLog.fromJson(json['AccessLog'] as Map<String, dynamic>)
+          : null,
+      additionalAttributes: (json['AdditionalAttributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => AdditionalAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      connectionDraining: json['ConnectionDraining'] != null
+          ? ConnectionDraining.fromJson(
+              json['ConnectionDraining'] as Map<String, dynamic>)
+          : null,
+      connectionSettings: json['ConnectionSettings'] != null
+          ? ConnectionSettings.fromJson(
+              json['ConnectionSettings'] as Map<String, dynamic>)
+          : null,
+      crossZoneLoadBalancing: json['CrossZoneLoadBalancing'] != null
+          ? CrossZoneLoadBalancing.fromJson(
+              json['CrossZoneLoadBalancing'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory LoadBalancerAttributes.fromXml(_s.XmlElement elem) {
     return LoadBalancerAttributes(
       accessLog: _s
@@ -2432,6 +2930,53 @@ class LoadBalancerDescription {
     this.subnets,
     this.vPCId,
   });
+  factory LoadBalancerDescription.fromJson(Map<String, dynamic> json) {
+    return LoadBalancerDescription(
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      backendServerDescriptions: (json['BackendServerDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              BackendServerDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      canonicalHostedZoneName: json['CanonicalHostedZoneName'] as String?,
+      canonicalHostedZoneNameID: json['CanonicalHostedZoneNameID'] as String?,
+      createdTime: timeStampFromJson(json['CreatedTime']),
+      dNSName: json['DNSName'] as String?,
+      healthCheck: json['HealthCheck'] != null
+          ? HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>)
+          : null,
+      instances: (json['Instances'] as List?)
+          ?.whereNotNull()
+          .map((e) => Instance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      listenerDescriptions: (json['ListenerDescriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ListenerDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      loadBalancerName: json['LoadBalancerName'] as String?,
+      policies: json['Policies'] != null
+          ? Policies.fromJson(json['Policies'] as Map<String, dynamic>)
+          : null,
+      scheme: json['Scheme'] as String?,
+      securityGroups: (json['SecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      sourceSecurityGroup: json['SourceSecurityGroup'] != null
+          ? SourceSecurityGroup.fromJson(
+              json['SourceSecurityGroup'] as Map<String, dynamic>)
+          : null,
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      vPCId: json['VPCId'] as String?,
+    );
+  }
+
   factory LoadBalancerDescription.fromXml(_s.XmlElement elem) {
     return LoadBalancerDescription(
       availabilityZones: _s
@@ -2476,6 +3021,48 @@ class LoadBalancerDescription {
       vPCId: _s.extractXmlStringValue(elem, 'VPCId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final backendServerDescriptions = this.backendServerDescriptions;
+    final canonicalHostedZoneName = this.canonicalHostedZoneName;
+    final canonicalHostedZoneNameID = this.canonicalHostedZoneNameID;
+    final createdTime = this.createdTime;
+    final dNSName = this.dNSName;
+    final healthCheck = this.healthCheck;
+    final instances = this.instances;
+    final listenerDescriptions = this.listenerDescriptions;
+    final loadBalancerName = this.loadBalancerName;
+    final policies = this.policies;
+    final scheme = this.scheme;
+    final securityGroups = this.securityGroups;
+    final sourceSecurityGroup = this.sourceSecurityGroup;
+    final subnets = this.subnets;
+    final vPCId = this.vPCId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (backendServerDescriptions != null)
+        'BackendServerDescriptions': backendServerDescriptions,
+      if (canonicalHostedZoneName != null)
+        'CanonicalHostedZoneName': canonicalHostedZoneName,
+      if (canonicalHostedZoneNameID != null)
+        'CanonicalHostedZoneNameID': canonicalHostedZoneNameID,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dNSName != null) 'DNSName': dNSName,
+      if (healthCheck != null) 'HealthCheck': healthCheck,
+      if (instances != null) 'Instances': instances,
+      if (listenerDescriptions != null)
+        'ListenerDescriptions': listenerDescriptions,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (policies != null) 'Policies': policies,
+      if (scheme != null) 'Scheme': scheme,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (sourceSecurityGroup != null)
+        'SourceSecurityGroup': sourceSecurityGroup,
+      if (subnets != null) 'Subnets': subnets,
+      if (vPCId != null) 'VPCId': vPCId,
+    };
+  }
 }
 
 /// Contains the output of ModifyLoadBalancerAttributes.
@@ -2490,6 +3077,17 @@ class ModifyLoadBalancerAttributesOutput {
     this.loadBalancerAttributes,
     this.loadBalancerName,
   });
+  factory ModifyLoadBalancerAttributesOutput.fromJson(
+      Map<String, dynamic> json) {
+    return ModifyLoadBalancerAttributesOutput(
+      loadBalancerAttributes: json['LoadBalancerAttributes'] != null
+          ? LoadBalancerAttributes.fromJson(
+              json['LoadBalancerAttributes'] as Map<String, dynamic>)
+          : null,
+      loadBalancerName: json['LoadBalancerName'] as String?,
+    );
+  }
+
   factory ModifyLoadBalancerAttributesOutput.fromXml(_s.XmlElement elem) {
     return ModifyLoadBalancerAttributesOutput(
       loadBalancerAttributes: _s
@@ -2497,6 +3095,16 @@ class ModifyLoadBalancerAttributesOutput {
           ?.let((e) => LoadBalancerAttributes.fromXml(e)),
       loadBalancerName: _s.extractXmlStringValue(elem, 'LoadBalancerName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerAttributes = this.loadBalancerAttributes;
+    final loadBalancerName = this.loadBalancerName;
+    return {
+      if (loadBalancerAttributes != null)
+        'LoadBalancerAttributes': loadBalancerAttributes,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+    };
   }
 }
 
@@ -2517,6 +3125,26 @@ class Policies {
     this.lBCookieStickinessPolicies,
     this.otherPolicies,
   });
+  factory Policies.fromJson(Map<String, dynamic> json) {
+    return Policies(
+      appCookieStickinessPolicies:
+          (json['AppCookieStickinessPolicies'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  AppCookieStickinessPolicy.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      lBCookieStickinessPolicies: (json['LBCookieStickinessPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LBCookieStickinessPolicy.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      otherPolicies: (json['OtherPolicies'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory Policies.fromXml(_s.XmlElement elem) {
     return Policies(
       appCookieStickinessPolicies: _s
@@ -2536,6 +3164,19 @@ class Policies {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appCookieStickinessPolicies = this.appCookieStickinessPolicies;
+    final lBCookieStickinessPolicies = this.lBCookieStickinessPolicies;
+    final otherPolicies = this.otherPolicies;
+    return {
+      if (appCookieStickinessPolicies != null)
+        'AppCookieStickinessPolicies': appCookieStickinessPolicies,
+      if (lBCookieStickinessPolicies != null)
+        'LBCookieStickinessPolicies': lBCookieStickinessPolicies,
+      if (otherPolicies != null) 'OtherPolicies': otherPolicies,
+    };
+  }
 }
 
 /// Information about a policy attribute.
@@ -2550,6 +3191,13 @@ class PolicyAttribute {
     this.attributeName,
     this.attributeValue,
   });
+  factory PolicyAttribute.fromJson(Map<String, dynamic> json) {
+    return PolicyAttribute(
+      attributeName: json['AttributeName'] as String?,
+      attributeValue: json['AttributeValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attributeName = this.attributeName;
     final attributeValue = this.attributeValue;
@@ -2572,11 +3220,27 @@ class PolicyAttributeDescription {
     this.attributeName,
     this.attributeValue,
   });
+  factory PolicyAttributeDescription.fromJson(Map<String, dynamic> json) {
+    return PolicyAttributeDescription(
+      attributeName: json['AttributeName'] as String?,
+      attributeValue: json['AttributeValue'] as String?,
+    );
+  }
+
   factory PolicyAttributeDescription.fromXml(_s.XmlElement elem) {
     return PolicyAttributeDescription(
       attributeName: _s.extractXmlStringValue(elem, 'AttributeName'),
       attributeValue: _s.extractXmlStringValue(elem, 'AttributeValue'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValue = this.attributeValue;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeValue != null) 'AttributeValue': attributeValue,
+    };
   }
 }
 
@@ -2622,6 +3286,16 @@ class PolicyAttributeTypeDescription {
     this.defaultValue,
     this.description,
   });
+  factory PolicyAttributeTypeDescription.fromJson(Map<String, dynamic> json) {
+    return PolicyAttributeTypeDescription(
+      attributeName: json['AttributeName'] as String?,
+      attributeType: json['AttributeType'] as String?,
+      cardinality: json['Cardinality'] as String?,
+      defaultValue: json['DefaultValue'] as String?,
+      description: json['Description'] as String?,
+    );
+  }
+
   factory PolicyAttributeTypeDescription.fromXml(_s.XmlElement elem) {
     return PolicyAttributeTypeDescription(
       attributeName: _s.extractXmlStringValue(elem, 'AttributeName'),
@@ -2630,6 +3304,21 @@ class PolicyAttributeTypeDescription {
       defaultValue: _s.extractXmlStringValue(elem, 'DefaultValue'),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeType = this.attributeType;
+    final cardinality = this.cardinality;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeType != null) 'AttributeType': attributeType,
+      if (cardinality != null) 'Cardinality': cardinality,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -2649,6 +3338,19 @@ class PolicyDescription {
     this.policyName,
     this.policyTypeName,
   });
+  factory PolicyDescription.fromJson(Map<String, dynamic> json) {
+    return PolicyDescription(
+      policyAttributeDescriptions: (json['PolicyAttributeDescriptions']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              PolicyAttributeDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      policyName: json['PolicyName'] as String?,
+      policyTypeName: json['PolicyTypeName'] as String?,
+    );
+  }
+
   factory PolicyDescription.fromXml(_s.XmlElement elem) {
     return PolicyDescription(
       policyAttributeDescriptions: _s
@@ -2660,6 +3362,18 @@ class PolicyDescription {
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
       policyTypeName: _s.extractXmlStringValue(elem, 'PolicyTypeName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyAttributeDescriptions = this.policyAttributeDescriptions;
+    final policyName = this.policyName;
+    final policyTypeName = this.policyTypeName;
+    return {
+      if (policyAttributeDescriptions != null)
+        'PolicyAttributeDescriptions': policyAttributeDescriptions,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyTypeName != null) 'PolicyTypeName': policyTypeName,
+    };
   }
 }
 
@@ -2680,6 +3394,19 @@ class PolicyTypeDescription {
     this.policyAttributeTypeDescriptions,
     this.policyTypeName,
   });
+  factory PolicyTypeDescription.fromJson(Map<String, dynamic> json) {
+    return PolicyTypeDescription(
+      description: json['Description'] as String?,
+      policyAttributeTypeDescriptions:
+          (json['PolicyAttributeTypeDescriptions'] as List?)
+              ?.whereNotNull()
+              .map((e) => PolicyAttributeTypeDescription.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      policyTypeName: json['PolicyTypeName'] as String?,
+    );
+  }
+
   factory PolicyTypeDescription.fromXml(_s.XmlElement elem) {
     return PolicyTypeDescription(
       description: _s.extractXmlStringValue(elem, 'Description'),
@@ -2692,6 +3419,19 @@ class PolicyTypeDescription {
       policyTypeName: _s.extractXmlStringValue(elem, 'PolicyTypeName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final policyAttributeTypeDescriptions =
+        this.policyAttributeTypeDescriptions;
+    final policyTypeName = this.policyTypeName;
+    return {
+      if (description != null) 'Description': description,
+      if (policyAttributeTypeDescriptions != null)
+        'PolicyAttributeTypeDescriptions': policyAttributeTypeDescriptions,
+      if (policyTypeName != null) 'PolicyTypeName': policyTypeName,
+    };
+  }
 }
 
 /// Contains the output of RegisterInstancesWithLoadBalancer.
@@ -2702,11 +3442,27 @@ class RegisterEndPointsOutput {
   RegisterEndPointsOutput({
     this.instances,
   });
+  factory RegisterEndPointsOutput.fromJson(Map<String, dynamic> json) {
+    return RegisterEndPointsOutput(
+      instances: (json['Instances'] as List?)
+          ?.whereNotNull()
+          .map((e) => Instance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory RegisterEndPointsOutput.fromXml(_s.XmlElement elem) {
     return RegisterEndPointsOutput(
       instances: _s.extractXmlChild(elem, 'Instances')?.let((elem) =>
           elem.findElements('member').map((c) => Instance.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
   }
 }
 
@@ -2718,6 +3474,15 @@ class RemoveAvailabilityZonesOutput {
   RemoveAvailabilityZonesOutput({
     this.availabilityZones,
   });
+  factory RemoveAvailabilityZonesOutput.fromJson(Map<String, dynamic> json) {
+    return RemoveAvailabilityZonesOutput(
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory RemoveAvailabilityZonesOutput.fromXml(_s.XmlElement elem) {
     return RemoveAvailabilityZonesOutput(
       availabilityZones: _s
@@ -2725,45 +3490,87 @@ class RemoveAvailabilityZonesOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+    };
+  }
 }
 
 /// Contains the output of RemoveTags.
 class RemoveTagsOutput {
   RemoveTagsOutput();
+  factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
+    return RemoveTagsOutput();
+  }
+
   factory RemoveTagsOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return RemoveTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of SetLoadBalancerListenerSSLCertificate.
 class SetLoadBalancerListenerSSLCertificateOutput {
   SetLoadBalancerListenerSSLCertificateOutput();
+  factory SetLoadBalancerListenerSSLCertificateOutput.fromJson(
+      Map<String, dynamic> _) {
+    return SetLoadBalancerListenerSSLCertificateOutput();
+  }
+
   factory SetLoadBalancerListenerSSLCertificateOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetLoadBalancerListenerSSLCertificateOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of SetLoadBalancerPoliciesForBackendServer.
 class SetLoadBalancerPoliciesForBackendServerOutput {
   SetLoadBalancerPoliciesForBackendServerOutput();
+  factory SetLoadBalancerPoliciesForBackendServerOutput.fromJson(
+      Map<String, dynamic> _) {
+    return SetLoadBalancerPoliciesForBackendServerOutput();
+  }
+
   factory SetLoadBalancerPoliciesForBackendServerOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetLoadBalancerPoliciesForBackendServerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// Contains the output of SetLoadBalancePoliciesOfListener.
 class SetLoadBalancerPoliciesOfListenerOutput {
   SetLoadBalancerPoliciesOfListenerOutput();
+  factory SetLoadBalancerPoliciesOfListenerOutput.fromJson(
+      Map<String, dynamic> _) {
+    return SetLoadBalancerPoliciesOfListenerOutput();
+  }
+
   factory SetLoadBalancerPoliciesOfListenerOutput.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetLoadBalancerPoliciesOfListenerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2779,11 +3586,27 @@ class SourceSecurityGroup {
     this.groupName,
     this.ownerAlias,
   });
+  factory SourceSecurityGroup.fromJson(Map<String, dynamic> json) {
+    return SourceSecurityGroup(
+      groupName: json['GroupName'] as String?,
+      ownerAlias: json['OwnerAlias'] as String?,
+    );
+  }
+
   factory SourceSecurityGroup.fromXml(_s.XmlElement elem) {
     return SourceSecurityGroup(
       groupName: _s.extractXmlStringValue(elem, 'GroupName'),
       ownerAlias: _s.extractXmlStringValue(elem, 'OwnerAlias'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final ownerAlias = this.ownerAlias;
+    return {
+      if (groupName != null) 'GroupName': groupName,
+      if (ownerAlias != null) 'OwnerAlias': ownerAlias,
+    };
   }
 }
 
@@ -2799,6 +3622,13 @@ class Tag {
     required this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key')!,
@@ -2828,12 +3658,31 @@ class TagDescription {
     this.loadBalancerName,
     this.tags,
   });
+  factory TagDescription.fromJson(Map<String, dynamic> json) {
+    return TagDescription(
+      loadBalancerName: json['LoadBalancerName'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory TagDescription.fromXml(_s.XmlElement elem) {
     return TagDescription(
       loadBalancerName: _s.extractXmlStringValue(elem, 'LoadBalancerName'),
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerName = this.loadBalancerName;
+    final tags = this.tags;
+    return {
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2845,6 +3694,12 @@ class TagKeyOnly {
   TagKeyOnly({
     this.key,
   });
+  factory TagKeyOnly.fromJson(Map<String, dynamic> json) {
+    return TagKeyOnly(
+      key: json['Key'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     return {

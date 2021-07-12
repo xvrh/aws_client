@@ -1880,6 +1880,17 @@ class ActiveTrustedSigners {
     required this.quantity,
     this.items,
   });
+  factory ActiveTrustedSigners.fromJson(Map<String, dynamic> json) {
+    return ActiveTrustedSigners(
+      enabled: json['Enabled'] as bool,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => Signer.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ActiveTrustedSigners.fromXml(_s.XmlElement elem) {
     return ActiveTrustedSigners(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -1887,6 +1898,17 @@ class ActiveTrustedSigners {
       items: _s.extractXmlChild(elem, 'Items')?.let((elem) =>
           elem.findElements('Signer').map((c) => Signer.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Enabled': enabled,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 }
 
@@ -1937,6 +1959,14 @@ class AliasICPRecordal {
     this.cname,
     this.iCPRecordalStatus,
   });
+  factory AliasICPRecordal.fromJson(Map<String, dynamic> json) {
+    return AliasICPRecordal(
+      cname: json['CNAME'] as String?,
+      iCPRecordalStatus:
+          (json['ICPRecordalStatus'] as String?)?.toICPRecordalStatus(),
+    );
+  }
+
   factory AliasICPRecordal.fromXml(_s.XmlElement elem) {
     return AliasICPRecordal(
       cname: _s.extractXmlStringValue(elem, 'CNAME'),
@@ -1944,6 +1974,16 @@ class AliasICPRecordal {
           .extractXmlStringValue(elem, 'ICPRecordalStatus')
           ?.toICPRecordalStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cname = this.cname;
+    final iCPRecordalStatus = this.iCPRecordalStatus;
+    return {
+      if (cname != null) 'CNAME': cname,
+      if (iCPRecordalStatus != null)
+        'ICPRecordalStatus': iCPRecordalStatus.toValue(),
+    };
   }
 }
 
@@ -1962,6 +2002,16 @@ class Aliases {
     required this.quantity,
     this.items,
   });
+  factory Aliases.fromJson(Map<String, dynamic> json) {
+    return Aliases(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory Aliases.fromXml(_s.XmlElement elem) {
     return Aliases(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -1969,6 +2019,15 @@ class Aliases {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'CNAME')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2030,6 +2089,20 @@ class AllowedMethods {
     required this.quantity,
     this.cachedMethods,
   });
+  factory AllowedMethods.fromJson(Map<String, dynamic> json) {
+    return AllowedMethods(
+      items: (json['Items'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toMethod())
+          .toList(),
+      quantity: json['Quantity'] as int,
+      cachedMethods: json['CachedMethods'] != null
+          ? CachedMethods.fromJson(
+              json['CachedMethods'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AllowedMethods.fromXml(_s.XmlElement elem) {
     return AllowedMethods(
       items: _s
@@ -2042,6 +2115,17 @@ class AllowedMethods {
           .extractXmlChild(elem, 'CachedMethods')
           ?.let((e) => CachedMethods.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    final cachedMethods = this.cachedMethods;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+      if (cachedMethods != null) 'CachedMethods': cachedMethods,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2258,6 +2342,33 @@ class CacheBehavior {
     this.maxTTL,
     this.smoothStreaming,
   });
+  factory CacheBehavior.fromJson(Map<String, dynamic> json) {
+    return CacheBehavior(
+      forwardedValues: ForwardedValues.fromJson(
+          json['ForwardedValues'] as Map<String, dynamic>),
+      minTTL: json['MinTTL'] as int,
+      pathPattern: json['PathPattern'] as String,
+      targetOriginId: json['TargetOriginId'] as String,
+      trustedSigners: TrustedSigners.fromJson(
+          json['TrustedSigners'] as Map<String, dynamic>),
+      viewerProtocolPolicy:
+          (json['ViewerProtocolPolicy'] as String).toViewerProtocolPolicy(),
+      allowedMethods: json['AllowedMethods'] != null
+          ? AllowedMethods.fromJson(
+              json['AllowedMethods'] as Map<String, dynamic>)
+          : null,
+      compress: json['Compress'] as bool?,
+      defaultTTL: json['DefaultTTL'] as int?,
+      fieldLevelEncryptionId: json['FieldLevelEncryptionId'] as String?,
+      lambdaFunctionAssociations: json['LambdaFunctionAssociations'] != null
+          ? LambdaFunctionAssociations.fromJson(
+              json['LambdaFunctionAssociations'] as Map<String, dynamic>)
+          : null,
+      maxTTL: json['MaxTTL'] as int?,
+      smoothStreaming: json['SmoothStreaming'] as bool?,
+    );
+  }
+
   factory CacheBehavior.fromXml(_s.XmlElement elem) {
     return CacheBehavior(
       forwardedValues:
@@ -2283,6 +2394,39 @@ class CacheBehavior {
       maxTTL: _s.extractXmlIntValue(elem, 'MaxTTL'),
       smoothStreaming: _s.extractXmlBoolValue(elem, 'SmoothStreaming'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forwardedValues = this.forwardedValues;
+    final minTTL = this.minTTL;
+    final pathPattern = this.pathPattern;
+    final targetOriginId = this.targetOriginId;
+    final trustedSigners = this.trustedSigners;
+    final viewerProtocolPolicy = this.viewerProtocolPolicy;
+    final allowedMethods = this.allowedMethods;
+    final compress = this.compress;
+    final defaultTTL = this.defaultTTL;
+    final fieldLevelEncryptionId = this.fieldLevelEncryptionId;
+    final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
+    final maxTTL = this.maxTTL;
+    final smoothStreaming = this.smoothStreaming;
+    return {
+      'ForwardedValues': forwardedValues,
+      'MinTTL': minTTL,
+      'PathPattern': pathPattern,
+      'TargetOriginId': targetOriginId,
+      'TrustedSigners': trustedSigners,
+      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      if (allowedMethods != null) 'AllowedMethods': allowedMethods,
+      if (compress != null) 'Compress': compress,
+      if (defaultTTL != null) 'DefaultTTL': defaultTTL,
+      if (fieldLevelEncryptionId != null)
+        'FieldLevelEncryptionId': fieldLevelEncryptionId,
+      if (lambdaFunctionAssociations != null)
+        'LambdaFunctionAssociations': lambdaFunctionAssociations,
+      if (maxTTL != null) 'MaxTTL': maxTTL,
+      if (smoothStreaming != null) 'SmoothStreaming': smoothStreaming,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2345,6 +2489,16 @@ class CacheBehaviors {
     required this.quantity,
     this.items,
   });
+  factory CacheBehaviors.fromJson(Map<String, dynamic> json) {
+    return CacheBehaviors(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheBehavior.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CacheBehaviors.fromXml(_s.XmlElement elem) {
     return CacheBehaviors(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -2353,6 +2507,15 @@ class CacheBehaviors {
           .map((c) => CacheBehavior.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2406,6 +2569,16 @@ class CachedMethods {
     required this.items,
     required this.quantity,
   });
+  factory CachedMethods.fromJson(Map<String, dynamic> json) {
+    return CachedMethods(
+      items: (json['Items'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toMethod())
+          .toList(),
+      quantity: json['Quantity'] as int,
+    );
+  }
+
   factory CachedMethods.fromXml(_s.XmlElement elem) {
     return CachedMethods(
       items: _s
@@ -2415,6 +2588,15 @@ class CachedMethods {
           .toList(),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2488,6 +2670,19 @@ class CloudFrontOriginAccessIdentity {
     required this.s3CanonicalUserId,
     this.cloudFrontOriginAccessIdentityConfig,
   });
+  factory CloudFrontOriginAccessIdentity.fromJson(Map<String, dynamic> json) {
+    return CloudFrontOriginAccessIdentity(
+      id: json['Id'] as String,
+      s3CanonicalUserId: json['S3CanonicalUserId'] as String,
+      cloudFrontOriginAccessIdentityConfig:
+          json['CloudFrontOriginAccessIdentityConfig'] != null
+              ? CloudFrontOriginAccessIdentityConfig.fromJson(
+                  json['CloudFrontOriginAccessIdentityConfig']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   factory CloudFrontOriginAccessIdentity.fromXml(_s.XmlElement elem) {
     return CloudFrontOriginAccessIdentity(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -2496,6 +2691,20 @@ class CloudFrontOriginAccessIdentity {
           .extractXmlChild(elem, 'CloudFrontOriginAccessIdentityConfig')
           ?.let((e) => CloudFrontOriginAccessIdentityConfig.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final s3CanonicalUserId = this.s3CanonicalUserId;
+    final cloudFrontOriginAccessIdentityConfig =
+        this.cloudFrontOriginAccessIdentityConfig;
+    return {
+      'Id': id,
+      'S3CanonicalUserId': s3CanonicalUserId,
+      if (cloudFrontOriginAccessIdentityConfig != null)
+        'CloudFrontOriginAccessIdentityConfig':
+            cloudFrontOriginAccessIdentityConfig,
+    };
   }
 }
 
@@ -2530,11 +2739,28 @@ class CloudFrontOriginAccessIdentityConfig {
     required this.callerReference,
     required this.comment,
   });
+  factory CloudFrontOriginAccessIdentityConfig.fromJson(
+      Map<String, dynamic> json) {
+    return CloudFrontOriginAccessIdentityConfig(
+      callerReference: json['CallerReference'] as String,
+      comment: json['Comment'] as String,
+    );
+  }
+
   factory CloudFrontOriginAccessIdentityConfig.fromXml(_s.XmlElement elem) {
     return CloudFrontOriginAccessIdentityConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
       comment: _s.extractXmlStringValue(elem, 'Comment')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2605,6 +2831,22 @@ class CloudFrontOriginAccessIdentityList {
     this.items,
     this.nextMarker,
   });
+  factory CloudFrontOriginAccessIdentityList.fromJson(
+      Map<String, dynamic> json) {
+    return CloudFrontOriginAccessIdentityList(
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => CloudFrontOriginAccessIdentitySummary.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory CloudFrontOriginAccessIdentityList.fromXml(_s.XmlElement elem) {
     return CloudFrontOriginAccessIdentityList(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -2617,6 +2859,23 @@ class CloudFrontOriginAccessIdentityList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -2640,12 +2899,32 @@ class CloudFrontOriginAccessIdentitySummary {
     required this.id,
     required this.s3CanonicalUserId,
   });
+  factory CloudFrontOriginAccessIdentitySummary.fromJson(
+      Map<String, dynamic> json) {
+    return CloudFrontOriginAccessIdentitySummary(
+      comment: json['Comment'] as String,
+      id: json['Id'] as String,
+      s3CanonicalUserId: json['S3CanonicalUserId'] as String,
+    );
+  }
+
   factory CloudFrontOriginAccessIdentitySummary.fromXml(_s.XmlElement elem) {
     return CloudFrontOriginAccessIdentitySummary(
       comment: _s.extractXmlStringValue(elem, 'Comment')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       s3CanonicalUserId: _s.extractXmlStringValue(elem, 'S3CanonicalUserId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final id = this.id;
+    final s3CanonicalUserId = this.s3CanonicalUserId;
+    return {
+      'Comment': comment,
+      'Id': id,
+      'S3CanonicalUserId': s3CanonicalUserId,
+    };
   }
 }
 
@@ -2665,12 +2944,31 @@ class ContentTypeProfile {
     required this.format,
     this.profileId,
   });
+  factory ContentTypeProfile.fromJson(Map<String, dynamic> json) {
+    return ContentTypeProfile(
+      contentType: json['ContentType'] as String,
+      format: (json['Format'] as String).toFormat(),
+      profileId: json['ProfileId'] as String?,
+    );
+  }
+
   factory ContentTypeProfile.fromXml(_s.XmlElement elem) {
     return ContentTypeProfile(
       contentType: _s.extractXmlStringValue(elem, 'ContentType')!,
       format: _s.extractXmlStringValue(elem, 'Format')!.toFormat(),
       profileId: _s.extractXmlStringValue(elem, 'ProfileId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final format = this.format;
+    final profileId = this.profileId;
+    return {
+      'ContentType': contentType,
+      'Format': format.toValue(),
+      if (profileId != null) 'ProfileId': profileId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2709,6 +3007,17 @@ class ContentTypeProfileConfig {
     required this.forwardWhenContentTypeIsUnknown,
     this.contentTypeProfiles,
   });
+  factory ContentTypeProfileConfig.fromJson(Map<String, dynamic> json) {
+    return ContentTypeProfileConfig(
+      forwardWhenContentTypeIsUnknown:
+          json['ForwardWhenContentTypeIsUnknown'] as bool,
+      contentTypeProfiles: json['ContentTypeProfiles'] != null
+          ? ContentTypeProfiles.fromJson(
+              json['ContentTypeProfiles'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ContentTypeProfileConfig.fromXml(_s.XmlElement elem) {
     return ContentTypeProfileConfig(
       forwardWhenContentTypeIsUnknown:
@@ -2717,6 +3026,17 @@ class ContentTypeProfileConfig {
           .extractXmlChild(elem, 'ContentTypeProfiles')
           ?.let((e) => ContentTypeProfiles.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forwardWhenContentTypeIsUnknown =
+        this.forwardWhenContentTypeIsUnknown;
+    final contentTypeProfiles = this.contentTypeProfiles;
+    return {
+      'ForwardWhenContentTypeIsUnknown': forwardWhenContentTypeIsUnknown,
+      if (contentTypeProfiles != null)
+        'ContentTypeProfiles': contentTypeProfiles,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2752,6 +3072,16 @@ class ContentTypeProfiles {
     required this.quantity,
     this.items,
   });
+  factory ContentTypeProfiles.fromJson(Map<String, dynamic> json) {
+    return ContentTypeProfiles(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => ContentTypeProfile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ContentTypeProfiles.fromXml(_s.XmlElement elem) {
     return ContentTypeProfiles(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -2760,6 +3090,15 @@ class ContentTypeProfiles {
           .map((c) => ContentTypeProfile.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2812,6 +3151,16 @@ class CookieNames {
     required this.quantity,
     this.items,
   });
+  factory CookieNames.fromJson(Map<String, dynamic> json) {
+    return CookieNames(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory CookieNames.fromXml(_s.XmlElement elem) {
     return CookieNames(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -2819,6 +3168,15 @@ class CookieNames {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Name')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2879,6 +3237,16 @@ class CookiePreference {
     required this.forward,
     this.whitelistedNames,
   });
+  factory CookiePreference.fromJson(Map<String, dynamic> json) {
+    return CookiePreference(
+      forward: (json['Forward'] as String).toItemSelection(),
+      whitelistedNames: json['WhitelistedNames'] != null
+          ? CookieNames.fromJson(
+              json['WhitelistedNames'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CookiePreference.fromXml(_s.XmlElement elem) {
     return CookiePreference(
       forward: _s.extractXmlStringValue(elem, 'Forward')!.toItemSelection(),
@@ -2886,6 +3254,15 @@ class CookiePreference {
           .extractXmlChild(elem, 'WhitelistedNames')
           ?.let((e) => CookieNames.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forward = this.forward;
+    final whitelistedNames = this.whitelistedNames;
+    return {
+      'Forward': forward.toValue(),
+      if (whitelistedNames != null) 'WhitelistedNames': whitelistedNames,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2922,6 +3299,24 @@ class CreateCloudFrontOriginAccessIdentityResult {
     this.eTag,
     this.location,
   });
+  factory CreateCloudFrontOriginAccessIdentityResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateCloudFrontOriginAccessIdentityResult(
+      cloudFrontOriginAccessIdentity: json['CloudFrontOriginAccessIdentity'] !=
+              null
+          ? CloudFrontOriginAccessIdentity.fromJson(
+              json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2940,6 +3335,20 @@ class CreateDistributionResult {
     this.eTag,
     this.location,
   });
+  factory CreateDistributionResult.fromJson(Map<String, dynamic> json) {
+    return CreateDistributionResult(
+      distribution: json['Distribution'] != null
+          ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2958,6 +3367,20 @@ class CreateDistributionWithTagsResult {
     this.eTag,
     this.location,
   });
+  factory CreateDistributionWithTagsResult.fromJson(Map<String, dynamic> json) {
+    return CreateDistributionWithTagsResult(
+      distribution: json['Distribution'] != null
+          ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 class CreateFieldLevelEncryptionConfigResult {
@@ -2976,6 +3399,23 @@ class CreateFieldLevelEncryptionConfigResult {
     this.fieldLevelEncryption,
     this.location,
   });
+  factory CreateFieldLevelEncryptionConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateFieldLevelEncryptionConfigResult(
+      fieldLevelEncryption: json['FieldLevelEncryption'] != null
+          ? FieldLevelEncryption.fromJson(
+              json['FieldLevelEncryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryption = this.fieldLevelEncryption;
+    return {
+      if (fieldLevelEncryption != null)
+        'FieldLevelEncryption': fieldLevelEncryption,
+    };
+  }
 }
 
 class CreateFieldLevelEncryptionProfileResult {
@@ -2994,6 +3434,23 @@ class CreateFieldLevelEncryptionProfileResult {
     this.fieldLevelEncryptionProfile,
     this.location,
   });
+  factory CreateFieldLevelEncryptionProfileResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateFieldLevelEncryptionProfileResult(
+      fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
+          ? FieldLevelEncryptionProfile.fromJson(
+              json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
+    return {
+      if (fieldLevelEncryptionProfile != null)
+        'FieldLevelEncryptionProfile': fieldLevelEncryptionProfile,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3009,6 +3466,20 @@ class CreateInvalidationResult {
     this.invalidation,
     this.location,
   });
+  factory CreateInvalidationResult.fromJson(Map<String, dynamic> json) {
+    return CreateInvalidationResult(
+      invalidation: json['Invalidation'] != null
+          ? Invalidation.fromJson(json['Invalidation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invalidation = this.invalidation;
+    return {
+      if (invalidation != null) 'Invalidation': invalidation,
+    };
+  }
 }
 
 class CreatePublicKeyResult {
@@ -3027,6 +3498,20 @@ class CreatePublicKeyResult {
     this.location,
     this.publicKey,
   });
+  factory CreatePublicKeyResult.fromJson(Map<String, dynamic> json) {
+    return CreatePublicKeyResult(
+      publicKey: json['PublicKey'] != null
+          ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKey = this.publicKey;
+    return {
+      if (publicKey != null) 'PublicKey': publicKey,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3046,6 +3531,23 @@ class CreateStreamingDistributionResult {
     this.location,
     this.streamingDistribution,
   });
+  factory CreateStreamingDistributionResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateStreamingDistributionResult(
+      streamingDistribution: json['StreamingDistribution'] != null
+          ? StreamingDistribution.fromJson(
+              json['StreamingDistribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3065,6 +3567,23 @@ class CreateStreamingDistributionWithTagsResult {
     this.location,
     this.streamingDistribution,
   });
+  factory CreateStreamingDistributionWithTagsResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateStreamingDistributionWithTagsResult(
+      streamingDistribution: json['StreamingDistribution'] != null
+          ? StreamingDistribution.fromJson(
+              json['StreamingDistribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that controls:
@@ -3160,6 +3679,15 @@ class CustomErrorResponse {
     this.responseCode,
     this.responsePagePath,
   });
+  factory CustomErrorResponse.fromJson(Map<String, dynamic> json) {
+    return CustomErrorResponse(
+      errorCode: json['ErrorCode'] as int,
+      errorCachingMinTTL: json['ErrorCachingMinTTL'] as int?,
+      responseCode: json['ResponseCode'] as String?,
+      responsePagePath: json['ResponsePagePath'] as String?,
+    );
+  }
+
   factory CustomErrorResponse.fromXml(_s.XmlElement elem) {
     return CustomErrorResponse(
       errorCode: _s.extractXmlIntValue(elem, 'ErrorCode')!,
@@ -3167,6 +3695,19 @@ class CustomErrorResponse {
       responseCode: _s.extractXmlStringValue(elem, 'ResponseCode'),
       responsePagePath: _s.extractXmlStringValue(elem, 'ResponsePagePath'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorCachingMinTTL = this.errorCachingMinTTL;
+    final responseCode = this.responseCode;
+    final responsePagePath = this.responsePagePath;
+    return {
+      'ErrorCode': errorCode,
+      if (errorCachingMinTTL != null) 'ErrorCachingMinTTL': errorCachingMinTTL,
+      if (responseCode != null) 'ResponseCode': responseCode,
+      if (responsePagePath != null) 'ResponsePagePath': responsePagePath,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -3223,6 +3764,16 @@ class CustomErrorResponses {
     required this.quantity,
     this.items,
   });
+  factory CustomErrorResponses.fromJson(Map<String, dynamic> json) {
+    return CustomErrorResponses(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => CustomErrorResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CustomErrorResponses.fromXml(_s.XmlElement elem) {
     return CustomErrorResponses(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -3231,6 +3782,15 @@ class CustomErrorResponses {
           .map((c) => CustomErrorResponse.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -3267,6 +3827,16 @@ class CustomHeaders {
     required this.quantity,
     this.items,
   });
+  factory CustomHeaders.fromJson(Map<String, dynamic> json) {
+    return CustomHeaders(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => OriginCustomHeader.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CustomHeaders.fromXml(_s.XmlElement elem) {
     return CustomHeaders(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -3275,6 +3845,15 @@ class CustomHeaders {
           .map((c) => OriginCustomHeader.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -3365,6 +3944,21 @@ class CustomOriginConfig {
     this.originReadTimeout,
     this.originSslProtocols,
   });
+  factory CustomOriginConfig.fromJson(Map<String, dynamic> json) {
+    return CustomOriginConfig(
+      hTTPPort: json['HTTPPort'] as int,
+      hTTPSPort: json['HTTPSPort'] as int,
+      originProtocolPolicy:
+          (json['OriginProtocolPolicy'] as String).toOriginProtocolPolicy(),
+      originKeepaliveTimeout: json['OriginKeepaliveTimeout'] as int?,
+      originReadTimeout: json['OriginReadTimeout'] as int?,
+      originSslProtocols: json['OriginSslProtocols'] != null
+          ? OriginSslProtocols.fromJson(
+              json['OriginSslProtocols'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CustomOriginConfig.fromXml(_s.XmlElement elem) {
     return CustomOriginConfig(
       hTTPPort: _s.extractXmlIntValue(elem, 'HTTPPort')!,
@@ -3379,6 +3973,24 @@ class CustomOriginConfig {
           .extractXmlChild(elem, 'OriginSslProtocols')
           ?.let((e) => OriginSslProtocols.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hTTPPort = this.hTTPPort;
+    final hTTPSPort = this.hTTPSPort;
+    final originProtocolPolicy = this.originProtocolPolicy;
+    final originKeepaliveTimeout = this.originKeepaliveTimeout;
+    final originReadTimeout = this.originReadTimeout;
+    final originSslProtocols = this.originSslProtocols;
+    return {
+      'HTTPPort': hTTPPort,
+      'HTTPSPort': hTTPSPort,
+      'OriginProtocolPolicy': originProtocolPolicy.toValue(),
+      if (originKeepaliveTimeout != null)
+        'OriginKeepaliveTimeout': originKeepaliveTimeout,
+      if (originReadTimeout != null) 'OriginReadTimeout': originReadTimeout,
+      if (originSslProtocols != null) 'OriginSslProtocols': originSslProtocols,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -3559,6 +4171,32 @@ class DefaultCacheBehavior {
     this.maxTTL,
     this.smoothStreaming,
   });
+  factory DefaultCacheBehavior.fromJson(Map<String, dynamic> json) {
+    return DefaultCacheBehavior(
+      forwardedValues: ForwardedValues.fromJson(
+          json['ForwardedValues'] as Map<String, dynamic>),
+      minTTL: json['MinTTL'] as int,
+      targetOriginId: json['TargetOriginId'] as String,
+      trustedSigners: TrustedSigners.fromJson(
+          json['TrustedSigners'] as Map<String, dynamic>),
+      viewerProtocolPolicy:
+          (json['ViewerProtocolPolicy'] as String).toViewerProtocolPolicy(),
+      allowedMethods: json['AllowedMethods'] != null
+          ? AllowedMethods.fromJson(
+              json['AllowedMethods'] as Map<String, dynamic>)
+          : null,
+      compress: json['Compress'] as bool?,
+      defaultTTL: json['DefaultTTL'] as int?,
+      fieldLevelEncryptionId: json['FieldLevelEncryptionId'] as String?,
+      lambdaFunctionAssociations: json['LambdaFunctionAssociations'] != null
+          ? LambdaFunctionAssociations.fromJson(
+              json['LambdaFunctionAssociations'] as Map<String, dynamic>)
+          : null,
+      maxTTL: json['MaxTTL'] as int?,
+      smoothStreaming: json['SmoothStreaming'] as bool?,
+    );
+  }
+
   factory DefaultCacheBehavior.fromXml(_s.XmlElement elem) {
     return DefaultCacheBehavior(
       forwardedValues:
@@ -3583,6 +4221,37 @@ class DefaultCacheBehavior {
       maxTTL: _s.extractXmlIntValue(elem, 'MaxTTL'),
       smoothStreaming: _s.extractXmlBoolValue(elem, 'SmoothStreaming'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forwardedValues = this.forwardedValues;
+    final minTTL = this.minTTL;
+    final targetOriginId = this.targetOriginId;
+    final trustedSigners = this.trustedSigners;
+    final viewerProtocolPolicy = this.viewerProtocolPolicy;
+    final allowedMethods = this.allowedMethods;
+    final compress = this.compress;
+    final defaultTTL = this.defaultTTL;
+    final fieldLevelEncryptionId = this.fieldLevelEncryptionId;
+    final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
+    final maxTTL = this.maxTTL;
+    final smoothStreaming = this.smoothStreaming;
+    return {
+      'ForwardedValues': forwardedValues,
+      'MinTTL': minTTL,
+      'TargetOriginId': targetOriginId,
+      'TrustedSigners': trustedSigners,
+      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      if (allowedMethods != null) 'AllowedMethods': allowedMethods,
+      if (compress != null) 'Compress': compress,
+      if (defaultTTL != null) 'DefaultTTL': defaultTTL,
+      if (fieldLevelEncryptionId != null)
+        'FieldLevelEncryptionId': fieldLevelEncryptionId,
+      if (lambdaFunctionAssociations != null)
+        'LambdaFunctionAssociations': lambdaFunctionAssociations,
+      if (maxTTL != null) 'MaxTTL': maxTTL,
+      if (smoothStreaming != null) 'SmoothStreaming': smoothStreaming,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -3694,6 +4363,27 @@ class Distribution {
     required this.status,
     this.aliasICPRecordals,
   });
+  factory Distribution.fromJson(Map<String, dynamic> json) {
+    return Distribution(
+      arn: json['ARN'] as String,
+      activeTrustedSigners: ActiveTrustedSigners.fromJson(
+          json['ActiveTrustedSigners'] as Map<String, dynamic>),
+      distributionConfig: DistributionConfig.fromJson(
+          json['DistributionConfig'] as Map<String, dynamic>),
+      domainName: json['DomainName'] as String,
+      id: json['Id'] as String,
+      inProgressInvalidationBatches:
+          json['InProgressInvalidationBatches'] as int,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+      status: json['Status'] as String,
+      aliasICPRecordals: (json['AliasICPRecordals'] as List?)
+          ?.whereNotNull()
+          .map((e) => AliasICPRecordal.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory Distribution.fromXml(_s.XmlElement elem) {
     return Distribution(
       arn: _s.extractXmlStringValue(elem, 'ARN')!,
@@ -3713,6 +4403,29 @@ class Distribution {
               .map((c) => AliasICPRecordal.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final activeTrustedSigners = this.activeTrustedSigners;
+    final distributionConfig = this.distributionConfig;
+    final domainName = this.domainName;
+    final id = this.id;
+    final inProgressInvalidationBatches = this.inProgressInvalidationBatches;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    final aliasICPRecordals = this.aliasICPRecordals;
+    return {
+      'ARN': arn,
+      'ActiveTrustedSigners': activeTrustedSigners,
+      'DistributionConfig': distributionConfig,
+      'DomainName': domainName,
+      'Id': id,
+      'InProgressInvalidationBatches': inProgressInvalidationBatches,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Status': status,
+      if (aliasICPRecordals != null) 'AliasICPRecordals': aliasICPRecordals,
+    };
   }
 }
 
@@ -3938,6 +4651,46 @@ class DistributionConfig {
     this.viewerCertificate,
     this.webACLId,
   });
+  factory DistributionConfig.fromJson(Map<String, dynamic> json) {
+    return DistributionConfig(
+      callerReference: json['CallerReference'] as String,
+      comment: json['Comment'] as String,
+      defaultCacheBehavior: DefaultCacheBehavior.fromJson(
+          json['DefaultCacheBehavior'] as Map<String, dynamic>),
+      enabled: json['Enabled'] as bool,
+      origins: Origins.fromJson(json['Origins'] as Map<String, dynamic>),
+      aliases: json['Aliases'] != null
+          ? Aliases.fromJson(json['Aliases'] as Map<String, dynamic>)
+          : null,
+      cacheBehaviors: json['CacheBehaviors'] != null
+          ? CacheBehaviors.fromJson(
+              json['CacheBehaviors'] as Map<String, dynamic>)
+          : null,
+      customErrorResponses: json['CustomErrorResponses'] != null
+          ? CustomErrorResponses.fromJson(
+              json['CustomErrorResponses'] as Map<String, dynamic>)
+          : null,
+      defaultRootObject: json['DefaultRootObject'] as String?,
+      httpVersion: (json['HttpVersion'] as String?)?.toHttpVersion(),
+      isIPV6Enabled: json['IsIPV6Enabled'] as bool?,
+      logging: json['Logging'] != null
+          ? LoggingConfig.fromJson(json['Logging'] as Map<String, dynamic>)
+          : null,
+      originGroups: json['OriginGroups'] != null
+          ? OriginGroups.fromJson(json['OriginGroups'] as Map<String, dynamic>)
+          : null,
+      priceClass: (json['PriceClass'] as String?)?.toPriceClass(),
+      restrictions: json['Restrictions'] != null
+          ? Restrictions.fromJson(json['Restrictions'] as Map<String, dynamic>)
+          : null,
+      viewerCertificate: json['ViewerCertificate'] != null
+          ? ViewerCertificate.fromJson(
+              json['ViewerCertificate'] as Map<String, dynamic>)
+          : null,
+      webACLId: json['WebACLId'] as String?,
+    );
+  }
+
   factory DistributionConfig.fromXml(_s.XmlElement elem) {
     return DistributionConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -3973,6 +4726,46 @@ class DistributionConfig {
           ?.let((e) => ViewerCertificate.fromXml(e)),
       webACLId: _s.extractXmlStringValue(elem, 'WebACLId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    final defaultCacheBehavior = this.defaultCacheBehavior;
+    final enabled = this.enabled;
+    final origins = this.origins;
+    final aliases = this.aliases;
+    final cacheBehaviors = this.cacheBehaviors;
+    final customErrorResponses = this.customErrorResponses;
+    final defaultRootObject = this.defaultRootObject;
+    final httpVersion = this.httpVersion;
+    final isIPV6Enabled = this.isIPV6Enabled;
+    final logging = this.logging;
+    final originGroups = this.originGroups;
+    final priceClass = this.priceClass;
+    final restrictions = this.restrictions;
+    final viewerCertificate = this.viewerCertificate;
+    final webACLId = this.webACLId;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+      'DefaultCacheBehavior': defaultCacheBehavior,
+      'Enabled': enabled,
+      'Origins': origins,
+      if (aliases != null) 'Aliases': aliases,
+      if (cacheBehaviors != null) 'CacheBehaviors': cacheBehaviors,
+      if (customErrorResponses != null)
+        'CustomErrorResponses': customErrorResponses,
+      if (defaultRootObject != null) 'DefaultRootObject': defaultRootObject,
+      if (httpVersion != null) 'HttpVersion': httpVersion.toValue(),
+      if (isIPV6Enabled != null) 'IsIPV6Enabled': isIPV6Enabled,
+      if (logging != null) 'Logging': logging,
+      if (originGroups != null) 'OriginGroups': originGroups,
+      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+      if (restrictions != null) 'Restrictions': restrictions,
+      if (viewerCertificate != null) 'ViewerCertificate': viewerCertificate,
+      if (webACLId != null) 'WebACLId': webACLId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4042,6 +4835,23 @@ class DistributionConfigWithTags {
     required this.distributionConfig,
     required this.tags,
   });
+  factory DistributionConfigWithTags.fromJson(Map<String, dynamic> json) {
+    return DistributionConfigWithTags(
+      distributionConfig: DistributionConfig.fromJson(
+          json['DistributionConfig'] as Map<String, dynamic>),
+      tags: Tags.fromJson(json['Tags'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distributionConfig = this.distributionConfig;
+    final tags = this.tags;
+    return {
+      'DistributionConfig': distributionConfig,
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final distributionConfig = this.distributionConfig;
     final tags = this.tags;
@@ -4094,6 +4904,20 @@ class DistributionList {
     this.items,
     this.nextMarker,
   });
+  factory DistributionList.fromJson(Map<String, dynamic> json) {
+    return DistributionList(
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => DistributionSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory DistributionList.fromXml(_s.XmlElement elem) {
     return DistributionList(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -4106,6 +4930,23 @@ class DistributionList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -4223,6 +5064,42 @@ class DistributionSummary {
     this.aliasICPRecordals,
     this.originGroups,
   });
+  factory DistributionSummary.fromJson(Map<String, dynamic> json) {
+    return DistributionSummary(
+      arn: json['ARN'] as String,
+      aliases: Aliases.fromJson(json['Aliases'] as Map<String, dynamic>),
+      cacheBehaviors: CacheBehaviors.fromJson(
+          json['CacheBehaviors'] as Map<String, dynamic>),
+      comment: json['Comment'] as String,
+      customErrorResponses: CustomErrorResponses.fromJson(
+          json['CustomErrorResponses'] as Map<String, dynamic>),
+      defaultCacheBehavior: DefaultCacheBehavior.fromJson(
+          json['DefaultCacheBehavior'] as Map<String, dynamic>),
+      domainName: json['DomainName'] as String,
+      enabled: json['Enabled'] as bool,
+      httpVersion: (json['HttpVersion'] as String).toHttpVersion(),
+      id: json['Id'] as String,
+      isIPV6Enabled: json['IsIPV6Enabled'] as bool,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+      origins: Origins.fromJson(json['Origins'] as Map<String, dynamic>),
+      priceClass: (json['PriceClass'] as String).toPriceClass(),
+      restrictions:
+          Restrictions.fromJson(json['Restrictions'] as Map<String, dynamic>),
+      status: json['Status'] as String,
+      viewerCertificate: ViewerCertificate.fromJson(
+          json['ViewerCertificate'] as Map<String, dynamic>),
+      webACLId: json['WebACLId'] as String,
+      aliasICPRecordals: (json['AliasICPRecordals'] as List?)
+          ?.whereNotNull()
+          .map((e) => AliasICPRecordal.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      originGroups: json['OriginGroups'] != null
+          ? OriginGroups.fromJson(json['OriginGroups'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DistributionSummary.fromXml(_s.XmlElement elem) {
     return DistributionSummary(
       arn: _s.extractXmlStringValue(elem, 'ARN')!,
@@ -4259,6 +5136,51 @@ class DistributionSummary {
           ?.let((e) => OriginGroups.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final aliases = this.aliases;
+    final cacheBehaviors = this.cacheBehaviors;
+    final comment = this.comment;
+    final customErrorResponses = this.customErrorResponses;
+    final defaultCacheBehavior = this.defaultCacheBehavior;
+    final domainName = this.domainName;
+    final enabled = this.enabled;
+    final httpVersion = this.httpVersion;
+    final id = this.id;
+    final isIPV6Enabled = this.isIPV6Enabled;
+    final lastModifiedTime = this.lastModifiedTime;
+    final origins = this.origins;
+    final priceClass = this.priceClass;
+    final restrictions = this.restrictions;
+    final status = this.status;
+    final viewerCertificate = this.viewerCertificate;
+    final webACLId = this.webACLId;
+    final aliasICPRecordals = this.aliasICPRecordals;
+    final originGroups = this.originGroups;
+    return {
+      'ARN': arn,
+      'Aliases': aliases,
+      'CacheBehaviors': cacheBehaviors,
+      'Comment': comment,
+      'CustomErrorResponses': customErrorResponses,
+      'DefaultCacheBehavior': defaultCacheBehavior,
+      'DomainName': domainName,
+      'Enabled': enabled,
+      'HttpVersion': httpVersion.toValue(),
+      'Id': id,
+      'IsIPV6Enabled': isIPV6Enabled,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Origins': origins,
+      'PriceClass': priceClass.toValue(),
+      'Restrictions': restrictions,
+      'Status': status,
+      'ViewerCertificate': viewerCertificate,
+      'WebACLId': webACLId,
+      if (aliasICPRecordals != null) 'AliasICPRecordals': aliasICPRecordals,
+      if (originGroups != null) 'OriginGroups': originGroups,
+    };
+  }
 }
 
 /// Complex data type for field-level encryption profiles that includes all of
@@ -4276,6 +5198,16 @@ class EncryptionEntities {
     required this.quantity,
     this.items,
   });
+  factory EncryptionEntities.fromJson(Map<String, dynamic> json) {
+    return EncryptionEntities(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => EncryptionEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EncryptionEntities.fromXml(_s.XmlElement elem) {
     return EncryptionEntities(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -4284,6 +5216,15 @@ class EncryptionEntities {
           .map((c) => EncryptionEntity.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4330,6 +5271,15 @@ class EncryptionEntity {
     required this.providerId,
     required this.publicKeyId,
   });
+  factory EncryptionEntity.fromJson(Map<String, dynamic> json) {
+    return EncryptionEntity(
+      fieldPatterns:
+          FieldPatterns.fromJson(json['FieldPatterns'] as Map<String, dynamic>),
+      providerId: json['ProviderId'] as String,
+      publicKeyId: json['PublicKeyId'] as String,
+    );
+  }
+
   factory EncryptionEntity.fromXml(_s.XmlElement elem) {
     return EncryptionEntity(
       fieldPatterns:
@@ -4337,6 +5287,17 @@ class EncryptionEntity {
       providerId: _s.extractXmlStringValue(elem, 'ProviderId')!,
       publicKeyId: _s.extractXmlStringValue(elem, 'PublicKeyId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldPatterns = this.fieldPatterns;
+    final providerId = this.providerId;
+    final publicKeyId = this.publicKeyId;
+    return {
+      'FieldPatterns': fieldPatterns,
+      'ProviderId': providerId,
+      'PublicKeyId': publicKeyId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4417,6 +5378,16 @@ class FieldLevelEncryption {
     required this.id,
     required this.lastModifiedTime,
   });
+  factory FieldLevelEncryption.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryption(
+      fieldLevelEncryptionConfig: FieldLevelEncryptionConfig.fromJson(
+          json['FieldLevelEncryptionConfig'] as Map<String, dynamic>),
+      id: json['Id'] as String,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+    );
+  }
+
   factory FieldLevelEncryption.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryption(
       fieldLevelEncryptionConfig: FieldLevelEncryptionConfig.fromXml(
@@ -4424,6 +5395,17 @@ class FieldLevelEncryption {
       id: _s.extractXmlStringValue(elem, 'Id')!,
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionConfig = this.fieldLevelEncryptionConfig;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'FieldLevelEncryptionConfig': fieldLevelEncryptionConfig,
+      'Id': id,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -4452,6 +5434,21 @@ class FieldLevelEncryptionConfig {
     this.contentTypeProfileConfig,
     this.queryArgProfileConfig,
   });
+  factory FieldLevelEncryptionConfig.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryptionConfig(
+      callerReference: json['CallerReference'] as String,
+      comment: json['Comment'] as String?,
+      contentTypeProfileConfig: json['ContentTypeProfileConfig'] != null
+          ? ContentTypeProfileConfig.fromJson(
+              json['ContentTypeProfileConfig'] as Map<String, dynamic>)
+          : null,
+      queryArgProfileConfig: json['QueryArgProfileConfig'] != null
+          ? QueryArgProfileConfig.fromJson(
+              json['QueryArgProfileConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory FieldLevelEncryptionConfig.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -4463,6 +5460,21 @@ class FieldLevelEncryptionConfig {
           .extractXmlChild(elem, 'QueryArgProfileConfig')
           ?.let((e) => QueryArgProfileConfig.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    final contentTypeProfileConfig = this.contentTypeProfileConfig;
+    final queryArgProfileConfig = this.queryArgProfileConfig;
+    return {
+      'CallerReference': callerReference,
+      if (comment != null) 'Comment': comment,
+      if (contentTypeProfileConfig != null)
+        'ContentTypeProfileConfig': contentTypeProfileConfig,
+      if (queryArgProfileConfig != null)
+        'QueryArgProfileConfig': queryArgProfileConfig,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4511,6 +5523,19 @@ class FieldLevelEncryptionList {
     this.items,
     this.nextMarker,
   });
+  factory FieldLevelEncryptionList.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryptionList(
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              FieldLevelEncryptionSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory FieldLevelEncryptionList.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionList(
       maxItems: _s.extractXmlIntValue(elem, 'MaxItems')!,
@@ -4521,6 +5546,19 @@ class FieldLevelEncryptionList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -4543,6 +5581,18 @@ class FieldLevelEncryptionProfile {
     required this.id,
     required this.lastModifiedTime,
   });
+  factory FieldLevelEncryptionProfile.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryptionProfile(
+      fieldLevelEncryptionProfileConfig:
+          FieldLevelEncryptionProfileConfig.fromJson(
+              json['FieldLevelEncryptionProfileConfig']
+                  as Map<String, dynamic>),
+      id: json['Id'] as String,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+    );
+  }
+
   factory FieldLevelEncryptionProfile.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionProfile(
       fieldLevelEncryptionProfileConfig:
@@ -4551,6 +5601,18 @@ class FieldLevelEncryptionProfile {
       id: _s.extractXmlStringValue(elem, 'Id')!,
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfileConfig =
+        this.fieldLevelEncryptionProfileConfig;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'FieldLevelEncryptionProfileConfig': fieldLevelEncryptionProfileConfig,
+      'Id': id,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -4576,6 +5638,17 @@ class FieldLevelEncryptionProfileConfig {
     required this.name,
     this.comment,
   });
+  factory FieldLevelEncryptionProfileConfig.fromJson(
+      Map<String, dynamic> json) {
+    return FieldLevelEncryptionProfileConfig(
+      callerReference: json['CallerReference'] as String,
+      encryptionEntities: EncryptionEntities.fromJson(
+          json['EncryptionEntities'] as Map<String, dynamic>),
+      name: json['Name'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory FieldLevelEncryptionProfileConfig.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionProfileConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -4584,6 +5657,19 @@ class FieldLevelEncryptionProfileConfig {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final encryptionEntities = this.encryptionEntities;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'CallerReference': callerReference,
+      'EncryptionEntities': encryptionEntities,
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4631,6 +5717,19 @@ class FieldLevelEncryptionProfileList {
     this.items,
     this.nextMarker,
   });
+  factory FieldLevelEncryptionProfileList.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryptionProfileList(
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => FieldLevelEncryptionProfileSummary.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory FieldLevelEncryptionProfileList.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionProfileList(
       maxItems: _s.extractXmlIntValue(elem, 'MaxItems')!,
@@ -4641,6 +5740,19 @@ class FieldLevelEncryptionProfileList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -4671,6 +5783,19 @@ class FieldLevelEncryptionProfileSummary {
     required this.name,
     this.comment,
   });
+  factory FieldLevelEncryptionProfileSummary.fromJson(
+      Map<String, dynamic> json) {
+    return FieldLevelEncryptionProfileSummary(
+      encryptionEntities: EncryptionEntities.fromJson(
+          json['EncryptionEntities'] as Map<String, dynamic>),
+      id: json['Id'] as String,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+      name: json['Name'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory FieldLevelEncryptionProfileSummary.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionProfileSummary(
       encryptionEntities: EncryptionEntities.fromXml(
@@ -4680,6 +5805,21 @@ class FieldLevelEncryptionProfileSummary {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final encryptionEntities = this.encryptionEntities;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'EncryptionEntities': encryptionEntities,
+      'Id': id,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
   }
 }
 
@@ -4707,6 +5847,23 @@ class FieldLevelEncryptionSummary {
     this.contentTypeProfileConfig,
     this.queryArgProfileConfig,
   });
+  factory FieldLevelEncryptionSummary.fromJson(Map<String, dynamic> json) {
+    return FieldLevelEncryptionSummary(
+      id: json['Id'] as String,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+      comment: json['Comment'] as String?,
+      contentTypeProfileConfig: json['ContentTypeProfileConfig'] != null
+          ? ContentTypeProfileConfig.fromJson(
+              json['ContentTypeProfileConfig'] as Map<String, dynamic>)
+          : null,
+      queryArgProfileConfig: json['QueryArgProfileConfig'] != null
+          ? QueryArgProfileConfig.fromJson(
+              json['QueryArgProfileConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory FieldLevelEncryptionSummary.fromXml(_s.XmlElement elem) {
     return FieldLevelEncryptionSummary(
       id: _s.extractXmlStringValue(elem, 'Id')!,
@@ -4719,6 +5876,23 @@ class FieldLevelEncryptionSummary {
           .extractXmlChild(elem, 'QueryArgProfileConfig')
           ?.let((e) => QueryArgProfileConfig.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final comment = this.comment;
+    final contentTypeProfileConfig = this.contentTypeProfileConfig;
+    final queryArgProfileConfig = this.queryArgProfileConfig;
+    return {
+      'Id': id,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (comment != null) 'Comment': comment,
+      if (contentTypeProfileConfig != null)
+        'ContentTypeProfileConfig': contentTypeProfileConfig,
+      if (queryArgProfileConfig != null)
+        'QueryArgProfileConfig': queryArgProfileConfig,
+    };
   }
 }
 
@@ -4735,6 +5909,16 @@ class FieldPatterns {
     required this.quantity,
     this.items,
   });
+  factory FieldPatterns.fromJson(Map<String, dynamic> json) {
+    return FieldPatterns(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory FieldPatterns.fromXml(_s.XmlElement elem) {
     return FieldPatterns(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -4742,6 +5926,15 @@ class FieldPatterns {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'FieldPattern')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4848,6 +6041,21 @@ class ForwardedValues {
     this.headers,
     this.queryStringCacheKeys,
   });
+  factory ForwardedValues.fromJson(Map<String, dynamic> json) {
+    return ForwardedValues(
+      cookies:
+          CookiePreference.fromJson(json['Cookies'] as Map<String, dynamic>),
+      queryString: json['QueryString'] as bool,
+      headers: json['Headers'] != null
+          ? Headers.fromJson(json['Headers'] as Map<String, dynamic>)
+          : null,
+      queryStringCacheKeys: json['QueryStringCacheKeys'] != null
+          ? QueryStringCacheKeys.fromJson(
+              json['QueryStringCacheKeys'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ForwardedValues.fromXml(_s.XmlElement elem) {
     return ForwardedValues(
       cookies: CookiePreference.fromXml(_s.extractXmlChild(elem, 'Cookies')!),
@@ -4858,6 +6066,20 @@ class ForwardedValues {
           .extractXmlChild(elem, 'QueryStringCacheKeys')
           ?.let((e) => QueryStringCacheKeys.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cookies = this.cookies;
+    final queryString = this.queryString;
+    final headers = this.headers;
+    final queryStringCacheKeys = this.queryStringCacheKeys;
+    return {
+      'Cookies': cookies,
+      'QueryString': queryString,
+      if (headers != null) 'Headers': headers,
+      if (queryStringCacheKeys != null)
+        'QueryStringCacheKeys': queryStringCacheKeys,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4934,6 +6156,18 @@ class GeoRestriction {
     required this.restrictionType,
     this.items,
   });
+  factory GeoRestriction.fromJson(Map<String, dynamic> json) {
+    return GeoRestriction(
+      quantity: json['Quantity'] as int,
+      restrictionType:
+          (json['RestrictionType'] as String).toGeoRestrictionType(),
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory GeoRestriction.fromXml(_s.XmlElement elem) {
     return GeoRestriction(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -4944,6 +6178,17 @@ class GeoRestriction {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Location')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final restrictionType = this.restrictionType;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      'RestrictionType': restrictionType.toValue(),
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5015,6 +6260,27 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
     this.cloudFrontOriginAccessIdentityConfig,
     this.eTag,
   });
+  factory GetCloudFrontOriginAccessIdentityConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetCloudFrontOriginAccessIdentityConfigResult(
+      cloudFrontOriginAccessIdentityConfig:
+          json['CloudFrontOriginAccessIdentityConfig'] != null
+              ? CloudFrontOriginAccessIdentityConfig.fromJson(
+                  json['CloudFrontOriginAccessIdentityConfig']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentityConfig =
+        this.cloudFrontOriginAccessIdentityConfig;
+    return {
+      if (cloudFrontOriginAccessIdentityConfig != null)
+        'CloudFrontOriginAccessIdentityConfig':
+            cloudFrontOriginAccessIdentityConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5030,6 +6296,24 @@ class GetCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+  factory GetCloudFrontOriginAccessIdentityResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetCloudFrontOriginAccessIdentityResult(
+      cloudFrontOriginAccessIdentity: json['CloudFrontOriginAccessIdentity'] !=
+              null
+          ? CloudFrontOriginAccessIdentity.fromJson(
+              json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5045,6 +6329,21 @@ class GetDistributionConfigResult {
     this.distributionConfig,
     this.eTag,
   });
+  factory GetDistributionConfigResult.fromJson(Map<String, dynamic> json) {
+    return GetDistributionConfigResult(
+      distributionConfig: json['DistributionConfig'] != null
+          ? DistributionConfig.fromJson(
+              json['DistributionConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distributionConfig = this.distributionConfig;
+    return {
+      if (distributionConfig != null) 'DistributionConfig': distributionConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5060,6 +6359,20 @@ class GetDistributionResult {
     this.distribution,
     this.eTag,
   });
+  factory GetDistributionResult.fromJson(Map<String, dynamic> json) {
+    return GetDistributionResult(
+      distribution: json['Distribution'] != null
+          ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 class GetFieldLevelEncryptionConfigResult {
@@ -5074,6 +6387,23 @@ class GetFieldLevelEncryptionConfigResult {
     this.eTag,
     this.fieldLevelEncryptionConfig,
   });
+  factory GetFieldLevelEncryptionConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetFieldLevelEncryptionConfigResult(
+      fieldLevelEncryptionConfig: json['FieldLevelEncryptionConfig'] != null
+          ? FieldLevelEncryptionConfig.fromJson(
+              json['FieldLevelEncryptionConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionConfig = this.fieldLevelEncryptionConfig;
+    return {
+      if (fieldLevelEncryptionConfig != null)
+        'FieldLevelEncryptionConfig': fieldLevelEncryptionConfig,
+    };
+  }
 }
 
 class GetFieldLevelEncryptionProfileConfigResult {
@@ -5088,6 +6418,26 @@ class GetFieldLevelEncryptionProfileConfigResult {
     this.eTag,
     this.fieldLevelEncryptionProfileConfig,
   });
+  factory GetFieldLevelEncryptionProfileConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetFieldLevelEncryptionProfileConfigResult(
+      fieldLevelEncryptionProfileConfig:
+          json['FieldLevelEncryptionProfileConfig'] != null
+              ? FieldLevelEncryptionProfileConfig.fromJson(
+                  json['FieldLevelEncryptionProfileConfig']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfileConfig =
+        this.fieldLevelEncryptionProfileConfig;
+    return {
+      if (fieldLevelEncryptionProfileConfig != null)
+        'FieldLevelEncryptionProfileConfig': fieldLevelEncryptionProfileConfig,
+    };
+  }
 }
 
 class GetFieldLevelEncryptionProfileResult {
@@ -5102,6 +6452,23 @@ class GetFieldLevelEncryptionProfileResult {
     this.eTag,
     this.fieldLevelEncryptionProfile,
   });
+  factory GetFieldLevelEncryptionProfileResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetFieldLevelEncryptionProfileResult(
+      fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
+          ? FieldLevelEncryptionProfile.fromJson(
+              json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
+    return {
+      if (fieldLevelEncryptionProfile != null)
+        'FieldLevelEncryptionProfile': fieldLevelEncryptionProfile,
+    };
+  }
 }
 
 class GetFieldLevelEncryptionResult {
@@ -5116,6 +6483,22 @@ class GetFieldLevelEncryptionResult {
     this.eTag,
     this.fieldLevelEncryption,
   });
+  factory GetFieldLevelEncryptionResult.fromJson(Map<String, dynamic> json) {
+    return GetFieldLevelEncryptionResult(
+      fieldLevelEncryption: json['FieldLevelEncryption'] != null
+          ? FieldLevelEncryption.fromJson(
+              json['FieldLevelEncryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryption = this.fieldLevelEncryption;
+    return {
+      if (fieldLevelEncryption != null)
+        'FieldLevelEncryption': fieldLevelEncryption,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5128,6 +6511,20 @@ class GetInvalidationResult {
   GetInvalidationResult({
     this.invalidation,
   });
+  factory GetInvalidationResult.fromJson(Map<String, dynamic> json) {
+    return GetInvalidationResult(
+      invalidation: json['Invalidation'] != null
+          ? Invalidation.fromJson(json['Invalidation'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invalidation = this.invalidation;
+    return {
+      if (invalidation != null) 'Invalidation': invalidation,
+    };
+  }
 }
 
 class GetPublicKeyConfigResult {
@@ -5142,6 +6539,21 @@ class GetPublicKeyConfigResult {
     this.eTag,
     this.publicKeyConfig,
   });
+  factory GetPublicKeyConfigResult.fromJson(Map<String, dynamic> json) {
+    return GetPublicKeyConfigResult(
+      publicKeyConfig: json['PublicKeyConfig'] != null
+          ? PublicKeyConfig.fromJson(
+              json['PublicKeyConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKeyConfig = this.publicKeyConfig;
+    return {
+      if (publicKeyConfig != null) 'PublicKeyConfig': publicKeyConfig,
+    };
+  }
 }
 
 class GetPublicKeyResult {
@@ -5156,6 +6568,20 @@ class GetPublicKeyResult {
     this.eTag,
     this.publicKey,
   });
+  factory GetPublicKeyResult.fromJson(Map<String, dynamic> json) {
+    return GetPublicKeyResult(
+      publicKey: json['PublicKey'] != null
+          ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKey = this.publicKey;
+    return {
+      if (publicKey != null) 'PublicKey': publicKey,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5171,6 +6597,23 @@ class GetStreamingDistributionConfigResult {
     this.eTag,
     this.streamingDistributionConfig,
   });
+  factory GetStreamingDistributionConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return GetStreamingDistributionConfigResult(
+      streamingDistributionConfig: json['StreamingDistributionConfig'] != null
+          ? StreamingDistributionConfig.fromJson(
+              json['StreamingDistributionConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    return {
+      if (streamingDistributionConfig != null)
+        'StreamingDistributionConfig': streamingDistributionConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5186,6 +6629,22 @@ class GetStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+  factory GetStreamingDistributionResult.fromJson(Map<String, dynamic> json) {
+    return GetStreamingDistributionResult(
+      streamingDistribution: json['StreamingDistribution'] != null
+          ? StreamingDistribution.fromJson(
+              json['StreamingDistribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that specifies the request headers, if any, that you want
@@ -5255,6 +6714,16 @@ class Headers {
     required this.quantity,
     this.items,
   });
+  factory Headers.fromJson(Map<String, dynamic> json) {
+    return Headers(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory Headers.fromXml(_s.XmlElement elem) {
     return Headers(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -5262,6 +6731,15 @@ class Headers {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Name')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5367,6 +6845,16 @@ class Invalidation {
     required this.invalidationBatch,
     required this.status,
   });
+  factory Invalidation.fromJson(Map<String, dynamic> json) {
+    return Invalidation(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      id: json['Id'] as String,
+      invalidationBatch: InvalidationBatch.fromJson(
+          json['InvalidationBatch'] as Map<String, dynamic>),
+      status: json['Status'] as String,
+    );
+  }
+
   factory Invalidation.fromXml(_s.XmlElement elem) {
     return Invalidation(
       createTime: _s.extractXmlDateTimeValue(elem, 'CreateTime')!,
@@ -5375,6 +6863,19 @@ class Invalidation {
           _s.extractXmlChild(elem, 'InvalidationBatch')!),
       status: _s.extractXmlStringValue(elem, 'Status')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final id = this.id;
+    final invalidationBatch = this.invalidationBatch;
+    final status = this.status;
+    return {
+      'CreateTime': unixTimestampToJson(createTime),
+      'Id': id,
+      'InvalidationBatch': invalidationBatch,
+      'Status': status,
+    };
   }
 }
 
@@ -5411,11 +6912,27 @@ class InvalidationBatch {
     required this.callerReference,
     required this.paths,
   });
+  factory InvalidationBatch.fromJson(Map<String, dynamic> json) {
+    return InvalidationBatch(
+      callerReference: json['CallerReference'] as String,
+      paths: Paths.fromJson(json['Paths'] as Map<String, dynamic>),
+    );
+  }
+
   factory InvalidationBatch.fromXml(_s.XmlElement elem) {
     return InvalidationBatch(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
       paths: Paths.fromXml(_s.extractXmlChild(elem, 'Paths')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final paths = this.paths;
+    return {
+      'CallerReference': callerReference,
+      'Paths': paths,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5475,6 +6992,20 @@ class InvalidationList {
     this.items,
     this.nextMarker,
   });
+  factory InvalidationList.fromJson(Map<String, dynamic> json) {
+    return InvalidationList(
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => InvalidationSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory InvalidationList.fromXml(_s.XmlElement elem) {
     return InvalidationList(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -5487,6 +7018,23 @@ class InvalidationList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -5506,12 +7054,31 @@ class InvalidationSummary {
     required this.id,
     required this.status,
   });
+  factory InvalidationSummary.fromJson(Map<String, dynamic> json) {
+    return InvalidationSummary(
+      createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
+      id: json['Id'] as String,
+      status: json['Status'] as String,
+    );
+  }
+
   factory InvalidationSummary.fromXml(_s.XmlElement elem) {
     return InvalidationSummary(
       createTime: _s.extractXmlDateTimeValue(elem, 'CreateTime')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
       status: _s.extractXmlStringValue(elem, 'Status')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final id = this.id;
+    final status = this.status;
+    return {
+      'CreateTime': unixTimestampToJson(createTime),
+      'Id': id,
+      'Status': status,
+    };
   }
 }
 
@@ -5571,6 +7138,16 @@ class KeyPairIds {
     required this.quantity,
     this.items,
   });
+  factory KeyPairIds.fromJson(Map<String, dynamic> json) {
+    return KeyPairIds(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory KeyPairIds.fromXml(_s.XmlElement elem) {
     return KeyPairIds(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -5578,6 +7155,15 @@ class KeyPairIds {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'KeyPairId')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 }
 
@@ -5630,12 +7216,31 @@ class LambdaFunctionAssociation {
     required this.lambdaFunctionARN,
     this.includeBody,
   });
+  factory LambdaFunctionAssociation.fromJson(Map<String, dynamic> json) {
+    return LambdaFunctionAssociation(
+      eventType: (json['EventType'] as String).toEventType(),
+      lambdaFunctionARN: json['LambdaFunctionARN'] as String,
+      includeBody: json['IncludeBody'] as bool?,
+    );
+  }
+
   factory LambdaFunctionAssociation.fromXml(_s.XmlElement elem) {
     return LambdaFunctionAssociation(
       eventType: _s.extractXmlStringValue(elem, 'EventType')!.toEventType(),
       lambdaFunctionARN: _s.extractXmlStringValue(elem, 'LambdaFunctionARN')!,
       includeBody: _s.extractXmlBoolValue(elem, 'IncludeBody'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventType = this.eventType;
+    final lambdaFunctionARN = this.lambdaFunctionARN;
+    final includeBody = this.includeBody;
+    return {
+      'EventType': eventType.toValue(),
+      'LambdaFunctionARN': lambdaFunctionARN,
+      if (includeBody != null) 'IncludeBody': includeBody,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5685,6 +7290,17 @@ class LambdaFunctionAssociations {
     required this.quantity,
     this.items,
   });
+  factory LambdaFunctionAssociations.fromJson(Map<String, dynamic> json) {
+    return LambdaFunctionAssociations(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LambdaFunctionAssociation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory LambdaFunctionAssociations.fromXml(_s.XmlElement elem) {
     return LambdaFunctionAssociations(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -5693,6 +7309,15 @@ class LambdaFunctionAssociations {
           .map((c) => LambdaFunctionAssociation.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5723,6 +7348,27 @@ class ListCloudFrontOriginAccessIdentitiesResult {
   ListCloudFrontOriginAccessIdentitiesResult({
     this.cloudFrontOriginAccessIdentityList,
   });
+  factory ListCloudFrontOriginAccessIdentitiesResult.fromJson(
+      Map<String, dynamic> json) {
+    return ListCloudFrontOriginAccessIdentitiesResult(
+      cloudFrontOriginAccessIdentityList:
+          json['CloudFrontOriginAccessIdentityList'] != null
+              ? CloudFrontOriginAccessIdentityList.fromJson(
+                  json['CloudFrontOriginAccessIdentityList']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentityList =
+        this.cloudFrontOriginAccessIdentityList;
+    return {
+      if (cloudFrontOriginAccessIdentityList != null)
+        'CloudFrontOriginAccessIdentityList':
+            cloudFrontOriginAccessIdentityList,
+    };
+  }
 }
 
 /// The response to a request to list the distributions that are associated with
@@ -5734,6 +7380,22 @@ class ListDistributionsByWebACLIdResult {
   ListDistributionsByWebACLIdResult({
     this.distributionList,
   });
+  factory ListDistributionsByWebACLIdResult.fromJson(
+      Map<String, dynamic> json) {
+    return ListDistributionsByWebACLIdResult(
+      distributionList: json['DistributionList'] != null
+          ? DistributionList.fromJson(
+              json['DistributionList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distributionList = this.distributionList;
+    return {
+      if (distributionList != null) 'DistributionList': distributionList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5744,6 +7406,21 @@ class ListDistributionsResult {
   ListDistributionsResult({
     this.distributionList,
   });
+  factory ListDistributionsResult.fromJson(Map<String, dynamic> json) {
+    return ListDistributionsResult(
+      distributionList: json['DistributionList'] != null
+          ? DistributionList.fromJson(
+              json['DistributionList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distributionList = this.distributionList;
+    return {
+      if (distributionList != null) 'DistributionList': distributionList,
+    };
+  }
 }
 
 class ListFieldLevelEncryptionConfigsResult {
@@ -5754,6 +7431,23 @@ class ListFieldLevelEncryptionConfigsResult {
   ListFieldLevelEncryptionConfigsResult({
     this.fieldLevelEncryptionList,
   });
+  factory ListFieldLevelEncryptionConfigsResult.fromJson(
+      Map<String, dynamic> json) {
+    return ListFieldLevelEncryptionConfigsResult(
+      fieldLevelEncryptionList: json['FieldLevelEncryptionList'] != null
+          ? FieldLevelEncryptionList.fromJson(
+              json['FieldLevelEncryptionList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionList = this.fieldLevelEncryptionList;
+    return {
+      if (fieldLevelEncryptionList != null)
+        'FieldLevelEncryptionList': fieldLevelEncryptionList,
+    };
+  }
 }
 
 class ListFieldLevelEncryptionProfilesResult {
@@ -5764,6 +7458,26 @@ class ListFieldLevelEncryptionProfilesResult {
   ListFieldLevelEncryptionProfilesResult({
     this.fieldLevelEncryptionProfileList,
   });
+  factory ListFieldLevelEncryptionProfilesResult.fromJson(
+      Map<String, dynamic> json) {
+    return ListFieldLevelEncryptionProfilesResult(
+      fieldLevelEncryptionProfileList:
+          json['FieldLevelEncryptionProfileList'] != null
+              ? FieldLevelEncryptionProfileList.fromJson(
+                  json['FieldLevelEncryptionProfileList']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfileList =
+        this.fieldLevelEncryptionProfileList;
+    return {
+      if (fieldLevelEncryptionProfileList != null)
+        'FieldLevelEncryptionProfileList': fieldLevelEncryptionProfileList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5774,6 +7488,21 @@ class ListInvalidationsResult {
   ListInvalidationsResult({
     this.invalidationList,
   });
+  factory ListInvalidationsResult.fromJson(Map<String, dynamic> json) {
+    return ListInvalidationsResult(
+      invalidationList: json['InvalidationList'] != null
+          ? InvalidationList.fromJson(
+              json['InvalidationList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invalidationList = this.invalidationList;
+    return {
+      if (invalidationList != null) 'InvalidationList': invalidationList,
+    };
+  }
 }
 
 class ListPublicKeysResult {
@@ -5784,6 +7513,21 @@ class ListPublicKeysResult {
   ListPublicKeysResult({
     this.publicKeyList,
   });
+  factory ListPublicKeysResult.fromJson(Map<String, dynamic> json) {
+    return ListPublicKeysResult(
+      publicKeyList: json['PublicKeyList'] != null
+          ? PublicKeyList.fromJson(
+              json['PublicKeyList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKeyList = this.publicKeyList;
+    return {
+      if (publicKeyList != null) 'PublicKeyList': publicKeyList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5794,6 +7538,22 @@ class ListStreamingDistributionsResult {
   ListStreamingDistributionsResult({
     this.streamingDistributionList,
   });
+  factory ListStreamingDistributionsResult.fromJson(Map<String, dynamic> json) {
+    return ListStreamingDistributionsResult(
+      streamingDistributionList: json['StreamingDistributionList'] != null
+          ? StreamingDistributionList.fromJson(
+              json['StreamingDistributionList'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistributionList = this.streamingDistributionList;
+    return {
+      if (streamingDistributionList != null)
+        'StreamingDistributionList': streamingDistributionList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -5804,6 +7564,18 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     required this.tags,
   });
+  factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResult(
+      tags: Tags.fromJson(json['Tags'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
+  }
 }
 
 /// A complex type that controls whether access logs are written for the
@@ -5845,6 +7617,15 @@ class LoggingConfig {
     required this.includeCookies,
     required this.prefix,
   });
+  factory LoggingConfig.fromJson(Map<String, dynamic> json) {
+    return LoggingConfig(
+      bucket: json['Bucket'] as String,
+      enabled: json['Enabled'] as bool,
+      includeCookies: json['IncludeCookies'] as bool,
+      prefix: json['Prefix'] as String,
+    );
+  }
+
   factory LoggingConfig.fromXml(_s.XmlElement elem) {
     return LoggingConfig(
       bucket: _s.extractXmlStringValue(elem, 'Bucket')!,
@@ -5852,6 +7633,19 @@ class LoggingConfig {
       includeCookies: _s.extractXmlBoolValue(elem, 'IncludeCookies')!,
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final enabled = this.enabled;
+    final includeCookies = this.includeCookies;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Enabled': enabled,
+      'IncludeCookies': includeCookies,
+      'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6094,6 +7888,28 @@ class Origin {
     this.originPath,
     this.s3OriginConfig,
   });
+  factory Origin.fromJson(Map<String, dynamic> json) {
+    return Origin(
+      domainName: json['DomainName'] as String,
+      id: json['Id'] as String,
+      connectionAttempts: json['ConnectionAttempts'] as int?,
+      connectionTimeout: json['ConnectionTimeout'] as int?,
+      customHeaders: json['CustomHeaders'] != null
+          ? CustomHeaders.fromJson(
+              json['CustomHeaders'] as Map<String, dynamic>)
+          : null,
+      customOriginConfig: json['CustomOriginConfig'] != null
+          ? CustomOriginConfig.fromJson(
+              json['CustomOriginConfig'] as Map<String, dynamic>)
+          : null,
+      originPath: json['OriginPath'] as String?,
+      s3OriginConfig: json['S3OriginConfig'] != null
+          ? S3OriginConfig.fromJson(
+              json['S3OriginConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory Origin.fromXml(_s.XmlElement elem) {
     return Origin(
       domainName: _s.extractXmlStringValue(elem, 'DomainName')!,
@@ -6111,6 +7927,27 @@ class Origin {
           .extractXmlChild(elem, 'S3OriginConfig')
           ?.let((e) => S3OriginConfig.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final id = this.id;
+    final connectionAttempts = this.connectionAttempts;
+    final connectionTimeout = this.connectionTimeout;
+    final customHeaders = this.customHeaders;
+    final customOriginConfig = this.customOriginConfig;
+    final originPath = this.originPath;
+    final s3OriginConfig = this.s3OriginConfig;
+    return {
+      'DomainName': domainName,
+      'Id': id,
+      if (connectionAttempts != null) 'ConnectionAttempts': connectionAttempts,
+      if (connectionTimeout != null) 'ConnectionTimeout': connectionTimeout,
+      if (customHeaders != null) 'CustomHeaders': customHeaders,
+      if (customOriginConfig != null) 'CustomOriginConfig': customOriginConfig,
+      if (originPath != null) 'OriginPath': originPath,
+      if (s3OriginConfig != null) 'S3OriginConfig': s3OriginConfig,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6164,11 +8001,27 @@ class OriginCustomHeader {
     required this.headerName,
     required this.headerValue,
   });
+  factory OriginCustomHeader.fromJson(Map<String, dynamic> json) {
+    return OriginCustomHeader(
+      headerName: json['HeaderName'] as String,
+      headerValue: json['HeaderValue'] as String,
+    );
+  }
+
   factory OriginCustomHeader.fromXml(_s.XmlElement elem) {
     return OriginCustomHeader(
       headerName: _s.extractXmlStringValue(elem, 'HeaderName')!,
       headerValue: _s.extractXmlStringValue(elem, 'HeaderValue')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final headerName = this.headerName;
+    final headerValue = this.headerValue;
+    return {
+      'HeaderName': headerName,
+      'HeaderValue': headerValue,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6212,6 +8065,16 @@ class OriginGroup {
     required this.id,
     required this.members,
   });
+  factory OriginGroup.fromJson(Map<String, dynamic> json) {
+    return OriginGroup(
+      failoverCriteria: OriginGroupFailoverCriteria.fromJson(
+          json['FailoverCriteria'] as Map<String, dynamic>),
+      id: json['Id'] as String,
+      members:
+          OriginGroupMembers.fromJson(json['Members'] as Map<String, dynamic>),
+    );
+  }
+
   factory OriginGroup.fromXml(_s.XmlElement elem) {
     return OriginGroup(
       failoverCriteria: OriginGroupFailoverCriteria.fromXml(
@@ -6219,6 +8082,17 @@ class OriginGroup {
       id: _s.extractXmlStringValue(elem, 'Id')!,
       members: OriginGroupMembers.fromXml(_s.extractXmlChild(elem, 'Members')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failoverCriteria = this.failoverCriteria;
+    final id = this.id;
+    final members = this.members;
+    return {
+      'FailoverCriteria': failoverCriteria,
+      'Id': id,
+      'Members': members,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6252,11 +8126,25 @@ class OriginGroupFailoverCriteria {
   OriginGroupFailoverCriteria({
     required this.statusCodes,
   });
+  factory OriginGroupFailoverCriteria.fromJson(Map<String, dynamic> json) {
+    return OriginGroupFailoverCriteria(
+      statusCodes:
+          StatusCodes.fromJson(json['StatusCodes'] as Map<String, dynamic>),
+    );
+  }
+
   factory OriginGroupFailoverCriteria.fromXml(_s.XmlElement elem) {
     return OriginGroupFailoverCriteria(
       statusCodes:
           StatusCodes.fromXml(_s.extractXmlChild(elem, 'StatusCodes')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusCodes = this.statusCodes;
+    return {
+      'StatusCodes': statusCodes,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6283,10 +8171,23 @@ class OriginGroupMember {
   OriginGroupMember({
     required this.originId,
   });
+  factory OriginGroupMember.fromJson(Map<String, dynamic> json) {
+    return OriginGroupMember(
+      originId: json['OriginId'] as String,
+    );
+  }
+
   factory OriginGroupMember.fromXml(_s.XmlElement elem) {
     return OriginGroupMember(
       originId: _s.extractXmlStringValue(elem, 'OriginId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final originId = this.originId;
+    return {
+      'OriginId': originId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6317,6 +8218,16 @@ class OriginGroupMembers {
     required this.items,
     required this.quantity,
   });
+  factory OriginGroupMembers.fromJson(Map<String, dynamic> json) {
+    return OriginGroupMembers(
+      items: (json['Items'] as List)
+          .whereNotNull()
+          .map((e) => OriginGroupMember.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      quantity: json['Quantity'] as int,
+    );
+  }
+
   factory OriginGroupMembers.fromXml(_s.XmlElement elem) {
     return OriginGroupMembers(
       items: _s
@@ -6326,6 +8237,15 @@ class OriginGroupMembers {
           .toList(),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items,
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6359,6 +8279,16 @@ class OriginGroups {
     required this.quantity,
     this.items,
   });
+  factory OriginGroups.fromJson(Map<String, dynamic> json) {
+    return OriginGroups(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => OriginGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory OriginGroups.fromXml(_s.XmlElement elem) {
     return OriginGroups(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -6367,6 +8297,15 @@ class OriginGroups {
           .map((c) => OriginGroup.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6436,6 +8375,16 @@ class OriginSslProtocols {
     required this.items,
     required this.quantity,
   });
+  factory OriginSslProtocols.fromJson(Map<String, dynamic> json) {
+    return OriginSslProtocols(
+      items: (json['Items'] as List)
+          .whereNotNull()
+          .map((e) => (e as String).toSslProtocol())
+          .toList(),
+      quantity: json['Quantity'] as int,
+    );
+  }
+
   factory OriginSslProtocols.fromXml(_s.XmlElement elem) {
     return OriginSslProtocols(
       items: _s
@@ -6445,6 +8394,15 @@ class OriginSslProtocols {
           .toList(),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6482,6 +8440,16 @@ class Origins {
     required this.items,
     required this.quantity,
   });
+  factory Origins.fromJson(Map<String, dynamic> json) {
+    return Origins(
+      items: (json['Items'] as List)
+          .whereNotNull()
+          .map((e) => Origin.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      quantity: json['Quantity'] as int,
+    );
+  }
+
   factory Origins.fromXml(_s.XmlElement elem) {
     return Origins(
       items: _s
@@ -6491,6 +8459,15 @@ class Origins {
           .toList(),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items,
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6530,6 +8507,16 @@ class Paths {
     required this.quantity,
     this.items,
   });
+  factory Paths.fromJson(Map<String, dynamic> json) {
+    return Paths(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory Paths.fromXml(_s.XmlElement elem) {
     return Paths(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -6537,6 +8524,15 @@ class Paths {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Path')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6610,6 +8606,15 @@ class PublicKey {
     required this.id,
     required this.publicKeyConfig,
   });
+  factory PublicKey.fromJson(Map<String, dynamic> json) {
+    return PublicKey(
+      createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
+      id: json['Id'] as String,
+      publicKeyConfig: PublicKeyConfig.fromJson(
+          json['PublicKeyConfig'] as Map<String, dynamic>),
+    );
+  }
+
   factory PublicKey.fromXml(_s.XmlElement elem) {
     return PublicKey(
       createdTime: _s.extractXmlDateTimeValue(elem, 'CreatedTime')!,
@@ -6617,6 +8622,17 @@ class PublicKey {
       publicKeyConfig:
           PublicKeyConfig.fromXml(_s.extractXmlChild(elem, 'PublicKeyConfig')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final publicKeyConfig = this.publicKeyConfig;
+    return {
+      'CreatedTime': unixTimestampToJson(createdTime),
+      'Id': id,
+      'PublicKeyConfig': publicKeyConfig,
+    };
   }
 }
 
@@ -6643,6 +8659,15 @@ class PublicKeyConfig {
     required this.name,
     this.comment,
   });
+  factory PublicKeyConfig.fromJson(Map<String, dynamic> json) {
+    return PublicKeyConfig(
+      callerReference: json['CallerReference'] as String,
+      encodedKey: json['EncodedKey'] as String,
+      name: json['Name'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory PublicKeyConfig.fromXml(_s.XmlElement elem) {
     return PublicKeyConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -6650,6 +8675,19 @@ class PublicKeyConfig {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final encodedKey = this.encodedKey;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'CallerReference': callerReference,
+      'EncodedKey': encodedKey,
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6699,6 +8737,18 @@ class PublicKeyList {
     this.items,
     this.nextMarker,
   });
+  factory PublicKeyList.fromJson(Map<String, dynamic> json) {
+    return PublicKeyList(
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => PublicKeySummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory PublicKeyList.fromXml(_s.XmlElement elem) {
     return PublicKeyList(
       maxItems: _s.extractXmlIntValue(elem, 'MaxItems')!,
@@ -6709,6 +8759,19 @@ class PublicKeyList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -6736,6 +8799,16 @@ class PublicKeySummary {
     required this.name,
     this.comment,
   });
+  factory PublicKeySummary.fromJson(Map<String, dynamic> json) {
+    return PublicKeySummary(
+      createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
+      encodedKey: json['EncodedKey'] as String,
+      id: json['Id'] as String,
+      name: json['Name'] as String,
+      comment: json['Comment'] as String?,
+    );
+  }
+
   factory PublicKeySummary.fromXml(_s.XmlElement elem) {
     return PublicKeySummary(
       createdTime: _s.extractXmlDateTimeValue(elem, 'CreatedTime')!,
@@ -6744,6 +8817,21 @@ class PublicKeySummary {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final encodedKey = this.encodedKey;
+    final id = this.id;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'CreatedTime': unixTimestampToJson(createdTime),
+      'EncodedKey': encodedKey,
+      'Id': id,
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
   }
 }
 
@@ -6760,11 +8848,27 @@ class QueryArgProfile {
     required this.profileId,
     required this.queryArg,
   });
+  factory QueryArgProfile.fromJson(Map<String, dynamic> json) {
+    return QueryArgProfile(
+      profileId: json['ProfileId'] as String,
+      queryArg: json['QueryArg'] as String,
+    );
+  }
+
   factory QueryArgProfile.fromXml(_s.XmlElement elem) {
     return QueryArgProfile(
       profileId: _s.extractXmlStringValue(elem, 'ProfileId')!,
       queryArg: _s.extractXmlStringValue(elem, 'QueryArg')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileId = this.profileId;
+    final queryArg = this.queryArg;
+    return {
+      'ProfileId': profileId,
+      'QueryArg': queryArg,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6800,6 +8904,17 @@ class QueryArgProfileConfig {
     required this.forwardWhenQueryArgProfileIsUnknown,
     this.queryArgProfiles,
   });
+  factory QueryArgProfileConfig.fromJson(Map<String, dynamic> json) {
+    return QueryArgProfileConfig(
+      forwardWhenQueryArgProfileIsUnknown:
+          json['ForwardWhenQueryArgProfileIsUnknown'] as bool,
+      queryArgProfiles: json['QueryArgProfiles'] != null
+          ? QueryArgProfiles.fromJson(
+              json['QueryArgProfiles'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory QueryArgProfileConfig.fromXml(_s.XmlElement elem) {
     return QueryArgProfileConfig(
       forwardWhenQueryArgProfileIsUnknown:
@@ -6808,6 +8923,17 @@ class QueryArgProfileConfig {
           .extractXmlChild(elem, 'QueryArgProfiles')
           ?.let((e) => QueryArgProfiles.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forwardWhenQueryArgProfileIsUnknown =
+        this.forwardWhenQueryArgProfileIsUnknown;
+    final queryArgProfiles = this.queryArgProfiles;
+    return {
+      'ForwardWhenQueryArgProfileIsUnknown':
+          forwardWhenQueryArgProfileIsUnknown,
+      if (queryArgProfiles != null) 'QueryArgProfiles': queryArgProfiles,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6844,6 +8970,16 @@ class QueryArgProfiles {
     required this.quantity,
     this.items,
   });
+  factory QueryArgProfiles.fromJson(Map<String, dynamic> json) {
+    return QueryArgProfiles(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => QueryArgProfile.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory QueryArgProfiles.fromXml(_s.XmlElement elem) {
     return QueryArgProfiles(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -6852,6 +8988,15 @@ class QueryArgProfiles {
           .map((c) => QueryArgProfile.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6890,6 +9035,16 @@ class QueryStringCacheKeys {
     required this.quantity,
     this.items,
   });
+  factory QueryStringCacheKeys.fromJson(Map<String, dynamic> json) {
+    return QueryStringCacheKeys(
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory QueryStringCacheKeys.fromXml(_s.XmlElement elem) {
     return QueryStringCacheKeys(
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
@@ -6897,6 +9052,15 @@ class QueryStringCacheKeys {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Name')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6930,11 +9094,25 @@ class Restrictions {
   Restrictions({
     required this.geoRestriction,
   });
+  factory Restrictions.fromJson(Map<String, dynamic> json) {
+    return Restrictions(
+      geoRestriction: GeoRestriction.fromJson(
+          json['GeoRestriction'] as Map<String, dynamic>),
+    );
+  }
+
   factory Restrictions.fromXml(_s.XmlElement elem) {
     return Restrictions(
       geoRestriction:
           GeoRestriction.fromXml(_s.extractXmlChild(elem, 'GeoRestriction')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final geoRestriction = this.geoRestriction;
+    return {
+      'GeoRestriction': geoRestriction,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6984,12 +9162,28 @@ class S3Origin {
     required this.domainName,
     required this.originAccessIdentity,
   });
+  factory S3Origin.fromJson(Map<String, dynamic> json) {
+    return S3Origin(
+      domainName: json['DomainName'] as String,
+      originAccessIdentity: json['OriginAccessIdentity'] as String,
+    );
+  }
+
   factory S3Origin.fromXml(_s.XmlElement elem) {
     return S3Origin(
       domainName: _s.extractXmlStringValue(elem, 'DomainName')!,
       originAccessIdentity:
           _s.extractXmlStringValue(elem, 'OriginAccessIdentity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final originAccessIdentity = this.originAccessIdentity;
+    return {
+      'DomainName': domainName,
+      'OriginAccessIdentity': originAccessIdentity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7045,11 +9239,24 @@ class S3OriginConfig {
   S3OriginConfig({
     required this.originAccessIdentity,
   });
+  factory S3OriginConfig.fromJson(Map<String, dynamic> json) {
+    return S3OriginConfig(
+      originAccessIdentity: json['OriginAccessIdentity'] as String,
+    );
+  }
+
   factory S3OriginConfig.fromXml(_s.XmlElement elem) {
     return S3OriginConfig(
       originAccessIdentity:
           _s.extractXmlStringValue(elem, 'OriginAccessIdentity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final originAccessIdentity = this.originAccessIdentity;
+    return {
+      'OriginAccessIdentity': originAccessIdentity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7121,6 +9328,15 @@ class Signer {
     this.awsAccountNumber,
     this.keyPairIds,
   });
+  factory Signer.fromJson(Map<String, dynamic> json) {
+    return Signer(
+      awsAccountNumber: json['AwsAccountNumber'] as String?,
+      keyPairIds: json['KeyPairIds'] != null
+          ? KeyPairIds.fromJson(json['KeyPairIds'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory Signer.fromXml(_s.XmlElement elem) {
     return Signer(
       awsAccountNumber: _s.extractXmlStringValue(elem, 'AwsAccountNumber'),
@@ -7128,6 +9344,15 @@ class Signer {
           .extractXmlChild(elem, 'KeyPairIds')
           ?.let((e) => KeyPairIds.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountNumber = this.awsAccountNumber;
+    final keyPairIds = this.keyPairIds;
+    return {
+      if (awsAccountNumber != null) 'AwsAccountNumber': awsAccountNumber,
+      if (keyPairIds != null) 'KeyPairIds': keyPairIds,
+    };
   }
 }
 
@@ -7183,12 +9408,29 @@ class StatusCodes {
     required this.items,
     required this.quantity,
   });
+  factory StatusCodes.fromJson(Map<String, dynamic> json) {
+    return StatusCodes(
+      items:
+          (json['Items'] as List).whereNotNull().map((e) => e as int).toList(),
+      quantity: json['Quantity'] as int,
+    );
+  }
+
   factory StatusCodes.fromXml(_s.XmlElement elem) {
     return StatusCodes(
       items: _s.extractXmlIntListValues(
           _s.extractXmlChild(elem, 'Items')!, 'StatusCode'),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items,
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7265,6 +9507,20 @@ class StreamingDistribution {
     required this.streamingDistributionConfig,
     this.lastModifiedTime,
   });
+  factory StreamingDistribution.fromJson(Map<String, dynamic> json) {
+    return StreamingDistribution(
+      arn: json['ARN'] as String,
+      activeTrustedSigners: ActiveTrustedSigners.fromJson(
+          json['ActiveTrustedSigners'] as Map<String, dynamic>),
+      domainName: json['DomainName'] as String,
+      id: json['Id'] as String,
+      status: json['Status'] as String,
+      streamingDistributionConfig: StreamingDistributionConfig.fromJson(
+          json['StreamingDistributionConfig'] as Map<String, dynamic>),
+      lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
+    );
+  }
+
   factory StreamingDistribution.fromXml(_s.XmlElement elem) {
     return StreamingDistribution(
       arn: _s.extractXmlStringValue(elem, 'ARN')!,
@@ -7277,6 +9533,26 @@ class StreamingDistribution {
           _s.extractXmlChild(elem, 'StreamingDistributionConfig')!),
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final activeTrustedSigners = this.activeTrustedSigners;
+    final domainName = this.domainName;
+    final id = this.id;
+    final status = this.status;
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'ARN': arn,
+      'ActiveTrustedSigners': activeTrustedSigners,
+      'DomainName': domainName,
+      'Id': id,
+      'Status': status,
+      'StreamingDistributionConfig': streamingDistributionConfig,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -7336,6 +9612,25 @@ class StreamingDistributionConfig {
     this.logging,
     this.priceClass,
   });
+  factory StreamingDistributionConfig.fromJson(Map<String, dynamic> json) {
+    return StreamingDistributionConfig(
+      callerReference: json['CallerReference'] as String,
+      comment: json['Comment'] as String,
+      enabled: json['Enabled'] as bool,
+      s3Origin: S3Origin.fromJson(json['S3Origin'] as Map<String, dynamic>),
+      trustedSigners: TrustedSigners.fromJson(
+          json['TrustedSigners'] as Map<String, dynamic>),
+      aliases: json['Aliases'] != null
+          ? Aliases.fromJson(json['Aliases'] as Map<String, dynamic>)
+          : null,
+      logging: json['Logging'] != null
+          ? StreamingLoggingConfig.fromJson(
+              json['Logging'] as Map<String, dynamic>)
+          : null,
+      priceClass: (json['PriceClass'] as String?)?.toPriceClass(),
+    );
+  }
+
   factory StreamingDistributionConfig.fromXml(_s.XmlElement elem) {
     return StreamingDistributionConfig(
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
@@ -7351,6 +9646,27 @@ class StreamingDistributionConfig {
           ?.let((e) => StreamingLoggingConfig.fromXml(e)),
       priceClass: _s.extractXmlStringValue(elem, 'PriceClass')?.toPriceClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    final enabled = this.enabled;
+    final s3Origin = this.s3Origin;
+    final trustedSigners = this.trustedSigners;
+    final aliases = this.aliases;
+    final logging = this.logging;
+    final priceClass = this.priceClass;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+      'Enabled': enabled,
+      'S3Origin': s3Origin,
+      'TrustedSigners': trustedSigners,
+      if (aliases != null) 'Aliases': aliases,
+      if (logging != null) 'Logging': logging,
+      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7397,6 +9713,24 @@ class StreamingDistributionConfigWithTags {
     required this.streamingDistributionConfig,
     required this.tags,
   });
+  factory StreamingDistributionConfigWithTags.fromJson(
+      Map<String, dynamic> json) {
+    return StreamingDistributionConfigWithTags(
+      streamingDistributionConfig: StreamingDistributionConfig.fromJson(
+          json['StreamingDistributionConfig'] as Map<String, dynamic>),
+      tags: Tags.fromJson(json['Tags'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    final tags = this.tags;
+    return {
+      'StreamingDistributionConfig': streamingDistributionConfig,
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final streamingDistributionConfig = this.streamingDistributionConfig;
     final tags = this.tags;
@@ -7450,6 +9784,21 @@ class StreamingDistributionList {
     this.items,
     this.nextMarker,
   });
+  factory StreamingDistributionList.fromJson(Map<String, dynamic> json) {
+    return StreamingDistributionList(
+      isTruncated: json['IsTruncated'] as bool,
+      marker: json['Marker'] as String,
+      maxItems: json['MaxItems'] as int,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              StreamingDistributionSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextMarker: json['NextMarker'] as String?,
+    );
+  }
+
   factory StreamingDistributionList.fromXml(_s.XmlElement elem) {
     return StreamingDistributionList(
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated')!,
@@ -7462,6 +9811,23 @@ class StreamingDistributionList {
           .toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -7539,6 +9905,24 @@ class StreamingDistributionSummary {
     required this.status,
     required this.trustedSigners,
   });
+  factory StreamingDistributionSummary.fromJson(Map<String, dynamic> json) {
+    return StreamingDistributionSummary(
+      arn: json['ARN'] as String,
+      aliases: Aliases.fromJson(json['Aliases'] as Map<String, dynamic>),
+      comment: json['Comment'] as String,
+      domainName: json['DomainName'] as String,
+      enabled: json['Enabled'] as bool,
+      id: json['Id'] as String,
+      lastModifiedTime:
+          nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
+      priceClass: (json['PriceClass'] as String).toPriceClass(),
+      s3Origin: S3Origin.fromJson(json['S3Origin'] as Map<String, dynamic>),
+      status: json['Status'] as String,
+      trustedSigners: TrustedSigners.fromJson(
+          json['TrustedSigners'] as Map<String, dynamic>),
+    );
+  }
+
   factory StreamingDistributionSummary.fromXml(_s.XmlElement elem) {
     return StreamingDistributionSummary(
       arn: _s.extractXmlStringValue(elem, 'ARN')!,
@@ -7554,6 +9938,33 @@ class StreamingDistributionSummary {
       trustedSigners:
           TrustedSigners.fromXml(_s.extractXmlChild(elem, 'TrustedSigners')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final aliases = this.aliases;
+    final comment = this.comment;
+    final domainName = this.domainName;
+    final enabled = this.enabled;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final priceClass = this.priceClass;
+    final s3Origin = this.s3Origin;
+    final status = this.status;
+    final trustedSigners = this.trustedSigners;
+    return {
+      'ARN': arn,
+      'Aliases': aliases,
+      'Comment': comment,
+      'DomainName': domainName,
+      'Enabled': enabled,
+      'Id': id,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'PriceClass': priceClass.toValue(),
+      'S3Origin': s3Origin,
+      'Status': status,
+      'TrustedSigners': trustedSigners,
+    };
   }
 }
 
@@ -7586,12 +9997,31 @@ class StreamingLoggingConfig {
     required this.enabled,
     required this.prefix,
   });
+  factory StreamingLoggingConfig.fromJson(Map<String, dynamic> json) {
+    return StreamingLoggingConfig(
+      bucket: json['Bucket'] as String,
+      enabled: json['Enabled'] as bool,
+      prefix: json['Prefix'] as String,
+    );
+  }
+
   factory StreamingLoggingConfig.fromXml(_s.XmlElement elem) {
     return StreamingLoggingConfig(
       bucket: _s.extractXmlStringValue(elem, 'Bucket')!,
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final enabled = this.enabled;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Enabled': enabled,
+      'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7635,11 +10065,27 @@ class Tag {
     required this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key')!,
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      if (value != null) 'Value': value,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7668,6 +10114,22 @@ class TagKeys {
   TagKeys({
     this.items,
   });
+  factory TagKeys.fromJson(Map<String, dynamic> json) {
+    return TagKeys(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    return {
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final items = this.items;
     final $children = <_s.XmlNode>[
@@ -7694,11 +10156,27 @@ class Tags {
   Tags({
     this.items,
   });
+  factory Tags.fromJson(Map<String, dynamic> json) {
+    return Tags(
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory Tags.fromXml(_s.XmlElement elem) {
     return Tags(
       items: _s.extractXmlChild(elem, 'Items')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    return {
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7764,6 +10242,17 @@ class TrustedSigners {
     required this.quantity,
     this.items,
   });
+  factory TrustedSigners.fromJson(Map<String, dynamic> json) {
+    return TrustedSigners(
+      enabled: json['Enabled'] as bool,
+      quantity: json['Quantity'] as int,
+      items: (json['Items'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory TrustedSigners.fromXml(_s.XmlElement elem) {
     return TrustedSigners(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -7771,6 +10260,17 @@ class TrustedSigners {
       items: _s.extractXmlChild(elem, 'Items')?.let(
           (elem) => _s.extractXmlStringListValues(elem, 'AwsAccountNumber')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Enabled': enabled,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7808,6 +10308,24 @@ class UpdateCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+  factory UpdateCloudFrontOriginAccessIdentityResult.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateCloudFrontOriginAccessIdentityResult(
+      cloudFrontOriginAccessIdentity: json['CloudFrontOriginAccessIdentity'] !=
+              null
+          ? CloudFrontOriginAccessIdentity.fromJson(
+              json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -7823,6 +10341,20 @@ class UpdateDistributionResult {
     this.distribution,
     this.eTag,
   });
+  factory UpdateDistributionResult.fromJson(Map<String, dynamic> json) {
+    return UpdateDistributionResult(
+      distribution: json['Distribution'] != null
+          ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 class UpdateFieldLevelEncryptionConfigResult {
@@ -7837,6 +10369,23 @@ class UpdateFieldLevelEncryptionConfigResult {
     this.eTag,
     this.fieldLevelEncryption,
   });
+  factory UpdateFieldLevelEncryptionConfigResult.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateFieldLevelEncryptionConfigResult(
+      fieldLevelEncryption: json['FieldLevelEncryption'] != null
+          ? FieldLevelEncryption.fromJson(
+              json['FieldLevelEncryption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryption = this.fieldLevelEncryption;
+    return {
+      if (fieldLevelEncryption != null)
+        'FieldLevelEncryption': fieldLevelEncryption,
+    };
+  }
 }
 
 class UpdateFieldLevelEncryptionProfileResult {
@@ -7850,6 +10399,23 @@ class UpdateFieldLevelEncryptionProfileResult {
     this.eTag,
     this.fieldLevelEncryptionProfile,
   });
+  factory UpdateFieldLevelEncryptionProfileResult.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateFieldLevelEncryptionProfileResult(
+      fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
+          ? FieldLevelEncryptionProfile.fromJson(
+              json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
+    return {
+      if (fieldLevelEncryptionProfile != null)
+        'FieldLevelEncryptionProfile': fieldLevelEncryptionProfile,
+    };
+  }
 }
 
 class UpdatePublicKeyResult {
@@ -7864,6 +10430,20 @@ class UpdatePublicKeyResult {
     this.eTag,
     this.publicKey,
   });
+  factory UpdatePublicKeyResult.fromJson(Map<String, dynamic> json) {
+    return UpdatePublicKeyResult(
+      publicKey: json['PublicKey'] != null
+          ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKey = this.publicKey;
+    return {
+      if (publicKey != null) 'PublicKey': publicKey,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -7879,6 +10459,23 @@ class UpdateStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+  factory UpdateStreamingDistributionResult.fromJson(
+      Map<String, dynamic> json) {
+    return UpdateStreamingDistributionResult(
+      streamingDistribution: json['StreamingDistribution'] != null
+          ? StreamingDistribution.fromJson(
+              json['StreamingDistribution'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that determines the distribution’s SSL/TLS configuration for
@@ -8090,6 +10687,22 @@ class ViewerCertificate {
     this.minimumProtocolVersion,
     this.sSLSupportMethod,
   });
+  factory ViewerCertificate.fromJson(Map<String, dynamic> json) {
+    return ViewerCertificate(
+      aCMCertificateArn: json['ACMCertificateArn'] as String?,
+      certificate: json['Certificate'] as String?,
+      certificateSource:
+          (json['CertificateSource'] as String?)?.toCertificateSource(),
+      cloudFrontDefaultCertificate:
+          json['CloudFrontDefaultCertificate'] as bool?,
+      iAMCertificateId: json['IAMCertificateId'] as String?,
+      minimumProtocolVersion: (json['MinimumProtocolVersion'] as String?)
+          ?.toMinimumProtocolVersion(),
+      sSLSupportMethod:
+          (json['SSLSupportMethod'] as String?)?.toSSLSupportMethod(),
+    );
+  }
+
   factory ViewerCertificate.fromXml(_s.XmlElement elem) {
     return ViewerCertificate(
       aCMCertificateArn: _s.extractXmlStringValue(elem, 'ACMCertificateArn'),
@@ -8107,6 +10720,29 @@ class ViewerCertificate {
           .extractXmlStringValue(elem, 'SSLSupportMethod')
           ?.toSSLSupportMethod(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aCMCertificateArn = this.aCMCertificateArn;
+    final certificate = this.certificate;
+    final certificateSource = this.certificateSource;
+    final cloudFrontDefaultCertificate = this.cloudFrontDefaultCertificate;
+    final iAMCertificateId = this.iAMCertificateId;
+    final minimumProtocolVersion = this.minimumProtocolVersion;
+    final sSLSupportMethod = this.sSLSupportMethod;
+    return {
+      if (aCMCertificateArn != null) 'ACMCertificateArn': aCMCertificateArn,
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateSource != null)
+        'CertificateSource': certificateSource.toValue(),
+      if (cloudFrontDefaultCertificate != null)
+        'CloudFrontDefaultCertificate': cloudFrontDefaultCertificate,
+      if (iAMCertificateId != null) 'IAMCertificateId': iAMCertificateId,
+      if (minimumProtocolVersion != null)
+        'MinimumProtocolVersion': minimumProtocolVersion.toValue(),
+      if (sSLSupportMethod != null)
+        'SSLSupportMethod': sSLSupportMethod.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {

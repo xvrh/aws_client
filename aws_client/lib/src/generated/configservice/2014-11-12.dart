@@ -5171,6 +5171,19 @@ class AggregateComplianceByConfigRule {
       configRuleName: json['ConfigRuleName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsRegion = this.awsRegion;
+    final compliance = this.compliance;
+    final configRuleName = this.configRuleName;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (compliance != null) 'Compliance': compliance,
+      if (configRuleName != null) 'ConfigRuleName': configRuleName,
+    };
+  }
 }
 
 /// Provides aggregate compliance of the conformance pack. Indicates whether a
@@ -5215,6 +5228,20 @@ class AggregateComplianceByConformancePack {
       conformancePackName: json['ConformancePackName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsRegion = this.awsRegion;
+    final compliance = this.compliance;
+    final conformancePackName = this.conformancePackName;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (compliance != null) 'Compliance': compliance,
+      if (conformancePackName != null)
+        'ConformancePackName': conformancePackName,
+    };
+  }
 }
 
 /// Returns the number of compliant and noncompliant rules for one or more
@@ -5238,6 +5265,15 @@ class AggregateComplianceCount {
           : null,
       groupName: json['GroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummary = this.complianceSummary;
+    final groupName = this.groupName;
+    return {
+      if (complianceSummary != null) 'ComplianceSummary': complianceSummary,
+      if (groupName != null) 'GroupName': groupName,
+    };
   }
 }
 
@@ -5284,6 +5320,20 @@ class AggregateConformancePackCompliance {
       totalRuleCount: json['TotalRuleCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final compliantRuleCount = this.compliantRuleCount;
+    final nonCompliantRuleCount = this.nonCompliantRuleCount;
+    final totalRuleCount = this.totalRuleCount;
+    return {
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+      if (compliantRuleCount != null) 'CompliantRuleCount': compliantRuleCount,
+      if (nonCompliantRuleCount != null)
+        'NonCompliantRuleCount': nonCompliantRuleCount,
+      if (totalRuleCount != null) 'TotalRuleCount': totalRuleCount,
+    };
+  }
 }
 
 /// The number of conformance packs that are compliant and noncompliant.
@@ -5306,6 +5356,18 @@ class AggregateConformancePackComplianceCount {
       nonCompliantConformancePackCount:
           json['NonCompliantConformancePackCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compliantConformancePackCount = this.compliantConformancePackCount;
+    final nonCompliantConformancePackCount =
+        this.nonCompliantConformancePackCount;
+    return {
+      if (compliantConformancePackCount != null)
+        'CompliantConformancePackCount': compliantConformancePackCount,
+      if (nonCompliantConformancePackCount != null)
+        'NonCompliantConformancePackCount': nonCompliantConformancePackCount,
+    };
   }
 }
 
@@ -5330,6 +5392,17 @@ class AggregateConformancePackComplianceFilters {
     this.complianceType,
     this.conformancePackName,
   });
+  factory AggregateConformancePackComplianceFilters.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateConformancePackComplianceFilters(
+      accountId: json['AccountId'] as String?,
+      awsRegion: json['AwsRegion'] as String?,
+      complianceType: (json['ComplianceType'] as String?)
+          ?.toConformancePackComplianceType(),
+      conformancePackName: json['ConformancePackName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final awsRegion = this.awsRegion;
@@ -5367,6 +5440,15 @@ class AggregateConformancePackComplianceSummary {
       groupName: json['GroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummary = this.complianceSummary;
+    final groupName = this.groupName;
+    return {
+      if (complianceSummary != null) 'ComplianceSummary': complianceSummary,
+      if (groupName != null) 'GroupName': groupName,
+    };
+  }
 }
 
 /// Filters the results based on account ID and region.
@@ -5381,6 +5463,14 @@ class AggregateConformancePackComplianceSummaryFilters {
     this.accountId,
     this.awsRegion,
   });
+  factory AggregateConformancePackComplianceSummaryFilters.fromJson(
+      Map<String, dynamic> json) {
+    return AggregateConformancePackComplianceSummaryFilters(
+      accountId: json['AccountId'] as String?,
+      awsRegion: json['AwsRegion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final awsRegion = this.awsRegion;
@@ -5474,6 +5564,28 @@ class AggregateEvaluationResult {
           : null,
       resultRecordedTime: timeStampFromJson(json['ResultRecordedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final annotation = this.annotation;
+    final awsRegion = this.awsRegion;
+    final complianceType = this.complianceType;
+    final configRuleInvokedTime = this.configRuleInvokedTime;
+    final evaluationResultIdentifier = this.evaluationResultIdentifier;
+    final resultRecordedTime = this.resultRecordedTime;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (annotation != null) 'Annotation': annotation,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+      if (configRuleInvokedTime != null)
+        'ConfigRuleInvokedTime': unixTimestampToJson(configRuleInvokedTime),
+      if (evaluationResultIdentifier != null)
+        'EvaluationResultIdentifier': evaluationResultIdentifier,
+      if (resultRecordedTime != null)
+        'ResultRecordedTime': unixTimestampToJson(resultRecordedTime),
+    };
   }
 }
 
@@ -5587,6 +5699,27 @@ class AggregatedSourceStatus {
       sourceType: (json['SourceType'] as String?)?.toAggregatedSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsRegion = this.awsRegion;
+    final lastErrorCode = this.lastErrorCode;
+    final lastErrorMessage = this.lastErrorMessage;
+    final lastUpdateStatus = this.lastUpdateStatus;
+    final lastUpdateTime = this.lastUpdateTime;
+    final sourceId = this.sourceId;
+    final sourceType = this.sourceType;
+    return {
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (lastErrorCode != null) 'LastErrorCode': lastErrorCode,
+      if (lastErrorMessage != null) 'LastErrorMessage': lastErrorMessage,
+      if (lastUpdateStatus != null)
+        'LastUpdateStatus': lastUpdateStatus.toValue(),
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (sourceId != null) 'SourceId': sourceId,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 enum AggregatedSourceStatusType {
@@ -5679,6 +5812,23 @@ class AggregationAuthorization {
       authorizedAwsRegion: json['AuthorizedAwsRegion'] as String?,
       creationTime: timeStampFromJson(json['CreationTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregationAuthorizationArn = this.aggregationAuthorizationArn;
+    final authorizedAccountId = this.authorizedAccountId;
+    final authorizedAwsRegion = this.authorizedAwsRegion;
+    final creationTime = this.creationTime;
+    return {
+      if (aggregationAuthorizationArn != null)
+        'AggregationAuthorizationArn': aggregationAuthorizationArn,
+      if (authorizedAccountId != null)
+        'AuthorizedAccountId': authorizedAccountId,
+      if (authorizedAwsRegion != null)
+        'AuthorizedAwsRegion': authorizedAwsRegion,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+    };
   }
 }
 
@@ -5790,6 +5940,45 @@ class BaseConfigurationItem {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final arn = this.arn;
+    final availabilityZone = this.availabilityZone;
+    final awsRegion = this.awsRegion;
+    final configuration = this.configuration;
+    final configurationItemCaptureTime = this.configurationItemCaptureTime;
+    final configurationItemStatus = this.configurationItemStatus;
+    final configurationStateId = this.configurationStateId;
+    final resourceCreationTime = this.resourceCreationTime;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    final supplementaryConfiguration = this.supplementaryConfiguration;
+    final version = this.version;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (arn != null) 'arn': arn,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (awsRegion != null) 'awsRegion': awsRegion,
+      if (configuration != null) 'configuration': configuration,
+      if (configurationItemCaptureTime != null)
+        'configurationItemCaptureTime':
+            unixTimestampToJson(configurationItemCaptureTime),
+      if (configurationItemStatus != null)
+        'configurationItemStatus': configurationItemStatus.toValue(),
+      if (configurationStateId != null)
+        'configurationStateId': configurationStateId,
+      if (resourceCreationTime != null)
+        'resourceCreationTime': unixTimestampToJson(resourceCreationTime),
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (supplementaryConfiguration != null)
+        'supplementaryConfiguration': supplementaryConfiguration,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class BatchGetAggregateResourceConfigResponse {
@@ -5819,6 +6008,17 @@ class BatchGetAggregateResourceConfigResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseConfigurationItems = this.baseConfigurationItems;
+    final unprocessedResourceIdentifiers = this.unprocessedResourceIdentifiers;
+    return {
+      if (baseConfigurationItems != null)
+        'BaseConfigurationItems': baseConfigurationItems,
+      if (unprocessedResourceIdentifiers != null)
+        'UnprocessedResourceIdentifiers': unprocessedResourceIdentifiers,
+    };
+  }
 }
 
 class BatchGetResourceConfigResponse {
@@ -5847,6 +6047,17 @@ class BatchGetResourceConfigResponse {
           .map((e) => ResourceKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baseConfigurationItems = this.baseConfigurationItems;
+    final unprocessedResourceKeys = this.unprocessedResourceKeys;
+    return {
+      if (baseConfigurationItems != null)
+        'baseConfigurationItems': baseConfigurationItems,
+      if (unprocessedResourceKeys != null)
+        'unprocessedResourceKeys': unprocessedResourceKeys,
+    };
   }
 }
 
@@ -5916,6 +6127,16 @@ class Compliance {
       complianceType: (json['ComplianceType'] as String?)?.toComplianceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceContributorCount = this.complianceContributorCount;
+    final complianceType = this.complianceType;
+    return {
+      if (complianceContributorCount != null)
+        'ComplianceContributorCount': complianceContributorCount,
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+    };
+  }
 }
 
 /// Indicates whether an AWS Config rule is compliant. A rule is compliant if
@@ -5939,6 +6160,15 @@ class ComplianceByConfigRule {
           : null,
       configRuleName: json['ConfigRuleName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compliance = this.compliance;
+    final configRuleName = this.configRuleName;
+    return {
+      if (compliance != null) 'Compliance': compliance,
+      if (configRuleName != null) 'ConfigRuleName': configRuleName,
+    };
   }
 }
 
@@ -5971,6 +6201,17 @@ class ComplianceByResource {
       resourceType: json['ResourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compliance = this.compliance;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      if (compliance != null) 'Compliance': compliance,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// The number of AWS resources or AWS Config rules responsible for the current
@@ -5992,6 +6233,15 @@ class ComplianceContributorCount {
       capExceeded: json['CapExceeded'] as bool?,
       cappedCount: json['CappedCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capExceeded = this.capExceeded;
+    final cappedCount = this.cappedCount;
+    return {
+      if (capExceeded != null) 'CapExceeded': capExceeded,
+      if (cappedCount != null) 'CappedCount': cappedCount,
+    };
   }
 }
 
@@ -6028,6 +6278,21 @@ class ComplianceSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummaryTimestamp = this.complianceSummaryTimestamp;
+    final compliantResourceCount = this.compliantResourceCount;
+    final nonCompliantResourceCount = this.nonCompliantResourceCount;
+    return {
+      if (complianceSummaryTimestamp != null)
+        'ComplianceSummaryTimestamp':
+            unixTimestampToJson(complianceSummaryTimestamp),
+      if (compliantResourceCount != null)
+        'CompliantResourceCount': compliantResourceCount,
+      if (nonCompliantResourceCount != null)
+        'NonCompliantResourceCount': nonCompliantResourceCount,
+    };
+  }
 }
 
 /// The number of AWS resources of a specific type that are compliant or
@@ -6052,6 +6317,15 @@ class ComplianceSummaryByResourceType {
           : null,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummary = this.complianceSummary;
+    final resourceType = this.resourceType;
+    return {
+      if (complianceSummary != null) 'ComplianceSummary': complianceSummary,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -6132,6 +6406,26 @@ class ConfigExportDeliveryInfo {
       lastSuccessfulTime: timeStampFromJson(json['lastSuccessfulTime']),
       nextDeliveryTime: timeStampFromJson(json['nextDeliveryTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastAttemptTime = this.lastAttemptTime;
+    final lastErrorCode = this.lastErrorCode;
+    final lastErrorMessage = this.lastErrorMessage;
+    final lastStatus = this.lastStatus;
+    final lastSuccessfulTime = this.lastSuccessfulTime;
+    final nextDeliveryTime = this.nextDeliveryTime;
+    return {
+      if (lastAttemptTime != null)
+        'lastAttemptTime': unixTimestampToJson(lastAttemptTime),
+      if (lastErrorCode != null) 'lastErrorCode': lastErrorCode,
+      if (lastErrorMessage != null) 'lastErrorMessage': lastErrorMessage,
+      if (lastStatus != null) 'lastStatus': lastStatus.toValue(),
+      if (lastSuccessfulTime != null)
+        'lastSuccessfulTime': unixTimestampToJson(lastSuccessfulTime),
+      if (nextDeliveryTime != null)
+        'nextDeliveryTime': unixTimestampToJson(nextDeliveryTime),
+    };
   }
 }
 
@@ -6311,6 +6605,15 @@ class ConfigRuleComplianceFilters {
     this.complianceType,
     this.configRuleName,
   });
+  factory ConfigRuleComplianceFilters.fromJson(Map<String, dynamic> json) {
+    return ConfigRuleComplianceFilters(
+      accountId: json['AccountId'] as String?,
+      awsRegion: json['AwsRegion'] as String?,
+      complianceType: (json['ComplianceType'] as String?)?.toComplianceType(),
+      configRuleName: json['ConfigRuleName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final awsRegion = this.awsRegion;
@@ -6337,6 +6640,14 @@ class ConfigRuleComplianceSummaryFilters {
     this.accountId,
     this.awsRegion,
   });
+  factory ConfigRuleComplianceSummaryFilters.fromJson(
+      Map<String, dynamic> json) {
+    return ConfigRuleComplianceSummaryFilters(
+      accountId: json['AccountId'] as String?,
+      awsRegion: json['AwsRegion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final awsRegion = this.awsRegion;
@@ -6468,6 +6779,46 @@ class ConfigRuleEvaluationStatus {
       lastSuccessfulInvocationTime:
           timeStampFromJson(json['LastSuccessfulInvocationTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configRuleArn = this.configRuleArn;
+    final configRuleId = this.configRuleId;
+    final configRuleName = this.configRuleName;
+    final firstActivatedTime = this.firstActivatedTime;
+    final firstEvaluationStarted = this.firstEvaluationStarted;
+    final lastDeactivatedTime = this.lastDeactivatedTime;
+    final lastErrorCode = this.lastErrorCode;
+    final lastErrorMessage = this.lastErrorMessage;
+    final lastFailedEvaluationTime = this.lastFailedEvaluationTime;
+    final lastFailedInvocationTime = this.lastFailedInvocationTime;
+    final lastSuccessfulEvaluationTime = this.lastSuccessfulEvaluationTime;
+    final lastSuccessfulInvocationTime = this.lastSuccessfulInvocationTime;
+    return {
+      if (configRuleArn != null) 'ConfigRuleArn': configRuleArn,
+      if (configRuleId != null) 'ConfigRuleId': configRuleId,
+      if (configRuleName != null) 'ConfigRuleName': configRuleName,
+      if (firstActivatedTime != null)
+        'FirstActivatedTime': unixTimestampToJson(firstActivatedTime),
+      if (firstEvaluationStarted != null)
+        'FirstEvaluationStarted': firstEvaluationStarted,
+      if (lastDeactivatedTime != null)
+        'LastDeactivatedTime': unixTimestampToJson(lastDeactivatedTime),
+      if (lastErrorCode != null) 'LastErrorCode': lastErrorCode,
+      if (lastErrorMessage != null) 'LastErrorMessage': lastErrorMessage,
+      if (lastFailedEvaluationTime != null)
+        'LastFailedEvaluationTime':
+            unixTimestampToJson(lastFailedEvaluationTime),
+      if (lastFailedInvocationTime != null)
+        'LastFailedInvocationTime':
+            unixTimestampToJson(lastFailedInvocationTime),
+      if (lastSuccessfulEvaluationTime != null)
+        'LastSuccessfulEvaluationTime':
+            unixTimestampToJson(lastSuccessfulEvaluationTime),
+      if (lastSuccessfulInvocationTime != null)
+        'LastSuccessfulInvocationTime':
+            unixTimestampToJson(lastSuccessfulInvocationTime),
+    };
   }
 }
 
@@ -6615,6 +6966,20 @@ class ConfigStreamDeliveryInfo {
       lastStatusChangeTime: timeStampFromJson(json['lastStatusChangeTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastErrorCode = this.lastErrorCode;
+    final lastErrorMessage = this.lastErrorMessage;
+    final lastStatus = this.lastStatus;
+    final lastStatusChangeTime = this.lastStatusChangeTime;
+    return {
+      if (lastErrorCode != null) 'lastErrorCode': lastErrorCode,
+      if (lastErrorMessage != null) 'lastErrorMessage': lastErrorMessage,
+      if (lastStatus != null) 'lastStatus': lastStatus.toValue(),
+      if (lastStatusChangeTime != null)
+        'lastStatusChangeTime': unixTimestampToJson(lastStatusChangeTime),
+    };
+  }
 }
 
 /// The details about the configuration aggregator, including information about
@@ -6669,6 +7034,31 @@ class ConfigurationAggregator {
                   json['OrganizationAggregationSource'] as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAggregationSources = this.accountAggregationSources;
+    final configurationAggregatorArn = this.configurationAggregatorArn;
+    final configurationAggregatorName = this.configurationAggregatorName;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final organizationAggregationSource = this.organizationAggregationSource;
+    return {
+      if (accountAggregationSources != null)
+        'AccountAggregationSources': accountAggregationSources,
+      if (configurationAggregatorArn != null)
+        'ConfigurationAggregatorArn': configurationAggregatorArn,
+      if (configurationAggregatorName != null)
+        'ConfigurationAggregatorName': configurationAggregatorName,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (organizationAggregationSource != null)
+        'OrganizationAggregationSource': organizationAggregationSource,
+    };
   }
 }
 
@@ -6824,6 +7214,54 @@ class ConfigurationItem {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final arn = this.arn;
+    final availabilityZone = this.availabilityZone;
+    final awsRegion = this.awsRegion;
+    final configuration = this.configuration;
+    final configurationItemCaptureTime = this.configurationItemCaptureTime;
+    final configurationItemMD5Hash = this.configurationItemMD5Hash;
+    final configurationItemStatus = this.configurationItemStatus;
+    final configurationStateId = this.configurationStateId;
+    final relatedEvents = this.relatedEvents;
+    final relationships = this.relationships;
+    final resourceCreationTime = this.resourceCreationTime;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    final supplementaryConfiguration = this.supplementaryConfiguration;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (arn != null) 'arn': arn,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (awsRegion != null) 'awsRegion': awsRegion,
+      if (configuration != null) 'configuration': configuration,
+      if (configurationItemCaptureTime != null)
+        'configurationItemCaptureTime':
+            unixTimestampToJson(configurationItemCaptureTime),
+      if (configurationItemMD5Hash != null)
+        'configurationItemMD5Hash': configurationItemMD5Hash,
+      if (configurationItemStatus != null)
+        'configurationItemStatus': configurationItemStatus.toValue(),
+      if (configurationStateId != null)
+        'configurationStateId': configurationStateId,
+      if (relatedEvents != null) 'relatedEvents': relatedEvents,
+      if (relationships != null) 'relationships': relationships,
+      if (resourceCreationTime != null)
+        'resourceCreationTime': unixTimestampToJson(resourceCreationTime),
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (supplementaryConfiguration != null)
+        'supplementaryConfiguration': supplementaryConfiguration,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 enum ConfigurationItemStatus {
@@ -6961,6 +7399,30 @@ class ConfigurationRecorderStatus {
       recording: json['recording'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastErrorCode = this.lastErrorCode;
+    final lastErrorMessage = this.lastErrorMessage;
+    final lastStartTime = this.lastStartTime;
+    final lastStatus = this.lastStatus;
+    final lastStatusChangeTime = this.lastStatusChangeTime;
+    final lastStopTime = this.lastStopTime;
+    final name = this.name;
+    final recording = this.recording;
+    return {
+      if (lastErrorCode != null) 'lastErrorCode': lastErrorCode,
+      if (lastErrorMessage != null) 'lastErrorMessage': lastErrorMessage,
+      if (lastStartTime != null)
+        'lastStartTime': unixTimestampToJson(lastStartTime),
+      if (lastStatus != null) 'lastStatus': lastStatus.toValue(),
+      if (lastStatusChangeTime != null)
+        'lastStatusChangeTime': unixTimestampToJson(lastStatusChangeTime),
+      if (lastStopTime != null)
+        'lastStopTime': unixTimestampToJson(lastStopTime),
+      if (name != null) 'name': name,
+      if (recording != null) 'recording': recording,
+    };
+  }
 }
 
 /// Filters the conformance pack by compliance types and AWS Config rule names.
@@ -6978,6 +7440,17 @@ class ConformancePackComplianceFilters {
     this.complianceType,
     this.configRuleNames,
   });
+  factory ConformancePackComplianceFilters.fromJson(Map<String, dynamic> json) {
+    return ConformancePackComplianceFilters(
+      complianceType: (json['ComplianceType'] as String?)
+          ?.toConformancePackComplianceType(),
+      configRuleNames: (json['ConfigRuleNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final complianceType = this.complianceType;
     final configRuleNames = this.configRuleNames;
@@ -7009,6 +7482,17 @@ class ConformancePackComplianceSummary {
               .toConformancePackComplianceType(),
       conformancePackName: json['ConformancePackName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackComplianceStatus =
+        this.conformancePackComplianceStatus;
+    final conformancePackName = this.conformancePackName;
+    return {
+      'ConformancePackComplianceStatus':
+          conformancePackComplianceStatus.toValue(),
+      'ConformancePackName': conformancePackName,
+    };
   }
 }
 
@@ -7107,6 +7591,30 @@ class ConformancePackDetail {
           timeStampFromJson(json['LastUpdateRequestedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackArn = this.conformancePackArn;
+    final conformancePackId = this.conformancePackId;
+    final conformancePackName = this.conformancePackName;
+    final conformancePackInputParameters = this.conformancePackInputParameters;
+    final createdBy = this.createdBy;
+    final deliveryS3Bucket = this.deliveryS3Bucket;
+    final deliveryS3KeyPrefix = this.deliveryS3KeyPrefix;
+    final lastUpdateRequestedTime = this.lastUpdateRequestedTime;
+    return {
+      'ConformancePackArn': conformancePackArn,
+      'ConformancePackId': conformancePackId,
+      'ConformancePackName': conformancePackName,
+      if (conformancePackInputParameters != null)
+        'ConformancePackInputParameters': conformancePackInputParameters,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (deliveryS3Bucket != null) 'DeliveryS3Bucket': deliveryS3Bucket,
+      if (deliveryS3KeyPrefix != null)
+        'DeliveryS3KeyPrefix': deliveryS3KeyPrefix,
+      if (lastUpdateRequestedTime != null)
+        'LastUpdateRequestedTime': unixTimestampToJson(lastUpdateRequestedTime),
+    };
+  }
 }
 
 /// Filters a conformance pack by AWS Config rule names, compliance types, AWS
@@ -7138,6 +7646,22 @@ class ConformancePackEvaluationFilters {
     this.resourceIds,
     this.resourceType,
   });
+  factory ConformancePackEvaluationFilters.fromJson(Map<String, dynamic> json) {
+    return ConformancePackEvaluationFilters(
+      complianceType: (json['ComplianceType'] as String?)
+          ?.toConformancePackComplianceType(),
+      configRuleNames: (json['ConfigRuleNames'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      resourceIds: (json['ResourceIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      resourceType: json['ResourceType'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final complianceType = this.complianceType;
     final configRuleNames = this.configRuleNames;
@@ -7190,6 +7714,21 @@ class ConformancePackEvaluationResult {
           nonNullableTimeStampFromJson(json['ResultRecordedTime'] as Object),
       annotation: json['Annotation'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final configRuleInvokedTime = this.configRuleInvokedTime;
+    final evaluationResultIdentifier = this.evaluationResultIdentifier;
+    final resultRecordedTime = this.resultRecordedTime;
+    final annotation = this.annotation;
+    return {
+      'ComplianceType': complianceType.toValue(),
+      'ConfigRuleInvokedTime': unixTimestampToJson(configRuleInvokedTime),
+      'EvaluationResultIdentifier': evaluationResultIdentifier,
+      'ResultRecordedTime': unixTimestampToJson(resultRecordedTime),
+      if (annotation != null) 'Annotation': annotation,
+    };
   }
 }
 
@@ -7257,6 +7796,17 @@ class ConformancePackRuleCompliance {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final configRuleName = this.configRuleName;
+    final controls = this.controls;
+    return {
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+      if (configRuleName != null) 'ConfigRuleName': configRuleName,
+      if (controls != null) 'Controls': controls,
+    };
   }
 }
 
@@ -7377,6 +7927,29 @@ class ConformancePackStatusDetail {
           timeStampFromJson(json['LastUpdateCompletedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackArn = this.conformancePackArn;
+    final conformancePackId = this.conformancePackId;
+    final conformancePackName = this.conformancePackName;
+    final conformancePackState = this.conformancePackState;
+    final lastUpdateRequestedTime = this.lastUpdateRequestedTime;
+    final stackArn = this.stackArn;
+    final conformancePackStatusReason = this.conformancePackStatusReason;
+    final lastUpdateCompletedTime = this.lastUpdateCompletedTime;
+    return {
+      'ConformancePackArn': conformancePackArn,
+      'ConformancePackId': conformancePackId,
+      'ConformancePackName': conformancePackName,
+      'ConformancePackState': conformancePackState.toValue(),
+      'LastUpdateRequestedTime': unixTimestampToJson(lastUpdateRequestedTime),
+      'StackArn': stackArn,
+      if (conformancePackStatusReason != null)
+        'ConformancePackStatusReason': conformancePackStatusReason,
+      if (lastUpdateCompletedTime != null)
+        'LastUpdateCompletedTime': unixTimestampToJson(lastUpdateCompletedTime),
+    };
+  }
 }
 
 /// The output when you delete the evaluation results for the specified AWS
@@ -7386,6 +7959,10 @@ class DeleteEvaluationResultsResponse {
   factory DeleteEvaluationResultsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEvaluationResultsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRemediationConfigurationResponse {
@@ -7393,6 +7970,10 @@ class DeleteRemediationConfigurationResponse {
   factory DeleteRemediationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteRemediationConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7414,12 +7995,23 @@ class DeleteRemediationExceptionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedBatches = this.failedBatches;
+    return {
+      if (failedBatches != null) 'FailedBatches': failedBatches,
+    };
+  }
 }
 
 class DeleteStoredQueryResponse {
   DeleteStoredQueryResponse();
   factory DeleteStoredQueryResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStoredQueryResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7435,6 +8027,13 @@ class DeliverConfigSnapshotResponse {
     return DeliverConfigSnapshotResponse(
       configSnapshotId: json['configSnapshotId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configSnapshotId = this.configSnapshotId;
+    return {
+      if (configSnapshotId != null) 'configSnapshotId': configSnapshotId,
+    };
   }
 }
 
@@ -7565,6 +8164,22 @@ class DeliveryChannelStatus {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configHistoryDeliveryInfo = this.configHistoryDeliveryInfo;
+    final configSnapshotDeliveryInfo = this.configSnapshotDeliveryInfo;
+    final configStreamDeliveryInfo = this.configStreamDeliveryInfo;
+    final name = this.name;
+    return {
+      if (configHistoryDeliveryInfo != null)
+        'configHistoryDeliveryInfo': configHistoryDeliveryInfo,
+      if (configSnapshotDeliveryInfo != null)
+        'configSnapshotDeliveryInfo': configSnapshotDeliveryInfo,
+      if (configStreamDeliveryInfo != null)
+        'configStreamDeliveryInfo': configStreamDeliveryInfo,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 enum DeliveryStatus {
@@ -7624,6 +8239,17 @@ class DescribeAggregateComplianceByConfigRulesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregateComplianceByConfigRules =
+        this.aggregateComplianceByConfigRules;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregateComplianceByConfigRules != null)
+        'AggregateComplianceByConfigRules': aggregateComplianceByConfigRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAggregateComplianceByConformancePacksResponse {
@@ -7651,6 +8277,18 @@ class DescribeAggregateComplianceByConformancePacksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregateComplianceByConformancePacks =
+        this.aggregateComplianceByConformancePacks;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregateComplianceByConformancePacks != null)
+        'AggregateComplianceByConformancePacks':
+            aggregateComplianceByConformancePacks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAggregationAuthorizationsResponse {
@@ -7676,6 +8314,16 @@ class DescribeAggregationAuthorizationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregationAuthorizations = this.aggregationAuthorizations;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregationAuthorizations != null)
+        'AggregationAuthorizations': aggregationAuthorizations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7703,6 +8351,16 @@ class DescribeComplianceByConfigRuleResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final complianceByConfigRules = this.complianceByConfigRules;
+    final nextToken = this.nextToken;
+    return {
+      if (complianceByConfigRules != null)
+        'ComplianceByConfigRules': complianceByConfigRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -7728,6 +8386,16 @@ class DescribeComplianceByResourceResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceByResources = this.complianceByResources;
+    final nextToken = this.nextToken;
+    return {
+      if (complianceByResources != null)
+        'ComplianceByResources': complianceByResources,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7756,6 +8424,16 @@ class DescribeConfigRuleEvaluationStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configRulesEvaluationStatus = this.configRulesEvaluationStatus;
+    final nextToken = this.nextToken;
+    return {
+      if (configRulesEvaluationStatus != null)
+        'ConfigRulesEvaluationStatus': configRulesEvaluationStatus,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -7779,6 +8457,15 @@ class DescribeConfigRulesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configRules = this.configRules;
+    final nextToken = this.nextToken;
+    return {
+      if (configRules != null) 'ConfigRules': configRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7805,6 +8492,16 @@ class DescribeConfigurationAggregatorSourcesStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedSourceStatusList = this.aggregatedSourceStatusList;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregatedSourceStatusList != null)
+        'AggregatedSourceStatusList': aggregatedSourceStatusList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConfigurationAggregatorsResponse {
@@ -7830,6 +8527,16 @@ class DescribeConfigurationAggregatorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationAggregators = this.configurationAggregators;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationAggregators != null)
+        'ConfigurationAggregators': configurationAggregators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The output for the <a>DescribeConfigurationRecorderStatus</a> action, in
@@ -7852,6 +8559,14 @@ class DescribeConfigurationRecorderStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationRecordersStatus = this.configurationRecordersStatus;
+    return {
+      if (configurationRecordersStatus != null)
+        'ConfigurationRecordersStatus': configurationRecordersStatus,
+    };
+  }
 }
 
 /// The output for the <a>DescribeConfigurationRecorders</a> action.
@@ -7871,6 +8586,14 @@ class DescribeConfigurationRecordersResponse {
           .map((e) => ConfigurationRecorder.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationRecorders = this.configurationRecorders;
+    return {
+      if (configurationRecorders != null)
+        'ConfigurationRecorders': configurationRecorders,
+    };
   }
 }
 
@@ -7903,6 +8626,18 @@ class DescribeConformancePackComplianceResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackName = this.conformancePackName;
+    final conformancePackRuleComplianceList =
+        this.conformancePackRuleComplianceList;
+    final nextToken = this.nextToken;
+    return {
+      'ConformancePackName': conformancePackName,
+      'ConformancePackRuleComplianceList': conformancePackRuleComplianceList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConformancePackStatusResponse {
@@ -7929,6 +8664,16 @@ class DescribeConformancePackStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackStatusDetails = this.conformancePackStatusDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (conformancePackStatusDetails != null)
+        'ConformancePackStatusDetails': conformancePackStatusDetails,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConformancePacksResponse {
@@ -7952,6 +8697,16 @@ class DescribeConformancePacksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackDetails = this.conformancePackDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (conformancePackDetails != null)
+        'ConformancePackDetails': conformancePackDetails,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The output for the <a>DescribeDeliveryChannelStatus</a> action.
@@ -7971,6 +8726,14 @@ class DescribeDeliveryChannelStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryChannelsStatus = this.deliveryChannelsStatus;
+    return {
+      if (deliveryChannelsStatus != null)
+        'DeliveryChannelsStatus': deliveryChannelsStatus,
+    };
+  }
 }
 
 /// The output for the <a>DescribeDeliveryChannels</a> action.
@@ -7988,6 +8751,13 @@ class DescribeDeliveryChannelsResponse {
           .map((e) => DeliveryChannel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliveryChannels = this.deliveryChannels;
+    return {
+      if (deliveryChannels != null) 'DeliveryChannels': deliveryChannels,
+    };
   }
 }
 
@@ -8015,6 +8785,16 @@ class DescribeOrganizationConfigRuleStatusesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConfigRuleStatuses = this.organizationConfigRuleStatuses;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConfigRuleStatuses != null)
+        'OrganizationConfigRuleStatuses': organizationConfigRuleStatuses,
+    };
+  }
 }
 
 class DescribeOrganizationConfigRulesResponse {
@@ -8039,6 +8819,16 @@ class DescribeOrganizationConfigRulesResponse {
               (e) => OrganizationConfigRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConfigRules = this.organizationConfigRules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConfigRules != null)
+        'OrganizationConfigRules': organizationConfigRules,
+    };
   }
 }
 
@@ -8067,6 +8857,18 @@ class DescribeOrganizationConformancePackStatusesResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConformancePackStatuses =
+        this.organizationConformancePackStatuses;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConformancePackStatuses != null)
+        'OrganizationConformancePackStatuses':
+            organizationConformancePackStatuses,
+    };
+  }
 }
 
 class DescribeOrganizationConformancePacksResponse {
@@ -8093,6 +8895,16 @@ class DescribeOrganizationConformancePacksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConformancePacks = this.organizationConformancePacks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConformancePacks != null)
+        'OrganizationConformancePacks': organizationConformancePacks,
+    };
+  }
 }
 
 class DescribePendingAggregationRequestsResponse {
@@ -8118,6 +8930,16 @@ class DescribePendingAggregationRequestsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pendingAggregationRequests = this.pendingAggregationRequests;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pendingAggregationRequests != null)
+        'PendingAggregationRequests': pendingAggregationRequests,
+    };
+  }
 }
 
 class DescribeRemediationConfigurationsResponse {
@@ -8136,6 +8958,14 @@ class DescribeRemediationConfigurationsResponse {
               RemediationConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final remediationConfigurations = this.remediationConfigurations;
+    return {
+      if (remediationConfigurations != null)
+        'RemediationConfigurations': remediationConfigurations,
+    };
   }
 }
 
@@ -8160,6 +8990,16 @@ class DescribeRemediationExceptionsResponse {
           .map((e) => RemediationException.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final remediationExceptions = this.remediationExceptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (remediationExceptions != null)
+        'RemediationExceptions': remediationExceptions,
+    };
   }
 }
 
@@ -8187,6 +9027,16 @@ class DescribeRemediationExecutionStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final remediationExecutionStatuses = this.remediationExecutionStatuses;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (remediationExecutionStatuses != null)
+        'RemediationExecutionStatuses': remediationExecutionStatuses,
+    };
+  }
 }
 
 class DescribeRetentionConfigurationsResponse {
@@ -8211,6 +9061,16 @@ class DescribeRetentionConfigurationsResponse {
               (e) => RetentionConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final retentionConfigurations = this.retentionConfigurations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (retentionConfigurations != null)
+        'RetentionConfigurations': retentionConfigurations,
+    };
   }
 }
 
@@ -8335,6 +9195,26 @@ class EvaluationResult {
       resultToken: json['ResultToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final annotation = this.annotation;
+    final complianceType = this.complianceType;
+    final configRuleInvokedTime = this.configRuleInvokedTime;
+    final evaluationResultIdentifier = this.evaluationResultIdentifier;
+    final resultRecordedTime = this.resultRecordedTime;
+    final resultToken = this.resultToken;
+    return {
+      if (annotation != null) 'Annotation': annotation,
+      if (complianceType != null) 'ComplianceType': complianceType.toValue(),
+      if (configRuleInvokedTime != null)
+        'ConfigRuleInvokedTime': unixTimestampToJson(configRuleInvokedTime),
+      if (evaluationResultIdentifier != null)
+        'EvaluationResultIdentifier': evaluationResultIdentifier,
+      if (resultRecordedTime != null)
+        'ResultRecordedTime': unixTimestampToJson(resultRecordedTime),
+      if (resultToken != null) 'ResultToken': resultToken,
+    };
+  }
 }
 
 /// Uniquely identifies an evaluation result.
@@ -8362,6 +9242,17 @@ class EvaluationResultIdentifier {
       orderingTimestamp: timeStampFromJson(json['OrderingTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResultQualifier = this.evaluationResultQualifier;
+    final orderingTimestamp = this.orderingTimestamp;
+    return {
+      if (evaluationResultQualifier != null)
+        'EvaluationResultQualifier': evaluationResultQualifier,
+      if (orderingTimestamp != null)
+        'OrderingTimestamp': unixTimestampToJson(orderingTimestamp),
+    };
+  }
 }
 
 /// Identifies an AWS Config rule that evaluated an AWS resource, and provides
@@ -8387,6 +9278,17 @@ class EvaluationResultQualifier {
       resourceId: json['ResourceId'] as String?,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configRuleName = this.configRuleName;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      if (configRuleName != null) 'ConfigRuleName': configRuleName,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -8466,6 +9368,17 @@ class ExternalEvaluation {
     required this.orderingTimestamp,
     this.annotation,
   });
+  factory ExternalEvaluation.fromJson(Map<String, dynamic> json) {
+    return ExternalEvaluation(
+      complianceResourceId: json['ComplianceResourceId'] as String,
+      complianceResourceType: json['ComplianceResourceType'] as String,
+      complianceType: (json['ComplianceType'] as String).toComplianceType(),
+      orderingTimestamp:
+          nonNullableTimeStampFromJson(json['OrderingTimestamp'] as Object),
+      annotation: json['Annotation'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final complianceResourceId = this.complianceResourceId;
     final complianceResourceType = this.complianceResourceType;
@@ -8507,6 +9420,15 @@ class FailedDeleteRemediationExceptionsBatch {
       failureMessage: json['FailureMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final failureMessage = this.failureMessage;
+    return {
+      if (failedItems != null) 'FailedItems': failedItems,
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+    };
+  }
 }
 
 /// List of each of the failed remediations with specific reasons.
@@ -8531,6 +9453,15 @@ class FailedRemediationBatch {
       failureMessage: json['FailureMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final failureMessage = this.failureMessage;
+    return {
+      if (failedItems != null) 'FailedItems': failedItems,
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+    };
+  }
 }
 
 /// List of each of the failed remediation exceptions with specific reasons.
@@ -8554,6 +9485,15 @@ class FailedRemediationExceptionBatch {
       failureMessage: json['FailureMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final failureMessage = this.failureMessage;
+    return {
+      if (failedItems != null) 'FailedItems': failedItems,
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+    };
+  }
 }
 
 /// Details about the fields such as name of the field.
@@ -8568,6 +9508,13 @@ class FieldInfo {
     return FieldInfo(
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8593,6 +9540,16 @@ class GetAggregateComplianceDetailsByConfigRuleResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregateEvaluationResults = this.aggregateEvaluationResults;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregateEvaluationResults != null)
+        'AggregateEvaluationResults': aggregateEvaluationResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8623,6 +9580,18 @@ class GetAggregateConfigRuleComplianceSummaryResponse {
       groupByKey: json['GroupByKey'] as String?,
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregateComplianceCounts = this.aggregateComplianceCounts;
+    final groupByKey = this.groupByKey;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregateComplianceCounts != null)
+        'AggregateComplianceCounts': aggregateComplianceCounts,
+      if (groupByKey != null) 'GroupByKey': groupByKey,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8656,6 +9625,20 @@ class GetAggregateConformancePackComplianceSummaryResponse {
       groupByKey: json['GroupByKey'] as String?,
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregateConformancePackComplianceSummaries =
+        this.aggregateConformancePackComplianceSummaries;
+    final groupByKey = this.groupByKey;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregateConformancePackComplianceSummaries != null)
+        'AggregateConformancePackComplianceSummaries':
+            aggregateConformancePackComplianceSummaries,
+      if (groupByKey != null) 'GroupByKey': groupByKey,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8693,6 +9676,20 @@ class GetAggregateDiscoveredResourceCountsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final totalDiscoveredResources = this.totalDiscoveredResources;
+    final groupByKey = this.groupByKey;
+    final groupedResourceCounts = this.groupedResourceCounts;
+    final nextToken = this.nextToken;
+    return {
+      'TotalDiscoveredResources': totalDiscoveredResources,
+      if (groupByKey != null) 'GroupByKey': groupByKey,
+      if (groupedResourceCounts != null)
+        'GroupedResourceCounts': groupedResourceCounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetAggregateResourceConfigResponse {
@@ -8710,6 +9707,13 @@ class GetAggregateResourceConfigResponse {
               json['ConfigurationItem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationItem = this.configurationItem;
+    return {
+      if (configurationItem != null) 'ConfigurationItem': configurationItem,
+    };
   }
 }
 
@@ -8737,6 +9741,15 @@ class GetComplianceDetailsByConfigRuleResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResults = this.evaluationResults;
+    final nextToken = this.nextToken;
+    return {
+      if (evaluationResults != null) 'EvaluationResults': evaluationResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -8762,6 +9775,15 @@ class GetComplianceDetailsByResourceResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResults = this.evaluationResults;
+    final nextToken = this.nextToken;
+    return {
+      if (evaluationResults != null) 'EvaluationResults': evaluationResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -8781,6 +9803,13 @@ class GetComplianceSummaryByConfigRuleResponse {
               json['ComplianceSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummary = this.complianceSummary;
+    return {
+      if (complianceSummary != null) 'ComplianceSummary': complianceSummary,
+    };
   }
 }
 
@@ -8806,6 +9835,15 @@ class GetComplianceSummaryByResourceTypeResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceSummariesByResourceType =
+        this.complianceSummariesByResourceType;
+    return {
+      if (complianceSummariesByResourceType != null)
+        'ComplianceSummariesByResourceType': complianceSummariesByResourceType,
+    };
   }
 }
 
@@ -8839,6 +9877,20 @@ class GetConformancePackComplianceDetailsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackName = this.conformancePackName;
+    final conformancePackRuleEvaluationResults =
+        this.conformancePackRuleEvaluationResults;
+    final nextToken = this.nextToken;
+    return {
+      'ConformancePackName': conformancePackName,
+      if (conformancePackRuleEvaluationResults != null)
+        'ConformancePackRuleEvaluationResults':
+            conformancePackRuleEvaluationResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetConformancePackComplianceSummaryResponse {
@@ -8865,6 +9917,18 @@ class GetConformancePackComplianceSummaryResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackComplianceSummaryList =
+        this.conformancePackComplianceSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (conformancePackComplianceSummaryList != null)
+        'ConformancePackComplianceSummaryList':
+            conformancePackComplianceSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8913,6 +9977,18 @@ class GetDiscoveredResourceCountsResponse {
       totalDiscoveredResources: json['totalDiscoveredResources'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceCounts = this.resourceCounts;
+    final totalDiscoveredResources = this.totalDiscoveredResources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceCounts != null) 'resourceCounts': resourceCounts,
+      if (totalDiscoveredResources != null)
+        'totalDiscoveredResources': totalDiscoveredResources,
+    };
+  }
 }
 
 class GetOrganizationConfigRuleDetailedStatusResponse {
@@ -8937,6 +10013,18 @@ class GetOrganizationConfigRuleDetailedStatusResponse {
           .map((e) => MemberAccountStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConfigRuleDetailedStatus =
+        this.organizationConfigRuleDetailedStatus;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConfigRuleDetailedStatus != null)
+        'OrganizationConfigRuleDetailedStatus':
+            organizationConfigRuleDetailedStatus,
+    };
   }
 }
 
@@ -8965,6 +10053,18 @@ class GetOrganizationConformancePackDetailedStatusResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationConformancePackDetailedStatuses =
+        this.organizationConformancePackDetailedStatuses;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationConformancePackDetailedStatuses != null)
+        'OrganizationConformancePackDetailedStatuses':
+            organizationConformancePackDetailedStatuses,
+    };
+  }
 }
 
 /// The output for the <a>GetResourceConfigHistory</a> action.
@@ -8989,6 +10089,15 @@ class GetResourceConfigHistoryResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationItems = this.configurationItems;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationItems != null) 'configurationItems': configurationItems,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetStoredQueryResponse {
@@ -9004,6 +10113,13 @@ class GetStoredQueryResponse {
           ? StoredQuery.fromJson(json['StoredQuery'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final storedQuery = this.storedQuery;
+    return {
+      if (storedQuery != null) 'StoredQuery': storedQuery,
+    };
   }
 }
 
@@ -9026,6 +10142,15 @@ class GroupedResourceCount {
       groupName: json['GroupName'] as String,
       resourceCount: json['ResourceCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final resourceCount = this.resourceCount;
+    return {
+      'GroupName': groupName,
+      'ResourceCount': resourceCount,
+    };
   }
 }
 
@@ -9052,6 +10177,16 @@ class ListAggregateDiscoveredResourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceIdentifiers = this.resourceIdentifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceIdentifiers != null)
+        'ResourceIdentifiers': resourceIdentifiers,
+    };
+  }
 }
 
 /// <p/>
@@ -9077,6 +10212,16 @@ class ListDiscoveredResourcesResponse {
           .map((e) => ResourceIdentifier.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceIdentifiers = this.resourceIdentifiers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceIdentifiers != null)
+        'resourceIdentifiers': resourceIdentifiers,
+    };
   }
 }
 
@@ -9105,6 +10250,16 @@ class ListStoredQueriesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storedQueryMetadata = this.storedQueryMetadata;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (storedQueryMetadata != null)
+        'StoredQueryMetadata': storedQueryMetadata,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -9127,6 +10282,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -9327,6 +10491,24 @@ class MemberAccountStatus {
       lastUpdateTime: timeStampFromJson(json['LastUpdateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configRuleName = this.configRuleName;
+    final memberAccountRuleStatus = this.memberAccountRuleStatus;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final lastUpdateTime = this.lastUpdateTime;
+    return {
+      'AccountId': accountId,
+      'ConfigRuleName': configRuleName,
+      'MemberAccountRuleStatus': memberAccountRuleStatus.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+    };
+  }
 }
 
 enum MessageType {
@@ -9459,6 +10641,27 @@ class OrganizationConfigRule {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationConfigRuleArn = this.organizationConfigRuleArn;
+    final organizationConfigRuleName = this.organizationConfigRuleName;
+    final excludedAccounts = this.excludedAccounts;
+    final lastUpdateTime = this.lastUpdateTime;
+    final organizationCustomRuleMetadata = this.organizationCustomRuleMetadata;
+    final organizationManagedRuleMetadata =
+        this.organizationManagedRuleMetadata;
+    return {
+      'OrganizationConfigRuleArn': organizationConfigRuleArn,
+      'OrganizationConfigRuleName': organizationConfigRuleName,
+      if (excludedAccounts != null) 'ExcludedAccounts': excludedAccounts,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (organizationCustomRuleMetadata != null)
+        'OrganizationCustomRuleMetadata': organizationCustomRuleMetadata,
+      if (organizationManagedRuleMetadata != null)
+        'OrganizationManagedRuleMetadata': organizationManagedRuleMetadata,
+    };
+  }
 }
 
 /// Returns the status for an organization config rule in an organization.
@@ -9545,6 +10748,22 @@ class OrganizationConfigRuleStatus {
       errorMessage: json['ErrorMessage'] as String?,
       lastUpdateTime: timeStampFromJson(json['LastUpdateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organizationConfigRuleName = this.organizationConfigRuleName;
+    final organizationRuleStatus = this.organizationRuleStatus;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final lastUpdateTime = this.lastUpdateTime;
+    return {
+      'OrganizationConfigRuleName': organizationConfigRuleName,
+      'OrganizationRuleStatus': organizationRuleStatus.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+    };
   }
 }
 
@@ -9648,6 +10867,28 @@ class OrganizationConformancePack {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdateTime = this.lastUpdateTime;
+    final organizationConformancePackArn = this.organizationConformancePackArn;
+    final organizationConformancePackName =
+        this.organizationConformancePackName;
+    final conformancePackInputParameters = this.conformancePackInputParameters;
+    final deliveryS3Bucket = this.deliveryS3Bucket;
+    final deliveryS3KeyPrefix = this.deliveryS3KeyPrefix;
+    final excludedAccounts = this.excludedAccounts;
+    return {
+      'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      'OrganizationConformancePackArn': organizationConformancePackArn,
+      'OrganizationConformancePackName': organizationConformancePackName,
+      if (conformancePackInputParameters != null)
+        'ConformancePackInputParameters': conformancePackInputParameters,
+      if (deliveryS3Bucket != null) 'DeliveryS3Bucket': deliveryS3Bucket,
+      if (deliveryS3KeyPrefix != null)
+        'DeliveryS3KeyPrefix': deliveryS3KeyPrefix,
+      if (excludedAccounts != null) 'ExcludedAccounts': excludedAccounts,
+    };
+  }
 }
 
 /// Organization conformance pack creation or deletion status in each member
@@ -9742,6 +10983,24 @@ class OrganizationConformancePackDetailedStatus {
       lastUpdateTime: timeStampFromJson(json['LastUpdateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final conformancePackName = this.conformancePackName;
+    final status = this.status;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final lastUpdateTime = this.lastUpdateTime;
+    return {
+      'AccountId': accountId,
+      'ConformancePackName': conformancePackName,
+      'Status': status.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+    };
+  }
 }
 
 /// Returns the status for an organization conformance pack in an organization.
@@ -9829,6 +11088,23 @@ class OrganizationConformancePackStatus {
       errorMessage: json['ErrorMessage'] as String?,
       lastUpdateTime: timeStampFromJson(json['LastUpdateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organizationConformancePackName =
+        this.organizationConformancePackName;
+    final status = this.status;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final lastUpdateTime = this.lastUpdateTime;
+    return {
+      'OrganizationConformancePackName': organizationConformancePackName,
+      'Status': status.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+    };
   }
 }
 
@@ -10172,6 +11448,15 @@ class OrganizationResourceDetailedStatusFilters {
     this.accountId,
     this.status,
   });
+  factory OrganizationResourceDetailedStatusFilters.fromJson(
+      Map<String, dynamic> json) {
+    return OrganizationResourceDetailedStatusFilters(
+      accountId: json['AccountId'] as String?,
+      status:
+          (json['Status'] as String?)?.toOrganizationResourceDetailedStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final status = this.status;
@@ -10355,6 +11640,15 @@ class PendingAggregationRequest {
       requesterAwsRegion: json['RequesterAwsRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requesterAccountId = this.requesterAccountId;
+    final requesterAwsRegion = this.requesterAwsRegion;
+    return {
+      if (requesterAccountId != null) 'RequesterAccountId': requesterAccountId,
+      if (requesterAwsRegion != null) 'RequesterAwsRegion': requesterAwsRegion,
+    };
+  }
 }
 
 class PutAggregationAuthorizationResponse {
@@ -10372,6 +11666,14 @@ class PutAggregationAuthorizationResponse {
               json['AggregationAuthorization'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregationAuthorization = this.aggregationAuthorization;
+    return {
+      if (aggregationAuthorization != null)
+        'AggregationAuthorization': aggregationAuthorization,
+    };
   }
 }
 
@@ -10391,6 +11693,14 @@ class PutConfigurationAggregatorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationAggregator = this.configurationAggregator;
+    return {
+      if (configurationAggregator != null)
+        'ConfigurationAggregator': configurationAggregator,
+    };
+  }
 }
 
 class PutConformancePackResponse {
@@ -10404,6 +11714,13 @@ class PutConformancePackResponse {
     return PutConformancePackResponse(
       conformancePackArn: json['ConformancePackArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conformancePackArn = this.conformancePackArn;
+    return {
+      if (conformancePackArn != null) 'ConformancePackArn': conformancePackArn,
+    };
   }
 }
 
@@ -10423,12 +11740,23 @@ class PutEvaluationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedEvaluations = this.failedEvaluations;
+    return {
+      if (failedEvaluations != null) 'FailedEvaluations': failedEvaluations,
+    };
+  }
 }
 
 class PutExternalEvaluationResponse {
   PutExternalEvaluationResponse();
   factory PutExternalEvaluationResponse.fromJson(Map<String, dynamic> _) {
     return PutExternalEvaluationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10445,6 +11773,14 @@ class PutOrganizationConfigRuleResponse {
       organizationConfigRuleArn: json['OrganizationConfigRuleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationConfigRuleArn = this.organizationConfigRuleArn;
+    return {
+      if (organizationConfigRuleArn != null)
+        'OrganizationConfigRuleArn': organizationConfigRuleArn,
+    };
+  }
 }
 
 class PutOrganizationConformancePackResponse {
@@ -10460,6 +11796,14 @@ class PutOrganizationConformancePackResponse {
       organizationConformancePackArn:
           json['OrganizationConformancePackArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organizationConformancePackArn = this.organizationConformancePackArn;
+    return {
+      if (organizationConformancePackArn != null)
+        'OrganizationConformancePackArn': organizationConformancePackArn,
+    };
   }
 }
 
@@ -10480,6 +11824,13 @@ class PutRemediationConfigurationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedBatches = this.failedBatches;
+    return {
+      if (failedBatches != null) 'FailedBatches': failedBatches,
+    };
+  }
 }
 
 class PutRemediationExceptionsResponse {
@@ -10499,6 +11850,13 @@ class PutRemediationExceptionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedBatches = this.failedBatches;
+    return {
+      if (failedBatches != null) 'FailedBatches': failedBatches,
+    };
+  }
 }
 
 class PutRetentionConfigurationResponse {
@@ -10517,6 +11875,14 @@ class PutRetentionConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final retentionConfiguration = this.retentionConfiguration;
+    return {
+      if (retentionConfiguration != null)
+        'RetentionConfiguration': retentionConfiguration,
+    };
+  }
 }
 
 class PutStoredQueryResponse {
@@ -10531,6 +11897,13 @@ class PutStoredQueryResponse {
     return PutStoredQueryResponse(
       queryArn: json['QueryArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryArn = this.queryArn;
+    return {
+      if (queryArn != null) 'QueryArn': queryArn,
+    };
   }
 }
 
@@ -10549,6 +11922,13 @@ class QueryInfo {
           .map((e) => FieldInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final selectFields = this.selectFields;
+    return {
+      if (selectFields != null) 'SelectFields': selectFields,
+    };
   }
 }
 
@@ -10723,6 +12103,19 @@ class Relationship {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final relationshipName = this.relationshipName;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    return {
+      if (relationshipName != null) 'relationshipName': relationshipName,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 /// An object that represents the details about the remediation configuration
@@ -10884,6 +12277,22 @@ class RemediationException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configRuleName = this.configRuleName;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final expirationTime = this.expirationTime;
+    final message = this.message;
+    return {
+      'ConfigRuleName': configRuleName,
+      'ResourceId': resourceId,
+      'ResourceType': resourceType,
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The details that identify a resource within AWS Config, including the
@@ -10992,6 +12401,23 @@ class RemediationExecutionStatus {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invocationTime = this.invocationTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final resourceKey = this.resourceKey;
+    final state = this.state;
+    final stepDetails = this.stepDetails;
+    return {
+      if (invocationTime != null)
+        'InvocationTime': unixTimestampToJson(invocationTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (resourceKey != null) 'ResourceKey': resourceKey,
+      if (state != null) 'State': state.toValue(),
+      if (stepDetails != null) 'StepDetails': stepDetails,
+    };
+  }
 }
 
 /// Name of the step from the SSM document.
@@ -11026,6 +12452,21 @@ class RemediationExecutionStep {
       state: (json['State'] as String?)?.toRemediationExecutionStepState(),
       stopTime: timeStampFromJson(json['StopTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final name = this.name;
+    final startTime = this.startTime;
+    final state = this.state;
+    final stopTime = this.stopTime;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (name != null) 'Name': name,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+      if (stopTime != null) 'StopTime': unixTimestampToJson(stopTime),
+    };
   }
 }
 
@@ -11138,6 +12579,15 @@ class ResourceCount {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final resourceType = this.resourceType;
+    return {
+      if (count != null) 'count': count,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 /// Filters the resource count based on account ID, region, and resource type.
@@ -11156,6 +12606,14 @@ class ResourceCountFilters {
     this.region,
     this.resourceType,
   });
+  factory ResourceCountFilters.fromJson(Map<String, dynamic> json) {
+    return ResourceCountFilters(
+      accountId: json['AccountId'] as String?,
+      region: json['Region'] as String?,
+      resourceType: (json['ResourceType'] as String?)?.toResourceType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final region = this.region;
@@ -11222,6 +12680,15 @@ class ResourceFilters {
     this.resourceId,
     this.resourceName,
   });
+  factory ResourceFilters.fromJson(Map<String, dynamic> json) {
+    return ResourceFilters(
+      accountId: json['AccountId'] as String?,
+      region: json['Region'] as String?,
+      resourceId: json['ResourceId'] as String?,
+      resourceName: json['ResourceName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final region = this.region;
@@ -11265,6 +12732,20 @@ class ResourceIdentifier {
       resourceName: json['resourceName'] as String?,
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceDeletionTime = this.resourceDeletionTime;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceDeletionTime != null)
+        'resourceDeletionTime': unixTimestampToJson(resourceDeletionTime),
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -11869,6 +13350,15 @@ class RetentionConfiguration {
       retentionPeriodInDays: json['RetentionPeriodInDays'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final retentionPeriodInDays = this.retentionPeriodInDays;
+    return {
+      'Name': name,
+      'RetentionPeriodInDays': retentionPeriodInDays,
+    };
+  }
 }
 
 /// Defines which resources trigger an evaluation for an AWS Config rule. The
@@ -11959,6 +13449,17 @@ class SelectAggregateResourceConfigResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryInfo = this.queryInfo;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryInfo != null) 'QueryInfo': queryInfo,
+      if (results != null) 'Results': results,
+    };
+  }
 }
 
 class SelectResourceConfigResponse {
@@ -11988,6 +13489,17 @@ class SelectResourceConfigResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryInfo = this.queryInfo;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryInfo != null) 'QueryInfo': queryInfo,
+      if (results != null) 'Results': results,
+    };
   }
 }
 
@@ -12168,6 +13680,10 @@ class StartConfigRulesEvaluationResponse {
   factory StartConfigRulesEvaluationResponse.fromJson(Map<String, dynamic> _) {
     return StartConfigRulesEvaluationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartRemediationExecutionResponse {
@@ -12191,6 +13707,15 @@ class StartRemediationExecutionResponse {
           .toList(),
       failureMessage: json['FailureMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final failureMessage = this.failureMessage;
+    return {
+      if (failedItems != null) 'FailedItems': failedItems,
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+    };
   }
 }
 
@@ -12280,6 +13805,14 @@ class StatusDetailFilters {
     this.accountId,
     this.memberAccountRuleStatus,
   });
+  factory StatusDetailFilters.fromJson(Map<String, dynamic> json) {
+    return StatusDetailFilters(
+      accountId: json['AccountId'] as String?,
+      memberAccountRuleStatus: (json['MemberAccountRuleStatus'] as String?)
+          ?.toMemberAccountRuleStatus(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final memberAccountRuleStatus = this.memberAccountRuleStatus;
@@ -12375,6 +13908,19 @@ class StoredQueryMetadata {
       queryName: json['QueryName'] as String,
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryArn = this.queryArn;
+    final queryId = this.queryId;
+    final queryName = this.queryName;
+    final description = this.description;
+    return {
+      'QueryArn': queryArn,
+      'QueryId': queryId,
+      'QueryName': queryName,
+      if (description != null) 'Description': description,
+    };
   }
 }
 

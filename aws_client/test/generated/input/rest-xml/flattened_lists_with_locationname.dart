@@ -60,6 +60,22 @@ class InputShape {
   InputShape({
     this.listParam,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      listParam: (json['item'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listParam = this.listParam;
+    return {
+      if (listParam != null) 'item': listParam,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final listParam = this.listParam;
     final $children = <_s.XmlNode>[

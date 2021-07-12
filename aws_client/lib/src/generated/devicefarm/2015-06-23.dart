@@ -4736,6 +4736,33 @@ class AccountSettings {
               ?.map((k, e) => MapEntry(k.toDevicePlatform(), e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountNumber = this.awsAccountNumber;
+    final defaultJobTimeoutMinutes = this.defaultJobTimeoutMinutes;
+    final maxJobTimeoutMinutes = this.maxJobTimeoutMinutes;
+    final maxSlots = this.maxSlots;
+    final skipAppResign = this.skipAppResign;
+    final trialMinutes = this.trialMinutes;
+    final unmeteredDevices = this.unmeteredDevices;
+    final unmeteredRemoteAccessDevices = this.unmeteredRemoteAccessDevices;
+    return {
+      if (awsAccountNumber != null) 'awsAccountNumber': awsAccountNumber,
+      if (defaultJobTimeoutMinutes != null)
+        'defaultJobTimeoutMinutes': defaultJobTimeoutMinutes,
+      if (maxJobTimeoutMinutes != null)
+        'maxJobTimeoutMinutes': maxJobTimeoutMinutes,
+      if (maxSlots != null) 'maxSlots': maxSlots,
+      if (skipAppResign != null) 'skipAppResign': skipAppResign,
+      if (trialMinutes != null) 'trialMinutes': trialMinutes,
+      if (unmeteredDevices != null)
+        'unmeteredDevices':
+            unmeteredDevices.map((k, e) => MapEntry(k.toValue(), e)),
+      if (unmeteredRemoteAccessDevices != null)
+        'unmeteredRemoteAccessDevices': unmeteredRemoteAccessDevices
+            .map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// Represents the output of a test. Examples of artifacts include logs and
@@ -4862,6 +4889,21 @@ class Artifact {
       type: (json['type'] as String?)?.toArtifactType(),
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final extension = this.extension;
+    final name = this.name;
+    final type = this.type;
+    final url = this.url;
+    return {
+      if (arn != null) 'arn': arn,
+      if (extension != null) 'extension': extension,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type.toValue(),
+      if (url != null) 'url': url,
+    };
   }
 }
 
@@ -5109,6 +5151,17 @@ class CPU {
       frequency: json['frequency'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final clock = this.clock;
+    final frequency = this.frequency;
+    return {
+      if (architecture != null) 'architecture': architecture,
+      if (clock != null) 'clock': clock,
+      if (frequency != null) 'frequency': frequency,
+    };
+  }
 }
 
 /// Represents entity counters.
@@ -5154,6 +5207,25 @@ class Counters {
       warned: json['warned'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errored = this.errored;
+    final failed = this.failed;
+    final passed = this.passed;
+    final skipped = this.skipped;
+    final stopped = this.stopped;
+    final total = this.total;
+    final warned = this.warned;
+    return {
+      if (errored != null) 'errored': errored,
+      if (failed != null) 'failed': failed,
+      if (passed != null) 'passed': passed,
+      if (skipped != null) 'skipped': skipped,
+      if (stopped != null) 'stopped': stopped,
+      if (total != null) 'total': total,
+      if (warned != null) 'warned': warned,
+    };
+  }
 }
 
 /// Represents the result of a create device pool request.
@@ -5170,6 +5242,13 @@ class CreateDevicePoolResult {
           ? DevicePool.fromJson(json['devicePool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devicePool = this.devicePool;
+    return {
+      if (devicePool != null) 'devicePool': devicePool,
+    };
   }
 }
 
@@ -5188,6 +5267,13 @@ class CreateInstanceProfileResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      if (instanceProfile != null) 'instanceProfile': instanceProfile,
+    };
+  }
 }
 
 class CreateNetworkProfileResult {
@@ -5204,6 +5290,13 @@ class CreateNetworkProfileResult {
               json['networkProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkProfile = this.networkProfile;
+    return {
+      if (networkProfile != null) 'networkProfile': networkProfile,
+    };
   }
 }
 
@@ -5222,6 +5315,13 @@ class CreateProjectResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      if (project != null) 'project': project,
+    };
+  }
 }
 
 /// Configuration settings for a remote access session, including billing
@@ -5237,6 +5337,17 @@ class CreateRemoteAccessSessionConfiguration {
     this.billingMethod,
     this.vpceConfigurationArns,
   });
+  factory CreateRemoteAccessSessionConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return CreateRemoteAccessSessionConfiguration(
+      billingMethod: (json['billingMethod'] as String?)?.toBillingMethod(),
+      vpceConfigurationArns: (json['vpceConfigurationArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final billingMethod = this.billingMethod;
     final vpceConfigurationArns = this.vpceConfigurationArns;
@@ -5266,6 +5377,14 @@ class CreateRemoteAccessSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final remoteAccessSession = this.remoteAccessSession;
+    return {
+      if (remoteAccessSession != null)
+        'remoteAccessSession': remoteAccessSession,
+    };
+  }
 }
 
 class CreateTestGridProjectResult {
@@ -5282,6 +5401,13 @@ class CreateTestGridProjectResult {
               json['testGridProject'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final testGridProject = this.testGridProject;
+    return {
+      if (testGridProject != null) 'testGridProject': testGridProject,
+    };
   }
 }
 
@@ -5304,6 +5430,15 @@ class CreateTestGridUrlResult {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expires = this.expires;
+    final url = this.url;
+    return {
+      if (expires != null) 'expires': unixTimestampToJson(expires),
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 /// Represents the result of a create upload request.
@@ -5321,6 +5456,13 @@ class CreateUploadResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final upload = this.upload;
+    return {
+      if (upload != null) 'upload': upload,
+    };
+  }
 }
 
 class CreateVPCEConfigurationResult {
@@ -5337,6 +5479,13 @@ class CreateVPCEConfigurationResult {
               json['vpceConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpceConfiguration = this.vpceConfiguration;
+    return {
+      if (vpceConfiguration != null) 'vpceConfiguration': vpceConfiguration,
+    };
   }
 }
 
@@ -5424,12 +5573,20 @@ class DeleteDevicePoolResult {
   factory DeleteDevicePoolResult.fromJson(Map<String, dynamic> _) {
     return DeleteDevicePoolResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteInstanceProfileResult {
   DeleteInstanceProfileResult();
   factory DeleteInstanceProfileResult.fromJson(Map<String, dynamic> _) {
     return DeleteInstanceProfileResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5438,6 +5595,10 @@ class DeleteNetworkProfileResult {
   factory DeleteNetworkProfileResult.fromJson(Map<String, dynamic> _) {
     return DeleteNetworkProfileResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the result of a delete project request.
@@ -5445,6 +5606,10 @@ class DeleteProjectResult {
   DeleteProjectResult();
   factory DeleteProjectResult.fromJson(Map<String, dynamic> _) {
     return DeleteProjectResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5455,6 +5620,10 @@ class DeleteRemoteAccessSessionResult {
   factory DeleteRemoteAccessSessionResult.fromJson(Map<String, dynamic> _) {
     return DeleteRemoteAccessSessionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the result of a delete run request.
@@ -5463,12 +5632,20 @@ class DeleteRunResult {
   factory DeleteRunResult.fromJson(Map<String, dynamic> _) {
     return DeleteRunResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTestGridProjectResult {
   DeleteTestGridProjectResult();
   factory DeleteTestGridProjectResult.fromJson(Map<String, dynamic> _) {
     return DeleteTestGridProjectResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5478,12 +5655,20 @@ class DeleteUploadResult {
   factory DeleteUploadResult.fromJson(Map<String, dynamic> _) {
     return DeleteUploadResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteVPCEConfigurationResult {
   DeleteVPCEConfigurationResult();
   factory DeleteVPCEConfigurationResult.fromJson(Map<String, dynamic> _) {
     return DeleteVPCEConfigurationResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5635,6 +5820,54 @@ class Device {
           ? Resolution.fromJson(json['resolution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availability = this.availability;
+    final carrier = this.carrier;
+    final cpu = this.cpu;
+    final fleetName = this.fleetName;
+    final fleetType = this.fleetType;
+    final formFactor = this.formFactor;
+    final heapSize = this.heapSize;
+    final image = this.image;
+    final instances = this.instances;
+    final manufacturer = this.manufacturer;
+    final memory = this.memory;
+    final model = this.model;
+    final modelId = this.modelId;
+    final name = this.name;
+    final os = this.os;
+    final platform = this.platform;
+    final radio = this.radio;
+    final remoteAccessEnabled = this.remoteAccessEnabled;
+    final remoteDebugEnabled = this.remoteDebugEnabled;
+    final resolution = this.resolution;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availability != null) 'availability': availability.toValue(),
+      if (carrier != null) 'carrier': carrier,
+      if (cpu != null) 'cpu': cpu,
+      if (fleetName != null) 'fleetName': fleetName,
+      if (fleetType != null) 'fleetType': fleetType,
+      if (formFactor != null) 'formFactor': formFactor.toValue(),
+      if (heapSize != null) 'heapSize': heapSize,
+      if (image != null) 'image': image,
+      if (instances != null) 'instances': instances,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (memory != null) 'memory': memory,
+      if (model != null) 'model': model,
+      if (modelId != null) 'modelId': modelId,
+      if (name != null) 'name': name,
+      if (os != null) 'os': os,
+      if (platform != null) 'platform': platform.toValue(),
+      if (radio != null) 'radio': radio,
+      if (remoteAccessEnabled != null)
+        'remoteAccessEnabled': remoteAccessEnabled,
+      if (remoteDebugEnabled != null) 'remoteDebugEnabled': remoteDebugEnabled,
+      if (resolution != null) 'resolution': resolution,
+    };
   }
 }
 
@@ -6052,6 +6285,23 @@ class DeviceInstance {
       udid: json['udid'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final deviceArn = this.deviceArn;
+    final instanceProfile = this.instanceProfile;
+    final labels = this.labels;
+    final status = this.status;
+    final udid = this.udid;
+    return {
+      if (arn != null) 'arn': arn,
+      if (deviceArn != null) 'deviceArn': deviceArn,
+      if (instanceProfile != null) 'instanceProfile': instanceProfile,
+      if (labels != null) 'labels': labels,
+      if (status != null) 'status': status.toValue(),
+      if (udid != null) 'udid': udid,
+    };
+  }
 }
 
 /// Represents the total (metered or unmetered) minutes used by the resource to
@@ -6080,6 +6330,17 @@ class DeviceMinutes {
       total: json['total'] as double?,
       unmetered: json['unmetered'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metered = this.metered;
+    final total = this.total;
+    final unmetered = this.unmetered;
+    return {
+      if (metered != null) 'metered': metered,
+      if (total != null) 'total': total,
+      if (unmetered != null) 'unmetered': unmetered,
+    };
   }
 }
 
@@ -6171,6 +6432,23 @@ class DevicePool {
       type: (json['type'] as String?)?.toDevicePoolType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final maxDevices = this.maxDevices;
+    final name = this.name;
+    final rules = this.rules;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (maxDevices != null) 'maxDevices': maxDevices,
+      if (name != null) 'name': name,
+      if (rules != null) 'rules': rules,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Represents a device pool compatibility result.
@@ -6201,6 +6479,18 @@ class DevicePoolCompatibilityResult {
               (e) => IncompatibilityMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compatible = this.compatible;
+    final device = this.device;
+    final incompatibilityMessages = this.incompatibilityMessages;
+    return {
+      if (compatible != null) 'compatible': compatible,
+      if (device != null) 'device': device,
+      if (incompatibilityMessages != null)
+        'incompatibilityMessages': incompatibilityMessages,
+    };
   }
 }
 
@@ -6356,6 +6646,16 @@ class DeviceSelectionConfiguration {
     required this.filters,
     required this.maxDevices,
   });
+  factory DeviceSelectionConfiguration.fromJson(Map<String, dynamic> json) {
+    return DeviceSelectionConfiguration(
+      filters: (json['filters'] as List)
+          .whereNotNull()
+          .map((e) => DeviceFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      maxDevices: json['maxDevices'] as int,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final filters = this.filters;
     final maxDevices = this.maxDevices;
@@ -6395,6 +6695,18 @@ class DeviceSelectionResult {
       maxDevices: json['maxDevices'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final matchedDevicesCount = this.matchedDevicesCount;
+    final maxDevices = this.maxDevices;
+    return {
+      if (filters != null) 'filters': filters,
+      if (matchedDevicesCount != null)
+        'matchedDevicesCount': matchedDevicesCount,
+      if (maxDevices != null) 'maxDevices': maxDevices,
+    };
+  }
 }
 
 /// Represents configuration information about a test run, such as the execution
@@ -6431,6 +6743,16 @@ class ExecutionConfiguration {
     this.skipAppResign,
     this.videoCapture,
   });
+  factory ExecutionConfiguration.fromJson(Map<String, dynamic> json) {
+    return ExecutionConfiguration(
+      accountsCleanup: json['accountsCleanup'] as bool?,
+      appPackagesCleanup: json['appPackagesCleanup'] as bool?,
+      jobTimeoutMinutes: json['jobTimeoutMinutes'] as int?,
+      skipAppResign: json['skipAppResign'] as bool?,
+      videoCapture: json['videoCapture'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accountsCleanup = this.accountsCleanup;
     final appPackagesCleanup = this.appPackagesCleanup;
@@ -6608,6 +6930,13 @@ class GetAccountSettingsResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountSettings = this.accountSettings;
+    return {
+      if (accountSettings != null) 'accountSettings': accountSettings,
+    };
+  }
 }
 
 class GetDeviceInstanceResult {
@@ -6624,6 +6953,13 @@ class GetDeviceInstanceResult {
               json['deviceInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceInstance = this.deviceInstance;
+    return {
+      if (deviceInstance != null) 'deviceInstance': deviceInstance,
+    };
   }
 }
 
@@ -6653,6 +6989,16 @@ class GetDevicePoolCompatibilityResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleDevices = this.compatibleDevices;
+    final incompatibleDevices = this.incompatibleDevices;
+    return {
+      if (compatibleDevices != null) 'compatibleDevices': compatibleDevices,
+      if (incompatibleDevices != null)
+        'incompatibleDevices': incompatibleDevices,
+    };
+  }
 }
 
 /// Represents the result of a get device pool request.
@@ -6669,6 +7015,13 @@ class GetDevicePoolResult {
           ? DevicePool.fromJson(json['devicePool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devicePool = this.devicePool;
+    return {
+      if (devicePool != null) 'devicePool': devicePool,
+    };
   }
 }
 
@@ -6687,6 +7040,13 @@ class GetDeviceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'device': device,
+    };
+  }
 }
 
 class GetInstanceProfileResult {
@@ -6703,6 +7063,13 @@ class GetInstanceProfileResult {
               json['instanceProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      if (instanceProfile != null) 'instanceProfile': instanceProfile,
+    };
   }
 }
 
@@ -6721,6 +7088,13 @@ class GetJobResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 class GetNetworkProfileResult {
@@ -6737,6 +7111,13 @@ class GetNetworkProfileResult {
               json['networkProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkProfile = this.networkProfile;
+    return {
+      if (networkProfile != null) 'networkProfile': networkProfile,
+    };
   }
 }
 
@@ -6766,6 +7147,17 @@ class GetOfferingStatusResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final current = this.current;
+    final nextPeriod = this.nextPeriod;
+    final nextToken = this.nextToken;
+    return {
+      if (current != null) 'current': current,
+      if (nextPeriod != null) 'nextPeriod': nextPeriod,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the result of a get project request.
@@ -6782,6 +7174,13 @@ class GetProjectResult {
           ? Project.fromJson(json['project'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      if (project != null) 'project': project,
+    };
   }
 }
 
@@ -6802,6 +7201,14 @@ class GetRemoteAccessSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final remoteAccessSession = this.remoteAccessSession;
+    return {
+      if (remoteAccessSession != null)
+        'remoteAccessSession': remoteAccessSession,
+    };
+  }
 }
 
 /// Represents the result of a get run request.
@@ -6818,6 +7225,13 @@ class GetRunResult {
           ? Run.fromJson(json['run'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final run = this.run;
+    return {
+      if (run != null) 'run': run,
+    };
   }
 }
 
@@ -6836,6 +7250,13 @@ class GetSuiteResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final suite = this.suite;
+    return {
+      if (suite != null) 'suite': suite,
+    };
+  }
 }
 
 class GetTestGridProjectResult {
@@ -6852,6 +7273,13 @@ class GetTestGridProjectResult {
               json['testGridProject'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final testGridProject = this.testGridProject;
+    return {
+      if (testGridProject != null) 'testGridProject': testGridProject,
+    };
   }
 }
 
@@ -6870,6 +7298,13 @@ class GetTestGridSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final testGridSession = this.testGridSession;
+    return {
+      if (testGridSession != null) 'testGridSession': testGridSession,
+    };
+  }
 }
 
 /// Represents the result of a get test request.
@@ -6886,6 +7321,13 @@ class GetTestResult {
           ? Test.fromJson(json['test'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final test = this.test;
+    return {
+      if (test != null) 'test': test,
+    };
   }
 }
 
@@ -6904,6 +7346,13 @@ class GetUploadResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final upload = this.upload;
+    return {
+      if (upload != null) 'upload': upload,
+    };
+  }
 }
 
 class GetVPCEConfigurationResult {
@@ -6920,6 +7369,13 @@ class GetVPCEConfigurationResult {
               json['vpceConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpceConfiguration = this.vpceConfiguration;
+    return {
+      if (vpceConfiguration != null) 'vpceConfiguration': vpceConfiguration,
+    };
   }
 }
 
@@ -6964,6 +7420,15 @@ class IncompatibilityMessage {
       type: (json['type'] as String?)?.toDeviceAttribute(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'message': message,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Represents the response from the server after AWS Device Farm makes a
@@ -6982,6 +7447,13 @@ class InstallToRemoteAccessSessionResult {
           ? Upload.fromJson(json['appUpload'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appUpload = this.appUpload;
+    return {
+      if (appUpload != null) 'appUpload': appUpload,
+    };
   }
 }
 
@@ -7032,6 +7504,24 @@ class InstanceProfile {
       packageCleanup: json['packageCleanup'] as bool?,
       rebootAfterUse: json['rebootAfterUse'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final excludeAppPackagesFromCleanup = this.excludeAppPackagesFromCleanup;
+    final name = this.name;
+    final packageCleanup = this.packageCleanup;
+    final rebootAfterUse = this.rebootAfterUse;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (excludeAppPackagesFromCleanup != null)
+        'excludeAppPackagesFromCleanup': excludeAppPackagesFromCleanup,
+      if (name != null) 'name': name,
+      if (packageCleanup != null) 'packageCleanup': packageCleanup,
+      if (rebootAfterUse != null) 'rebootAfterUse': rebootAfterUse,
+    };
   }
 }
 
@@ -7315,6 +7805,41 @@ class Job {
       videoEndpoint: json['videoEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final counters = this.counters;
+    final created = this.created;
+    final device = this.device;
+    final deviceMinutes = this.deviceMinutes;
+    final instanceArn = this.instanceArn;
+    final message = this.message;
+    final name = this.name;
+    final result = this.result;
+    final started = this.started;
+    final status = this.status;
+    final stopped = this.stopped;
+    final type = this.type;
+    final videoCapture = this.videoCapture;
+    final videoEndpoint = this.videoEndpoint;
+    return {
+      if (arn != null) 'arn': arn,
+      if (counters != null) 'counters': counters,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (device != null) 'device': device,
+      if (deviceMinutes != null) 'deviceMinutes': deviceMinutes,
+      if (instanceArn != null) 'instanceArn': instanceArn,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (result != null) 'result': result.toValue(),
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (status != null) 'status': status.toValue(),
+      if (stopped != null) 'stopped': unixTimestampToJson(stopped),
+      if (type != null) 'type': type.toValue(),
+      if (videoCapture != null) 'videoCapture': videoCapture,
+      if (videoEndpoint != null) 'videoEndpoint': videoEndpoint,
+    };
+  }
 }
 
 /// Represents the result of a list artifacts operation.
@@ -7340,6 +7865,15 @@ class ListArtifactsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifacts = this.artifacts;
+    final nextToken = this.nextToken;
+    return {
+      if (artifacts != null) 'artifacts': artifacts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDeviceInstancesResult {
@@ -7362,6 +7896,15 @@ class ListDeviceInstancesResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceInstances = this.deviceInstances;
+    final nextToken = this.nextToken;
+    return {
+      if (deviceInstances != null) 'deviceInstances': deviceInstances,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7388,6 +7931,15 @@ class ListDevicePoolsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devicePools = this.devicePools;
+    final nextToken = this.nextToken;
+    return {
+      if (devicePools != null) 'devicePools': devicePools,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the result of a list devices operation.
@@ -7413,6 +7965,15 @@ class ListDevicesResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      if (devices != null) 'devices': devices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListInstanceProfilesResult {
@@ -7435,6 +7996,15 @@ class ListInstanceProfilesResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfiles = this.instanceProfiles;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceProfiles != null) 'instanceProfiles': instanceProfiles,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7461,6 +8031,15 @@ class ListJobsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListNetworkProfilesResult {
@@ -7484,6 +8063,15 @@ class ListNetworkProfilesResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkProfiles = this.networkProfiles;
+    final nextToken = this.nextToken;
+    return {
+      if (networkProfiles != null) 'networkProfiles': networkProfiles,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListOfferingPromotionsResult {
@@ -7506,6 +8094,15 @@ class ListOfferingPromotionsResult {
           .map((e) => OfferingPromotion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offeringPromotions = this.offeringPromotions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offeringPromotions != null) 'offeringPromotions': offeringPromotions,
+    };
   }
 }
 
@@ -7532,6 +8129,16 @@ class ListOfferingTransactionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offeringTransactions = this.offeringTransactions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offeringTransactions != null)
+        'offeringTransactions': offeringTransactions,
+    };
+  }
 }
 
 /// Represents the return values of the list of offerings.
@@ -7555,6 +8162,15 @@ class ListOfferingsResult {
           .map((e) => Offering.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offerings = this.offerings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offerings != null) 'offerings': offerings,
+    };
   }
 }
 
@@ -7580,6 +8196,15 @@ class ListProjectsResult {
           .map((e) => Project.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (projects != null) 'projects': projects,
+    };
   }
 }
 
@@ -7607,6 +8232,16 @@ class ListRemoteAccessSessionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final remoteAccessSessions = this.remoteAccessSessions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (remoteAccessSessions != null)
+        'remoteAccessSessions': remoteAccessSessions,
+    };
+  }
 }
 
 /// Represents the result of a list runs request.
@@ -7631,6 +8266,15 @@ class ListRunsResult {
           .map((e) => Run.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final runs = this.runs;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (runs != null) 'runs': runs,
+    };
   }
 }
 
@@ -7657,6 +8301,15 @@ class ListSamplesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final samples = this.samples;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (samples != null) 'samples': samples,
+    };
+  }
 }
 
 /// Represents the result of a list suites request.
@@ -7682,6 +8335,15 @@ class ListSuitesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final suites = this.suites;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (suites != null) 'suites': suites,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -7700,6 +8362,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7724,6 +8393,15 @@ class ListTestGridProjectsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final testGridProjects = this.testGridProjects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (testGridProjects != null) 'testGridProjects': testGridProjects,
+    };
+  }
 }
 
 class ListTestGridSessionActionsResult {
@@ -7745,6 +8423,15 @@ class ListTestGridSessionActionsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final nextToken = this.nextToken;
+    return {
+      if (actions != null) 'actions': actions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7770,6 +8457,15 @@ class ListTestGridSessionArtifactsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifacts = this.artifacts;
+    final nextToken = this.nextToken;
+    return {
+      if (artifacts != null) 'artifacts': artifacts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTestGridSessionsResult {
@@ -7792,6 +8488,15 @@ class ListTestGridSessionsResult {
           .map((e) => TestGridSession.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final testGridSessions = this.testGridSessions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (testGridSessions != null) 'testGridSessions': testGridSessions,
+    };
   }
 }
 
@@ -7817,6 +8522,15 @@ class ListTestsResult {
           .map((e) => Test.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tests = this.tests;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tests != null) 'tests': tests,
+    };
   }
 }
 
@@ -7872,6 +8586,17 @@ class ListUniqueProblemsResult {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final uniqueProblems = this.uniqueProblems;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (uniqueProblems != null)
+        'uniqueProblems':
+            uniqueProblems.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// Represents the result of a list uploads request.
@@ -7897,6 +8622,15 @@ class ListUploadsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final uploads = this.uploads;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (uploads != null) 'uploads': uploads,
+    };
+  }
 }
 
 class ListVPCEConfigurationsResult {
@@ -7920,6 +8654,15 @@ class ListVPCEConfigurationsResult {
           .map((e) => VPCEConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpceConfigurations = this.vpceConfigurations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpceConfigurations != null) 'vpceConfigurations': vpceConfigurations,
+    };
   }
 }
 
@@ -7973,6 +8716,15 @@ class MonetaryAmount {
       amount: json['amount'] as double?,
       currencyCode: (json['currencyCode'] as String?)?.toCurrencyCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final currencyCode = this.currencyCode;
+    return {
+      if (amount != null) 'amount': amount,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+    };
   }
 }
 
@@ -8050,6 +8802,38 @@ class NetworkProfile {
       uplinkLossPercent: json['uplinkLossPercent'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final downlinkBandwidthBits = this.downlinkBandwidthBits;
+    final downlinkDelayMs = this.downlinkDelayMs;
+    final downlinkJitterMs = this.downlinkJitterMs;
+    final downlinkLossPercent = this.downlinkLossPercent;
+    final name = this.name;
+    final type = this.type;
+    final uplinkBandwidthBits = this.uplinkBandwidthBits;
+    final uplinkDelayMs = this.uplinkDelayMs;
+    final uplinkJitterMs = this.uplinkJitterMs;
+    final uplinkLossPercent = this.uplinkLossPercent;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (downlinkBandwidthBits != null)
+        'downlinkBandwidthBits': downlinkBandwidthBits,
+      if (downlinkDelayMs != null) 'downlinkDelayMs': downlinkDelayMs,
+      if (downlinkJitterMs != null) 'downlinkJitterMs': downlinkJitterMs,
+      if (downlinkLossPercent != null)
+        'downlinkLossPercent': downlinkLossPercent,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type.toValue(),
+      if (uplinkBandwidthBits != null)
+        'uplinkBandwidthBits': uplinkBandwidthBits,
+      if (uplinkDelayMs != null) 'uplinkDelayMs': uplinkDelayMs,
+      if (uplinkJitterMs != null) 'uplinkJitterMs': uplinkJitterMs,
+      if (uplinkLossPercent != null) 'uplinkLossPercent': uplinkLossPercent,
+    };
+  }
 }
 
 enum NetworkProfileType {
@@ -8117,6 +8901,21 @@ class Offering {
       type: (json['type'] as String?)?.toOfferingType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final platform = this.platform;
+    final recurringCharges = this.recurringCharges;
+    final type = this.type;
+    return {
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (platform != null) 'platform': platform.toValue(),
+      if (recurringCharges != null) 'recurringCharges': recurringCharges,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Represents information about an offering promotion.
@@ -8136,6 +8935,15 @@ class OfferingPromotion {
       description: json['description'] as String?,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    return {
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -8168,6 +8976,19 @@ class OfferingStatus {
       quantity: json['quantity'] as int?,
       type: (json['type'] as String?)?.toOfferingTransactionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effectiveOn = this.effectiveOn;
+    final offering = this.offering;
+    final quantity = this.quantity;
+    final type = this.type;
+    return {
+      if (effectiveOn != null) 'effectiveOn': unixTimestampToJson(effectiveOn),
+      if (offering != null) 'offering': offering,
+      if (quantity != null) 'quantity': quantity,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -8208,6 +9029,22 @@ class OfferingTransaction {
           : null,
       transactionId: json['transactionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cost = this.cost;
+    final createdOn = this.createdOn;
+    final offeringPromotionId = this.offeringPromotionId;
+    final offeringStatus = this.offeringStatus;
+    final transactionId = this.transactionId;
+    return {
+      if (cost != null) 'cost': cost,
+      if (createdOn != null) 'createdOn': unixTimestampToJson(createdOn),
+      if (offeringPromotionId != null)
+        'offeringPromotionId': offeringPromotionId,
+      if (offeringStatus != null) 'offeringStatus': offeringStatus,
+      if (transactionId != null) 'transactionId': transactionId,
+    };
   }
 }
 
@@ -8346,6 +9183,25 @@ class Problem {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    final job = this.job;
+    final message = this.message;
+    final result = this.result;
+    final run = this.run;
+    final suite = this.suite;
+    final test = this.test;
+    return {
+      if (device != null) 'device': device,
+      if (job != null) 'job': job,
+      if (message != null) 'message': message,
+      if (result != null) 'result': result.toValue(),
+      if (run != null) 'run': run,
+      if (suite != null) 'suite': suite,
+      if (test != null) 'test': test,
+    };
+  }
 }
 
 /// Information about a problem detail.
@@ -8365,6 +9221,15 @@ class ProblemDetail {
       arn: json['arn'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -8398,6 +9263,20 @@ class Project {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final defaultJobTimeoutMinutes = this.defaultJobTimeoutMinutes;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (defaultJobTimeoutMinutes != null)
+        'defaultJobTimeoutMinutes': defaultJobTimeoutMinutes,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// The result of the purchase offering (for example, success or failure).
@@ -8415,6 +9294,14 @@ class PurchaseOfferingResult {
               json['offeringTransaction'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final offeringTransaction = this.offeringTransaction;
+    return {
+      if (offeringTransaction != null)
+        'offeringTransaction': offeringTransaction,
+    };
   }
 }
 
@@ -8481,6 +9368,15 @@ class RecurringCharge {
           : null,
       frequency: (json['frequency'] as String?)?.toRecurringChargeFrequency(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cost = this.cost;
+    final frequency = this.frequency;
+    return {
+      if (cost != null) 'cost': cost,
+      if (frequency != null) 'frequency': frequency.toValue(),
+    };
   }
 }
 
@@ -8730,6 +9626,54 @@ class RemoteAccessSession {
       stopped: timeStampFromJson(json['stopped']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final billingMethod = this.billingMethod;
+    final clientId = this.clientId;
+    final created = this.created;
+    final device = this.device;
+    final deviceMinutes = this.deviceMinutes;
+    final deviceUdid = this.deviceUdid;
+    final endpoint = this.endpoint;
+    final hostAddress = this.hostAddress;
+    final instanceArn = this.instanceArn;
+    final interactionMode = this.interactionMode;
+    final message = this.message;
+    final name = this.name;
+    final remoteDebugEnabled = this.remoteDebugEnabled;
+    final remoteRecordAppArn = this.remoteRecordAppArn;
+    final remoteRecordEnabled = this.remoteRecordEnabled;
+    final result = this.result;
+    final skipAppResign = this.skipAppResign;
+    final started = this.started;
+    final status = this.status;
+    final stopped = this.stopped;
+    return {
+      if (arn != null) 'arn': arn,
+      if (billingMethod != null) 'billingMethod': billingMethod.toValue(),
+      if (clientId != null) 'clientId': clientId,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (device != null) 'device': device,
+      if (deviceMinutes != null) 'deviceMinutes': deviceMinutes,
+      if (deviceUdid != null) 'deviceUdid': deviceUdid,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (hostAddress != null) 'hostAddress': hostAddress,
+      if (instanceArn != null) 'instanceArn': instanceArn,
+      if (interactionMode != null) 'interactionMode': interactionMode.toValue(),
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (remoteDebugEnabled != null) 'remoteDebugEnabled': remoteDebugEnabled,
+      if (remoteRecordAppArn != null) 'remoteRecordAppArn': remoteRecordAppArn,
+      if (remoteRecordEnabled != null)
+        'remoteRecordEnabled': remoteRecordEnabled,
+      if (result != null) 'result': result.toValue(),
+      if (skipAppResign != null) 'skipAppResign': skipAppResign,
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (status != null) 'status': status.toValue(),
+      if (stopped != null) 'stopped': unixTimestampToJson(stopped),
+    };
+  }
 }
 
 /// The result of a renewal offering.
@@ -8747,6 +9691,14 @@ class RenewOfferingResult {
               json['offeringTransaction'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final offeringTransaction = this.offeringTransaction;
+    return {
+      if (offeringTransaction != null)
+        'offeringTransaction': offeringTransaction,
+    };
   }
 }
 
@@ -8768,6 +9720,15 @@ class Resolution {
       height: json['height'] as int?,
       width: json['width'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final height = this.height;
+    final width = this.width;
+    return {
+      if (height != null) 'height': height,
+      if (width != null) 'width': width,
+    };
   }
 }
 
@@ -9272,6 +10233,75 @@ class Run {
       webUrl: json['webUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appUpload = this.appUpload;
+    final arn = this.arn;
+    final billingMethod = this.billingMethod;
+    final completedJobs = this.completedJobs;
+    final counters = this.counters;
+    final created = this.created;
+    final customerArtifactPaths = this.customerArtifactPaths;
+    final deviceMinutes = this.deviceMinutes;
+    final devicePoolArn = this.devicePoolArn;
+    final deviceSelectionResult = this.deviceSelectionResult;
+    final eventCount = this.eventCount;
+    final jobTimeoutMinutes = this.jobTimeoutMinutes;
+    final locale = this.locale;
+    final location = this.location;
+    final message = this.message;
+    final name = this.name;
+    final networkProfile = this.networkProfile;
+    final parsingResultUrl = this.parsingResultUrl;
+    final platform = this.platform;
+    final radios = this.radios;
+    final result = this.result;
+    final resultCode = this.resultCode;
+    final seed = this.seed;
+    final skipAppResign = this.skipAppResign;
+    final started = this.started;
+    final status = this.status;
+    final stopped = this.stopped;
+    final testSpecArn = this.testSpecArn;
+    final totalJobs = this.totalJobs;
+    final type = this.type;
+    final webUrl = this.webUrl;
+    return {
+      if (appUpload != null) 'appUpload': appUpload,
+      if (arn != null) 'arn': arn,
+      if (billingMethod != null) 'billingMethod': billingMethod.toValue(),
+      if (completedJobs != null) 'completedJobs': completedJobs,
+      if (counters != null) 'counters': counters,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (customerArtifactPaths != null)
+        'customerArtifactPaths': customerArtifactPaths,
+      if (deviceMinutes != null) 'deviceMinutes': deviceMinutes,
+      if (devicePoolArn != null) 'devicePoolArn': devicePoolArn,
+      if (deviceSelectionResult != null)
+        'deviceSelectionResult': deviceSelectionResult,
+      if (eventCount != null) 'eventCount': eventCount,
+      if (jobTimeoutMinutes != null) 'jobTimeoutMinutes': jobTimeoutMinutes,
+      if (locale != null) 'locale': locale,
+      if (location != null) 'location': location,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (networkProfile != null) 'networkProfile': networkProfile,
+      if (parsingResultUrl != null) 'parsingResultUrl': parsingResultUrl,
+      if (platform != null) 'platform': platform.toValue(),
+      if (radios != null) 'radios': radios,
+      if (result != null) 'result': result.toValue(),
+      if (resultCode != null) 'resultCode': resultCode.toValue(),
+      if (seed != null) 'seed': seed,
+      if (skipAppResign != null) 'skipAppResign': skipAppResign,
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (status != null) 'status': status.toValue(),
+      if (stopped != null) 'stopped': unixTimestampToJson(stopped),
+      if (testSpecArn != null) 'testSpecArn': testSpecArn,
+      if (totalJobs != null) 'totalJobs': totalJobs,
+      if (type != null) 'type': type.toValue(),
+      if (webUrl != null) 'webUrl': webUrl,
+    };
+  }
 }
 
 /// Represents a sample of performance data.
@@ -9358,6 +10388,17 @@ class Sample {
       type: (json['type'] as String?)?.toSampleType(),
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final type = this.type;
+    final url = this.url;
+    return {
+      if (arn != null) 'arn': arn,
+      if (type != null) 'type': type.toValue(),
+      if (url != null) 'url': url,
+    };
   }
 }
 
@@ -9515,6 +10556,33 @@ class ScheduleRunConfiguration {
     this.radios,
     this.vpceConfigurationArns,
   });
+  factory ScheduleRunConfiguration.fromJson(Map<String, dynamic> json) {
+    return ScheduleRunConfiguration(
+      auxiliaryApps: (json['auxiliaryApps'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      billingMethod: (json['billingMethod'] as String?)?.toBillingMethod(),
+      customerArtifactPaths: json['customerArtifactPaths'] != null
+          ? CustomerArtifactPaths.fromJson(
+              json['customerArtifactPaths'] as Map<String, dynamic>)
+          : null,
+      extraDataPackageArn: json['extraDataPackageArn'] as String?,
+      locale: json['locale'] as String?,
+      location: json['location'] != null
+          ? Location.fromJson(json['location'] as Map<String, dynamic>)
+          : null,
+      networkProfileArn: json['networkProfileArn'] as String?,
+      radios: json['radios'] != null
+          ? Radios.fromJson(json['radios'] as Map<String, dynamic>)
+          : null,
+      vpceConfigurationArns: (json['vpceConfigurationArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final auxiliaryApps = this.auxiliaryApps;
     final billingMethod = this.billingMethod;
@@ -9556,6 +10624,13 @@ class ScheduleRunResult {
           ? Run.fromJson(json['run'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final run = this.run;
+    return {
+      if (run != null) 'run': run,
+    };
   }
 }
 
@@ -9775,6 +10850,17 @@ class ScheduleRunTest {
     this.testPackageArn,
     this.testSpecArn,
   });
+  factory ScheduleRunTest.fromJson(Map<String, dynamic> json) {
+    return ScheduleRunTest(
+      type: (json['type'] as String).toTestType(),
+      filter: json['filter'] as String?,
+      parameters: (json['parameters'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      testPackageArn: json['testPackageArn'] as String?,
+      testSpecArn: json['testSpecArn'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final filter = this.filter;
@@ -9805,6 +10891,13 @@ class StopJobResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 /// Represents the response from the server that describes the remote access
@@ -9825,6 +10918,14 @@ class StopRemoteAccessSessionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final remoteAccessSession = this.remoteAccessSession;
+    return {
+      if (remoteAccessSession != null)
+        'remoteAccessSession': remoteAccessSession,
+    };
+  }
 }
 
 /// Represents the results of your stop run attempt.
@@ -9841,6 +10942,13 @@ class StopRunResult {
           ? Run.fromJson(json['run'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final run = this.run;
+    return {
+      if (run != null) 'run': run,
+    };
   }
 }
 
@@ -10032,6 +11140,33 @@ class Suite {
       type: (json['type'] as String?)?.toTestType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final counters = this.counters;
+    final created = this.created;
+    final deviceMinutes = this.deviceMinutes;
+    final message = this.message;
+    final name = this.name;
+    final result = this.result;
+    final started = this.started;
+    final status = this.status;
+    final stopped = this.stopped;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (counters != null) 'counters': counters,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (deviceMinutes != null) 'deviceMinutes': deviceMinutes,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (result != null) 'result': result.toValue(),
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (status != null) 'status': status.toValue(),
+      if (stopped != null) 'stopped': unixTimestampToJson(stopped),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// The metadata that you apply to a resource to help you categorize and
@@ -10072,6 +11207,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10263,6 +11402,33 @@ class Test {
       type: (json['type'] as String?)?.toTestType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final counters = this.counters;
+    final created = this.created;
+    final deviceMinutes = this.deviceMinutes;
+    final message = this.message;
+    final name = this.name;
+    final result = this.result;
+    final started = this.started;
+    final status = this.status;
+    final stopped = this.stopped;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (counters != null) 'counters': counters,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (deviceMinutes != null) 'deviceMinutes': deviceMinutes,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (result != null) 'result': result.toValue(),
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (status != null) 'status': status.toValue(),
+      if (stopped != null) 'stopped': unixTimestampToJson(stopped),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// A Selenium testing project. Projects are used to collect and collate
@@ -10301,6 +11467,21 @@ class TestGridProject {
               json['vpcConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final description = this.description;
+    final name = this.name;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
   }
 }
 
@@ -10343,6 +11524,23 @@ class TestGridSession {
       status: (json['status'] as String?)?.toTestGridSessionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final billingMinutes = this.billingMinutes;
+    final created = this.created;
+    final ended = this.ended;
+    final seleniumProperties = this.seleniumProperties;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (billingMinutes != null) 'billingMinutes': billingMinutes,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (ended != null) 'ended': unixTimestampToJson(ended),
+      if (seleniumProperties != null) 'seleniumProperties': seleniumProperties,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// An action taken by a <a>TestGridSession</a> browser instance.
@@ -10378,6 +11576,21 @@ class TestGridSessionAction {
       statusCode: json['statusCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final duration = this.duration;
+    final requestMethod = this.requestMethod;
+    final started = this.started;
+    final statusCode = this.statusCode;
+    return {
+      if (action != null) 'action': action,
+      if (duration != null) 'duration': duration,
+      if (requestMethod != null) 'requestMethod': requestMethod,
+      if (started != null) 'started': unixTimestampToJson(started),
+      if (statusCode != null) 'statusCode': statusCode,
+    };
+  }
 }
 
 /// Artifacts are video and other files that are produced in the process of
@@ -10407,6 +11620,17 @@ class TestGridSessionArtifact {
       type: (json['type'] as String?)?.toTestGridSessionArtifactType(),
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filename = this.filename;
+    final type = this.type;
+    final url = this.url;
+    return {
+      if (filename != null) 'filename': filename,
+      if (type != null) 'type': type.toValue(),
+      if (url != null) 'url': url,
+    };
   }
 }
 
@@ -10688,6 +11912,15 @@ class TrialMinutes {
       total: json['total'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final remaining = this.remaining;
+    final total = this.total;
+    return {
+      if (remaining != null) 'remaining': remaining,
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 /// A collection of one or more problems, grouped by their result.
@@ -10711,12 +11944,25 @@ class UniqueProblem {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final problems = this.problems;
+    return {
+      if (message != null) 'message': message,
+      if (problems != null) 'problems': problems,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10735,6 +11981,13 @@ class UpdateDeviceInstanceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceInstance = this.deviceInstance;
+    return {
+      if (deviceInstance != null) 'deviceInstance': deviceInstance,
+    };
+  }
 }
 
 /// Represents the result of an update device pool request.
@@ -10751,6 +12004,13 @@ class UpdateDevicePoolResult {
           ? DevicePool.fromJson(json['devicePool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devicePool = this.devicePool;
+    return {
+      if (devicePool != null) 'devicePool': devicePool,
+    };
   }
 }
 
@@ -10769,6 +12029,13 @@ class UpdateInstanceProfileResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      if (instanceProfile != null) 'instanceProfile': instanceProfile,
+    };
+  }
 }
 
 class UpdateNetworkProfileResult {
@@ -10785,6 +12052,13 @@ class UpdateNetworkProfileResult {
               json['networkProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkProfile = this.networkProfile;
+    return {
+      if (networkProfile != null) 'networkProfile': networkProfile,
+    };
   }
 }
 
@@ -10803,6 +12077,13 @@ class UpdateProjectResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      if (project != null) 'project': project,
+    };
+  }
 }
 
 class UpdateTestGridProjectResult {
@@ -10820,6 +12101,13 @@ class UpdateTestGridProjectResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final testGridProject = this.testGridProject;
+    return {
+      if (testGridProject != null) 'testGridProject': testGridProject,
+    };
+  }
 }
 
 class UpdateUploadResult {
@@ -10835,6 +12123,13 @@ class UpdateUploadResult {
           ? Upload.fromJson(json['upload'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final upload = this.upload;
+    return {
+      if (upload != null) 'upload': upload,
+    };
   }
 }
 
@@ -10852,6 +12147,13 @@ class UpdateVPCEConfigurationResult {
               json['vpceConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpceConfiguration = this.vpceConfiguration;
+    return {
+      if (vpceConfiguration != null) 'vpceConfiguration': vpceConfiguration,
+    };
   }
 }
 
@@ -11043,6 +12345,31 @@ class Upload {
       type: (json['type'] as String?)?.toUploadType(),
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final category = this.category;
+    final contentType = this.contentType;
+    final created = this.created;
+    final message = this.message;
+    final metadata = this.metadata;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final url = this.url;
+    return {
+      if (arn != null) 'arn': arn,
+      if (category != null) 'category': category.toValue(),
+      if (contentType != null) 'contentType': contentType,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (message != null) 'message': message,
+      if (metadata != null) 'metadata': metadata,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (url != null) 'url': url,
+    };
   }
 }
 
@@ -11327,6 +12654,23 @@ class VPCEConfiguration {
       vpceConfigurationName: json['vpceConfigurationName'] as String?,
       vpceServiceName: json['vpceServiceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final serviceDnsName = this.serviceDnsName;
+    final vpceConfigurationDescription = this.vpceConfigurationDescription;
+    final vpceConfigurationName = this.vpceConfigurationName;
+    final vpceServiceName = this.vpceServiceName;
+    return {
+      if (arn != null) 'arn': arn,
+      if (serviceDnsName != null) 'serviceDnsName': serviceDnsName,
+      if (vpceConfigurationDescription != null)
+        'vpceConfigurationDescription': vpceConfigurationDescription,
+      if (vpceConfigurationName != null)
+        'vpceConfigurationName': vpceConfigurationName,
+      if (vpceServiceName != null) 'vpceServiceName': vpceServiceName,
+    };
   }
 }
 

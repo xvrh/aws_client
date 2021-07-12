@@ -363,6 +363,10 @@ class DeleteObjectResponse {
   factory DeleteObjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteObjectResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeObjectResponse {
@@ -393,6 +397,13 @@ class DescribeObjectResponse {
     this.eTag,
     this.lastModified,
   });
+  factory DescribeObjectResponse.fromJson(Map<String, dynamic> _) {
+    return DescribeObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class GetObjectResponse {
@@ -437,6 +448,18 @@ class GetObjectResponse {
     this.eTag,
     this.lastModified,
   });
+  factory GetObjectResponse.fromJson(Map<String, dynamic> json) {
+    return GetObjectResponse(
+      body: _s.decodeNullableUint8List(json['Body'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'Body': base64Encode(body),
+    };
+  }
 }
 
 /// A metadata entry for a folder or object.
@@ -476,6 +499,24 @@ class Item {
       name: json['Name'] as String?,
       type: (json['Type'] as String?)?.toItemType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (contentLength != null) 'ContentLength': contentLength,
+      if (contentType != null) 'ContentType': contentType,
+      if (eTag != null) 'ETag': eTag,
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -531,6 +572,15 @@ class ListItemsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class PutObjectResponse {
@@ -555,6 +605,17 @@ class PutObjectResponse {
       eTag: json['ETag'] as String?,
       storageClass: (json['StorageClass'] as String?)?.toStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentSHA256 = this.contentSHA256;
+    final eTag = this.eTag;
+    final storageClass = this.storageClass;
+    return {
+      if (contentSHA256 != null) 'ContentSHA256': contentSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 }
 

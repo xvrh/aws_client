@@ -143,6 +143,15 @@ class Categories {
               MapEntry(k, CategoryDetails.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final matchedCategories = this.matchedCategories;
+    final matchedDetails = this.matchedDetails;
+    return {
+      'MatchedCategories': matchedCategories,
+      'MatchedDetails': matchedDetails,
+    };
+  }
 }
 
 /// Provides information about the category rule that was matched.
@@ -160,6 +169,13 @@ class CategoryDetails {
           .map((e) => PointOfInterest.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pointsOfInterest = this.pointsOfInterest;
+    return {
+      'PointsOfInterest': pointsOfInterest,
+    };
   }
 }
 
@@ -182,6 +198,15 @@ class CharacterOffsets {
       endOffsetChar: json['EndOffsetChar'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffsetChar = this.beginOffsetChar;
+    final endOffsetChar = this.endOffsetChar;
+    return {
+      'BeginOffsetChar': beginOffsetChar,
+      'EndOffsetChar': endOffsetChar,
+    };
+  }
 }
 
 /// Potential issues that are detected based on an artificial intelligence
@@ -198,6 +223,13 @@ class IssueDetected {
       characterOffsets: CharacterOffsets.fromJson(
           json['CharacterOffsets'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final characterOffsets = this.characterOffsets;
+    return {
+      'CharacterOffsets': characterOffsets,
+    };
   }
 }
 
@@ -239,6 +271,15 @@ class ListRealtimeContactAnalysisSegmentsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final segments = this.segments;
+    final nextToken = this.nextToken;
+    return {
+      'Segments': segments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The section of the contact audio where that category rule was detected.
@@ -258,6 +299,15 @@ class PointOfInterest {
       beginOffsetMillis: json['BeginOffsetMillis'] as int,
       endOffsetMillis: json['EndOffsetMillis'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final beginOffsetMillis = this.beginOffsetMillis;
+    final endOffsetMillis = this.endOffsetMillis;
+    return {
+      'BeginOffsetMillis': beginOffsetMillis,
+      'EndOffsetMillis': endOffsetMillis,
+    };
   }
 }
 
@@ -282,6 +332,15 @@ class RealtimeContactAnalysisSegment {
           ? Transcript.fromJson(json['Transcript'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categories = this.categories;
+    final transcript = this.transcript;
+    return {
+      if (categories != null) 'Categories': categories,
+      if (transcript != null) 'Transcript': transcript,
+    };
   }
 }
 
@@ -368,6 +427,27 @@ class Transcript {
           .map((e) => IssueDetected.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final beginOffsetMillis = this.beginOffsetMillis;
+    final content = this.content;
+    final endOffsetMillis = this.endOffsetMillis;
+    final id = this.id;
+    final participantId = this.participantId;
+    final participantRole = this.participantRole;
+    final sentiment = this.sentiment;
+    final issuesDetected = this.issuesDetected;
+    return {
+      'BeginOffsetMillis': beginOffsetMillis,
+      'Content': content,
+      'EndOffsetMillis': endOffsetMillis,
+      'Id': id,
+      'ParticipantId': participantId,
+      'ParticipantRole': participantRole,
+      'Sentiment': sentiment.toValue(),
+      if (issuesDetected != null) 'IssuesDetected': issuesDetected,
+    };
   }
 }
 

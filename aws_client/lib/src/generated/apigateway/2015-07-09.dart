@@ -5188,6 +5188,15 @@ class AccessLogSettings {
       format: json['format'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationArn = this.destinationArn;
+    final format = this.format;
+    return {
+      if (destinationArn != null) 'destinationArn': destinationArn,
+      if (format != null) 'format': format,
+    };
+  }
 }
 
 /// Represents an AWS account that is associated with API Gateway.
@@ -5263,6 +5272,19 @@ class Account {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKeyVersion = this.apiKeyVersion;
+    final cloudwatchRoleArn = this.cloudwatchRoleArn;
+    final features = this.features;
+    final throttleSettings = this.throttleSettings;
+    return {
+      if (apiKeyVersion != null) 'apiKeyVersion': apiKeyVersion,
+      if (cloudwatchRoleArn != null) 'cloudwatchRoleArn': cloudwatchRoleArn,
+      if (features != null) 'features': features,
+      if (throttleSettings != null) 'throttleSettings': throttleSettings,
+    };
+  }
 }
 
 /// A resource that can be distributed to callers for executing <a>Method</a>
@@ -5336,6 +5358,32 @@ class ApiKey {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final customerId = this.customerId;
+    final description = this.description;
+    final enabled = this.enabled;
+    final id = this.id;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final stageKeys = this.stageKeys;
+    final tags = this.tags;
+    final value = this.value;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (customerId != null) 'customerId': customerId,
+      if (description != null) 'description': description,
+      if (enabled != null) 'enabled': enabled,
+      if (id != null) 'id': id,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (stageKeys != null) 'stageKeys': stageKeys,
+      if (tags != null) 'tags': tags,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// The identifier of an <a>ApiKey</a> used in a <a>UsagePlan</a>.
@@ -5361,6 +5409,15 @@ class ApiKeyIds {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final warnings = this.warnings;
+    return {
+      if (ids != null) 'ids': ids,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -5423,6 +5480,17 @@ class ApiKeys {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    final warnings = this.warnings;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -5610,6 +5678,34 @@ class Authorizer {
       type: (json['type'] as String?)?.toAuthorizerType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authType = this.authType;
+    final authorizerCredentials = this.authorizerCredentials;
+    final authorizerResultTtlInSeconds = this.authorizerResultTtlInSeconds;
+    final authorizerUri = this.authorizerUri;
+    final id = this.id;
+    final identitySource = this.identitySource;
+    final identityValidationExpression = this.identityValidationExpression;
+    final name = this.name;
+    final providerARNs = this.providerARNs;
+    final type = this.type;
+    return {
+      if (authType != null) 'authType': authType,
+      if (authorizerCredentials != null)
+        'authorizerCredentials': authorizerCredentials,
+      if (authorizerResultTtlInSeconds != null)
+        'authorizerResultTtlInSeconds': authorizerResultTtlInSeconds,
+      if (authorizerUri != null) 'authorizerUri': authorizerUri,
+      if (id != null) 'id': id,
+      if (identitySource != null) 'identitySource': identitySource,
+      if (identityValidationExpression != null)
+        'identityValidationExpression': identityValidationExpression,
+      if (name != null) 'name': name,
+      if (providerARNs != null) 'providerARNs': providerARNs,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// The authorizer type. Valid values are <code>TOKEN</code> for a Lambda
@@ -5674,6 +5770,15 @@ class Authorizers {
       position: json['position'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
+  }
 }
 
 /// Represents the base path that callers of the API must provide as part of the
@@ -5707,6 +5812,17 @@ class BasePathMapping {
       stage: json['stage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final basePath = this.basePath;
+    final restApiId = this.restApiId;
+    final stage = this.stage;
+    return {
+      if (basePath != null) 'basePath': basePath,
+      if (restApiId != null) 'restApiId': restApiId,
+      if (stage != null) 'stage': stage,
+    };
+  }
 }
 
 /// Represents a collection of <a>BasePathMapping</a> resources.
@@ -5730,6 +5846,15 @@ class BasePathMappings {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -5934,6 +6059,26 @@ class ClientCertificate {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final expirationDate = this.expirationDate;
+    final pemEncodedCertificate = this.pemEncodedCertificate;
+    final tags = this.tags;
+    return {
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (expirationDate != null)
+        'expirationDate': unixTimestampToJson(expirationDate),
+      if (pemEncodedCertificate != null)
+        'pemEncodedCertificate': pemEncodedCertificate,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents a collection of <a>ClientCertificate</a> resources.
@@ -5957,6 +6102,15 @@ class ClientCertificates {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -6059,6 +6213,19 @@ class Deployment {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiSummary = this.apiSummary;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final id = this.id;
+    return {
+      if (apiSummary != null) 'apiSummary': apiSummary,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// The input configuration for a canary deployment.
@@ -6081,6 +6248,16 @@ class DeploymentCanarySettings {
     this.stageVariableOverrides,
     this.useStageCache,
   });
+  factory DeploymentCanarySettings.fromJson(Map<String, dynamic> json) {
+    return DeploymentCanarySettings(
+      percentTraffic: json['percentTraffic'] as double?,
+      stageVariableOverrides:
+          (json['stageVariableOverrides'] as Map<String, dynamic>?)
+              ?.map((k, e) => MapEntry(k, e as String)),
+      useStageCache: json['useStageCache'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final percentTraffic = this.percentTraffic;
     final stageVariableOverrides = this.stageVariableOverrides;
@@ -6124,6 +6301,15 @@ class Deployments {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -6183,6 +6369,17 @@ class DocumentationPart {
       properties: json['properties'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final location = this.location;
+    final properties = this.properties;
+    return {
+      if (id != null) 'id': id,
+      if (location != null) 'location': location,
+      if (properties != null) 'properties': properties,
+    };
+  }
 }
 
 /// A collection of the imported <a>DocumentationPart</a> identifiers.
@@ -6215,6 +6412,15 @@ class DocumentationPartIds {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final warnings = this.warnings;
+    return {
+      if (ids != null) 'ids': ids,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -6406,6 +6612,15 @@ class DocumentationParts {
       position: json['position'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
+  }
 }
 
 /// A snapshot of the documentation of an API.
@@ -6438,6 +6653,17 @@ class DocumentationVersion {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final version = this.version;
+    return {
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The collection of documentation snapshots of an API.
@@ -6464,6 +6690,15 @@ class DocumentationVersions {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -6618,6 +6853,53 @@ class DomainName {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateName = this.certificateName;
+    final certificateUploadDate = this.certificateUploadDate;
+    final distributionDomainName = this.distributionDomainName;
+    final distributionHostedZoneId = this.distributionHostedZoneId;
+    final domainName = this.domainName;
+    final domainNameStatus = this.domainNameStatus;
+    final domainNameStatusMessage = this.domainNameStatusMessage;
+    final endpointConfiguration = this.endpointConfiguration;
+    final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final regionalCertificateArn = this.regionalCertificateArn;
+    final regionalCertificateName = this.regionalCertificateName;
+    final regionalDomainName = this.regionalDomainName;
+    final regionalHostedZoneId = this.regionalHostedZoneId;
+    final securityPolicy = this.securityPolicy;
+    final tags = this.tags;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateName != null) 'certificateName': certificateName,
+      if (certificateUploadDate != null)
+        'certificateUploadDate': unixTimestampToJson(certificateUploadDate),
+      if (distributionDomainName != null)
+        'distributionDomainName': distributionDomainName,
+      if (distributionHostedZoneId != null)
+        'distributionHostedZoneId': distributionHostedZoneId,
+      if (domainName != null) 'domainName': domainName,
+      if (domainNameStatus != null)
+        'domainNameStatus': domainNameStatus.toValue(),
+      if (domainNameStatusMessage != null)
+        'domainNameStatusMessage': domainNameStatusMessage,
+      if (endpointConfiguration != null)
+        'endpointConfiguration': endpointConfiguration,
+      if (mutualTlsAuthentication != null)
+        'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (regionalCertificateArn != null)
+        'regionalCertificateArn': regionalCertificateArn,
+      if (regionalCertificateName != null)
+        'regionalCertificateName': regionalCertificateName,
+      if (regionalDomainName != null) 'regionalDomainName': regionalDomainName,
+      if (regionalHostedZoneId != null)
+        'regionalHostedZoneId': regionalHostedZoneId,
+      if (securityPolicy != null) 'securityPolicy': securityPolicy.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum DomainNameStatus {
@@ -6674,6 +6956,15 @@ class DomainNames {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -6774,6 +7065,18 @@ class ExportResponse {
     this.contentDisposition,
     this.contentType,
   });
+  factory ExportResponse.fromJson(Map<String, dynamic> json) {
+    return ExportResponse(
+      body: _s.decodeNullableUint8List(json['body'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'body': base64Encode(body),
+    };
+  }
 }
 
 /// A gateway response of a given response type and status code, with optional
@@ -6883,6 +7186,21 @@ class GatewayResponse {
       responseType: (json['responseType'] as String?)?.toGatewayResponseType(),
       statusCode: json['statusCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultResponse = this.defaultResponse;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final responseType = this.responseType;
+    final statusCode = this.statusCode;
+    return {
+      if (defaultResponse != null) 'defaultResponse': defaultResponse,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (responseType != null) 'responseType': responseType.toValue(),
+      if (statusCode != null) 'statusCode': statusCode,
+    };
   }
 }
 
@@ -7241,6 +7559,15 @@ class GatewayResponses {
       position: json['position'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
+  }
 }
 
 /// Represents an HTTP, HTTP_PROXY, AWS, AWS_PROXY, or Mock integration.
@@ -7499,6 +7826,43 @@ class Integration {
       uri: json['uri'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheKeyParameters = this.cacheKeyParameters;
+    final cacheNamespace = this.cacheNamespace;
+    final connectionId = this.connectionId;
+    final connectionType = this.connectionType;
+    final contentHandling = this.contentHandling;
+    final credentials = this.credentials;
+    final httpMethod = this.httpMethod;
+    final integrationResponses = this.integrationResponses;
+    final passthroughBehavior = this.passthroughBehavior;
+    final requestParameters = this.requestParameters;
+    final requestTemplates = this.requestTemplates;
+    final timeoutInMillis = this.timeoutInMillis;
+    final tlsConfig = this.tlsConfig;
+    final type = this.type;
+    final uri = this.uri;
+    return {
+      if (cacheKeyParameters != null) 'cacheKeyParameters': cacheKeyParameters,
+      if (cacheNamespace != null) 'cacheNamespace': cacheNamespace,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (contentHandling != null) 'contentHandling': contentHandling.toValue(),
+      if (credentials != null) 'credentials': credentials,
+      if (httpMethod != null) 'httpMethod': httpMethod,
+      if (integrationResponses != null)
+        'integrationResponses': integrationResponses,
+      if (passthroughBehavior != null)
+        'passthroughBehavior': passthroughBehavior,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestTemplates != null) 'requestTemplates': requestTemplates,
+      if (timeoutInMillis != null) 'timeoutInMillis': timeoutInMillis,
+      if (tlsConfig != null) 'tlsConfig': tlsConfig,
+      if (type != null) 'type': type.toValue(),
+      if (uri != null) 'uri': uri,
+    };
+  }
 }
 
 /// Represents an integration response. The status code must map to an existing
@@ -7577,6 +7941,21 @@ class IntegrationResponse {
       selectionPattern: json['selectionPattern'] as String?,
       statusCode: json['statusCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentHandling = this.contentHandling;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final selectionPattern = this.selectionPattern;
+    final statusCode = this.statusCode;
+    return {
+      if (contentHandling != null) 'contentHandling': contentHandling.toValue(),
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (selectionPattern != null) 'selectionPattern': selectionPattern,
+      if (statusCode != null) 'statusCode': statusCode,
+    };
   }
 }
 
@@ -7930,6 +8309,34 @@ class Method {
       requestValidatorId: json['requestValidatorId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationScopes = this.authorizationScopes;
+    final authorizationType = this.authorizationType;
+    final authorizerId = this.authorizerId;
+    final httpMethod = this.httpMethod;
+    final methodIntegration = this.methodIntegration;
+    final methodResponses = this.methodResponses;
+    final operationName = this.operationName;
+    final requestModels = this.requestModels;
+    final requestParameters = this.requestParameters;
+    final requestValidatorId = this.requestValidatorId;
+    return {
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationScopes != null)
+        'authorizationScopes': authorizationScopes,
+      if (authorizationType != null) 'authorizationType': authorizationType,
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (httpMethod != null) 'httpMethod': httpMethod,
+      if (methodIntegration != null) 'methodIntegration': methodIntegration,
+      if (methodResponses != null) 'methodResponses': methodResponses,
+      if (operationName != null) 'operationName': operationName,
+      if (requestModels != null) 'requestModels': requestModels,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestValidatorId != null) 'requestValidatorId': requestValidatorId,
+    };
+  }
 }
 
 /// Represents a method response of a given HTTP status code returned to the
@@ -8003,6 +8410,17 @@ class MethodResponse {
           ?.map((k, e) => MapEntry(k, e as bool)),
       statusCode: json['statusCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final responseModels = this.responseModels;
+    final responseParameters = this.responseParameters;
+    final statusCode = this.statusCode;
+    return {
+      if (responseModels != null) 'responseModels': responseModels,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (statusCode != null) 'statusCode': statusCode,
+    };
   }
 }
 
@@ -8101,6 +8519,39 @@ class MethodSetting {
               ?.toUnauthorizedCacheControlHeaderStrategy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheDataEncrypted = this.cacheDataEncrypted;
+    final cacheTtlInSeconds = this.cacheTtlInSeconds;
+    final cachingEnabled = this.cachingEnabled;
+    final dataTraceEnabled = this.dataTraceEnabled;
+    final loggingLevel = this.loggingLevel;
+    final metricsEnabled = this.metricsEnabled;
+    final requireAuthorizationForCacheControl =
+        this.requireAuthorizationForCacheControl;
+    final throttlingBurstLimit = this.throttlingBurstLimit;
+    final throttlingRateLimit = this.throttlingRateLimit;
+    final unauthorizedCacheControlHeaderStrategy =
+        this.unauthorizedCacheControlHeaderStrategy;
+    return {
+      if (cacheDataEncrypted != null) 'cacheDataEncrypted': cacheDataEncrypted,
+      if (cacheTtlInSeconds != null) 'cacheTtlInSeconds': cacheTtlInSeconds,
+      if (cachingEnabled != null) 'cachingEnabled': cachingEnabled,
+      if (dataTraceEnabled != null) 'dataTraceEnabled': dataTraceEnabled,
+      if (loggingLevel != null) 'loggingLevel': loggingLevel,
+      if (metricsEnabled != null) 'metricsEnabled': metricsEnabled,
+      if (requireAuthorizationForCacheControl != null)
+        'requireAuthorizationForCacheControl':
+            requireAuthorizationForCacheControl,
+      if (throttlingBurstLimit != null)
+        'throttlingBurstLimit': throttlingBurstLimit,
+      if (throttlingRateLimit != null)
+        'throttlingRateLimit': throttlingRateLimit,
+      if (unauthorizedCacheControlHeaderStrategy != null)
+        'unauthorizedCacheControlHeaderStrategy':
+            unauthorizedCacheControlHeaderStrategy.toValue(),
+    };
+  }
 }
 
 /// Represents a summary of a <a>Method</a> resource, given a particular date
@@ -8124,6 +8575,15 @@ class MethodSnapshot {
       apiKeyRequired: json['apiKeyRequired'] as bool?,
       authorizationType: json['authorizationType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationType = this.authorizationType;
+    return {
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationType != null) 'authorizationType': authorizationType,
+    };
   }
 }
 
@@ -8177,6 +8637,21 @@ class Model {
       schema: json['schema'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final schema = this.schema;
+    return {
+      if (contentType != null) 'contentType': contentType,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+    };
+  }
 }
 
 /// Represents a collection of <a>Model</a> resources.
@@ -8200,6 +8675,15 @@ class Models {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -8241,6 +8725,17 @@ class MutualTlsAuthentication {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final truststoreUri = this.truststoreUri;
+    final truststoreVersion = this.truststoreVersion;
+    final truststoreWarnings = this.truststoreWarnings;
+    return {
+      if (truststoreUri != null) 'truststoreUri': truststoreUri,
+      if (truststoreVersion != null) 'truststoreVersion': truststoreVersion,
+      if (truststoreWarnings != null) 'truststoreWarnings': truststoreWarnings,
+    };
+  }
 }
 
 /// If specified, API Gateway performs two-way authentication between the client
@@ -8263,6 +8758,13 @@ class MutualTlsAuthenticationInput {
     this.truststoreUri,
     this.truststoreVersion,
   });
+  factory MutualTlsAuthenticationInput.fromJson(Map<String, dynamic> json) {
+    return MutualTlsAuthenticationInput(
+      truststoreUri: json['truststoreUri'] as String?,
+      truststoreVersion: json['truststoreVersion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final truststoreUri = this.truststoreUri;
     final truststoreVersion = this.truststoreVersion;
@@ -8370,6 +8872,15 @@ class PatchOperation {
     this.path,
     this.value,
   });
+  factory PatchOperation.fromJson(Map<String, dynamic> json) {
+    return PatchOperation(
+      from: json['from'] as String?,
+      op: (json['op'] as String?)?.toOp(),
+      path: json['path'] as String?,
+      value: json['value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final from = this.from;
     final op = this.op;
@@ -8523,6 +9034,21 @@ class RequestValidator {
       validateRequestParameters: json['validateRequestParameters'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final validateRequestBody = this.validateRequestBody;
+    final validateRequestParameters = this.validateRequestParameters;
+    return {
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (validateRequestBody != null)
+        'validateRequestBody': validateRequestBody,
+      if (validateRequestParameters != null)
+        'validateRequestParameters': validateRequestParameters,
+    };
+  }
 }
 
 /// A collection of <a>RequestValidator</a> resources of a given <a>RestApi</a>.
@@ -8550,6 +9076,15 @@ class RequestValidators {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -8669,6 +9204,21 @@ class Resource {
           (k, e) => MapEntry(k, Method.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final parentId = this.parentId;
+    final path = this.path;
+    final pathPart = this.pathPart;
+    final resourceMethods = this.resourceMethods;
+    return {
+      if (id != null) 'id': id,
+      if (parentId != null) 'parentId': parentId,
+      if (path != null) 'path': path,
+      if (pathPart != null) 'pathPart': pathPart,
+      if (resourceMethods != null) 'resourceMethods': resourceMethods,
+    };
+  }
 }
 
 /// Represents a collection of <a>Resource</a> resources.
@@ -8692,6 +9242,15 @@ class Resources {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -8802,6 +9361,40 @@ class RestApi {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKeySource = this.apiKeySource;
+    final binaryMediaTypes = this.binaryMediaTypes;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final endpointConfiguration = this.endpointConfiguration;
+    final id = this.id;
+    final minimumCompressionSize = this.minimumCompressionSize;
+    final name = this.name;
+    final policy = this.policy;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiKeySource != null) 'apiKeySource': apiKeySource.toValue(),
+      if (binaryMediaTypes != null) 'binaryMediaTypes': binaryMediaTypes,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (endpointConfiguration != null)
+        'endpointConfiguration': endpointConfiguration,
+      if (id != null) 'id': id,
+      if (minimumCompressionSize != null)
+        'minimumCompressionSize': minimumCompressionSize,
+      if (name != null) 'name': name,
+      if (policy != null) 'policy': policy,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 /// Contains references to your APIs and links that guide you in how to interact
@@ -8826,6 +9419,15 @@ class RestApis {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -8864,6 +9466,21 @@ class SdkConfigurationProperty {
       required: json['required'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final friendlyName = this.friendlyName;
+    final name = this.name;
+    final required = this.required;
+    return {
+      if (defaultValue != null) 'defaultValue': defaultValue,
+      if (description != null) 'description': description,
+      if (friendlyName != null) 'friendlyName': friendlyName,
+      if (name != null) 'name': name,
+      if (required != null) 'required': required,
+    };
+  }
 }
 
 /// The binary blob response to <a>GetSdk</a>, which contains the generated SDK.
@@ -8882,6 +9499,18 @@ class SdkResponse {
     this.contentDisposition,
     this.contentType,
   });
+  factory SdkResponse.fromJson(Map<String, dynamic> json) {
+    return SdkResponse(
+      body: _s.decodeNullableUint8List(json['body'] as String?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'body': base64Encode(body),
+    };
+  }
 }
 
 /// A type of SDK that API Gateway can generate.
@@ -8916,6 +9545,20 @@ class SdkType {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationProperties = this.configurationProperties;
+    final description = this.description;
+    final friendlyName = this.friendlyName;
+    final id = this.id;
+    return {
+      if (configurationProperties != null)
+        'configurationProperties': configurationProperties,
+      if (description != null) 'description': description,
+      if (friendlyName != null) 'friendlyName': friendlyName,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// The collection of <a>SdkType</a> instances.
@@ -8936,6 +9579,15 @@ class SdkTypes {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -9086,6 +9738,51 @@ class Stage {
       webAclArn: json['webAclArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessLogSettings = this.accessLogSettings;
+    final cacheClusterEnabled = this.cacheClusterEnabled;
+    final cacheClusterSize = this.cacheClusterSize;
+    final cacheClusterStatus = this.cacheClusterStatus;
+    final canarySettings = this.canarySettings;
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final deploymentId = this.deploymentId;
+    final description = this.description;
+    final documentationVersion = this.documentationVersion;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final methodSettings = this.methodSettings;
+    final stageName = this.stageName;
+    final tags = this.tags;
+    final tracingEnabled = this.tracingEnabled;
+    final variables = this.variables;
+    final webAclArn = this.webAclArn;
+    return {
+      if (accessLogSettings != null) 'accessLogSettings': accessLogSettings,
+      if (cacheClusterEnabled != null)
+        'cacheClusterEnabled': cacheClusterEnabled,
+      if (cacheClusterSize != null)
+        'cacheClusterSize': cacheClusterSize.toValue(),
+      if (cacheClusterStatus != null)
+        'cacheClusterStatus': cacheClusterStatus.toValue(),
+      if (canarySettings != null) 'canarySettings': canarySettings,
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (description != null) 'description': description,
+      if (documentationVersion != null)
+        'documentationVersion': documentationVersion,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (methodSettings != null) 'methodSettings': methodSettings,
+      if (stageName != null) 'stageName': stageName,
+      if (tags != null) 'tags': tags,
+      if (tracingEnabled != null) 'tracingEnabled': tracingEnabled,
+      if (variables != null) 'variables': variables,
+      if (webAclArn != null) 'webAclArn': webAclArn,
+    };
+  }
 }
 
 /// A reference to a unique stage identified in the format
@@ -9101,6 +9798,13 @@ class StageKey {
     this.restApiId,
     this.stageName,
   });
+  factory StageKey.fromJson(Map<String, dynamic> json) {
+    return StageKey(
+      restApiId: json['restApiId'] as String?,
+      stageName: json['stageName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final restApiId = this.restApiId;
     final stageName = this.stageName;
@@ -9131,6 +9835,13 @@ class Stages {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    return {
+      if (item != null) 'item': item,
+    };
+  }
 }
 
 /// The collection of tags. Each tag element is associated with a given
@@ -9148,6 +9859,13 @@ class Tags {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -9169,6 +9887,13 @@ class Template {
     return Template(
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -9222,6 +9947,25 @@ class TestInvokeAuthorizerResponse {
       principalId: json['principalId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorization = this.authorization;
+    final claims = this.claims;
+    final clientStatus = this.clientStatus;
+    final latency = this.latency;
+    final log = this.log;
+    final policy = this.policy;
+    final principalId = this.principalId;
+    return {
+      if (authorization != null) 'authorization': authorization,
+      if (claims != null) 'claims': claims,
+      if (clientStatus != null) 'clientStatus': clientStatus,
+      if (latency != null) 'latency': latency,
+      if (log != null) 'log': log,
+      if (policy != null) 'policy': policy,
+      if (principalId != null) 'principalId': principalId,
+    };
+  }
 }
 
 /// Represents the response of the test invoke request in the HTTP method.
@@ -9267,6 +10011,23 @@ class TestInvokeMethodResponse {
               k, (e as List).whereNotNull().map((e) => e as String).toList())),
       status: json['status'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    final headers = this.headers;
+    final latency = this.latency;
+    final log = this.log;
+    final multiValueHeaders = this.multiValueHeaders;
+    final status = this.status;
+    return {
+      if (body != null) 'body': body,
+      if (headers != null) 'headers': headers,
+      if (latency != null) 'latency': latency,
+      if (log != null) 'log': log,
+      if (multiValueHeaders != null) 'multiValueHeaders': multiValueHeaders,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -9415,6 +10176,21 @@ class Usage {
       usagePlanId: json['usagePlanId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endDate = this.endDate;
+    final items = this.items;
+    final position = this.position;
+    final startDate = this.startDate;
+    final usagePlanId = this.usagePlanId;
+    return {
+      if (endDate != null) 'endDate': endDate,
+      if (items != null) 'values': items,
+      if (position != null) 'position': position,
+      if (startDate != null) 'startDate': startDate,
+      if (usagePlanId != null) 'usagePlanId': usagePlanId,
+    };
+  }
 }
 
 /// Represents a usage plan than can specify who can assess associated API
@@ -9483,6 +10259,27 @@ class UsagePlan {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiStages = this.apiStages;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final productCode = this.productCode;
+    final quota = this.quota;
+    final tags = this.tags;
+    final throttle = this.throttle;
+    return {
+      if (apiStages != null) 'apiStages': apiStages,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (productCode != null) 'productCode': productCode,
+      if (quota != null) 'quota': quota,
+      if (tags != null) 'tags': tags,
+      if (throttle != null) 'throttle': throttle,
+    };
+  }
 }
 
 /// Represents a usage plan key to identify a plan customer.
@@ -9520,6 +10317,19 @@ class UsagePlanKey {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Represents the collection of usage plan keys added to usage plans for the
@@ -9545,6 +10355,15 @@ class UsagePlanKeys {
       position: json['position'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
+  }
 }
 
 /// Represents a collection of usage plans for an AWS account.
@@ -9568,6 +10387,15 @@ class UsagePlans {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 
@@ -9638,6 +10466,25 @@ class VpcLink {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final targetArns = this.targetArns;
+    return {
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tags': tags,
+      if (targetArns != null) 'targetArns': targetArns,
+    };
+  }
 }
 
 enum VpcLinkStatus {
@@ -9701,6 +10548,15 @@ class VpcLinks {
           .toList(),
       position: json['position'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final position = this.position;
+    return {
+      if (items != null) 'item': items,
+      if (position != null) 'position': position,
+    };
   }
 }
 

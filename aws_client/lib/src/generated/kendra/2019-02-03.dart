@@ -3051,6 +3051,17 @@ class AdditionalResultAttribute {
           (json['ValueType'] as String).toAdditionalResultAttributeValueType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    final valueType = this.valueType;
+    return {
+      'Key': key,
+      'Value': value,
+      'ValueType': valueType.toValue(),
+    };
+  }
 }
 
 /// An attribute returned with a document from a search.
@@ -3069,6 +3080,14 @@ class AdditionalResultAttributeValue {
               json['TextWithHighlightsValue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final textWithHighlightsValue = this.textWithHighlightsValue;
+    return {
+      if (textWithHighlightsValue != null)
+        'TextWithHighlightsValue': textWithHighlightsValue,
+    };
   }
 }
 
@@ -3164,6 +3183,48 @@ class AttributeFilter {
     this.notFilter,
     this.orAllFilters,
   });
+  factory AttributeFilter.fromJson(Map<String, dynamic> json) {
+    return AttributeFilter(
+      andAllFilters: (json['AndAllFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttributeFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      containsAll: json['ContainsAll'] != null
+          ? DocumentAttribute.fromJson(
+              json['ContainsAll'] as Map<String, dynamic>)
+          : null,
+      containsAny: json['ContainsAny'] != null
+          ? DocumentAttribute.fromJson(
+              json['ContainsAny'] as Map<String, dynamic>)
+          : null,
+      equalsTo: json['EqualsTo'] != null
+          ? DocumentAttribute.fromJson(json['EqualsTo'] as Map<String, dynamic>)
+          : null,
+      greaterThan: json['GreaterThan'] != null
+          ? DocumentAttribute.fromJson(
+              json['GreaterThan'] as Map<String, dynamic>)
+          : null,
+      greaterThanOrEquals: json['GreaterThanOrEquals'] != null
+          ? DocumentAttribute.fromJson(
+              json['GreaterThanOrEquals'] as Map<String, dynamic>)
+          : null,
+      lessThan: json['LessThan'] != null
+          ? DocumentAttribute.fromJson(json['LessThan'] as Map<String, dynamic>)
+          : null,
+      lessThanOrEquals: json['LessThanOrEquals'] != null
+          ? DocumentAttribute.fromJson(
+              json['LessThanOrEquals'] as Map<String, dynamic>)
+          : null,
+      notFilter: json['NotFilter'] != null
+          ? AttributeFilter.fromJson(json['NotFilter'] as Map<String, dynamic>)
+          : null,
+      orAllFilters: (json['OrAllFilters'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttributeFilter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final andAllFilters = this.andAllFilters;
     final containsAll = this.containsAll;
@@ -3290,6 +3351,13 @@ class BatchDeleteDocumentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedDocuments = this.failedDocuments;
+    return {
+      if (failedDocuments != null) 'FailedDocuments': failedDocuments,
+    };
+  }
 }
 
 /// Provides information about documents that could not be removed from an index
@@ -3316,6 +3384,17 @@ class BatchDeleteDocumentResponseFailedDocument {
       errorMessage: json['ErrorMessage'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -3347,6 +3426,15 @@ class BatchGetDocumentStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentStatusList = this.documentStatusList;
+    final errors = this.errors;
+    return {
+      if (documentStatusList != null) 'DocumentStatusList': documentStatusList,
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 /// Provides a response when the status of a document could not be retrieved.
@@ -3374,6 +3462,17 @@ class BatchGetDocumentStatusResponseError {
       errorMessage: json['ErrorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentId = this.documentId;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (documentId != null) 'DocumentId': documentId,
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
+  }
 }
 
 class BatchPutDocumentResponse {
@@ -3398,6 +3497,13 @@ class BatchPutDocumentResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedDocuments = this.failedDocuments;
+    return {
+      if (failedDocuments != null) 'FailedDocuments': failedDocuments,
+    };
   }
 }
 
@@ -3424,6 +3530,17 @@ class BatchPutDocumentResponseFailedDocument {
       errorMessage: json['ErrorMessage'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -3487,6 +3604,13 @@ class ClickFeedback {
     required this.clickTime,
     required this.resultId,
   });
+  factory ClickFeedback.fromJson(Map<String, dynamic> json) {
+    return ClickFeedback(
+      clickTime: nonNullableTimeStampFromJson(json['ClickTime'] as Object),
+      resultId: json['ResultId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clickTime = this.clickTime;
     final resultId = this.resultId;
@@ -4462,6 +4586,13 @@ class CreateDataSourceResponse {
       id: json['Id'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
+  }
 }
 
 class CreateFaqResponse {
@@ -4475,6 +4606,13 @@ class CreateFaqResponse {
     return CreateFaqResponse(
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -4491,6 +4629,13 @@ class CreateIndexResponse {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class CreateQuerySuggestionsBlockListResponse {
@@ -4506,6 +4651,13 @@ class CreateQuerySuggestionsBlockListResponse {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class CreateThesaurusResponse {
@@ -4519,6 +4671,13 @@ class CreateThesaurusResponse {
     return CreateThesaurusResponse(
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -4722,6 +4881,23 @@ class DataSourceSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// Provides information about a synchronization job.
@@ -4787,6 +4963,28 @@ class DataSourceSyncJob {
       status: (json['Status'] as String?)?.toDataSourceSyncJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceErrorCode = this.dataSourceErrorCode;
+    final endTime = this.endTime;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final executionId = this.executionId;
+    final metrics = this.metrics;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (dataSourceErrorCode != null)
+        'DataSourceErrorCode': dataSourceErrorCode,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (executionId != null) 'ExecutionId': executionId,
+      if (metrics != null) 'Metrics': metrics,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Maps a particular data source sync job to a particular data source.
@@ -4809,6 +5007,13 @@ class DataSourceSyncJobMetricTarget {
     required this.dataSourceId,
     this.dataSourceSyncJobId,
   });
+  factory DataSourceSyncJobMetricTarget.fromJson(Map<String, dynamic> json) {
+    return DataSourceSyncJobMetricTarget(
+      dataSourceId: json['DataSourceId'] as String,
+      dataSourceSyncJobId: json['DataSourceSyncJobId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataSourceId = this.dataSourceId;
     final dataSourceSyncJobId = this.dataSourceSyncJobId;
@@ -4859,6 +5064,21 @@ class DataSourceSyncJobMetrics {
       documentsModified: json['DocumentsModified'] as String?,
       documentsScanned: json['DocumentsScanned'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentsAdded = this.documentsAdded;
+    final documentsDeleted = this.documentsDeleted;
+    final documentsFailed = this.documentsFailed;
+    final documentsModified = this.documentsModified;
+    final documentsScanned = this.documentsScanned;
+    return {
+      if (documentsAdded != null) 'DocumentsAdded': documentsAdded,
+      if (documentsDeleted != null) 'DocumentsDeleted': documentsDeleted,
+      if (documentsFailed != null) 'DocumentsFailed': documentsFailed,
+      if (documentsModified != null) 'DocumentsModified': documentsModified,
+      if (documentsScanned != null) 'DocumentsScanned': documentsScanned,
+    };
   }
 }
 
@@ -5245,6 +5465,35 @@ class DescribeDataSourceResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    final indexId = this.indexId;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final schedule = this.schedule;
+    final status = this.status;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+      if (indexId != null) 'IndexId': indexId,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (schedule != null) 'Schedule': schedule,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class DescribeFaqResponse {
@@ -5311,6 +5560,33 @@ class DescribeFaqResponse {
       status: (json['Status'] as String?)?.toFaqStatus(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final errorMessage = this.errorMessage;
+    final fileFormat = this.fileFormat;
+    final id = this.id;
+    final indexId = this.indexId;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final s3Path = this.s3Path;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (fileFormat != null) 'FileFormat': fileFormat.toValue(),
+      if (id != null) 'Id': id,
+      if (indexId != null) 'IndexId': indexId,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (s3Path != null) 'S3Path': s3Path,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -5429,6 +5705,46 @@ class DescribeIndexResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityUnits = this.capacityUnits;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final documentMetadataConfigurations = this.documentMetadataConfigurations;
+    final edition = this.edition;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    final indexStatistics = this.indexStatistics;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    final userContextPolicy = this.userContextPolicy;
+    final userTokenConfigurations = this.userTokenConfigurations;
+    return {
+      if (capacityUnits != null) 'CapacityUnits': capacityUnits,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (documentMetadataConfigurations != null)
+        'DocumentMetadataConfigurations': documentMetadataConfigurations,
+      if (edition != null) 'Edition': edition.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+      if (indexStatistics != null) 'IndexStatistics': indexStatistics,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (serverSideEncryptionConfiguration != null)
+        'ServerSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (userContextPolicy != null)
+        'UserContextPolicy': userContextPolicy.toValue(),
+      if (userTokenConfigurations != null)
+        'UserTokenConfigurations': userTokenConfigurations,
+    };
+  }
 }
 
 class DescribeQuerySuggestionsBlockListResponse {
@@ -5514,6 +5830,35 @@ class DescribeQuerySuggestionsBlockListResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final errorMessage = this.errorMessage;
+    final fileSizeBytes = this.fileSizeBytes;
+    final id = this.id;
+    final indexId = this.indexId;
+    final itemCount = this.itemCount;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final sourceS3Path = this.sourceS3Path;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (fileSizeBytes != null) 'FileSizeBytes': fileSizeBytes,
+      if (id != null) 'Id': id,
+      if (indexId != null) 'IndexId': indexId,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (sourceS3Path != null) 'SourceS3Path': sourceS3Path,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class DescribeQuerySuggestionsConfigResponse {
@@ -5595,6 +5940,38 @@ class DescribeQuerySuggestionsConfigResponse {
       status: (json['Status'] as String?)?.toQuerySuggestionsStatus(),
       totalSuggestionsCount: json['TotalSuggestionsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final includeQueriesWithoutUserInformation =
+        this.includeQueriesWithoutUserInformation;
+    final lastClearTime = this.lastClearTime;
+    final lastSuggestionsBuildTime = this.lastSuggestionsBuildTime;
+    final minimumNumberOfQueryingUsers = this.minimumNumberOfQueryingUsers;
+    final minimumQueryCount = this.minimumQueryCount;
+    final mode = this.mode;
+    final queryLogLookBackWindowInDays = this.queryLogLookBackWindowInDays;
+    final status = this.status;
+    final totalSuggestionsCount = this.totalSuggestionsCount;
+    return {
+      if (includeQueriesWithoutUserInformation != null)
+        'IncludeQueriesWithoutUserInformation':
+            includeQueriesWithoutUserInformation,
+      if (lastClearTime != null)
+        'LastClearTime': unixTimestampToJson(lastClearTime),
+      if (lastSuggestionsBuildTime != null)
+        'LastSuggestionsBuildTime':
+            unixTimestampToJson(lastSuggestionsBuildTime),
+      if (minimumNumberOfQueryingUsers != null)
+        'MinimumNumberOfQueryingUsers': minimumNumberOfQueryingUsers,
+      if (minimumQueryCount != null) 'MinimumQueryCount': minimumQueryCount,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (queryLogLookBackWindowInDays != null)
+        'QueryLogLookBackWindowInDays': queryLogLookBackWindowInDays,
+      if (status != null) 'Status': status.toValue(),
+      if (totalSuggestionsCount != null)
+        'TotalSuggestionsCount': totalSuggestionsCount,
+    };
   }
 }
 
@@ -5680,6 +6057,37 @@ class DescribeThesaurusResponse {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final errorMessage = this.errorMessage;
+    final fileSizeBytes = this.fileSizeBytes;
+    final id = this.id;
+    final indexId = this.indexId;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final sourceS3Path = this.sourceS3Path;
+    final status = this.status;
+    final synonymRuleCount = this.synonymRuleCount;
+    final termCount = this.termCount;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (fileSizeBytes != null) 'FileSizeBytes': fileSizeBytes,
+      if (id != null) 'Id': id,
+      if (indexId != null) 'IndexId': indexId,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (sourceS3Path != null) 'SourceS3Path': sourceS3Path,
+      if (status != null) 'Status': status.toValue(),
+      if (synonymRuleCount != null) 'SynonymRuleCount': synonymRuleCount,
+      if (termCount != null) 'TermCount': termCount,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// A document in an index.
@@ -5720,6 +6128,26 @@ class Document {
     this.s3Path,
     this.title,
   });
+  factory Document.fromJson(Map<String, dynamic> json) {
+    return Document(
+      id: json['Id'] as String,
+      accessControlList: (json['AccessControlList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Principal.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      attributes: (json['Attributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DocumentAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+      contentType: (json['ContentType'] as String?)?.toContentType(),
+      s3Path: json['S3Path'] != null
+          ? S3Path.fromJson(json['S3Path'] as Map<String, dynamic>)
+          : null,
+      title: json['Title'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final accessControlList = this.accessControlList;
@@ -5844,6 +6272,16 @@ class DocumentAttributeValueCountPair {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final documentAttributeValue = this.documentAttributeValue;
+    return {
+      if (count != null) 'Count': count,
+      if (documentAttributeValue != null)
+        'DocumentAttributeValue': documentAttributeValue,
+    };
+  }
 }
 
 enum DocumentAttributeValueType {
@@ -5926,6 +6364,16 @@ class DocumentInfo {
     required this.documentId,
     this.attributes,
   });
+  factory DocumentInfo.fromJson(Map<String, dynamic> json) {
+    return DocumentInfo(
+      documentId: json['DocumentId'] as String,
+      attributes: (json['Attributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => DocumentAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final documentId = this.documentId;
     final attributes = this.attributes;
@@ -5995,6 +6443,13 @@ class DocumentRelevanceConfiguration {
     required this.name,
     required this.relevance,
   });
+  factory DocumentRelevanceConfiguration.fromJson(Map<String, dynamic> json) {
+    return DocumentRelevanceConfiguration(
+      name: json['Name'] as String,
+      relevance: Relevance.fromJson(json['Relevance'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final relevance = this.relevance;
@@ -6115,6 +6570,12 @@ class Facet {
   Facet({
     this.documentAttributeKey,
   });
+  factory Facet.fromJson(Map<String, dynamic> json) {
+    return Facet(
+      documentAttributeKey: json['DocumentAttributeKey'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final documentAttributeKey = this.documentAttributeKey;
     return {
@@ -6156,6 +6617,21 @@ class FacetResult {
           (json['DocumentAttributeValueType'] as String?)
               ?.toDocumentAttributeValueType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentAttributeKey = this.documentAttributeKey;
+    final documentAttributeValueCountPairs =
+        this.documentAttributeValueCountPairs;
+    final documentAttributeValueType = this.documentAttributeValueType;
+    return {
+      if (documentAttributeKey != null)
+        'DocumentAttributeKey': documentAttributeKey,
+      if (documentAttributeValueCountPairs != null)
+        'DocumentAttributeValueCountPairs': documentAttributeValueCountPairs,
+      if (documentAttributeValueType != null)
+        'DocumentAttributeValueType': documentAttributeValueType.toValue(),
+    };
   }
 }
 
@@ -6205,6 +6681,13 @@ class FaqStatistics {
     return FaqStatistics(
       indexedQuestionAnswersCount: json['IndexedQuestionAnswersCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexedQuestionAnswersCount = this.indexedQuestionAnswersCount;
+    return {
+      'IndexedQuestionAnswersCount': indexedQuestionAnswersCount,
+    };
   }
 }
 
@@ -6291,6 +6774,23 @@ class FaqSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final fileFormat = this.fileFormat;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (fileFormat != null) 'FileFormat': fileFormat.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class GetQuerySuggestionsResponse {
@@ -6312,6 +6812,15 @@ class GetQuerySuggestionsResponse {
           .map((e) => Suggestion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final querySuggestionsId = this.querySuggestionsId;
+    final suggestions = this.suggestions;
+    return {
+      if (querySuggestionsId != null) 'QuerySuggestionsId': querySuggestionsId,
+      if (suggestions != null) 'Suggestions': suggestions,
+    };
   }
 }
 
@@ -6456,6 +6965,19 @@ class Highlight {
       type: (json['Type'] as String?)?.toHighlightType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final topAnswer = this.topAnswer;
+    final type = this.type;
+    return {
+      'BeginOffset': beginOffset,
+      'EndOffset': endOffset,
+      if (topAnswer != null) 'TopAnswer': topAnswer,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum HighlightType {
@@ -6529,6 +7051,23 @@ class IndexConfigurationSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    final edition = this.edition;
+    final id = this.id;
+    final name = this.name;
+    return {
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'Status': status.toValue(),
+      'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (edition != null) 'Edition': edition.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum IndexEdition {
@@ -6579,6 +7118,15 @@ class IndexStatistics {
       textDocumentStatistics: TextDocumentStatistics.fromJson(
           json['TextDocumentStatistics'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final faqStatistics = this.faqStatistics;
+    final textDocumentStatistics = this.textDocumentStatistics;
+    return {
+      'FaqStatistics': faqStatistics,
+      'TextDocumentStatistics': textDocumentStatistics,
+    };
   }
 }
 
@@ -6778,6 +7326,15 @@ class ListDataSourceSyncJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final history = this.history;
+    final nextToken = this.nextToken;
+    return {
+      if (history != null) 'History': history,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDataSourcesResponse {
@@ -6800,6 +7357,15 @@ class ListDataSourcesResponse {
           .map((e) => DataSourceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaryItems = this.summaryItems;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaryItems != null) 'SummaryItems': summaryItems,
+    };
   }
 }
 
@@ -6827,6 +7393,15 @@ class ListFaqsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faqSummaryItems = this.faqSummaryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (faqSummaryItems != null) 'FaqSummaryItems': faqSummaryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListIndicesResponse {
@@ -6851,6 +7426,16 @@ class ListIndicesResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexConfigurationSummaryItems = this.indexConfigurationSummaryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (indexConfigurationSummaryItems != null)
+        'IndexConfigurationSummaryItems': indexConfigurationSummaryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6885,6 +7470,16 @@ class ListQuerySuggestionsBlockListsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blockListSummaryItems = this.blockListSummaryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (blockListSummaryItems != null)
+        'BlockListSummaryItems': blockListSummaryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6901,6 +7496,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6924,6 +7526,16 @@ class ListThesauriResponse {
           .map((e) => ThesaurusSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final thesaurusSummaryItems = this.thesaurusSummaryItems;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (thesaurusSummaryItems != null)
+        'ThesaurusSummaryItems': thesaurusSummaryItems,
+    };
   }
 }
 
@@ -7130,6 +7742,14 @@ class Principal {
     required this.name,
     required this.type,
   });
+  factory Principal.fromJson(Map<String, dynamic> json) {
+    return Principal(
+      access: (json['Access'] as String).toReadAccessType(),
+      name: json['Name'] as String,
+      type: (json['Type'] as String).toPrincipalType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final access = this.access;
     final name = this.name;
@@ -7288,6 +7908,20 @@ class QueryResult {
       totalNumberOfResults: json['TotalNumberOfResults'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final facetResults = this.facetResults;
+    final queryId = this.queryId;
+    final resultItems = this.resultItems;
+    final totalNumberOfResults = this.totalNumberOfResults;
+    return {
+      if (facetResults != null) 'FacetResults': facetResults,
+      if (queryId != null) 'QueryId': queryId,
+      if (resultItems != null) 'ResultItems': resultItems,
+      if (totalNumberOfResults != null)
+        'TotalNumberOfResults': totalNumberOfResults,
+    };
+  }
 }
 
 /// A single query result.
@@ -7384,6 +8018,32 @@ class QueryResultItem {
           : null,
       type: (json['Type'] as String?)?.toQueryResultType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalAttributes = this.additionalAttributes;
+    final documentAttributes = this.documentAttributes;
+    final documentExcerpt = this.documentExcerpt;
+    final documentId = this.documentId;
+    final documentTitle = this.documentTitle;
+    final documentURI = this.documentURI;
+    final feedbackToken = this.feedbackToken;
+    final id = this.id;
+    final scoreAttributes = this.scoreAttributes;
+    final type = this.type;
+    return {
+      if (additionalAttributes != null)
+        'AdditionalAttributes': additionalAttributes,
+      if (documentAttributes != null) 'DocumentAttributes': documentAttributes,
+      if (documentExcerpt != null) 'DocumentExcerpt': documentExcerpt,
+      if (documentId != null) 'DocumentId': documentId,
+      if (documentTitle != null) 'DocumentTitle': documentTitle,
+      if (documentURI != null) 'DocumentURI': documentURI,
+      if (feedbackToken != null) 'FeedbackToken': feedbackToken,
+      if (id != null) 'Id': id,
+      if (scoreAttributes != null) 'ScoreAttributes': scoreAttributes,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -7515,6 +8175,23 @@ class QuerySuggestionsBlockListSummary {
       status: (json['Status'] as String?)?.toQuerySuggestionsBlockListStatus(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final itemCount = this.itemCount;
+    final name = this.name;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (id != null) 'Id': id,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -7675,6 +8352,13 @@ class RelevanceFeedback {
     required this.relevanceValue,
     required this.resultId,
   });
+  factory RelevanceFeedback.fromJson(Map<String, dynamic> json) {
+    return RelevanceFeedback(
+      relevanceValue: (json['RelevanceValue'] as String).toRelevanceType(),
+      resultId: json['ResultId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final relevanceValue = this.relevanceValue;
     final resultId = this.resultId;
@@ -8515,6 +9199,13 @@ class ScoreAttributes {
           (json['ScoreConfidence'] as String?)?.toScoreConfidence(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scoreConfidence = this.scoreConfidence;
+    return {
+      if (scoreConfidence != null) 'ScoreConfidence': scoreConfidence.toValue(),
+    };
+  }
 }
 
 /// Enumeration for query score confidence.
@@ -9324,6 +10015,13 @@ class SortingConfiguration {
     required this.documentAttributeKey,
     required this.sortOrder,
   });
+  factory SortingConfiguration.fromJson(Map<String, dynamic> json) {
+    return SortingConfiguration(
+      documentAttributeKey: json['DocumentAttributeKey'] as String,
+      sortOrder: (json['SortOrder'] as String).toSortOrder(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final documentAttributeKey = this.documentAttributeKey;
     final sortOrder = this.sortOrder;
@@ -9386,6 +10084,13 @@ class StartDataSourceSyncJobResponse {
       executionId: json['ExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    return {
+      if (executionId != null) 'ExecutionId': executionId,
+    };
+  }
 }
 
 /// Provides information about the status of documents submitted for indexing.
@@ -9421,6 +10126,19 @@ class Status {
       failureReason: json['FailureReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentId = this.documentId;
+    final documentStatus = this.documentStatus;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    return {
+      if (documentId != null) 'DocumentId': documentId,
+      if (documentStatus != null) 'DocumentStatus': documentStatus.toValue(),
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
+  }
 }
 
 /// A single query suggestion.
@@ -9447,6 +10165,15 @@ class Suggestion {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final value = this.value;
+    return {
+      if (id != null) 'Id': id,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The text highlights for a single query suggestion.
@@ -9466,6 +10193,15 @@ class SuggestionHighlight {
       beginOffset: json['BeginOffset'] as int?,
       endOffset: json['EndOffset'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+    };
   }
 }
 
@@ -9492,6 +10228,15 @@ class SuggestionTextWithHighlights {
       text: json['Text'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final highlights = this.highlights;
+    final text = this.text;
+    return {
+      if (highlights != null) 'Highlights': highlights,
+      if (text != null) 'Text': text,
+    };
+  }
 }
 
 /// The <code>SuggestionTextWithHighlights</code> structure information.
@@ -9510,6 +10255,13 @@ class SuggestionValue {
               json['Text'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final text = this.text;
+    return {
+      if (text != null) 'Text': text,
+    };
   }
 }
 
@@ -9551,6 +10303,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Provides information about text documents indexed in an index.
@@ -9570,6 +10326,15 @@ class TextDocumentStatistics {
       indexedTextBytes: json['IndexedTextBytes'] as int,
       indexedTextDocumentsCount: json['IndexedTextDocumentsCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexedTextBytes = this.indexedTextBytes;
+    final indexedTextDocumentsCount = this.indexedTextDocumentsCount;
+    return {
+      'IndexedTextBytes': indexedTextBytes,
+      'IndexedTextDocumentsCount': indexedTextDocumentsCount,
+    };
   }
 }
 
@@ -9593,6 +10358,15 @@ class TextWithHighlights {
           .toList(),
       text: json['Text'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final highlights = this.highlights;
+    final text = this.text;
+    return {
+      if (highlights != null) 'Highlights': highlights,
+      if (text != null) 'Text': text,
+    };
   }
 }
 
@@ -9677,6 +10451,21 @@ class ThesaurusSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// Provides a range of time.
@@ -9691,6 +10480,13 @@ class TimeRange {
     this.endTime,
     this.startTime,
   });
+  factory TimeRange.fromJson(Map<String, dynamic> json) {
+    return TimeRange(
+      endTime: timeStampFromJson(json['EndTime']),
+      startTime: timeStampFromJson(json['StartTime']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endTime = this.endTime;
     final startTime = this.startTime;
@@ -9705,6 +10501,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9770,6 +10570,12 @@ class UserContext {
   UserContext({
     this.token,
   });
+  factory UserContext.fromJson(Map<String, dynamic> json) {
+    return UserContext(
+      token: json['Token'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final token = this.token;
     return {

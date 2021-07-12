@@ -1042,6 +1042,16 @@ class AssociateRepositoryResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repositoryAssociation = this.repositoryAssociation;
+    final tags = this.tags;
+    return {
+      if (repositoryAssociation != null)
+        'RepositoryAssociation': repositoryAssociation,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A type of <a
@@ -1136,6 +1146,12 @@ class CodeCommitRepository {
   CodeCommitRepository({
     required this.name,
   });
+  factory CodeCommitRepository.fromJson(Map<String, dynamic> json) {
+    return CodeCommitRepository(
+      name: json['Name'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     return {
@@ -1267,6 +1283,44 @@ class CodeReview {
       type: (json['Type'] as String?)?.toType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisTypes = this.analysisTypes;
+    final associationArn = this.associationArn;
+    final codeReviewArn = this.codeReviewArn;
+    final createdTimeStamp = this.createdTimeStamp;
+    final lastUpdatedTimeStamp = this.lastUpdatedTimeStamp;
+    final metrics = this.metrics;
+    final name = this.name;
+    final owner = this.owner;
+    final providerType = this.providerType;
+    final pullRequestId = this.pullRequestId;
+    final repositoryName = this.repositoryName;
+    final sourceCodeType = this.sourceCodeType;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final type = this.type;
+    return {
+      if (analysisTypes != null)
+        'AnalysisTypes': analysisTypes.map((e) => e.toValue()).toList(),
+      if (associationArn != null) 'AssociationArn': associationArn,
+      if (codeReviewArn != null) 'CodeReviewArn': codeReviewArn,
+      if (createdTimeStamp != null)
+        'CreatedTimeStamp': unixTimestampToJson(createdTimeStamp),
+      if (lastUpdatedTimeStamp != null)
+        'LastUpdatedTimeStamp': unixTimestampToJson(lastUpdatedTimeStamp),
+      if (metrics != null) 'Metrics': metrics,
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (pullRequestId != null) 'PullRequestId': pullRequestId,
+      if (repositoryName != null) 'RepositoryName': repositoryName,
+      if (sourceCodeType != null) 'SourceCodeType': sourceCodeType,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information about the summary of the code review.
@@ -1366,6 +1420,37 @@ class CodeReviewSummary {
       type: (json['Type'] as String?)?.toType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeReviewArn = this.codeReviewArn;
+    final createdTimeStamp = this.createdTimeStamp;
+    final lastUpdatedTimeStamp = this.lastUpdatedTimeStamp;
+    final metricsSummary = this.metricsSummary;
+    final name = this.name;
+    final owner = this.owner;
+    final providerType = this.providerType;
+    final pullRequestId = this.pullRequestId;
+    final repositoryName = this.repositoryName;
+    final sourceCodeType = this.sourceCodeType;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (codeReviewArn != null) 'CodeReviewArn': codeReviewArn,
+      if (createdTimeStamp != null)
+        'CreatedTimeStamp': unixTimestampToJson(createdTimeStamp),
+      if (lastUpdatedTimeStamp != null)
+        'LastUpdatedTimeStamp': unixTimestampToJson(lastUpdatedTimeStamp),
+      if (metricsSummary != null) 'MetricsSummary': metricsSummary,
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (pullRequestId != null) 'PullRequestId': pullRequestId,
+      if (repositoryName != null) 'RepositoryName': repositoryName,
+      if (sourceCodeType != null) 'SourceCodeType': sourceCodeType,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// The type of a code review. There are two code review types:
@@ -1400,6 +1485,17 @@ class CodeReviewType {
     required this.repositoryAnalysis,
     this.analysisTypes,
   });
+  factory CodeReviewType.fromJson(Map<String, dynamic> json) {
+    return CodeReviewType(
+      repositoryAnalysis: RepositoryAnalysis.fromJson(
+          json['RepositoryAnalysis'] as Map<String, dynamic>),
+      analysisTypes: (json['AnalysisTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toAnalysisType())
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final repositoryAnalysis = this.repositoryAnalysis;
     final analysisTypes = this.analysisTypes;
@@ -1467,6 +1563,13 @@ class CreateCodeReviewResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeReview = this.codeReview;
+    return {
+      if (codeReview != null) 'CodeReview': codeReview,
+    };
+  }
 }
 
 class DescribeCodeReviewResponse {
@@ -1482,6 +1585,13 @@ class DescribeCodeReviewResponse {
           ? CodeReview.fromJson(json['CodeReview'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeReview = this.codeReview;
+    return {
+      if (codeReview != null) 'CodeReview': codeReview,
+    };
   }
 }
 
@@ -1500,6 +1610,14 @@ class DescribeRecommendationFeedbackResponse {
               json['RecommendationFeedback'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommendationFeedback = this.recommendationFeedback;
+    return {
+      if (recommendationFeedback != null)
+        'RecommendationFeedback': recommendationFeedback,
+    };
   }
 }
 
@@ -1540,6 +1658,16 @@ class DescribeRepositoryAssociationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repositoryAssociation = this.repositoryAssociation;
+    final tags = this.tags;
+    return {
+      if (repositoryAssociation != null)
+        'RepositoryAssociation': repositoryAssociation,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DisassociateRepositoryResponse {
@@ -1577,6 +1705,16 @@ class DisassociateRepositoryResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryAssociation = this.repositoryAssociation;
+    final tags = this.tags;
+    return {
+      if (repositoryAssociation != null)
+        'RepositoryAssociation': repositoryAssociation,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1741,6 +1879,16 @@ class ListCodeReviewsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeReviewSummaries = this.codeReviewSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (codeReviewSummaries != null)
+        'CodeReviewSummaries': codeReviewSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRecommendationFeedbackResponse {
@@ -1769,6 +1917,17 @@ class ListRecommendationFeedbackResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendationFeedbackSummaries =
+        this.recommendationFeedbackSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (recommendationFeedbackSummaries != null)
+        'RecommendationFeedbackSummaries': recommendationFeedbackSummaries,
+    };
+  }
 }
 
 class ListRecommendationsResponse {
@@ -1790,6 +1949,16 @@ class ListRecommendationsResponse {
           .map((e) => RecommendationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendationSummaries = this.recommendationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (recommendationSummaries != null)
+        'RecommendationSummaries': recommendationSummaries,
+    };
   }
 }
 
@@ -1819,6 +1988,16 @@ class ListRepositoryAssociationsResponse {
               RepositoryAssociationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositoryAssociationSummaries = this.repositoryAssociationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (repositoryAssociationSummaries != null)
+        'RepositoryAssociationSummaries': repositoryAssociationSummaries,
+    };
   }
 }
 
@@ -1850,6 +2029,13 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Information about the statistics from the code review.
@@ -1880,6 +2066,16 @@ class Metrics {
       meteredLinesOfCodeCount: json['MeteredLinesOfCodeCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingsCount = this.findingsCount;
+    final meteredLinesOfCodeCount = this.meteredLinesOfCodeCount;
+    return {
+      if (findingsCount != null) 'FindingsCount': findingsCount,
+      if (meteredLinesOfCodeCount != null)
+        'MeteredLinesOfCodeCount': meteredLinesOfCodeCount,
+    };
+  }
 }
 
 /// Information about metrics summaries.
@@ -1909,6 +2105,16 @@ class MetricsSummary {
       findingsCount: json['FindingsCount'] as int?,
       meteredLinesOfCodeCount: json['MeteredLinesOfCodeCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingsCount = this.findingsCount;
+    final meteredLinesOfCodeCount = this.meteredLinesOfCodeCount;
+    return {
+      if (findingsCount != null) 'FindingsCount': findingsCount,
+      if (meteredLinesOfCodeCount != null)
+        'MeteredLinesOfCodeCount': meteredLinesOfCodeCount,
+    };
   }
 }
 
@@ -1959,6 +2165,10 @@ class PutRecommendationFeedbackResponse {
   PutRecommendationFeedbackResponse();
   factory PutRecommendationFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return PutRecommendationFeedbackResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2109,6 +2319,26 @@ class RecommendationFeedback {
       userId: json['UserId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeReviewArn = this.codeReviewArn;
+    final createdTimeStamp = this.createdTimeStamp;
+    final lastUpdatedTimeStamp = this.lastUpdatedTimeStamp;
+    final reactions = this.reactions;
+    final recommendationId = this.recommendationId;
+    final userId = this.userId;
+    return {
+      if (codeReviewArn != null) 'CodeReviewArn': codeReviewArn,
+      if (createdTimeStamp != null)
+        'CreatedTimeStamp': unixTimestampToJson(createdTimeStamp),
+      if (lastUpdatedTimeStamp != null)
+        'LastUpdatedTimeStamp': unixTimestampToJson(lastUpdatedTimeStamp),
+      if (reactions != null)
+        'Reactions': reactions.map((e) => e.toValue()).toList(),
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+      if (userId != null) 'UserId': userId,
+    };
+  }
 }
 
 /// Information about recommendation feedback summaries.
@@ -2143,6 +2373,18 @@ class RecommendationFeedbackSummary {
       recommendationId: json['RecommendationId'] as String?,
       userId: json['UserId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reactions = this.reactions;
+    final recommendationId = this.recommendationId;
+    final userId = this.userId;
+    return {
+      if (reactions != null)
+        'Reactions': reactions.map((e) => e.toValue()).toList(),
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -2190,6 +2432,24 @@ class RecommendationSummary {
       startLine: json['StartLine'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final endLine = this.endLine;
+    final filePath = this.filePath;
+    final recommendationCategory = this.recommendationCategory;
+    final recommendationId = this.recommendationId;
+    final startLine = this.startLine;
+    return {
+      if (description != null) 'Description': description,
+      if (endLine != null) 'EndLine': endLine,
+      if (filePath != null) 'FilePath': filePath,
+      if (recommendationCategory != null)
+        'RecommendationCategory': recommendationCategory.toValue(),
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+      if (startLine != null) 'StartLine': startLine,
+    };
+  }
 }
 
 /// Information about an associated AWS CodeCommit repository or an associated
@@ -2213,6 +2473,26 @@ class Repository {
     this.gitHubEnterpriseServer,
     this.s3Bucket,
   });
+  factory Repository.fromJson(Map<String, dynamic> json) {
+    return Repository(
+      bitbucket: json['Bitbucket'] != null
+          ? ThirdPartySourceRepository.fromJson(
+              json['Bitbucket'] as Map<String, dynamic>)
+          : null,
+      codeCommit: json['CodeCommit'] != null
+          ? CodeCommitRepository.fromJson(
+              json['CodeCommit'] as Map<String, dynamic>)
+          : null,
+      gitHubEnterpriseServer: json['GitHubEnterpriseServer'] != null
+          ? ThirdPartySourceRepository.fromJson(
+              json['GitHubEnterpriseServer'] as Map<String, dynamic>)
+          : null,
+      s3Bucket: json['S3Bucket'] != null
+          ? S3Repository.fromJson(json['S3Bucket'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bitbucket = this.bitbucket;
     final codeCommit = this.codeCommit;
@@ -2245,6 +2525,19 @@ class RepositoryAnalysis {
     this.repositoryHead,
     this.sourceCodeType,
   });
+  factory RepositoryAnalysis.fromJson(Map<String, dynamic> json) {
+    return RepositoryAnalysis(
+      repositoryHead: json['RepositoryHead'] != null
+          ? RepositoryHeadSourceCodeType.fromJson(
+              json['RepositoryHead'] as Map<String, dynamic>)
+          : null,
+      sourceCodeType: json['SourceCodeType'] != null
+          ? SourceCodeType.fromJson(
+              json['SourceCodeType'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final repositoryHead = this.repositoryHead;
     final sourceCodeType = this.sourceCodeType;
@@ -2397,6 +2690,38 @@ class RepositoryAssociation {
       state: (json['State'] as String?)?.toRepositoryAssociationState(),
       stateReason: json['StateReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationArn = this.associationArn;
+    final associationId = this.associationId;
+    final connectionArn = this.connectionArn;
+    final createdTimeStamp = this.createdTimeStamp;
+    final kMSKeyDetails = this.kMSKeyDetails;
+    final lastUpdatedTimeStamp = this.lastUpdatedTimeStamp;
+    final name = this.name;
+    final owner = this.owner;
+    final providerType = this.providerType;
+    final s3RepositoryDetails = this.s3RepositoryDetails;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (associationArn != null) 'AssociationArn': associationArn,
+      if (associationId != null) 'AssociationId': associationId,
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (createdTimeStamp != null)
+        'CreatedTimeStamp': unixTimestampToJson(createdTimeStamp),
+      if (kMSKeyDetails != null) 'KMSKeyDetails': kMSKeyDetails,
+      if (lastUpdatedTimeStamp != null)
+        'LastUpdatedTimeStamp': unixTimestampToJson(lastUpdatedTimeStamp),
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (s3RepositoryDetails != null)
+        'S3RepositoryDetails': s3RepositoryDetails,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
   }
 }
 
@@ -2554,6 +2879,28 @@ class RepositoryAssociationSummary {
       state: (json['State'] as String?)?.toRepositoryAssociationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associationArn = this.associationArn;
+    final associationId = this.associationId;
+    final connectionArn = this.connectionArn;
+    final lastUpdatedTimeStamp = this.lastUpdatedTimeStamp;
+    final name = this.name;
+    final owner = this.owner;
+    final providerType = this.providerType;
+    final state = this.state;
+    return {
+      if (associationArn != null) 'AssociationArn': associationArn,
+      if (associationId != null) 'AssociationId': associationId,
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (lastUpdatedTimeStamp != null)
+        'LastUpdatedTimeStamp': unixTimestampToJson(lastUpdatedTimeStamp),
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// A <a
@@ -2687,6 +3034,13 @@ class S3Repository {
     required this.bucketName,
     required this.name,
   });
+  factory S3Repository.fromJson(Map<String, dynamic> json) {
+    return S3Repository(
+      bucketName: json['BucketName'] as String,
+      name: json['Name'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucketName = this.bucketName;
     final name = this.name;
@@ -2818,6 +3172,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about a third-party source repository connected to CodeGuru
@@ -2845,6 +3203,14 @@ class ThirdPartySourceRepository {
     required this.name,
     required this.owner,
   });
+  factory ThirdPartySourceRepository.fromJson(Map<String, dynamic> json) {
+    return ThirdPartySourceRepository(
+      connectionArn: json['ConnectionArn'] as String,
+      name: json['Name'] as String,
+      owner: json['Owner'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final connectionArn = this.connectionArn;
     final name = this.name;
@@ -2889,6 +3255,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

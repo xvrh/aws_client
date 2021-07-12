@@ -1292,6 +1292,17 @@ class AgentConfigurationStatus {
       operationSucceeded: json['operationSucceeded'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentId = this.agentId;
+    final description = this.description;
+    final operationSucceeded = this.operationSucceeded;
+    return {
+      if (agentId != null) 'agentId': agentId,
+      if (description != null) 'description': description,
+      if (operationSucceeded != null) 'operationSucceeded': operationSucceeded,
+    };
+  }
 }
 
 /// Information about agents or connectors associated with the user’s AWS
@@ -1359,6 +1370,32 @@ class AgentInfo {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentId = this.agentId;
+    final agentNetworkInfoList = this.agentNetworkInfoList;
+    final agentType = this.agentType;
+    final collectionStatus = this.collectionStatus;
+    final connectorId = this.connectorId;
+    final health = this.health;
+    final hostName = this.hostName;
+    final lastHealthPingTime = this.lastHealthPingTime;
+    final registeredTime = this.registeredTime;
+    final version = this.version;
+    return {
+      if (agentId != null) 'agentId': agentId,
+      if (agentNetworkInfoList != null)
+        'agentNetworkInfoList': agentNetworkInfoList,
+      if (agentType != null) 'agentType': agentType,
+      if (collectionStatus != null) 'collectionStatus': collectionStatus,
+      if (connectorId != null) 'connectorId': connectorId,
+      if (health != null) 'health': health.toValue(),
+      if (hostName != null) 'hostName': hostName,
+      if (lastHealthPingTime != null) 'lastHealthPingTime': lastHealthPingTime,
+      if (registeredTime != null) 'registeredTime': registeredTime,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Network details about the host where the agent/connector resides.
@@ -1378,6 +1415,15 @@ class AgentNetworkInfo {
       ipAddress: json['ipAddress'] as String?,
       macAddress: json['macAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddress = this.ipAddress;
+    final macAddress = this.macAddress;
+    return {
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (macAddress != null) 'macAddress': macAddress,
+    };
   }
 }
 
@@ -1435,6 +1481,10 @@ class AssociateConfigurationItemsToApplicationResponse {
       Map<String, dynamic> _) {
     return AssociateConfigurationItemsToApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Error messages returned for each import task that you deleted as a response
@@ -1461,6 +1511,17 @@ class BatchDeleteImportDataError {
       errorDescription: json['errorDescription'] as String?,
       importTaskId: json['importTaskId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorDescription = this.errorDescription;
+    final importTaskId = this.importTaskId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorDescription != null) 'errorDescription': errorDescription,
+      if (importTaskId != null) 'importTaskId': importTaskId,
+    };
   }
 }
 
@@ -1514,6 +1575,13 @@ class BatchDeleteImportDataResponse {
               BatchDeleteImportDataError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -1592,6 +1660,23 @@ class ConfigurationTag {
       timeOfCreation: timeStampFromJson(json['timeOfCreation']),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    final configurationType = this.configurationType;
+    final key = this.key;
+    final timeOfCreation = this.timeOfCreation;
+    final value = this.value;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+      if (configurationType != null)
+        'configurationType': configurationType.toValue(),
+      if (key != null) 'key': key,
+      if (timeOfCreation != null)
+        'timeOfCreation': unixTimestampToJson(timeOfCreation),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -1733,6 +1818,28 @@ class ContinuousExportDescription {
       stopTime: timeStampFromJson(json['stopTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final exportId = this.exportId;
+    final s3Bucket = this.s3Bucket;
+    final schemaStorageConfig = this.schemaStorageConfig;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusDetail = this.statusDetail;
+    final stopTime = this.stopTime;
+    return {
+      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (exportId != null) 'exportId': exportId,
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (schemaStorageConfig != null)
+        'schemaStorageConfig': schemaStorageConfig,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (statusDetail != null) 'statusDetail': statusDetail,
+      if (stopTime != null) 'stopTime': unixTimestampToJson(stopTime),
+    };
+  }
 }
 
 enum ContinuousExportStatus {
@@ -1800,12 +1907,23 @@ class CreateApplicationResponse {
       configurationId: json['configurationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+    };
+  }
 }
 
 class CreateTagsResponse {
   CreateTagsResponse();
   factory CreateTagsResponse.fromJson(Map<String, dynamic> _) {
     return CreateTagsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1852,6 +1970,25 @@ class CustomerAgentInfo {
       unknownAgents: json['unknownAgents'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeAgents = this.activeAgents;
+    final blackListedAgents = this.blackListedAgents;
+    final healthyAgents = this.healthyAgents;
+    final shutdownAgents = this.shutdownAgents;
+    final totalAgents = this.totalAgents;
+    final unhealthyAgents = this.unhealthyAgents;
+    final unknownAgents = this.unknownAgents;
+    return {
+      'activeAgents': activeAgents,
+      'blackListedAgents': blackListedAgents,
+      'healthyAgents': healthyAgents,
+      'shutdownAgents': shutdownAgents,
+      'totalAgents': totalAgents,
+      'unhealthyAgents': unhealthyAgents,
+      'unknownAgents': unknownAgents,
+    };
+  }
 }
 
 /// Inventory data for installed discovery connectors.
@@ -1897,6 +2034,25 @@ class CustomerConnectorInfo {
       unknownConnectors: json['unknownConnectors'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeConnectors = this.activeConnectors;
+    final blackListedConnectors = this.blackListedConnectors;
+    final healthyConnectors = this.healthyConnectors;
+    final shutdownConnectors = this.shutdownConnectors;
+    final totalConnectors = this.totalConnectors;
+    final unhealthyConnectors = this.unhealthyConnectors;
+    final unknownConnectors = this.unknownConnectors;
+    return {
+      'activeConnectors': activeConnectors,
+      'blackListedConnectors': blackListedConnectors,
+      'healthyConnectors': healthyConnectors,
+      'shutdownConnectors': shutdownConnectors,
+      'totalConnectors': totalConnectors,
+      'unhealthyConnectors': unhealthyConnectors,
+      'unknownConnectors': unknownConnectors,
+    };
+  }
 }
 
 enum DataSource {
@@ -1927,12 +2083,20 @@ class DeleteApplicationsResponse {
   factory DeleteApplicationsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTagsResponse {
   DeleteTagsResponse();
   factory DeleteTagsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTagsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1964,6 +2128,15 @@ class DescribeAgentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentsInfo = this.agentsInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (agentsInfo != null) 'agentsInfo': agentsInfo,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConfigurationsResponse {
@@ -1981,6 +2154,13 @@ class DescribeConfigurationsResponse {
               .map((k, e) => MapEntry(k, e as String)))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurations = this.configurations;
+    return {
+      if (configurations != null) 'configurations': configurations,
+    };
   }
 }
 
@@ -2006,6 +2186,15 @@ class DescribeContinuousExportsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final descriptions = this.descriptions;
+    final nextToken = this.nextToken;
+    return {
+      if (descriptions != null) 'descriptions': descriptions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeExportConfigurationsResponse {
@@ -2028,6 +2217,15 @@ class DescribeExportConfigurationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportsInfo = this.exportsInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (exportsInfo != null) 'exportsInfo': exportsInfo,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2057,6 +2255,15 @@ class DescribeExportTasksResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportsInfo = this.exportsInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (exportsInfo != null) 'exportsInfo': exportsInfo,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeImportTasksResponse {
@@ -2079,6 +2286,15 @@ class DescribeImportTasksResponse {
           .map((e) => ImportTask.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tasks != null) 'tasks': tasks,
+    };
   }
 }
 
@@ -2103,6 +2319,15 @@ class DescribeTagsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DisassociateConfigurationItemsFromApplicationResponse {
@@ -2110,6 +2335,10 @@ class DisassociateConfigurationItemsFromApplicationResponse {
   factory DisassociateConfigurationItemsFromApplicationResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateConfigurationItemsFromApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2124,6 +2353,13 @@ class ExportConfigurationsResponse {
     return ExportConfigurationsResponse(
       exportId: json['exportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportId = this.exportId;
+    return {
+      if (exportId != null) 'exportId': exportId,
+    };
   }
 }
 
@@ -2179,6 +2415,17 @@ class ExportFilter {
     required this.name,
     required this.values,
   });
+  factory ExportFilter.fromJson(Map<String, dynamic> json) {
+    return ExportFilter(
+      condition: json['condition'] as String,
+      name: json['name'] as String,
+      values: (json['values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final condition = this.condition;
     final name = this.name;
@@ -2249,6 +2496,30 @@ class ExportInfo {
       requestedStartTime: timeStampFromJson(json['requestedStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportId = this.exportId;
+    final exportRequestTime = this.exportRequestTime;
+    final exportStatus = this.exportStatus;
+    final statusMessage = this.statusMessage;
+    final configurationsDownloadUrl = this.configurationsDownloadUrl;
+    final isTruncated = this.isTruncated;
+    final requestedEndTime = this.requestedEndTime;
+    final requestedStartTime = this.requestedStartTime;
+    return {
+      'exportId': exportId,
+      'exportRequestTime': unixTimestampToJson(exportRequestTime),
+      'exportStatus': exportStatus.toValue(),
+      'statusMessage': statusMessage,
+      if (configurationsDownloadUrl != null)
+        'configurationsDownloadUrl': configurationsDownloadUrl,
+      if (isTruncated != null) 'isTruncated': isTruncated,
+      if (requestedEndTime != null)
+        'requestedEndTime': unixTimestampToJson(requestedEndTime),
+      if (requestedStartTime != null)
+        'requestedStartTime': unixTimestampToJson(requestedStartTime),
+    };
+  }
 }
 
 enum ExportStatus {
@@ -2313,6 +2584,17 @@ class Filter {
     required this.name,
     required this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      condition: json['condition'] as String,
+      name: json['name'] as String,
+      values: (json['values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final condition = this.condition;
     final name = this.name;
@@ -2367,6 +2649,25 @@ class GetDiscoverySummaryResponse {
       serversMappedToApplications: json['serversMappedToApplications'] as int?,
       serversMappedtoTags: json['serversMappedtoTags'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentSummary = this.agentSummary;
+    final applications = this.applications;
+    final connectorSummary = this.connectorSummary;
+    final servers = this.servers;
+    final serversMappedToApplications = this.serversMappedToApplications;
+    final serversMappedtoTags = this.serversMappedtoTags;
+    return {
+      if (agentSummary != null) 'agentSummary': agentSummary,
+      if (applications != null) 'applications': applications,
+      if (connectorSummary != null) 'connectorSummary': connectorSummary,
+      if (servers != null) 'servers': servers,
+      if (serversMappedToApplications != null)
+        'serversMappedToApplications': serversMappedToApplications,
+      if (serversMappedtoTags != null)
+        'serversMappedtoTags': serversMappedtoTags,
+    };
   }
 }
 
@@ -2547,6 +2848,45 @@ class ImportTask {
       status: (json['status'] as String?)?.toImportStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationImportFailure = this.applicationImportFailure;
+    final applicationImportSuccess = this.applicationImportSuccess;
+    final clientRequestToken = this.clientRequestToken;
+    final errorsAndFailedEntriesZip = this.errorsAndFailedEntriesZip;
+    final importCompletionTime = this.importCompletionTime;
+    final importDeletedTime = this.importDeletedTime;
+    final importRequestTime = this.importRequestTime;
+    final importTaskId = this.importTaskId;
+    final importUrl = this.importUrl;
+    final name = this.name;
+    final serverImportFailure = this.serverImportFailure;
+    final serverImportSuccess = this.serverImportSuccess;
+    final status = this.status;
+    return {
+      if (applicationImportFailure != null)
+        'applicationImportFailure': applicationImportFailure,
+      if (applicationImportSuccess != null)
+        'applicationImportSuccess': applicationImportSuccess,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (errorsAndFailedEntriesZip != null)
+        'errorsAndFailedEntriesZip': errorsAndFailedEntriesZip,
+      if (importCompletionTime != null)
+        'importCompletionTime': unixTimestampToJson(importCompletionTime),
+      if (importDeletedTime != null)
+        'importDeletedTime': unixTimestampToJson(importDeletedTime),
+      if (importRequestTime != null)
+        'importRequestTime': unixTimestampToJson(importRequestTime),
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (importUrl != null) 'importUrl': importUrl,
+      if (name != null) 'name': name,
+      if (serverImportFailure != null)
+        'serverImportFailure': serverImportFailure,
+      if (serverImportSuccess != null)
+        'serverImportSuccess': serverImportSuccess,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// A name-values pair of elements you can use to filter the results when
@@ -2568,6 +2908,16 @@ class ImportTaskFilter {
     this.name,
     this.values,
   });
+  factory ImportTaskFilter.fromJson(Map<String, dynamic> json) {
+    return ImportTaskFilter(
+      name: (json['name'] as String?)?.toImportTaskFilterName(),
+      values: (json['values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -2637,6 +2987,15 @@ class ListConfigurationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurations = this.configurations;
+    final nextToken = this.nextToken;
+    return {
+      if (configurations != null) 'configurations': configurations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServerNeighborsResponse {
@@ -2668,6 +3027,18 @@ class ListServerNeighborsResponse {
       knownDependencyCount: json['knownDependencyCount'] as int?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final neighbors = this.neighbors;
+    final knownDependencyCount = this.knownDependencyCount;
+    final nextToken = this.nextToken;
+    return {
+      'neighbors': neighbors,
+      if (knownDependencyCount != null)
+        'knownDependencyCount': knownDependencyCount,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2704,6 +3075,21 @@ class NeighborConnectionDetail {
       transportProtocol: json['transportProtocol'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionsCount = this.connectionsCount;
+    final destinationServerId = this.destinationServerId;
+    final sourceServerId = this.sourceServerId;
+    final destinationPort = this.destinationPort;
+    final transportProtocol = this.transportProtocol;
+    return {
+      'connectionsCount': connectionsCount,
+      'destinationServerId': destinationServerId,
+      'sourceServerId': sourceServerId,
+      if (destinationPort != null) 'destinationPort': destinationPort,
+      if (transportProtocol != null) 'transportProtocol': transportProtocol,
+    };
+  }
 }
 
 /// A field and direction for ordered output.
@@ -2718,6 +3104,13 @@ class OrderByElement {
     required this.fieldName,
     this.sortOrder,
   });
+  factory OrderByElement.fromJson(Map<String, dynamic> json) {
+    return OrderByElement(
+      fieldName: json['fieldName'] as String,
+      sortOrder: (json['sortOrder'] as String?)?.toOrderString(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final fieldName = this.fieldName;
     final sortOrder = this.sortOrder;
@@ -2770,6 +3163,22 @@ class StartContinuousExportResponse {
       startTime: timeStampFromJson(json['startTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final exportId = this.exportId;
+    final s3Bucket = this.s3Bucket;
+    final schemaStorageConfig = this.schemaStorageConfig;
+    final startTime = this.startTime;
+    return {
+      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (exportId != null) 'exportId': exportId,
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (schemaStorageConfig != null)
+        'schemaStorageConfig': schemaStorageConfig,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 class StartDataCollectionByAgentIdsResponse {
@@ -2792,6 +3201,14 @@ class StartDataCollectionByAgentIdsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentsConfigurationStatus = this.agentsConfigurationStatus;
+    return {
+      if (agentsConfigurationStatus != null)
+        'agentsConfigurationStatus': agentsConfigurationStatus,
+    };
+  }
 }
 
 class StartExportTaskResponse {
@@ -2805,6 +3222,13 @@ class StartExportTaskResponse {
     return StartExportTaskResponse(
       exportId: json['exportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportId = this.exportId;
+    return {
+      if (exportId != null) 'exportId': exportId,
+    };
   }
 }
 
@@ -2823,6 +3247,13 @@ class StartImportTaskResponse {
           ? ImportTask.fromJson(json['task'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final task = this.task;
+    return {
+      if (task != null) 'task': task,
+    };
   }
 }
 
@@ -2843,6 +3274,15 @@ class StopContinuousExportResponse {
       startTime: timeStampFromJson(json['startTime']),
       stopTime: timeStampFromJson(json['stopTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final stopTime = this.stopTime;
+    return {
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (stopTime != null) 'stopTime': unixTimestampToJson(stopTime),
+    };
   }
 }
 
@@ -2866,6 +3306,14 @@ class StopDataCollectionByAgentIdsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentsConfigurationStatus = this.agentsConfigurationStatus;
+    return {
+      if (agentsConfigurationStatus != null)
+        'agentsConfigurationStatus': agentsConfigurationStatus,
+    };
+  }
 }
 
 /// Metadata that help you categorize IT assets.
@@ -2880,6 +3328,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['key'] as String,
+      value: json['value'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;
@@ -2903,6 +3358,16 @@ class TagFilter {
     required this.name,
     required this.values,
   });
+  factory TagFilter.fromJson(Map<String, dynamic> json) {
+    return TagFilter(
+      name: json['name'] as String,
+      values: (json['values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -2917,6 +3382,10 @@ class UpdateApplicationResponse {
   UpdateApplicationResponse();
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

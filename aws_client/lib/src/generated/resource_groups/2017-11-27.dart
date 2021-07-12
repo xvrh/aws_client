@@ -1164,6 +1164,19 @@ class CreateGroupOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final groupConfiguration = this.groupConfiguration;
+    final resourceQuery = this.resourceQuery;
+    final tags = this.tags;
+    return {
+      if (group != null) 'Group': group,
+      if (groupConfiguration != null) 'GroupConfiguration': groupConfiguration,
+      if (resourceQuery != null) 'ResourceQuery': resourceQuery,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DeleteGroupOutput {
@@ -1179,6 +1192,13 @@ class DeleteGroupOutput {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -1205,6 +1225,17 @@ class FailedResource {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final resourceArn = this.resourceArn;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 class GetGroupConfigurationOutput {
@@ -1225,6 +1256,13 @@ class GetGroupConfigurationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupConfiguration = this.groupConfiguration;
+    return {
+      if (groupConfiguration != null) 'GroupConfiguration': groupConfiguration,
+    };
+  }
 }
 
 class GetGroupOutput {
@@ -1240,6 +1278,13 @@ class GetGroupOutput {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -1260,6 +1305,13 @@ class GetGroupQueryOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupQuery = this.groupQuery;
+    return {
+      if (groupQuery != null) 'GroupQuery': groupQuery,
+    };
+  }
 }
 
 class GetTagsOutput {
@@ -1279,6 +1331,15 @@ class GetTagsOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1320,6 +1381,17 @@ class Group {
       name: json['Name'] as String,
       description: json['Description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupArn = this.groupArn;
+    final name = this.name;
+    final description = this.description;
+    return {
+      'GroupArn': groupArn,
+      'Name': name,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -1367,6 +1439,20 @@ class GroupConfiguration {
           .toList(),
       status: (json['Status'] as String?)?.toGroupConfigurationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final failureReason = this.failureReason;
+    final proposedConfiguration = this.proposedConfiguration;
+    final status = this.status;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (proposedConfiguration != null)
+        'ProposedConfiguration': proposedConfiguration,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1501,6 +1587,16 @@ class GroupFilter {
     required this.name,
     required this.values,
   });
+  factory GroupFilter.fromJson(Map<String, dynamic> json) {
+    return GroupFilter(
+      name: (json['Name'] as String).toGroupFilterName(),
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1557,6 +1653,15 @@ class GroupIdentifier {
       groupName: json['GroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupArn = this.groupArn;
+    final groupName = this.groupName;
+    return {
+      if (groupArn != null) 'GroupArn': groupArn,
+      if (groupName != null) 'GroupName': groupName,
+    };
+  }
 }
 
 /// A mapping of a query attached to a resource group that determines the AWS
@@ -1580,6 +1685,15 @@ class GroupQuery {
       resourceQuery:
           ResourceQuery.fromJson(json['ResourceQuery'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final resourceQuery = this.resourceQuery;
+    return {
+      'GroupName': groupName,
+      'ResourceQuery': resourceQuery,
+    };
   }
 }
 
@@ -1621,6 +1735,17 @@ class GroupResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final pending = this.pending;
+    final succeeded = this.succeeded;
+    return {
+      if (failed != null) 'Failed': failed,
+      if (pending != null) 'Pending': pending,
+      if (succeeded != null) 'Succeeded': succeeded,
+    };
+  }
 }
 
 /// A structure returned by the <a>ListGroupResources</a> operation that
@@ -1651,6 +1776,15 @@ class ListGroupResourcesItem {
           ? ResourceStatus.fromJson(json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final status = this.status;
+    return {
+      if (identifier != null) 'Identifier': identifier,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -1703,6 +1837,20 @@ class ListGroupResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryErrors = this.queryErrors;
+    final resourceIdentifiers = this.resourceIdentifiers;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryErrors != null) 'QueryErrors': queryErrors,
+      if (resourceIdentifiers != null)
+        'ResourceIdentifiers': resourceIdentifiers,
+      if (resources != null) 'Resources': resources,
+    };
+  }
 }
 
 class ListGroupsOutput {
@@ -1741,6 +1889,17 @@ class ListGroupsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupIdentifiers = this.groupIdentifiers;
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groupIdentifiers != null) 'GroupIdentifiers': groupIdentifiers,
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A structure that identifies a resource that is currently pending addition to
@@ -1758,12 +1917,23 @@ class PendingResource {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 class PutGroupConfigurationOutput {
   PutGroupConfigurationOutput();
   factory PutGroupConfigurationOutput.fromJson(Map<String, dynamic> _) {
     return PutGroupConfigurationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1795,6 +1965,15 @@ class QueryError {
       errorCode: (json['ErrorCode'] as String?)?.toQueryErrorCode(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final message = this.message;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1868,6 +2047,16 @@ class ResourceFilter {
     required this.name,
     required this.values,
   });
+  factory ResourceFilter.fromJson(Map<String, dynamic> json) {
+    return ResourceFilter(
+      name: (json['Name'] as String).toResourceFilterName(),
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1918,6 +2107,15 @@ class ResourceIdentifier {
       resourceArn: json['ResourceArn'] as String?,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -2093,6 +2291,13 @@ class ResourceStatus {
       name: (json['Name'] as String?)?.toResourceStatusValue(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name.toValue(),
+    };
+  }
 }
 
 enum ResourceStatusValue {
@@ -2155,6 +2360,18 @@ class SearchResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryErrors = this.queryErrors;
+    final resourceIdentifiers = this.resourceIdentifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryErrors != null) 'QueryErrors': queryErrors,
+      if (resourceIdentifiers != null)
+        'ResourceIdentifiers': resourceIdentifiers,
+    };
+  }
 }
 
 class TagOutput {
@@ -2174,6 +2391,15 @@ class TagOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2214,6 +2440,17 @@ class UngroupResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final pending = this.pending;
+    final succeeded = this.succeeded;
+    return {
+      if (failed != null) 'Failed': failed,
+      if (pending != null) 'Pending': pending,
+      if (succeeded != null) 'Succeeded': succeeded,
+    };
+  }
 }
 
 class UntagOutput {
@@ -2236,6 +2473,15 @@ class UntagOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final keys = this.keys;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (keys != null) 'Keys': keys,
+    };
+  }
 }
 
 class UpdateGroupOutput {
@@ -2251,6 +2497,13 @@ class UpdateGroupOutput {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -2268,6 +2521,13 @@ class UpdateGroupQueryOutput {
           ? GroupQuery.fromJson(json['GroupQuery'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupQuery = this.groupQuery;
+    return {
+      if (groupQuery != null) 'GroupQuery': groupQuery,
+    };
   }
 }
 

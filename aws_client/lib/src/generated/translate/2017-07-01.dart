@@ -904,6 +904,15 @@ class AppliedTerminology {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final terms = this.terms;
+    return {
+      if (name != null) 'Name': name,
+      if (terms != null) 'Terms': terms,
+    };
+  }
 }
 
 class CreateParallelDataResponse {
@@ -924,6 +933,15 @@ class CreateParallelDataResponse {
       status: (json['Status'] as String?)?.toParallelDataStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DeleteParallelDataResponse {
@@ -943,6 +961,15 @@ class DeleteParallelDataResponse {
       status: (json['Status'] as String?)?.toParallelDataStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DescribeTextTranslationJobResponse {
@@ -961,6 +988,14 @@ class DescribeTextTranslationJobResponse {
               json['TextTranslationJobProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final textTranslationJobProperties = this.textTranslationJobProperties;
+    return {
+      if (textTranslationJobProperties != null)
+        'TextTranslationJobProperties': textTranslationJobProperties,
+    };
   }
 }
 
@@ -1067,6 +1102,24 @@ class GetParallelDataResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auxiliaryDataLocation = this.auxiliaryDataLocation;
+    final dataLocation = this.dataLocation;
+    final latestUpdateAttemptAuxiliaryDataLocation =
+        this.latestUpdateAttemptAuxiliaryDataLocation;
+    final parallelDataProperties = this.parallelDataProperties;
+    return {
+      if (auxiliaryDataLocation != null)
+        'AuxiliaryDataLocation': auxiliaryDataLocation,
+      if (dataLocation != null) 'DataLocation': dataLocation,
+      if (latestUpdateAttemptAuxiliaryDataLocation != null)
+        'LatestUpdateAttemptAuxiliaryDataLocation':
+            latestUpdateAttemptAuxiliaryDataLocation,
+      if (parallelDataProperties != null)
+        'ParallelDataProperties': parallelDataProperties,
+    };
+  }
 }
 
 class GetTerminologyResponse {
@@ -1094,6 +1147,17 @@ class GetTerminologyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final terminologyDataLocation = this.terminologyDataLocation;
+    final terminologyProperties = this.terminologyProperties;
+    return {
+      if (terminologyDataLocation != null)
+        'TerminologyDataLocation': terminologyDataLocation,
+      if (terminologyProperties != null)
+        'TerminologyProperties': terminologyProperties,
+    };
+  }
 }
 
 class ImportTerminologyResponse {
@@ -1110,6 +1174,14 @@ class ImportTerminologyResponse {
               json['TerminologyProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final terminologyProperties = this.terminologyProperties;
+    return {
+      if (terminologyProperties != null)
+        'TerminologyProperties': terminologyProperties,
+    };
   }
 }
 
@@ -1202,6 +1274,20 @@ class JobDetails {
       translatedDocumentsCount: json['TranslatedDocumentsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentsWithErrorsCount = this.documentsWithErrorsCount;
+    final inputDocumentsCount = this.inputDocumentsCount;
+    final translatedDocumentsCount = this.translatedDocumentsCount;
+    return {
+      if (documentsWithErrorsCount != null)
+        'DocumentsWithErrorsCount': documentsWithErrorsCount,
+      if (inputDocumentsCount != null)
+        'InputDocumentsCount': inputDocumentsCount,
+      if (translatedDocumentsCount != null)
+        'TranslatedDocumentsCount': translatedDocumentsCount,
+    };
+  }
 }
 
 enum JobStatus {
@@ -1279,6 +1365,16 @@ class ListParallelDataResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parallelDataPropertiesList = this.parallelDataPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parallelDataPropertiesList != null)
+        'ParallelDataPropertiesList': parallelDataPropertiesList,
+    };
+  }
 }
 
 class ListTerminologiesResponse {
@@ -1302,6 +1398,16 @@ class ListTerminologiesResponse {
           .map((e) => TerminologyProperties.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final terminologyPropertiesList = this.terminologyPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (terminologyPropertiesList != null)
+        'TerminologyPropertiesList': terminologyPropertiesList,
+    };
   }
 }
 
@@ -1327,6 +1433,17 @@ class ListTextTranslationJobsResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final textTranslationJobPropertiesList =
+        this.textTranslationJobPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (textTranslationJobPropertiesList != null)
+        'TextTranslationJobPropertiesList': textTranslationJobPropertiesList,
+    };
   }
 }
 
@@ -1425,6 +1542,15 @@ class ParallelDataDataLocation {
       location: json['Location'] as String,
       repositoryType: json['RepositoryType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final repositoryType = this.repositoryType;
+    return {
+      'Location': location,
+      'RepositoryType': repositoryType,
+    };
   }
 }
 
@@ -1573,6 +1699,50 @@ class ParallelDataProperties {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final encryptionKey = this.encryptionKey;
+    final failedRecordCount = this.failedRecordCount;
+    final importedDataSize = this.importedDataSize;
+    final importedRecordCount = this.importedRecordCount;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final latestUpdateAttemptAt = this.latestUpdateAttemptAt;
+    final latestUpdateAttemptStatus = this.latestUpdateAttemptStatus;
+    final message = this.message;
+    final name = this.name;
+    final parallelDataConfig = this.parallelDataConfig;
+    final skippedRecordCount = this.skippedRecordCount;
+    final sourceLanguageCode = this.sourceLanguageCode;
+    final status = this.status;
+    final targetLanguageCodes = this.targetLanguageCodes;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (encryptionKey != null) 'EncryptionKey': encryptionKey,
+      if (failedRecordCount != null) 'FailedRecordCount': failedRecordCount,
+      if (importedDataSize != null) 'ImportedDataSize': importedDataSize,
+      if (importedRecordCount != null)
+        'ImportedRecordCount': importedRecordCount,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (latestUpdateAttemptAt != null)
+        'LatestUpdateAttemptAt': unixTimestampToJson(latestUpdateAttemptAt),
+      if (latestUpdateAttemptStatus != null)
+        'LatestUpdateAttemptStatus': latestUpdateAttemptStatus.toValue(),
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+      if (parallelDataConfig != null) 'ParallelDataConfig': parallelDataConfig,
+      if (skippedRecordCount != null) 'SkippedRecordCount': skippedRecordCount,
+      if (sourceLanguageCode != null) 'SourceLanguageCode': sourceLanguageCode,
+      if (status != null) 'Status': status.toValue(),
+      if (targetLanguageCodes != null)
+        'TargetLanguageCodes': targetLanguageCodes,
+    };
+  }
 }
 
 enum ParallelDataStatus {
@@ -1665,6 +1835,15 @@ class StartTextTranslationJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopTextTranslationJobResponse {
@@ -1684,6 +1863,15 @@ class StopTextTranslationJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -1705,6 +1893,15 @@ class Term {
       targetText: json['TargetText'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourceText = this.sourceText;
+    final targetText = this.targetText;
+    return {
+      if (sourceText != null) 'SourceText': sourceText,
+      if (targetText != null) 'TargetText': targetText,
+    };
+  }
 }
 
 /// The data associated with the custom terminology.
@@ -1721,6 +1918,13 @@ class TerminologyData {
     required this.file,
     required this.format,
   });
+  factory TerminologyData.fromJson(Map<String, dynamic> json) {
+    return TerminologyData(
+      file: _s.decodeUint8List(json['File']! as String),
+      format: (json['Format'] as String).toTerminologyDataFormat(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final file = this.file;
     final format = this.format;
@@ -1776,6 +1980,15 @@ class TerminologyDataLocation {
       location: json['Location'] as String,
       repositoryType: json['RepositoryType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final repositoryType = this.repositoryType;
+    return {
+      'Location': location,
+      'RepositoryType': repositoryType,
+    };
   }
 }
 
@@ -1847,6 +2060,33 @@ class TerminologyProperties {
       termCount: json['TermCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final encryptionKey = this.encryptionKey;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    final sizeBytes = this.sizeBytes;
+    final sourceLanguageCode = this.sourceLanguageCode;
+    final targetLanguageCodes = this.targetLanguageCodes;
+    final termCount = this.termCount;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (encryptionKey != null) 'EncryptionKey': encryptionKey,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'Name': name,
+      if (sizeBytes != null) 'SizeBytes': sizeBytes,
+      if (sourceLanguageCode != null) 'SourceLanguageCode': sourceLanguageCode,
+      if (targetLanguageCodes != null)
+        'TargetLanguageCodes': targetLanguageCodes,
+      if (termCount != null) 'TermCount': termCount,
+    };
+  }
 }
 
 /// Provides information for filtering a list of translation jobs. For more
@@ -1874,6 +2114,15 @@ class TextTranslationJobFilter {
     this.submittedAfterTime,
     this.submittedBeforeTime,
   });
+  factory TextTranslationJobFilter.fromJson(Map<String, dynamic> json) {
+    return TextTranslationJobFilter(
+      jobName: json['JobName'] as String?,
+      jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
+      submittedAfterTime: timeStampFromJson(json['SubmittedAfterTime']),
+      submittedBeforeTime: timeStampFromJson(json['SubmittedBeforeTime']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -1996,6 +2245,41 @@ class TextTranslationJobProperties {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobDetails = this.jobDetails;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final parallelDataNames = this.parallelDataNames;
+    final sourceLanguageCode = this.sourceLanguageCode;
+    final submittedTime = this.submittedTime;
+    final targetLanguageCodes = this.targetLanguageCodes;
+    final terminologyNames = this.terminologyNames;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobDetails != null) 'JobDetails': jobDetails,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (parallelDataNames != null) 'ParallelDataNames': parallelDataNames,
+      if (sourceLanguageCode != null) 'SourceLanguageCode': sourceLanguageCode,
+      if (submittedTime != null)
+        'SubmittedTime': unixTimestampToJson(submittedTime),
+      if (targetLanguageCodes != null)
+        'TargetLanguageCodes': targetLanguageCodes,
+      if (terminologyNames != null) 'TerminologyNames': terminologyNames,
+    };
+  }
 }
 
 class TranslateTextResponse {
@@ -2029,6 +2313,20 @@ class TranslateTextResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourceLanguageCode = this.sourceLanguageCode;
+    final targetLanguageCode = this.targetLanguageCode;
+    final translatedText = this.translatedText;
+    final appliedTerminologies = this.appliedTerminologies;
+    return {
+      'SourceLanguageCode': sourceLanguageCode,
+      'TargetLanguageCode': targetLanguageCode,
+      'TranslatedText': translatedText,
+      if (appliedTerminologies != null)
+        'AppliedTerminologies': appliedTerminologies,
+    };
+  }
 }
 
 class UpdateParallelDataResponse {
@@ -2061,6 +2359,21 @@ class UpdateParallelDataResponse {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toParallelDataStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final latestUpdateAttemptAt = this.latestUpdateAttemptAt;
+    final latestUpdateAttemptStatus = this.latestUpdateAttemptStatus;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (latestUpdateAttemptAt != null)
+        'LatestUpdateAttemptAt': unixTimestampToJson(latestUpdateAttemptAt),
+      if (latestUpdateAttemptStatus != null)
+        'LatestUpdateAttemptStatus': latestUpdateAttemptStatus.toValue(),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 

@@ -473,6 +473,10 @@ class Attributes {
   factory Attributes.fromJson(Map<String, dynamic> _) {
     return Attributes();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ClaimDevicesByClaimCodeResponse {
@@ -494,6 +498,15 @@ class ClaimDevicesByClaimCodeResponse {
       total: json['total'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final claimCode = this.claimCode;
+    final total = this.total;
+    return {
+      if (claimCode != null) 'claimCode': claimCode,
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 class DescribeDeviceResponse {
@@ -510,6 +523,13 @@ class DescribeDeviceResponse {
               json['deviceDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceDescription = this.deviceDescription;
+    return {
+      if (deviceDescription != null) 'deviceDescription': deviceDescription,
+    };
   }
 }
 
@@ -536,6 +556,17 @@ class Device {
       deviceId: json['deviceId'] as String?,
       type: json['type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final deviceId = this.deviceId;
+    final type = this.type;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (deviceId != null) 'deviceId': deviceId,
+      if (type != null) 'type': type,
+    };
   }
 }
 
@@ -586,6 +617,25 @@ class DeviceDescription {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final deviceId = this.deviceId;
+    final enabled = this.enabled;
+    final remainingLife = this.remainingLife;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attributes != null) 'attributes': attributes,
+      if (deviceId != null) 'deviceId': deviceId,
+      if (enabled != null) 'enabled': enabled,
+      if (remainingLife != null) 'remainingLife': remainingLife,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 class DeviceEvent {
@@ -606,6 +656,15 @@ class DeviceEvent {
           : null,
       stdEvent: json['stdEvent'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    final stdEvent = this.stdEvent;
+    return {
+      if (device != null) 'device': device,
+      if (stdEvent != null) 'stdEvent': stdEvent,
+    };
   }
 }
 
@@ -649,6 +708,13 @@ class FinalizeDeviceClaimResponse {
       state: json['state'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 class GetDeviceMethodsResponse {
@@ -666,6 +732,13 @@ class GetDeviceMethodsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceMethods = this.deviceMethods;
+    return {
+      if (deviceMethods != null) 'deviceMethods': deviceMethods,
+    };
+  }
 }
 
 class InitiateDeviceClaimResponse {
@@ -680,6 +753,13 @@ class InitiateDeviceClaimResponse {
       state: json['state'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 class InvokeDeviceMethodResponse {
@@ -693,6 +773,14 @@ class InvokeDeviceMethodResponse {
     return InvokeDeviceMethodResponse(
       deviceMethodResponse: json['deviceMethodResponse'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceMethodResponse = this.deviceMethodResponse;
+    return {
+      if (deviceMethodResponse != null)
+        'deviceMethodResponse': deviceMethodResponse,
+    };
   }
 }
 
@@ -718,6 +806,15 @@ class ListDeviceEventsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'events': events,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDevicesResponse {
@@ -739,6 +836,15 @@ class ListDevicesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      if (devices != null) 'devices': devices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -762,6 +868,13 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UnclaimDeviceResponse {
@@ -776,12 +889,23 @@ class UnclaimDeviceResponse {
       state: json['state'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 class UpdateDeviceStateResponse {
   UpdateDeviceStateResponse();
   factory UpdateDeviceStateResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceStateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

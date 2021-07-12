@@ -1272,6 +1272,12 @@ class ArrayProperties {
   ArrayProperties({
     this.size,
   });
+  factory ArrayProperties.fromJson(Map<String, dynamic> json) {
+    return ArrayProperties(
+      size: json['size'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final size = this.size;
     return {
@@ -1306,6 +1312,17 @@ class ArrayPropertiesDetail {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final size = this.size;
+    final statusSummary = this.statusSummary;
+    return {
+      if (index != null) 'index': index,
+      if (size != null) 'size': size,
+      if (statusSummary != null) 'statusSummary': statusSummary,
+    };
+  }
 }
 
 /// An object representing the array properties of a job.
@@ -1326,6 +1343,15 @@ class ArrayPropertiesSummary {
       index: json['index'] as int?,
       size: json['size'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final size = this.size;
+    return {
+      if (index != null) 'index': index,
+      if (size != null) 'size': size,
+    };
   }
 }
 
@@ -1407,6 +1433,24 @@ class AttemptContainerDetail {
       taskArn: json['taskArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerInstanceArn = this.containerInstanceArn;
+    final exitCode = this.exitCode;
+    final logStreamName = this.logStreamName;
+    final networkInterfaces = this.networkInterfaces;
+    final reason = this.reason;
+    final taskArn = this.taskArn;
+    return {
+      if (containerInstanceArn != null)
+        'containerInstanceArn': containerInstanceArn,
+      if (exitCode != null) 'exitCode': exitCode,
+      if (logStreamName != null) 'logStreamName': logStreamName,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (reason != null) 'reason': reason,
+      if (taskArn != null) 'taskArn': taskArn,
+    };
+  }
 }
 
 /// An object representing a job attempt.
@@ -1444,6 +1488,19 @@ class AttemptDetail {
       statusReason: json['statusReason'] as String?,
       stoppedAt: json['stoppedAt'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final container = this.container;
+    final startedAt = this.startedAt;
+    final statusReason = this.statusReason;
+    final stoppedAt = this.stoppedAt;
+    return {
+      if (container != null) 'container': container,
+      if (startedAt != null) 'startedAt': startedAt,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (stoppedAt != null) 'stoppedAt': stoppedAt,
+    };
   }
 }
 
@@ -1627,6 +1684,10 @@ class CancelJobResponse {
   factory CancelJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An object representing an AWS Batch compute environment.
@@ -1717,6 +1778,31 @@ class ComputeEnvironmentDetail {
           ?.map((k, e) => MapEntry(k, e as String)),
       type: (json['type'] as String?)?.toCEType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final computeEnvironmentArn = this.computeEnvironmentArn;
+    final computeEnvironmentName = this.computeEnvironmentName;
+    final ecsClusterArn = this.ecsClusterArn;
+    final computeResources = this.computeResources;
+    final serviceRole = this.serviceRole;
+    final state = this.state;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      'computeEnvironmentArn': computeEnvironmentArn,
+      'computeEnvironmentName': computeEnvironmentName,
+      'ecsClusterArn': ecsClusterArn,
+      if (computeResources != null) 'computeResources': computeResources,
+      if (serviceRole != null) 'serviceRole': serviceRole,
+      if (state != null) 'state': state.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -2166,6 +2252,22 @@ class ComputeResourceUpdate {
     this.securityGroupIds,
     this.subnets,
   });
+  factory ComputeResourceUpdate.fromJson(Map<String, dynamic> json) {
+    return ComputeResourceUpdate(
+      desiredvCpus: json['desiredvCpus'] as int?,
+      maxvCpus: json['maxvCpus'] as int?,
+      minvCpus: json['minvCpus'] as int?,
+      securityGroupIds: (json['securityGroupIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      subnets: (json['subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final desiredvCpus = this.desiredvCpus;
     final maxvCpus = this.maxvCpus;
@@ -2469,6 +2571,68 @@ class ContainerDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final command = this.command;
+    final containerInstanceArn = this.containerInstanceArn;
+    final environment = this.environment;
+    final executionRoleArn = this.executionRoleArn;
+    final exitCode = this.exitCode;
+    final fargatePlatformConfiguration = this.fargatePlatformConfiguration;
+    final image = this.image;
+    final instanceType = this.instanceType;
+    final jobRoleArn = this.jobRoleArn;
+    final linuxParameters = this.linuxParameters;
+    final logConfiguration = this.logConfiguration;
+    final logStreamName = this.logStreamName;
+    final memory = this.memory;
+    final mountPoints = this.mountPoints;
+    final networkConfiguration = this.networkConfiguration;
+    final networkInterfaces = this.networkInterfaces;
+    final privileged = this.privileged;
+    final readonlyRootFilesystem = this.readonlyRootFilesystem;
+    final reason = this.reason;
+    final resourceRequirements = this.resourceRequirements;
+    final secrets = this.secrets;
+    final taskArn = this.taskArn;
+    final ulimits = this.ulimits;
+    final user = this.user;
+    final vcpus = this.vcpus;
+    final volumes = this.volumes;
+    return {
+      if (command != null) 'command': command,
+      if (containerInstanceArn != null)
+        'containerInstanceArn': containerInstanceArn,
+      if (environment != null) 'environment': environment,
+      if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
+      if (exitCode != null) 'exitCode': exitCode,
+      if (fargatePlatformConfiguration != null)
+        'fargatePlatformConfiguration': fargatePlatformConfiguration,
+      if (image != null) 'image': image,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (jobRoleArn != null) 'jobRoleArn': jobRoleArn,
+      if (linuxParameters != null) 'linuxParameters': linuxParameters,
+      if (logConfiguration != null) 'logConfiguration': logConfiguration,
+      if (logStreamName != null) 'logStreamName': logStreamName,
+      if (memory != null) 'memory': memory,
+      if (mountPoints != null) 'mountPoints': mountPoints,
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (privileged != null) 'privileged': privileged,
+      if (readonlyRootFilesystem != null)
+        'readonlyRootFilesystem': readonlyRootFilesystem,
+      if (reason != null) 'reason': reason,
+      if (resourceRequirements != null)
+        'resourceRequirements': resourceRequirements,
+      if (secrets != null) 'secrets': secrets,
+      if (taskArn != null) 'taskArn': taskArn,
+      if (ulimits != null) 'ulimits': ulimits,
+      if (user != null) 'user': user,
+      if (vcpus != null) 'vcpus': vcpus,
+      if (volumes != null) 'volumes': volumes,
+    };
+  }
 }
 
 /// The overrides that should be sent to a container.
@@ -2543,6 +2707,26 @@ class ContainerOverrides {
     this.resourceRequirements,
     this.vcpus,
   });
+  factory ContainerOverrides.fromJson(Map<String, dynamic> json) {
+    return ContainerOverrides(
+      command: (json['command'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      environment: (json['environment'] as List?)
+          ?.whereNotNull()
+          .map((e) => KeyValuePair.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      instanceType: json['instanceType'] as String?,
+      memory: json['memory'] as int?,
+      resourceRequirements: (json['resourceRequirements'] as List?)
+          ?.whereNotNull()
+          .map((e) => ResourceRequirement.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vcpus: json['vcpus'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final command = this.command;
     final environment = this.environment;
@@ -2965,6 +3149,15 @@ class ContainerSummary {
       reason: json['reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exitCode = this.exitCode;
+    final reason = this.reason;
+    return {
+      if (exitCode != null) 'exitCode': exitCode,
+      if (reason != null) 'reason': reason,
+    };
+  }
 }
 
 class CreateComputeEnvironmentResponse {
@@ -2985,6 +3178,17 @@ class CreateComputeEnvironmentResponse {
       computeEnvironmentName: json['computeEnvironmentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeEnvironmentArn = this.computeEnvironmentArn;
+    final computeEnvironmentName = this.computeEnvironmentName;
+    return {
+      if (computeEnvironmentArn != null)
+        'computeEnvironmentArn': computeEnvironmentArn,
+      if (computeEnvironmentName != null)
+        'computeEnvironmentName': computeEnvironmentName,
+    };
+  }
 }
 
 class CreateJobQueueResponse {
@@ -3004,12 +3208,25 @@ class CreateJobQueueResponse {
       jobQueueName: json['jobQueueName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobQueueArn = this.jobQueueArn;
+    final jobQueueName = this.jobQueueName;
+    return {
+      'jobQueueArn': jobQueueArn,
+      'jobQueueName': jobQueueName,
+    };
+  }
 }
 
 class DeleteComputeEnvironmentResponse {
   DeleteComputeEnvironmentResponse();
   factory DeleteComputeEnvironmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteComputeEnvironmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3018,12 +3235,20 @@ class DeleteJobQueueResponse {
   factory DeleteJobQueueResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobQueueResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterJobDefinitionResponse {
   DeregisterJobDefinitionResponse();
   factory DeregisterJobDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterJobDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3053,6 +3278,16 @@ class DescribeComputeEnvironmentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeEnvironments = this.computeEnvironments;
+    final nextToken = this.nextToken;
+    return {
+      if (computeEnvironments != null)
+        'computeEnvironments': computeEnvironments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeJobDefinitionsResponse {
@@ -3078,6 +3313,15 @@ class DescribeJobDefinitionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitions = this.jobDefinitions;
+    final nextToken = this.nextToken;
+    return {
+      if (jobDefinitions != null) 'jobDefinitions': jobDefinitions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3105,6 +3349,15 @@ class DescribeJobQueuesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobQueues = this.jobQueues;
+    final nextToken = this.nextToken;
+    return {
+      if (jobQueues != null) 'jobQueues': jobQueues,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeJobsResponse {
@@ -3121,6 +3374,13 @@ class DescribeJobsResponse {
           .map((e) => JobDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    return {
+      if (jobs != null) 'jobs': jobs,
+    };
   }
 }
 
@@ -3763,6 +4023,40 @@ class JobDefinition {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final revision = this.revision;
+    final type = this.type;
+    final containerProperties = this.containerProperties;
+    final nodeProperties = this.nodeProperties;
+    final parameters = this.parameters;
+    final platformCapabilities = this.platformCapabilities;
+    final propagateTags = this.propagateTags;
+    final retryStrategy = this.retryStrategy;
+    final status = this.status;
+    final tags = this.tags;
+    final timeout = this.timeout;
+    return {
+      'jobDefinitionArn': jobDefinitionArn,
+      'jobDefinitionName': jobDefinitionName,
+      'revision': revision,
+      'type': type,
+      if (containerProperties != null)
+        'containerProperties': containerProperties,
+      if (nodeProperties != null) 'nodeProperties': nodeProperties,
+      if (parameters != null) 'parameters': parameters,
+      if (platformCapabilities != null)
+        'platformCapabilities':
+            platformCapabilities.map((e) => e.toValue()).toList(),
+      if (propagateTags != null) 'propagateTags': propagateTags,
+      if (retryStrategy != null) 'retryStrategy': retryStrategy,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+      if (timeout != null) 'timeout': timeout,
+    };
+  }
 }
 
 enum JobDefinitionType {
@@ -3997,6 +4291,57 @@ class JobDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinition = this.jobDefinition;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobQueue = this.jobQueue;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final arrayProperties = this.arrayProperties;
+    final attempts = this.attempts;
+    final container = this.container;
+    final createdAt = this.createdAt;
+    final dependsOn = this.dependsOn;
+    final jobArn = this.jobArn;
+    final nodeDetails = this.nodeDetails;
+    final nodeProperties = this.nodeProperties;
+    final parameters = this.parameters;
+    final platformCapabilities = this.platformCapabilities;
+    final propagateTags = this.propagateTags;
+    final retryStrategy = this.retryStrategy;
+    final statusReason = this.statusReason;
+    final stoppedAt = this.stoppedAt;
+    final tags = this.tags;
+    final timeout = this.timeout;
+    return {
+      'jobDefinition': jobDefinition,
+      'jobId': jobId,
+      'jobName': jobName,
+      'jobQueue': jobQueue,
+      'startedAt': startedAt,
+      'status': status.toValue(),
+      if (arrayProperties != null) 'arrayProperties': arrayProperties,
+      if (attempts != null) 'attempts': attempts,
+      if (container != null) 'container': container,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (dependsOn != null) 'dependsOn': dependsOn,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (nodeDetails != null) 'nodeDetails': nodeDetails,
+      if (nodeProperties != null) 'nodeProperties': nodeProperties,
+      if (parameters != null) 'parameters': parameters,
+      if (platformCapabilities != null)
+        'platformCapabilities':
+            platformCapabilities.map((e) => e.toValue()).toList(),
+      if (propagateTags != null) 'propagateTags': propagateTags,
+      if (retryStrategy != null) 'retryStrategy': retryStrategy,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (stoppedAt != null) 'stoppedAt': stoppedAt,
+      if (tags != null) 'tags': tags,
+      if (timeout != null) 'timeout': timeout,
+    };
+  }
 }
 
 /// An object representing the details of an AWS Batch job queue.
@@ -4068,6 +4413,27 @@ class JobQueueDetail {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final computeEnvironmentOrder = this.computeEnvironmentOrder;
+    final jobQueueArn = this.jobQueueArn;
+    final jobQueueName = this.jobQueueName;
+    final priority = this.priority;
+    final state = this.state;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    return {
+      'computeEnvironmentOrder': computeEnvironmentOrder,
+      'jobQueueArn': jobQueueArn,
+      'jobQueueName': jobQueueName,
+      'priority': priority,
+      'state': state.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4206,6 +4572,33 @@ class JobSummary {
       statusReason: json['statusReason'] as String?,
       stoppedAt: json['stoppedAt'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final arrayProperties = this.arrayProperties;
+    final container = this.container;
+    final createdAt = this.createdAt;
+    final jobArn = this.jobArn;
+    final nodeProperties = this.nodeProperties;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final stoppedAt = this.stoppedAt;
+    return {
+      'jobId': jobId,
+      'jobName': jobName,
+      if (arrayProperties != null) 'arrayProperties': arrayProperties,
+      if (container != null) 'container': container,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (nodeProperties != null) 'nodeProperties': nodeProperties,
+      if (startedAt != null) 'startedAt': startedAt,
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (stoppedAt != null) 'stoppedAt': stoppedAt,
+    };
   }
 }
 
@@ -4502,6 +4895,15 @@ class ListJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummaryList = this.jobSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'jobSummaryList': jobSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4516,6 +4918,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4772,6 +5181,17 @@ class NetworkInterface {
       privateIpv4Address: json['privateIpv4Address'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final ipv6Address = this.ipv6Address;
+    final privateIpv4Address = this.privateIpv4Address;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+      if (privateIpv4Address != null) 'privateIpv4Address': privateIpv4Address,
+    };
+  }
 }
 
 /// An object representing the details of a multi-node parallel job node.
@@ -4794,6 +5214,15 @@ class NodeDetails {
       isMainNode: json['isMainNode'] as bool?,
       nodeIndex: json['nodeIndex'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isMainNode = this.isMainNode;
+    final nodeIndex = this.nodeIndex;
+    return {
+      if (isMainNode != null) 'isMainNode': isMainNode,
+      if (nodeIndex != null) 'nodeIndex': nodeIndex,
+    };
   }
 }
 
@@ -4831,6 +5260,16 @@ class NodeOverrides {
     this.nodePropertyOverrides,
     this.numNodes,
   });
+  factory NodeOverrides.fromJson(Map<String, dynamic> json) {
+    return NodeOverrides(
+      nodePropertyOverrides: (json['nodePropertyOverrides'] as List?)
+          ?.whereNotNull()
+          .map((e) => NodePropertyOverride.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      numNodes: json['numNodes'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final nodePropertyOverrides = this.nodePropertyOverrides;
     final numNodes = this.numNodes;
@@ -4910,6 +5349,17 @@ class NodePropertiesSummary {
       numNodes: json['numNodes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isMainNode = this.isMainNode;
+    final nodeIndex = this.nodeIndex;
+    final numNodes = this.numNodes;
+    return {
+      if (isMainNode != null) 'isMainNode': isMainNode,
+      if (nodeIndex != null) 'nodeIndex': nodeIndex,
+      if (numNodes != null) 'numNodes': numNodes,
+    };
+  }
 }
 
 /// Object representing any node overrides to a job definition that's used in a
@@ -4930,6 +5380,16 @@ class NodePropertyOverride {
     required this.targetNodes,
     this.containerOverrides,
   });
+  factory NodePropertyOverride.fromJson(Map<String, dynamic> json) {
+    return NodePropertyOverride(
+      targetNodes: json['targetNodes'] as String,
+      containerOverrides: json['containerOverrides'] != null
+          ? ContainerOverrides.fromJson(
+              json['containerOverrides'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final targetNodes = this.targetNodes;
     final containerOverrides = this.containerOverrides;
@@ -5030,6 +5490,17 @@ class RegisterJobDefinitionResponse {
       jobDefinitionName: json['jobDefinitionName'] as String,
       revision: json['revision'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final revision = this.revision;
+    return {
+      'jobDefinitionArn': jobDefinitionArn,
+      'jobDefinitionName': jobDefinitionName,
+      'revision': revision,
+    };
   }
 }
 
@@ -5325,6 +5796,17 @@ class SubmitJobResponse {
       jobArn: json['jobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobArn = this.jobArn;
+    return {
+      'jobId': jobId,
+      'jobName': jobName,
+      if (jobArn != null) 'jobArn': jobArn,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -5332,12 +5814,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class TerminateJobResponse {
   TerminateJobResponse();
   factory TerminateJobResponse.fromJson(Map<String, dynamic> _) {
     return TerminateJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5441,6 +5931,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateComputeEnvironmentResponse {
@@ -5461,6 +5955,17 @@ class UpdateComputeEnvironmentResponse {
       computeEnvironmentName: json['computeEnvironmentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computeEnvironmentArn = this.computeEnvironmentArn;
+    final computeEnvironmentName = this.computeEnvironmentName;
+    return {
+      if (computeEnvironmentArn != null)
+        'computeEnvironmentArn': computeEnvironmentArn,
+      if (computeEnvironmentName != null)
+        'computeEnvironmentName': computeEnvironmentName,
+    };
+  }
 }
 
 class UpdateJobQueueResponse {
@@ -5479,6 +5984,15 @@ class UpdateJobQueueResponse {
       jobQueueArn: json['jobQueueArn'] as String?,
       jobQueueName: json['jobQueueName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobQueueArn = this.jobQueueArn;
+    final jobQueueName = this.jobQueueName;
+    return {
+      if (jobQueueArn != null) 'jobQueueArn': jobQueueArn,
+      if (jobQueueName != null) 'jobQueueName': jobQueueName,
+    };
   }
 }
 

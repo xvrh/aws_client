@@ -751,12 +751,20 @@ class AssociateDeviceWithPlacementResponse {
       Map<String, dynamic> _) {
     return AssociateDeviceWithPlacementResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreatePlacementResponse {
   CreatePlacementResponse();
   factory CreatePlacementResponse.fromJson(Map<String, dynamic> _) {
     return CreatePlacementResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -765,6 +773,10 @@ class CreateProjectResponse {
   factory CreateProjectResponse.fromJson(Map<String, dynamic> _) {
     return CreateProjectResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePlacementResponse {
@@ -772,12 +784,20 @@ class DeletePlacementResponse {
   factory DeletePlacementResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlacementResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProjectResponse {
   DeleteProjectResponse();
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -794,6 +814,13 @@ class DescribePlacementResponse {
           json['placement'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final placement = this.placement;
+    return {
+      'placement': placement,
+    };
+  }
 }
 
 class DescribeProjectResponse {
@@ -808,6 +835,13 @@ class DescribeProjectResponse {
       project:
           ProjectDescription.fromJson(json['project'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      'project': project,
+    };
   }
 }
 
@@ -849,6 +883,10 @@ class DisassociateDeviceFromPlacementResponse {
       Map<String, dynamic> _) {
     return DisassociateDeviceFromPlacementResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class GetDevicesInPlacementResponse {
@@ -863,6 +901,13 @@ class GetDevicesInPlacementResponse {
       devices: (json['devices'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    return {
+      'devices': devices,
+    };
   }
 }
 
@@ -887,6 +932,15 @@ class ListPlacementsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final placements = this.placements;
+    final nextToken = this.nextToken;
+    return {
+      'placements': placements,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListProjectsResponse {
@@ -910,6 +964,15 @@ class ListProjectsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projects = this.projects;
+    final nextToken = this.nextToken;
+    return {
+      'projects': projects,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -924,6 +987,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -964,6 +1034,21 @@ class PlacementDescription {
       updatedDate: nonNullableTimeStampFromJson(json['updatedDate'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final createdDate = this.createdDate;
+    final placementName = this.placementName;
+    final projectName = this.projectName;
+    final updatedDate = this.updatedDate;
+    return {
+      'attributes': attributes,
+      'createdDate': unixTimestampToJson(createdDate),
+      'placementName': placementName,
+      'projectName': projectName,
+      'updatedDate': unixTimestampToJson(updatedDate),
+    };
+  }
 }
 
 /// An object providing summary information for a particular placement.
@@ -996,6 +1081,19 @@ class PlacementSummary {
       projectName: json['projectName'] as String,
       updatedDate: nonNullableTimeStampFromJson(json['updatedDate'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final placementName = this.placementName;
+    final projectName = this.projectName;
+    final updatedDate = this.updatedDate;
+    return {
+      'createdDate': unixTimestampToJson(createdDate),
+      'placementName': placementName,
+      'projectName': projectName,
+      'updatedDate': unixTimestampToJson(updatedDate),
+    };
   }
 }
 
@@ -1083,6 +1181,25 @@ class ProjectDescription {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final projectName = this.projectName;
+    final updatedDate = this.updatedDate;
+    final arn = this.arn;
+    final description = this.description;
+    final placementTemplate = this.placementTemplate;
+    final tags = this.tags;
+    return {
+      'createdDate': unixTimestampToJson(createdDate),
+      'projectName': projectName,
+      'updatedDate': unixTimestampToJson(updatedDate),
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (placementTemplate != null) 'placementTemplate': placementTemplate,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// An object providing summary information for a particular project for an
@@ -1122,12 +1239,31 @@ class ProjectSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final projectName = this.projectName;
+    final updatedDate = this.updatedDate;
+    final arn = this.arn;
+    final tags = this.tags;
+    return {
+      'createdDate': unixTimestampToJson(createdDate),
+      'projectName': projectName,
+      'updatedDate': unixTimestampToJson(updatedDate),
+      if (arn != null) 'arn': arn,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1136,6 +1272,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePlacementResponse {
@@ -1143,12 +1283,20 @@ class UpdatePlacementResponse {
   factory UpdatePlacementResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePlacementResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateProjectResponse {
   UpdateProjectResponse();
   factory UpdateProjectResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

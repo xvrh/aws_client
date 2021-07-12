@@ -9101,12 +9101,30 @@ class AcceptReservedNodeExchangeOutputMessage {
   AcceptReservedNodeExchangeOutputMessage({
     this.exchangedReservedNode,
   });
+  factory AcceptReservedNodeExchangeOutputMessage.fromJson(
+      Map<String, dynamic> json) {
+    return AcceptReservedNodeExchangeOutputMessage(
+      exchangedReservedNode: json['ExchangedReservedNode'] != null
+          ? ReservedNode.fromJson(
+              json['ExchangedReservedNode'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AcceptReservedNodeExchangeOutputMessage.fromXml(_s.XmlElement elem) {
     return AcceptReservedNodeExchangeOutputMessage(
       exchangedReservedNode: _s
           .extractXmlChild(elem, 'ExchangedReservedNode')
           ?.let((e) => ReservedNode.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exchangedReservedNode = this.exchangedReservedNode;
+    return {
+      if (exchangedReservedNode != null)
+        'ExchangedReservedNode': exchangedReservedNode,
+    };
   }
 }
 
@@ -9122,6 +9140,16 @@ class AccountAttribute {
     this.attributeName,
     this.attributeValues,
   });
+  factory AccountAttribute.fromJson(Map<String, dynamic> json) {
+    return AccountAttribute(
+      attributeName: json['AttributeName'] as String?,
+      attributeValues: (json['AttributeValues'] as List?)
+          ?.whereNotNull()
+          .map((e) => AttributeValueTarget.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory AccountAttribute.fromXml(_s.XmlElement elem) {
     return AccountAttribute(
       attributeName: _s.extractXmlStringValue(elem, 'AttributeName'),
@@ -9132,6 +9160,15 @@ class AccountAttribute {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValues = this.attributeValues;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeValues != null) 'AttributeValues': attributeValues,
+    };
+  }
 }
 
 class AccountAttributeList {
@@ -9141,6 +9178,15 @@ class AccountAttributeList {
   AccountAttributeList({
     this.accountAttributes,
   });
+  factory AccountAttributeList.fromJson(Map<String, dynamic> json) {
+    return AccountAttributeList(
+      accountAttributes: (json['AccountAttributes'] as List?)
+          ?.whereNotNull()
+          .map((e) => AccountAttribute.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory AccountAttributeList.fromXml(_s.XmlElement elem) {
     return AccountAttributeList(
       accountAttributes: _s.extractXmlChild(elem, 'AccountAttributes')?.let(
@@ -9149,6 +9195,13 @@ class AccountAttributeList {
               .map((c) => AccountAttribute.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAttributes = this.accountAttributes;
+    return {
+      if (accountAttributes != null) 'AccountAttributes': accountAttributes,
+    };
   }
 }
 
@@ -9165,11 +9218,27 @@ class AccountWithRestoreAccess {
     this.accountAlias,
     this.accountId,
   });
+  factory AccountWithRestoreAccess.fromJson(Map<String, dynamic> json) {
+    return AccountWithRestoreAccess(
+      accountAlias: json['AccountAlias'] as String?,
+      accountId: json['AccountId'] as String?,
+    );
+  }
+
   factory AccountWithRestoreAccess.fromXml(_s.XmlElement elem) {
     return AccountWithRestoreAccess(
       accountAlias: _s.extractXmlStringValue(elem, 'AccountAlias'),
       accountId: _s.extractXmlStringValue(elem, 'AccountId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAlias = this.accountAlias;
+    final accountId = this.accountId;
+    return {
+      if (accountAlias != null) 'AccountAlias': accountAlias,
+      if (accountId != null) 'AccountId': accountId,
+    };
   }
 }
 
@@ -9245,6 +9314,14 @@ class AquaConfiguration {
     this.aquaConfigurationStatus,
     this.aquaStatus,
   });
+  factory AquaConfiguration.fromJson(Map<String, dynamic> json) {
+    return AquaConfiguration(
+      aquaConfigurationStatus: (json['AquaConfigurationStatus'] as String?)
+          ?.toAquaConfigurationStatus(),
+      aquaStatus: (json['AquaStatus'] as String?)?.toAquaStatus(),
+    );
+  }
+
   factory AquaConfiguration.fromXml(_s.XmlElement elem) {
     return AquaConfiguration(
       aquaConfigurationStatus: _s
@@ -9252,6 +9329,16 @@ class AquaConfiguration {
           ?.toAquaConfigurationStatus(),
       aquaStatus: _s.extractXmlStringValue(elem, 'AquaStatus')?.toAquaStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aquaConfigurationStatus = this.aquaConfigurationStatus;
+    final aquaStatus = this.aquaStatus;
+    return {
+      if (aquaConfigurationStatus != null)
+        'AquaConfigurationStatus': aquaConfigurationStatus.toValue(),
+      if (aquaStatus != null) 'AquaStatus': aquaStatus.toValue(),
+    };
   }
 }
 
@@ -9329,10 +9416,23 @@ class AttributeValueTarget {
   AttributeValueTarget({
     this.attributeValue,
   });
+  factory AttributeValueTarget.fromJson(Map<String, dynamic> json) {
+    return AttributeValueTarget(
+      attributeValue: json['AttributeValue'] as String?,
+    );
+  }
+
   factory AttributeValueTarget.fromXml(_s.XmlElement elem) {
     return AttributeValueTarget(
       attributeValue: _s.extractXmlStringValue(elem, 'AttributeValue'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeValue = this.attributeValue;
+    return {
+      if (attributeValue != null) 'AttributeValue': attributeValue,
+    };
   }
 }
 
@@ -9370,6 +9470,16 @@ class AuthorizeClusterSecurityGroupIngressResult {
   AuthorizeClusterSecurityGroupIngressResult({
     this.clusterSecurityGroup,
   });
+  factory AuthorizeClusterSecurityGroupIngressResult.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizeClusterSecurityGroupIngressResult(
+      clusterSecurityGroup: json['ClusterSecurityGroup'] != null
+          ? ClusterSecurityGroup.fromJson(
+              json['ClusterSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AuthorizeClusterSecurityGroupIngressResult.fromXml(
       _s.XmlElement elem) {
     return AuthorizeClusterSecurityGroupIngressResult(
@@ -9377,6 +9487,14 @@ class AuthorizeClusterSecurityGroupIngressResult {
           .extractXmlChild(elem, 'ClusterSecurityGroup')
           ?.let((e) => ClusterSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroup = this.clusterSecurityGroup;
+    return {
+      if (clusterSecurityGroup != null)
+        'ClusterSecurityGroup': clusterSecurityGroup,
+    };
   }
 }
 
@@ -9386,11 +9504,26 @@ class AuthorizeSnapshotAccessResult {
   AuthorizeSnapshotAccessResult({
     this.snapshot,
   });
+  factory AuthorizeSnapshotAccessResult.fromJson(Map<String, dynamic> json) {
+    return AuthorizeSnapshotAccessResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AuthorizeSnapshotAccessResult.fromXml(_s.XmlElement elem) {
     return AuthorizeSnapshotAccessResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -9406,6 +9539,16 @@ class AvailabilityZone {
     this.name,
     this.supportedPlatforms,
   });
+  factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
+    return AvailabilityZone(
+      name: json['Name'] as String?,
+      supportedPlatforms: (json['SupportedPlatforms'] as List?)
+          ?.whereNotNull()
+          .map((e) => SupportedPlatform.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory AvailabilityZone.fromXml(_s.XmlElement elem) {
     return AvailabilityZone(
       name: _s.extractXmlStringValue(elem, 'Name'),
@@ -9415,6 +9558,15 @@ class AvailabilityZone {
               .map((c) => SupportedPlatform.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final supportedPlatforms = this.supportedPlatforms;
+    return {
+      if (name != null) 'Name': name,
+      if (supportedPlatforms != null) 'SupportedPlatforms': supportedPlatforms,
+    };
   }
 }
 
@@ -9429,6 +9581,20 @@ class BatchDeleteClusterSnapshotsResult {
     this.errors,
     this.resources,
   });
+  factory BatchDeleteClusterSnapshotsResult.fromJson(
+      Map<String, dynamic> json) {
+    return BatchDeleteClusterSnapshotsResult(
+      errors: (json['Errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => SnapshotErrorMessage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      resources: (json['Resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory BatchDeleteClusterSnapshotsResult.fromXml(_s.XmlElement elem) {
     return BatchDeleteClusterSnapshotsResult(
       errors: _s.extractXmlChild(elem, 'Errors')?.let((elem) => elem
@@ -9439,6 +9605,15 @@ class BatchDeleteClusterSnapshotsResult {
           .extractXmlChild(elem, 'Resources')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'String')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final resources = this.resources;
+    return {
+      if (errors != null) 'Errors': errors,
+      if (resources != null) 'Resources': resources,
+    };
   }
 }
 
@@ -9453,6 +9628,20 @@ class BatchModifyClusterSnapshotsOutputMessage {
     this.errors,
     this.resources,
   });
+  factory BatchModifyClusterSnapshotsOutputMessage.fromJson(
+      Map<String, dynamic> json) {
+    return BatchModifyClusterSnapshotsOutputMessage(
+      errors: (json['Errors'] as List?)
+          ?.whereNotNull()
+          .map((e) => SnapshotErrorMessage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      resources: (json['Resources'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory BatchModifyClusterSnapshotsOutputMessage.fromXml(_s.XmlElement elem) {
     return BatchModifyClusterSnapshotsOutputMessage(
       errors: _s.extractXmlChild(elem, 'Errors')?.let((elem) => elem
@@ -9463,6 +9652,15 @@ class BatchModifyClusterSnapshotsOutputMessage {
           .extractXmlChild(elem, 'Resources')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'String')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final resources = this.resources;
+    return {
+      if (errors != null) 'Errors': errors,
+      if (resources != null) 'Resources': resources,
+    };
   }
 }
 
@@ -9819,6 +10017,122 @@ class Cluster {
     this.vpcId,
     this.vpcSecurityGroups,
   });
+  factory Cluster.fromJson(Map<String, dynamic> json) {
+    return Cluster(
+      allowVersionUpgrade: json['AllowVersionUpgrade'] as bool?,
+      aquaConfiguration: json['AquaConfiguration'] != null
+          ? AquaConfiguration.fromJson(
+              json['AquaConfiguration'] as Map<String, dynamic>)
+          : null,
+      automatedSnapshotRetentionPeriod:
+          json['AutomatedSnapshotRetentionPeriod'] as int?,
+      availabilityZone: json['AvailabilityZone'] as String?,
+      availabilityZoneRelocationStatus:
+          json['AvailabilityZoneRelocationStatus'] as String?,
+      clusterAvailabilityStatus: json['ClusterAvailabilityStatus'] as String?,
+      clusterCreateTime: timeStampFromJson(json['ClusterCreateTime']),
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      clusterNamespaceArn: json['ClusterNamespaceArn'] as String?,
+      clusterNodes: (json['ClusterNodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      clusterParameterGroups: (json['ClusterParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ClusterParameterGroupStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      clusterPublicKey: json['ClusterPublicKey'] as String?,
+      clusterRevisionNumber: json['ClusterRevisionNumber'] as String?,
+      clusterSecurityGroups: (json['ClusterSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterSecurityGroupMembership.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      clusterSnapshotCopyStatus: json['ClusterSnapshotCopyStatus'] != null
+          ? ClusterSnapshotCopyStatus.fromJson(
+              json['ClusterSnapshotCopyStatus'] as Map<String, dynamic>)
+          : null,
+      clusterStatus: json['ClusterStatus'] as String?,
+      clusterSubnetGroupName: json['ClusterSubnetGroupName'] as String?,
+      clusterVersion: json['ClusterVersion'] as String?,
+      dBName: json['DBName'] as String?,
+      dataTransferProgress: json['DataTransferProgress'] != null
+          ? DataTransferProgress.fromJson(
+              json['DataTransferProgress'] as Map<String, dynamic>)
+          : null,
+      deferredMaintenanceWindows: (json['DeferredMaintenanceWindows'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              DeferredMaintenanceWindow.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      elasticIpStatus: json['ElasticIpStatus'] != null
+          ? ElasticIpStatus.fromJson(
+              json['ElasticIpStatus'] as Map<String, dynamic>)
+          : null,
+      elasticResizeNumberOfNodeOptions:
+          json['ElasticResizeNumberOfNodeOptions'] as String?,
+      encrypted: json['Encrypted'] as bool?,
+      endpoint: json['Endpoint'] != null
+          ? Endpoint.fromJson(json['Endpoint'] as Map<String, dynamic>)
+          : null,
+      enhancedVpcRouting: json['EnhancedVpcRouting'] as bool?,
+      expectedNextSnapshotScheduleTime:
+          timeStampFromJson(json['ExpectedNextSnapshotScheduleTime']),
+      expectedNextSnapshotScheduleTimeStatus:
+          json['ExpectedNextSnapshotScheduleTimeStatus'] as String?,
+      hsmStatus: json['HsmStatus'] != null
+          ? HsmStatus.fromJson(json['HsmStatus'] as Map<String, dynamic>)
+          : null,
+      iamRoles: (json['IamRoles'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterIamRole.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      kmsKeyId: json['KmsKeyId'] as String?,
+      maintenanceTrackName: json['MaintenanceTrackName'] as String?,
+      manualSnapshotRetentionPeriod:
+          json['ManualSnapshotRetentionPeriod'] as int?,
+      masterUsername: json['MasterUsername'] as String?,
+      modifyStatus: json['ModifyStatus'] as String?,
+      nextMaintenanceWindowStartTime:
+          timeStampFromJson(json['NextMaintenanceWindowStartTime']),
+      nodeType: json['NodeType'] as String?,
+      numberOfNodes: json['NumberOfNodes'] as int?,
+      pendingActions: (json['PendingActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      pendingModifiedValues: json['PendingModifiedValues'] != null
+          ? PendingModifiedValues.fromJson(
+              json['PendingModifiedValues'] as Map<String, dynamic>)
+          : null,
+      preferredMaintenanceWindow: json['PreferredMaintenanceWindow'] as String?,
+      publiclyAccessible: json['PubliclyAccessible'] as bool?,
+      resizeInfo: json['ResizeInfo'] != null
+          ? ResizeInfo.fromJson(json['ResizeInfo'] as Map<String, dynamic>)
+          : null,
+      restoreStatus: json['RestoreStatus'] != null
+          ? RestoreStatus.fromJson(
+              json['RestoreStatus'] as Map<String, dynamic>)
+          : null,
+      snapshotScheduleIdentifier: json['SnapshotScheduleIdentifier'] as String?,
+      snapshotScheduleState:
+          (json['SnapshotScheduleState'] as String?)?.toScheduleState(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalStorageCapacityInMegaBytes:
+          json['TotalStorageCapacityInMegaBytes'] as int?,
+      vpcId: json['VpcId'] as String?,
+      vpcSecurityGroups: (json['VpcSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              VpcSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory Cluster.fromXml(_s.XmlElement elem) {
     return Cluster(
       allowVersionUpgrade: _s.extractXmlBoolValue(elem, 'AllowVersionUpgrade'),
@@ -9935,6 +10249,144 @@ class Cluster {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowVersionUpgrade = this.allowVersionUpgrade;
+    final aquaConfiguration = this.aquaConfiguration;
+    final automatedSnapshotRetentionPeriod =
+        this.automatedSnapshotRetentionPeriod;
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneRelocationStatus =
+        this.availabilityZoneRelocationStatus;
+    final clusterAvailabilityStatus = this.clusterAvailabilityStatus;
+    final clusterCreateTime = this.clusterCreateTime;
+    final clusterIdentifier = this.clusterIdentifier;
+    final clusterNamespaceArn = this.clusterNamespaceArn;
+    final clusterNodes = this.clusterNodes;
+    final clusterParameterGroups = this.clusterParameterGroups;
+    final clusterPublicKey = this.clusterPublicKey;
+    final clusterRevisionNumber = this.clusterRevisionNumber;
+    final clusterSecurityGroups = this.clusterSecurityGroups;
+    final clusterSnapshotCopyStatus = this.clusterSnapshotCopyStatus;
+    final clusterStatus = this.clusterStatus;
+    final clusterSubnetGroupName = this.clusterSubnetGroupName;
+    final clusterVersion = this.clusterVersion;
+    final dBName = this.dBName;
+    final dataTransferProgress = this.dataTransferProgress;
+    final deferredMaintenanceWindows = this.deferredMaintenanceWindows;
+    final elasticIpStatus = this.elasticIpStatus;
+    final elasticResizeNumberOfNodeOptions =
+        this.elasticResizeNumberOfNodeOptions;
+    final encrypted = this.encrypted;
+    final endpoint = this.endpoint;
+    final enhancedVpcRouting = this.enhancedVpcRouting;
+    final expectedNextSnapshotScheduleTime =
+        this.expectedNextSnapshotScheduleTime;
+    final expectedNextSnapshotScheduleTimeStatus =
+        this.expectedNextSnapshotScheduleTimeStatus;
+    final hsmStatus = this.hsmStatus;
+    final iamRoles = this.iamRoles;
+    final kmsKeyId = this.kmsKeyId;
+    final maintenanceTrackName = this.maintenanceTrackName;
+    final manualSnapshotRetentionPeriod = this.manualSnapshotRetentionPeriod;
+    final masterUsername = this.masterUsername;
+    final modifyStatus = this.modifyStatus;
+    final nextMaintenanceWindowStartTime = this.nextMaintenanceWindowStartTime;
+    final nodeType = this.nodeType;
+    final numberOfNodes = this.numberOfNodes;
+    final pendingActions = this.pendingActions;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final publiclyAccessible = this.publiclyAccessible;
+    final resizeInfo = this.resizeInfo;
+    final restoreStatus = this.restoreStatus;
+    final snapshotScheduleIdentifier = this.snapshotScheduleIdentifier;
+    final snapshotScheduleState = this.snapshotScheduleState;
+    final tags = this.tags;
+    final totalStorageCapacityInMegaBytes =
+        this.totalStorageCapacityInMegaBytes;
+    final vpcId = this.vpcId;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (allowVersionUpgrade != null)
+        'AllowVersionUpgrade': allowVersionUpgrade,
+      if (aquaConfiguration != null) 'AquaConfiguration': aquaConfiguration,
+      if (automatedSnapshotRetentionPeriod != null)
+        'AutomatedSnapshotRetentionPeriod': automatedSnapshotRetentionPeriod,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (availabilityZoneRelocationStatus != null)
+        'AvailabilityZoneRelocationStatus': availabilityZoneRelocationStatus,
+      if (clusterAvailabilityStatus != null)
+        'ClusterAvailabilityStatus': clusterAvailabilityStatus,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': unixTimestampToJson(clusterCreateTime),
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (clusterNamespaceArn != null)
+        'ClusterNamespaceArn': clusterNamespaceArn,
+      if (clusterNodes != null) 'ClusterNodes': clusterNodes,
+      if (clusterParameterGroups != null)
+        'ClusterParameterGroups': clusterParameterGroups,
+      if (clusterPublicKey != null) 'ClusterPublicKey': clusterPublicKey,
+      if (clusterRevisionNumber != null)
+        'ClusterRevisionNumber': clusterRevisionNumber,
+      if (clusterSecurityGroups != null)
+        'ClusterSecurityGroups': clusterSecurityGroups,
+      if (clusterSnapshotCopyStatus != null)
+        'ClusterSnapshotCopyStatus': clusterSnapshotCopyStatus,
+      if (clusterStatus != null) 'ClusterStatus': clusterStatus,
+      if (clusterSubnetGroupName != null)
+        'ClusterSubnetGroupName': clusterSubnetGroupName,
+      if (clusterVersion != null) 'ClusterVersion': clusterVersion,
+      if (dBName != null) 'DBName': dBName,
+      if (dataTransferProgress != null)
+        'DataTransferProgress': dataTransferProgress,
+      if (deferredMaintenanceWindows != null)
+        'DeferredMaintenanceWindows': deferredMaintenanceWindows,
+      if (elasticIpStatus != null) 'ElasticIpStatus': elasticIpStatus,
+      if (elasticResizeNumberOfNodeOptions != null)
+        'ElasticResizeNumberOfNodeOptions': elasticResizeNumberOfNodeOptions,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (enhancedVpcRouting != null) 'EnhancedVpcRouting': enhancedVpcRouting,
+      if (expectedNextSnapshotScheduleTime != null)
+        'ExpectedNextSnapshotScheduleTime':
+            unixTimestampToJson(expectedNextSnapshotScheduleTime),
+      if (expectedNextSnapshotScheduleTimeStatus != null)
+        'ExpectedNextSnapshotScheduleTimeStatus':
+            expectedNextSnapshotScheduleTimeStatus,
+      if (hsmStatus != null) 'HsmStatus': hsmStatus,
+      if (iamRoles != null) 'IamRoles': iamRoles,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (maintenanceTrackName != null)
+        'MaintenanceTrackName': maintenanceTrackName,
+      if (manualSnapshotRetentionPeriod != null)
+        'ManualSnapshotRetentionPeriod': manualSnapshotRetentionPeriod,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (modifyStatus != null) 'ModifyStatus': modifyStatus,
+      if (nextMaintenanceWindowStartTime != null)
+        'NextMaintenanceWindowStartTime':
+            unixTimestampToJson(nextMaintenanceWindowStartTime),
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numberOfNodes != null) 'NumberOfNodes': numberOfNodes,
+      if (pendingActions != null) 'PendingActions': pendingActions,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (publiclyAccessible != null) 'PubliclyAccessible': publiclyAccessible,
+      if (resizeInfo != null) 'ResizeInfo': resizeInfo,
+      if (restoreStatus != null) 'RestoreStatus': restoreStatus,
+      if (snapshotScheduleIdentifier != null)
+        'SnapshotScheduleIdentifier': snapshotScheduleIdentifier,
+      if (snapshotScheduleState != null)
+        'SnapshotScheduleState': snapshotScheduleState.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (totalStorageCapacityInMegaBytes != null)
+        'TotalStorageCapacityInMegaBytes': totalStorageCapacityInMegaBytes,
+      if (vpcId != null) 'VpcId': vpcId,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 /// <p/>
@@ -9949,6 +10401,14 @@ class ClusterAssociatedToSchedule {
     this.clusterIdentifier,
     this.scheduleAssociationState,
   });
+  factory ClusterAssociatedToSchedule.fromJson(Map<String, dynamic> json) {
+    return ClusterAssociatedToSchedule(
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      scheduleAssociationState:
+          (json['ScheduleAssociationState'] as String?)?.toScheduleState(),
+    );
+  }
+
   factory ClusterAssociatedToSchedule.fromXml(_s.XmlElement elem) {
     return ClusterAssociatedToSchedule(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier'),
@@ -9956,6 +10416,16 @@ class ClusterAssociatedToSchedule {
           .extractXmlStringValue(elem, 'ScheduleAssociationState')
           ?.toScheduleState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterIdentifier = this.clusterIdentifier;
+    final scheduleAssociationState = this.scheduleAssociationState;
+    return {
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (scheduleAssociationState != null)
+        'ScheduleAssociationState': scheduleAssociationState.toValue(),
+    };
   }
 }
 
@@ -9983,12 +10453,31 @@ class ClusterCredentials {
     this.dbUser,
     this.expiration,
   });
+  factory ClusterCredentials.fromJson(Map<String, dynamic> json) {
+    return ClusterCredentials(
+      dbPassword: json['DbPassword'] as String?,
+      dbUser: json['DbUser'] as String?,
+      expiration: timeStampFromJson(json['Expiration']),
+    );
+  }
+
   factory ClusterCredentials.fromXml(_s.XmlElement elem) {
     return ClusterCredentials(
       dbPassword: _s.extractXmlStringValue(elem, 'DbPassword'),
       dbUser: _s.extractXmlStringValue(elem, 'DbUser'),
       expiration: _s.extractXmlDateTimeValue(elem, 'Expiration'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dbPassword = this.dbPassword;
+    final dbUser = this.dbUser;
+    final expiration = this.expiration;
+    return {
+      if (dbPassword != null) 'DbPassword': dbPassword,
+      if (dbUser != null) 'DbUser': dbUser,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+    };
   }
 }
 
@@ -10013,6 +10502,19 @@ class ClusterDbRevision {
     this.databaseRevisionReleaseDate,
     this.revisionTargets,
   });
+  factory ClusterDbRevision.fromJson(Map<String, dynamic> json) {
+    return ClusterDbRevision(
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      currentDatabaseRevision: json['CurrentDatabaseRevision'] as String?,
+      databaseRevisionReleaseDate:
+          timeStampFromJson(json['DatabaseRevisionReleaseDate']),
+      revisionTargets: (json['RevisionTargets'] as List?)
+          ?.whereNotNull()
+          .map((e) => RevisionTarget.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ClusterDbRevision.fromXml(_s.XmlElement elem) {
     return ClusterDbRevision(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier'),
@@ -10026,6 +10528,22 @@ class ClusterDbRevision {
               .map((c) => RevisionTarget.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterIdentifier = this.clusterIdentifier;
+    final currentDatabaseRevision = this.currentDatabaseRevision;
+    final databaseRevisionReleaseDate = this.databaseRevisionReleaseDate;
+    final revisionTargets = this.revisionTargets;
+    return {
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (currentDatabaseRevision != null)
+        'CurrentDatabaseRevision': currentDatabaseRevision,
+      if (databaseRevisionReleaseDate != null)
+        'DatabaseRevisionReleaseDate':
+            unixTimestampToJson(databaseRevisionReleaseDate),
+      if (revisionTargets != null) 'RevisionTargets': revisionTargets,
+    };
   }
 }
 
@@ -10044,6 +10562,16 @@ class ClusterDbRevisionsMessage {
     this.clusterDbRevisions,
     this.marker,
   });
+  factory ClusterDbRevisionsMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterDbRevisionsMessage(
+      clusterDbRevisions: (json['ClusterDbRevisions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterDbRevision.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ClusterDbRevisionsMessage.fromXml(_s.XmlElement elem) {
     return ClusterDbRevisionsMessage(
       clusterDbRevisions: _s.extractXmlChild(elem, 'ClusterDbRevisions')?.let(
@@ -10053,6 +10581,15 @@ class ClusterDbRevisionsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterDbRevisions = this.clusterDbRevisions;
+    final marker = this.marker;
+    return {
+      if (clusterDbRevisions != null) 'ClusterDbRevisions': clusterDbRevisions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -10087,11 +10624,27 @@ class ClusterIamRole {
     this.applyStatus,
     this.iamRoleArn,
   });
+  factory ClusterIamRole.fromJson(Map<String, dynamic> json) {
+    return ClusterIamRole(
+      applyStatus: json['ApplyStatus'] as String?,
+      iamRoleArn: json['IamRoleArn'] as String?,
+    );
+  }
+
   factory ClusterIamRole.fromXml(_s.XmlElement elem) {
     return ClusterIamRole(
       applyStatus: _s.extractXmlStringValue(elem, 'ApplyStatus'),
       iamRoleArn: _s.extractXmlStringValue(elem, 'IamRoleArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applyStatus = this.applyStatus;
+    final iamRoleArn = this.iamRoleArn;
+    return {
+      if (applyStatus != null) 'ApplyStatus': applyStatus,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+    };
   }
 }
 
@@ -10111,12 +10664,31 @@ class ClusterNode {
     this.privateIPAddress,
     this.publicIPAddress,
   });
+  factory ClusterNode.fromJson(Map<String, dynamic> json) {
+    return ClusterNode(
+      nodeRole: json['NodeRole'] as String?,
+      privateIPAddress: json['PrivateIPAddress'] as String?,
+      publicIPAddress: json['PublicIPAddress'] as String?,
+    );
+  }
+
   factory ClusterNode.fromXml(_s.XmlElement elem) {
     return ClusterNode(
       nodeRole: _s.extractXmlStringValue(elem, 'NodeRole'),
       privateIPAddress: _s.extractXmlStringValue(elem, 'PrivateIPAddress'),
       publicIPAddress: _s.extractXmlStringValue(elem, 'PublicIPAddress'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeRole = this.nodeRole;
+    final privateIPAddress = this.privateIPAddress;
+    final publicIPAddress = this.publicIPAddress;
+    return {
+      if (nodeRole != null) 'NodeRole': nodeRole,
+      if (privateIPAddress != null) 'PrivateIPAddress': privateIPAddress,
+      if (publicIPAddress != null) 'PublicIPAddress': publicIPAddress,
+    };
   }
 }
 
@@ -10141,6 +10713,18 @@ class ClusterParameterGroup {
     this.parameterGroupName,
     this.tags,
   });
+  factory ClusterParameterGroup.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterGroup(
+      description: json['Description'] as String?,
+      parameterGroupFamily: json['ParameterGroupFamily'] as String?,
+      parameterGroupName: json['ParameterGroupName'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ClusterParameterGroup.fromXml(_s.XmlElement elem) {
     return ClusterParameterGroup(
       description: _s.extractXmlStringValue(elem, 'Description'),
@@ -10150,6 +10734,20 @@ class ClusterParameterGroup {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final parameterGroupFamily = this.parameterGroupFamily;
+    final parameterGroupName = this.parameterGroupName;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (parameterGroupFamily != null)
+        'ParameterGroupFamily': parameterGroupFamily,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -10171,6 +10769,16 @@ class ClusterParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+  factory ClusterParameterGroupDetails.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterGroupDetails(
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ClusterParameterGroupDetails.fromXml(_s.XmlElement elem) {
     return ClusterParameterGroupDetails(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -10179,6 +10787,15 @@ class ClusterParameterGroupDetails {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -10196,12 +10813,29 @@ class ClusterParameterGroupNameMessage {
     this.parameterGroupName,
     this.parameterGroupStatus,
   });
+  factory ClusterParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterGroupNameMessage(
+      parameterGroupName: json['ParameterGroupName'] as String?,
+      parameterGroupStatus: json['ParameterGroupStatus'] as String?,
+    );
+  }
+
   factory ClusterParameterGroupNameMessage.fromXml(_s.XmlElement elem) {
     return ClusterParameterGroupNameMessage(
       parameterGroupName: _s.extractXmlStringValue(elem, 'ParameterGroupName'),
       parameterGroupStatus:
           _s.extractXmlStringValue(elem, 'ParameterGroupStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroupName = this.parameterGroupName;
+    final parameterGroupStatus = this.parameterGroupStatus;
+    return {
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+      if (parameterGroupStatus != null)
+        'ParameterGroupStatus': parameterGroupStatus,
+    };
   }
 }
 
@@ -10226,6 +10860,18 @@ class ClusterParameterGroupStatus {
     this.parameterApplyStatus,
     this.parameterGroupName,
   });
+  factory ClusterParameterGroupStatus.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterGroupStatus(
+      clusterParameterStatusList: (json['ClusterParameterStatusList'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ClusterParameterStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parameterApplyStatus: json['ParameterApplyStatus'] as String?,
+      parameterGroupName: json['ParameterGroupName'] as String?,
+    );
+  }
+
   factory ClusterParameterGroupStatus.fromXml(_s.XmlElement elem) {
     return ClusterParameterGroupStatus(
       clusterParameterStatusList: _s
@@ -10238,6 +10884,19 @@ class ClusterParameterGroupStatus {
           _s.extractXmlStringValue(elem, 'ParameterApplyStatus'),
       parameterGroupName: _s.extractXmlStringValue(elem, 'ParameterGroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterParameterStatusList = this.clusterParameterStatusList;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    final parameterGroupName = this.parameterGroupName;
+    return {
+      if (clusterParameterStatusList != null)
+        'ClusterParameterStatusList': clusterParameterStatusList,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+    };
   }
 }
 
@@ -10259,6 +10918,16 @@ class ClusterParameterGroupsMessage {
     this.marker,
     this.parameterGroups,
   });
+  factory ClusterParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterGroupsMessage(
+      marker: json['Marker'] as String?,
+      parameterGroups: (json['ParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterParameterGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ClusterParameterGroupsMessage.fromXml(_s.XmlElement elem) {
     return ClusterParameterGroupsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -10268,6 +10937,15 @@ class ClusterParameterGroupsMessage {
               .map((c) => ClusterParameterGroup.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameterGroups = this.parameterGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameterGroups != null) 'ParameterGroups': parameterGroups,
+    };
   }
 }
 
@@ -10320,6 +10998,15 @@ class ClusterParameterStatus {
     this.parameterApplyStatus,
     this.parameterName,
   });
+  factory ClusterParameterStatus.fromJson(Map<String, dynamic> json) {
+    return ClusterParameterStatus(
+      parameterApplyErrorDescription:
+          json['ParameterApplyErrorDescription'] as String?,
+      parameterApplyStatus: json['ParameterApplyStatus'] as String?,
+      parameterName: json['ParameterName'] as String?,
+    );
+  }
+
   factory ClusterParameterStatus.fromXml(_s.XmlElement elem) {
     return ClusterParameterStatus(
       parameterApplyErrorDescription:
@@ -10328,6 +11015,19 @@ class ClusterParameterStatus {
           _s.extractXmlStringValue(elem, 'ParameterApplyStatus'),
       parameterName: _s.extractXmlStringValue(elem, 'ParameterName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final parameterApplyErrorDescription = this.parameterApplyErrorDescription;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    final parameterName = this.parameterName;
+    return {
+      if (parameterApplyErrorDescription != null)
+        'ParameterApplyErrorDescription': parameterApplyErrorDescription,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+      if (parameterName != null) 'ParameterName': parameterName,
+    };
   }
 }
 
@@ -10357,6 +11057,25 @@ class ClusterSecurityGroup {
     this.iPRanges,
     this.tags,
   });
+  factory ClusterSecurityGroup.fromJson(Map<String, dynamic> json) {
+    return ClusterSecurityGroup(
+      clusterSecurityGroupName: json['ClusterSecurityGroupName'] as String?,
+      description: json['Description'] as String?,
+      eC2SecurityGroups: (json['EC2SecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => EC2SecurityGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      iPRanges: (json['IPRanges'] as List?)
+          ?.whereNotNull()
+          .map((e) => IPRange.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ClusterSecurityGroup.fromXml(_s.XmlElement elem) {
     return ClusterSecurityGroup(
       clusterSecurityGroupName:
@@ -10373,6 +11092,22 @@ class ClusterSecurityGroup {
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroupName = this.clusterSecurityGroupName;
+    final description = this.description;
+    final eC2SecurityGroups = this.eC2SecurityGroups;
+    final iPRanges = this.iPRanges;
+    final tags = this.tags;
+    return {
+      if (clusterSecurityGroupName != null)
+        'ClusterSecurityGroupName': clusterSecurityGroupName,
+      if (description != null) 'Description': description,
+      if (eC2SecurityGroups != null) 'EC2SecurityGroups': eC2SecurityGroups,
+      if (iPRanges != null) 'IPRanges': iPRanges,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a cluster security group.
@@ -10387,12 +11122,29 @@ class ClusterSecurityGroupMembership {
     this.clusterSecurityGroupName,
     this.status,
   });
+  factory ClusterSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return ClusterSecurityGroupMembership(
+      clusterSecurityGroupName: json['ClusterSecurityGroupName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory ClusterSecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return ClusterSecurityGroupMembership(
       clusterSecurityGroupName:
           _s.extractXmlStringValue(elem, 'ClusterSecurityGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroupName = this.clusterSecurityGroupName;
+    final status = this.status;
+    return {
+      if (clusterSecurityGroupName != null)
+        'ClusterSecurityGroupName': clusterSecurityGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -10413,6 +11165,16 @@ class ClusterSecurityGroupMessage {
     this.clusterSecurityGroups,
     this.marker,
   });
+  factory ClusterSecurityGroupMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterSecurityGroupMessage(
+      clusterSecurityGroups: (json['ClusterSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterSecurityGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ClusterSecurityGroupMessage.fromXml(_s.XmlElement elem) {
     return ClusterSecurityGroupMessage(
       clusterSecurityGroups: _s
@@ -10423,6 +11185,16 @@ class ClusterSecurityGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroups = this.clusterSecurityGroups;
+    final marker = this.marker;
+    return {
+      if (clusterSecurityGroups != null)
+        'ClusterSecurityGroups': clusterSecurityGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -10453,6 +11225,16 @@ class ClusterSnapshotCopyStatus {
     this.retentionPeriod,
     this.snapshotCopyGrantName,
   });
+  factory ClusterSnapshotCopyStatus.fromJson(Map<String, dynamic> json) {
+    return ClusterSnapshotCopyStatus(
+      destinationRegion: json['DestinationRegion'] as String?,
+      manualSnapshotRetentionPeriod:
+          json['ManualSnapshotRetentionPeriod'] as int?,
+      retentionPeriod: json['RetentionPeriod'] as int?,
+      snapshotCopyGrantName: json['SnapshotCopyGrantName'] as String?,
+    );
+  }
+
   factory ClusterSnapshotCopyStatus.fromXml(_s.XmlElement elem) {
     return ClusterSnapshotCopyStatus(
       destinationRegion: _s.extractXmlStringValue(elem, 'DestinationRegion'),
@@ -10462,6 +11244,21 @@ class ClusterSnapshotCopyStatus {
       snapshotCopyGrantName:
           _s.extractXmlStringValue(elem, 'SnapshotCopyGrantName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationRegion = this.destinationRegion;
+    final manualSnapshotRetentionPeriod = this.manualSnapshotRetentionPeriod;
+    final retentionPeriod = this.retentionPeriod;
+    final snapshotCopyGrantName = this.snapshotCopyGrantName;
+    return {
+      if (destinationRegion != null) 'DestinationRegion': destinationRegion,
+      if (manualSnapshotRetentionPeriod != null)
+        'ManualSnapshotRetentionPeriod': manualSnapshotRetentionPeriod,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (snapshotCopyGrantName != null)
+        'SnapshotCopyGrantName': snapshotCopyGrantName,
+    };
   }
 }
 
@@ -10494,6 +11291,23 @@ class ClusterSubnetGroup {
     this.tags,
     this.vpcId,
   });
+  factory ClusterSubnetGroup.fromJson(Map<String, dynamic> json) {
+    return ClusterSubnetGroup(
+      clusterSubnetGroupName: json['ClusterSubnetGroupName'] as String?,
+      description: json['Description'] as String?,
+      subnetGroupStatus: json['SubnetGroupStatus'] as String?,
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => Subnet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory ClusterSubnetGroup.fromXml(_s.XmlElement elem) {
     return ClusterSubnetGroup(
       clusterSubnetGroupName:
@@ -10506,6 +11320,24 @@ class ClusterSubnetGroup {
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSubnetGroupName = this.clusterSubnetGroupName;
+    final description = this.description;
+    final subnetGroupStatus = this.subnetGroupStatus;
+    final subnets = this.subnets;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (clusterSubnetGroupName != null)
+        'ClusterSubnetGroupName': clusterSubnetGroupName,
+      if (description != null) 'Description': description,
+      if (subnetGroupStatus != null) 'SubnetGroupStatus': subnetGroupStatus,
+      if (subnets != null) 'Subnets': subnets,
+      if (tags != null) 'Tags': tags,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -10526,6 +11358,16 @@ class ClusterSubnetGroupMessage {
     this.clusterSubnetGroups,
     this.marker,
   });
+  factory ClusterSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterSubnetGroupMessage(
+      clusterSubnetGroups: (json['ClusterSubnetGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterSubnetGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ClusterSubnetGroupMessage.fromXml(_s.XmlElement elem) {
     return ClusterSubnetGroupMessage(
       clusterSubnetGroups: _s.extractXmlChild(elem, 'ClusterSubnetGroups')?.let(
@@ -10535,6 +11377,16 @@ class ClusterSubnetGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSubnetGroups = this.clusterSubnetGroups;
+    final marker = this.marker;
+    return {
+      if (clusterSubnetGroups != null)
+        'ClusterSubnetGroups': clusterSubnetGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -10555,6 +11407,15 @@ class ClusterVersion {
     this.clusterVersion,
     this.description,
   });
+  factory ClusterVersion.fromJson(Map<String, dynamic> json) {
+    return ClusterVersion(
+      clusterParameterGroupFamily:
+          json['ClusterParameterGroupFamily'] as String?,
+      clusterVersion: json['ClusterVersion'] as String?,
+      description: json['Description'] as String?,
+    );
+  }
+
   factory ClusterVersion.fromXml(_s.XmlElement elem) {
     return ClusterVersion(
       clusterParameterGroupFamily:
@@ -10562,6 +11423,18 @@ class ClusterVersion {
       clusterVersion: _s.extractXmlStringValue(elem, 'ClusterVersion'),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterParameterGroupFamily = this.clusterParameterGroupFamily;
+    final clusterVersion = this.clusterVersion;
+    final description = this.description;
+    return {
+      if (clusterParameterGroupFamily != null)
+        'ClusterParameterGroupFamily': clusterParameterGroupFamily,
+      if (clusterVersion != null) 'ClusterVersion': clusterVersion,
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -10582,6 +11455,16 @@ class ClusterVersionsMessage {
     this.clusterVersions,
     this.marker,
   });
+  factory ClusterVersionsMessage.fromJson(Map<String, dynamic> json) {
+    return ClusterVersionsMessage(
+      clusterVersions: (json['ClusterVersions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ClusterVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ClusterVersionsMessage.fromXml(_s.XmlElement elem) {
     return ClusterVersionsMessage(
       clusterVersions: _s.extractXmlChild(elem, 'ClusterVersions')?.let(
@@ -10591,6 +11474,15 @@ class ClusterVersionsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterVersions = this.clusterVersions;
+    final marker = this.marker;
+    return {
+      if (clusterVersions != null) 'ClusterVersions': clusterVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -10612,12 +11504,31 @@ class ClustersMessage {
     this.clusters,
     this.marker,
   });
+  factory ClustersMessage.fromJson(Map<String, dynamic> json) {
+    return ClustersMessage(
+      clusters: (json['Clusters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Cluster.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory ClustersMessage.fromXml(_s.XmlElement elem) {
     return ClustersMessage(
       clusters: _s.extractXmlChild(elem, 'Clusters')?.let((elem) =>
           elem.findElements('Cluster').map((c) => Cluster.fromXml(c)).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final marker = this.marker;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -10627,11 +11538,26 @@ class CopyClusterSnapshotResult {
   CopyClusterSnapshotResult({
     this.snapshot,
   });
+  factory CopyClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CopyClusterSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CopyClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return CopyClusterSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -10641,12 +11567,30 @@ class CreateClusterParameterGroupResult {
   CreateClusterParameterGroupResult({
     this.clusterParameterGroup,
   });
+  factory CreateClusterParameterGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateClusterParameterGroupResult(
+      clusterParameterGroup: json['ClusterParameterGroup'] != null
+          ? ClusterParameterGroup.fromJson(
+              json['ClusterParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateClusterParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CreateClusterParameterGroupResult(
       clusterParameterGroup: _s
           .extractXmlChild(elem, 'ClusterParameterGroup')
           ?.let((e) => ClusterParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterParameterGroup = this.clusterParameterGroup;
+    return {
+      if (clusterParameterGroup != null)
+        'ClusterParameterGroup': clusterParameterGroup,
+    };
   }
 }
 
@@ -10656,11 +11600,26 @@ class CreateClusterResult {
   CreateClusterResult({
     this.cluster,
   });
+  factory CreateClusterResult.fromJson(Map<String, dynamic> json) {
+    return CreateClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateClusterResult.fromXml(_s.XmlElement elem) {
     return CreateClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -10670,12 +11629,29 @@ class CreateClusterSecurityGroupResult {
   CreateClusterSecurityGroupResult({
     this.clusterSecurityGroup,
   });
+  factory CreateClusterSecurityGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateClusterSecurityGroupResult(
+      clusterSecurityGroup: json['ClusterSecurityGroup'] != null
+          ? ClusterSecurityGroup.fromJson(
+              json['ClusterSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateClusterSecurityGroupResult.fromXml(_s.XmlElement elem) {
     return CreateClusterSecurityGroupResult(
       clusterSecurityGroup: _s
           .extractXmlChild(elem, 'ClusterSecurityGroup')
           ?.let((e) => ClusterSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroup = this.clusterSecurityGroup;
+    return {
+      if (clusterSecurityGroup != null)
+        'ClusterSecurityGroup': clusterSecurityGroup,
+    };
   }
 }
 
@@ -10685,11 +11661,26 @@ class CreateClusterSnapshotResult {
   CreateClusterSnapshotResult({
     this.snapshot,
   });
+  factory CreateClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CreateClusterSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return CreateClusterSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -10699,12 +11690,28 @@ class CreateClusterSubnetGroupResult {
   CreateClusterSubnetGroupResult({
     this.clusterSubnetGroup,
   });
+  factory CreateClusterSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateClusterSubnetGroupResult(
+      clusterSubnetGroup: json['ClusterSubnetGroup'] != null
+          ? ClusterSubnetGroup.fromJson(
+              json['ClusterSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateClusterSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return CreateClusterSubnetGroupResult(
       clusterSubnetGroup: _s
           .extractXmlChild(elem, 'ClusterSubnetGroup')
           ?.let((e) => ClusterSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSubnetGroup = this.clusterSubnetGroup;
+    return {
+      if (clusterSubnetGroup != null) 'ClusterSubnetGroup': clusterSubnetGroup,
+    };
   }
 }
 
@@ -10714,12 +11721,28 @@ class CreateEventSubscriptionResult {
   CreateEventSubscriptionResult({
     this.eventSubscription,
   });
+  factory CreateEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
+    return CreateEventSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateEventSubscriptionResult.fromXml(_s.XmlElement elem) {
     return CreateEventSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -10729,12 +11752,29 @@ class CreateHsmClientCertificateResult {
   CreateHsmClientCertificateResult({
     this.hsmClientCertificate,
   });
+  factory CreateHsmClientCertificateResult.fromJson(Map<String, dynamic> json) {
+    return CreateHsmClientCertificateResult(
+      hsmClientCertificate: json['HsmClientCertificate'] != null
+          ? HsmClientCertificate.fromJson(
+              json['HsmClientCertificate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateHsmClientCertificateResult.fromXml(_s.XmlElement elem) {
     return CreateHsmClientCertificateResult(
       hsmClientCertificate: _s
           .extractXmlChild(elem, 'HsmClientCertificate')
           ?.let((e) => HsmClientCertificate.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmClientCertificate = this.hsmClientCertificate;
+    return {
+      if (hsmClientCertificate != null)
+        'HsmClientCertificate': hsmClientCertificate,
+    };
   }
 }
 
@@ -10744,12 +11784,28 @@ class CreateHsmConfigurationResult {
   CreateHsmConfigurationResult({
     this.hsmConfiguration,
   });
+  factory CreateHsmConfigurationResult.fromJson(Map<String, dynamic> json) {
+    return CreateHsmConfigurationResult(
+      hsmConfiguration: json['HsmConfiguration'] != null
+          ? HsmConfiguration.fromJson(
+              json['HsmConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateHsmConfigurationResult.fromXml(_s.XmlElement elem) {
     return CreateHsmConfigurationResult(
       hsmConfiguration: _s
           .extractXmlChild(elem, 'HsmConfiguration')
           ?.let((e) => HsmConfiguration.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmConfiguration = this.hsmConfiguration;
+    return {
+      if (hsmConfiguration != null) 'HsmConfiguration': hsmConfiguration,
+    };
   }
 }
 
@@ -10759,12 +11815,28 @@ class CreateSnapshotCopyGrantResult {
   CreateSnapshotCopyGrantResult({
     this.snapshotCopyGrant,
   });
+  factory CreateSnapshotCopyGrantResult.fromJson(Map<String, dynamic> json) {
+    return CreateSnapshotCopyGrantResult(
+      snapshotCopyGrant: json['SnapshotCopyGrant'] != null
+          ? SnapshotCopyGrant.fromJson(
+              json['SnapshotCopyGrant'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateSnapshotCopyGrantResult.fromXml(_s.XmlElement elem) {
     return CreateSnapshotCopyGrantResult(
       snapshotCopyGrant: _s
           .extractXmlChild(elem, 'SnapshotCopyGrant')
           ?.let((e) => SnapshotCopyGrant.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshotCopyGrant = this.snapshotCopyGrant;
+    return {
+      if (snapshotCopyGrant != null) 'SnapshotCopyGrant': snapshotCopyGrant,
+    };
   }
 }
 
@@ -10779,6 +11851,14 @@ class CustomerStorageMessage {
     this.totalBackupSizeInMegaBytes,
     this.totalProvisionedStorageInMegaBytes,
   });
+  factory CustomerStorageMessage.fromJson(Map<String, dynamic> json) {
+    return CustomerStorageMessage(
+      totalBackupSizeInMegaBytes: json['TotalBackupSizeInMegaBytes'] as double?,
+      totalProvisionedStorageInMegaBytes:
+          json['TotalProvisionedStorageInMegaBytes'] as double?,
+    );
+  }
+
   factory CustomerStorageMessage.fromXml(_s.XmlElement elem) {
     return CustomerStorageMessage(
       totalBackupSizeInMegaBytes:
@@ -10786,6 +11866,19 @@ class CustomerStorageMessage {
       totalProvisionedStorageInMegaBytes:
           _s.extractXmlDoubleValue(elem, 'TotalProvisionedStorageInMegaBytes'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final totalBackupSizeInMegaBytes = this.totalBackupSizeInMegaBytes;
+    final totalProvisionedStorageInMegaBytes =
+        this.totalProvisionedStorageInMegaBytes;
+    return {
+      if (totalBackupSizeInMegaBytes != null)
+        'TotalBackupSizeInMegaBytes': totalBackupSizeInMegaBytes,
+      if (totalProvisionedStorageInMegaBytes != null)
+        'TotalProvisionedStorageInMegaBytes':
+            totalProvisionedStorageInMegaBytes,
+    };
   }
 }
 
@@ -10820,6 +11913,19 @@ class DataTransferProgress {
     this.status,
     this.totalDataInMegaBytes,
   });
+  factory DataTransferProgress.fromJson(Map<String, dynamic> json) {
+    return DataTransferProgress(
+      currentRateInMegaBytesPerSecond:
+          json['CurrentRateInMegaBytesPerSecond'] as double?,
+      dataTransferredInMegaBytes: json['DataTransferredInMegaBytes'] as int?,
+      elapsedTimeInSeconds: json['ElapsedTimeInSeconds'] as int?,
+      estimatedTimeToCompletionInSeconds:
+          json['EstimatedTimeToCompletionInSeconds'] as int?,
+      status: json['Status'] as String?,
+      totalDataInMegaBytes: json['TotalDataInMegaBytes'] as int?,
+    );
+  }
+
   factory DataTransferProgress.fromXml(_s.XmlElement elem) {
     return DataTransferProgress(
       currentRateInMegaBytesPerSecond:
@@ -10832,6 +11938,31 @@ class DataTransferProgress {
       status: _s.extractXmlStringValue(elem, 'Status'),
       totalDataInMegaBytes: _s.extractXmlIntValue(elem, 'TotalDataInMegaBytes'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentRateInMegaBytesPerSecond =
+        this.currentRateInMegaBytesPerSecond;
+    final dataTransferredInMegaBytes = this.dataTransferredInMegaBytes;
+    final elapsedTimeInSeconds = this.elapsedTimeInSeconds;
+    final estimatedTimeToCompletionInSeconds =
+        this.estimatedTimeToCompletionInSeconds;
+    final status = this.status;
+    final totalDataInMegaBytes = this.totalDataInMegaBytes;
+    return {
+      if (currentRateInMegaBytesPerSecond != null)
+        'CurrentRateInMegaBytesPerSecond': currentRateInMegaBytesPerSecond,
+      if (dataTransferredInMegaBytes != null)
+        'DataTransferredInMegaBytes': dataTransferredInMegaBytes,
+      if (elapsedTimeInSeconds != null)
+        'ElapsedTimeInSeconds': elapsedTimeInSeconds,
+      if (estimatedTimeToCompletionInSeconds != null)
+        'EstimatedTimeToCompletionInSeconds':
+            estimatedTimeToCompletionInSeconds,
+      if (status != null) 'Status': status,
+      if (totalDataInMegaBytes != null)
+        'TotalDataInMegaBytes': totalDataInMegaBytes,
+    };
   }
 }
 
@@ -10857,6 +11988,17 @@ class DefaultClusterParameters {
     this.parameterGroupFamily,
     this.parameters,
   });
+  factory DefaultClusterParameters.fromJson(Map<String, dynamic> json) {
+    return DefaultClusterParameters(
+      marker: json['Marker'] as String?,
+      parameterGroupFamily: json['ParameterGroupFamily'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DefaultClusterParameters.fromXml(_s.XmlElement elem) {
     return DefaultClusterParameters(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -10867,6 +12009,18 @@ class DefaultClusterParameters {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameterGroupFamily = this.parameterGroupFamily;
+    final parameters = this.parameters;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameterGroupFamily != null)
+        'ParameterGroupFamily': parameterGroupFamily,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -10886,6 +12040,16 @@ class DeferredMaintenanceWindow {
     this.deferMaintenanceIdentifier,
     this.deferMaintenanceStartTime,
   });
+  factory DeferredMaintenanceWindow.fromJson(Map<String, dynamic> json) {
+    return DeferredMaintenanceWindow(
+      deferMaintenanceEndTime:
+          timeStampFromJson(json['DeferMaintenanceEndTime']),
+      deferMaintenanceIdentifier: json['DeferMaintenanceIdentifier'] as String?,
+      deferMaintenanceStartTime:
+          timeStampFromJson(json['DeferMaintenanceStartTime']),
+    );
+  }
+
   factory DeferredMaintenanceWindow.fromXml(_s.XmlElement elem) {
     return DeferredMaintenanceWindow(
       deferMaintenanceEndTime:
@@ -10896,6 +12060,21 @@ class DeferredMaintenanceWindow {
           _s.extractXmlDateTimeValue(elem, 'DeferMaintenanceStartTime'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deferMaintenanceEndTime = this.deferMaintenanceEndTime;
+    final deferMaintenanceIdentifier = this.deferMaintenanceIdentifier;
+    final deferMaintenanceStartTime = this.deferMaintenanceStartTime;
+    return {
+      if (deferMaintenanceEndTime != null)
+        'DeferMaintenanceEndTime': unixTimestampToJson(deferMaintenanceEndTime),
+      if (deferMaintenanceIdentifier != null)
+        'DeferMaintenanceIdentifier': deferMaintenanceIdentifier,
+      if (deferMaintenanceStartTime != null)
+        'DeferMaintenanceStartTime':
+            unixTimestampToJson(deferMaintenanceStartTime),
+    };
+  }
 }
 
 class DeleteClusterResult {
@@ -10904,11 +12083,26 @@ class DeleteClusterResult {
   DeleteClusterResult({
     this.cluster,
   });
+  factory DeleteClusterResult.fromJson(Map<String, dynamic> json) {
+    return DeleteClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteClusterResult.fromXml(_s.XmlElement elem) {
     return DeleteClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -10932,6 +12126,13 @@ class DeleteClusterSnapshotMessage {
     required this.snapshotIdentifier,
     this.snapshotClusterIdentifier,
   });
+  factory DeleteClusterSnapshotMessage.fromJson(Map<String, dynamic> json) {
+    return DeleteClusterSnapshotMessage(
+      snapshotIdentifier: json['SnapshotIdentifier'] as String,
+      snapshotClusterIdentifier: json['SnapshotClusterIdentifier'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final snapshotIdentifier = this.snapshotIdentifier;
     final snapshotClusterIdentifier = this.snapshotClusterIdentifier;
@@ -10949,11 +12150,26 @@ class DeleteClusterSnapshotResult {
   DeleteClusterSnapshotResult({
     this.snapshot,
   });
+  factory DeleteClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return DeleteClusterSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return DeleteClusterSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -10963,12 +12179,30 @@ class DescribeDefaultClusterParametersResult {
   DescribeDefaultClusterParametersResult({
     this.defaultClusterParameters,
   });
+  factory DescribeDefaultClusterParametersResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeDefaultClusterParametersResult(
+      defaultClusterParameters: json['DefaultClusterParameters'] != null
+          ? DefaultClusterParameters.fromJson(
+              json['DefaultClusterParameters'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeDefaultClusterParametersResult.fromXml(_s.XmlElement elem) {
     return DescribeDefaultClusterParametersResult(
       defaultClusterParameters: _s
           .extractXmlChild(elem, 'DefaultClusterParameters')
           ?.let((e) => DefaultClusterParameters.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultClusterParameters = this.defaultClusterParameters;
+    return {
+      if (defaultClusterParameters != null)
+        'DefaultClusterParameters': defaultClusterParameters,
+    };
   }
 }
 
@@ -10979,6 +12213,16 @@ class DescribePartnersOutputMessage {
   DescribePartnersOutputMessage({
     this.partnerIntegrationInfoList,
   });
+  factory DescribePartnersOutputMessage.fromJson(Map<String, dynamic> json) {
+    return DescribePartnersOutputMessage(
+      partnerIntegrationInfoList: (json['PartnerIntegrationInfoList'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => PartnerIntegrationInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribePartnersOutputMessage.fromXml(_s.XmlElement elem) {
     return DescribePartnersOutputMessage(
       partnerIntegrationInfoList: _s
@@ -10988,6 +12232,14 @@ class DescribePartnersOutputMessage {
               .map((c) => PartnerIntegrationInfo.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final partnerIntegrationInfoList = this.partnerIntegrationInfoList;
+    return {
+      if (partnerIntegrationInfoList != null)
+        'PartnerIntegrationInfoList': partnerIntegrationInfoList,
+    };
   }
 }
 
@@ -11007,6 +12259,17 @@ class DescribeSnapshotSchedulesOutputMessage {
     this.marker,
     this.snapshotSchedules,
   });
+  factory DescribeSnapshotSchedulesOutputMessage.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeSnapshotSchedulesOutputMessage(
+      marker: json['Marker'] as String?,
+      snapshotSchedules: (json['SnapshotSchedules'] as List?)
+          ?.whereNotNull()
+          .map((e) => SnapshotSchedule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeSnapshotSchedulesOutputMessage.fromXml(_s.XmlElement elem) {
     return DescribeSnapshotSchedulesOutputMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -11017,6 +12280,15 @@ class DescribeSnapshotSchedulesOutputMessage {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final snapshotSchedules = this.snapshotSchedules;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (snapshotSchedules != null) 'SnapshotSchedules': snapshotSchedules,
+    };
+  }
 }
 
 class DisableSnapshotCopyResult {
@@ -11025,11 +12297,26 @@ class DisableSnapshotCopyResult {
   DisableSnapshotCopyResult({
     this.cluster,
   });
+  factory DisableSnapshotCopyResult.fromJson(Map<String, dynamic> json) {
+    return DisableSnapshotCopyResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DisableSnapshotCopyResult.fromXml(_s.XmlElement elem) {
     return DisableSnapshotCopyResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11054,6 +12341,18 @@ class EC2SecurityGroup {
     this.status,
     this.tags,
   });
+  factory EC2SecurityGroup.fromJson(Map<String, dynamic> json) {
+    return EC2SecurityGroup(
+      eC2SecurityGroupName: json['EC2SecurityGroupName'] as String?,
+      eC2SecurityGroupOwnerId: json['EC2SecurityGroupOwnerId'] as String?,
+      status: json['Status'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EC2SecurityGroup.fromXml(_s.XmlElement elem) {
     return EC2SecurityGroup(
       eC2SecurityGroupName:
@@ -11064,6 +12363,21 @@ class EC2SecurityGroup {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eC2SecurityGroupName = this.eC2SecurityGroupName;
+    final eC2SecurityGroupOwnerId = this.eC2SecurityGroupOwnerId;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (eC2SecurityGroupName != null)
+        'EC2SecurityGroupName': eC2SecurityGroupName,
+      if (eC2SecurityGroupOwnerId != null)
+        'EC2SecurityGroupOwnerId': eC2SecurityGroupOwnerId,
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11079,11 +12393,27 @@ class ElasticIpStatus {
     this.elasticIp,
     this.status,
   });
+  factory ElasticIpStatus.fromJson(Map<String, dynamic> json) {
+    return ElasticIpStatus(
+      elasticIp: json['ElasticIp'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory ElasticIpStatus.fromXml(_s.XmlElement elem) {
     return ElasticIpStatus(
       elasticIp: _s.extractXmlStringValue(elem, 'ElasticIp'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final elasticIp = this.elasticIp;
+    final status = this.status;
+    return {
+      if (elasticIp != null) 'ElasticIp': elasticIp,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -11093,11 +12423,26 @@ class EnableSnapshotCopyResult {
   EnableSnapshotCopyResult({
     this.cluster,
   });
+  factory EnableSnapshotCopyResult.fromJson(Map<String, dynamic> json) {
+    return EnableSnapshotCopyResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory EnableSnapshotCopyResult.fromXml(_s.XmlElement elem) {
     return EnableSnapshotCopyResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11117,6 +12462,17 @@ class Endpoint {
     this.port,
     this.vpcEndpoints,
   });
+  factory Endpoint.fromJson(Map<String, dynamic> json) {
+    return Endpoint(
+      address: json['Address'] as String?,
+      port: json['Port'] as int?,
+      vpcEndpoints: (json['VpcEndpoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => VpcEndpoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory Endpoint.fromXml(_s.XmlElement elem) {
     return Endpoint(
       address: _s.extractXmlStringValue(elem, 'Address'),
@@ -11126,6 +12482,17 @@ class Endpoint {
           .map((c) => VpcEndpoint.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    final vpcEndpoints = this.vpcEndpoints;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+      if (vpcEndpoints != null) 'VpcEndpoints': vpcEndpoints,
+    };
   }
 }
 
@@ -11171,6 +12538,27 @@ class EndpointAccess {
     this.vpcEndpoint,
     this.vpcSecurityGroups,
   });
+  factory EndpointAccess.fromJson(Map<String, dynamic> json) {
+    return EndpointAccess(
+      address: json['Address'] as String?,
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      endpointCreateTime: timeStampFromJson(json['EndpointCreateTime']),
+      endpointName: json['EndpointName'] as String?,
+      endpointStatus: json['EndpointStatus'] as String?,
+      port: json['Port'] as int?,
+      resourceOwner: json['ResourceOwner'] as String?,
+      subnetGroupName: json['SubnetGroupName'] as String?,
+      vpcEndpoint: json['VpcEndpoint'] != null
+          ? VpcEndpoint.fromJson(json['VpcEndpoint'] as Map<String, dynamic>)
+          : null,
+      vpcSecurityGroups: (json['VpcSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              VpcSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EndpointAccess.fromXml(_s.XmlElement elem) {
     return EndpointAccess(
       address: _s.extractXmlStringValue(elem, 'Address'),
@@ -11192,6 +12580,32 @@ class EndpointAccess {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final clusterIdentifier = this.clusterIdentifier;
+    final endpointCreateTime = this.endpointCreateTime;
+    final endpointName = this.endpointName;
+    final endpointStatus = this.endpointStatus;
+    final port = this.port;
+    final resourceOwner = this.resourceOwner;
+    final subnetGroupName = this.subnetGroupName;
+    final vpcEndpoint = this.vpcEndpoint;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (address != null) 'Address': address,
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (endpointCreateTime != null)
+        'EndpointCreateTime': unixTimestampToJson(endpointCreateTime),
+      if (endpointName != null) 'EndpointName': endpointName,
+      if (endpointStatus != null) 'EndpointStatus': endpointStatus,
+      if (port != null) 'Port': port,
+      if (resourceOwner != null) 'ResourceOwner': resourceOwner,
+      if (subnetGroupName != null) 'SubnetGroupName': subnetGroupName,
+      if (vpcEndpoint != null) 'VpcEndpoint': vpcEndpoint,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 class EndpointAccessList {
@@ -11208,6 +12622,16 @@ class EndpointAccessList {
     this.endpointAccessList,
     this.marker,
   });
+  factory EndpointAccessList.fromJson(Map<String, dynamic> json) {
+    return EndpointAccessList(
+      endpointAccessList: (json['EndpointAccessList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EndpointAccess.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EndpointAccessList.fromXml(_s.XmlElement elem) {
     return EndpointAccessList(
       endpointAccessList: _s.extractXmlChild(elem, 'EndpointAccessList')?.let(
@@ -11217,6 +12641,15 @@ class EndpointAccessList {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointAccessList = this.endpointAccessList;
+    final marker = this.marker;
+    return {
+      if (endpointAccessList != null) 'EndpointAccessList': endpointAccessList,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11262,6 +12695,23 @@ class EndpointAuthorization {
     this.grantor,
     this.status,
   });
+  factory EndpointAuthorization.fromJson(Map<String, dynamic> json) {
+    return EndpointAuthorization(
+      allowedAllVPCs: json['AllowedAllVPCs'] as bool?,
+      allowedVPCs: (json['AllowedVPCs'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      authorizeTime: timeStampFromJson(json['AuthorizeTime']),
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      clusterStatus: json['ClusterStatus'] as String?,
+      endpointCount: json['EndpointCount'] as int?,
+      grantee: json['Grantee'] as String?,
+      grantor: json['Grantor'] as String?,
+      status: (json['Status'] as String?)?.toAuthorizationStatus(),
+    );
+  }
+
   factory EndpointAuthorization.fromXml(_s.XmlElement elem) {
     return EndpointAuthorization(
       allowedAllVPCs: _s.extractXmlBoolValue(elem, 'AllowedAllVPCs'),
@@ -11276,6 +12726,30 @@ class EndpointAuthorization {
       grantor: _s.extractXmlStringValue(elem, 'Grantor'),
       status: _s.extractXmlStringValue(elem, 'Status')?.toAuthorizationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedAllVPCs = this.allowedAllVPCs;
+    final allowedVPCs = this.allowedVPCs;
+    final authorizeTime = this.authorizeTime;
+    final clusterIdentifier = this.clusterIdentifier;
+    final clusterStatus = this.clusterStatus;
+    final endpointCount = this.endpointCount;
+    final grantee = this.grantee;
+    final grantor = this.grantor;
+    final status = this.status;
+    return {
+      if (allowedAllVPCs != null) 'AllowedAllVPCs': allowedAllVPCs,
+      if (allowedVPCs != null) 'AllowedVPCs': allowedVPCs,
+      if (authorizeTime != null)
+        'AuthorizeTime': unixTimestampToJson(authorizeTime),
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (clusterStatus != null) 'ClusterStatus': clusterStatus,
+      if (endpointCount != null) 'EndpointCount': endpointCount,
+      if (grantee != null) 'Grantee': grantee,
+      if (grantor != null) 'Grantor': grantor,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -11293,6 +12767,16 @@ class EndpointAuthorizationList {
     this.endpointAuthorizationList,
     this.marker,
   });
+  factory EndpointAuthorizationList.fromJson(Map<String, dynamic> json) {
+    return EndpointAuthorizationList(
+      endpointAuthorizationList: (json['EndpointAuthorizationList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EndpointAuthorization.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EndpointAuthorizationList.fromXml(_s.XmlElement elem) {
     return EndpointAuthorizationList(
       endpointAuthorizationList: _s
@@ -11303,6 +12787,16 @@ class EndpointAuthorizationList {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointAuthorizationList = this.endpointAuthorizationList;
+    final marker = this.marker;
+    return {
+      if (endpointAuthorizationList != null)
+        'EndpointAuthorizationList': endpointAuthorizationList,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11342,6 +12836,21 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      date: timeStampFromJson(json['Date']),
+      eventCategories: (json['EventCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventId: json['EventId'] as String?,
+      message: json['Message'] as String?,
+      severity: json['Severity'] as String?,
+      sourceIdentifier: json['SourceIdentifier'] as String?,
+      sourceType: (json['SourceType'] as String?)?.toSourceType(),
+    );
+  }
+
   factory Event.fromXml(_s.XmlElement elem) {
     return Event(
       date: _s.extractXmlDateTimeValue(elem, 'Date'),
@@ -11354,6 +12863,25 @@ class Event {
       sourceIdentifier: _s.extractXmlStringValue(elem, 'SourceIdentifier'),
       sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final eventCategories = this.eventCategories;
+    final eventId = this.eventId;
+    final message = this.message;
+    final severity = this.severity;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (eventId != null) 'EventId': eventId,
+      if (message != null) 'Message': message,
+      if (severity != null) 'Severity': severity,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
   }
 }
 
@@ -11370,6 +12898,16 @@ class EventCategoriesMap {
     this.events,
     this.sourceType,
   });
+  factory EventCategoriesMap.fromJson(Map<String, dynamic> json) {
+    return EventCategoriesMap(
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventInfoMap.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      sourceType: json['SourceType'] as String?,
+    );
+  }
+
   factory EventCategoriesMap.fromXml(_s.XmlElement elem) {
     return EventCategoriesMap(
       events: _s.extractXmlChild(elem, 'Events')?.let((elem) => elem
@@ -11378,6 +12916,15 @@ class EventCategoriesMap {
           .toList()),
       sourceType: _s.extractXmlStringValue(elem, 'SourceType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final sourceType = this.sourceType;
+    return {
+      if (events != null) 'Events': events,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -11389,6 +12936,15 @@ class EventCategoriesMessage {
   EventCategoriesMessage({
     this.eventCategoriesMapList,
   });
+  factory EventCategoriesMessage.fromJson(Map<String, dynamic> json) {
+    return EventCategoriesMessage(
+      eventCategoriesMapList: (json['EventCategoriesMapList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventCategoriesMap.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EventCategoriesMessage.fromXml(_s.XmlElement elem) {
     return EventCategoriesMessage(
       eventCategoriesMapList: _s
@@ -11398,6 +12954,14 @@ class EventCategoriesMessage {
               .map((c) => EventCategoriesMap.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategoriesMapList = this.eventCategoriesMapList;
+    return {
+      if (eventCategoriesMapList != null)
+        'EventCategoriesMapList': eventCategoriesMapList,
+    };
   }
 }
 
@@ -11423,6 +12987,18 @@ class EventInfoMap {
     this.eventId,
     this.severity,
   });
+  factory EventInfoMap.fromJson(Map<String, dynamic> json) {
+    return EventInfoMap(
+      eventCategories: (json['EventCategories'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      eventDescription: json['EventDescription'] as String?,
+      eventId: json['EventId'] as String?,
+      severity: json['Severity'] as String?,
+    );
+  }
+
   factory EventInfoMap.fromXml(_s.XmlElement elem) {
     return EventInfoMap(
       eventCategories: _s
@@ -11432,6 +13008,19 @@ class EventInfoMap {
       eventId: _s.extractXmlStringValue(elem, 'EventId'),
       severity: _s.extractXmlStringValue(elem, 'Severity'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategories = this.eventCategories;
+    final eventDescription = this.eventDescription;
+    final eventId = this.eventId;
+    final severity = this.severity;
+    return {
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (eventDescription != null) 'EventDescription': eventDescription,
+      if (eventId != null) 'EventId': eventId,
+      if (severity != null) 'Severity': severity,
+    };
   }
 }
 
@@ -11509,6 +13098,32 @@ class EventSubscription {
     this.subscriptionCreationTime,
     this.tags,
   });
+  factory EventSubscription.fromJson(Map<String, dynamic> json) {
+    return EventSubscription(
+      custSubscriptionId: json['CustSubscriptionId'] as String?,
+      customerAwsId: json['CustomerAwsId'] as String?,
+      enabled: json['Enabled'] as bool?,
+      eventCategoriesList: (json['EventCategoriesList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      severity: json['Severity'] as String?,
+      snsTopicArn: json['SnsTopicArn'] as String?,
+      sourceIdsList: (json['SourceIdsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      sourceType: json['SourceType'] as String?,
+      status: json['Status'] as String?,
+      subscriptionCreationTime:
+          timeStampFromJson(json['SubscriptionCreationTime']),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EventSubscription.fromXml(_s.XmlElement elem) {
     return EventSubscription(
       custSubscriptionId: _s.extractXmlStringValue(elem, 'CustSubscriptionId'),
@@ -11530,6 +13145,36 @@ class EventSubscription {
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final custSubscriptionId = this.custSubscriptionId;
+    final customerAwsId = this.customerAwsId;
+    final enabled = this.enabled;
+    final eventCategoriesList = this.eventCategoriesList;
+    final severity = this.severity;
+    final snsTopicArn = this.snsTopicArn;
+    final sourceIdsList = this.sourceIdsList;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final subscriptionCreationTime = this.subscriptionCreationTime;
+    final tags = this.tags;
+    return {
+      if (custSubscriptionId != null) 'CustSubscriptionId': custSubscriptionId,
+      if (customerAwsId != null) 'CustomerAwsId': customerAwsId,
+      if (enabled != null) 'Enabled': enabled,
+      if (eventCategoriesList != null)
+        'EventCategoriesList': eventCategoriesList,
+      if (severity != null) 'Severity': severity,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (sourceIdsList != null) 'SourceIdsList': sourceIdsList,
+      if (sourceType != null) 'SourceType': sourceType,
+      if (status != null) 'Status': status,
+      if (subscriptionCreationTime != null)
+        'SubscriptionCreationTime':
+            unixTimestampToJson(subscriptionCreationTime),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// <p/>
@@ -11549,6 +13194,16 @@ class EventSubscriptionsMessage {
     this.eventSubscriptionsList,
     this.marker,
   });
+  factory EventSubscriptionsMessage.fromJson(Map<String, dynamic> json) {
+    return EventSubscriptionsMessage(
+      eventSubscriptionsList: (json['EventSubscriptionsList'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventSubscription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EventSubscriptionsMessage.fromXml(_s.XmlElement elem) {
     return EventSubscriptionsMessage(
       eventSubscriptionsList: _s
@@ -11559,6 +13214,16 @@ class EventSubscriptionsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscriptionsList = this.eventSubscriptionsList;
+    final marker = this.marker;
+    return {
+      if (eventSubscriptionsList != null)
+        'EventSubscriptionsList': eventSubscriptionsList,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11579,12 +13244,31 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+  factory EventsMessage.fromJson(Map<String, dynamic> json) {
+    return EventsMessage(
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) => Event.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EventsMessage.fromXml(_s.XmlElement elem) {
     return EventsMessage(
       events: _s.extractXmlChild(elem, 'Events')?.let((elem) =>
           elem.findElements('Event').map((c) => Event.fromXml(c)).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11605,6 +13289,17 @@ class GetReservedNodeExchangeOfferingsOutputMessage {
     this.marker,
     this.reservedNodeOfferings,
   });
+  factory GetReservedNodeExchangeOfferingsOutputMessage.fromJson(
+      Map<String, dynamic> json) {
+    return GetReservedNodeExchangeOfferingsOutputMessage(
+      marker: json['Marker'] as String?,
+      reservedNodeOfferings: (json['ReservedNodeOfferings'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReservedNodeOffering.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory GetReservedNodeExchangeOfferingsOutputMessage.fromXml(
       _s.XmlElement elem) {
     return GetReservedNodeExchangeOfferingsOutputMessage(
@@ -11616,6 +13311,16 @@ class GetReservedNodeExchangeOfferingsOutputMessage {
               .map((c) => ReservedNodeOffering.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedNodeOfferings = this.reservedNodeOfferings;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedNodeOfferings != null)
+        'ReservedNodeOfferings': reservedNodeOfferings,
+    };
   }
 }
 
@@ -11638,6 +13343,19 @@ class HsmClientCertificate {
     this.hsmClientCertificatePublicKey,
     this.tags,
   });
+  factory HsmClientCertificate.fromJson(Map<String, dynamic> json) {
+    return HsmClientCertificate(
+      hsmClientCertificateIdentifier:
+          json['HsmClientCertificateIdentifier'] as String?,
+      hsmClientCertificatePublicKey:
+          json['HsmClientCertificatePublicKey'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory HsmClientCertificate.fromXml(_s.XmlElement elem) {
     return HsmClientCertificate(
       hsmClientCertificateIdentifier:
@@ -11647,6 +13365,19 @@ class HsmClientCertificate {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmClientCertificateIdentifier = this.hsmClientCertificateIdentifier;
+    final hsmClientCertificatePublicKey = this.hsmClientCertificatePublicKey;
+    final tags = this.tags;
+    return {
+      if (hsmClientCertificateIdentifier != null)
+        'HsmClientCertificateIdentifier': hsmClientCertificateIdentifier,
+      if (hsmClientCertificatePublicKey != null)
+        'HsmClientCertificatePublicKey': hsmClientCertificatePublicKey,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11669,6 +13400,16 @@ class HsmClientCertificateMessage {
     this.hsmClientCertificates,
     this.marker,
   });
+  factory HsmClientCertificateMessage.fromJson(Map<String, dynamic> json) {
+    return HsmClientCertificateMessage(
+      hsmClientCertificates: (json['HsmClientCertificates'] as List?)
+          ?.whereNotNull()
+          .map((e) => HsmClientCertificate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory HsmClientCertificateMessage.fromXml(_s.XmlElement elem) {
     return HsmClientCertificateMessage(
       hsmClientCertificates: _s
@@ -11679,6 +13420,16 @@ class HsmClientCertificateMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmClientCertificates = this.hsmClientCertificates;
+    final marker = this.marker;
+    return {
+      if (hsmClientCertificates != null)
+        'HsmClientCertificates': hsmClientCertificates,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11709,6 +13460,19 @@ class HsmConfiguration {
     this.hsmPartitionName,
     this.tags,
   });
+  factory HsmConfiguration.fromJson(Map<String, dynamic> json) {
+    return HsmConfiguration(
+      description: json['Description'] as String?,
+      hsmConfigurationIdentifier: json['HsmConfigurationIdentifier'] as String?,
+      hsmIpAddress: json['HsmIpAddress'] as String?,
+      hsmPartitionName: json['HsmPartitionName'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory HsmConfiguration.fromXml(_s.XmlElement elem) {
     return HsmConfiguration(
       description: _s.extractXmlStringValue(elem, 'Description'),
@@ -11719,6 +13483,22 @@ class HsmConfiguration {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final hsmConfigurationIdentifier = this.hsmConfigurationIdentifier;
+    final hsmIpAddress = this.hsmIpAddress;
+    final hsmPartitionName = this.hsmPartitionName;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (hsmConfigurationIdentifier != null)
+        'HsmConfigurationIdentifier': hsmConfigurationIdentifier,
+      if (hsmIpAddress != null) 'HsmIpAddress': hsmIpAddress,
+      if (hsmPartitionName != null) 'HsmPartitionName': hsmPartitionName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11739,6 +13519,16 @@ class HsmConfigurationMessage {
     this.hsmConfigurations,
     this.marker,
   });
+  factory HsmConfigurationMessage.fromJson(Map<String, dynamic> json) {
+    return HsmConfigurationMessage(
+      hsmConfigurations: (json['HsmConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => HsmConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory HsmConfigurationMessage.fromXml(_s.XmlElement elem) {
     return HsmConfigurationMessage(
       hsmConfigurations: _s.extractXmlChild(elem, 'HsmConfigurations')?.let(
@@ -11748,6 +13538,15 @@ class HsmConfigurationMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmConfigurations = this.hsmConfigurations;
+    final marker = this.marker;
+    return {
+      if (hsmConfigurations != null) 'HsmConfigurations': hsmConfigurations,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -11772,6 +13571,15 @@ class HsmStatus {
     this.hsmConfigurationIdentifier,
     this.status,
   });
+  factory HsmStatus.fromJson(Map<String, dynamic> json) {
+    return HsmStatus(
+      hsmClientCertificateIdentifier:
+          json['HsmClientCertificateIdentifier'] as String?,
+      hsmConfigurationIdentifier: json['HsmConfigurationIdentifier'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory HsmStatus.fromXml(_s.XmlElement elem) {
     return HsmStatus(
       hsmClientCertificateIdentifier:
@@ -11780,6 +13588,19 @@ class HsmStatus {
           _s.extractXmlStringValue(elem, 'HsmConfigurationIdentifier'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmClientCertificateIdentifier = this.hsmClientCertificateIdentifier;
+    final hsmConfigurationIdentifier = this.hsmConfigurationIdentifier;
+    final status = this.status;
+    return {
+      if (hsmClientCertificateIdentifier != null)
+        'HsmClientCertificateIdentifier': hsmClientCertificateIdentifier,
+      if (hsmConfigurationIdentifier != null)
+        'HsmConfigurationIdentifier': hsmConfigurationIdentifier,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -11799,6 +13620,17 @@ class IPRange {
     this.status,
     this.tags,
   });
+  factory IPRange.fromJson(Map<String, dynamic> json) {
+    return IPRange(
+      cidrip: json['CIDRIP'] as String?,
+      status: json['Status'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory IPRange.fromXml(_s.XmlElement elem) {
     return IPRange(
       cidrip: _s.extractXmlStringValue(elem, 'CIDRIP'),
@@ -11806,6 +13638,17 @@ class IPRange {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrip = this.cidrip;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (cidrip != null) 'CIDRIP': cidrip,
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11837,6 +13680,18 @@ class LoggingStatus {
     this.loggingEnabled,
     this.s3KeyPrefix,
   });
+  factory LoggingStatus.fromJson(Map<String, dynamic> json) {
+    return LoggingStatus(
+      bucketName: json['BucketName'] as String?,
+      lastFailureMessage: json['LastFailureMessage'] as String?,
+      lastFailureTime: timeStampFromJson(json['LastFailureTime']),
+      lastSuccessfulDeliveryTime:
+          timeStampFromJson(json['LastSuccessfulDeliveryTime']),
+      loggingEnabled: json['LoggingEnabled'] as bool?,
+      s3KeyPrefix: json['S3KeyPrefix'] as String?,
+    );
+  }
+
   factory LoggingStatus.fromXml(_s.XmlElement elem) {
     return LoggingStatus(
       bucketName: _s.extractXmlStringValue(elem, 'BucketName'),
@@ -11847,6 +13702,26 @@ class LoggingStatus {
       loggingEnabled: _s.extractXmlBoolValue(elem, 'LoggingEnabled'),
       s3KeyPrefix: _s.extractXmlStringValue(elem, 'S3KeyPrefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final lastFailureMessage = this.lastFailureMessage;
+    final lastFailureTime = this.lastFailureTime;
+    final lastSuccessfulDeliveryTime = this.lastSuccessfulDeliveryTime;
+    final loggingEnabled = this.loggingEnabled;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    return {
+      if (bucketName != null) 'BucketName': bucketName,
+      if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
+      if (lastFailureTime != null)
+        'LastFailureTime': unixTimestampToJson(lastFailureTime),
+      if (lastSuccessfulDeliveryTime != null)
+        'LastSuccessfulDeliveryTime':
+            unixTimestampToJson(lastSuccessfulDeliveryTime),
+      if (loggingEnabled != null) 'LoggingEnabled': loggingEnabled,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+    };
   }
 }
 
@@ -11873,6 +13748,17 @@ class MaintenanceTrack {
     this.maintenanceTrackName,
     this.updateTargets,
   });
+  factory MaintenanceTrack.fromJson(Map<String, dynamic> json) {
+    return MaintenanceTrack(
+      databaseVersion: json['DatabaseVersion'] as String?,
+      maintenanceTrackName: json['MaintenanceTrackName'] as String?,
+      updateTargets: (json['UpdateTargets'] as List?)
+          ?.whereNotNull()
+          .map((e) => UpdateTarget.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory MaintenanceTrack.fromXml(_s.XmlElement elem) {
     return MaintenanceTrack(
       databaseVersion: _s.extractXmlStringValue(elem, 'DatabaseVersion'),
@@ -11884,6 +13770,18 @@ class MaintenanceTrack {
               .map((c) => UpdateTarget.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseVersion = this.databaseVersion;
+    final maintenanceTrackName = this.maintenanceTrackName;
+    final updateTargets = this.updateTargets;
+    return {
+      if (databaseVersion != null) 'DatabaseVersion': databaseVersion,
+      if (maintenanceTrackName != null)
+        'MaintenanceTrackName': maintenanceTrackName,
+      if (updateTargets != null) 'UpdateTargets': updateTargets,
+    };
   }
 }
 
@@ -11922,12 +13820,28 @@ class ModifyAquaOutputMessage {
   ModifyAquaOutputMessage({
     this.aquaConfiguration,
   });
+  factory ModifyAquaOutputMessage.fromJson(Map<String, dynamic> json) {
+    return ModifyAquaOutputMessage(
+      aquaConfiguration: json['AquaConfiguration'] != null
+          ? AquaConfiguration.fromJson(
+              json['AquaConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyAquaOutputMessage.fromXml(_s.XmlElement elem) {
     return ModifyAquaOutputMessage(
       aquaConfiguration: _s
           .extractXmlChild(elem, 'AquaConfiguration')
           ?.let((e) => AquaConfiguration.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aquaConfiguration = this.aquaConfiguration;
+    return {
+      if (aquaConfiguration != null) 'AquaConfiguration': aquaConfiguration,
+    };
   }
 }
 
@@ -11937,11 +13851,26 @@ class ModifyClusterDbRevisionResult {
   ModifyClusterDbRevisionResult({
     this.cluster,
   });
+  factory ModifyClusterDbRevisionResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterDbRevisionResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterDbRevisionResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterDbRevisionResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11951,11 +13880,26 @@ class ModifyClusterIamRolesResult {
   ModifyClusterIamRolesResult({
     this.cluster,
   });
+  factory ModifyClusterIamRolesResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterIamRolesResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterIamRolesResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterIamRolesResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11965,11 +13909,26 @@ class ModifyClusterMaintenanceResult {
   ModifyClusterMaintenanceResult({
     this.cluster,
   });
+  factory ModifyClusterMaintenanceResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterMaintenanceResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterMaintenanceResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterMaintenanceResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11979,11 +13938,26 @@ class ModifyClusterResult {
   ModifyClusterResult({
     this.cluster,
   });
+  factory ModifyClusterResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -11993,11 +13967,26 @@ class ModifyClusterSnapshotResult {
   ModifyClusterSnapshotResult({
     this.snapshot,
   });
+  factory ModifyClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -12007,12 +13996,28 @@ class ModifyClusterSubnetGroupResult {
   ModifyClusterSubnetGroupResult({
     this.clusterSubnetGroup,
   });
+  factory ModifyClusterSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return ModifyClusterSubnetGroupResult(
+      clusterSubnetGroup: json['ClusterSubnetGroup'] != null
+          ? ClusterSubnetGroup.fromJson(
+              json['ClusterSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyClusterSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return ModifyClusterSubnetGroupResult(
       clusterSubnetGroup: _s
           .extractXmlChild(elem, 'ClusterSubnetGroup')
           ?.let((e) => ClusterSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSubnetGroup = this.clusterSubnetGroup;
+    return {
+      if (clusterSubnetGroup != null) 'ClusterSubnetGroup': clusterSubnetGroup,
+    };
   }
 }
 
@@ -12022,12 +14027,28 @@ class ModifyEventSubscriptionResult {
   ModifyEventSubscriptionResult({
     this.eventSubscription,
   });
+  factory ModifyEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
+    return ModifyEventSubscriptionResult(
+      eventSubscription: json['EventSubscription'] != null
+          ? EventSubscription.fromJson(
+              json['EventSubscription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyEventSubscriptionResult.fromXml(_s.XmlElement elem) {
     return ModifyEventSubscriptionResult(
       eventSubscription: _s
           .extractXmlChild(elem, 'EventSubscription')
           ?.let((e) => EventSubscription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -12037,11 +14058,27 @@ class ModifySnapshotCopyRetentionPeriodResult {
   ModifySnapshotCopyRetentionPeriodResult({
     this.cluster,
   });
+  factory ModifySnapshotCopyRetentionPeriodResult.fromJson(
+      Map<String, dynamic> json) {
+    return ModifySnapshotCopyRetentionPeriodResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifySnapshotCopyRetentionPeriodResult.fromXml(_s.XmlElement elem) {
     return ModifySnapshotCopyRetentionPeriodResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -12065,6 +14102,15 @@ class NetworkInterface {
     this.privateIpAddress,
     this.subnetId,
   });
+  factory NetworkInterface.fromJson(Map<String, dynamic> json) {
+    return NetworkInterface(
+      availabilityZone: json['AvailabilityZone'] as String?,
+      networkInterfaceId: json['NetworkInterfaceId'] as String?,
+      privateIpAddress: json['PrivateIpAddress'] as String?,
+      subnetId: json['SubnetId'] as String?,
+    );
+  }
+
   factory NetworkInterface.fromXml(_s.XmlElement elem) {
     return NetworkInterface(
       availabilityZone: _s.extractXmlStringValue(elem, 'AvailabilityZone'),
@@ -12072,6 +14118,19 @@ class NetworkInterface {
       privateIpAddress: _s.extractXmlStringValue(elem, 'PrivateIpAddress'),
       subnetId: _s.extractXmlStringValue(elem, 'SubnetId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final subnetId = this.subnetId;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
   }
 }
 
@@ -12095,6 +14154,16 @@ class NodeConfigurationOption {
     this.nodeType,
     this.numberOfNodes,
   });
+  factory NodeConfigurationOption.fromJson(Map<String, dynamic> json) {
+    return NodeConfigurationOption(
+      estimatedDiskUtilizationPercent:
+          json['EstimatedDiskUtilizationPercent'] as double?,
+      mode: (json['Mode'] as String?)?.toMode(),
+      nodeType: json['NodeType'] as String?,
+      numberOfNodes: json['NumberOfNodes'] as int?,
+    );
+  }
+
   factory NodeConfigurationOption.fromXml(_s.XmlElement elem) {
     return NodeConfigurationOption(
       estimatedDiskUtilizationPercent:
@@ -12103,6 +14172,21 @@ class NodeConfigurationOption {
       nodeType: _s.extractXmlStringValue(elem, 'NodeType'),
       numberOfNodes: _s.extractXmlIntValue(elem, 'NumberOfNodes'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimatedDiskUtilizationPercent =
+        this.estimatedDiskUtilizationPercent;
+    final mode = this.mode;
+    final nodeType = this.nodeType;
+    final numberOfNodes = this.numberOfNodes;
+    return {
+      if (estimatedDiskUtilizationPercent != null)
+        'EstimatedDiskUtilizationPercent': estimatedDiskUtilizationPercent,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numberOfNodes != null) 'NumberOfNodes': numberOfNodes,
+    };
   }
 }
 
@@ -12128,6 +14212,17 @@ class NodeConfigurationOptionsFilter {
     this.operator,
     this.values,
   });
+  factory NodeConfigurationOptionsFilter.fromJson(Map<String, dynamic> json) {
+    return NodeConfigurationOptionsFilter(
+      name: (json['Name'] as String?)?.toNodeConfigurationOptionsFilterName(),
+      operator: (json['Operator'] as String?)?.toOperatorType(),
+      values: (json['Value'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -12196,6 +14291,18 @@ class NodeConfigurationOptionsMessage {
     this.marker,
     this.nodeConfigurationOptionList,
   });
+  factory NodeConfigurationOptionsMessage.fromJson(Map<String, dynamic> json) {
+    return NodeConfigurationOptionsMessage(
+      marker: json['Marker'] as String?,
+      nodeConfigurationOptionList:
+          (json['NodeConfigurationOptionList'] as List?)
+              ?.whereNotNull()
+              .map((e) =>
+                  NodeConfigurationOption.fromJson(e as Map<String, dynamic>))
+              .toList(),
+    );
+  }
+
   factory NodeConfigurationOptionsMessage.fromXml(_s.XmlElement elem) {
     return NodeConfigurationOptionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -12206,6 +14313,16 @@ class NodeConfigurationOptionsMessage {
               .map((c) => NodeConfigurationOption.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final nodeConfigurationOptionList = this.nodeConfigurationOptionList;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (nodeConfigurationOptionList != null)
+        'NodeConfigurationOptionList': nodeConfigurationOptionList,
+    };
   }
 }
 
@@ -12282,6 +14399,18 @@ class OrderableClusterOption {
     this.clusterVersion,
     this.nodeType,
   });
+  factory OrderableClusterOption.fromJson(Map<String, dynamic> json) {
+    return OrderableClusterOption(
+      availabilityZones: (json['AvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => AvailabilityZone.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      clusterType: json['ClusterType'] as String?,
+      clusterVersion: json['ClusterVersion'] as String?,
+      nodeType: json['NodeType'] as String?,
+    );
+  }
+
   factory OrderableClusterOption.fromXml(_s.XmlElement elem) {
     return OrderableClusterOption(
       availabilityZones: _s.extractXmlChild(elem, 'AvailabilityZones')?.let(
@@ -12293,6 +14422,19 @@ class OrderableClusterOption {
       clusterVersion: _s.extractXmlStringValue(elem, 'ClusterVersion'),
       nodeType: _s.extractXmlStringValue(elem, 'NodeType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final clusterType = this.clusterType;
+    final clusterVersion = this.clusterVersion;
+    final nodeType = this.nodeType;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (clusterType != null) 'ClusterType': clusterType,
+      if (clusterVersion != null) 'ClusterVersion': clusterVersion,
+      if (nodeType != null) 'NodeType': nodeType,
+    };
   }
 }
 
@@ -12314,6 +14456,17 @@ class OrderableClusterOptionsMessage {
     this.marker,
     this.orderableClusterOptions,
   });
+  factory OrderableClusterOptionsMessage.fromJson(Map<String, dynamic> json) {
+    return OrderableClusterOptionsMessage(
+      marker: json['Marker'] as String?,
+      orderableClusterOptions: (json['OrderableClusterOptions'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => OrderableClusterOption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory OrderableClusterOptionsMessage.fromXml(_s.XmlElement elem) {
     return OrderableClusterOptionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -12324,6 +14477,16 @@ class OrderableClusterOptionsMessage {
               .map((c) => OrderableClusterOption.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final orderableClusterOptions = this.orderableClusterOptions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (orderableClusterOptions != null)
+        'OrderableClusterOptions': orderableClusterOptions,
+    };
   }
 }
 
@@ -12376,6 +14539,20 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+  factory Parameter.fromJson(Map<String, dynamic> json) {
+    return Parameter(
+      allowedValues: json['AllowedValues'] as String?,
+      applyType: (json['ApplyType'] as String?)?.toParameterApplyType(),
+      dataType: json['DataType'] as String?,
+      description: json['Description'] as String?,
+      isModifiable: json['IsModifiable'] as bool?,
+      minimumEngineVersion: json['MinimumEngineVersion'] as String?,
+      parameterName: json['ParameterName'] as String?,
+      parameterValue: json['ParameterValue'] as String?,
+      source: json['Source'] as String?,
+    );
+  }
+
   factory Parameter.fromXml(_s.XmlElement elem) {
     return Parameter(
       allowedValues: _s.extractXmlStringValue(elem, 'AllowedValues'),
@@ -12474,6 +14651,17 @@ class PartnerIntegrationInfo {
     this.statusMessage,
     this.updatedAt,
   });
+  factory PartnerIntegrationInfo.fromJson(Map<String, dynamic> json) {
+    return PartnerIntegrationInfo(
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      databaseName: json['DatabaseName'] as String?,
+      partnerName: json['PartnerName'] as String?,
+      status: (json['Status'] as String?)?.toPartnerIntegrationStatus(),
+      statusMessage: json['StatusMessage'] as String?,
+      updatedAt: timeStampFromJson(json['UpdatedAt']),
+    );
+  }
+
   factory PartnerIntegrationInfo.fromXml(_s.XmlElement elem) {
     return PartnerIntegrationInfo(
       createdAt: _s.extractXmlDateTimeValue(elem, 'CreatedAt'),
@@ -12485,6 +14673,23 @@ class PartnerIntegrationInfo {
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
       updatedAt: _s.extractXmlDateTimeValue(elem, 'UpdatedAt'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final databaseName = this.databaseName;
+    final partnerName = this.partnerName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (partnerName != null) 'PartnerName': partnerName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -12499,11 +14704,27 @@ class PartnerIntegrationOutputMessage {
     this.databaseName,
     this.partnerName,
   });
+  factory PartnerIntegrationOutputMessage.fromJson(Map<String, dynamic> json) {
+    return PartnerIntegrationOutputMessage(
+      databaseName: json['DatabaseName'] as String?,
+      partnerName: json['PartnerName'] as String?,
+    );
+  }
+
   factory PartnerIntegrationOutputMessage.fromXml(_s.XmlElement elem) {
     return PartnerIntegrationOutputMessage(
       databaseName: _s.extractXmlStringValue(elem, 'DatabaseName'),
       partnerName: _s.extractXmlStringValue(elem, 'PartnerName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseName = this.databaseName;
+    final partnerName = this.partnerName;
+    return {
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (partnerName != null) 'PartnerName': partnerName,
+    };
   }
 }
 
@@ -12554,6 +14775,12 @@ class PauseClusterMessage {
   PauseClusterMessage({
     required this.clusterIdentifier,
   });
+  factory PauseClusterMessage.fromJson(Map<String, dynamic> json) {
+    return PauseClusterMessage(
+      clusterIdentifier: json['ClusterIdentifier'] as String,
+    );
+  }
+
   factory PauseClusterMessage.fromXml(_s.XmlElement elem) {
     return PauseClusterMessage(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier')!,
@@ -12574,11 +14801,26 @@ class PauseClusterResult {
   PauseClusterResult({
     this.cluster,
   });
+  factory PauseClusterResult.fromJson(Map<String, dynamic> json) {
+    return PauseClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory PauseClusterResult.fromXml(_s.XmlElement elem) {
     return PauseClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -12643,6 +14885,23 @@ class PendingModifiedValues {
     this.numberOfNodes,
     this.publiclyAccessible,
   });
+  factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
+    return PendingModifiedValues(
+      automatedSnapshotRetentionPeriod:
+          json['AutomatedSnapshotRetentionPeriod'] as int?,
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      clusterType: json['ClusterType'] as String?,
+      clusterVersion: json['ClusterVersion'] as String?,
+      encryptionType: json['EncryptionType'] as String?,
+      enhancedVpcRouting: json['EnhancedVpcRouting'] as bool?,
+      maintenanceTrackName: json['MaintenanceTrackName'] as String?,
+      masterUserPassword: json['MasterUserPassword'] as String?,
+      nodeType: json['NodeType'] as String?,
+      numberOfNodes: json['NumberOfNodes'] as int?,
+      publiclyAccessible: json['PubliclyAccessible'] as bool?,
+    );
+  }
+
   factory PendingModifiedValues.fromXml(_s.XmlElement elem) {
     return PendingModifiedValues(
       automatedSnapshotRetentionPeriod:
@@ -12660,6 +14919,36 @@ class PendingModifiedValues {
       publiclyAccessible: _s.extractXmlBoolValue(elem, 'PubliclyAccessible'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automatedSnapshotRetentionPeriod =
+        this.automatedSnapshotRetentionPeriod;
+    final clusterIdentifier = this.clusterIdentifier;
+    final clusterType = this.clusterType;
+    final clusterVersion = this.clusterVersion;
+    final encryptionType = this.encryptionType;
+    final enhancedVpcRouting = this.enhancedVpcRouting;
+    final maintenanceTrackName = this.maintenanceTrackName;
+    final masterUserPassword = this.masterUserPassword;
+    final nodeType = this.nodeType;
+    final numberOfNodes = this.numberOfNodes;
+    final publiclyAccessible = this.publiclyAccessible;
+    return {
+      if (automatedSnapshotRetentionPeriod != null)
+        'AutomatedSnapshotRetentionPeriod': automatedSnapshotRetentionPeriod,
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (clusterType != null) 'ClusterType': clusterType,
+      if (clusterVersion != null) 'ClusterVersion': clusterVersion,
+      if (encryptionType != null) 'EncryptionType': encryptionType,
+      if (enhancedVpcRouting != null) 'EnhancedVpcRouting': enhancedVpcRouting,
+      if (maintenanceTrackName != null)
+        'MaintenanceTrackName': maintenanceTrackName,
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numberOfNodes != null) 'NumberOfNodes': numberOfNodes,
+      if (publiclyAccessible != null) 'PubliclyAccessible': publiclyAccessible,
+    };
+  }
 }
 
 class PurchaseReservedNodeOfferingResult {
@@ -12668,12 +14957,28 @@ class PurchaseReservedNodeOfferingResult {
   PurchaseReservedNodeOfferingResult({
     this.reservedNode,
   });
+  factory PurchaseReservedNodeOfferingResult.fromJson(
+      Map<String, dynamic> json) {
+    return PurchaseReservedNodeOfferingResult(
+      reservedNode: json['ReservedNode'] != null
+          ? ReservedNode.fromJson(json['ReservedNode'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory PurchaseReservedNodeOfferingResult.fromXml(_s.XmlElement elem) {
     return PurchaseReservedNodeOfferingResult(
       reservedNode: _s
           .extractXmlChild(elem, 'ReservedNode')
           ?.let((e) => ReservedNode.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservedNode = this.reservedNode;
+    return {
+      if (reservedNode != null) 'ReservedNode': reservedNode,
+    };
   }
 }
 
@@ -12683,11 +14988,26 @@ class RebootClusterResult {
   RebootClusterResult({
     this.cluster,
   });
+  factory RebootClusterResult.fromJson(Map<String, dynamic> json) {
+    return RebootClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RebootClusterResult.fromXml(_s.XmlElement elem) {
     return RebootClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -12704,6 +15024,13 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+  factory RecurringCharge.fromJson(Map<String, dynamic> json) {
+    return RecurringCharge(
+      recurringChargeAmount: json['RecurringChargeAmount'] as double?,
+      recurringChargeFrequency: json['RecurringChargeFrequency'] as String?,
+    );
+  }
+
   factory RecurringCharge.fromXml(_s.XmlElement elem) {
     return RecurringCharge(
       recurringChargeAmount:
@@ -12711,6 +15038,17 @@ class RecurringCharge {
       recurringChargeFrequency:
           _s.extractXmlStringValue(elem, 'RecurringChargeFrequency'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recurringChargeAmount = this.recurringChargeAmount;
+    final recurringChargeFrequency = this.recurringChargeFrequency;
+    return {
+      if (recurringChargeAmount != null)
+        'RecurringChargeAmount': recurringChargeAmount,
+      if (recurringChargeFrequency != null)
+        'RecurringChargeFrequency': recurringChargeFrequency,
+    };
   }
 }
 
@@ -12796,6 +15134,28 @@ class ReservedNode {
     this.state,
     this.usagePrice,
   });
+  factory ReservedNode.fromJson(Map<String, dynamic> json) {
+    return ReservedNode(
+      currencyCode: json['CurrencyCode'] as String?,
+      duration: json['Duration'] as int?,
+      fixedPrice: json['FixedPrice'] as double?,
+      nodeCount: json['NodeCount'] as int?,
+      nodeType: json['NodeType'] as String?,
+      offeringType: json['OfferingType'] as String?,
+      recurringCharges: (json['RecurringCharges'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecurringCharge.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reservedNodeId: json['ReservedNodeId'] as String?,
+      reservedNodeOfferingId: json['ReservedNodeOfferingId'] as String?,
+      reservedNodeOfferingType: (json['ReservedNodeOfferingType'] as String?)
+          ?.toReservedNodeOfferingType(),
+      startTime: timeStampFromJson(json['StartTime']),
+      state: json['State'] as String?,
+      usagePrice: json['UsagePrice'] as double?,
+    );
+  }
+
   factory ReservedNode.fromXml(_s.XmlElement elem) {
     return ReservedNode(
       currencyCode: _s.extractXmlStringValue(elem, 'CurrencyCode'),
@@ -12819,6 +15179,39 @@ class ReservedNode {
       state: _s.extractXmlStringValue(elem, 'State'),
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final nodeCount = this.nodeCount;
+    final nodeType = this.nodeType;
+    final offeringType = this.offeringType;
+    final recurringCharges = this.recurringCharges;
+    final reservedNodeId = this.reservedNodeId;
+    final reservedNodeOfferingId = this.reservedNodeOfferingId;
+    final reservedNodeOfferingType = this.reservedNodeOfferingType;
+    final startTime = this.startTime;
+    final state = this.state;
+    final usagePrice = this.usagePrice;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (nodeCount != null) 'NodeCount': nodeCount,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservedNodeId != null) 'ReservedNodeId': reservedNodeId,
+      if (reservedNodeOfferingId != null)
+        'ReservedNodeOfferingId': reservedNodeOfferingId,
+      if (reservedNodeOfferingType != null)
+        'ReservedNodeOfferingType': reservedNodeOfferingType.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
   }
 }
 
@@ -12867,6 +15260,24 @@ class ReservedNodeOffering {
     this.reservedNodeOfferingType,
     this.usagePrice,
   });
+  factory ReservedNodeOffering.fromJson(Map<String, dynamic> json) {
+    return ReservedNodeOffering(
+      currencyCode: json['CurrencyCode'] as String?,
+      duration: json['Duration'] as int?,
+      fixedPrice: json['FixedPrice'] as double?,
+      nodeType: json['NodeType'] as String?,
+      offeringType: json['OfferingType'] as String?,
+      recurringCharges: (json['RecurringCharges'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecurringCharge.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reservedNodeOfferingId: json['ReservedNodeOfferingId'] as String?,
+      reservedNodeOfferingType: (json['ReservedNodeOfferingType'] as String?)
+          ?.toReservedNodeOfferingType(),
+      usagePrice: json['UsagePrice'] as double?,
+    );
+  }
+
   factory ReservedNodeOffering.fromXml(_s.XmlElement elem) {
     return ReservedNodeOffering(
       currencyCode: _s.extractXmlStringValue(elem, 'CurrencyCode'),
@@ -12886,6 +15297,31 @@ class ReservedNodeOffering {
           ?.toReservedNodeOfferingType(),
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final nodeType = this.nodeType;
+    final offeringType = this.offeringType;
+    final recurringCharges = this.recurringCharges;
+    final reservedNodeOfferingId = this.reservedNodeOfferingId;
+    final reservedNodeOfferingType = this.reservedNodeOfferingType;
+    final usagePrice = this.usagePrice;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservedNodeOfferingId != null)
+        'ReservedNodeOfferingId': reservedNodeOfferingId,
+      if (reservedNodeOfferingType != null)
+        'ReservedNodeOfferingType': reservedNodeOfferingType.toValue(),
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
   }
 }
 
@@ -12934,6 +15370,16 @@ class ReservedNodeOfferingsMessage {
     this.marker,
     this.reservedNodeOfferings,
   });
+  factory ReservedNodeOfferingsMessage.fromJson(Map<String, dynamic> json) {
+    return ReservedNodeOfferingsMessage(
+      marker: json['Marker'] as String?,
+      reservedNodeOfferings: (json['ReservedNodeOfferings'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReservedNodeOffering.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReservedNodeOfferingsMessage.fromXml(_s.XmlElement elem) {
     return ReservedNodeOfferingsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -12944,6 +15390,16 @@ class ReservedNodeOfferingsMessage {
               .map((c) => ReservedNodeOffering.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedNodeOfferings = this.reservedNodeOfferings;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedNodeOfferings != null)
+        'ReservedNodeOfferings': reservedNodeOfferings,
+    };
   }
 }
 
@@ -12964,6 +15420,16 @@ class ReservedNodesMessage {
     this.marker,
     this.reservedNodes,
   });
+  factory ReservedNodesMessage.fromJson(Map<String, dynamic> json) {
+    return ReservedNodesMessage(
+      marker: json['Marker'] as String?,
+      reservedNodes: (json['ReservedNodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReservedNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReservedNodesMessage.fromXml(_s.XmlElement elem) {
     return ReservedNodesMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -12973,6 +15439,15 @@ class ReservedNodesMessage {
               .map((c) => ReservedNode.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedNodes = this.reservedNodes;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedNodes != null) 'ReservedNodes': reservedNodes,
+    };
   }
 }
 
@@ -13005,6 +15480,16 @@ class ResizeClusterMessage {
     this.nodeType,
     this.numberOfNodes,
   });
+  factory ResizeClusterMessage.fromJson(Map<String, dynamic> json) {
+    return ResizeClusterMessage(
+      clusterIdentifier: json['ClusterIdentifier'] as String,
+      classic: json['Classic'] as bool?,
+      clusterType: json['ClusterType'] as String?,
+      nodeType: json['NodeType'] as String?,
+      numberOfNodes: json['NumberOfNodes'] as int?,
+    );
+  }
+
   factory ResizeClusterMessage.fromXml(_s.XmlElement elem) {
     return ResizeClusterMessage(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier')!,
@@ -13037,11 +15522,26 @@ class ResizeClusterResult {
   ResizeClusterResult({
     this.cluster,
   });
+  factory ResizeClusterResult.fromJson(Map<String, dynamic> json) {
+    return ResizeClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ResizeClusterResult.fromXml(_s.XmlElement elem) {
     return ResizeClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -13057,11 +15557,27 @@ class ResizeInfo {
     this.allowCancelResize,
     this.resizeType,
   });
+  factory ResizeInfo.fromJson(Map<String, dynamic> json) {
+    return ResizeInfo(
+      allowCancelResize: json['AllowCancelResize'] as bool?,
+      resizeType: json['ResizeType'] as String?,
+    );
+  }
+
   factory ResizeInfo.fromXml(_s.XmlElement elem) {
     return ResizeInfo(
       allowCancelResize: _s.extractXmlBoolValue(elem, 'AllowCancelResize'),
       resizeType: _s.extractXmlStringValue(elem, 'ResizeType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowCancelResize = this.allowCancelResize;
+    final resizeType = this.resizeType;
+    return {
+      if (allowCancelResize != null) 'AllowCancelResize': allowCancelResize,
+      if (resizeType != null) 'ResizeType': resizeType,
+    };
   }
 }
 
@@ -13163,6 +15679,39 @@ class ResizeProgressMessage {
     this.targetNumberOfNodes,
     this.totalResizeDataInMegaBytes,
   });
+  factory ResizeProgressMessage.fromJson(Map<String, dynamic> json) {
+    return ResizeProgressMessage(
+      avgResizeRateInMegaBytesPerSecond:
+          json['AvgResizeRateInMegaBytesPerSecond'] as double?,
+      dataTransferProgressPercent:
+          json['DataTransferProgressPercent'] as double?,
+      elapsedTimeInSeconds: json['ElapsedTimeInSeconds'] as int?,
+      estimatedTimeToCompletionInSeconds:
+          json['EstimatedTimeToCompletionInSeconds'] as int?,
+      importTablesCompleted: (json['ImportTablesCompleted'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      importTablesInProgress: (json['ImportTablesInProgress'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      importTablesNotStarted: (json['ImportTablesNotStarted'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      message: json['Message'] as String?,
+      progressInMegaBytes: json['ProgressInMegaBytes'] as int?,
+      resizeType: json['ResizeType'] as String?,
+      status: json['Status'] as String?,
+      targetClusterType: json['TargetClusterType'] as String?,
+      targetEncryptionType: json['TargetEncryptionType'] as String?,
+      targetNodeType: json['TargetNodeType'] as String?,
+      targetNumberOfNodes: json['TargetNumberOfNodes'] as int?,
+      totalResizeDataInMegaBytes: json['TotalResizeDataInMegaBytes'] as int?,
+    );
+  }
+
   factory ResizeProgressMessage.fromXml(_s.XmlElement elem) {
     return ResizeProgressMessage(
       avgResizeRateInMegaBytesPerSecond:
@@ -13194,6 +15743,57 @@ class ResizeProgressMessage {
           _s.extractXmlIntValue(elem, 'TotalResizeDataInMegaBytes'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final avgResizeRateInMegaBytesPerSecond =
+        this.avgResizeRateInMegaBytesPerSecond;
+    final dataTransferProgressPercent = this.dataTransferProgressPercent;
+    final elapsedTimeInSeconds = this.elapsedTimeInSeconds;
+    final estimatedTimeToCompletionInSeconds =
+        this.estimatedTimeToCompletionInSeconds;
+    final importTablesCompleted = this.importTablesCompleted;
+    final importTablesInProgress = this.importTablesInProgress;
+    final importTablesNotStarted = this.importTablesNotStarted;
+    final message = this.message;
+    final progressInMegaBytes = this.progressInMegaBytes;
+    final resizeType = this.resizeType;
+    final status = this.status;
+    final targetClusterType = this.targetClusterType;
+    final targetEncryptionType = this.targetEncryptionType;
+    final targetNodeType = this.targetNodeType;
+    final targetNumberOfNodes = this.targetNumberOfNodes;
+    final totalResizeDataInMegaBytes = this.totalResizeDataInMegaBytes;
+    return {
+      if (avgResizeRateInMegaBytesPerSecond != null)
+        'AvgResizeRateInMegaBytesPerSecond': avgResizeRateInMegaBytesPerSecond,
+      if (dataTransferProgressPercent != null)
+        'DataTransferProgressPercent': dataTransferProgressPercent,
+      if (elapsedTimeInSeconds != null)
+        'ElapsedTimeInSeconds': elapsedTimeInSeconds,
+      if (estimatedTimeToCompletionInSeconds != null)
+        'EstimatedTimeToCompletionInSeconds':
+            estimatedTimeToCompletionInSeconds,
+      if (importTablesCompleted != null)
+        'ImportTablesCompleted': importTablesCompleted,
+      if (importTablesInProgress != null)
+        'ImportTablesInProgress': importTablesInProgress,
+      if (importTablesNotStarted != null)
+        'ImportTablesNotStarted': importTablesNotStarted,
+      if (message != null) 'Message': message,
+      if (progressInMegaBytes != null)
+        'ProgressInMegaBytes': progressInMegaBytes,
+      if (resizeType != null) 'ResizeType': resizeType,
+      if (status != null) 'Status': status,
+      if (targetClusterType != null) 'TargetClusterType': targetClusterType,
+      if (targetEncryptionType != null)
+        'TargetEncryptionType': targetEncryptionType,
+      if (targetNodeType != null) 'TargetNodeType': targetNodeType,
+      if (targetNumberOfNodes != null)
+        'TargetNumberOfNodes': targetNumberOfNodes,
+      if (totalResizeDataInMegaBytes != null)
+        'TotalResizeDataInMegaBytes': totalResizeDataInMegaBytes,
+    };
+  }
 }
 
 class RestoreFromClusterSnapshotResult {
@@ -13202,11 +15802,26 @@ class RestoreFromClusterSnapshotResult {
   RestoreFromClusterSnapshotResult({
     this.cluster,
   });
+  factory RestoreFromClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return RestoreFromClusterSnapshotResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RestoreFromClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return RestoreFromClusterSnapshotResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -13248,6 +15863,19 @@ class RestoreStatus {
     this.snapshotSizeInMegaBytes,
     this.status,
   });
+  factory RestoreStatus.fromJson(Map<String, dynamic> json) {
+    return RestoreStatus(
+      currentRestoreRateInMegaBytesPerSecond:
+          json['CurrentRestoreRateInMegaBytesPerSecond'] as double?,
+      elapsedTimeInSeconds: json['ElapsedTimeInSeconds'] as int?,
+      estimatedTimeToCompletionInSeconds:
+          json['EstimatedTimeToCompletionInSeconds'] as int?,
+      progressInMegaBytes: json['ProgressInMegaBytes'] as int?,
+      snapshotSizeInMegaBytes: json['SnapshotSizeInMegaBytes'] as int?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory RestoreStatus.fromXml(_s.XmlElement elem) {
     return RestoreStatus(
       currentRestoreRateInMegaBytesPerSecond: _s.extractXmlDoubleValue(
@@ -13261,6 +15889,32 @@ class RestoreStatus {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentRestoreRateInMegaBytesPerSecond =
+        this.currentRestoreRateInMegaBytesPerSecond;
+    final elapsedTimeInSeconds = this.elapsedTimeInSeconds;
+    final estimatedTimeToCompletionInSeconds =
+        this.estimatedTimeToCompletionInSeconds;
+    final progressInMegaBytes = this.progressInMegaBytes;
+    final snapshotSizeInMegaBytes = this.snapshotSizeInMegaBytes;
+    final status = this.status;
+    return {
+      if (currentRestoreRateInMegaBytesPerSecond != null)
+        'CurrentRestoreRateInMegaBytesPerSecond':
+            currentRestoreRateInMegaBytesPerSecond,
+      if (elapsedTimeInSeconds != null)
+        'ElapsedTimeInSeconds': elapsedTimeInSeconds,
+      if (estimatedTimeToCompletionInSeconds != null)
+        'EstimatedTimeToCompletionInSeconds':
+            estimatedTimeToCompletionInSeconds,
+      if (progressInMegaBytes != null)
+        'ProgressInMegaBytes': progressInMegaBytes,
+      if (snapshotSizeInMegaBytes != null)
+        'SnapshotSizeInMegaBytes': snapshotSizeInMegaBytes,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class RestoreTableFromClusterSnapshotResult {
@@ -13269,12 +15923,29 @@ class RestoreTableFromClusterSnapshotResult {
   RestoreTableFromClusterSnapshotResult({
     this.tableRestoreStatus,
   });
+  factory RestoreTableFromClusterSnapshotResult.fromJson(
+      Map<String, dynamic> json) {
+    return RestoreTableFromClusterSnapshotResult(
+      tableRestoreStatus: json['TableRestoreStatus'] != null
+          ? TableRestoreStatus.fromJson(
+              json['TableRestoreStatus'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RestoreTableFromClusterSnapshotResult.fromXml(_s.XmlElement elem) {
     return RestoreTableFromClusterSnapshotResult(
       tableRestoreStatus: _s
           .extractXmlChild(elem, 'TableRestoreStatus')
           ?.let((e) => TableRestoreStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableRestoreStatus = this.tableRestoreStatus;
+    return {
+      if (tableRestoreStatus != null) 'TableRestoreStatus': tableRestoreStatus,
+    };
   }
 }
 
@@ -13287,6 +15958,12 @@ class ResumeClusterMessage {
   ResumeClusterMessage({
     required this.clusterIdentifier,
   });
+  factory ResumeClusterMessage.fromJson(Map<String, dynamic> json) {
+    return ResumeClusterMessage(
+      clusterIdentifier: json['ClusterIdentifier'] as String,
+    );
+  }
+
   factory ResumeClusterMessage.fromXml(_s.XmlElement elem) {
     return ResumeClusterMessage(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier')!,
@@ -13307,11 +15984,26 @@ class ResumeClusterResult {
   ResumeClusterResult({
     this.cluster,
   });
+  factory ResumeClusterResult.fromJson(Map<String, dynamic> json) {
+    return ResumeClusterResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ResumeClusterResult.fromXml(_s.XmlElement elem) {
     return ResumeClusterResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -13333,6 +16025,15 @@ class RevisionTarget {
     this.databaseRevisionReleaseDate,
     this.description,
   });
+  factory RevisionTarget.fromJson(Map<String, dynamic> json) {
+    return RevisionTarget(
+      databaseRevision: json['DatabaseRevision'] as String?,
+      databaseRevisionReleaseDate:
+          timeStampFromJson(json['DatabaseRevisionReleaseDate']),
+      description: json['Description'] as String?,
+    );
+  }
+
   factory RevisionTarget.fromXml(_s.XmlElement elem) {
     return RevisionTarget(
       databaseRevision: _s.extractXmlStringValue(elem, 'DatabaseRevision'),
@@ -13340,6 +16041,19 @@ class RevisionTarget {
           _s.extractXmlDateTimeValue(elem, 'DatabaseRevisionReleaseDate'),
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseRevision = this.databaseRevision;
+    final databaseRevisionReleaseDate = this.databaseRevisionReleaseDate;
+    final description = this.description;
+    return {
+      if (databaseRevision != null) 'DatabaseRevision': databaseRevision,
+      if (databaseRevisionReleaseDate != null)
+        'DatabaseRevisionReleaseDate':
+            unixTimestampToJson(databaseRevisionReleaseDate),
+      if (description != null) 'Description': description,
+    };
   }
 }
 
@@ -13349,12 +16063,30 @@ class RevokeClusterSecurityGroupIngressResult {
   RevokeClusterSecurityGroupIngressResult({
     this.clusterSecurityGroup,
   });
+  factory RevokeClusterSecurityGroupIngressResult.fromJson(
+      Map<String, dynamic> json) {
+    return RevokeClusterSecurityGroupIngressResult(
+      clusterSecurityGroup: json['ClusterSecurityGroup'] != null
+          ? ClusterSecurityGroup.fromJson(
+              json['ClusterSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RevokeClusterSecurityGroupIngressResult.fromXml(_s.XmlElement elem) {
     return RevokeClusterSecurityGroupIngressResult(
       clusterSecurityGroup: _s
           .extractXmlChild(elem, 'ClusterSecurityGroup')
           ?.let((e) => ClusterSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroup = this.clusterSecurityGroup;
+    return {
+      if (clusterSecurityGroup != null)
+        'ClusterSecurityGroup': clusterSecurityGroup,
+    };
   }
 }
 
@@ -13364,11 +16096,26 @@ class RevokeSnapshotAccessResult {
   RevokeSnapshotAccessResult({
     this.snapshot,
   });
+  factory RevokeSnapshotAccessResult.fromJson(Map<String, dynamic> json) {
+    return RevokeSnapshotAccessResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RevokeSnapshotAccessResult.fromXml(_s.XmlElement elem) {
     return RevokeSnapshotAccessResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -13378,11 +16125,26 @@ class RotateEncryptionKeyResult {
   RotateEncryptionKeyResult({
     this.cluster,
   });
+  factory RotateEncryptionKeyResult.fromJson(Map<String, dynamic> json) {
+    return RotateEncryptionKeyResult(
+      cluster: json['Cluster'] != null
+          ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RotateEncryptionKeyResult.fromXml(_s.XmlElement elem) {
     return RotateEncryptionKeyResult(
       cluster:
           _s.extractXmlChild(elem, 'Cluster')?.let((e) => Cluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -13484,6 +16246,26 @@ class ScheduledAction {
     this.state,
     this.targetAction,
   });
+  factory ScheduledAction.fromJson(Map<String, dynamic> json) {
+    return ScheduledAction(
+      endTime: timeStampFromJson(json['EndTime']),
+      iamRole: json['IamRole'] as String?,
+      nextInvocations: (json['NextInvocations'] as List?)
+          ?.whereNotNull()
+          .map(nonNullableTimeStampFromJson)
+          .toList(),
+      schedule: json['Schedule'] as String?,
+      scheduledActionDescription: json['ScheduledActionDescription'] as String?,
+      scheduledActionName: json['ScheduledActionName'] as String?,
+      startTime: timeStampFromJson(json['StartTime']),
+      state: (json['State'] as String?)?.toScheduledActionState(),
+      targetAction: json['TargetAction'] != null
+          ? ScheduledActionType.fromJson(
+              json['TargetAction'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ScheduledAction.fromXml(_s.XmlElement elem) {
     return ScheduledAction(
       endTime: _s.extractXmlDateTimeValue(elem, 'EndTime'),
@@ -13503,6 +16285,32 @@ class ScheduledAction {
           ?.let((e) => ScheduledActionType.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final iamRole = this.iamRole;
+    final nextInvocations = this.nextInvocations;
+    final schedule = this.schedule;
+    final scheduledActionDescription = this.scheduledActionDescription;
+    final scheduledActionName = this.scheduledActionName;
+    final startTime = this.startTime;
+    final state = this.state;
+    final targetAction = this.targetAction;
+    return {
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (iamRole != null) 'IamRole': iamRole,
+      if (nextInvocations != null)
+        'NextInvocations': nextInvocations.map(unixTimestampToJson).toList(),
+      if (schedule != null) 'Schedule': schedule,
+      if (scheduledActionDescription != null)
+        'ScheduledActionDescription': scheduledActionDescription,
+      if (scheduledActionName != null)
+        'ScheduledActionName': scheduledActionName,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+      if (targetAction != null) 'TargetAction': targetAction,
+    };
+  }
 }
 
 /// A set of elements to filter the returned scheduled actions.
@@ -13518,6 +16326,16 @@ class ScheduledActionFilter {
     required this.name,
     required this.values,
   });
+  factory ScheduledActionFilter.fromJson(Map<String, dynamic> json) {
+    return ScheduledActionFilter(
+      name: (json['Name'] as String).toScheduledActionFilterName(),
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -13601,6 +16419,23 @@ class ScheduledActionType {
     this.resizeCluster,
     this.resumeCluster,
   });
+  factory ScheduledActionType.fromJson(Map<String, dynamic> json) {
+    return ScheduledActionType(
+      pauseCluster: json['PauseCluster'] != null
+          ? PauseClusterMessage.fromJson(
+              json['PauseCluster'] as Map<String, dynamic>)
+          : null,
+      resizeCluster: json['ResizeCluster'] != null
+          ? ResizeClusterMessage.fromJson(
+              json['ResizeCluster'] as Map<String, dynamic>)
+          : null,
+      resumeCluster: json['ResumeCluster'] != null
+          ? ResumeClusterMessage.fromJson(
+              json['ResumeCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ScheduledActionType.fromXml(_s.XmlElement elem) {
     return ScheduledActionType(
       pauseCluster: _s
@@ -13676,6 +16511,16 @@ class ScheduledActionsMessage {
     this.marker,
     this.scheduledActions,
   });
+  factory ScheduledActionsMessage.fromJson(Map<String, dynamic> json) {
+    return ScheduledActionsMessage(
+      marker: json['Marker'] as String?,
+      scheduledActions: (json['ScheduledActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ScheduledAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ScheduledActionsMessage.fromXml(_s.XmlElement elem) {
     return ScheduledActionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -13685,6 +16530,15 @@ class ScheduledActionsMessage {
               .map((c) => ScheduledAction.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final scheduledActions = this.scheduledActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (scheduledActions != null) 'ScheduledActions': scheduledActions,
+    };
   }
 }
 
@@ -13869,6 +16723,60 @@ class Snapshot {
     this.totalBackupSizeInMegaBytes,
     this.vpcId,
   });
+  factory Snapshot.fromJson(Map<String, dynamic> json) {
+    return Snapshot(
+      accountsWithRestoreAccess: (json['AccountsWithRestoreAccess'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              AccountWithRestoreAccess.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      actualIncrementalBackupSizeInMegaBytes:
+          json['ActualIncrementalBackupSizeInMegaBytes'] as double?,
+      availabilityZone: json['AvailabilityZone'] as String?,
+      backupProgressInMegaBytes: json['BackupProgressInMegaBytes'] as double?,
+      clusterCreateTime: timeStampFromJson(json['ClusterCreateTime']),
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      clusterVersion: json['ClusterVersion'] as String?,
+      currentBackupRateInMegaBytesPerSecond:
+          json['CurrentBackupRateInMegaBytesPerSecond'] as double?,
+      dBName: json['DBName'] as String?,
+      elapsedTimeInSeconds: json['ElapsedTimeInSeconds'] as int?,
+      encrypted: json['Encrypted'] as bool?,
+      encryptedWithHSM: json['EncryptedWithHSM'] as bool?,
+      engineFullVersion: json['EngineFullVersion'] as String?,
+      enhancedVpcRouting: json['EnhancedVpcRouting'] as bool?,
+      estimatedSecondsToCompletion:
+          json['EstimatedSecondsToCompletion'] as int?,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      maintenanceTrackName: json['MaintenanceTrackName'] as String?,
+      manualSnapshotRemainingDays: json['ManualSnapshotRemainingDays'] as int?,
+      manualSnapshotRetentionPeriod:
+          json['ManualSnapshotRetentionPeriod'] as int?,
+      masterUsername: json['MasterUsername'] as String?,
+      nodeType: json['NodeType'] as String?,
+      numberOfNodes: json['NumberOfNodes'] as int?,
+      ownerAccount: json['OwnerAccount'] as String?,
+      port: json['Port'] as int?,
+      restorableNodeTypes: (json['RestorableNodeTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      snapshotCreateTime: timeStampFromJson(json['SnapshotCreateTime']),
+      snapshotIdentifier: json['SnapshotIdentifier'] as String?,
+      snapshotRetentionStartTime:
+          timeStampFromJson(json['SnapshotRetentionStartTime']),
+      snapshotType: json['SnapshotType'] as String?,
+      sourceRegion: json['SourceRegion'] as String?,
+      status: json['Status'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalBackupSizeInMegaBytes: json['TotalBackupSizeInMegaBytes'] as double?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory Snapshot.fromXml(_s.XmlElement elem) {
     return Snapshot(
       accountsWithRestoreAccess: _s
@@ -13924,6 +16832,98 @@ class Snapshot {
           _s.extractXmlDoubleValue(elem, 'TotalBackupSizeInMegaBytes'),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountsWithRestoreAccess = this.accountsWithRestoreAccess;
+    final actualIncrementalBackupSizeInMegaBytes =
+        this.actualIncrementalBackupSizeInMegaBytes;
+    final availabilityZone = this.availabilityZone;
+    final backupProgressInMegaBytes = this.backupProgressInMegaBytes;
+    final clusterCreateTime = this.clusterCreateTime;
+    final clusterIdentifier = this.clusterIdentifier;
+    final clusterVersion = this.clusterVersion;
+    final currentBackupRateInMegaBytesPerSecond =
+        this.currentBackupRateInMegaBytesPerSecond;
+    final dBName = this.dBName;
+    final elapsedTimeInSeconds = this.elapsedTimeInSeconds;
+    final encrypted = this.encrypted;
+    final encryptedWithHSM = this.encryptedWithHSM;
+    final engineFullVersion = this.engineFullVersion;
+    final enhancedVpcRouting = this.enhancedVpcRouting;
+    final estimatedSecondsToCompletion = this.estimatedSecondsToCompletion;
+    final kmsKeyId = this.kmsKeyId;
+    final maintenanceTrackName = this.maintenanceTrackName;
+    final manualSnapshotRemainingDays = this.manualSnapshotRemainingDays;
+    final manualSnapshotRetentionPeriod = this.manualSnapshotRetentionPeriod;
+    final masterUsername = this.masterUsername;
+    final nodeType = this.nodeType;
+    final numberOfNodes = this.numberOfNodes;
+    final ownerAccount = this.ownerAccount;
+    final port = this.port;
+    final restorableNodeTypes = this.restorableNodeTypes;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    final snapshotIdentifier = this.snapshotIdentifier;
+    final snapshotRetentionStartTime = this.snapshotRetentionStartTime;
+    final snapshotType = this.snapshotType;
+    final sourceRegion = this.sourceRegion;
+    final status = this.status;
+    final tags = this.tags;
+    final totalBackupSizeInMegaBytes = this.totalBackupSizeInMegaBytes;
+    final vpcId = this.vpcId;
+    return {
+      if (accountsWithRestoreAccess != null)
+        'AccountsWithRestoreAccess': accountsWithRestoreAccess,
+      if (actualIncrementalBackupSizeInMegaBytes != null)
+        'ActualIncrementalBackupSizeInMegaBytes':
+            actualIncrementalBackupSizeInMegaBytes,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupProgressInMegaBytes != null)
+        'BackupProgressInMegaBytes': backupProgressInMegaBytes,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': unixTimestampToJson(clusterCreateTime),
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (clusterVersion != null) 'ClusterVersion': clusterVersion,
+      if (currentBackupRateInMegaBytesPerSecond != null)
+        'CurrentBackupRateInMegaBytesPerSecond':
+            currentBackupRateInMegaBytesPerSecond,
+      if (dBName != null) 'DBName': dBName,
+      if (elapsedTimeInSeconds != null)
+        'ElapsedTimeInSeconds': elapsedTimeInSeconds,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (encryptedWithHSM != null) 'EncryptedWithHSM': encryptedWithHSM,
+      if (engineFullVersion != null) 'EngineFullVersion': engineFullVersion,
+      if (enhancedVpcRouting != null) 'EnhancedVpcRouting': enhancedVpcRouting,
+      if (estimatedSecondsToCompletion != null)
+        'EstimatedSecondsToCompletion': estimatedSecondsToCompletion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (maintenanceTrackName != null)
+        'MaintenanceTrackName': maintenanceTrackName,
+      if (manualSnapshotRemainingDays != null)
+        'ManualSnapshotRemainingDays': manualSnapshotRemainingDays,
+      if (manualSnapshotRetentionPeriod != null)
+        'ManualSnapshotRetentionPeriod': manualSnapshotRetentionPeriod,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numberOfNodes != null) 'NumberOfNodes': numberOfNodes,
+      if (ownerAccount != null) 'OwnerAccount': ownerAccount,
+      if (port != null) 'Port': port,
+      if (restorableNodeTypes != null)
+        'RestorableNodeTypes': restorableNodeTypes,
+      if (snapshotCreateTime != null)
+        'SnapshotCreateTime': unixTimestampToJson(snapshotCreateTime),
+      if (snapshotIdentifier != null) 'SnapshotIdentifier': snapshotIdentifier,
+      if (snapshotRetentionStartTime != null)
+        'SnapshotRetentionStartTime':
+            unixTimestampToJson(snapshotRetentionStartTime),
+      if (snapshotType != null) 'SnapshotType': snapshotType,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+      if (totalBackupSizeInMegaBytes != null)
+        'TotalBackupSizeInMegaBytes': totalBackupSizeInMegaBytes,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -13984,6 +16984,17 @@ class SnapshotCopyGrant {
     this.snapshotCopyGrantName,
     this.tags,
   });
+  factory SnapshotCopyGrant.fromJson(Map<String, dynamic> json) {
+    return SnapshotCopyGrant(
+      kmsKeyId: json['KmsKeyId'] as String?,
+      snapshotCopyGrantName: json['SnapshotCopyGrantName'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SnapshotCopyGrant.fromXml(_s.XmlElement elem) {
     return SnapshotCopyGrant(
       kmsKeyId: _s.extractXmlStringValue(elem, 'KmsKeyId'),
@@ -13992,6 +17003,18 @@ class SnapshotCopyGrant {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    final snapshotCopyGrantName = this.snapshotCopyGrantName;
+    final tags = this.tags;
+    return {
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (snapshotCopyGrantName != null)
+        'SnapshotCopyGrantName': snapshotCopyGrantName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -14016,6 +17039,16 @@ class SnapshotCopyGrantMessage {
     this.marker,
     this.snapshotCopyGrants,
   });
+  factory SnapshotCopyGrantMessage.fromJson(Map<String, dynamic> json) {
+    return SnapshotCopyGrantMessage(
+      marker: json['Marker'] as String?,
+      snapshotCopyGrants: (json['SnapshotCopyGrants'] as List?)
+          ?.whereNotNull()
+          .map((e) => SnapshotCopyGrant.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SnapshotCopyGrantMessage.fromXml(_s.XmlElement elem) {
     return SnapshotCopyGrantMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -14025,6 +17058,15 @@ class SnapshotCopyGrantMessage {
               .map((c) => SnapshotCopyGrant.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final snapshotCopyGrants = this.snapshotCopyGrants;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (snapshotCopyGrants != null) 'SnapshotCopyGrants': snapshotCopyGrants,
+    };
   }
 }
 
@@ -14048,6 +17090,15 @@ class SnapshotErrorMessage {
     this.snapshotClusterIdentifier,
     this.snapshotIdentifier,
   });
+  factory SnapshotErrorMessage.fromJson(Map<String, dynamic> json) {
+    return SnapshotErrorMessage(
+      failureCode: json['FailureCode'] as String?,
+      failureReason: json['FailureReason'] as String?,
+      snapshotClusterIdentifier: json['SnapshotClusterIdentifier'] as String?,
+      snapshotIdentifier: json['SnapshotIdentifier'] as String?,
+    );
+  }
+
   factory SnapshotErrorMessage.fromXml(_s.XmlElement elem) {
     return SnapshotErrorMessage(
       failureCode: _s.extractXmlStringValue(elem, 'FailureCode'),
@@ -14056,6 +17107,20 @@ class SnapshotErrorMessage {
           _s.extractXmlStringValue(elem, 'SnapshotClusterIdentifier'),
       snapshotIdentifier: _s.extractXmlStringValue(elem, 'SnapshotIdentifier'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final snapshotClusterIdentifier = this.snapshotClusterIdentifier;
+    final snapshotIdentifier = this.snapshotIdentifier;
+    return {
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (snapshotClusterIdentifier != null)
+        'SnapshotClusterIdentifier': snapshotClusterIdentifier,
+      if (snapshotIdentifier != null) 'SnapshotIdentifier': snapshotIdentifier,
+    };
   }
 }
 
@@ -14076,6 +17141,16 @@ class SnapshotMessage {
     this.marker,
     this.snapshots,
   });
+  factory SnapshotMessage.fromJson(Map<String, dynamic> json) {
+    return SnapshotMessage(
+      marker: json['Marker'] as String?,
+      snapshots: (json['Snapshots'] as List?)
+          ?.whereNotNull()
+          .map((e) => Snapshot.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SnapshotMessage.fromXml(_s.XmlElement elem) {
     return SnapshotMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -14084,6 +17159,15 @@ class SnapshotMessage {
           .map((c) => Snapshot.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final snapshots = this.snapshots;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
   }
 }
 
@@ -14121,6 +17205,31 @@ class SnapshotSchedule {
     this.scheduleIdentifier,
     this.tags,
   });
+  factory SnapshotSchedule.fromJson(Map<String, dynamic> json) {
+    return SnapshotSchedule(
+      associatedClusterCount: json['AssociatedClusterCount'] as int?,
+      associatedClusters: (json['AssociatedClusters'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ClusterAssociatedToSchedule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextInvocations: (json['NextInvocations'] as List?)
+          ?.whereNotNull()
+          .map(nonNullableTimeStampFromJson)
+          .toList(),
+      scheduleDefinitions: (json['ScheduleDefinitions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      scheduleDescription: json['ScheduleDescription'] as String?,
+      scheduleIdentifier: json['ScheduleIdentifier'] as String?,
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory SnapshotSchedule.fromXml(_s.XmlElement elem) {
     return SnapshotSchedule(
       associatedClusterCount:
@@ -14141,6 +17250,29 @@ class SnapshotSchedule {
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedClusterCount = this.associatedClusterCount;
+    final associatedClusters = this.associatedClusters;
+    final nextInvocations = this.nextInvocations;
+    final scheduleDefinitions = this.scheduleDefinitions;
+    final scheduleDescription = this.scheduleDescription;
+    final scheduleIdentifier = this.scheduleIdentifier;
+    final tags = this.tags;
+    return {
+      if (associatedClusterCount != null)
+        'AssociatedClusterCount': associatedClusterCount,
+      if (associatedClusters != null) 'AssociatedClusters': associatedClusters,
+      if (nextInvocations != null)
+        'NextInvocations': nextInvocations.map(unixTimestampToJson).toList(),
+      if (scheduleDefinitions != null)
+        'ScheduleDefinitions': scheduleDefinitions,
+      if (scheduleDescription != null)
+        'ScheduleDescription': scheduleDescription,
+      if (scheduleIdentifier != null) 'ScheduleIdentifier': scheduleIdentifier,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a sorting entity
@@ -14155,6 +17287,13 @@ class SnapshotSortingEntity {
     required this.attribute,
     this.sortOrder,
   });
+  factory SnapshotSortingEntity.fromJson(Map<String, dynamic> json) {
+    return SnapshotSortingEntity(
+      attribute: (json['Attribute'] as String).toSnapshotAttributeToSortBy(),
+      sortOrder: (json['SortOrder'] as String?)?.toSortByOrder(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final sortOrder = this.sortOrder;
@@ -14252,6 +17391,17 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+  factory Subnet.fromJson(Map<String, dynamic> json) {
+    return Subnet(
+      subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
+          ? AvailabilityZone.fromJson(
+              json['SubnetAvailabilityZone'] as Map<String, dynamic>)
+          : null,
+      subnetIdentifier: json['SubnetIdentifier'] as String?,
+      subnetStatus: json['SubnetStatus'] as String?,
+    );
+  }
+
   factory Subnet.fromXml(_s.XmlElement elem) {
     return Subnet(
       subnetAvailabilityZone: _s
@@ -14260,6 +17410,18 @@ class Subnet {
       subnetIdentifier: _s.extractXmlStringValue(elem, 'SubnetIdentifier'),
       subnetStatus: _s.extractXmlStringValue(elem, 'SubnetStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetStatus = this.subnetStatus;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetStatus != null) 'SubnetStatus': subnetStatus,
+    };
   }
 }
 
@@ -14271,10 +17433,23 @@ class SupportedOperation {
   SupportedOperation({
     this.operationName,
   });
+  factory SupportedOperation.fromJson(Map<String, dynamic> json) {
+    return SupportedOperation(
+      operationName: json['OperationName'] as String?,
+    );
+  }
+
   factory SupportedOperation.fromXml(_s.XmlElement elem) {
     return SupportedOperation(
       operationName: _s.extractXmlStringValue(elem, 'OperationName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationName = this.operationName;
+    return {
+      if (operationName != null) 'OperationName': operationName,
+    };
   }
 }
 
@@ -14286,10 +17461,23 @@ class SupportedPlatform {
   SupportedPlatform({
     this.name,
   });
+  factory SupportedPlatform.fromJson(Map<String, dynamic> json) {
+    return SupportedPlatform(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory SupportedPlatform.fromXml(_s.XmlElement elem) {
     return SupportedPlatform(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -14360,6 +17548,25 @@ class TableRestoreStatus {
     this.targetSchemaName,
     this.totalDataInMegaBytes,
   });
+  factory TableRestoreStatus.fromJson(Map<String, dynamic> json) {
+    return TableRestoreStatus(
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      message: json['Message'] as String?,
+      newTableName: json['NewTableName'] as String?,
+      progressInMegaBytes: json['ProgressInMegaBytes'] as int?,
+      requestTime: timeStampFromJson(json['RequestTime']),
+      snapshotIdentifier: json['SnapshotIdentifier'] as String?,
+      sourceDatabaseName: json['SourceDatabaseName'] as String?,
+      sourceSchemaName: json['SourceSchemaName'] as String?,
+      sourceTableName: json['SourceTableName'] as String?,
+      status: (json['Status'] as String?)?.toTableRestoreStatusType(),
+      tableRestoreRequestId: json['TableRestoreRequestId'] as String?,
+      targetDatabaseName: json['TargetDatabaseName'] as String?,
+      targetSchemaName: json['TargetSchemaName'] as String?,
+      totalDataInMegaBytes: json['TotalDataInMegaBytes'] as int?,
+    );
+  }
+
   factory TableRestoreStatus.fromXml(_s.XmlElement elem) {
     return TableRestoreStatus(
       clusterIdentifier: _s.extractXmlStringValue(elem, 'ClusterIdentifier'),
@@ -14380,6 +17587,42 @@ class TableRestoreStatus {
       totalDataInMegaBytes: _s.extractXmlIntValue(elem, 'TotalDataInMegaBytes'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterIdentifier = this.clusterIdentifier;
+    final message = this.message;
+    final newTableName = this.newTableName;
+    final progressInMegaBytes = this.progressInMegaBytes;
+    final requestTime = this.requestTime;
+    final snapshotIdentifier = this.snapshotIdentifier;
+    final sourceDatabaseName = this.sourceDatabaseName;
+    final sourceSchemaName = this.sourceSchemaName;
+    final sourceTableName = this.sourceTableName;
+    final status = this.status;
+    final tableRestoreRequestId = this.tableRestoreRequestId;
+    final targetDatabaseName = this.targetDatabaseName;
+    final targetSchemaName = this.targetSchemaName;
+    final totalDataInMegaBytes = this.totalDataInMegaBytes;
+    return {
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (message != null) 'Message': message,
+      if (newTableName != null) 'NewTableName': newTableName,
+      if (progressInMegaBytes != null)
+        'ProgressInMegaBytes': progressInMegaBytes,
+      if (requestTime != null) 'RequestTime': unixTimestampToJson(requestTime),
+      if (snapshotIdentifier != null) 'SnapshotIdentifier': snapshotIdentifier,
+      if (sourceDatabaseName != null) 'SourceDatabaseName': sourceDatabaseName,
+      if (sourceSchemaName != null) 'SourceSchemaName': sourceSchemaName,
+      if (sourceTableName != null) 'SourceTableName': sourceTableName,
+      if (status != null) 'Status': status.toValue(),
+      if (tableRestoreRequestId != null)
+        'TableRestoreRequestId': tableRestoreRequestId,
+      if (targetDatabaseName != null) 'TargetDatabaseName': targetDatabaseName,
+      if (targetSchemaName != null) 'TargetSchemaName': targetSchemaName,
+      if (totalDataInMegaBytes != null)
+        'TotalDataInMegaBytes': totalDataInMegaBytes,
+    };
+  }
 }
 
 /// <p/>
@@ -14395,6 +17638,16 @@ class TableRestoreStatusMessage {
     this.marker,
     this.tableRestoreStatusDetails,
   });
+  factory TableRestoreStatusMessage.fromJson(Map<String, dynamic> json) {
+    return TableRestoreStatusMessage(
+      marker: json['Marker'] as String?,
+      tableRestoreStatusDetails: (json['TableRestoreStatusDetails'] as List?)
+          ?.whereNotNull()
+          .map((e) => TableRestoreStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory TableRestoreStatusMessage.fromXml(_s.XmlElement elem) {
     return TableRestoreStatusMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -14405,6 +17658,16 @@ class TableRestoreStatusMessage {
               .map((c) => TableRestoreStatus.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final tableRestoreStatusDetails = this.tableRestoreStatusDetails;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (tableRestoreStatusDetails != null)
+        'TableRestoreStatusDetails': tableRestoreStatusDetails,
+    };
   }
 }
 
@@ -14463,6 +17726,13 @@ class Tag {
     this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key'),
@@ -14533,12 +17803,33 @@ class TaggedResource {
     this.resourceType,
     this.tag,
   });
+  factory TaggedResource.fromJson(Map<String, dynamic> json) {
+    return TaggedResource(
+      resourceName: json['ResourceName'] as String?,
+      resourceType: json['ResourceType'] as String?,
+      tag: json['Tag'] != null
+          ? Tag.fromJson(json['Tag'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory TaggedResource.fromXml(_s.XmlElement elem) {
     return TaggedResource(
       resourceName: _s.extractXmlStringValue(elem, 'ResourceName'),
       resourceType: _s.extractXmlStringValue(elem, 'ResourceType'),
       tag: _s.extractXmlChild(elem, 'Tag')?.let((e) => Tag.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    final tag = this.tag;
+    return {
+      if (resourceName != null) 'ResourceName': resourceName,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (tag != null) 'Tag': tag,
+    };
   }
 }
 
@@ -14559,6 +17850,16 @@ class TaggedResourceListMessage {
     this.marker,
     this.taggedResources,
   });
+  factory TaggedResourceListMessage.fromJson(Map<String, dynamic> json) {
+    return TaggedResourceListMessage(
+      marker: json['Marker'] as String?,
+      taggedResources: (json['TaggedResources'] as List?)
+          ?.whereNotNull()
+          .map((e) => TaggedResource.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory TaggedResourceListMessage.fromXml(_s.XmlElement elem) {
     return TaggedResourceListMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -14568,6 +17869,15 @@ class TaggedResourceListMessage {
               .map((c) => TaggedResource.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final taggedResources = this.taggedResources;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (taggedResources != null) 'TaggedResources': taggedResources,
+    };
   }
 }
 
@@ -14585,6 +17895,16 @@ class TrackListMessage {
     this.maintenanceTracks,
     this.marker,
   });
+  factory TrackListMessage.fromJson(Map<String, dynamic> json) {
+    return TrackListMessage(
+      maintenanceTracks: (json['MaintenanceTracks'] as List?)
+          ?.whereNotNull()
+          .map((e) => MaintenanceTrack.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory TrackListMessage.fromXml(_s.XmlElement elem) {
     return TrackListMessage(
       maintenanceTracks: _s.extractXmlChild(elem, 'MaintenanceTracks')?.let(
@@ -14594,6 +17914,15 @@ class TrackListMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maintenanceTracks = this.maintenanceTracks;
+    final marker = this.marker;
+    return {
+      if (maintenanceTracks != null) 'MaintenanceTracks': maintenanceTracks,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14613,6 +17942,17 @@ class UpdateTarget {
     this.maintenanceTrackName,
     this.supportedOperations,
   });
+  factory UpdateTarget.fromJson(Map<String, dynamic> json) {
+    return UpdateTarget(
+      databaseVersion: json['DatabaseVersion'] as String?,
+      maintenanceTrackName: json['MaintenanceTrackName'] as String?,
+      supportedOperations: (json['SupportedOperations'] as List?)
+          ?.whereNotNull()
+          .map((e) => SupportedOperation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UpdateTarget.fromXml(_s.XmlElement elem) {
     return UpdateTarget(
       databaseVersion: _s.extractXmlStringValue(elem, 'DatabaseVersion'),
@@ -14624,6 +17964,19 @@ class UpdateTarget {
               .map((c) => SupportedOperation.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseVersion = this.databaseVersion;
+    final maintenanceTrackName = this.maintenanceTrackName;
+    final supportedOperations = this.supportedOperations;
+    return {
+      if (databaseVersion != null) 'DatabaseVersion': databaseVersion,
+      if (maintenanceTrackName != null)
+        'MaintenanceTrackName': maintenanceTrackName,
+      if (supportedOperations != null)
+        'SupportedOperations': supportedOperations,
+    };
   }
 }
 
@@ -14679,6 +18032,23 @@ class UsageLimit {
     this.tags,
     this.usageLimitId,
   });
+  factory UsageLimit.fromJson(Map<String, dynamic> json) {
+    return UsageLimit(
+      amount: json['Amount'] as int?,
+      breachAction:
+          (json['BreachAction'] as String?)?.toUsageLimitBreachAction(),
+      clusterIdentifier: json['ClusterIdentifier'] as String?,
+      featureType: (json['FeatureType'] as String?)?.toUsageLimitFeatureType(),
+      limitType: (json['LimitType'] as String?)?.toUsageLimitLimitType(),
+      period: (json['Period'] as String?)?.toUsageLimitPeriod(),
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      usageLimitId: json['UsageLimitId'] as String?,
+    );
+  }
+
   factory UsageLimit.fromXml(_s.XmlElement elem) {
     return UsageLimit(
       amount: _s.extractXmlIntValue(elem, 'Amount'),
@@ -14696,6 +18066,27 @@ class UsageLimit {
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
       usageLimitId: _s.extractXmlStringValue(elem, 'UsageLimitId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final breachAction = this.breachAction;
+    final clusterIdentifier = this.clusterIdentifier;
+    final featureType = this.featureType;
+    final limitType = this.limitType;
+    final period = this.period;
+    final tags = this.tags;
+    final usageLimitId = this.usageLimitId;
+    return {
+      if (amount != null) 'Amount': amount,
+      if (breachAction != null) 'BreachAction': breachAction.toValue(),
+      if (clusterIdentifier != null) 'ClusterIdentifier': clusterIdentifier,
+      if (featureType != null) 'FeatureType': featureType.toValue(),
+      if (limitType != null) 'LimitType': limitType.toValue(),
+      if (period != null) 'Period': period.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (usageLimitId != null) 'UsageLimitId': usageLimitId,
+    };
   }
 }
 
@@ -14804,6 +18195,16 @@ class UsageLimitList {
     this.marker,
     this.usageLimits,
   });
+  factory UsageLimitList.fromJson(Map<String, dynamic> json) {
+    return UsageLimitList(
+      marker: json['Marker'] as String?,
+      usageLimits: (json['UsageLimits'] as List?)
+          ?.whereNotNull()
+          .map((e) => UsageLimit.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UsageLimitList.fromXml(_s.XmlElement elem) {
     return UsageLimitList(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -14812,6 +18213,15 @@ class UsageLimitList {
           .map((c) => UsageLimit.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final usageLimits = this.usageLimits;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (usageLimits != null) 'UsageLimits': usageLimits,
+    };
   }
 }
 
@@ -14867,6 +18277,17 @@ class VpcEndpoint {
     this.vpcEndpointId,
     this.vpcId,
   });
+  factory VpcEndpoint.fromJson(Map<String, dynamic> json) {
+    return VpcEndpoint(
+      networkInterfaces: (json['NetworkInterfaces'] as List?)
+          ?.whereNotNull()
+          .map((e) => NetworkInterface.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vpcEndpointId: json['VpcEndpointId'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory VpcEndpoint.fromXml(_s.XmlElement elem) {
     return VpcEndpoint(
       networkInterfaces: _s.extractXmlChild(elem, 'NetworkInterfaces')?.let(
@@ -14877,6 +18298,17 @@ class VpcEndpoint {
       vpcEndpointId: _s.extractXmlStringValue(elem, 'VpcEndpointId'),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaces = this.networkInterfaces;
+    final vpcEndpointId = this.vpcEndpointId;
+    final vpcId = this.vpcId;
+    return {
+      if (networkInterfaces != null) 'NetworkInterfaces': networkInterfaces,
+      if (vpcEndpointId != null) 'VpcEndpointId': vpcEndpointId,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -14892,11 +18324,27 @@ class VpcSecurityGroupMembership {
     this.status,
     this.vpcSecurityGroupId,
   });
+  factory VpcSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return VpcSecurityGroupMembership(
+      status: json['Status'] as String?,
+      vpcSecurityGroupId: json['VpcSecurityGroupId'] as String?,
+    );
+  }
+
   factory VpcSecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return VpcSecurityGroupMembership(
       status: _s.extractXmlStringValue(elem, 'Status'),
       vpcSecurityGroupId: _s.extractXmlStringValue(elem, 'VpcSecurityGroupId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final vpcSecurityGroupId = this.vpcSecurityGroupId;
+    return {
+      if (status != null) 'Status': status,
+      if (vpcSecurityGroupId != null) 'VpcSecurityGroupId': vpcSecurityGroupId,
+    };
   }
 }
 

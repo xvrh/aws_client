@@ -87,6 +87,39 @@ class OutputShape {
     this.str,
     this.trueBool,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      char: json['Char'] as String?,
+      doubleValue: json['Double'] as double?,
+      falseBool: json['FalseBool'] as bool?,
+      float: json['Float'] as double?,
+      long: json['Long'] as int?,
+      num: json['Num'] as int?,
+      str: json['Str'] as String?,
+      trueBool: json['TrueBool'] as bool?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final char = this.char;
+    final doubleValue = this.doubleValue;
+    final falseBool = this.falseBool;
+    final float = this.float;
+    final long = this.long;
+    final num = this.num;
+    final str = this.str;
+    final trueBool = this.trueBool;
+    return {
+      if (char != null) 'Char': char,
+      if (doubleValue != null) 'Double': doubleValue,
+      if (falseBool != null) 'FalseBool': falseBool,
+      if (float != null) 'Float': float,
+      if (long != null) 'Long': long,
+      if (num != null) 'Num': num,
+      if (str != null) 'Str': str,
+      if (trueBool != null) 'TrueBool': trueBool,
+    };
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

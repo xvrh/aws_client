@@ -1042,6 +1042,14 @@ class AmplitudeConnectorProfileCredentials {
     required this.apiKey,
     required this.secretKey,
   });
+  factory AmplitudeConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return AmplitudeConnectorProfileCredentials(
+      apiKey: json['apiKey'] as String,
+      secretKey: json['secretKey'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final apiKey = this.apiKey;
     final secretKey = this.secretKey;
@@ -1069,6 +1077,10 @@ class AmplitudeMetadata {
   AmplitudeMetadata();
   factory AmplitudeMetadata.fromJson(Map<String, dynamic> _) {
     return AmplitudeMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1187,6 +1199,37 @@ class ConnectorConfiguration {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canUseAsDestination = this.canUseAsDestination;
+    final canUseAsSource = this.canUseAsSource;
+    final connectorMetadata = this.connectorMetadata;
+    final isPrivateLinkEnabled = this.isPrivateLinkEnabled;
+    final isPrivateLinkEndpointUrlRequired =
+        this.isPrivateLinkEndpointUrlRequired;
+    final supportedDestinationConnectors = this.supportedDestinationConnectors;
+    final supportedSchedulingFrequencies = this.supportedSchedulingFrequencies;
+    final supportedTriggerTypes = this.supportedTriggerTypes;
+    return {
+      if (canUseAsDestination != null)
+        'canUseAsDestination': canUseAsDestination,
+      if (canUseAsSource != null) 'canUseAsSource': canUseAsSource,
+      if (connectorMetadata != null) 'connectorMetadata': connectorMetadata,
+      if (isPrivateLinkEnabled != null)
+        'isPrivateLinkEnabled': isPrivateLinkEnabled,
+      if (isPrivateLinkEndpointUrlRequired != null)
+        'isPrivateLinkEndpointUrlRequired': isPrivateLinkEndpointUrlRequired,
+      if (supportedDestinationConnectors != null)
+        'supportedDestinationConnectors':
+            supportedDestinationConnectors.map((e) => e.toValue()).toList(),
+      if (supportedSchedulingFrequencies != null)
+        'supportedSchedulingFrequencies':
+            supportedSchedulingFrequencies.map((e) => e.toValue()).toList(),
+      if (supportedTriggerTypes != null)
+        'supportedTriggerTypes':
+            supportedTriggerTypes.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// The high-level entity that can be queried in Amazon AppFlow. For example, a
@@ -1218,6 +1261,17 @@ class ConnectorEntity {
       hasNestedEntities: json['hasNestedEntities'] as bool?,
       label: json['label'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final hasNestedEntities = this.hasNestedEntities;
+    final label = this.label;
+    return {
+      'name': name,
+      if (hasNestedEntities != null) 'hasNestedEntities': hasNestedEntities,
+      if (label != null) 'label': label,
+    };
   }
 }
 
@@ -1273,6 +1327,25 @@ class ConnectorEntityField {
               json['supportedFieldTypeDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final description = this.description;
+    final destinationProperties = this.destinationProperties;
+    final label = this.label;
+    final sourceProperties = this.sourceProperties;
+    final supportedFieldTypeDetails = this.supportedFieldTypeDetails;
+    return {
+      'identifier': identifier,
+      if (description != null) 'description': description,
+      if (destinationProperties != null)
+        'destinationProperties': destinationProperties,
+      if (label != null) 'label': label,
+      if (sourceProperties != null) 'sourceProperties': sourceProperties,
+      if (supportedFieldTypeDetails != null)
+        'supportedFieldTypeDetails': supportedFieldTypeDetails,
+    };
   }
 }
 
@@ -1437,6 +1510,51 @@ class ConnectorMetadata {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amplitude = this.amplitude;
+    final customerProfiles = this.customerProfiles;
+    final datadog = this.datadog;
+    final dynatrace = this.dynatrace;
+    final eventBridge = this.eventBridge;
+    final googleAnalytics = this.googleAnalytics;
+    final honeycode = this.honeycode;
+    final inforNexus = this.inforNexus;
+    final marketo = this.marketo;
+    final redshift = this.redshift;
+    final s3 = this.s3;
+    final salesforce = this.salesforce;
+    final serviceNow = this.serviceNow;
+    final singular = this.singular;
+    final slack = this.slack;
+    final snowflake = this.snowflake;
+    final trendmicro = this.trendmicro;
+    final upsolver = this.upsolver;
+    final veeva = this.veeva;
+    final zendesk = this.zendesk;
+    return {
+      if (amplitude != null) 'Amplitude': amplitude,
+      if (customerProfiles != null) 'CustomerProfiles': customerProfiles,
+      if (datadog != null) 'Datadog': datadog,
+      if (dynatrace != null) 'Dynatrace': dynatrace,
+      if (eventBridge != null) 'EventBridge': eventBridge,
+      if (googleAnalytics != null) 'GoogleAnalytics': googleAnalytics,
+      if (honeycode != null) 'Honeycode': honeycode,
+      if (inforNexus != null) 'InforNexus': inforNexus,
+      if (marketo != null) 'Marketo': marketo,
+      if (redshift != null) 'Redshift': redshift,
+      if (s3 != null) 'S3': s3,
+      if (salesforce != null) 'Salesforce': salesforce,
+      if (serviceNow != null) 'ServiceNow': serviceNow,
+      if (singular != null) 'Singular': singular,
+      if (slack != null) 'Slack': slack,
+      if (snowflake != null) 'Snowflake': snowflake,
+      if (trendmicro != null) 'Trendmicro': trendmicro,
+      if (upsolver != null) 'Upsolver': upsolver,
+      if (veeva != null) 'Veeva': veeva,
+      if (zendesk != null) 'Zendesk': zendesk,
+    };
+  }
 }
 
 /// Used by select connectors for which the OAuth workflow is supported, such as
@@ -1454,6 +1572,13 @@ class ConnectorOAuthRequest {
     this.authCode,
     this.redirectUri,
   });
+  factory ConnectorOAuthRequest.fromJson(Map<String, dynamic> json) {
+    return ConnectorOAuthRequest(
+      authCode: json['authCode'] as String?,
+      redirectUri: json['redirectUri'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final authCode = this.authCode;
     final redirectUri = this.redirectUri;
@@ -1640,6 +1765,31 @@ class ConnectorProfile {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionMode = this.connectionMode;
+    final connectorProfileArn = this.connectorProfileArn;
+    final connectorProfileName = this.connectorProfileName;
+    final connectorProfileProperties = this.connectorProfileProperties;
+    final connectorType = this.connectorType;
+    final createdAt = this.createdAt;
+    final credentialsArn = this.credentialsArn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    return {
+      if (connectionMode != null) 'connectionMode': connectionMode.toValue(),
+      if (connectorProfileArn != null)
+        'connectorProfileArn': connectorProfileArn,
+      if (connectorProfileName != null)
+        'connectorProfileName': connectorProfileName,
+      if (connectorProfileProperties != null)
+        'connectorProfileProperties': connectorProfileProperties,
+      if (connectorType != null) 'connectorType': connectorType.toValue(),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (credentialsArn != null) 'credentialsArn': credentialsArn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+    };
+  }
 }
 
 /// Defines the connector-specific configuration and credentials for the
@@ -1655,6 +1805,15 @@ class ConnectorProfileConfig {
     required this.connectorProfileCredentials,
     required this.connectorProfileProperties,
   });
+  factory ConnectorProfileConfig.fromJson(Map<String, dynamic> json) {
+    return ConnectorProfileConfig(
+      connectorProfileCredentials: ConnectorProfileCredentials.fromJson(
+          json['connectorProfileCredentials'] as Map<String, dynamic>),
+      connectorProfileProperties: ConnectorProfileProperties.fromJson(
+          json['connectorProfileProperties'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final connectorProfileCredentials = this.connectorProfileCredentials;
     final connectorProfileProperties = this.connectorProfileProperties;
@@ -1733,6 +1892,75 @@ class ConnectorProfileCredentials {
     this.veeva,
     this.zendesk,
   });
+  factory ConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
+    return ConnectorProfileCredentials(
+      amplitude: json['Amplitude'] != null
+          ? AmplitudeConnectorProfileCredentials.fromJson(
+              json['Amplitude'] as Map<String, dynamic>)
+          : null,
+      datadog: json['Datadog'] != null
+          ? DatadogConnectorProfileCredentials.fromJson(
+              json['Datadog'] as Map<String, dynamic>)
+          : null,
+      dynatrace: json['Dynatrace'] != null
+          ? DynatraceConnectorProfileCredentials.fromJson(
+              json['Dynatrace'] as Map<String, dynamic>)
+          : null,
+      googleAnalytics: json['GoogleAnalytics'] != null
+          ? GoogleAnalyticsConnectorProfileCredentials.fromJson(
+              json['GoogleAnalytics'] as Map<String, dynamic>)
+          : null,
+      honeycode: json['Honeycode'] != null
+          ? HoneycodeConnectorProfileCredentials.fromJson(
+              json['Honeycode'] as Map<String, dynamic>)
+          : null,
+      inforNexus: json['InforNexus'] != null
+          ? InforNexusConnectorProfileCredentials.fromJson(
+              json['InforNexus'] as Map<String, dynamic>)
+          : null,
+      marketo: json['Marketo'] != null
+          ? MarketoConnectorProfileCredentials.fromJson(
+              json['Marketo'] as Map<String, dynamic>)
+          : null,
+      redshift: json['Redshift'] != null
+          ? RedshiftConnectorProfileCredentials.fromJson(
+              json['Redshift'] as Map<String, dynamic>)
+          : null,
+      salesforce: json['Salesforce'] != null
+          ? SalesforceConnectorProfileCredentials.fromJson(
+              json['Salesforce'] as Map<String, dynamic>)
+          : null,
+      serviceNow: json['ServiceNow'] != null
+          ? ServiceNowConnectorProfileCredentials.fromJson(
+              json['ServiceNow'] as Map<String, dynamic>)
+          : null,
+      singular: json['Singular'] != null
+          ? SingularConnectorProfileCredentials.fromJson(
+              json['Singular'] as Map<String, dynamic>)
+          : null,
+      slack: json['Slack'] != null
+          ? SlackConnectorProfileCredentials.fromJson(
+              json['Slack'] as Map<String, dynamic>)
+          : null,
+      snowflake: json['Snowflake'] != null
+          ? SnowflakeConnectorProfileCredentials.fromJson(
+              json['Snowflake'] as Map<String, dynamic>)
+          : null,
+      trendmicro: json['Trendmicro'] != null
+          ? TrendmicroConnectorProfileCredentials.fromJson(
+              json['Trendmicro'] as Map<String, dynamic>)
+          : null,
+      veeva: json['Veeva'] != null
+          ? VeevaConnectorProfileCredentials.fromJson(
+              json['Veeva'] as Map<String, dynamic>)
+          : null,
+      zendesk: json['Zendesk'] != null
+          ? ZendeskConnectorProfileCredentials.fromJson(
+              json['Zendesk'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final amplitude = this.amplitude;
     final datadog = this.datadog;
@@ -2081,6 +2309,14 @@ class CreateConnectorProfileResponse {
       connectorProfileArn: json['connectorProfileArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorProfileArn = this.connectorProfileArn;
+    return {
+      if (connectorProfileArn != null)
+        'connectorProfileArn': connectorProfileArn,
+    };
+  }
 }
 
 class CreateFlowResponse {
@@ -2099,6 +2335,15 @@ class CreateFlowResponse {
       flowArn: json['flowArn'] as String?,
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final flowStatus = this.flowStatus;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+    };
   }
 }
 
@@ -2139,6 +2384,10 @@ class CustomerProfilesMetadata {
   CustomerProfilesMetadata();
   factory CustomerProfilesMetadata.fromJson(Map<String, dynamic> _) {
     return CustomerProfilesMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2279,6 +2528,14 @@ class DatadogConnectorProfileCredentials {
     required this.apiKey,
     required this.applicationKey,
   });
+  factory DatadogConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return DatadogConnectorProfileCredentials(
+      apiKey: json['apiKey'] as String,
+      applicationKey: json['applicationKey'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final apiKey = this.apiKey;
     final applicationKey = this.applicationKey;
@@ -2318,6 +2575,10 @@ class DatadogMetadata {
   factory DatadogMetadata.fromJson(Map<String, dynamic> _) {
     return DatadogMetadata();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The properties that are applied when Datadog is being used as a source.
@@ -2347,12 +2608,20 @@ class DeleteConnectorProfileResponse {
   factory DeleteConnectorProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConnectorProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteFlowResponse {
   DeleteFlowResponse();
   factory DeleteFlowResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2372,6 +2641,13 @@ class DescribeConnectorEntityResponse {
           .map((e) => ConnectorEntityField.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectorEntityFields = this.connectorEntityFields;
+    return {
+      'connectorEntityFields': connectorEntityFields,
+    };
   }
 }
 
@@ -2397,6 +2673,16 @@ class DescribeConnectorProfilesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorProfileDetails = this.connectorProfileDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (connectorProfileDetails != null)
+        'connectorProfileDetails': connectorProfileDetails,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConnectorsResponse {
@@ -2418,6 +2704,17 @@ class DescribeConnectorsResponse {
                   ConnectorConfiguration.fromJson(e as Map<String, dynamic>))),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectorConfigurations = this.connectorConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      if (connectorConfigurations != null)
+        'connectorConfigurations':
+            connectorConfigurations.map((k, e) => MapEntry(k.toValue(), e)),
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2441,6 +2738,15 @@ class DescribeFlowExecutionRecordsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowExecutions = this.flowExecutions;
+    final nextToken = this.nextToken;
+    return {
+      if (flowExecutions != null) 'flowExecutions': flowExecutions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2555,6 +2861,46 @@ class DescribeFlowResponse {
               json['triggerConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final destinationFlowConfigList = this.destinationFlowConfigList;
+    final flowArn = this.flowArn;
+    final flowName = this.flowName;
+    final flowStatus = this.flowStatus;
+    final flowStatusMessage = this.flowStatusMessage;
+    final kmsArn = this.kmsArn;
+    final lastRunExecutionDetails = this.lastRunExecutionDetails;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    final sourceFlowConfig = this.sourceFlowConfig;
+    final tags = this.tags;
+    final tasks = this.tasks;
+    final triggerConfig = this.triggerConfig;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (destinationFlowConfigList != null)
+        'destinationFlowConfigList': destinationFlowConfigList,
+      if (flowArn != null) 'flowArn': flowArn,
+      if (flowName != null) 'flowName': flowName,
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+      if (flowStatusMessage != null) 'flowStatusMessage': flowStatusMessage,
+      if (kmsArn != null) 'kmsArn': kmsArn,
+      if (lastRunExecutionDetails != null)
+        'lastRunExecutionDetails': lastRunExecutionDetails,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
+      if (sourceFlowConfig != null) 'sourceFlowConfig': sourceFlowConfig,
+      if (tags != null) 'tags': tags,
+      if (tasks != null) 'tasks': tasks,
+      if (triggerConfig != null) 'triggerConfig': triggerConfig,
+    };
   }
 }
 
@@ -2714,6 +3060,23 @@ class DestinationFieldProperties {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isCreatable = this.isCreatable;
+    final isNullable = this.isNullable;
+    final isUpdatable = this.isUpdatable;
+    final isUpsertable = this.isUpsertable;
+    final supportedWriteOperations = this.supportedWriteOperations;
+    return {
+      if (isCreatable != null) 'isCreatable': isCreatable,
+      if (isNullable != null) 'isNullable': isNullable,
+      if (isUpdatable != null) 'isUpdatable': isUpdatable,
+      if (isUpsertable != null) 'isUpsertable': isUpsertable,
+      if (supportedWriteOperations != null)
+        'supportedWriteOperations':
+            supportedWriteOperations.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Contains information about the configuration of destination connectors
@@ -2858,6 +3221,13 @@ class DynatraceConnectorProfileCredentials {
   DynatraceConnectorProfileCredentials({
     required this.apiToken,
   });
+  factory DynatraceConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return DynatraceConnectorProfileCredentials(
+      apiToken: json['apiToken'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final apiToken = this.apiToken;
     return {
@@ -2894,6 +3264,10 @@ class DynatraceMetadata {
   DynatraceMetadata();
   factory DynatraceMetadata.fromJson(Map<String, dynamic> _) {
     return DynatraceMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2981,6 +3355,15 @@ class ErrorInfo {
       putFailuresCount: json['putFailuresCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionMessage = this.executionMessage;
+    final putFailuresCount = this.putFailuresCount;
+    return {
+      if (executionMessage != null) 'executionMessage': executionMessage,
+      if (putFailuresCount != null) 'putFailuresCount': putFailuresCount,
+    };
+  }
 }
 
 /// The properties that are applied when Amazon EventBridge is being used as a
@@ -3021,6 +3404,10 @@ class EventBridgeMetadata {
   factory EventBridgeMetadata.fromJson(Map<String, dynamic> _) {
     return EventBridgeMetadata();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes the details of the flow run, including the timestamp, status, and
@@ -3048,6 +3435,20 @@ class ExecutionDetails {
       mostRecentExecutionTime:
           timeStampFromJson(json['mostRecentExecutionTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mostRecentExecutionMessage = this.mostRecentExecutionMessage;
+    final mostRecentExecutionStatus = this.mostRecentExecutionStatus;
+    final mostRecentExecutionTime = this.mostRecentExecutionTime;
+    return {
+      if (mostRecentExecutionMessage != null)
+        'mostRecentExecutionMessage': mostRecentExecutionMessage,
+      if (mostRecentExecutionStatus != null)
+        'mostRecentExecutionStatus': mostRecentExecutionStatus.toValue(),
+      if (mostRecentExecutionTime != null)
+        'mostRecentExecutionTime': unixTimestampToJson(mostRecentExecutionTime),
+    };
   }
 }
 
@@ -3101,6 +3502,28 @@ class ExecutionRecord {
       startedAt: timeStampFromJson(json['startedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataPullEndTime = this.dataPullEndTime;
+    final dataPullStartTime = this.dataPullStartTime;
+    final executionId = this.executionId;
+    final executionResult = this.executionResult;
+    final executionStatus = this.executionStatus;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final startedAt = this.startedAt;
+    return {
+      if (dataPullEndTime != null)
+        'dataPullEndTime': unixTimestampToJson(dataPullEndTime),
+      if (dataPullStartTime != null)
+        'dataPullStartTime': unixTimestampToJson(dataPullStartTime),
+      if (executionId != null) 'executionId': executionId,
+      if (executionResult != null) 'executionResult': executionResult,
+      if (executionStatus != null) 'executionStatus': executionStatus.toValue(),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+    };
+  }
 }
 
 /// Specifies the end result of the flow run.
@@ -3132,6 +3555,19 @@ class ExecutionResult {
           : null,
       recordsProcessed: json['recordsProcessed'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytesProcessed = this.bytesProcessed;
+    final bytesWritten = this.bytesWritten;
+    final errorInfo = this.errorInfo;
+    final recordsProcessed = this.recordsProcessed;
+    return {
+      if (bytesProcessed != null) 'bytesProcessed': bytesProcessed,
+      if (bytesWritten != null) 'bytesWritten': bytesWritten,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (recordsProcessed != null) 'recordsProcessed': recordsProcessed,
+    };
   }
 }
 
@@ -3198,6 +3634,17 @@ class FieldTypeDetails {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldType = this.fieldType;
+    final filterOperators = this.filterOperators;
+    final supportedValues = this.supportedValues;
+    return {
+      'fieldType': fieldType,
+      'filterOperators': filterOperators.map((e) => e.toValue()).toList(),
+      if (supportedValues != null) 'supportedValues': supportedValues,
+    };
   }
 }
 
@@ -3318,6 +3765,41 @@ class FlowDefinition {
       triggerType: (json['triggerType'] as String?)?.toTriggerType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final destinationConnectorType = this.destinationConnectorType;
+    final flowArn = this.flowArn;
+    final flowName = this.flowName;
+    final flowStatus = this.flowStatus;
+    final lastRunExecutionDetails = this.lastRunExecutionDetails;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    final sourceConnectorType = this.sourceConnectorType;
+    final tags = this.tags;
+    final triggerType = this.triggerType;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (destinationConnectorType != null)
+        'destinationConnectorType': destinationConnectorType.toValue(),
+      if (flowArn != null) 'flowArn': flowArn,
+      if (flowName != null) 'flowName': flowName,
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+      if (lastRunExecutionDetails != null)
+        'lastRunExecutionDetails': lastRunExecutionDetails,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
+      if (sourceConnectorType != null)
+        'sourceConnectorType': sourceConnectorType.toValue(),
+      if (tags != null) 'tags': tags,
+      if (triggerType != null) 'triggerType': triggerType.toValue(),
+    };
+  }
 }
 
 enum FlowStatus {
@@ -3424,6 +3906,20 @@ class GoogleAnalyticsConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+  factory GoogleAnalyticsConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return GoogleAnalyticsConnectorProfileCredentials(
+      clientId: json['clientId'] as String,
+      clientSecret: json['clientSecret'] as String,
+      accessToken: json['accessToken'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+      refreshToken: json['refreshToken'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final clientSecret = this.clientSecret;
@@ -3469,6 +3965,13 @@ class GoogleAnalyticsMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final oAuthScopes = this.oAuthScopes;
+    return {
+      if (oAuthScopes != null) 'oAuthScopes': oAuthScopes,
+    };
+  }
 }
 
 /// The properties that are applied when Google Analytics is being used as a
@@ -3508,6 +4011,18 @@ class HoneycodeConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+  factory HoneycodeConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return HoneycodeConnectorProfileCredentials(
+      accessToken: json['accessToken'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+      refreshToken: json['refreshToken'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accessToken = this.accessToken;
     final oAuthRequest = this.oAuthRequest;
@@ -3579,6 +4094,13 @@ class HoneycodeMetadata {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final oAuthScopes = this.oAuthScopes;
+    return {
+      if (oAuthScopes != null) 'oAuthScopes': oAuthScopes,
+    };
   }
 }
 
@@ -3720,6 +4242,16 @@ class InforNexusConnectorProfileCredentials {
     required this.secretAccessKey,
     required this.userId,
   });
+  factory InforNexusConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return InforNexusConnectorProfileCredentials(
+      accessKeyId: json['accessKeyId'] as String,
+      datakey: json['datakey'] as String,
+      secretAccessKey: json['secretAccessKey'] as String,
+      userId: json['userId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accessKeyId = this.accessKeyId;
     final datakey = this.datakey;
@@ -3762,6 +4294,10 @@ class InforNexusMetadata {
   InforNexusMetadata();
   factory InforNexusMetadata.fromJson(Map<String, dynamic> _) {
     return InforNexusMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3808,6 +4344,13 @@ class ListConnectorEntitiesResponse {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorEntityMap = this.connectorEntityMap;
+    return {
+      'connectorEntityMap': connectorEntityMap,
+    };
+  }
 }
 
 class ListFlowsResponse {
@@ -3830,6 +4373,15 @@ class ListFlowsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flows = this.flows;
+    final nextToken = this.nextToken;
+    return {
+      if (flows != null) 'flows': flows,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3844,6 +4396,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3980,6 +4539,19 @@ class MarketoConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+  factory MarketoConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return MarketoConnectorProfileCredentials(
+      clientId: json['clientId'] as String,
+      clientSecret: json['clientSecret'] as String,
+      accessToken: json['accessToken'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final clientSecret = this.clientSecret;
@@ -4022,6 +4594,10 @@ class MarketoMetadata {
   MarketoMetadata();
   factory MarketoMetadata.fromJson(Map<String, dynamic> _) {
     return MarketoMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4384,6 +4960,14 @@ class RedshiftConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+  factory RedshiftConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return RedshiftConnectorProfileCredentials(
+      password: json['password'] as String,
+      username: json['username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -4499,6 +5083,10 @@ class RedshiftMetadata {
   RedshiftMetadata();
   factory RedshiftMetadata.fromJson(Map<String, dynamic> _) {
     return RedshiftMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4665,6 +5253,10 @@ class S3Metadata {
   S3Metadata();
   factory S3Metadata.fromJson(Map<String, dynamic> _) {
     return S3Metadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4887,6 +5479,19 @@ class SalesforceConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+  factory SalesforceConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return SalesforceConnectorProfileCredentials(
+      accessToken: json['accessToken'] as String?,
+      clientCredentialsArn: json['clientCredentialsArn'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+      refreshToken: json['refreshToken'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final accessToken = this.accessToken;
     final clientCredentialsArn = this.clientCredentialsArn;
@@ -5010,6 +5615,13 @@ class SalesforceMetadata {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final oAuthScopes = this.oAuthScopes;
+    return {
+      if (oAuthScopes != null) 'oAuthScopes': oAuthScopes,
+    };
   }
 }
 
@@ -5309,6 +5921,14 @@ class ServiceNowConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+  factory ServiceNowConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return ServiceNowConnectorProfileCredentials(
+      password: json['password'] as String,
+      username: json['username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -5347,6 +5967,10 @@ class ServiceNowMetadata {
   ServiceNowMetadata();
   factory ServiceNowMetadata.fromJson(Map<String, dynamic> _) {
     return ServiceNowMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5469,6 +6093,13 @@ class SingularConnectorProfileCredentials {
   SingularConnectorProfileCredentials({
     required this.apiKey,
   });
+  factory SingularConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return SingularConnectorProfileCredentials(
+      apiKey: json['apiKey'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final apiKey = this.apiKey;
     return {
@@ -5494,6 +6125,10 @@ class SingularMetadata {
   SingularMetadata();
   factory SingularMetadata.fromJson(Map<String, dynamic> _) {
     return SingularMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5654,6 +6289,18 @@ class SlackConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+  factory SlackConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
+    return SlackConnectorProfileCredentials(
+      clientId: json['clientId'] as String,
+      clientSecret: json['clientSecret'] as String,
+      accessToken: json['accessToken'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final clientSecret = this.clientSecret;
@@ -5706,6 +6353,13 @@ class SlackMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final oAuthScopes = this.oAuthScopes;
+    return {
+      if (oAuthScopes != null) 'oAuthScopes': oAuthScopes,
+    };
+  }
 }
 
 /// The properties that are applied when Slack is being used as a source.
@@ -5742,6 +6396,14 @@ class SnowflakeConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+  factory SnowflakeConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return SnowflakeConnectorProfileCredentials(
+      password: json['password'] as String,
+      username: json['username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -5892,6 +6554,13 @@ class SnowflakeMetadata {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final supportedRegions = this.supportedRegions;
+    return {
+      if (supportedRegions != null) 'supportedRegions': supportedRegions,
+    };
   }
 }
 
@@ -6068,6 +6737,15 @@ class SourceFieldProperties {
       isRetrievable: json['isRetrievable'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isQueryable = this.isQueryable;
+    final isRetrievable = this.isRetrievable;
+    return {
+      if (isQueryable != null) 'isQueryable': isQueryable,
+      if (isRetrievable != null) 'isRetrievable': isRetrievable,
+    };
+  }
 }
 
 /// Contains information about the configuration of the source connector used in
@@ -6147,6 +6825,17 @@ class StartFlowResponse {
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    final flowArn = this.flowArn;
+    final flowStatus = this.flowStatus;
+    return {
+      if (executionId != null) 'executionId': executionId,
+      if (flowArn != null) 'flowArn': flowArn,
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+    };
+  }
 }
 
 class StopFlowResponse {
@@ -6166,6 +6855,15 @@ class StopFlowResponse {
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final flowStatus = this.flowStatus;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+    };
+  }
 }
 
 /// Contains details regarding all the supported <code>FieldTypes</code> and
@@ -6184,12 +6882,23 @@ class SupportedFieldTypeDetails {
       v1: FieldTypeDetails.fromJson(json['v1'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final v1 = this.v1;
+    return {
+      'v1': v1,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6409,6 +7118,13 @@ class TrendmicroConnectorProfileCredentials {
   TrendmicroConnectorProfileCredentials({
     required this.apiSecretKey,
   });
+  factory TrendmicroConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return TrendmicroConnectorProfileCredentials(
+      apiSecretKey: json['apiSecretKey'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final apiSecretKey = this.apiSecretKey;
     return {
@@ -6435,6 +7151,10 @@ class TrendmicroMetadata {
   TrendmicroMetadata();
   factory TrendmicroMetadata.fromJson(Map<String, dynamic> _) {
     return TrendmicroMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6562,6 +7282,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateConnectorProfileResponse {
@@ -6576,6 +7300,14 @@ class UpdateConnectorProfileResponse {
       connectorProfileArn: json['connectorProfileArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorProfileArn = this.connectorProfileArn;
+    return {
+      if (connectorProfileArn != null)
+        'connectorProfileArn': connectorProfileArn,
+    };
+  }
 }
 
 class UpdateFlowResponse {
@@ -6589,6 +7321,13 @@ class UpdateFlowResponse {
     return UpdateFlowResponse(
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowStatus = this.flowStatus;
+    return {
+      if (flowStatus != null) 'flowStatus': flowStatus.toValue(),
+    };
   }
 }
 
@@ -6637,6 +7376,10 @@ class UpsolverMetadata {
   UpsolverMetadata();
   factory UpsolverMetadata.fromJson(Map<String, dynamic> _) {
     return UpsolverMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6814,6 +7557,13 @@ class VeevaConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+  factory VeevaConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
+    return VeevaConnectorProfileCredentials(
+      password: json['password'] as String,
+      username: json['username'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -6851,6 +7601,10 @@ class VeevaMetadata {
   VeevaMetadata();
   factory VeevaMetadata.fromJson(Map<String, dynamic> _) {
     return VeevaMetadata();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7021,6 +7775,19 @@ class ZendeskConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+  factory ZendeskConnectorProfileCredentials.fromJson(
+      Map<String, dynamic> json) {
+    return ZendeskConnectorProfileCredentials(
+      clientId: json['clientId'] as String,
+      clientSecret: json['clientSecret'] as String,
+      accessToken: json['accessToken'] as String?,
+      oAuthRequest: json['oAuthRequest'] != null
+          ? ConnectorOAuthRequest.fromJson(
+              json['oAuthRequest'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final clientSecret = this.clientSecret;
@@ -7119,6 +7886,13 @@ class ZendeskMetadata {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final oAuthScopes = this.oAuthScopes;
+    return {
+      if (oAuthScopes != null) 'oAuthScopes': oAuthScopes,
+    };
   }
 }
 

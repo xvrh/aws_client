@@ -62,10 +62,23 @@ class OutputShape {
   OutputShape({
     this.blob,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       blob: _s.extractXmlUint8ListValue(elem, 'Blob'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
   }
 }
 

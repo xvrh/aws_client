@@ -62,6 +62,13 @@ class OutputShape {
   OutputShape({
     this.map,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      map: (json['Map'] as Map<String, dynamic>?)?.map((k, e) =>
+          MapEntry(k, StructType.fromJson(e as Map<String, dynamic>))),
+    );
+  }
+
   factory OutputShape.fromXml(_s.XmlElement elem) {
     return OutputShape(
       map: Map.fromEntries(
@@ -75,6 +82,13 @@ class OutputShape {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final map = this.map;
+    return {
+      if (map != null) 'Map': map,
+    };
+  }
 }
 
 class StructType {
@@ -83,10 +97,23 @@ class StructType {
   StructType({
     this.foo,
   });
+  factory StructType.fromJson(Map<String, dynamic> json) {
+    return StructType(
+      foo: json['foo'] as String?,
+    );
+  }
+
   factory StructType.fromXml(_s.XmlElement elem) {
     return StructType(
       foo: _s.extractXmlStringValue(elem, 'foo'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'foo': foo,
+    };
   }
 }
 

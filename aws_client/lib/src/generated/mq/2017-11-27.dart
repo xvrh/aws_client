@@ -1099,6 +1099,13 @@ class AvailabilityZone {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Types of broker engines.
@@ -1121,6 +1128,15 @@ class BrokerEngineType {
           .map((e) => EngineVersion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineType = this.engineType;
+    final engineVersions = this.engineVersions;
+    return {
+      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineVersions != null) 'engineVersions': engineVersions,
+    };
   }
 }
 
@@ -1150,6 +1166,17 @@ class BrokerInstance {
           .toList(),
       ipAddress: json['ipAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consoleURL = this.consoleURL;
+    final endpoints = this.endpoints;
+    final ipAddress = this.ipAddress;
+    return {
+      if (consoleURL != null) 'consoleURL': consoleURL,
+      if (endpoints != null) 'endpoints': endpoints,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+    };
   }
 }
 
@@ -1199,6 +1226,26 @@ class BrokerInstanceOption {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final engineType = this.engineType;
+    final hostInstanceType = this.hostInstanceType;
+    final storageType = this.storageType;
+    final supportedDeploymentModes = this.supportedDeploymentModes;
+    final supportedEngineVersions = this.supportedEngineVersions;
+    return {
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (engineType != null) 'engineType': engineType.toValue(),
+      if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
+      if (storageType != null) 'storageType': storageType.toValue(),
+      if (supportedDeploymentModes != null)
+        'supportedDeploymentModes':
+            supportedDeploymentModes.map((e) => e.toValue()).toList(),
+      if (supportedEngineVersions != null)
+        'supportedEngineVersions': supportedEngineVersions,
+    };
   }
 }
 
@@ -1329,6 +1376,27 @@ class BrokerSummary {
       hostInstanceType: json['hostInstanceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentMode = this.deploymentMode;
+    final engineType = this.engineType;
+    final brokerArn = this.brokerArn;
+    final brokerId = this.brokerId;
+    final brokerName = this.brokerName;
+    final brokerState = this.brokerState;
+    final created = this.created;
+    final hostInstanceType = this.hostInstanceType;
+    return {
+      'deploymentMode': deploymentMode.toValue(),
+      'engineType': engineType.toValue(),
+      if (brokerArn != null) 'brokerArn': brokerArn,
+      if (brokerId != null) 'brokerId': brokerId,
+      if (brokerName != null) 'brokerName': brokerName,
+      if (brokerState != null) 'brokerState': brokerState.toValue(),
+      if (created != null) 'created': iso8601ToJson(created),
+      if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
+    };
+  }
 }
 
 /// The type of change pending for the ActiveMQ user.
@@ -1433,6 +1501,31 @@ class Configuration {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authenticationStrategy = this.authenticationStrategy;
+    final created = this.created;
+    final description = this.description;
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    final id = this.id;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'authenticationStrategy': authenticationStrategy.toValue(),
+      'created': iso8601ToJson(created),
+      'description': description,
+      'engineType': engineType.toValue(),
+      'engineVersion': engineVersion,
+      'id': id,
+      'latestRevision': latestRevision,
+      'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A list of information about the configuration.
@@ -1490,6 +1583,17 @@ class ConfigurationRevision {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final revision = this.revision;
+    final description = this.description;
+    return {
+      'created': iso8601ToJson(created),
+      'revision': revision,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// Broker configuration information
@@ -1522,6 +1626,17 @@ class Configurations {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final current = this.current;
+    final history = this.history;
+    final pending = this.pending;
+    return {
+      if (current != null) 'current': current,
+      if (history != null) 'history': history,
+      if (pending != null) 'pending': pending,
+    };
+  }
 }
 
 class CreateBrokerResponse {
@@ -1540,6 +1655,15 @@ class CreateBrokerResponse {
       brokerArn: json['brokerArn'] as String?,
       brokerId: json['brokerId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brokerArn = this.brokerArn;
+    final brokerId = this.brokerId;
+    return {
+      if (brokerArn != null) 'brokerArn': brokerArn,
+      if (brokerId != null) 'brokerId': brokerId,
+    };
   }
 }
 
@@ -1587,12 +1711,34 @@ class CreateConfigurationResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authenticationStrategy = this.authenticationStrategy;
+    final created = this.created;
+    final id = this.id;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authenticationStrategy != null)
+        'authenticationStrategy': authenticationStrategy.toValue(),
+      if (created != null) 'created': iso8601ToJson(created),
+      if (id != null) 'id': id,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class CreateUserResponse {
   CreateUserResponse();
   factory CreateUserResponse.fromJson(Map<String, dynamic> _) {
     return CreateUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1661,12 +1807,23 @@ class DeleteBrokerResponse {
       brokerId: json['brokerId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final brokerId = this.brokerId;
+    return {
+      if (brokerId != null) 'brokerId': brokerId,
+    };
+  }
 }
 
 class DeleteUserResponse {
   DeleteUserResponse();
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1732,6 +1889,17 @@ class DescribeBrokerEngineTypesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final brokerEngineTypes = this.brokerEngineTypes;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (brokerEngineTypes != null) 'brokerEngineTypes': brokerEngineTypes,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeBrokerInstanceOptionsResponse {
@@ -1761,6 +1929,18 @@ class DescribeBrokerInstanceOptionsResponse {
       maxResults: json['maxResults'] as int?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brokerInstanceOptions = this.brokerInstanceOptions;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (brokerInstanceOptions != null)
+        'brokerInstanceOptions': brokerInstanceOptions,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1970,6 +2150,76 @@ class DescribeBrokerResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationStrategy = this.authenticationStrategy;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final brokerArn = this.brokerArn;
+    final brokerId = this.brokerId;
+    final brokerInstances = this.brokerInstances;
+    final brokerName = this.brokerName;
+    final brokerState = this.brokerState;
+    final configurations = this.configurations;
+    final created = this.created;
+    final deploymentMode = this.deploymentMode;
+    final encryptionOptions = this.encryptionOptions;
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    final hostInstanceType = this.hostInstanceType;
+    final ldapServerMetadata = this.ldapServerMetadata;
+    final logs = this.logs;
+    final maintenanceWindowStartTime = this.maintenanceWindowStartTime;
+    final pendingAuthenticationStrategy = this.pendingAuthenticationStrategy;
+    final pendingEngineVersion = this.pendingEngineVersion;
+    final pendingHostInstanceType = this.pendingHostInstanceType;
+    final pendingLdapServerMetadata = this.pendingLdapServerMetadata;
+    final pendingSecurityGroups = this.pendingSecurityGroups;
+    final publiclyAccessible = this.publiclyAccessible;
+    final securityGroups = this.securityGroups;
+    final storageType = this.storageType;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final users = this.users;
+    return {
+      if (authenticationStrategy != null)
+        'authenticationStrategy': authenticationStrategy.toValue(),
+      if (autoMinorVersionUpgrade != null)
+        'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (brokerArn != null) 'brokerArn': brokerArn,
+      if (brokerId != null) 'brokerId': brokerId,
+      if (brokerInstances != null) 'brokerInstances': brokerInstances,
+      if (brokerName != null) 'brokerName': brokerName,
+      if (brokerState != null) 'brokerState': brokerState.toValue(),
+      if (configurations != null) 'configurations': configurations,
+      if (created != null) 'created': iso8601ToJson(created),
+      if (deploymentMode != null) 'deploymentMode': deploymentMode.toValue(),
+      if (encryptionOptions != null) 'encryptionOptions': encryptionOptions,
+      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
+      if (ldapServerMetadata != null) 'ldapServerMetadata': ldapServerMetadata,
+      if (logs != null) 'logs': logs,
+      if (maintenanceWindowStartTime != null)
+        'maintenanceWindowStartTime': maintenanceWindowStartTime,
+      if (pendingAuthenticationStrategy != null)
+        'pendingAuthenticationStrategy':
+            pendingAuthenticationStrategy.toValue(),
+      if (pendingEngineVersion != null)
+        'pendingEngineVersion': pendingEngineVersion,
+      if (pendingHostInstanceType != null)
+        'pendingHostInstanceType': pendingHostInstanceType,
+      if (pendingLdapServerMetadata != null)
+        'pendingLdapServerMetadata': pendingLdapServerMetadata,
+      if (pendingSecurityGroups != null)
+        'pendingSecurityGroups': pendingSecurityGroups,
+      if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (storageType != null) 'storageType': storageType.toValue(),
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tags': tags,
+      if (users != null) 'users': users,
+    };
+  }
 }
 
 class DescribeConfigurationResponse {
@@ -2041,6 +2291,32 @@ class DescribeConfigurationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authenticationStrategy = this.authenticationStrategy;
+    final created = this.created;
+    final description = this.description;
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    final id = this.id;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authenticationStrategy != null)
+        'authenticationStrategy': authenticationStrategy.toValue(),
+      if (created != null) 'created': iso8601ToJson(created),
+      if (description != null) 'description': description,
+      if (engineType != null) 'engineType': engineType.toValue(),
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (id != null) 'id': id,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribeConfigurationRevisionResponse {
@@ -2070,6 +2346,19 @@ class DescribeConfigurationRevisionResponse {
       data: json['data'] as String?,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    final created = this.created;
+    final data = this.data;
+    final description = this.description;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+      if (created != null) 'created': iso8601ToJson(created),
+      if (data != null) 'data': data,
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -2113,6 +2402,21 @@ class DescribeUserResponse {
           : null,
       username: json['username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brokerId = this.brokerId;
+    final consoleAccess = this.consoleAccess;
+    final groups = this.groups;
+    final pending = this.pending;
+    final username = this.username;
+    return {
+      if (brokerId != null) 'brokerId': brokerId,
+      if (consoleAccess != null) 'consoleAccess': consoleAccess,
+      if (groups != null) 'groups': groups,
+      if (pending != null) 'pending': pending,
+      if (username != null) 'username': username,
+    };
   }
 }
 
@@ -2193,6 +2497,13 @@ class EngineVersion {
     return EngineVersion(
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -2278,6 +2589,25 @@ class LdapServerMetadataInput {
     this.userRoleName,
     this.userSearchSubtree,
   });
+  factory LdapServerMetadataInput.fromJson(Map<String, dynamic> json) {
+    return LdapServerMetadataInput(
+      hosts: (json['hosts'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      roleBase: json['roleBase'] as String,
+      roleSearchMatching: json['roleSearchMatching'] as String,
+      serviceAccountPassword: json['serviceAccountPassword'] as String,
+      serviceAccountUsername: json['serviceAccountUsername'] as String,
+      userBase: json['userBase'] as String,
+      userSearchMatching: json['userSearchMatching'] as String,
+      roleName: json['roleName'] as String?,
+      roleSearchSubtree: json['roleSearchSubtree'] as bool?,
+      userRoleName: json['userRoleName'] as String?,
+      userSearchSubtree: json['userSearchSubtree'] as bool?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final hosts = this.hosts;
     final roleBase = this.roleBase;
@@ -2395,6 +2725,31 @@ class LdapServerMetadataOutput {
       userSearchSubtree: json['userSearchSubtree'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hosts = this.hosts;
+    final roleBase = this.roleBase;
+    final roleSearchMatching = this.roleSearchMatching;
+    final serviceAccountUsername = this.serviceAccountUsername;
+    final userBase = this.userBase;
+    final userSearchMatching = this.userSearchMatching;
+    final roleName = this.roleName;
+    final roleSearchSubtree = this.roleSearchSubtree;
+    final userRoleName = this.userRoleName;
+    final userSearchSubtree = this.userSearchSubtree;
+    return {
+      'hosts': hosts,
+      'roleBase': roleBase,
+      'roleSearchMatching': roleSearchMatching,
+      'serviceAccountUsername': serviceAccountUsername,
+      'userBase': userBase,
+      'userSearchMatching': userSearchMatching,
+      if (roleName != null) 'roleName': roleName,
+      if (roleSearchSubtree != null) 'roleSearchSubtree': roleSearchSubtree,
+      if (userRoleName != null) 'userRoleName': userRoleName,
+      if (userSearchSubtree != null) 'userSearchSubtree': userSearchSubtree,
+    };
+  }
 }
 
 class ListBrokersResponse {
@@ -2417,6 +2772,15 @@ class ListBrokersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brokerSummaries = this.brokerSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (brokerSummaries != null) 'brokerSummaries': brokerSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2453,6 +2817,19 @@ class ListConfigurationRevisionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    final revisions = this.revisions;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (revisions != null) 'revisions': revisions,
+    };
+  }
 }
 
 class ListConfigurationsResponse {
@@ -2482,6 +2859,17 @@ class ListConfigurationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurations = this.configurations;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (configurations != null) 'configurations': configurations,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -2496,6 +2884,13 @@ class ListTagsResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2531,6 +2926,19 @@ class ListUsersResponse {
           .map((e) => UserSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brokerId = this.brokerId;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (brokerId != null) 'brokerId': brokerId,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (users != null) 'users': users,
+    };
   }
 }
 
@@ -2602,6 +3010,21 @@ class LogsSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final general = this.general;
+    final generalLogGroup = this.generalLogGroup;
+    final audit = this.audit;
+    final auditLogGroup = this.auditLogGroup;
+    final pending = this.pending;
+    return {
+      'general': general,
+      'generalLogGroup': generalLogGroup,
+      if (audit != null) 'audit': audit,
+      if (auditLogGroup != null) 'auditLogGroup': auditLogGroup,
+      if (pending != null) 'pending': pending,
+    };
+  }
 }
 
 /// The list of information about logs to be enabled for the specified broker.
@@ -2623,12 +3046,25 @@ class PendingLogs {
       general: json['general'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audit = this.audit;
+    final general = this.general;
+    return {
+      if (audit != null) 'audit': audit,
+      if (general != null) 'general': general,
+    };
+  }
 }
 
 class RebootBrokerResponse {
   RebootBrokerResponse();
   factory RebootBrokerResponse.fromJson(Map<String, dynamic> _) {
     return RebootBrokerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2656,6 +3092,17 @@ class SanitizationWarning {
       attributeName: json['attributeName'] as String?,
       elementName: json['elementName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final attributeName = this.attributeName;
+    final elementName = this.elementName;
+    return {
+      'reason': reason.toValue(),
+      if (attributeName != null) 'attributeName': attributeName,
+      if (elementName != null) 'elementName': elementName,
+    };
   }
 }
 
@@ -2776,6 +3223,34 @@ class UpdateBrokerResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationStrategy = this.authenticationStrategy;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final brokerId = this.brokerId;
+    final configuration = this.configuration;
+    final engineVersion = this.engineVersion;
+    final hostInstanceType = this.hostInstanceType;
+    final ldapServerMetadata = this.ldapServerMetadata;
+    final logs = this.logs;
+    final maintenanceWindowStartTime = this.maintenanceWindowStartTime;
+    final securityGroups = this.securityGroups;
+    return {
+      if (authenticationStrategy != null)
+        'authenticationStrategy': authenticationStrategy.toValue(),
+      if (autoMinorVersionUpgrade != null)
+        'autoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (brokerId != null) 'brokerId': brokerId,
+      if (configuration != null) 'configuration': configuration,
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (hostInstanceType != null) 'hostInstanceType': hostInstanceType,
+      if (ldapServerMetadata != null) 'ldapServerMetadata': ldapServerMetadata,
+      if (logs != null) 'logs': logs,
+      if (maintenanceWindowStartTime != null)
+        'maintenanceWindowStartTime': maintenanceWindowStartTime,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+    };
+  }
 }
 
 class UpdateConfigurationResponse {
@@ -2824,12 +3299,33 @@ class UpdateConfigurationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final id = this.id;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final warnings = this.warnings;
+    return {
+      if (arn != null) 'arn': arn,
+      if (created != null) 'created': iso8601ToJson(created),
+      if (id != null) 'id': id,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 class UpdateUserResponse {
   UpdateUserResponse();
   factory UpdateUserResponse.fromJson(Map<String, dynamic> _) {
     return UpdateUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2870,6 +3366,18 @@ class User {
     this.consoleAccess,
     this.groups,
   });
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      password: json['password'] as String,
+      username: json['username'] as String,
+      consoleAccess: json['consoleAccess'] as bool?,
+      groups: (json['groups'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -2913,6 +3421,17 @@ class UserPendingChanges {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pendingChange = this.pendingChange;
+    final consoleAccess = this.consoleAccess;
+    final groups = this.groups;
+    return {
+      'pendingChange': pendingChange.toValue(),
+      if (consoleAccess != null) 'consoleAccess': consoleAccess,
+      if (groups != null) 'groups': groups,
+    };
+  }
 }
 
 /// Returns a list of all broker users. Does not apply to RabbitMQ brokers.
@@ -2934,6 +3453,15 @@ class UserSummary {
       username: json['username'] as String,
       pendingChange: (json['pendingChange'] as String?)?.toChangeType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final username = this.username;
+    final pendingChange = this.pendingChange;
+    return {
+      'username': username,
+      if (pendingChange != null) 'pendingChange': pendingChange.toValue(),
+    };
   }
 }
 

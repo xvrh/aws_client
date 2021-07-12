@@ -994,6 +994,13 @@ class AntennaDemodDecodeDetails {
       outputNode: json['outputNode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final outputNode = this.outputNode;
+    return {
+      if (outputNode != null) 'outputNode': outputNode,
+    };
+  }
 }
 
 /// Information about how AWS Ground Station should configure an antenna for
@@ -1213,6 +1220,18 @@ class ConfigDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final antennaDemodDecodeDetails = this.antennaDemodDecodeDetails;
+    final endpointDetails = this.endpointDetails;
+    final s3RecordingDetails = this.s3RecordingDetails;
+    return {
+      if (antennaDemodDecodeDetails != null)
+        'antennaDemodDecodeDetails': antennaDemodDecodeDetails,
+      if (endpointDetails != null) 'endpointDetails': endpointDetails,
+      if (s3RecordingDetails != null) 's3RecordingDetails': s3RecordingDetails,
+    };
+  }
 }
 
 /// <p/>
@@ -1237,6 +1256,17 @@ class ConfigIdResponse {
       configId: json['configId'] as String?,
       configType: (json['configType'] as String?)?.toConfigCapabilityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configArn = this.configArn;
+    final configId = this.configId;
+    final configType = this.configType;
+    return {
+      if (configArn != null) 'configArn': configArn,
+      if (configId != null) 'configId': configId,
+      if (configType != null) 'configType': configType.toValue(),
+    };
   }
 }
 
@@ -1267,6 +1297,19 @@ class ConfigListItem {
       configType: (json['configType'] as String?)?.toConfigCapabilityType(),
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configArn = this.configArn;
+    final configId = this.configId;
+    final configType = this.configType;
+    final name = this.name;
+    return {
+      if (configArn != null) 'configArn': configArn,
+      if (configId != null) 'configId': configId,
+      if (configType != null) 'configType': configType.toValue(),
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1451,6 +1494,39 @@ class ContactData {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    final contactStatus = this.contactStatus;
+    final endTime = this.endTime;
+    final errorMessage = this.errorMessage;
+    final groundStation = this.groundStation;
+    final maximumElevation = this.maximumElevation;
+    final missionProfileArn = this.missionProfileArn;
+    final postPassEndTime = this.postPassEndTime;
+    final prePassStartTime = this.prePassStartTime;
+    final region = this.region;
+    final satelliteArn = this.satelliteArn;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    return {
+      if (contactId != null) 'contactId': contactId,
+      if (contactStatus != null) 'contactStatus': contactStatus.toValue(),
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (groundStation != null) 'groundStation': groundStation,
+      if (maximumElevation != null) 'maximumElevation': maximumElevation,
+      if (missionProfileArn != null) 'missionProfileArn': missionProfileArn,
+      if (postPassEndTime != null)
+        'postPassEndTime': unixTimestampToJson(postPassEndTime),
+      if (prePassStartTime != null)
+        'prePassStartTime': unixTimestampToJson(prePassStartTime),
+      if (region != null) 'region': region,
+      if (satelliteArn != null) 'satelliteArn': satelliteArn,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// <p/>
@@ -1465,6 +1541,13 @@ class ContactIdResponse {
     return ContactIdResponse(
       contactId: json['contactId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    return {
+      if (contactId != null) 'contactId': contactId,
+    };
   }
 }
 
@@ -1608,6 +1691,17 @@ class DataflowDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final errorMessage = this.errorMessage;
+    final source = this.source;
+    return {
+      if (destination != null) 'destination': destination,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (source != null) 'source': source,
+    };
+  }
 }
 
 /// Information about a dataflow endpoint.
@@ -1698,6 +1792,14 @@ class DataflowEndpointGroupIdResponse {
       dataflowEndpointGroupId: json['dataflowEndpointGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataflowEndpointGroupId = this.dataflowEndpointGroupId;
+    return {
+      if (dataflowEndpointGroupId != null)
+        'dataflowEndpointGroupId': dataflowEndpointGroupId,
+    };
+  }
 }
 
 /// Item in a list of <code>DataflowEndpoint</code> groups.
@@ -1717,6 +1819,17 @@ class DataflowEndpointListItem {
       dataflowEndpointGroupArn: json['dataflowEndpointGroupArn'] as String?,
       dataflowEndpointGroupId: json['dataflowEndpointGroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataflowEndpointGroupArn = this.dataflowEndpointGroupArn;
+    final dataflowEndpointGroupId = this.dataflowEndpointGroupId;
+    return {
+      if (dataflowEndpointGroupArn != null)
+        'dataflowEndpointGroupArn': dataflowEndpointGroupArn,
+      if (dataflowEndpointGroupId != null)
+        'dataflowEndpointGroupId': dataflowEndpointGroupId,
+    };
   }
 }
 
@@ -1850,6 +1963,41 @@ class DescribeContactResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    final contactStatus = this.contactStatus;
+    final dataflowList = this.dataflowList;
+    final endTime = this.endTime;
+    final errorMessage = this.errorMessage;
+    final groundStation = this.groundStation;
+    final maximumElevation = this.maximumElevation;
+    final missionProfileArn = this.missionProfileArn;
+    final postPassEndTime = this.postPassEndTime;
+    final prePassStartTime = this.prePassStartTime;
+    final region = this.region;
+    final satelliteArn = this.satelliteArn;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    return {
+      if (contactId != null) 'contactId': contactId,
+      if (contactStatus != null) 'contactStatus': contactStatus.toValue(),
+      if (dataflowList != null) 'dataflowList': dataflowList,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (groundStation != null) 'groundStation': groundStation,
+      if (maximumElevation != null) 'maximumElevation': maximumElevation,
+      if (missionProfileArn != null) 'missionProfileArn': missionProfileArn,
+      if (postPassEndTime != null)
+        'postPassEndTime': unixTimestampToJson(postPassEndTime),
+      if (prePassStartTime != null)
+        'prePassStartTime': unixTimestampToJson(prePassStartTime),
+      if (region != null) 'region': region,
+      if (satelliteArn != null) 'satelliteArn': satelliteArn,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Dataflow details for the destination side.
@@ -1883,6 +2031,20 @@ class Destination {
       configType: (json['configType'] as String?)?.toConfigCapabilityType(),
       dataflowDestinationRegion: json['dataflowDestinationRegion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configDetails = this.configDetails;
+    final configId = this.configId;
+    final configType = this.configType;
+    final dataflowDestinationRegion = this.dataflowDestinationRegion;
+    return {
+      if (configDetails != null) 'configDetails': configDetails,
+      if (configId != null) 'configId': configId,
+      if (configType != null) 'configType': configType.toValue(),
+      if (dataflowDestinationRegion != null)
+        'dataflowDestinationRegion': dataflowDestinationRegion,
+    };
   }
 }
 
@@ -1955,6 +2117,15 @@ class Elevation {
       unit: (json['unit'] as String).toAngleUnits(),
       value: json['value'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unit = this.unit;
+    final value = this.value;
+    return {
+      'unit': unit.toValue(),
+      'value': value,
+    };
   }
 }
 
@@ -2183,6 +2354,23 @@ class GetConfigResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configArn = this.configArn;
+    final configData = this.configData;
+    final configId = this.configId;
+    final name = this.name;
+    final configType = this.configType;
+    final tags = this.tags;
+    return {
+      'configArn': configArn,
+      'configData': configData,
+      'configId': configId,
+      'name': name,
+      if (configType != null) 'configType': configType.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// <p/>
@@ -2216,6 +2404,21 @@ class GetDataflowEndpointGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataflowEndpointGroupArn = this.dataflowEndpointGroupArn;
+    final dataflowEndpointGroupId = this.dataflowEndpointGroupId;
+    final endpointsDetails = this.endpointsDetails;
+    final tags = this.tags;
+    return {
+      if (dataflowEndpointGroupArn != null)
+        'dataflowEndpointGroupArn': dataflowEndpointGroupArn,
+      if (dataflowEndpointGroupId != null)
+        'dataflowEndpointGroupId': dataflowEndpointGroupId,
+      if (endpointsDetails != null) 'endpointsDetails': endpointsDetails,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2257,6 +2460,26 @@ class GetMinuteUsageResponse {
       totalScheduledMinutes: json['totalScheduledMinutes'] as int?,
       upcomingMinutesScheduled: json['upcomingMinutesScheduled'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimatedMinutesRemaining = this.estimatedMinutesRemaining;
+    final isReservedMinutesCustomer = this.isReservedMinutesCustomer;
+    final totalReservedMinuteAllocation = this.totalReservedMinuteAllocation;
+    final totalScheduledMinutes = this.totalScheduledMinutes;
+    final upcomingMinutesScheduled = this.upcomingMinutesScheduled;
+    return {
+      if (estimatedMinutesRemaining != null)
+        'estimatedMinutesRemaining': estimatedMinutesRemaining,
+      if (isReservedMinutesCustomer != null)
+        'isReservedMinutesCustomer': isReservedMinutesCustomer,
+      if (totalReservedMinuteAllocation != null)
+        'totalReservedMinuteAllocation': totalReservedMinuteAllocation,
+      if (totalScheduledMinutes != null)
+        'totalScheduledMinutes': totalScheduledMinutes,
+      if (upcomingMinutesScheduled != null)
+        'upcomingMinutesScheduled': upcomingMinutesScheduled,
+    };
   }
 }
 
@@ -2331,6 +2554,36 @@ class GetMissionProfileResponse {
       trackingConfigArn: json['trackingConfigArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactPostPassDurationSeconds = this.contactPostPassDurationSeconds;
+    final contactPrePassDurationSeconds = this.contactPrePassDurationSeconds;
+    final dataflowEdges = this.dataflowEdges;
+    final minimumViableContactDurationSeconds =
+        this.minimumViableContactDurationSeconds;
+    final missionProfileArn = this.missionProfileArn;
+    final missionProfileId = this.missionProfileId;
+    final name = this.name;
+    final region = this.region;
+    final tags = this.tags;
+    final trackingConfigArn = this.trackingConfigArn;
+    return {
+      if (contactPostPassDurationSeconds != null)
+        'contactPostPassDurationSeconds': contactPostPassDurationSeconds,
+      if (contactPrePassDurationSeconds != null)
+        'contactPrePassDurationSeconds': contactPrePassDurationSeconds,
+      if (dataflowEdges != null) 'dataflowEdges': dataflowEdges,
+      if (minimumViableContactDurationSeconds != null)
+        'minimumViableContactDurationSeconds':
+            minimumViableContactDurationSeconds,
+      if (missionProfileArn != null) 'missionProfileArn': missionProfileArn,
+      if (missionProfileId != null) 'missionProfileId': missionProfileId,
+      if (name != null) 'name': name,
+      if (region != null) 'region': region,
+      if (tags != null) 'tags': tags,
+      if (trackingConfigArn != null) 'trackingConfigArn': trackingConfigArn,
+    };
+  }
 }
 
 /// <p/>
@@ -2364,6 +2617,19 @@ class GetSatelliteResponse {
       satelliteId: json['satelliteId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groundStations = this.groundStations;
+    final noradSatelliteID = this.noradSatelliteID;
+    final satelliteArn = this.satelliteArn;
+    final satelliteId = this.satelliteId;
+    return {
+      if (groundStations != null) 'groundStations': groundStations,
+      if (noradSatelliteID != null) 'noradSatelliteID': noradSatelliteID,
+      if (satelliteArn != null) 'satelliteArn': satelliteArn,
+      if (satelliteId != null) 'satelliteId': satelliteId,
+    };
+  }
 }
 
 /// Information about the ground station data.
@@ -2389,6 +2655,17 @@ class GroundStationData {
       region: json['region'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groundStationId = this.groundStationId;
+    final groundStationName = this.groundStationName;
+    final region = this.region;
+    return {
+      if (groundStationId != null) 'groundStationId': groundStationId,
+      if (groundStationName != null) 'groundStationName': groundStationName,
+      if (region != null) 'region': region,
+    };
+  }
 }
 
 /// <p/>
@@ -2413,6 +2690,15 @@ class ListConfigsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configList = this.configList;
+    final nextToken = this.nextToken;
+    return {
+      if (configList != null) 'configList': configList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -2436,6 +2722,15 @@ class ListContactsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactList = this.contactList;
+    final nextToken = this.nextToken;
+    return {
+      if (contactList != null) 'contactList': contactList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2464,6 +2759,16 @@ class ListDataflowEndpointGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataflowEndpointGroupList = this.dataflowEndpointGroupList;
+    final nextToken = this.nextToken;
+    return {
+      if (dataflowEndpointGroupList != null)
+        'dataflowEndpointGroupList': dataflowEndpointGroupList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -2487,6 +2792,15 @@ class ListGroundStationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groundStationList = this.groundStationList;
+    final nextToken = this.nextToken;
+    return {
+      if (groundStationList != null) 'groundStationList': groundStationList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2513,6 +2827,15 @@ class ListMissionProfilesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final missionProfileList = this.missionProfileList;
+    final nextToken = this.nextToken;
+    return {
+      if (missionProfileList != null) 'missionProfileList': missionProfileList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <p/>
@@ -2537,6 +2860,15 @@ class ListSatellitesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final satellites = this.satellites;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (satellites != null) 'satellites': satellites,
+    };
+  }
 }
 
 /// <p/>
@@ -2553,6 +2885,13 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// <p/>
@@ -2567,6 +2906,13 @@ class MissionProfileIdResponse {
     return MissionProfileIdResponse(
       missionProfileId: json['missionProfileId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final missionProfileId = this.missionProfileId;
+    return {
+      if (missionProfileId != null) 'missionProfileId': missionProfileId,
+    };
   }
 }
 
@@ -2597,6 +2943,19 @@ class MissionProfileListItem {
       name: json['name'] as String?,
       region: json['region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final missionProfileArn = this.missionProfileArn;
+    final missionProfileId = this.missionProfileId;
+    final name = this.name;
+    final region = this.region;
+    return {
+      if (missionProfileArn != null) 'missionProfileArn': missionProfileArn,
+      if (missionProfileId != null) 'missionProfileId': missionProfileId,
+      if (name != null) 'name': name,
+      if (region != null) 'region': region,
+    };
   }
 }
 
@@ -2687,6 +3046,15 @@ class S3RecordingDetails {
       keyTemplate: json['keyTemplate'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketArn = this.bucketArn;
+    final keyTemplate = this.keyTemplate;
+    return {
+      if (bucketArn != null) 'bucketArn': bucketArn,
+      if (keyTemplate != null) 'keyTemplate': keyTemplate,
+    };
+  }
 }
 
 /// Item in a list of satellites.
@@ -2719,6 +3087,19 @@ class SatelliteListItem {
       satelliteArn: json['satelliteArn'] as String?,
       satelliteId: json['satelliteId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groundStations = this.groundStations;
+    final noradSatelliteID = this.noradSatelliteID;
+    final satelliteArn = this.satelliteArn;
+    final satelliteId = this.satelliteId;
+    return {
+      if (groundStations != null) 'groundStations': groundStations,
+      if (noradSatelliteID != null) 'noradSatelliteID': noradSatelliteID,
+      if (satelliteArn != null) 'satelliteArn': satelliteArn,
+      if (satelliteId != null) 'satelliteId': satelliteId,
+    };
   }
 }
 
@@ -2826,6 +3207,20 @@ class Source {
       dataflowSourceRegion: json['dataflowSourceRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configDetails = this.configDetails;
+    final configId = this.configId;
+    final configType = this.configType;
+    final dataflowSourceRegion = this.dataflowSourceRegion;
+    return {
+      if (configDetails != null) 'configDetails': configDetails,
+      if (configId != null) 'configId': configId,
+      if (configType != null) 'configType': configType.toValue(),
+      if (dataflowSourceRegion != null)
+        'dataflowSourceRegion': dataflowSourceRegion,
+    };
+  }
 }
 
 /// Object that describes a spectral <code>Config</code>.
@@ -2892,6 +3287,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Object that determines whether tracking should be used during a contact
@@ -2922,6 +3321,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

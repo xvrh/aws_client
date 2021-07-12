@@ -4280,6 +4280,14 @@ class AssociateFirewallRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupAssociation = this.firewallRuleGroupAssociation;
+    return {
+      if (firewallRuleGroupAssociation != null)
+        'FirewallRuleGroupAssociation': firewallRuleGroupAssociation,
+    };
+  }
 }
 
 class AssociateResolverEndpointIpAddressResponse {
@@ -4297,6 +4305,13 @@ class AssociateResolverEndpointIpAddressResponse {
               json['ResolverEndpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
   }
 }
 
@@ -4319,6 +4334,15 @@ class AssociateResolverQueryLogConfigResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfigAssociation =
+        this.resolverQueryLogConfigAssociation;
+    return {
+      if (resolverQueryLogConfigAssociation != null)
+        'ResolverQueryLogConfigAssociation': resolverQueryLogConfigAssociation,
+    };
+  }
 }
 
 class AssociateResolverRuleResponse {
@@ -4336,6 +4360,14 @@ class AssociateResolverRuleResponse {
               json['ResolverRuleAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRuleAssociation = this.resolverRuleAssociation;
+    return {
+      if (resolverRuleAssociation != null)
+        'ResolverRuleAssociation': resolverRuleAssociation,
+    };
   }
 }
 
@@ -4410,6 +4442,13 @@ class CreateFirewallDomainListResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallDomainList = this.firewallDomainList;
+    return {
+      if (firewallDomainList != null) 'FirewallDomainList': firewallDomainList,
+    };
+  }
 }
 
 class CreateFirewallRuleGroupResponse {
@@ -4427,6 +4466,13 @@ class CreateFirewallRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroup = this.firewallRuleGroup;
+    return {
+      if (firewallRuleGroup != null) 'FirewallRuleGroup': firewallRuleGroup,
+    };
+  }
 }
 
 class CreateFirewallRuleResponse {
@@ -4442,6 +4488,13 @@ class CreateFirewallRuleResponse {
           ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallRule = this.firewallRule;
+    return {
+      if (firewallRule != null) 'FirewallRule': firewallRule,
+    };
   }
 }
 
@@ -4460,6 +4513,13 @@ class CreateResolverEndpointResponse {
               json['ResolverEndpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
   }
 }
 
@@ -4480,6 +4540,14 @@ class CreateResolverQueryLogConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfig = this.resolverQueryLogConfig;
+    return {
+      if (resolverQueryLogConfig != null)
+        'ResolverQueryLogConfig': resolverQueryLogConfig,
+    };
+  }
 }
 
 class CreateResolverRuleResponse {
@@ -4496,6 +4564,13 @@ class CreateResolverRuleResponse {
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRule = this.resolverRule;
+    return {
+      if (resolverRule != null) 'ResolverRule': resolverRule,
+    };
   }
 }
 
@@ -4514,6 +4589,13 @@ class DeleteFirewallDomainListResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallDomainList = this.firewallDomainList;
+    return {
+      if (firewallDomainList != null) 'FirewallDomainList': firewallDomainList,
+    };
+  }
 }
 
 class DeleteFirewallRuleGroupResponse {
@@ -4531,6 +4613,13 @@ class DeleteFirewallRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroup = this.firewallRuleGroup;
+    return {
+      if (firewallRuleGroup != null) 'FirewallRuleGroup': firewallRuleGroup,
+    };
+  }
 }
 
 class DeleteFirewallRuleResponse {
@@ -4546,6 +4635,13 @@ class DeleteFirewallRuleResponse {
           ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallRule = this.firewallRule;
+    return {
+      if (firewallRule != null) 'FirewallRule': firewallRule,
+    };
   }
 }
 
@@ -4564,6 +4660,13 @@ class DeleteResolverEndpointResponse {
               json['ResolverEndpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
   }
 }
 
@@ -4584,6 +4687,14 @@ class DeleteResolverQueryLogConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfig = this.resolverQueryLogConfig;
+    return {
+      if (resolverQueryLogConfig != null)
+        'ResolverQueryLogConfig': resolverQueryLogConfig,
+    };
+  }
 }
 
 class DeleteResolverRuleResponse {
@@ -4600,6 +4711,13 @@ class DeleteResolverRuleResponse {
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRule = this.resolverRule;
+    return {
+      if (resolverRule != null) 'ResolverRule': resolverRule,
+    };
   }
 }
 
@@ -4619,6 +4737,14 @@ class DisassociateFirewallRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupAssociation = this.firewallRuleGroupAssociation;
+    return {
+      if (firewallRuleGroupAssociation != null)
+        'FirewallRuleGroupAssociation': firewallRuleGroupAssociation,
+    };
+  }
 }
 
 class DisassociateResolverEndpointIpAddressResponse {
@@ -4637,6 +4763,13 @@ class DisassociateResolverEndpointIpAddressResponse {
               json['ResolverEndpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
   }
 }
 
@@ -4659,6 +4792,15 @@ class DisassociateResolverQueryLogConfigResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfigAssociation =
+        this.resolverQueryLogConfigAssociation;
+    return {
+      if (resolverQueryLogConfigAssociation != null)
+        'ResolverQueryLogConfigAssociation': resolverQueryLogConfigAssociation,
+    };
+  }
 }
 
 class DisassociateResolverRuleResponse {
@@ -4676,6 +4818,14 @@ class DisassociateResolverRuleResponse {
               json['ResolverRuleAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRuleAssociation = this.resolverRuleAssociation;
+    return {
+      if (resolverRuleAssociation != null)
+        'ResolverRuleAssociation': resolverRuleAssociation,
+    };
   }
 }
 
@@ -4944,6 +5094,16 @@ class Filter {
     this.name,
     this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json['Name'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -5000,6 +5160,20 @@ class FirewallConfig {
       ownerId: json['OwnerId'] as String?,
       resourceId: json['ResourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallFailOpen = this.firewallFailOpen;
+    final id = this.id;
+    final ownerId = this.ownerId;
+    final resourceId = this.resourceId;
+    return {
+      if (firewallFailOpen != null)
+        'FirewallFailOpen': firewallFailOpen.toValue(),
+      if (id != null) 'Id': id,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
   }
 }
 
@@ -5095,6 +5269,31 @@ class FirewallDomainList {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final domainCount = this.domainCount;
+    final id = this.id;
+    final managedOwnerName = this.managedOwnerName;
+    final modificationTime = this.modificationTime;
+    final name = this.name;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (domainCount != null) 'DomainCount': domainCount,
+      if (id != null) 'Id': id,
+      if (managedOwnerName != null) 'ManagedOwnerName': managedOwnerName,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Minimal high-level information for a firewall domain list. The action
@@ -5138,6 +5337,21 @@ class FirewallDomainListMetadata {
       managedOwnerName: json['ManagedOwnerName'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creatorRequestId = this.creatorRequestId;
+    final id = this.id;
+    final managedOwnerName = this.managedOwnerName;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (id != null) 'Id': id,
+      if (managedOwnerName != null) 'ManagedOwnerName': managedOwnerName,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5361,6 +5575,39 @@ class FirewallRule {
       priority: json['Priority'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final blockOverrideDnsType = this.blockOverrideDnsType;
+    final blockOverrideDomain = this.blockOverrideDomain;
+    final blockOverrideTtl = this.blockOverrideTtl;
+    final blockResponse = this.blockResponse;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final firewallDomainListId = this.firewallDomainListId;
+    final firewallRuleGroupId = this.firewallRuleGroupId;
+    final modificationTime = this.modificationTime;
+    final name = this.name;
+    final priority = this.priority;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (blockOverrideDnsType != null)
+        'BlockOverrideDnsType': blockOverrideDnsType.toValue(),
+      if (blockOverrideDomain != null)
+        'BlockOverrideDomain': blockOverrideDomain,
+      if (blockOverrideTtl != null) 'BlockOverrideTtl': blockOverrideTtl,
+      if (blockResponse != null) 'BlockResponse': blockResponse.toValue(),
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (firewallDomainListId != null)
+        'FirewallDomainListId': firewallDomainListId,
+      if (firewallRuleGroupId != null)
+        'FirewallRuleGroupId': firewallRuleGroupId,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (name != null) 'Name': name,
+      if (priority != null) 'Priority': priority,
+    };
+  }
 }
 
 /// High-level information for a firewall rule group. A firewall rule group is a
@@ -5436,6 +5683,33 @@ class FirewallRuleGroup {
       status: (json['Status'] as String?)?.toFirewallRuleGroupStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final id = this.id;
+    final modificationTime = this.modificationTime;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final ruleCount = this.ruleCount;
+    final shareStatus = this.shareStatus;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (id != null) 'Id': id,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (name != null) 'Name': name,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (ruleCount != null) 'RuleCount': ruleCount,
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -5525,6 +5799,39 @@ class FirewallRuleGroupAssociation {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final firewallRuleGroupId = this.firewallRuleGroupId;
+    final id = this.id;
+    final managedOwnerName = this.managedOwnerName;
+    final modificationTime = this.modificationTime;
+    final mutationProtection = this.mutationProtection;
+    final name = this.name;
+    final priority = this.priority;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (firewallRuleGroupId != null)
+        'FirewallRuleGroupId': firewallRuleGroupId,
+      if (id != null) 'Id': id,
+      if (managedOwnerName != null) 'ManagedOwnerName': managedOwnerName,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (mutationProtection != null)
+        'MutationProtection': mutationProtection.toValue(),
+      if (name != null) 'Name': name,
+      if (priority != null) 'Priority': priority,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum FirewallRuleGroupAssociationStatus {
@@ -5609,6 +5916,23 @@ class FirewallRuleGroupMetadata {
       shareStatus: (json['ShareStatus'] as String?)?.toShareStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creatorRequestId = this.creatorRequestId;
+    final id = this.id;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final shareStatus = this.shareStatus;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+    };
+  }
 }
 
 enum FirewallRuleGroupStatus {
@@ -5660,6 +5984,13 @@ class GetFirewallConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallConfig = this.firewallConfig;
+    return {
+      if (firewallConfig != null) 'FirewallConfig': firewallConfig,
+    };
+  }
 }
 
 class GetFirewallDomainListResponse {
@@ -5676,6 +6007,13 @@ class GetFirewallDomainListResponse {
               json['FirewallDomainList'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallDomainList = this.firewallDomainList;
+    return {
+      if (firewallDomainList != null) 'FirewallDomainList': firewallDomainList,
+    };
   }
 }
 
@@ -5695,6 +6033,14 @@ class GetFirewallRuleGroupAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupAssociation = this.firewallRuleGroupAssociation;
+    return {
+      if (firewallRuleGroupAssociation != null)
+        'FirewallRuleGroupAssociation': firewallRuleGroupAssociation,
+    };
+  }
 }
 
 class GetFirewallRuleGroupPolicyResponse {
@@ -5711,6 +6057,14 @@ class GetFirewallRuleGroupPolicyResponse {
     return GetFirewallRuleGroupPolicyResponse(
       firewallRuleGroupPolicy: json['FirewallRuleGroupPolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupPolicy = this.firewallRuleGroupPolicy;
+    return {
+      if (firewallRuleGroupPolicy != null)
+        'FirewallRuleGroupPolicy': firewallRuleGroupPolicy,
+    };
   }
 }
 
@@ -5729,6 +6083,13 @@ class GetFirewallRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroup = this.firewallRuleGroup;
+    return {
+      if (firewallRuleGroup != null) 'FirewallRuleGroup': firewallRuleGroup,
+    };
+  }
 }
 
 class GetResolverDnssecConfigResponse {
@@ -5745,6 +6106,14 @@ class GetResolverDnssecConfigResponse {
               json['ResolverDNSSECConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverDNSSECConfig = this.resolverDNSSECConfig;
+    return {
+      if (resolverDNSSECConfig != null)
+        'ResolverDNSSECConfig': resolverDNSSECConfig,
+    };
   }
 }
 
@@ -5763,6 +6132,13 @@ class GetResolverEndpointResponse {
               json['ResolverEndpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
   }
 }
 
@@ -5785,6 +6161,15 @@ class GetResolverQueryLogConfigAssociationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfigAssociation =
+        this.resolverQueryLogConfigAssociation;
+    return {
+      if (resolverQueryLogConfigAssociation != null)
+        'ResolverQueryLogConfigAssociation': resolverQueryLogConfigAssociation,
+    };
+  }
 }
 
 class GetResolverQueryLogConfigPolicyResponse {
@@ -5802,6 +6187,14 @@ class GetResolverQueryLogConfigPolicyResponse {
       resolverQueryLogConfigPolicy:
           json['ResolverQueryLogConfigPolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfigPolicy = this.resolverQueryLogConfigPolicy;
+    return {
+      if (resolverQueryLogConfigPolicy != null)
+        'ResolverQueryLogConfigPolicy': resolverQueryLogConfigPolicy,
+    };
   }
 }
 
@@ -5822,6 +6215,14 @@ class GetResolverQueryLogConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverQueryLogConfig = this.resolverQueryLogConfig;
+    return {
+      if (resolverQueryLogConfig != null)
+        'ResolverQueryLogConfig': resolverQueryLogConfig,
+    };
+  }
 }
 
 class GetResolverRuleAssociationResponse {
@@ -5841,6 +6242,14 @@ class GetResolverRuleAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverRuleAssociation = this.resolverRuleAssociation;
+    return {
+      if (resolverRuleAssociation != null)
+        'ResolverRuleAssociation': resolverRuleAssociation,
+    };
+  }
 }
 
 class GetResolverRulePolicyResponse {
@@ -5855,6 +6264,13 @@ class GetResolverRulePolicyResponse {
     return GetResolverRulePolicyResponse(
       resolverRulePolicy: json['ResolverRulePolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRulePolicy = this.resolverRulePolicy;
+    return {
+      if (resolverRulePolicy != null) 'ResolverRulePolicy': resolverRulePolicy,
+    };
   }
 }
 
@@ -5872,6 +6288,13 @@ class GetResolverRuleResponse {
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRule = this.resolverRule;
+    return {
+      if (resolverRule != null) 'ResolverRule': resolverRule,
+    };
   }
 }
 
@@ -5902,6 +6325,19 @@ class ImportFirewallDomainsResponse {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// In a <a
@@ -5921,6 +6357,13 @@ class IpAddressRequest {
     required this.subnetId,
     this.ip,
   });
+  factory IpAddressRequest.fromJson(Map<String, dynamic> json) {
+    return IpAddressRequest(
+      subnetId: json['SubnetId'] as String,
+      ip: json['Ip'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final subnetId = this.subnetId;
     final ip = this.ip;
@@ -5979,6 +6422,25 @@ class IpAddressResponse {
       statusMessage: json['StatusMessage'] as String?,
       subnetId: json['SubnetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final ip = this.ip;
+    final ipId = this.ipId;
+    final modificationTime = this.modificationTime;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final subnetId = this.subnetId;
+    return {
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (ip != null) 'Ip': ip,
+      if (ipId != null) 'IpId': ipId,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
   }
 }
 
@@ -6072,6 +6534,14 @@ class IpAddressUpdate {
     this.ipId,
     this.subnetId,
   });
+  factory IpAddressUpdate.fromJson(Map<String, dynamic> json) {
+    return IpAddressUpdate(
+      ip: json['Ip'] as String?,
+      ipId: json['IpId'] as String?,
+      subnetId: json['SubnetId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final ip = this.ip;
     final ipId = this.ipId;
@@ -6107,6 +6577,15 @@ class ListFirewallConfigsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallConfigs = this.firewallConfigs;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallConfigs != null) 'FirewallConfigs': firewallConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFirewallDomainListsResponse {
@@ -6135,6 +6614,16 @@ class ListFirewallDomainListsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallDomainLists = this.firewallDomainLists;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallDomainLists != null)
+        'FirewallDomainLists': firewallDomainLists,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFirewallDomainsResponse {
@@ -6161,6 +6650,15 @@ class ListFirewallDomainsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domains = this.domains;
+    final nextToken = this.nextToken;
+    return {
+      if (domains != null) 'Domains': domains,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6192,6 +6690,16 @@ class ListFirewallRuleGroupAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupAssociations = this.firewallRuleGroupAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallRuleGroupAssociations != null)
+        'FirewallRuleGroupAssociations': firewallRuleGroupAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFirewallRuleGroupsResponse {
@@ -6220,6 +6728,15 @@ class ListFirewallRuleGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroups = this.firewallRuleGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallRuleGroups != null) 'FirewallRuleGroups': firewallRuleGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFirewallRulesResponse {
@@ -6246,6 +6763,15 @@ class ListFirewallRulesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallRules = this.firewallRules;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallRules != null) 'FirewallRules': firewallRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6282,6 +6808,16 @@ class ListResolverDnssecConfigsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resolverDnssecConfigs = this.resolverDnssecConfigs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverDnssecConfigs != null)
+        'ResolverDnssecConfigs': resolverDnssecConfigs,
+    };
+  }
 }
 
 class ListResolverEndpointIpAddressesResponse {
@@ -6316,6 +6852,17 @@ class ListResolverEndpointIpAddressesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipAddresses = this.ipAddresses;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (ipAddresses != null) 'IpAddresses': ipAddresses,
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListResolverEndpointsResponse {
@@ -6346,6 +6893,17 @@ class ListResolverEndpointsResponse {
           .map((e) => ResolverEndpoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    final resolverEndpoints = this.resolverEndpoints;
+    return {
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverEndpoints != null) 'ResolverEndpoints': resolverEndpoints,
+    };
   }
 }
 
@@ -6396,6 +6954,22 @@ class ListResolverQueryLogConfigAssociationsResponse {
       totalFilteredCount: json['TotalFilteredCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resolverQueryLogConfigAssociations =
+        this.resolverQueryLogConfigAssociations;
+    final totalCount = this.totalCount;
+    final totalFilteredCount = this.totalFilteredCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverQueryLogConfigAssociations != null)
+        'ResolverQueryLogConfigAssociations':
+            resolverQueryLogConfigAssociations,
+      if (totalCount != null) 'TotalCount': totalCount,
+      if (totalFilteredCount != null) 'TotalFilteredCount': totalFilteredCount,
+    };
+  }
 }
 
 class ListResolverQueryLogConfigsResponse {
@@ -6443,6 +7017,20 @@ class ListResolverQueryLogConfigsResponse {
       totalFilteredCount: json['TotalFilteredCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resolverQueryLogConfigs = this.resolverQueryLogConfigs;
+    final totalCount = this.totalCount;
+    final totalFilteredCount = this.totalFilteredCount;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverQueryLogConfigs != null)
+        'ResolverQueryLogConfigs': resolverQueryLogConfigs,
+      if (totalCount != null) 'TotalCount': totalCount,
+      if (totalFilteredCount != null) 'TotalFilteredCount': totalFilteredCount,
+    };
+  }
 }
 
 class ListResolverRuleAssociationsResponse {
@@ -6476,6 +7064,18 @@ class ListResolverRuleAssociationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    final resolverRuleAssociations = this.resolverRuleAssociations;
+    return {
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverRuleAssociations != null)
+        'ResolverRuleAssociations': resolverRuleAssociations,
+    };
+  }
 }
 
 class ListResolverRulesResponse {
@@ -6507,6 +7107,17 @@ class ListResolverRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    final resolverRules = this.resolverRules;
+    return {
+      if (maxResults != null) 'MaxResults': maxResults,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resolverRules != null) 'ResolverRules': resolverRules,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6532,6 +7143,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6576,6 +7196,13 @@ class PutFirewallRuleGroupPolicyResponse {
       returnValue: json['ReturnValue'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'ReturnValue': returnValue,
+    };
+  }
 }
 
 /// The response to a <code>PutResolverQueryLogConfigPolicy</code> request.
@@ -6593,6 +7220,13 @@ class PutResolverQueryLogConfigPolicyResponse {
       returnValue: json['ReturnValue'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'ReturnValue': returnValue,
+    };
+  }
 }
 
 /// The response to a <code>PutResolverRulePolicy</code> request.
@@ -6607,6 +7241,13 @@ class PutResolverRulePolicyResponse {
     return PutResolverRulePolicyResponse(
       returnValue: json['ReturnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'ReturnValue': returnValue,
+    };
   }
 }
 
@@ -6696,6 +7337,20 @@ class ResolverDnssecConfig {
       validationStatus: (json['ValidationStatus'] as String?)
           ?.toResolverDNSSECValidationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final ownerId = this.ownerId;
+    final resourceId = this.resourceId;
+    final validationStatus = this.validationStatus;
+    return {
+      if (id != null) 'Id': id,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (validationStatus != null)
+        'ValidationStatus': validationStatus.toValue(),
+    };
   }
 }
 
@@ -6851,6 +7506,35 @@ class ResolverEndpoint {
       status: (json['Status'] as String?)?.toResolverEndpointStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final direction = this.direction;
+    final hostVPCId = this.hostVPCId;
+    final id = this.id;
+    final ipAddressCount = this.ipAddressCount;
+    final modificationTime = this.modificationTime;
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (direction != null) 'Direction': direction.toValue(),
+      if (hostVPCId != null) 'HostVPCId': hostVPCId,
+      if (id != null) 'Id': id,
+      if (ipAddressCount != null) 'IpAddressCount': ipAddressCount,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (name != null) 'Name': name,
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -7033,6 +7717,31 @@ class ResolverQueryLogConfig {
       status: (json['Status'] as String?)?.toResolverQueryLogConfigStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associationCount = this.associationCount;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final destinationArn = this.destinationArn;
+    final id = this.id;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final shareStatus = this.shareStatus;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associationCount != null) 'AssociationCount': associationCount,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (destinationArn != null) 'DestinationArn': destinationArn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// In the response to an <a
@@ -7127,6 +7836,26 @@ class ResolverQueryLogConfigAssociation {
       status: (json['Status'] as String?)
           ?.toResolverQueryLogConfigAssociationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final error = this.error;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    final resolverQueryLogConfigId = this.resolverQueryLogConfigId;
+    final resourceId = this.resourceId;
+    final status = this.status;
+    return {
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (error != null) 'Error': error.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+      if (resolverQueryLogConfigId != null)
+        'ResolverQueryLogConfigId': resolverQueryLogConfigId,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -7374,6 +8103,39 @@ class ResolverRule {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final creatorRequestId = this.creatorRequestId;
+    final domainName = this.domainName;
+    final id = this.id;
+    final modificationTime = this.modificationTime;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final resolverEndpointId = this.resolverEndpointId;
+    final ruleType = this.ruleType;
+    final shareStatus = this.shareStatus;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final targetIps = this.targetIps;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (domainName != null) 'DomainName': domainName,
+      if (id != null) 'Id': id,
+      if (modificationTime != null) 'ModificationTime': modificationTime,
+      if (name != null) 'Name': name,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (resolverEndpointId != null) 'ResolverEndpointId': resolverEndpointId,
+      if (ruleType != null) 'RuleType': ruleType.toValue(),
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (targetIps != null) 'TargetIps': targetIps,
+    };
+  }
 }
 
 /// In the response to an <a
@@ -7427,6 +8189,23 @@ class ResolverRuleAssociation {
       statusMessage: json['StatusMessage'] as String?,
       vPCId: json['VPCId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final resolverRuleId = this.resolverRuleId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final vPCId = this.vPCId;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (resolverRuleId != null) 'ResolverRuleId': resolverRuleId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (vPCId != null) 'VPCId': vPCId,
+    };
   }
 }
 
@@ -7494,6 +8273,17 @@ class ResolverRuleConfig {
     this.resolverEndpointId,
     this.targetIps,
   });
+  factory ResolverRuleConfig.fromJson(Map<String, dynamic> json) {
+    return ResolverRuleConfig(
+      name: json['Name'] as String?,
+      resolverEndpointId: json['ResolverEndpointId'] as String?,
+      targetIps: (json['TargetIps'] as List?)
+          ?.whereNotNull()
+          .map((e) => TargetAddress.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final resolverEndpointId = this.resolverEndpointId;
@@ -7677,6 +8467,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// In a <a
@@ -7716,6 +8510,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateFirewallConfigResponse {
@@ -7733,6 +8531,13 @@ class UpdateFirewallConfigResponse {
               json['FirewallConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallConfig = this.firewallConfig;
+    return {
+      if (firewallConfig != null) 'FirewallConfig': firewallConfig,
+    };
   }
 }
 
@@ -7763,6 +8568,19 @@ class UpdateFirewallDomainsResponse {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class UpdateFirewallRuleGroupAssociationResponse {
@@ -7781,6 +8599,14 @@ class UpdateFirewallRuleGroupAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallRuleGroupAssociation = this.firewallRuleGroupAssociation;
+    return {
+      if (firewallRuleGroupAssociation != null)
+        'FirewallRuleGroupAssociation': firewallRuleGroupAssociation,
+    };
+  }
 }
 
 class UpdateFirewallRuleResponse {
@@ -7796,6 +8622,13 @@ class UpdateFirewallRuleResponse {
           ? FirewallRule.fromJson(json['FirewallRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallRule = this.firewallRule;
+    return {
+      if (firewallRule != null) 'FirewallRule': firewallRule,
+    };
   }
 }
 
@@ -7816,6 +8649,14 @@ class UpdateResolverDnssecConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverDNSSECConfig = this.resolverDNSSECConfig;
+    return {
+      if (resolverDNSSECConfig != null)
+        'ResolverDNSSECConfig': resolverDNSSECConfig,
+    };
+  }
 }
 
 class UpdateResolverEndpointResponse {
@@ -7833,6 +8674,13 @@ class UpdateResolverEndpointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolverEndpoint = this.resolverEndpoint;
+    return {
+      if (resolverEndpoint != null) 'ResolverEndpoint': resolverEndpoint,
+    };
+  }
 }
 
 class UpdateResolverRuleResponse {
@@ -7848,6 +8696,13 @@ class UpdateResolverRuleResponse {
           ? ResolverRule.fromJson(json['ResolverRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolverRule = this.resolverRule;
+    return {
+      if (resolverRule != null) 'ResolverRule': resolverRule,
+    };
   }
 }
 

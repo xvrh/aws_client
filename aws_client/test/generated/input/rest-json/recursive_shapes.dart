@@ -134,6 +134,23 @@ class RecursiveStructType {
     this.recursiveMap,
     this.recursiveStruct,
   });
+  factory RecursiveStructType.fromJson(Map<String, dynamic> json) {
+    return RecursiveStructType(
+      noRecurse: json['NoRecurse'] as String?,
+      recursiveList: (json['RecursiveList'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecursiveStructType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      recursiveMap: (json['RecursiveMap'] as Map<String, dynamic>?)?.map((k,
+              e) =>
+          MapEntry(k, RecursiveStructType.fromJson(e as Map<String, dynamic>))),
+      recursiveStruct: json['RecursiveStruct'] != null
+          ? RecursiveStructType.fromJson(
+              json['RecursiveStruct'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final noRecurse = this.noRecurse;
     final recursiveList = this.recursiveList;

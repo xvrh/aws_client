@@ -1283,6 +1283,68 @@ class CertificateDetail {
       type: (json['Type'] as String?)?.toCertificateType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateAuthorityArn = this.certificateAuthorityArn;
+    final createdAt = this.createdAt;
+    final domainName = this.domainName;
+    final domainValidationOptions = this.domainValidationOptions;
+    final extendedKeyUsages = this.extendedKeyUsages;
+    final failureReason = this.failureReason;
+    final importedAt = this.importedAt;
+    final inUseBy = this.inUseBy;
+    final issuedAt = this.issuedAt;
+    final issuer = this.issuer;
+    final keyAlgorithm = this.keyAlgorithm;
+    final keyUsages = this.keyUsages;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    final options = this.options;
+    final renewalEligibility = this.renewalEligibility;
+    final renewalSummary = this.renewalSummary;
+    final revocationReason = this.revocationReason;
+    final revokedAt = this.revokedAt;
+    final serial = this.serial;
+    final signatureAlgorithm = this.signatureAlgorithm;
+    final status = this.status;
+    final subject = this.subject;
+    final subjectAlternativeNames = this.subjectAlternativeNames;
+    final type = this.type;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (certificateAuthorityArn != null)
+        'CertificateAuthorityArn': certificateAuthorityArn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (domainName != null) 'DomainName': domainName,
+      if (domainValidationOptions != null)
+        'DomainValidationOptions': domainValidationOptions,
+      if (extendedKeyUsages != null) 'ExtendedKeyUsages': extendedKeyUsages,
+      if (failureReason != null) 'FailureReason': failureReason.toValue(),
+      if (importedAt != null) 'ImportedAt': unixTimestampToJson(importedAt),
+      if (inUseBy != null) 'InUseBy': inUseBy,
+      if (issuedAt != null) 'IssuedAt': unixTimestampToJson(issuedAt),
+      if (issuer != null) 'Issuer': issuer,
+      if (keyAlgorithm != null) 'KeyAlgorithm': keyAlgorithm.toValue(),
+      if (keyUsages != null) 'KeyUsages': keyUsages,
+      if (notAfter != null) 'NotAfter': unixTimestampToJson(notAfter),
+      if (notBefore != null) 'NotBefore': unixTimestampToJson(notBefore),
+      if (options != null) 'Options': options,
+      if (renewalEligibility != null)
+        'RenewalEligibility': renewalEligibility.toValue(),
+      if (renewalSummary != null) 'RenewalSummary': renewalSummary,
+      if (revocationReason != null)
+        'RevocationReason': revocationReason.toValue(),
+      if (revokedAt != null) 'RevokedAt': unixTimestampToJson(revokedAt),
+      if (serial != null) 'Serial': serial,
+      if (signatureAlgorithm != null) 'SignatureAlgorithm': signatureAlgorithm,
+      if (status != null) 'Status': status.toValue(),
+      if (subject != null) 'Subject': subject,
+      if (subjectAlternativeNames != null)
+        'SubjectAlternativeNames': subjectAlternativeNames,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Structure that contains options for your certificate. Currently, you can use
@@ -1401,6 +1463,15 @@ class CertificateSummary {
       domainName: json['DomainName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final domainName = this.domainName;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (domainName != null) 'DomainName': domainName,
+    };
+  }
 }
 
 enum CertificateTransparencyLoggingPreference {
@@ -1480,6 +1551,13 @@ class DescribeCertificateResponse {
               json['Certificate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+    };
   }
 }
 
@@ -1585,6 +1663,25 @@ class DomainValidation {
       validationStatus: (json['ValidationStatus'] as String?)?.toDomainStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final resourceRecord = this.resourceRecord;
+    final validationDomain = this.validationDomain;
+    final validationEmails = this.validationEmails;
+    final validationMethod = this.validationMethod;
+    final validationStatus = this.validationStatus;
+    return {
+      'DomainName': domainName,
+      if (resourceRecord != null) 'ResourceRecord': resourceRecord,
+      if (validationDomain != null) 'ValidationDomain': validationDomain,
+      if (validationEmails != null) 'ValidationEmails': validationEmails,
+      if (validationMethod != null)
+        'ValidationMethod': validationMethod.toValue(),
+      if (validationStatus != null)
+        'ValidationStatus': validationStatus.toValue(),
+    };
+  }
 }
 
 /// Contains information about the domain names that you want ACM to use to send
@@ -1624,6 +1721,13 @@ class DomainValidationOption {
     required this.domainName,
     required this.validationDomain,
   });
+  factory DomainValidationOption.fromJson(Map<String, dynamic> json) {
+    return DomainValidationOption(
+      domainName: json['DomainName'] as String,
+      validationDomain: json['ValidationDomain'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final domainName = this.domainName;
     final validationDomain = this.validationDomain;
@@ -1683,6 +1787,17 @@ class ExportCertificateResponse {
       privateKey: json['PrivateKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final certificateChain = this.certificateChain;
+    final privateKey = this.privateKey;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+      if (privateKey != null) 'PrivateKey': privateKey,
+    };
+  }
 }
 
 /// The Extended Key Usage X.509 v3 extension defines one or more purposes for
@@ -1736,6 +1851,15 @@ class ExtendedKeyUsage {
       name: (json['Name'] as String?)?.toExtendedKeyUsageName(),
       oid: json['OID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final oid = this.oid;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (oid != null) 'OID': oid,
+    };
   }
 }
 
@@ -1944,6 +2068,23 @@ class Filters {
     this.keyTypes,
     this.keyUsage,
   });
+  factory Filters.fromJson(Map<String, dynamic> json) {
+    return Filters(
+      extendedKeyUsage: (json['extendedKeyUsage'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toExtendedKeyUsageName())
+          .toList(),
+      keyTypes: (json['keyTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toKeyAlgorithm())
+          .toList(),
+      keyUsage: (json['keyUsage'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toKeyUsageName())
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final extendedKeyUsage = this.extendedKeyUsage;
     final keyTypes = this.keyTypes;
@@ -1974,6 +2115,13 @@ class GetAccountConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expiryEvents = this.expiryEvents;
+    return {
+      if (expiryEvents != null) 'ExpiryEvents': expiryEvents,
+    };
+  }
 }
 
 class GetCertificateResponse {
@@ -1995,6 +2143,15 @@ class GetCertificateResponse {
       certificateChain: json['CertificateChain'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final certificateChain = this.certificateChain;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+    };
+  }
 }
 
 class ImportCertificateResponse {
@@ -2010,6 +2167,13 @@ class ImportCertificateResponse {
     return ImportCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+    };
   }
 }
 
@@ -2074,6 +2238,13 @@ class KeyUsage {
     return KeyUsage(
       name: (json['Name'] as String?)?.toKeyUsageName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name.toValue(),
+    };
   }
 }
 
@@ -2172,6 +2343,16 @@ class ListCertificatesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateSummaryList = this.certificateSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (certificateSummaryList != null)
+        'CertificateSummaryList': certificateSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForCertificateResponse {
@@ -2188,6 +2369,13 @@ class ListTagsForCertificateResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2322,6 +2510,20 @@ class RenewalSummary {
           (json['RenewalStatusReason'] as String?)?.toFailureReason(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainValidationOptions = this.domainValidationOptions;
+    final renewalStatus = this.renewalStatus;
+    final updatedAt = this.updatedAt;
+    final renewalStatusReason = this.renewalStatusReason;
+    return {
+      'DomainValidationOptions': domainValidationOptions,
+      'RenewalStatus': renewalStatus.toValue(),
+      'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (renewalStatusReason != null)
+        'RenewalStatusReason': renewalStatusReason.toValue(),
+    };
+  }
 }
 
 class RequestCertificateResponse {
@@ -2338,6 +2540,13 @@ class RequestCertificateResponse {
     return RequestCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+    };
   }
 }
 
@@ -2367,6 +2576,17 @@ class ResourceRecord {
       type: (json['Type'] as String).toRecordType(),
       value: json['Value'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 

@@ -62,6 +62,13 @@ class OutputShape {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listMember = this.listMember;
+    return {
+      if (listMember != null) 'ListMember': listMember,
+    };
+  }
 }
 
 final _exceptionFns = <String, _s.AwsExceptionFn>{};

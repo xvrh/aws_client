@@ -2284,6 +2284,19 @@ class AccountAssignment {
       principalType: (json['PrincipalType'] as String?)?.toPrincipalType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final permissionSetArn = this.permissionSetArn;
+    final principalId = this.principalId;
+    final principalType = this.principalType;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
+      if (principalId != null) 'PrincipalId': principalId,
+      if (principalType != null) 'PrincipalType': principalType.toValue(),
+    };
+  }
 }
 
 /// The status of the creation or deletion operation of an assignment that a
@@ -2349,6 +2362,29 @@ class AccountAssignmentOperationStatus {
       targetType: (json['TargetType'] as String?)?.toTargetType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final failureReason = this.failureReason;
+    final permissionSetArn = this.permissionSetArn;
+    final principalId = this.principalId;
+    final principalType = this.principalType;
+    final requestId = this.requestId;
+    final status = this.status;
+    final targetId = this.targetId;
+    final targetType = this.targetType;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
+      if (principalId != null) 'PrincipalId': principalId,
+      if (principalType != null) 'PrincipalType': principalType.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status.toValue(),
+      if (targetId != null) 'TargetId': targetId,
+      if (targetType != null) 'TargetType': targetType.toValue(),
+    };
+  }
 }
 
 /// Provides information about the <a>AccountAssignment</a> creation request.
@@ -2376,6 +2412,17 @@ class AccountAssignmentOperationStatusMetadata {
       status: (json['Status'] as String?)?.toStatusValues(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class AttachManagedPolicyToPermissionSetResponse {
@@ -2383,6 +2430,10 @@ class AttachManagedPolicyToPermissionSetResponse {
   factory AttachManagedPolicyToPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return AttachManagedPolicyToPermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2406,6 +2457,15 @@ class AttachedManagedPolicy {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateAccountAssignmentResponse {
@@ -2425,6 +2485,15 @@ class CreateAccountAssignmentResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentCreationStatus =
+        this.accountAssignmentCreationStatus;
+    return {
+      if (accountAssignmentCreationStatus != null)
+        'AccountAssignmentCreationStatus': accountAssignmentCreationStatus,
+    };
+  }
 }
 
 class CreateInstanceAccessControlAttributeConfigurationResponse {
@@ -2432,6 +2501,10 @@ class CreateInstanceAccessControlAttributeConfigurationResponse {
   factory CreateInstanceAccessControlAttributeConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return CreateInstanceAccessControlAttributeConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2449,6 +2522,13 @@ class CreatePermissionSetResponse {
               json['PermissionSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissionSet = this.permissionSet;
+    return {
+      if (permissionSet != null) 'PermissionSet': permissionSet,
+    };
   }
 }
 
@@ -2469,6 +2549,15 @@ class DeleteAccountAssignmentResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentDeletionStatus =
+        this.accountAssignmentDeletionStatus;
+    return {
+      if (accountAssignmentDeletionStatus != null)
+        'AccountAssignmentDeletionStatus': accountAssignmentDeletionStatus,
+    };
+  }
 }
 
 class DeleteInlinePolicyFromPermissionSetResponse {
@@ -2476,6 +2565,10 @@ class DeleteInlinePolicyFromPermissionSetResponse {
   factory DeleteInlinePolicyFromPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteInlinePolicyFromPermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2485,12 +2578,20 @@ class DeleteInstanceAccessControlAttributeConfigurationResponse {
       Map<String, dynamic> _) {
     return DeleteInstanceAccessControlAttributeConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePermissionSetResponse {
   DeletePermissionSetResponse();
   factory DeletePermissionSetResponse.fromJson(Map<String, dynamic> _) {
     return DeletePermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2512,6 +2613,15 @@ class DescribeAccountAssignmentCreationStatusResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentCreationStatus =
+        this.accountAssignmentCreationStatus;
+    return {
+      if (accountAssignmentCreationStatus != null)
+        'AccountAssignmentCreationStatus': accountAssignmentCreationStatus,
+    };
+  }
 }
 
 class DescribeAccountAssignmentDeletionStatusResponse {
@@ -2531,6 +2641,15 @@ class DescribeAccountAssignmentDeletionStatusResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentDeletionStatus =
+        this.accountAssignmentDeletionStatus;
+    return {
+      if (accountAssignmentDeletionStatus != null)
+        'AccountAssignmentDeletionStatus': accountAssignmentDeletionStatus,
+    };
   }
 }
 
@@ -2565,6 +2684,20 @@ class DescribeInstanceAccessControlAttributeConfigurationResponse {
       statusReason: json['StatusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceAccessControlAttributeConfiguration =
+        this.instanceAccessControlAttributeConfiguration;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (instanceAccessControlAttributeConfiguration != null)
+        'InstanceAccessControlAttributeConfiguration':
+            instanceAccessControlAttributeConfiguration,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 class DescribePermissionSetProvisioningStatusResponse {
@@ -2585,6 +2718,15 @@ class DescribePermissionSetProvisioningStatusResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionSetProvisioningStatus =
+        this.permissionSetProvisioningStatus;
+    return {
+      if (permissionSetProvisioningStatus != null)
+        'PermissionSetProvisioningStatus': permissionSetProvisioningStatus,
+    };
+  }
 }
 
 class DescribePermissionSetResponse {
@@ -2602,6 +2744,13 @@ class DescribePermissionSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionSet = this.permissionSet;
+    return {
+      if (permissionSet != null) 'PermissionSet': permissionSet,
+    };
+  }
 }
 
 class DetachManagedPolicyFromPermissionSetResponse {
@@ -2609,6 +2758,10 @@ class DetachManagedPolicyFromPermissionSetResponse {
   factory DetachManagedPolicyFromPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return DetachManagedPolicyFromPermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2624,6 +2777,13 @@ class GetInlinePolicyForPermissionSetResponse {
     return GetInlinePolicyForPermissionSetResponse(
       inlinePolicy: json['InlinePolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inlinePolicy = this.inlinePolicy;
+    return {
+      if (inlinePolicy != null) 'InlinePolicy': inlinePolicy,
+    };
   }
 }
 
@@ -2713,6 +2873,15 @@ class InstanceMetadata {
       instanceArn: json['InstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityStoreId = this.identityStoreId;
+    final instanceArn = this.instanceArn;
+    return {
+      if (identityStoreId != null) 'IdentityStoreId': identityStoreId,
+      if (instanceArn != null) 'InstanceArn': instanceArn,
+    };
+  }
 }
 
 class ListAccountAssignmentCreationStatusResponse {
@@ -2739,6 +2908,17 @@ class ListAccountAssignmentCreationStatusResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentsCreationStatus =
+        this.accountAssignmentsCreationStatus;
+    final nextToken = this.nextToken;
+    return {
+      if (accountAssignmentsCreationStatus != null)
+        'AccountAssignmentsCreationStatus': accountAssignmentsCreationStatus,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2767,6 +2947,17 @@ class ListAccountAssignmentDeletionStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignmentsDeletionStatus =
+        this.accountAssignmentsDeletionStatus;
+    final nextToken = this.nextToken;
+    return {
+      if (accountAssignmentsDeletionStatus != null)
+        'AccountAssignmentsDeletionStatus': accountAssignmentsDeletionStatus,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAccountAssignmentsResponse {
@@ -2789,6 +2980,15 @@ class ListAccountAssignmentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAssignments = this.accountAssignments;
+    final nextToken = this.nextToken;
+    return {
+      if (accountAssignments != null) 'AccountAssignments': accountAssignments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2814,6 +3014,15 @@ class ListAccountsForProvisionedPermissionSetResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountIds = this.accountIds;
+    final nextToken = this.nextToken;
+    return {
+      if (accountIds != null) 'AccountIds': accountIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListInstancesResponse {
@@ -2836,6 +3045,15 @@ class ListInstancesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextToken = this.nextToken;
+    return {
+      if (instances != null) 'Instances': instances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2860,6 +3078,16 @@ class ListManagedPoliciesInPermissionSetResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final nextToken = this.nextToken;
+    return {
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2888,6 +3116,17 @@ class ListPermissionSetProvisioningStatusResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissionSetsProvisioningStatus =
+        this.permissionSetsProvisioningStatus;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissionSetsProvisioningStatus != null)
+        'PermissionSetsProvisioningStatus': permissionSetsProvisioningStatus,
+    };
+  }
 }
 
 class ListPermissionSetsProvisionedToAccountResponse {
@@ -2912,6 +3151,15 @@ class ListPermissionSetsProvisionedToAccountResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissionSets = this.permissionSets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissionSets != null) 'PermissionSets': permissionSets,
+    };
+  }
 }
 
 class ListPermissionSetsResponse {
@@ -2934,6 +3182,15 @@ class ListPermissionSetsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissionSets = this.permissionSets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissionSets != null) 'PermissionSets': permissionSets,
+    };
   }
 }
 
@@ -2958,6 +3215,15 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Filters he operation status list based on the passed attribute value.
@@ -2968,6 +3234,12 @@ class OperationStatusFilter {
   OperationStatusFilter({
     this.status,
   });
+  factory OperationStatusFilter.fromJson(Map<String, dynamic> json) {
+    return OperationStatusFilter(
+      status: (json['Status'] as String?)?.toStatusValues(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
@@ -3018,6 +3290,23 @@ class PermissionSet {
       sessionDuration: json['SessionDuration'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final name = this.name;
+    final permissionSetArn = this.permissionSetArn;
+    final relayState = this.relayState;
+    final sessionDuration = this.sessionDuration;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
+      if (relayState != null) 'RelayState': relayState,
+      if (sessionDuration != null) 'SessionDuration': sessionDuration,
+    };
+  }
 }
 
 /// A structure that is used to provide the status of the provisioning operation
@@ -3064,6 +3353,23 @@ class PermissionSetProvisioningStatus {
       status: (json['Status'] as String?)?.toStatusValues(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final createdDate = this.createdDate;
+    final failureReason = this.failureReason;
+    final permissionSetArn = this.permissionSetArn;
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (permissionSetArn != null) 'PermissionSetArn': permissionSetArn,
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Provides information about the permission set provisioning status.
@@ -3090,6 +3396,17 @@ class PermissionSetProvisioningStatusMetadata {
       requestId: json['RequestId'] as String?,
       status: (json['Status'] as String?)?.toStatusValues(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3137,6 +3454,15 @@ class ProvisionPermissionSetResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissionSetProvisioningStatus =
+        this.permissionSetProvisioningStatus;
+    return {
+      if (permissionSetProvisioningStatus != null)
+        'PermissionSetProvisioningStatus': permissionSetProvisioningStatus,
+    };
   }
 }
 
@@ -3201,6 +3527,10 @@ class PutInlinePolicyToPermissionSetResponse {
   factory PutInlinePolicyToPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return PutInlinePolicyToPermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3273,6 +3603,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum TargetType {
@@ -3303,6 +3637,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateInstanceAccessControlAttributeConfigurationResponse {
@@ -3311,12 +3649,20 @@ class UpdateInstanceAccessControlAttributeConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateInstanceAccessControlAttributeConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePermissionSetResponse {
   UpdatePermissionSetResponse();
   factory UpdatePermissionSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePermissionSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

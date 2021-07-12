@@ -245,6 +245,24 @@ class Event {
     this.properties,
     this.recommendationId,
   });
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      eventType: json['eventType'] as String,
+      sentAt: nonNullableTimeStampFromJson(json['sentAt'] as Object),
+      eventId: json['eventId'] as String?,
+      eventValue: json['eventValue'] as double?,
+      impression: (json['impression'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      itemId: json['itemId'] as String?,
+      properties: json['properties'] == null
+          ? null
+          : jsonDecode(json['properties'] as String),
+      recommendationId: json['recommendationId'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final eventType = this.eventType;
     final sentAt = this.sentAt;
@@ -290,6 +308,15 @@ class Item {
     required this.itemId,
     this.properties,
   });
+  factory Item.fromJson(Map<String, dynamic> json) {
+    return Item(
+      itemId: json['itemId'] as String,
+      properties: json['properties'] == null
+          ? null
+          : jsonDecode(json['properties'] as String),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final itemId = this.itemId;
     final properties = this.properties;
@@ -324,6 +351,15 @@ class User {
     required this.userId,
     this.properties,
   });
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      userId: json['userId'] as String,
+      properties: json['properties'] == null
+          ? null
+          : jsonDecode(json['properties'] as String),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final userId = this.userId;
     final properties = this.properties;

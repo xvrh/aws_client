@@ -500,6 +500,29 @@ class ApplicationSummary {
           (json['applicationState'] as String?)?.toApplicationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final applicationName = this.applicationName;
+    final applicationUrl = this.applicationUrl;
+    final applicationCreationDate = this.applicationCreationDate;
+    final applicationDescription = this.applicationDescription;
+    final applicationLastUpdateDate = this.applicationLastUpdateDate;
+    final applicationState = this.applicationState;
+    return {
+      'applicationId': applicationId,
+      'applicationName': applicationName,
+      'applicationUrl': applicationUrl,
+      if (applicationCreationDate != null)
+        'applicationCreationDate': applicationCreationDate,
+      if (applicationDescription != null)
+        'applicationDescription': applicationDescription,
+      if (applicationLastUpdateDate != null)
+        'applicationLastUpdateDate': applicationLastUpdateDate,
+      if (applicationState != null)
+        'applicationState': applicationState.toValue(),
+    };
+  }
 }
 
 class CreateApplicationResponse {
@@ -519,12 +542,25 @@ class CreateApplicationResponse {
       applicationId: json['applicationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationId = this.applicationId;
+    return {
+      'applicationArn': applicationArn,
+      'applicationId': applicationId,
+    };
+  }
 }
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -600,6 +636,36 @@ class DescribeApplicationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationCreationDate = this.applicationCreationDate;
+    final applicationId = this.applicationId;
+    final applicationLastUpdateDate = this.applicationLastUpdateDate;
+    final applicationName = this.applicationName;
+    final applicationState = this.applicationState;
+    final applicationUrl = this.applicationUrl;
+    final roleArn = this.roleArn;
+    final applicationDescription = this.applicationDescription;
+    final errorMessage = this.errorMessage;
+    final ssoClientId = this.ssoClientId;
+    final tags = this.tags;
+    return {
+      'applicationArn': applicationArn,
+      'applicationCreationDate': applicationCreationDate,
+      'applicationId': applicationId,
+      'applicationLastUpdateDate': applicationLastUpdateDate,
+      'applicationName': applicationName,
+      'applicationState': applicationState.toValue(),
+      'applicationUrl': applicationUrl,
+      'roleArn': roleArn,
+      if (applicationDescription != null)
+        'applicationDescription': applicationDescription,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (ssoClientId != null) 'ssoClientId': ssoClientId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -623,6 +689,16 @@ class ListApplicationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationSummaries = this.applicationSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationSummaries != null)
+        'applicationSummaries': applicationSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -638,12 +714,23 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -652,12 +739,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateApplicationResponse {
   UpdateApplicationResponse();
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

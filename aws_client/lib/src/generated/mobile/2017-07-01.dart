@@ -351,6 +351,13 @@ class AccountActionRequiredException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The request cannot be processed because some parameter is not valid or the
@@ -365,6 +372,13 @@ class BadRequestException implements _s.AwsException {
     return BadRequestException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -398,6 +412,25 @@ class BundleDetails {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availablePlatforms = this.availablePlatforms;
+    final bundleId = this.bundleId;
+    final description = this.description;
+    final iconUrl = this.iconUrl;
+    final title = this.title;
+    final version = this.version;
+    return {
+      if (availablePlatforms != null)
+        'availablePlatforms':
+            availablePlatforms.map((e) => e.toValue()).toList(),
+      if (bundleId != null) 'bundleId': bundleId,
+      if (description != null) 'description': description,
+      if (iconUrl != null) 'iconUrl': iconUrl,
+      if (title != null) 'title': title,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Result structure used in response to a request to create a project.
@@ -414,6 +447,13 @@ class CreateProjectResult {
           ? ProjectDetails.fromJson(json['details'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'details': details,
+    };
   }
 }
 
@@ -442,6 +482,15 @@ class DeleteProjectResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletedResources = this.deletedResources;
+    final orphanedResources = this.orphanedResources;
+    return {
+      if (deletedResources != null) 'deletedResources': deletedResources,
+      if (orphanedResources != null) 'orphanedResources': orphanedResources,
+    };
+  }
 }
 
 /// Result structure contains the details of the bundle.
@@ -459,6 +508,13 @@ class DescribeBundleResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'details': details,
+    };
+  }
 }
 
 /// Result structure used for requests of project details.
@@ -474,6 +530,13 @@ class DescribeProjectResult {
           ? ProjectDetails.fromJson(json['details'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'details': details,
+    };
   }
 }
 
@@ -493,6 +556,13 @@ class ExportBundleResult {
     return ExportBundleResult(
       downloadUrl: json['downloadUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final downloadUrl = this.downloadUrl;
+    return {
+      if (downloadUrl != null) 'downloadUrl': downloadUrl,
+    };
   }
 }
 
@@ -525,6 +595,17 @@ class ExportProjectResult {
       snapshotId: json['snapshotId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final downloadUrl = this.downloadUrl;
+    final shareUrl = this.shareUrl;
+    final snapshotId = this.snapshotId;
+    return {
+      if (downloadUrl != null) 'downloadUrl': downloadUrl,
+      if (shareUrl != null) 'shareUrl': shareUrl,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+    };
+  }
 }
 
 /// The service has encountered an unexpected error condition which prevents it
@@ -539,6 +620,13 @@ class InternalFailureException implements _s.AwsException {
     return InternalFailureException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -558,6 +646,13 @@ class LimitExceededException implements _s.AwsException {
     return LimitExceededException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -583,6 +678,15 @@ class ListBundlesResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundleList = this.bundleList;
+    final nextToken = this.nextToken;
+    return {
+      if (bundleList != null) 'bundleList': bundleList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Result structure used for requests to list projects in AWS Mobile Hub.
@@ -603,6 +707,15 @@ class ListProjectsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (projects != null) 'projects': projects,
+    };
+  }
 }
 
 /// No entity can be found with the specified identifier.
@@ -616,6 +729,13 @@ class NotFoundException implements _s.AwsException {
     return NotFoundException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -714,6 +834,28 @@ class ProjectDetails {
       state: (json['state'] as String?)?.toProjectState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consoleUrl = this.consoleUrl;
+    final createdDate = this.createdDate;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final name = this.name;
+    final projectId = this.projectId;
+    final region = this.region;
+    final resources = this.resources;
+    final state = this.state;
+    return {
+      if (consoleUrl != null) 'consoleUrl': consoleUrl,
+      if (createdDate != null) 'createdDate': unixTimestampToJson(createdDate),
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (name != null) 'name': name,
+      if (projectId != null) 'projectId': projectId,
+      if (region != null) 'region': region,
+      if (resources != null) 'resources': resources,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Synchronization state for a project.
@@ -768,6 +910,15 @@ class ProjectSummary {
       projectId: json['projectId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final projectId = this.projectId;
+    return {
+      if (name != null) 'name': name,
+      if (projectId != null) 'projectId': projectId,
+    };
+  }
 }
 
 /// Information about an instance of an AWS resource associated with a project.
@@ -795,6 +946,21 @@ class Resource {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final feature = this.feature;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attributes != null) 'attributes': attributes,
+      if (feature != null) 'feature': feature,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// The service is temporarily unavailable. The request should be retried after
@@ -811,6 +977,13 @@ class ServiceUnavailableException implements _s.AwsException {
     return ServiceUnavailableException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -829,6 +1002,13 @@ class TooManyRequestsException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Credentials of the caller are insufficient to authorize the request.
@@ -842,6 +1022,13 @@ class UnauthorizedException implements _s.AwsException {
     return UnauthorizedException(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -859,6 +1046,13 @@ class UpdateProjectResult {
           ? ProjectDetails.fromJson(json['details'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'details': details,
+    };
   }
 }
 

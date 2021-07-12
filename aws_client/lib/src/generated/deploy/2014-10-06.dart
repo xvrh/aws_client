@@ -2963,6 +2963,23 @@ class ApplicationInfo {
       linkedToGitHub: json['linkedToGitHub'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final applicationName = this.applicationName;
+    final computePlatform = this.computePlatform;
+    final createTime = this.createTime;
+    final gitHubAccountName = this.gitHubAccountName;
+    final linkedToGitHub = this.linkedToGitHub;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+      if (applicationName != null) 'applicationName': applicationName,
+      if (computePlatform != null) 'computePlatform': computePlatform.toValue(),
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (gitHubAccountName != null) 'gitHubAccountName': gitHubAccountName,
+      if (linkedToGitHub != null) 'linkedToGitHub': linkedToGitHub,
+    };
+  }
 }
 
 enum ApplicationRevisionSortBy {
@@ -3084,6 +3101,15 @@ class AutoScalingGroup {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hook = this.hook;
+    final name = this.name;
+    return {
+      if (hook != null) 'hook': hook,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Represents the output of a <code>BatchGetApplicationRevisions</code>
@@ -3114,6 +3140,17 @@ class BatchGetApplicationRevisionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final errorMessage = this.errorMessage;
+    final revisions = this.revisions;
+    return {
+      if (applicationName != null) 'applicationName': applicationName,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (revisions != null) 'revisions': revisions,
+    };
+  }
 }
 
 /// Represents the output of a <code>BatchGetApplications</code> operation.
@@ -3131,6 +3168,13 @@ class BatchGetApplicationsOutput {
           .map((e) => ApplicationInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationsInfo = this.applicationsInfo;
+    return {
+      if (applicationsInfo != null) 'applicationsInfo': applicationsInfo,
+    };
   }
 }
 
@@ -3154,6 +3198,16 @@ class BatchGetDeploymentGroupsOutput {
           .toList(),
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentGroupsInfo = this.deploymentGroupsInfo;
+    final errorMessage = this.errorMessage;
+    return {
+      if (deploymentGroupsInfo != null)
+        'deploymentGroupsInfo': deploymentGroupsInfo,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -3179,6 +3233,15 @@ class BatchGetDeploymentInstancesOutput {
           .map((e) => InstanceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final instancesSummary = this.instancesSummary;
+    return {
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (instancesSummary != null) 'instancesSummary': instancesSummary,
+    };
   }
 }
 
@@ -3217,6 +3280,13 @@ class BatchGetDeploymentTargetsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentTargets = this.deploymentTargets;
+    return {
+      if (deploymentTargets != null) 'deploymentTargets': deploymentTargets,
+    };
+  }
 }
 
 /// Represents the output of a <code>BatchGetDeployments</code> operation.
@@ -3234,6 +3304,13 @@ class BatchGetDeploymentsOutput {
           .map((e) => DeploymentInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentsInfo = this.deploymentsInfo;
+    return {
+      if (deploymentsInfo != null) 'deploymentsInfo': deploymentsInfo,
+    };
   }
 }
 
@@ -3254,6 +3331,13 @@ class BatchGetOnPremisesInstancesOutput {
           .map((e) => InstanceInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceInfos = this.instanceInfos;
+    return {
+      if (instanceInfos != null) 'instanceInfos': instanceInfos,
+    };
   }
 }
 
@@ -3463,6 +3547,27 @@ class CloudFormationTarget {
       targetVersionWeight: json['targetVersionWeight'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lifecycleEvents = this.lifecycleEvents;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    final targetId = this.targetId;
+    final targetVersionWeight = this.targetVersionWeight;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lifecycleEvents != null) 'lifecycleEvents': lifecycleEvents,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (status != null) 'status': status.toValue(),
+      if (targetId != null) 'targetId': targetId,
+      if (targetVersionWeight != null)
+        'targetVersionWeight': targetVersionWeight,
+    };
+  }
 }
 
 enum ComputePlatform {
@@ -3511,6 +3616,13 @@ class CreateApplicationOutput {
       applicationId: json['applicationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    return {
+      if (applicationId != null) 'applicationId': applicationId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateDeploymentConfig</code> operation.
@@ -3525,6 +3637,13 @@ class CreateDeploymentConfigOutput {
     return CreateDeploymentConfigOutput(
       deploymentConfigId: json['deploymentConfigId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentConfigId = this.deploymentConfigId;
+    return {
+      if (deploymentConfigId != null) 'deploymentConfigId': deploymentConfigId,
+    };
   }
 }
 
@@ -3541,6 +3660,13 @@ class CreateDeploymentGroupOutput {
       deploymentGroupId: json['deploymentGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentGroupId = this.deploymentGroupId;
+    return {
+      if (deploymentGroupId != null) 'deploymentGroupId': deploymentGroupId,
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateDeployment</code> operation.
@@ -3555,6 +3681,13 @@ class CreateDeploymentOutput {
     return CreateDeploymentOutput(
       deploymentId: json['deploymentId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+    };
   }
 }
 
@@ -3579,6 +3712,13 @@ class DeleteDeploymentGroupOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hooksNotCleanedUp = this.hooksNotCleanedUp;
+    return {
+      if (hooksNotCleanedUp != null) 'hooksNotCleanedUp': hooksNotCleanedUp,
+    };
+  }
 }
 
 /// Represents the output of a <code>DeleteGitHubAccountToken</code> operation.
@@ -3594,12 +3734,23 @@ class DeleteGitHubAccountTokenOutput {
       tokenName: json['tokenName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tokenName = this.tokenName;
+    return {
+      if (tokenName != null) 'tokenName': tokenName,
+    };
+  }
 }
 
 class DeleteResourcesByExternalIdOutput {
   DeleteResourcesByExternalIdOutput();
   factory DeleteResourcesByExternalIdOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResourcesByExternalIdOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3649,6 +3800,26 @@ class DeploymentConfigInfo {
               json['trafficRoutingConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final computePlatform = this.computePlatform;
+    final createTime = this.createTime;
+    final deploymentConfigId = this.deploymentConfigId;
+    final deploymentConfigName = this.deploymentConfigName;
+    final minimumHealthyHosts = this.minimumHealthyHosts;
+    final trafficRoutingConfig = this.trafficRoutingConfig;
+    return {
+      if (computePlatform != null) 'computePlatform': computePlatform.toValue(),
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (deploymentConfigId != null) 'deploymentConfigId': deploymentConfigId,
+      if (deploymentConfigName != null)
+        'deploymentConfigName': deploymentConfigName,
+      if (minimumHealthyHosts != null)
+        'minimumHealthyHosts': minimumHealthyHosts,
+      if (trafficRoutingConfig != null)
+        'trafficRoutingConfig': trafficRoutingConfig,
+    };
   }
 }
 
@@ -3899,6 +4070,65 @@ class DeploymentGroupInfo {
           .map((e) => TriggerConfig.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmConfiguration = this.alarmConfiguration;
+    final applicationName = this.applicationName;
+    final autoRollbackConfiguration = this.autoRollbackConfiguration;
+    final autoScalingGroups = this.autoScalingGroups;
+    final blueGreenDeploymentConfiguration =
+        this.blueGreenDeploymentConfiguration;
+    final computePlatform = this.computePlatform;
+    final deploymentConfigName = this.deploymentConfigName;
+    final deploymentGroupId = this.deploymentGroupId;
+    final deploymentGroupName = this.deploymentGroupName;
+    final deploymentStyle = this.deploymentStyle;
+    final ec2TagFilters = this.ec2TagFilters;
+    final ec2TagSet = this.ec2TagSet;
+    final ecsServices = this.ecsServices;
+    final lastAttemptedDeployment = this.lastAttemptedDeployment;
+    final lastSuccessfulDeployment = this.lastSuccessfulDeployment;
+    final loadBalancerInfo = this.loadBalancerInfo;
+    final onPremisesInstanceTagFilters = this.onPremisesInstanceTagFilters;
+    final onPremisesTagSet = this.onPremisesTagSet;
+    final outdatedInstancesStrategy = this.outdatedInstancesStrategy;
+    final serviceRoleArn = this.serviceRoleArn;
+    final targetRevision = this.targetRevision;
+    final triggerConfigurations = this.triggerConfigurations;
+    return {
+      if (alarmConfiguration != null) 'alarmConfiguration': alarmConfiguration,
+      if (applicationName != null) 'applicationName': applicationName,
+      if (autoRollbackConfiguration != null)
+        'autoRollbackConfiguration': autoRollbackConfiguration,
+      if (autoScalingGroups != null) 'autoScalingGroups': autoScalingGroups,
+      if (blueGreenDeploymentConfiguration != null)
+        'blueGreenDeploymentConfiguration': blueGreenDeploymentConfiguration,
+      if (computePlatform != null) 'computePlatform': computePlatform.toValue(),
+      if (deploymentConfigName != null)
+        'deploymentConfigName': deploymentConfigName,
+      if (deploymentGroupId != null) 'deploymentGroupId': deploymentGroupId,
+      if (deploymentGroupName != null)
+        'deploymentGroupName': deploymentGroupName,
+      if (deploymentStyle != null) 'deploymentStyle': deploymentStyle,
+      if (ec2TagFilters != null) 'ec2TagFilters': ec2TagFilters,
+      if (ec2TagSet != null) 'ec2TagSet': ec2TagSet,
+      if (ecsServices != null) 'ecsServices': ecsServices,
+      if (lastAttemptedDeployment != null)
+        'lastAttemptedDeployment': lastAttemptedDeployment,
+      if (lastSuccessfulDeployment != null)
+        'lastSuccessfulDeployment': lastSuccessfulDeployment,
+      if (loadBalancerInfo != null) 'loadBalancerInfo': loadBalancerInfo,
+      if (onPremisesInstanceTagFilters != null)
+        'onPremisesInstanceTagFilters': onPremisesInstanceTagFilters,
+      if (onPremisesTagSet != null) 'onPremisesTagSet': onPremisesTagSet,
+      if (outdatedInstancesStrategy != null)
+        'outdatedInstancesStrategy': outdatedInstancesStrategy.toValue(),
+      if (serviceRoleArn != null) 'serviceRoleArn': serviceRoleArn,
+      if (targetRevision != null) 'targetRevision': targetRevision,
+      if (triggerConfigurations != null)
+        'triggerConfigurations': triggerConfigurations,
+    };
   }
 }
 
@@ -4172,6 +4402,83 @@ class DeploymentInfo {
       updateOutdatedInstancesOnly: json['updateOutdatedInstancesOnly'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalDeploymentStatusInfo = this.additionalDeploymentStatusInfo;
+    final applicationName = this.applicationName;
+    final autoRollbackConfiguration = this.autoRollbackConfiguration;
+    final blueGreenDeploymentConfiguration =
+        this.blueGreenDeploymentConfiguration;
+    final completeTime = this.completeTime;
+    final computePlatform = this.computePlatform;
+    final createTime = this.createTime;
+    final creator = this.creator;
+    final deploymentConfigName = this.deploymentConfigName;
+    final deploymentGroupName = this.deploymentGroupName;
+    final deploymentId = this.deploymentId;
+    final deploymentOverview = this.deploymentOverview;
+    final deploymentStatusMessages = this.deploymentStatusMessages;
+    final deploymentStyle = this.deploymentStyle;
+    final description = this.description;
+    final errorInformation = this.errorInformation;
+    final externalId = this.externalId;
+    final fileExistsBehavior = this.fileExistsBehavior;
+    final ignoreApplicationStopFailures = this.ignoreApplicationStopFailures;
+    final instanceTerminationWaitTimeStarted =
+        this.instanceTerminationWaitTimeStarted;
+    final loadBalancerInfo = this.loadBalancerInfo;
+    final previousRevision = this.previousRevision;
+    final relatedDeployments = this.relatedDeployments;
+    final revision = this.revision;
+    final rollbackInfo = this.rollbackInfo;
+    final startTime = this.startTime;
+    final status = this.status;
+    final targetInstances = this.targetInstances;
+    final updateOutdatedInstancesOnly = this.updateOutdatedInstancesOnly;
+    return {
+      if (additionalDeploymentStatusInfo != null)
+        'additionalDeploymentStatusInfo': additionalDeploymentStatusInfo,
+      if (applicationName != null) 'applicationName': applicationName,
+      if (autoRollbackConfiguration != null)
+        'autoRollbackConfiguration': autoRollbackConfiguration,
+      if (blueGreenDeploymentConfiguration != null)
+        'blueGreenDeploymentConfiguration': blueGreenDeploymentConfiguration,
+      if (completeTime != null)
+        'completeTime': unixTimestampToJson(completeTime),
+      if (computePlatform != null) 'computePlatform': computePlatform.toValue(),
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (creator != null) 'creator': creator.toValue(),
+      if (deploymentConfigName != null)
+        'deploymentConfigName': deploymentConfigName,
+      if (deploymentGroupName != null)
+        'deploymentGroupName': deploymentGroupName,
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentOverview != null) 'deploymentOverview': deploymentOverview,
+      if (deploymentStatusMessages != null)
+        'deploymentStatusMessages': deploymentStatusMessages,
+      if (deploymentStyle != null) 'deploymentStyle': deploymentStyle,
+      if (description != null) 'description': description,
+      if (errorInformation != null) 'errorInformation': errorInformation,
+      if (externalId != null) 'externalId': externalId,
+      if (fileExistsBehavior != null)
+        'fileExistsBehavior': fileExistsBehavior.toValue(),
+      if (ignoreApplicationStopFailures != null)
+        'ignoreApplicationStopFailures': ignoreApplicationStopFailures,
+      if (instanceTerminationWaitTimeStarted != null)
+        'instanceTerminationWaitTimeStarted':
+            instanceTerminationWaitTimeStarted,
+      if (loadBalancerInfo != null) 'loadBalancerInfo': loadBalancerInfo,
+      if (previousRevision != null) 'previousRevision': previousRevision,
+      if (relatedDeployments != null) 'relatedDeployments': relatedDeployments,
+      if (revision != null) 'revision': revision,
+      if (rollbackInfo != null) 'rollbackInfo': rollbackInfo,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (targetInstances != null) 'targetInstances': targetInstances,
+      if (updateOutdatedInstancesOnly != null)
+        'updateOutdatedInstancesOnly': updateOutdatedInstancesOnly,
+    };
+  }
 }
 
 enum DeploymentOption {
@@ -4241,6 +4548,23 @@ class DeploymentOverview {
       skipped: json['Skipped'] as int?,
       succeeded: json['Succeeded'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final inProgress = this.inProgress;
+    final pending = this.pending;
+    final ready = this.ready;
+    final skipped = this.skipped;
+    final succeeded = this.succeeded;
+    return {
+      if (failed != null) 'Failed': failed,
+      if (inProgress != null) 'InProgress': inProgress,
+      if (pending != null) 'Pending': pending,
+      if (ready != null) 'Ready': ready,
+      if (skipped != null) 'Skipped': skipped,
+      if (succeeded != null) 'Succeeded': succeeded,
+    };
   }
 }
 
@@ -4457,6 +4781,23 @@ class DeploymentTarget {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudFormationTarget = this.cloudFormationTarget;
+    final deploymentTargetType = this.deploymentTargetType;
+    final ecsTarget = this.ecsTarget;
+    final instanceTarget = this.instanceTarget;
+    final lambdaTarget = this.lambdaTarget;
+    return {
+      if (cloudFormationTarget != null)
+        'cloudFormationTarget': cloudFormationTarget,
+      if (deploymentTargetType != null)
+        'deploymentTargetType': deploymentTargetType.toValue(),
+      if (ecsTarget != null) 'ecsTarget': ecsTarget,
+      if (instanceTarget != null) 'instanceTarget': instanceTarget,
+      if (lambdaTarget != null) 'lambdaTarget': lambdaTarget,
+    };
+  }
 }
 
 enum DeploymentTargetType {
@@ -4607,6 +4948,19 @@ class Diagnostics {
       message: json['message'] as String?,
       scriptName: json['scriptName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final logTail = this.logTail;
+    final message = this.message;
+    final scriptName = this.scriptName;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (logTail != null) 'logTail': logTail,
+      if (message != null) 'message': message,
+      if (scriptName != null) 'scriptName': scriptName,
+    };
   }
 }
 
@@ -4803,6 +5157,26 @@ class ECSTarget {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lifecycleEvents = this.lifecycleEvents;
+    final status = this.status;
+    final targetArn = this.targetArn;
+    final targetId = this.targetId;
+    final taskSetsInfo = this.taskSetsInfo;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lifecycleEvents != null) 'lifecycleEvents': lifecycleEvents,
+      if (status != null) 'status': status.toValue(),
+      if (targetArn != null) 'targetArn': targetArn,
+      if (targetId != null) 'targetId': targetId,
+      if (taskSetsInfo != null) 'taskSetsInfo': taskSetsInfo,
+    };
+  }
 }
 
 /// Information about a set of Amazon ECS tasks in an AWS CodeDeploy deployment.
@@ -4886,6 +5260,27 @@ class ECSTaskSet {
       taskSetLabel: (json['taskSetLabel'] as String?)?.toTargetLabel(),
       trafficWeight: json['trafficWeight'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final desiredCount = this.desiredCount;
+    final identifer = this.identifer;
+    final pendingCount = this.pendingCount;
+    final runningCount = this.runningCount;
+    final status = this.status;
+    final targetGroup = this.targetGroup;
+    final taskSetLabel = this.taskSetLabel;
+    final trafficWeight = this.trafficWeight;
+    return {
+      if (desiredCount != null) 'desiredCount': desiredCount,
+      if (identifer != null) 'identifer': identifer,
+      if (pendingCount != null) 'pendingCount': pendingCount,
+      if (runningCount != null) 'runningCount': runningCount,
+      if (status != null) 'status': status,
+      if (targetGroup != null) 'targetGroup': targetGroup,
+      if (taskSetLabel != null) 'taskSetLabel': taskSetLabel.toValue(),
+      if (trafficWeight != null) 'trafficWeight': trafficWeight,
+    };
   }
 }
 
@@ -5182,6 +5577,15 @@ class ErrorInformation {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum FileExistsBehavior {
@@ -5253,6 +5657,24 @@ class GenericRevisionInfo {
       registerTime: timeStampFromJson(json['registerTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentGroups = this.deploymentGroups;
+    final description = this.description;
+    final firstUsedTime = this.firstUsedTime;
+    final lastUsedTime = this.lastUsedTime;
+    final registerTime = this.registerTime;
+    return {
+      if (deploymentGroups != null) 'deploymentGroups': deploymentGroups,
+      if (description != null) 'description': description,
+      if (firstUsedTime != null)
+        'firstUsedTime': unixTimestampToJson(firstUsedTime),
+      if (lastUsedTime != null)
+        'lastUsedTime': unixTimestampToJson(lastUsedTime),
+      if (registerTime != null)
+        'registerTime': unixTimestampToJson(registerTime),
+    };
+  }
 }
 
 /// Represents the output of a <code>GetApplication</code> operation.
@@ -5270,6 +5692,13 @@ class GetApplicationOutput {
               json['application'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'application': application,
+    };
   }
 }
 
@@ -5301,6 +5730,17 @@ class GetApplicationRevisionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final revision = this.revision;
+    final revisionInfo = this.revisionInfo;
+    return {
+      if (applicationName != null) 'applicationName': applicationName,
+      if (revision != null) 'revision': revision,
+      if (revisionInfo != null) 'revisionInfo': revisionInfo,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetDeploymentConfig</code> operation.
@@ -5318,6 +5758,14 @@ class GetDeploymentConfigOutput {
               json['deploymentConfigInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentConfigInfo = this.deploymentConfigInfo;
+    return {
+      if (deploymentConfigInfo != null)
+        'deploymentConfigInfo': deploymentConfigInfo,
+    };
   }
 }
 
@@ -5337,6 +5785,14 @@ class GetDeploymentGroupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentGroupInfo = this.deploymentGroupInfo;
+    return {
+      if (deploymentGroupInfo != null)
+        'deploymentGroupInfo': deploymentGroupInfo,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetDeploymentInstance</code> operation.
@@ -5355,6 +5811,13 @@ class GetDeploymentInstanceOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceSummary = this.instanceSummary;
+    return {
+      if (instanceSummary != null) 'instanceSummary': instanceSummary,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetDeployment</code> operation.
@@ -5372,6 +5835,13 @@ class GetDeploymentOutput {
               json['deploymentInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentInfo = this.deploymentInfo;
+    return {
+      if (deploymentInfo != null) 'deploymentInfo': deploymentInfo,
+    };
   }
 }
 
@@ -5394,6 +5864,13 @@ class GetDeploymentTargetOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentTarget = this.deploymentTarget;
+    return {
+      if (deploymentTarget != null) 'deploymentTarget': deploymentTarget,
+    };
+  }
 }
 
 /// Represents the output of a <code>GetOnPremisesInstance</code> operation.
@@ -5410,6 +5887,13 @@ class GetOnPremisesInstanceOutput {
           ? InstanceInfo.fromJson(json['instanceInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceInfo = this.instanceInfo;
+    return {
+      if (instanceInfo != null) 'instanceInfo': instanceInfo,
+    };
   }
 }
 
@@ -5583,6 +6067,27 @@ class InstanceInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deregisterTime = this.deregisterTime;
+    final iamSessionArn = this.iamSessionArn;
+    final iamUserArn = this.iamUserArn;
+    final instanceArn = this.instanceArn;
+    final instanceName = this.instanceName;
+    final registerTime = this.registerTime;
+    final tags = this.tags;
+    return {
+      if (deregisterTime != null)
+        'deregisterTime': unixTimestampToJson(deregisterTime),
+      if (iamSessionArn != null) 'iamSessionArn': iamSessionArn,
+      if (iamUserArn != null) 'iamUserArn': iamUserArn,
+      if (instanceArn != null) 'instanceArn': instanceArn,
+      if (instanceName != null) 'instanceName': instanceName,
+      if (registerTime != null)
+        'registerTime': unixTimestampToJson(registerTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 @Deprecated('Deprecated')
@@ -5712,6 +6217,24 @@ class InstanceSummary {
       status: (json['status'] as String?)?.toInstanceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lifecycleEvents = this.lifecycleEvents;
+    final status = this.status;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lifecycleEvents != null) 'lifecycleEvents': lifecycleEvents,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// A target Amazon EC2 or on-premises instance during a deployment that uses
@@ -5762,6 +6285,26 @@ class InstanceTarget {
       targetArn: json['targetArn'] as String?,
       targetId: json['targetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final instanceLabel = this.instanceLabel;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lifecycleEvents = this.lifecycleEvents;
+    final status = this.status;
+    final targetArn = this.targetArn;
+    final targetId = this.targetId;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (instanceLabel != null) 'instanceLabel': instanceLabel.toValue(),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lifecycleEvents != null) 'lifecycleEvents': lifecycleEvents,
+      if (status != null) 'status': status.toValue(),
+      if (targetArn != null) 'targetArn': targetArn,
+      if (targetId != null) 'targetId': targetId,
+    };
   }
 }
 
@@ -5830,6 +6373,22 @@ class LambdaFunctionInfo {
       targetVersionWeight: json['targetVersionWeight'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentVersion = this.currentVersion;
+    final functionAlias = this.functionAlias;
+    final functionName = this.functionName;
+    final targetVersion = this.targetVersion;
+    final targetVersionWeight = this.targetVersionWeight;
+    return {
+      if (currentVersion != null) 'currentVersion': currentVersion,
+      if (functionAlias != null) 'functionAlias': functionAlias,
+      if (functionName != null) 'functionName': functionName,
+      if (targetVersion != null) 'targetVersion': targetVersion,
+      if (targetVersionWeight != null)
+        'targetVersionWeight': targetVersionWeight,
+    };
+  }
 }
 
 /// Information about the target AWS Lambda function during an AWS Lambda
@@ -5885,6 +6444,26 @@ class LambdaTarget {
       targetId: json['targetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final lambdaFunctionInfo = this.lambdaFunctionInfo;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lifecycleEvents = this.lifecycleEvents;
+    final status = this.status;
+    final targetArn = this.targetArn;
+    final targetId = this.targetId;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (lambdaFunctionInfo != null) 'lambdaFunctionInfo': lambdaFunctionInfo,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lifecycleEvents != null) 'lifecycleEvents': lifecycleEvents,
+      if (status != null) 'status': status.toValue(),
+      if (targetArn != null) 'targetArn': targetArn,
+      if (targetId != null) 'targetId': targetId,
+    };
+  }
 }
 
 /// Information about the most recent attempted or successful deployment to a
@@ -5917,6 +6496,19 @@ class LastDeploymentInfo {
       endTime: timeStampFromJson(json['endTime']),
       status: (json['status'] as String?)?.toDeploymentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final deploymentId = this.deploymentId;
+    final endTime = this.endTime;
+    final status = this.status;
+    return {
+      if (createTime != null) 'createTime': unixTimestampToJson(createTime),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -6026,6 +6618,21 @@ class LifecycleEvent {
       status: (json['status'] as String?)?.toLifecycleEventStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final diagnostics = this.diagnostics;
+    final endTime = this.endTime;
+    final lifecycleEventName = this.lifecycleEventName;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (diagnostics != null) 'diagnostics': diagnostics,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (lifecycleEventName != null) 'lifecycleEventName': lifecycleEventName,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum LifecycleEventStatus {
@@ -6099,6 +6706,15 @@ class ListApplicationRevisionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final revisions = this.revisions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (revisions != null) 'revisions': revisions,
+    };
+  }
 }
 
 /// Represents the output of a ListApplications operation.
@@ -6123,6 +6739,15 @@ class ListApplicationsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final nextToken = this.nextToken;
+    return {
+      if (applications != null) 'applications': applications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6149,6 +6774,16 @@ class ListDeploymentConfigsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentConfigsList = this.deploymentConfigsList;
+    final nextToken = this.nextToken;
+    return {
+      if (deploymentConfigsList != null)
+        'deploymentConfigsList': deploymentConfigsList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6180,6 +6815,17 @@ class ListDeploymentGroupsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final deploymentGroups = this.deploymentGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationName != null) 'applicationName': applicationName,
+      if (deploymentGroups != null) 'deploymentGroups': deploymentGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a <code>ListDeploymentInstances</code> operation.
@@ -6205,6 +6851,15 @@ class ListDeploymentInstancesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instancesList = this.instancesList;
+    final nextToken = this.nextToken;
+    return {
+      if (instancesList != null) 'instancesList': instancesList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDeploymentTargetsOutput {
@@ -6228,6 +6883,15 @@ class ListDeploymentTargetsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targetIds = this.targetIds;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (targetIds != null) 'targetIds': targetIds,
+    };
   }
 }
 
@@ -6253,6 +6917,15 @@ class ListDeploymentsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    final nextToken = this.nextToken;
+    return {
+      if (deployments != null) 'deployments': deployments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6282,6 +6955,15 @@ class ListGitHubAccountTokenNamesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tokenNameList = this.tokenNameList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tokenNameList != null) 'tokenNameList': tokenNameList,
+    };
+  }
 }
 
 /// Represents the output of the list on-premises instances operation.
@@ -6306,6 +6988,15 @@ class ListOnPremisesInstancesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceNames = this.instanceNames;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceNames != null) 'instanceNames': instanceNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6365,6 +7056,15 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6590,6 +7290,14 @@ class PutLifecycleEventHookExecutionStatusOutput {
           json['lifecycleEventHookExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycleEventHookExecutionId = this.lifecycleEventHookExecutionId;
+    return {
+      if (lifecycleEventHookExecutionId != null)
+        'lifecycleEventHookExecutionId': lifecycleEventHookExecutionId,
+    };
+  }
 }
 
 /// A revision for an AWS Lambda deployment that is a YAML-formatted or
@@ -6678,6 +7386,21 @@ class RelatedDeployments {
           json['autoUpdateOutdatedInstancesRootDeploymentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoUpdateOutdatedInstancesDeploymentIds =
+        this.autoUpdateOutdatedInstancesDeploymentIds;
+    final autoUpdateOutdatedInstancesRootDeploymentId =
+        this.autoUpdateOutdatedInstancesRootDeploymentId;
+    return {
+      if (autoUpdateOutdatedInstancesDeploymentIds != null)
+        'autoUpdateOutdatedInstancesDeploymentIds':
+            autoUpdateOutdatedInstancesDeploymentIds,
+      if (autoUpdateOutdatedInstancesRootDeploymentId != null)
+        'autoUpdateOutdatedInstancesRootDeploymentId':
+            autoUpdateOutdatedInstancesRootDeploymentId,
+    };
+  }
 }
 
 /// Information about an application revision.
@@ -6704,6 +7427,16 @@ class RevisionInfo {
               json['revisionLocation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final genericRevisionInfo = this.genericRevisionInfo;
+    final revisionLocation = this.revisionLocation;
+    return {
+      if (genericRevisionInfo != null)
+        'genericRevisionInfo': genericRevisionInfo,
+      if (revisionLocation != null) 'revisionLocation': revisionLocation,
+    };
   }
 }
 
@@ -6853,6 +7586,19 @@ class RollbackInfo {
           json['rollbackTriggeringDeploymentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rollbackDeploymentId = this.rollbackDeploymentId;
+    final rollbackMessage = this.rollbackMessage;
+    final rollbackTriggeringDeploymentId = this.rollbackTriggeringDeploymentId;
+    return {
+      if (rollbackDeploymentId != null)
+        'rollbackDeploymentId': rollbackDeploymentId,
+      if (rollbackMessage != null) 'rollbackMessage': rollbackMessage,
+      if (rollbackTriggeringDeploymentId != null)
+        'rollbackTriggeringDeploymentId': rollbackTriggeringDeploymentId,
+    };
+  }
 }
 
 /// Information about the location of application artifacts stored in Amazon S3.
@@ -6980,6 +7726,15 @@ class StopDeploymentOutput {
       status: (json['status'] as String?)?.toStopStatus(),
       statusMessage: json['statusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
   }
 }
 
@@ -7125,6 +7880,10 @@ class TagResourceOutput {
   TagResourceOutput();
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7454,6 +8213,13 @@ class TimeRange {
     this.end,
     this.start,
   });
+  factory TimeRange.fromJson(Map<String, dynamic> json) {
+    return TimeRange(
+      end: timeStampFromJson(json['end']),
+      start: timeStampFromJson(json['start']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final end = this.end;
     final start = this.start;
@@ -7691,6 +8457,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the output of an <code>UpdateDeploymentGroup</code> operation.
@@ -7712,6 +8482,13 @@ class UpdateDeploymentGroupOutput {
           .map((e) => AutoScalingGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hooksNotCleanedUp = this.hooksNotCleanedUp;
+    return {
+      if (hooksNotCleanedUp != null) 'hooksNotCleanedUp': hooksNotCleanedUp,
+    };
   }
 }
 

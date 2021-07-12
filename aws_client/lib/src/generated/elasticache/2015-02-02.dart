@@ -5782,6 +5782,20 @@ class AllowedNodeTypeModificationsMessage {
     this.scaleDownModifications,
     this.scaleUpModifications,
   });
+  factory AllowedNodeTypeModificationsMessage.fromJson(
+      Map<String, dynamic> json) {
+    return AllowedNodeTypeModificationsMessage(
+      scaleDownModifications: (json['ScaleDownModifications'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      scaleUpModifications: (json['ScaleUpModifications'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory AllowedNodeTypeModificationsMessage.fromXml(_s.XmlElement elem) {
     return AllowedNodeTypeModificationsMessage(
       scaleDownModifications: _s
@@ -5791,6 +5805,17 @@ class AllowedNodeTypeModificationsMessage {
           .extractXmlChild(elem, 'ScaleUpModifications')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scaleDownModifications = this.scaleDownModifications;
+    final scaleUpModifications = this.scaleUpModifications;
+    return {
+      if (scaleDownModifications != null)
+        'ScaleDownModifications': scaleDownModifications,
+      if (scaleUpModifications != null)
+        'ScaleUpModifications': scaleUpModifications,
+    };
   }
 }
 
@@ -5867,11 +5892,27 @@ class Authentication {
     this.passwordCount,
     this.type,
   });
+  factory Authentication.fromJson(Map<String, dynamic> json) {
+    return Authentication(
+      passwordCount: json['PasswordCount'] as int?,
+      type: (json['Type'] as String?)?.toAuthenticationType(),
+    );
+  }
+
   factory Authentication.fromXml(_s.XmlElement elem) {
     return Authentication(
       passwordCount: _s.extractXmlIntValue(elem, 'PasswordCount'),
       type: _s.extractXmlStringValue(elem, 'Type')?.toAuthenticationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final passwordCount = this.passwordCount;
+    final type = this.type;
+    return {
+      if (passwordCount != null) 'PasswordCount': passwordCount,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5909,12 +5950,29 @@ class AuthorizeCacheSecurityGroupIngressResult {
   AuthorizeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
   });
+  factory AuthorizeCacheSecurityGroupIngressResult.fromJson(
+      Map<String, dynamic> json) {
+    return AuthorizeCacheSecurityGroupIngressResult(
+      cacheSecurityGroup: json['CacheSecurityGroup'] != null
+          ? CacheSecurityGroup.fromJson(
+              json['CacheSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory AuthorizeCacheSecurityGroupIngressResult.fromXml(_s.XmlElement elem) {
     return AuthorizeCacheSecurityGroupIngressResult(
       cacheSecurityGroup: _s
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let((e) => CacheSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -5964,10 +6022,23 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+  factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
+    return AvailabilityZone(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory AvailabilityZone.fromXml(_s.XmlElement elem) {
     return AvailabilityZone(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -6301,6 +6372,70 @@ class CacheCluster {
     this.snapshotWindow,
     this.transitEncryptionEnabled,
   });
+  factory CacheCluster.fromJson(Map<String, dynamic> json) {
+    return CacheCluster(
+      arn: json['ARN'] as String?,
+      atRestEncryptionEnabled: json['AtRestEncryptionEnabled'] as bool?,
+      authTokenEnabled: json['AuthTokenEnabled'] as bool?,
+      authTokenLastModifiedDate:
+          timeStampFromJson(json['AuthTokenLastModifiedDate']),
+      autoMinorVersionUpgrade: json['AutoMinorVersionUpgrade'] as bool?,
+      cacheClusterCreateTime: timeStampFromJson(json['CacheClusterCreateTime']),
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheClusterStatus: json['CacheClusterStatus'] as String?,
+      cacheNodeType: json['CacheNodeType'] as String?,
+      cacheNodes: (json['CacheNodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      cacheParameterGroup: json['CacheParameterGroup'] != null
+          ? CacheParameterGroupStatus.fromJson(
+              json['CacheParameterGroup'] as Map<String, dynamic>)
+          : null,
+      cacheSecurityGroups: (json['CacheSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              CacheSecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      cacheSubnetGroupName: json['CacheSubnetGroupName'] as String?,
+      clientDownloadLandingPage: json['ClientDownloadLandingPage'] as String?,
+      configurationEndpoint: json['ConfigurationEndpoint'] != null
+          ? Endpoint.fromJson(
+              json['ConfigurationEndpoint'] as Map<String, dynamic>)
+          : null,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      logDeliveryConfigurations: (json['LogDeliveryConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LogDeliveryConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      notificationConfiguration: json['NotificationConfiguration'] != null
+          ? NotificationConfiguration.fromJson(
+              json['NotificationConfiguration'] as Map<String, dynamic>)
+          : null,
+      numCacheNodes: json['NumCacheNodes'] as int?,
+      pendingModifiedValues: json['PendingModifiedValues'] != null
+          ? PendingModifiedValues.fromJson(
+              json['PendingModifiedValues'] as Map<String, dynamic>)
+          : null,
+      preferredAvailabilityZone: json['PreferredAvailabilityZone'] as String?,
+      preferredMaintenanceWindow: json['PreferredMaintenanceWindow'] as String?,
+      preferredOutpostArn: json['PreferredOutpostArn'] as String?,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      replicationGroupLogDeliveryEnabled:
+          json['ReplicationGroupLogDeliveryEnabled'] as bool?,
+      securityGroups: (json['SecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              SecurityGroupMembership.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      snapshotRetentionLimit: json['SnapshotRetentionLimit'] as int?,
+      snapshotWindow: json['SnapshotWindow'] as String?,
+      transitEncryptionEnabled: json['TransitEncryptionEnabled'] as bool?,
+    );
+  }
+
   factory CacheCluster.fromXml(_s.XmlElement elem) {
     return CacheCluster(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -6371,6 +6506,92 @@ class CacheCluster {
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final authTokenLastModifiedDate = this.authTokenLastModifiedDate;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final cacheClusterCreateTime = this.cacheClusterCreateTime;
+    final cacheClusterId = this.cacheClusterId;
+    final cacheClusterStatus = this.cacheClusterStatus;
+    final cacheNodeType = this.cacheNodeType;
+    final cacheNodes = this.cacheNodes;
+    final cacheParameterGroup = this.cacheParameterGroup;
+    final cacheSecurityGroups = this.cacheSecurityGroups;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final clientDownloadLandingPage = this.clientDownloadLandingPage;
+    final configurationEndpoint = this.configurationEndpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final notificationConfiguration = this.notificationConfiguration;
+    final numCacheNodes = this.numCacheNodes;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final replicationGroupId = this.replicationGroupId;
+    final replicationGroupLogDeliveryEnabled =
+        this.replicationGroupLogDeliveryEnabled;
+    final securityGroups = this.securityGroups;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (authTokenLastModifiedDate != null)
+        'AuthTokenLastModifiedDate':
+            unixTimestampToJson(authTokenLastModifiedDate),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (cacheClusterCreateTime != null)
+        'CacheClusterCreateTime': unixTimestampToJson(cacheClusterCreateTime),
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheClusterStatus != null) 'CacheClusterStatus': cacheClusterStatus,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (cacheNodes != null) 'CacheNodes': cacheNodes,
+      if (cacheParameterGroup != null)
+        'CacheParameterGroup': cacheParameterGroup,
+      if (cacheSecurityGroups != null)
+        'CacheSecurityGroups': cacheSecurityGroups,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (clientDownloadLandingPage != null)
+        'ClientDownloadLandingPage': clientDownloadLandingPage,
+      if (configurationEndpoint != null)
+        'ConfigurationEndpoint': configurationEndpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (logDeliveryConfigurations != null)
+        'LogDeliveryConfigurations': logDeliveryConfigurations,
+      if (notificationConfiguration != null)
+        'NotificationConfiguration': notificationConfiguration,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (replicationGroupLogDeliveryEnabled != null)
+        'ReplicationGroupLogDeliveryEnabled':
+            replicationGroupLogDeliveryEnabled,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeCacheClusters</code> operation.
@@ -6386,6 +6607,16 @@ class CacheClusterMessage {
     this.cacheClusters,
     this.marker,
   });
+  factory CacheClusterMessage.fromJson(Map<String, dynamic> json) {
+    return CacheClusterMessage(
+      cacheClusters: (json['CacheClusters'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheCluster.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory CacheClusterMessage.fromXml(_s.XmlElement elem) {
     return CacheClusterMessage(
       cacheClusters: _s.extractXmlChild(elem, 'CacheClusters')?.let((elem) =>
@@ -6395,6 +6626,15 @@ class CacheClusterMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusters = this.cacheClusters;
+    final marker = this.marker;
+    return {
+      if (cacheClusters != null) 'CacheClusters': cacheClusters,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6428,6 +6668,17 @@ class CacheEngineVersion {
     this.engine,
     this.engineVersion,
   });
+  factory CacheEngineVersion.fromJson(Map<String, dynamic> json) {
+    return CacheEngineVersion(
+      cacheEngineDescription: json['CacheEngineDescription'] as String?,
+      cacheEngineVersionDescription:
+          json['CacheEngineVersionDescription'] as String?,
+      cacheParameterGroupFamily: json['CacheParameterGroupFamily'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+    );
+  }
+
   factory CacheEngineVersion.fromXml(_s.XmlElement elem) {
     return CacheEngineVersion(
       cacheEngineDescription:
@@ -6439,6 +6690,24 @@ class CacheEngineVersion {
       engine: _s.extractXmlStringValue(elem, 'Engine'),
       engineVersion: _s.extractXmlStringValue(elem, 'EngineVersion'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheEngineDescription = this.cacheEngineDescription;
+    final cacheEngineVersionDescription = this.cacheEngineVersionDescription;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    return {
+      if (cacheEngineDescription != null)
+        'CacheEngineDescription': cacheEngineDescription,
+      if (cacheEngineVersionDescription != null)
+        'CacheEngineVersionDescription': cacheEngineVersionDescription,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+    };
   }
 }
 
@@ -6455,6 +6724,16 @@ class CacheEngineVersionMessage {
     this.cacheEngineVersions,
     this.marker,
   });
+  factory CacheEngineVersionMessage.fromJson(Map<String, dynamic> json) {
+    return CacheEngineVersionMessage(
+      cacheEngineVersions: (json['CacheEngineVersions'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheEngineVersion.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory CacheEngineVersionMessage.fromXml(_s.XmlElement elem) {
     return CacheEngineVersionMessage(
       cacheEngineVersions: _s.extractXmlChild(elem, 'CacheEngineVersions')?.let(
@@ -6464,6 +6743,16 @@ class CacheEngineVersionMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheEngineVersions = this.cacheEngineVersions;
+    final marker = this.marker;
+    return {
+      if (cacheEngineVersions != null)
+        'CacheEngineVersions': cacheEngineVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6634,6 +6923,21 @@ class CacheNode {
     this.parameterGroupStatus,
     this.sourceCacheNodeId,
   });
+  factory CacheNode.fromJson(Map<String, dynamic> json) {
+    return CacheNode(
+      cacheNodeCreateTime: timeStampFromJson(json['CacheNodeCreateTime']),
+      cacheNodeId: json['CacheNodeId'] as String?,
+      cacheNodeStatus: json['CacheNodeStatus'] as String?,
+      customerAvailabilityZone: json['CustomerAvailabilityZone'] as String?,
+      customerOutpostArn: json['CustomerOutpostArn'] as String?,
+      endpoint: json['Endpoint'] != null
+          ? Endpoint.fromJson(json['Endpoint'] as Map<String, dynamic>)
+          : null,
+      parameterGroupStatus: json['ParameterGroupStatus'] as String?,
+      sourceCacheNodeId: json['SourceCacheNodeId'] as String?,
+    );
+  }
+
   factory CacheNode.fromXml(_s.XmlElement elem) {
     return CacheNode(
       cacheNodeCreateTime:
@@ -6649,6 +6953,30 @@ class CacheNode {
           _s.extractXmlStringValue(elem, 'ParameterGroupStatus'),
       sourceCacheNodeId: _s.extractXmlStringValue(elem, 'SourceCacheNodeId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeCreateTime = this.cacheNodeCreateTime;
+    final cacheNodeId = this.cacheNodeId;
+    final cacheNodeStatus = this.cacheNodeStatus;
+    final customerAvailabilityZone = this.customerAvailabilityZone;
+    final customerOutpostArn = this.customerOutpostArn;
+    final endpoint = this.endpoint;
+    final parameterGroupStatus = this.parameterGroupStatus;
+    final sourceCacheNodeId = this.sourceCacheNodeId;
+    return {
+      if (cacheNodeCreateTime != null)
+        'CacheNodeCreateTime': unixTimestampToJson(cacheNodeCreateTime),
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (cacheNodeStatus != null) 'CacheNodeStatus': cacheNodeStatus,
+      if (customerAvailabilityZone != null)
+        'CustomerAvailabilityZone': customerAvailabilityZone,
+      if (customerOutpostArn != null) 'CustomerOutpostArn': customerOutpostArn,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (parameterGroupStatus != null)
+        'ParameterGroupStatus': parameterGroupStatus,
+      if (sourceCacheNodeId != null) 'SourceCacheNodeId': sourceCacheNodeId,
+    };
   }
 }
 
@@ -6703,6 +7031,25 @@ class CacheNodeTypeSpecificParameter {
     this.parameterName,
     this.source,
   });
+  factory CacheNodeTypeSpecificParameter.fromJson(Map<String, dynamic> json) {
+    return CacheNodeTypeSpecificParameter(
+      allowedValues: json['AllowedValues'] as String?,
+      cacheNodeTypeSpecificValues: (json['CacheNodeTypeSpecificValues']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              CacheNodeTypeSpecificValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      changeType: (json['ChangeType'] as String?)?.toChangeType(),
+      dataType: json['DataType'] as String?,
+      description: json['Description'] as String?,
+      isModifiable: json['IsModifiable'] as bool?,
+      minimumEngineVersion: json['MinimumEngineVersion'] as String?,
+      parameterName: json['ParameterName'] as String?,
+      source: json['Source'] as String?,
+    );
+  }
+
   factory CacheNodeTypeSpecificParameter.fromXml(_s.XmlElement elem) {
     return CacheNodeTypeSpecificParameter(
       allowedValues: _s.extractXmlStringValue(elem, 'AllowedValues'),
@@ -6722,6 +7069,31 @@ class CacheNodeTypeSpecificParameter {
       source: _s.extractXmlStringValue(elem, 'Source'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final cacheNodeTypeSpecificValues = this.cacheNodeTypeSpecificValues;
+    final changeType = this.changeType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final parameterName = this.parameterName;
+    final source = this.source;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (cacheNodeTypeSpecificValues != null)
+        'CacheNodeTypeSpecificValues': cacheNodeTypeSpecificValues,
+      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// A value that applies only to a certain cache node type.
@@ -6736,11 +7108,27 @@ class CacheNodeTypeSpecificValue {
     this.cacheNodeType,
     this.value,
   });
+  factory CacheNodeTypeSpecificValue.fromJson(Map<String, dynamic> json) {
+    return CacheNodeTypeSpecificValue(
+      cacheNodeType: json['CacheNodeType'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory CacheNodeTypeSpecificValue.fromXml(_s.XmlElement elem) {
     return CacheNodeTypeSpecificValue(
       cacheNodeType: _s.extractXmlStringValue(elem, 'CacheNodeType'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeType = this.cacheNodeType;
+    final value = this.value;
+    return {
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -6781,6 +7169,23 @@ class CacheNodeUpdateStatus {
     this.nodeUpdateStatus,
     this.nodeUpdateStatusModifiedDate,
   });
+  factory CacheNodeUpdateStatus.fromJson(Map<String, dynamic> json) {
+    return CacheNodeUpdateStatus(
+      cacheNodeId: json['CacheNodeId'] as String?,
+      nodeDeletionDate: timeStampFromJson(json['NodeDeletionDate']),
+      nodeUpdateEndDate: timeStampFromJson(json['NodeUpdateEndDate']),
+      nodeUpdateInitiatedBy:
+          (json['NodeUpdateInitiatedBy'] as String?)?.toNodeUpdateInitiatedBy(),
+      nodeUpdateInitiatedDate:
+          timeStampFromJson(json['NodeUpdateInitiatedDate']),
+      nodeUpdateStartDate: timeStampFromJson(json['NodeUpdateStartDate']),
+      nodeUpdateStatus:
+          (json['NodeUpdateStatus'] as String?)?.toNodeUpdateStatus(),
+      nodeUpdateStatusModifiedDate:
+          timeStampFromJson(json['NodeUpdateStatusModifiedDate']),
+    );
+  }
+
   factory CacheNodeUpdateStatus.fromXml(_s.XmlElement elem) {
     return CacheNodeUpdateStatus(
       cacheNodeId: _s.extractXmlStringValue(elem, 'CacheNodeId'),
@@ -6799,6 +7204,35 @@ class CacheNodeUpdateStatus {
       nodeUpdateStatusModifiedDate:
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeId = this.cacheNodeId;
+    final nodeDeletionDate = this.nodeDeletionDate;
+    final nodeUpdateEndDate = this.nodeUpdateEndDate;
+    final nodeUpdateInitiatedBy = this.nodeUpdateInitiatedBy;
+    final nodeUpdateInitiatedDate = this.nodeUpdateInitiatedDate;
+    final nodeUpdateStartDate = this.nodeUpdateStartDate;
+    final nodeUpdateStatus = this.nodeUpdateStatus;
+    final nodeUpdateStatusModifiedDate = this.nodeUpdateStatusModifiedDate;
+    return {
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (nodeDeletionDate != null)
+        'NodeDeletionDate': unixTimestampToJson(nodeDeletionDate),
+      if (nodeUpdateEndDate != null)
+        'NodeUpdateEndDate': unixTimestampToJson(nodeUpdateEndDate),
+      if (nodeUpdateInitiatedBy != null)
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+      if (nodeUpdateInitiatedDate != null)
+        'NodeUpdateInitiatedDate': unixTimestampToJson(nodeUpdateInitiatedDate),
+      if (nodeUpdateStartDate != null)
+        'NodeUpdateStartDate': unixTimestampToJson(nodeUpdateStartDate),
+      if (nodeUpdateStatus != null)
+        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatusModifiedDate != null)
+        'NodeUpdateStatusModifiedDate':
+            unixTimestampToJson(nodeUpdateStatusModifiedDate),
+    };
   }
 }
 
@@ -6832,6 +7266,16 @@ class CacheParameterGroup {
     this.description,
     this.isGlobal,
   });
+  factory CacheParameterGroup.fromJson(Map<String, dynamic> json) {
+    return CacheParameterGroup(
+      arn: json['ARN'] as String?,
+      cacheParameterGroupFamily: json['CacheParameterGroupFamily'] as String?,
+      cacheParameterGroupName: json['CacheParameterGroupName'] as String?,
+      description: json['Description'] as String?,
+      isGlobal: json['IsGlobal'] as bool?,
+    );
+  }
+
   factory CacheParameterGroup.fromXml(_s.XmlElement elem) {
     return CacheParameterGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -6842,6 +7286,23 @@ class CacheParameterGroup {
       description: _s.extractXmlStringValue(elem, 'Description'),
       isGlobal: _s.extractXmlBoolValue(elem, 'IsGlobal'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final description = this.description;
+    final isGlobal = this.isGlobal;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (description != null) 'Description': description,
+      if (isGlobal != null) 'IsGlobal': isGlobal,
+    };
   }
 }
 
@@ -6862,6 +7323,22 @@ class CacheParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+  factory CacheParameterGroupDetails.fromJson(Map<String, dynamic> json) {
+    return CacheParameterGroupDetails(
+      cacheNodeTypeSpecificParameters:
+          (json['CacheNodeTypeSpecificParameters'] as List?)
+              ?.whereNotNull()
+              .map((e) => CacheNodeTypeSpecificParameter.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory CacheParameterGroupDetails.fromXml(_s.XmlElement elem) {
     return CacheParameterGroupDetails(
       cacheNodeTypeSpecificParameters: _s
@@ -6876,6 +7353,19 @@ class CacheParameterGroupDetails {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeTypeSpecificParameters =
+        this.cacheNodeTypeSpecificParameters;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (cacheNodeTypeSpecificParameters != null)
+        'CacheNodeTypeSpecificParameters': cacheNodeTypeSpecificParameters,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -6896,11 +7386,25 @@ class CacheParameterGroupNameMessage {
   CacheParameterGroupNameMessage({
     this.cacheParameterGroupName,
   });
+  factory CacheParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
+    return CacheParameterGroupNameMessage(
+      cacheParameterGroupName: json['CacheParameterGroupName'] as String?,
+    );
+  }
+
   factory CacheParameterGroupNameMessage.fromXml(_s.XmlElement elem) {
     return CacheParameterGroupNameMessage(
       cacheParameterGroupName:
           _s.extractXmlStringValue(elem, 'CacheParameterGroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    return {
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+    };
   }
 }
 
@@ -6921,6 +7425,17 @@ class CacheParameterGroupStatus {
     this.cacheParameterGroupName,
     this.parameterApplyStatus,
   });
+  factory CacheParameterGroupStatus.fromJson(Map<String, dynamic> json) {
+    return CacheParameterGroupStatus(
+      cacheNodeIdsToReboot: (json['CacheNodeIdsToReboot'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      cacheParameterGroupName: json['CacheParameterGroupName'] as String?,
+      parameterApplyStatus: json['ParameterApplyStatus'] as String?,
+    );
+  }
+
   factory CacheParameterGroupStatus.fromXml(_s.XmlElement elem) {
     return CacheParameterGroupStatus(
       cacheNodeIdsToReboot: _s
@@ -6931,6 +7446,20 @@ class CacheParameterGroupStatus {
       parameterApplyStatus:
           _s.extractXmlStringValue(elem, 'ParameterApplyStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeIdsToReboot = this.cacheNodeIdsToReboot;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    return {
+      if (cacheNodeIdsToReboot != null)
+        'CacheNodeIdsToReboot': cacheNodeIdsToReboot,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+    };
   }
 }
 
@@ -6948,6 +7477,16 @@ class CacheParameterGroupsMessage {
     this.cacheParameterGroups,
     this.marker,
   });
+  factory CacheParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
+    return CacheParameterGroupsMessage(
+      cacheParameterGroups: (json['CacheParameterGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheParameterGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory CacheParameterGroupsMessage.fromXml(_s.XmlElement elem) {
     return CacheParameterGroupsMessage(
       cacheParameterGroups: _s
@@ -6958,6 +7497,16 @@ class CacheParameterGroupsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroups = this.cacheParameterGroups;
+    final marker = this.marker;
+    return {
+      if (cacheParameterGroups != null)
+        'CacheParameterGroups': cacheParameterGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6998,6 +7547,19 @@ class CacheSecurityGroup {
     this.eC2SecurityGroups,
     this.ownerId,
   });
+  factory CacheSecurityGroup.fromJson(Map<String, dynamic> json) {
+    return CacheSecurityGroup(
+      arn: json['ARN'] as String?,
+      cacheSecurityGroupName: json['CacheSecurityGroupName'] as String?,
+      description: json['Description'] as String?,
+      eC2SecurityGroups: (json['EC2SecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => EC2SecurityGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      ownerId: json['OwnerId'] as String?,
+    );
+  }
+
   factory CacheSecurityGroup.fromXml(_s.XmlElement elem) {
     return CacheSecurityGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -7011,6 +7573,22 @@ class CacheSecurityGroup {
               .toList()),
       ownerId: _s.extractXmlStringValue(elem, 'OwnerId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheSecurityGroupName = this.cacheSecurityGroupName;
+    final description = this.description;
+    final eC2SecurityGroups = this.eC2SecurityGroups;
+    final ownerId = this.ownerId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheSecurityGroupName != null)
+        'CacheSecurityGroupName': cacheSecurityGroupName,
+      if (description != null) 'Description': description,
+      if (eC2SecurityGroups != null) 'EC2SecurityGroups': eC2SecurityGroups,
+      if (ownerId != null) 'OwnerId': ownerId,
+    };
   }
 }
 
@@ -7028,12 +7606,29 @@ class CacheSecurityGroupMembership {
     this.cacheSecurityGroupName,
     this.status,
   });
+  factory CacheSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return CacheSecurityGroupMembership(
+      cacheSecurityGroupName: json['CacheSecurityGroupName'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory CacheSecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return CacheSecurityGroupMembership(
       cacheSecurityGroupName:
           _s.extractXmlStringValue(elem, 'CacheSecurityGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroupName = this.cacheSecurityGroupName;
+    final status = this.status;
+    return {
+      if (cacheSecurityGroupName != null)
+        'CacheSecurityGroupName': cacheSecurityGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7051,6 +7646,16 @@ class CacheSecurityGroupMessage {
     this.cacheSecurityGroups,
     this.marker,
   });
+  factory CacheSecurityGroupMessage.fromJson(Map<String, dynamic> json) {
+    return CacheSecurityGroupMessage(
+      cacheSecurityGroups: (json['CacheSecurityGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheSecurityGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory CacheSecurityGroupMessage.fromXml(_s.XmlElement elem) {
     return CacheSecurityGroupMessage(
       cacheSecurityGroups: _s.extractXmlChild(elem, 'CacheSecurityGroups')?.let(
@@ -7060,6 +7665,16 @@ class CacheSecurityGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroups = this.cacheSecurityGroups;
+    final marker = this.marker;
+    return {
+      if (cacheSecurityGroups != null)
+        'CacheSecurityGroups': cacheSecurityGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7097,6 +7712,20 @@ class CacheSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+  factory CacheSubnetGroup.fromJson(Map<String, dynamic> json) {
+    return CacheSubnetGroup(
+      arn: json['ARN'] as String?,
+      cacheSubnetGroupDescription:
+          json['CacheSubnetGroupDescription'] as String?,
+      cacheSubnetGroupName: json['CacheSubnetGroupName'] as String?,
+      subnets: (json['Subnets'] as List?)
+          ?.whereNotNull()
+          .map((e) => Subnet.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory CacheSubnetGroup.fromXml(_s.XmlElement elem) {
     return CacheSubnetGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -7108,6 +7737,23 @@ class CacheSubnetGroup {
           elem.findElements('Subnet').map((c) => Subnet.fromXml(c)).toList()),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheSubnetGroupDescription = this.cacheSubnetGroupDescription;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheSubnetGroupDescription != null)
+        'CacheSubnetGroupDescription': cacheSubnetGroupDescription,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -7124,6 +7770,16 @@ class CacheSubnetGroupMessage {
     this.cacheSubnetGroups,
     this.marker,
   });
+  factory CacheSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
+    return CacheSubnetGroupMessage(
+      cacheSubnetGroups: (json['CacheSubnetGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheSubnetGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory CacheSubnetGroupMessage.fromXml(_s.XmlElement elem) {
     return CacheSubnetGroupMessage(
       cacheSubnetGroups: _s.extractXmlChild(elem, 'CacheSubnetGroups')?.let(
@@ -7133,6 +7789,15 @@ class CacheSubnetGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroups = this.cacheSubnetGroups;
+    final marker = this.marker;
+    return {
+      if (cacheSubnetGroups != null) 'CacheSubnetGroups': cacheSubnetGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7172,6 +7837,12 @@ class CloudWatchLogsDestinationDetails {
   CloudWatchLogsDestinationDetails({
     this.logGroup,
   });
+  factory CloudWatchLogsDestinationDetails.fromJson(Map<String, dynamic> json) {
+    return CloudWatchLogsDestinationDetails(
+      logGroup: json['LogGroup'] as String?,
+    );
+  }
+
   factory CloudWatchLogsDestinationDetails.fromXml(_s.XmlElement elem) {
     return CloudWatchLogsDestinationDetails(
       logGroup: _s.extractXmlStringValue(elem, 'LogGroup'),
@@ -7192,12 +7863,28 @@ class CompleteMigrationResponse {
   CompleteMigrationResponse({
     this.replicationGroup,
   });
+  factory CompleteMigrationResponse.fromJson(Map<String, dynamic> json) {
+    return CompleteMigrationResponse(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CompleteMigrationResponse.fromXml(_s.XmlElement elem) {
     return CompleteMigrationResponse(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -7255,6 +7942,21 @@ class ConfigureShard {
     this.preferredAvailabilityZones,
     this.preferredOutpostArns,
   });
+  factory ConfigureShard.fromJson(Map<String, dynamic> json) {
+    return ConfigureShard(
+      newReplicaCount: json['NewReplicaCount'] as int,
+      nodeGroupId: json['NodeGroupId'] as String,
+      preferredAvailabilityZones: (json['PreferredAvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      preferredOutpostArns: (json['PreferredOutpostArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final newReplicaCount = this.newReplicaCount;
     final nodeGroupId = this.nodeGroupId;
@@ -7277,11 +7979,26 @@ class CopySnapshotResult {
   CopySnapshotResult({
     this.snapshot,
   });
+  factory CopySnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CopySnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CopySnapshotResult.fromXml(_s.XmlElement elem) {
     return CopySnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -7291,12 +8008,27 @@ class CreateCacheClusterResult {
   CreateCacheClusterResult({
     this.cacheCluster,
   });
+  factory CreateCacheClusterResult.fromJson(Map<String, dynamic> json) {
+    return CreateCacheClusterResult(
+      cacheCluster: json['CacheCluster'] != null
+          ? CacheCluster.fromJson(json['CacheCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateCacheClusterResult.fromXml(_s.XmlElement elem) {
     return CreateCacheClusterResult(
       cacheCluster: _s
           .extractXmlChild(elem, 'CacheCluster')
           ?.let((e) => CacheCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -7306,12 +8038,29 @@ class CreateCacheParameterGroupResult {
   CreateCacheParameterGroupResult({
     this.cacheParameterGroup,
   });
+  factory CreateCacheParameterGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateCacheParameterGroupResult(
+      cacheParameterGroup: json['CacheParameterGroup'] != null
+          ? CacheParameterGroup.fromJson(
+              json['CacheParameterGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateCacheParameterGroupResult.fromXml(_s.XmlElement elem) {
     return CreateCacheParameterGroupResult(
       cacheParameterGroup: _s
           .extractXmlChild(elem, 'CacheParameterGroup')
           ?.let((e) => CacheParameterGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroup = this.cacheParameterGroup;
+    return {
+      if (cacheParameterGroup != null)
+        'CacheParameterGroup': cacheParameterGroup,
+    };
   }
 }
 
@@ -7321,12 +8070,28 @@ class CreateCacheSecurityGroupResult {
   CreateCacheSecurityGroupResult({
     this.cacheSecurityGroup,
   });
+  factory CreateCacheSecurityGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateCacheSecurityGroupResult(
+      cacheSecurityGroup: json['CacheSecurityGroup'] != null
+          ? CacheSecurityGroup.fromJson(
+              json['CacheSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateCacheSecurityGroupResult.fromXml(_s.XmlElement elem) {
     return CreateCacheSecurityGroupResult(
       cacheSecurityGroup: _s
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let((e) => CacheSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -7336,12 +8101,28 @@ class CreateCacheSubnetGroupResult {
   CreateCacheSubnetGroupResult({
     this.cacheSubnetGroup,
   });
+  factory CreateCacheSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateCacheSubnetGroupResult(
+      cacheSubnetGroup: json['CacheSubnetGroup'] != null
+          ? CacheSubnetGroup.fromJson(
+              json['CacheSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateCacheSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return CreateCacheSubnetGroupResult(
       cacheSubnetGroup: _s
           .extractXmlChild(elem, 'CacheSubnetGroup')
           ?.let((e) => CacheSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroup = this.cacheSubnetGroup;
+    return {
+      if (cacheSubnetGroup != null) 'CacheSubnetGroup': cacheSubnetGroup,
+    };
   }
 }
 
@@ -7351,12 +8132,30 @@ class CreateGlobalReplicationGroupResult {
   CreateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory CreateGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return CreateGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateGlobalReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return CreateGlobalReplicationGroupResult(
       globalReplicationGroup: _s
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7366,12 +8165,28 @@ class CreateReplicationGroupResult {
   CreateReplicationGroupResult({
     this.replicationGroup,
   });
+  factory CreateReplicationGroupResult.fromJson(Map<String, dynamic> json) {
+    return CreateReplicationGroupResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return CreateReplicationGroupResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -7381,11 +8196,26 @@ class CreateSnapshotResult {
   CreateSnapshotResult({
     this.snapshot,
   });
+  factory CreateSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return CreateSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreateSnapshotResult.fromXml(_s.XmlElement elem) {
     return CreateSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -7401,6 +8231,13 @@ class CustomerNodeEndpoint {
     this.address,
     this.port,
   });
+  factory CustomerNodeEndpoint.fromJson(Map<String, dynamic> json) {
+    return CustomerNodeEndpoint(
+      address: json['Address'] as String?,
+      port: json['Port'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final address = this.address;
     final port = this.port;
@@ -7417,6 +8254,16 @@ class DecreaseNodeGroupsInGlobalReplicationGroupResult {
   DecreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory DecreaseNodeGroupsInGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return DecreaseNodeGroupsInGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DecreaseNodeGroupsInGlobalReplicationGroupResult.fromXml(
       _s.XmlElement elem) {
     return DecreaseNodeGroupsInGlobalReplicationGroupResult(
@@ -7424,6 +8271,14 @@ class DecreaseNodeGroupsInGlobalReplicationGroupResult {
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7433,12 +8288,28 @@ class DecreaseReplicaCountResult {
   DecreaseReplicaCountResult({
     this.replicationGroup,
   });
+  factory DecreaseReplicaCountResult.fromJson(Map<String, dynamic> json) {
+    return DecreaseReplicaCountResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DecreaseReplicaCountResult.fromXml(_s.XmlElement elem) {
     return DecreaseReplicaCountResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -7448,12 +8319,27 @@ class DeleteCacheClusterResult {
   DeleteCacheClusterResult({
     this.cacheCluster,
   });
+  factory DeleteCacheClusterResult.fromJson(Map<String, dynamic> json) {
+    return DeleteCacheClusterResult(
+      cacheCluster: json['CacheCluster'] != null
+          ? CacheCluster.fromJson(json['CacheCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteCacheClusterResult.fromXml(_s.XmlElement elem) {
     return DeleteCacheClusterResult(
       cacheCluster: _s
           .extractXmlChild(elem, 'CacheCluster')
           ?.let((e) => CacheCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -7463,12 +8349,30 @@ class DeleteGlobalReplicationGroupResult {
   DeleteGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory DeleteGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return DeleteGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteGlobalReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return DeleteGlobalReplicationGroupResult(
       globalReplicationGroup: _s
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7478,12 +8382,28 @@ class DeleteReplicationGroupResult {
   DeleteReplicationGroupResult({
     this.replicationGroup,
   });
+  factory DeleteReplicationGroupResult.fromJson(Map<String, dynamic> json) {
+    return DeleteReplicationGroupResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return DeleteReplicationGroupResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -7493,11 +8413,26 @@ class DeleteSnapshotResult {
   DeleteSnapshotResult({
     this.snapshot,
   });
+  factory DeleteSnapshotResult.fromJson(Map<String, dynamic> json) {
+    return DeleteSnapshotResult(
+      snapshot: json['Snapshot'] != null
+          ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeleteSnapshotResult.fromXml(_s.XmlElement elem) {
     return DeleteSnapshotResult(
       snapshot:
           _s.extractXmlChild(elem, 'Snapshot')?.let((e) => Snapshot.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -7507,12 +8442,29 @@ class DescribeEngineDefaultParametersResult {
   DescribeEngineDefaultParametersResult({
     this.engineDefaults,
   });
+  factory DescribeEngineDefaultParametersResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeEngineDefaultParametersResult(
+      engineDefaults: json['EngineDefaults'] != null
+          ? EngineDefaults.fromJson(
+              json['EngineDefaults'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeEngineDefaultParametersResult.fromXml(_s.XmlElement elem) {
     return DescribeEngineDefaultParametersResult(
       engineDefaults: _s
           .extractXmlChild(elem, 'EngineDefaults')
           ?.let((e) => EngineDefaults.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineDefaults = this.engineDefaults;
+    return {
+      if (engineDefaults != null) 'EngineDefaults': engineDefaults,
+    };
   }
 }
 
@@ -7530,6 +8482,18 @@ class DescribeGlobalReplicationGroupsResult {
     this.globalReplicationGroups,
     this.marker,
   });
+  factory DescribeGlobalReplicationGroupsResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeGlobalReplicationGroupsResult(
+      globalReplicationGroups: (json['GlobalReplicationGroups'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => GlobalReplicationGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory DescribeGlobalReplicationGroupsResult.fromXml(_s.XmlElement elem) {
     return DescribeGlobalReplicationGroupsResult(
       globalReplicationGroups: _s
@@ -7540,6 +8504,16 @@ class DescribeGlobalReplicationGroupsResult {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroups = this.globalReplicationGroups;
+    final marker = this.marker;
+    return {
+      if (globalReplicationGroups != null)
+        'GlobalReplicationGroups': globalReplicationGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7559,6 +8533,16 @@ class DescribeSnapshotsListMessage {
     this.marker,
     this.snapshots,
   });
+  factory DescribeSnapshotsListMessage.fromJson(Map<String, dynamic> json) {
+    return DescribeSnapshotsListMessage(
+      marker: json['Marker'] as String?,
+      snapshots: (json['Snapshots'] as List?)
+          ?.whereNotNull()
+          .map((e) => Snapshot.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeSnapshotsListMessage.fromXml(_s.XmlElement elem) {
     return DescribeSnapshotsListMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -7567,6 +8551,15 @@ class DescribeSnapshotsListMessage {
           .map((c) => Snapshot.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final snapshots = this.snapshots;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
   }
 }
 
@@ -7584,6 +8577,16 @@ class DescribeUserGroupsResult {
     this.marker,
     this.userGroups,
   });
+  factory DescribeUserGroupsResult.fromJson(Map<String, dynamic> json) {
+    return DescribeUserGroupsResult(
+      marker: json['Marker'] as String?,
+      userGroups: (json['UserGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeUserGroupsResult.fromXml(_s.XmlElement elem) {
     return DescribeUserGroupsResult(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -7592,6 +8595,15 @@ class DescribeUserGroupsResult {
           .map((c) => UserGroup.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final userGroups = this.userGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (userGroups != null) 'UserGroups': userGroups,
+    };
   }
 }
 
@@ -7609,12 +8621,31 @@ class DescribeUsersResult {
     this.marker,
     this.users,
   });
+  factory DescribeUsersResult.fromJson(Map<String, dynamic> json) {
+    return DescribeUsersResult(
+      marker: json['Marker'] as String?,
+      users: (json['Users'] as List?)
+          ?.whereNotNull()
+          .map((e) => User.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeUsersResult.fromXml(_s.XmlElement elem) {
     return DescribeUsersResult(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
       users: _s.extractXmlChild(elem, 'Users')?.let((elem) =>
           elem.findElements('member').map((c) => User.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final users = this.users;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -7631,6 +8662,19 @@ class DestinationDetails {
     this.cloudWatchLogsDetails,
     this.kinesisFirehoseDetails,
   });
+  factory DestinationDetails.fromJson(Map<String, dynamic> json) {
+    return DestinationDetails(
+      cloudWatchLogsDetails: json['CloudWatchLogsDetails'] != null
+          ? CloudWatchLogsDestinationDetails.fromJson(
+              json['CloudWatchLogsDetails'] as Map<String, dynamic>)
+          : null,
+      kinesisFirehoseDetails: json['KinesisFirehoseDetails'] != null
+          ? KinesisFirehoseDestinationDetails.fromJson(
+              json['KinesisFirehoseDetails'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DestinationDetails.fromXml(_s.XmlElement elem) {
     return DestinationDetails(
       cloudWatchLogsDetails: _s
@@ -7688,12 +8732,30 @@ class DisassociateGlobalReplicationGroupResult {
   DisassociateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory DisassociateGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return DisassociateGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DisassociateGlobalReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return DisassociateGlobalReplicationGroupResult(
       globalReplicationGroup: _s
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7713,6 +8775,14 @@ class EC2SecurityGroup {
     this.eC2SecurityGroupOwnerId,
     this.status,
   });
+  factory EC2SecurityGroup.fromJson(Map<String, dynamic> json) {
+    return EC2SecurityGroup(
+      eC2SecurityGroupName: json['EC2SecurityGroupName'] as String?,
+      eC2SecurityGroupOwnerId: json['EC2SecurityGroupOwnerId'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory EC2SecurityGroup.fromXml(_s.XmlElement elem) {
     return EC2SecurityGroup(
       eC2SecurityGroupName:
@@ -7721,6 +8791,19 @@ class EC2SecurityGroup {
           _s.extractXmlStringValue(elem, 'EC2SecurityGroupOwnerId'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eC2SecurityGroupName = this.eC2SecurityGroupName;
+    final eC2SecurityGroupOwnerId = this.eC2SecurityGroupOwnerId;
+    final status = this.status;
+    return {
+      if (eC2SecurityGroupName != null)
+        'EC2SecurityGroupName': eC2SecurityGroupName,
+      if (eC2SecurityGroupOwnerId != null)
+        'EC2SecurityGroupOwnerId': eC2SecurityGroupOwnerId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7737,11 +8820,27 @@ class Endpoint {
     this.address,
     this.port,
   });
+  factory Endpoint.fromJson(Map<String, dynamic> json) {
+    return Endpoint(
+      address: json['Address'] as String?,
+      port: json['Port'] as int?,
+    );
+  }
+
   factory Endpoint.fromXml(_s.XmlElement elem) {
     return Endpoint(
       address: _s.extractXmlStringValue(elem, 'Address'),
       port: _s.extractXmlIntValue(elem, 'Port'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -7773,6 +8872,23 @@ class EngineDefaults {
     this.marker,
     this.parameters,
   });
+  factory EngineDefaults.fromJson(Map<String, dynamic> json) {
+    return EngineDefaults(
+      cacheNodeTypeSpecificParameters:
+          (json['CacheNodeTypeSpecificParameters'] as List?)
+              ?.whereNotNull()
+              .map((e) => CacheNodeTypeSpecificParameter.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+      cacheParameterGroupFamily: json['CacheParameterGroupFamily'] as String?,
+      marker: json['Marker'] as String?,
+      parameters: (json['Parameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EngineDefaults.fromXml(_s.XmlElement elem) {
     return EngineDefaults(
       cacheNodeTypeSpecificParameters: _s
@@ -7789,6 +8905,22 @@ class EngineDefaults {
           .map((c) => Parameter.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeTypeSpecificParameters =
+        this.cacheNodeTypeSpecificParameters;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (cacheNodeTypeSpecificParameters != null)
+        'CacheNodeTypeSpecificParameters': cacheNodeTypeSpecificParameters,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -7817,6 +8949,15 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      date: timeStampFromJson(json['Date']),
+      message: json['Message'] as String?,
+      sourceIdentifier: json['SourceIdentifier'] as String?,
+      sourceType: (json['SourceType'] as String?)?.toSourceType(),
+    );
+  }
+
   factory Event.fromXml(_s.XmlElement elem) {
     return Event(
       date: _s.extractXmlDateTimeValue(elem, 'Date'),
@@ -7824,6 +8965,19 @@ class Event {
       sourceIdentifier: _s.extractXmlStringValue(elem, 'SourceIdentifier'),
       sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final message = this.message;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (message != null) 'Message': message,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
   }
 }
 
@@ -7840,12 +8994,31 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+  factory EventsMessage.fromJson(Map<String, dynamic> json) {
+    return EventsMessage(
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) => Event.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      marker: json['Marker'] as String?,
+    );
+  }
+
   factory EventsMessage.fromXml(_s.XmlElement elem) {
     return EventsMessage(
       events: _s.extractXmlChild(elem, 'Events')?.let((elem) =>
           elem.findElements('Event').map((c) => Event.fromXml(c)).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7855,12 +9028,30 @@ class FailoverGlobalReplicationGroupResult {
   FailoverGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory FailoverGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return FailoverGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory FailoverGlobalReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return FailoverGlobalReplicationGroupResult(
       globalReplicationGroup: _s
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7876,6 +9067,16 @@ class Filter {
     required this.name,
     required this.values,
   });
+  factory Filter.fromJson(Map<String, dynamic> json) {
+    return Filter(
+      name: json['Name'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -7898,11 +9099,27 @@ class GlobalNodeGroup {
     this.globalNodeGroupId,
     this.slots,
   });
+  factory GlobalNodeGroup.fromJson(Map<String, dynamic> json) {
+    return GlobalNodeGroup(
+      globalNodeGroupId: json['GlobalNodeGroupId'] as String?,
+      slots: json['Slots'] as String?,
+    );
+  }
+
   factory GlobalNodeGroup.fromXml(_s.XmlElement elem) {
     return GlobalNodeGroup(
       globalNodeGroupId: _s.extractXmlStringValue(elem, 'GlobalNodeGroupId'),
       slots: _s.extractXmlStringValue(elem, 'Slots'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalNodeGroupId = this.globalNodeGroupId;
+    final slots = this.slots;
+    return {
+      if (globalNodeGroupId != null) 'GlobalNodeGroupId': globalNodeGroupId,
+      if (slots != null) 'Slots': slots,
+    };
   }
 }
 
@@ -7991,6 +9208,32 @@ class GlobalReplicationGroup {
     this.status,
     this.transitEncryptionEnabled,
   });
+  factory GlobalReplicationGroup.fromJson(Map<String, dynamic> json) {
+    return GlobalReplicationGroup(
+      arn: json['ARN'] as String?,
+      atRestEncryptionEnabled: json['AtRestEncryptionEnabled'] as bool?,
+      authTokenEnabled: json['AuthTokenEnabled'] as bool?,
+      cacheNodeType: json['CacheNodeType'] as String?,
+      clusterEnabled: json['ClusterEnabled'] as bool?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      globalNodeGroups: (json['GlobalNodeGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => GlobalNodeGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      globalReplicationGroupDescription:
+          json['GlobalReplicationGroupDescription'] as String?,
+      globalReplicationGroupId: json['GlobalReplicationGroupId'] as String?,
+      members: (json['Members'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              GlobalReplicationGroupMember.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      status: json['Status'] as String?,
+      transitEncryptionEnabled: json['TransitEncryptionEnabled'] as bool?,
+    );
+  }
+
   factory GlobalReplicationGroup.fromXml(_s.XmlElement elem) {
     return GlobalReplicationGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -8019,6 +9262,42 @@ class GlobalReplicationGroup {
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final cacheNodeType = this.cacheNodeType;
+    final clusterEnabled = this.clusterEnabled;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final globalNodeGroups = this.globalNodeGroups;
+    final globalReplicationGroupDescription =
+        this.globalReplicationGroupDescription;
+    final globalReplicationGroupId = this.globalReplicationGroupId;
+    final members = this.members;
+    final status = this.status;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (clusterEnabled != null) 'ClusterEnabled': clusterEnabled,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalNodeGroups != null) 'GlobalNodeGroups': globalNodeGroups,
+      if (globalReplicationGroupDescription != null)
+        'GlobalReplicationGroupDescription': globalReplicationGroupDescription,
+      if (globalReplicationGroupId != null)
+        'GlobalReplicationGroupId': globalReplicationGroupId,
+      if (members != null) 'Members': members,
+      if (status != null) 'Status': status,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+    };
+  }
 }
 
 /// The name of the Global datastore and role of this replication group in the
@@ -8035,6 +9314,14 @@ class GlobalReplicationGroupInfo {
     this.globalReplicationGroupId,
     this.globalReplicationGroupMemberRole,
   });
+  factory GlobalReplicationGroupInfo.fromJson(Map<String, dynamic> json) {
+    return GlobalReplicationGroupInfo(
+      globalReplicationGroupId: json['GlobalReplicationGroupId'] as String?,
+      globalReplicationGroupMemberRole:
+          json['GlobalReplicationGroupMemberRole'] as String?,
+    );
+  }
+
   factory GlobalReplicationGroupInfo.fromXml(_s.XmlElement elem) {
     return GlobalReplicationGroupInfo(
       globalReplicationGroupId:
@@ -8042,6 +9329,18 @@ class GlobalReplicationGroupInfo {
       globalReplicationGroupMemberRole:
           _s.extractXmlStringValue(elem, 'GlobalReplicationGroupMemberRole'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroupId = this.globalReplicationGroupId;
+    final globalReplicationGroupMemberRole =
+        this.globalReplicationGroupMemberRole;
+    return {
+      if (globalReplicationGroupId != null)
+        'GlobalReplicationGroupId': globalReplicationGroupId,
+      if (globalReplicationGroupMemberRole != null)
+        'GlobalReplicationGroupMemberRole': globalReplicationGroupMemberRole,
+    };
   }
 }
 
@@ -8070,6 +9369,17 @@ class GlobalReplicationGroupMember {
     this.role,
     this.status,
   });
+  factory GlobalReplicationGroupMember.fromJson(Map<String, dynamic> json) {
+    return GlobalReplicationGroupMember(
+      automaticFailover:
+          (json['AutomaticFailover'] as String?)?.toAutomaticFailoverStatus(),
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      replicationGroupRegion: json['ReplicationGroupRegion'] as String?,
+      role: json['Role'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory GlobalReplicationGroupMember.fromXml(_s.XmlElement elem) {
     return GlobalReplicationGroupMember(
       automaticFailover: _s
@@ -8082,6 +9392,23 @@ class GlobalReplicationGroupMember {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automaticFailover = this.automaticFailover;
+    final replicationGroupId = this.replicationGroupId;
+    final replicationGroupRegion = this.replicationGroupRegion;
+    final role = this.role;
+    final status = this.status;
+    return {
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (replicationGroupRegion != null)
+        'ReplicationGroupRegion': replicationGroupRegion,
+      if (role != null) 'Role': role,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class IncreaseNodeGroupsInGlobalReplicationGroupResult {
@@ -8090,6 +9417,16 @@ class IncreaseNodeGroupsInGlobalReplicationGroupResult {
   IncreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory IncreaseNodeGroupsInGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return IncreaseNodeGroupsInGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory IncreaseNodeGroupsInGlobalReplicationGroupResult.fromXml(
       _s.XmlElement elem) {
     return IncreaseNodeGroupsInGlobalReplicationGroupResult(
@@ -8097,6 +9434,14 @@ class IncreaseNodeGroupsInGlobalReplicationGroupResult {
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -8106,12 +9451,28 @@ class IncreaseReplicaCountResult {
   IncreaseReplicaCountResult({
     this.replicationGroup,
   });
+  factory IncreaseReplicaCountResult.fromJson(Map<String, dynamic> json) {
+    return IncreaseReplicaCountResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory IncreaseReplicaCountResult.fromXml(_s.XmlElement elem) {
     return IncreaseReplicaCountResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8123,6 +9484,13 @@ class KinesisFirehoseDestinationDetails {
   KinesisFirehoseDestinationDetails({
     this.deliveryStream,
   });
+  factory KinesisFirehoseDestinationDetails.fromJson(
+      Map<String, dynamic> json) {
+    return KinesisFirehoseDestinationDetails(
+      deliveryStream: json['DeliveryStream'] as String?,
+    );
+  }
+
   factory KinesisFirehoseDestinationDetails.fromXml(_s.XmlElement elem) {
     return KinesisFirehoseDestinationDetails(
       deliveryStream: _s.extractXmlStringValue(elem, 'DeliveryStream'),
@@ -8169,6 +9537,21 @@ class LogDeliveryConfiguration {
     this.message,
     this.status,
   });
+  factory LogDeliveryConfiguration.fromJson(Map<String, dynamic> json) {
+    return LogDeliveryConfiguration(
+      destinationDetails: json['DestinationDetails'] != null
+          ? DestinationDetails.fromJson(
+              json['DestinationDetails'] as Map<String, dynamic>)
+          : null,
+      destinationType:
+          (json['DestinationType'] as String?)?.toDestinationType(),
+      logFormat: (json['LogFormat'] as String?)?.toLogFormat(),
+      logType: (json['LogType'] as String?)?.toLogType(),
+      message: json['Message'] as String?,
+      status: (json['Status'] as String?)?.toLogDeliveryConfigurationStatus(),
+    );
+  }
+
   factory LogDeliveryConfiguration.fromXml(_s.XmlElement elem) {
     return LogDeliveryConfiguration(
       destinationDetails: _s
@@ -8184,6 +9567,23 @@ class LogDeliveryConfiguration {
           .extractXmlStringValue(elem, 'Status')
           ?.toLogDeliveryConfigurationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationDetails = this.destinationDetails;
+    final destinationType = this.destinationType;
+    final logFormat = this.logFormat;
+    final logType = this.logType;
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (destinationDetails != null) 'DestinationDetails': destinationDetails,
+      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.toValue(),
+      if (logType != null) 'LogType': logType.toValue(),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -8213,6 +9613,20 @@ class LogDeliveryConfigurationRequest {
     this.logFormat,
     this.logType,
   });
+  factory LogDeliveryConfigurationRequest.fromJson(Map<String, dynamic> json) {
+    return LogDeliveryConfigurationRequest(
+      destinationDetails: json['DestinationDetails'] != null
+          ? DestinationDetails.fromJson(
+              json['DestinationDetails'] as Map<String, dynamic>)
+          : null,
+      destinationType:
+          (json['DestinationType'] as String?)?.toDestinationType(),
+      enabled: json['Enabled'] as bool?,
+      logFormat: (json['LogFormat'] as String?)?.toLogFormat(),
+      logType: (json['LogType'] as String?)?.toLogType(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final destinationDetails = this.destinationDetails;
     final destinationType = this.destinationType;
@@ -8330,12 +9744,27 @@ class ModifyCacheClusterResult {
   ModifyCacheClusterResult({
     this.cacheCluster,
   });
+  factory ModifyCacheClusterResult.fromJson(Map<String, dynamic> json) {
+    return ModifyCacheClusterResult(
+      cacheCluster: json['CacheCluster'] != null
+          ? CacheCluster.fromJson(json['CacheCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyCacheClusterResult.fromXml(_s.XmlElement elem) {
     return ModifyCacheClusterResult(
       cacheCluster: _s
           .extractXmlChild(elem, 'CacheCluster')
           ?.let((e) => CacheCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -8345,12 +9774,28 @@ class ModifyCacheSubnetGroupResult {
   ModifyCacheSubnetGroupResult({
     this.cacheSubnetGroup,
   });
+  factory ModifyCacheSubnetGroupResult.fromJson(Map<String, dynamic> json) {
+    return ModifyCacheSubnetGroupResult(
+      cacheSubnetGroup: json['CacheSubnetGroup'] != null
+          ? CacheSubnetGroup.fromJson(
+              json['CacheSubnetGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyCacheSubnetGroupResult.fromXml(_s.XmlElement elem) {
     return ModifyCacheSubnetGroupResult(
       cacheSubnetGroup: _s
           .extractXmlChild(elem, 'CacheSubnetGroup')
           ?.let((e) => CacheSubnetGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroup = this.cacheSubnetGroup;
+    return {
+      if (cacheSubnetGroup != null) 'CacheSubnetGroup': cacheSubnetGroup,
+    };
   }
 }
 
@@ -8360,12 +9805,30 @@ class ModifyGlobalReplicationGroupResult {
   ModifyGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory ModifyGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return ModifyGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyGlobalReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return ModifyGlobalReplicationGroupResult(
       globalReplicationGroup: _s
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -8375,12 +9838,28 @@ class ModifyReplicationGroupResult {
   ModifyReplicationGroupResult({
     this.replicationGroup,
   });
+  factory ModifyReplicationGroupResult.fromJson(Map<String, dynamic> json) {
+    return ModifyReplicationGroupResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyReplicationGroupResult.fromXml(_s.XmlElement elem) {
     return ModifyReplicationGroupResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8390,6 +9869,16 @@ class ModifyReplicationGroupShardConfigurationResult {
   ModifyReplicationGroupShardConfigurationResult({
     this.replicationGroup,
   });
+  factory ModifyReplicationGroupShardConfigurationResult.fromJson(
+      Map<String, dynamic> json) {
+    return ModifyReplicationGroupShardConfigurationResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ModifyReplicationGroupShardConfigurationResult.fromXml(
       _s.XmlElement elem) {
     return ModifyReplicationGroupShardConfigurationResult(
@@ -8397,6 +9886,13 @@ class ModifyReplicationGroupShardConfigurationResult {
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8464,6 +9960,24 @@ class NodeGroup {
     this.slots,
     this.status,
   });
+  factory NodeGroup.fromJson(Map<String, dynamic> json) {
+    return NodeGroup(
+      nodeGroupId: json['NodeGroupId'] as String?,
+      nodeGroupMembers: (json['NodeGroupMembers'] as List?)
+          ?.whereNotNull()
+          .map((e) => NodeGroupMember.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      primaryEndpoint: json['PrimaryEndpoint'] != null
+          ? Endpoint.fromJson(json['PrimaryEndpoint'] as Map<String, dynamic>)
+          : null,
+      readerEndpoint: json['ReaderEndpoint'] != null
+          ? Endpoint.fromJson(json['ReaderEndpoint'] as Map<String, dynamic>)
+          : null,
+      slots: json['Slots'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory NodeGroup.fromXml(_s.XmlElement elem) {
     return NodeGroup(
       nodeGroupId: _s.extractXmlStringValue(elem, 'NodeGroupId'),
@@ -8481,6 +9995,23 @@ class NodeGroup {
       slots: _s.extractXmlStringValue(elem, 'Slots'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final nodeGroupMembers = this.nodeGroupMembers;
+    final primaryEndpoint = this.primaryEndpoint;
+    final readerEndpoint = this.readerEndpoint;
+    final slots = this.slots;
+    final status = this.status;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (nodeGroupMembers != null) 'NodeGroupMembers': nodeGroupMembers,
+      if (primaryEndpoint != null) 'PrimaryEndpoint': primaryEndpoint,
+      if (readerEndpoint != null) 'ReaderEndpoint': readerEndpoint,
+      if (slots != null) 'Slots': slots,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -8528,6 +10059,24 @@ class NodeGroupConfiguration {
     this.replicaOutpostArns,
     this.slots,
   });
+  factory NodeGroupConfiguration.fromJson(Map<String, dynamic> json) {
+    return NodeGroupConfiguration(
+      nodeGroupId: json['NodeGroupId'] as String?,
+      primaryAvailabilityZone: json['PrimaryAvailabilityZone'] as String?,
+      primaryOutpostArn: json['PrimaryOutpostArn'] as String?,
+      replicaAvailabilityZones: (json['ReplicaAvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      replicaCount: json['ReplicaCount'] as int?,
+      replicaOutpostArns: (json['ReplicaOutpostArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      slots: json['Slots'] as String?,
+    );
+  }
+
   factory NodeGroupConfiguration.fromXml(_s.XmlElement elem) {
     return NodeGroupConfiguration(
       nodeGroupId: _s.extractXmlStringValue(elem, 'NodeGroupId'),
@@ -8601,6 +10150,19 @@ class NodeGroupMember {
     this.preferredOutpostArn,
     this.readEndpoint,
   });
+  factory NodeGroupMember.fromJson(Map<String, dynamic> json) {
+    return NodeGroupMember(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheNodeId: json['CacheNodeId'] as String?,
+      currentRole: json['CurrentRole'] as String?,
+      preferredAvailabilityZone: json['PreferredAvailabilityZone'] as String?,
+      preferredOutpostArn: json['PreferredOutpostArn'] as String?,
+      readEndpoint: json['ReadEndpoint'] != null
+          ? Endpoint.fromJson(json['ReadEndpoint'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory NodeGroupMember.fromXml(_s.XmlElement elem) {
     return NodeGroupMember(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -8614,6 +10176,25 @@ class NodeGroupMember {
           .extractXmlChild(elem, 'ReadEndpoint')
           ?.let((e) => Endpoint.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeId = this.cacheNodeId;
+    final currentRole = this.currentRole;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final readEndpoint = this.readEndpoint;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (currentRole != null) 'CurrentRole': currentRole,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (readEndpoint != null) 'ReadEndpoint': readEndpoint,
+    };
   }
 }
 
@@ -8658,6 +10239,24 @@ class NodeGroupMemberUpdateStatus {
     this.nodeUpdateStatus,
     this.nodeUpdateStatusModifiedDate,
   });
+  factory NodeGroupMemberUpdateStatus.fromJson(Map<String, dynamic> json) {
+    return NodeGroupMemberUpdateStatus(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheNodeId: json['CacheNodeId'] as String?,
+      nodeDeletionDate: timeStampFromJson(json['NodeDeletionDate']),
+      nodeUpdateEndDate: timeStampFromJson(json['NodeUpdateEndDate']),
+      nodeUpdateInitiatedBy:
+          (json['NodeUpdateInitiatedBy'] as String?)?.toNodeUpdateInitiatedBy(),
+      nodeUpdateInitiatedDate:
+          timeStampFromJson(json['NodeUpdateInitiatedDate']),
+      nodeUpdateStartDate: timeStampFromJson(json['NodeUpdateStartDate']),
+      nodeUpdateStatus:
+          (json['NodeUpdateStatus'] as String?)?.toNodeUpdateStatus(),
+      nodeUpdateStatusModifiedDate:
+          timeStampFromJson(json['NodeUpdateStatusModifiedDate']),
+    );
+  }
+
   factory NodeGroupMemberUpdateStatus.fromXml(_s.XmlElement elem) {
     return NodeGroupMemberUpdateStatus(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -8678,6 +10277,37 @@ class NodeGroupMemberUpdateStatus {
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeId = this.cacheNodeId;
+    final nodeDeletionDate = this.nodeDeletionDate;
+    final nodeUpdateEndDate = this.nodeUpdateEndDate;
+    final nodeUpdateInitiatedBy = this.nodeUpdateInitiatedBy;
+    final nodeUpdateInitiatedDate = this.nodeUpdateInitiatedDate;
+    final nodeUpdateStartDate = this.nodeUpdateStartDate;
+    final nodeUpdateStatus = this.nodeUpdateStatus;
+    final nodeUpdateStatusModifiedDate = this.nodeUpdateStatusModifiedDate;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (nodeDeletionDate != null)
+        'NodeDeletionDate': unixTimestampToJson(nodeDeletionDate),
+      if (nodeUpdateEndDate != null)
+        'NodeUpdateEndDate': unixTimestampToJson(nodeUpdateEndDate),
+      if (nodeUpdateInitiatedBy != null)
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+      if (nodeUpdateInitiatedDate != null)
+        'NodeUpdateInitiatedDate': unixTimestampToJson(nodeUpdateInitiatedDate),
+      if (nodeUpdateStartDate != null)
+        'NodeUpdateStartDate': unixTimestampToJson(nodeUpdateStartDate),
+      if (nodeUpdateStatus != null)
+        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatusModifiedDate != null)
+        'NodeUpdateStatusModifiedDate':
+            unixTimestampToJson(nodeUpdateStatusModifiedDate),
+    };
+  }
 }
 
 /// The status of the service update on the node group
@@ -8692,6 +10322,18 @@ class NodeGroupUpdateStatus {
     this.nodeGroupId,
     this.nodeGroupMemberUpdateStatus,
   });
+  factory NodeGroupUpdateStatus.fromJson(Map<String, dynamic> json) {
+    return NodeGroupUpdateStatus(
+      nodeGroupId: json['NodeGroupId'] as String?,
+      nodeGroupMemberUpdateStatus: (json['NodeGroupMemberUpdateStatus']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              NodeGroupMemberUpdateStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory NodeGroupUpdateStatus.fromXml(_s.XmlElement elem) {
     return NodeGroupUpdateStatus(
       nodeGroupId: _s.extractXmlStringValue(elem, 'NodeGroupId'),
@@ -8702,6 +10344,16 @@ class NodeGroupUpdateStatus {
               .map((c) => NodeGroupMemberUpdateStatus.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final nodeGroupMemberUpdateStatus = this.nodeGroupMemberUpdateStatus;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (nodeGroupMemberUpdateStatus != null)
+        'NodeGroupMemberUpdateStatus': nodeGroupMemberUpdateStatus,
+    };
   }
 }
 
@@ -8738,6 +10390,21 @@ class NodeSnapshot {
     this.nodeGroupId,
     this.snapshotCreateTime,
   });
+  factory NodeSnapshot.fromJson(Map<String, dynamic> json) {
+    return NodeSnapshot(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheNodeCreateTime: timeStampFromJson(json['CacheNodeCreateTime']),
+      cacheNodeId: json['CacheNodeId'] as String?,
+      cacheSize: json['CacheSize'] as String?,
+      nodeGroupConfiguration: json['NodeGroupConfiguration'] != null
+          ? NodeGroupConfiguration.fromJson(
+              json['NodeGroupConfiguration'] as Map<String, dynamic>)
+          : null,
+      nodeGroupId: json['NodeGroupId'] as String?,
+      snapshotCreateTime: timeStampFromJson(json['SnapshotCreateTime']),
+    );
+  }
+
   factory NodeSnapshot.fromXml(_s.XmlElement elem) {
     return NodeSnapshot(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -8752,6 +10419,28 @@ class NodeSnapshot {
       snapshotCreateTime:
           _s.extractXmlDateTimeValue(elem, 'SnapshotCreateTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeCreateTime = this.cacheNodeCreateTime;
+    final cacheNodeId = this.cacheNodeId;
+    final cacheSize = this.cacheSize;
+    final nodeGroupConfiguration = this.nodeGroupConfiguration;
+    final nodeGroupId = this.nodeGroupId;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeCreateTime != null)
+        'CacheNodeCreateTime': unixTimestampToJson(cacheNodeCreateTime),
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (cacheSize != null) 'CacheSize': cacheSize,
+      if (nodeGroupConfiguration != null)
+        'NodeGroupConfiguration': nodeGroupConfiguration,
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (snapshotCreateTime != null)
+        'SnapshotCreateTime': unixTimestampToJson(snapshotCreateTime),
+    };
   }
 }
 
@@ -8845,11 +10534,27 @@ class NotificationConfiguration {
     this.topicArn,
     this.topicStatus,
   });
+  factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
+    return NotificationConfiguration(
+      topicArn: json['TopicArn'] as String?,
+      topicStatus: json['TopicStatus'] as String?,
+    );
+  }
+
   factory NotificationConfiguration.fromXml(_s.XmlElement elem) {
     return NotificationConfiguration(
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
       topicStatus: _s.extractXmlStringValue(elem, 'TopicStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    final topicStatus = this.topicStatus;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (topicStatus != null) 'TopicStatus': topicStatus,
+    };
   }
 }
 
@@ -8929,6 +10634,20 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+  factory Parameter.fromJson(Map<String, dynamic> json) {
+    return Parameter(
+      allowedValues: json['AllowedValues'] as String?,
+      changeType: (json['ChangeType'] as String?)?.toChangeType(),
+      dataType: json['DataType'] as String?,
+      description: json['Description'] as String?,
+      isModifiable: json['IsModifiable'] as bool?,
+      minimumEngineVersion: json['MinimumEngineVersion'] as String?,
+      parameterName: json['ParameterName'] as String?,
+      parameterValue: json['ParameterValue'] as String?,
+      source: json['Source'] as String?,
+    );
+  }
+
   factory Parameter.fromXml(_s.XmlElement elem) {
     return Parameter(
       allowedValues: _s.extractXmlStringValue(elem, 'AllowedValues'),
@@ -8942,6 +10661,30 @@ class Parameter {
       parameterValue: _s.extractXmlStringValue(elem, 'ParameterValue'),
       source: _s.extractXmlStringValue(elem, 'Source'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final changeType = this.changeType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final parameterName = this.parameterName;
+    final parameterValue = this.parameterValue;
+    final source = this.source;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (parameterValue != null) 'ParameterValue': parameterValue,
+      if (source != null) 'Source': source,
+    };
   }
 }
 
@@ -8957,6 +10700,13 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+  factory ParameterNameValue.fromJson(Map<String, dynamic> json) {
+    return ParameterNameValue(
+      parameterName: json['ParameterName'] as String?,
+      parameterValue: json['ParameterValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final parameterName = this.parameterName;
     final parameterValue = this.parameterValue;
@@ -9018,6 +10768,19 @@ class PendingLogDeliveryConfiguration {
     this.logFormat,
     this.logType,
   });
+  factory PendingLogDeliveryConfiguration.fromJson(Map<String, dynamic> json) {
+    return PendingLogDeliveryConfiguration(
+      destinationDetails: json['DestinationDetails'] != null
+          ? DestinationDetails.fromJson(
+              json['DestinationDetails'] as Map<String, dynamic>)
+          : null,
+      destinationType:
+          (json['DestinationType'] as String?)?.toDestinationType(),
+      logFormat: (json['LogFormat'] as String?)?.toLogFormat(),
+      logType: (json['LogType'] as String?)?.toLogType(),
+    );
+  }
+
   factory PendingLogDeliveryConfiguration.fromXml(_s.XmlElement elem) {
     return PendingLogDeliveryConfiguration(
       destinationDetails: _s
@@ -9029,6 +10792,19 @@ class PendingLogDeliveryConfiguration {
       logFormat: _s.extractXmlStringValue(elem, 'LogFormat')?.toLogFormat(),
       logType: _s.extractXmlStringValue(elem, 'LogType')?.toLogType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationDetails = this.destinationDetails;
+    final destinationType = this.destinationType;
+    final logFormat = this.logFormat;
+    final logType = this.logType;
+    return {
+      if (destinationDetails != null) 'DestinationDetails': destinationDetails,
+      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.toValue(),
+      if (logType != null) 'LogType': logType.toValue(),
+    };
   }
 }
 
@@ -9065,6 +10841,25 @@ class PendingModifiedValues {
     this.logDeliveryConfigurations,
     this.numCacheNodes,
   });
+  factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
+    return PendingModifiedValues(
+      authTokenStatus:
+          (json['AuthTokenStatus'] as String?)?.toAuthTokenUpdateStatus(),
+      cacheNodeIdsToRemove: (json['CacheNodeIdsToRemove'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      cacheNodeType: json['CacheNodeType'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      logDeliveryConfigurations: (json['LogDeliveryConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => PendingLogDeliveryConfiguration.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      numCacheNodes: json['NumCacheNodes'] as int?,
+    );
+  }
+
   factory PendingModifiedValues.fromXml(_s.XmlElement elem) {
     return PendingModifiedValues(
       authTokenStatus: _s
@@ -9083,6 +10878,25 @@ class PendingModifiedValues {
               .toList()),
       numCacheNodes: _s.extractXmlIntValue(elem, 'NumCacheNodes'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authTokenStatus = this.authTokenStatus;
+    final cacheNodeIdsToRemove = this.cacheNodeIdsToRemove;
+    final cacheNodeType = this.cacheNodeType;
+    final engineVersion = this.engineVersion;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final numCacheNodes = this.numCacheNodes;
+    return {
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (cacheNodeIdsToRemove != null)
+        'CacheNodeIdsToRemove': cacheNodeIdsToRemove,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (logDeliveryConfigurations != null)
+        'PendingLogDeliveryConfiguration': logDeliveryConfigurations,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+    };
   }
 }
 
@@ -9107,6 +10921,16 @@ class ProcessedUpdateAction {
     this.serviceUpdateName,
     this.updateActionStatus,
   });
+  factory ProcessedUpdateAction.fromJson(Map<String, dynamic> json) {
+    return ProcessedUpdateAction(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      serviceUpdateName: json['ServiceUpdateName'] as String?,
+      updateActionStatus:
+          (json['UpdateActionStatus'] as String?)?.toUpdateActionStatus(),
+    );
+  }
+
   factory ProcessedUpdateAction.fromXml(_s.XmlElement elem) {
     return ProcessedUpdateAction(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -9117,6 +10941,20 @@ class ProcessedUpdateAction {
           ?.toUpdateActionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    final updateActionStatus = this.updateActionStatus;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (updateActionStatus != null)
+        'UpdateActionStatus': updateActionStatus.toValue(),
+    };
+  }
 }
 
 class PurchaseReservedCacheNodesOfferingResult {
@@ -9125,12 +10963,29 @@ class PurchaseReservedCacheNodesOfferingResult {
   PurchaseReservedCacheNodesOfferingResult({
     this.reservedCacheNode,
   });
+  factory PurchaseReservedCacheNodesOfferingResult.fromJson(
+      Map<String, dynamic> json) {
+    return PurchaseReservedCacheNodesOfferingResult(
+      reservedCacheNode: json['ReservedCacheNode'] != null
+          ? ReservedCacheNode.fromJson(
+              json['ReservedCacheNode'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory PurchaseReservedCacheNodesOfferingResult.fromXml(_s.XmlElement elem) {
     return PurchaseReservedCacheNodesOfferingResult(
       reservedCacheNode: _s
           .extractXmlChild(elem, 'ReservedCacheNode')
           ?.let((e) => ReservedCacheNode.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservedCacheNode = this.reservedCacheNode;
+    return {
+      if (reservedCacheNode != null) 'ReservedCacheNode': reservedCacheNode,
+    };
   }
 }
 
@@ -9140,6 +10995,16 @@ class RebalanceSlotsInGlobalReplicationGroupResult {
   RebalanceSlotsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+  factory RebalanceSlotsInGlobalReplicationGroupResult.fromJson(
+      Map<String, dynamic> json) {
+    return RebalanceSlotsInGlobalReplicationGroupResult(
+      globalReplicationGroup: json['GlobalReplicationGroup'] != null
+          ? GlobalReplicationGroup.fromJson(
+              json['GlobalReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RebalanceSlotsInGlobalReplicationGroupResult.fromXml(
       _s.XmlElement elem) {
     return RebalanceSlotsInGlobalReplicationGroupResult(
@@ -9147,6 +11012,14 @@ class RebalanceSlotsInGlobalReplicationGroupResult {
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let((e) => GlobalReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -9156,12 +11029,27 @@ class RebootCacheClusterResult {
   RebootCacheClusterResult({
     this.cacheCluster,
   });
+  factory RebootCacheClusterResult.fromJson(Map<String, dynamic> json) {
+    return RebootCacheClusterResult(
+      cacheCluster: json['CacheCluster'] != null
+          ? CacheCluster.fromJson(json['CacheCluster'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RebootCacheClusterResult.fromXml(_s.XmlElement elem) {
     return RebootCacheClusterResult(
       cacheCluster: _s
           .extractXmlChild(elem, 'CacheCluster')
           ?.let((e) => CacheCluster.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -9178,6 +11066,13 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+  factory RecurringCharge.fromJson(Map<String, dynamic> json) {
+    return RecurringCharge(
+      recurringChargeAmount: json['RecurringChargeAmount'] as double?,
+      recurringChargeFrequency: json['RecurringChargeFrequency'] as String?,
+    );
+  }
+
   factory RecurringCharge.fromXml(_s.XmlElement elem) {
     return RecurringCharge(
       recurringChargeAmount:
@@ -9185,6 +11080,17 @@ class RecurringCharge {
       recurringChargeFrequency:
           _s.extractXmlStringValue(elem, 'RecurringChargeFrequency'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recurringChargeAmount = this.recurringChargeAmount;
+    final recurringChargeFrequency = this.recurringChargeFrequency;
+    return {
+      if (recurringChargeAmount != null)
+        'RecurringChargeAmount': recurringChargeAmount,
+      if (recurringChargeFrequency != null)
+        'RecurringChargeFrequency': recurringChargeFrequency,
+    };
   }
 }
 
@@ -9205,6 +11111,18 @@ class RegionalConfiguration {
     required this.replicationGroupRegion,
     required this.reshardingConfiguration,
   });
+  factory RegionalConfiguration.fromJson(Map<String, dynamic> json) {
+    return RegionalConfiguration(
+      replicationGroupId: json['ReplicationGroupId'] as String,
+      replicationGroupRegion: json['ReplicationGroupRegion'] as String,
+      reshardingConfiguration: (json['ReshardingConfiguration'] as List)
+          .whereNotNull()
+          .map((e) =>
+              ReshardingConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final replicationGroupId = this.replicationGroupId;
     final replicationGroupRegion = this.replicationGroupRegion;
@@ -9376,6 +11294,62 @@ class ReplicationGroup {
     this.transitEncryptionEnabled,
     this.userGroupIds,
   });
+  factory ReplicationGroup.fromJson(Map<String, dynamic> json) {
+    return ReplicationGroup(
+      arn: json['ARN'] as String?,
+      atRestEncryptionEnabled: json['AtRestEncryptionEnabled'] as bool?,
+      authTokenEnabled: json['AuthTokenEnabled'] as bool?,
+      authTokenLastModifiedDate:
+          timeStampFromJson(json['AuthTokenLastModifiedDate']),
+      automaticFailover:
+          (json['AutomaticFailover'] as String?)?.toAutomaticFailoverStatus(),
+      cacheNodeType: json['CacheNodeType'] as String?,
+      clusterEnabled: json['ClusterEnabled'] as bool?,
+      configurationEndpoint: json['ConfigurationEndpoint'] != null
+          ? Endpoint.fromJson(
+              json['ConfigurationEndpoint'] as Map<String, dynamic>)
+          : null,
+      description: json['Description'] as String?,
+      globalReplicationGroupInfo: json['GlobalReplicationGroupInfo'] != null
+          ? GlobalReplicationGroupInfo.fromJson(
+              json['GlobalReplicationGroupInfo'] as Map<String, dynamic>)
+          : null,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      logDeliveryConfigurations: (json['LogDeliveryConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              LogDeliveryConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      memberClusters: (json['MemberClusters'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      memberClustersOutpostArns: (json['MemberClustersOutpostArns'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      multiAZ: (json['MultiAZ'] as String?)?.toMultiAZStatus(),
+      nodeGroups: (json['NodeGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => NodeGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pendingModifiedValues: json['PendingModifiedValues'] != null
+          ? ReplicationGroupPendingModifiedValues.fromJson(
+              json['PendingModifiedValues'] as Map<String, dynamic>)
+          : null,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      snapshotRetentionLimit: json['SnapshotRetentionLimit'] as int?,
+      snapshotWindow: json['SnapshotWindow'] as String?,
+      snapshottingClusterId: json['SnapshottingClusterId'] as String?,
+      status: json['Status'] as String?,
+      transitEncryptionEnabled: json['TransitEncryptionEnabled'] as bool?,
+      userGroupIds: (json['UserGroupIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ReplicationGroup.fromXml(_s.XmlElement elem) {
     return ReplicationGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -9432,6 +11406,71 @@ class ReplicationGroup {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final authTokenLastModifiedDate = this.authTokenLastModifiedDate;
+    final automaticFailover = this.automaticFailover;
+    final cacheNodeType = this.cacheNodeType;
+    final clusterEnabled = this.clusterEnabled;
+    final configurationEndpoint = this.configurationEndpoint;
+    final description = this.description;
+    final globalReplicationGroupInfo = this.globalReplicationGroupInfo;
+    final kmsKeyId = this.kmsKeyId;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final memberClusters = this.memberClusters;
+    final memberClustersOutpostArns = this.memberClustersOutpostArns;
+    final multiAZ = this.multiAZ;
+    final nodeGroups = this.nodeGroups;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final replicationGroupId = this.replicationGroupId;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final snapshottingClusterId = this.snapshottingClusterId;
+    final status = this.status;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    final userGroupIds = this.userGroupIds;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (authTokenLastModifiedDate != null)
+        'AuthTokenLastModifiedDate':
+            unixTimestampToJson(authTokenLastModifiedDate),
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (clusterEnabled != null) 'ClusterEnabled': clusterEnabled,
+      if (configurationEndpoint != null)
+        'ConfigurationEndpoint': configurationEndpoint,
+      if (description != null) 'Description': description,
+      if (globalReplicationGroupInfo != null)
+        'GlobalReplicationGroupInfo': globalReplicationGroupInfo,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logDeliveryConfigurations != null)
+        'LogDeliveryConfigurations': logDeliveryConfigurations,
+      if (memberClusters != null) 'MemberClusters': memberClusters,
+      if (memberClustersOutpostArns != null)
+        'MemberClustersOutpostArns': memberClustersOutpostArns,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toValue(),
+      if (nodeGroups != null) 'NodeGroups': nodeGroups,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (snapshottingClusterId != null)
+        'SnapshottingClusterId': snapshottingClusterId,
+      if (status != null) 'Status': status,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+      if (userGroupIds != null) 'UserGroupIds': userGroupIds,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReplicationGroups</code> operation.
@@ -9447,6 +11486,16 @@ class ReplicationGroupMessage {
     this.marker,
     this.replicationGroups,
   });
+  factory ReplicationGroupMessage.fromJson(Map<String, dynamic> json) {
+    return ReplicationGroupMessage(
+      marker: json['Marker'] as String?,
+      replicationGroups: (json['ReplicationGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReplicationGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReplicationGroupMessage.fromXml(_s.XmlElement elem) {
     return ReplicationGroupMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -9456,6 +11505,15 @@ class ReplicationGroupMessage {
               .map((c) => ReplicationGroup.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationGroups = this.replicationGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationGroups != null) 'ReplicationGroups': replicationGroups,
+    };
   }
 }
 
@@ -9490,6 +11548,30 @@ class ReplicationGroupPendingModifiedValues {
     this.resharding,
     this.userGroups,
   });
+  factory ReplicationGroupPendingModifiedValues.fromJson(
+      Map<String, dynamic> json) {
+    return ReplicationGroupPendingModifiedValues(
+      authTokenStatus:
+          (json['AuthTokenStatus'] as String?)?.toAuthTokenUpdateStatus(),
+      automaticFailoverStatus: (json['AutomaticFailoverStatus'] as String?)
+          ?.toPendingAutomaticFailoverStatus(),
+      logDeliveryConfigurations: (json['LogDeliveryConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => PendingLogDeliveryConfiguration.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      primaryClusterId: json['PrimaryClusterId'] as String?,
+      resharding: json['Resharding'] != null
+          ? ReshardingStatus.fromJson(
+              json['Resharding'] as Map<String, dynamic>)
+          : null,
+      userGroups: json['UserGroups'] != null
+          ? UserGroupsUpdateStatus.fromJson(
+              json['UserGroups'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ReplicationGroupPendingModifiedValues.fromXml(_s.XmlElement elem) {
     return ReplicationGroupPendingModifiedValues(
       authTokenStatus: _s
@@ -9512,6 +11594,25 @@ class ReplicationGroupPendingModifiedValues {
           .extractXmlChild(elem, 'UserGroups')
           ?.let((e) => UserGroupsUpdateStatus.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authTokenStatus = this.authTokenStatus;
+    final automaticFailoverStatus = this.automaticFailoverStatus;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final primaryClusterId = this.primaryClusterId;
+    final resharding = this.resharding;
+    final userGroups = this.userGroups;
+    return {
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (automaticFailoverStatus != null)
+        'AutomaticFailoverStatus': automaticFailoverStatus.toValue(),
+      if (logDeliveryConfigurations != null)
+        'PendingLogDeliveryConfiguration': logDeliveryConfigurations,
+      if (primaryClusterId != null) 'PrimaryClusterId': primaryClusterId,
+      if (resharding != null) 'Resharding': resharding,
+      if (userGroups != null) 'UserGroups': userGroups,
+    };
   }
 }
 
@@ -9699,6 +11800,28 @@ class ReservedCacheNode {
     this.state,
     this.usagePrice,
   });
+  factory ReservedCacheNode.fromJson(Map<String, dynamic> json) {
+    return ReservedCacheNode(
+      cacheNodeCount: json['CacheNodeCount'] as int?,
+      cacheNodeType: json['CacheNodeType'] as String?,
+      duration: json['Duration'] as int?,
+      fixedPrice: json['FixedPrice'] as double?,
+      offeringType: json['OfferingType'] as String?,
+      productDescription: json['ProductDescription'] as String?,
+      recurringCharges: (json['RecurringCharges'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecurringCharge.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reservationARN: json['ReservationARN'] as String?,
+      reservedCacheNodeId: json['ReservedCacheNodeId'] as String?,
+      reservedCacheNodesOfferingId:
+          json['ReservedCacheNodesOfferingId'] as String?,
+      startTime: timeStampFromJson(json['StartTime']),
+      state: json['State'] as String?,
+      usagePrice: json['UsagePrice'] as double?,
+    );
+  }
+
   factory ReservedCacheNode.fromXml(_s.XmlElement elem) {
     return ReservedCacheNode(
       cacheNodeCount: _s.extractXmlIntValue(elem, 'CacheNodeCount'),
@@ -9722,6 +11845,39 @@ class ReservedCacheNode {
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeCount = this.cacheNodeCount;
+    final cacheNodeType = this.cacheNodeType;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final offeringType = this.offeringType;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservationARN = this.reservationARN;
+    final reservedCacheNodeId = this.reservedCacheNodeId;
+    final reservedCacheNodesOfferingId = this.reservedCacheNodesOfferingId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final usagePrice = this.usagePrice;
+    return {
+      if (cacheNodeCount != null) 'CacheNodeCount': cacheNodeCount,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservationARN != null) 'ReservationARN': reservationARN,
+      if (reservedCacheNodeId != null)
+        'ReservedCacheNodeId': reservedCacheNodeId,
+      if (reservedCacheNodesOfferingId != null)
+        'ReservedCacheNodesOfferingId': reservedCacheNodesOfferingId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReservedCacheNodes</code>
@@ -9738,6 +11894,16 @@ class ReservedCacheNodeMessage {
     this.marker,
     this.reservedCacheNodes,
   });
+  factory ReservedCacheNodeMessage.fromJson(Map<String, dynamic> json) {
+    return ReservedCacheNodeMessage(
+      marker: json['Marker'] as String?,
+      reservedCacheNodes: (json['ReservedCacheNodes'] as List?)
+          ?.whereNotNull()
+          .map((e) => ReservedCacheNode.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReservedCacheNodeMessage.fromXml(_s.XmlElement elem) {
     return ReservedCacheNodeMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -9747,6 +11913,15 @@ class ReservedCacheNodeMessage {
               .map((c) => ReservedCacheNode.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedCacheNodes = this.reservedCacheNodes;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedCacheNodes != null) 'ReservedCacheNodes': reservedCacheNodes,
+    };
   }
 }
 
@@ -9910,6 +12085,23 @@ class ReservedCacheNodesOffering {
     this.reservedCacheNodesOfferingId,
     this.usagePrice,
   });
+  factory ReservedCacheNodesOffering.fromJson(Map<String, dynamic> json) {
+    return ReservedCacheNodesOffering(
+      cacheNodeType: json['CacheNodeType'] as String?,
+      duration: json['Duration'] as int?,
+      fixedPrice: json['FixedPrice'] as double?,
+      offeringType: json['OfferingType'] as String?,
+      productDescription: json['ProductDescription'] as String?,
+      recurringCharges: (json['RecurringCharges'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecurringCharge.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      reservedCacheNodesOfferingId:
+          json['ReservedCacheNodesOfferingId'] as String?,
+      usagePrice: json['UsagePrice'] as double?,
+    );
+  }
+
   factory ReservedCacheNodesOffering.fromXml(_s.XmlElement elem) {
     return ReservedCacheNodesOffering(
       cacheNodeType: _s.extractXmlStringValue(elem, 'CacheNodeType'),
@@ -9927,6 +12119,28 @@ class ReservedCacheNodesOffering {
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeType = this.cacheNodeType;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final offeringType = this.offeringType;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservedCacheNodesOfferingId = this.reservedCacheNodesOfferingId;
+    final usagePrice = this.usagePrice;
+    return {
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservedCacheNodesOfferingId != null)
+        'ReservedCacheNodesOfferingId': reservedCacheNodesOfferingId,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReservedCacheNodesOfferings</code>
@@ -9943,6 +12157,19 @@ class ReservedCacheNodesOfferingMessage {
     this.marker,
     this.reservedCacheNodesOfferings,
   });
+  factory ReservedCacheNodesOfferingMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ReservedCacheNodesOfferingMessage(
+      marker: json['Marker'] as String?,
+      reservedCacheNodesOfferings: (json['ReservedCacheNodesOfferings']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ReservedCacheNodesOffering.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ReservedCacheNodesOfferingMessage.fromXml(_s.XmlElement elem) {
     return ReservedCacheNodesOfferingMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -9953,6 +12180,16 @@ class ReservedCacheNodesOfferingMessage {
               .map((c) => ReservedCacheNodesOffering.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedCacheNodesOfferings = this.reservedCacheNodesOfferings;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedCacheNodesOfferings != null)
+        'ReservedCacheNodesOfferings': reservedCacheNodesOfferings,
+    };
   }
 }
 
@@ -9970,6 +12207,16 @@ class ReshardingConfiguration {
     this.nodeGroupId,
     this.preferredAvailabilityZones,
   });
+  factory ReshardingConfiguration.fromJson(Map<String, dynamic> json) {
+    return ReshardingConfiguration(
+      nodeGroupId: json['NodeGroupId'] as String?,
+      preferredAvailabilityZones: (json['PreferredAvailabilityZones'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final nodeGroupId = this.nodeGroupId;
     final preferredAvailabilityZones = this.preferredAvailabilityZones;
@@ -9989,12 +12236,28 @@ class ReshardingStatus {
   ReshardingStatus({
     this.slotMigration,
   });
+  factory ReshardingStatus.fromJson(Map<String, dynamic> json) {
+    return ReshardingStatus(
+      slotMigration: json['SlotMigration'] != null
+          ? SlotMigration.fromJson(
+              json['SlotMigration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ReshardingStatus.fromXml(_s.XmlElement elem) {
     return ReshardingStatus(
       slotMigration: _s
           .extractXmlChild(elem, 'SlotMigration')
           ?.let((e) => SlotMigration.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final slotMigration = this.slotMigration;
+    return {
+      if (slotMigration != null) 'SlotMigration': slotMigration,
+    };
   }
 }
 
@@ -10004,12 +12267,29 @@ class RevokeCacheSecurityGroupIngressResult {
   RevokeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
   });
+  factory RevokeCacheSecurityGroupIngressResult.fromJson(
+      Map<String, dynamic> json) {
+    return RevokeCacheSecurityGroupIngressResult(
+      cacheSecurityGroup: json['CacheSecurityGroup'] != null
+          ? CacheSecurityGroup.fromJson(
+              json['CacheSecurityGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory RevokeCacheSecurityGroupIngressResult.fromXml(_s.XmlElement elem) {
     return RevokeCacheSecurityGroupIngressResult(
       cacheSecurityGroup: _s
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let((e) => CacheSecurityGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -10027,11 +12307,27 @@ class SecurityGroupMembership {
     this.securityGroupId,
     this.status,
   });
+  factory SecurityGroupMembership.fromJson(Map<String, dynamic> json) {
+    return SecurityGroupMembership(
+      securityGroupId: json['SecurityGroupId'] as String?,
+      status: json['Status'] as String?,
+    );
+  }
+
   factory SecurityGroupMembership.fromXml(_s.XmlElement elem) {
     return SecurityGroupMembership(
       securityGroupId: _s.extractXmlStringValue(elem, 'SecurityGroupId'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupId = this.securityGroupId;
+    final status = this.status;
+    return {
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -10093,6 +12389,29 @@ class ServiceUpdate {
     this.serviceUpdateStatus,
     this.serviceUpdateType,
   });
+  factory ServiceUpdate.fromJson(Map<String, dynamic> json) {
+    return ServiceUpdate(
+      autoUpdateAfterRecommendedApplyByDate:
+          json['AutoUpdateAfterRecommendedApplyByDate'] as bool?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      estimatedUpdateTime: json['EstimatedUpdateTime'] as String?,
+      serviceUpdateDescription: json['ServiceUpdateDescription'] as String?,
+      serviceUpdateEndDate: timeStampFromJson(json['ServiceUpdateEndDate']),
+      serviceUpdateName: json['ServiceUpdateName'] as String?,
+      serviceUpdateRecommendedApplyByDate:
+          timeStampFromJson(json['ServiceUpdateRecommendedApplyByDate']),
+      serviceUpdateReleaseDate:
+          timeStampFromJson(json['ServiceUpdateReleaseDate']),
+      serviceUpdateSeverity:
+          (json['ServiceUpdateSeverity'] as String?)?.toServiceUpdateSeverity(),
+      serviceUpdateStatus:
+          (json['ServiceUpdateStatus'] as String?)?.toServiceUpdateStatus(),
+      serviceUpdateType:
+          (json['ServiceUpdateType'] as String?)?.toServiceUpdateType(),
+    );
+  }
+
   factory ServiceUpdate.fromXml(_s.XmlElement elem) {
     return ServiceUpdate(
       autoUpdateAfterRecommendedApplyByDate:
@@ -10120,6 +12439,49 @@ class ServiceUpdate {
           .extractXmlStringValue(elem, 'ServiceUpdateType')
           ?.toServiceUpdateType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoUpdateAfterRecommendedApplyByDate =
+        this.autoUpdateAfterRecommendedApplyByDate;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final estimatedUpdateTime = this.estimatedUpdateTime;
+    final serviceUpdateDescription = this.serviceUpdateDescription;
+    final serviceUpdateEndDate = this.serviceUpdateEndDate;
+    final serviceUpdateName = this.serviceUpdateName;
+    final serviceUpdateRecommendedApplyByDate =
+        this.serviceUpdateRecommendedApplyByDate;
+    final serviceUpdateReleaseDate = this.serviceUpdateReleaseDate;
+    final serviceUpdateSeverity = this.serviceUpdateSeverity;
+    final serviceUpdateStatus = this.serviceUpdateStatus;
+    final serviceUpdateType = this.serviceUpdateType;
+    return {
+      if (autoUpdateAfterRecommendedApplyByDate != null)
+        'AutoUpdateAfterRecommendedApplyByDate':
+            autoUpdateAfterRecommendedApplyByDate,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (estimatedUpdateTime != null)
+        'EstimatedUpdateTime': estimatedUpdateTime,
+      if (serviceUpdateDescription != null)
+        'ServiceUpdateDescription': serviceUpdateDescription,
+      if (serviceUpdateEndDate != null)
+        'ServiceUpdateEndDate': unixTimestampToJson(serviceUpdateEndDate),
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (serviceUpdateRecommendedApplyByDate != null)
+        'ServiceUpdateRecommendedApplyByDate':
+            unixTimestampToJson(serviceUpdateRecommendedApplyByDate),
+      if (serviceUpdateReleaseDate != null)
+        'ServiceUpdateReleaseDate':
+            unixTimestampToJson(serviceUpdateReleaseDate),
+      if (serviceUpdateSeverity != null)
+        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+      if (serviceUpdateStatus != null)
+        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+      if (serviceUpdateType != null)
+        'ServiceUpdateType': serviceUpdateType.toValue(),
+    };
   }
 }
 
@@ -10231,6 +12593,16 @@ class ServiceUpdatesMessage {
     this.marker,
     this.serviceUpdates,
   });
+  factory ServiceUpdatesMessage.fromJson(Map<String, dynamic> json) {
+    return ServiceUpdatesMessage(
+      marker: json['Marker'] as String?,
+      serviceUpdates: (json['ServiceUpdates'] as List?)
+          ?.whereNotNull()
+          .map((e) => ServiceUpdate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ServiceUpdatesMessage.fromXml(_s.XmlElement elem) {
     return ServiceUpdatesMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -10240,6 +12612,15 @@ class ServiceUpdatesMessage {
               .map((c) => ServiceUpdate.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final serviceUpdates = this.serviceUpdates;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (serviceUpdates != null) 'ServiceUpdates': serviceUpdates,
+    };
   }
 }
 
@@ -10284,10 +12665,23 @@ class SlotMigration {
   SlotMigration({
     this.progressPercentage,
   });
+  factory SlotMigration.fromJson(Map<String, dynamic> json) {
+    return SlotMigration(
+      progressPercentage: json['ProgressPercentage'] as double?,
+    );
+  }
+
   factory SlotMigration.fromXml(_s.XmlElement elem) {
     return SlotMigration(
       progressPercentage: _s.extractXmlDoubleValue(elem, 'ProgressPercentage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressPercentage = this.progressPercentage;
+    return {
+      if (progressPercentage != null) 'ProgressPercentage': progressPercentage,
+    };
   }
 }
 
@@ -10582,6 +12976,43 @@ class Snapshot {
     this.topicArn,
     this.vpcId,
   });
+  factory Snapshot.fromJson(Map<String, dynamic> json) {
+    return Snapshot(
+      arn: json['ARN'] as String?,
+      autoMinorVersionUpgrade: json['AutoMinorVersionUpgrade'] as bool?,
+      automaticFailover:
+          (json['AutomaticFailover'] as String?)?.toAutomaticFailoverStatus(),
+      cacheClusterCreateTime: timeStampFromJson(json['CacheClusterCreateTime']),
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheNodeType: json['CacheNodeType'] as String?,
+      cacheParameterGroupName: json['CacheParameterGroupName'] as String?,
+      cacheSubnetGroupName: json['CacheSubnetGroupName'] as String?,
+      engine: json['Engine'] as String?,
+      engineVersion: json['EngineVersion'] as String?,
+      kmsKeyId: json['KmsKeyId'] as String?,
+      nodeSnapshots: (json['NodeSnapshots'] as List?)
+          ?.whereNotNull()
+          .map((e) => NodeSnapshot.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      numCacheNodes: json['NumCacheNodes'] as int?,
+      numNodeGroups: json['NumNodeGroups'] as int?,
+      port: json['Port'] as int?,
+      preferredAvailabilityZone: json['PreferredAvailabilityZone'] as String?,
+      preferredMaintenanceWindow: json['PreferredMaintenanceWindow'] as String?,
+      preferredOutpostArn: json['PreferredOutpostArn'] as String?,
+      replicationGroupDescription:
+          json['ReplicationGroupDescription'] as String?,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      snapshotName: json['SnapshotName'] as String?,
+      snapshotRetentionLimit: json['SnapshotRetentionLimit'] as int?,
+      snapshotSource: json['SnapshotSource'] as String?,
+      snapshotStatus: json['SnapshotStatus'] as String?,
+      snapshotWindow: json['SnapshotWindow'] as String?,
+      topicArn: json['TopicArn'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+
   factory Snapshot.fromXml(_s.XmlElement elem) {
     return Snapshot(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -10627,6 +13058,75 @@ class Snapshot {
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final automaticFailover = this.automaticFailover;
+    final cacheClusterCreateTime = this.cacheClusterCreateTime;
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeType = this.cacheNodeType;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final kmsKeyId = this.kmsKeyId;
+    final nodeSnapshots = this.nodeSnapshots;
+    final numCacheNodes = this.numCacheNodes;
+    final numNodeGroups = this.numNodeGroups;
+    final port = this.port;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final replicationGroupDescription = this.replicationGroupDescription;
+    final replicationGroupId = this.replicationGroupId;
+    final snapshotName = this.snapshotName;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotSource = this.snapshotSource;
+    final snapshotStatus = this.snapshotStatus;
+    final snapshotWindow = this.snapshotWindow;
+    final topicArn = this.topicArn;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (cacheClusterCreateTime != null)
+        'CacheClusterCreateTime': unixTimestampToJson(cacheClusterCreateTime),
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (nodeSnapshots != null) 'NodeSnapshots': nodeSnapshots,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+      if (numNodeGroups != null) 'NumNodeGroups': numNodeGroups,
+      if (port != null) 'Port': port,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (replicationGroupDescription != null)
+        'ReplicationGroupDescription': replicationGroupDescription,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (snapshotName != null) 'SnapshotName': snapshotName,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotSource != null) 'SnapshotSource': snapshotSource,
+      if (snapshotStatus != null) 'SnapshotStatus': snapshotStatus,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -10689,12 +13189,28 @@ class StartMigrationResponse {
   StartMigrationResponse({
     this.replicationGroup,
   });
+  factory StartMigrationResponse.fromJson(Map<String, dynamic> json) {
+    return StartMigrationResponse(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory StartMigrationResponse.fromXml(_s.XmlElement elem) {
     return StartMigrationResponse(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -10716,6 +13232,20 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetOutpost,
   });
+  factory Subnet.fromJson(Map<String, dynamic> json) {
+    return Subnet(
+      subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
+          ? AvailabilityZone.fromJson(
+              json['SubnetAvailabilityZone'] as Map<String, dynamic>)
+          : null,
+      subnetIdentifier: json['SubnetIdentifier'] as String?,
+      subnetOutpost: json['SubnetOutpost'] != null
+          ? SubnetOutpost.fromJson(
+              json['SubnetOutpost'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory Subnet.fromXml(_s.XmlElement elem) {
     return Subnet(
       subnetAvailabilityZone: _s
@@ -10727,6 +13257,18 @@ class Subnet {
           ?.let((e) => SubnetOutpost.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetOutpost = this.subnetOutpost;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetOutpost != null) 'SubnetOutpost': subnetOutpost,
+    };
+  }
 }
 
 /// The ID of the outpost subnet.
@@ -10737,10 +13279,23 @@ class SubnetOutpost {
   SubnetOutpost({
     this.subnetOutpostArn,
   });
+  factory SubnetOutpost.fromJson(Map<String, dynamic> json) {
+    return SubnetOutpost(
+      subnetOutpostArn: json['SubnetOutpostArn'] as String?,
+    );
+  }
+
   factory SubnetOutpost.fromXml(_s.XmlElement elem) {
     return SubnetOutpost(
       subnetOutpostArn: _s.extractXmlStringValue(elem, 'SubnetOutpostArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetOutpostArn = this.subnetOutpostArn;
+    return {
+      if (subnetOutpostArn != null) 'SubnetOutpostArn': subnetOutpostArn,
+    };
   }
 }
 
@@ -10761,6 +13316,13 @@ class Tag {
     this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key'),
@@ -10788,11 +13350,27 @@ class TagListMessage {
   TagListMessage({
     this.tagList,
   });
+  factory TagListMessage.fromJson(Map<String, dynamic> json) {
+    return TagListMessage(
+      tagList: (json['TagList'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory TagListMessage.fromXml(_s.XmlElement elem) {
     return TagListMessage(
       tagList: _s.extractXmlChild(elem, 'TagList')?.let((elem) =>
           elem.findElements('Tag').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -10802,12 +13380,28 @@ class TestFailoverResult {
   TestFailoverResult({
     this.replicationGroup,
   });
+  factory TestFailoverResult.fromJson(Map<String, dynamic> json) {
+    return TestFailoverResult(
+      replicationGroup: json['ReplicationGroup'] != null
+          ? ReplicationGroup.fromJson(
+              json['ReplicationGroup'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory TestFailoverResult.fromXml(_s.XmlElement elem) {
     return TestFailoverResult(
       replicationGroup: _s
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let((e) => ReplicationGroup.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -10824,6 +13418,13 @@ class TimeRangeFilter {
     this.endTime,
     this.startTime,
   });
+  factory TimeRangeFilter.fromJson(Map<String, dynamic> json) {
+    return TimeRangeFilter(
+      endTime: timeStampFromJson(json['EndTime']),
+      startTime: timeStampFromJson(json['StartTime']),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final endTime = this.endTime;
     final startTime = this.startTime;
@@ -10859,6 +13460,16 @@ class UnprocessedUpdateAction {
     this.replicationGroupId,
     this.serviceUpdateName,
   });
+  factory UnprocessedUpdateAction.fromJson(Map<String, dynamic> json) {
+    return UnprocessedUpdateAction(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      errorMessage: json['ErrorMessage'] as String?,
+      errorType: json['ErrorType'] as String?,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      serviceUpdateName: json['ServiceUpdateName'] as String?,
+    );
+  }
+
   factory UnprocessedUpdateAction.fromXml(_s.XmlElement elem) {
     return UnprocessedUpdateAction(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -10867,6 +13478,21 @@ class UnprocessedUpdateAction {
       replicationGroupId: _s.extractXmlStringValue(elem, 'ReplicationGroupId'),
       serviceUpdateName: _s.extractXmlStringValue(elem, 'ServiceUpdateName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final errorMessage = this.errorMessage;
+    final errorType = this.errorType;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (errorType != null) 'ErrorType': errorType,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+    };
   }
 }
 
@@ -10949,6 +13575,42 @@ class UpdateAction {
     this.updateActionStatus,
     this.updateActionStatusModifiedDate,
   });
+  factory UpdateAction.fromJson(Map<String, dynamic> json) {
+    return UpdateAction(
+      cacheClusterId: json['CacheClusterId'] as String?,
+      cacheNodeUpdateStatus: (json['CacheNodeUpdateStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => CacheNodeUpdateStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      engine: json['Engine'] as String?,
+      estimatedUpdateTime: json['EstimatedUpdateTime'] as String?,
+      nodeGroupUpdateStatus: (json['NodeGroupUpdateStatus'] as List?)
+          ?.whereNotNull()
+          .map((e) => NodeGroupUpdateStatus.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nodesUpdated: json['NodesUpdated'] as String?,
+      replicationGroupId: json['ReplicationGroupId'] as String?,
+      serviceUpdateName: json['ServiceUpdateName'] as String?,
+      serviceUpdateRecommendedApplyByDate:
+          timeStampFromJson(json['ServiceUpdateRecommendedApplyByDate']),
+      serviceUpdateReleaseDate:
+          timeStampFromJson(json['ServiceUpdateReleaseDate']),
+      serviceUpdateSeverity:
+          (json['ServiceUpdateSeverity'] as String?)?.toServiceUpdateSeverity(),
+      serviceUpdateStatus:
+          (json['ServiceUpdateStatus'] as String?)?.toServiceUpdateStatus(),
+      serviceUpdateType:
+          (json['ServiceUpdateType'] as String?)?.toServiceUpdateType(),
+      slaMet: (json['SlaMet'] as String?)?.toSlaMet(),
+      updateActionAvailableDate:
+          timeStampFromJson(json['UpdateActionAvailableDate']),
+      updateActionStatus:
+          (json['UpdateActionStatus'] as String?)?.toUpdateActionStatus(),
+      updateActionStatusModifiedDate:
+          timeStampFromJson(json['UpdateActionStatusModifiedDate']),
+    );
+  }
+
   factory UpdateAction.fromXml(_s.XmlElement elem) {
     return UpdateAction(
       cacheClusterId: _s.extractXmlStringValue(elem, 'CacheClusterId'),
@@ -10993,6 +13655,61 @@ class UpdateAction {
           _s.extractXmlDateTimeValue(elem, 'UpdateActionStatusModifiedDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeUpdateStatus = this.cacheNodeUpdateStatus;
+    final engine = this.engine;
+    final estimatedUpdateTime = this.estimatedUpdateTime;
+    final nodeGroupUpdateStatus = this.nodeGroupUpdateStatus;
+    final nodesUpdated = this.nodesUpdated;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    final serviceUpdateRecommendedApplyByDate =
+        this.serviceUpdateRecommendedApplyByDate;
+    final serviceUpdateReleaseDate = this.serviceUpdateReleaseDate;
+    final serviceUpdateSeverity = this.serviceUpdateSeverity;
+    final serviceUpdateStatus = this.serviceUpdateStatus;
+    final serviceUpdateType = this.serviceUpdateType;
+    final slaMet = this.slaMet;
+    final updateActionAvailableDate = this.updateActionAvailableDate;
+    final updateActionStatus = this.updateActionStatus;
+    final updateActionStatusModifiedDate = this.updateActionStatusModifiedDate;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeUpdateStatus != null)
+        'CacheNodeUpdateStatus': cacheNodeUpdateStatus,
+      if (engine != null) 'Engine': engine,
+      if (estimatedUpdateTime != null)
+        'EstimatedUpdateTime': estimatedUpdateTime,
+      if (nodeGroupUpdateStatus != null)
+        'NodeGroupUpdateStatus': nodeGroupUpdateStatus,
+      if (nodesUpdated != null) 'NodesUpdated': nodesUpdated,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (serviceUpdateRecommendedApplyByDate != null)
+        'ServiceUpdateRecommendedApplyByDate':
+            unixTimestampToJson(serviceUpdateRecommendedApplyByDate),
+      if (serviceUpdateReleaseDate != null)
+        'ServiceUpdateReleaseDate':
+            unixTimestampToJson(serviceUpdateReleaseDate),
+      if (serviceUpdateSeverity != null)
+        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+      if (serviceUpdateStatus != null)
+        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+      if (serviceUpdateType != null)
+        'ServiceUpdateType': serviceUpdateType.toValue(),
+      if (slaMet != null) 'SlaMet': slaMet.toValue(),
+      if (updateActionAvailableDate != null)
+        'UpdateActionAvailableDate':
+            unixTimestampToJson(updateActionAvailableDate),
+      if (updateActionStatus != null)
+        'UpdateActionStatus': updateActionStatus.toValue(),
+      if (updateActionStatusModifiedDate != null)
+        'UpdateActionStatusModifiedDate':
+            unixTimestampToJson(updateActionStatusModifiedDate),
+    };
+  }
 }
 
 class UpdateActionResultsMessage {
@@ -11006,6 +13723,20 @@ class UpdateActionResultsMessage {
     this.processedUpdateActions,
     this.unprocessedUpdateActions,
   });
+  factory UpdateActionResultsMessage.fromJson(Map<String, dynamic> json) {
+    return UpdateActionResultsMessage(
+      processedUpdateActions: (json['ProcessedUpdateActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ProcessedUpdateAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      unprocessedUpdateActions: (json['UnprocessedUpdateActions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              UnprocessedUpdateAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UpdateActionResultsMessage.fromXml(_s.XmlElement elem) {
     return UpdateActionResultsMessage(
       processedUpdateActions: _s
@@ -11021,6 +13752,17 @@ class UpdateActionResultsMessage {
               .map((c) => UnprocessedUpdateAction.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processedUpdateActions = this.processedUpdateActions;
+    final unprocessedUpdateActions = this.unprocessedUpdateActions;
+    return {
+      if (processedUpdateActions != null)
+        'ProcessedUpdateActions': processedUpdateActions,
+      if (unprocessedUpdateActions != null)
+        'UnprocessedUpdateActions': unprocessedUpdateActions,
+    };
   }
 }
 
@@ -11101,6 +13843,16 @@ class UpdateActionsMessage {
     this.marker,
     this.updateActions,
   });
+  factory UpdateActionsMessage.fromJson(Map<String, dynamic> json) {
+    return UpdateActionsMessage(
+      marker: json['Marker'] as String?,
+      updateActions: (json['UpdateActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => UpdateAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory UpdateActionsMessage.fromXml(_s.XmlElement elem) {
     return UpdateActionsMessage(
       marker: _s.extractXmlStringValue(elem, 'Marker'),
@@ -11110,6 +13862,15 @@ class UpdateActionsMessage {
               .map((c) => UpdateAction.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final updateActions = this.updateActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (updateActions != null) 'UpdateActions': updateActions,
+    };
   }
 }
 
@@ -11148,6 +13909,25 @@ class User {
     this.userId,
     this.userName,
   });
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      arn: json['ARN'] as String?,
+      accessString: json['AccessString'] as String?,
+      authentication: json['Authentication'] != null
+          ? Authentication.fromJson(
+              json['Authentication'] as Map<String, dynamic>)
+          : null,
+      engine: json['Engine'] as String?,
+      status: json['Status'] as String?,
+      userGroupIds: (json['UserGroupIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      userId: json['UserId'] as String?,
+      userName: json['UserName'] as String?,
+    );
+  }
+
   factory User.fromXml(_s.XmlElement elem) {
     return User(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -11163,6 +13943,27 @@ class User {
       userId: _s.extractXmlStringValue(elem, 'UserId'),
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final accessString = this.accessString;
+    final authentication = this.authentication;
+    final engine = this.engine;
+    final status = this.status;
+    final userGroupIds = this.userGroupIds;
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (accessString != null) 'AccessString': accessString,
+      if (authentication != null) 'Authentication': authentication,
+      if (engine != null) 'Engine': engine,
+      if (status != null) 'Status': status,
+      if (userGroupIds != null) 'UserGroupIds': userGroupIds,
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -11198,6 +13999,27 @@ class UserGroup {
     this.userGroupId,
     this.userIds,
   });
+  factory UserGroup.fromJson(Map<String, dynamic> json) {
+    return UserGroup(
+      arn: json['ARN'] as String?,
+      engine: json['Engine'] as String?,
+      pendingChanges: json['PendingChanges'] != null
+          ? UserGroupPendingChanges.fromJson(
+              json['PendingChanges'] as Map<String, dynamic>)
+          : null,
+      replicationGroups: (json['ReplicationGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      status: json['Status'] as String?,
+      userGroupId: json['UserGroupId'] as String?,
+      userIds: (json['UserIds'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory UserGroup.fromXml(_s.XmlElement elem) {
     return UserGroup(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
@@ -11215,6 +14037,25 @@ class UserGroup {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final engine = this.engine;
+    final pendingChanges = this.pendingChanges;
+    final replicationGroups = this.replicationGroups;
+    final status = this.status;
+    final userGroupId = this.userGroupId;
+    final userIds = this.userIds;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (engine != null) 'Engine': engine,
+      if (pendingChanges != null) 'PendingChanges': pendingChanges,
+      if (replicationGroups != null) 'ReplicationGroups': replicationGroups,
+      if (status != null) 'Status': status,
+      if (userGroupId != null) 'UserGroupId': userGroupId,
+      if (userIds != null) 'UserIds': userIds,
+    };
+  }
 }
 
 /// Returns the updates being applied to the user group.
@@ -11229,6 +14070,19 @@ class UserGroupPendingChanges {
     this.userIdsToAdd,
     this.userIdsToRemove,
   });
+  factory UserGroupPendingChanges.fromJson(Map<String, dynamic> json) {
+    return UserGroupPendingChanges(
+      userIdsToAdd: (json['UserIdsToAdd'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      userIdsToRemove: (json['UserIdsToRemove'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory UserGroupPendingChanges.fromXml(_s.XmlElement elem) {
     return UserGroupPendingChanges(
       userIdsToAdd: _s
@@ -11238,6 +14092,15 @@ class UserGroupPendingChanges {
           .extractXmlChild(elem, 'UserIdsToRemove')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userIdsToAdd = this.userIdsToAdd;
+    final userIdsToRemove = this.userIdsToRemove;
+    return {
+      if (userIdsToAdd != null) 'UserIdsToAdd': userIdsToAdd,
+      if (userIdsToRemove != null) 'UserIdsToRemove': userIdsToRemove,
+    };
   }
 }
 
@@ -11253,6 +14116,19 @@ class UserGroupsUpdateStatus {
     this.userGroupIdsToAdd,
     this.userGroupIdsToRemove,
   });
+  factory UserGroupsUpdateStatus.fromJson(Map<String, dynamic> json) {
+    return UserGroupsUpdateStatus(
+      userGroupIdsToAdd: (json['UserGroupIdsToAdd'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      userGroupIdsToRemove: (json['UserGroupIdsToRemove'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory UserGroupsUpdateStatus.fromXml(_s.XmlElement elem) {
     return UserGroupsUpdateStatus(
       userGroupIdsToAdd: _s
@@ -11262,6 +14138,16 @@ class UserGroupsUpdateStatus {
           .extractXmlChild(elem, 'UserGroupIdsToRemove')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userGroupIdsToAdd = this.userGroupIdsToAdd;
+    final userGroupIdsToRemove = this.userGroupIdsToRemove;
+    return {
+      if (userGroupIdsToAdd != null) 'UserGroupIdsToAdd': userGroupIdsToAdd,
+      if (userGroupIdsToRemove != null)
+        'UserGroupIdsToRemove': userGroupIdsToRemove,
+    };
   }
 }
 

@@ -1548,6 +1548,14 @@ class AddNotificationChannelsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notificationConfiguration = this.notificationConfiguration;
+    return {
+      if (notificationConfiguration != null)
+        'notificationConfiguration': notificationConfiguration,
+    };
+  }
 }
 
 /// The response of <a
@@ -1610,6 +1618,19 @@ class AgentConfiguration {
       agentParameters: (json['agentParameters'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k.toAgentParameterField(), e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final periodInSeconds = this.periodInSeconds;
+    final shouldProfile = this.shouldProfile;
+    final agentParameters = this.agentParameters;
+    return {
+      'periodInSeconds': periodInSeconds,
+      'shouldProfile': shouldProfile,
+      if (agentParameters != null)
+        'agentParameters':
+            agentParameters.map((k, e) => MapEntry(k.toValue(), e)),
+    };
   }
 }
 
@@ -1727,6 +1748,15 @@ class AggregatedProfileTime {
       start: timeStampFromJson(json['start']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final period = this.period;
+    final start = this.start;
+    return {
+      if (period != null) 'period': period.toValue(),
+      if (start != null) 'start': iso8601ToJson(start),
+    };
+  }
 }
 
 enum AggregationPeriod {
@@ -1792,6 +1822,17 @@ class Anomaly {
       reason: json['reason'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final metric = this.metric;
+    final reason = this.reason;
+    return {
+      'instances': instances,
+      'metric': metric,
+      'reason': reason,
+    };
+  }
 }
 
 /// The specific duration in which the metric is flagged as anomalous.
@@ -1830,6 +1871,19 @@ class AnomalyInstance {
           ? UserFeedback.fromJson(json['userFeedback'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final startTime = this.startTime;
+    final endTime = this.endTime;
+    final userFeedback = this.userFeedback;
+    return {
+      'id': id,
+      'startTime': iso8601ToJson(startTime),
+      if (endTime != null) 'endTime': iso8601ToJson(endTime),
+      if (userFeedback != null) 'userFeedback': userFeedback,
+    };
   }
 }
 
@@ -1909,6 +1963,23 @@ class BatchGetFrameMetricDataResponse {
                       TimestampStructure.fromJson(e as Map<String, dynamic>))
                   .toList())),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final endTimes = this.endTimes;
+    final frameMetricData = this.frameMetricData;
+    final resolution = this.resolution;
+    final startTime = this.startTime;
+    final unprocessedEndTimes = this.unprocessedEndTimes;
+    return {
+      'endTime': iso8601ToJson(endTime),
+      'endTimes': endTimes,
+      'frameMetricData': frameMetricData,
+      'resolution': resolution.toValue(),
+      'startTime': iso8601ToJson(startTime),
+      'unprocessedEndTimes': unprocessedEndTimes,
+    };
   }
 }
 
@@ -1997,6 +2068,19 @@ class ConfigureAgentResponse {
   ConfigureAgentResponse({
     required this.configuration,
   });
+  factory ConfigureAgentResponse.fromJson(Map<String, dynamic> json) {
+    return ConfigureAgentResponse(
+      configuration: AgentConfiguration.fromJson(
+          json['configuration'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    return {
+      'configuration': configuration,
+    };
+  }
 }
 
 /// The structure representing the createProfilingGroupResponse.
@@ -2010,6 +2094,19 @@ class CreateProfilingGroupResponse {
   CreateProfilingGroupResponse({
     required this.profilingGroup,
   });
+  factory CreateProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
+    return CreateProfilingGroupResponse(
+      profilingGroup: ProfilingGroupDescription.fromJson(
+          json['profilingGroup'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profilingGroup = this.profilingGroup;
+    return {
+      'profilingGroup': profilingGroup,
+    };
+  }
 }
 
 /// The structure representing the deleteProfilingGroupResponse.
@@ -2017,6 +2114,10 @@ class DeleteProfilingGroupResponse {
   DeleteProfilingGroupResponse();
   factory DeleteProfilingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProfilingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2031,6 +2132,19 @@ class DescribeProfilingGroupResponse {
   DescribeProfilingGroupResponse({
     required this.profilingGroup,
   });
+  factory DescribeProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeProfilingGroupResponse(
+      profilingGroup: ProfilingGroupDescription.fromJson(
+          json['profilingGroup'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profilingGroup = this.profilingGroup;
+    return {
+      'profilingGroup': profilingGroup,
+    };
+  }
 }
 
 enum EventPublisher {
@@ -2124,6 +2238,24 @@ class FindingsReportSummary {
       totalNumberOfFindings: json['totalNumberOfFindings'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final profileEndTime = this.profileEndTime;
+    final profileStartTime = this.profileStartTime;
+    final profilingGroupName = this.profilingGroupName;
+    final totalNumberOfFindings = this.totalNumberOfFindings;
+    return {
+      if (id != null) 'id': id,
+      if (profileEndTime != null)
+        'profileEndTime': iso8601ToJson(profileEndTime),
+      if (profileStartTime != null)
+        'profileStartTime': iso8601ToJson(profileStartTime),
+      if (profilingGroupName != null) 'profilingGroupName': profilingGroupName,
+      if (totalNumberOfFindings != null)
+        'totalNumberOfFindings': totalNumberOfFindings,
+    };
+  }
 }
 
 /// The frame name, metric type, and thread states. These are used to derive the
@@ -2192,6 +2324,15 @@ class FrameMetricDatum {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final frameMetric = this.frameMetric;
+    final values = this.values;
+    return {
+      'frameMetric': frameMetric,
+      'values': values,
+    };
+  }
 }
 
 /// The structure representing the GetFindingsReportAccountSummaryResponse.
@@ -2224,6 +2365,15 @@ class GetFindingsReportAccountSummaryResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reportSummaries = this.reportSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'reportSummaries': reportSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The structure representing the GetNotificationConfigurationResponse.
@@ -2240,6 +2390,13 @@ class GetNotificationConfigurationResponse {
       notificationConfiguration: NotificationConfiguration.fromJson(
           json['notificationConfiguration'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notificationConfiguration = this.notificationConfiguration;
+    return {
+      'notificationConfiguration': notificationConfiguration,
+    };
   }
 }
 
@@ -2262,6 +2419,15 @@ class GetPolicyResponse {
       revisionId: json['revisionId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      'policy': policy,
+      'revisionId': revisionId,
+    };
+  }
 }
 
 /// The structure representing the getProfileResponse.
@@ -2282,6 +2448,18 @@ class GetProfileResponse {
     required this.profile,
     this.contentEncoding,
   });
+  factory GetProfileResponse.fromJson(Map<String, dynamic> json) {
+    return GetProfileResponse(
+      profile: _s.decodeUint8List(json['profile']! as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profile = this.profile;
+    return {
+      'profile': base64Encode(profile),
+    };
+  }
 }
 
 /// The structure representing the GetRecommendationsResponse.
@@ -2329,6 +2507,21 @@ class GetRecommendationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalies = this.anomalies;
+    final profileEndTime = this.profileEndTime;
+    final profileStartTime = this.profileStartTime;
+    final profilingGroupName = this.profilingGroupName;
+    final recommendations = this.recommendations;
+    return {
+      'anomalies': anomalies,
+      'profileEndTime': iso8601ToJson(profileEndTime),
+      'profileStartTime': iso8601ToJson(profileStartTime),
+      'profilingGroupName': profilingGroupName,
+      'recommendations': recommendations,
+    };
+  }
 }
 
 /// The structure representing the ListFindingsReportsResponse.
@@ -2355,6 +2548,15 @@ class ListFindingsReportsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingsReportSummaries = this.findingsReportSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'findingsReportSummaries': findingsReportSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2383,6 +2585,15 @@ class ListProfileTimesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileTimes = this.profileTimes;
+    final nextToken = this.nextToken;
+    return {
+      'profileTimes': profileTimes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2430,6 +2641,17 @@ class ListProfilingGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final profilingGroupNames = this.profilingGroupNames;
+    final nextToken = this.nextToken;
+    final profilingGroups = this.profilingGroups;
+    return {
+      'profilingGroupNames': profilingGroupNames,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (profilingGroups != null) 'profilingGroups': profilingGroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2445,6 +2667,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2471,6 +2700,18 @@ class Match {
       targetFramesIndex: json['targetFramesIndex'] as int?,
       thresholdBreachValue: json['thresholdBreachValue'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final frameAddress = this.frameAddress;
+    final targetFramesIndex = this.targetFramesIndex;
+    final thresholdBreachValue = this.thresholdBreachValue;
+    return {
+      if (frameAddress != null) 'frameAddress': frameAddress,
+      if (targetFramesIndex != null) 'targetFramesIndex': targetFramesIndex,
+      if (thresholdBreachValue != null)
+        'thresholdBreachValue': thresholdBreachValue,
+    };
   }
 }
 
@@ -2570,6 +2811,17 @@ class Metric {
       type: (json['type'] as String).toMetricType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final frameName = this.frameName;
+    final threadStates = this.threadStates;
+    final type = this.type;
+    return {
+      'frameName': frameName,
+      'threadStates': threadStates,
+      'type': type.toValue(),
+    };
+  }
 }
 
 enum MetricType {
@@ -2613,6 +2865,13 @@ class NotificationConfiguration {
           .map((e) => Channel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    return {
+      if (channels != null) 'channels': channels,
+    };
   }
 }
 
@@ -2699,6 +2958,26 @@ class Pattern {
       thresholdPercent: json['thresholdPercent'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final countersToAggregate = this.countersToAggregate;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final resolutionSteps = this.resolutionSteps;
+    final targetFrames = this.targetFrames;
+    final thresholdPercent = this.thresholdPercent;
+    return {
+      if (countersToAggregate != null)
+        'countersToAggregate': countersToAggregate,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (resolutionSteps != null) 'resolutionSteps': resolutionSteps,
+      if (targetFrames != null) 'targetFrames': targetFrames,
+      if (thresholdPercent != null) 'thresholdPercent': thresholdPercent,
+    };
+  }
 }
 
 /// The structure representing the postAgentProfileResponse.
@@ -2706,6 +2985,10 @@ class PostAgentProfileResponse {
   PostAgentProfileResponse();
   factory PostAgentProfileResponse.fromJson(Map<String, dynamic> _) {
     return PostAgentProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2723,6 +3006,13 @@ class ProfileTime {
     return ProfileTime(
       start: timeStampFromJson(json['start']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final start = this.start;
+    return {
+      if (start != null) 'start': iso8601ToJson(start),
+    };
   }
 }
 
@@ -2799,6 +3089,28 @@ class ProfilingGroupDescription {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentOrchestrationConfig = this.agentOrchestrationConfig;
+    final arn = this.arn;
+    final computePlatform = this.computePlatform;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final profilingStatus = this.profilingStatus;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (agentOrchestrationConfig != null)
+        'agentOrchestrationConfig': agentOrchestrationConfig,
+      if (arn != null) 'arn': arn,
+      if (computePlatform != null) 'computePlatform': computePlatform.toValue(),
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (name != null) 'name': name,
+      if (profilingStatus != null) 'profilingStatus': profilingStatus,
+      if (tags != null) 'tags': tags,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 /// Profiling status includes information about the last time a profile agent
@@ -2838,6 +3150,21 @@ class ProfilingStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final latestAgentOrchestratedAt = this.latestAgentOrchestratedAt;
+    final latestAgentProfileReportedAt = this.latestAgentProfileReportedAt;
+    final latestAggregatedProfile = this.latestAggregatedProfile;
+    return {
+      if (latestAgentOrchestratedAt != null)
+        'latestAgentOrchestratedAt': iso8601ToJson(latestAgentOrchestratedAt),
+      if (latestAgentProfileReportedAt != null)
+        'latestAgentProfileReportedAt':
+            iso8601ToJson(latestAgentProfileReportedAt),
+      if (latestAggregatedProfile != null)
+        'latestAggregatedProfile': latestAggregatedProfile,
+    };
+  }
 }
 
 /// The structure representing the <code>putPermissionResponse</code>.
@@ -2860,6 +3187,15 @@ class PutPermissionResponse {
       policy: json['policy'] as String,
       revisionId: json['revisionId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      'policy': policy,
+      'revisionId': revisionId,
+    };
   }
 }
 
@@ -2909,6 +3245,23 @@ class Recommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allMatchesCount = this.allMatchesCount;
+    final allMatchesSum = this.allMatchesSum;
+    final endTime = this.endTime;
+    final pattern = this.pattern;
+    final startTime = this.startTime;
+    final topMatches = this.topMatches;
+    return {
+      'allMatchesCount': allMatchesCount,
+      'allMatchesSum': allMatchesSum,
+      'endTime': iso8601ToJson(endTime),
+      'pattern': pattern,
+      'startTime': iso8601ToJson(startTime),
+      'topMatches': topMatches,
+    };
+  }
 }
 
 /// The structure representing the RemoveNotificationChannelResponse.
@@ -2927,6 +3280,14 @@ class RemoveNotificationChannelResponse {
               json['notificationConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notificationConfiguration = this.notificationConfiguration;
+    return {
+      if (notificationConfiguration != null)
+        'notificationConfiguration': notificationConfiguration,
+    };
   }
 }
 
@@ -2952,6 +3313,15 @@ class RemovePermissionResponse {
       revisionId: json['revisionId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      'policy': policy,
+      'revisionId': revisionId,
+    };
+  }
 }
 
 /// The structure representing the SubmitFeedbackResponse.
@@ -2960,12 +3330,20 @@ class SubmitFeedbackResponse {
   factory SubmitFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return SubmitFeedbackResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2986,12 +3364,23 @@ class TimestampStructure {
       value: nonNullableTimeStampFromJson(json['value'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      'value': iso8601ToJson(value),
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3006,6 +3395,19 @@ class UpdateProfilingGroupResponse {
   UpdateProfilingGroupResponse({
     required this.profilingGroup,
   });
+  factory UpdateProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateProfilingGroupResponse(
+      profilingGroup: ProfilingGroupDescription.fromJson(
+          json['profilingGroup'] as Map<String, dynamic>),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profilingGroup = this.profilingGroup;
+    return {
+      'profilingGroup': profilingGroup,
+    };
+  }
 }
 
 /// Feedback that can be submitted for each instance of an anomaly by the user.
@@ -3023,6 +3425,13 @@ class UserFeedback {
     return UserFeedback(
       type: (json['type'] as String).toFeedbackType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      'type': type.toValue(),
+    };
   }
 }
 

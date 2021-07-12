@@ -1621,6 +1621,19 @@ class AlarmModelSummary {
       creationTime: timeStampFromJson(json['creationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelDescription = this.alarmModelDescription;
+    final alarmModelName = this.alarmModelName;
+    final creationTime = this.creationTime;
+    return {
+      if (alarmModelDescription != null)
+        'alarmModelDescription': alarmModelDescription,
+      if (alarmModelName != null) 'alarmModelName': alarmModelName,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+    };
+  }
 }
 
 enum AlarmModelVersionStatus {
@@ -1734,6 +1747,29 @@ class AlarmModelVersionSummary {
       status: (json['status'] as String?)?.toAlarmModelVersionStatus(),
       statusMessage: json['statusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelArn = this.alarmModelArn;
+    final alarmModelName = this.alarmModelName;
+    final alarmModelVersion = this.alarmModelVersion;
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (alarmModelArn != null) 'alarmModelArn': alarmModelArn,
+      if (alarmModelName != null) 'alarmModelName': alarmModelName,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
   }
 }
 
@@ -1879,6 +1915,19 @@ class AnalysisResult {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final level = this.level;
+    final locations = this.locations;
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (level != null) 'level': level.toValue(),
+      if (locations != null) 'locations': locations,
+      if (message != null) 'message': message,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 enum AnalysisResultLevel {
@@ -1928,6 +1977,13 @@ class AnalysisResultLocation {
     return AnalysisResultLocation(
       path: json['path'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    return {
+      if (path != null) 'path': path,
+    };
   }
 }
 
@@ -2343,6 +2399,23 @@ class CreateAlarmModelResponse {
       status: (json['status'] as String?)?.toAlarmModelVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelArn = this.alarmModelArn;
+    final alarmModelVersion = this.alarmModelVersion;
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    return {
+      if (alarmModelArn != null) 'alarmModelArn': alarmModelArn,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class CreateDetectorModelResponse {
@@ -2359,6 +2432,14 @@ class CreateDetectorModelResponse {
               json['detectorModelConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorModelConfiguration = this.detectorModelConfiguration;
+    return {
+      if (detectorModelConfiguration != null)
+        'detectorModelConfiguration': detectorModelConfiguration,
+    };
   }
 }
 
@@ -2377,12 +2458,23 @@ class CreateInputResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputConfiguration = this.inputConfiguration;
+    return {
+      if (inputConfiguration != null) 'inputConfiguration': inputConfiguration,
+    };
+  }
 }
 
 class DeleteAlarmModelResponse {
   DeleteAlarmModelResponse();
   factory DeleteAlarmModelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAlarmModelResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2391,12 +2483,20 @@ class DeleteDetectorModelResponse {
   factory DeleteDetectorModelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorModelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteInputResponse {
   DeleteInputResponse();
   factory DeleteInputResponse.fromJson(Map<String, dynamic> _) {
     return DeleteInputResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2522,6 +2622,44 @@ class DescribeAlarmModelResponse {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmCapabilities = this.alarmCapabilities;
+    final alarmEventActions = this.alarmEventActions;
+    final alarmModelArn = this.alarmModelArn;
+    final alarmModelDescription = this.alarmModelDescription;
+    final alarmModelName = this.alarmModelName;
+    final alarmModelVersion = this.alarmModelVersion;
+    final alarmNotification = this.alarmNotification;
+    final alarmRule = this.alarmRule;
+    final creationTime = this.creationTime;
+    final key = this.key;
+    final lastUpdateTime = this.lastUpdateTime;
+    final roleArn = this.roleArn;
+    final severity = this.severity;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (alarmCapabilities != null) 'alarmCapabilities': alarmCapabilities,
+      if (alarmEventActions != null) 'alarmEventActions': alarmEventActions,
+      if (alarmModelArn != null) 'alarmModelArn': alarmModelArn,
+      if (alarmModelDescription != null)
+        'alarmModelDescription': alarmModelDescription,
+      if (alarmModelName != null) 'alarmModelName': alarmModelName,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (alarmNotification != null) 'alarmNotification': alarmNotification,
+      if (alarmRule != null) 'alarmRule': alarmRule,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (key != null) 'key': key,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (severity != null) 'severity': severity,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 class DescribeDetectorModelAnalysisResponse {
@@ -2553,6 +2691,13 @@ class DescribeDetectorModelAnalysisResponse {
       status: (json['status'] as String?)?.toAnalysisStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class DescribeDetectorModelResponse {
@@ -2570,6 +2715,13 @@ class DescribeDetectorModelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorModel = this.detectorModel;
+    return {
+      if (detectorModel != null) 'detectorModel': detectorModel,
+    };
+  }
 }
 
 class DescribeInputResponse {
@@ -2585,6 +2737,13 @@ class DescribeInputResponse {
           ? Input.fromJson(json['input'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    return {
+      if (input != null) 'input': input,
+    };
   }
 }
 
@@ -2602,6 +2761,13 @@ class DescribeLoggingOptionsResponse {
               json['loggingOptions'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loggingOptions = this.loggingOptions;
+    return {
+      if (loggingOptions != null) 'loggingOptions': loggingOptions,
+    };
   }
 }
 
@@ -2659,6 +2825,17 @@ class DetectorModel {
               json['detectorModelDefinition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorModelConfiguration = this.detectorModelConfiguration;
+    final detectorModelDefinition = this.detectorModelDefinition;
+    return {
+      if (detectorModelConfiguration != null)
+        'detectorModelConfiguration': detectorModelConfiguration,
+      if (detectorModelDefinition != null)
+        'detectorModelDefinition': detectorModelDefinition,
+    };
   }
 }
 
@@ -2731,6 +2908,36 @@ class DetectorModelConfiguration {
       status: (json['status'] as String?)?.toDetectorModelVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final detectorModelArn = this.detectorModelArn;
+    final detectorModelDescription = this.detectorModelDescription;
+    final detectorModelName = this.detectorModelName;
+    final detectorModelVersion = this.detectorModelVersion;
+    final evaluationMethod = this.evaluationMethod;
+    final key = this.key;
+    final lastUpdateTime = this.lastUpdateTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (detectorModelArn != null) 'detectorModelArn': detectorModelArn,
+      if (detectorModelDescription != null)
+        'detectorModelDescription': detectorModelDescription,
+      if (detectorModelName != null) 'detectorModelName': detectorModelName,
+      if (detectorModelVersion != null)
+        'detectorModelVersion': detectorModelVersion,
+      if (evaluationMethod != null)
+        'evaluationMethod': evaluationMethod.toValue(),
+      if (key != null) 'key': key,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Information that defines how a detector operates.
@@ -2787,6 +2994,19 @@ class DetectorModelSummary {
       detectorModelDescription: json['detectorModelDescription'] as String?,
       detectorModelName: json['detectorModelName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final detectorModelDescription = this.detectorModelDescription;
+    final detectorModelName = this.detectorModelName;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (detectorModelDescription != null)
+        'detectorModelDescription': detectorModelDescription,
+      if (detectorModelName != null) 'detectorModelName': detectorModelName,
+    };
   }
 }
 
@@ -2893,6 +3113,31 @@ class DetectorModelVersionSummary {
       roleArn: json['roleArn'] as String?,
       status: (json['status'] as String?)?.toDetectorModelVersionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final detectorModelArn = this.detectorModelArn;
+    final detectorModelName = this.detectorModelName;
+    final detectorModelVersion = this.detectorModelVersion;
+    final evaluationMethod = this.evaluationMethod;
+    final lastUpdateTime = this.lastUpdateTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (detectorModelArn != null) 'detectorModelArn': detectorModelArn,
+      if (detectorModelName != null) 'detectorModelName': detectorModelName,
+      if (detectorModelVersion != null)
+        'detectorModelVersion': detectorModelVersion,
+      if (evaluationMethod != null)
+        'evaluationMethod': evaluationMethod.toValue(),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3415,6 +3660,15 @@ class GetDetectorModelAnalysisResultsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisResults = this.analysisResults;
+    final nextToken = this.nextToken;
+    return {
+      if (analysisResults != null) 'analysisResults': analysisResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Specifies the default alarm state. The configuration applies to all alarms
@@ -3466,6 +3720,15 @@ class Input {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputConfiguration = this.inputConfiguration;
+    final inputDefinition = this.inputDefinition;
+    return {
+      if (inputConfiguration != null) 'inputConfiguration': inputConfiguration,
+      if (inputDefinition != null) 'inputDefinition': inputDefinition,
+    };
+  }
 }
 
 /// Information about the configuration of an input.
@@ -3507,6 +3770,23 @@ class InputConfiguration {
       status: (json['status'] as String).toInputStatus(),
       inputDescription: json['inputDescription'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final inputArn = this.inputArn;
+    final inputName = this.inputName;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    final inputDescription = this.inputDescription;
+    return {
+      'creationTime': unixTimestampToJson(creationTime),
+      'inputArn': inputArn,
+      'inputName': inputName,
+      'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      'status': status.toValue(),
+      if (inputDescription != null) 'inputDescription': inputDescription,
+    };
   }
 }
 
@@ -3552,6 +3832,19 @@ class InputIdentifier {
     this.iotEventsInputIdentifier,
     this.iotSiteWiseInputIdentifier,
   });
+  factory InputIdentifier.fromJson(Map<String, dynamic> json) {
+    return InputIdentifier(
+      iotEventsInputIdentifier: json['iotEventsInputIdentifier'] != null
+          ? IotEventsInputIdentifier.fromJson(
+              json['iotEventsInputIdentifier'] as Map<String, dynamic>)
+          : null,
+      iotSiteWiseInputIdentifier: json['iotSiteWiseInputIdentifier'] != null
+          ? IotSiteWiseInputIdentifier.fromJson(
+              json['iotSiteWiseInputIdentifier'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final iotEventsInputIdentifier = this.iotEventsInputIdentifier;
     final iotSiteWiseInputIdentifier = this.iotSiteWiseInputIdentifier;
@@ -3640,6 +3933,25 @@ class InputSummary {
       status: (json['status'] as String?)?.toInputStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final inputArn = this.inputArn;
+    final inputDescription = this.inputDescription;
+    final inputName = this.inputName;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (inputArn != null) 'inputArn': inputArn,
+      if (inputDescription != null) 'inputDescription': inputDescription,
+      if (inputName != null) 'inputName': inputName,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Sends an AWS IoT Events input, passing in information about the detector
@@ -3683,6 +3995,12 @@ class IotEventsInputIdentifier {
   IotEventsInputIdentifier({
     required this.inputName,
   });
+  factory IotEventsInputIdentifier.fromJson(Map<String, dynamic> json) {
+    return IotEventsInputIdentifier(
+      inputName: json['inputName'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final inputName = this.inputName;
     return {
@@ -3798,6 +4116,14 @@ class IotSiteWiseAssetModelPropertyIdentifier {
     required this.assetModelId,
     required this.propertyId,
   });
+  factory IotSiteWiseAssetModelPropertyIdentifier.fromJson(
+      Map<String, dynamic> json) {
+    return IotSiteWiseAssetModelPropertyIdentifier(
+      assetModelId: json['assetModelId'] as String,
+      propertyId: json['propertyId'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final assetModelId = this.assetModelId;
     final propertyId = this.propertyId;
@@ -3817,6 +4143,17 @@ class IotSiteWiseInputIdentifier {
   IotSiteWiseInputIdentifier({
     this.iotSiteWiseAssetModelPropertyIdentifier,
   });
+  factory IotSiteWiseInputIdentifier.fromJson(Map<String, dynamic> json) {
+    return IotSiteWiseInputIdentifier(
+      iotSiteWiseAssetModelPropertyIdentifier:
+          json['iotSiteWiseAssetModelPropertyIdentifier'] != null
+              ? IotSiteWiseAssetModelPropertyIdentifier.fromJson(
+                  json['iotSiteWiseAssetModelPropertyIdentifier']
+                      as Map<String, dynamic>)
+              : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final iotSiteWiseAssetModelPropertyIdentifier =
         this.iotSiteWiseAssetModelPropertyIdentifier;
@@ -3919,6 +4256,16 @@ class ListAlarmModelVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelVersionSummaries = this.alarmModelVersionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (alarmModelVersionSummaries != null)
+        'alarmModelVersionSummaries': alarmModelVersionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAlarmModelsResponse {
@@ -3941,6 +4288,16 @@ class ListAlarmModelsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelSummaries = this.alarmModelSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (alarmModelSummaries != null)
+        'alarmModelSummaries': alarmModelSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3968,6 +4325,16 @@ class ListDetectorModelVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorModelVersionSummaries = this.detectorModelVersionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (detectorModelVersionSummaries != null)
+        'detectorModelVersionSummaries': detectorModelVersionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDetectorModelsResponse {
@@ -3990,6 +4357,16 @@ class ListDetectorModelsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorModelSummaries = this.detectorModelSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (detectorModelSummaries != null)
+        'detectorModelSummaries': detectorModelSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4014,6 +4391,15 @@ class ListInputRoutingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routedResources = this.routedResources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (routedResources != null) 'routedResources': routedResources,
+    };
+  }
 }
 
 class ListInputsResponse {
@@ -4037,6 +4423,15 @@ class ListInputsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputSummaries = this.inputSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (inputSummaries != null) 'inputSummaries': inputSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4053,6 +4448,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4441,6 +4843,15 @@ class RoutedResource {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Contains the configuration information of SMS notifications.
@@ -4717,6 +5128,13 @@ class StartDetectorModelAnalysisResponse {
       analysisId: json['analysisId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    return {
+      if (analysisId != null) 'analysisId': analysisId,
+    };
+  }
 }
 
 /// Information that defines a state of a detector.
@@ -4805,6 +5223,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Specifies the actions performed and the next state entered when a
@@ -4859,6 +5281,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4917,6 +5343,23 @@ class UpdateAlarmModelResponse {
       status: (json['status'] as String?)?.toAlarmModelVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmModelArn = this.alarmModelArn;
+    final alarmModelVersion = this.alarmModelVersion;
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    return {
+      if (alarmModelArn != null) 'alarmModelArn': alarmModelArn,
+      if (alarmModelVersion != null) 'alarmModelVersion': alarmModelVersion,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class UpdateDetectorModelResponse {
@@ -4934,6 +5377,14 @@ class UpdateDetectorModelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorModelConfiguration = this.detectorModelConfiguration;
+    return {
+      if (detectorModelConfiguration != null)
+        'detectorModelConfiguration': detectorModelConfiguration,
+    };
+  }
 }
 
 class UpdateInputResponse {
@@ -4950,6 +5401,13 @@ class UpdateInputResponse {
               json['inputConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inputConfiguration = this.inputConfiguration;
+    return {
+      if (inputConfiguration != null) 'inputConfiguration': inputConfiguration,
+    };
   }
 }
 

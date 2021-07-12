@@ -5056,6 +5056,16 @@ class AgentVersion {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationManager = this.configurationManager;
+    final version = this.version;
+    return {
+      if (configurationManager != null)
+        'ConfigurationManager': configurationManager,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// A description of the app.
@@ -5164,6 +5174,40 @@ class App {
       stackId: json['StackId'] as String?,
       type: (json['Type'] as String?)?.toAppType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final appSource = this.appSource;
+    final attributes = this.attributes;
+    final createdAt = this.createdAt;
+    final dataSources = this.dataSources;
+    final description = this.description;
+    final domains = this.domains;
+    final enableSsl = this.enableSsl;
+    final environment = this.environment;
+    final name = this.name;
+    final shortname = this.shortname;
+    final sslConfiguration = this.sslConfiguration;
+    final stackId = this.stackId;
+    final type = this.type;
+    return {
+      if (appId != null) 'AppId': appId,
+      if (appSource != null) 'AppSource': appSource,
+      if (attributes != null)
+        'Attributes': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (dataSources != null) 'DataSources': dataSources,
+      if (description != null) 'Description': description,
+      if (domains != null) 'Domains': domains,
+      if (enableSsl != null) 'EnableSsl': enableSsl,
+      if (environment != null) 'Environment': environment,
+      if (name != null) 'Name': name,
+      if (shortname != null) 'Shortname': shortname,
+      if (sslConfiguration != null) 'SslConfiguration': sslConfiguration,
+      if (stackId != null) 'StackId': stackId,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5500,6 +5544,13 @@ class CloneStackResult {
     return CloneStackResult(
       stackId: json['StackId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
   }
 }
 
@@ -6320,6 +6371,31 @@ class Command {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acknowledgedAt = this.acknowledgedAt;
+    final commandId = this.commandId;
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final deploymentId = this.deploymentId;
+    final exitCode = this.exitCode;
+    final instanceId = this.instanceId;
+    final logUrl = this.logUrl;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (acknowledgedAt != null) 'AcknowledgedAt': acknowledgedAt,
+      if (commandId != null) 'CommandId': commandId,
+      if (completedAt != null) 'CompletedAt': completedAt,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (exitCode != null) 'ExitCode': exitCode,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (logUrl != null) 'LogUrl': logUrl,
+      if (status != null) 'Status': status,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Contains the response to a <code>CreateApp</code> request.
@@ -6334,6 +6410,13 @@ class CreateAppResult {
     return CreateAppResult(
       appId: json['AppId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    return {
+      if (appId != null) 'AppId': appId,
+    };
   }
 }
 
@@ -6351,6 +6434,13 @@ class CreateDeploymentResult {
       deploymentId: json['DeploymentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    return {
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+    };
+  }
 }
 
 /// Contains the response to a <code>CreateInstance</code> request.
@@ -6366,6 +6456,13 @@ class CreateInstanceResult {
       instanceId: json['InstanceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    return {
+      if (instanceId != null) 'InstanceId': instanceId,
+    };
+  }
 }
 
 /// Contains the response to a <code>CreateLayer</code> request.
@@ -6380,6 +6477,13 @@ class CreateLayerResult {
     return CreateLayerResult(
       layerId: json['LayerId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final layerId = this.layerId;
+    return {
+      if (layerId != null) 'LayerId': layerId,
+    };
   }
 }
 
@@ -6397,6 +6501,13 @@ class CreateStackResult {
       stackId: json['StackId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 /// Contains the response to a <code>CreateUserProfile</code> request.
@@ -6411,6 +6522,13 @@ class CreateUserProfileResult {
     return CreateUserProfileResult(
       iamUserArn: json['IamUserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iamUserArn = this.iamUserArn;
+    return {
+      if (iamUserArn != null) 'IamUserArn': iamUserArn,
+    };
   }
 }
 
@@ -6544,6 +6662,35 @@ class Deployment {
       stackId: json['StackId'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final command = this.command;
+    final comment = this.comment;
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final customJson = this.customJson;
+    final deploymentId = this.deploymentId;
+    final duration = this.duration;
+    final iamUserArn = this.iamUserArn;
+    final instanceIds = this.instanceIds;
+    final stackId = this.stackId;
+    final status = this.status;
+    return {
+      if (appId != null) 'AppId': appId,
+      if (command != null) 'Command': command,
+      if (comment != null) 'Comment': comment,
+      if (completedAt != null) 'CompletedAt': completedAt,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (customJson != null) 'CustomJson': customJson,
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (duration != null) 'Duration': duration,
+      if (iamUserArn != null) 'IamUserArn': iamUserArn,
+      if (instanceIds != null) 'InstanceIds': instanceIds,
+      if (stackId != null) 'StackId': stackId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -6752,6 +6899,13 @@ class DescribeAgentVersionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentVersions = this.agentVersions;
+    return {
+      if (agentVersions != null) 'AgentVersions': agentVersions,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeApps</code> request.
@@ -6769,6 +6923,13 @@ class DescribeAppsResult {
           .map((e) => App.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apps = this.apps;
+    return {
+      if (apps != null) 'Apps': apps,
+    };
   }
 }
 
@@ -6789,6 +6950,13 @@ class DescribeCommandsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commands = this.commands;
+    return {
+      if (commands != null) 'Commands': commands,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeDeployments</code> request.
@@ -6806,6 +6974,13 @@ class DescribeDeploymentsResult {
           .map((e) => Deployment.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    return {
+      if (deployments != null) 'Deployments': deployments,
+    };
   }
 }
 
@@ -6835,6 +7010,15 @@ class DescribeEcsClustersResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ecsClusters = this.ecsClusters;
+    final nextToken = this.nextToken;
+    return {
+      if (ecsClusters != null) 'EcsClusters': ecsClusters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeElasticIps</code> request.
@@ -6853,6 +7037,13 @@ class DescribeElasticIpsResult {
           .map((e) => ElasticIp.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final elasticIps = this.elasticIps;
+    return {
+      if (elasticIps != null) 'ElasticIps': elasticIps,
+    };
   }
 }
 
@@ -6875,6 +7066,14 @@ class DescribeElasticLoadBalancersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final elasticLoadBalancers = this.elasticLoadBalancers;
+    return {
+      if (elasticLoadBalancers != null)
+        'ElasticLoadBalancers': elasticLoadBalancers,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeInstances</code> request.
@@ -6893,6 +7092,13 @@ class DescribeInstancesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeLayers</code> request.
@@ -6910,6 +7116,13 @@ class DescribeLayersResult {
           .map((e) => Layer.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final layers = this.layers;
+    return {
+      if (layers != null) 'Layers': layers,
+    };
   }
 }
 
@@ -6935,6 +7148,16 @@ class DescribeLoadBasedAutoScalingResult {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBasedAutoScalingConfigurations =
+        this.loadBasedAutoScalingConfigurations;
+    return {
+      if (loadBasedAutoScalingConfigurations != null)
+        'LoadBasedAutoScalingConfigurations':
+            loadBasedAutoScalingConfigurations,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeMyUserProfile</code> request.
@@ -6952,6 +7175,13 @@ class DescribeMyUserProfileResult {
               json['UserProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userProfile = this.userProfile;
+    return {
+      if (userProfile != null) 'UserProfile': userProfile,
+    };
   }
 }
 
@@ -6971,6 +7201,13 @@ class DescribeOperatingSystemsResponse {
           .map((e) => OperatingSystem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operatingSystems = this.operatingSystems;
+    return {
+      if (operatingSystems != null) 'OperatingSystems': operatingSystems,
+    };
   }
 }
 
@@ -7009,6 +7246,13 @@ class DescribePermissionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    return {
+      if (permissions != null) 'Permissions': permissions,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeRaidArrays</code> request.
@@ -7026,6 +7270,13 @@ class DescribeRaidArraysResult {
           .map((e) => RaidArray.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final raidArrays = this.raidArrays;
+    return {
+      if (raidArrays != null) 'RaidArrays': raidArrays,
+    };
   }
 }
 
@@ -7046,6 +7297,13 @@ class DescribeRdsDbInstancesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rdsDbInstances = this.rdsDbInstances;
+    return {
+      if (rdsDbInstances != null) 'RdsDbInstances': rdsDbInstances,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeServiceErrors</code> request.
@@ -7064,6 +7322,13 @@ class DescribeServiceErrorsResult {
           .map((e) => ServiceError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceErrors = this.serviceErrors;
+    return {
+      if (serviceErrors != null) 'ServiceErrors': serviceErrors,
+    };
   }
 }
 
@@ -7088,6 +7353,15 @@ class DescribeStackProvisioningParametersResult {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentInstallerUrl = this.agentInstallerUrl;
+    final parameters = this.parameters;
+    return {
+      if (agentInstallerUrl != null) 'AgentInstallerUrl': agentInstallerUrl,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeStackSummary</code> request.
@@ -7104,6 +7378,13 @@ class DescribeStackSummaryResult {
           ? StackSummary.fromJson(json['StackSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackSummary = this.stackSummary;
+    return {
+      if (stackSummary != null) 'StackSummary': stackSummary,
+    };
   }
 }
 
@@ -7122,6 +7403,13 @@ class DescribeStacksResult {
           .map((e) => Stack.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stacks = this.stacks;
+    return {
+      if (stacks != null) 'Stacks': stacks,
+    };
   }
 }
 
@@ -7147,6 +7435,16 @@ class DescribeTimeBasedAutoScalingResult {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timeBasedAutoScalingConfigurations =
+        this.timeBasedAutoScalingConfigurations;
+    return {
+      if (timeBasedAutoScalingConfigurations != null)
+        'TimeBasedAutoScalingConfigurations':
+            timeBasedAutoScalingConfigurations,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeUserProfiles</code> request.
@@ -7165,6 +7463,13 @@ class DescribeUserProfilesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userProfiles = this.userProfiles;
+    return {
+      if (userProfiles != null) 'UserProfiles': userProfiles,
+    };
+  }
 }
 
 /// Contains the response to a <code>DescribeVolumes</code> request.
@@ -7182,6 +7487,13 @@ class DescribeVolumesResult {
           .map((e) => Volume.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumes = this.volumes;
+    return {
+      if (volumes != null) 'Volumes': volumes,
+    };
   }
 }
 
@@ -7279,6 +7591,19 @@ class EcsCluster {
       stackId: json['StackId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ecsClusterArn = this.ecsClusterArn;
+    final ecsClusterName = this.ecsClusterName;
+    final registeredAt = this.registeredAt;
+    final stackId = this.stackId;
+    return {
+      if (ecsClusterArn != null) 'EcsClusterArn': ecsClusterArn,
+      if (ecsClusterName != null) 'EcsClusterName': ecsClusterName,
+      if (registeredAt != null) 'RegisteredAt': registeredAt,
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 /// Describes an Elastic IP address.
@@ -7315,6 +7640,21 @@ class ElasticIp {
       name: json['Name'] as String?,
       region: json['Region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    final instanceId = this.instanceId;
+    final ip = this.ip;
+    final name = this.name;
+    final region = this.region;
+    return {
+      if (domain != null) 'Domain': domain,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (ip != null) 'Ip': ip,
+      if (name != null) 'Name': name,
+      if (region != null) 'Region': region,
+    };
   }
 }
 
@@ -7381,6 +7721,30 @@ class ElasticLoadBalancer {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final dnsName = this.dnsName;
+    final ec2InstanceIds = this.ec2InstanceIds;
+    final elasticLoadBalancerName = this.elasticLoadBalancerName;
+    final layerId = this.layerId;
+    final region = this.region;
+    final stackId = this.stackId;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (dnsName != null) 'DnsName': dnsName,
+      if (ec2InstanceIds != null) 'Ec2InstanceIds': ec2InstanceIds,
+      if (elasticLoadBalancerName != null)
+        'ElasticLoadBalancerName': elasticLoadBalancerName,
+      if (layerId != null) 'LayerId': layerId,
+      if (region != null) 'Region': region,
+      if (stackId != null) 'StackId': stackId,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Represents an app's environment variable.
@@ -7446,6 +7810,15 @@ class GetHostnameSuggestionResult {
       layerId: json['LayerId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostname = this.hostname;
+    final layerId = this.layerId;
+    return {
+      if (hostname != null) 'Hostname': hostname,
+      if (layerId != null) 'LayerId': layerId,
+    };
+  }
 }
 
 /// Contains the response to a <code>GrantAccess</code> request.
@@ -7465,6 +7838,14 @@ class GrantAccessResult {
               json['TemporaryCredential'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final temporaryCredential = this.temporaryCredential;
+    return {
+      if (temporaryCredential != null)
+        'TemporaryCredential': temporaryCredential,
+    };
   }
 }
 
@@ -7769,6 +8150,101 @@ class Instance {
           (json['VirtualizationType'] as String?)?.toVirtualizationType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentVersion = this.agentVersion;
+    final amiId = this.amiId;
+    final architecture = this.architecture;
+    final arn = this.arn;
+    final autoScalingType = this.autoScalingType;
+    final availabilityZone = this.availabilityZone;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final createdAt = this.createdAt;
+    final ebsOptimized = this.ebsOptimized;
+    final ec2InstanceId = this.ec2InstanceId;
+    final ecsClusterArn = this.ecsClusterArn;
+    final ecsContainerInstanceArn = this.ecsContainerInstanceArn;
+    final elasticIp = this.elasticIp;
+    final hostname = this.hostname;
+    final infrastructureClass = this.infrastructureClass;
+    final installUpdatesOnBoot = this.installUpdatesOnBoot;
+    final instanceId = this.instanceId;
+    final instanceProfileArn = this.instanceProfileArn;
+    final instanceType = this.instanceType;
+    final lastServiceErrorId = this.lastServiceErrorId;
+    final layerIds = this.layerIds;
+    final os = this.os;
+    final platform = this.platform;
+    final privateDns = this.privateDns;
+    final privateIp = this.privateIp;
+    final publicDns = this.publicDns;
+    final publicIp = this.publicIp;
+    final registeredBy = this.registeredBy;
+    final reportedAgentVersion = this.reportedAgentVersion;
+    final reportedOs = this.reportedOs;
+    final rootDeviceType = this.rootDeviceType;
+    final rootDeviceVolumeId = this.rootDeviceVolumeId;
+    final securityGroupIds = this.securityGroupIds;
+    final sshHostDsaKeyFingerprint = this.sshHostDsaKeyFingerprint;
+    final sshHostRsaKeyFingerprint = this.sshHostRsaKeyFingerprint;
+    final sshKeyName = this.sshKeyName;
+    final stackId = this.stackId;
+    final status = this.status;
+    final subnetId = this.subnetId;
+    final tenancy = this.tenancy;
+    final virtualizationType = this.virtualizationType;
+    return {
+      if (agentVersion != null) 'AgentVersion': agentVersion,
+      if (amiId != null) 'AmiId': amiId,
+      if (architecture != null) 'Architecture': architecture.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (autoScalingType != null) 'AutoScalingType': autoScalingType.toValue(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (blockDeviceMappings != null)
+        'BlockDeviceMappings': blockDeviceMappings,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (ecsClusterArn != null) 'EcsClusterArn': ecsClusterArn,
+      if (ecsContainerInstanceArn != null)
+        'EcsContainerInstanceArn': ecsContainerInstanceArn,
+      if (elasticIp != null) 'ElasticIp': elasticIp,
+      if (hostname != null) 'Hostname': hostname,
+      if (infrastructureClass != null)
+        'InfrastructureClass': infrastructureClass,
+      if (installUpdatesOnBoot != null)
+        'InstallUpdatesOnBoot': installUpdatesOnBoot,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (instanceProfileArn != null) 'InstanceProfileArn': instanceProfileArn,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (lastServiceErrorId != null) 'LastServiceErrorId': lastServiceErrorId,
+      if (layerIds != null) 'LayerIds': layerIds,
+      if (os != null) 'Os': os,
+      if (platform != null) 'Platform': platform,
+      if (privateDns != null) 'PrivateDns': privateDns,
+      if (privateIp != null) 'PrivateIp': privateIp,
+      if (publicDns != null) 'PublicDns': publicDns,
+      if (publicIp != null) 'PublicIp': publicIp,
+      if (registeredBy != null) 'RegisteredBy': registeredBy,
+      if (reportedAgentVersion != null)
+        'ReportedAgentVersion': reportedAgentVersion,
+      if (reportedOs != null) 'ReportedOs': reportedOs,
+      if (rootDeviceType != null) 'RootDeviceType': rootDeviceType.toValue(),
+      if (rootDeviceVolumeId != null) 'RootDeviceVolumeId': rootDeviceVolumeId,
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (sshHostDsaKeyFingerprint != null)
+        'SshHostDsaKeyFingerprint': sshHostDsaKeyFingerprint,
+      if (sshHostRsaKeyFingerprint != null)
+        'SshHostRsaKeyFingerprint': sshHostRsaKeyFingerprint,
+      if (sshKeyName != null) 'SshKeyName': sshKeyName,
+      if (stackId != null) 'StackId': stackId,
+      if (status != null) 'Status': status,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (tenancy != null) 'Tenancy': tenancy,
+      if (virtualizationType != null)
+        'VirtualizationType': virtualizationType.toValue(),
+    };
+  }
 }
 
 /// Contains a description of an Amazon EC2 instance from the Amazon EC2
@@ -7787,6 +8263,13 @@ class InstanceIdentity {
     this.document,
     this.signature,
   });
+  factory InstanceIdentity.fromJson(Map<String, dynamic> json) {
+    return InstanceIdentity(
+      document: json['Document'] as String?,
+      signature: json['Signature'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final document = this.document;
     final signature = this.signature;
@@ -7904,6 +8387,51 @@ class InstancesCount {
       terminating: json['Terminating'] as int?,
       unassigning: json['Unassigning'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assigning = this.assigning;
+    final booting = this.booting;
+    final connectionLost = this.connectionLost;
+    final deregistering = this.deregistering;
+    final online = this.online;
+    final pending = this.pending;
+    final rebooting = this.rebooting;
+    final registered = this.registered;
+    final registering = this.registering;
+    final requested = this.requested;
+    final runningSetup = this.runningSetup;
+    final setupFailed = this.setupFailed;
+    final shuttingDown = this.shuttingDown;
+    final startFailed = this.startFailed;
+    final stopFailed = this.stopFailed;
+    final stopped = this.stopped;
+    final stopping = this.stopping;
+    final terminated = this.terminated;
+    final terminating = this.terminating;
+    final unassigning = this.unassigning;
+    return {
+      if (assigning != null) 'Assigning': assigning,
+      if (booting != null) 'Booting': booting,
+      if (connectionLost != null) 'ConnectionLost': connectionLost,
+      if (deregistering != null) 'Deregistering': deregistering,
+      if (online != null) 'Online': online,
+      if (pending != null) 'Pending': pending,
+      if (rebooting != null) 'Rebooting': rebooting,
+      if (registered != null) 'Registered': registered,
+      if (registering != null) 'Registering': registering,
+      if (requested != null) 'Requested': requested,
+      if (runningSetup != null) 'RunningSetup': runningSetup,
+      if (setupFailed != null) 'SetupFailed': setupFailed,
+      if (shuttingDown != null) 'ShuttingDown': shuttingDown,
+      if (startFailed != null) 'StartFailed': startFailed,
+      if (stopFailed != null) 'StopFailed': stopFailed,
+      if (stopped != null) 'Stopped': stopped,
+      if (stopping != null) 'Stopping': stopping,
+      if (terminated != null) 'Terminated': terminated,
+      if (terminating != null) 'Terminating': terminating,
+      if (unassigning != null) 'Unassigning': unassigning,
+    };
   }
 }
 
@@ -8094,6 +8622,68 @@ class Layer {
           .map((e) => VolumeConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final autoAssignElasticIps = this.autoAssignElasticIps;
+    final autoAssignPublicIps = this.autoAssignPublicIps;
+    final cloudWatchLogsConfiguration = this.cloudWatchLogsConfiguration;
+    final createdAt = this.createdAt;
+    final customInstanceProfileArn = this.customInstanceProfileArn;
+    final customJson = this.customJson;
+    final customRecipes = this.customRecipes;
+    final customSecurityGroupIds = this.customSecurityGroupIds;
+    final defaultRecipes = this.defaultRecipes;
+    final defaultSecurityGroupNames = this.defaultSecurityGroupNames;
+    final enableAutoHealing = this.enableAutoHealing;
+    final installUpdatesOnBoot = this.installUpdatesOnBoot;
+    final layerId = this.layerId;
+    final lifecycleEventConfiguration = this.lifecycleEventConfiguration;
+    final name = this.name;
+    final packages = this.packages;
+    final shortname = this.shortname;
+    final stackId = this.stackId;
+    final type = this.type;
+    final useEbsOptimizedInstances = this.useEbsOptimizedInstances;
+    final volumeConfigurations = this.volumeConfigurations;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attributes != null)
+        'Attributes': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (autoAssignElasticIps != null)
+        'AutoAssignElasticIps': autoAssignElasticIps,
+      if (autoAssignPublicIps != null)
+        'AutoAssignPublicIps': autoAssignPublicIps,
+      if (cloudWatchLogsConfiguration != null)
+        'CloudWatchLogsConfiguration': cloudWatchLogsConfiguration,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (customInstanceProfileArn != null)
+        'CustomInstanceProfileArn': customInstanceProfileArn,
+      if (customJson != null) 'CustomJson': customJson,
+      if (customRecipes != null) 'CustomRecipes': customRecipes,
+      if (customSecurityGroupIds != null)
+        'CustomSecurityGroupIds': customSecurityGroupIds,
+      if (defaultRecipes != null) 'DefaultRecipes': defaultRecipes,
+      if (defaultSecurityGroupNames != null)
+        'DefaultSecurityGroupNames': defaultSecurityGroupNames,
+      if (enableAutoHealing != null) 'EnableAutoHealing': enableAutoHealing,
+      if (installUpdatesOnBoot != null)
+        'InstallUpdatesOnBoot': installUpdatesOnBoot,
+      if (layerId != null) 'LayerId': layerId,
+      if (lifecycleEventConfiguration != null)
+        'LifecycleEventConfiguration': lifecycleEventConfiguration,
+      if (name != null) 'Name': name,
+      if (packages != null) 'Packages': packages,
+      if (shortname != null) 'Shortname': shortname,
+      if (stackId != null) 'StackId': stackId,
+      if (type != null) 'Type': type.toValue(),
+      if (useEbsOptimizedInstances != null)
+        'UseEbsOptimizedInstances': useEbsOptimizedInstances,
+      if (volumeConfigurations != null)
+        'VolumeConfigurations': volumeConfigurations,
+    };
   }
 }
 
@@ -8368,6 +8958,15 @@ class ListTagsResult {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a layer's load-based auto scaling configuration.
@@ -8408,6 +9007,19 @@ class LoadBasedAutoScalingConfiguration {
               json['UpScaling'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final downScaling = this.downScaling;
+    final enable = this.enable;
+    final layerId = this.layerId;
+    final upScaling = this.upScaling;
+    return {
+      if (downScaling != null) 'DownScaling': downScaling,
+      if (enable != null) 'Enable': enable,
+      if (layerId != null) 'LayerId': layerId,
+      if (upScaling != null) 'UpScaling': upScaling,
+    };
   }
 }
 
@@ -8462,6 +9074,26 @@ class OperatingSystem {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationManagers = this.configurationManagers;
+    final id = this.id;
+    final name = this.name;
+    final reportedName = this.reportedName;
+    final reportedVersion = this.reportedVersion;
+    final supported = this.supported;
+    final type = this.type;
+    return {
+      if (configurationManagers != null)
+        'ConfigurationManagers': configurationManagers,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (reportedName != null) 'ReportedName': reportedName,
+      if (reportedVersion != null) 'ReportedVersion': reportedVersion,
+      if (supported != null) 'Supported': supported,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// A block that contains information about the configuration manager (Chef) and
@@ -8485,6 +9117,15 @@ class OperatingSystemConfigurationManager {
       name: json['Name'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -8544,6 +9185,21 @@ class Permission {
       level: json['Level'] as String?,
       stackId: json['StackId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowSsh = this.allowSsh;
+    final allowSudo = this.allowSudo;
+    final iamUserArn = this.iamUserArn;
+    final level = this.level;
+    final stackId = this.stackId;
+    return {
+      if (allowSsh != null) 'AllowSsh': allowSsh,
+      if (allowSudo != null) 'AllowSudo': allowSudo,
+      if (iamUserArn != null) 'IamUserArn': iamUserArn,
+      if (level != null) 'Level': level,
+      if (stackId != null) 'StackId': stackId,
+    };
   }
 }
 
@@ -8623,6 +9279,37 @@ class RaidArray {
       volumeType: json['VolumeType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final createdAt = this.createdAt;
+    final device = this.device;
+    final instanceId = this.instanceId;
+    final iops = this.iops;
+    final mountPoint = this.mountPoint;
+    final name = this.name;
+    final numberOfDisks = this.numberOfDisks;
+    final raidArrayId = this.raidArrayId;
+    final raidLevel = this.raidLevel;
+    final size = this.size;
+    final stackId = this.stackId;
+    final volumeType = this.volumeType;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (device != null) 'Device': device,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (iops != null) 'Iops': iops,
+      if (mountPoint != null) 'MountPoint': mountPoint,
+      if (name != null) 'Name': name,
+      if (numberOfDisks != null) 'NumberOfDisks': numberOfDisks,
+      if (raidArrayId != null) 'RaidArrayId': raidArrayId,
+      if (raidLevel != null) 'RaidLevel': raidLevel,
+      if (size != null) 'Size': size,
+      if (stackId != null) 'StackId': stackId,
+      if (volumeType != null) 'VolumeType': volumeType,
+    };
+  }
 }
 
 /// Describes an Amazon RDS instance.
@@ -8681,6 +9368,30 @@ class RdsDbInstance {
       region: json['Region'] as String?,
       stackId: json['StackId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final dbInstanceIdentifier = this.dbInstanceIdentifier;
+    final dbPassword = this.dbPassword;
+    final dbUser = this.dbUser;
+    final engine = this.engine;
+    final missingOnRds = this.missingOnRds;
+    final rdsDbInstanceArn = this.rdsDbInstanceArn;
+    final region = this.region;
+    final stackId = this.stackId;
+    return {
+      if (address != null) 'Address': address,
+      if (dbInstanceIdentifier != null)
+        'DbInstanceIdentifier': dbInstanceIdentifier,
+      if (dbPassword != null) 'DbPassword': dbPassword,
+      if (dbUser != null) 'DbUser': dbUser,
+      if (engine != null) 'Engine': engine,
+      if (missingOnRds != null) 'MissingOnRds': missingOnRds,
+      if (rdsDbInstanceArn != null) 'RdsDbInstanceArn': rdsDbInstanceArn,
+      if (region != null) 'Region': region,
+      if (stackId != null) 'StackId': stackId,
+    };
   }
 }
 
@@ -8778,6 +9489,13 @@ class RegisterEcsClusterResult {
       ecsClusterArn: json['EcsClusterArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ecsClusterArn = this.ecsClusterArn;
+    return {
+      if (ecsClusterArn != null) 'EcsClusterArn': ecsClusterArn,
+    };
+  }
 }
 
 /// Contains the response to a <code>RegisterElasticIp</code> request.
@@ -8792,6 +9510,13 @@ class RegisterElasticIpResult {
     return RegisterElasticIpResult(
       elasticIp: json['ElasticIp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final elasticIp = this.elasticIp;
+    return {
+      if (elasticIp != null) 'ElasticIp': elasticIp,
+    };
   }
 }
 
@@ -8808,6 +9533,13 @@ class RegisterInstanceResult {
       instanceId: json['InstanceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    return {
+      if (instanceId != null) 'InstanceId': instanceId,
+    };
+  }
 }
 
 /// Contains the response to a <code>RegisterVolume</code> request.
@@ -8822,6 +9554,13 @@ class RegisterVolumeResult {
     return RegisterVolumeResult(
       volumeId: json['VolumeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeId = this.volumeId;
+    return {
+      if (volumeId != null) 'VolumeId': volumeId,
+    };
   }
 }
 
@@ -8847,6 +9586,17 @@ class ReportedOs {
       name: json['Name'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final family = this.family;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (family != null) 'Family': family,
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -8906,6 +9656,19 @@ class SelfUserProfile {
       sshUsername: json['SshUsername'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iamUserArn = this.iamUserArn;
+    final name = this.name;
+    final sshPublicKey = this.sshPublicKey;
+    final sshUsername = this.sshUsername;
+    return {
+      if (iamUserArn != null) 'IamUserArn': iamUserArn,
+      if (name != null) 'Name': name,
+      if (sshPublicKey != null) 'SshPublicKey': sshPublicKey,
+      if (sshUsername != null) 'SshUsername': sshUsername,
+    };
+  }
 }
 
 /// Describes an AWS OpsWorks Stacks service error.
@@ -8945,6 +9708,23 @@ class ServiceError {
       stackId: json['StackId'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final instanceId = this.instanceId;
+    final message = this.message;
+    final serviceErrorId = this.serviceErrorId;
+    final stackId = this.stackId;
+    final type = this.type;
+    return {
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (message != null) 'Message': message,
+      if (serviceErrorId != null) 'ServiceErrorId': serviceErrorId,
+      if (stackId != null) 'StackId': stackId,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -9316,6 +10096,62 @@ class Stack {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentVersion = this.agentVersion;
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final chefConfiguration = this.chefConfiguration;
+    final configurationManager = this.configurationManager;
+    final createdAt = this.createdAt;
+    final customCookbooksSource = this.customCookbooksSource;
+    final customJson = this.customJson;
+    final defaultAvailabilityZone = this.defaultAvailabilityZone;
+    final defaultInstanceProfileArn = this.defaultInstanceProfileArn;
+    final defaultOs = this.defaultOs;
+    final defaultRootDeviceType = this.defaultRootDeviceType;
+    final defaultSshKeyName = this.defaultSshKeyName;
+    final defaultSubnetId = this.defaultSubnetId;
+    final hostnameTheme = this.hostnameTheme;
+    final name = this.name;
+    final region = this.region;
+    final serviceRoleArn = this.serviceRoleArn;
+    final stackId = this.stackId;
+    final useCustomCookbooks = this.useCustomCookbooks;
+    final useOpsworksSecurityGroups = this.useOpsworksSecurityGroups;
+    final vpcId = this.vpcId;
+    return {
+      if (agentVersion != null) 'AgentVersion': agentVersion,
+      if (arn != null) 'Arn': arn,
+      if (attributes != null)
+        'Attributes': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (chefConfiguration != null) 'ChefConfiguration': chefConfiguration,
+      if (configurationManager != null)
+        'ConfigurationManager': configurationManager,
+      if (createdAt != null) 'CreatedAt': createdAt,
+      if (customCookbooksSource != null)
+        'CustomCookbooksSource': customCookbooksSource,
+      if (customJson != null) 'CustomJson': customJson,
+      if (defaultAvailabilityZone != null)
+        'DefaultAvailabilityZone': defaultAvailabilityZone,
+      if (defaultInstanceProfileArn != null)
+        'DefaultInstanceProfileArn': defaultInstanceProfileArn,
+      if (defaultOs != null) 'DefaultOs': defaultOs,
+      if (defaultRootDeviceType != null)
+        'DefaultRootDeviceType': defaultRootDeviceType.toValue(),
+      if (defaultSshKeyName != null) 'DefaultSshKeyName': defaultSshKeyName,
+      if (defaultSubnetId != null) 'DefaultSubnetId': defaultSubnetId,
+      if (hostnameTheme != null) 'HostnameTheme': hostnameTheme,
+      if (name != null) 'Name': name,
+      if (region != null) 'Region': region,
+      if (serviceRoleArn != null) 'ServiceRoleArn': serviceRoleArn,
+      if (stackId != null) 'StackId': stackId,
+      if (useCustomCookbooks != null) 'UseCustomCookbooks': useCustomCookbooks,
+      if (useOpsworksSecurityGroups != null)
+        'UseOpsworksSecurityGroups': useOpsworksSecurityGroups,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum StackAttributesKeys {
@@ -9414,6 +10250,23 @@ class StackSummary {
       stackId: json['StackId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appsCount = this.appsCount;
+    final arn = this.arn;
+    final instancesCount = this.instancesCount;
+    final layersCount = this.layersCount;
+    final name = this.name;
+    final stackId = this.stackId;
+    return {
+      if (appsCount != null) 'AppsCount': appsCount,
+      if (arn != null) 'Arn': arn,
+      if (instancesCount != null) 'InstancesCount': instancesCount,
+      if (layersCount != null) 'LayersCount': layersCount,
+      if (name != null) 'Name': name,
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 /// Contains the data needed by RDP clients such as the Microsoft Remote Desktop
@@ -9448,6 +10301,19 @@ class TemporaryCredential {
       validForInMinutes: json['ValidForInMinutes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final password = this.password;
+    final username = this.username;
+    final validForInMinutes = this.validForInMinutes;
+    return {
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (password != null) 'Password': password,
+      if (username != null) 'Username': username,
+      if (validForInMinutes != null) 'ValidForInMinutes': validForInMinutes,
+    };
+  }
 }
 
 /// Describes an instance's time-based auto scaling configuration.
@@ -9471,6 +10337,16 @@ class TimeBasedAutoScalingConfiguration {
           : null,
       instanceId: json['InstanceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingSchedule = this.autoScalingSchedule;
+    final instanceId = this.instanceId;
+    return {
+      if (autoScalingSchedule != null)
+        'AutoScalingSchedule': autoScalingSchedule,
+      if (instanceId != null) 'InstanceId': instanceId,
+    };
   }
 }
 
@@ -9509,6 +10385,22 @@ class UserProfile {
       sshPublicKey: json['SshPublicKey'] as String?,
       sshUsername: json['SshUsername'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowSelfManagement = this.allowSelfManagement;
+    final iamUserArn = this.iamUserArn;
+    final name = this.name;
+    final sshPublicKey = this.sshPublicKey;
+    final sshUsername = this.sshUsername;
+    return {
+      if (allowSelfManagement != null)
+        'AllowSelfManagement': allowSelfManagement,
+      if (iamUserArn != null) 'IamUserArn': iamUserArn,
+      if (name != null) 'Name': name,
+      if (sshPublicKey != null) 'SshPublicKey': sshPublicKey,
+      if (sshUsername != null) 'SshUsername': sshUsername,
+    };
   }
 }
 
@@ -9651,6 +10543,39 @@ class Volume {
       volumeId: json['VolumeId'] as String?,
       volumeType: json['VolumeType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final device = this.device;
+    final ec2VolumeId = this.ec2VolumeId;
+    final encrypted = this.encrypted;
+    final instanceId = this.instanceId;
+    final iops = this.iops;
+    final mountPoint = this.mountPoint;
+    final name = this.name;
+    final raidArrayId = this.raidArrayId;
+    final region = this.region;
+    final size = this.size;
+    final status = this.status;
+    final volumeId = this.volumeId;
+    final volumeType = this.volumeType;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (device != null) 'Device': device,
+      if (ec2VolumeId != null) 'Ec2VolumeId': ec2VolumeId,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (iops != null) 'Iops': iops,
+      if (mountPoint != null) 'MountPoint': mountPoint,
+      if (name != null) 'Name': name,
+      if (raidArrayId != null) 'RaidArrayId': raidArrayId,
+      if (region != null) 'Region': region,
+      if (size != null) 'Size': size,
+      if (status != null) 'Status': status,
+      if (volumeId != null) 'VolumeId': volumeId,
+      if (volumeType != null) 'VolumeType': volumeType,
+    };
   }
 }
 

@@ -262,6 +262,17 @@ class AccountInfo {
       emailAddress: json['emailAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final accountName = this.accountName;
+    final emailAddress = this.emailAddress;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (accountName != null) 'accountName': accountName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+    };
+  }
 }
 
 class GetRoleCredentialsResponse {
@@ -278,6 +289,13 @@ class GetRoleCredentialsResponse {
               json['roleCredentials'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleCredentials = this.roleCredentials;
+    return {
+      if (roleCredentials != null) 'roleCredentials': roleCredentials,
+    };
   }
 }
 
@@ -302,6 +320,15 @@ class ListAccountRolesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final roleList = this.roleList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (roleList != null) 'roleList': roleList,
+    };
+  }
 }
 
 class ListAccountsResponse {
@@ -324,6 +351,15 @@ class ListAccountsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountList = this.accountList;
+    final nextToken = this.nextToken;
+    return {
+      if (accountList != null) 'accountList': accountList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -366,6 +402,19 @@ class RoleCredentials {
       sessionToken: json['sessionToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'accessKeyId': accessKeyId,
+      if (expiration != null) 'expiration': expiration,
+      if (secretAccessKey != null) 'secretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'sessionToken': sessionToken,
+    };
+  }
 }
 
 /// Provides information about the role that is assigned to the user.
@@ -385,6 +434,15 @@ class RoleInfo {
       accountId: json['accountId'] as String?,
       roleName: json['roleName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final roleName = this.roleName;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (roleName != null) 'roleName': roleName,
+    };
   }
 }
 

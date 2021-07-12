@@ -674,6 +674,24 @@ class Connection {
       providerType: (json['ProviderType'] as String?)?.toProviderType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionName = this.connectionName;
+    final connectionStatus = this.connectionStatus;
+    final hostArn = this.hostArn;
+    final ownerAccountId = this.ownerAccountId;
+    final providerType = this.providerType;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionName != null) 'ConnectionName': connectionName,
+      if (connectionStatus != null)
+        'ConnectionStatus': connectionStatus.toValue(),
+      if (hostArn != null) 'HostArn': hostArn,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+    };
+  }
 }
 
 enum ConnectionStatus {
@@ -734,6 +752,15 @@ class CreateConnectionOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final tags = this.tags;
+    return {
+      'ConnectionArn': connectionArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateHostOutput {
@@ -754,6 +781,15 @@ class CreateHostOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostArn = this.hostArn;
+    final tags = this.tags;
+    return {
+      if (hostArn != null) 'HostArn': hostArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DeleteConnectionOutput {
@@ -761,12 +797,20 @@ class DeleteConnectionOutput {
   factory DeleteConnectionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteConnectionOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteHostOutput {
   DeleteHostOutput();
   factory DeleteHostOutput.fromJson(Map<String, dynamic> _) {
     return DeleteHostOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -783,6 +827,13 @@ class GetConnectionOutput {
           ? Connection.fromJson(json['Connection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
   }
 }
 
@@ -820,6 +871,21 @@ class GetHostOutput {
               json['VpcConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final providerEndpoint = this.providerEndpoint;
+    final providerType = this.providerType;
+    final status = this.status;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      if (name != null) 'Name': name,
+      if (providerEndpoint != null) 'ProviderEndpoint': providerEndpoint,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (status != null) 'Status': status,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
   }
 }
 
@@ -879,6 +945,25 @@ class Host {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostArn = this.hostArn;
+    final name = this.name;
+    final providerEndpoint = this.providerEndpoint;
+    final providerType = this.providerType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      if (hostArn != null) 'HostArn': hostArn,
+      if (name != null) 'Name': name,
+      if (providerEndpoint != null) 'ProviderEndpoint': providerEndpoint,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (status != null) 'Status': status,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
+  }
 }
 
 class ListConnectionsOutput {
@@ -903,6 +988,15 @@ class ListConnectionsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final nextToken = this.nextToken;
+    return {
+      if (connections != null) 'Connections': connections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -929,6 +1023,15 @@ class ListHostsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hosts = this.hosts;
+    final nextToken = this.nextToken;
+    return {
+      if (hosts != null) 'Hosts': hosts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -945,6 +1048,13 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1017,6 +1127,10 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceOutput {
@@ -1024,12 +1138,20 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateHostOutput {
   UpdateHostOutput();
   factory UpdateHostOutput.fromJson(Map<String, dynamic> _) {
     return UpdateHostOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -125,12 +125,28 @@ class GetRawMessageContentResponse {
   GetRawMessageContentResponse({
     required this.messageContent,
   });
+  factory GetRawMessageContentResponse.fromJson(Map<String, dynamic> json) {
+    return GetRawMessageContentResponse(
+      messageContent: _s.decodeUint8List(json['messageContent']! as String),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageContent = this.messageContent;
+    return {
+      'messageContent': base64Encode(messageContent),
+    };
+  }
 }
 
 class PutRawMessageContentResponse {
   PutRawMessageContentResponse();
   factory PutRawMessageContentResponse.fromJson(Map<String, dynamic> _) {
     return PutRawMessageContentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -176,6 +192,13 @@ class RawMessageContent {
   RawMessageContent({
     required this.s3Reference,
   });
+  factory RawMessageContent.fromJson(Map<String, dynamic> json) {
+    return RawMessageContent(
+      s3Reference:
+          S3Reference.fromJson(json['s3Reference'] as Map<String, dynamic>),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final s3Reference = this.s3Reference;
     return {
@@ -207,6 +230,14 @@ class S3Reference {
     required this.key,
     this.objectVersion,
   });
+  factory S3Reference.fromJson(Map<String, dynamic> json) {
+    return S3Reference(
+      bucket: json['bucket'] as String,
+      key: json['key'] as String,
+      objectVersion: json['objectVersion'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final key = this.key;

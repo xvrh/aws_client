@@ -3221,6 +3221,28 @@ class ApplicationDescription {
     this.resourceLifecycleConfig,
     this.versions,
   });
+  factory ApplicationDescription.fromJson(Map<String, dynamic> json) {
+    return ApplicationDescription(
+      applicationArn: json['ApplicationArn'] as String?,
+      applicationName: json['ApplicationName'] as String?,
+      configurationTemplates: (json['ConfigurationTemplates'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateUpdated: timeStampFromJson(json['DateUpdated']),
+      description: json['Description'] as String?,
+      resourceLifecycleConfig: json['ResourceLifecycleConfig'] != null
+          ? ApplicationResourceLifecycleConfig.fromJson(
+              json['ResourceLifecycleConfig'] as Map<String, dynamic>)
+          : null,
+      versions: (json['Versions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ApplicationDescription.fromXml(_s.XmlElement elem) {
     return ApplicationDescription(
       applicationArn: _s.extractXmlStringValue(elem, 'ApplicationArn'),
@@ -3239,6 +3261,29 @@ class ApplicationDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationName = this.applicationName;
+    final configurationTemplates = this.configurationTemplates;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final resourceLifecycleConfig = this.resourceLifecycleConfig;
+    final versions = this.versions;
+    return {
+      if (applicationArn != null) 'ApplicationArn': applicationArn,
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (configurationTemplates != null)
+        'ConfigurationTemplates': configurationTemplates,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': unixTimestampToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (resourceLifecycleConfig != null)
+        'ResourceLifecycleConfig': resourceLifecycleConfig,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 /// Result message containing a single description of an application.
@@ -3249,12 +3294,28 @@ class ApplicationDescriptionMessage {
   ApplicationDescriptionMessage({
     this.application,
   });
+  factory ApplicationDescriptionMessage.fromJson(Map<String, dynamic> json) {
+    return ApplicationDescriptionMessage(
+      application: json['Application'] != null
+          ? ApplicationDescription.fromJson(
+              json['Application'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationDescriptionMessage.fromXml(_s.XmlElement elem) {
     return ApplicationDescriptionMessage(
       application: _s
           .extractXmlChild(elem, 'Application')
           ?.let((e) => ApplicationDescription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'Application': application,
+    };
   }
 }
 
@@ -3266,6 +3327,16 @@ class ApplicationDescriptionsMessage {
   ApplicationDescriptionsMessage({
     this.applications,
   });
+  factory ApplicationDescriptionsMessage.fromJson(Map<String, dynamic> json) {
+    return ApplicationDescriptionsMessage(
+      applications: (json['Applications'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => ApplicationDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ApplicationDescriptionsMessage.fromXml(_s.XmlElement elem) {
     return ApplicationDescriptionsMessage(
       applications: _s.extractXmlChild(elem, 'Applications')?.let((elem) => elem
@@ -3273,6 +3344,13 @@ class ApplicationDescriptionsMessage {
           .map((c) => ApplicationDescription.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    return {
+      if (applications != null) 'Applications': applications,
+    };
   }
 }
 
@@ -3302,6 +3380,19 @@ class ApplicationMetrics {
     this.requestCount,
     this.statusCodes,
   });
+  factory ApplicationMetrics.fromJson(Map<String, dynamic> json) {
+    return ApplicationMetrics(
+      duration: json['Duration'] as int?,
+      latency: json['Latency'] != null
+          ? Latency.fromJson(json['Latency'] as Map<String, dynamic>)
+          : null,
+      requestCount: json['RequestCount'] as int?,
+      statusCodes: json['StatusCodes'] != null
+          ? StatusCodes.fromJson(json['StatusCodes'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationMetrics.fromXml(_s.XmlElement elem) {
     return ApplicationMetrics(
       duration: _s.extractXmlIntValue(elem, 'Duration'),
@@ -3312,6 +3403,19 @@ class ApplicationMetrics {
           .extractXmlChild(elem, 'StatusCodes')
           ?.let((e) => StatusCodes.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final duration = this.duration;
+    final latency = this.latency;
+    final requestCount = this.requestCount;
+    final statusCodes = this.statusCodes;
+    return {
+      if (duration != null) 'Duration': duration,
+      if (latency != null) 'Latency': latency,
+      if (requestCount != null) 'RequestCount': requestCount,
+      if (statusCodes != null) 'StatusCodes': statusCodes,
+    };
   }
 }
 
@@ -3341,6 +3445,17 @@ class ApplicationResourceLifecycleConfig {
     this.serviceRole,
     this.versionLifecycleConfig,
   });
+  factory ApplicationResourceLifecycleConfig.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationResourceLifecycleConfig(
+      serviceRole: json['ServiceRole'] as String?,
+      versionLifecycleConfig: json['VersionLifecycleConfig'] != null
+          ? ApplicationVersionLifecycleConfig.fromJson(
+              json['VersionLifecycleConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationResourceLifecycleConfig.fromXml(_s.XmlElement elem) {
     return ApplicationResourceLifecycleConfig(
       serviceRole: _s.extractXmlStringValue(elem, 'ServiceRole'),
@@ -3372,6 +3487,17 @@ class ApplicationResourceLifecycleDescriptionMessage {
     this.applicationName,
     this.resourceLifecycleConfig,
   });
+  factory ApplicationResourceLifecycleDescriptionMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationResourceLifecycleDescriptionMessage(
+      applicationName: json['ApplicationName'] as String?,
+      resourceLifecycleConfig: json['ResourceLifecycleConfig'] != null
+          ? ApplicationResourceLifecycleConfig.fromJson(
+              json['ResourceLifecycleConfig'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationResourceLifecycleDescriptionMessage.fromXml(
       _s.XmlElement elem) {
     return ApplicationResourceLifecycleDescriptionMessage(
@@ -3380,6 +3506,16 @@ class ApplicationResourceLifecycleDescriptionMessage {
           .extractXmlChild(elem, 'ResourceLifecycleConfig')
           ?.let((e) => ApplicationResourceLifecycleConfig.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final resourceLifecycleConfig = this.resourceLifecycleConfig;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (resourceLifecycleConfig != null)
+        'ResourceLifecycleConfig': resourceLifecycleConfig,
+    };
   }
 }
 
@@ -3457,6 +3593,26 @@ class ApplicationVersionDescription {
     this.status,
     this.versionLabel,
   });
+  factory ApplicationVersionDescription.fromJson(Map<String, dynamic> json) {
+    return ApplicationVersionDescription(
+      applicationName: json['ApplicationName'] as String?,
+      applicationVersionArn: json['ApplicationVersionArn'] as String?,
+      buildArn: json['BuildArn'] as String?,
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateUpdated: timeStampFromJson(json['DateUpdated']),
+      description: json['Description'] as String?,
+      sourceBuildInformation: json['SourceBuildInformation'] != null
+          ? SourceBuildInformation.fromJson(
+              json['SourceBuildInformation'] as Map<String, dynamic>)
+          : null,
+      sourceBundle: json['SourceBundle'] != null
+          ? S3Location.fromJson(json['SourceBundle'] as Map<String, dynamic>)
+          : null,
+      status: (json['Status'] as String?)?.toApplicationVersionStatus(),
+      versionLabel: json['VersionLabel'] as String?,
+    );
+  }
+
   factory ApplicationVersionDescription.fromXml(_s.XmlElement elem) {
     return ApplicationVersionDescription(
       applicationName: _s.extractXmlStringValue(elem, 'ApplicationName'),
@@ -3478,6 +3634,33 @@ class ApplicationVersionDescription {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final applicationVersionArn = this.applicationVersionArn;
+    final buildArn = this.buildArn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final sourceBuildInformation = this.sourceBuildInformation;
+    final sourceBundle = this.sourceBundle;
+    final status = this.status;
+    final versionLabel = this.versionLabel;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (applicationVersionArn != null)
+        'ApplicationVersionArn': applicationVersionArn,
+      if (buildArn != null) 'BuildArn': buildArn,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': unixTimestampToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (sourceBuildInformation != null)
+        'SourceBuildInformation': sourceBuildInformation,
+      if (sourceBundle != null) 'SourceBundle': sourceBundle,
+      if (status != null) 'Status': status.toValue(),
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 /// Result message wrapping a single description of an application version.
@@ -3488,12 +3671,29 @@ class ApplicationVersionDescriptionMessage {
   ApplicationVersionDescriptionMessage({
     this.applicationVersion,
   });
+  factory ApplicationVersionDescriptionMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationVersionDescriptionMessage(
+      applicationVersion: json['ApplicationVersion'] != null
+          ? ApplicationVersionDescription.fromJson(
+              json['ApplicationVersion'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationVersionDescriptionMessage.fromXml(_s.XmlElement elem) {
     return ApplicationVersionDescriptionMessage(
       applicationVersion: _s
           .extractXmlChild(elem, 'ApplicationVersion')
           ?.let((e) => ApplicationVersionDescription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    return {
+      if (applicationVersion != null) 'ApplicationVersion': applicationVersion,
+    };
   }
 }
 
@@ -3511,6 +3711,18 @@ class ApplicationVersionDescriptionsMessage {
     this.applicationVersions,
     this.nextToken,
   });
+  factory ApplicationVersionDescriptionsMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationVersionDescriptionsMessage(
+      applicationVersions: (json['ApplicationVersions'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ApplicationVersionDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ApplicationVersionDescriptionsMessage.fromXml(_s.XmlElement elem) {
     return ApplicationVersionDescriptionsMessage(
       applicationVersions: _s.extractXmlChild(elem, 'ApplicationVersions')?.let(
@@ -3520,6 +3732,16 @@ class ApplicationVersionDescriptionsMessage {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersions = this.applicationVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationVersions != null)
+        'ApplicationVersions': applicationVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3543,6 +3765,18 @@ class ApplicationVersionLifecycleConfig {
     this.maxAgeRule,
     this.maxCountRule,
   });
+  factory ApplicationVersionLifecycleConfig.fromJson(
+      Map<String, dynamic> json) {
+    return ApplicationVersionLifecycleConfig(
+      maxAgeRule: json['MaxAgeRule'] != null
+          ? MaxAgeRule.fromJson(json['MaxAgeRule'] as Map<String, dynamic>)
+          : null,
+      maxCountRule: json['MaxCountRule'] != null
+          ? MaxCountRule.fromJson(json['MaxCountRule'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ApplicationVersionLifecycleConfig.fromXml(_s.XmlElement elem) {
     return ApplicationVersionLifecycleConfig(
       maxAgeRule: _s
@@ -3627,6 +3861,16 @@ class ApplyEnvironmentManagedActionResult {
     this.actionType,
     this.status,
   });
+  factory ApplyEnvironmentManagedActionResult.fromJson(
+      Map<String, dynamic> json) {
+    return ApplyEnvironmentManagedActionResult(
+      actionDescription: json['ActionDescription'] as String?,
+      actionId: json['ActionId'] as String?,
+      actionType: (json['ActionType'] as String?)?.toActionType(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory ApplyEnvironmentManagedActionResult.fromXml(_s.XmlElement elem) {
     return ApplyEnvironmentManagedActionResult(
       actionDescription: _s.extractXmlStringValue(elem, 'ActionDescription'),
@@ -3634,6 +3878,19 @@ class ApplyEnvironmentManagedActionResult {
       actionType: _s.extractXmlStringValue(elem, 'ActionType')?.toActionType(),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final status = this.status;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3645,10 +3902,23 @@ class AutoScalingGroup {
   AutoScalingGroup({
     this.name,
   });
+  factory AutoScalingGroup.fromJson(Map<String, dynamic> json) {
+    return AutoScalingGroup(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory AutoScalingGroup.fromXml(_s.XmlElement elem) {
     return AutoScalingGroup(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3700,6 +3970,16 @@ class BuildConfiguration {
     this.computeType,
     this.timeoutInMinutes,
   });
+  factory BuildConfiguration.fromJson(Map<String, dynamic> json) {
+    return BuildConfiguration(
+      codeBuildServiceRole: json['CodeBuildServiceRole'] as String,
+      image: json['Image'] as String,
+      artifactName: json['ArtifactName'] as String?,
+      computeType: (json['ComputeType'] as String?)?.toComputeType(),
+      timeoutInMinutes: json['TimeoutInMinutes'] as int?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final codeBuildServiceRole = this.codeBuildServiceRole;
     final image = this.image;
@@ -3724,10 +4004,23 @@ class Builder {
   Builder({
     this.arn,
   });
+  factory Builder.fromJson(Map<String, dynamic> json) {
+    return Builder(
+      arn: json['ARN'] as String?,
+    );
+  }
+
   factory Builder.fromXml(_s.XmlElement elem) {
     return Builder(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'ARN': arn,
+    };
   }
 }
 
@@ -3787,6 +4080,19 @@ class CPUUtilization {
     this.system,
     this.user,
   });
+  factory CPUUtilization.fromJson(Map<String, dynamic> json) {
+    return CPUUtilization(
+      iOWait: json['IOWait'] as double?,
+      irq: json['IRQ'] as double?,
+      idle: json['Idle'] as double?,
+      nice: json['Nice'] as double?,
+      privileged: json['Privileged'] as double?,
+      softIRQ: json['SoftIRQ'] as double?,
+      system: json['System'] as double?,
+      user: json['User'] as double?,
+    );
+  }
+
   factory CPUUtilization.fromXml(_s.XmlElement elem) {
     return CPUUtilization(
       iOWait: _s.extractXmlDoubleValue(elem, 'IOWait'),
@@ -3798,6 +4104,27 @@ class CPUUtilization {
       system: _s.extractXmlDoubleValue(elem, 'System'),
       user: _s.extractXmlDoubleValue(elem, 'User'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iOWait = this.iOWait;
+    final irq = this.irq;
+    final idle = this.idle;
+    final nice = this.nice;
+    final privileged = this.privileged;
+    final softIRQ = this.softIRQ;
+    final system = this.system;
+    final user = this.user;
+    return {
+      if (iOWait != null) 'IOWait': iOWait,
+      if (irq != null) 'IRQ': irq,
+      if (idle != null) 'Idle': idle,
+      if (nice != null) 'Nice': nice,
+      if (privileged != null) 'Privileged': privileged,
+      if (softIRQ != null) 'SoftIRQ': softIRQ,
+      if (system != null) 'System': system,
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -3823,12 +4150,30 @@ class CheckDNSAvailabilityResultMessage {
     this.available,
     this.fullyQualifiedCNAME,
   });
+  factory CheckDNSAvailabilityResultMessage.fromJson(
+      Map<String, dynamic> json) {
+    return CheckDNSAvailabilityResultMessage(
+      available: json['Available'] as bool?,
+      fullyQualifiedCNAME: json['FullyQualifiedCNAME'] as String?,
+    );
+  }
+
   factory CheckDNSAvailabilityResultMessage.fromXml(_s.XmlElement elem) {
     return CheckDNSAvailabilityResultMessage(
       available: _s.extractXmlBoolValue(elem, 'Available'),
       fullyQualifiedCNAME:
           _s.extractXmlStringValue(elem, 'FullyQualifiedCNAME'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final available = this.available;
+    final fullyQualifiedCNAME = this.fullyQualifiedCNAME;
+    return {
+      if (available != null) 'Available': available,
+      if (fullyQualifiedCNAME != null)
+        'FullyQualifiedCNAME': fullyQualifiedCNAME,
+    };
   }
 }
 
@@ -4005,6 +4350,29 @@ class ConfigurationOptionDescription {
     this.valueOptions,
     this.valueType,
   });
+  factory ConfigurationOptionDescription.fromJson(Map<String, dynamic> json) {
+    return ConfigurationOptionDescription(
+      changeSeverity: json['ChangeSeverity'] as String?,
+      defaultValue: json['DefaultValue'] as String?,
+      maxLength: json['MaxLength'] as int?,
+      maxValue: json['MaxValue'] as int?,
+      minValue: json['MinValue'] as int?,
+      name: json['Name'] as String?,
+      namespace: json['Namespace'] as String?,
+      regex: json['Regex'] != null
+          ? OptionRestrictionRegex.fromJson(
+              json['Regex'] as Map<String, dynamic>)
+          : null,
+      userDefined: json['UserDefined'] as bool?,
+      valueOptions: (json['ValueOptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      valueType:
+          (json['ValueType'] as String?)?.toConfigurationOptionValueType(),
+    );
+  }
+
   factory ConfigurationOptionDescription.fromXml(_s.XmlElement elem) {
     return ConfigurationOptionDescription(
       changeSeverity: _s.extractXmlStringValue(elem, 'ChangeSeverity'),
@@ -4025,6 +4393,33 @@ class ConfigurationOptionDescription {
           .extractXmlStringValue(elem, 'ValueType')
           ?.toConfigurationOptionValueType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeSeverity = this.changeSeverity;
+    final defaultValue = this.defaultValue;
+    final maxLength = this.maxLength;
+    final maxValue = this.maxValue;
+    final minValue = this.minValue;
+    final name = this.name;
+    final namespace = this.namespace;
+    final regex = this.regex;
+    final userDefined = this.userDefined;
+    final valueOptions = this.valueOptions;
+    final valueType = this.valueType;
+    return {
+      if (changeSeverity != null) 'ChangeSeverity': changeSeverity,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (maxLength != null) 'MaxLength': maxLength,
+      if (maxValue != null) 'MaxValue': maxValue,
+      if (minValue != null) 'MinValue': minValue,
+      if (name != null) 'Name': name,
+      if (namespace != null) 'Namespace': namespace,
+      if (regex != null) 'Regex': regex,
+      if (userDefined != null) 'UserDefined': userDefined,
+      if (valueOptions != null) 'ValueOptions': valueOptions,
+      if (valueType != null) 'ValueType': valueType.toValue(),
+    };
   }
 }
 
@@ -4053,6 +4448,15 @@ class ConfigurationOptionSetting {
     this.resourceName,
     this.value,
   });
+  factory ConfigurationOptionSetting.fromJson(Map<String, dynamic> json) {
+    return ConfigurationOptionSetting(
+      namespace: json['Namespace'] as String?,
+      optionName: json['OptionName'] as String?,
+      resourceName: json['ResourceName'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory ConfigurationOptionSetting.fromXml(_s.XmlElement elem) {
     return ConfigurationOptionSetting(
       namespace: _s.extractXmlStringValue(elem, 'Namespace'),
@@ -4120,6 +4524,18 @@ class ConfigurationOptionsDescription {
     this.platformArn,
     this.solutionStackName,
   });
+  factory ConfigurationOptionsDescription.fromJson(Map<String, dynamic> json) {
+    return ConfigurationOptionsDescription(
+      options: (json['Options'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConfigurationOptionDescription.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      platformArn: json['PlatformArn'] as String?,
+      solutionStackName: json['SolutionStackName'] as String?,
+    );
+  }
+
   factory ConfigurationOptionsDescription.fromXml(_s.XmlElement elem) {
     return ConfigurationOptionsDescription(
       options: _s.extractXmlChild(elem, 'Options')?.let((elem) => elem
@@ -4129,6 +4545,17 @@ class ConfigurationOptionsDescription {
       platformArn: _s.extractXmlStringValue(elem, 'PlatformArn'),
       solutionStackName: _s.extractXmlStringValue(elem, 'SolutionStackName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final platformArn = this.platformArn;
+    final solutionStackName = this.solutionStackName;
+    return {
+      if (options != null) 'Options': options,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+    };
   }
 }
 
@@ -4200,6 +4627,26 @@ class ConfigurationSettingsDescription {
     this.solutionStackName,
     this.templateName,
   });
+  factory ConfigurationSettingsDescription.fromJson(Map<String, dynamic> json) {
+    return ConfigurationSettingsDescription(
+      applicationName: json['ApplicationName'] as String?,
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateUpdated: timeStampFromJson(json['DateUpdated']),
+      deploymentStatus: (json['DeploymentStatus'] as String?)
+          ?.toConfigurationDeploymentStatus(),
+      description: json['Description'] as String?,
+      environmentName: json['EnvironmentName'] as String?,
+      optionSettings: (json['OptionSettings'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ConfigurationOptionSetting.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      platformArn: json['PlatformArn'] as String?,
+      solutionStackName: json['SolutionStackName'] as String?,
+      templateName: json['TemplateName'] as String?,
+    );
+  }
+
   factory ConfigurationSettingsDescription.fromXml(_s.XmlElement elem) {
     return ConfigurationSettingsDescription(
       applicationName: _s.extractXmlStringValue(elem, 'ApplicationName'),
@@ -4220,6 +4667,32 @@ class ConfigurationSettingsDescription {
       templateName: _s.extractXmlStringValue(elem, 'TemplateName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final deploymentStatus = this.deploymentStatus;
+    final description = this.description;
+    final environmentName = this.environmentName;
+    final optionSettings = this.optionSettings;
+    final platformArn = this.platformArn;
+    final solutionStackName = this.solutionStackName;
+    final templateName = this.templateName;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': unixTimestampToJson(dateUpdated),
+      if (deploymentStatus != null)
+        'DeploymentStatus': deploymentStatus.toValue(),
+      if (description != null) 'Description': description,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (optionSettings != null) 'OptionSettings': optionSettings,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (templateName != null) 'TemplateName': templateName,
+    };
+  }
 }
 
 /// The results from a request to change the configuration settings of an
@@ -4231,6 +4704,17 @@ class ConfigurationSettingsDescriptions {
   ConfigurationSettingsDescriptions({
     this.configurationSettings,
   });
+  factory ConfigurationSettingsDescriptions.fromJson(
+      Map<String, dynamic> json) {
+    return ConfigurationSettingsDescriptions(
+      configurationSettings: (json['ConfigurationSettings'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConfigurationSettingsDescription.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ConfigurationSettingsDescriptions.fromXml(_s.XmlElement elem) {
     return ConfigurationSettingsDescriptions(
       configurationSettings: _s
@@ -4240,6 +4724,14 @@ class ConfigurationSettingsDescriptions {
               .map((c) => ConfigurationSettingsDescription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSettings = this.configurationSettings;
+    return {
+      if (configurationSettings != null)
+        'ConfigurationSettings': configurationSettings,
+    };
   }
 }
 
@@ -4251,6 +4743,16 @@ class ConfigurationSettingsValidationMessages {
   ConfigurationSettingsValidationMessages({
     this.messages,
   });
+  factory ConfigurationSettingsValidationMessages.fromJson(
+      Map<String, dynamic> json) {
+    return ConfigurationSettingsValidationMessages(
+      messages: (json['Messages'] as List?)
+          ?.whereNotNull()
+          .map((e) => ValidationMessage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ConfigurationSettingsValidationMessages.fromXml(_s.XmlElement elem) {
     return ConfigurationSettingsValidationMessages(
       messages: _s.extractXmlChild(elem, 'Messages')?.let((elem) => elem
@@ -4258,6 +4760,13 @@ class ConfigurationSettingsValidationMessages {
           .map((c) => ValidationMessage.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    return {
+      if (messages != null) 'Messages': messages,
+    };
   }
 }
 
@@ -4272,6 +4781,18 @@ class CreatePlatformVersionResult {
     this.builder,
     this.platformSummary,
   });
+  factory CreatePlatformVersionResult.fromJson(Map<String, dynamic> json) {
+    return CreatePlatformVersionResult(
+      builder: json['Builder'] != null
+          ? Builder.fromJson(json['Builder'] as Map<String, dynamic>)
+          : null,
+      platformSummary: json['PlatformSummary'] != null
+          ? PlatformSummary.fromJson(
+              json['PlatformSummary'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory CreatePlatformVersionResult.fromXml(_s.XmlElement elem) {
     return CreatePlatformVersionResult(
       builder:
@@ -4280,6 +4801,15 @@ class CreatePlatformVersionResult {
           .extractXmlChild(elem, 'PlatformSummary')
           ?.let((e) => PlatformSummary.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final builder = this.builder;
+    final platformSummary = this.platformSummary;
+    return {
+      if (builder != null) 'Builder': builder,
+      if (platformSummary != null) 'PlatformSummary': platformSummary,
+    };
   }
 }
 
@@ -4291,10 +4821,24 @@ class CreateStorageLocationResultMessage {
   CreateStorageLocationResultMessage({
     this.s3Bucket,
   });
+  factory CreateStorageLocationResultMessage.fromJson(
+      Map<String, dynamic> json) {
+    return CreateStorageLocationResultMessage(
+      s3Bucket: json['S3Bucket'] as String?,
+    );
+  }
+
   factory CreateStorageLocationResultMessage.fromXml(_s.XmlElement elem) {
     return CreateStorageLocationResultMessage(
       s3Bucket: _s.extractXmlStringValue(elem, 'S3Bucket'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    return {
+      if (s3Bucket != null) 'S3Bucket': s3Bucket,
+    };
   }
 }
 
@@ -4310,11 +4854,27 @@ class CustomAmi {
     this.imageId,
     this.virtualizationType,
   });
+  factory CustomAmi.fromJson(Map<String, dynamic> json) {
+    return CustomAmi(
+      imageId: json['ImageId'] as String?,
+      virtualizationType: json['VirtualizationType'] as String?,
+    );
+  }
+
   factory CustomAmi.fromXml(_s.XmlElement elem) {
     return CustomAmi(
       imageId: _s.extractXmlStringValue(elem, 'ImageId'),
       virtualizationType: _s.extractXmlStringValue(elem, 'VirtualizationType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final virtualizationType = this.virtualizationType;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+      if (virtualizationType != null) 'VirtualizationType': virtualizationType,
+    };
   }
 }
 
@@ -4325,12 +4885,28 @@ class DeletePlatformVersionResult {
   DeletePlatformVersionResult({
     this.platformSummary,
   });
+  factory DeletePlatformVersionResult.fromJson(Map<String, dynamic> json) {
+    return DeletePlatformVersionResult(
+      platformSummary: json['PlatformSummary'] != null
+          ? PlatformSummary.fromJson(
+              json['PlatformSummary'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DeletePlatformVersionResult.fromXml(_s.XmlElement elem) {
     return DeletePlatformVersionResult(
       platformSummary: _s
           .extractXmlChild(elem, 'PlatformSummary')
           ?.let((e) => PlatformSummary.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platformSummary = this.platformSummary;
+    return {
+      if (platformSummary != null) 'PlatformSummary': platformSummary,
+    };
   }
 }
 
@@ -4369,6 +4945,15 @@ class Deployment {
     this.status,
     this.versionLabel,
   });
+  factory Deployment.fromJson(Map<String, dynamic> json) {
+    return Deployment(
+      deploymentId: json['DeploymentId'] as int?,
+      deploymentTime: timeStampFromJson(json['DeploymentTime']),
+      status: json['Status'] as String?,
+      versionLabel: json['VersionLabel'] as String?,
+    );
+  }
+
   factory Deployment.fromXml(_s.XmlElement elem) {
     return Deployment(
       deploymentId: _s.extractXmlIntValue(elem, 'DeploymentId'),
@@ -4376,6 +4961,20 @@ class Deployment {
       status: _s.extractXmlStringValue(elem, 'Status'),
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final deploymentTime = this.deploymentTime;
+    final status = this.status;
+    final versionLabel = this.versionLabel;
+    return {
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentTime != null)
+        'DeploymentTime': unixTimestampToJson(deploymentTime),
+      if (status != null) 'Status': status,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
   }
 }
 
@@ -4387,12 +4986,28 @@ class DescribeAccountAttributesResult {
   DescribeAccountAttributesResult({
     this.resourceQuotas,
   });
+  factory DescribeAccountAttributesResult.fromJson(Map<String, dynamic> json) {
+    return DescribeAccountAttributesResult(
+      resourceQuotas: json['ResourceQuotas'] != null
+          ? ResourceQuotas.fromJson(
+              json['ResourceQuotas'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribeAccountAttributesResult.fromXml(_s.XmlElement elem) {
     return DescribeAccountAttributesResult(
       resourceQuotas: _s
           .extractXmlChild(elem, 'ResourceQuotas')
           ?.let((e) => ResourceQuotas.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceQuotas = this.resourceQuotas;
+    return {
+      if (resourceQuotas != null) 'ResourceQuotas': resourceQuotas,
+    };
   }
 }
 
@@ -4439,6 +5054,28 @@ class DescribeEnvironmentHealthResult {
     this.refreshedAt,
     this.status,
   });
+  factory DescribeEnvironmentHealthResult.fromJson(Map<String, dynamic> json) {
+    return DescribeEnvironmentHealthResult(
+      applicationMetrics: json['ApplicationMetrics'] != null
+          ? ApplicationMetrics.fromJson(
+              json['ApplicationMetrics'] as Map<String, dynamic>)
+          : null,
+      causes: (json['Causes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      color: json['Color'] as String?,
+      environmentName: json['EnvironmentName'] as String?,
+      healthStatus: json['HealthStatus'] as String?,
+      instancesHealth: json['InstancesHealth'] != null
+          ? InstanceHealthSummary.fromJson(
+              json['InstancesHealth'] as Map<String, dynamic>)
+          : null,
+      refreshedAt: timeStampFromJson(json['RefreshedAt']),
+      status: (json['Status'] as String?)?.toEnvironmentHealth(),
+    );
+  }
+
   factory DescribeEnvironmentHealthResult.fromXml(_s.XmlElement elem) {
     return DescribeEnvironmentHealthResult(
       applicationMetrics: _s
@@ -4457,6 +5094,27 @@ class DescribeEnvironmentHealthResult {
       status: _s.extractXmlStringValue(elem, 'Status')?.toEnvironmentHealth(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationMetrics = this.applicationMetrics;
+    final causes = this.causes;
+    final color = this.color;
+    final environmentName = this.environmentName;
+    final healthStatus = this.healthStatus;
+    final instancesHealth = this.instancesHealth;
+    final refreshedAt = this.refreshedAt;
+    final status = this.status;
+    return {
+      if (applicationMetrics != null) 'ApplicationMetrics': applicationMetrics,
+      if (causes != null) 'Causes': causes,
+      if (color != null) 'Color': color,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (healthStatus != null) 'HealthStatus': healthStatus,
+      if (instancesHealth != null) 'InstancesHealth': instancesHealth,
+      if (refreshedAt != null) 'RefreshedAt': unixTimestampToJson(refreshedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A result message containing a list of completed and failed managed actions.
@@ -4473,6 +5131,18 @@ class DescribeEnvironmentManagedActionHistoryResult {
     this.managedActionHistoryItems,
     this.nextToken,
   });
+  factory DescribeEnvironmentManagedActionHistoryResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeEnvironmentManagedActionHistoryResult(
+      managedActionHistoryItems: (json['ManagedActionHistoryItems'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ManagedActionHistoryItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory DescribeEnvironmentManagedActionHistoryResult.fromXml(
       _s.XmlElement elem) {
     return DescribeEnvironmentManagedActionHistoryResult(
@@ -4485,6 +5155,16 @@ class DescribeEnvironmentManagedActionHistoryResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedActionHistoryItems = this.managedActionHistoryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (managedActionHistoryItems != null)
+        'ManagedActionHistoryItems': managedActionHistoryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result message containing a list of managed actions.
@@ -4495,6 +5175,16 @@ class DescribeEnvironmentManagedActionsResult {
   DescribeEnvironmentManagedActionsResult({
     this.managedActions,
   });
+  factory DescribeEnvironmentManagedActionsResult.fromJson(
+      Map<String, dynamic> json) {
+    return DescribeEnvironmentManagedActionsResult(
+      managedActions: (json['ManagedActions'] as List?)
+          ?.whereNotNull()
+          .map((e) => ManagedAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory DescribeEnvironmentManagedActionsResult.fromXml(_s.XmlElement elem) {
     return DescribeEnvironmentManagedActionsResult(
       managedActions: _s.extractXmlChild(elem, 'ManagedActions')?.let((elem) =>
@@ -4503,6 +5193,13 @@ class DescribeEnvironmentManagedActionsResult {
               .map((c) => ManagedAction.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final managedActions = this.managedActions;
+    return {
+      if (managedActions != null) 'ManagedActions': managedActions,
+    };
   }
 }
 
@@ -4527,6 +5224,17 @@ class DescribeInstancesHealthResult {
     this.nextToken,
     this.refreshedAt,
   });
+  factory DescribeInstancesHealthResult.fromJson(Map<String, dynamic> json) {
+    return DescribeInstancesHealthResult(
+      instanceHealthList: (json['InstanceHealthList'] as List?)
+          ?.whereNotNull()
+          .map((e) => SingleInstanceHealth.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+      refreshedAt: timeStampFromJson(json['RefreshedAt']),
+    );
+  }
+
   factory DescribeInstancesHealthResult.fromXml(_s.XmlElement elem) {
     return DescribeInstancesHealthResult(
       instanceHealthList: _s.extractXmlChild(elem, 'InstanceHealthList')?.let(
@@ -4538,6 +5246,17 @@ class DescribeInstancesHealthResult {
       refreshedAt: _s.extractXmlDateTimeValue(elem, 'RefreshedAt'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceHealthList = this.instanceHealthList;
+    final nextToken = this.nextToken;
+    final refreshedAt = this.refreshedAt;
+    return {
+      if (instanceHealthList != null) 'InstanceHealthList': instanceHealthList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (refreshedAt != null) 'RefreshedAt': unixTimestampToJson(refreshedAt),
+    };
+  }
 }
 
 class DescribePlatformVersionResult {
@@ -4547,12 +5266,29 @@ class DescribePlatformVersionResult {
   DescribePlatformVersionResult({
     this.platformDescription,
   });
+  factory DescribePlatformVersionResult.fromJson(Map<String, dynamic> json) {
+    return DescribePlatformVersionResult(
+      platformDescription: json['PlatformDescription'] != null
+          ? PlatformDescription.fromJson(
+              json['PlatformDescription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory DescribePlatformVersionResult.fromXml(_s.XmlElement elem) {
     return DescribePlatformVersionResult(
       platformDescription: _s
           .extractXmlChild(elem, 'PlatformDescription')
           ?.let((e) => PlatformDescription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platformDescription = this.platformDescription;
+    return {
+      if (platformDescription != null)
+        'PlatformDescription': platformDescription,
+    };
   }
 }
 
@@ -4701,6 +5437,42 @@ class EnvironmentDescription {
     this.tier,
     this.versionLabel,
   });
+  factory EnvironmentDescription.fromJson(Map<String, dynamic> json) {
+    return EnvironmentDescription(
+      abortableOperationInProgress:
+          json['AbortableOperationInProgress'] as bool?,
+      applicationName: json['ApplicationName'] as String?,
+      cname: json['CNAME'] as String?,
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateUpdated: timeStampFromJson(json['DateUpdated']),
+      description: json['Description'] as String?,
+      endpointURL: json['EndpointURL'] as String?,
+      environmentArn: json['EnvironmentArn'] as String?,
+      environmentId: json['EnvironmentId'] as String?,
+      environmentLinks: (json['EnvironmentLinks'] as List?)
+          ?.whereNotNull()
+          .map((e) => EnvironmentLink.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      environmentName: json['EnvironmentName'] as String?,
+      health: (json['Health'] as String?)?.toEnvironmentHealth(),
+      healthStatus:
+          (json['HealthStatus'] as String?)?.toEnvironmentHealthStatus(),
+      operationsRole: json['OperationsRole'] as String?,
+      platformArn: json['PlatformArn'] as String?,
+      resources: json['Resources'] != null
+          ? EnvironmentResourcesDescription.fromJson(
+              json['Resources'] as Map<String, dynamic>)
+          : null,
+      solutionStackName: json['SolutionStackName'] as String?,
+      status: (json['Status'] as String?)?.toEnvironmentStatus(),
+      templateName: json['TemplateName'] as String?,
+      tier: json['Tier'] != null
+          ? EnvironmentTier.fromJson(json['Tier'] as Map<String, dynamic>)
+          : null,
+      versionLabel: json['VersionLabel'] as String?,
+    );
+  }
+
   factory EnvironmentDescription.fromXml(_s.XmlElement elem) {
     return EnvironmentDescription(
       abortableOperationInProgress:
@@ -4737,6 +5509,54 @@ class EnvironmentDescription {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortableOperationInProgress = this.abortableOperationInProgress;
+    final applicationName = this.applicationName;
+    final cname = this.cname;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final endpointURL = this.endpointURL;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final environmentLinks = this.environmentLinks;
+    final environmentName = this.environmentName;
+    final health = this.health;
+    final healthStatus = this.healthStatus;
+    final operationsRole = this.operationsRole;
+    final platformArn = this.platformArn;
+    final resources = this.resources;
+    final solutionStackName = this.solutionStackName;
+    final status = this.status;
+    final templateName = this.templateName;
+    final tier = this.tier;
+    final versionLabel = this.versionLabel;
+    return {
+      if (abortableOperationInProgress != null)
+        'AbortableOperationInProgress': abortableOperationInProgress,
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (cname != null) 'CNAME': cname,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': unixTimestampToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (endpointURL != null) 'EndpointURL': endpointURL,
+      if (environmentArn != null) 'EnvironmentArn': environmentArn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (environmentLinks != null) 'EnvironmentLinks': environmentLinks,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (health != null) 'Health': health.toValue(),
+      if (healthStatus != null) 'HealthStatus': healthStatus.toValue(),
+      if (operationsRole != null) 'OperationsRole': operationsRole,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (resources != null) 'Resources': resources,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (status != null) 'Status': status.toValue(),
+      if (templateName != null) 'TemplateName': templateName,
+      if (tier != null) 'Tier': tier,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 /// Result message containing a list of environment descriptions.
@@ -4752,6 +5572,17 @@ class EnvironmentDescriptionsMessage {
     this.environments,
     this.nextToken,
   });
+  factory EnvironmentDescriptionsMessage.fromJson(Map<String, dynamic> json) {
+    return EnvironmentDescriptionsMessage(
+      environments: (json['Environments'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => EnvironmentDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory EnvironmentDescriptionsMessage.fromXml(_s.XmlElement elem) {
     return EnvironmentDescriptionsMessage(
       environments: _s.extractXmlChild(elem, 'Environments')?.let((elem) => elem
@@ -4760,6 +5591,15 @@ class EnvironmentDescriptionsMessage {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      if (environments != null) 'Environments': environments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4946,6 +5786,15 @@ class EnvironmentInfoDescription {
     this.message,
     this.sampleTimestamp,
   });
+  factory EnvironmentInfoDescription.fromJson(Map<String, dynamic> json) {
+    return EnvironmentInfoDescription(
+      ec2InstanceId: json['Ec2InstanceId'] as String?,
+      infoType: (json['InfoType'] as String?)?.toEnvironmentInfoType(),
+      message: json['Message'] as String?,
+      sampleTimestamp: timeStampFromJson(json['SampleTimestamp']),
+    );
+  }
+
   factory EnvironmentInfoDescription.fromXml(_s.XmlElement elem) {
     return EnvironmentInfoDescription(
       ec2InstanceId: _s.extractXmlStringValue(elem, 'Ec2InstanceId'),
@@ -4954,6 +5803,20 @@ class EnvironmentInfoDescription {
       message: _s.extractXmlStringValue(elem, 'Message'),
       sampleTimestamp: _s.extractXmlDateTimeValue(elem, 'SampleTimestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ec2InstanceId = this.ec2InstanceId;
+    final infoType = this.infoType;
+    final message = this.message;
+    final sampleTimestamp = this.sampleTimestamp;
+    return {
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (infoType != null) 'InfoType': infoType.toValue(),
+      if (message != null) 'Message': message,
+      if (sampleTimestamp != null)
+        'SampleTimestamp': unixTimestampToJson(sampleTimestamp),
+    };
   }
 }
 
@@ -5001,11 +5864,27 @@ class EnvironmentLink {
     this.environmentName,
     this.linkName,
   });
+  factory EnvironmentLink.fromJson(Map<String, dynamic> json) {
+    return EnvironmentLink(
+      environmentName: json['EnvironmentName'] as String?,
+      linkName: json['LinkName'] as String?,
+    );
+  }
+
   factory EnvironmentLink.fromXml(_s.XmlElement elem) {
     return EnvironmentLink(
       environmentName: _s.extractXmlStringValue(elem, 'EnvironmentName'),
       linkName: _s.extractXmlStringValue(elem, 'LinkName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentName = this.environmentName;
+    final linkName = this.linkName;
+    return {
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (linkName != null) 'LinkName': linkName,
+    };
   }
 }
 
@@ -5045,6 +5924,40 @@ class EnvironmentResourceDescription {
     this.queues,
     this.triggers,
   });
+  factory EnvironmentResourceDescription.fromJson(Map<String, dynamic> json) {
+    return EnvironmentResourceDescription(
+      autoScalingGroups: (json['AutoScalingGroups'] as List?)
+          ?.whereNotNull()
+          .map((e) => AutoScalingGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      environmentName: json['EnvironmentName'] as String?,
+      instances: (json['Instances'] as List?)
+          ?.whereNotNull()
+          .map((e) => Instance.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      launchConfigurations: (json['LaunchConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) => LaunchConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      launchTemplates: (json['LaunchTemplates'] as List?)
+          ?.whereNotNull()
+          .map((e) => LaunchTemplate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      loadBalancers: (json['LoadBalancers'] as List?)
+          ?.whereNotNull()
+          .map((e) => LoadBalancer.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      queues: (json['Queues'] as List?)
+          ?.whereNotNull()
+          .map((e) => Queue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      triggers: (json['Triggers'] as List?)
+          ?.whereNotNull()
+          .map((e) => Trigger.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory EnvironmentResourceDescription.fromXml(_s.XmlElement elem) {
     return EnvironmentResourceDescription(
       autoScalingGroups: _s.extractXmlChild(elem, 'AutoScalingGroups')?.let(
@@ -5077,6 +5990,28 @@ class EnvironmentResourceDescription {
           elem.findElements('member').map((c) => Trigger.fromXml(c)).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroups = this.autoScalingGroups;
+    final environmentName = this.environmentName;
+    final instances = this.instances;
+    final launchConfigurations = this.launchConfigurations;
+    final launchTemplates = this.launchTemplates;
+    final loadBalancers = this.loadBalancers;
+    final queues = this.queues;
+    final triggers = this.triggers;
+    return {
+      if (autoScalingGroups != null) 'AutoScalingGroups': autoScalingGroups,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (instances != null) 'Instances': instances,
+      if (launchConfigurations != null)
+        'LaunchConfigurations': launchConfigurations,
+      if (launchTemplates != null) 'LaunchTemplates': launchTemplates,
+      if (loadBalancers != null) 'LoadBalancers': loadBalancers,
+      if (queues != null) 'Queues': queues,
+      if (triggers != null) 'Triggers': triggers,
+    };
+  }
 }
 
 /// Result message containing a list of environment resource descriptions.
@@ -5087,12 +6022,30 @@ class EnvironmentResourceDescriptionsMessage {
   EnvironmentResourceDescriptionsMessage({
     this.environmentResources,
   });
+  factory EnvironmentResourceDescriptionsMessage.fromJson(
+      Map<String, dynamic> json) {
+    return EnvironmentResourceDescriptionsMessage(
+      environmentResources: json['EnvironmentResources'] != null
+          ? EnvironmentResourceDescription.fromJson(
+              json['EnvironmentResources'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory EnvironmentResourceDescriptionsMessage.fromXml(_s.XmlElement elem) {
     return EnvironmentResourceDescriptionsMessage(
       environmentResources: _s
           .extractXmlChild(elem, 'EnvironmentResources')
           ?.let((e) => EnvironmentResourceDescription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentResources = this.environmentResources;
+    return {
+      if (environmentResources != null)
+        'EnvironmentResources': environmentResources,
+    };
   }
 }
 
@@ -5105,12 +6058,28 @@ class EnvironmentResourcesDescription {
   EnvironmentResourcesDescription({
     this.loadBalancer,
   });
+  factory EnvironmentResourcesDescription.fromJson(Map<String, dynamic> json) {
+    return EnvironmentResourcesDescription(
+      loadBalancer: json['LoadBalancer'] != null
+          ? LoadBalancerDescription.fromJson(
+              json['LoadBalancer'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory EnvironmentResourcesDescription.fromXml(_s.XmlElement elem) {
     return EnvironmentResourcesDescription(
       loadBalancer: _s
           .extractXmlChild(elem, 'LoadBalancer')
           ?.let((e) => LoadBalancerDescription.fromXml(e)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancer = this.loadBalancer;
+    return {
+      if (loadBalancer != null) 'LoadBalancer': loadBalancer,
+    };
   }
 }
 
@@ -5215,6 +6184,14 @@ class EnvironmentTier {
     this.type,
     this.version,
   });
+  factory EnvironmentTier.fromJson(Map<String, dynamic> json) {
+    return EnvironmentTier(
+      name: json['Name'] as String?,
+      type: json['Type'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
   factory EnvironmentTier.fromXml(_s.XmlElement elem) {
     return EnvironmentTier(
       name: _s.extractXmlStringValue(elem, 'Name'),
@@ -5275,6 +6252,20 @@ class EventDescription {
     this.templateName,
     this.versionLabel,
   });
+  factory EventDescription.fromJson(Map<String, dynamic> json) {
+    return EventDescription(
+      applicationName: json['ApplicationName'] as String?,
+      environmentName: json['EnvironmentName'] as String?,
+      eventDate: timeStampFromJson(json['EventDate']),
+      message: json['Message'] as String?,
+      platformArn: json['PlatformArn'] as String?,
+      requestId: json['RequestId'] as String?,
+      severity: (json['Severity'] as String?)?.toEventSeverity(),
+      templateName: json['TemplateName'] as String?,
+      versionLabel: json['VersionLabel'] as String?,
+    );
+  }
+
   factory EventDescription.fromXml(_s.XmlElement elem) {
     return EventDescription(
       applicationName: _s.extractXmlStringValue(elem, 'ApplicationName'),
@@ -5287,6 +6278,29 @@ class EventDescription {
       templateName: _s.extractXmlStringValue(elem, 'TemplateName'),
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final environmentName = this.environmentName;
+    final eventDate = this.eventDate;
+    final message = this.message;
+    final platformArn = this.platformArn;
+    final requestId = this.requestId;
+    final severity = this.severity;
+    final templateName = this.templateName;
+    final versionLabel = this.versionLabel;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (eventDate != null) 'EventDate': unixTimestampToJson(eventDate),
+      if (message != null) 'Message': message,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (requestId != null) 'RequestId': requestId,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (templateName != null) 'TemplateName': templateName,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
   }
 }
 
@@ -5304,6 +6318,16 @@ class EventDescriptionsMessage {
     this.events,
     this.nextToken,
   });
+  factory EventDescriptionsMessage.fromJson(Map<String, dynamic> json) {
+    return EventDescriptionsMessage(
+      events: (json['Events'] as List?)
+          ?.whereNotNull()
+          .map((e) => EventDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory EventDescriptionsMessage.fromXml(_s.XmlElement elem) {
     return EventDescriptionsMessage(
       events: _s.extractXmlChild(elem, 'Events')?.let((elem) => elem
@@ -5312,6 +6336,15 @@ class EventDescriptionsMessage {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5424,10 +6457,23 @@ class Instance {
   Instance({
     this.id,
   });
+  factory Instance.fromJson(Map<String, dynamic> json) {
+    return Instance(
+      id: json['Id'] as String?,
+    );
+  }
+
   factory Instance.fromXml(_s.XmlElement elem) {
     return Instance(
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -5477,6 +6523,19 @@ class InstanceHealthSummary {
     this.unknown,
     this.warning,
   });
+  factory InstanceHealthSummary.fromJson(Map<String, dynamic> json) {
+    return InstanceHealthSummary(
+      degraded: json['Degraded'] as int?,
+      info: json['Info'] as int?,
+      noData: json['NoData'] as int?,
+      ok: json['Ok'] as int?,
+      pending: json['Pending'] as int?,
+      severe: json['Severe'] as int?,
+      unknown: json['Unknown'] as int?,
+      warning: json['Warning'] as int?,
+    );
+  }
+
   factory InstanceHealthSummary.fromXml(_s.XmlElement elem) {
     return InstanceHealthSummary(
       degraded: _s.extractXmlIntValue(elem, 'Degraded'),
@@ -5488,6 +6547,27 @@ class InstanceHealthSummary {
       unknown: _s.extractXmlIntValue(elem, 'Unknown'),
       warning: _s.extractXmlIntValue(elem, 'Warning'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final degraded = this.degraded;
+    final info = this.info;
+    final noData = this.noData;
+    final ok = this.ok;
+    final pending = this.pending;
+    final severe = this.severe;
+    final unknown = this.unknown;
+    final warning = this.warning;
+    return {
+      if (degraded != null) 'Degraded': degraded,
+      if (info != null) 'Info': info,
+      if (noData != null) 'NoData': noData,
+      if (ok != null) 'Ok': ok,
+      if (pending != null) 'Pending': pending,
+      if (severe != null) 'Severe': severe,
+      if (unknown != null) 'Unknown': unknown,
+      if (warning != null) 'Warning': warning,
+    };
   }
 }
 
@@ -5609,6 +6689,19 @@ class Latency {
     this.p99,
     this.p999,
   });
+  factory Latency.fromJson(Map<String, dynamic> json) {
+    return Latency(
+      p10: json['P10'] as double?,
+      p50: json['P50'] as double?,
+      p75: json['P75'] as double?,
+      p85: json['P85'] as double?,
+      p90: json['P90'] as double?,
+      p95: json['P95'] as double?,
+      p99: json['P99'] as double?,
+      p999: json['P999'] as double?,
+    );
+  }
+
   factory Latency.fromXml(_s.XmlElement elem) {
     return Latency(
       p10: _s.extractXmlDoubleValue(elem, 'P10'),
@@ -5621,6 +6714,27 @@ class Latency {
       p999: _s.extractXmlDoubleValue(elem, 'P999'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final p10 = this.p10;
+    final p50 = this.p50;
+    final p75 = this.p75;
+    final p85 = this.p85;
+    final p90 = this.p90;
+    final p95 = this.p95;
+    final p99 = this.p99;
+    final p999 = this.p999;
+    return {
+      if (p10 != null) 'P10': p10,
+      if (p50 != null) 'P50': p50,
+      if (p75 != null) 'P75': p75,
+      if (p85 != null) 'P85': p85,
+      if (p90 != null) 'P90': p90,
+      if (p95 != null) 'P95': p95,
+      if (p99 != null) 'P99': p99,
+      if (p999 != null) 'P999': p999,
+    };
+  }
 }
 
 /// Describes an Auto Scaling launch configuration.
@@ -5631,10 +6745,23 @@ class LaunchConfiguration {
   LaunchConfiguration({
     this.name,
   });
+  factory LaunchConfiguration.fromJson(Map<String, dynamic> json) {
+    return LaunchConfiguration(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory LaunchConfiguration.fromXml(_s.XmlElement elem) {
     return LaunchConfiguration(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5646,10 +6773,23 @@ class LaunchTemplate {
   LaunchTemplate({
     this.id,
   });
+  factory LaunchTemplate.fromJson(Map<String, dynamic> json) {
+    return LaunchTemplate(
+      id: json['Id'] as String?,
+    );
+  }
+
   factory LaunchTemplate.fromXml(_s.XmlElement elem) {
     return LaunchTemplate(
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -5666,6 +6806,21 @@ class ListAvailableSolutionStacksResultMessage {
     this.solutionStackDetails,
     this.solutionStacks,
   });
+  factory ListAvailableSolutionStacksResultMessage.fromJson(
+      Map<String, dynamic> json) {
+    return ListAvailableSolutionStacksResultMessage(
+      solutionStackDetails: (json['SolutionStackDetails'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              SolutionStackDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      solutionStacks: (json['SolutionStacks'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListAvailableSolutionStacksResultMessage.fromXml(_s.XmlElement elem) {
     return ListAvailableSolutionStacksResultMessage(
       solutionStackDetails: _s
@@ -5678,6 +6833,16 @@ class ListAvailableSolutionStacksResultMessage {
           .extractXmlChild(elem, 'SolutionStacks')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final solutionStackDetails = this.solutionStackDetails;
+    final solutionStacks = this.solutionStacks;
+    return {
+      if (solutionStackDetails != null)
+        'SolutionStackDetails': solutionStackDetails,
+      if (solutionStacks != null) 'SolutionStacks': solutionStacks,
+    };
   }
 }
 
@@ -5694,6 +6859,16 @@ class ListPlatformBranchesResult {
     this.nextToken,
     this.platformBranchSummaryList,
   });
+  factory ListPlatformBranchesResult.fromJson(Map<String, dynamic> json) {
+    return ListPlatformBranchesResult(
+      nextToken: json['NextToken'] as String?,
+      platformBranchSummaryList: (json['PlatformBranchSummaryList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlatformBranchSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListPlatformBranchesResult.fromXml(_s.XmlElement elem) {
     return ListPlatformBranchesResult(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -5704,6 +6879,16 @@ class ListPlatformBranchesResult {
               .map((c) => PlatformBranchSummary.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformBranchSummaryList = this.platformBranchSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformBranchSummaryList != null)
+        'PlatformBranchSummaryList': platformBranchSummaryList,
+    };
   }
 }
 
@@ -5720,6 +6905,16 @@ class ListPlatformVersionsResult {
     this.nextToken,
     this.platformSummaryList,
   });
+  factory ListPlatformVersionsResult.fromJson(Map<String, dynamic> json) {
+    return ListPlatformVersionsResult(
+      nextToken: json['NextToken'] as String?,
+      platformSummaryList: (json['PlatformSummaryList'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlatformSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListPlatformVersionsResult.fromXml(_s.XmlElement elem) {
     return ListPlatformVersionsResult(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -5729,6 +6924,16 @@ class ListPlatformVersionsResult {
               .map((c) => PlatformSummary.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformSummaryList = this.platformSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformSummaryList != null)
+        'PlatformSummaryList': platformSummaryList,
+    };
   }
 }
 
@@ -5744,11 +6949,27 @@ class Listener {
     this.port,
     this.protocol,
   });
+  factory Listener.fromJson(Map<String, dynamic> json) {
+    return Listener(
+      port: json['Port'] as int?,
+      protocol: json['Protocol'] as String?,
+    );
+  }
+
   factory Listener.fromXml(_s.XmlElement elem) {
     return Listener(
       port: _s.extractXmlIntValue(elem, 'Port'),
       protocol: _s.extractXmlStringValue(elem, 'Protocol'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final protocol = this.protocol;
+    return {
+      if (port != null) 'Port': port,
+      if (protocol != null) 'Protocol': protocol,
+    };
   }
 }
 
@@ -5760,10 +6981,23 @@ class LoadBalancer {
   LoadBalancer({
     this.name,
   });
+  factory LoadBalancer.fromJson(Map<String, dynamic> json) {
+    return LoadBalancer(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory LoadBalancer.fromXml(_s.XmlElement elem) {
     return LoadBalancer(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5783,6 +7017,17 @@ class LoadBalancerDescription {
     this.listeners,
     this.loadBalancerName,
   });
+  factory LoadBalancerDescription.fromJson(Map<String, dynamic> json) {
+    return LoadBalancerDescription(
+      domain: json['Domain'] as String?,
+      listeners: (json['Listeners'] as List?)
+          ?.whereNotNull()
+          .map((e) => Listener.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      loadBalancerName: json['LoadBalancerName'] as String?,
+    );
+  }
+
   factory LoadBalancerDescription.fromXml(_s.XmlElement elem) {
     return LoadBalancerDescription(
       domain: _s.extractXmlStringValue(elem, 'Domain'),
@@ -5790,6 +7035,17 @@ class LoadBalancerDescription {
           elem.findElements('member').map((c) => Listener.fromXml(c)).toList()),
       loadBalancerName: _s.extractXmlStringValue(elem, 'LoadBalancerName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    final listeners = this.listeners;
+    final loadBalancerName = this.loadBalancerName;
+    return {
+      if (domain != null) 'Domain': domain,
+      if (listeners != null) 'Listeners': listeners,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+    };
   }
 }
 
@@ -5819,6 +7075,16 @@ class ManagedAction {
     this.status,
     this.windowStartTime,
   });
+  factory ManagedAction.fromJson(Map<String, dynamic> json) {
+    return ManagedAction(
+      actionDescription: json['ActionDescription'] as String?,
+      actionId: json['ActionId'] as String?,
+      actionType: (json['ActionType'] as String?)?.toActionType(),
+      status: (json['Status'] as String?)?.toActionStatus(),
+      windowStartTime: timeStampFromJson(json['WindowStartTime']),
+    );
+  }
+
   factory ManagedAction.fromXml(_s.XmlElement elem) {
     return ManagedAction(
       actionDescription: _s.extractXmlStringValue(elem, 'ActionDescription'),
@@ -5827,6 +7093,22 @@ class ManagedAction {
       status: _s.extractXmlStringValue(elem, 'Status')?.toActionStatus(),
       windowStartTime: _s.extractXmlDateTimeValue(elem, 'WindowStartTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final status = this.status;
+    final windowStartTime = this.windowStartTime;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (windowStartTime != null)
+        'WindowStartTime': unixTimestampToJson(windowStartTime),
+    };
   }
 }
 
@@ -5866,6 +7148,19 @@ class ManagedActionHistoryItem {
     this.finishedTime,
     this.status,
   });
+  factory ManagedActionHistoryItem.fromJson(Map<String, dynamic> json) {
+    return ManagedActionHistoryItem(
+      actionDescription: json['ActionDescription'] as String?,
+      actionId: json['ActionId'] as String?,
+      actionType: (json['ActionType'] as String?)?.toActionType(),
+      executedTime: timeStampFromJson(json['ExecutedTime']),
+      failureDescription: json['FailureDescription'] as String?,
+      failureType: (json['FailureType'] as String?)?.toFailureType(),
+      finishedTime: timeStampFromJson(json['FinishedTime']),
+      status: (json['Status'] as String?)?.toActionHistoryStatus(),
+    );
+  }
+
   factory ManagedActionHistoryItem.fromXml(_s.XmlElement elem) {
     return ManagedActionHistoryItem(
       actionDescription: _s.extractXmlStringValue(elem, 'ActionDescription'),
@@ -5878,6 +7173,29 @@ class ManagedActionHistoryItem {
       finishedTime: _s.extractXmlDateTimeValue(elem, 'FinishedTime'),
       status: _s.extractXmlStringValue(elem, 'Status')?.toActionHistoryStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final executedTime = this.executedTime;
+    final failureDescription = this.failureDescription;
+    final failureType = this.failureType;
+    final finishedTime = this.finishedTime;
+    final status = this.status;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (executedTime != null)
+        'ExecutedTime': unixTimestampToJson(executedTime),
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (failureType != null) 'FailureType': failureType.toValue(),
+      if (finishedTime != null)
+        'FinishedTime': unixTimestampToJson(finishedTime),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -5900,6 +7218,14 @@ class MaxAgeRule {
     this.deleteSourceFromS3,
     this.maxAgeInDays,
   });
+  factory MaxAgeRule.fromJson(Map<String, dynamic> json) {
+    return MaxAgeRule(
+      enabled: json['Enabled'] as bool,
+      deleteSourceFromS3: json['DeleteSourceFromS3'] as bool?,
+      maxAgeInDays: json['MaxAgeInDays'] as int?,
+    );
+  }
+
   factory MaxAgeRule.fromXml(_s.XmlElement elem) {
     return MaxAgeRule(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -5939,6 +7265,14 @@ class MaxCountRule {
     this.deleteSourceFromS3,
     this.maxCount,
   });
+  factory MaxCountRule.fromJson(Map<String, dynamic> json) {
+    return MaxCountRule(
+      enabled: json['Enabled'] as bool,
+      deleteSourceFromS3: json['DeleteSourceFromS3'] as bool?,
+      maxCount: json['MaxCount'] as int?,
+    );
+  }
+
   factory MaxCountRule.fromXml(_s.XmlElement elem) {
     return MaxCountRule(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
@@ -5973,11 +7307,27 @@ class OptionRestrictionRegex {
     this.label,
     this.pattern,
   });
+  factory OptionRestrictionRegex.fromJson(Map<String, dynamic> json) {
+    return OptionRestrictionRegex(
+      label: json['Label'] as String?,
+      pattern: json['Pattern'] as String?,
+    );
+  }
+
   factory OptionRestrictionRegex.fromXml(_s.XmlElement elem) {
     return OptionRestrictionRegex(
       label: _s.extractXmlStringValue(elem, 'Label'),
       pattern: _s.extractXmlStringValue(elem, 'Pattern'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final label = this.label;
+    final pattern = this.pattern;
+    return {
+      if (label != null) 'Label': label,
+      if (pattern != null) 'Pattern': pattern,
+    };
   }
 }
 
@@ -5997,6 +7347,14 @@ class OptionSpecification {
     this.optionName,
     this.resourceName,
   });
+  factory OptionSpecification.fromJson(Map<String, dynamic> json) {
+    return OptionSpecification(
+      namespace: json['Namespace'] as String?,
+      optionName: json['OptionName'] as String?,
+      resourceName: json['ResourceName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final namespace = this.namespace;
     final optionName = this.optionName;
@@ -6045,6 +7403,19 @@ class PlatformBranchSummary {
     this.platformName,
     this.supportedTierList,
   });
+  factory PlatformBranchSummary.fromJson(Map<String, dynamic> json) {
+    return PlatformBranchSummary(
+      branchName: json['BranchName'] as String?,
+      branchOrder: json['BranchOrder'] as int?,
+      lifecycleState: json['LifecycleState'] as String?,
+      platformName: json['PlatformName'] as String?,
+      supportedTierList: (json['SupportedTierList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory PlatformBranchSummary.fromXml(_s.XmlElement elem) {
     return PlatformBranchSummary(
       branchName: _s.extractXmlStringValue(elem, 'BranchName'),
@@ -6055,6 +7426,21 @@ class PlatformBranchSummary {
           .extractXmlChild(elem, 'SupportedTierList')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchName = this.branchName;
+    final branchOrder = this.branchOrder;
+    final lifecycleState = this.lifecycleState;
+    final platformName = this.platformName;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (branchName != null) 'BranchName': branchName,
+      if (branchOrder != null) 'BranchOrder': branchOrder,
+      if (lifecycleState != null) 'LifecycleState': lifecycleState,
+      if (platformName != null) 'PlatformName': platformName,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
   }
 }
 
@@ -6155,6 +7541,49 @@ class PlatformDescription {
     this.supportedAddonList,
     this.supportedTierList,
   });
+  factory PlatformDescription.fromJson(Map<String, dynamic> json) {
+    return PlatformDescription(
+      customAmiList: (json['CustomAmiList'] as List?)
+          ?.whereNotNull()
+          .map((e) => CustomAmi.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dateCreated: timeStampFromJson(json['DateCreated']),
+      dateUpdated: timeStampFromJson(json['DateUpdated']),
+      description: json['Description'] as String?,
+      frameworks: (json['Frameworks'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlatformFramework.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      maintainer: json['Maintainer'] as String?,
+      operatingSystemName: json['OperatingSystemName'] as String?,
+      operatingSystemVersion: json['OperatingSystemVersion'] as String?,
+      platformArn: json['PlatformArn'] as String?,
+      platformBranchLifecycleState:
+          json['PlatformBranchLifecycleState'] as String?,
+      platformBranchName: json['PlatformBranchName'] as String?,
+      platformCategory: json['PlatformCategory'] as String?,
+      platformLifecycleState: json['PlatformLifecycleState'] as String?,
+      platformName: json['PlatformName'] as String?,
+      platformOwner: json['PlatformOwner'] as String?,
+      platformStatus: (json['PlatformStatus'] as String?)?.toPlatformStatus(),
+      platformVersion: json['PlatformVersion'] as String?,
+      programmingLanguages: (json['ProgrammingLanguages'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              PlatformProgrammingLanguage.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      solutionStackName: json['SolutionStackName'] as String?,
+      supportedAddonList: (json['SupportedAddonList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      supportedTierList: (json['SupportedTierList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory PlatformDescription.fromXml(_s.XmlElement elem) {
     return PlatformDescription(
       customAmiList: _s.extractXmlChild(elem, 'CustomAmiList')?.let((elem) =>
@@ -6200,6 +7629,58 @@ class PlatformDescription {
           .extractXmlChild(elem, 'SupportedTierList')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customAmiList = this.customAmiList;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final frameworks = this.frameworks;
+    final maintainer = this.maintainer;
+    final operatingSystemName = this.operatingSystemName;
+    final operatingSystemVersion = this.operatingSystemVersion;
+    final platformArn = this.platformArn;
+    final platformBranchLifecycleState = this.platformBranchLifecycleState;
+    final platformBranchName = this.platformBranchName;
+    final platformCategory = this.platformCategory;
+    final platformLifecycleState = this.platformLifecycleState;
+    final platformName = this.platformName;
+    final platformOwner = this.platformOwner;
+    final platformStatus = this.platformStatus;
+    final platformVersion = this.platformVersion;
+    final programmingLanguages = this.programmingLanguages;
+    final solutionStackName = this.solutionStackName;
+    final supportedAddonList = this.supportedAddonList;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (customAmiList != null) 'CustomAmiList': customAmiList,
+      if (dateCreated != null) 'DateCreated': unixTimestampToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': unixTimestampToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (frameworks != null) 'Frameworks': frameworks,
+      if (maintainer != null) 'Maintainer': maintainer,
+      if (operatingSystemName != null)
+        'OperatingSystemName': operatingSystemName,
+      if (operatingSystemVersion != null)
+        'OperatingSystemVersion': operatingSystemVersion,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (platformBranchLifecycleState != null)
+        'PlatformBranchLifecycleState': platformBranchLifecycleState,
+      if (platformBranchName != null) 'PlatformBranchName': platformBranchName,
+      if (platformCategory != null) 'PlatformCategory': platformCategory,
+      if (platformLifecycleState != null)
+        'PlatformLifecycleState': platformLifecycleState,
+      if (platformName != null) 'PlatformName': platformName,
+      if (platformOwner != null) 'PlatformOwner': platformOwner,
+      if (platformStatus != null) 'PlatformStatus': platformStatus.toValue(),
+      if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (programmingLanguages != null)
+        'ProgrammingLanguages': programmingLanguages,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (supportedAddonList != null) 'SupportedAddonList': supportedAddonList,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
   }
 }
 
@@ -6253,6 +7734,17 @@ class PlatformFilter {
     this.type,
     this.values,
   });
+  factory PlatformFilter.fromJson(Map<String, dynamic> json) {
+    return PlatformFilter(
+      operator: json['Operator'] as String?,
+      type: json['Type'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final operator = this.operator;
     final type = this.type;
@@ -6277,11 +7769,27 @@ class PlatformFramework {
     this.name,
     this.version,
   });
+  factory PlatformFramework.fromJson(Map<String, dynamic> json) {
+    return PlatformFramework(
+      name: json['Name'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
   factory PlatformFramework.fromXml(_s.XmlElement elem) {
     return PlatformFramework(
       name: _s.extractXmlStringValue(elem, 'Name'),
       version: _s.extractXmlStringValue(elem, 'Version'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -6297,11 +7805,27 @@ class PlatformProgrammingLanguage {
     this.name,
     this.version,
   });
+  factory PlatformProgrammingLanguage.fromJson(Map<String, dynamic> json) {
+    return PlatformProgrammingLanguage(
+      name: json['Name'] as String?,
+      version: json['Version'] as String?,
+    );
+  }
+
   factory PlatformProgrammingLanguage.fromXml(_s.XmlElement elem) {
     return PlatformProgrammingLanguage(
       name: _s.extractXmlStringValue(elem, 'Name'),
       version: _s.extractXmlStringValue(elem, 'Version'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -6409,6 +7933,30 @@ class PlatformSummary {
     this.supportedAddonList,
     this.supportedTierList,
   });
+  factory PlatformSummary.fromJson(Map<String, dynamic> json) {
+    return PlatformSummary(
+      operatingSystemName: json['OperatingSystemName'] as String?,
+      operatingSystemVersion: json['OperatingSystemVersion'] as String?,
+      platformArn: json['PlatformArn'] as String?,
+      platformBranchLifecycleState:
+          json['PlatformBranchLifecycleState'] as String?,
+      platformBranchName: json['PlatformBranchName'] as String?,
+      platformCategory: json['PlatformCategory'] as String?,
+      platformLifecycleState: json['PlatformLifecycleState'] as String?,
+      platformOwner: json['PlatformOwner'] as String?,
+      platformStatus: (json['PlatformStatus'] as String?)?.toPlatformStatus(),
+      platformVersion: json['PlatformVersion'] as String?,
+      supportedAddonList: (json['SupportedAddonList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      supportedTierList: (json['SupportedTierList'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory PlatformSummary.fromXml(_s.XmlElement elem) {
     return PlatformSummary(
       operatingSystemName:
@@ -6434,6 +7982,39 @@ class PlatformSummary {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operatingSystemName = this.operatingSystemName;
+    final operatingSystemVersion = this.operatingSystemVersion;
+    final platformArn = this.platformArn;
+    final platformBranchLifecycleState = this.platformBranchLifecycleState;
+    final platformBranchName = this.platformBranchName;
+    final platformCategory = this.platformCategory;
+    final platformLifecycleState = this.platformLifecycleState;
+    final platformOwner = this.platformOwner;
+    final platformStatus = this.platformStatus;
+    final platformVersion = this.platformVersion;
+    final supportedAddonList = this.supportedAddonList;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (operatingSystemName != null)
+        'OperatingSystemName': operatingSystemName,
+      if (operatingSystemVersion != null)
+        'OperatingSystemVersion': operatingSystemVersion,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (platformBranchLifecycleState != null)
+        'PlatformBranchLifecycleState': platformBranchLifecycleState,
+      if (platformBranchName != null) 'PlatformBranchName': platformBranchName,
+      if (platformCategory != null) 'PlatformCategory': platformCategory,
+      if (platformLifecycleState != null)
+        'PlatformLifecycleState': platformLifecycleState,
+      if (platformOwner != null) 'PlatformOwner': platformOwner,
+      if (platformStatus != null) 'PlatformStatus': platformStatus.toValue(),
+      if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (supportedAddonList != null) 'SupportedAddonList': supportedAddonList,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
+  }
 }
 
 /// Describes a queue.
@@ -6448,11 +8029,27 @@ class Queue {
     this.name,
     this.url,
   });
+  factory Queue.fromJson(Map<String, dynamic> json) {
+    return Queue(
+      name: json['Name'] as String?,
+      url: json['URL'] as String?,
+    );
+  }
+
   factory Queue.fromXml(_s.XmlElement elem) {
     return Queue(
       name: _s.extractXmlStringValue(elem, 'Name'),
       url: _s.extractXmlStringValue(elem, 'URL'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final url = this.url;
+    return {
+      if (name != null) 'Name': name,
+      if (url != null) 'URL': url,
+    };
   }
 }
 
@@ -6466,10 +8063,23 @@ class ResourceQuota {
   ResourceQuota({
     this.maximum,
   });
+  factory ResourceQuota.fromJson(Map<String, dynamic> json) {
+    return ResourceQuota(
+      maximum: json['Maximum'] as int?,
+    );
+  }
+
   factory ResourceQuota.fromXml(_s.XmlElement elem) {
     return ResourceQuota(
       maximum: _s.extractXmlIntValue(elem, 'Maximum'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maximum = this.maximum;
+    return {
+      if (maximum != null) 'Maximum': maximum,
+    };
   }
 }
 
@@ -6498,6 +8108,31 @@ class ResourceQuotas {
     this.customPlatformQuota,
     this.environmentQuota,
   });
+  factory ResourceQuotas.fromJson(Map<String, dynamic> json) {
+    return ResourceQuotas(
+      applicationQuota: json['ApplicationQuota'] != null
+          ? ResourceQuota.fromJson(
+              json['ApplicationQuota'] as Map<String, dynamic>)
+          : null,
+      applicationVersionQuota: json['ApplicationVersionQuota'] != null
+          ? ResourceQuota.fromJson(
+              json['ApplicationVersionQuota'] as Map<String, dynamic>)
+          : null,
+      configurationTemplateQuota: json['ConfigurationTemplateQuota'] != null
+          ? ResourceQuota.fromJson(
+              json['ConfigurationTemplateQuota'] as Map<String, dynamic>)
+          : null,
+      customPlatformQuota: json['CustomPlatformQuota'] != null
+          ? ResourceQuota.fromJson(
+              json['CustomPlatformQuota'] as Map<String, dynamic>)
+          : null,
+      environmentQuota: json['EnvironmentQuota'] != null
+          ? ResourceQuota.fromJson(
+              json['EnvironmentQuota'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory ResourceQuotas.fromXml(_s.XmlElement elem) {
     return ResourceQuotas(
       applicationQuota: _s
@@ -6517,6 +8152,24 @@ class ResourceQuotas {
           ?.let((e) => ResourceQuota.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationQuota = this.applicationQuota;
+    final applicationVersionQuota = this.applicationVersionQuota;
+    final configurationTemplateQuota = this.configurationTemplateQuota;
+    final customPlatformQuota = this.customPlatformQuota;
+    final environmentQuota = this.environmentQuota;
+    return {
+      if (applicationQuota != null) 'ApplicationQuota': applicationQuota,
+      if (applicationVersionQuota != null)
+        'ApplicationVersionQuota': applicationVersionQuota,
+      if (configurationTemplateQuota != null)
+        'ConfigurationTemplateQuota': configurationTemplateQuota,
+      if (customPlatformQuota != null)
+        'CustomPlatformQuota': customPlatformQuota,
+      if (environmentQuota != null) 'EnvironmentQuota': environmentQuota,
+    };
+  }
 }
 
 class ResourceTagsDescriptionMessage {
@@ -6531,12 +8184,31 @@ class ResourceTagsDescriptionMessage {
     this.resourceArn,
     this.resourceTags,
   });
+  factory ResourceTagsDescriptionMessage.fromJson(Map<String, dynamic> json) {
+    return ResourceTagsDescriptionMessage(
+      resourceArn: json['ResourceArn'] as String?,
+      resourceTags: (json['ResourceTags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ResourceTagsDescriptionMessage.fromXml(_s.XmlElement elem) {
     return ResourceTagsDescriptionMessage(
       resourceArn: _s.extractXmlStringValue(elem, 'ResourceArn'),
       resourceTags: _s.extractXmlChild(elem, 'ResourceTags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final resourceTags = this.resourceTags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+    };
   }
 }
 
@@ -6548,6 +8220,17 @@ class RetrieveEnvironmentInfoResultMessage {
   RetrieveEnvironmentInfoResultMessage({
     this.environmentInfo,
   });
+  factory RetrieveEnvironmentInfoResultMessage.fromJson(
+      Map<String, dynamic> json) {
+    return RetrieveEnvironmentInfoResultMessage(
+      environmentInfo: (json['EnvironmentInfo'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              EnvironmentInfoDescription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory RetrieveEnvironmentInfoResultMessage.fromXml(_s.XmlElement elem) {
     return RetrieveEnvironmentInfoResultMessage(
       environmentInfo: _s.extractXmlChild(elem, 'EnvironmentInfo')?.let(
@@ -6556,6 +8239,13 @@ class RetrieveEnvironmentInfoResultMessage {
               .map((c) => EnvironmentInfoDescription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentInfo = this.environmentInfo;
+    return {
+      if (environmentInfo != null) 'EnvironmentInfo': environmentInfo,
+    };
   }
 }
 
@@ -6571,6 +8261,13 @@ class S3Location {
     this.s3Bucket,
     this.s3Key,
   });
+  factory S3Location.fromJson(Map<String, dynamic> json) {
+    return S3Location(
+      s3Bucket: json['S3Bucket'] as String?,
+      s3Key: json['S3Key'] as String?,
+    );
+  }
+
   factory S3Location.fromXml(_s.XmlElement elem) {
     return S3Location(
       s3Bucket: _s.extractXmlStringValue(elem, 'S3Bucket'),
@@ -6620,6 +8317,17 @@ class SearchFilter {
     this.operator,
     this.values,
   });
+  factory SearchFilter.fromJson(Map<String, dynamic> json) {
+    return SearchFilter(
+      attribute: json['Attribute'] as String?,
+      operator: json['Operator'] as String?,
+      values: (json['Values'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final operator = this.operator;
@@ -6684,6 +8392,31 @@ class SingleInstanceHealth {
     this.launchedAt,
     this.system,
   });
+  factory SingleInstanceHealth.fromJson(Map<String, dynamic> json) {
+    return SingleInstanceHealth(
+      applicationMetrics: json['ApplicationMetrics'] != null
+          ? ApplicationMetrics.fromJson(
+              json['ApplicationMetrics'] as Map<String, dynamic>)
+          : null,
+      availabilityZone: json['AvailabilityZone'] as String?,
+      causes: (json['Causes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      color: json['Color'] as String?,
+      deployment: json['Deployment'] != null
+          ? Deployment.fromJson(json['Deployment'] as Map<String, dynamic>)
+          : null,
+      healthStatus: json['HealthStatus'] as String?,
+      instanceId: json['InstanceId'] as String?,
+      instanceType: json['InstanceType'] as String?,
+      launchedAt: timeStampFromJson(json['LaunchedAt']),
+      system: json['System'] != null
+          ? SystemStatus.fromJson(json['System'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   factory SingleInstanceHealth.fromXml(_s.XmlElement elem) {
     return SingleInstanceHealth(
       applicationMetrics: _s
@@ -6706,6 +8439,31 @@ class SingleInstanceHealth {
           ?.let((e) => SystemStatus.fromXml(e)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationMetrics = this.applicationMetrics;
+    final availabilityZone = this.availabilityZone;
+    final causes = this.causes;
+    final color = this.color;
+    final deployment = this.deployment;
+    final healthStatus = this.healthStatus;
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final launchedAt = this.launchedAt;
+    final system = this.system;
+    return {
+      if (applicationMetrics != null) 'ApplicationMetrics': applicationMetrics,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (causes != null) 'Causes': causes,
+      if (color != null) 'Color': color,
+      if (deployment != null) 'Deployment': deployment,
+      if (healthStatus != null) 'HealthStatus': healthStatus,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (launchedAt != null) 'LaunchedAt': unixTimestampToJson(launchedAt),
+      if (system != null) 'System': system,
+    };
+  }
 }
 
 /// Describes the solution stack.
@@ -6720,6 +8478,16 @@ class SolutionStackDescription {
     this.permittedFileTypes,
     this.solutionStackName,
   });
+  factory SolutionStackDescription.fromJson(Map<String, dynamic> json) {
+    return SolutionStackDescription(
+      permittedFileTypes: (json['PermittedFileTypes'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      solutionStackName: json['SolutionStackName'] as String?,
+    );
+  }
+
   factory SolutionStackDescription.fromXml(_s.XmlElement elem) {
     return SolutionStackDescription(
       permittedFileTypes: _s
@@ -6727,6 +8495,15 @@ class SolutionStackDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       solutionStackName: _s.extractXmlStringValue(elem, 'SolutionStackName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permittedFileTypes = this.permittedFileTypes;
+    final solutionStackName = this.solutionStackName;
+    return {
+      if (permittedFileTypes != null) 'PermittedFileTypes': permittedFileTypes,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+    };
   }
 }
 
@@ -6778,6 +8555,15 @@ class SourceBuildInformation {
     required this.sourceRepository,
     required this.sourceType,
   });
+  factory SourceBuildInformation.fromJson(Map<String, dynamic> json) {
+    return SourceBuildInformation(
+      sourceLocation: json['SourceLocation'] as String,
+      sourceRepository:
+          (json['SourceRepository'] as String).toSourceRepository(),
+      sourceType: (json['SourceType'] as String).toSourceType(),
+    );
+  }
+
   factory SourceBuildInformation.fromXml(_s.XmlElement elem) {
     return SourceBuildInformation(
       sourceLocation: _s.extractXmlStringValue(elem, 'SourceLocation')!,
@@ -6812,6 +8598,13 @@ class SourceConfiguration {
     this.applicationName,
     this.templateName,
   });
+  factory SourceConfiguration.fromJson(Map<String, dynamic> json) {
+    return SourceConfiguration(
+      applicationName: json['ApplicationName'] as String?,
+      templateName: json['TemplateName'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final applicationName = this.applicationName;
     final templateName = this.templateName;
@@ -6905,6 +8698,15 @@ class StatusCodes {
     this.status4xx,
     this.status5xx,
   });
+  factory StatusCodes.fromJson(Map<String, dynamic> json) {
+    return StatusCodes(
+      status2xx: json['Status2xx'] as int?,
+      status3xx: json['Status3xx'] as int?,
+      status4xx: json['Status4xx'] as int?,
+      status5xx: json['Status5xx'] as int?,
+    );
+  }
+
   factory StatusCodes.fromXml(_s.XmlElement elem) {
     return StatusCodes(
       status2xx: _s.extractXmlIntValue(elem, 'Status2xx'),
@@ -6912,6 +8714,19 @@ class StatusCodes {
       status4xx: _s.extractXmlIntValue(elem, 'Status4xx'),
       status5xx: _s.extractXmlIntValue(elem, 'Status5xx'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status2xx = this.status2xx;
+    final status3xx = this.status3xx;
+    final status4xx = this.status4xx;
+    final status5xx = this.status5xx;
+    return {
+      if (status2xx != null) 'Status2xx': status2xx,
+      if (status3xx != null) 'Status3xx': status3xx,
+      if (status4xx != null) 'Status4xx': status4xx,
+      if (status5xx != null) 'Status5xx': status5xx,
+    };
   }
 }
 
@@ -6930,6 +8745,19 @@ class SystemStatus {
     this.cPUUtilization,
     this.loadAverage,
   });
+  factory SystemStatus.fromJson(Map<String, dynamic> json) {
+    return SystemStatus(
+      cPUUtilization: json['CPUUtilization'] != null
+          ? CPUUtilization.fromJson(
+              json['CPUUtilization'] as Map<String, dynamic>)
+          : null,
+      loadAverage: (json['LoadAverage'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
+
   factory SystemStatus.fromXml(_s.XmlElement elem) {
     return SystemStatus(
       cPUUtilization: _s
@@ -6939,6 +8767,15 @@ class SystemStatus {
           .extractXmlChild(elem, 'LoadAverage')
           ?.let((elem) => _s.extractXmlDoubleListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cPUUtilization = this.cPUUtilization;
+    final loadAverage = this.loadAverage;
+    return {
+      if (cPUUtilization != null) 'CPUUtilization': cPUUtilization,
+      if (loadAverage != null) 'LoadAverage': loadAverage,
+    };
   }
 }
 
@@ -6954,6 +8791,13 @@ class Tag {
     this.key,
     this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String?,
+      value: json['Value'] as String?,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key'),
@@ -6979,10 +8823,23 @@ class Trigger {
   Trigger({
     this.name,
   });
+  factory Trigger.fromJson(Map<String, dynamic> json) {
+    return Trigger(
+      name: json['Name'] as String?,
+    );
+  }
+
   factory Trigger.fromXml(_s.XmlElement elem) {
     return Trigger(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -7017,6 +8874,15 @@ class ValidationMessage {
     this.optionName,
     this.severity,
   });
+  factory ValidationMessage.fromJson(Map<String, dynamic> json) {
+    return ValidationMessage(
+      message: json['Message'] as String?,
+      namespace: json['Namespace'] as String?,
+      optionName: json['OptionName'] as String?,
+      severity: (json['Severity'] as String?)?.toValidationSeverity(),
+    );
+  }
+
   factory ValidationMessage.fromXml(_s.XmlElement elem) {
     return ValidationMessage(
       message: _s.extractXmlStringValue(elem, 'Message'),
@@ -7025,6 +8891,19 @@ class ValidationMessage {
       severity:
           _s.extractXmlStringValue(elem, 'Severity')?.toValidationSeverity(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final namespace = this.namespace;
+    final optionName = this.optionName;
+    final severity = this.severity;
+    return {
+      if (message != null) 'Message': message,
+      if (namespace != null) 'Namespace': namespace,
+      if (optionName != null) 'OptionName': optionName,
+      if (severity != null) 'Severity': severity.toValue(),
+    };
   }
 }
 

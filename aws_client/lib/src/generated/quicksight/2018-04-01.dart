@@ -7813,6 +7813,19 @@ class AccountSettings {
       notificationEmail: json['NotificationEmail'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountName = this.accountName;
+    final defaultNamespace = this.defaultNamespace;
+    final edition = this.edition;
+    final notificationEmail = this.notificationEmail;
+    return {
+      if (accountName != null) 'AccountName': accountName,
+      if (defaultNamespace != null) 'DefaultNamespace': defaultNamespace,
+      if (edition != null) 'Edition': edition.toValue(),
+      if (notificationEmail != null) 'NotificationEmail': notificationEmail,
+    };
+  }
 }
 
 /// The active AWS Identity and Access Management (IAM) policy assignment.
@@ -7833,6 +7846,15 @@ class ActiveIAMPolicyAssignment {
       policyArn: json['PolicyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentName = this.assignmentName;
+    final policyArn = this.policyArn;
+    return {
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
+  }
 }
 
 /// Ad hoc (one-time) filtering option.
@@ -7843,6 +7865,13 @@ class AdHocFilteringOption {
   AdHocFilteringOption({
     this.availabilityStatus,
   });
+  factory AdHocFilteringOption.fromJson(Map<String, dynamic> json) {
+    return AdHocFilteringOption(
+      availabilityStatus:
+          (json['AvailabilityStatus'] as String?)?.toDashboardBehavior(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final availabilityStatus = this.availabilityStatus;
     return {
@@ -7942,6 +7971,32 @@ class Analysis {
       themeArn: json['ThemeArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dataSetArns = this.dataSetArns;
+    final errors = this.errors;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final sheets = this.sheets;
+    final status = this.status;
+    final themeArn = this.themeArn;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSetArns != null) 'DataSetArns': dataSetArns,
+      if (errors != null) 'Errors': errors,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (sheets != null) 'Sheets': sheets,
+      if (status != null) 'Status': status.toValue(),
+      if (themeArn != null) 'ThemeArn': themeArn,
+    };
+  }
 }
 
 /// A metadata error structure for an analysis.
@@ -7961,6 +8016,15 @@ class AnalysisError {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toAnalysisErrorType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -8075,6 +8139,14 @@ class AnalysisSearchFilter {
     this.operator,
     this.value,
   });
+  factory AnalysisSearchFilter.fromJson(Map<String, dynamic> json) {
+    return AnalysisSearchFilter(
+      name: (json['Name'] as String?)?.toAnalysisFilterAttribute(),
+      operator: (json['Operator'] as String?)?.toFilterOperator(),
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -8095,6 +8167,15 @@ class AnalysisSourceEntity {
   AnalysisSourceEntity({
     this.sourceTemplate,
   });
+  factory AnalysisSourceEntity.fromJson(Map<String, dynamic> json) {
+    return AnalysisSourceEntity(
+      sourceTemplate: json['SourceTemplate'] != null
+          ? AnalysisSourceTemplate.fromJson(
+              json['SourceTemplate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final sourceTemplate = this.sourceTemplate;
     return {
@@ -8115,6 +8196,16 @@ class AnalysisSourceTemplate {
     required this.arn,
     required this.dataSetReferences,
   });
+  factory AnalysisSourceTemplate.fromJson(Map<String, dynamic> json) {
+    return AnalysisSourceTemplate(
+      arn: json['Arn'] as String,
+      dataSetReferences: (json['DataSetReferences'] as List)
+          .whereNotNull()
+          .map((e) => DataSetReference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final dataSetReferences = this.dataSetReferences;
@@ -8162,6 +8253,24 @@ class AnalysisSummary {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toResourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -8400,6 +8509,17 @@ class CancelIngestionResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final ingestionId = this.ingestionId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (ingestionId != null) 'IngestionId': ingestionId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 /// A transform operation that casts a column to a different type.
@@ -8541,6 +8661,13 @@ class ColumnGroupColumnSchema {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The column group schema.
@@ -8565,6 +8692,16 @@ class ColumnGroupSchema {
               .toList(),
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnGroupColumnSchemaList = this.columnGroupColumnSchemaList;
+    final name = this.name;
+    return {
+      if (columnGroupColumnSchemaList != null)
+        'ColumnGroupColumnSchemaList': columnGroupColumnSchemaList,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8629,6 +8766,17 @@ class ColumnSchema {
       geographicRole: json['GeographicRole'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataType = this.dataType;
+    final geographicRole = this.geographicRole;
+    final name = this.name;
+    return {
+      if (dataType != null) 'DataType': dataType,
+      if (geographicRole != null) 'GeographicRole': geographicRole,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8709,6 +8857,22 @@ class CreateAccountCustomizationResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountCustomization = this.accountCustomization;
+    final arn = this.arn;
+    final awsAccountId = this.awsAccountId;
+    final namespace = this.namespace;
+    final requestId = this.requestId;
+    return {
+      if (accountCustomization != null)
+        'AccountCustomization': accountCustomization,
+      if (arn != null) 'Arn': arn,
+      if (awsAccountId != null) 'AwsAccountId': awsAccountId,
+      if (namespace != null) 'Namespace': namespace,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateAnalysisResponse {
@@ -8741,6 +8905,19 @@ class CreateAnalysisResponse {
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final requestId = this.requestId;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -8807,6 +8984,21 @@ class CreateDashboardResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final dashboardId = this.dashboardId;
+    final requestId = this.requestId;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (requestId != null) 'RequestId': requestId,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 class CreateDataSetResponse {
@@ -8848,6 +9040,21 @@ class CreateDataSetResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSetId = this.dataSetId;
+    final ingestionArn = this.ingestionArn;
+    final ingestionId = this.ingestionId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (ingestionArn != null) 'IngestionArn': ingestionArn,
+      if (ingestionId != null) 'IngestionId': ingestionId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateDataSourceResponse {
@@ -8882,6 +9089,19 @@ class CreateDataSourceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final dataSourceId = this.dataSourceId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateFolderMembershipResponse {
@@ -8908,6 +9128,17 @@ class CreateFolderMembershipResponse {
       requestId: json['RequestId'] as String?,
       status: json['Status'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final folderMember = this.folderMember;
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (folderMember != null) 'FolderMember': folderMember,
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -8938,6 +9169,17 @@ class CreateFolderResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateGroupMembershipResponse {
@@ -8962,6 +9204,15 @@ class CreateGroupMembershipResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupMember = this.groupMember;
+    final requestId = this.requestId;
+    return {
+      if (groupMember != null) 'GroupMember': groupMember,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -8988,6 +9239,15 @@ class CreateGroupResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final requestId = this.requestId;
+    return {
+      if (group != null) 'Group': group,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -9052,6 +9312,24 @@ class CreateIAMPolicyAssignmentResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentId = this.assignmentId;
+    final assignmentName = this.assignmentName;
+    final assignmentStatus = this.assignmentStatus;
+    final identities = this.identities;
+    final policyArn = this.policyArn;
+    final requestId = this.requestId;
+    return {
+      if (assignmentId != null) 'AssignmentId': assignmentId,
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (assignmentStatus != null)
+        'AssignmentStatus': assignmentStatus.toValue(),
+      if (identities != null) 'Identities': identities,
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateIngestionResponse {
@@ -9085,6 +9363,19 @@ class CreateIngestionResponse {
           (json['IngestionStatus'] as String?)?.toIngestionStatus(),
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final ingestionId = this.ingestionId;
+    final ingestionStatus = this.ingestionStatus;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (ingestionId != null) 'IngestionId': ingestionId,
+      if (ingestionStatus != null) 'IngestionStatus': ingestionStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -9135,6 +9426,23 @@ class CreateNamespaceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final capacityRegion = this.capacityRegion;
+    final creationStatus = this.creationStatus;
+    final identityStore = this.identityStore;
+    final name = this.name;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (capacityRegion != null) 'CapacityRegion': capacityRegion,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (identityStore != null) 'IdentityStore': identityStore.toValue(),
+      if (name != null) 'Name': name,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class CreateTemplateAliasResponse {
@@ -9160,6 +9468,15 @@ class CreateTemplateAliasResponse {
               json['TemplateAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final templateAlias = this.templateAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (templateAlias != null) 'TemplateAlias': templateAlias,
+    };
   }
 }
 
@@ -9200,6 +9517,21 @@ class CreateTemplateResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final requestId = this.requestId;
+    final templateId = this.templateId;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+      if (templateId != null) 'TemplateId': templateId,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 class CreateThemeAliasResponse {
@@ -9224,6 +9556,15 @@ class CreateThemeAliasResponse {
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final themeAlias = this.themeAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (themeAlias != null) 'ThemeAlias': themeAlias,
+    };
   }
 }
 
@@ -9263,6 +9604,21 @@ class CreateThemeResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final requestId = this.requestId;
+    final themeId = this.themeId;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+      if (themeId != null) 'ThemeId': themeId,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 /// The combination of user name and password that are used as credentials.
@@ -9290,6 +9646,18 @@ class CredentialPair {
     required this.username,
     this.alternateDataSourceParameters,
   });
+  factory CredentialPair.fromJson(Map<String, dynamic> json) {
+    return CredentialPair(
+      password: json['Password'] as String,
+      username: json['Username'] as String,
+      alternateDataSourceParameters: (json['AlternateDataSourceParameters']
+              as List?)
+          ?.whereNotNull()
+          .map((e) => DataSourceParameters.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -9394,6 +9762,27 @@ class Dashboard {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dashboardId = this.dashboardId;
+    final lastPublishedTime = this.lastPublishedTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (lastPublishedTime != null)
+        'LastPublishedTime': unixTimestampToJson(lastPublishedTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum DashboardBehavior {
@@ -9441,6 +9830,15 @@ class DashboardError {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toDashboardErrorType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -9551,6 +9949,23 @@ class DashboardPublishOptions {
     this.exportToCSVOption,
     this.sheetControlsOption,
   });
+  factory DashboardPublishOptions.fromJson(Map<String, dynamic> json) {
+    return DashboardPublishOptions(
+      adHocFilteringOption: json['AdHocFilteringOption'] != null
+          ? AdHocFilteringOption.fromJson(
+              json['AdHocFilteringOption'] as Map<String, dynamic>)
+          : null,
+      exportToCSVOption: json['ExportToCSVOption'] != null
+          ? ExportToCSVOption.fromJson(
+              json['ExportToCSVOption'] as Map<String, dynamic>)
+          : null,
+      sheetControlsOption: json['SheetControlsOption'] != null
+          ? SheetControlsOption.fromJson(
+              json['SheetControlsOption'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final adHocFilteringOption = this.adHocFilteringOption;
     final exportToCSVOption = this.exportToCSVOption;
@@ -9585,6 +10000,14 @@ class DashboardSearchFilter {
     this.name,
     this.value,
   });
+  factory DashboardSearchFilter.fromJson(Map<String, dynamic> json) {
+    return DashboardSearchFilter(
+      operator: (json['Operator'] as String).toFilterOperator(),
+      name: (json['Name'] as String?)?.toDashboardFilterAttribute(),
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final operator = this.operator;
     final name = this.name;
@@ -9605,6 +10028,15 @@ class DashboardSourceEntity {
   DashboardSourceEntity({
     this.sourceTemplate,
   });
+  factory DashboardSourceEntity.fromJson(Map<String, dynamic> json) {
+    return DashboardSourceEntity(
+      sourceTemplate: json['SourceTemplate'] != null
+          ? DashboardSourceTemplate.fromJson(
+              json['SourceTemplate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final sourceTemplate = this.sourceTemplate;
     return {
@@ -9625,6 +10057,16 @@ class DashboardSourceTemplate {
     required this.arn,
     required this.dataSetReferences,
   });
+  factory DashboardSourceTemplate.fromJson(Map<String, dynamic> json) {
+    return DashboardSourceTemplate(
+      arn: json['Arn'] as String,
+      dataSetReferences: (json['DataSetReferences'] as List)
+          .whereNotNull()
+          .map((e) => DataSetReference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final dataSetReferences = this.dataSetReferences;
@@ -9677,6 +10119,28 @@ class DashboardSummary {
       name: json['Name'] as String?,
       publishedVersionNumber: json['PublishedVersionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dashboardId = this.dashboardId;
+    final lastPublishedTime = this.lastPublishedTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final publishedVersionNumber = this.publishedVersionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (lastPublishedTime != null)
+        'LastPublishedTime': unixTimestampToJson(lastPublishedTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (publishedVersionNumber != null)
+        'PublishedVersionNumber': publishedVersionNumber,
+    };
   }
 }
 
@@ -9777,6 +10241,31 @@ class DashboardVersion {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dataSetArns = this.dataSetArns;
+    final description = this.description;
+    final errors = this.errors;
+    final sheets = this.sheets;
+    final sourceEntityArn = this.sourceEntityArn;
+    final status = this.status;
+    final themeArn = this.themeArn;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSetArns != null) 'DataSetArns': dataSetArns,
+      if (description != null) 'Description': description,
+      if (errors != null) 'Errors': errors,
+      if (sheets != null) 'Sheets': sheets,
+      if (sourceEntityArn != null) 'SourceEntityArn': sourceEntityArn,
+      if (status != null) 'Status': status.toValue(),
+      if (themeArn != null) 'ThemeArn': themeArn,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 /// Dashboard version summary.
@@ -9816,6 +10305,23 @@ class DashboardVersionSummary {
       status: (json['Status'] as String?)?.toResourceStatus(),
       versionNumber: json['VersionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final sourceEntityArn = this.sourceEntityArn;
+    final status = this.status;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (sourceEntityArn != null) 'SourceEntityArn': sourceEntityArn,
+      if (status != null) 'Status': status.toValue(),
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
   }
 }
 
@@ -9968,6 +10474,43 @@ class DataSet {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final columnGroups = this.columnGroups;
+    final columnLevelPermissionRules = this.columnLevelPermissionRules;
+    final consumedSpiceCapacityInBytes = this.consumedSpiceCapacityInBytes;
+    final createdTime = this.createdTime;
+    final dataSetId = this.dataSetId;
+    final fieldFolders = this.fieldFolders;
+    final importMode = this.importMode;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final logicalTableMap = this.logicalTableMap;
+    final name = this.name;
+    final outputColumns = this.outputColumns;
+    final physicalTableMap = this.physicalTableMap;
+    final rowLevelPermissionDataSet = this.rowLevelPermissionDataSet;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (columnGroups != null) 'ColumnGroups': columnGroups,
+      if (columnLevelPermissionRules != null)
+        'ColumnLevelPermissionRules': columnLevelPermissionRules,
+      if (consumedSpiceCapacityInBytes != null)
+        'ConsumedSpiceCapacityInBytes': consumedSpiceCapacityInBytes,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (fieldFolders != null) 'FieldFolders': fieldFolders,
+      if (importMode != null) 'ImportMode': importMode.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (logicalTableMap != null) 'LogicalTableMap': logicalTableMap,
+      if (name != null) 'Name': name,
+      if (outputColumns != null) 'OutputColumns': outputColumns,
+      if (physicalTableMap != null) 'PhysicalTableMap': physicalTableMap,
+      if (rowLevelPermissionDataSet != null)
+        'RowLevelPermissionDataSet': rowLevelPermissionDataSet,
+    };
+  }
 }
 
 /// Dataset configuration.
@@ -9998,6 +10541,18 @@ class DataSetConfiguration {
           : null,
       placeholder: json['Placeholder'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnGroupSchemaList = this.columnGroupSchemaList;
+    final dataSetSchema = this.dataSetSchema;
+    final placeholder = this.placeholder;
+    return {
+      if (columnGroupSchemaList != null)
+        'ColumnGroupSchemaList': columnGroupSchemaList,
+      if (dataSetSchema != null) 'DataSetSchema': dataSetSchema,
+      if (placeholder != null) 'Placeholder': placeholder,
+    };
   }
 }
 
@@ -10041,6 +10596,13 @@ class DataSetReference {
     required this.dataSetArn,
     required this.dataSetPlaceholder,
   });
+  factory DataSetReference.fromJson(Map<String, dynamic> json) {
+    return DataSetReference(
+      dataSetArn: json['DataSetArn'] as String,
+      dataSetPlaceholder: json['DataSetPlaceholder'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataSetArn = this.dataSetArn;
     final dataSetPlaceholder = this.dataSetPlaceholder;
@@ -10066,6 +10628,13 @@ class DataSetSchema {
           .map((e) => ColumnSchema.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnSchemaList = this.columnSchemaList;
+    return {
+      if (columnSchemaList != null) 'ColumnSchemaList': columnSchemaList,
+    };
   }
 }
 
@@ -10121,6 +10690,31 @@ class DataSetSummary {
               json['RowLevelPermissionDataSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final columnLevelPermissionRulesApplied =
+        this.columnLevelPermissionRulesApplied;
+    final createdTime = this.createdTime;
+    final dataSetId = this.dataSetId;
+    final importMode = this.importMode;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final rowLevelPermissionDataSet = this.rowLevelPermissionDataSet;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (columnLevelPermissionRulesApplied != null)
+        'ColumnLevelPermissionRulesApplied': columnLevelPermissionRulesApplied,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (importMode != null) 'ImportMode': importMode.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (rowLevelPermissionDataSet != null)
+        'RowLevelPermissionDataSet': rowLevelPermissionDataSet,
+    };
   }
 }
 
@@ -10225,6 +10819,39 @@ class DataSource {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alternateDataSourceParameters = this.alternateDataSourceParameters;
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dataSourceId = this.dataSourceId;
+    final dataSourceParameters = this.dataSourceParameters;
+    final errorInfo = this.errorInfo;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final sslProperties = this.sslProperties;
+    final status = this.status;
+    final type = this.type;
+    final vpcConnectionProperties = this.vpcConnectionProperties;
+    return {
+      if (alternateDataSourceParameters != null)
+        'AlternateDataSourceParameters': alternateDataSourceParameters,
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (dataSourceParameters != null)
+        'DataSourceParameters': dataSourceParameters,
+      if (errorInfo != null) 'ErrorInfo': errorInfo,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (sslProperties != null) 'SslProperties': sslProperties,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (vpcConnectionProperties != null)
+        'VpcConnectionProperties': vpcConnectionProperties,
+    };
+  }
 }
 
 /// Data source credentials. This is a variant type structure. For this
@@ -10243,6 +10870,16 @@ class DataSourceCredentials {
     this.copySourceArn,
     this.credentialPair,
   });
+  factory DataSourceCredentials.fromJson(Map<String, dynamic> json) {
+    return DataSourceCredentials(
+      copySourceArn: json['CopySourceArn'] as String?,
+      credentialPair: json['CredentialPair'] != null
+          ? CredentialPair.fromJson(
+              json['CredentialPair'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final copySourceArn = this.copySourceArn;
     final credentialPair = this.credentialPair;
@@ -10270,6 +10907,15 @@ class DataSourceErrorInfo {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toDataSourceErrorInfoType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -10700,6 +11346,16 @@ class DateTimeParameter {
     required this.name,
     required this.values,
   });
+  factory DateTimeParameter.fromJson(Map<String, dynamic> json) {
+    return DateTimeParameter(
+      name: json['Name'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map(nonNullableTimeStampFromJson)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -10722,6 +11378,16 @@ class DecimalParameter {
     required this.name,
     required this.values,
   });
+  factory DecimalParameter.fromJson(Map<String, dynamic> json) {
+    return DecimalParameter(
+      name: json['Name'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as double)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -10748,6 +11414,13 @@ class DeleteAccountCustomizationResponse {
     return DeleteAccountCustomizationResponse(
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -10782,6 +11455,20 @@ class DeleteAnalysisResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final deletionTime = this.deletionTime;
+    final requestId = this.requestId;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (deletionTime != null)
+        'DeletionTime': unixTimestampToJson(deletionTime),
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteDashboardResponse {
@@ -10809,6 +11496,17 @@ class DeleteDashboardResponse {
       dashboardId: json['DashboardId'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dashboardId = this.dashboardId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -10839,6 +11537,17 @@ class DeleteDataSetResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSetId = this.dataSetId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteDataSourceResponse {
@@ -10868,6 +11577,17 @@ class DeleteDataSourceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSourceId = this.dataSourceId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteFolderMembershipResponse {
@@ -10887,6 +11607,15 @@ class DeleteFolderMembershipResponse {
       requestId: json['RequestId'] as String?,
       status: json['Status'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -10917,6 +11646,17 @@ class DeleteFolderResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteGroupMembershipResponse {
@@ -10935,6 +11675,13 @@ class DeleteGroupMembershipResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteGroupResponse {
@@ -10952,6 +11699,13 @@ class DeleteGroupResponse {
     return DeleteGroupResponse(
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -10977,6 +11731,15 @@ class DeleteIAMPolicyAssignmentResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentName = this.assignmentName;
+    final requestId = this.requestId;
+    return {
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteNamespaceResponse {
@@ -10994,6 +11757,13 @@ class DeleteNamespaceResponse {
     return DeleteNamespaceResponse(
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11028,6 +11798,19 @@ class DeleteTemplateAliasResponse {
       templateId: json['TemplateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasName = this.aliasName;
+    final arn = this.arn;
+    final requestId = this.requestId;
+    final templateId = this.templateId;
+    return {
+      if (aliasName != null) 'AliasName': aliasName,
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateId != null) 'TemplateId': templateId,
+    };
+  }
 }
 
 class DeleteTemplateResponse {
@@ -11055,6 +11838,17 @@ class DeleteTemplateResponse {
       requestId: json['RequestId'] as String?,
       templateId: json['TemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final requestId = this.requestId;
+    final templateId = this.templateId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateId != null) 'TemplateId': templateId,
+    };
   }
 }
 
@@ -11090,6 +11884,19 @@ class DeleteThemeAliasResponse {
       themeId: json['ThemeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasName = this.aliasName;
+    final arn = this.arn;
+    final requestId = this.requestId;
+    final themeId = this.themeId;
+    return {
+      if (aliasName != null) 'AliasName': aliasName,
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeId != null) 'ThemeId': themeId,
+    };
+  }
 }
 
 class DeleteThemeResponse {
@@ -11118,6 +11925,17 @@ class DeleteThemeResponse {
       themeId: json['ThemeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final requestId = this.requestId;
+    final themeId = this.themeId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeId != null) 'ThemeId': themeId,
+    };
+  }
 }
 
 class DeleteUserByPrincipalIdResponse {
@@ -11136,6 +11954,13 @@ class DeleteUserByPrincipalIdResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DeleteUserResponse {
@@ -11153,6 +11978,13 @@ class DeleteUserResponse {
     return DeleteUserResponse(
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11197,6 +12029,22 @@ class DescribeAccountCustomizationResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountCustomization = this.accountCustomization;
+    final arn = this.arn;
+    final awsAccountId = this.awsAccountId;
+    final namespace = this.namespace;
+    final requestId = this.requestId;
+    return {
+      if (accountCustomization != null)
+        'AccountCustomization': accountCustomization,
+      if (arn != null) 'Arn': arn,
+      if (awsAccountId != null) 'AwsAccountId': awsAccountId,
+      if (namespace != null) 'Namespace': namespace,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeAccountSettingsResponse {
@@ -11229,6 +12077,15 @@ class DescribeAccountSettingsResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountSettings = this.accountSettings;
+    final requestId = this.requestId;
+    return {
+      if (accountSettings != null) 'AccountSettings': accountSettings,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11269,6 +12126,19 @@ class DescribeAnalysisPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisArn = this.analysisArn;
+    final analysisId = this.analysisId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (analysisArn != null) 'AnalysisArn': analysisArn,
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeAnalysisResponse {
@@ -11294,6 +12164,15 @@ class DescribeAnalysisResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysis = this.analysis;
+    final requestId = this.requestId;
+    return {
+      if (analysis != null) 'Analysis': analysis,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11332,6 +12211,19 @@ class DescribeDashboardPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardId = this.dashboardId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeDashboardResponse {
@@ -11356,6 +12248,15 @@ class DescribeDashboardResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboard = this.dashboard;
+    final requestId = this.requestId;
+    return {
+      if (dashboard != null) 'Dashboard': dashboard,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11395,6 +12296,19 @@ class DescribeDataSetPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSetArn = this.dataSetArn;
+    final dataSetId = this.dataSetId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (dataSetArn != null) 'DataSetArn': dataSetArn,
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeDataSetResponse {
@@ -11419,6 +12333,15 @@ class DescribeDataSetResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSet = this.dataSet;
+    final requestId = this.requestId;
+    return {
+      if (dataSet != null) 'DataSet': dataSet,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11458,6 +12381,19 @@ class DescribeDataSourcePermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceArn = this.dataSourceArn;
+    final dataSourceId = this.dataSourceId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (dataSourceArn != null) 'DataSourceArn': dataSourceArn,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeDataSourceResponse {
@@ -11482,6 +12418,15 @@ class DescribeDataSourceResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final requestId = this.requestId;
+    return {
+      if (dataSource != null) 'DataSource': dataSource,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11520,6 +12465,19 @@ class DescribeFolderPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeFolderResolvedPermissionsResponse {
@@ -11557,6 +12515,19 @@ class DescribeFolderResolvedPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeFolderResponse {
@@ -11582,6 +12553,15 @@ class DescribeFolderResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final folder = this.folder;
+    final requestId = this.requestId;
+    return {
+      if (folder != null) 'Folder': folder,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeGroupResponse {
@@ -11606,6 +12586,15 @@ class DescribeGroupResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final requestId = this.requestId;
+    return {
+      if (group != null) 'Group': group,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11634,6 +12623,16 @@ class DescribeIAMPolicyAssignmentResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iAMPolicyAssignment = this.iAMPolicyAssignment;
+    final requestId = this.requestId;
+    return {
+      if (iAMPolicyAssignment != null)
+        'IAMPolicyAssignment': iAMPolicyAssignment,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeIngestionResponse {
@@ -11658,6 +12657,15 @@ class DescribeIngestionResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ingestion = this.ingestion;
+    final requestId = this.requestId;
+    return {
+      if (ingestion != null) 'Ingestion': ingestion,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -11689,6 +12697,15 @@ class DescribeNamespaceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    final requestId = this.requestId;
+    return {
+      if (namespace != null) 'Namespace': namespace,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class DescribeTemplateAliasResponse {
@@ -11714,6 +12731,15 @@ class DescribeTemplateAliasResponse {
               json['TemplateAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final templateAlias = this.templateAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (templateAlias != null) 'TemplateAlias': templateAlias,
+    };
   }
 }
 
@@ -11752,6 +12778,19 @@ class DescribeTemplatePermissionsResponse {
       templateId: json['TemplateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    final templateArn = this.templateArn;
+    final templateId = this.templateId;
+    return {
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateArn != null) 'TemplateArn': templateArn,
+      if (templateId != null) 'TemplateId': templateId,
+    };
+  }
 }
 
 class DescribeTemplateResponse {
@@ -11777,6 +12816,15 @@ class DescribeTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final template = this.template;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (template != null) 'Template': template,
+    };
+  }
 }
 
 class DescribeThemeAliasResponse {
@@ -11801,6 +12849,15 @@ class DescribeThemeAliasResponse {
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final themeAlias = this.themeAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (themeAlias != null) 'ThemeAlias': themeAlias,
+    };
   }
 }
 
@@ -11838,6 +12895,19 @@ class DescribeThemePermissionsResponse {
       themeId: json['ThemeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    final themeArn = this.themeArn;
+    final themeId = this.themeId;
+    return {
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeArn != null) 'ThemeArn': themeArn,
+      if (themeId != null) 'ThemeId': themeId,
+    };
+  }
 }
 
 class DescribeThemeResponse {
@@ -11863,6 +12933,15 @@ class DescribeThemeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final theme = this.theme;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (theme != null) 'Theme': theme,
+    };
+  }
 }
 
 class DescribeUserResponse {
@@ -11887,6 +12966,15 @@ class DescribeUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final user = this.user;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -11969,6 +13057,15 @@ class ErrorInfo {
       type: (json['Type'] as String?)?.toIngestionErrorType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Export to .csv option.
@@ -11979,6 +13076,13 @@ class ExportToCSVOption {
   ExportToCSVOption({
     this.availabilityStatus,
   });
+  factory ExportToCSVOption.fromJson(Map<String, dynamic> json) {
+    return ExportToCSVOption(
+      availabilityStatus:
+          (json['AvailabilityStatus'] as String?)?.toDashboardBehavior(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final availabilityStatus = this.availabilityStatus;
     return {
@@ -12161,6 +13265,26 @@ class Folder {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final folderId = this.folderId;
+    final folderPath = this.folderPath;
+    final folderType = this.folderType;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (folderId != null) 'FolderId': folderId,
+      if (folderPath != null) 'FolderPath': folderPath,
+      if (folderType != null) 'FolderType': folderType.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum FolderFilterAttribute {
@@ -12204,6 +13328,15 @@ class FolderMember {
       memberType: (json['MemberType'] as String?)?.toMemberType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberId = this.memberId;
+    final memberType = this.memberType;
+    return {
+      if (memberId != null) 'MemberId': memberId,
+      if (memberType != null) 'MemberType': memberType.toValue(),
+    };
+  }
 }
 
 /// Searches a folder by a filter.
@@ -12227,6 +13360,14 @@ class FolderSearchFilter {
     this.operator,
     this.value,
   });
+  factory FolderSearchFilter.fromJson(Map<String, dynamic> json) {
+    return FolderSearchFilter(
+      name: (json['Name'] as String?)?.toFolderFilterAttribute(),
+      operator: (json['Operator'] as String?)?.toFilterOperator(),
+      value: json['Value'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -12276,6 +13417,24 @@ class FolderSummary {
       lastUpdatedTime: timeStampFromJson(json['LastUpdatedTime']),
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final folderId = this.folderId;
+    final folderType = this.folderType;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (folderId != null) 'FolderId': folderId,
+      if (folderType != null) 'FolderType': folderType.toValue(),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -12442,6 +13601,15 @@ class GetDashboardEmbedUrlResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final embedUrl = this.embedUrl;
+    final requestId = this.requestId;
+    return {
+      if (embedUrl != null) 'EmbedUrl': embedUrl,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class GetSessionEmbedUrlResponse {
@@ -12467,6 +13635,15 @@ class GetSessionEmbedUrlResponse {
       embedUrl: json['EmbedUrl'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final embedUrl = this.embedUrl;
+    final requestId = this.requestId;
+    return {
+      if (embedUrl != null) 'EmbedUrl': embedUrl,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -12499,6 +13676,19 @@ class Group {
       principalId: json['PrincipalId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final groupName = this.groupName;
+    final principalId = this.principalId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (groupName != null) 'GroupName': groupName,
+      if (principalId != null) 'PrincipalId': principalId,
+    };
+  }
 }
 
 /// A member of an Amazon QuickSight group. Currently, group members must be
@@ -12519,6 +13709,15 @@ class GroupMember {
       arn: json['Arn'] as String?,
       memberName: json['MemberName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final memberName = this.memberName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (memberName != null) 'MemberName': memberName,
+    };
   }
 }
 
@@ -12586,6 +13785,24 @@ class IAMPolicyAssignment {
       policyArn: json['PolicyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentId = this.assignmentId;
+    final assignmentName = this.assignmentName;
+    final assignmentStatus = this.assignmentStatus;
+    final awsAccountId = this.awsAccountId;
+    final identities = this.identities;
+    final policyArn = this.policyArn;
+    return {
+      if (assignmentId != null) 'AssignmentId': assignmentId,
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (assignmentStatus != null)
+        'AssignmentStatus': assignmentStatus.toValue(),
+      if (awsAccountId != null) 'AwsAccountId': awsAccountId,
+      if (identities != null) 'Identities': identities,
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
+  }
 }
 
 /// IAM policy assignment summary.
@@ -12606,6 +13823,16 @@ class IAMPolicyAssignmentSummary {
       assignmentStatus:
           (json['AssignmentStatus'] as String?)?.toAssignmentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assignmentName = this.assignmentName;
+    final assignmentStatus = this.assignmentStatus;
+    return {
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (assignmentStatus != null)
+        'AssignmentStatus': assignmentStatus.toValue(),
+    };
   }
 }
 
@@ -12725,6 +13952,35 @@ class Ingestion {
           ? RowInfo.fromJson(json['RowInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final ingestionStatus = this.ingestionStatus;
+    final errorInfo = this.errorInfo;
+    final ingestionId = this.ingestionId;
+    final ingestionSizeInBytes = this.ingestionSizeInBytes;
+    final ingestionTimeInSeconds = this.ingestionTimeInSeconds;
+    final queueInfo = this.queueInfo;
+    final requestSource = this.requestSource;
+    final requestType = this.requestType;
+    final rowInfo = this.rowInfo;
+    return {
+      'Arn': arn,
+      'CreatedTime': unixTimestampToJson(createdTime),
+      'IngestionStatus': ingestionStatus.toValue(),
+      if (errorInfo != null) 'ErrorInfo': errorInfo,
+      if (ingestionId != null) 'IngestionId': ingestionId,
+      if (ingestionSizeInBytes != null)
+        'IngestionSizeInBytes': ingestionSizeInBytes,
+      if (ingestionTimeInSeconds != null)
+        'IngestionTimeInSeconds': ingestionTimeInSeconds,
+      if (queueInfo != null) 'QueueInfo': queueInfo,
+      if (requestSource != null) 'RequestSource': requestSource.toValue(),
+      if (requestType != null) 'RequestType': requestType.toValue(),
+      if (rowInfo != null) 'RowInfo': rowInfo,
+    };
   }
 }
 
@@ -13154,6 +14410,14 @@ class IntegerParameter {
     required this.name,
     required this.values,
   });
+  factory IntegerParameter.fromJson(Map<String, dynamic> json) {
+    return IntegerParameter(
+      name: json['Name'] as String,
+      values:
+          (json['Values'] as List).whereNotNull().map((e) => e as int).toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -13342,6 +14606,18 @@ class ListAnalysesResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisSummaryList = this.analysisSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (analysisSummaryList != null)
+        'AnalysisSummaryList': analysisSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListDashboardVersionsResponse {
@@ -13375,6 +14651,18 @@ class ListDashboardVersionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardVersionSummaryList = this.dashboardVersionSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (dashboardVersionSummaryList != null)
+        'DashboardVersionSummaryList': dashboardVersionSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListDashboardsResponse {
@@ -13407,6 +14695,18 @@ class ListDashboardsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardSummaryList = this.dashboardSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (dashboardSummaryList != null)
+        'DashboardSummaryList': dashboardSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListDataSetsResponse {
@@ -13438,6 +14738,17 @@ class ListDataSetsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSetSummaries = this.dataSetSummaries;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (dataSetSummaries != null) 'DataSetSummaries': dataSetSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListDataSourcesResponse {
@@ -13468,6 +14779,17 @@ class ListDataSourcesResponse {
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSources = this.dataSources;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (dataSources != null) 'DataSources': dataSources,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -13501,6 +14823,17 @@ class ListFolderMembersResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final folderMemberList = this.folderMemberList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (folderMemberList != null) 'FolderMemberList': folderMemberList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListFoldersResponse {
@@ -13533,6 +14866,17 @@ class ListFoldersResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final folderSummaryList = this.folderSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (folderSummaryList != null) 'FolderSummaryList': folderSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListGroupMembershipsResponse {
@@ -13564,6 +14908,17 @@ class ListGroupMembershipsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupMemberList = this.groupMemberList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (groupMemberList != null) 'GroupMemberList': groupMemberList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListGroupsResponse {
@@ -13594,6 +14949,17 @@ class ListGroupsResponse {
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupList = this.groupList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (groupList != null) 'GroupList': groupList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -13628,6 +14994,17 @@ class ListIAMPolicyAssignmentsForUserResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeAssignments = this.activeAssignments;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (activeAssignments != null) 'ActiveAssignments': activeAssignments,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListIAMPolicyAssignmentsResponse {
@@ -13660,6 +15037,18 @@ class ListIAMPolicyAssignmentsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iAMPolicyAssignments = this.iAMPolicyAssignments;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (iAMPolicyAssignments != null)
+        'IAMPolicyAssignments': iAMPolicyAssignments,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListIngestionsResponse {
@@ -13690,6 +15079,17 @@ class ListIngestionsResponse {
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ingestions = this.ingestions;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (ingestions != null) 'Ingestions': ingestions,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -13724,6 +15124,17 @@ class ListNamespacesResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaces = this.namespaces;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (namespaces != null) 'Namespaces': namespaces,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -13750,6 +15161,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final tags = this.tags;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -13781,6 +15201,17 @@ class ListTemplateAliasesResponse {
           .map((e) => TemplateAlias.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final templateAliasList = this.templateAliasList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateAliasList != null) 'TemplateAliasList': templateAliasList,
+    };
   }
 }
 
@@ -13814,6 +15245,18 @@ class ListTemplateVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final templateVersionSummaryList = this.templateVersionSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateVersionSummaryList != null)
+        'TemplateVersionSummaryList': templateVersionSummaryList,
+    };
+  }
 }
 
 class ListTemplatesResponse {
@@ -13844,6 +15287,18 @@ class ListTemplatesResponse {
           .map((e) => TemplateSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final templateSummaryList = this.templateSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateSummaryList != null)
+        'TemplateSummaryList': templateSummaryList,
+    };
   }
 }
 
@@ -13876,6 +15331,17 @@ class ListThemeAliasesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final themeAliasList = this.themeAliasList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeAliasList != null) 'ThemeAliasList': themeAliasList,
+    };
+  }
 }
 
 class ListThemeVersionsResponse {
@@ -13906,6 +15372,18 @@ class ListThemeVersionsResponse {
           .map((e) => ThemeVersionSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final themeVersionSummaryList = this.themeVersionSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeVersionSummaryList != null)
+        'ThemeVersionSummaryList': themeVersionSummaryList,
+    };
   }
 }
 
@@ -13938,6 +15416,17 @@ class ListThemesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final themeSummaryList = this.themeSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeSummaryList != null) 'ThemeSummaryList': themeSummaryList,
+    };
+  }
 }
 
 class ListUserGroupsResponse {
@@ -13969,6 +15458,17 @@ class ListUserGroupsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupList = this.groupList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (groupList != null) 'GroupList': groupList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class ListUsersResponse {
@@ -13999,6 +15499,17 @@ class ListUsersResponse {
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    final userList = this.userList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+      if (userList != null) 'UserList': userList,
+    };
   }
 }
 
@@ -14186,6 +15697,15 @@ class MemberIdArnPair {
       memberId: json['MemberId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberArn = this.memberArn;
+    final memberId = this.memberId;
+    return {
+      if (memberArn != null) 'MemberArn': memberArn,
+      if (memberId != null) 'MemberId': memberId,
+    };
+  }
 }
 
 enum MemberType {
@@ -14275,6 +15795,15 @@ class NamespaceError {
       type: (json['Type'] as String?)?.toNamespaceErrorType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum NamespaceErrorType {
@@ -14345,6 +15874,23 @@ class NamespaceInfoV2 {
               json['NamespaceError'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final capacityRegion = this.capacityRegion;
+    final creationStatus = this.creationStatus;
+    final identityStore = this.identityStore;
+    final name = this.name;
+    final namespaceError = this.namespaceError;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (capacityRegion != null) 'CapacityRegion': capacityRegion,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (identityStore != null) 'IdentityStore': identityStore.toValue(),
+      if (name != null) 'Name': name,
+      if (namespaceError != null) 'NamespaceError': namespaceError,
+    };
   }
 }
 
@@ -14450,6 +15996,17 @@ class OutputColumn {
       type: (json['Type'] as String?)?.toColumnDataType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// A list of QuickSight parameters and the list's override values.
@@ -14472,6 +16029,27 @@ class Parameters {
     this.integerParameters,
     this.stringParameters,
   });
+  factory Parameters.fromJson(Map<String, dynamic> json) {
+    return Parameters(
+      dateTimeParameters: (json['DateTimeParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => DateTimeParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      decimalParameters: (json['DecimalParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => DecimalParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      integerParameters: (json['IntegerParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => IntegerParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stringParameters: (json['StringParameters'] as List?)
+          ?.whereNotNull()
+          .map((e) => StringParameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dateTimeParameters = this.dateTimeParameters;
     final decimalParameters = this.decimalParameters;
@@ -14648,6 +16226,15 @@ class QueueInfo {
       waitingOnIngestion: json['WaitingOnIngestion'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queuedIngestion = this.queuedIngestion;
+    final waitingOnIngestion = this.waitingOnIngestion;
+    return {
+      'QueuedIngestion': queuedIngestion,
+      'WaitingOnIngestion': waitingOnIngestion,
+    };
+  }
 }
 
 /// Amazon RDS parameters.
@@ -14755,6 +16342,17 @@ class RegisterUserResponse {
           : null,
       userInvitationUrl: json['UserInvitationUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final user = this.user;
+    final userInvitationUrl = this.userInvitationUrl;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (user != null) 'User': user,
+      if (userInvitationUrl != null) 'UserInvitationUrl': userInvitationUrl,
+    };
   }
 }
 
@@ -14968,6 +16566,17 @@ class RestoreAnalysisResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final requestId = this.requestId;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 /// Information about rows for a data set SPICE ingestion.
@@ -14987,6 +16596,15 @@ class RowInfo {
       rowsDropped: json['RowsDropped'] as int?,
       rowsIngested: json['RowsIngested'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rowsDropped = this.rowsDropped;
+    final rowsIngested = this.rowsIngested;
+    return {
+      if (rowsDropped != null) 'RowsDropped': rowsDropped,
+      if (rowsIngested != null) 'RowsIngested': rowsIngested,
+    };
   }
 }
 
@@ -15208,6 +16826,18 @@ class SearchAnalysesResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisSummaryList = this.analysisSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (analysisSummaryList != null)
+        'AnalysisSummaryList': analysisSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class SearchDashboardsResponse {
@@ -15240,6 +16870,18 @@ class SearchDashboardsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardSummaryList = this.dashboardSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (dashboardSummaryList != null)
+        'DashboardSummaryList': dashboardSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class SearchFoldersResponse {
@@ -15271,6 +16913,17 @@ class SearchFoldersResponse {
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final folderSummaryList = this.folderSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (folderSummaryList != null) 'FolderSummaryList': folderSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -15320,6 +16973,15 @@ class Sheet {
       sheetId: json['SheetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final sheetId = this.sheetId;
+    return {
+      if (name != null) 'Name': name,
+      if (sheetId != null) 'SheetId': sheetId,
+    };
+  }
 }
 
 /// Sheet controls option.
@@ -15330,6 +16992,13 @@ class SheetControlsOption {
   SheetControlsOption({
     this.visibilityState,
   });
+  factory SheetControlsOption.fromJson(Map<String, dynamic> json) {
+    return SheetControlsOption(
+      visibilityState:
+          (json['VisibilityState'] as String?)?.toDashboardUIState(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final visibilityState = this.visibilityState;
     return {
@@ -15507,6 +17176,16 @@ class StringParameter {
     required this.name,
     required this.values,
   });
+  factory StringParameter.fromJson(Map<String, dynamic> json) {
+    return StringParameter(
+      name: json['Name'] as String,
+      values: (json['Values'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -15598,6 +17277,13 @@ class TagResourceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 /// A template object. A <i>template</i> is an entity in QuickSight that
@@ -15649,6 +17335,24 @@ class Template {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final templateId = this.templateId;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (templateId != null) 'TemplateId': templateId,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// The template alias.
@@ -15674,6 +17378,18 @@ class TemplateAlias {
       templateVersionNumber: json['TemplateVersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasName = this.aliasName;
+    final arn = this.arn;
+    final templateVersionNumber = this.templateVersionNumber;
+    return {
+      if (aliasName != null) 'AliasName': aliasName,
+      if (arn != null) 'Arn': arn,
+      if (templateVersionNumber != null)
+        'TemplateVersionNumber': templateVersionNumber,
+    };
+  }
 }
 
 /// List of errors that occurred when the template version creation failed.
@@ -15693,6 +17409,15 @@ class TemplateError {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toTemplateErrorType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -15747,6 +17472,16 @@ class TemplateSourceAnalysis {
     required this.arn,
     required this.dataSetReferences,
   });
+  factory TemplateSourceAnalysis.fromJson(Map<String, dynamic> json) {
+    return TemplateSourceAnalysis(
+      arn: json['Arn'] as String,
+      dataSetReferences: (json['DataSetReferences'] as List)
+          .whereNotNull()
+          .map((e) => DataSetReference.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final dataSetReferences = this.dataSetReferences;
@@ -15769,6 +17504,19 @@ class TemplateSourceEntity {
     this.sourceAnalysis,
     this.sourceTemplate,
   });
+  factory TemplateSourceEntity.fromJson(Map<String, dynamic> json) {
+    return TemplateSourceEntity(
+      sourceAnalysis: json['SourceAnalysis'] != null
+          ? TemplateSourceAnalysis.fromJson(
+              json['SourceAnalysis'] as Map<String, dynamic>)
+          : null,
+      sourceTemplate: json['SourceTemplate'] != null
+          ? TemplateSourceTemplate.fromJson(
+              json['SourceTemplate'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final sourceAnalysis = this.sourceAnalysis;
     final sourceTemplate = this.sourceTemplate;
@@ -15787,6 +17535,12 @@ class TemplateSourceTemplate {
   TemplateSourceTemplate({
     required this.arn,
   });
+  factory TemplateSourceTemplate.fromJson(Map<String, dynamic> json) {
+    return TemplateSourceTemplate(
+      arn: json['Arn'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     return {
@@ -15833,6 +17587,25 @@ class TemplateSummary {
       name: json['Name'] as String?,
       templateId: json['TemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final latestVersionNumber = this.latestVersionNumber;
+    final name = this.name;
+    final templateId = this.templateId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (latestVersionNumber != null)
+        'LatestVersionNumber': latestVersionNumber,
+      if (name != null) 'Name': name,
+      if (templateId != null) 'TemplateId': templateId,
+    };
   }
 }
 
@@ -15902,6 +17675,30 @@ class TemplateVersion {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final dataSetConfigurations = this.dataSetConfigurations;
+    final description = this.description;
+    final errors = this.errors;
+    final sheets = this.sheets;
+    final sourceEntityArn = this.sourceEntityArn;
+    final status = this.status;
+    final themeArn = this.themeArn;
+    final versionNumber = this.versionNumber;
+    return {
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (dataSetConfigurations != null)
+        'DataSetConfigurations': dataSetConfigurations,
+      if (description != null) 'Description': description,
+      if (errors != null) 'Errors': errors,
+      if (sheets != null) 'Sheets': sheets,
+      if (sourceEntityArn != null) 'SourceEntityArn': sourceEntityArn,
+      if (status != null) 'Status': status.toValue(),
+      if (themeArn != null) 'ThemeArn': themeArn,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 /// The template version.
@@ -15936,6 +17733,21 @@ class TemplateVersionSummary {
       status: (json['Status'] as String?)?.toResourceStatus(),
       versionNumber: json['VersionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final status = this.status;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (status != null) 'Status': status.toValue(),
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
   }
 }
 
@@ -16047,6 +17859,26 @@ class Theme {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final themeId = this.themeId;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (themeId != null) 'ThemeId': themeId,
+      if (type != null) 'Type': type.toValue(),
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// An alias for a theme.
@@ -16071,6 +17903,17 @@ class ThemeAlias {
       arn: json['Arn'] as String?,
       themeVersionNumber: json['ThemeVersionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aliasName = this.aliasName;
+    final arn = this.arn;
+    final themeVersionNumber = this.themeVersionNumber;
+    return {
+      if (aliasName != null) 'AliasName': aliasName,
+      if (arn != null) 'Arn': arn,
+      if (themeVersionNumber != null) 'ThemeVersionNumber': themeVersionNumber,
+    };
   }
 }
 
@@ -16138,6 +17981,15 @@ class ThemeError {
       type: (json['Type'] as String?)?.toThemeErrorType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ThemeErrorType {
@@ -16200,6 +18052,25 @@ class ThemeSummary {
       name: json['Name'] as String?,
       themeId: json['ThemeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final latestVersionNumber = this.latestVersionNumber;
+    final name = this.name;
+    final themeId = this.themeId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (latestVersionNumber != null)
+        'LatestVersionNumber': latestVersionNumber,
+      if (name != null) 'Name': name,
+      if (themeId != null) 'ThemeId': themeId,
+    };
   }
 }
 
@@ -16291,6 +18162,27 @@ class ThemeVersion {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final baseThemeId = this.baseThemeId;
+    final configuration = this.configuration;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final errors = this.errors;
+    final status = this.status;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (baseThemeId != null) 'BaseThemeId': baseThemeId,
+      if (configuration != null) 'Configuration': configuration,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (errors != null) 'Errors': errors,
+      if (status != null) 'Status': status.toValue(),
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 /// The theme version.
@@ -16325,6 +18217,21 @@ class ThemeVersionSummary {
       status: (json['Status'] as String?)?.toResourceStatus(),
       versionNumber: json['VersionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final status = this.status;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (status != null) 'Status': status.toValue(),
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
   }
 }
 
@@ -16659,6 +18566,13 @@ class UntagResourceResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateAccountCustomizationResponse {
@@ -16703,6 +18617,22 @@ class UpdateAccountCustomizationResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountCustomization = this.accountCustomization;
+    final arn = this.arn;
+    final awsAccountId = this.awsAccountId;
+    final namespace = this.namespace;
+    final requestId = this.requestId;
+    return {
+      if (accountCustomization != null)
+        'AccountCustomization': accountCustomization,
+      if (arn != null) 'Arn': arn,
+      if (awsAccountId != null) 'AwsAccountId': awsAccountId,
+      if (namespace != null) 'Namespace': namespace,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateAccountSettingsResponse {
@@ -16720,6 +18650,13 @@ class UpdateAccountSettingsResponse {
     return UpdateAccountSettingsResponse(
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -16759,6 +18696,19 @@ class UpdateAnalysisPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisArn = this.analysisArn;
+    final analysisId = this.analysisId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (analysisArn != null) 'AnalysisArn': analysisArn,
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateAnalysisResponse {
@@ -16791,6 +18741,19 @@ class UpdateAnalysisResponse {
       requestId: json['RequestId'] as String?,
       updateStatus: (json['UpdateStatus'] as String?)?.toResourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisId = this.analysisId;
+    final arn = this.arn;
+    final requestId = this.requestId;
+    final updateStatus = this.updateStatus;
+    return {
+      if (analysisId != null) 'AnalysisId': analysisId,
+      if (arn != null) 'Arn': arn,
+      if (requestId != null) 'RequestId': requestId,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
   }
 }
 
@@ -16829,6 +18792,19 @@ class UpdateDashboardPermissionsResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardId = this.dashboardId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateDashboardPublishedVersionResponse {
@@ -16857,6 +18833,17 @@ class UpdateDashboardPublishedVersionResponse {
       dashboardId: json['DashboardId'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardId = this.dashboardId;
+    final requestId = this.requestId;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -16897,6 +18884,23 @@ class UpdateDashboardResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final dashboardId = this.dashboardId;
+    final requestId = this.requestId;
+    final status = this.status;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (dashboardId != null) 'DashboardId': dashboardId,
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 class UpdateDataSetPermissionsResponse {
@@ -16925,6 +18929,17 @@ class UpdateDataSetPermissionsResponse {
       dataSetId: json['DataSetId'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSetArn = this.dataSetArn;
+    final dataSetId = this.dataSetId;
+    final requestId = this.requestId;
+    return {
+      if (dataSetArn != null) 'DataSetArn': dataSetArn,
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -16967,6 +18982,21 @@ class UpdateDataSetResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSetId = this.dataSetId;
+    final ingestionArn = this.ingestionArn;
+    final ingestionId = this.ingestionId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dataSetId != null) 'DataSetId': dataSetId,
+      if (ingestionArn != null) 'IngestionArn': ingestionArn,
+      if (ingestionId != null) 'IngestionId': ingestionId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateDataSourcePermissionsResponse {
@@ -16996,6 +19026,17 @@ class UpdateDataSourcePermissionsResponse {
       dataSourceId: json['DataSourceId'] as String?,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceArn = this.dataSourceArn;
+    final dataSourceId = this.dataSourceId;
+    final requestId = this.requestId;
+    return {
+      if (dataSourceArn != null) 'DataSourceArn': dataSourceArn,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -17030,6 +19071,19 @@ class UpdateDataSourceResponse {
       requestId: json['RequestId'] as String?,
       updateStatus: (json['UpdateStatus'] as String?)?.toResourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataSourceId = this.dataSourceId;
+    final requestId = this.requestId;
+    final updateStatus = this.updateStatus;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (dataSourceId != null) 'DataSourceId': dataSourceId,
+      if (requestId != null) 'RequestId': requestId,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
   }
 }
 
@@ -17068,6 +19122,21 @@ class UpdateFolderPermissionsResponse {
       status: json['Status'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class UpdateFolderResponse {
@@ -17096,6 +19165,17 @@ class UpdateFolderResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final folderId = this.folderId;
+    final requestId = this.requestId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (folderId != null) 'FolderId': folderId,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateGroupResponse {
@@ -17120,6 +19200,15 @@ class UpdateGroupResponse {
           : null,
       requestId: json['RequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final requestId = this.requestId;
+    return {
+      if (group != null) 'Group': group,
+      if (requestId != null) 'RequestId': requestId,
+    };
   }
 }
 
@@ -17184,6 +19273,24 @@ class UpdateIAMPolicyAssignmentResponse {
       requestId: json['RequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentId = this.assignmentId;
+    final assignmentName = this.assignmentName;
+    final assignmentStatus = this.assignmentStatus;
+    final identities = this.identities;
+    final policyArn = this.policyArn;
+    final requestId = this.requestId;
+    return {
+      if (assignmentId != null) 'AssignmentId': assignmentId,
+      if (assignmentName != null) 'AssignmentName': assignmentName,
+      if (assignmentStatus != null)
+        'AssignmentStatus': assignmentStatus.toValue(),
+      if (identities != null) 'Identities': identities,
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (requestId != null) 'RequestId': requestId,
+    };
+  }
 }
 
 class UpdateTemplateAliasResponse {
@@ -17209,6 +19316,15 @@ class UpdateTemplateAliasResponse {
               json['TemplateAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final templateAlias = this.templateAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (templateAlias != null) 'TemplateAlias': templateAlias,
+    };
   }
 }
 
@@ -17246,6 +19362,19 @@ class UpdateTemplatePermissionsResponse {
       templateArn: json['TemplateArn'] as String?,
       templateId: json['TemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    final templateArn = this.templateArn;
+    final templateId = this.templateId;
+    return {
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+      if (templateArn != null) 'TemplateArn': templateArn,
+      if (templateId != null) 'TemplateId': templateId,
+    };
   }
 }
 
@@ -17286,6 +19415,21 @@ class UpdateTemplateResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final requestId = this.requestId;
+    final templateId = this.templateId;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+      if (templateId != null) 'TemplateId': templateId,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 class UpdateThemeAliasResponse {
@@ -17310,6 +19454,15 @@ class UpdateThemeAliasResponse {
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final themeAlias = this.themeAlias;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (themeAlias != null) 'ThemeAlias': themeAlias,
+    };
   }
 }
 
@@ -17346,6 +19499,19 @@ class UpdateThemePermissionsResponse {
       themeArn: json['ThemeArn'] as String?,
       themeId: json['ThemeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final requestId = this.requestId;
+    final themeArn = this.themeArn;
+    final themeId = this.themeId;
+    return {
+      if (permissions != null) 'Permissions': permissions,
+      if (requestId != null) 'RequestId': requestId,
+      if (themeArn != null) 'ThemeArn': themeArn,
+      if (themeId != null) 'ThemeId': themeId,
+    };
   }
 }
 
@@ -17385,6 +19551,21 @@ class UpdateThemeResponse {
       versionArn: json['VersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationStatus = this.creationStatus;
+    final requestId = this.requestId;
+    final themeId = this.themeId;
+    final versionArn = this.versionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
+      if (requestId != null) 'RequestId': requestId,
+      if (themeId != null) 'ThemeId': themeId,
+      if (versionArn != null) 'VersionArn': versionArn,
+    };
+  }
 }
 
 class UpdateUserResponse {
@@ -17409,6 +19590,15 @@ class UpdateUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final user = this.user;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -17561,6 +19751,40 @@ class User {
       role: (json['Role'] as String?)?.toUserRole(),
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final active = this.active;
+    final arn = this.arn;
+    final customPermissionsName = this.customPermissionsName;
+    final email = this.email;
+    final externalLoginFederationProviderType =
+        this.externalLoginFederationProviderType;
+    final externalLoginFederationProviderUrl =
+        this.externalLoginFederationProviderUrl;
+    final externalLoginId = this.externalLoginId;
+    final identityType = this.identityType;
+    final principalId = this.principalId;
+    final role = this.role;
+    final userName = this.userName;
+    return {
+      if (active != null) 'Active': active,
+      if (arn != null) 'Arn': arn,
+      if (customPermissionsName != null)
+        'CustomPermissionsName': customPermissionsName,
+      if (email != null) 'Email': email,
+      if (externalLoginFederationProviderType != null)
+        'ExternalLoginFederationProviderType':
+            externalLoginFederationProviderType,
+      if (externalLoginFederationProviderUrl != null)
+        'ExternalLoginFederationProviderUrl':
+            externalLoginFederationProviderUrl,
+      if (externalLoginId != null) 'ExternalLoginId': externalLoginId,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (principalId != null) 'PrincipalId': principalId,
+      if (role != null) 'Role': role.toValue(),
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 

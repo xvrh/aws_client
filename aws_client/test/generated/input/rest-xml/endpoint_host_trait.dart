@@ -66,6 +66,19 @@ class StaticInputShape {
   StaticInputShape({
     this.name,
   });
+  factory StaticInputShape.fromJson(Map<String, dynamic> json) {
+    return StaticInputShape(
+      name: json['Name'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final name = this.name;
     final $children = <_s.XmlNode>[
@@ -88,6 +101,19 @@ class MemberRefInputShape {
   MemberRefInputShape({
     this.name,
   });
+  factory MemberRefInputShape.fromJson(Map<String, dynamic> json) {
+    return MemberRefInputShape(
+      name: json['Name'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final name = this.name;
     final $children = <_s.XmlNode>[

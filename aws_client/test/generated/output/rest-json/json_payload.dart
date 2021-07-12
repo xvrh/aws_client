@@ -60,6 +60,20 @@ class OutputShape {
     this.data,
     this.header,
   });
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      data: json['Data'] != null
+          ? BodyStructure.fromJson(json['Data'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    return {
+      if (data != null) 'Data': data,
+    };
+  }
 }
 
 class BodyStructure {
@@ -72,6 +86,13 @@ class BodyStructure {
     return BodyStructure(
       foo: json['Foo'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

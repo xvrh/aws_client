@@ -2443,10 +2443,24 @@ class CheckIfPhoneNumberIsOptedOutResponse {
   CheckIfPhoneNumberIsOptedOutResponse({
     this.isOptedOut,
   });
+  factory CheckIfPhoneNumberIsOptedOutResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CheckIfPhoneNumberIsOptedOutResponse(
+      isOptedOut: json['isOptedOut'] as bool?,
+    );
+  }
+
   factory CheckIfPhoneNumberIsOptedOutResponse.fromXml(_s.XmlElement elem) {
     return CheckIfPhoneNumberIsOptedOutResponse(
       isOptedOut: _s.extractXmlBoolValue(elem, 'isOptedOut'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isOptedOut = this.isOptedOut;
+    return {
+      if (isOptedOut != null) 'isOptedOut': isOptedOut,
+    };
   }
 }
 
@@ -2458,10 +2472,23 @@ class ConfirmSubscriptionResponse {
   ConfirmSubscriptionResponse({
     this.subscriptionArn,
   });
+  factory ConfirmSubscriptionResponse.fromJson(Map<String, dynamic> json) {
+    return ConfirmSubscriptionResponse(
+      subscriptionArn: json['SubscriptionArn'] as String?,
+    );
+  }
+
   factory ConfirmSubscriptionResponse.fromXml(_s.XmlElement elem) {
     return ConfirmSubscriptionResponse(
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+    };
   }
 }
 
@@ -2473,10 +2500,23 @@ class CreateEndpointResponse {
   CreateEndpointResponse({
     this.endpointArn,
   });
+  factory CreateEndpointResponse.fromJson(Map<String, dynamic> json) {
+    return CreateEndpointResponse(
+      endpointArn: json['EndpointArn'] as String?,
+    );
+  }
+
   factory CreateEndpointResponse.fromXml(_s.XmlElement elem) {
     return CreateEndpointResponse(
       endpointArn: _s.extractXmlStringValue(elem, 'EndpointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
   }
 }
 
@@ -2488,20 +2528,43 @@ class CreatePlatformApplicationResponse {
   CreatePlatformApplicationResponse({
     this.platformApplicationArn,
   });
+  factory CreatePlatformApplicationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return CreatePlatformApplicationResponse(
+      platformApplicationArn: json['PlatformApplicationArn'] as String?,
+    );
+  }
+
   factory CreatePlatformApplicationResponse.fromXml(_s.XmlElement elem) {
     return CreatePlatformApplicationResponse(
       platformApplicationArn:
           _s.extractXmlStringValue(elem, 'PlatformApplicationArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platformApplicationArn = this.platformApplicationArn;
+    return {
+      if (platformApplicationArn != null)
+        'PlatformApplicationArn': platformApplicationArn,
+    };
+  }
 }
 
 class CreateSMSSandboxPhoneNumberResult {
   CreateSMSSandboxPhoneNumberResult();
+  factory CreateSMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
+    return CreateSMSSandboxPhoneNumberResult();
+  }
+
   factory CreateSMSSandboxPhoneNumberResult.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateSMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2513,19 +2576,40 @@ class CreateTopicResponse {
   CreateTopicResponse({
     this.topicArn,
   });
+  factory CreateTopicResponse.fromJson(Map<String, dynamic> json) {
+    return CreateTopicResponse(
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory CreateTopicResponse.fromXml(_s.XmlElement elem) {
     return CreateTopicResponse(
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
+  }
 }
 
 class DeleteSMSSandboxPhoneNumberResult {
   DeleteSMSSandboxPhoneNumberResult();
+  factory DeleteSMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
+    return DeleteSMSSandboxPhoneNumberResult();
+  }
+
   factory DeleteSMSSandboxPhoneNumberResult.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteSMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2541,6 +2625,14 @@ class Endpoint {
     this.attributes,
     this.endpointArn,
   });
+  factory Endpoint.fromJson(Map<String, dynamic> json) {
+    return Endpoint(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      endpointArn: json['EndpointArn'] as String?,
+    );
+  }
+
   factory Endpoint.fromXml(_s.XmlElement elem) {
     return Endpoint(
       attributes: Map.fromEntries(
@@ -2554,6 +2646,15 @@ class Endpoint {
       ),
       endpointArn: _s.extractXmlStringValue(elem, 'EndpointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final endpointArn = this.endpointArn;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
   }
 }
 
@@ -2586,6 +2687,13 @@ class GetEndpointAttributesResponse {
   GetEndpointAttributesResponse({
     this.attributes,
   });
+  factory GetEndpointAttributesResponse.fromJson(Map<String, dynamic> json) {
+    return GetEndpointAttributesResponse(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetEndpointAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetEndpointAttributesResponse(
       attributes: Map.fromEntries(
@@ -2598,6 +2706,13 @@ class GetEndpointAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -2629,6 +2744,14 @@ class GetPlatformApplicationAttributesResponse {
   GetPlatformApplicationAttributesResponse({
     this.attributes,
   });
+  factory GetPlatformApplicationAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetPlatformApplicationAttributesResponse(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetPlatformApplicationAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetPlatformApplicationAttributesResponse(
       attributes: Map.fromEntries(
@@ -2642,6 +2765,13 @@ class GetPlatformApplicationAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// The response from the <code>GetSMSAttributes</code> request.
@@ -2652,6 +2782,13 @@ class GetSMSAttributesResponse {
   GetSMSAttributesResponse({
     this.attributes,
   });
+  factory GetSMSAttributesResponse.fromJson(Map<String, dynamic> json) {
+    return GetSMSAttributesResponse(
+      attributes: (json['attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetSMSAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetSMSAttributesResponse(
       attributes: Map.fromEntries(
@@ -2665,6 +2802,13 @@ class GetSMSAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 class GetSMSSandboxAccountStatusResult {
@@ -2674,10 +2818,23 @@ class GetSMSSandboxAccountStatusResult {
   GetSMSSandboxAccountStatusResult({
     required this.isInSandbox,
   });
+  factory GetSMSSandboxAccountStatusResult.fromJson(Map<String, dynamic> json) {
+    return GetSMSSandboxAccountStatusResult(
+      isInSandbox: json['IsInSandbox'] as bool,
+    );
+  }
+
   factory GetSMSSandboxAccountStatusResult.fromXml(_s.XmlElement elem) {
     return GetSMSSandboxAccountStatusResult(
       isInSandbox: _s.extractXmlBoolValue(elem, 'IsInSandbox')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isInSandbox = this.isInSandbox;
+    return {
+      'IsInSandbox': isInSandbox,
+    };
   }
 }
 
@@ -2763,6 +2920,14 @@ class GetSubscriptionAttributesResponse {
   GetSubscriptionAttributesResponse({
     this.attributes,
   });
+  factory GetSubscriptionAttributesResponse.fromJson(
+      Map<String, dynamic> json) {
+    return GetSubscriptionAttributesResponse(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetSubscriptionAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetSubscriptionAttributesResponse(
       attributes: Map.fromEntries(
@@ -2775,6 +2940,13 @@ class GetSubscriptionAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -2873,6 +3045,13 @@ class GetTopicAttributesResponse {
   GetTopicAttributesResponse({
     this.attributes,
   });
+  factory GetTopicAttributesResponse.fromJson(Map<String, dynamic> json) {
+    return GetTopicAttributesResponse(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
   factory GetTopicAttributesResponse.fromXml(_s.XmlElement elem) {
     return GetTopicAttributesResponse(
       attributes: Map.fromEntries(
@@ -2885,6 +3064,13 @@ class GetTopicAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -2985,6 +3171,17 @@ class ListEndpointsByPlatformApplicationResponse {
     this.endpoints,
     this.nextToken,
   });
+  factory ListEndpointsByPlatformApplicationResponse.fromJson(
+      Map<String, dynamic> json) {
+    return ListEndpointsByPlatformApplicationResponse(
+      endpoints: (json['Endpoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListEndpointsByPlatformApplicationResponse.fromXml(
       _s.XmlElement elem) {
     return ListEndpointsByPlatformApplicationResponse(
@@ -2992,6 +3189,15 @@ class ListEndpointsByPlatformApplicationResponse {
           elem.findElements('member').map((c) => Endpoint.fromXml(c)).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3008,6 +3214,17 @@ class ListOriginationNumbersResult {
     this.nextToken,
     this.phoneNumbers,
   });
+  factory ListOriginationNumbersResult.fromJson(Map<String, dynamic> json) {
+    return ListOriginationNumbersResult(
+      nextToken: json['NextToken'] as String?,
+      phoneNumbers: (json['PhoneNumbers'] as List?)
+          ?.whereNotNull()
+          .map(
+              (e) => PhoneNumberInformation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListOriginationNumbersResult.fromXml(_s.XmlElement elem) {
     return ListOriginationNumbersResult(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -3016,6 +3233,15 @@ class ListOriginationNumbersResult {
           .map((c) => PhoneNumberInformation.fromXml(c))
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+    };
   }
 }
 
@@ -3034,6 +3260,16 @@ class ListPhoneNumbersOptedOutResponse {
     this.nextToken,
     this.phoneNumbers,
   });
+  factory ListPhoneNumbersOptedOutResponse.fromJson(Map<String, dynamic> json) {
+    return ListPhoneNumbersOptedOutResponse(
+      nextToken: json['nextToken'] as String?,
+      phoneNumbers: (json['phoneNumbers'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
   factory ListPhoneNumbersOptedOutResponse.fromXml(_s.XmlElement elem) {
     return ListPhoneNumbersOptedOutResponse(
       nextToken: _s.extractXmlStringValue(elem, 'nextToken'),
@@ -3041,6 +3277,15 @@ class ListPhoneNumbersOptedOutResponse {
           .extractXmlChild(elem, 'phoneNumbers')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (phoneNumbers != null) 'phoneNumbers': phoneNumbers,
+    };
   }
 }
 
@@ -3057,6 +3302,16 @@ class ListPlatformApplicationsResponse {
     this.nextToken,
     this.platformApplications,
   });
+  factory ListPlatformApplicationsResponse.fromJson(Map<String, dynamic> json) {
+    return ListPlatformApplicationsResponse(
+      nextToken: json['NextToken'] as String?,
+      platformApplications: (json['PlatformApplications'] as List?)
+          ?.whereNotNull()
+          .map((e) => PlatformApplication.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListPlatformApplicationsResponse.fromXml(_s.XmlElement elem) {
     return ListPlatformApplicationsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -3067,6 +3322,16 @@ class ListPlatformApplicationsResponse {
               .map((c) => PlatformApplication.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformApplications = this.platformApplications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformApplications != null)
+        'PlatformApplications': platformApplications,
+    };
   }
 }
 
@@ -3083,6 +3348,16 @@ class ListSMSSandboxPhoneNumbersResult {
     required this.phoneNumbers,
     this.nextToken,
   });
+  factory ListSMSSandboxPhoneNumbersResult.fromJson(Map<String, dynamic> json) {
+    return ListSMSSandboxPhoneNumbersResult(
+      phoneNumbers: (json['PhoneNumbers'] as List)
+          .whereNotNull()
+          .map((e) => SMSSandboxPhoneNumber.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
   factory ListSMSSandboxPhoneNumbersResult.fromXml(_s.XmlElement elem) {
     return ListSMSSandboxPhoneNumbersResult(
       phoneNumbers: _s
@@ -3092,6 +3367,15 @@ class ListSMSSandboxPhoneNumbersResult {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumbers = this.phoneNumbers;
+    final nextToken = this.nextToken;
+    return {
+      'PhoneNumbers': phoneNumbers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3109,6 +3393,16 @@ class ListSubscriptionsByTopicResponse {
     this.nextToken,
     this.subscriptions,
   });
+  factory ListSubscriptionsByTopicResponse.fromJson(Map<String, dynamic> json) {
+    return ListSubscriptionsByTopicResponse(
+      nextToken: json['NextToken'] as String?,
+      subscriptions: (json['Subscriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Subscription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListSubscriptionsByTopicResponse.fromXml(_s.XmlElement elem) {
     return ListSubscriptionsByTopicResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -3118,6 +3412,15 @@ class ListSubscriptionsByTopicResponse {
               .map((c) => Subscription.fromXml(c))
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscriptions = this.subscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subscriptions != null) 'Subscriptions': subscriptions,
+    };
   }
 }
 
@@ -3134,6 +3437,16 @@ class ListSubscriptionsResponse {
     this.nextToken,
     this.subscriptions,
   });
+  factory ListSubscriptionsResponse.fromJson(Map<String, dynamic> json) {
+    return ListSubscriptionsResponse(
+      nextToken: json['NextToken'] as String?,
+      subscriptions: (json['Subscriptions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Subscription.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListSubscriptionsResponse.fromXml(_s.XmlElement elem) {
     return ListSubscriptionsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
@@ -3144,6 +3457,15 @@ class ListSubscriptionsResponse {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscriptions = this.subscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subscriptions != null) 'Subscriptions': subscriptions,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3153,11 +3475,27 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+  factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
+    return ListTagsForResourceResponse(
+      tags: (json['Tags'] as List?)
+          ?.whereNotNull()
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTagsForResourceResponse.fromXml(_s.XmlElement elem) {
     return ListTagsForResourceResponse(
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3174,12 +3512,31 @@ class ListTopicsResponse {
     this.nextToken,
     this.topics,
   });
+  factory ListTopicsResponse.fromJson(Map<String, dynamic> json) {
+    return ListTopicsResponse(
+      nextToken: json['NextToken'] as String?,
+      topics: (json['Topics'] as List?)
+          ?.whereNotNull()
+          .map((e) => Topic.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
   factory ListTopicsResponse.fromXml(_s.XmlElement elem) {
     return ListTopicsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       topics: _s.extractXmlChild(elem, 'Topics')?.let((elem) =>
           elem.findElements('member').map((c) => Topic.fromXml(c)).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final topics = this.topics;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (topics != null) 'Topics': topics,
+    };
   }
 }
 
@@ -3219,6 +3576,14 @@ class MessageAttributeValue {
     this.binaryValue,
     this.stringValue,
   });
+  factory MessageAttributeValue.fromJson(Map<String, dynamic> json) {
+    return MessageAttributeValue(
+      dataType: json['DataType'] as String,
+      binaryValue: _s.decodeNullableUint8List(json['BinaryValue'] as String?),
+      stringValue: json['StringValue'] as String?,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final dataType = this.dataType;
     final binaryValue = this.binaryValue;
@@ -3268,10 +3633,18 @@ extension on String {
 /// The response for the OptInPhoneNumber action.
 class OptInPhoneNumberResponse {
   OptInPhoneNumberResponse();
+  factory OptInPhoneNumberResponse.fromJson(Map<String, dynamic> _) {
+    return OptInPhoneNumberResponse();
+  }
+
   factory OptInPhoneNumberResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return OptInPhoneNumberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3304,6 +3677,20 @@ class PhoneNumberInformation {
     this.routeType,
     this.status,
   });
+  factory PhoneNumberInformation.fromJson(Map<String, dynamic> json) {
+    return PhoneNumberInformation(
+      createdAt: timeStampFromJson(json['CreatedAt']),
+      iso2CountryCode: json['Iso2CountryCode'] as String?,
+      numberCapabilities: (json['NumberCapabilities'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toNumberCapability())
+          .toList(),
+      phoneNumber: json['PhoneNumber'] as String?,
+      routeType: (json['RouteType'] as String?)?.toRouteType(),
+      status: json['Status'] as String?,
+    );
+  }
+
   factory PhoneNumberInformation.fromXml(_s.XmlElement elem) {
     return PhoneNumberInformation(
       createdAt: _s.extractXmlDateTimeValue(elem, 'CreatedAt'),
@@ -3317,6 +3704,25 @@ class PhoneNumberInformation {
       routeType: _s.extractXmlStringValue(elem, 'RouteType')?.toRouteType(),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final iso2CountryCode = this.iso2CountryCode;
+    final numberCapabilities = this.numberCapabilities;
+    final phoneNumber = this.phoneNumber;
+    final routeType = this.routeType;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (iso2CountryCode != null) 'Iso2CountryCode': iso2CountryCode,
+      if (numberCapabilities != null)
+        'NumberCapabilities':
+            numberCapabilities.map((e) => e.toValue()).toList(),
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (routeType != null) 'RouteType': routeType.toValue(),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3332,6 +3738,14 @@ class PlatformApplication {
     this.attributes,
     this.platformApplicationArn,
   });
+  factory PlatformApplication.fromJson(Map<String, dynamic> json) {
+    return PlatformApplication(
+      attributes: (json['Attributes'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      platformApplicationArn: json['PlatformApplicationArn'] as String?,
+    );
+  }
+
   factory PlatformApplication.fromXml(_s.XmlElement elem) {
     return PlatformApplication(
       attributes: Map.fromEntries(
@@ -3346,6 +3760,16 @@ class PlatformApplication {
       platformApplicationArn:
           _s.extractXmlStringValue(elem, 'PlatformApplicationArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final platformApplicationArn = this.platformApplicationArn;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (platformApplicationArn != null)
+        'PlatformApplicationArn': platformApplicationArn,
+    };
   }
 }
 
@@ -3368,11 +3792,27 @@ class PublishResponse {
     this.messageId,
     this.sequenceNumber,
   });
+  factory PublishResponse.fromJson(Map<String, dynamic> json) {
+    return PublishResponse(
+      messageId: json['MessageId'] as String?,
+      sequenceNumber: json['SequenceNumber'] as String?,
+    );
+  }
+
   factory PublishResponse.fromXml(_s.XmlElement elem) {
     return PublishResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
   }
 }
 
@@ -3434,6 +3874,14 @@ class SMSSandboxPhoneNumber {
     this.phoneNumber,
     this.status,
   });
+  factory SMSSandboxPhoneNumber.fromJson(Map<String, dynamic> json) {
+    return SMSSandboxPhoneNumber(
+      phoneNumber: json['PhoneNumber'] as String?,
+      status: (json['Status'] as String?)
+          ?.toSMSSandboxPhoneNumberVerificationStatus(),
+    );
+  }
+
   factory SMSSandboxPhoneNumber.fromXml(_s.XmlElement elem) {
     return SMSSandboxPhoneNumber(
       phoneNumber: _s.extractXmlStringValue(elem, 'PhoneNumber'),
@@ -3441,6 +3889,15 @@ class SMSSandboxPhoneNumber {
           .extractXmlStringValue(elem, 'Status')
           ?.toSMSSandboxPhoneNumberVerificationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final status = this.status;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3481,10 +3938,18 @@ extension on String {
 /// The response for the SetSMSAttributes action.
 class SetSMSAttributesResponse {
   SetSMSAttributesResponse();
+  factory SetSMSAttributesResponse.fromJson(Map<String, dynamic> _) {
+    return SetSMSAttributesResponse();
+  }
+
   factory SetSMSAttributesResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetSMSAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3500,10 +3965,23 @@ class SubscribeResponse {
   SubscribeResponse({
     this.subscriptionArn,
   });
+  factory SubscribeResponse.fromJson(Map<String, dynamic> json) {
+    return SubscribeResponse(
+      subscriptionArn: json['SubscriptionArn'] as String?,
+    );
+  }
+
   factory SubscribeResponse.fromXml(_s.XmlElement elem) {
     return SubscribeResponse(
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+    };
   }
 }
 
@@ -3531,6 +4009,16 @@ class Subscription {
     this.subscriptionArn,
     this.topicArn,
   });
+  factory Subscription.fromJson(Map<String, dynamic> json) {
+    return Subscription(
+      endpoint: json['Endpoint'] as String?,
+      owner: json['Owner'] as String?,
+      protocol: json['Protocol'] as String?,
+      subscriptionArn: json['SubscriptionArn'] as String?,
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory Subscription.fromXml(_s.XmlElement elem) {
     return Subscription(
       endpoint: _s.extractXmlStringValue(elem, 'Endpoint'),
@@ -3539,6 +4027,21 @@ class Subscription {
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final owner = this.owner;
+    final protocol = this.protocol;
+    final subscriptionArn = this.subscriptionArn;
+    final topicArn = this.topicArn;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (owner != null) 'Owner': owner,
+      if (protocol != null) 'Protocol': protocol,
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
   }
 }
 
@@ -3554,6 +4057,13 @@ class Tag {
     required this.key,
     required this.value,
   });
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      key: json['Key'] as String,
+      value: json['Value'] as String,
+    );
+  }
+
   factory Tag.fromXml(_s.XmlElement elem) {
     return Tag(
       key: _s.extractXmlStringValue(elem, 'Key')!,
@@ -3573,10 +4083,18 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+  factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return TagResourceResponse();
+  }
+
   factory TagResourceResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3589,29 +4107,58 @@ class Topic {
   Topic({
     this.topicArn,
   });
+  factory Topic.fromJson(Map<String, dynamic> json) {
+    return Topic(
+      topicArn: json['TopicArn'] as String?,
+    );
+  }
+
   factory Topic.fromXml(_s.XmlElement elem) {
     return Topic(
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
+  factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
+    return UntagResourceResponse();
+  }
+
   factory UntagResourceResponse.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
 /// The destination phone number's verification status.
 class VerifySMSSandboxPhoneNumberResult {
   VerifySMSSandboxPhoneNumberResult();
+  factory VerifySMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
+    return VerifySMSSandboxPhoneNumberResult();
+  }
+
   factory VerifySMSSandboxPhoneNumberResult.fromXml(
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return VerifySMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

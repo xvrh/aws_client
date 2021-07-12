@@ -140,6 +140,22 @@ class InputShape {
   InputShape({
     this.recursiveStruct,
   });
+  factory InputShape.fromJson(Map<String, dynamic> json) {
+    return InputShape(
+      recursiveStruct: json['RecursiveStruct'] != null
+          ? RecursiveStructType.fromJson(
+              json['RecursiveStruct'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recursiveStruct = this.recursiveStruct;
+    return {
+      if (recursiveStruct != null) 'RecursiveStruct': recursiveStruct,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final recursiveStruct = this.recursiveStruct;
     final $children = <_s.XmlNode>[
@@ -168,6 +184,36 @@ class RecursiveStructType {
     this.recursiveMap,
     this.recursiveStruct,
   });
+  factory RecursiveStructType.fromJson(Map<String, dynamic> json) {
+    return RecursiveStructType(
+      noRecurse: json['NoRecurse'] as String?,
+      recursiveList: (json['RecursiveList'] as List?)
+          ?.whereNotNull()
+          .map((e) => RecursiveStructType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      recursiveMap: (json['RecursiveMap'] as Map<String, dynamic>?)?.map((k,
+              e) =>
+          MapEntry(k, RecursiveStructType.fromJson(e as Map<String, dynamic>))),
+      recursiveStruct: json['RecursiveStruct'] != null
+          ? RecursiveStructType.fromJson(
+              json['RecursiveStruct'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final noRecurse = this.noRecurse;
+    final recursiveList = this.recursiveList;
+    final recursiveMap = this.recursiveMap;
+    final recursiveStruct = this.recursiveStruct;
+    return {
+      if (noRecurse != null) 'NoRecurse': noRecurse,
+      if (recursiveList != null) 'RecursiveList': recursiveList,
+      if (recursiveMap != null) 'RecursiveMap': recursiveMap,
+      if (recursiveStruct != null) 'RecursiveStruct': recursiveStruct,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final noRecurse = this.noRecurse;
     final recursiveList = this.recursiveList;
