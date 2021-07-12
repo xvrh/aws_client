@@ -188,6 +188,6 @@ abstract class _FeatureMatcher<T> extends TypeMatcher<T> {
   }
 
   Description describeTypedMismatch(T item, Description mismatchDescription,
-      Map matchState, bool verbose) =>
+          Map matchState, bool verbose) =>
       mismatchDescription;
 }

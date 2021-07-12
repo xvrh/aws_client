@@ -44,7 +44,7 @@ class Descriptor {
     this.xmlNamespace,
     this.jsonvalue,
     this.payload,
-      this.pattern,
+    this.pattern,
   );
 
   factory Descriptor.fromJson(Map<String, dynamic> json) =>

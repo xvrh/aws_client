@@ -253,7 +253,7 @@ class Member {
     this.eventpayload,
     this.tags,
     this.timestampFormat,
-      this.pattern,
+    this.pattern,
   ) {
     _isRequired = location == 'uri';
   }
