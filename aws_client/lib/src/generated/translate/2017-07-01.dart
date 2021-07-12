@@ -895,6 +895,7 @@ class AppliedTerminology {
     this.name,
     this.terms,
   });
+
   factory AppliedTerminology.fromJson(Map<String, dynamic> json) {
     return AppliedTerminology(
       name: json['Name'] as String?,
@@ -927,6 +928,7 @@ class CreateParallelDataResponse {
     this.name,
     this.status,
   });
+
   factory CreateParallelDataResponse.fromJson(Map<String, dynamic> json) {
     return CreateParallelDataResponse(
       name: json['Name'] as String?,
@@ -955,6 +957,7 @@ class DeleteParallelDataResponse {
     this.name,
     this.status,
   });
+
   factory DeleteParallelDataResponse.fromJson(Map<String, dynamic> json) {
     return DeleteParallelDataResponse(
       name: json['Name'] as String?,
@@ -980,6 +983,7 @@ class DescribeTextTranslationJobResponse {
   DescribeTextTranslationJobResponse({
     this.textTranslationJobProperties,
   });
+
   factory DescribeTextTranslationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTextTranslationJobResponse(
@@ -1013,6 +1017,7 @@ class EncryptionKey {
     required this.id,
     required this.type,
   });
+
   factory EncryptionKey.fromJson(Map<String, dynamic> json) {
     return EncryptionKey(
       id: json['Id'] as String,
@@ -1080,6 +1085,7 @@ class GetParallelDataResponse {
     this.latestUpdateAttemptAuxiliaryDataLocation,
     this.parallelDataProperties,
   });
+
   factory GetParallelDataResponse.fromJson(Map<String, dynamic> json) {
     return GetParallelDataResponse(
       auxiliaryDataLocation: json['AuxiliaryDataLocation'] != null
@@ -1135,6 +1141,7 @@ class GetTerminologyResponse {
     this.terminologyDataLocation,
     this.terminologyProperties,
   });
+
   factory GetTerminologyResponse.fromJson(Map<String, dynamic> json) {
     return GetTerminologyResponse(
       terminologyDataLocation: json['TerminologyDataLocation'] != null
@@ -1167,6 +1174,7 @@ class ImportTerminologyResponse {
   ImportTerminologyResponse({
     this.terminologyProperties,
   });
+
   factory ImportTerminologyResponse.fromJson(Map<String, dynamic> json) {
     return ImportTerminologyResponse(
       terminologyProperties: json['TerminologyProperties'] != null
@@ -1232,6 +1240,7 @@ class InputDataConfig {
     required this.contentType,
     required this.s3Uri,
   });
+
   factory InputDataConfig.fromJson(Map<String, dynamic> json) {
     return InputDataConfig(
       contentType: json['ContentType'] as String,
@@ -1267,6 +1276,7 @@ class JobDetails {
     this.inputDocumentsCount,
     this.translatedDocumentsCount,
   });
+
   factory JobDetails.fromJson(Map<String, dynamic> json) {
     return JobDetails(
       documentsWithErrorsCount: json['DocumentsWithErrorsCount'] as int?,
@@ -1355,6 +1365,7 @@ class ListParallelDataResponse {
     this.nextToken,
     this.parallelDataPropertiesList,
   });
+
   factory ListParallelDataResponse.fromJson(Map<String, dynamic> json) {
     return ListParallelDataResponse(
       nextToken: json['NextToken'] as String?,
@@ -1390,6 +1401,7 @@ class ListTerminologiesResponse {
     this.nextToken,
     this.terminologyPropertiesList,
   });
+
   factory ListTerminologiesResponse.fromJson(Map<String, dynamic> json) {
     return ListTerminologiesResponse(
       nextToken: json['NextToken'] as String?,
@@ -1423,6 +1435,7 @@ class ListTextTranslationJobsResponse {
     this.nextToken,
     this.textTranslationJobPropertiesList,
   });
+
   factory ListTextTranslationJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListTextTranslationJobsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1479,6 +1492,7 @@ class OutputDataConfig {
   OutputDataConfig({
     required this.s3Uri,
   });
+
   factory OutputDataConfig.fromJson(Map<String, dynamic> json) {
     return OutputDataConfig(
       s3Uri: json['S3Uri'] as String,
@@ -1506,6 +1520,7 @@ class ParallelDataConfig {
     required this.format,
     required this.s3Uri,
   });
+
   factory ParallelDataConfig.fromJson(Map<String, dynamic> json) {
     return ParallelDataConfig(
       format: (json['Format'] as String).toParallelDataFormat(),
@@ -1537,6 +1552,7 @@ class ParallelDataDataLocation {
     required this.location,
     required this.repositoryType,
   });
+
   factory ParallelDataDataLocation.fromJson(Map<String, dynamic> json) {
     return ParallelDataDataLocation(
       location: json['Location'] as String,
@@ -1668,6 +1684,7 @@ class ParallelDataProperties {
     this.status,
     this.targetLanguageCodes,
   });
+
   factory ParallelDataProperties.fromJson(Map<String, dynamic> json) {
     return ParallelDataProperties(
       arn: json['Arn'] as String?,
@@ -1829,6 +1846,7 @@ class StartTextTranslationJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartTextTranslationJobResponse.fromJson(Map<String, dynamic> json) {
     return StartTextTranslationJobResponse(
       jobId: json['JobId'] as String?,
@@ -1858,6 +1876,7 @@ class StopTextTranslationJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopTextTranslationJobResponse.fromJson(Map<String, dynamic> json) {
     return StopTextTranslationJobResponse(
       jobId: json['JobId'] as String?,
@@ -1887,6 +1906,7 @@ class Term {
     this.sourceText,
     this.targetText,
   });
+
   factory Term.fromJson(Map<String, dynamic> json) {
     return Term(
       sourceText: json['SourceText'] as String?,
@@ -1918,6 +1938,7 @@ class TerminologyData {
     required this.file,
     required this.format,
   });
+
   factory TerminologyData.fromJson(Map<String, dynamic> json) {
     return TerminologyData(
       file: _s.decodeUint8List(json['File']! as String),
@@ -1975,6 +1996,7 @@ class TerminologyDataLocation {
     required this.location,
     required this.repositoryType,
   });
+
   factory TerminologyDataLocation.fromJson(Map<String, dynamic> json) {
     return TerminologyDataLocation(
       location: json['Location'] as String,
@@ -2040,6 +2062,7 @@ class TerminologyProperties {
     this.targetLanguageCodes,
     this.termCount,
   });
+
   factory TerminologyProperties.fromJson(Map<String, dynamic> json) {
     return TerminologyProperties(
       arn: json['Arn'] as String?,
@@ -2114,6 +2137,7 @@ class TextTranslationJobFilter {
     this.submittedAfterTime,
     this.submittedBeforeTime,
   });
+
   factory TextTranslationJobFilter.fromJson(Map<String, dynamic> json) {
     return TextTranslationJobFilter(
       jobName: json['JobName'] as String?,
@@ -2210,6 +2234,7 @@ class TextTranslationJobProperties {
     this.targetLanguageCodes,
     this.terminologyNames,
   });
+
   factory TextTranslationJobProperties.fromJson(Map<String, dynamic> json) {
     return TextTranslationJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -2302,6 +2327,7 @@ class TranslateTextResponse {
     required this.translatedText,
     this.appliedTerminologies,
   });
+
   factory TranslateTextResponse.fromJson(Map<String, dynamic> json) {
     return TranslateTextResponse(
       sourceLanguageCode: json['SourceLanguageCode'] as String,
@@ -2351,6 +2377,7 @@ class UpdateParallelDataResponse {
     this.name,
     this.status,
   });
+
   factory UpdateParallelDataResponse.fromJson(Map<String, dynamic> json) {
     return UpdateParallelDataResponse(
       latestUpdateAttemptAt: timeStampFromJson(json['LatestUpdateAttemptAt']),

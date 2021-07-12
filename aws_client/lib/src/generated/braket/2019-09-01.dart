@@ -425,6 +425,7 @@ class CancelQuantumTaskResponse {
     required this.cancellationStatus,
     required this.quantumTaskArn,
   });
+
   factory CancelQuantumTaskResponse.fromJson(Map<String, dynamic> json) {
     return CancelQuantumTaskResponse(
       cancellationStatus:
@@ -478,6 +479,7 @@ class CreateQuantumTaskResponse {
   CreateQuantumTaskResponse({
     required this.quantumTaskArn,
   });
+
   factory CreateQuantumTaskResponse.fromJson(Map<String, dynamic> json) {
     return CreateQuantumTaskResponse(
       quantumTaskArn: json['quantumTaskArn'] as String,
@@ -549,6 +551,7 @@ class DeviceSummary {
     required this.deviceType,
     required this.providerName,
   });
+
   factory DeviceSummary.fromJson(Map<String, dynamic> json) {
     return DeviceSummary(
       deviceArn: json['deviceArn'] as String,
@@ -630,6 +633,7 @@ class GetDeviceResponse {
     required this.deviceType,
     required this.providerName,
   });
+
   factory GetDeviceResponse.fromJson(Map<String, dynamic> json) {
     return GetDeviceResponse(
       deviceArn: json['deviceArn'] as String,
@@ -707,6 +711,7 @@ class GetQuantumTaskResponse {
     this.failureReason,
     this.tags,
   });
+
   factory GetQuantumTaskResponse.fromJson(Map<String, dynamic> json) {
     return GetQuantumTaskResponse(
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
@@ -760,6 +765,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -868,6 +874,7 @@ class QuantumTaskSummary {
     this.endedAt,
     this.tags,
   });
+
   factory QuantumTaskSummary.fromJson(Map<String, dynamic> json) {
     return QuantumTaskSummary(
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
@@ -919,6 +926,7 @@ class SearchDevicesFilter {
     required this.name,
     required this.values,
   });
+
   factory SearchDevicesFilter.fromJson(Map<String, dynamic> json) {
     return SearchDevicesFilter(
       name: json['name'] as String,
@@ -953,6 +961,7 @@ class SearchDevicesResponse {
     required this.devices,
     this.nextToken,
   });
+
   factory SearchDevicesResponse.fromJson(Map<String, dynamic> json) {
     return SearchDevicesResponse(
       devices: (json['devices'] as List)
@@ -989,6 +998,7 @@ class SearchQuantumTasksFilter {
     required this.operator,
     required this.values,
   });
+
   factory SearchQuantumTasksFilter.fromJson(Map<String, dynamic> json) {
     return SearchQuantumTasksFilter(
       name: json['name'] as String,
@@ -1076,6 +1086,7 @@ class SearchQuantumTasksResponse {
     required this.quantumTasks,
     this.nextToken,
   });
+
   factory SearchQuantumTasksResponse.fromJson(Map<String, dynamic> json) {
     return SearchQuantumTasksResponse(
       quantumTasks: (json['quantumTasks'] as List)
@@ -1098,6 +1109,7 @@ class SearchQuantumTasksResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1109,6 +1121,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

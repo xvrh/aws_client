@@ -1272,6 +1272,7 @@ class ArrayProperties {
   ArrayProperties({
     this.size,
   });
+
   factory ArrayProperties.fromJson(Map<String, dynamic> json) {
     return ArrayProperties(
       size: json['size'] as int?,
@@ -1304,6 +1305,7 @@ class ArrayPropertiesDetail {
     this.size,
     this.statusSummary,
   });
+
   factory ArrayPropertiesDetail.fromJson(Map<String, dynamic> json) {
     return ArrayPropertiesDetail(
       index: json['index'] as int?,
@@ -1338,6 +1340,7 @@ class ArrayPropertiesSummary {
     this.index,
     this.size,
   });
+
   factory ArrayPropertiesSummary.fromJson(Map<String, dynamic> json) {
     return ArrayPropertiesSummary(
       index: json['index'] as int?,
@@ -1420,6 +1423,7 @@ class AttemptContainerDetail {
     this.reason,
     this.taskArn,
   });
+
   factory AttemptContainerDetail.fromJson(Map<String, dynamic> json) {
     return AttemptContainerDetail(
       containerInstanceArn: json['containerInstanceArn'] as String?,
@@ -1478,6 +1482,7 @@ class AttemptDetail {
     this.statusReason,
     this.stoppedAt,
   });
+
   factory AttemptDetail.fromJson(Map<String, dynamic> json) {
     return AttemptDetail(
       container: json['container'] != null
@@ -1681,6 +1686,7 @@ extension on String {
 
 class CancelJobResponse {
   CancelJobResponse();
+
   factory CancelJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelJobResponse();
   }
@@ -1761,6 +1767,7 @@ class ComputeEnvironmentDetail {
     this.tags,
     this.type,
   });
+
   factory ComputeEnvironmentDetail.fromJson(Map<String, dynamic> json) {
     return ComputeEnvironmentDetail(
       computeEnvironmentArn: json['computeEnvironmentArn'] as String,
@@ -1834,6 +1841,7 @@ class ComputeEnvironmentOrder {
     required this.computeEnvironment,
     required this.order,
   });
+
   factory ComputeEnvironmentOrder.fromJson(Map<String, dynamic> json) {
     return ComputeEnvironmentOrder(
       computeEnvironment: json['computeEnvironment'] as String,
@@ -2120,6 +2128,7 @@ class ComputeResource {
     this.spotIamFleetRole,
     this.tags,
   });
+
   factory ComputeResource.fromJson(Map<String, dynamic> json) {
     return ComputeResource(
       maxvCpus: json['maxvCpus'] as int,
@@ -2252,6 +2261,7 @@ class ComputeResourceUpdate {
     this.securityGroupIds,
     this.subnets,
   });
+
   factory ComputeResourceUpdate.fromJson(Map<String, dynamic> json) {
     return ComputeResourceUpdate(
       desiredvCpus: json['desiredvCpus'] as int?,
@@ -2505,6 +2515,7 @@ class ContainerDetail {
     this.vcpus,
     this.volumes,
   });
+
   factory ContainerDetail.fromJson(Map<String, dynamic> json) {
     return ContainerDetail(
       command: (json['command'] as List?)
@@ -2707,6 +2718,7 @@ class ContainerOverrides {
     this.resourceRequirements,
     this.vcpus,
   });
+
   factory ContainerOverrides.fromJson(Map<String, dynamic> json) {
     return ContainerOverrides(
       command: (json['command'] as List?)
@@ -3022,6 +3034,7 @@ class ContainerProperties {
     this.vcpus,
     this.volumes,
   });
+
   factory ContainerProperties.fromJson(Map<String, dynamic> json) {
     return ContainerProperties(
       command: (json['command'] as List?)
@@ -3143,6 +3156,7 @@ class ContainerSummary {
     this.exitCode,
     this.reason,
   });
+
   factory ContainerSummary.fromJson(Map<String, dynamic> json) {
     return ContainerSummary(
       exitCode: json['exitCode'] as int?,
@@ -3172,6 +3186,7 @@ class CreateComputeEnvironmentResponse {
     this.computeEnvironmentArn,
     this.computeEnvironmentName,
   });
+
   factory CreateComputeEnvironmentResponse.fromJson(Map<String, dynamic> json) {
     return CreateComputeEnvironmentResponse(
       computeEnvironmentArn: json['computeEnvironmentArn'] as String?,
@@ -3202,6 +3217,7 @@ class CreateJobQueueResponse {
     required this.jobQueueArn,
     required this.jobQueueName,
   });
+
   factory CreateJobQueueResponse.fromJson(Map<String, dynamic> json) {
     return CreateJobQueueResponse(
       jobQueueArn: json['jobQueueArn'] as String,
@@ -3221,6 +3237,7 @@ class CreateJobQueueResponse {
 
 class DeleteComputeEnvironmentResponse {
   DeleteComputeEnvironmentResponse();
+
   factory DeleteComputeEnvironmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteComputeEnvironmentResponse();
   }
@@ -3232,6 +3249,7 @@ class DeleteComputeEnvironmentResponse {
 
 class DeleteJobQueueResponse {
   DeleteJobQueueResponse();
+
   factory DeleteJobQueueResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobQueueResponse();
   }
@@ -3243,6 +3261,7 @@ class DeleteJobQueueResponse {
 
 class DeregisterJobDefinitionResponse {
   DeregisterJobDefinitionResponse();
+
   factory DeregisterJobDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterJobDefinitionResponse();
   }
@@ -3267,6 +3286,7 @@ class DescribeComputeEnvironmentsResponse {
     this.computeEnvironments,
     this.nextToken,
   });
+
   factory DescribeComputeEnvironmentsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeComputeEnvironmentsResponse(
@@ -3305,6 +3325,7 @@ class DescribeJobDefinitionsResponse {
     this.jobDefinitions,
     this.nextToken,
   });
+
   factory DescribeJobDefinitionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobDefinitionsResponse(
       jobDefinitions: (json['jobDefinitions'] as List?)
@@ -3340,6 +3361,7 @@ class DescribeJobQueuesResponse {
     this.jobQueues,
     this.nextToken,
   });
+
   factory DescribeJobQueuesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobQueuesResponse(
       jobQueues: (json['jobQueues'] as List?)
@@ -3367,6 +3389,7 @@ class DescribeJobsResponse {
   DescribeJobsResponse({
     this.jobs,
   });
+
   factory DescribeJobsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobsResponse(
       jobs: (json['jobs'] as List?)
@@ -3407,6 +3430,7 @@ class Device {
     this.containerPath,
     this.permissions,
   });
+
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
       hostPath: json['hostPath'] as String,
@@ -3492,6 +3516,7 @@ class EFSAuthorizationConfig {
     this.accessPointId,
     this.iam,
   });
+
   factory EFSAuthorizationConfig.fromJson(Map<String, dynamic> json) {
     return EFSAuthorizationConfig(
       accessPointId: json['accessPointId'] as String?,
@@ -3611,6 +3636,7 @@ class EFSVolumeConfiguration {
     this.transitEncryption,
     this.transitEncryptionPort,
   });
+
   factory EFSVolumeConfiguration.fromJson(Map<String, dynamic> json) {
     return EFSVolumeConfiguration(
       fileSystemId: json['fileSystemId'] as String,
@@ -3694,6 +3720,7 @@ class Ec2Configuration {
     required this.imageType,
     this.imageIdOverride,
   });
+
   factory Ec2Configuration.fromJson(Map<String, dynamic> json) {
     return Ec2Configuration(
       imageType: json['imageType'] as String,
@@ -3746,6 +3773,7 @@ class EvaluateOnExit {
     this.onReason,
     this.onStatusReason,
   });
+
   factory EvaluateOnExit.fromJson(Map<String, dynamic> json) {
     return EvaluateOnExit(
       action: (json['action'] as String).toRetryAction(),
@@ -3785,6 +3813,7 @@ class FargatePlatformConfiguration {
   FargatePlatformConfiguration({
     this.platformVersion,
   });
+
   factory FargatePlatformConfiguration.fromJson(Map<String, dynamic> json) {
     return FargatePlatformConfiguration(
       platformVersion: json['platformVersion'] as String?,
@@ -3820,6 +3849,7 @@ class Host {
   Host({
     this.sourcePath,
   });
+
   factory Host.fromJson(Map<String, dynamic> json) {
     return Host(
       sourcePath: json['sourcePath'] as String?,
@@ -3990,6 +4020,7 @@ class JobDefinition {
     this.tags,
     this.timeout,
   });
+
   factory JobDefinition.fromJson(Map<String, dynamic> json) {
     return JobDefinition(
       jobDefinitionArn: json['jobDefinitionArn'] as String,
@@ -4099,6 +4130,7 @@ class JobDependency {
     this.jobId,
     this.type,
   });
+
   factory JobDependency.fromJson(Map<String, dynamic> json) {
     return JobDependency(
       jobId: json['jobId'] as String?,
@@ -4239,6 +4271,7 @@ class JobDetail {
     this.tags,
     this.timeout,
   });
+
   factory JobDetail.fromJson(Map<String, dynamic> json) {
     return JobDetail(
       jobDefinition: json['jobDefinition'] as String,
@@ -4397,6 +4430,7 @@ class JobQueueDetail {
     this.statusReason,
     this.tags,
   });
+
   factory JobQueueDetail.fromJson(Map<String, dynamic> json) {
     return JobQueueDetail(
       computeEnvironmentOrder: (json['computeEnvironmentOrder'] as List)
@@ -4550,6 +4584,7 @@ class JobSummary {
     this.statusReason,
     this.stoppedAt,
   });
+
   factory JobSummary.fromJson(Map<String, dynamic> json) {
     return JobSummary(
       jobId: json['jobId'] as String,
@@ -4612,6 +4647,7 @@ class JobTimeout {
   JobTimeout({
     this.attemptDurationSeconds,
   });
+
   factory JobTimeout.fromJson(Map<String, dynamic> json) {
     return JobTimeout(
       attemptDurationSeconds: json['attemptDurationSeconds'] as int?,
@@ -4641,6 +4677,7 @@ class KeyValuePair {
     this.name,
     this.value,
   });
+
   factory KeyValuePair.fromJson(Map<String, dynamic> json) {
     return KeyValuePair(
       name: json['name'] as String?,
@@ -4699,6 +4736,7 @@ class LaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+
   factory LaunchTemplateSpecification.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateSpecification(
       launchTemplateId: json['launchTemplateId'] as String?,
@@ -4836,6 +4874,7 @@ class LinuxParameters {
     this.swappiness,
     this.tmpfs,
   });
+
   factory LinuxParameters.fromJson(Map<String, dynamic> json) {
     return LinuxParameters(
       devices: (json['devices'] as List?)
@@ -4886,6 +4925,7 @@ class ListJobsResponse {
     required this.jobSummaryList,
     this.nextToken,
   });
+
   factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobsResponse(
       jobSummaryList: (json['jobSummaryList'] as List)
@@ -4913,6 +4953,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -5009,6 +5050,7 @@ class LogConfiguration {
     this.options,
     this.secretOptions,
   });
+
   factory LogConfiguration.fromJson(Map<String, dynamic> json) {
     return LogConfiguration(
       logDriver: (json['logDriver'] as String).toLogDriver(),
@@ -5108,6 +5150,7 @@ class MountPoint {
     this.readOnly,
     this.sourceVolume,
   });
+
   factory MountPoint.fromJson(Map<String, dynamic> json) {
     return MountPoint(
       containerPath: json['containerPath'] as String?,
@@ -5143,6 +5186,7 @@ class NetworkConfiguration {
   NetworkConfiguration({
     this.assignPublicIp,
   });
+
   factory NetworkConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkConfiguration(
       assignPublicIp: (json['assignPublicIp'] as String?)?.toAssignPublicIp(),
@@ -5174,6 +5218,7 @@ class NetworkInterface {
     this.ipv6Address,
     this.privateIpv4Address,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       attachmentId: json['attachmentId'] as String?,
@@ -5209,6 +5254,7 @@ class NodeDetails {
     this.isMainNode,
     this.nodeIndex,
   });
+
   factory NodeDetails.fromJson(Map<String, dynamic> json) {
     return NodeDetails(
       isMainNode: json['isMainNode'] as bool?,
@@ -5260,6 +5306,7 @@ class NodeOverrides {
     this.nodePropertyOverrides,
     this.numNodes,
   });
+
   factory NodeOverrides.fromJson(Map<String, dynamic> json) {
     return NodeOverrides(
       nodePropertyOverrides: (json['nodePropertyOverrides'] as List?)
@@ -5299,6 +5346,7 @@ class NodeProperties {
     required this.nodeRangeProperties,
     required this.numNodes,
   });
+
   factory NodeProperties.fromJson(Map<String, dynamic> json) {
     return NodeProperties(
       mainNode: json['mainNode'] as int,
@@ -5342,6 +5390,7 @@ class NodePropertiesSummary {
     this.nodeIndex,
     this.numNodes,
   });
+
   factory NodePropertiesSummary.fromJson(Map<String, dynamic> json) {
     return NodePropertiesSummary(
       isMainNode: json['isMainNode'] as bool?,
@@ -5380,6 +5429,7 @@ class NodePropertyOverride {
     required this.targetNodes,
     this.containerOverrides,
   });
+
   factory NodePropertyOverride.fromJson(Map<String, dynamic> json) {
     return NodePropertyOverride(
       targetNodes: json['targetNodes'] as String,
@@ -5421,6 +5471,7 @@ class NodeRangeProperty {
     required this.targetNodes,
     this.container,
   });
+
   factory NodeRangeProperty.fromJson(Map<String, dynamic> json) {
     return NodeRangeProperty(
       targetNodes: json['targetNodes'] as String,
@@ -5484,6 +5535,7 @@ class RegisterJobDefinitionResponse {
     required this.jobDefinitionName,
     required this.revision,
   });
+
   factory RegisterJobDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return RegisterJobDefinitionResponse(
       jobDefinitionArn: json['jobDefinitionArn'] as String,
@@ -5605,6 +5657,7 @@ class ResourceRequirement {
     required this.type,
     required this.value,
   });
+
   factory ResourceRequirement.fromJson(Map<String, dynamic> json) {
     return ResourceRequirement(
       type: (json['type'] as String).toResourceType(),
@@ -5702,6 +5755,7 @@ class RetryStrategy {
     this.attempts,
     this.evaluateOnExit,
   });
+
   factory RetryStrategy.fromJson(Map<String, dynamic> json) {
     return RetryStrategy(
       attempts: json['attempts'] as int?,
@@ -5757,6 +5811,7 @@ class Secret {
     required this.name,
     required this.valueFrom,
   });
+
   factory Secret.fromJson(Map<String, dynamic> json) {
     return Secret(
       name: json['name'] as String,
@@ -5789,6 +5844,7 @@ class SubmitJobResponse {
     required this.jobName,
     this.jobArn,
   });
+
   factory SubmitJobResponse.fromJson(Map<String, dynamic> json) {
     return SubmitJobResponse(
       jobId: json['jobId'] as String,
@@ -5811,6 +5867,7 @@ class SubmitJobResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5822,6 +5879,7 @@ class TagResourceResponse {
 
 class TerminateJobResponse {
   TerminateJobResponse();
+
   factory TerminateJobResponse.fromJson(Map<String, dynamic> _) {
     return TerminateJobResponse();
   }
@@ -5864,6 +5922,7 @@ class Tmpfs {
     required this.size,
     this.mountOptions,
   });
+
   factory Tmpfs.fromJson(Map<String, dynamic> json) {
     return Tmpfs(
       containerPath: json['containerPath'] as String,
@@ -5906,6 +5965,7 @@ class Ulimit {
     required this.name,
     required this.softLimit,
   });
+
   factory Ulimit.fromJson(Map<String, dynamic> json) {
     return Ulimit(
       hardLimit: json['hardLimit'] as int,
@@ -5928,6 +5988,7 @@ class Ulimit {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5949,6 +6010,7 @@ class UpdateComputeEnvironmentResponse {
     this.computeEnvironmentArn,
     this.computeEnvironmentName,
   });
+
   factory UpdateComputeEnvironmentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateComputeEnvironmentResponse(
       computeEnvironmentArn: json['computeEnvironmentArn'] as String?,
@@ -5979,6 +6041,7 @@ class UpdateJobQueueResponse {
     this.jobQueueArn,
     this.jobQueueName,
   });
+
   factory UpdateJobQueueResponse.fromJson(Map<String, dynamic> json) {
     return UpdateJobQueueResponse(
       jobQueueArn: json['jobQueueArn'] as String?,
@@ -6025,6 +6088,7 @@ class Volume {
     this.host,
     this.name,
   });
+
   factory Volume.fromJson(Map<String, dynamic> json) {
     return Volume(
       efsVolumeConfiguration: json['efsVolumeConfiguration'] != null

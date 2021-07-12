@@ -255,6 +255,7 @@ class AccountInfo {
     this.accountName,
     this.emailAddress,
   });
+
   factory AccountInfo.fromJson(Map<String, dynamic> json) {
     return AccountInfo(
       accountId: json['accountId'] as String?,
@@ -282,6 +283,7 @@ class GetRoleCredentialsResponse {
   GetRoleCredentialsResponse({
     this.roleCredentials,
   });
+
   factory GetRoleCredentialsResponse.fromJson(Map<String, dynamic> json) {
     return GetRoleCredentialsResponse(
       roleCredentials: json['roleCredentials'] != null
@@ -311,6 +313,7 @@ class ListAccountRolesResponse {
     this.nextToken,
     this.roleList,
   });
+
   factory ListAccountRolesResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountRolesResponse(
       nextToken: json['nextToken'] as String?,
@@ -343,6 +346,7 @@ class ListAccountsResponse {
     this.accountList,
     this.nextToken,
   });
+
   factory ListAccountsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountsResponse(
       accountList: (json['accountList'] as List?)
@@ -394,6 +398,7 @@ class RoleCredentials {
     this.secretAccessKey,
     this.sessionToken,
   });
+
   factory RoleCredentials.fromJson(Map<String, dynamic> json) {
     return RoleCredentials(
       accessKeyId: json['accessKeyId'] as String?,
@@ -429,6 +434,7 @@ class RoleInfo {
     this.accountId,
     this.roleName,
   });
+
   factory RoleInfo.fromJson(Map<String, dynamic> json) {
     return RoleInfo(
       accountId: json['accountId'] as String?,

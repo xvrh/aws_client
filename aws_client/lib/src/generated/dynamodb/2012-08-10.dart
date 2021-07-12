@@ -5406,6 +5406,7 @@ class ArchivalSummary {
     this.archivalDateTime,
     this.archivalReason,
   });
+
   factory ArchivalSummary.fromJson(Map<String, dynamic> json) {
     return ArchivalSummary(
       archivalBackupArn: json['ArchivalBackupArn'] as String?,
@@ -5485,6 +5486,7 @@ class AttributeDefinition {
     required this.attributeName,
     required this.attributeType,
   });
+
   factory AttributeDefinition.fromJson(Map<String, dynamic> json) {
     return AttributeDefinition(
       attributeName: json['AttributeName'] as String,
@@ -5581,6 +5583,7 @@ class AttributeValue {
     this.s,
     this.ss,
   });
+
   factory AttributeValue.fromJson(Map<String, dynamic> json) {
     return AttributeValue(
       b: _s.decodeNullableUint8List(json['B'] as String?),
@@ -5748,6 +5751,7 @@ class AttributeValueUpdate {
     this.action,
     this.value,
   });
+
   factory AttributeValueUpdate.fromJson(Map<String, dynamic> json) {
     return AttributeValueUpdate(
       action: (json['Action'] as String?)?.toAttributeAction(),
@@ -5780,6 +5784,7 @@ class AutoScalingPolicyDescription {
     this.policyName,
     this.targetTrackingScalingPolicyConfiguration,
   });
+
   factory AutoScalingPolicyDescription.fromJson(Map<String, dynamic> json) {
     return AutoScalingPolicyDescription(
       policyName: json['PolicyName'] as String?,
@@ -5818,6 +5823,7 @@ class AutoScalingPolicyUpdate {
     required this.targetTrackingScalingPolicyConfiguration,
     this.policyName,
   });
+
   factory AutoScalingPolicyUpdate.fromJson(Map<String, dynamic> json) {
     return AutoScalingPolicyUpdate(
       targetTrackingScalingPolicyConfiguration:
@@ -5867,6 +5873,7 @@ class AutoScalingSettingsDescription {
     this.minimumUnits,
     this.scalingPolicies,
   });
+
   factory AutoScalingSettingsDescription.fromJson(Map<String, dynamic> json) {
     return AutoScalingSettingsDescription(
       autoScalingDisabled: json['AutoScalingDisabled'] as bool?,
@@ -5926,6 +5933,7 @@ class AutoScalingSettingsUpdate {
     this.minimumUnits,
     this.scalingPolicyUpdate,
   });
+
   factory AutoScalingSettingsUpdate.fromJson(Map<String, dynamic> json) {
     return AutoScalingSettingsUpdate(
       autoScalingDisabled: json['AutoScalingDisabled'] as bool?,
@@ -5993,6 +6001,7 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     this.scaleInCooldown,
     this.scaleOutCooldown,
   });
+
   factory AutoScalingTargetTrackingScalingPolicyConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return AutoScalingTargetTrackingScalingPolicyConfigurationDescription(
@@ -6054,6 +6063,7 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationUpdate {
     this.scaleInCooldown,
     this.scaleOutCooldown,
   });
+
   factory AutoScalingTargetTrackingScalingPolicyConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return AutoScalingTargetTrackingScalingPolicyConfigurationUpdate(
@@ -6095,6 +6105,7 @@ class BackupDescription {
     this.sourceTableDetails,
     this.sourceTableFeatureDetails,
   });
+
   factory BackupDescription.fromJson(Map<String, dynamic> json) {
     return BackupDescription(
       backupDetails: json['BackupDetails'] != null
@@ -6178,6 +6189,7 @@ class BackupDetails {
     this.backupExpiryDateTime,
     this.backupSizeBytes,
   });
+
   factory BackupDetails.fromJson(Map<String, dynamic> json) {
     return BackupDetails(
       backupArn: json['BackupArn'] as String,
@@ -6309,6 +6321,7 @@ class BackupSummary {
     this.tableId,
     this.tableName,
   });
+
   factory BackupSummary.fromJson(Map<String, dynamic> json) {
     return BackupSummary(
       backupArn: json['BackupArn'] as String?,
@@ -6430,6 +6443,7 @@ class BatchExecuteStatementOutput {
   BatchExecuteStatementOutput({
     this.responses,
   });
+
   factory BatchExecuteStatementOutput.fromJson(Map<String, dynamic> json) {
     return BatchExecuteStatementOutput(
       responses: (json['Responses'] as List?)
@@ -6503,6 +6517,7 @@ class BatchGetItemOutput {
     this.responses,
     this.unprocessedKeys,
   });
+
   factory BatchGetItemOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetItemOutput(
       consumedCapacity: (json['ConsumedCapacity'] as List?)
@@ -6548,6 +6563,7 @@ class BatchStatementError {
     this.code,
     this.message,
   });
+
   factory BatchStatementError.fromJson(Map<String, dynamic> json) {
     return BatchStatementError(
       code: (json['Code'] as String?)?.toBatchStatementErrorCodeEnum(),
@@ -6654,6 +6670,7 @@ class BatchStatementRequest {
     this.consistentRead,
     this.parameters,
   });
+
   factory BatchStatementRequest.fromJson(Map<String, dynamic> json) {
     return BatchStatementRequest(
       statement: json['Statement'] as String,
@@ -6693,6 +6710,7 @@ class BatchStatementResponse {
     this.item,
     this.tableName,
   });
+
   factory BatchStatementResponse.fromJson(Map<String, dynamic> json) {
     return BatchStatementResponse(
       error: json['Error'] != null
@@ -6810,6 +6828,7 @@ class BatchWriteItemOutput {
     this.itemCollectionMetrics,
     this.unprocessedItems,
   });
+
   factory BatchWriteItemOutput.fromJson(Map<String, dynamic> json) {
     return BatchWriteItemOutput(
       consumedCapacity: (json['ConsumedCapacity'] as List?)
@@ -6903,6 +6922,7 @@ class BillingModeSummary {
     this.billingMode,
     this.lastUpdateToPayPerRequestDateTime,
   });
+
   factory BillingModeSummary.fromJson(Map<String, dynamic> json) {
     return BillingModeSummary(
       billingMode: (json['BillingMode'] as String?)?.toBillingMode(),
@@ -6941,6 +6961,7 @@ class Capacity {
     this.readCapacityUnits,
     this.writeCapacityUnits,
   });
+
   factory Capacity.fromJson(Map<String, dynamic> json) {
     return Capacity(
       capacityUnits: json['CapacityUnits'] as double?,
@@ -7258,6 +7279,7 @@ class Condition {
     required this.comparisonOperator,
     this.attributeValueList,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       comparisonOperator:
@@ -7314,6 +7336,7 @@ class ConditionCheck {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   factory ConditionCheck.fromJson(Map<String, dynamic> json) {
     return ConditionCheck(
       conditionExpression: json['ConditionExpression'] as String,
@@ -7423,6 +7446,7 @@ class ConsumedCapacity {
     this.tableName,
     this.writeCapacityUnits,
   });
+
   factory ConsumedCapacity.fromJson(Map<String, dynamic> json) {
     return ConsumedCapacity(
       capacityUnits: json['CapacityUnits'] as double?,
@@ -7479,6 +7503,7 @@ class ContinuousBackupsDescription {
     required this.continuousBackupsStatus,
     this.pointInTimeRecoveryDescription,
   });
+
   factory ContinuousBackupsDescription.fromJson(Map<String, dynamic> json) {
     return ContinuousBackupsDescription(
       continuousBackupsStatus: (json['ContinuousBackupsStatus'] as String)
@@ -7618,6 +7643,7 @@ class ContributorInsightsSummary {
     this.indexName,
     this.tableName,
   });
+
   factory ContributorInsightsSummary.fromJson(Map<String, dynamic> json) {
     return ContributorInsightsSummary(
       contributorInsightsStatus: (json['ContributorInsightsStatus'] as String?)
@@ -7647,6 +7673,7 @@ class CreateBackupOutput {
   CreateBackupOutput({
     this.backupDetails,
   });
+
   factory CreateBackupOutput.fromJson(Map<String, dynamic> json) {
     return CreateBackupOutput(
       backupDetails: json['BackupDetails'] != null
@@ -7691,6 +7718,7 @@ class CreateGlobalSecondaryIndexAction {
     required this.projection,
     this.provisionedThroughput,
   });
+
   factory CreateGlobalSecondaryIndexAction.fromJson(Map<String, dynamic> json) {
     return CreateGlobalSecondaryIndexAction(
       indexName: json['IndexName'] as String,
@@ -7729,6 +7757,7 @@ class CreateGlobalTableOutput {
   CreateGlobalTableOutput({
     this.globalTableDescription,
   });
+
   factory CreateGlobalTableOutput.fromJson(Map<String, dynamic> json) {
     return CreateGlobalTableOutput(
       globalTableDescription: json['GlobalTableDescription'] != null
@@ -7755,6 +7784,7 @@ class CreateReplicaAction {
   CreateReplicaAction({
     required this.regionName,
   });
+
   factory CreateReplicaAction.fromJson(Map<String, dynamic> json) {
     return CreateReplicaAction(
       regionName: json['RegionName'] as String,
@@ -7794,6 +7824,7 @@ class CreateReplicationGroupMemberAction {
     this.kMSMasterKeyId,
     this.provisionedThroughputOverride,
   });
+
   factory CreateReplicationGroupMemberAction.fromJson(
       Map<String, dynamic> json) {
     return CreateReplicationGroupMemberAction(
@@ -7836,6 +7867,7 @@ class CreateTableOutput {
   CreateTableOutput({
     this.tableDescription,
   });
+
   factory CreateTableOutput.fromJson(Map<String, dynamic> json) {
     return CreateTableOutput(
       tableDescription: json['TableDescription'] != null
@@ -7887,6 +7919,7 @@ class Delete {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   factory Delete.fromJson(Map<String, dynamic> json) {
     return Delete(
       key: (json['Key'] as Map<String, dynamic>).map((k, e) =>
@@ -7937,6 +7970,7 @@ class DeleteBackupOutput {
   DeleteBackupOutput({
     this.backupDescription,
   });
+
   factory DeleteBackupOutput.fromJson(Map<String, dynamic> json) {
     return DeleteBackupOutput(
       backupDescription: json['BackupDescription'] != null
@@ -7962,6 +7996,7 @@ class DeleteGlobalSecondaryIndexAction {
   DeleteGlobalSecondaryIndexAction({
     required this.indexName,
   });
+
   factory DeleteGlobalSecondaryIndexAction.fromJson(Map<String, dynamic> json) {
     return DeleteGlobalSecondaryIndexAction(
       indexName: json['IndexName'] as String,
@@ -8027,6 +8062,7 @@ class DeleteItemOutput {
     this.consumedCapacity,
     this.itemCollectionMetrics,
   });
+
   factory DeleteItemOutput.fromJson(Map<String, dynamic> json) {
     return DeleteItemOutput(
       attributes: (json['Attributes'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -8063,6 +8099,7 @@ class DeleteReplicaAction {
   DeleteReplicaAction({
     required this.regionName,
   });
+
   factory DeleteReplicaAction.fromJson(Map<String, dynamic> json) {
     return DeleteReplicaAction(
       regionName: json['RegionName'] as String,
@@ -8085,6 +8122,7 @@ class DeleteReplicationGroupMemberAction {
   DeleteReplicationGroupMemberAction({
     required this.regionName,
   });
+
   factory DeleteReplicationGroupMemberAction.fromJson(
       Map<String, dynamic> json) {
     return DeleteReplicationGroupMemberAction(
@@ -8111,6 +8149,7 @@ class DeleteRequest {
   DeleteRequest({
     required this.key,
   });
+
   factory DeleteRequest.fromJson(Map<String, dynamic> json) {
     return DeleteRequest(
       key: (json['Key'] as Map<String, dynamic>).map((k, e) =>
@@ -8134,6 +8173,7 @@ class DeleteTableOutput {
   DeleteTableOutput({
     this.tableDescription,
   });
+
   factory DeleteTableOutput.fromJson(Map<String, dynamic> json) {
     return DeleteTableOutput(
       tableDescription: json['TableDescription'] != null
@@ -8158,6 +8198,7 @@ class DescribeBackupOutput {
   DescribeBackupOutput({
     this.backupDescription,
   });
+
   factory DescribeBackupOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBackupOutput(
       backupDescription: json['BackupDescription'] != null
@@ -8183,6 +8224,7 @@ class DescribeContinuousBackupsOutput {
   DescribeContinuousBackupsOutput({
     this.continuousBackupsDescription,
   });
+
   factory DescribeContinuousBackupsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeContinuousBackupsOutput(
       continuousBackupsDescription: json['ContinuousBackupsDescription'] != null
@@ -8250,6 +8292,7 @@ class DescribeContributorInsightsOutput {
     this.lastUpdateDateTime,
     this.tableName,
   });
+
   factory DescribeContributorInsightsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeContributorInsightsOutput(
@@ -8298,6 +8341,7 @@ class DescribeEndpointsResponse {
   DescribeEndpointsResponse({
     required this.endpoints,
   });
+
   factory DescribeEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointsResponse(
       endpoints: (json['Endpoints'] as List)
@@ -8322,6 +8366,7 @@ class DescribeExportOutput {
   DescribeExportOutput({
     this.exportDescription,
   });
+
   factory DescribeExportOutput.fromJson(Map<String, dynamic> json) {
     return DescribeExportOutput(
       exportDescription: json['ExportDescription'] != null
@@ -8346,6 +8391,7 @@ class DescribeGlobalTableOutput {
   DescribeGlobalTableOutput({
     this.globalTableDescription,
   });
+
   factory DescribeGlobalTableOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGlobalTableOutput(
       globalTableDescription: json['GlobalTableDescription'] != null
@@ -8375,6 +8421,7 @@ class DescribeGlobalTableSettingsOutput {
     this.globalTableName,
     this.replicaSettings,
   });
+
   factory DescribeGlobalTableSettingsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeGlobalTableSettingsOutput(
@@ -8408,6 +8455,7 @@ class DescribeKinesisStreamingDestinationOutput {
     this.kinesisDataStreamDestinations,
     this.tableName,
   });
+
   factory DescribeKinesisStreamingDestinationOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeKinesisStreamingDestinationOutput(
@@ -8458,6 +8506,7 @@ class DescribeLimitsOutput {
     this.tableMaxReadCapacityUnits,
     this.tableMaxWriteCapacityUnits,
   });
+
   factory DescribeLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeLimitsOutput(
       accountMaxReadCapacityUnits: json['AccountMaxReadCapacityUnits'] as int?,
@@ -8494,6 +8543,7 @@ class DescribeTableOutput {
   DescribeTableOutput({
     this.table,
   });
+
   factory DescribeTableOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTableOutput(
       table: json['Table'] != null
@@ -8517,6 +8567,7 @@ class DescribeTableReplicaAutoScalingOutput {
   DescribeTableReplicaAutoScalingOutput({
     this.tableAutoScalingDescription,
   });
+
   factory DescribeTableReplicaAutoScalingOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeTableReplicaAutoScalingOutput(
@@ -8543,6 +8594,7 @@ class DescribeTimeToLiveOutput {
   DescribeTimeToLiveOutput({
     this.timeToLiveDescription,
   });
+
   factory DescribeTimeToLiveOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTimeToLiveOutput(
       timeToLiveDescription: json['TimeToLiveDescription'] != null
@@ -8616,6 +8668,7 @@ class Endpoint {
     required this.address,
     required this.cachePeriodInMinutes,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String,
@@ -8648,6 +8701,7 @@ class ExecuteStatementOutput {
     this.items,
     this.nextToken,
   });
+
   factory ExecuteStatementOutput.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementOutput(
       items: (json['Items'] as List?)
@@ -8676,6 +8730,7 @@ class ExecuteTransactionOutput {
   ExecuteTransactionOutput({
     this.responses,
   });
+
   factory ExecuteTransactionOutput.fromJson(Map<String, dynamic> json) {
     return ExecuteTransactionOutput(
       responses: (json['Responses'] as List?)
@@ -8964,6 +9019,7 @@ class ExpectedAttributeValue {
     this.exists,
     this.value,
   });
+
   factory ExpectedAttributeValue.fromJson(Map<String, dynamic> json) {
     return ExpectedAttributeValue(
       attributeValueList: (json['AttributeValueList'] as List?)
@@ -9090,6 +9146,7 @@ class ExportDescription {
     this.tableArn,
     this.tableId,
   });
+
   factory ExportDescription.fromJson(Map<String, dynamic> json) {
     return ExportDescription(
       billedSizeBytes: json['BilledSizeBytes'] as int?,
@@ -9232,6 +9289,7 @@ class ExportSummary {
     this.exportArn,
     this.exportStatus,
   });
+
   factory ExportSummary.fromJson(Map<String, dynamic> json) {
     return ExportSummary(
       exportArn: json['ExportArn'] as String?,
@@ -9256,6 +9314,7 @@ class ExportTableToPointInTimeOutput {
   ExportTableToPointInTimeOutput({
     this.exportDescription,
   });
+
   factory ExportTableToPointInTimeOutput.fromJson(Map<String, dynamic> json) {
     return ExportTableToPointInTimeOutput(
       exportDescription: json['ExportDescription'] != null
@@ -9285,6 +9344,7 @@ class FailureException {
     this.exceptionDescription,
     this.exceptionName,
   });
+
   factory FailureException.fromJson(Map<String, dynamic> json) {
     return FailureException(
       exceptionDescription: json['ExceptionDescription'] as String?,
@@ -9330,6 +9390,7 @@ class Get {
     this.expressionAttributeNames,
     this.projectionExpression,
   });
+
   factory Get.fromJson(Map<String, dynamic> json) {
     return Get(
       key: (json['Key'] as Map<String, dynamic>).map((k, e) =>
@@ -9378,6 +9439,7 @@ class GetItemOutput {
     this.consumedCapacity,
     this.item,
   });
+
   factory GetItemOutput.fromJson(Map<String, dynamic> json) {
     return GetItemOutput(
       consumedCapacity: json['ConsumedCapacity'] != null
@@ -9447,6 +9509,7 @@ class GlobalSecondaryIndex {
     required this.projection,
     this.provisionedThroughput,
   });
+
   factory GlobalSecondaryIndex.fromJson(Map<String, dynamic> json) {
     return GlobalSecondaryIndex(
       indexName: json['IndexName'] as String,
@@ -9489,6 +9552,7 @@ class GlobalSecondaryIndexAutoScalingUpdate {
     this.indexName,
     this.provisionedWriteCapacityAutoScalingUpdate,
   });
+
   factory GlobalSecondaryIndexAutoScalingUpdate.fromJson(
       Map<String, dynamic> json) {
     return GlobalSecondaryIndexAutoScalingUpdate(
@@ -9617,6 +9681,7 @@ class GlobalSecondaryIndexDescription {
     this.projection,
     this.provisionedThroughput,
   });
+
   factory GlobalSecondaryIndexDescription.fromJson(Map<String, dynamic> json) {
     return GlobalSecondaryIndexDescription(
       backfilling: json['Backfilling'] as bool?,
@@ -9708,6 +9773,7 @@ class GlobalSecondaryIndexInfo {
     this.projection,
     this.provisionedThroughput,
   });
+
   factory GlobalSecondaryIndexInfo.fromJson(Map<String, dynamic> json) {
     return GlobalSecondaryIndexInfo(
       indexName: json['IndexName'] as String?,
@@ -9789,6 +9855,7 @@ class GlobalSecondaryIndexUpdate {
     this.delete,
     this.update,
   });
+
   factory GlobalSecondaryIndexUpdate.fromJson(Map<String, dynamic> json) {
     return GlobalSecondaryIndexUpdate(
       create: json['Create'] != null
@@ -9830,6 +9897,7 @@ class GlobalTable {
     this.globalTableName,
     this.replicationGroup,
   });
+
   factory GlobalTable.fromJson(Map<String, dynamic> json) {
     return GlobalTable(
       globalTableName: json['GlobalTableName'] as String?,
@@ -9889,6 +9957,7 @@ class GlobalTableDescription {
     this.globalTableStatus,
     this.replicationGroup,
   });
+
   factory GlobalTableDescription.fromJson(Map<String, dynamic> json) {
     return GlobalTableDescription(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -9942,6 +10011,7 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdate {
     this.provisionedWriteCapacityAutoScalingSettingsUpdate,
     this.provisionedWriteCapacityUnits,
   });
+
   factory GlobalTableGlobalSecondaryIndexSettingsUpdate.fromJson(
       Map<String, dynamic> json) {
     return GlobalTableGlobalSecondaryIndexSettingsUpdate(
@@ -10073,6 +10143,7 @@ class ItemCollectionMetrics {
     this.itemCollectionKey,
     this.sizeEstimateRangeGB,
   });
+
   factory ItemCollectionMetrics.fromJson(Map<String, dynamic> json) {
     return ItemCollectionMetrics(
       itemCollectionKey: (json['ItemCollectionKey'] as Map<String, dynamic>?)
@@ -10104,6 +10175,7 @@ class ItemResponse {
   ItemResponse({
     this.item,
   });
+
   factory ItemResponse.fromJson(Map<String, dynamic> json) {
     return ItemResponse(
       item: (json['Item'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -10162,6 +10234,7 @@ class KeySchemaElement {
     required this.attributeName,
     required this.keyType,
   });
+
   factory KeySchemaElement.fromJson(Map<String, dynamic> json) {
     return KeySchemaElement(
       attributeName: json['AttributeName'] as String,
@@ -10304,6 +10377,7 @@ class KeysAndAttributes {
     this.expressionAttributeNames,
     this.projectionExpression,
   });
+
   factory KeysAndAttributes.fromJson(Map<String, dynamic> json) {
     return KeysAndAttributes(
       keys: (json['Keys'] as List)
@@ -10357,6 +10431,7 @@ class KinesisDataStreamDestination {
     this.destinationStatusDescription,
     this.streamArn,
   });
+
   factory KinesisDataStreamDestination.fromJson(Map<String, dynamic> json) {
     return KinesisDataStreamDestination(
       destinationStatus:
@@ -10396,6 +10471,7 @@ class KinesisStreamingDestinationOutput {
     this.streamArn,
     this.tableName,
   });
+
   factory KinesisStreamingDestinationOutput.fromJson(
       Map<String, dynamic> json) {
     return KinesisStreamingDestinationOutput(
@@ -10442,6 +10518,7 @@ class ListBackupsOutput {
     this.backupSummaries,
     this.lastEvaluatedBackupArn,
   });
+
   factory ListBackupsOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupsOutput(
       backupSummaries: (json['BackupSummaries'] as List?)
@@ -10474,6 +10551,7 @@ class ListContributorInsightsOutput {
     this.contributorInsightsSummaries,
     this.nextToken,
   });
+
   factory ListContributorInsightsOutput.fromJson(Map<String, dynamic> json) {
     return ListContributorInsightsOutput(
       contributorInsightsSummaries: (json['ContributorInsightsSummaries']
@@ -10510,6 +10588,7 @@ class ListExportsOutput {
     this.exportSummaries,
     this.nextToken,
   });
+
   factory ListExportsOutput.fromJson(Map<String, dynamic> json) {
     return ListExportsOutput(
       exportSummaries: (json['ExportSummaries'] as List?)
@@ -10541,6 +10620,7 @@ class ListGlobalTablesOutput {
     this.globalTables,
     this.lastEvaluatedGlobalTableName,
   });
+
   factory ListGlobalTablesOutput.fromJson(Map<String, dynamic> json) {
     return ListGlobalTablesOutput(
       globalTables: (json['GlobalTables'] as List?)
@@ -10586,6 +10666,7 @@ class ListTablesOutput {
     this.lastEvaluatedTableName,
     this.tableNames,
   });
+
   factory ListTablesOutput.fromJson(Map<String, dynamic> json) {
     return ListTablesOutput(
       lastEvaluatedTableName: json['LastEvaluatedTableName'] as String?,
@@ -10620,6 +10701,7 @@ class ListTagsOfResourceOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsOfResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsOfResourceOutput(
       nextToken: json['NextToken'] as String?,
@@ -10679,6 +10761,7 @@ class LocalSecondaryIndex {
     required this.keySchema,
     required this.projection,
   });
+
   factory LocalSecondaryIndex.fromJson(Map<String, dynamic> json) {
     return LocalSecondaryIndex(
       indexName: json['IndexName'] as String,
@@ -10757,6 +10840,7 @@ class LocalSecondaryIndexDescription {
     this.keySchema,
     this.projection,
   });
+
   factory LocalSecondaryIndexDescription.fromJson(Map<String, dynamic> json) {
     return LocalSecondaryIndexDescription(
       indexArn: json['IndexArn'] as String?,
@@ -10830,6 +10914,7 @@ class LocalSecondaryIndexInfo {
     this.keySchema,
     this.projection,
   });
+
   factory LocalSecondaryIndexInfo.fromJson(Map<String, dynamic> json) {
     return LocalSecondaryIndexInfo(
       indexName: json['IndexName'] as String?,
@@ -10867,6 +10952,7 @@ class ParameterizedStatement {
     required this.statement,
     this.parameters,
   });
+
   factory ParameterizedStatement.fromJson(Map<String, dynamic> json) {
     return ParameterizedStatement(
       statement: json['Statement'] as String,
@@ -10917,6 +11003,7 @@ class PointInTimeRecoveryDescription {
     this.latestRestorableDateTime,
     this.pointInTimeRecoveryStatus,
   });
+
   factory PointInTimeRecoveryDescription.fromJson(Map<String, dynamic> json) {
     return PointInTimeRecoveryDescription(
       earliestRestorableDateTime:
@@ -10954,6 +11041,7 @@ class PointInTimeRecoverySpecification {
   PointInTimeRecoverySpecification({
     required this.pointInTimeRecoveryEnabled,
   });
+
   factory PointInTimeRecoverySpecification.fromJson(Map<String, dynamic> json) {
     return PointInTimeRecoverySpecification(
       pointInTimeRecoveryEnabled: json['PointInTimeRecoveryEnabled'] as bool,
@@ -11032,6 +11120,7 @@ class Projection {
     this.nonKeyAttributes,
     this.projectionType,
   });
+
   factory Projection.fromJson(Map<String, dynamic> json) {
     return Projection(
       nonKeyAttributes: (json['NonKeyAttributes'] as List?)
@@ -11118,6 +11207,7 @@ class ProvisionedThroughput {
     required this.readCapacityUnits,
     required this.writeCapacityUnits,
   });
+
   factory ProvisionedThroughput.fromJson(Map<String, dynamic> json) {
     return ProvisionedThroughput(
       readCapacityUnits: json['ReadCapacityUnits'] as int,
@@ -11172,6 +11262,7 @@ class ProvisionedThroughputDescription {
     this.readCapacityUnits,
     this.writeCapacityUnits,
   });
+
   factory ProvisionedThroughputDescription.fromJson(Map<String, dynamic> json) {
     return ProvisionedThroughputDescription(
       lastDecreaseDateTime: timeStampFromJson(json['LastDecreaseDateTime']),
@@ -11211,6 +11302,7 @@ class ProvisionedThroughputOverride {
   ProvisionedThroughputOverride({
     this.readCapacityUnits,
   });
+
   factory ProvisionedThroughputOverride.fromJson(Map<String, dynamic> json) {
     return ProvisionedThroughputOverride(
       readCapacityUnits: json['ReadCapacityUnits'] as int?,
@@ -11263,6 +11355,7 @@ class Put {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   factory Put.fromJson(Map<String, dynamic> json) {
     return Put(
       item: (json['Item'] as Map<String, dynamic>).map((k, e) =>
@@ -11356,6 +11449,7 @@ class PutItemOutput {
     this.consumedCapacity,
     this.itemCollectionMetrics,
   });
+
   factory PutItemOutput.fromJson(Map<String, dynamic> json) {
     return PutItemOutput(
       attributes: (json['Attributes'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -11397,6 +11491,7 @@ class PutRequest {
   PutRequest({
     required this.item,
   });
+
   factory PutRequest.fromJson(Map<String, dynamic> json) {
     return PutRequest(
       item: (json['Item'] as Map<String, dynamic>).map((k, e) =>
@@ -11470,6 +11565,7 @@ class QueryOutput {
     this.lastEvaluatedKey,
     this.scannedCount,
   });
+
   factory QueryOutput.fromJson(Map<String, dynamic> json) {
     return QueryOutput(
       consumedCapacity: json['ConsumedCapacity'] != null
@@ -11513,6 +11609,7 @@ class Replica {
   Replica({
     this.regionName,
   });
+
   factory Replica.fromJson(Map<String, dynamic> json) {
     return Replica(
       regionName: json['RegionName'] as String?,
@@ -11565,6 +11662,7 @@ class ReplicaAutoScalingDescription {
     this.replicaProvisionedWriteCapacityAutoScalingSettings,
     this.replicaStatus,
   });
+
   factory ReplicaAutoScalingDescription.fromJson(Map<String, dynamic> json) {
     return ReplicaAutoScalingDescription(
       globalSecondaryIndexes: (json['GlobalSecondaryIndexes'] as List?)
@@ -11630,6 +11728,7 @@ class ReplicaAutoScalingUpdate {
     this.replicaGlobalSecondaryIndexUpdates,
     this.replicaProvisionedReadCapacityAutoScalingUpdate,
   });
+
   factory ReplicaAutoScalingUpdate.fromJson(Map<String, dynamic> json) {
     return ReplicaAutoScalingUpdate(
       regionName: json['RegionName'] as String,
@@ -11738,6 +11837,7 @@ class ReplicaDescription {
     this.replicaStatusDescription,
     this.replicaStatusPercentProgress,
   });
+
   factory ReplicaDescription.fromJson(Map<String, dynamic> json) {
     return ReplicaDescription(
       globalSecondaryIndexes: (json['GlobalSecondaryIndexes'] as List?)
@@ -11802,6 +11902,7 @@ class ReplicaGlobalSecondaryIndex {
     required this.indexName,
     this.provisionedThroughputOverride,
   });
+
   factory ReplicaGlobalSecondaryIndex.fromJson(Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndex(
       indexName: json['IndexName'] as String,
@@ -11858,6 +11959,7 @@ class ReplicaGlobalSecondaryIndexAutoScalingDescription {
     this.provisionedReadCapacityAutoScalingSettings,
     this.provisionedWriteCapacityAutoScalingSettings,
   });
+
   factory ReplicaGlobalSecondaryIndexAutoScalingDescription.fromJson(
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexAutoScalingDescription(
@@ -11909,6 +12011,7 @@ class ReplicaGlobalSecondaryIndexAutoScalingUpdate {
     this.indexName,
     this.provisionedReadCapacityAutoScalingUpdate,
   });
+
   factory ReplicaGlobalSecondaryIndexAutoScalingUpdate.fromJson(
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexAutoScalingUpdate(
@@ -11947,6 +12050,7 @@ class ReplicaGlobalSecondaryIndexDescription {
     this.indexName,
     this.provisionedThroughputOverride,
   });
+
   factory ReplicaGlobalSecondaryIndexDescription.fromJson(
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexDescription(
@@ -12020,6 +12124,7 @@ class ReplicaGlobalSecondaryIndexSettingsDescription {
     this.provisionedWriteCapacityAutoScalingSettings,
     this.provisionedWriteCapacityUnits,
   });
+
   factory ReplicaGlobalSecondaryIndexSettingsDescription.fromJson(
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexSettingsDescription(
@@ -12091,6 +12196,7 @@ class ReplicaGlobalSecondaryIndexSettingsUpdate {
     this.provisionedReadCapacityAutoScalingSettingsUpdate,
     this.provisionedReadCapacityUnits,
   });
+
   factory ReplicaGlobalSecondaryIndexSettingsUpdate.fromJson(
       Map<String, dynamic> json) {
     return ReplicaGlobalSecondaryIndexSettingsUpdate(
@@ -12185,6 +12291,7 @@ class ReplicaSettingsDescription {
     this.replicaProvisionedWriteCapacityUnits,
     this.replicaStatus,
   });
+
   factory ReplicaSettingsDescription.fromJson(Map<String, dynamic> json) {
     return ReplicaSettingsDescription(
       regionName: json['RegionName'] as String,
@@ -12287,6 +12394,7 @@ class ReplicaSettingsUpdate {
     this.replicaProvisionedReadCapacityAutoScalingSettingsUpdate,
     this.replicaProvisionedReadCapacityUnits,
   });
+
   factory ReplicaSettingsUpdate.fromJson(Map<String, dynamic> json) {
     return ReplicaSettingsUpdate(
       regionName: json['RegionName'] as String,
@@ -12408,6 +12516,7 @@ class ReplicaUpdate {
     this.create,
     this.delete,
   });
+
   factory ReplicaUpdate.fromJson(Map<String, dynamic> json) {
     return ReplicaUpdate(
       create: json['Create'] != null
@@ -12462,6 +12571,7 @@ class ReplicationGroupUpdate {
     this.delete,
     this.update,
   });
+
   factory ReplicationGroupUpdate.fromJson(Map<String, dynamic> json) {
     return ReplicationGroupUpdate(
       create: json['Create'] != null
@@ -12512,6 +12622,7 @@ class RestoreSummary {
     this.sourceBackupArn,
     this.sourceTableArn,
   });
+
   factory RestoreSummary.fromJson(Map<String, dynamic> json) {
     return RestoreSummary(
       restoreDateTime:
@@ -12543,6 +12654,7 @@ class RestoreTableFromBackupOutput {
   RestoreTableFromBackupOutput({
     this.tableDescription,
   });
+
   factory RestoreTableFromBackupOutput.fromJson(Map<String, dynamic> json) {
     return RestoreTableFromBackupOutput(
       tableDescription: json['TableDescription'] != null
@@ -12567,6 +12679,7 @@ class RestoreTableToPointInTimeOutput {
   RestoreTableToPointInTimeOutput({
     this.tableDescription,
   });
+
   factory RestoreTableToPointInTimeOutput.fromJson(Map<String, dynamic> json) {
     return RestoreTableToPointInTimeOutput(
       tableDescription: json['TableDescription'] != null
@@ -12811,6 +12924,7 @@ class SSEDescription {
     this.sSEType,
     this.status,
   });
+
   factory SSEDescription.fromJson(Map<String, dynamic> json) {
     return SSEDescription(
       inaccessibleEncryptionDateTime:
@@ -12869,6 +12983,7 @@ class SSESpecification {
     this.kMSMasterKeyId,
     this.sSEType,
   });
+
   factory SSESpecification.fromJson(Map<String, dynamic> json) {
     return SSESpecification(
       enabled: json['Enabled'] as bool?,
@@ -13051,6 +13166,7 @@ class ScanOutput {
     this.lastEvaluatedKey,
     this.scannedCount,
   });
+
   factory ScanOutput.fromJson(Map<String, dynamic> json) {
     return ScanOutput(
       consumedCapacity: json['ConsumedCapacity'] != null
@@ -13178,6 +13294,7 @@ class SourceTableDetails {
     this.tableArn,
     this.tableSizeBytes,
   });
+
   factory SourceTableDetails.fromJson(Map<String, dynamic> json) {
     return SourceTableDetails(
       keySchema: (json['KeySchema'] as List)
@@ -13251,6 +13368,7 @@ class SourceTableFeatureDetails {
     this.streamDescription,
     this.timeToLiveDescription,
   });
+
   factory SourceTableFeatureDetails.fromJson(Map<String, dynamic> json) {
     return SourceTableFeatureDetails(
       globalSecondaryIndexes: (json['GlobalSecondaryIndexes'] as List?)
@@ -13331,6 +13449,7 @@ class StreamSpecification {
     required this.streamEnabled,
     this.streamViewType,
   });
+
   factory StreamSpecification.fromJson(Map<String, dynamic> json) {
     return StreamSpecification(
       streamEnabled: json['StreamEnabled'] as bool,
@@ -13417,6 +13536,7 @@ class TableAutoScalingDescription {
     this.tableName,
     this.tableStatus,
   });
+
   factory TableAutoScalingDescription.fromJson(Map<String, dynamic> json) {
     return TableAutoScalingDescription(
       replicas: (json['Replicas'] as List?)
@@ -13782,6 +13902,7 @@ class TableDescription {
     this.tableSizeBytes,
     this.tableStatus,
   });
+
   factory TableDescription.fromJson(Map<String, dynamic> json) {
     return TableDescription(
       archivalSummary: json['ArchivalSummary'] != null
@@ -13975,6 +14096,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -14004,6 +14126,7 @@ class TimeToLiveDescription {
     this.attributeName,
     this.timeToLiveStatus,
   });
+
   factory TimeToLiveDescription.fromJson(Map<String, dynamic> json) {
     return TimeToLiveDescription(
       attributeName: json['AttributeName'] as String?,
@@ -14038,6 +14161,7 @@ class TimeToLiveSpecification {
     required this.attributeName,
     required this.enabled,
   });
+
   factory TimeToLiveSpecification.fromJson(Map<String, dynamic> json) {
     return TimeToLiveSpecification(
       attributeName: json['AttributeName'] as String,
@@ -14103,6 +14227,7 @@ class TransactGetItem {
   TransactGetItem({
     required this.get,
   });
+
   factory TransactGetItem.fromJson(Map<String, dynamic> json) {
     return TransactGetItem(
       get: Get.fromJson(json['Get'] as Map<String, dynamic>),
@@ -14142,6 +14267,7 @@ class TransactGetItemsOutput {
     this.consumedCapacity,
     this.responses,
   });
+
   factory TransactGetItemsOutput.fromJson(Map<String, dynamic> json) {
     return TransactGetItemsOutput(
       consumedCapacity: (json['ConsumedCapacity'] as List?)
@@ -14186,6 +14312,7 @@ class TransactWriteItem {
     this.put,
     this.update,
   });
+
   factory TransactWriteItem.fromJson(Map<String, dynamic> json) {
     return TransactWriteItem(
       conditionCheck: json['ConditionCheck'] != null
@@ -14234,6 +14361,7 @@ class TransactWriteItemsOutput {
     this.consumedCapacity,
     this.itemCollectionMetrics,
   });
+
   factory TransactWriteItemsOutput.fromJson(Map<String, dynamic> json) {
     return TransactWriteItemsOutput(
       consumedCapacity: (json['ConsumedCapacity'] as List?)
@@ -14302,6 +14430,7 @@ class Update {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   factory Update.fromJson(Map<String, dynamic> json) {
     return Update(
       key: (json['Key'] as Map<String, dynamic>).map((k, e) =>
@@ -14356,6 +14485,7 @@ class UpdateContinuousBackupsOutput {
   UpdateContinuousBackupsOutput({
     this.continuousBackupsDescription,
   });
+
   factory UpdateContinuousBackupsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateContinuousBackupsOutput(
       continuousBackupsDescription: json['ContinuousBackupsDescription'] != null
@@ -14389,6 +14519,7 @@ class UpdateContributorInsightsOutput {
     this.indexName,
     this.tableName,
   });
+
   factory UpdateContributorInsightsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateContributorInsightsOutput(
       contributorInsightsStatus: (json['ContributorInsightsStatus'] as String?)
@@ -14429,6 +14560,7 @@ class UpdateGlobalSecondaryIndexAction {
     required this.indexName,
     required this.provisionedThroughput,
   });
+
   factory UpdateGlobalSecondaryIndexAction.fromJson(Map<String, dynamic> json) {
     return UpdateGlobalSecondaryIndexAction(
       indexName: json['IndexName'] as String,
@@ -14454,6 +14586,7 @@ class UpdateGlobalTableOutput {
   UpdateGlobalTableOutput({
     this.globalTableDescription,
   });
+
   factory UpdateGlobalTableOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGlobalTableOutput(
       globalTableDescription: json['GlobalTableDescription'] != null
@@ -14483,6 +14616,7 @@ class UpdateGlobalTableSettingsOutput {
     this.globalTableName,
     this.replicaSettings,
   });
+
   factory UpdateGlobalTableSettingsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGlobalTableSettingsOutput(
       globalTableName: json['GlobalTableName'] as String?,
@@ -14557,6 +14691,7 @@ class UpdateItemOutput {
     this.consumedCapacity,
     this.itemCollectionMetrics,
   });
+
   factory UpdateItemOutput.fromJson(Map<String, dynamic> json) {
     return UpdateItemOutput(
       attributes: (json['Attributes'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -14610,6 +14745,7 @@ class UpdateReplicationGroupMemberAction {
     this.kMSMasterKeyId,
     this.provisionedThroughputOverride,
   });
+
   factory UpdateReplicationGroupMemberAction.fromJson(
       Map<String, dynamic> json) {
     return UpdateReplicationGroupMemberAction(
@@ -14652,6 +14788,7 @@ class UpdateTableOutput {
   UpdateTableOutput({
     this.tableDescription,
   });
+
   factory UpdateTableOutput.fromJson(Map<String, dynamic> json) {
     return UpdateTableOutput(
       tableDescription: json['TableDescription'] != null
@@ -14677,6 +14814,7 @@ class UpdateTableReplicaAutoScalingOutput {
   UpdateTableReplicaAutoScalingOutput({
     this.tableAutoScalingDescription,
   });
+
   factory UpdateTableReplicaAutoScalingOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateTableReplicaAutoScalingOutput(
@@ -14703,6 +14841,7 @@ class UpdateTimeToLiveOutput {
   UpdateTimeToLiveOutput({
     this.timeToLiveSpecification,
   });
+
   factory UpdateTimeToLiveOutput.fromJson(Map<String, dynamic> json) {
     return UpdateTimeToLiveOutput(
       timeToLiveSpecification: json['TimeToLiveSpecification'] != null
@@ -14737,6 +14876,7 @@ class WriteRequest {
     this.deleteRequest,
     this.putRequest,
   });
+
   factory WriteRequest.fromJson(Map<String, dynamic> json) {
     return WriteRequest(
       deleteRequest: json['DeleteRequest'] != null

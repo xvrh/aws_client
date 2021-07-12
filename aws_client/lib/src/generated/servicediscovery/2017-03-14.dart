@@ -1943,6 +1943,7 @@ class CreateHttpNamespaceResponse {
   CreateHttpNamespaceResponse({
     this.operationId,
   });
+
   factory CreateHttpNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return CreateHttpNamespaceResponse(
       operationId: json['OperationId'] as String?,
@@ -1966,6 +1967,7 @@ class CreatePrivateDnsNamespaceResponse {
   CreatePrivateDnsNamespaceResponse({
     this.operationId,
   });
+
   factory CreatePrivateDnsNamespaceResponse.fromJson(
       Map<String, dynamic> json) {
     return CreatePrivateDnsNamespaceResponse(
@@ -1990,6 +1992,7 @@ class CreatePublicDnsNamespaceResponse {
   CreatePublicDnsNamespaceResponse({
     this.operationId,
   });
+
   factory CreatePublicDnsNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return CreatePublicDnsNamespaceResponse(
       operationId: json['OperationId'] as String?,
@@ -2011,6 +2014,7 @@ class CreateServiceResponse {
   CreateServiceResponse({
     this.service,
   });
+
   factory CreateServiceResponse.fromJson(Map<String, dynamic> json) {
     return CreateServiceResponse(
       service: json['Service'] != null
@@ -2064,6 +2068,7 @@ class DeleteNamespaceResponse {
   DeleteNamespaceResponse({
     this.operationId,
   });
+
   factory DeleteNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteNamespaceResponse(
       operationId: json['OperationId'] as String?,
@@ -2080,6 +2085,7 @@ class DeleteNamespaceResponse {
 
 class DeleteServiceResponse {
   DeleteServiceResponse();
+
   factory DeleteServiceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServiceResponse();
   }
@@ -2098,6 +2104,7 @@ class DeregisterInstanceResponse {
   DeregisterInstanceResponse({
     this.operationId,
   });
+
   factory DeregisterInstanceResponse.fromJson(Map<String, dynamic> json) {
     return DeregisterInstanceResponse(
       operationId: json['OperationId'] as String?,
@@ -2120,6 +2127,7 @@ class DiscoverInstancesResponse {
   DiscoverInstancesResponse({
     this.instances,
   });
+
   factory DiscoverInstancesResponse.fromJson(Map<String, dynamic> json) {
     return DiscoverInstancesResponse(
       instances: (json['Instances'] as List?)
@@ -2199,6 +2207,7 @@ class DnsConfig {
     this.namespaceId,
     this.routingPolicy,
   });
+
   factory DnsConfig.fromJson(Map<String, dynamic> json) {
     return DnsConfig(
       dnsRecords: (json['DnsRecords'] as List)
@@ -2232,6 +2241,7 @@ class DnsConfigChange {
   DnsConfigChange({
     required this.dnsRecords,
   });
+
   factory DnsConfigChange.fromJson(Map<String, dynamic> json) {
     return DnsConfigChange(
       dnsRecords: (json['DnsRecords'] as List)
@@ -2263,6 +2273,7 @@ class DnsProperties {
     this.hostedZoneId,
     this.soa,
   });
+
   factory DnsProperties.fromJson(Map<String, dynamic> json) {
     return DnsProperties(
       hostedZoneId: json['HostedZoneId'] as String?,
@@ -2423,6 +2434,7 @@ class DnsRecord {
     required this.ttl,
     required this.type,
   });
+
   factory DnsRecord.fromJson(Map<String, dynamic> json) {
     return DnsRecord(
       ttl: json['TTL'] as int,
@@ -2480,6 +2492,7 @@ class GetInstanceResponse {
   GetInstanceResponse({
     this.instance,
   });
+
   factory GetInstanceResponse.fromJson(Map<String, dynamic> json) {
     return GetInstanceResponse(
       instance: json['Instance'] != null
@@ -2511,6 +2524,7 @@ class GetInstancesHealthStatusResponse {
     this.nextToken,
     this.status,
   });
+
   factory GetInstancesHealthStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetInstancesHealthStatusResponse(
       nextToken: json['NextToken'] as String?,
@@ -2537,6 +2551,7 @@ class GetNamespaceResponse {
   GetNamespaceResponse({
     this.namespace,
   });
+
   factory GetNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return GetNamespaceResponse(
       namespace: json['Namespace'] != null
@@ -2560,6 +2575,7 @@ class GetOperationResponse {
   GetOperationResponse({
     this.operation,
   });
+
   factory GetOperationResponse.fromJson(Map<String, dynamic> json) {
     return GetOperationResponse(
       operation: json['Operation'] != null
@@ -2583,6 +2599,7 @@ class GetServiceResponse {
   GetServiceResponse({
     this.service,
   });
+
   factory GetServiceResponse.fromJson(Map<String, dynamic> json) {
     return GetServiceResponse(
       service: json['Service'] != null
@@ -2718,6 +2735,7 @@ class HealthCheckConfig {
     this.failureThreshold,
     this.resourcePath,
   });
+
   factory HealthCheckConfig.fromJson(Map<String, dynamic> json) {
     return HealthCheckConfig(
       type: (json['Type'] as String).toHealthCheckType(),
@@ -2816,6 +2834,7 @@ class HealthCheckCustomConfig {
   HealthCheckCustomConfig({
     this.failureThreshold,
   });
+
   factory HealthCheckCustomConfig.fromJson(Map<String, dynamic> json) {
     return HealthCheckCustomConfig(
       failureThreshold: json['FailureThreshold'] as int?,
@@ -2968,6 +2987,7 @@ class HttpInstanceSummary {
     this.namespaceName,
     this.serviceName,
   });
+
   factory HttpInstanceSummary.fromJson(Map<String, dynamic> json) {
     return HttpInstanceSummary(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -3003,6 +3023,7 @@ class HttpNamespaceChange {
   HttpNamespaceChange({
     required this.description,
   });
+
   factory HttpNamespaceChange.fromJson(Map<String, dynamic> json) {
     return HttpNamespaceChange(
       description: json['Description'] as String,
@@ -3025,6 +3046,7 @@ class HttpProperties {
   HttpProperties({
     this.httpName,
   });
+
   factory HttpProperties.fromJson(Map<String, dynamic> json) {
     return HttpProperties(
       httpName: json['HttpName'] as String?,
@@ -3180,6 +3202,7 @@ class Instance {
     this.attributes,
     this.creatorRequestId,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       id: json['Id'] as String,
@@ -3254,6 +3277,7 @@ class InstanceSummary {
     this.attributes,
     this.id,
   });
+
   factory InstanceSummary.fromJson(Map<String, dynamic> json) {
     return InstanceSummary(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -3287,6 +3311,7 @@ class ListInstancesResponse {
     this.instances,
     this.nextToken,
   });
+
   factory ListInstancesResponse.fromJson(Map<String, dynamic> json) {
     return ListInstancesResponse(
       instances: (json['Instances'] as List?)
@@ -3329,6 +3354,7 @@ class ListNamespacesResponse {
     this.namespaces,
     this.nextToken,
   });
+
   factory ListNamespacesResponse.fromJson(Map<String, dynamic> json) {
     return ListNamespacesResponse(
       namespaces: (json['Namespaces'] as List?)
@@ -3370,6 +3396,7 @@ class ListOperationsResponse {
     this.nextToken,
     this.operations,
   });
+
   factory ListOperationsResponse.fromJson(Map<String, dynamic> json) {
     return ListOperationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3412,6 +3439,7 @@ class ListServicesResponse {
     this.nextToken,
     this.services,
   });
+
   factory ListServicesResponse.fromJson(Map<String, dynamic> json) {
     return ListServicesResponse(
       nextToken: json['NextToken'] as String?,
@@ -3439,6 +3467,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -3513,6 +3542,7 @@ class Namespace {
     this.serviceCount,
     this.type,
   });
+
   factory Namespace.fromJson(Map<String, dynamic> json) {
     return Namespace(
       arn: json['Arn'] as String?,
@@ -3587,6 +3617,7 @@ class NamespaceFilter {
     required this.values,
     this.condition,
   });
+
   factory NamespaceFilter.fromJson(Map<String, dynamic> json) {
     return NamespaceFilter(
       name: (json['Name'] as String).toNamespaceFilterName(),
@@ -3647,6 +3678,7 @@ class NamespaceProperties {
     this.dnsProperties,
     this.httpProperties,
   });
+
   factory NamespaceProperties.fromJson(Map<String, dynamic> json) {
     return NamespaceProperties(
       dnsProperties: json['DnsProperties'] != null
@@ -3709,6 +3741,7 @@ class NamespaceSummary {
     this.serviceCount,
     this.type,
   });
+
   factory NamespaceSummary.fromJson(Map<String, dynamic> json) {
     return NamespaceSummary(
       arn: json['Arn'] as String?,
@@ -3867,6 +3900,7 @@ class Operation {
     this.type,
     this.updateDate,
   });
+
   factory Operation.fromJson(Map<String, dynamic> json) {
     return Operation(
       createDate: timeStampFromJson(json['CreateDate']),
@@ -3988,6 +4022,7 @@ class OperationFilter {
     required this.values,
     this.condition,
   });
+
   factory OperationFilter.fromJson(Map<String, dynamic> json) {
     return OperationFilter(
       name: (json['Name'] as String).toOperationFilterName(),
@@ -4124,6 +4159,7 @@ class OperationSummary {
     this.id,
     this.status,
   });
+
   factory OperationSummary.fromJson(Map<String, dynamic> json) {
     return OperationSummary(
       id: json['Id'] as String?,
@@ -4234,6 +4270,7 @@ class PrivateDnsNamespaceChange {
     this.description,
     this.properties,
   });
+
   factory PrivateDnsNamespaceChange.fromJson(Map<String, dynamic> json) {
     return PrivateDnsNamespaceChange(
       description: json['Description'] as String?,
@@ -4262,6 +4299,7 @@ class PrivateDnsNamespaceProperties {
   PrivateDnsNamespaceProperties({
     required this.dnsProperties,
   });
+
   factory PrivateDnsNamespaceProperties.fromJson(Map<String, dynamic> json) {
     return PrivateDnsNamespaceProperties(
       dnsProperties: PrivateDnsPropertiesMutable.fromJson(
@@ -4285,6 +4323,7 @@ class PrivateDnsNamespacePropertiesChange {
   PrivateDnsNamespacePropertiesChange({
     required this.dnsProperties,
   });
+
   factory PrivateDnsNamespacePropertiesChange.fromJson(
       Map<String, dynamic> json) {
     return PrivateDnsNamespacePropertiesChange(
@@ -4310,6 +4349,7 @@ class PrivateDnsPropertiesMutable {
   PrivateDnsPropertiesMutable({
     required this.soa,
   });
+
   factory PrivateDnsPropertiesMutable.fromJson(Map<String, dynamic> json) {
     return PrivateDnsPropertiesMutable(
       soa: SOA.fromJson(json['SOA'] as Map<String, dynamic>),
@@ -4333,6 +4373,7 @@ class PrivateDnsPropertiesMutableChange {
   PrivateDnsPropertiesMutableChange({
     required this.soa,
   });
+
   factory PrivateDnsPropertiesMutableChange.fromJson(
       Map<String, dynamic> json) {
     return PrivateDnsPropertiesMutableChange(
@@ -4360,6 +4401,7 @@ class PublicDnsNamespaceChange {
     this.description,
     this.properties,
   });
+
   factory PublicDnsNamespaceChange.fromJson(Map<String, dynamic> json) {
     return PublicDnsNamespaceChange(
       description: json['Description'] as String?,
@@ -4388,6 +4430,7 @@ class PublicDnsNamespaceProperties {
   PublicDnsNamespaceProperties({
     required this.dnsProperties,
   });
+
   factory PublicDnsNamespaceProperties.fromJson(Map<String, dynamic> json) {
     return PublicDnsNamespaceProperties(
       dnsProperties: PublicDnsPropertiesMutable.fromJson(
@@ -4411,6 +4454,7 @@ class PublicDnsNamespacePropertiesChange {
   PublicDnsNamespacePropertiesChange({
     required this.dnsProperties,
   });
+
   factory PublicDnsNamespacePropertiesChange.fromJson(
       Map<String, dynamic> json) {
     return PublicDnsNamespacePropertiesChange(
@@ -4436,6 +4480,7 @@ class PublicDnsPropertiesMutable {
   PublicDnsPropertiesMutable({
     required this.soa,
   });
+
   factory PublicDnsPropertiesMutable.fromJson(Map<String, dynamic> json) {
     return PublicDnsPropertiesMutable(
       soa: SOA.fromJson(json['SOA'] as Map<String, dynamic>),
@@ -4459,6 +4504,7 @@ class PublicDnsPropertiesMutableChange {
   PublicDnsPropertiesMutableChange({
     required this.soa,
   });
+
   factory PublicDnsPropertiesMutableChange.fromJson(Map<String, dynamic> json) {
     return PublicDnsPropertiesMutableChange(
       soa: SOAChange.fromJson(json['SOA'] as Map<String, dynamic>),
@@ -4520,6 +4566,7 @@ class RegisterInstanceResponse {
   RegisterInstanceResponse({
     this.operationId,
   });
+
   factory RegisterInstanceResponse.fromJson(Map<String, dynamic> json) {
     return RegisterInstanceResponse(
       operationId: json['OperationId'] as String?,
@@ -4570,6 +4617,7 @@ class SOA {
   SOA({
     required this.ttl,
   });
+
   factory SOA.fromJson(Map<String, dynamic> json) {
     return SOA(
       ttl: json['TTL'] as int,
@@ -4593,6 +4641,7 @@ class SOAChange {
   SOAChange({
     required this.ttl,
   });
+
   factory SOAChange.fromJson(Map<String, dynamic> json) {
     return SOAChange(
       ttl: json['TTL'] as int,
@@ -4691,6 +4740,7 @@ class Service {
     this.namespaceId,
     this.type,
   });
+
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       arn: json['Arn'] as String?,
@@ -4766,6 +4816,7 @@ class ServiceChange {
     this.dnsConfig,
     this.healthCheckConfig,
   });
+
   factory ServiceChange.fromJson(Map<String, dynamic> json) {
     return ServiceChange(
       description: json['Description'] as String?,
@@ -4827,6 +4878,7 @@ class ServiceFilter {
     required this.values,
     this.condition,
   });
+
   factory ServiceFilter.fromJson(Map<String, dynamic> json) {
     return ServiceFilter(
       name: (json['Name'] as String).toServiceFilterName(),
@@ -4953,6 +5005,7 @@ class ServiceSummary {
     this.name,
     this.type,
   });
+
   factory ServiceSummary.fromJson(Map<String, dynamic> json) {
     return ServiceSummary(
       arn: json['Arn'] as String?,
@@ -5073,6 +5126,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5092,6 +5146,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5103,6 +5158,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5121,6 +5177,7 @@ class UpdateHttpNamespaceResponse {
   UpdateHttpNamespaceResponse({
     this.operationId,
   });
+
   factory UpdateHttpNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateHttpNamespaceResponse(
       operationId: json['OperationId'] as String?,
@@ -5144,6 +5201,7 @@ class UpdatePrivateDnsNamespaceResponse {
   UpdatePrivateDnsNamespaceResponse({
     this.operationId,
   });
+
   factory UpdatePrivateDnsNamespaceResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdatePrivateDnsNamespaceResponse(
@@ -5168,6 +5226,7 @@ class UpdatePublicDnsNamespaceResponse {
   UpdatePublicDnsNamespaceResponse({
     this.operationId,
   });
+
   factory UpdatePublicDnsNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePublicDnsNamespaceResponse(
       operationId: json['OperationId'] as String?,
@@ -5191,6 +5250,7 @@ class UpdateServiceResponse {
   UpdateServiceResponse({
     this.operationId,
   });
+
   factory UpdateServiceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateServiceResponse(
       operationId: json['OperationId'] as String?,

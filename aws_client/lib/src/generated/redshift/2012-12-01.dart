@@ -9101,6 +9101,7 @@ class AcceptReservedNodeExchangeOutputMessage {
   AcceptReservedNodeExchangeOutputMessage({
     this.exchangedReservedNode,
   });
+
   factory AcceptReservedNodeExchangeOutputMessage.fromJson(
       Map<String, dynamic> json) {
     return AcceptReservedNodeExchangeOutputMessage(
@@ -9140,6 +9141,7 @@ class AccountAttribute {
     this.attributeName,
     this.attributeValues,
   });
+
   factory AccountAttribute.fromJson(Map<String, dynamic> json) {
     return AccountAttribute(
       attributeName: json['AttributeName'] as String?,
@@ -9178,6 +9180,7 @@ class AccountAttributeList {
   AccountAttributeList({
     this.accountAttributes,
   });
+
   factory AccountAttributeList.fromJson(Map<String, dynamic> json) {
     return AccountAttributeList(
       accountAttributes: (json['AccountAttributes'] as List?)
@@ -9218,6 +9221,7 @@ class AccountWithRestoreAccess {
     this.accountAlias,
     this.accountId,
   });
+
   factory AccountWithRestoreAccess.fromJson(Map<String, dynamic> json) {
     return AccountWithRestoreAccess(
       accountAlias: json['AccountAlias'] as String?,
@@ -9314,6 +9318,7 @@ class AquaConfiguration {
     this.aquaConfigurationStatus,
     this.aquaStatus,
   });
+
   factory AquaConfiguration.fromJson(Map<String, dynamic> json) {
     return AquaConfiguration(
       aquaConfigurationStatus: (json['AquaConfigurationStatus'] as String?)
@@ -9416,6 +9421,7 @@ class AttributeValueTarget {
   AttributeValueTarget({
     this.attributeValue,
   });
+
   factory AttributeValueTarget.fromJson(Map<String, dynamic> json) {
     return AttributeValueTarget(
       attributeValue: json['AttributeValue'] as String?,
@@ -9470,6 +9476,7 @@ class AuthorizeClusterSecurityGroupIngressResult {
   AuthorizeClusterSecurityGroupIngressResult({
     this.clusterSecurityGroup,
   });
+
   factory AuthorizeClusterSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return AuthorizeClusterSecurityGroupIngressResult(
@@ -9504,6 +9511,7 @@ class AuthorizeSnapshotAccessResult {
   AuthorizeSnapshotAccessResult({
     this.snapshot,
   });
+
   factory AuthorizeSnapshotAccessResult.fromJson(Map<String, dynamic> json) {
     return AuthorizeSnapshotAccessResult(
       snapshot: json['Snapshot'] != null
@@ -9539,6 +9547,7 @@ class AvailabilityZone {
     this.name,
     this.supportedPlatforms,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       name: json['Name'] as String?,
@@ -9581,6 +9590,7 @@ class BatchDeleteClusterSnapshotsResult {
     this.errors,
     this.resources,
   });
+
   factory BatchDeleteClusterSnapshotsResult.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteClusterSnapshotsResult(
@@ -9628,6 +9638,7 @@ class BatchModifyClusterSnapshotsOutputMessage {
     this.errors,
     this.resources,
   });
+
   factory BatchModifyClusterSnapshotsOutputMessage.fromJson(
       Map<String, dynamic> json) {
     return BatchModifyClusterSnapshotsOutputMessage(
@@ -10017,6 +10028,7 @@ class Cluster {
     this.vpcId,
     this.vpcSecurityGroups,
   });
+
   factory Cluster.fromJson(Map<String, dynamic> json) {
     return Cluster(
       allowVersionUpgrade: json['AllowVersionUpgrade'] as bool?,
@@ -10401,6 +10413,7 @@ class ClusterAssociatedToSchedule {
     this.clusterIdentifier,
     this.scheduleAssociationState,
   });
+
   factory ClusterAssociatedToSchedule.fromJson(Map<String, dynamic> json) {
     return ClusterAssociatedToSchedule(
       clusterIdentifier: json['ClusterIdentifier'] as String?,
@@ -10453,6 +10466,7 @@ class ClusterCredentials {
     this.dbUser,
     this.expiration,
   });
+
   factory ClusterCredentials.fromJson(Map<String, dynamic> json) {
     return ClusterCredentials(
       dbPassword: json['DbPassword'] as String?,
@@ -10502,6 +10516,7 @@ class ClusterDbRevision {
     this.databaseRevisionReleaseDate,
     this.revisionTargets,
   });
+
   factory ClusterDbRevision.fromJson(Map<String, dynamic> json) {
     return ClusterDbRevision(
       clusterIdentifier: json['ClusterIdentifier'] as String?,
@@ -10562,6 +10577,7 @@ class ClusterDbRevisionsMessage {
     this.clusterDbRevisions,
     this.marker,
   });
+
   factory ClusterDbRevisionsMessage.fromJson(Map<String, dynamic> json) {
     return ClusterDbRevisionsMessage(
       clusterDbRevisions: (json['ClusterDbRevisions'] as List?)
@@ -10624,6 +10640,7 @@ class ClusterIamRole {
     this.applyStatus,
     this.iamRoleArn,
   });
+
   factory ClusterIamRole.fromJson(Map<String, dynamic> json) {
     return ClusterIamRole(
       applyStatus: json['ApplyStatus'] as String?,
@@ -10664,6 +10681,7 @@ class ClusterNode {
     this.privateIPAddress,
     this.publicIPAddress,
   });
+
   factory ClusterNode.fromJson(Map<String, dynamic> json) {
     return ClusterNode(
       nodeRole: json['NodeRole'] as String?,
@@ -10713,6 +10731,7 @@ class ClusterParameterGroup {
     this.parameterGroupName,
     this.tags,
   });
+
   factory ClusterParameterGroup.fromJson(Map<String, dynamic> json) {
     return ClusterParameterGroup(
       description: json['Description'] as String?,
@@ -10769,6 +10788,7 @@ class ClusterParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+
   factory ClusterParameterGroupDetails.fromJson(Map<String, dynamic> json) {
     return ClusterParameterGroupDetails(
       marker: json['Marker'] as String?,
@@ -10813,6 +10833,7 @@ class ClusterParameterGroupNameMessage {
     this.parameterGroupName,
     this.parameterGroupStatus,
   });
+
   factory ClusterParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
     return ClusterParameterGroupNameMessage(
       parameterGroupName: json['ParameterGroupName'] as String?,
@@ -10860,6 +10881,7 @@ class ClusterParameterGroupStatus {
     this.parameterApplyStatus,
     this.parameterGroupName,
   });
+
   factory ClusterParameterGroupStatus.fromJson(Map<String, dynamic> json) {
     return ClusterParameterGroupStatus(
       clusterParameterStatusList: (json['ClusterParameterStatusList'] as List?)
@@ -10918,6 +10940,7 @@ class ClusterParameterGroupsMessage {
     this.marker,
     this.parameterGroups,
   });
+
   factory ClusterParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
     return ClusterParameterGroupsMessage(
       marker: json['Marker'] as String?,
@@ -10998,6 +11021,7 @@ class ClusterParameterStatus {
     this.parameterApplyStatus,
     this.parameterName,
   });
+
   factory ClusterParameterStatus.fromJson(Map<String, dynamic> json) {
     return ClusterParameterStatus(
       parameterApplyErrorDescription:
@@ -11057,6 +11081,7 @@ class ClusterSecurityGroup {
     this.iPRanges,
     this.tags,
   });
+
   factory ClusterSecurityGroup.fromJson(Map<String, dynamic> json) {
     return ClusterSecurityGroup(
       clusterSecurityGroupName: json['ClusterSecurityGroupName'] as String?,
@@ -11122,6 +11147,7 @@ class ClusterSecurityGroupMembership {
     this.clusterSecurityGroupName,
     this.status,
   });
+
   factory ClusterSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return ClusterSecurityGroupMembership(
       clusterSecurityGroupName: json['ClusterSecurityGroupName'] as String?,
@@ -11165,6 +11191,7 @@ class ClusterSecurityGroupMessage {
     this.clusterSecurityGroups,
     this.marker,
   });
+
   factory ClusterSecurityGroupMessage.fromJson(Map<String, dynamic> json) {
     return ClusterSecurityGroupMessage(
       clusterSecurityGroups: (json['ClusterSecurityGroups'] as List?)
@@ -11225,6 +11252,7 @@ class ClusterSnapshotCopyStatus {
     this.retentionPeriod,
     this.snapshotCopyGrantName,
   });
+
   factory ClusterSnapshotCopyStatus.fromJson(Map<String, dynamic> json) {
     return ClusterSnapshotCopyStatus(
       destinationRegion: json['DestinationRegion'] as String?,
@@ -11291,6 +11319,7 @@ class ClusterSubnetGroup {
     this.tags,
     this.vpcId,
   });
+
   factory ClusterSubnetGroup.fromJson(Map<String, dynamic> json) {
     return ClusterSubnetGroup(
       clusterSubnetGroupName: json['ClusterSubnetGroupName'] as String?,
@@ -11358,6 +11387,7 @@ class ClusterSubnetGroupMessage {
     this.clusterSubnetGroups,
     this.marker,
   });
+
   factory ClusterSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
     return ClusterSubnetGroupMessage(
       clusterSubnetGroups: (json['ClusterSubnetGroups'] as List?)
@@ -11407,6 +11437,7 @@ class ClusterVersion {
     this.clusterVersion,
     this.description,
   });
+
   factory ClusterVersion.fromJson(Map<String, dynamic> json) {
     return ClusterVersion(
       clusterParameterGroupFamily:
@@ -11455,6 +11486,7 @@ class ClusterVersionsMessage {
     this.clusterVersions,
     this.marker,
   });
+
   factory ClusterVersionsMessage.fromJson(Map<String, dynamic> json) {
     return ClusterVersionsMessage(
       clusterVersions: (json['ClusterVersions'] as List?)
@@ -11504,6 +11536,7 @@ class ClustersMessage {
     this.clusters,
     this.marker,
   });
+
   factory ClustersMessage.fromJson(Map<String, dynamic> json) {
     return ClustersMessage(
       clusters: (json['Clusters'] as List?)
@@ -11538,6 +11571,7 @@ class CopyClusterSnapshotResult {
   CopyClusterSnapshotResult({
     this.snapshot,
   });
+
   factory CopyClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CopyClusterSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -11567,6 +11601,7 @@ class CreateClusterParameterGroupResult {
   CreateClusterParameterGroupResult({
     this.clusterParameterGroup,
   });
+
   factory CreateClusterParameterGroupResult.fromJson(
       Map<String, dynamic> json) {
     return CreateClusterParameterGroupResult(
@@ -11600,6 +11635,7 @@ class CreateClusterResult {
   CreateClusterResult({
     this.cluster,
   });
+
   factory CreateClusterResult.fromJson(Map<String, dynamic> json) {
     return CreateClusterResult(
       cluster: json['Cluster'] != null
@@ -11629,6 +11665,7 @@ class CreateClusterSecurityGroupResult {
   CreateClusterSecurityGroupResult({
     this.clusterSecurityGroup,
   });
+
   factory CreateClusterSecurityGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateClusterSecurityGroupResult(
       clusterSecurityGroup: json['ClusterSecurityGroup'] != null
@@ -11661,6 +11698,7 @@ class CreateClusterSnapshotResult {
   CreateClusterSnapshotResult({
     this.snapshot,
   });
+
   factory CreateClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateClusterSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -11690,6 +11728,7 @@ class CreateClusterSubnetGroupResult {
   CreateClusterSubnetGroupResult({
     this.clusterSubnetGroup,
   });
+
   factory CreateClusterSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateClusterSubnetGroupResult(
       clusterSubnetGroup: json['ClusterSubnetGroup'] != null
@@ -11721,6 +11760,7 @@ class CreateEventSubscriptionResult {
   CreateEventSubscriptionResult({
     this.eventSubscription,
   });
+
   factory CreateEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return CreateEventSubscriptionResult(
       eventSubscription: json['EventSubscription'] != null
@@ -11752,6 +11792,7 @@ class CreateHsmClientCertificateResult {
   CreateHsmClientCertificateResult({
     this.hsmClientCertificate,
   });
+
   factory CreateHsmClientCertificateResult.fromJson(Map<String, dynamic> json) {
     return CreateHsmClientCertificateResult(
       hsmClientCertificate: json['HsmClientCertificate'] != null
@@ -11784,6 +11825,7 @@ class CreateHsmConfigurationResult {
   CreateHsmConfigurationResult({
     this.hsmConfiguration,
   });
+
   factory CreateHsmConfigurationResult.fromJson(Map<String, dynamic> json) {
     return CreateHsmConfigurationResult(
       hsmConfiguration: json['HsmConfiguration'] != null
@@ -11815,6 +11857,7 @@ class CreateSnapshotCopyGrantResult {
   CreateSnapshotCopyGrantResult({
     this.snapshotCopyGrant,
   });
+
   factory CreateSnapshotCopyGrantResult.fromJson(Map<String, dynamic> json) {
     return CreateSnapshotCopyGrantResult(
       snapshotCopyGrant: json['SnapshotCopyGrant'] != null
@@ -11851,6 +11894,7 @@ class CustomerStorageMessage {
     this.totalBackupSizeInMegaBytes,
     this.totalProvisionedStorageInMegaBytes,
   });
+
   factory CustomerStorageMessage.fromJson(Map<String, dynamic> json) {
     return CustomerStorageMessage(
       totalBackupSizeInMegaBytes: json['TotalBackupSizeInMegaBytes'] as double?,
@@ -11913,6 +11957,7 @@ class DataTransferProgress {
     this.status,
     this.totalDataInMegaBytes,
   });
+
   factory DataTransferProgress.fromJson(Map<String, dynamic> json) {
     return DataTransferProgress(
       currentRateInMegaBytesPerSecond:
@@ -11988,6 +12033,7 @@ class DefaultClusterParameters {
     this.parameterGroupFamily,
     this.parameters,
   });
+
   factory DefaultClusterParameters.fromJson(Map<String, dynamic> json) {
     return DefaultClusterParameters(
       marker: json['Marker'] as String?,
@@ -12040,6 +12086,7 @@ class DeferredMaintenanceWindow {
     this.deferMaintenanceIdentifier,
     this.deferMaintenanceStartTime,
   });
+
   factory DeferredMaintenanceWindow.fromJson(Map<String, dynamic> json) {
     return DeferredMaintenanceWindow(
       deferMaintenanceEndTime:
@@ -12083,6 +12130,7 @@ class DeleteClusterResult {
   DeleteClusterResult({
     this.cluster,
   });
+
   factory DeleteClusterResult.fromJson(Map<String, dynamic> json) {
     return DeleteClusterResult(
       cluster: json['Cluster'] != null
@@ -12126,6 +12174,7 @@ class DeleteClusterSnapshotMessage {
     required this.snapshotIdentifier,
     this.snapshotClusterIdentifier,
   });
+
   factory DeleteClusterSnapshotMessage.fromJson(Map<String, dynamic> json) {
     return DeleteClusterSnapshotMessage(
       snapshotIdentifier: json['SnapshotIdentifier'] as String,
@@ -12150,6 +12199,7 @@ class DeleteClusterSnapshotResult {
   DeleteClusterSnapshotResult({
     this.snapshot,
   });
+
   factory DeleteClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteClusterSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -12179,6 +12229,7 @@ class DescribeDefaultClusterParametersResult {
   DescribeDefaultClusterParametersResult({
     this.defaultClusterParameters,
   });
+
   factory DescribeDefaultClusterParametersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeDefaultClusterParametersResult(
@@ -12213,6 +12264,7 @@ class DescribePartnersOutputMessage {
   DescribePartnersOutputMessage({
     this.partnerIntegrationInfoList,
   });
+
   factory DescribePartnersOutputMessage.fromJson(Map<String, dynamic> json) {
     return DescribePartnersOutputMessage(
       partnerIntegrationInfoList: (json['PartnerIntegrationInfoList'] as List?)
@@ -12259,6 +12311,7 @@ class DescribeSnapshotSchedulesOutputMessage {
     this.marker,
     this.snapshotSchedules,
   });
+
   factory DescribeSnapshotSchedulesOutputMessage.fromJson(
       Map<String, dynamic> json) {
     return DescribeSnapshotSchedulesOutputMessage(
@@ -12297,6 +12350,7 @@ class DisableSnapshotCopyResult {
   DisableSnapshotCopyResult({
     this.cluster,
   });
+
   factory DisableSnapshotCopyResult.fromJson(Map<String, dynamic> json) {
     return DisableSnapshotCopyResult(
       cluster: json['Cluster'] != null
@@ -12341,6 +12395,7 @@ class EC2SecurityGroup {
     this.status,
     this.tags,
   });
+
   factory EC2SecurityGroup.fromJson(Map<String, dynamic> json) {
     return EC2SecurityGroup(
       eC2SecurityGroupName: json['EC2SecurityGroupName'] as String?,
@@ -12393,6 +12448,7 @@ class ElasticIpStatus {
     this.elasticIp,
     this.status,
   });
+
   factory ElasticIpStatus.fromJson(Map<String, dynamic> json) {
     return ElasticIpStatus(
       elasticIp: json['ElasticIp'] as String?,
@@ -12423,6 +12479,7 @@ class EnableSnapshotCopyResult {
   EnableSnapshotCopyResult({
     this.cluster,
   });
+
   factory EnableSnapshotCopyResult.fromJson(Map<String, dynamic> json) {
     return EnableSnapshotCopyResult(
       cluster: json['Cluster'] != null
@@ -12462,6 +12519,7 @@ class Endpoint {
     this.port,
     this.vpcEndpoints,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String?,
@@ -12538,6 +12596,7 @@ class EndpointAccess {
     this.vpcEndpoint,
     this.vpcSecurityGroups,
   });
+
   factory EndpointAccess.fromJson(Map<String, dynamic> json) {
     return EndpointAccess(
       address: json['Address'] as String?,
@@ -12622,6 +12681,7 @@ class EndpointAccessList {
     this.endpointAccessList,
     this.marker,
   });
+
   factory EndpointAccessList.fromJson(Map<String, dynamic> json) {
     return EndpointAccessList(
       endpointAccessList: (json['EndpointAccessList'] as List?)
@@ -12695,6 +12755,7 @@ class EndpointAuthorization {
     this.grantor,
     this.status,
   });
+
   factory EndpointAuthorization.fromJson(Map<String, dynamic> json) {
     return EndpointAuthorization(
       allowedAllVPCs: json['AllowedAllVPCs'] as bool?,
@@ -12767,6 +12828,7 @@ class EndpointAuthorizationList {
     this.endpointAuthorizationList,
     this.marker,
   });
+
   factory EndpointAuthorizationList.fromJson(Map<String, dynamic> json) {
     return EndpointAuthorizationList(
       endpointAuthorizationList: (json['EndpointAuthorizationList'] as List?)
@@ -12836,6 +12898,7 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       date: timeStampFromJson(json['Date']),
@@ -12898,6 +12961,7 @@ class EventCategoriesMap {
     this.events,
     this.sourceType,
   });
+
   factory EventCategoriesMap.fromJson(Map<String, dynamic> json) {
     return EventCategoriesMap(
       events: (json['Events'] as List?)
@@ -12936,6 +13000,7 @@ class EventCategoriesMessage {
   EventCategoriesMessage({
     this.eventCategoriesMapList,
   });
+
   factory EventCategoriesMessage.fromJson(Map<String, dynamic> json) {
     return EventCategoriesMessage(
       eventCategoriesMapList: (json['EventCategoriesMapList'] as List?)
@@ -12987,6 +13052,7 @@ class EventInfoMap {
     this.eventId,
     this.severity,
   });
+
   factory EventInfoMap.fromJson(Map<String, dynamic> json) {
     return EventInfoMap(
       eventCategories: (json['EventCategories'] as List?)
@@ -13098,6 +13164,7 @@ class EventSubscription {
     this.subscriptionCreationTime,
     this.tags,
   });
+
   factory EventSubscription.fromJson(Map<String, dynamic> json) {
     return EventSubscription(
       custSubscriptionId: json['CustSubscriptionId'] as String?,
@@ -13194,6 +13261,7 @@ class EventSubscriptionsMessage {
     this.eventSubscriptionsList,
     this.marker,
   });
+
   factory EventSubscriptionsMessage.fromJson(Map<String, dynamic> json) {
     return EventSubscriptionsMessage(
       eventSubscriptionsList: (json['EventSubscriptionsList'] as List?)
@@ -13244,6 +13312,7 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+
   factory EventsMessage.fromJson(Map<String, dynamic> json) {
     return EventsMessage(
       events: (json['Events'] as List?)
@@ -13289,6 +13358,7 @@ class GetReservedNodeExchangeOfferingsOutputMessage {
     this.marker,
     this.reservedNodeOfferings,
   });
+
   factory GetReservedNodeExchangeOfferingsOutputMessage.fromJson(
       Map<String, dynamic> json) {
     return GetReservedNodeExchangeOfferingsOutputMessage(
@@ -13343,6 +13413,7 @@ class HsmClientCertificate {
     this.hsmClientCertificatePublicKey,
     this.tags,
   });
+
   factory HsmClientCertificate.fromJson(Map<String, dynamic> json) {
     return HsmClientCertificate(
       hsmClientCertificateIdentifier:
@@ -13400,6 +13471,7 @@ class HsmClientCertificateMessage {
     this.hsmClientCertificates,
     this.marker,
   });
+
   factory HsmClientCertificateMessage.fromJson(Map<String, dynamic> json) {
     return HsmClientCertificateMessage(
       hsmClientCertificates: (json['HsmClientCertificates'] as List?)
@@ -13460,6 +13532,7 @@ class HsmConfiguration {
     this.hsmPartitionName,
     this.tags,
   });
+
   factory HsmConfiguration.fromJson(Map<String, dynamic> json) {
     return HsmConfiguration(
       description: json['Description'] as String?,
@@ -13519,6 +13592,7 @@ class HsmConfigurationMessage {
     this.hsmConfigurations,
     this.marker,
   });
+
   factory HsmConfigurationMessage.fromJson(Map<String, dynamic> json) {
     return HsmConfigurationMessage(
       hsmConfigurations: (json['HsmConfigurations'] as List?)
@@ -13571,6 +13645,7 @@ class HsmStatus {
     this.hsmConfigurationIdentifier,
     this.status,
   });
+
   factory HsmStatus.fromJson(Map<String, dynamic> json) {
     return HsmStatus(
       hsmClientCertificateIdentifier:
@@ -13620,6 +13695,7 @@ class IPRange {
     this.status,
     this.tags,
   });
+
   factory IPRange.fromJson(Map<String, dynamic> json) {
     return IPRange(
       cidrip: json['CIDRIP'] as String?,
@@ -13680,6 +13756,7 @@ class LoggingStatus {
     this.loggingEnabled,
     this.s3KeyPrefix,
   });
+
   factory LoggingStatus.fromJson(Map<String, dynamic> json) {
     return LoggingStatus(
       bucketName: json['BucketName'] as String?,
@@ -13748,6 +13825,7 @@ class MaintenanceTrack {
     this.maintenanceTrackName,
     this.updateTargets,
   });
+
   factory MaintenanceTrack.fromJson(Map<String, dynamic> json) {
     return MaintenanceTrack(
       databaseVersion: json['DatabaseVersion'] as String?,
@@ -13820,6 +13898,7 @@ class ModifyAquaOutputMessage {
   ModifyAquaOutputMessage({
     this.aquaConfiguration,
   });
+
   factory ModifyAquaOutputMessage.fromJson(Map<String, dynamic> json) {
     return ModifyAquaOutputMessage(
       aquaConfiguration: json['AquaConfiguration'] != null
@@ -13851,6 +13930,7 @@ class ModifyClusterDbRevisionResult {
   ModifyClusterDbRevisionResult({
     this.cluster,
   });
+
   factory ModifyClusterDbRevisionResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterDbRevisionResult(
       cluster: json['Cluster'] != null
@@ -13880,6 +13960,7 @@ class ModifyClusterIamRolesResult {
   ModifyClusterIamRolesResult({
     this.cluster,
   });
+
   factory ModifyClusterIamRolesResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterIamRolesResult(
       cluster: json['Cluster'] != null
@@ -13909,6 +13990,7 @@ class ModifyClusterMaintenanceResult {
   ModifyClusterMaintenanceResult({
     this.cluster,
   });
+
   factory ModifyClusterMaintenanceResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterMaintenanceResult(
       cluster: json['Cluster'] != null
@@ -13938,6 +14020,7 @@ class ModifyClusterResult {
   ModifyClusterResult({
     this.cluster,
   });
+
   factory ModifyClusterResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterResult(
       cluster: json['Cluster'] != null
@@ -13967,6 +14050,7 @@ class ModifyClusterSnapshotResult {
   ModifyClusterSnapshotResult({
     this.snapshot,
   });
+
   factory ModifyClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -13996,6 +14080,7 @@ class ModifyClusterSubnetGroupResult {
   ModifyClusterSubnetGroupResult({
     this.clusterSubnetGroup,
   });
+
   factory ModifyClusterSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return ModifyClusterSubnetGroupResult(
       clusterSubnetGroup: json['ClusterSubnetGroup'] != null
@@ -14027,6 +14112,7 @@ class ModifyEventSubscriptionResult {
   ModifyEventSubscriptionResult({
     this.eventSubscription,
   });
+
   factory ModifyEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return ModifyEventSubscriptionResult(
       eventSubscription: json['EventSubscription'] != null
@@ -14058,6 +14144,7 @@ class ModifySnapshotCopyRetentionPeriodResult {
   ModifySnapshotCopyRetentionPeriodResult({
     this.cluster,
   });
+
   factory ModifySnapshotCopyRetentionPeriodResult.fromJson(
       Map<String, dynamic> json) {
     return ModifySnapshotCopyRetentionPeriodResult(
@@ -14102,6 +14189,7 @@ class NetworkInterface {
     this.privateIpAddress,
     this.subnetId,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -14154,6 +14242,7 @@ class NodeConfigurationOption {
     this.nodeType,
     this.numberOfNodes,
   });
+
   factory NodeConfigurationOption.fromJson(Map<String, dynamic> json) {
     return NodeConfigurationOption(
       estimatedDiskUtilizationPercent:
@@ -14212,6 +14301,7 @@ class NodeConfigurationOptionsFilter {
     this.operator,
     this.values,
   });
+
   factory NodeConfigurationOptionsFilter.fromJson(Map<String, dynamic> json) {
     return NodeConfigurationOptionsFilter(
       name: (json['Name'] as String?)?.toNodeConfigurationOptionsFilterName(),
@@ -14291,6 +14381,7 @@ class NodeConfigurationOptionsMessage {
     this.marker,
     this.nodeConfigurationOptionList,
   });
+
   factory NodeConfigurationOptionsMessage.fromJson(Map<String, dynamic> json) {
     return NodeConfigurationOptionsMessage(
       marker: json['Marker'] as String?,
@@ -14399,6 +14490,7 @@ class OrderableClusterOption {
     this.clusterVersion,
     this.nodeType,
   });
+
   factory OrderableClusterOption.fromJson(Map<String, dynamic> json) {
     return OrderableClusterOption(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -14456,6 +14548,7 @@ class OrderableClusterOptionsMessage {
     this.marker,
     this.orderableClusterOptions,
   });
+
   factory OrderableClusterOptionsMessage.fromJson(Map<String, dynamic> json) {
     return OrderableClusterOptionsMessage(
       marker: json['Marker'] as String?,
@@ -14539,6 +14632,7 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       allowedValues: json['AllowedValues'] as String?,
@@ -14651,6 +14745,7 @@ class PartnerIntegrationInfo {
     this.statusMessage,
     this.updatedAt,
   });
+
   factory PartnerIntegrationInfo.fromJson(Map<String, dynamic> json) {
     return PartnerIntegrationInfo(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -14704,6 +14799,7 @@ class PartnerIntegrationOutputMessage {
     this.databaseName,
     this.partnerName,
   });
+
   factory PartnerIntegrationOutputMessage.fromJson(Map<String, dynamic> json) {
     return PartnerIntegrationOutputMessage(
       databaseName: json['DatabaseName'] as String?,
@@ -14775,6 +14871,7 @@ class PauseClusterMessage {
   PauseClusterMessage({
     required this.clusterIdentifier,
   });
+
   factory PauseClusterMessage.fromJson(Map<String, dynamic> json) {
     return PauseClusterMessage(
       clusterIdentifier: json['ClusterIdentifier'] as String,
@@ -14801,6 +14898,7 @@ class PauseClusterResult {
   PauseClusterResult({
     this.cluster,
   });
+
   factory PauseClusterResult.fromJson(Map<String, dynamic> json) {
     return PauseClusterResult(
       cluster: json['Cluster'] != null
@@ -14885,6 +14983,7 @@ class PendingModifiedValues {
     this.numberOfNodes,
     this.publiclyAccessible,
   });
+
   factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
     return PendingModifiedValues(
       automatedSnapshotRetentionPeriod:
@@ -14957,6 +15056,7 @@ class PurchaseReservedNodeOfferingResult {
   PurchaseReservedNodeOfferingResult({
     this.reservedNode,
   });
+
   factory PurchaseReservedNodeOfferingResult.fromJson(
       Map<String, dynamic> json) {
     return PurchaseReservedNodeOfferingResult(
@@ -14988,6 +15088,7 @@ class RebootClusterResult {
   RebootClusterResult({
     this.cluster,
   });
+
   factory RebootClusterResult.fromJson(Map<String, dynamic> json) {
     return RebootClusterResult(
       cluster: json['Cluster'] != null
@@ -15024,6 +15125,7 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+
   factory RecurringCharge.fromJson(Map<String, dynamic> json) {
     return RecurringCharge(
       recurringChargeAmount: json['RecurringChargeAmount'] as double?,
@@ -15134,6 +15236,7 @@ class ReservedNode {
     this.state,
     this.usagePrice,
   });
+
   factory ReservedNode.fromJson(Map<String, dynamic> json) {
     return ReservedNode(
       currencyCode: json['CurrencyCode'] as String?,
@@ -15260,6 +15363,7 @@ class ReservedNodeOffering {
     this.reservedNodeOfferingType,
     this.usagePrice,
   });
+
   factory ReservedNodeOffering.fromJson(Map<String, dynamic> json) {
     return ReservedNodeOffering(
       currencyCode: json['CurrencyCode'] as String?,
@@ -15370,6 +15474,7 @@ class ReservedNodeOfferingsMessage {
     this.marker,
     this.reservedNodeOfferings,
   });
+
   factory ReservedNodeOfferingsMessage.fromJson(Map<String, dynamic> json) {
     return ReservedNodeOfferingsMessage(
       marker: json['Marker'] as String?,
@@ -15420,6 +15525,7 @@ class ReservedNodesMessage {
     this.marker,
     this.reservedNodes,
   });
+
   factory ReservedNodesMessage.fromJson(Map<String, dynamic> json) {
     return ReservedNodesMessage(
       marker: json['Marker'] as String?,
@@ -15480,6 +15586,7 @@ class ResizeClusterMessage {
     this.nodeType,
     this.numberOfNodes,
   });
+
   factory ResizeClusterMessage.fromJson(Map<String, dynamic> json) {
     return ResizeClusterMessage(
       clusterIdentifier: json['ClusterIdentifier'] as String,
@@ -15522,6 +15629,7 @@ class ResizeClusterResult {
   ResizeClusterResult({
     this.cluster,
   });
+
   factory ResizeClusterResult.fromJson(Map<String, dynamic> json) {
     return ResizeClusterResult(
       cluster: json['Cluster'] != null
@@ -15557,6 +15665,7 @@ class ResizeInfo {
     this.allowCancelResize,
     this.resizeType,
   });
+
   factory ResizeInfo.fromJson(Map<String, dynamic> json) {
     return ResizeInfo(
       allowCancelResize: json['AllowCancelResize'] as bool?,
@@ -15679,6 +15788,7 @@ class ResizeProgressMessage {
     this.targetNumberOfNodes,
     this.totalResizeDataInMegaBytes,
   });
+
   factory ResizeProgressMessage.fromJson(Map<String, dynamic> json) {
     return ResizeProgressMessage(
       avgResizeRateInMegaBytesPerSecond:
@@ -15802,6 +15912,7 @@ class RestoreFromClusterSnapshotResult {
   RestoreFromClusterSnapshotResult({
     this.cluster,
   });
+
   factory RestoreFromClusterSnapshotResult.fromJson(Map<String, dynamic> json) {
     return RestoreFromClusterSnapshotResult(
       cluster: json['Cluster'] != null
@@ -15863,6 +15974,7 @@ class RestoreStatus {
     this.snapshotSizeInMegaBytes,
     this.status,
   });
+
   factory RestoreStatus.fromJson(Map<String, dynamic> json) {
     return RestoreStatus(
       currentRestoreRateInMegaBytesPerSecond:
@@ -15923,6 +16035,7 @@ class RestoreTableFromClusterSnapshotResult {
   RestoreTableFromClusterSnapshotResult({
     this.tableRestoreStatus,
   });
+
   factory RestoreTableFromClusterSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return RestoreTableFromClusterSnapshotResult(
@@ -15958,6 +16071,7 @@ class ResumeClusterMessage {
   ResumeClusterMessage({
     required this.clusterIdentifier,
   });
+
   factory ResumeClusterMessage.fromJson(Map<String, dynamic> json) {
     return ResumeClusterMessage(
       clusterIdentifier: json['ClusterIdentifier'] as String,
@@ -15984,6 +16098,7 @@ class ResumeClusterResult {
   ResumeClusterResult({
     this.cluster,
   });
+
   factory ResumeClusterResult.fromJson(Map<String, dynamic> json) {
     return ResumeClusterResult(
       cluster: json['Cluster'] != null
@@ -16025,6 +16140,7 @@ class RevisionTarget {
     this.databaseRevisionReleaseDate,
     this.description,
   });
+
   factory RevisionTarget.fromJson(Map<String, dynamic> json) {
     return RevisionTarget(
       databaseRevision: json['DatabaseRevision'] as String?,
@@ -16063,6 +16179,7 @@ class RevokeClusterSecurityGroupIngressResult {
   RevokeClusterSecurityGroupIngressResult({
     this.clusterSecurityGroup,
   });
+
   factory RevokeClusterSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return RevokeClusterSecurityGroupIngressResult(
@@ -16096,6 +16213,7 @@ class RevokeSnapshotAccessResult {
   RevokeSnapshotAccessResult({
     this.snapshot,
   });
+
   factory RevokeSnapshotAccessResult.fromJson(Map<String, dynamic> json) {
     return RevokeSnapshotAccessResult(
       snapshot: json['Snapshot'] != null
@@ -16125,6 +16243,7 @@ class RotateEncryptionKeyResult {
   RotateEncryptionKeyResult({
     this.cluster,
   });
+
   factory RotateEncryptionKeyResult.fromJson(Map<String, dynamic> json) {
     return RotateEncryptionKeyResult(
       cluster: json['Cluster'] != null
@@ -16246,6 +16365,7 @@ class ScheduledAction {
     this.state,
     this.targetAction,
   });
+
   factory ScheduledAction.fromJson(Map<String, dynamic> json) {
     return ScheduledAction(
       endTime: timeStampFromJson(json['EndTime']),
@@ -16326,6 +16446,7 @@ class ScheduledActionFilter {
     required this.name,
     required this.values,
   });
+
   factory ScheduledActionFilter.fromJson(Map<String, dynamic> json) {
     return ScheduledActionFilter(
       name: (json['Name'] as String).toScheduledActionFilterName(),
@@ -16419,6 +16540,7 @@ class ScheduledActionType {
     this.resizeCluster,
     this.resumeCluster,
   });
+
   factory ScheduledActionType.fromJson(Map<String, dynamic> json) {
     return ScheduledActionType(
       pauseCluster: json['PauseCluster'] != null
@@ -16511,6 +16633,7 @@ class ScheduledActionsMessage {
     this.marker,
     this.scheduledActions,
   });
+
   factory ScheduledActionsMessage.fromJson(Map<String, dynamic> json) {
     return ScheduledActionsMessage(
       marker: json['Marker'] as String?,
@@ -16723,6 +16846,7 @@ class Snapshot {
     this.totalBackupSizeInMegaBytes,
     this.vpcId,
   });
+
   factory Snapshot.fromJson(Map<String, dynamic> json) {
     return Snapshot(
       accountsWithRestoreAccess: (json['AccountsWithRestoreAccess'] as List?)
@@ -16984,6 +17108,7 @@ class SnapshotCopyGrant {
     this.snapshotCopyGrantName,
     this.tags,
   });
+
   factory SnapshotCopyGrant.fromJson(Map<String, dynamic> json) {
     return SnapshotCopyGrant(
       kmsKeyId: json['KmsKeyId'] as String?,
@@ -17039,6 +17164,7 @@ class SnapshotCopyGrantMessage {
     this.marker,
     this.snapshotCopyGrants,
   });
+
   factory SnapshotCopyGrantMessage.fromJson(Map<String, dynamic> json) {
     return SnapshotCopyGrantMessage(
       marker: json['Marker'] as String?,
@@ -17090,6 +17216,7 @@ class SnapshotErrorMessage {
     this.snapshotClusterIdentifier,
     this.snapshotIdentifier,
   });
+
   factory SnapshotErrorMessage.fromJson(Map<String, dynamic> json) {
     return SnapshotErrorMessage(
       failureCode: json['FailureCode'] as String?,
@@ -17141,6 +17268,7 @@ class SnapshotMessage {
     this.marker,
     this.snapshots,
   });
+
   factory SnapshotMessage.fromJson(Map<String, dynamic> json) {
     return SnapshotMessage(
       marker: json['Marker'] as String?,
@@ -17205,6 +17333,7 @@ class SnapshotSchedule {
     this.scheduleIdentifier,
     this.tags,
   });
+
   factory SnapshotSchedule.fromJson(Map<String, dynamic> json) {
     return SnapshotSchedule(
       associatedClusterCount: json['AssociatedClusterCount'] as int?,
@@ -17287,6 +17416,7 @@ class SnapshotSortingEntity {
     required this.attribute,
     this.sortOrder,
   });
+
   factory SnapshotSortingEntity.fromJson(Map<String, dynamic> json) {
     return SnapshotSortingEntity(
       attribute: (json['Attribute'] as String).toSnapshotAttributeToSortBy(),
@@ -17391,6 +17521,7 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+
   factory Subnet.fromJson(Map<String, dynamic> json) {
     return Subnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
@@ -17433,6 +17564,7 @@ class SupportedOperation {
   SupportedOperation({
     this.operationName,
   });
+
   factory SupportedOperation.fromJson(Map<String, dynamic> json) {
     return SupportedOperation(
       operationName: json['OperationName'] as String?,
@@ -17461,6 +17593,7 @@ class SupportedPlatform {
   SupportedPlatform({
     this.name,
   });
+
   factory SupportedPlatform.fromJson(Map<String, dynamic> json) {
     return SupportedPlatform(
       name: json['Name'] as String?,
@@ -17548,6 +17681,7 @@ class TableRestoreStatus {
     this.targetSchemaName,
     this.totalDataInMegaBytes,
   });
+
   factory TableRestoreStatus.fromJson(Map<String, dynamic> json) {
     return TableRestoreStatus(
       clusterIdentifier: json['ClusterIdentifier'] as String?,
@@ -17638,6 +17772,7 @@ class TableRestoreStatusMessage {
     this.marker,
     this.tableRestoreStatusDetails,
   });
+
   factory TableRestoreStatusMessage.fromJson(Map<String, dynamic> json) {
     return TableRestoreStatusMessage(
       marker: json['Marker'] as String?,
@@ -17726,6 +17861,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -17803,6 +17939,7 @@ class TaggedResource {
     this.resourceType,
     this.tag,
   });
+
   factory TaggedResource.fromJson(Map<String, dynamic> json) {
     return TaggedResource(
       resourceName: json['ResourceName'] as String?,
@@ -17850,6 +17987,7 @@ class TaggedResourceListMessage {
     this.marker,
     this.taggedResources,
   });
+
   factory TaggedResourceListMessage.fromJson(Map<String, dynamic> json) {
     return TaggedResourceListMessage(
       marker: json['Marker'] as String?,
@@ -17895,6 +18033,7 @@ class TrackListMessage {
     this.maintenanceTracks,
     this.marker,
   });
+
   factory TrackListMessage.fromJson(Map<String, dynamic> json) {
     return TrackListMessage(
       maintenanceTracks: (json['MaintenanceTracks'] as List?)
@@ -17942,6 +18081,7 @@ class UpdateTarget {
     this.maintenanceTrackName,
     this.supportedOperations,
   });
+
   factory UpdateTarget.fromJson(Map<String, dynamic> json) {
     return UpdateTarget(
       databaseVersion: json['DatabaseVersion'] as String?,
@@ -18032,6 +18172,7 @@ class UsageLimit {
     this.tags,
     this.usageLimitId,
   });
+
   factory UsageLimit.fromJson(Map<String, dynamic> json) {
     return UsageLimit(
       amount: json['Amount'] as int?,
@@ -18195,6 +18336,7 @@ class UsageLimitList {
     this.marker,
     this.usageLimits,
   });
+
   factory UsageLimitList.fromJson(Map<String, dynamic> json) {
     return UsageLimitList(
       marker: json['Marker'] as String?,
@@ -18277,6 +18419,7 @@ class VpcEndpoint {
     this.vpcEndpointId,
     this.vpcId,
   });
+
   factory VpcEndpoint.fromJson(Map<String, dynamic> json) {
     return VpcEndpoint(
       networkInterfaces: (json['NetworkInterfaces'] as List?)
@@ -18324,6 +18467,7 @@ class VpcSecurityGroupMembership {
     this.status,
     this.vpcSecurityGroupId,
   });
+
   factory VpcSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return VpcSecurityGroupMembership(
       status: json['Status'] as String?,

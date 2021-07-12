@@ -1320,6 +1320,7 @@ class ChannelInfo {
     this.singleMasterConfiguration,
     this.version,
   });
+
   factory ChannelInfo.fromJson(Map<String, dynamic> json) {
     return ChannelInfo(
       channelARN: json['ChannelARN'] as String?,
@@ -1374,6 +1375,7 @@ class ChannelNameCondition {
     this.comparisonOperator,
     this.comparisonValue,
   });
+
   factory ChannelNameCondition.fromJson(Map<String, dynamic> json) {
     return ChannelNameCondition(
       comparisonOperator:
@@ -1502,6 +1504,7 @@ class CreateSignalingChannelOutput {
   CreateSignalingChannelOutput({
     this.channelARN,
   });
+
   factory CreateSignalingChannelOutput.fromJson(Map<String, dynamic> json) {
     return CreateSignalingChannelOutput(
       channelARN: json['ChannelARN'] as String?,
@@ -1523,6 +1526,7 @@ class CreateStreamOutput {
   CreateStreamOutput({
     this.streamARN,
   });
+
   factory CreateStreamOutput.fromJson(Map<String, dynamic> json) {
     return CreateStreamOutput(
       streamARN: json['StreamARN'] as String?,
@@ -1539,6 +1543,7 @@ class CreateStreamOutput {
 
 class DeleteSignalingChannelOutput {
   DeleteSignalingChannelOutput();
+
   factory DeleteSignalingChannelOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSignalingChannelOutput();
   }
@@ -1550,6 +1555,7 @@ class DeleteSignalingChannelOutput {
 
 class DeleteStreamOutput {
   DeleteStreamOutput();
+
   factory DeleteStreamOutput.fromJson(Map<String, dynamic> _) {
     return DeleteStreamOutput();
   }
@@ -1567,6 +1573,7 @@ class DescribeSignalingChannelOutput {
   DescribeSignalingChannelOutput({
     this.channelInfo,
   });
+
   factory DescribeSignalingChannelOutput.fromJson(Map<String, dynamic> json) {
     return DescribeSignalingChannelOutput(
       channelInfo: json['ChannelInfo'] != null
@@ -1590,6 +1597,7 @@ class DescribeStreamOutput {
   DescribeStreamOutput({
     this.streamInfo,
   });
+
   factory DescribeStreamOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStreamOutput(
       streamInfo: json['StreamInfo'] != null
@@ -1614,6 +1622,7 @@ class GetDataEndpointOutput {
   GetDataEndpointOutput({
     this.dataEndpoint,
   });
+
   factory GetDataEndpointOutput.fromJson(Map<String, dynamic> json) {
     return GetDataEndpointOutput(
       dataEndpoint: json['DataEndpoint'] as String?,
@@ -1635,6 +1644,7 @@ class GetSignalingChannelEndpointOutput {
   GetSignalingChannelEndpointOutput({
     this.resourceEndpointList,
   });
+
   factory GetSignalingChannelEndpointOutput.fromJson(
       Map<String, dynamic> json) {
     return GetSignalingChannelEndpointOutput(
@@ -1667,6 +1677,7 @@ class ListSignalingChannelsOutput {
     this.channelInfoList,
     this.nextToken,
   });
+
   factory ListSignalingChannelsOutput.fromJson(Map<String, dynamic> json) {
     return ListSignalingChannelsOutput(
       channelInfoList: (json['ChannelInfoList'] as List?)
@@ -1699,6 +1710,7 @@ class ListStreamsOutput {
     this.nextToken,
     this.streamInfoList,
   });
+
   factory ListStreamsOutput.fromJson(Map<String, dynamic> json) {
     return ListStreamsOutput(
       nextToken: json['NextToken'] as String?,
@@ -1733,6 +1745,7 @@ class ListTagsForResourceOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       nextToken: json['NextToken'] as String?,
@@ -1764,6 +1777,7 @@ class ListTagsForStreamOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForStreamOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForStreamOutput(
       nextToken: json['NextToken'] as String?,
@@ -1797,6 +1811,7 @@ class ResourceEndpointListItem {
     this.protocol,
     this.resourceEndpoint,
   });
+
   factory ResourceEndpointListItem.fromJson(Map<String, dynamic> json) {
     return ResourceEndpointListItem(
       protocol: (json['Protocol'] as String?)?.toChannelProtocol(),
@@ -1836,6 +1851,7 @@ class SingleMasterChannelEndpointConfiguration {
     this.protocols,
     this.role,
   });
+
   factory SingleMasterChannelEndpointConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SingleMasterChannelEndpointConfiguration(
@@ -1868,6 +1884,7 @@ class SingleMasterConfiguration {
   SingleMasterConfiguration({
     this.messageTtlSeconds,
   });
+
   factory SingleMasterConfiguration.fromJson(Map<String, dynamic> json) {
     return SingleMasterConfiguration(
       messageTtlSeconds: json['MessageTtlSeconds'] as int?,
@@ -1961,6 +1978,7 @@ class StreamInfo {
     this.streamName,
     this.version,
   });
+
   factory StreamInfo.fromJson(Map<String, dynamic> json) {
     return StreamInfo(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -2019,6 +2037,7 @@ class StreamNameCondition {
     this.comparisonOperator,
     this.comparisonValue,
   });
+
   factory StreamNameCondition.fromJson(Map<String, dynamic> json) {
     return StreamNameCondition(
       comparisonOperator:
@@ -2052,6 +2071,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -2071,6 +2091,7 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -2082,6 +2103,7 @@ class TagResourceOutput {
 
 class TagStreamOutput {
   TagStreamOutput();
+
   factory TagStreamOutput.fromJson(Map<String, dynamic> _) {
     return TagStreamOutput();
   }
@@ -2093,6 +2115,7 @@ class TagStreamOutput {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -2104,6 +2127,7 @@ class UntagResourceOutput {
 
 class UntagStreamOutput {
   UntagStreamOutput();
+
   factory UntagStreamOutput.fromJson(Map<String, dynamic> _) {
     return UntagStreamOutput();
   }
@@ -2143,6 +2167,7 @@ extension on String {
 
 class UpdateDataRetentionOutput {
   UpdateDataRetentionOutput();
+
   factory UpdateDataRetentionOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDataRetentionOutput();
   }
@@ -2154,6 +2179,7 @@ class UpdateDataRetentionOutput {
 
 class UpdateSignalingChannelOutput {
   UpdateSignalingChannelOutput();
+
   factory UpdateSignalingChannelOutput.fromJson(Map<String, dynamic> _) {
     return UpdateSignalingChannelOutput();
   }
@@ -2165,6 +2191,7 @@ class UpdateSignalingChannelOutput {
 
 class UpdateStreamOutput {
   UpdateStreamOutput();
+
   factory UpdateStreamOutput.fromJson(Map<String, dynamic> _) {
     return UpdateStreamOutput();
   }

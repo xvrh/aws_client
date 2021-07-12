@@ -3019,6 +3019,7 @@ class Algorithm {
     this.roleArn,
     this.trainingInputMode,
   });
+
   factory Algorithm.fromJson(Map<String, dynamic> json) {
     return Algorithm(
       algorithmArn: json['algorithmArn'] as String?,
@@ -3087,6 +3088,7 @@ class AlgorithmImage {
     required this.dockerURI,
     this.name,
   });
+
   factory AlgorithmImage.fromJson(Map<String, dynamic> json) {
     return AlgorithmImage(
       dockerURI: json['dockerURI'] as String,
@@ -3119,6 +3121,7 @@ class AutoMLConfig {
     this.metricName,
     this.recipeList,
   });
+
   factory AutoMLConfig.fromJson(Map<String, dynamic> json) {
     return AutoMLConfig(
       metricName: json['metricName'] as String?,
@@ -3149,6 +3152,7 @@ class AutoMLResult {
   AutoMLResult({
     this.bestRecipeArn,
   });
+
   factory AutoMLResult.fromJson(Map<String, dynamic> json) {
     return AutoMLResult(
       bestRecipeArn: json['bestRecipeArn'] as String?,
@@ -3241,6 +3245,7 @@ class BatchInferenceJob {
     this.solutionVersionArn,
     this.status,
   });
+
   factory BatchInferenceJob.fromJson(Map<String, dynamic> json) {
     return BatchInferenceJob(
       batchInferenceJobArn: json['batchInferenceJobArn'] as String?,
@@ -3317,6 +3322,7 @@ class BatchInferenceJobConfig {
   BatchInferenceJobConfig({
     this.itemExplorationConfig,
   });
+
   factory BatchInferenceJobConfig.fromJson(Map<String, dynamic> json) {
     return BatchInferenceJobConfig(
       itemExplorationConfig:
@@ -3343,6 +3349,7 @@ class BatchInferenceJobInput {
   BatchInferenceJobInput({
     required this.s3DataSource,
   });
+
   factory BatchInferenceJobInput.fromJson(Map<String, dynamic> json) {
     return BatchInferenceJobInput(
       s3DataSource:
@@ -3367,6 +3374,7 @@ class BatchInferenceJobOutput {
   BatchInferenceJobOutput({
     required this.s3DataDestination,
   });
+
   factory BatchInferenceJobOutput.fromJson(Map<String, dynamic> json) {
     return BatchInferenceJobOutput(
       s3DataDestination: S3DataConfig.fromJson(
@@ -3432,6 +3440,7 @@ class BatchInferenceJobSummary {
     this.solutionVersionArn,
     this.status,
   });
+
   factory BatchInferenceJobSummary.fromJson(Map<String, dynamic> json) {
     return BatchInferenceJobSummary(
       batchInferenceJobArn: json['batchInferenceJobArn'] as String?,
@@ -3522,6 +3531,7 @@ class Campaign {
     this.solutionVersionArn,
     this.status,
   });
+
   factory Campaign.fromJson(Map<String, dynamic> json) {
     return Campaign(
       campaignArn: json['campaignArn'] as String?,
@@ -3587,6 +3597,7 @@ class CampaignConfig {
   CampaignConfig({
     this.itemExplorationConfig,
   });
+
   factory CampaignConfig.fromJson(Map<String, dynamic> json) {
     return CampaignConfig(
       itemExplorationConfig:
@@ -3644,6 +3655,7 @@ class CampaignSummary {
     this.name,
     this.status,
   });
+
   factory CampaignSummary.fromJson(Map<String, dynamic> json) {
     return CampaignSummary(
       campaignArn: json['campaignArn'] as String?,
@@ -3719,6 +3731,7 @@ class CampaignUpdateSummary {
     this.solutionVersionArn,
     this.status,
   });
+
   factory CampaignUpdateSummary.fromJson(Map<String, dynamic> json) {
     return CampaignUpdateSummary(
       campaignConfig: json['campaignConfig'] != null
@@ -3768,6 +3781,7 @@ class CategoricalHyperParameterRange {
     this.name,
     this.values,
   });
+
   factory CategoricalHyperParameterRange.fromJson(Map<String, dynamic> json) {
     return CategoricalHyperParameterRange(
       name: json['name'] as String?,
@@ -3804,6 +3818,7 @@ class ContinuousHyperParameterRange {
     this.minValue,
     this.name,
   });
+
   factory ContinuousHyperParameterRange.fromJson(Map<String, dynamic> json) {
     return ContinuousHyperParameterRange(
       maxValue: json['maxValue'] as double?,
@@ -3831,6 +3846,7 @@ class CreateBatchInferenceJobResponse {
   CreateBatchInferenceJobResponse({
     this.batchInferenceJobArn,
   });
+
   factory CreateBatchInferenceJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateBatchInferenceJobResponse(
       batchInferenceJobArn: json['batchInferenceJobArn'] as String?,
@@ -3853,6 +3869,7 @@ class CreateCampaignResponse {
   CreateCampaignResponse({
     this.campaignArn,
   });
+
   factory CreateCampaignResponse.fromJson(Map<String, dynamic> json) {
     return CreateCampaignResponse(
       campaignArn: json['campaignArn'] as String?,
@@ -3874,6 +3891,7 @@ class CreateDatasetExportJobResponse {
   CreateDatasetExportJobResponse({
     this.datasetExportJobArn,
   });
+
   factory CreateDatasetExportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetExportJobResponse(
       datasetExportJobArn: json['datasetExportJobArn'] as String?,
@@ -3896,6 +3914,7 @@ class CreateDatasetGroupResponse {
   CreateDatasetGroupResponse({
     this.datasetGroupArn,
   });
+
   factory CreateDatasetGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetGroupResponse(
       datasetGroupArn: json['datasetGroupArn'] as String?,
@@ -3917,6 +3936,7 @@ class CreateDatasetImportJobResponse {
   CreateDatasetImportJobResponse({
     this.datasetImportJobArn,
   });
+
   factory CreateDatasetImportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetImportJobResponse(
       datasetImportJobArn: json['datasetImportJobArn'] as String?,
@@ -3939,6 +3959,7 @@ class CreateDatasetResponse {
   CreateDatasetResponse({
     this.datasetArn,
   });
+
   factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetResponse(
       datasetArn: json['datasetArn'] as String?,
@@ -3966,6 +3987,7 @@ class CreateEventTrackerResponse {
     this.eventTrackerArn,
     this.trackingId,
   });
+
   factory CreateEventTrackerResponse.fromJson(Map<String, dynamic> json) {
     return CreateEventTrackerResponse(
       eventTrackerArn: json['eventTrackerArn'] as String?,
@@ -3990,6 +4012,7 @@ class CreateFilterResponse {
   CreateFilterResponse({
     this.filterArn,
   });
+
   factory CreateFilterResponse.fromJson(Map<String, dynamic> json) {
     return CreateFilterResponse(
       filterArn: json['filterArn'] as String?,
@@ -4011,6 +4034,7 @@ class CreateSchemaResponse {
   CreateSchemaResponse({
     this.schemaArn,
   });
+
   factory CreateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return CreateSchemaResponse(
       schemaArn: json['schemaArn'] as String?,
@@ -4032,6 +4056,7 @@ class CreateSolutionResponse {
   CreateSolutionResponse({
     this.solutionArn,
   });
+
   factory CreateSolutionResponse.fromJson(Map<String, dynamic> json) {
     return CreateSolutionResponse(
       solutionArn: json['solutionArn'] as String?,
@@ -4053,6 +4078,7 @@ class CreateSolutionVersionResponse {
   CreateSolutionVersionResponse({
     this.solutionVersionArn,
   });
+
   factory CreateSolutionVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateSolutionVersionResponse(
       solutionVersionArn: json['solutionVersionArn'] as String?,
@@ -4078,6 +4104,7 @@ class DataSource {
   DataSource({
     this.dataLocation,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       dataLocation: json['dataLocation'] as String?,
@@ -4151,6 +4178,7 @@ class Dataset {
     this.schemaArn,
     this.status,
   });
+
   factory Dataset.fromJson(Map<String, dynamic> json) {
     return Dataset(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4259,6 +4287,7 @@ class DatasetExportJob {
     this.roleArn,
     this.status,
   });
+
   factory DatasetExportJob.fromJson(Map<String, dynamic> json) {
     return DatasetExportJob(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4313,6 +4342,7 @@ class DatasetExportJobOutput {
   DatasetExportJobOutput({
     required this.s3DataDestination,
   });
+
   factory DatasetExportJobOutput.fromJson(Map<String, dynamic> json) {
     return DatasetExportJobOutput(
       s3DataDestination: S3DataConfig.fromJson(
@@ -4366,6 +4396,7 @@ class DatasetExportJobSummary {
     this.lastUpdatedDateTime,
     this.status,
   });
+
   factory DatasetExportJobSummary.fromJson(Map<String, dynamic> json) {
     return DatasetExportJobSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4453,6 +4484,7 @@ class DatasetGroup {
     this.roleArn,
     this.status,
   });
+
   factory DatasetGroup.fromJson(Map<String, dynamic> json) {
     return DatasetGroup(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4530,6 +4562,7 @@ class DatasetGroupSummary {
     this.name,
     this.status,
   });
+
   factory DatasetGroupSummary.fromJson(Map<String, dynamic> json) {
     return DatasetGroupSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4621,6 +4654,7 @@ class DatasetImportJob {
     this.roleArn,
     this.status,
   });
+
   factory DatasetImportJob.fromJson(Map<String, dynamic> json) {
     return DatasetImportJob(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4702,6 +4736,7 @@ class DatasetImportJobSummary {
     this.lastUpdatedDateTime,
     this.status,
   });
+
   factory DatasetImportJobSummary.fromJson(Map<String, dynamic> json) {
     return DatasetImportJobSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4759,6 +4794,7 @@ class DatasetSchema {
     this.schema,
     this.schemaArn,
   });
+
   factory DatasetSchema.fromJson(Map<String, dynamic> json) {
     return DatasetSchema(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4808,6 +4844,7 @@ class DatasetSchemaSummary {
     this.name,
     this.schemaArn,
   });
+
   factory DatasetSchemaSummary.fromJson(Map<String, dynamic> json) {
     return DatasetSchemaSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4888,6 +4925,7 @@ class DatasetSummary {
     this.name,
     this.status,
   });
+
   factory DatasetSummary.fromJson(Map<String, dynamic> json) {
     return DatasetSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -4937,6 +4975,7 @@ class DefaultCategoricalHyperParameterRange {
     this.name,
     this.values,
   });
+
   factory DefaultCategoricalHyperParameterRange.fromJson(
       Map<String, dynamic> json) {
     return DefaultCategoricalHyperParameterRange(
@@ -4983,6 +5022,7 @@ class DefaultContinuousHyperParameterRange {
     this.minValue,
     this.name,
   });
+
   factory DefaultContinuousHyperParameterRange.fromJson(
       Map<String, dynamic> json) {
     return DefaultContinuousHyperParameterRange(
@@ -5026,6 +5066,7 @@ class DefaultHyperParameterRanges {
     this.continuousHyperParameterRanges,
     this.integerHyperParameterRanges,
   });
+
   factory DefaultHyperParameterRanges.fromJson(Map<String, dynamic> json) {
     return DefaultHyperParameterRanges(
       categoricalHyperParameterRanges:
@@ -5087,6 +5128,7 @@ class DefaultIntegerHyperParameterRange {
     this.minValue,
     this.name,
   });
+
   factory DefaultIntegerHyperParameterRange.fromJson(
       Map<String, dynamic> json) {
     return DefaultIntegerHyperParameterRange(
@@ -5118,6 +5160,7 @@ class DescribeAlgorithmResponse {
   DescribeAlgorithmResponse({
     this.algorithm,
   });
+
   factory DescribeAlgorithmResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAlgorithmResponse(
       algorithm: json['algorithm'] != null
@@ -5141,6 +5184,7 @@ class DescribeBatchInferenceJobResponse {
   DescribeBatchInferenceJobResponse({
     this.batchInferenceJob,
   });
+
   factory DescribeBatchInferenceJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBatchInferenceJobResponse(
@@ -5166,6 +5210,7 @@ class DescribeCampaignResponse {
   DescribeCampaignResponse({
     this.campaign,
   });
+
   factory DescribeCampaignResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCampaignResponse(
       campaign: json['campaign'] != null
@@ -5206,6 +5251,7 @@ class DescribeDatasetExportJobResponse {
   DescribeDatasetExportJobResponse({
     this.datasetExportJob,
   });
+
   factory DescribeDatasetExportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetExportJobResponse(
       datasetExportJob: json['datasetExportJob'] != null
@@ -5230,6 +5276,7 @@ class DescribeDatasetGroupResponse {
   DescribeDatasetGroupResponse({
     this.datasetGroup,
   });
+
   factory DescribeDatasetGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetGroupResponse(
       datasetGroup: json['datasetGroup'] != null
@@ -5270,6 +5317,7 @@ class DescribeDatasetImportJobResponse {
   DescribeDatasetImportJobResponse({
     this.datasetImportJob,
   });
+
   factory DescribeDatasetImportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetImportJobResponse(
       datasetImportJob: json['datasetImportJob'] != null
@@ -5294,6 +5342,7 @@ class DescribeDatasetResponse {
   DescribeDatasetResponse({
     this.dataset,
   });
+
   factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetResponse(
       dataset: json['dataset'] != null
@@ -5317,6 +5366,7 @@ class DescribeEventTrackerResponse {
   DescribeEventTrackerResponse({
     this.eventTracker,
   });
+
   factory DescribeEventTrackerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventTrackerResponse(
       eventTracker: json['eventTracker'] != null
@@ -5340,6 +5390,7 @@ class DescribeFeatureTransformationResponse {
   DescribeFeatureTransformationResponse({
     this.featureTransformation,
   });
+
   factory DescribeFeatureTransformationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeFeatureTransformationResponse(
@@ -5366,6 +5417,7 @@ class DescribeFilterResponse {
   DescribeFilterResponse({
     this.filter,
   });
+
   factory DescribeFilterResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFilterResponse(
       filter: json['filter'] != null
@@ -5389,6 +5441,7 @@ class DescribeRecipeResponse {
   DescribeRecipeResponse({
     this.recipe,
   });
+
   factory DescribeRecipeResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRecipeResponse(
       recipe: json['recipe'] != null
@@ -5412,6 +5465,7 @@ class DescribeSchemaResponse {
   DescribeSchemaResponse({
     this.schema,
   });
+
   factory DescribeSchemaResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSchemaResponse(
       schema: json['schema'] != null
@@ -5435,6 +5489,7 @@ class DescribeSolutionResponse {
   DescribeSolutionResponse({
     this.solution,
   });
+
   factory DescribeSolutionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSolutionResponse(
       solution: json['solution'] != null
@@ -5458,6 +5513,7 @@ class DescribeSolutionVersionResponse {
   DescribeSolutionVersionResponse({
     this.solutionVersion,
   });
+
   factory DescribeSolutionVersionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSolutionVersionResponse(
       solutionVersion: json['solutionVersion'] != null
@@ -5525,6 +5581,7 @@ class EventTracker {
     this.status,
     this.trackingId,
   });
+
   factory EventTracker.fromJson(Map<String, dynamic> json) {
     return EventTracker(
       accountId: json['accountId'] as String?,
@@ -5598,6 +5655,7 @@ class EventTrackerSummary {
     this.name,
     this.status,
   });
+
   factory EventTrackerSummary.fromJson(Map<String, dynamic> json) {
     return EventTrackerSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -5664,6 +5722,7 @@ class FeatureTransformation {
     this.name,
     this.status,
   });
+
   factory FeatureTransformation.fromJson(Map<String, dynamic> json) {
     return FeatureTransformation(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -5737,6 +5796,7 @@ class Filter {
     this.name,
     this.status,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -5806,6 +5866,7 @@ class FilterSummary {
     this.name,
     this.status,
   });
+
   factory FilterSummary.fromJson(Map<String, dynamic> json) {
     return FilterSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -5851,6 +5912,7 @@ class GetSolutionMetricsResponse {
     this.metrics,
     this.solutionVersionArn,
   });
+
   factory GetSolutionMetricsResponse.fromJson(Map<String, dynamic> json) {
     return GetSolutionMetricsResponse(
       metrics: (json['metrics'] as Map<String, dynamic>?)
@@ -5889,6 +5951,7 @@ class HPOConfig {
     this.hpoObjective,
     this.hpoResourceConfig,
   });
+
   factory HPOConfig.fromJson(Map<String, dynamic> json) {
     return HPOConfig(
       algorithmHyperParameterRanges:
@@ -5940,6 +6003,7 @@ class HPOObjective {
     this.metricRegex,
     this.type,
   });
+
   factory HPOObjective.fromJson(Map<String, dynamic> json) {
     return HPOObjective(
       metricName: json['metricName'] as String?,
@@ -5975,6 +6039,7 @@ class HPOResourceConfig {
     this.maxNumberOfTrainingJobs,
     this.maxParallelTrainingJobs,
   });
+
   factory HPOResourceConfig.fromJson(Map<String, dynamic> json) {
     return HPOResourceConfig(
       maxNumberOfTrainingJobs: json['maxNumberOfTrainingJobs'] as String?,
@@ -6011,6 +6076,7 @@ class HyperParameterRanges {
     this.continuousHyperParameterRanges,
     this.integerHyperParameterRanges,
   });
+
   factory HyperParameterRanges.fromJson(Map<String, dynamic> json) {
     return HyperParameterRanges(
       categoricalHyperParameterRanges:
@@ -6099,6 +6165,7 @@ class IntegerHyperParameterRange {
     this.minValue,
     this.name,
   });
+
   factory IntegerHyperParameterRange.fromJson(Map<String, dynamic> json) {
     return IntegerHyperParameterRange(
       maxValue: json['maxValue'] as int?,
@@ -6131,6 +6198,7 @@ class ListBatchInferenceJobsResponse {
     this.batchInferenceJobs,
     this.nextToken,
   });
+
   factory ListBatchInferenceJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListBatchInferenceJobsResponse(
       batchInferenceJobs: (json['batchInferenceJobs'] as List?)
@@ -6163,6 +6231,7 @@ class ListCampaignsResponse {
     this.campaigns,
     this.nextToken,
   });
+
   factory ListCampaignsResponse.fromJson(Map<String, dynamic> json) {
     return ListCampaignsResponse(
       campaigns: (json['campaigns'] as List?)
@@ -6194,6 +6263,7 @@ class ListDatasetExportJobsResponse {
     this.datasetExportJobs,
     this.nextToken,
   });
+
   factory ListDatasetExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetExportJobsResponse(
       datasetExportJobs: (json['datasetExportJobs'] as List?)
@@ -6226,6 +6296,7 @@ class ListDatasetGroupsResponse {
     this.datasetGroups,
     this.nextToken,
   });
+
   factory ListDatasetGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetGroupsResponse(
       datasetGroups: (json['datasetGroups'] as List?)
@@ -6257,6 +6328,7 @@ class ListDatasetImportJobsResponse {
     this.datasetImportJobs,
     this.nextToken,
   });
+
   factory ListDatasetImportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetImportJobsResponse(
       datasetImportJobs: (json['datasetImportJobs'] as List?)
@@ -6290,6 +6362,7 @@ class ListDatasetsResponse {
     this.datasets,
     this.nextToken,
   });
+
   factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetsResponse(
       datasets: (json['datasets'] as List?)
@@ -6321,6 +6394,7 @@ class ListEventTrackersResponse {
     this.eventTrackers,
     this.nextToken,
   });
+
   factory ListEventTrackersResponse.fromJson(Map<String, dynamic> json) {
     return ListEventTrackersResponse(
       eventTrackers: (json['eventTrackers'] as List?)
@@ -6352,6 +6426,7 @@ class ListFiltersResponse {
     this.filters,
     this.nextToken,
   });
+
   factory ListFiltersResponse.fromJson(Map<String, dynamic> json) {
     return ListFiltersResponse(
       filters: (json['Filters'] as List?)
@@ -6383,6 +6458,7 @@ class ListRecipesResponse {
     this.nextToken,
     this.recipes,
   });
+
   factory ListRecipesResponse.fromJson(Map<String, dynamic> json) {
     return ListRecipesResponse(
       nextToken: json['nextToken'] as String?,
@@ -6414,6 +6490,7 @@ class ListSchemasResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory ListSchemasResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemasResponse(
       nextToken: json['nextToken'] as String?,
@@ -6445,6 +6522,7 @@ class ListSolutionVersionsResponse {
     this.nextToken,
     this.solutionVersions,
   });
+
   factory ListSolutionVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSolutionVersionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6477,6 +6555,7 @@ class ListSolutionsResponse {
     this.nextToken,
     this.solutions,
   });
+
   factory ListSolutionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSolutionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6553,6 +6632,7 @@ class OptimizationObjective {
     this.itemAttribute,
     this.objectiveSensitivity,
   });
+
   factory OptimizationObjective.fromJson(Map<String, dynamic> json) {
     return OptimizationObjective(
       itemAttribute: json['itemAttribute'] as String?,
@@ -6627,6 +6707,7 @@ class Recipe {
     this.recipeType,
     this.status,
   });
+
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       algorithmArn: json['algorithmArn'] as String?,
@@ -6716,6 +6797,7 @@ class RecipeSummary {
     this.recipeArn,
     this.status,
   });
+
   factory RecipeSummary.fromJson(Map<String, dynamic> json) {
     return RecipeSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -6758,6 +6840,7 @@ class S3DataConfig {
     required this.path,
     this.kmsKeyArn,
   });
+
   factory S3DataConfig.fromJson(Map<String, dynamic> json) {
     return S3DataConfig(
       path: json['path'] as String,
@@ -6851,6 +6934,7 @@ class Solution {
     this.solutionConfig,
     this.status,
   });
+
   factory Solution.fromJson(Map<String, dynamic> json) {
     return Solution(
       autoMLResult: json['autoMLResult'] != null
@@ -6945,6 +7029,7 @@ class SolutionConfig {
     this.hpoConfig,
     this.optimizationObjective,
   });
+
   factory SolutionConfig.fromJson(Map<String, dynamic> json) {
     return SolutionConfig(
       algorithmHyperParameters:
@@ -7026,6 +7111,7 @@ class SolutionSummary {
     this.solutionArn,
     this.status,
   });
+
   factory SolutionSummary.fromJson(Map<String, dynamic> json) {
     return SolutionSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -7166,6 +7252,7 @@ class SolutionVersion {
     this.trainingMode,
     this.tunedHPOParams,
   });
+
   factory SolutionVersion.fromJson(Map<String, dynamic> json) {
     return SolutionVersion(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -7264,6 +7351,7 @@ class SolutionVersionSummary {
     this.solutionVersionArn,
     this.status,
   });
+
   factory SolutionVersionSummary.fromJson(Map<String, dynamic> json) {
     return SolutionVersionSummary(
       creationDateTime: timeStampFromJson(json['creationDateTime']),
@@ -7329,6 +7417,7 @@ class TunedHPOParams {
   TunedHPOParams({
     this.algorithmHyperParameters,
   });
+
   factory TunedHPOParams.fromJson(Map<String, dynamic> json) {
     return TunedHPOParams(
       algorithmHyperParameters:
@@ -7353,6 +7442,7 @@ class UpdateCampaignResponse {
   UpdateCampaignResponse({
     this.campaignArn,
   });
+
   factory UpdateCampaignResponse.fromJson(Map<String, dynamic> json) {
     return UpdateCampaignResponse(
       campaignArn: json['campaignArn'] as String?,

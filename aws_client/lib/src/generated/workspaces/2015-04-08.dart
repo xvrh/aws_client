@@ -2727,6 +2727,7 @@ class AccountModification {
     this.modificationState,
     this.startTime,
   });
+
   factory AccountModification.fromJson(Map<String, dynamic> json) {
     return AccountModification(
       dedicatedTenancyManagementCidrRange:
@@ -2801,6 +2802,7 @@ class AssociateConnectionAliasResult {
   AssociateConnectionAliasResult({
     this.connectionIdentifier,
   });
+
   factory AssociateConnectionAliasResult.fromJson(Map<String, dynamic> json) {
     return AssociateConnectionAliasResult(
       connectionIdentifier: json['ConnectionIdentifier'] as String?,
@@ -2818,6 +2820,7 @@ class AssociateConnectionAliasResult {
 
 class AssociateIpGroupsResult {
   AssociateIpGroupsResult();
+
   factory AssociateIpGroupsResult.fromJson(Map<String, dynamic> _) {
     return AssociateIpGroupsResult();
   }
@@ -2872,6 +2875,7 @@ extension on String {
 
 class AuthorizeIpRulesResult {
   AuthorizeIpRulesResult();
+
   factory AuthorizeIpRulesResult.fromJson(Map<String, dynamic> _) {
     return AuthorizeIpRulesResult();
   }
@@ -2891,6 +2895,7 @@ class ClientProperties {
   ClientProperties({
     this.reconnectEnabled,
   });
+
   factory ClientProperties.fromJson(Map<String, dynamic> json) {
     return ClientProperties(
       reconnectEnabled:
@@ -2919,6 +2924,7 @@ class ClientPropertiesResult {
     this.clientProperties,
     this.resourceId,
   });
+
   factory ClientPropertiesResult.fromJson(Map<String, dynamic> json) {
     return ClientPropertiesResult(
       clientProperties: json['ClientProperties'] != null
@@ -3000,6 +3006,7 @@ class ComputeType {
   ComputeType({
     this.name,
   });
+
   factory ComputeType.fromJson(Map<String, dynamic> json) {
     return ComputeType(
       name: (json['Name'] as String?)?.toCompute(),
@@ -3043,6 +3050,7 @@ class ConnectionAlias {
     this.ownerAccountId,
     this.state,
   });
+
   factory ConnectionAlias.fromJson(Map<String, dynamic> json) {
     return ConnectionAlias(
       aliasId: json['AliasId'] as String?,
@@ -3099,6 +3107,7 @@ class ConnectionAliasAssociation {
     this.connectionIdentifier,
     this.resourceId,
   });
+
   factory ConnectionAliasAssociation.fromJson(Map<String, dynamic> json) {
     return ConnectionAliasAssociation(
       associatedAccountId: json['AssociatedAccountId'] as String?,
@@ -3142,6 +3151,7 @@ class ConnectionAliasPermission {
     required this.allowAssociation,
     required this.sharedAccountId,
   });
+
   factory ConnectionAliasPermission.fromJson(Map<String, dynamic> json) {
     return ConnectionAliasPermission(
       allowAssociation: json['AllowAssociation'] as bool,
@@ -3232,6 +3242,7 @@ class CopyWorkspaceImageResult {
   CopyWorkspaceImageResult({
     this.imageId,
   });
+
   factory CopyWorkspaceImageResult.fromJson(Map<String, dynamic> json) {
     return CopyWorkspaceImageResult(
       imageId: json['ImageId'] as String?,
@@ -3253,6 +3264,7 @@ class CreateConnectionAliasResult {
   CreateConnectionAliasResult({
     this.aliasId,
   });
+
   factory CreateConnectionAliasResult.fromJson(Map<String, dynamic> json) {
     return CreateConnectionAliasResult(
       aliasId: json['AliasId'] as String?,
@@ -3274,6 +3286,7 @@ class CreateIpGroupResult {
   CreateIpGroupResult({
     this.groupId,
   });
+
   factory CreateIpGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateIpGroupResult(
       groupId: json['GroupId'] as String?,
@@ -3290,6 +3303,7 @@ class CreateIpGroupResult {
 
 class CreateTagsResult {
   CreateTagsResult();
+
   factory CreateTagsResult.fromJson(Map<String, dynamic> _) {
     return CreateTagsResult();
   }
@@ -3305,6 +3319,7 @@ class CreateWorkspaceBundleResult {
   CreateWorkspaceBundleResult({
     this.workspaceBundle,
   });
+
   factory CreateWorkspaceBundleResult.fromJson(Map<String, dynamic> json) {
     return CreateWorkspaceBundleResult(
       workspaceBundle: json['WorkspaceBundle'] != null
@@ -3338,6 +3353,7 @@ class CreateWorkspacesResult {
     this.failedRequests,
     this.pendingRequests,
   });
+
   factory CreateWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return CreateWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -3498,6 +3514,7 @@ class DefaultWorkspaceCreationProperties {
     this.enableWorkDocs,
     this.userEnabledAsLocalAdministrator,
   });
+
   factory DefaultWorkspaceCreationProperties.fromJson(
       Map<String, dynamic> json) {
     return DefaultWorkspaceCreationProperties(
@@ -3536,6 +3553,7 @@ class DefaultWorkspaceCreationProperties {
 
 class DeleteConnectionAliasResult {
   DeleteConnectionAliasResult();
+
   factory DeleteConnectionAliasResult.fromJson(Map<String, dynamic> _) {
     return DeleteConnectionAliasResult();
   }
@@ -3547,6 +3565,7 @@ class DeleteConnectionAliasResult {
 
 class DeleteIpGroupResult {
   DeleteIpGroupResult();
+
   factory DeleteIpGroupResult.fromJson(Map<String, dynamic> _) {
     return DeleteIpGroupResult();
   }
@@ -3558,6 +3577,7 @@ class DeleteIpGroupResult {
 
 class DeleteTagsResult {
   DeleteTagsResult();
+
   factory DeleteTagsResult.fromJson(Map<String, dynamic> _) {
     return DeleteTagsResult();
   }
@@ -3569,6 +3589,7 @@ class DeleteTagsResult {
 
 class DeleteWorkspaceBundleResult {
   DeleteWorkspaceBundleResult();
+
   factory DeleteWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
     return DeleteWorkspaceBundleResult();
   }
@@ -3580,6 +3601,7 @@ class DeleteWorkspaceBundleResult {
 
 class DeleteWorkspaceImageResult {
   DeleteWorkspaceImageResult();
+
   factory DeleteWorkspaceImageResult.fromJson(Map<String, dynamic> _) {
     return DeleteWorkspaceImageResult();
   }
@@ -3591,6 +3613,7 @@ class DeleteWorkspaceImageResult {
 
 class DeregisterWorkspaceDirectoryResult {
   DeregisterWorkspaceDirectoryResult();
+
   factory DeregisterWorkspaceDirectoryResult.fromJson(Map<String, dynamic> _) {
     return DeregisterWorkspaceDirectoryResult();
   }
@@ -3612,6 +3635,7 @@ class DescribeAccountModificationsResult {
     this.accountModifications,
     this.nextToken,
   });
+
   factory DescribeAccountModificationsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountModificationsResult(
@@ -3651,6 +3675,7 @@ class DescribeAccountResult {
     this.dedicatedTenancyManagementCidrRange,
     this.dedicatedTenancySupport,
   });
+
   factory DescribeAccountResult.fromJson(Map<String, dynamic> json) {
     return DescribeAccountResult(
       dedicatedTenancyManagementCidrRange:
@@ -3681,6 +3706,7 @@ class DescribeClientPropertiesResult {
   DescribeClientPropertiesResult({
     this.clientPropertiesList,
   });
+
   factory DescribeClientPropertiesResult.fromJson(Map<String, dynamic> json) {
     return DescribeClientPropertiesResult(
       clientPropertiesList: (json['ClientPropertiesList'] as List?)
@@ -3716,6 +3742,7 @@ class DescribeConnectionAliasPermissionsResult {
     this.connectionAliasPermissions,
     this.nextToken,
   });
+
   factory DescribeConnectionAliasPermissionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeConnectionAliasPermissionsResult(
@@ -3754,6 +3781,7 @@ class DescribeConnectionAliasesResult {
     this.connectionAliases,
     this.nextToken,
   });
+
   factory DescribeConnectionAliasesResult.fromJson(Map<String, dynamic> json) {
     return DescribeConnectionAliasesResult(
       connectionAliases: (json['ConnectionAliases'] as List?)
@@ -3786,6 +3814,7 @@ class DescribeIpGroupsResult {
     this.nextToken,
     this.result,
   });
+
   factory DescribeIpGroupsResult.fromJson(Map<String, dynamic> json) {
     return DescribeIpGroupsResult(
       nextToken: json['NextToken'] as String?,
@@ -3813,6 +3842,7 @@ class DescribeTagsResult {
   DescribeTagsResult({
     this.tagList,
   });
+
   factory DescribeTagsResult.fromJson(Map<String, dynamic> json) {
     return DescribeTagsResult(
       tagList: (json['TagList'] as List?)
@@ -3843,6 +3873,7 @@ class DescribeWorkspaceBundlesResult {
     this.bundles,
     this.nextToken,
   });
+
   factory DescribeWorkspaceBundlesResult.fromJson(Map<String, dynamic> json) {
     return DescribeWorkspaceBundlesResult(
       bundles: (json['Bundles'] as List?)
@@ -3875,6 +3906,7 @@ class DescribeWorkspaceDirectoriesResult {
     this.directories,
     this.nextToken,
   });
+
   factory DescribeWorkspaceDirectoriesResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeWorkspaceDirectoriesResult(
@@ -3912,6 +3944,7 @@ class DescribeWorkspaceImagePermissionsResult {
     this.imagePermissions,
     this.nextToken,
   });
+
   factory DescribeWorkspaceImagePermissionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeWorkspaceImagePermissionsResult(
@@ -3948,6 +3981,7 @@ class DescribeWorkspaceImagesResult {
     this.images,
     this.nextToken,
   });
+
   factory DescribeWorkspaceImagesResult.fromJson(Map<String, dynamic> json) {
     return DescribeWorkspaceImagesResult(
       images: (json['Images'] as List?)
@@ -3981,6 +4015,7 @@ class DescribeWorkspaceSnapshotsResult {
     this.rebuildSnapshots,
     this.restoreSnapshots,
   });
+
   factory DescribeWorkspaceSnapshotsResult.fromJson(Map<String, dynamic> json) {
     return DescribeWorkspaceSnapshotsResult(
       rebuildSnapshots: (json['RebuildSnapshots'] as List?)
@@ -4016,6 +4051,7 @@ class DescribeWorkspacesConnectionStatusResult {
     this.nextToken,
     this.workspacesConnectionStatus,
   });
+
   factory DescribeWorkspacesConnectionStatusResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeWorkspacesConnectionStatusResult(
@@ -4054,6 +4090,7 @@ class DescribeWorkspacesResult {
     this.nextToken,
     this.workspaces,
   });
+
   factory DescribeWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return DescribeWorkspacesResult(
       nextToken: json['NextToken'] as String?,
@@ -4076,6 +4113,7 @@ class DescribeWorkspacesResult {
 
 class DisassociateConnectionAliasResult {
   DisassociateConnectionAliasResult();
+
   factory DisassociateConnectionAliasResult.fromJson(Map<String, dynamic> _) {
     return DisassociateConnectionAliasResult();
   }
@@ -4087,6 +4125,7 @@ class DisassociateConnectionAliasResult {
 
 class DisassociateIpGroupsResult {
   DisassociateIpGroupsResult();
+
   factory DisassociateIpGroupsResult.fromJson(Map<String, dynamic> _) {
     return DisassociateIpGroupsResult();
   }
@@ -4113,6 +4152,7 @@ class FailedCreateWorkspaceRequest {
     this.errorMessage,
     this.workspaceRequest,
   });
+
   factory FailedCreateWorkspaceRequest.fromJson(Map<String, dynamic> json) {
     return FailedCreateWorkspaceRequest(
       errorCode: json['ErrorCode'] as String?,
@@ -4156,6 +4196,7 @@ class FailedWorkspaceChangeRequest {
     this.errorMessage,
     this.workspaceId,
   });
+
   factory FailedWorkspaceChangeRequest.fromJson(Map<String, dynamic> json) {
     return FailedWorkspaceChangeRequest(
       errorCode: json['ErrorCode'] as String?,
@@ -4187,6 +4228,7 @@ class ImagePermission {
   ImagePermission({
     this.sharedAccountId,
   });
+
   factory ImagePermission.fromJson(Map<String, dynamic> json) {
     return ImagePermission(
       sharedAccountId: json['SharedAccountId'] as String?,
@@ -4236,6 +4278,7 @@ class ImportWorkspaceImageResult {
   ImportWorkspaceImageResult({
     this.imageId,
   });
+
   factory ImportWorkspaceImageResult.fromJson(Map<String, dynamic> json) {
     return ImportWorkspaceImageResult(
       imageId: json['ImageId'] as String?,
@@ -4262,6 +4305,7 @@ class IpRuleItem {
     this.ipRule,
     this.ruleDesc,
   });
+
   factory IpRuleItem.fromJson(Map<String, dynamic> json) {
     return IpRuleItem(
       ipRule: json['ipRule'] as String?,
@@ -4291,6 +4335,7 @@ class ListAvailableManagementCidrRangesResult {
     this.managementCidrRanges,
     this.nextToken,
   });
+
   factory ListAvailableManagementCidrRangesResult.fromJson(
       Map<String, dynamic> json) {
     return ListAvailableManagementCidrRangesResult(
@@ -4326,6 +4371,7 @@ class MigrateWorkspaceResult {
     this.sourceWorkspaceId,
     this.targetWorkspaceId,
   });
+
   factory MigrateWorkspaceResult.fromJson(Map<String, dynamic> json) {
     return MigrateWorkspaceResult(
       sourceWorkspaceId: json['SourceWorkspaceId'] as String?,
@@ -4388,6 +4434,7 @@ class ModificationState {
     this.resource,
     this.state,
   });
+
   factory ModificationState.fromJson(Map<String, dynamic> json) {
     return ModificationState(
       resource: (json['Resource'] as String?)?.toModificationResourceEnum(),
@@ -4435,6 +4482,7 @@ extension on String {
 
 class ModifyAccountResult {
   ModifyAccountResult();
+
   factory ModifyAccountResult.fromJson(Map<String, dynamic> _) {
     return ModifyAccountResult();
   }
@@ -4446,6 +4494,7 @@ class ModifyAccountResult {
 
 class ModifyClientPropertiesResult {
   ModifyClientPropertiesResult();
+
   factory ModifyClientPropertiesResult.fromJson(Map<String, dynamic> _) {
     return ModifyClientPropertiesResult();
   }
@@ -4457,6 +4506,7 @@ class ModifyClientPropertiesResult {
 
 class ModifySelfservicePermissionsResult {
   ModifySelfservicePermissionsResult();
+
   factory ModifySelfservicePermissionsResult.fromJson(Map<String, dynamic> _) {
     return ModifySelfservicePermissionsResult();
   }
@@ -4468,6 +4518,7 @@ class ModifySelfservicePermissionsResult {
 
 class ModifyWorkspaceAccessPropertiesResult {
   ModifyWorkspaceAccessPropertiesResult();
+
   factory ModifyWorkspaceAccessPropertiesResult.fromJson(
       Map<String, dynamic> _) {
     return ModifyWorkspaceAccessPropertiesResult();
@@ -4480,6 +4531,7 @@ class ModifyWorkspaceAccessPropertiesResult {
 
 class ModifyWorkspaceCreationPropertiesResult {
   ModifyWorkspaceCreationPropertiesResult();
+
   factory ModifyWorkspaceCreationPropertiesResult.fromJson(
       Map<String, dynamic> _) {
     return ModifyWorkspaceCreationPropertiesResult();
@@ -4492,6 +4544,7 @@ class ModifyWorkspaceCreationPropertiesResult {
 
 class ModifyWorkspacePropertiesResult {
   ModifyWorkspacePropertiesResult();
+
   factory ModifyWorkspacePropertiesResult.fromJson(Map<String, dynamic> _) {
     return ModifyWorkspacePropertiesResult();
   }
@@ -4503,6 +4556,7 @@ class ModifyWorkspacePropertiesResult {
 
 class ModifyWorkspaceStateResult {
   ModifyWorkspaceStateResult();
+
   factory ModifyWorkspaceStateResult.fromJson(Map<String, dynamic> _) {
     return ModifyWorkspaceStateResult();
   }
@@ -4520,6 +4574,7 @@ class OperatingSystem {
   OperatingSystem({
     this.type,
   });
+
   factory OperatingSystem.fromJson(Map<String, dynamic> json) {
     return OperatingSystem(
       type: (json['Type'] as String?)?.toOperatingSystemType(),
@@ -4570,6 +4625,7 @@ class RebootRequest {
   RebootRequest({
     required this.workspaceId,
   });
+
   factory RebootRequest.fromJson(Map<String, dynamic> json) {
     return RebootRequest(
       workspaceId: json['WorkspaceId'] as String,
@@ -4591,6 +4647,7 @@ class RebootWorkspacesResult {
   RebootWorkspacesResult({
     this.failedRequests,
   });
+
   factory RebootWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return RebootWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -4617,6 +4674,7 @@ class RebuildRequest {
   RebuildRequest({
     required this.workspaceId,
   });
+
   factory RebuildRequest.fromJson(Map<String, dynamic> json) {
     return RebuildRequest(
       workspaceId: json['WorkspaceId'] as String,
@@ -4638,6 +4696,7 @@ class RebuildWorkspacesResult {
   RebuildWorkspacesResult({
     this.failedRequests,
   });
+
   factory RebuildWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return RebuildWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -4686,6 +4745,7 @@ extension on String {
 
 class RegisterWorkspaceDirectoryResult {
   RegisterWorkspaceDirectoryResult();
+
   factory RegisterWorkspaceDirectoryResult.fromJson(Map<String, dynamic> _) {
     return RegisterWorkspaceDirectoryResult();
   }
@@ -4697,6 +4757,7 @@ class RegisterWorkspaceDirectoryResult {
 
 class RestoreWorkspaceResult {
   RestoreWorkspaceResult();
+
   factory RestoreWorkspaceResult.fromJson(Map<String, dynamic> _) {
     return RestoreWorkspaceResult();
   }
@@ -4708,6 +4769,7 @@ class RestoreWorkspaceResult {
 
 class RevokeIpRulesResult {
   RevokeIpRulesResult();
+
   factory RevokeIpRulesResult.fromJson(Map<String, dynamic> _) {
     return RevokeIpRulesResult();
   }
@@ -4725,6 +4787,7 @@ class RootStorage {
   RootStorage({
     this.capacity,
   });
+
   factory RootStorage.fromJson(Map<String, dynamic> json) {
     return RootStorage(
       capacity: json['Capacity'] as String?,
@@ -4797,6 +4860,7 @@ class SelfservicePermissions {
     this.restartWorkspace,
     this.switchRunningMode,
   });
+
   factory SelfservicePermissions.fromJson(Map<String, dynamic> json) {
     return SelfservicePermissions(
       changeComputeType:
@@ -4841,6 +4905,7 @@ class Snapshot {
   Snapshot({
     this.snapshotTime,
   });
+
   factory Snapshot.fromJson(Map<String, dynamic> json) {
     return Snapshot(
       snapshotTime: timeStampFromJson(json['SnapshotTime']),
@@ -4864,6 +4929,7 @@ class StartRequest {
   StartRequest({
     this.workspaceId,
   });
+
   factory StartRequest.fromJson(Map<String, dynamic> json) {
     return StartRequest(
       workspaceId: json['WorkspaceId'] as String?,
@@ -4885,6 +4951,7 @@ class StartWorkspacesResult {
   StartWorkspacesResult({
     this.failedRequests,
   });
+
   factory StartWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return StartWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -4911,6 +4978,7 @@ class StopRequest {
   StopRequest({
     this.workspaceId,
   });
+
   factory StopRequest.fromJson(Map<String, dynamic> json) {
     return StopRequest(
       workspaceId: json['WorkspaceId'] as String?,
@@ -4932,6 +5000,7 @@ class StopWorkspacesResult {
   StopWorkspacesResult({
     this.failedRequests,
   });
+
   factory StopWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return StopWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -4962,6 +5031,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5043,6 +5113,7 @@ class TerminateRequest {
   TerminateRequest({
     required this.workspaceId,
   });
+
   factory TerminateRequest.fromJson(Map<String, dynamic> json) {
     return TerminateRequest(
       workspaceId: json['WorkspaceId'] as String,
@@ -5064,6 +5135,7 @@ class TerminateWorkspacesResult {
   TerminateWorkspacesResult({
     this.failedRequests,
   });
+
   factory TerminateWorkspacesResult.fromJson(Map<String, dynamic> json) {
     return TerminateWorkspacesResult(
       failedRequests: (json['FailedRequests'] as List?)
@@ -5084,6 +5156,7 @@ class TerminateWorkspacesResult {
 
 class UpdateConnectionAliasPermissionResult {
   UpdateConnectionAliasPermissionResult();
+
   factory UpdateConnectionAliasPermissionResult.fromJson(
       Map<String, dynamic> _) {
     return UpdateConnectionAliasPermissionResult();
@@ -5096,6 +5169,7 @@ class UpdateConnectionAliasPermissionResult {
 
 class UpdateRulesOfIpGroupResult {
   UpdateRulesOfIpGroupResult();
+
   factory UpdateRulesOfIpGroupResult.fromJson(Map<String, dynamic> _) {
     return UpdateRulesOfIpGroupResult();
   }
@@ -5107,6 +5181,7 @@ class UpdateRulesOfIpGroupResult {
 
 class UpdateWorkspaceBundleResult {
   UpdateWorkspaceBundleResult();
+
   factory UpdateWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
     return UpdateWorkspaceBundleResult();
   }
@@ -5118,6 +5193,7 @@ class UpdateWorkspaceBundleResult {
 
 class UpdateWorkspaceImagePermissionResult {
   UpdateWorkspaceImagePermissionResult();
+
   factory UpdateWorkspaceImagePermissionResult.fromJson(
       Map<String, dynamic> _) {
     return UpdateWorkspaceImagePermissionResult();
@@ -5136,6 +5212,7 @@ class UserStorage {
   UserStorage({
     this.capacity,
   });
+
   factory UserStorage.fromJson(Map<String, dynamic> json) {
     return UserStorage(
       capacity: json['Capacity'] as String?,
@@ -5228,6 +5305,7 @@ class Workspace {
     this.workspaceId,
     this.workspaceProperties,
   });
+
   factory Workspace.fromJson(Map<String, dynamic> json) {
     return Workspace(
       bundleId: json['BundleId'] as String?,
@@ -5344,6 +5422,7 @@ class WorkspaceAccessProperties {
     this.deviceTypeWindows,
     this.deviceTypeZeroClient,
   });
+
   factory WorkspaceAccessProperties.fromJson(Map<String, dynamic> json) {
     return WorkspaceAccessProperties(
       deviceTypeAndroid:
@@ -5438,6 +5517,7 @@ class WorkspaceBundle {
     this.rootStorage,
     this.userStorage,
   });
+
   factory WorkspaceBundle.fromJson(Map<String, dynamic> json) {
     return WorkspaceBundle(
       bundleId: json['BundleId'] as String?,
@@ -5508,6 +5588,7 @@ class WorkspaceConnectionStatus {
     this.lastKnownUserConnectionTimestamp,
     this.workspaceId,
   });
+
   factory WorkspaceConnectionStatus.fromJson(Map<String, dynamic> json) {
     return WorkspaceConnectionStatus(
       connectionState:
@@ -5607,6 +5688,7 @@ class WorkspaceCreationProperties {
     this.enableWorkDocs,
     this.userEnabledAsLocalAdministrator,
   });
+
   factory WorkspaceCreationProperties.fromJson(Map<String, dynamic> json) {
     return WorkspaceCreationProperties(
       customSecurityGroupId: json['CustomSecurityGroupId'] as String?,
@@ -5725,6 +5807,7 @@ class WorkspaceDirectory {
     this.workspaceSecurityGroupId,
     this.ipGroupIds,
   });
+
   factory WorkspaceDirectory.fromJson(Map<String, dynamic> json) {
     return WorkspaceDirectory(
       alias: json['Alias'] as String?,
@@ -5928,6 +6011,7 @@ class WorkspaceImage {
     this.requiredTenancy,
     this.state,
   });
+
   factory WorkspaceImage.fromJson(Map<String, dynamic> json) {
     return WorkspaceImage(
       created: timeStampFromJson(json['Created']),
@@ -6108,6 +6192,7 @@ class WorkspaceProperties {
     this.runningModeAutoStopTimeoutInMinutes,
     this.userVolumeSizeGib,
   });
+
   factory WorkspaceProperties.fromJson(Map<String, dynamic> json) {
     return WorkspaceProperties(
       computeTypeName: (json['ComputeTypeName'] as String?)?.toCompute(),
@@ -6179,6 +6264,7 @@ class WorkspaceRequest {
     this.volumeEncryptionKey,
     this.workspaceProperties,
   });
+
   factory WorkspaceRequest.fromJson(Map<String, dynamic> json) {
     return WorkspaceRequest(
       bundleId: json['BundleId'] as String,
@@ -6347,6 +6433,7 @@ class WorkspacesIpGroup {
     this.groupName,
     this.userRules,
   });
+
   factory WorkspacesIpGroup.fromJson(Map<String, dynamic> json) {
     return WorkspacesIpGroup(
       groupDesc: json['groupDesc'] as String?,

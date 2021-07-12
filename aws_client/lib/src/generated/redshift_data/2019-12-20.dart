@@ -776,6 +776,7 @@ class CancelStatementResponse {
   CancelStatementResponse({
     this.status,
   });
+
   factory CancelStatementResponse.fromJson(Map<String, dynamic> json) {
     return CancelStatementResponse(
       status: json['Status'] as bool?,
@@ -846,6 +847,7 @@ class ColumnMetadata {
     this.tableName,
     this.typeName,
   });
+
   factory ColumnMetadata.fromJson(Map<String, dynamic> json) {
     return ColumnMetadata(
       columnDefault: json['columnDefault'] as String?,
@@ -1003,6 +1005,7 @@ class DescribeStatementResponse {
     this.status,
     this.updatedAt,
   });
+
   factory DescribeStatementResponse.fromJson(Map<String, dynamic> json) {
     return DescribeStatementResponse(
       id: json['Id'] as String,
@@ -1088,6 +1091,7 @@ class DescribeTableResponse {
     this.nextToken,
     this.tableName,
   });
+
   factory DescribeTableResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTableResponse(
       columnList: (json['ColumnList'] as List?)
@@ -1139,6 +1143,7 @@ class ExecuteStatementOutput {
     this.id,
     this.secretArn,
   });
+
   factory ExecuteStatementOutput.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementOutput(
       clusterIdentifier: json['ClusterIdentifier'] as String?,
@@ -1196,6 +1201,7 @@ class Field {
     this.longValue,
     this.stringValue,
   });
+
   factory Field.fromJson(Map<String, dynamic> json) {
     return Field(
       blobValue: _s.decodeNullableUint8List(json['blobValue'] as String?),
@@ -1252,6 +1258,7 @@ class GetStatementResultResponse {
     this.nextToken,
     this.totalNumRows,
   });
+
   factory GetStatementResultResponse.fromJson(Map<String, dynamic> json) {
     return GetStatementResultResponse(
       records: (json['Records'] as List)
@@ -1300,6 +1307,7 @@ class ListDatabasesResponse {
     this.databases,
     this.nextToken,
   });
+
   factory ListDatabasesResponse.fromJson(Map<String, dynamic> json) {
     return ListDatabasesResponse(
       databases: (json['Databases'] as List?)
@@ -1336,6 +1344,7 @@ class ListSchemasResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory ListSchemasResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemasResponse(
       nextToken: json['NextToken'] as String?,
@@ -1372,6 +1381,7 @@ class ListStatementsResponse {
     required this.statements,
     this.nextToken,
   });
+
   factory ListStatementsResponse.fromJson(Map<String, dynamic> json) {
     return ListStatementsResponse(
       statements: (json['Statements'] as List)
@@ -1408,6 +1418,7 @@ class ListTablesResponse {
     this.nextToken,
     this.tables,
   });
+
   factory ListTablesResponse.fromJson(Map<String, dynamic> json) {
     return ListTablesResponse(
       nextToken: json['NextToken'] as String?,
@@ -1443,6 +1454,7 @@ class SqlParameter {
     required this.name,
     required this.value,
   });
+
   factory SqlParameter.fromJson(Map<String, dynamic> json) {
     return SqlParameter(
       name: json['name'] as String,
@@ -1499,6 +1511,7 @@ class StatementData {
     this.status,
     this.updatedAt,
   });
+
   factory StatementData.fromJson(Map<String, dynamic> json) {
     return StatementData(
       id: json['Id'] as String,
@@ -1607,6 +1620,7 @@ class TableMember {
     this.schema,
     this.type,
   });
+
   factory TableMember.fromJson(Map<String, dynamic> json) {
     return TableMember(
       name: json['name'] as String?,

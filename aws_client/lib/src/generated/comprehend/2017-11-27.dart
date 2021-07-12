@@ -3776,6 +3776,7 @@ class AugmentedManifestsListItem {
     required this.attributeNames,
     required this.s3Uri,
   });
+
   factory AugmentedManifestsListItem.fromJson(Map<String, dynamic> json) {
     return AugmentedManifestsListItem(
       attributeNames: (json['AttributeNames'] as List)
@@ -3810,6 +3811,7 @@ class BatchDetectDominantLanguageItemResult {
     this.index,
     this.languages,
   });
+
   factory BatchDetectDominantLanguageItemResult.fromJson(
       Map<String, dynamic> json) {
     return BatchDetectDominantLanguageItemResult(
@@ -3848,6 +3850,7 @@ class BatchDetectDominantLanguageResponse {
     required this.errorList,
     required this.resultList,
   });
+
   factory BatchDetectDominantLanguageResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDetectDominantLanguageResponse(
@@ -3887,6 +3890,7 @@ class BatchDetectEntitiesItemResult {
     this.entities,
     this.index,
   });
+
   factory BatchDetectEntitiesItemResult.fromJson(Map<String, dynamic> json) {
     return BatchDetectEntitiesItemResult(
       entities: (json['Entities'] as List?)
@@ -3924,6 +3928,7 @@ class BatchDetectEntitiesResponse {
     required this.errorList,
     required this.resultList,
   });
+
   factory BatchDetectEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetectEntitiesResponse(
       errorList: (json['ErrorList'] as List)
@@ -3962,6 +3967,7 @@ class BatchDetectKeyPhrasesItemResult {
     this.index,
     this.keyPhrases,
   });
+
   factory BatchDetectKeyPhrasesItemResult.fromJson(Map<String, dynamic> json) {
     return BatchDetectKeyPhrasesItemResult(
       index: json['Index'] as int?,
@@ -3999,6 +4005,7 @@ class BatchDetectKeyPhrasesResponse {
     required this.errorList,
     required this.resultList,
   });
+
   factory BatchDetectKeyPhrasesResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetectKeyPhrasesResponse(
       errorList: (json['ErrorList'] as List)
@@ -4041,6 +4048,7 @@ class BatchDetectSentimentItemResult {
     this.sentiment,
     this.sentimentScore,
   });
+
   factory BatchDetectSentimentItemResult.fromJson(Map<String, dynamic> json) {
     return BatchDetectSentimentItemResult(
       index: json['Index'] as int?,
@@ -4081,6 +4089,7 @@ class BatchDetectSentimentResponse {
     required this.errorList,
     required this.resultList,
   });
+
   factory BatchDetectSentimentResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetectSentimentResponse(
       errorList: (json['ErrorList'] as List)
@@ -4118,6 +4127,7 @@ class BatchDetectSyntaxItemResult {
     this.index,
     this.syntaxTokens,
   });
+
   factory BatchDetectSyntaxItemResult.fromJson(Map<String, dynamic> json) {
     return BatchDetectSyntaxItemResult(
       index: json['Index'] as int?,
@@ -4155,6 +4165,7 @@ class BatchDetectSyntaxResponse {
     required this.errorList,
     required this.resultList,
   });
+
   factory BatchDetectSyntaxResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetectSyntaxResponse(
       errorList: (json['ErrorList'] as List)
@@ -4197,6 +4208,7 @@ class BatchItemError {
     this.errorMessage,
     this.index,
   });
+
   factory BatchItemError.fromJson(Map<String, dynamic> json) {
     return BatchItemError(
       errorCode: json['ErrorCode'] as String?,
@@ -4277,6 +4289,7 @@ class ClassifierEvaluationMetrics {
     this.precision,
     this.recall,
   });
+
   factory ClassifierEvaluationMetrics.fromJson(Map<String, dynamic> json) {
     return ClassifierEvaluationMetrics(
       accuracy: json['Accuracy'] as double?,
@@ -4336,6 +4349,7 @@ class ClassifierMetadata {
     this.numberOfTestDocuments,
     this.numberOfTrainedDocuments,
   });
+
   factory ClassifierMetadata.fromJson(Map<String, dynamic> json) {
     return ClassifierMetadata(
       evaluationMetrics: json['EvaluationMetrics'] != null
@@ -4382,6 +4396,7 @@ class ClassifyDocumentResponse {
     this.classes,
     this.labels,
   });
+
   factory ClassifyDocumentResponse.fromJson(Map<String, dynamic> json) {
     return ClassifyDocumentResponse(
       classes: (json['Classes'] as List?)
@@ -4413,6 +4428,7 @@ class ContainsPiiEntitiesResponse {
   ContainsPiiEntitiesResponse({
     this.labels,
   });
+
   factory ContainsPiiEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return ContainsPiiEntitiesResponse(
       labels: (json['Labels'] as List?)
@@ -4437,6 +4453,7 @@ class CreateDocumentClassifierResponse {
   CreateDocumentClassifierResponse({
     this.documentClassifierArn,
   });
+
   factory CreateDocumentClassifierResponse.fromJson(Map<String, dynamic> json) {
     return CreateDocumentClassifierResponse(
       documentClassifierArn: json['DocumentClassifierArn'] as String?,
@@ -4459,6 +4476,7 @@ class CreateEndpointResponse {
   CreateEndpointResponse({
     this.endpointArn,
   });
+
   factory CreateEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateEndpointResponse(
       endpointArn: json['EndpointArn'] as String?,
@@ -4480,6 +4498,7 @@ class CreateEntityRecognizerResponse {
   CreateEntityRecognizerResponse({
     this.entityRecognizerArn,
   });
+
   factory CreateEntityRecognizerResponse.fromJson(Map<String, dynamic> json) {
     return CreateEntityRecognizerResponse(
       entityRecognizerArn: json['EntityRecognizerArn'] as String?,
@@ -4497,6 +4516,7 @@ class CreateEntityRecognizerResponse {
 
 class DeleteDocumentClassifierResponse {
   DeleteDocumentClassifierResponse();
+
   factory DeleteDocumentClassifierResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDocumentClassifierResponse();
   }
@@ -4508,6 +4528,7 @@ class DeleteDocumentClassifierResponse {
 
 class DeleteEndpointResponse {
   DeleteEndpointResponse();
+
   factory DeleteEndpointResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEndpointResponse();
   }
@@ -4519,6 +4540,7 @@ class DeleteEndpointResponse {
 
 class DeleteEntityRecognizerResponse {
   DeleteEntityRecognizerResponse();
+
   factory DeleteEntityRecognizerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEntityRecognizerResponse();
   }
@@ -4537,6 +4559,7 @@ class DescribeDocumentClassificationJobResponse {
   DescribeDocumentClassificationJobResponse({
     this.documentClassificationJobProperties,
   });
+
   factory DescribeDocumentClassificationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDocumentClassificationJobResponse(
@@ -4568,6 +4591,7 @@ class DescribeDocumentClassifierResponse {
   DescribeDocumentClassifierResponse({
     this.documentClassifierProperties,
   });
+
   factory DescribeDocumentClassifierResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDocumentClassifierResponse(
@@ -4596,6 +4620,7 @@ class DescribeDominantLanguageDetectionJobResponse {
   DescribeDominantLanguageDetectionJobResponse({
     this.dominantLanguageDetectionJobProperties,
   });
+
   factory DescribeDominantLanguageDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDominantLanguageDetectionJobResponse(
@@ -4626,6 +4651,7 @@ class DescribeEndpointResponse {
   DescribeEndpointResponse({
     this.endpointProperties,
   });
+
   factory DescribeEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointResponse(
       endpointProperties: json['EndpointProperties'] != null
@@ -4651,6 +4677,7 @@ class DescribeEntitiesDetectionJobResponse {
   DescribeEntitiesDetectionJobResponse({
     this.entitiesDetectionJobProperties,
   });
+
   factory DescribeEntitiesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEntitiesDetectionJobResponse(
@@ -4678,6 +4705,7 @@ class DescribeEntityRecognizerResponse {
   DescribeEntityRecognizerResponse({
     this.entityRecognizerProperties,
   });
+
   factory DescribeEntityRecognizerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEntityRecognizerResponse(
       entityRecognizerProperties: json['EntityRecognizerProperties'] != null
@@ -4704,6 +4732,7 @@ class DescribeEventsDetectionJobResponse {
   DescribeEventsDetectionJobResponse({
     this.eventsDetectionJobProperties,
   });
+
   factory DescribeEventsDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEventsDetectionJobResponse(
@@ -4731,6 +4760,7 @@ class DescribeKeyPhrasesDetectionJobResponse {
   DescribeKeyPhrasesDetectionJobResponse({
     this.keyPhrasesDetectionJobProperties,
   });
+
   factory DescribeKeyPhrasesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeKeyPhrasesDetectionJobResponse(
@@ -4759,6 +4789,7 @@ class DescribePiiEntitiesDetectionJobResponse {
   DescribePiiEntitiesDetectionJobResponse({
     this.piiEntitiesDetectionJobProperties,
   });
+
   factory DescribePiiEntitiesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePiiEntitiesDetectionJobResponse(
@@ -4789,6 +4820,7 @@ class DescribeSentimentDetectionJobResponse {
   DescribeSentimentDetectionJobResponse({
     this.sentimentDetectionJobProperties,
   });
+
   factory DescribeSentimentDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSentimentDetectionJobResponse(
@@ -4818,6 +4850,7 @@ class DescribeTopicsDetectionJobResponse {
   DescribeTopicsDetectionJobResponse({
     this.topicsDetectionJobProperties,
   });
+
   factory DescribeTopicsDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTopicsDetectionJobResponse(
@@ -4849,6 +4882,7 @@ class DetectDominantLanguageResponse {
   DetectDominantLanguageResponse({
     this.languages,
   });
+
   factory DetectDominantLanguageResponse.fromJson(Map<String, dynamic> json) {
     return DetectDominantLanguageResponse(
       languages: (json['Languages'] as List?)
@@ -4881,6 +4915,7 @@ class DetectEntitiesResponse {
   DetectEntitiesResponse({
     this.entities,
   });
+
   factory DetectEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return DetectEntitiesResponse(
       entities: (json['Entities'] as List?)
@@ -4908,6 +4943,7 @@ class DetectKeyPhrasesResponse {
   DetectKeyPhrasesResponse({
     this.keyPhrases,
   });
+
   factory DetectKeyPhrasesResponse.fromJson(Map<String, dynamic> json) {
     return DetectKeyPhrasesResponse(
       keyPhrases: (json['KeyPhrases'] as List?)
@@ -4935,6 +4971,7 @@ class DetectPiiEntitiesResponse {
   DetectPiiEntitiesResponse({
     this.entities,
   });
+
   factory DetectPiiEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return DetectPiiEntitiesResponse(
       entities: (json['Entities'] as List?)
@@ -4965,6 +5002,7 @@ class DetectSentimentResponse {
     this.sentiment,
     this.sentimentScore,
   });
+
   factory DetectSentimentResponse.fromJson(Map<String, dynamic> json) {
     return DetectSentimentResponse(
       sentiment: (json['Sentiment'] as String?)?.toSentimentType(),
@@ -4995,6 +5033,7 @@ class DetectSyntaxResponse {
   DetectSyntaxResponse({
     this.syntaxTokens,
   });
+
   factory DetectSyntaxResponse.fromJson(Map<String, dynamic> json) {
     return DetectSyntaxResponse(
       syntaxTokens: (json['SyntaxTokens'] as List?)
@@ -5025,6 +5064,7 @@ class DocumentClass {
     this.name,
     this.score,
   });
+
   factory DocumentClass.fromJson(Map<String, dynamic> json) {
     return DocumentClass(
       name: json['Name'] as String?,
@@ -5069,6 +5109,7 @@ class DocumentClassificationJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory DocumentClassificationJobFilter.fromJson(Map<String, dynamic> json) {
     return DocumentClassificationJobFilter(
       jobName: json['JobName'] as String?,
@@ -5168,6 +5209,7 @@ class DocumentClassificationJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory DocumentClassificationJobProperties.fromJson(
       Map<String, dynamic> json) {
     return DocumentClassificationJobProperties(
@@ -5277,6 +5319,7 @@ class DocumentClassifierFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory DocumentClassifierFilter.fromJson(Map<String, dynamic> json) {
     return DocumentClassifierFilter(
       status: (json['Status'] as String?)?.toModelStatus(),
@@ -5364,6 +5407,7 @@ class DocumentClassifierInputDataConfig {
     this.labelDelimiter,
     this.s3Uri,
   });
+
   factory DocumentClassifierInputDataConfig.fromJson(
       Map<String, dynamic> json) {
     return DocumentClassifierInputDataConfig(
@@ -5461,6 +5505,7 @@ class DocumentClassifierOutputDataConfig {
     this.kmsKeyId,
     this.s3Uri,
   });
+
   factory DocumentClassifierOutputDataConfig.fromJson(
       Map<String, dynamic> json) {
     return DocumentClassifierOutputDataConfig(
@@ -5592,6 +5637,7 @@ class DocumentClassifierProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory DocumentClassifierProperties.fromJson(Map<String, dynamic> json) {
     return DocumentClassifierProperties(
       classifierMetadata: json['ClassifierMetadata'] != null
@@ -5679,6 +5725,7 @@ class DocumentLabel {
     this.name,
     this.score,
   });
+
   factory DocumentLabel.fromJson(Map<String, dynamic> json) {
     return DocumentLabel(
       name: json['Name'] as String?,
@@ -5712,6 +5759,7 @@ class DominantLanguage {
     this.languageCode,
     this.score,
   });
+
   factory DominantLanguage.fromJson(Map<String, dynamic> json) {
     return DominantLanguage(
       languageCode: json['LanguageCode'] as String?,
@@ -5755,6 +5803,7 @@ class DominantLanguageDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory DominantLanguageDetectionJobFilter.fromJson(
       Map<String, dynamic> json) {
     return DominantLanguageDetectionJobFilter(
@@ -5852,6 +5901,7 @@ class DominantLanguageDetectionJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory DominantLanguageDetectionJobProperties.fromJson(
       Map<String, dynamic> json) {
     return DominantLanguageDetectionJobProperties(
@@ -5931,6 +5981,7 @@ class EndpointFilter {
     this.modelArn,
     this.status,
   });
+
   factory EndpointFilter.fromJson(Map<String, dynamic> json) {
     return EndpointFilter(
       creationTimeAfter: timeStampFromJson(json['CreationTimeAfter']),
@@ -6004,6 +6055,7 @@ class EndpointProperties {
     this.modelArn,
     this.status,
   });
+
   factory EndpointProperties.fromJson(Map<String, dynamic> json) {
     return EndpointProperties(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -6115,6 +6167,7 @@ class EntitiesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory EntitiesDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return EntitiesDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -6218,6 +6271,7 @@ class EntitiesDetectionJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory EntitiesDetectionJobProperties.fromJson(Map<String, dynamic> json) {
     return EntitiesDetectionJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -6312,6 +6366,7 @@ class Entity {
     this.text,
     this.type,
   });
+
   factory Entity.fromJson(Map<String, dynamic> json) {
     return Entity(
       beginOffset: json['BeginOffset'] as int?,
@@ -6352,6 +6407,7 @@ class EntityLabel {
     this.name,
     this.score,
   });
+
   factory EntityLabel.fromJson(Map<String, dynamic> json) {
     return EntityLabel(
       name: (json['Name'] as String?)?.toPiiEntityType(),
@@ -6379,6 +6435,7 @@ class EntityRecognizerAnnotations {
   EntityRecognizerAnnotations({
     required this.s3Uri,
   });
+
   factory EntityRecognizerAnnotations.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerAnnotations(
       s3Uri: json['S3Uri'] as String,
@@ -6431,6 +6488,7 @@ class EntityRecognizerDocuments {
   EntityRecognizerDocuments({
     required this.s3Uri,
   });
+
   factory EntityRecognizerDocuments.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerDocuments(
       s3Uri: json['S3Uri'] as String,
@@ -6454,6 +6512,7 @@ class EntityRecognizerEntityList {
   EntityRecognizerEntityList({
     required this.s3Uri,
   });
+
   factory EntityRecognizerEntityList.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerEntityList(
       s3Uri: json['S3Uri'] as String,
@@ -6490,6 +6549,7 @@ class EntityRecognizerEvaluationMetrics {
     this.precision,
     this.recall,
   });
+
   factory EntityRecognizerEvaluationMetrics.fromJson(
       Map<String, dynamic> json) {
     return EntityRecognizerEvaluationMetrics(
@@ -6533,6 +6593,7 @@ class EntityRecognizerFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory EntityRecognizerFilter.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerFilter(
       status: (json['Status'] as String?)?.toModelStatus(),
@@ -6626,6 +6687,7 @@ class EntityRecognizerInputDataConfig {
     this.documents,
     this.entityList,
   });
+
   factory EntityRecognizerInputDataConfig.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerInputDataConfig(
       entityTypes: (json['EntityTypes'] as List)
@@ -6694,6 +6756,7 @@ class EntityRecognizerMetadata {
     this.numberOfTestDocuments,
     this.numberOfTrainedDocuments,
   });
+
   factory EntityRecognizerMetadata.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerMetadata(
       entityTypes: (json['EntityTypes'] as List?)
@@ -6746,6 +6809,7 @@ class EntityRecognizerMetadataEntityTypesListItem {
     this.numberOfTrainMentions,
     this.type,
   });
+
   factory EntityRecognizerMetadataEntityTypesListItem.fromJson(
       Map<String, dynamic> json) {
     return EntityRecognizerMetadataEntityTypesListItem(
@@ -6862,6 +6926,7 @@ class EntityRecognizerProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory EntityRecognizerProperties.fromJson(Map<String, dynamic> json) {
     return EntityRecognizerProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -7013,6 +7078,7 @@ class EntityTypesEvaluationMetrics {
     this.precision,
     this.recall,
   });
+
   factory EntityTypesEvaluationMetrics.fromJson(Map<String, dynamic> json) {
     return EntityTypesEvaluationMetrics(
       f1Score: json['F1Score'] as double?,
@@ -7047,6 +7113,7 @@ class EntityTypesListItem {
   EntityTypesListItem({
     required this.type,
   });
+
   factory EntityTypesListItem.fromJson(Map<String, dynamic> json) {
     return EntityTypesListItem(
       type: json['Type'] as String,
@@ -7086,6 +7153,7 @@ class EventsDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory EventsDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return EventsDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -7162,6 +7230,7 @@ class EventsDetectionJobProperties {
     this.submitTime,
     this.targetEventTypes,
   });
+
   factory EventsDetectionJobProperties.fromJson(Map<String, dynamic> json) {
     return EventsDetectionJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -7247,6 +7316,7 @@ class InputDataConfig {
     required this.s3Uri,
     this.inputFormat,
   });
+
   factory InputDataConfig.fromJson(Map<String, dynamic> json) {
     return InputDataConfig(
       s3Uri: json['S3Uri'] as String,
@@ -7369,6 +7439,7 @@ class KeyPhrase {
     this.score,
     this.text,
   });
+
   factory KeyPhrase.fromJson(Map<String, dynamic> json) {
     return KeyPhrase(
       beginOffset: json['BeginOffset'] as int?,
@@ -7418,6 +7489,7 @@ class KeyPhrasesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory KeyPhrasesDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return KeyPhrasesDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -7517,6 +7589,7 @@ class KeyPhrasesDetectionJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory KeyPhrasesDetectionJobProperties.fromJson(Map<String, dynamic> json) {
     return KeyPhrasesDetectionJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -7662,6 +7735,7 @@ class ListDocumentClassificationJobsResponse {
     this.documentClassificationJobPropertiesList,
     this.nextToken,
   });
+
   factory ListDocumentClassificationJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDocumentClassificationJobsResponse(
@@ -7699,6 +7773,7 @@ class ListDocumentClassifiersResponse {
     this.documentClassifierPropertiesList,
     this.nextToken,
   });
+
   factory ListDocumentClassifiersResponse.fromJson(Map<String, dynamic> json) {
     return ListDocumentClassifiersResponse(
       documentClassifierPropertiesList:
@@ -7735,6 +7810,7 @@ class ListDominantLanguageDetectionJobsResponse {
     this.dominantLanguageDetectionJobPropertiesList,
     this.nextToken,
   });
+
   factory ListDominantLanguageDetectionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDominantLanguageDetectionJobsResponse(
@@ -7773,6 +7849,7 @@ class ListEndpointsResponse {
     this.endpointPropertiesList,
     this.nextToken,
   });
+
   factory ListEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return ListEndpointsResponse(
       endpointPropertiesList: (json['EndpointPropertiesList'] as List?)
@@ -7806,6 +7883,7 @@ class ListEntitiesDetectionJobsResponse {
     this.entitiesDetectionJobPropertiesList,
     this.nextToken,
   });
+
   factory ListEntitiesDetectionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListEntitiesDetectionJobsResponse(
@@ -7843,6 +7921,7 @@ class ListEntityRecognizersResponse {
     this.entityRecognizerPropertiesList,
     this.nextToken,
   });
+
   factory ListEntityRecognizersResponse.fromJson(Map<String, dynamic> json) {
     return ListEntityRecognizersResponse(
       entityRecognizerPropertiesList: (json['EntityRecognizerPropertiesList']
@@ -7877,6 +7956,7 @@ class ListEventsDetectionJobsResponse {
     this.eventsDetectionJobPropertiesList,
     this.nextToken,
   });
+
   factory ListEventsDetectionJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListEventsDetectionJobsResponse(
       eventsDetectionJobPropertiesList:
@@ -7913,6 +7993,7 @@ class ListKeyPhrasesDetectionJobsResponse {
     this.keyPhrasesDetectionJobPropertiesList,
     this.nextToken,
   });
+
   factory ListKeyPhrasesDetectionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListKeyPhrasesDetectionJobsResponse(
@@ -7951,6 +8032,7 @@ class ListPiiEntitiesDetectionJobsResponse {
     this.nextToken,
     this.piiEntitiesDetectionJobPropertiesList,
   });
+
   factory ListPiiEntitiesDetectionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPiiEntitiesDetectionJobsResponse(
@@ -7989,6 +8071,7 @@ class ListSentimentDetectionJobsResponse {
     this.nextToken,
     this.sentimentDetectionJobPropertiesList,
   });
+
   factory ListSentimentDetectionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListSentimentDetectionJobsResponse(
@@ -8030,6 +8113,7 @@ class ListTagsForResourceResponse {
     this.resourceArn,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       resourceArn: json['ResourceArn'] as String?,
@@ -8061,6 +8145,7 @@ class ListTopicsDetectionJobsResponse {
     this.nextToken,
     this.topicsDetectionJobPropertiesList,
   });
+
   factory ListTopicsDetectionJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListTopicsDetectionJobsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8179,6 +8264,7 @@ class OutputDataConfig {
     required this.s3Uri,
     this.kmsKeyId,
   });
+
   factory OutputDataConfig.fromJson(Map<String, dynamic> json) {
     return OutputDataConfig(
       s3Uri: json['S3Uri'] as String,
@@ -8212,6 +8298,7 @@ class PartOfSpeechTag {
     this.score,
     this.tag,
   });
+
   factory PartOfSpeechTag.fromJson(Map<String, dynamic> json) {
     return PartOfSpeechTag(
       score: json['Score'] as double?,
@@ -8362,6 +8449,7 @@ class PiiEntitiesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory PiiEntitiesDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return PiiEntitiesDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -8449,6 +8537,7 @@ class PiiEntitiesDetectionJobProperties {
     this.redactionConfig,
     this.submitTime,
   });
+
   factory PiiEntitiesDetectionJobProperties.fromJson(
       Map<String, dynamic> json) {
     return PiiEntitiesDetectionJobProperties(
@@ -8591,6 +8680,7 @@ class PiiEntity {
     this.score,
     this.type,
   });
+
   factory PiiEntity.fromJson(Map<String, dynamic> json) {
     return PiiEntity(
       beginOffset: json['BeginOffset'] as int?,
@@ -8763,6 +8853,7 @@ class PiiOutputDataConfig {
     required this.s3Uri,
     this.kmsKeyId,
   });
+
   factory PiiOutputDataConfig.fromJson(Map<String, dynamic> json) {
     return PiiOutputDataConfig(
       s3Uri: json['S3Uri'] as String,
@@ -8798,6 +8889,7 @@ class RedactionConfig {
     this.maskMode,
     this.piiEntityTypes,
   });
+
   factory RedactionConfig.fromJson(Map<String, dynamic> json) {
     return RedactionConfig(
       maskCharacter: json['MaskCharacter'] as String?,
@@ -8848,6 +8940,7 @@ class SentimentDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory SentimentDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return SentimentDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -8947,6 +9040,7 @@ class SentimentDetectionJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory SentimentDetectionJobProperties.fromJson(Map<String, dynamic> json) {
     return SentimentDetectionJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -9027,6 +9121,7 @@ class SentimentScore {
     this.neutral,
     this.positive,
   });
+
   factory SentimentScore.fromJson(Map<String, dynamic> json) {
     return SentimentScore(
       mixed: json['Mixed'] as double?,
@@ -9122,6 +9217,7 @@ class StartDocumentClassificationJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartDocumentClassificationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartDocumentClassificationJobResponse(
@@ -9167,6 +9263,7 @@ class StartDominantLanguageDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartDominantLanguageDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartDominantLanguageDetectionJobResponse(
@@ -9219,6 +9316,7 @@ class StartEntitiesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartEntitiesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartEntitiesDetectionJobResponse(
@@ -9249,6 +9347,7 @@ class StartEventsDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartEventsDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StartEventsDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -9293,6 +9392,7 @@ class StartKeyPhrasesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartKeyPhrasesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartKeyPhrasesDetectionJobResponse(
@@ -9322,6 +9422,7 @@ class StartPiiEntitiesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartPiiEntitiesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartPiiEntitiesDetectionJobResponse(
@@ -9367,6 +9468,7 @@ class StartSentimentDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartSentimentDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartSentimentDetectionJobResponse(
@@ -9413,6 +9515,7 @@ class StartTopicsDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StartTopicsDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StartTopicsDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -9443,6 +9546,7 @@ class StopDominantLanguageDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopDominantLanguageDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StopDominantLanguageDetectionJobResponse(
@@ -9474,6 +9578,7 @@ class StopEntitiesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopEntitiesDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StopEntitiesDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -9502,6 +9607,7 @@ class StopEventsDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopEventsDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StopEventsDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -9532,6 +9638,7 @@ class StopKeyPhrasesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopKeyPhrasesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StopKeyPhrasesDetectionJobResponse(
@@ -9561,6 +9668,7 @@ class StopPiiEntitiesDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopPiiEntitiesDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StopPiiEntitiesDetectionJobResponse(
@@ -9592,6 +9700,7 @@ class StopSentimentDetectionJobResponse {
     this.jobId,
     this.jobStatus,
   });
+
   factory StopSentimentDetectionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StopSentimentDetectionJobResponse(
@@ -9612,6 +9721,7 @@ class StopSentimentDetectionJobResponse {
 
 class StopTrainingDocumentClassifierResponse {
   StopTrainingDocumentClassifierResponse();
+
   factory StopTrainingDocumentClassifierResponse.fromJson(
       Map<String, dynamic> _) {
     return StopTrainingDocumentClassifierResponse();
@@ -9624,6 +9734,7 @@ class StopTrainingDocumentClassifierResponse {
 
 class StopTrainingEntityRecognizerResponse {
   StopTrainingEntityRecognizerResponse();
+
   factory StopTrainingEntityRecognizerResponse.fromJson(
       Map<String, dynamic> _) {
     return StopTrainingEntityRecognizerResponse();
@@ -9712,6 +9823,7 @@ class SyntaxToken {
     this.text,
     this.tokenId,
   });
+
   factory SyntaxToken.fromJson(Map<String, dynamic> json) {
     return SyntaxToken(
       beginOffset: json['BeginOffset'] as int?,
@@ -9762,6 +9874,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -9781,6 +9894,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -9816,6 +9930,7 @@ class TopicsDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory TopicsDetectionJobFilter.fromJson(Map<String, dynamic> json) {
     return TopicsDetectionJobFilter(
       jobName: json['JobName'] as String?,
@@ -9916,6 +10031,7 @@ class TopicsDetectionJobProperties {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory TopicsDetectionJobProperties.fromJson(Map<String, dynamic> json) {
     return TopicsDetectionJobProperties(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String?,
@@ -9973,6 +10089,7 @@ class TopicsDetectionJobProperties {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -9984,6 +10101,7 @@ class UntagResourceResponse {
 
 class UpdateEndpointResponse {
   UpdateEndpointResponse();
+
   factory UpdateEndpointResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEndpointResponse();
   }
@@ -10021,6 +10139,7 @@ class VpcConfig {
     required this.securityGroupIds,
     required this.subnets,
   });
+
   factory VpcConfig.fromJson(Map<String, dynamic> json) {
     return VpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List)

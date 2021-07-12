@@ -448,6 +448,7 @@ class CancelChangeSetResponse {
     this.changeSetArn,
     this.changeSetId,
   });
+
   factory CancelChangeSetResponse.fromJson(Map<String, dynamic> json) {
     return CancelChangeSetResponse(
       changeSetArn: json['ChangeSetArn'] as String?,
@@ -489,6 +490,7 @@ class Change {
     required this.entity,
     this.changeName,
   });
+
   factory Change.fromJson(Map<String, dynamic> json) {
     return Change(
       changeType: json['ChangeType'] as String,
@@ -558,6 +560,7 @@ class ChangeSetSummaryListItem {
     this.startTime,
     this.status,
   });
+
   factory ChangeSetSummaryListItem.fromJson(Map<String, dynamic> json) {
     return ChangeSetSummaryListItem(
       changeSetArn: json['ChangeSetArn'] as String?,
@@ -665,6 +668,7 @@ class ChangeSummary {
     this.entity,
     this.errorDetailList,
   });
+
   factory ChangeSummary.fromJson(Map<String, dynamic> json) {
     return ChangeSummary(
       changeName: json['ChangeName'] as String?,
@@ -746,6 +750,7 @@ class DescribeChangeSetResponse {
     this.startTime,
     this.status,
   });
+
   factory DescribeChangeSetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChangeSetResponse(
       changeSet: (json['ChangeSet'] as List?)
@@ -814,6 +819,7 @@ class DescribeEntityResponse {
     this.entityType,
     this.lastModifiedDate,
   });
+
   factory DescribeEntityResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEntityResponse(
       details: json['Details'] as String?,
@@ -853,6 +859,7 @@ class Entity {
     required this.type,
     this.identifier,
   });
+
   factory Entity.fromJson(Map<String, dynamic> json) {
     return Entity(
       type: json['Type'] as String,
@@ -906,6 +913,7 @@ class EntitySummary {
     this.name,
     this.visibility,
   });
+
   factory EntitySummary.fromJson(Map<String, dynamic> json) {
     return EntitySummary(
       entityArn: json['EntityArn'] as String?,
@@ -947,6 +955,7 @@ class ErrorDetail {
     this.errorCode,
     this.errorMessage,
   });
+
   factory ErrorDetail.fromJson(Map<String, dynamic> json) {
     return ErrorDetail(
       errorCode: json['ErrorCode'] as String?,
@@ -1043,6 +1052,7 @@ class Filter {
     this.name,
     this.valueList,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String?,
@@ -1075,6 +1085,7 @@ class ListChangeSetsResponse {
     this.changeSetSummaryList,
     this.nextToken,
   });
+
   factory ListChangeSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListChangeSetsResponse(
       changeSetSummaryList: (json['ChangeSetSummaryList'] as List?)
@@ -1108,6 +1119,7 @@ class ListEntitiesResponse {
     this.entitySummaryList,
     this.nextToken,
   });
+
   factory ListEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return ListEntitiesResponse(
       entitySummaryList: (json['EntitySummaryList'] as List?)
@@ -1147,6 +1159,7 @@ class Sort {
     this.sortBy,
     this.sortOrder,
   });
+
   factory Sort.fromJson(Map<String, dynamic> json) {
     return Sort(
       sortBy: json['SortBy'] as String?,
@@ -1203,6 +1216,7 @@ class StartChangeSetResponse {
     this.changeSetArn,
     this.changeSetId,
   });
+
   factory StartChangeSetResponse.fromJson(Map<String, dynamic> json) {
     return StartChangeSetResponse(
       changeSetArn: json['ChangeSetArn'] as String?,

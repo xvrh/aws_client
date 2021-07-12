@@ -2131,6 +2131,7 @@ class SecurityHub {
 
 class AcceptAdministratorInvitationResponse {
   AcceptAdministratorInvitationResponse();
+
   factory AcceptAdministratorInvitationResponse.fromJson(
       Map<String, dynamic> _) {
     return AcceptAdministratorInvitationResponse();
@@ -2143,6 +2144,7 @@ class AcceptAdministratorInvitationResponse {
 
 class AcceptInvitationResponse {
   AcceptInvitationResponse();
+
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
   }
@@ -2164,6 +2166,7 @@ class AccountDetails {
     required this.accountId,
     this.email,
   });
+
   factory AccountDetails.fromJson(Map<String, dynamic> json) {
     return AccountDetails(
       accountId: json['AccountId'] as String,
@@ -2240,6 +2243,7 @@ class Action {
     this.networkConnectionAction,
     this.portProbeAction,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       actionType: json['ActionType'] as String?,
@@ -2287,6 +2291,7 @@ class ActionLocalIpDetails {
   ActionLocalIpDetails({
     this.ipAddressV4,
   });
+
   factory ActionLocalIpDetails.fromJson(Map<String, dynamic> json) {
     return ActionLocalIpDetails(
       ipAddressV4: json['IpAddressV4'] as String?,
@@ -2315,6 +2320,7 @@ class ActionLocalPortDetails {
     this.port,
     this.portName,
   });
+
   factory ActionLocalPortDetails.fromJson(Map<String, dynamic> json) {
     return ActionLocalPortDetails(
       port: json['Port'] as int?,
@@ -2359,6 +2365,7 @@ class ActionRemoteIpDetails {
     this.ipAddressV4,
     this.organization,
   });
+
   factory ActionRemoteIpDetails.fromJson(Map<String, dynamic> json) {
     return ActionRemoteIpDetails(
       city: json['City'] != null
@@ -2407,6 +2414,7 @@ class ActionRemotePortDetails {
     this.port,
     this.portName,
   });
+
   factory ActionRemotePortDetails.fromJson(Map<String, dynamic> json) {
     return ActionRemotePortDetails(
       port: json['Port'] as int?,
@@ -2440,6 +2448,7 @@ class ActionTarget {
     required this.description,
     required this.name,
   });
+
   factory ActionTarget.fromJson(Map<String, dynamic> json) {
     return ActionTarget(
       actionTargetArn: json['ActionTargetArn'] as String,
@@ -2474,6 +2483,7 @@ class AdminAccount {
     this.accountId,
     this.status,
   });
+
   factory AdminAccount.fromJson(Map<String, dynamic> json) {
     return AdminAccount(
       accountId: json['AccountId'] as String?,
@@ -2531,6 +2541,7 @@ class AvailabilityZone {
     this.subnetId,
     this.zoneName,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       subnetId: json['SubnetId'] as String?,
@@ -2590,6 +2601,7 @@ class AwsApiCallAction {
     this.remoteIpDetails,
     this.serviceName,
   });
+
   factory AwsApiCallAction.fromJson(Map<String, dynamic> json) {
     return AwsApiCallAction(
       affectedResources: (json['AffectedResources'] as Map<String, dynamic>?)
@@ -2641,6 +2653,7 @@ class AwsApiCallActionDomainDetails {
   AwsApiCallActionDomainDetails({
     this.domain,
   });
+
   factory AwsApiCallActionDomainDetails.fromJson(Map<String, dynamic> json) {
     return AwsApiCallActionDomainDetails(
       domain: json['Domain'] as String?,
@@ -2669,6 +2682,7 @@ class AwsApiGatewayAccessLogSettings {
     this.destinationArn,
     this.format,
   });
+
   factory AwsApiGatewayAccessLogSettings.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayAccessLogSettings(
       destinationArn: json['DestinationArn'] as String?,
@@ -2710,6 +2724,7 @@ class AwsApiGatewayCanarySettings {
     this.stageVariableOverrides,
     this.useStageCache,
   });
+
   factory AwsApiGatewayCanarySettings.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayCanarySettings(
       deploymentId: json['DeploymentId'] as String?,
@@ -2748,6 +2763,7 @@ class AwsApiGatewayEndpointConfiguration {
   AwsApiGatewayEndpointConfiguration({
     this.types,
   });
+
   factory AwsApiGatewayEndpointConfiguration.fromJson(
       Map<String, dynamic> json) {
     return AwsApiGatewayEndpointConfiguration(
@@ -2843,6 +2859,7 @@ class AwsApiGatewayMethodSettings {
     this.throttlingRateLimit,
     this.unauthorizedCacheControlHeaderStrategy,
   });
+
   factory AwsApiGatewayMethodSettings.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayMethodSettings(
       cacheDataEncrypted: json['CacheDataEncrypted'] as bool?,
@@ -2955,6 +2972,7 @@ class AwsApiGatewayRestApiDetails {
     this.name,
     this.version,
   });
+
   factory AwsApiGatewayRestApiDetails.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayRestApiDetails(
       apiKeySource: json['ApiKeySource'] as String?,
@@ -3095,6 +3113,7 @@ class AwsApiGatewayStageDetails {
     this.variables,
     this.webAclArn,
   });
+
   factory AwsApiGatewayStageDetails.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayStageDetails(
       accessLogSettings: json['AccessLogSettings'] != null
@@ -3231,6 +3250,7 @@ class AwsApiGatewayV2ApiDetails {
     this.routeSelectionExpression,
     this.version,
   });
+
   factory AwsApiGatewayV2ApiDetails.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayV2ApiDetails(
       apiEndpoint: json['ApiEndpoint'] as String?,
@@ -3312,6 +3332,7 @@ class AwsApiGatewayV2RouteSettings {
     this.throttlingBurstLimit,
     this.throttlingRateLimit,
   });
+
   factory AwsApiGatewayV2RouteSettings.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayV2RouteSettings(
       dataTraceEnabled: json['DataTraceEnabled'] as bool?,
@@ -3425,6 +3446,7 @@ class AwsApiGatewayV2StageDetails {
     this.stageName,
     this.stageVariables,
   });
+
   factory AwsApiGatewayV2StageDetails.fromJson(Map<String, dynamic> json) {
     return AwsApiGatewayV2StageDetails(
       accessLogSettings: json['AccessLogSettings'] != null
@@ -3519,6 +3541,7 @@ class AwsAutoScalingAutoScalingGroupDetails {
     this.launchConfigurationName,
     this.loadBalancerNames,
   });
+
   factory AwsAutoScalingAutoScalingGroupDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsAutoScalingAutoScalingGroupDetails(
@@ -3722,6 +3745,7 @@ class AwsCertificateManagerCertificateDetails {
     this.subjectAlternativeNames,
     this.type,
   });
+
   factory AwsCertificateManagerCertificateDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateDetails(
@@ -3872,6 +3896,7 @@ class AwsCertificateManagerCertificateDomainValidationOption {
     this.validationMethod,
     this.validationStatus,
   });
+
   factory AwsCertificateManagerCertificateDomainValidationOption.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateDomainValidationOption(
@@ -3923,6 +3948,7 @@ class AwsCertificateManagerCertificateExtendedKeyUsage {
     this.name,
     this.oId,
   });
+
   factory AwsCertificateManagerCertificateExtendedKeyUsage.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateExtendedKeyUsage(
@@ -3949,6 +3975,7 @@ class AwsCertificateManagerCertificateKeyUsage {
   AwsCertificateManagerCertificateKeyUsage({
     this.name,
   });
+
   factory AwsCertificateManagerCertificateKeyUsage.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateKeyUsage(
@@ -3974,6 +4001,7 @@ class AwsCertificateManagerCertificateOptions {
   AwsCertificateManagerCertificateOptions({
     this.certificateTransparencyLoggingPreference,
   });
+
   factory AwsCertificateManagerCertificateOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateOptions(
@@ -4037,6 +4065,7 @@ class AwsCertificateManagerCertificateRenewalSummary {
     this.renewalStatusReason,
     this.updatedAt,
   });
+
   factory AwsCertificateManagerCertificateRenewalSummary.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateRenewalSummary(
@@ -4085,6 +4114,7 @@ class AwsCertificateManagerCertificateResourceRecord {
     this.type,
     this.value,
   });
+
   factory AwsCertificateManagerCertificateResourceRecord.fromJson(
       Map<String, dynamic> json) {
     return AwsCertificateManagerCertificateResourceRecord(
@@ -4130,6 +4160,7 @@ class AwsCloudFrontDistributionCacheBehavior {
   AwsCloudFrontDistributionCacheBehavior({
     this.viewerProtocolPolicy,
   });
+
   factory AwsCloudFrontDistributionCacheBehavior.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionCacheBehavior(
@@ -4154,6 +4185,7 @@ class AwsCloudFrontDistributionCacheBehaviors {
   AwsCloudFrontDistributionCacheBehaviors({
     this.items,
   });
+
   factory AwsCloudFrontDistributionCacheBehaviors.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionCacheBehaviors(
@@ -4198,6 +4230,7 @@ class AwsCloudFrontDistributionDefaultCacheBehavior {
   AwsCloudFrontDistributionDefaultCacheBehavior({
     this.viewerProtocolPolicy,
   });
+
   factory AwsCloudFrontDistributionDefaultCacheBehavior.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionDefaultCacheBehavior(
@@ -4273,6 +4306,7 @@ class AwsCloudFrontDistributionDetails {
     this.status,
     this.webAclId,
   });
+
   factory AwsCloudFrontDistributionDetails.fromJson(Map<String, dynamic> json) {
     return AwsCloudFrontDistributionDetails(
       cacheBehaviors: json['CacheBehaviors'] != null
@@ -4355,6 +4389,7 @@ class AwsCloudFrontDistributionLogging {
     this.includeCookies,
     this.prefix,
   });
+
   factory AwsCloudFrontDistributionLogging.fromJson(Map<String, dynamic> json) {
     return AwsCloudFrontDistributionLogging(
       bucket: json['Bucket'] as String?,
@@ -4386,6 +4421,7 @@ class AwsCloudFrontDistributionOriginGroup {
   AwsCloudFrontDistributionOriginGroup({
     this.failoverCriteria,
   });
+
   factory AwsCloudFrontDistributionOriginGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginGroup(
@@ -4412,6 +4448,7 @@ class AwsCloudFrontDistributionOriginGroupFailover {
   AwsCloudFrontDistributionOriginGroupFailover({
     this.statusCodes,
   });
+
   factory AwsCloudFrontDistributionOriginGroupFailover.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginGroupFailover(
@@ -4442,6 +4479,7 @@ class AwsCloudFrontDistributionOriginGroupFailoverStatusCodes {
     this.items,
     this.quantity,
   });
+
   factory AwsCloudFrontDistributionOriginGroupFailoverStatusCodes.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginGroupFailoverStatusCodes(
@@ -4472,6 +4510,7 @@ class AwsCloudFrontDistributionOriginGroups {
   AwsCloudFrontDistributionOriginGroups({
     this.items,
   });
+
   factory AwsCloudFrontDistributionOriginGroups.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginGroups(
@@ -4516,6 +4555,7 @@ class AwsCloudFrontDistributionOriginItem {
     this.originPath,
     this.s3OriginConfig,
   });
+
   factory AwsCloudFrontDistributionOriginItem.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginItem(
@@ -4552,6 +4592,7 @@ class AwsCloudFrontDistributionOriginS3OriginConfig {
   AwsCloudFrontDistributionOriginS3OriginConfig({
     this.originAccessIdentity,
   });
+
   factory AwsCloudFrontDistributionOriginS3OriginConfig.fromJson(
       Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOriginS3OriginConfig(
@@ -4577,6 +4618,7 @@ class AwsCloudFrontDistributionOrigins {
   AwsCloudFrontDistributionOrigins({
     this.items,
   });
+
   factory AwsCloudFrontDistributionOrigins.fromJson(Map<String, dynamic> json) {
     return AwsCloudFrontDistributionOrigins(
       items: (json['Items'] as List?)
@@ -4666,6 +4708,7 @@ class AwsCloudTrailTrailDetails {
     this.snsTopicName,
     this.trailArn,
   });
+
   factory AwsCloudTrailTrailDetails.fromJson(Map<String, dynamic> json) {
     return AwsCloudTrailTrailDetails(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,
@@ -4761,6 +4804,7 @@ class AwsCodeBuildProjectDetails {
     this.source,
     this.vpcConfig,
   });
+
   factory AwsCodeBuildProjectDetails.fromJson(Map<String, dynamic> json) {
     return AwsCodeBuildProjectDetails(
       encryptionKey: json['EncryptionKey'] as String?,
@@ -4857,6 +4901,7 @@ class AwsCodeBuildProjectEnvironment {
     this.registryCredential,
     this.type,
   });
+
   factory AwsCodeBuildProjectEnvironment.fromJson(Map<String, dynamic> json) {
     return AwsCodeBuildProjectEnvironment(
       certificate: json['Certificate'] as String?,
@@ -4903,6 +4948,7 @@ class AwsCodeBuildProjectEnvironmentRegistryCredential {
     this.credential,
     this.credentialProvider,
   });
+
   factory AwsCodeBuildProjectEnvironmentRegistryCredential.fromJson(
       Map<String, dynamic> json) {
     return AwsCodeBuildProjectEnvironmentRegistryCredential(
@@ -5008,6 +5054,7 @@ class AwsCodeBuildProjectSource {
     this.location,
     this.type,
   });
+
   factory AwsCodeBuildProjectSource.fromJson(Map<String, dynamic> json) {
     return AwsCodeBuildProjectSource(
       gitCloneDepth: json['GitCloneDepth'] as int?,
@@ -5047,6 +5094,7 @@ class AwsCodeBuildProjectVpcConfig {
     this.subnets,
     this.vpcId,
   });
+
   factory AwsCodeBuildProjectVpcConfig.fromJson(Map<String, dynamic> json) {
     return AwsCodeBuildProjectVpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -5103,6 +5151,7 @@ class AwsCorsConfiguration {
     this.exposeHeaders,
     this.maxAge,
   });
+
   factory AwsCorsConfiguration.fromJson(Map<String, dynamic> json) {
     return AwsCorsConfiguration(
       allowCredentials: json['AllowCredentials'] as bool?,
@@ -5156,6 +5205,7 @@ class AwsDynamoDbTableAttributeDefinition {
     this.attributeName,
     this.attributeType,
   });
+
   factory AwsDynamoDbTableAttributeDefinition.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableAttributeDefinition(
@@ -5193,6 +5243,7 @@ class AwsDynamoDbTableBillingModeSummary {
     this.billingMode,
     this.lastUpdateToPayPerRequestDateTime,
   });
+
   factory AwsDynamoDbTableBillingModeSummary.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableBillingModeSummary(
@@ -5299,6 +5350,7 @@ class AwsDynamoDbTableDetails {
     this.tableSizeBytes,
     this.tableStatus,
   });
+
   factory AwsDynamoDbTableDetails.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableDetails(
       attributeDefinitions: (json['AttributeDefinitions'] as List?)
@@ -5447,6 +5499,7 @@ class AwsDynamoDbTableGlobalSecondaryIndex {
     this.projection,
     this.provisionedThroughput,
   });
+
   factory AwsDynamoDbTableGlobalSecondaryIndex.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableGlobalSecondaryIndex(
@@ -5510,6 +5563,7 @@ class AwsDynamoDbTableKeySchema {
     this.attributeName,
     this.keyType,
   });
+
   factory AwsDynamoDbTableKeySchema.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableKeySchema(
       attributeName: json['AttributeName'] as String?,
@@ -5549,6 +5603,7 @@ class AwsDynamoDbTableLocalSecondaryIndex {
     this.keySchema,
     this.projection,
   });
+
   factory AwsDynamoDbTableLocalSecondaryIndex.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableLocalSecondaryIndex(
@@ -5594,6 +5649,7 @@ class AwsDynamoDbTableProjection {
     this.nonKeyAttributes,
     this.projectionType,
   });
+
   factory AwsDynamoDbTableProjection.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableProjection(
       nonKeyAttributes: (json['NonKeyAttributes'] as List?)
@@ -5652,6 +5708,7 @@ class AwsDynamoDbTableProvisionedThroughput {
     this.readCapacityUnits,
     this.writeCapacityUnits,
   });
+
   factory AwsDynamoDbTableProvisionedThroughput.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableProvisionedThroughput(
@@ -5690,6 +5747,7 @@ class AwsDynamoDbTableProvisionedThroughputOverride {
   AwsDynamoDbTableProvisionedThroughputOverride({
     this.readCapacityUnits,
   });
+
   factory AwsDynamoDbTableProvisionedThroughputOverride.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableProvisionedThroughputOverride(
@@ -5736,6 +5794,7 @@ class AwsDynamoDbTableReplica {
     this.replicaStatus,
     this.replicaStatusDescription,
   });
+
   factory AwsDynamoDbTableReplica.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableReplica(
       globalSecondaryIndexes: (json['GlobalSecondaryIndexes'] as List?)
@@ -5789,6 +5848,7 @@ class AwsDynamoDbTableReplicaGlobalSecondaryIndex {
     this.indexName,
     this.provisionedThroughputOverride,
   });
+
   factory AwsDynamoDbTableReplicaGlobalSecondaryIndex.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableReplicaGlobalSecondaryIndex(
@@ -5837,6 +5897,7 @@ class AwsDynamoDbTableRestoreSummary {
     this.sourceBackupArn,
     this.sourceTableArn,
   });
+
   factory AwsDynamoDbTableRestoreSummary.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableRestoreSummary(
       restoreDateTime: json['RestoreDateTime'] as String?,
@@ -5887,6 +5948,7 @@ class AwsDynamoDbTableSseDescription {
     this.sseType,
     this.status,
   });
+
   factory AwsDynamoDbTableSseDescription.fromJson(Map<String, dynamic> json) {
     return AwsDynamoDbTableSseDescription(
       inaccessibleEncryptionDateTime:
@@ -5924,6 +5986,7 @@ class AwsDynamoDbTableStreamSpecification {
     this.streamEnabled,
     this.streamViewType,
   });
+
   factory AwsDynamoDbTableStreamSpecification.fromJson(
       Map<String, dynamic> json) {
     return AwsDynamoDbTableStreamSpecification(
@@ -5993,6 +6056,7 @@ class AwsEc2EipDetails {
     this.publicIp,
     this.publicIpv4Pool,
   });
+
   factory AwsEc2EipDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2EipDetails(
       allocationId: json['AllocationId'] as String?,
@@ -6086,6 +6150,7 @@ class AwsEc2InstanceDetails {
     this.type,
     this.vpcId,
   });
+
   factory AwsEc2InstanceDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2InstanceDetails(
       iamInstanceProfileArn: json['IamInstanceProfileArn'] as String?,
@@ -6147,6 +6212,7 @@ class AwsEc2InstanceNetworkInterfacesDetails {
   AwsEc2InstanceNetworkInterfacesDetails({
     this.networkInterfaceId,
   });
+
   factory AwsEc2InstanceNetworkInterfacesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEc2InstanceNetworkInterfacesDetails(
@@ -6178,6 +6244,7 @@ class AwsEc2NetworkAclAssociation {
     this.networkAclId,
     this.subnetId,
   });
+
   factory AwsEc2NetworkAclAssociation.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkAclAssociation(
       networkAclAssociationId: json['NetworkAclAssociationId'] as String?,
@@ -6227,6 +6294,7 @@ class AwsEc2NetworkAclDetails {
     this.ownerId,
     this.vpcId,
   });
+
   factory AwsEc2NetworkAclDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkAclDetails(
       associations: (json['Associations'] as List?)
@@ -6303,6 +6371,7 @@ class AwsEc2NetworkAclEntry {
     this.ruleAction,
     this.ruleNumber,
   });
+
   factory AwsEc2NetworkAclEntry.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkAclEntry(
       cidrBlock: json['CidrBlock'] as String?,
@@ -6383,6 +6452,7 @@ class AwsEc2NetworkInterfaceAttachment {
     this.instanceOwnerId,
     this.status,
   });
+
   factory AwsEc2NetworkInterfaceAttachment.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkInterfaceAttachment(
       attachTime: json['AttachTime'] as String?,
@@ -6452,6 +6522,7 @@ class AwsEc2NetworkInterfaceDetails {
     this.securityGroups,
     this.sourceDestCheck,
   });
+
   factory AwsEc2NetworkInterfaceDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkInterfaceDetails(
       attachment: json['Attachment'] != null
@@ -6511,6 +6582,7 @@ class AwsEc2NetworkInterfaceIpV6AddressDetail {
   AwsEc2NetworkInterfaceIpV6AddressDetail({
     this.ipV6Address,
   });
+
   factory AwsEc2NetworkInterfaceIpV6AddressDetail.fromJson(
       Map<String, dynamic> json) {
     return AwsEc2NetworkInterfaceIpV6AddressDetail(
@@ -6539,6 +6611,7 @@ class AwsEc2NetworkInterfacePrivateIpAddressDetail {
     this.privateDnsName,
     this.privateIpAddress,
   });
+
   factory AwsEc2NetworkInterfacePrivateIpAddressDetail.fromJson(
       Map<String, dynamic> json) {
     return AwsEc2NetworkInterfacePrivateIpAddressDetail(
@@ -6569,6 +6642,7 @@ class AwsEc2NetworkInterfaceSecurityGroup {
     this.groupId,
     this.groupName,
   });
+
   factory AwsEc2NetworkInterfaceSecurityGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsEc2NetworkInterfaceSecurityGroup(
@@ -6615,6 +6689,7 @@ class AwsEc2SecurityGroupDetails {
     this.ownerId,
     this.vpcId,
   });
+
   factory AwsEc2SecurityGroupDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2SecurityGroupDetails(
       groupId: json['GroupId'] as String?,
@@ -6709,6 +6784,7 @@ class AwsEc2SecurityGroupIpPermission {
     this.toPort,
     this.userIdGroupPairs,
   });
+
   factory AwsEc2SecurityGroupIpPermission.fromJson(Map<String, dynamic> json) {
     return AwsEc2SecurityGroupIpPermission(
       fromPort: json['FromPort'] as int?,
@@ -6767,6 +6843,7 @@ class AwsEc2SecurityGroupIpRange {
   AwsEc2SecurityGroupIpRange({
     this.cidrIp,
   });
+
   factory AwsEc2SecurityGroupIpRange.fromJson(Map<String, dynamic> json) {
     return AwsEc2SecurityGroupIpRange(
       cidrIp: json['CidrIp'] as String?,
@@ -6791,6 +6868,7 @@ class AwsEc2SecurityGroupIpv6Range {
   AwsEc2SecurityGroupIpv6Range({
     this.cidrIpv6,
   });
+
   factory AwsEc2SecurityGroupIpv6Range.fromJson(Map<String, dynamic> json) {
     return AwsEc2SecurityGroupIpv6Range(
       cidrIpv6: json['CidrIpv6'] as String?,
@@ -6813,6 +6891,7 @@ class AwsEc2SecurityGroupPrefixListId {
   AwsEc2SecurityGroupPrefixListId({
     this.prefixListId,
   });
+
   factory AwsEc2SecurityGroupPrefixListId.fromJson(Map<String, dynamic> json) {
     return AwsEc2SecurityGroupPrefixListId(
       prefixListId: json['PrefixListId'] as String?,
@@ -6862,6 +6941,7 @@ class AwsEc2SecurityGroupUserIdGroupPair {
     this.vpcId,
     this.vpcPeeringConnectionId,
   });
+
   factory AwsEc2SecurityGroupUserIdGroupPair.fromJson(
       Map<String, dynamic> json) {
     return AwsEc2SecurityGroupUserIdGroupPair(
@@ -6951,6 +7031,7 @@ class AwsEc2SubnetDetails {
     this.subnetId,
     this.vpcId,
   });
+
   factory AwsEc2SubnetDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2SubnetDetails(
       assignIpv6AddressOnCreation: json['AssignIpv6AddressOnCreation'] as bool?,
@@ -7030,6 +7111,7 @@ class AwsEc2VolumeAttachment {
     this.instanceId,
     this.status,
   });
+
   factory AwsEc2VolumeAttachment.fromJson(Map<String, dynamic> json) {
     return AwsEc2VolumeAttachment(
       attachTime: json['AttachTime'] as String?,
@@ -7092,6 +7174,7 @@ class AwsEc2VolumeDetails {
     this.snapshotId,
     this.status,
   });
+
   factory AwsEc2VolumeDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2VolumeDetails(
       attachments: (json['Attachments'] as List?)
@@ -7150,6 +7233,7 @@ class AwsEc2VpcDetails {
     this.ipv6CidrBlockAssociationSet,
     this.state,
   });
+
   factory AwsEc2VpcDetails.fromJson(Map<String, dynamic> json) {
     return AwsEc2VpcDetails(
       cidrBlockAssociationSet: (json['CidrBlockAssociationSet'] as List?)
@@ -7196,6 +7280,7 @@ class AwsEcsClusterClusterSettingsDetails {
     this.name,
     this.value,
   });
+
   factory AwsEcsClusterClusterSettingsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsClusterClusterSettingsDetails(
@@ -7223,6 +7308,7 @@ class AwsEcsClusterConfigurationDetails {
   AwsEcsClusterConfigurationDetails({
     this.executeCommandConfiguration,
   });
+
   factory AwsEcsClusterConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsClusterConfigurationDetails(
@@ -7262,6 +7348,7 @@ class AwsEcsClusterConfigurationExecuteCommandConfigurationDetails {
     this.logConfiguration,
     this.logging,
   });
+
   factory AwsEcsClusterConfigurationExecuteCommandConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsClusterConfigurationExecuteCommandConfigurationDetails(
@@ -7310,6 +7397,7 @@ class AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetai
     this.s3EncryptionEnabled,
     this.s3KeyPrefix,
   });
+
   factory AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails(
@@ -7359,6 +7447,7 @@ class AwsEcsClusterDefaultCapacityProviderStrategyDetails {
     this.capacityProvider,
     this.weight,
   });
+
   factory AwsEcsClusterDefaultCapacityProviderStrategyDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsClusterDefaultCapacityProviderStrategyDetails(
@@ -7405,6 +7494,7 @@ class AwsEcsClusterDetails {
     this.configuration,
     this.defaultCapacityProviderStrategy,
   });
+
   factory AwsEcsClusterDetails.fromJson(Map<String, dynamic> json) {
     return AwsEcsClusterDetails(
       capacityProviders: (json['CapacityProviders'] as List?)
@@ -7459,6 +7549,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails {
     this.condition,
     this.containerName,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails(
@@ -7690,6 +7781,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsDetails {
     this.volumesFrom,
     this.workingDirectory,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsDetails(
@@ -7921,6 +8013,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails {
     this.name,
     this.value,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails(
@@ -7951,6 +8044,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails {
     this.type,
     this.value,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails(
@@ -7982,6 +8076,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails {
     this.hostname,
     this.ipAddress,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails(
@@ -8030,6 +8125,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails {
     this.options,
     this.type,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails(
@@ -8079,6 +8175,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
     this.startPeriod,
     this.timeout,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails(
@@ -8124,6 +8221,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails
     this.add,
     this.drop,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails(
@@ -8190,6 +8288,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
     this.swappiness,
     this.tmpfs,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails(
@@ -8254,6 +8353,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails {
     this.hostPath,
     this.permissions,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails(
@@ -8294,6 +8394,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails {
     this.mountOptions,
     this.size,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails(
@@ -8337,6 +8438,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails {
     this.options,
     this.secretOptions,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails(
@@ -8379,6 +8481,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetai
     this.name,
     this.valueFrom,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails(
@@ -8414,6 +8517,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails {
     this.readOnly,
     this.sourceVolume,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails(
@@ -8452,6 +8556,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails {
     this.hostPort,
     this.protocol,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails(
@@ -8481,6 +8586,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails {
   AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails({
     this.credentialsParameter,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails(
@@ -8516,6 +8622,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails {
     this.type,
     this.value,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails(
@@ -8548,6 +8655,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails {
     this.name,
     this.valueFrom,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails(
@@ -8578,6 +8686,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails {
     this.namespace,
     this.value,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails(
@@ -8612,6 +8721,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails {
     this.name,
     this.softLimit,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails(
@@ -8646,6 +8756,7 @@ class AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails {
     this.readOnly,
     this.sourceContainer,
   });
+
   factory AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails(
@@ -8731,6 +8842,7 @@ class AwsEcsTaskDefinitionDetails {
     this.taskRoleArn,
     this.volumes,
   });
+
   factory AwsEcsTaskDefinitionDetails.fromJson(Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionDetails(
       containerDefinitions: (json['ContainerDefinitions'] as List?)
@@ -8822,6 +8934,7 @@ class AwsEcsTaskDefinitionInferenceAcceleratorsDetails {
     this.deviceName,
     this.deviceType,
   });
+
   factory AwsEcsTaskDefinitionInferenceAcceleratorsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionInferenceAcceleratorsDetails(
@@ -8852,6 +8965,7 @@ class AwsEcsTaskDefinitionPlacementConstraintsDetails {
     this.expression,
     this.type,
   });
+
   factory AwsEcsTaskDefinitionPlacementConstraintsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionPlacementConstraintsDetails(
@@ -8889,6 +9003,7 @@ class AwsEcsTaskDefinitionProxyConfigurationDetails {
     this.proxyConfigurationProperties,
     this.type,
   });
+
   factory AwsEcsTaskDefinitionProxyConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionProxyConfigurationDetails(
@@ -8930,6 +9045,7 @@ class AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails 
     this.name,
     this.value,
   });
+
   factory AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails(
@@ -8971,6 +9087,7 @@ class AwsEcsTaskDefinitionVolumesDetails {
     this.host,
     this.name,
   });
+
   factory AwsEcsTaskDefinitionVolumesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionVolumesDetails(
@@ -9035,6 +9152,7 @@ class AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
     this.labels,
     this.scope,
   });
+
   factory AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails(
@@ -9077,6 +9195,7 @@ class AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetail
     this.accessPointId,
     this.iam,
   });
+
   factory AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails(
@@ -9124,6 +9243,7 @@ class AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
     this.transitEncryption,
     this.transitEncryptionPort,
   });
+
   factory AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails(
@@ -9164,6 +9284,7 @@ class AwsEcsTaskDefinitionVolumesHostDetails {
   AwsEcsTaskDefinitionVolumesHostDetails({
     this.sourcePath,
   });
+
   factory AwsEcsTaskDefinitionVolumesHostDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsEcsTaskDefinitionVolumesHostDetails(
@@ -9248,6 +9369,7 @@ class AwsElasticBeanstalkEnvironmentDetails {
     this.tier,
     this.versionLabel,
   });
+
   factory AwsElasticBeanstalkEnvironmentDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticBeanstalkEnvironmentDetails(
@@ -9332,6 +9454,7 @@ class AwsElasticBeanstalkEnvironmentEnvironmentLink {
     this.environmentName,
     this.linkName,
   });
+
   factory AwsElasticBeanstalkEnvironmentEnvironmentLink.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticBeanstalkEnvironmentEnvironmentLink(
@@ -9370,6 +9493,7 @@ class AwsElasticBeanstalkEnvironmentOptionSetting {
     this.resourceName,
     this.value,
   });
+
   factory AwsElasticBeanstalkEnvironmentOptionSetting.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticBeanstalkEnvironmentOptionSetting(
@@ -9410,6 +9534,7 @@ class AwsElasticBeanstalkEnvironmentTier {
     this.type,
     this.version,
   });
+
   factory AwsElasticBeanstalkEnvironmentTier.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticBeanstalkEnvironmentTier(
@@ -9498,6 +9623,7 @@ class AwsElasticsearchDomainDetails {
     this.serviceSoftwareOptions,
     this.vPCOptions,
   });
+
   factory AwsElasticsearchDomainDetails.fromJson(Map<String, dynamic> json) {
     return AwsElasticsearchDomainDetails(
       accessPolicies: json['AccessPolicies'] as String?,
@@ -9595,6 +9721,7 @@ class AwsElasticsearchDomainDomainEndpointOptions {
     this.enforceHTTPS,
     this.tLSSecurityPolicy,
   });
+
   factory AwsElasticsearchDomainDomainEndpointOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainDomainEndpointOptions(
@@ -9625,6 +9752,7 @@ class AwsElasticsearchDomainEncryptionAtRestOptions {
     this.enabled,
     this.kmsKeyId,
   });
+
   factory AwsElasticsearchDomainEncryptionAtRestOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainEncryptionAtRestOptions(
@@ -9655,6 +9783,7 @@ class AwsElasticsearchDomainLogPublishingOptions {
     this.indexSlowLogs,
     this.searchSlowLogs,
   });
+
   factory AwsElasticsearchDomainLogPublishingOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainLogPublishingOptions(
@@ -9691,6 +9820,7 @@ class AwsElasticsearchDomainLogPublishingOptionsLogConfig {
     this.cloudWatchLogsLogGroupArn,
     this.enabled,
   });
+
   factory AwsElasticsearchDomainLogPublishingOptionsLogConfig.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainLogPublishingOptionsLogConfig(
@@ -9718,6 +9848,7 @@ class AwsElasticsearchDomainNodeToNodeEncryptionOptions {
   AwsElasticsearchDomainNodeToNodeEncryptionOptions({
     this.enabled,
   });
+
   factory AwsElasticsearchDomainNodeToNodeEncryptionOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainNodeToNodeEncryptionOptions(
@@ -9769,6 +9900,7 @@ class AwsElasticsearchDomainServiceSoftwareOptions {
     this.updateAvailable,
     this.updateStatus,
   });
+
   factory AwsElasticsearchDomainServiceSoftwareOptions.fromJson(
       Map<String, dynamic> json) {
     return AwsElasticsearchDomainServiceSoftwareOptions(
@@ -9825,6 +9957,7 @@ class AwsElasticsearchDomainVPCOptions {
     this.subnetIds,
     this.vPCId,
   });
+
   factory AwsElasticsearchDomainVPCOptions.fromJson(Map<String, dynamic> json) {
     return AwsElasticsearchDomainVPCOptions(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -9871,6 +10004,7 @@ class AwsElbAppCookieStickinessPolicy {
     this.cookieName,
     this.policyName,
   });
+
   factory AwsElbAppCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
     return AwsElbAppCookieStickinessPolicy(
       cookieName: json['CookieName'] as String?,
@@ -9904,6 +10038,7 @@ class AwsElbLbCookieStickinessPolicy {
     this.cookieExpirationPeriod,
     this.policyName,
   });
+
   factory AwsElbLbCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
     return AwsElbLbCookieStickinessPolicy(
       cookieExpirationPeriod: json['CookieExpirationPeriod'] as int?,
@@ -9948,6 +10083,7 @@ class AwsElbLoadBalancerAccessLog {
     this.s3BucketName,
     this.s3BucketPrefix,
   });
+
   factory AwsElbLoadBalancerAccessLog.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerAccessLog(
       emitInterval: json['EmitInterval'] as int?,
@@ -10008,6 +10144,7 @@ class AwsElbLoadBalancerAttributes {
     this.connectionSettings,
     this.crossZoneLoadBalancing,
   });
+
   factory AwsElbLoadBalancerAttributes.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerAttributes(
       accessLog: json['AccessLog'] != null
@@ -10057,6 +10194,7 @@ class AwsElbLoadBalancerBackendServerDescription {
     this.instancePort,
     this.policyNames,
   });
+
   factory AwsElbLoadBalancerBackendServerDescription.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerBackendServerDescription(
@@ -10092,6 +10230,7 @@ class AwsElbLoadBalancerConnectionDraining {
     this.enabled,
     this.timeout,
   });
+
   factory AwsElbLoadBalancerConnectionDraining.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerConnectionDraining(
@@ -10119,6 +10258,7 @@ class AwsElbLoadBalancerConnectionSettings {
   AwsElbLoadBalancerConnectionSettings({
     this.idleTimeout,
   });
+
   factory AwsElbLoadBalancerConnectionSettings.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerConnectionSettings(
@@ -10143,6 +10283,7 @@ class AwsElbLoadBalancerCrossZoneLoadBalancing {
   AwsElbLoadBalancerCrossZoneLoadBalancing({
     this.enabled,
   });
+
   factory AwsElbLoadBalancerCrossZoneLoadBalancing.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerCrossZoneLoadBalancing(
@@ -10244,6 +10385,7 @@ class AwsElbLoadBalancerDetails {
     this.subnets,
     this.vpcId,
   });
+
   factory AwsElbLoadBalancerDetails.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerDetails(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -10388,6 +10530,7 @@ class AwsElbLoadBalancerHealthCheck {
     this.timeout,
     this.unhealthyThreshold,
   });
+
   factory AwsElbLoadBalancerHealthCheck.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerHealthCheck(
       healthyThreshold: json['HealthyThreshold'] as int?,
@@ -10422,6 +10565,7 @@ class AwsElbLoadBalancerInstance {
   AwsElbLoadBalancerInstance({
     this.instanceId,
   });
+
   factory AwsElbLoadBalancerInstance.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerInstance(
       instanceId: json['InstanceId'] as String?,
@@ -10471,6 +10615,7 @@ class AwsElbLoadBalancerListener {
     this.protocol,
     this.sslCertificateId,
   });
+
   factory AwsElbLoadBalancerListener.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerListener(
       instancePort: json['InstancePort'] as int?,
@@ -10509,6 +10654,7 @@ class AwsElbLoadBalancerListenerDescription {
     this.listener,
     this.policyNames,
   });
+
   factory AwsElbLoadBalancerListenerDescription.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerListenerDescription(
@@ -10551,6 +10697,7 @@ class AwsElbLoadBalancerPolicies {
     this.lbCookieStickinessPolicies,
     this.otherPolicies,
   });
+
   factory AwsElbLoadBalancerPolicies.fromJson(Map<String, dynamic> json) {
     return AwsElbLoadBalancerPolicies(
       appCookieStickinessPolicies:
@@ -10597,6 +10744,7 @@ class AwsElbLoadBalancerSourceSecurityGroup {
     this.groupName,
     this.ownerAlias,
   });
+
   factory AwsElbLoadBalancerSourceSecurityGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsElbLoadBalancerSourceSecurityGroup(
@@ -10666,6 +10814,7 @@ class AwsElbv2LoadBalancerDetails {
     this.type,
     this.vpcId,
   });
+
   factory AwsElbv2LoadBalancerDetails.fromJson(Map<String, dynamic> json) {
     return AwsElbv2LoadBalancerDetails(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -10765,6 +10914,7 @@ class AwsIamAccessKeyDetails {
     this.status,
     this.userName,
   });
+
   factory AwsIamAccessKeyDetails.fromJson(Map<String, dynamic> json) {
     return AwsIamAccessKeyDetails(
       accessKeyId: json['AccessKeyId'] as String?,
@@ -10818,6 +10968,7 @@ class AwsIamAccessKeySessionContext {
     this.attributes,
     this.sessionIssuer,
   });
+
   factory AwsIamAccessKeySessionContext.fromJson(Map<String, dynamic> json) {
     return AwsIamAccessKeySessionContext(
       attributes: json['Attributes'] != null
@@ -10858,6 +11009,7 @@ class AwsIamAccessKeySessionContextAttributes {
     this.creationDate,
     this.mfaAuthenticated,
   });
+
   factory AwsIamAccessKeySessionContextAttributes.fromJson(
       Map<String, dynamic> json) {
     return AwsIamAccessKeySessionContextAttributes(
@@ -10901,6 +11053,7 @@ class AwsIamAccessKeySessionContextSessionIssuer {
     this.type,
     this.userName,
   });
+
   factory AwsIamAccessKeySessionContextSessionIssuer.fromJson(
       Map<String, dynamic> json) {
     return AwsIamAccessKeySessionContextSessionIssuer(
@@ -10968,6 +11121,7 @@ class AwsIamAttachedManagedPolicy {
     this.policyArn,
     this.policyName,
   });
+
   factory AwsIamAttachedManagedPolicy.fromJson(Map<String, dynamic> json) {
     return AwsIamAttachedManagedPolicy(
       policyArn: json['PolicyArn'] as String?,
@@ -11018,6 +11172,7 @@ class AwsIamGroupDetails {
     this.groupPolicyList,
     this.path,
   });
+
   factory AwsIamGroupDetails.fromJson(Map<String, dynamic> json) {
     return AwsIamGroupDetails(
       attachedManagedPolicies: (json['AttachedManagedPolicies'] as List?)
@@ -11063,6 +11218,7 @@ class AwsIamGroupPolicy {
   AwsIamGroupPolicy({
     this.policyName,
   });
+
   factory AwsIamGroupPolicy.fromJson(Map<String, dynamic> json) {
     return AwsIamGroupPolicy(
       policyName: json['PolicyName'] as String?,
@@ -11110,6 +11266,7 @@ class AwsIamInstanceProfile {
     this.path,
     this.roles,
   });
+
   factory AwsIamInstanceProfile.fromJson(Map<String, dynamic> json) {
     return AwsIamInstanceProfile(
       arn: json['Arn'] as String?,
@@ -11177,6 +11334,7 @@ class AwsIamInstanceProfileRole {
     this.roleId,
     this.roleName,
   });
+
   factory AwsIamInstanceProfileRole.fromJson(Map<String, dynamic> json) {
     return AwsIamInstanceProfileRole(
       arn: json['Arn'] as String?,
@@ -11220,6 +11378,7 @@ class AwsIamPermissionsBoundary {
     this.permissionsBoundaryArn,
     this.permissionsBoundaryType,
   });
+
   factory AwsIamPermissionsBoundary.fromJson(Map<String, dynamic> json) {
     return AwsIamPermissionsBoundary(
       permissionsBoundaryArn: json['PermissionsBoundaryArn'] as String?,
@@ -11298,6 +11457,7 @@ class AwsIamPolicyDetails {
     this.policyVersionList,
     this.updateDate,
   });
+
   factory AwsIamPolicyDetails.fromJson(Map<String, dynamic> json) {
     return AwsIamPolicyDetails(
       attachmentCount: json['AttachmentCount'] as int?,
@@ -11368,6 +11528,7 @@ class AwsIamPolicyVersion {
     this.isDefaultVersion,
     this.versionId,
   });
+
   factory AwsIamPolicyVersion.fromJson(Map<String, dynamic> json) {
     return AwsIamPolicyVersion(
       createDate: json['CreateDate'] as String?,
@@ -11437,6 +11598,7 @@ class AwsIamRoleDetails {
     this.roleName,
     this.rolePolicyList,
   });
+
   factory AwsIamRoleDetails.fromJson(Map<String, dynamic> json) {
     return AwsIamRoleDetails(
       assumeRolePolicyDocument: json['AssumeRolePolicyDocument'] as String?,
@@ -11503,6 +11665,7 @@ class AwsIamRolePolicy {
   AwsIamRolePolicy({
     this.policyName,
   });
+
   factory AwsIamRolePolicy.fromJson(Map<String, dynamic> json) {
     return AwsIamRolePolicy(
       policyName: json['PolicyName'] as String?,
@@ -11558,6 +11721,7 @@ class AwsIamUserDetails {
     this.userName,
     this.userPolicyList,
   });
+
   factory AwsIamUserDetails.fromJson(Map<String, dynamic> json) {
     return AwsIamUserDetails(
       attachedManagedPolicies: (json['AttachedManagedPolicies'] as List?)
@@ -11616,6 +11780,7 @@ class AwsIamUserPolicy {
   AwsIamUserPolicy({
     this.policyName,
   });
+
   factory AwsIamUserPolicy.fromJson(Map<String, dynamic> json) {
     return AwsIamUserPolicy(
       policyName: json['PolicyName'] as String?,
@@ -11676,6 +11841,7 @@ class AwsKmsKeyDetails {
     this.keyState,
     this.origin,
   });
+
   factory AwsKmsKeyDetails.fromJson(Map<String, dynamic> json) {
     return AwsKmsKeyDetails(
       awsAccountId: json['AWSAccountId'] as String?,
@@ -11731,6 +11897,7 @@ class AwsLambdaFunctionCode {
     this.s3ObjectVersion,
     this.zipFile,
   });
+
   factory AwsLambdaFunctionCode.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionCode(
       s3Bucket: json['S3Bucket'] as String?,
@@ -11762,6 +11929,7 @@ class AwsLambdaFunctionDeadLetterConfig {
   AwsLambdaFunctionDeadLetterConfig({
     this.targetArn,
   });
+
   factory AwsLambdaFunctionDeadLetterConfig.fromJson(
       Map<String, dynamic> json) {
     return AwsLambdaFunctionDeadLetterConfig(
@@ -11859,6 +12027,7 @@ class AwsLambdaFunctionDetails {
     this.version,
     this.vpcConfig,
   });
+
   factory AwsLambdaFunctionDetails.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionDetails(
       code: json['Code'] != null
@@ -11954,6 +12123,7 @@ class AwsLambdaFunctionEnvironment {
     this.error,
     this.variables,
   });
+
   factory AwsLambdaFunctionEnvironment.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionEnvironment(
       error: json['Error'] != null
@@ -11987,6 +12157,7 @@ class AwsLambdaFunctionEnvironmentError {
     this.errorCode,
     this.message,
   });
+
   factory AwsLambdaFunctionEnvironmentError.fromJson(
       Map<String, dynamic> json) {
     return AwsLambdaFunctionEnvironmentError(
@@ -12017,6 +12188,7 @@ class AwsLambdaFunctionLayer {
     this.arn,
     this.codeSize,
   });
+
   factory AwsLambdaFunctionLayer.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionLayer(
       arn: json['Arn'] as String?,
@@ -12042,6 +12214,7 @@ class AwsLambdaFunctionTracingConfig {
   AwsLambdaFunctionTracingConfig({
     this.mode,
   });
+
   factory AwsLambdaFunctionTracingConfig.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionTracingConfig(
       mode: json['Mode'] as String?,
@@ -12072,6 +12245,7 @@ class AwsLambdaFunctionVpcConfig {
     this.subnetIds,
     this.vpcId,
   });
+
   factory AwsLambdaFunctionVpcConfig.fromJson(Map<String, dynamic> json) {
     return AwsLambdaFunctionVpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -12125,6 +12299,7 @@ class AwsLambdaLayerVersionDetails {
     this.createdDate,
     this.version,
   });
+
   factory AwsLambdaLayerVersionDetails.fromJson(Map<String, dynamic> json) {
     return AwsLambdaLayerVersionDetails(
       compatibleRuntimes: (json['CompatibleRuntimes'] as List?)
@@ -12160,6 +12335,7 @@ class AwsRdsDbClusterAssociatedRole {
     this.roleArn,
     this.status,
   });
+
   factory AwsRdsDbClusterAssociatedRole.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbClusterAssociatedRole(
       roleArn: json['RoleArn'] as String?,
@@ -12360,6 +12536,7 @@ class AwsRdsDbClusterDetails {
     this.storageEncrypted,
     this.vpcSecurityGroups,
   });
+
   factory AwsRdsDbClusterDetails.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbClusterDetails(
       activityStreamStatus: json['ActivityStreamStatus'] as String?,
@@ -12552,6 +12729,7 @@ class AwsRdsDbClusterMember {
     this.isClusterWriter,
     this.promotionTier,
   });
+
   factory AwsRdsDbClusterMember.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbClusterMember(
       dbClusterParameterGroupStatus:
@@ -12590,6 +12768,7 @@ class AwsRdsDbClusterOptionGroupMembership {
     this.dbClusterOptionGroupName,
     this.status,
   });
+
   factory AwsRdsDbClusterOptionGroupMembership.fromJson(
       Map<String, dynamic> json) {
     return AwsRdsDbClusterOptionGroupMembership(
@@ -12699,6 +12878,7 @@ class AwsRdsDbClusterSnapshotDetails {
     this.storageEncrypted,
     this.vpcId,
   });
+
   factory AwsRdsDbClusterSnapshotDetails.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbClusterSnapshotDetails(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -12795,6 +12975,7 @@ class AwsRdsDbDomainMembership {
     this.iamRoleName,
     this.status,
   });
+
   factory AwsRdsDbDomainMembership.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbDomainMembership(
       domain: json['Domain'] as String?,
@@ -12853,6 +13034,7 @@ class AwsRdsDbInstanceAssociatedRole {
     this.roleArn,
     this.status,
   });
+
   factory AwsRdsDbInstanceAssociatedRole.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbInstanceAssociatedRole(
       featureName: json['FeatureName'] as String?,
@@ -13186,6 +13368,7 @@ class AwsRdsDbInstanceDetails {
     this.timezone,
     this.vpcSecurityGroups,
   });
+
   factory AwsRdsDbInstanceDetails.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbInstanceDetails(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -13471,6 +13654,7 @@ class AwsRdsDbInstanceEndpoint {
     this.hostedZoneId,
     this.port,
   });
+
   factory AwsRdsDbInstanceEndpoint.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbInstanceEndpoint(
       address: json['Address'] as String?,
@@ -13503,6 +13687,7 @@ class AwsRdsDbInstanceVpcSecurityGroup {
     this.status,
     this.vpcSecurityGroupId,
   });
+
   factory AwsRdsDbInstanceVpcSecurityGroup.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbInstanceVpcSecurityGroup(
       status: json['Status'] as String?,
@@ -13532,6 +13717,7 @@ class AwsRdsDbOptionGroupMembership {
     this.optionGroupName,
     this.status,
   });
+
   factory AwsRdsDbOptionGroupMembership.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbOptionGroupMembership(
       optionGroupName: json['OptionGroupName'] as String?,
@@ -13561,6 +13747,7 @@ class AwsRdsDbParameterGroup {
     this.dbParameterGroupName,
     this.parameterApplyStatus,
   });
+
   factory AwsRdsDbParameterGroup.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbParameterGroup(
       dbParameterGroupName: json['DbParameterGroupName'] as String?,
@@ -13645,6 +13832,7 @@ class AwsRdsDbPendingModifiedValues {
     this.processorFeatures,
     this.storageType,
   });
+
   factory AwsRdsDbPendingModifiedValues.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbPendingModifiedValues(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -13724,6 +13912,7 @@ class AwsRdsDbProcessorFeature {
     this.name,
     this.value,
   });
+
   factory AwsRdsDbProcessorFeature.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbProcessorFeature(
       name: json['Name'] as String?,
@@ -13861,6 +14050,7 @@ class AwsRdsDbSnapshotDetails {
     this.timezone,
     this.vpcId,
   });
+
   factory AwsRdsDbSnapshotDetails.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbSnapshotDetails(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -13984,6 +14174,7 @@ class AwsRdsDbStatusInfo {
     this.status,
     this.statusType,
   });
+
   factory AwsRdsDbStatusInfo.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbStatusInfo(
       message: json['Message'] as String?,
@@ -14035,6 +14226,7 @@ class AwsRdsDbSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+
   factory AwsRdsDbSubnetGroup.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbSubnetGroup(
       dbSubnetGroupArn: json['DbSubnetGroupArn'] as String?,
@@ -14085,6 +14277,7 @@ class AwsRdsDbSubnetGroupSubnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+
   factory AwsRdsDbSubnetGroupSubnet.fromJson(Map<String, dynamic> json) {
     return AwsRdsDbSubnetGroupSubnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
@@ -14117,6 +14310,7 @@ class AwsRdsDbSubnetGroupSubnetAvailabilityZone {
   AwsRdsDbSubnetGroupSubnetAvailabilityZone({
     this.name,
   });
+
   factory AwsRdsDbSubnetGroupSubnetAvailabilityZone.fromJson(
       Map<String, dynamic> json) {
     return AwsRdsDbSubnetGroupSubnetAvailabilityZone(
@@ -14144,6 +14338,7 @@ class AwsRdsPendingCloudWatchLogsExports {
     this.logTypesToDisable,
     this.logTypesToEnable,
   });
+
   factory AwsRdsPendingCloudWatchLogsExports.fromJson(
       Map<String, dynamic> json) {
     return AwsRdsPendingCloudWatchLogsExports(
@@ -14184,6 +14379,7 @@ class AwsRedshiftClusterClusterNode {
     this.privateIpAddress,
     this.publicIpAddress,
   });
+
   factory AwsRedshiftClusterClusterNode.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterClusterNode(
       nodeRole: json['NodeRole'] as String?,
@@ -14222,6 +14418,7 @@ class AwsRedshiftClusterClusterParameterGroup {
     this.parameterApplyStatus,
     this.parameterGroupName,
   });
+
   factory AwsRedshiftClusterClusterParameterGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterClusterParameterGroup(
@@ -14273,6 +14470,7 @@ class AwsRedshiftClusterClusterParameterStatus {
     this.parameterApplyStatus,
     this.parameterName,
   });
+
   factory AwsRedshiftClusterClusterParameterStatus.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterClusterParameterStatus(
@@ -14309,6 +14507,7 @@ class AwsRedshiftClusterClusterSecurityGroup {
     this.clusterSecurityGroupName,
     this.status,
   });
+
   factory AwsRedshiftClusterClusterSecurityGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterClusterSecurityGroup(
@@ -14355,6 +14554,7 @@ class AwsRedshiftClusterClusterSnapshotCopyStatus {
     this.retentionPeriod,
     this.snapshotCopyGrantName,
   });
+
   factory AwsRedshiftClusterClusterSnapshotCopyStatus.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterClusterSnapshotCopyStatus(
@@ -14409,6 +14609,7 @@ class AwsRedshiftClusterDeferredMaintenanceWindow {
     this.deferMaintenanceIdentifier,
     this.deferMaintenanceStartTime,
   });
+
   factory AwsRedshiftClusterDeferredMaintenanceWindow.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterDeferredMaintenanceWindow(
@@ -14694,6 +14895,7 @@ class AwsRedshiftClusterDetails {
     this.vpcId,
     this.vpcSecurityGroups,
   });
+
   factory AwsRedshiftClusterDetails.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterDetails(
       allowVersionUpgrade: json['AllowVersionUpgrade'] as bool?,
@@ -14924,6 +15126,7 @@ class AwsRedshiftClusterElasticIpStatus {
     this.elasticIp,
     this.status,
   });
+
   factory AwsRedshiftClusterElasticIpStatus.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterElasticIpStatus(
@@ -14954,6 +15157,7 @@ class AwsRedshiftClusterEndpoint {
     this.address,
     this.port,
   });
+
   factory AwsRedshiftClusterEndpoint.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterEndpoint(
       address: json['Address'] as String?,
@@ -14996,6 +15200,7 @@ class AwsRedshiftClusterHsmStatus {
     this.hsmConfigurationIdentifier,
     this.status,
   });
+
   factory AwsRedshiftClusterHsmStatus.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterHsmStatus(
       hsmClientCertificateIdentifier:
@@ -15034,6 +15239,7 @@ class AwsRedshiftClusterIamRole {
     this.applyStatus,
     this.iamRoleArn,
   });
+
   factory AwsRedshiftClusterIamRole.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterIamRole(
       applyStatus: json['ApplyStatus'] as String?,
@@ -15103,6 +15309,7 @@ class AwsRedshiftClusterPendingModifiedValues {
     this.numberOfNodes,
     this.publiclyAccessible,
   });
+
   factory AwsRedshiftClusterPendingModifiedValues.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterPendingModifiedValues(
@@ -15166,6 +15373,7 @@ class AwsRedshiftClusterResizeInfo {
     this.allowCancelResize,
     this.resizeType,
   });
+
   factory AwsRedshiftClusterResizeInfo.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterResizeInfo(
       allowCancelResize: json['AllowCancelResize'] as bool?,
@@ -15228,6 +15436,7 @@ class AwsRedshiftClusterRestoreStatus {
     this.snapshotSizeInMegaBytes,
     this.status,
   });
+
   factory AwsRedshiftClusterRestoreStatus.fromJson(Map<String, dynamic> json) {
     return AwsRedshiftClusterRestoreStatus(
       currentRestoreRateInMegaBytesPerSecond:
@@ -15281,6 +15490,7 @@ class AwsRedshiftClusterVpcSecurityGroup {
     this.status,
     this.vpcSecurityGroupId,
   });
+
   factory AwsRedshiftClusterVpcSecurityGroup.fromJson(
       Map<String, dynamic> json) {
     return AwsRedshiftClusterVpcSecurityGroup(
@@ -15325,6 +15535,7 @@ class AwsS3AccountPublicAccessBlockDetails {
     this.ignorePublicAcls,
     this.restrictPublicBuckets,
   });
+
   factory AwsS3AccountPublicAccessBlockDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3AccountPublicAccessBlockDetails(
@@ -15358,6 +15569,7 @@ class AwsS3BucketBucketLifecycleConfigurationDetails {
   AwsS3BucketBucketLifecycleConfigurationDetails({
     this.rules,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationDetails(
@@ -15387,6 +15599,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUpload
   AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails({
     this.daysAfterInitiation,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails(
@@ -15470,6 +15683,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesDetails {
     this.status,
     this.transitions,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesDetails(
@@ -15549,6 +15763,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails {
   AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails({
     this.predicate,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails(
@@ -15590,6 +15805,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
     this.tag,
     this.type,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails(
@@ -15639,6 +15855,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails
     this.tag,
     this.type,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails(
@@ -15675,6 +15892,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDeta
     this.key,
     this.value,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails(
@@ -15705,6 +15923,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails {
     this.key,
     this.value,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails(
@@ -15738,6 +15957,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDe
     this.days,
     this.storageClass,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails(
@@ -15780,6 +16000,7 @@ class AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails {
     this.days,
     this.storageClass,
   });
+
   factory AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails(
@@ -15837,6 +16058,7 @@ class AwsS3BucketDetails {
     this.publicAccessBlockConfiguration,
     this.serverSideEncryptionConfiguration,
   });
+
   factory AwsS3BucketDetails.fromJson(Map<String, dynamic> json) {
     return AwsS3BucketDetails(
       bucketLifecycleConfiguration: json['BucketLifecycleConfiguration'] != null
@@ -15895,6 +16117,7 @@ class AwsS3BucketServerSideEncryptionByDefault {
     this.kMSMasterKeyID,
     this.sSEAlgorithm,
   });
+
   factory AwsS3BucketServerSideEncryptionByDefault.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketServerSideEncryptionByDefault(
@@ -15921,6 +16144,7 @@ class AwsS3BucketServerSideEncryptionConfiguration {
   AwsS3BucketServerSideEncryptionConfiguration({
     this.rules,
   });
+
   factory AwsS3BucketServerSideEncryptionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketServerSideEncryptionConfiguration(
@@ -15951,6 +16175,7 @@ class AwsS3BucketServerSideEncryptionRule {
   AwsS3BucketServerSideEncryptionRule({
     this.applyServerSideEncryptionByDefault,
   });
+
   factory AwsS3BucketServerSideEncryptionRule.fromJson(
       Map<String, dynamic> json) {
     return AwsS3BucketServerSideEncryptionRule(
@@ -16010,6 +16235,7 @@ class AwsS3ObjectDetails {
     this.serverSideEncryption,
     this.versionId,
   });
+
   factory AwsS3ObjectDetails.fromJson(Map<String, dynamic> json) {
     return AwsS3ObjectDetails(
       contentType: json['ContentType'] as String?,
@@ -16078,6 +16304,7 @@ class AwsSecretsManagerSecretDetails {
     this.rotationOccurredWithinFrequency,
     this.rotationRules,
   });
+
   factory AwsSecretsManagerSecretDetails.fromJson(Map<String, dynamic> json) {
     return AwsSecretsManagerSecretDetails(
       deleted: json['Deleted'] as bool?,
@@ -16127,6 +16354,7 @@ class AwsSecretsManagerSecretRotationRules {
   AwsSecretsManagerSecretRotationRules({
     this.automaticallyAfterDays,
   });
+
   factory AwsSecretsManagerSecretRotationRules.fromJson(
       Map<String, dynamic> json) {
     return AwsSecretsManagerSecretRotationRules(
@@ -16360,6 +16588,7 @@ class AwsSecurityFinding {
     this.workflow,
     this.workflowState,
   });
+
   factory AwsSecurityFinding.fromJson(Map<String, dynamic> json) {
     return AwsSecurityFinding(
       awsAccountId: json['AwsAccountId'] as String,
@@ -16983,6 +17212,7 @@ class AwsSecurityFindingFilters {
     this.workflowState,
     this.workflowStatus,
   });
+
   factory AwsSecurityFindingFilters.fromJson(Map<String, dynamic> json) {
     return AwsSecurityFindingFilters(
       awsAccountId: (json['AwsAccountId'] as List?)
@@ -17636,6 +17866,7 @@ class AwsSecurityFindingIdentifier {
     required this.id,
     required this.productArn,
   });
+
   factory AwsSecurityFindingIdentifier.fromJson(Map<String, dynamic> json) {
     return AwsSecurityFindingIdentifier(
       id: json['Id'] as String,
@@ -17675,6 +17906,7 @@ class AwsSnsTopicDetails {
     this.subscription,
     this.topicName,
   });
+
   factory AwsSnsTopicDetails.fromJson(Map<String, dynamic> json) {
     return AwsSnsTopicDetails(
       kmsMasterKeyId: json['KmsMasterKeyId'] as String?,
@@ -17714,6 +17946,7 @@ class AwsSnsTopicSubscription {
     this.endpoint,
     this.protocol,
   });
+
   factory AwsSnsTopicSubscription.fromJson(Map<String, dynamic> json) {
     return AwsSnsTopicSubscription(
       endpoint: json['Endpoint'] as String?,
@@ -17754,6 +17987,7 @@ class AwsSqsQueueDetails {
     this.kmsMasterKeyId,
     this.queueName,
   });
+
   factory AwsSqsQueueDetails.fromJson(Map<String, dynamic> json) {
     return AwsSqsQueueDetails(
       deadLetterTargetArn: json['DeadLetterTargetArn'] as String?,
@@ -17887,6 +18121,7 @@ class AwsSsmComplianceSummary {
     this.patchGroup,
     this.status,
   });
+
   factory AwsSsmComplianceSummary.fromJson(Map<String, dynamic> json) {
     return AwsSsmComplianceSummary(
       complianceType: json['ComplianceType'] as String?,
@@ -17972,6 +18207,7 @@ class AwsSsmPatch {
   AwsSsmPatch({
     this.complianceSummary,
   });
+
   factory AwsSsmPatch.fromJson(Map<String, dynamic> json) {
     return AwsSsmPatch(
       complianceSummary: json['ComplianceSummary'] != null
@@ -17998,6 +18234,7 @@ class AwsSsmPatchComplianceDetails {
   AwsSsmPatchComplianceDetails({
     this.patch,
   });
+
   factory AwsSsmPatchComplianceDetails.fromJson(Map<String, dynamic> json) {
     return AwsSsmPatchComplianceDetails(
       patch: json['Patch'] != null
@@ -18036,6 +18273,7 @@ class AwsWafWebAclDetails {
     this.rules,
     this.webAclId,
   });
+
   factory AwsWafWebAclDetails.fromJson(Map<String, dynamic> json) {
     return AwsWafWebAclDetails(
       defaultAction: json['DefaultAction'] as String?,
@@ -18116,6 +18354,7 @@ class AwsWafWebAclRule {
     this.ruleId,
     this.type,
   });
+
   factory AwsWafWebAclRule.fromJson(Map<String, dynamic> json) {
     return AwsWafWebAclRule(
       action: json['Action'] != null
@@ -18160,6 +18399,7 @@ class BatchDisableStandardsResponse {
   BatchDisableStandardsResponse({
     this.standardsSubscriptions,
   });
+
   factory BatchDisableStandardsResponse.fromJson(Map<String, dynamic> json) {
     return BatchDisableStandardsResponse(
       standardsSubscriptions: (json['StandardsSubscriptions'] as List?)
@@ -18185,6 +18425,7 @@ class BatchEnableStandardsResponse {
   BatchEnableStandardsResponse({
     this.standardsSubscriptions,
   });
+
   factory BatchEnableStandardsResponse.fromJson(Map<String, dynamic> json) {
     return BatchEnableStandardsResponse(
       standardsSubscriptions: (json['StandardsSubscriptions'] as List?)
@@ -18218,6 +18459,7 @@ class BatchImportFindingsResponse {
     required this.successCount,
     this.failedFindings,
   });
+
   factory BatchImportFindingsResponse.fromJson(Map<String, dynamic> json) {
     return BatchImportFindingsResponse(
       failedCount: json['FailedCount'] as int,
@@ -18252,6 +18494,7 @@ class BatchUpdateFindingsResponse {
     required this.processedFindings,
     required this.unprocessedFindings,
   });
+
   factory BatchUpdateFindingsResponse.fromJson(Map<String, dynamic> json) {
     return BatchUpdateFindingsResponse(
       processedFindings: (json['ProcessedFindings'] as List)
@@ -18294,6 +18537,7 @@ class BatchUpdateFindingsUnprocessedFinding {
     required this.errorMessage,
     required this.findingIdentifier,
   });
+
   factory BatchUpdateFindingsUnprocessedFinding.fromJson(
       Map<String, dynamic> json) {
     return BatchUpdateFindingsUnprocessedFinding(
@@ -18342,6 +18586,7 @@ class Cell {
     this.columnName,
     this.row,
   });
+
   factory Cell.fromJson(Map<String, dynamic> json) {
     return Cell(
       cellReference: json['CellReference'] as String?,
@@ -18381,6 +18626,7 @@ class CidrBlockAssociation {
     this.cidrBlock,
     this.cidrBlockState,
   });
+
   factory CidrBlockAssociation.fromJson(Map<String, dynamic> json) {
     return CidrBlockAssociation(
       associationId: json['AssociationId'] as String?,
@@ -18409,6 +18655,7 @@ class City {
   City({
     this.cityName,
   });
+
   factory City.fromJson(Map<String, dynamic> json) {
     return City(
       cityName: json['CityName'] as String?,
@@ -18455,6 +18702,7 @@ class ClassificationResult {
     this.sizeClassified,
     this.status,
   });
+
   factory ClassificationResult.fromJson(Map<String, dynamic> json) {
     return ClassificationResult(
       additionalOccurrences: json['AdditionalOccurrences'] as bool?,
@@ -18507,6 +18755,7 @@ class ClassificationStatus {
     this.code,
     this.reason,
   });
+
   factory ClassificationStatus.fromJson(Map<String, dynamic> json) {
     return ClassificationStatus(
       code: json['Code'] as String?,
@@ -18573,6 +18822,7 @@ class Compliance {
     this.status,
     this.statusReasons,
   });
+
   factory Compliance.fromJson(Map<String, dynamic> json) {
     return Compliance(
       relatedRequirements: (json['RelatedRequirements'] as List?)
@@ -18663,6 +18913,7 @@ class ContainerDetails {
     this.launchedAt,
     this.name,
   });
+
   factory ContainerDetails.fromJson(Map<String, dynamic> json) {
     return ContainerDetails(
       imageId: json['ImageId'] as String?,
@@ -18726,6 +18977,7 @@ class Country {
     this.countryCode,
     this.countryName,
   });
+
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
       countryCode: json['CountryCode'] as String?,
@@ -18750,6 +19002,7 @@ class CreateActionTargetResponse {
   CreateActionTargetResponse({
     required this.actionTargetArn,
   });
+
   factory CreateActionTargetResponse.fromJson(Map<String, dynamic> json) {
     return CreateActionTargetResponse(
       actionTargetArn: json['ActionTargetArn'] as String,
@@ -18771,6 +19024,7 @@ class CreateInsightResponse {
   CreateInsightResponse({
     required this.insightArn,
   });
+
   factory CreateInsightResponse.fromJson(Map<String, dynamic> json) {
     return CreateInsightResponse(
       insightArn: json['InsightArn'] as String,
@@ -18793,6 +19047,7 @@ class CreateMembersResponse {
   CreateMembersResponse({
     this.unprocessedAccounts,
   });
+
   factory CreateMembersResponse.fromJson(Map<String, dynamic> json) {
     return CreateMembersResponse(
       unprocessedAccounts: (json['UnprocessedAccounts'] as List?)
@@ -18831,6 +19086,7 @@ class CustomDataIdentifiersDetections {
     this.name,
     this.occurrences,
   });
+
   factory CustomDataIdentifiersDetections.fromJson(Map<String, dynamic> json) {
     return CustomDataIdentifiersDetections(
       arn: json['Arn'] as String?,
@@ -18869,6 +19125,7 @@ class CustomDataIdentifiersResult {
     this.detections,
     this.totalCount,
   });
+
   factory CustomDataIdentifiersResult.fromJson(Map<String, dynamic> json) {
     return CustomDataIdentifiersResult(
       detections: (json['Detections'] as List?)
@@ -18906,6 +19163,7 @@ class Cvss {
     this.baseVector,
     this.version,
   });
+
   factory Cvss.fromJson(Map<String, dynamic> json) {
     return Cvss(
       baseScore: json['BaseScore'] as double?,
@@ -18938,6 +19196,7 @@ class DataClassificationDetails {
     this.detailedResultsLocation,
     this.result,
   });
+
   factory DataClassificationDetails.fromJson(Map<String, dynamic> json) {
     return DataClassificationDetails(
       detailedResultsLocation: json['DetailedResultsLocation'] as String?,
@@ -18975,6 +19234,7 @@ class DateFilter {
     this.end,
     this.start,
   });
+
   factory DateFilter.fromJson(Map<String, dynamic> json) {
     return DateFilter(
       dateRange: json['DateRange'] != null
@@ -19009,6 +19269,7 @@ class DateRange {
     this.unit,
     this.value,
   });
+
   factory DateRange.fromJson(Map<String, dynamic> json) {
     return DateRange(
       unit: (json['Unit'] as String?)?.toDateRangeUnit(),
@@ -19057,6 +19318,7 @@ class DeclineInvitationsResponse {
   DeclineInvitationsResponse({
     this.unprocessedAccounts,
   });
+
   factory DeclineInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeclineInvitationsResponse(
       unprocessedAccounts: (json['UnprocessedAccounts'] as List?)
@@ -19082,6 +19344,7 @@ class DeleteActionTargetResponse {
   DeleteActionTargetResponse({
     required this.actionTargetArn,
   });
+
   factory DeleteActionTargetResponse.fromJson(Map<String, dynamic> json) {
     return DeleteActionTargetResponse(
       actionTargetArn: json['ActionTargetArn'] as String,
@@ -19103,6 +19366,7 @@ class DeleteInsightResponse {
   DeleteInsightResponse({
     required this.insightArn,
   });
+
   factory DeleteInsightResponse.fromJson(Map<String, dynamic> json) {
     return DeleteInsightResponse(
       insightArn: json['InsightArn'] as String,
@@ -19125,6 +19389,7 @@ class DeleteInvitationsResponse {
   DeleteInvitationsResponse({
     this.unprocessedAccounts,
   });
+
   factory DeleteInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteInvitationsResponse(
       unprocessedAccounts: (json['UnprocessedAccounts'] as List?)
@@ -19151,6 +19416,7 @@ class DeleteMembersResponse {
   DeleteMembersResponse({
     this.unprocessedAccounts,
   });
+
   factory DeleteMembersResponse.fromJson(Map<String, dynamic> json) {
     return DeleteMembersResponse(
       unprocessedAccounts: (json['UnprocessedAccounts'] as List?)
@@ -19182,6 +19448,7 @@ class DescribeActionTargetsResponse {
     required this.actionTargets,
     this.nextToken,
   });
+
   factory DescribeActionTargetsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeActionTargetsResponse(
       actionTargets: (json['ActionTargets'] as List)
@@ -19222,6 +19489,7 @@ class DescribeHubResponse {
     this.hubArn,
     this.subscribedAt,
   });
+
   factory DescribeHubResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHubResponse(
       autoEnableControls: json['AutoEnableControls'] as bool?,
@@ -19258,6 +19526,7 @@ class DescribeOrganizationConfigurationResponse {
     this.autoEnable,
     this.memberAccountLimitReached,
   });
+
   factory DescribeOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConfigurationResponse(
@@ -19288,6 +19557,7 @@ class DescribeProductsResponse {
     required this.products,
     this.nextToken,
   });
+
   factory DescribeProductsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProductsResponse(
       products: (json['Products'] as List)
@@ -19319,6 +19589,7 @@ class DescribeStandardsControlsResponse {
     this.controls,
     this.nextToken,
   });
+
   factory DescribeStandardsControlsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeStandardsControlsResponse(
@@ -19351,6 +19622,7 @@ class DescribeStandardsResponse {
     this.nextToken,
     this.standards,
   });
+
   factory DescribeStandardsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeStandardsResponse(
       nextToken: json['NextToken'] as String?,
@@ -19373,6 +19645,7 @@ class DescribeStandardsResponse {
 
 class DisableImportFindingsForProductResponse {
   DisableImportFindingsForProductResponse();
+
   factory DisableImportFindingsForProductResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableImportFindingsForProductResponse();
@@ -19385,6 +19658,7 @@ class DisableImportFindingsForProductResponse {
 
 class DisableOrganizationAdminAccountResponse {
   DisableOrganizationAdminAccountResponse();
+
   factory DisableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
@@ -19397,6 +19671,7 @@ class DisableOrganizationAdminAccountResponse {
 
 class DisableSecurityHubResponse {
   DisableSecurityHubResponse();
+
   factory DisableSecurityHubResponse.fromJson(Map<String, dynamic> _) {
     return DisableSecurityHubResponse();
   }
@@ -19408,6 +19683,7 @@ class DisableSecurityHubResponse {
 
 class DisassociateFromAdministratorAccountResponse {
   DisassociateFromAdministratorAccountResponse();
+
   factory DisassociateFromAdministratorAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromAdministratorAccountResponse();
@@ -19420,6 +19696,7 @@ class DisassociateFromAdministratorAccountResponse {
 
 class DisassociateFromMasterAccountResponse {
   DisassociateFromMasterAccountResponse();
+
   factory DisassociateFromMasterAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
@@ -19432,6 +19709,7 @@ class DisassociateFromMasterAccountResponse {
 
 class DisassociateMembersResponse {
   DisassociateMembersResponse();
+
   factory DisassociateMembersResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMembersResponse();
   }
@@ -19458,6 +19736,7 @@ class DnsRequestAction {
     this.domain,
     this.protocol,
   });
+
   factory DnsRequestAction.fromJson(Map<String, dynamic> json) {
     return DnsRequestAction(
       blocked: json['Blocked'] as bool?,
@@ -19485,6 +19764,7 @@ class EnableImportFindingsForProductResponse {
   EnableImportFindingsForProductResponse({
     this.productSubscriptionArn,
   });
+
   factory EnableImportFindingsForProductResponse.fromJson(
       Map<String, dynamic> json) {
     return EnableImportFindingsForProductResponse(
@@ -19503,6 +19783,7 @@ class EnableImportFindingsForProductResponse {
 
 class EnableOrganizationAdminAccountResponse {
   EnableOrganizationAdminAccountResponse();
+
   factory EnableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
@@ -19515,6 +19796,7 @@ class EnableOrganizationAdminAccountResponse {
 
 class EnableSecurityHubResponse {
   EnableSecurityHubResponse();
+
   factory EnableSecurityHubResponse.fromJson(Map<String, dynamic> _) {
     return EnableSecurityHubResponse();
   }
@@ -19563,6 +19845,7 @@ class FindingProviderFields {
     this.severity,
     this.types,
   });
+
   factory FindingProviderFields.fromJson(Map<String, dynamic> json) {
     return FindingProviderFields(
       confidence: json['Confidence'] as int?,
@@ -19610,6 +19893,7 @@ class FindingProviderSeverity {
     this.label,
     this.original,
   });
+
   factory FindingProviderSeverity.fromJson(Map<String, dynamic> json) {
     return FindingProviderSeverity(
       label: (json['Label'] as String?)?.toSeverityLabel(),
@@ -19639,6 +19923,7 @@ class GeoLocation {
     this.lat,
     this.lon,
   });
+
   factory GeoLocation.fromJson(Map<String, dynamic> json) {
     return GeoLocation(
       lat: json['Lat'] as double?,
@@ -19662,6 +19947,7 @@ class GetAdministratorAccountResponse {
   GetAdministratorAccountResponse({
     this.administrator,
   });
+
   factory GetAdministratorAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetAdministratorAccountResponse(
       administrator: json['Administrator'] != null
@@ -19690,6 +19976,7 @@ class GetEnabledStandardsResponse {
     this.nextToken,
     this.standardsSubscriptions,
   });
+
   factory GetEnabledStandardsResponse.fromJson(Map<String, dynamic> json) {
     return GetEnabledStandardsResponse(
       nextToken: json['NextToken'] as String?,
@@ -19722,6 +20009,7 @@ class GetFindingsResponse {
     required this.findings,
     this.nextToken,
   });
+
   factory GetFindingsResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingsResponse(
       findings: (json['Findings'] as List)
@@ -19749,6 +20037,7 @@ class GetInsightResultsResponse {
   GetInsightResultsResponse({
     required this.insightResults,
   });
+
   factory GetInsightResultsResponse.fromJson(Map<String, dynamic> json) {
     return GetInsightResultsResponse(
       insightResults: InsightResults.fromJson(
@@ -19775,6 +20064,7 @@ class GetInsightsResponse {
     required this.insights,
     this.nextToken,
   });
+
   factory GetInsightsResponse.fromJson(Map<String, dynamic> json) {
     return GetInsightsResponse(
       insights: (json['Insights'] as List)
@@ -19803,6 +20093,7 @@ class GetInvitationsCountResponse {
   GetInvitationsCountResponse({
     this.invitationsCount,
   });
+
   factory GetInvitationsCountResponse.fromJson(Map<String, dynamic> json) {
     return GetInvitationsCountResponse(
       invitationsCount: json['InvitationsCount'] as int?,
@@ -19825,6 +20116,7 @@ class GetMasterAccountResponse {
   GetMasterAccountResponse({
     this.master,
   });
+
   factory GetMasterAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetMasterAccountResponse(
       master: json['Master'] != null
@@ -19853,6 +20145,7 @@ class GetMembersResponse {
     this.members,
     this.unprocessedAccounts,
   });
+
   factory GetMembersResponse.fromJson(Map<String, dynamic> json) {
     return GetMembersResponse(
       members: (json['Members'] as List?)
@@ -19891,6 +20184,7 @@ class IcmpTypeCode {
     this.code,
     this.type,
   });
+
   factory IcmpTypeCode.fromJson(Map<String, dynamic> json) {
     return IcmpTypeCode(
       code: json['Code'] as int?,
@@ -19927,6 +20221,7 @@ class ImportFindingsError {
     required this.errorMessage,
     required this.id,
   });
+
   factory ImportFindingsError.fromJson(Map<String, dynamic> json) {
     return ImportFindingsError(
       errorCode: json['ErrorCode'] as String,
@@ -19972,6 +20267,7 @@ class Insight {
     required this.insightArn,
     required this.name,
   });
+
   factory Insight.fromJson(Map<String, dynamic> json) {
     return Insight(
       filters: AwsSecurityFindingFilters.fromJson(
@@ -20010,6 +20306,7 @@ class InsightResultValue {
     required this.count,
     required this.groupByAttributeValue,
   });
+
   factory InsightResultValue.fromJson(Map<String, dynamic> json) {
     return InsightResultValue(
       count: json['Count'] as int,
@@ -20047,6 +20344,7 @@ class InsightResults {
     required this.insightArn,
     required this.resultValues,
   });
+
   factory InsightResults.fromJson(Map<String, dynamic> json) {
     return InsightResults(
       groupByAttribute: json['GroupByAttribute'] as String,
@@ -20125,6 +20423,7 @@ class Invitation {
     this.invitedAt,
     this.memberStatus,
   });
+
   factory Invitation.fromJson(Map<String, dynamic> json) {
     return Invitation(
       accountId: json['AccountId'] as String?,
@@ -20156,6 +20455,7 @@ class InviteMembersResponse {
   InviteMembersResponse({
     this.unprocessedAccounts,
   });
+
   factory InviteMembersResponse.fromJson(Map<String, dynamic> json) {
     return InviteMembersResponse(
       unprocessedAccounts: (json['UnprocessedAccounts'] as List?)
@@ -20182,6 +20482,7 @@ class IpFilter {
   IpFilter({
     this.cidr,
   });
+
   factory IpFilter.fromJson(Map<String, dynamic> json) {
     return IpFilter(
       cidr: json['Cidr'] as String?,
@@ -20216,6 +20517,7 @@ class IpOrganizationDetails {
     this.isp,
     this.org,
   });
+
   factory IpOrganizationDetails.fromJson(Map<String, dynamic> json) {
     return IpOrganizationDetails(
       asn: json['Asn'] as int?,
@@ -20255,6 +20557,7 @@ class Ipv6CidrBlockAssociation {
     this.cidrBlockState,
     this.ipv6CidrBlock,
   });
+
   factory Ipv6CidrBlockAssociation.fromJson(Map<String, dynamic> json) {
     return Ipv6CidrBlockAssociation(
       associationId: json['AssociationId'] as String?,
@@ -20283,6 +20586,7 @@ class KeywordFilter {
   KeywordFilter({
     this.value,
   });
+
   factory KeywordFilter.fromJson(Map<String, dynamic> json) {
     return KeywordFilter(
       value: json['Value'] as String?,
@@ -20309,6 +20613,7 @@ class ListEnabledProductsForImportResponse {
     this.nextToken,
     this.productSubscriptions,
   });
+
   factory ListEnabledProductsForImportResponse.fromJson(
       Map<String, dynamic> json) {
     return ListEnabledProductsForImportResponse(
@@ -20342,6 +20647,7 @@ class ListInvitationsResponse {
     this.invitations,
     this.nextToken,
   });
+
   factory ListInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return ListInvitationsResponse(
       invitations: (json['Invitations'] as List?)
@@ -20373,6 +20679,7 @@ class ListMembersResponse {
     this.members,
     this.nextToken,
   });
+
   factory ListMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListMembersResponse(
       members: (json['Members'] as List?)
@@ -20404,6 +20711,7 @@ class ListOrganizationAdminAccountsResponse {
     this.adminAccounts,
     this.nextToken,
   });
+
   factory ListOrganizationAdminAccountsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOrganizationAdminAccountsResponse(
@@ -20432,6 +20740,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -20464,6 +20773,7 @@ class LoadBalancerState {
     this.code,
     this.reason,
   });
+
   factory LoadBalancerState.fromJson(Map<String, dynamic> json) {
     return LoadBalancerState(
       code: json['Code'] as String?,
@@ -20501,6 +20811,7 @@ class Malware {
     this.state,
     this.type,
   });
+
   factory Malware.fromJson(Map<String, dynamic> json) {
     return Malware(
       name: json['Name'] as String,
@@ -20693,6 +21004,7 @@ class MapFilter {
     this.key,
     this.value,
   });
+
   factory MapFilter.fromJson(Map<String, dynamic> json) {
     return MapFilter(
       comparison: (json['Comparison'] as String?)?.toMapFilterComparison(),
@@ -20809,6 +21121,7 @@ class Member {
     this.memberStatus,
     this.updatedAt,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['AccountId'] as String?,
@@ -20894,6 +21207,7 @@ class Network {
     this.sourceMac,
     this.sourcePort,
   });
+
   factory Network.fromJson(Map<String, dynamic> json) {
     return Network(
       destinationDomain: json['DestinationDomain'] as String?,
@@ -20974,6 +21288,7 @@ class NetworkConnectionAction {
     this.remoteIpDetails,
     this.remotePortDetails,
   });
+
   factory NetworkConnectionAction.fromJson(Map<String, dynamic> json) {
     return NetworkConnectionAction(
       blocked: json['Blocked'] as bool?,
@@ -21058,6 +21373,7 @@ class NetworkHeader {
     this.protocol,
     this.source,
   });
+
   factory NetworkHeader.fromJson(Map<String, dynamic> json) {
     return NetworkHeader(
       destination: json['Destination'] != null
@@ -21106,6 +21422,7 @@ class NetworkPathComponent {
     this.egress,
     this.ingress,
   });
+
   factory NetworkPathComponent.fromJson(Map<String, dynamic> json) {
     return NetworkPathComponent(
       componentId: json['ComponentId'] as String?,
@@ -21145,6 +21462,7 @@ class NetworkPathComponentDetails {
     this.address,
     this.portRanges,
   });
+
   factory NetworkPathComponentDetails.fromJson(Map<String, dynamic> json) {
     return NetworkPathComponentDetails(
       address: (json['Address'] as List?)
@@ -21189,6 +21507,7 @@ class Note {
     required this.updatedAt,
     required this.updatedBy,
   });
+
   factory Note.fromJson(Map<String, dynamic> json) {
     return Note(
       text: json['Text'] as String,
@@ -21221,6 +21540,7 @@ class NoteUpdate {
     required this.text,
     required this.updatedBy,
   });
+
   factory NoteUpdate.fromJson(Map<String, dynamic> json) {
     return NoteUpdate(
       text: json['Text'] as String,
@@ -21257,6 +21577,7 @@ class NumberFilter {
     this.gte,
     this.lte,
   });
+
   factory NumberFilter.fromJson(Map<String, dynamic> json) {
     return NumberFilter(
       eq: json['Eq'] as double?,
@@ -21306,6 +21627,7 @@ class Occurrences {
     this.pages,
     this.records,
   });
+
   factory Occurrences.fromJson(Map<String, dynamic> json) {
     return Occurrences(
       cells: (json['Cells'] as List?)
@@ -21366,6 +21688,7 @@ class Page {
     this.offsetRange,
     this.pageNumber,
   });
+
   factory Page.fromJson(Map<String, dynamic> json) {
     return Page(
       lineRange: json['LineRange'] != null
@@ -21489,6 +21812,7 @@ class PatchSummary {
     this.operationStartTime,
     this.rebootOption,
   });
+
   factory PatchSummary.fromJson(Map<String, dynamic> json) {
     return PatchSummary(
       id: json['Id'] as String,
@@ -21549,6 +21873,7 @@ class PortProbeAction {
     this.blocked,
     this.portProbeDetails,
   });
+
   factory PortProbeAction.fromJson(Map<String, dynamic> json) {
     return PortProbeAction(
       blocked: json['Blocked'] as bool?,
@@ -21587,6 +21912,7 @@ class PortProbeDetail {
     this.localPortDetails,
     this.remoteIpDetails,
   });
+
   factory PortProbeDetail.fromJson(Map<String, dynamic> json) {
     return PortProbeDetail(
       localIpDetails: json['LocalIpDetails'] != null
@@ -21628,6 +21954,7 @@ class PortRange {
     this.begin,
     this.end,
   });
+
   factory PortRange.fromJson(Map<String, dynamic> json) {
     return PortRange(
       begin: json['Begin'] as int?,
@@ -21657,6 +21984,7 @@ class PortRangeFromTo {
     this.from,
     this.to,
   });
+
   factory PortRangeFromTo.fromJson(Map<String, dynamic> json) {
     return PortRangeFromTo(
       from: json['From'] as int?,
@@ -21712,6 +22040,7 @@ class ProcessDetails {
     this.pid,
     this.terminatedAt,
   });
+
   factory ProcessDetails.fromJson(Map<String, dynamic> json) {
     return ProcessDetails(
       launchedAt: json['LaunchedAt'] as String?,
@@ -21803,6 +22132,7 @@ class Product {
     this.productName,
     this.productSubscriptionResourcePolicy,
   });
+
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       productArn: json['ProductArn'] as String,
@@ -21870,6 +22200,7 @@ class Range {
     this.start,
     this.startColumn,
   });
+
   factory Range.fromJson(Map<String, dynamic> json) {
     return Range(
       end: json['End'] as int?,
@@ -21904,6 +22235,7 @@ class Recommendation {
     this.text,
     this.url,
   });
+
   factory Recommendation.fromJson(Map<String, dynamic> json) {
     return Recommendation(
       text: json['Text'] as String?,
@@ -21936,6 +22268,7 @@ class Record {
     this.jsonPath,
     this.recordIndex,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       jsonPath: json['JsonPath'] as String?,
@@ -21993,6 +22326,7 @@ class RelatedFinding {
     required this.id,
     required this.productArn,
   });
+
   factory RelatedFinding.fromJson(Map<String, dynamic> json) {
     return RelatedFinding(
       id: json['Id'] as String,
@@ -22019,6 +22353,7 @@ class Remediation {
   Remediation({
     this.recommendation,
   });
+
   factory Remediation.fromJson(Map<String, dynamic> json) {
     return Remediation(
       recommendation: json['Recommendation'] != null
@@ -22080,6 +22415,7 @@ class Resource {
     this.resourceRole,
     this.tags,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       id: json['Id'] as String,
@@ -22342,6 +22678,7 @@ class ResourceDetails {
     this.container,
     this.other,
   });
+
   factory ResourceDetails.fromJson(Map<String, dynamic> json) {
     return ResourceDetails(
       awsApiGatewayRestApi: json['AwsApiGatewayRestApi'] != null
@@ -22664,6 +23001,7 @@ class Result {
     this.accountId,
     this.processingResult,
   });
+
   factory Result.fromJson(Map<String, dynamic> json) {
     return Result(
       accountId: json['AccountId'] as String?,
@@ -22698,6 +23036,7 @@ class SensitiveDataDetections {
     this.occurrences,
     this.type,
   });
+
   factory SensitiveDataDetections.fromJson(Map<String, dynamic> json) {
     return SensitiveDataDetections(
       count: json['Count'] as int?,
@@ -22739,6 +23078,7 @@ class SensitiveDataResult {
     this.detections,
     this.totalCount,
   });
+
   factory SensitiveDataResult.fromJson(Map<String, dynamic> json) {
     return SensitiveDataResult(
       category: json['Category'] as String?,
@@ -22859,6 +23199,7 @@ class Severity {
     this.original,
     this.product,
   });
+
   factory Severity.fromJson(Map<String, dynamic> json) {
     return Severity(
       label: (json['Label'] as String?)?.toSeverityLabel(),
@@ -23021,6 +23362,7 @@ class SeverityUpdate {
     this.normalized,
     this.product,
   });
+
   factory SeverityUpdate.fromJson(Map<String, dynamic> json) {
     return SeverityUpdate(
       label: (json['Label'] as String?)?.toSeverityLabel(),
@@ -23065,6 +23407,7 @@ class SoftwarePackage {
     this.release,
     this.version,
   });
+
   factory SoftwarePackage.fromJson(Map<String, dynamic> json) {
     return SoftwarePackage(
       architecture: json['Architecture'] as String?,
@@ -23103,6 +23446,7 @@ class SortCriterion {
     this.field,
     this.sortOrder,
   });
+
   factory SortCriterion.fromJson(Map<String, dynamic> json) {
     return SortCriterion(
       field: json['Field'] as String?,
@@ -23174,6 +23518,7 @@ class Standard {
     this.name,
     this.standardsArn,
   });
+
   factory Standard.fromJson(Map<String, dynamic> json) {
     return Standard(
       description: json['Description'] as String?,
@@ -23249,6 +23594,7 @@ class StandardsControl {
     this.standardsControlArn,
     this.title,
   });
+
   factory StandardsControl.fromJson(Map<String, dynamic> json) {
     return StandardsControl(
       controlId: json['ControlId'] as String?,
@@ -23381,6 +23727,7 @@ class StandardsSubscription {
     required this.standardsStatus,
     required this.standardsSubscriptionArn,
   });
+
   factory StandardsSubscription.fromJson(Map<String, dynamic> json) {
     return StandardsSubscription(
       standardsArn: json['StandardsArn'] as String,
@@ -23419,6 +23766,7 @@ class StandardsSubscriptionRequest {
     required this.standardsArn,
     this.standardsInput,
   });
+
   factory StandardsSubscriptionRequest.fromJson(Map<String, dynamic> json) {
     return StandardsSubscriptionRequest(
       standardsArn: json['StandardsArn'] as String,
@@ -23452,6 +23800,7 @@ class StatusReason {
     required this.reasonCode,
     this.description,
   });
+
   factory StatusReason.fromJson(Map<String, dynamic> json) {
     return StatusReason(
       reasonCode: json['ReasonCode'] as String,
@@ -23568,6 +23917,7 @@ class StringFilter {
     this.comparison,
     this.value,
   });
+
   factory StringFilter.fromJson(Map<String, dynamic> json) {
     return StringFilter(
       comparison: (json['Comparison'] as String?)?.toStringFilterComparison(),
@@ -23625,6 +23975,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -23669,6 +24020,7 @@ class ThreatIntelIndicator {
     this.type,
     this.value,
   });
+
   factory ThreatIntelIndicator.fromJson(Map<String, dynamic> json) {
     return ThreatIntelIndicator(
       category: (json['Category'] as String?)?.toThreatIntelIndicatorCategory(),
@@ -23821,6 +24173,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -23832,6 +24185,7 @@ class UntagResourceResponse {
 
 class UpdateActionTargetResponse {
   UpdateActionTargetResponse();
+
   factory UpdateActionTargetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateActionTargetResponse();
   }
@@ -23843,6 +24197,7 @@ class UpdateActionTargetResponse {
 
 class UpdateFindingsResponse {
   UpdateFindingsResponse();
+
   factory UpdateFindingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFindingsResponse();
   }
@@ -23854,6 +24209,7 @@ class UpdateFindingsResponse {
 
 class UpdateInsightResponse {
   UpdateInsightResponse();
+
   factory UpdateInsightResponse.fromJson(Map<String, dynamic> _) {
     return UpdateInsightResponse();
   }
@@ -23865,6 +24221,7 @@ class UpdateInsightResponse {
 
 class UpdateOrganizationConfigurationResponse {
   UpdateOrganizationConfigurationResponse();
+
   factory UpdateOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
@@ -23877,6 +24234,7 @@ class UpdateOrganizationConfigurationResponse {
 
 class UpdateSecurityHubConfigurationResponse {
   UpdateSecurityHubConfigurationResponse();
+
   factory UpdateSecurityHubConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateSecurityHubConfigurationResponse();
@@ -23889,6 +24247,7 @@ class UpdateSecurityHubConfigurationResponse {
 
 class UpdateStandardsControlResponse {
   UpdateStandardsControlResponse();
+
   factory UpdateStandardsControlResponse.fromJson(Map<String, dynamic> _) {
     return UpdateStandardsControlResponse();
   }
@@ -23964,6 +24323,7 @@ class Vulnerability {
     this.vendor,
     this.vulnerablePackages,
   });
+
   factory Vulnerability.fromJson(Map<String, dynamic> json) {
     return Vulnerability(
       id: json['Id'] as String,
@@ -24042,6 +24402,7 @@ class VulnerabilityVendor {
     this.vendorSeverity,
     this.vendorUpdatedAt,
   });
+
   factory VulnerabilityVendor.fromJson(Map<String, dynamic> json) {
     return VulnerabilityVendor(
       name: json['Name'] as String,
@@ -24095,6 +24456,7 @@ class WafAction {
   WafAction({
     this.type,
   });
+
   factory WafAction.fromJson(Map<String, dynamic> json) {
     return WafAction(
       type: json['Type'] as String?,
@@ -24117,6 +24479,7 @@ class WafExcludedRule {
   WafExcludedRule({
     this.ruleId,
   });
+
   factory WafExcludedRule.fromJson(Map<String, dynamic> json) {
     return WafExcludedRule(
       ruleId: json['RuleId'] as String?,
@@ -24142,6 +24505,7 @@ class WafOverrideAction {
   WafOverrideAction({
     this.type,
   });
+
   factory WafOverrideAction.fromJson(Map<String, dynamic> json) {
     return WafOverrideAction(
       type: json['Type'] as String?,
@@ -24197,6 +24561,7 @@ class Workflow {
   Workflow({
     this.status,
   });
+
   factory Workflow.fromJson(Map<String, dynamic> json) {
     return Workflow(
       status: (json['Status'] as String?)?.toWorkflowStatus(),
@@ -24334,6 +24699,7 @@ class WorkflowUpdate {
   WorkflowUpdate({
     this.status,
   });
+
   factory WorkflowUpdate.fromJson(Map<String, dynamic> json) {
     return WorkflowUpdate(
       status: (json['Status'] as String?)?.toWorkflowStatus(),

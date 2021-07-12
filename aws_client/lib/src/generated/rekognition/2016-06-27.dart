@@ -4406,6 +4406,7 @@ class AgeRange {
     this.high,
     this.low,
   });
+
   factory AgeRange.fromJson(Map<String, dynamic> json) {
     return AgeRange(
       high: json['High'] as int?,
@@ -4432,6 +4433,7 @@ class Asset {
   Asset({
     this.groundTruthManifest,
   });
+
   factory Asset.fromJson(Map<String, dynamic> json) {
     return Asset(
       groundTruthManifest: json['GroundTruthManifest'] != null
@@ -4500,6 +4502,7 @@ class AudioMetadata {
     this.numberOfChannels,
     this.sampleRate,
   });
+
   factory AudioMetadata.fromJson(Map<String, dynamic> json) {
     return AudioMetadata(
       codec: json['Codec'] as String?,
@@ -4536,6 +4539,7 @@ class Beard {
     this.confidence,
     this.value,
   });
+
   factory Beard.fromJson(Map<String, dynamic> json) {
     return Beard(
       confidence: json['Confidence'] as double?,
@@ -4634,6 +4638,7 @@ class BoundingBox {
     this.top,
     this.width,
   });
+
   factory BoundingBox.fromJson(Map<String, dynamic> json) {
     return BoundingBox(
       height: json['Height'] as double?,
@@ -4685,6 +4690,7 @@ class Celebrity {
     this.name,
     this.urls,
   });
+
   factory Celebrity.fromJson(Map<String, dynamic> json) {
     return Celebrity(
       face: json['Face'] != null
@@ -4745,6 +4751,7 @@ class CelebrityDetail {
     this.name,
     this.urls,
   });
+
   factory CelebrityDetail.fromJson(Map<String, dynamic> json) {
     return CelebrityDetail(
       boundingBox: json['BoundingBox'] != null
@@ -4796,6 +4803,7 @@ class CelebrityRecognition {
     this.celebrity,
     this.timestamp,
   });
+
   factory CelebrityRecognition.fromJson(Map<String, dynamic> json) {
     return CelebrityRecognition(
       celebrity: json['Celebrity'] != null
@@ -4860,6 +4868,7 @@ class CompareFacesMatch {
     this.face,
     this.similarity,
   });
+
   factory CompareFacesMatch.fromJson(Map<String, dynamic> json) {
     return CompareFacesMatch(
       face: json['Face'] != null
@@ -4930,6 +4939,7 @@ class CompareFacesResponse {
     this.targetImageOrientationCorrection,
     this.unmatchedFaces,
   });
+
   factory CompareFacesResponse.fromJson(Map<String, dynamic> json) {
     return CompareFacesResponse(
       faceMatches: (json['FaceMatches'] as List?)
@@ -5000,6 +5010,7 @@ class ComparedFace {
     this.pose,
     this.quality,
   });
+
   factory ComparedFace.fromJson(Map<String, dynamic> json) {
     return ComparedFace(
       boundingBox: json['BoundingBox'] != null
@@ -5051,6 +5062,7 @@ class ComparedSourceImageFace {
     this.boundingBox,
     this.confidence,
   });
+
   factory ComparedSourceImageFace.fromJson(Map<String, dynamic> json) {
     return ComparedSourceImageFace(
       boundingBox: json['BoundingBox'] != null
@@ -5111,6 +5123,7 @@ class ContentModerationDetection {
     this.moderationLabel,
     this.timestamp,
   });
+
   factory ContentModerationDetection.fromJson(Map<String, dynamic> json) {
     return ContentModerationDetection(
       moderationLabel: json['ModerationLabel'] != null
@@ -5174,6 +5187,7 @@ class CoversBodyPart {
     this.confidence,
     this.value,
   });
+
   factory CoversBodyPart.fromJson(Map<String, dynamic> json) {
     return CoversBodyPart(
       confidence: json['Confidence'] as double?,
@@ -5208,6 +5222,7 @@ class CreateCollectionResponse {
     this.faceModelVersion,
     this.statusCode,
   });
+
   factory CreateCollectionResponse.fromJson(Map<String, dynamic> json) {
     return CreateCollectionResponse(
       collectionArn: json['CollectionArn'] as String?,
@@ -5236,6 +5251,7 @@ class CreateProjectResponse {
   CreateProjectResponse({
     this.projectArn,
   });
+
   factory CreateProjectResponse.fromJson(Map<String, dynamic> json) {
     return CreateProjectResponse(
       projectArn: json['ProjectArn'] as String?,
@@ -5259,6 +5275,7 @@ class CreateProjectVersionResponse {
   CreateProjectVersionResponse({
     this.projectVersionArn,
   });
+
   factory CreateProjectVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateProjectVersionResponse(
       projectVersionArn: json['ProjectVersionArn'] as String?,
@@ -5280,6 +5297,7 @@ class CreateStreamProcessorResponse {
   CreateStreamProcessorResponse({
     this.streamProcessorArn,
   });
+
   factory CreateStreamProcessorResponse.fromJson(Map<String, dynamic> json) {
     return CreateStreamProcessorResponse(
       streamProcessorArn: json['StreamProcessorArn'] as String?,
@@ -5313,6 +5331,7 @@ class CustomLabel {
     this.geometry,
     this.name,
   });
+
   factory CustomLabel.fromJson(Map<String, dynamic> json) {
     return CustomLabel(
       confidence: json['Confidence'] as double?,
@@ -5342,6 +5361,7 @@ class DeleteCollectionResponse {
   DeleteCollectionResponse({
     this.statusCode,
   });
+
   factory DeleteCollectionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteCollectionResponse(
       statusCode: json['StatusCode'] as int?,
@@ -5363,6 +5383,7 @@ class DeleteFacesResponse {
   DeleteFacesResponse({
     this.deletedFaces,
   });
+
   factory DeleteFacesResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFacesResponse(
       deletedFaces: (json['DeletedFaces'] as List?)
@@ -5387,6 +5408,7 @@ class DeleteProjectResponse {
   DeleteProjectResponse({
     this.status,
   });
+
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProjectResponse(
       status: (json['Status'] as String?)?.toProjectStatus(),
@@ -5408,6 +5430,7 @@ class DeleteProjectVersionResponse {
   DeleteProjectVersionResponse({
     this.status,
   });
+
   factory DeleteProjectVersionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProjectVersionResponse(
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
@@ -5424,6 +5447,7 @@ class DeleteProjectVersionResponse {
 
 class DeleteStreamProcessorResponse {
   DeleteStreamProcessorResponse();
+
   factory DeleteStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStreamProcessorResponse();
   }
@@ -5459,6 +5483,7 @@ class DescribeCollectionResponse {
     this.faceCount,
     this.faceModelVersion,
   });
+
   factory DescribeCollectionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCollectionResponse(
       collectionARN: json['CollectionARN'] as String?,
@@ -5498,6 +5523,7 @@ class DescribeProjectVersionsResponse {
     this.nextToken,
     this.projectVersionDescriptions,
   });
+
   factory DescribeProjectVersionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProjectVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -5535,6 +5561,7 @@ class DescribeProjectsResponse {
     this.nextToken,
     this.projectDescriptions,
   });
+
   factory DescribeProjectsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProjectsResponse(
       nextToken: json['NextToken'] as String?,
@@ -5604,6 +5631,7 @@ class DescribeStreamProcessorResponse {
     this.statusMessage,
     this.streamProcessorArn,
   });
+
   factory DescribeStreamProcessorResponse.fromJson(Map<String, dynamic> json) {
     return DescribeStreamProcessorResponse(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -5662,6 +5690,7 @@ class DetectCustomLabelsResponse {
   DetectCustomLabelsResponse({
     this.customLabels,
   });
+
   factory DetectCustomLabelsResponse.fromJson(Map<String, dynamic> json) {
     return DetectCustomLabelsResponse(
       customLabels: (json['CustomLabels'] as List?)
@@ -5702,6 +5731,7 @@ class DetectFacesResponse {
     this.faceDetails,
     this.orientationCorrection,
   });
+
   factory DetectFacesResponse.fromJson(Map<String, dynamic> json) {
     return DetectFacesResponse(
       faceDetails: (json['FaceDetails'] as List?)
@@ -5751,6 +5781,7 @@ class DetectLabelsResponse {
     this.labels,
     this.orientationCorrection,
   });
+
   factory DetectLabelsResponse.fromJson(Map<String, dynamic> json) {
     return DetectLabelsResponse(
       labelModelVersion: json['LabelModelVersion'] as String?,
@@ -5793,6 +5824,7 @@ class DetectModerationLabelsResponse {
     this.moderationLabels,
     this.moderationModelVersion,
   });
+
   factory DetectModerationLabelsResponse.fromJson(Map<String, dynamic> json) {
     return DetectModerationLabelsResponse(
       humanLoopActivationOutput: json['HumanLoopActivationOutput'] != null
@@ -5839,6 +5871,7 @@ class DetectProtectiveEquipmentResponse {
     this.protectiveEquipmentModelVersion,
     this.summary,
   });
+
   factory DetectProtectiveEquipmentResponse.fromJson(
       Map<String, dynamic> json) {
     return DetectProtectiveEquipmentResponse(
@@ -5885,6 +5918,7 @@ class DetectTextFilters {
     this.regionsOfInterest,
     this.wordFilter,
   });
+
   factory DetectTextFilters.fromJson(Map<String, dynamic> json) {
     return DetectTextFilters(
       regionsOfInterest: (json['RegionsOfInterest'] as List?)
@@ -5918,6 +5952,7 @@ class DetectTextResponse {
     this.textDetections,
     this.textModelVersion,
   });
+
   factory DetectTextResponse.fromJson(Map<String, dynamic> json) {
     return DetectTextResponse(
       textDetections: (json['TextDetections'] as List?)
@@ -5961,6 +5996,7 @@ class DetectionFilter {
     this.minBoundingBoxWidth,
     this.minConfidence,
   });
+
   factory DetectionFilter.fromJson(Map<String, dynamic> json) {
     return DetectionFilter(
       minBoundingBoxHeight: json['MinBoundingBoxHeight'] as double?,
@@ -6000,6 +6036,7 @@ class Emotion {
     this.confidence,
     this.type,
   });
+
   factory Emotion.fromJson(Map<String, dynamic> json) {
     return Emotion(
       confidence: json['Confidence'] as double?,
@@ -6103,6 +6140,7 @@ class EquipmentDetection {
     this.coversBodyPart,
     this.type,
   });
+
   factory EquipmentDetection.fromJson(Map<String, dynamic> json) {
     return EquipmentDetection(
       boundingBox: json['BoundingBox'] != null
@@ -6146,6 +6184,7 @@ class EvaluationResult {
     this.f1Score,
     this.summary,
   });
+
   factory EvaluationResult.fromJson(Map<String, dynamic> json) {
     return EvaluationResult(
       f1Score: json['F1Score'] as double?,
@@ -6178,6 +6217,7 @@ class EyeOpen {
     this.confidence,
     this.value,
   });
+
   factory EyeOpen.fromJson(Map<String, dynamic> json) {
     return EyeOpen(
       confidence: json['Confidence'] as double?,
@@ -6208,6 +6248,7 @@ class Eyeglasses {
     this.confidence,
     this.value,
   });
+
   factory Eyeglasses.fromJson(Map<String, dynamic> json) {
     return Eyeglasses(
       confidence: json['Confidence'] as double?,
@@ -6251,6 +6292,7 @@ class Face {
     this.faceId,
     this.imageId,
   });
+
   factory Face.fromJson(Map<String, dynamic> json) {
     return Face(
       boundingBox: json['BoundingBox'] != null
@@ -6416,6 +6458,7 @@ class FaceDetail {
     this.smile,
     this.sunglasses,
   });
+
   factory FaceDetail.fromJson(Map<String, dynamic> json) {
     return FaceDetail(
       ageRange: json['AgeRange'] != null
@@ -6516,6 +6559,7 @@ class FaceDetection {
     this.face,
     this.timestamp,
   });
+
   factory FaceDetection.fromJson(Map<String, dynamic> json) {
     return FaceDetection(
       face: json['Face'] != null
@@ -6549,6 +6593,7 @@ class FaceMatch {
     this.face,
     this.similarity,
   });
+
   factory FaceMatch.fromJson(Map<String, dynamic> json) {
     return FaceMatch(
       face: json['Face'] != null
@@ -6582,6 +6627,7 @@ class FaceRecord {
     this.face,
     this.faceDetail,
   });
+
   factory FaceRecord.fromJson(Map<String, dynamic> json) {
     return FaceRecord(
       face: json['Face'] != null
@@ -6619,6 +6665,7 @@ class FaceSearchSettings {
     this.collectionId,
     this.faceMatchThreshold,
   });
+
   factory FaceSearchSettings.fromJson(Map<String, dynamic> json) {
     return FaceSearchSettings(
       collectionId: json['CollectionId'] as String?,
@@ -6691,6 +6738,7 @@ class Gender {
     this.confidence,
     this.value,
   });
+
   factory Gender.fromJson(Map<String, dynamic> json) {
     return Gender(
       confidence: json['Confidence'] as double?,
@@ -6750,6 +6798,7 @@ class Geometry {
     this.boundingBox,
     this.polygon,
   });
+
   factory Geometry.fromJson(Map<String, dynamic> json) {
     return Geometry(
       boundingBox: json['BoundingBox'] != null
@@ -6783,6 +6832,7 @@ class GetCelebrityInfoResponse {
     this.name,
     this.urls,
   });
+
   factory GetCelebrityInfoResponse.fromJson(Map<String, dynamic> json) {
     return GetCelebrityInfoResponse(
       name: json['Name'] as String?,
@@ -6831,6 +6881,7 @@ class GetCelebrityRecognitionResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetCelebrityRecognitionResponse.fromJson(Map<String, dynamic> json) {
     return GetCelebrityRecognitionResponse(
       celebrities: (json['Celebrities'] as List?)
@@ -6896,6 +6947,7 @@ class GetContentModerationResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetContentModerationResponse.fromJson(Map<String, dynamic> json) {
     return GetContentModerationResponse(
       jobStatus: (json['JobStatus'] as String?)?.toVideoJobStatus(),
@@ -6962,6 +7014,7 @@ class GetFaceDetectionResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetFaceDetectionResponse.fromJson(Map<String, dynamic> json) {
     return GetFaceDetectionResponse(
       faces: (json['Faces'] as List?)
@@ -7029,6 +7082,7 @@ class GetFaceSearchResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetFaceSearchResponse.fromJson(Map<String, dynamic> json) {
     return GetFaceSearchResponse(
       jobStatus: (json['JobStatus'] as String?)?.toVideoJobStatus(),
@@ -7095,6 +7149,7 @@ class GetLabelDetectionResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetLabelDetectionResponse.fromJson(Map<String, dynamic> json) {
     return GetLabelDetectionResponse(
       jobStatus: (json['JobStatus'] as String?)?.toVideoJobStatus(),
@@ -7160,6 +7215,7 @@ class GetPersonTrackingResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetPersonTrackingResponse.fromJson(Map<String, dynamic> json) {
     return GetPersonTrackingResponse(
       jobStatus: (json['JobStatus'] as String?)?.toVideoJobStatus(),
@@ -7241,6 +7297,7 @@ class GetSegmentDetectionResponse {
     this.statusMessage,
     this.videoMetadata,
   });
+
   factory GetSegmentDetectionResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentDetectionResponse(
       audioMetadata: (json['AudioMetadata'] as List?)
@@ -7315,6 +7372,7 @@ class GetTextDetectionResponse {
     this.textModelVersion,
     this.videoMetadata,
   });
+
   factory GetTextDetectionResponse.fromJson(Map<String, dynamic> json) {
     return GetTextDetectionResponse(
       jobStatus: (json['JobStatus'] as String?)?.toVideoJobStatus(),
@@ -7358,6 +7416,7 @@ class GroundTruthManifest {
   GroundTruthManifest({
     this.s3Object,
   });
+
   factory GroundTruthManifest.fromJson(Map<String, dynamic> json) {
     return GroundTruthManifest(
       s3Object: json['S3Object'] != null
@@ -7392,6 +7451,7 @@ class HumanLoopActivationOutput {
     this.humanLoopActivationReasons,
     this.humanLoopArn,
   });
+
   factory HumanLoopActivationOutput.fromJson(Map<String, dynamic> json) {
     return HumanLoopActivationOutput(
       humanLoopActivationConditionsEvaluationResults:
@@ -7446,6 +7506,7 @@ class HumanLoopConfig {
     required this.humanLoopName,
     this.dataAttributes,
   });
+
   factory HumanLoopConfig.fromJson(Map<String, dynamic> json) {
     return HumanLoopConfig(
       flowDefinitionArn: json['FlowDefinitionArn'] as String,
@@ -7478,6 +7539,7 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     this.contentClassifiers,
   });
+
   factory HumanLoopDataAttributes.fromJson(Map<String, dynamic> json) {
     return HumanLoopDataAttributes(
       contentClassifiers: (json['ContentClassifiers'] as List?)
@@ -7535,6 +7597,7 @@ class Image {
     this.bytes,
     this.s3Object,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       bytes: _s.decodeNullableUint8List(json['Bytes'] as String?),
@@ -7570,6 +7633,7 @@ class ImageQuality {
     this.brightness,
     this.sharpness,
   });
+
   factory ImageQuality.fromJson(Map<String, dynamic> json) {
     return ImageQuality(
       brightness: json['Brightness'] as double?,
@@ -7640,6 +7704,7 @@ class IndexFacesResponse {
     this.orientationCorrection,
     this.unindexedFaces,
   });
+
   factory IndexFacesResponse.fromJson(Map<String, dynamic> json) {
     return IndexFacesResponse(
       faceModelVersion: json['FaceModelVersion'] as String?,
@@ -7686,6 +7751,7 @@ class Instance {
     this.boundingBox,
     this.confidence,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       boundingBox: json['BoundingBox'] != null
@@ -7715,6 +7781,7 @@ class KinesisDataStream {
   KinesisDataStream({
     this.arn,
   });
+
   factory KinesisDataStream.fromJson(Map<String, dynamic> json) {
     return KinesisDataStream(
       arn: json['Arn'] as String?,
@@ -7739,6 +7806,7 @@ class KinesisVideoStream {
   KinesisVideoStream({
     this.arn,
   });
+
   factory KinesisVideoStream.fromJson(Map<String, dynamic> json) {
     return KinesisVideoStream(
       arn: json['Arn'] as String?,
@@ -7779,6 +7847,7 @@ class Label {
     this.name,
     this.parents,
   });
+
   factory Label.fromJson(Map<String, dynamic> json) {
     return Label(
       confidence: json['Confidence'] as double?,
@@ -7822,6 +7891,7 @@ class LabelDetection {
     this.label,
     this.timestamp,
   });
+
   factory LabelDetection.fromJson(Map<String, dynamic> json) {
     return LabelDetection(
       label: json['Label'] != null
@@ -7891,6 +7961,7 @@ class Landmark {
     this.x,
     this.y,
   });
+
   factory Landmark.fromJson(Map<String, dynamic> json) {
     return Landmark(
       type: (json['Type'] as String?)?.toLandmarkType(),
@@ -8099,6 +8170,7 @@ class ListCollectionsResponse {
     this.faceModelVersions,
     this.nextToken,
   });
+
   factory ListCollectionsResponse.fromJson(Map<String, dynamic> json) {
     return ListCollectionsResponse(
       collectionIds: (json['CollectionIds'] as List?)
@@ -8142,6 +8214,7 @@ class ListFacesResponse {
     this.faces,
     this.nextToken,
   });
+
   factory ListFacesResponse.fromJson(Map<String, dynamic> json) {
     return ListFacesResponse(
       faceModelVersion: json['FaceModelVersion'] as String?,
@@ -8178,6 +8251,7 @@ class ListStreamProcessorsResponse {
     this.nextToken,
     this.streamProcessors,
   });
+
   factory ListStreamProcessorsResponse.fromJson(Map<String, dynamic> json) {
     return ListStreamProcessorsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8205,6 +8279,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -8245,6 +8320,7 @@ class ModerationLabel {
     this.name,
     this.parentName,
   });
+
   factory ModerationLabel.fromJson(Map<String, dynamic> json) {
     return ModerationLabel(
       confidence: json['Confidence'] as double?,
@@ -8278,6 +8354,7 @@ class MouthOpen {
     this.confidence,
     this.value,
   });
+
   factory MouthOpen.fromJson(Map<String, dynamic> json) {
     return MouthOpen(
       confidence: json['Confidence'] as double?,
@@ -8308,6 +8385,7 @@ class Mustache {
     this.confidence,
     this.value,
   });
+
   factory Mustache.fromJson(Map<String, dynamic> json) {
     return Mustache(
       confidence: json['Confidence'] as double?,
@@ -8341,6 +8419,7 @@ class NotificationChannel {
     required this.roleArn,
     required this.sNSTopicArn,
   });
+
   factory NotificationChannel.fromJson(Map<String, dynamic> json) {
     return NotificationChannel(
       roleArn: json['RoleArn'] as String,
@@ -8408,6 +8487,7 @@ class OutputConfig {
     this.s3Bucket,
     this.s3KeyPrefix,
   });
+
   factory OutputConfig.fromJson(Map<String, dynamic> json) {
     return OutputConfig(
       s3Bucket: json['S3Bucket'] as String?,
@@ -8433,6 +8513,7 @@ class Parent {
   Parent({
     this.name,
   });
+
   factory Parent.fromJson(Map<String, dynamic> json) {
     return Parent(
       name: json['Name'] as String?,
@@ -8465,6 +8546,7 @@ class PersonDetail {
     this.face,
     this.index,
   });
+
   factory PersonDetail.fromJson(Map<String, dynamic> json) {
     return PersonDetail(
       boundingBox: json['BoundingBox'] != null
@@ -8508,6 +8590,7 @@ class PersonDetection {
     this.person,
     this.timestamp,
   });
+
   factory PersonDetection.fromJson(Map<String, dynamic> json) {
     return PersonDetection(
       person: json['Person'] != null
@@ -8550,6 +8633,7 @@ class PersonMatch {
     this.person,
     this.timestamp,
   });
+
   factory PersonMatch.fromJson(Map<String, dynamic> json) {
     return PersonMatch(
       faceMatches: (json['FaceMatches'] as List?)
@@ -8623,6 +8707,7 @@ class Point {
     this.x,
     this.y,
   });
+
   factory Point.fromJson(Map<String, dynamic> json) {
     return Point(
       x: json['X'] as double?,
@@ -8656,6 +8741,7 @@ class Pose {
     this.roll,
     this.yaw,
   });
+
   factory Pose.fromJson(Map<String, dynamic> json) {
     return Pose(
       pitch: json['Pitch'] as double?,
@@ -8692,6 +8778,7 @@ class ProjectDescription {
     this.projectArn,
     this.status,
   });
+
   factory ProjectDescription.fromJson(Map<String, dynamic> json) {
     return ProjectDescription(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -8808,6 +8895,7 @@ class ProjectVersionDescription {
     this.trainingDataResult,
     this.trainingEndTimestamp,
   });
+
   factory ProjectVersionDescription.fromJson(Map<String, dynamic> json) {
     return ProjectVersionDescription(
       billableTrainingTimeInSeconds:
@@ -8959,6 +9047,7 @@ class ProtectiveEquipmentBodyPart {
     this.equipmentDetections,
     this.name,
   });
+
   factory ProtectiveEquipmentBodyPart.fromJson(Map<String, dynamic> json) {
     return ProtectiveEquipmentBodyPart(
       confidence: json['Confidence'] as double?,
@@ -9008,6 +9097,7 @@ class ProtectiveEquipmentPerson {
     this.confidence,
     this.id,
   });
+
   factory ProtectiveEquipmentPerson.fromJson(Map<String, dynamic> json) {
     return ProtectiveEquipmentPerson(
       bodyParts: (json['BodyParts'] as List?)
@@ -9073,6 +9163,7 @@ class ProtectiveEquipmentSummarizationAttributes {
     required this.minConfidence,
     required this.requiredEquipmentTypes,
   });
+
   factory ProtectiveEquipmentSummarizationAttributes.fromJson(
       Map<String, dynamic> json) {
     return ProtectiveEquipmentSummarizationAttributes(
@@ -9132,6 +9223,7 @@ class ProtectiveEquipmentSummary {
     this.personsWithRequiredEquipment,
     this.personsWithoutRequiredEquipment,
   });
+
   factory ProtectiveEquipmentSummary.fromJson(Map<String, dynamic> json) {
     return ProtectiveEquipmentSummary(
       personsIndeterminate: (json['PersonsIndeterminate'] as List?)
@@ -9325,6 +9417,7 @@ class RecognizeCelebritiesResponse {
     this.orientationCorrection,
     this.unrecognizedFaces,
   });
+
   factory RecognizeCelebritiesResponse.fromJson(Map<String, dynamic> json) {
     return RecognizeCelebritiesResponse(
       celebrityFaces: (json['CelebrityFaces'] as List?)
@@ -9367,6 +9460,7 @@ class RegionOfInterest {
   RegionOfInterest({
     this.boundingBox,
   });
+
   factory RegionOfInterest.fromJson(Map<String, dynamic> json) {
     return RegionOfInterest(
       boundingBox: json['BoundingBox'] != null
@@ -9406,6 +9500,7 @@ class S3Object {
     this.name,
     this.version,
   });
+
   factory S3Object.fromJson(Map<String, dynamic> json) {
     return S3Object(
       bucket: json['Bucket'] as String?,
@@ -9449,6 +9544,7 @@ class SearchFacesByImageResponse {
     this.searchedFaceBoundingBox,
     this.searchedFaceConfidence,
   });
+
   factory SearchFacesByImageResponse.fromJson(Map<String, dynamic> json) {
     return SearchFacesByImageResponse(
       faceMatches: (json['FaceMatches'] as List?)
@@ -9497,6 +9593,7 @@ class SearchFacesResponse {
     this.faceModelVersion,
     this.searchedFaceId,
   });
+
   factory SearchFacesResponse.fromJson(Map<String, dynamic> json) {
     return SearchFacesResponse(
       faceMatches: (json['FaceMatches'] as List?)
@@ -9573,6 +9670,7 @@ class SegmentDetection {
     this.technicalCueSegment,
     this.type,
   });
+
   factory SegmentDetection.fromJson(Map<String, dynamic> json) {
     return SegmentDetection(
       durationMillis: json['DurationMillis'] as int?,
@@ -9660,6 +9758,7 @@ class SegmentTypeInfo {
     this.modelVersion,
     this.type,
   });
+
   factory SegmentTypeInfo.fromJson(Map<String, dynamic> json) {
     return SegmentTypeInfo(
       modelVersion: json['ModelVersion'] as String?,
@@ -9691,6 +9790,7 @@ class ShotSegment {
     this.confidence,
     this.index,
   });
+
   factory ShotSegment.fromJson(Map<String, dynamic> json) {
     return ShotSegment(
       confidence: json['Confidence'] as double?,
@@ -9721,6 +9821,7 @@ class Smile {
     this.confidence,
     this.value,
   });
+
   factory Smile.fromJson(Map<String, dynamic> json) {
     return Smile(
       confidence: json['Confidence'] as double?,
@@ -9747,6 +9848,7 @@ class StartCelebrityRecognitionResponse {
   StartCelebrityRecognitionResponse({
     this.jobId,
   });
+
   factory StartCelebrityRecognitionResponse.fromJson(
       Map<String, dynamic> json) {
     return StartCelebrityRecognitionResponse(
@@ -9771,6 +9873,7 @@ class StartContentModerationResponse {
   StartContentModerationResponse({
     this.jobId,
   });
+
   factory StartContentModerationResponse.fromJson(Map<String, dynamic> json) {
     return StartContentModerationResponse(
       jobId: json['JobId'] as String?,
@@ -9793,6 +9896,7 @@ class StartFaceDetectionResponse {
   StartFaceDetectionResponse({
     this.jobId,
   });
+
   factory StartFaceDetectionResponse.fromJson(Map<String, dynamic> json) {
     return StartFaceDetectionResponse(
       jobId: json['JobId'] as String?,
@@ -9815,6 +9919,7 @@ class StartFaceSearchResponse {
   StartFaceSearchResponse({
     this.jobId,
   });
+
   factory StartFaceSearchResponse.fromJson(Map<String, dynamic> json) {
     return StartFaceSearchResponse(
       jobId: json['JobId'] as String?,
@@ -9837,6 +9942,7 @@ class StartLabelDetectionResponse {
   StartLabelDetectionResponse({
     this.jobId,
   });
+
   factory StartLabelDetectionResponse.fromJson(Map<String, dynamic> json) {
     return StartLabelDetectionResponse(
       jobId: json['JobId'] as String?,
@@ -9859,6 +9965,7 @@ class StartPersonTrackingResponse {
   StartPersonTrackingResponse({
     this.jobId,
   });
+
   factory StartPersonTrackingResponse.fromJson(Map<String, dynamic> json) {
     return StartPersonTrackingResponse(
       jobId: json['JobId'] as String?,
@@ -9880,6 +9987,7 @@ class StartProjectVersionResponse {
   StartProjectVersionResponse({
     this.status,
   });
+
   factory StartProjectVersionResponse.fromJson(Map<String, dynamic> json) {
     return StartProjectVersionResponse(
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
@@ -9907,6 +10015,7 @@ class StartSegmentDetectionFilters {
     this.shotFilter,
     this.technicalCueFilter,
   });
+
   factory StartSegmentDetectionFilters.fromJson(Map<String, dynamic> json) {
     return StartSegmentDetectionFilters(
       shotFilter: json['ShotFilter'] != null
@@ -9938,6 +10047,7 @@ class StartSegmentDetectionResponse {
   StartSegmentDetectionResponse({
     this.jobId,
   });
+
   factory StartSegmentDetectionResponse.fromJson(Map<String, dynamic> json) {
     return StartSegmentDetectionResponse(
       jobId: json['JobId'] as String?,
@@ -9970,6 +10080,7 @@ class StartShotDetectionFilter {
   StartShotDetectionFilter({
     this.minSegmentConfidence,
   });
+
   factory StartShotDetectionFilter.fromJson(Map<String, dynamic> json) {
     return StartShotDetectionFilter(
       minSegmentConfidence: json['MinSegmentConfidence'] as double?,
@@ -9987,6 +10098,7 @@ class StartShotDetectionFilter {
 
 class StartStreamProcessorResponse {
   StartStreamProcessorResponse();
+
   factory StartStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return StartStreamProcessorResponse();
   }
@@ -10013,6 +10125,7 @@ class StartTechnicalCueDetectionFilter {
   StartTechnicalCueDetectionFilter({
     this.minSegmentConfidence,
   });
+
   factory StartTechnicalCueDetectionFilter.fromJson(Map<String, dynamic> json) {
     return StartTechnicalCueDetectionFilter(
       minSegmentConfidence: json['MinSegmentConfidence'] as double?,
@@ -10044,6 +10157,7 @@ class StartTextDetectionFilters {
     this.regionsOfInterest,
     this.wordFilter,
   });
+
   factory StartTextDetectionFilters.fromJson(Map<String, dynamic> json) {
     return StartTextDetectionFilters(
       regionsOfInterest: (json['RegionsOfInterest'] as List?)
@@ -10074,6 +10188,7 @@ class StartTextDetectionResponse {
   StartTextDetectionResponse({
     this.jobId,
   });
+
   factory StartTextDetectionResponse.fromJson(Map<String, dynamic> json) {
     return StartTextDetectionResponse(
       jobId: json['JobId'] as String?,
@@ -10095,6 +10210,7 @@ class StopProjectVersionResponse {
   StopProjectVersionResponse({
     this.status,
   });
+
   factory StopProjectVersionResponse.fromJson(Map<String, dynamic> json) {
     return StopProjectVersionResponse(
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
@@ -10111,6 +10227,7 @@ class StopProjectVersionResponse {
 
 class StopStreamProcessorResponse {
   StopStreamProcessorResponse();
+
   factory StopStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return StopStreamProcessorResponse();
   }
@@ -10136,6 +10253,7 @@ class StreamProcessor {
     this.name,
     this.status,
   });
+
   factory StreamProcessor.fromJson(Map<String, dynamic> json) {
     return StreamProcessor(
       name: json['Name'] as String?,
@@ -10161,6 +10279,7 @@ class StreamProcessorInput {
   StreamProcessorInput({
     this.kinesisVideoStream,
   });
+
   factory StreamProcessorInput.fromJson(Map<String, dynamic> json) {
     return StreamProcessorInput(
       kinesisVideoStream: json['KinesisVideoStream'] != null
@@ -10190,6 +10309,7 @@ class StreamProcessorOutput {
   StreamProcessorOutput({
     this.kinesisDataStream,
   });
+
   factory StreamProcessorOutput.fromJson(Map<String, dynamic> json) {
     return StreamProcessorOutput(
       kinesisDataStream: json['KinesisDataStream'] != null
@@ -10216,6 +10336,7 @@ class StreamProcessorSettings {
   StreamProcessorSettings({
     this.faceSearch,
   });
+
   factory StreamProcessorSettings.fromJson(Map<String, dynamic> json) {
     return StreamProcessorSettings(
       faceSearch: json['FaceSearch'] != null
@@ -10288,6 +10409,7 @@ class Summary {
   Summary({
     this.s3Object,
   });
+
   factory Summary.fromJson(Map<String, dynamic> json) {
     return Summary(
       s3Object: json['S3Object'] != null
@@ -10317,6 +10439,7 @@ class Sunglasses {
     this.confidence,
     this.value,
   });
+
   factory Sunglasses.fromJson(Map<String, dynamic> json) {
     return Sunglasses(
       confidence: json['Confidence'] as double?,
@@ -10336,6 +10459,7 @@ class Sunglasses {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -10359,6 +10483,7 @@ class TechnicalCueSegment {
     this.confidence,
     this.type,
   });
+
   factory TechnicalCueSegment.fromJson(Map<String, dynamic> json) {
     return TechnicalCueSegment(
       confidence: json['Confidence'] as double?,
@@ -10424,6 +10549,7 @@ class TestingData {
     this.assets,
     this.autoCreate,
   });
+
   factory TestingData.fromJson(Map<String, dynamic> json) {
     return TestingData(
       assets: (json['Assets'] as List?)
@@ -10463,6 +10589,7 @@ class TestingDataResult {
     this.output,
     this.validation,
   });
+
   factory TestingDataResult.fromJson(Map<String, dynamic> json) {
     return TestingDataResult(
       input: json['Input'] != null
@@ -10534,6 +10661,7 @@ class TextDetection {
     this.parentId,
     this.type,
   });
+
   factory TextDetection.fromJson(Map<String, dynamic> json) {
     return TextDetection(
       confidence: json['Confidence'] as double?,
@@ -10580,6 +10708,7 @@ class TextDetectionResult {
     this.textDetection,
     this.timestamp,
   });
+
   factory TextDetectionResult.fromJson(Map<String, dynamic> json) {
     return TextDetectionResult(
       textDetection: json['TextDetection'] != null
@@ -10637,6 +10766,7 @@ class TrainingData {
   TrainingData({
     this.assets,
   });
+
   factory TrainingData.fromJson(Map<String, dynamic> json) {
     return TrainingData(
       assets: (json['Assets'] as List?)
@@ -10673,6 +10803,7 @@ class TrainingDataResult {
     this.output,
     this.validation,
   });
+
   factory TrainingDataResult.fromJson(Map<String, dynamic> json) {
     return TrainingDataResult(
       input: json['Input'] != null
@@ -10738,6 +10869,7 @@ class UnindexedFace {
     this.faceDetail,
     this.reasons,
   });
+
   factory UnindexedFace.fromJson(Map<String, dynamic> json) {
     return UnindexedFace(
       faceDetail: json['FaceDetail'] != null
@@ -10762,6 +10894,7 @@ class UnindexedFace {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -10792,6 +10925,7 @@ class ValidationData {
   ValidationData({
     this.assets,
   });
+
   factory ValidationData.fromJson(Map<String, dynamic> json) {
     return ValidationData(
       assets: (json['Assets'] as List?)
@@ -10820,6 +10954,7 @@ class Video {
   Video({
     this.s3Object,
   });
+
   factory Video.fromJson(Map<String, dynamic> json) {
     return Video(
       s3Object: json['S3Object'] != null
@@ -10899,6 +11034,7 @@ class VideoMetadata {
     this.frameRate,
     this.frameWidth,
   });
+
   factory VideoMetadata.fromJson(Map<String, dynamic> json) {
     return VideoMetadata(
       codec: json['Codec'] as String?,

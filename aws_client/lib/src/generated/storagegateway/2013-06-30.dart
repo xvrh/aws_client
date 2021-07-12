@@ -6547,6 +6547,7 @@ class ActivateGatewayOutput {
   ActivateGatewayOutput({
     this.gatewayARN,
   });
+
   factory ActivateGatewayOutput.fromJson(Map<String, dynamic> json) {
     return ActivateGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -6620,6 +6621,7 @@ class AddCacheOutput {
   AddCacheOutput({
     this.gatewayARN,
   });
+
   factory AddCacheOutput.fromJson(Map<String, dynamic> json) {
     return AddCacheOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -6642,6 +6644,7 @@ class AddTagsToResourceOutput {
   AddTagsToResourceOutput({
     this.resourceARN,
   });
+
   factory AddTagsToResourceOutput.fromJson(Map<String, dynamic> json) {
     return AddTagsToResourceOutput(
       resourceARN: json['ResourceARN'] as String?,
@@ -6662,6 +6665,7 @@ class AddUploadBufferOutput {
   AddUploadBufferOutput({
     this.gatewayARN,
   });
+
   factory AddUploadBufferOutput.fromJson(Map<String, dynamic> json) {
     return AddUploadBufferOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -6684,6 +6688,7 @@ class AddWorkingStorageOutput {
   AddWorkingStorageOutput({
     this.gatewayARN,
   });
+
   factory AddWorkingStorageOutput.fromJson(Map<String, dynamic> json) {
     return AddWorkingStorageOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -6706,6 +6711,7 @@ class AssignTapePoolOutput {
   AssignTapePoolOutput({
     this.tapeARN,
   });
+
   factory AssignTapePoolOutput.fromJson(Map<String, dynamic> json) {
     return AssignTapePoolOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -6727,6 +6733,7 @@ class AssociateFileSystemOutput {
   AssociateFileSystemOutput({
     this.fileSystemAssociationARN,
   });
+
   factory AssociateFileSystemOutput.fromJson(Map<String, dynamic> json) {
     return AssociateFileSystemOutput(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
@@ -6756,6 +6763,7 @@ class AttachVolumeOutput {
     this.targetARN,
     this.volumeARN,
   });
+
   factory AttachVolumeOutput.fromJson(Map<String, dynamic> json) {
     return AttachVolumeOutput(
       targetARN: json['TargetARN'] as String?,
@@ -6787,6 +6795,7 @@ class AutomaticTapeCreationPolicyInfo {
     this.automaticTapeCreationRules,
     this.gatewayARN,
   });
+
   factory AutomaticTapeCreationPolicyInfo.fromJson(Map<String, dynamic> json) {
     return AutomaticTapeCreationPolicyInfo(
       automaticTapeCreationRules: (json['AutomaticTapeCreationRules'] as List?)
@@ -6856,6 +6865,7 @@ class AutomaticTapeCreationRule {
     required this.tapeSizeInBytes,
     this.worm,
   });
+
   factory AutomaticTapeCreationRule.fromJson(Map<String, dynamic> json) {
     return AutomaticTapeCreationRule(
       minimumNumTapes: json['MinimumNumTapes'] as int,
@@ -6963,6 +6973,7 @@ class BandwidthRateLimitInterval {
     this.averageDownloadRateLimitInBitsPerSec,
     this.averageUploadRateLimitInBitsPerSec,
   });
+
   factory BandwidthRateLimitInterval.fromJson(Map<String, dynamic> json) {
     return BandwidthRateLimitInterval(
       daysOfWeek: (json['DaysOfWeek'] as List)
@@ -7020,6 +7031,7 @@ class CacheAttributes {
   CacheAttributes({
     this.cacheStaleTimeoutInSeconds,
   });
+
   factory CacheAttributes.fromJson(Map<String, dynamic> json) {
     return CacheAttributes(
       cacheStaleTimeoutInSeconds: json['CacheStaleTimeoutInSeconds'] as int?,
@@ -7117,6 +7129,7 @@ class CachediSCSIVolume {
     this.volumeUsedInBytes,
     this.volumeiSCSIAttributes,
   });
+
   factory CachediSCSIVolume.fromJson(Map<String, dynamic> json) {
     return CachediSCSIVolume(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -7181,6 +7194,7 @@ class CancelArchivalOutput {
   CancelArchivalOutput({
     this.tapeARN,
   });
+
   factory CancelArchivalOutput.fromJson(Map<String, dynamic> json) {
     return CancelArchivalOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -7204,6 +7218,7 @@ class CancelRetrievalOutput {
   CancelRetrievalOutput({
     this.tapeARN,
   });
+
   factory CancelRetrievalOutput.fromJson(Map<String, dynamic> json) {
     return CancelRetrievalOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -7272,6 +7287,7 @@ class ChapInfo {
     this.secretToAuthenticateTarget,
     this.targetARN,
   });
+
   factory ChapInfo.fromJson(Map<String, dynamic> json) {
     return ChapInfo(
       initiatorName: json['InitiatorName'] as String?,
@@ -7310,6 +7326,7 @@ class CreateCachediSCSIVolumeOutput {
     this.targetARN,
     this.volumeARN,
   });
+
   factory CreateCachediSCSIVolumeOutput.fromJson(Map<String, dynamic> json) {
     return CreateCachediSCSIVolumeOutput(
       targetARN: json['TargetARN'] as String?,
@@ -7335,6 +7352,7 @@ class CreateNFSFileShareOutput {
   CreateNFSFileShareOutput({
     this.fileShareARN,
   });
+
   factory CreateNFSFileShareOutput.fromJson(Map<String, dynamic> json) {
     return CreateNFSFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -7357,6 +7375,7 @@ class CreateSMBFileShareOutput {
   CreateSMBFileShareOutput({
     this.fileShareARN,
   });
+
   factory CreateSMBFileShareOutput.fromJson(Map<String, dynamic> json) {
     return CreateSMBFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -7388,6 +7407,7 @@ class CreateSnapshotFromVolumeRecoveryPointOutput {
     this.volumeARN,
     this.volumeRecoveryPointTime,
   });
+
   factory CreateSnapshotFromVolumeRecoveryPointOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateSnapshotFromVolumeRecoveryPointOutput(
@@ -7426,6 +7446,7 @@ class CreateSnapshotOutput {
     this.snapshotId,
     this.volumeARN,
   });
+
   factory CreateSnapshotOutput.fromJson(Map<String, dynamic> json) {
     return CreateSnapshotOutput(
       snapshotId: json['SnapshotId'] as String?,
@@ -7460,6 +7481,7 @@ class CreateStorediSCSIVolumeOutput {
     this.volumeARN,
     this.volumeSizeInBytes,
   });
+
   factory CreateStorediSCSIVolumeOutput.fromJson(Map<String, dynamic> json) {
     return CreateStorediSCSIVolumeOutput(
       targetARN: json['TargetARN'] as String?,
@@ -7489,6 +7511,7 @@ class CreateTapePoolOutput {
   CreateTapePoolOutput({
     this.poolARN,
   });
+
   factory CreateTapePoolOutput.fromJson(Map<String, dynamic> json) {
     return CreateTapePoolOutput(
       poolARN: json['PoolARN'] as String?,
@@ -7512,6 +7535,7 @@ class CreateTapeWithBarcodeOutput {
   CreateTapeWithBarcodeOutput({
     this.tapeARN,
   });
+
   factory CreateTapeWithBarcodeOutput.fromJson(Map<String, dynamic> json) {
     return CreateTapeWithBarcodeOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -7535,6 +7559,7 @@ class CreateTapesOutput {
   CreateTapesOutput({
     this.tapeARNs,
   });
+
   factory CreateTapesOutput.fromJson(Map<String, dynamic> json) {
     return CreateTapesOutput(
       tapeARNs: (json['TapeARNs'] as List?)
@@ -7558,6 +7583,7 @@ class DeleteAutomaticTapeCreationPolicyOutput {
   DeleteAutomaticTapeCreationPolicyOutput({
     this.gatewayARN,
   });
+
   factory DeleteAutomaticTapeCreationPolicyOutput.fromJson(
       Map<String, dynamic> json) {
     return DeleteAutomaticTapeCreationPolicyOutput(
@@ -7581,6 +7607,7 @@ class DeleteBandwidthRateLimitOutput {
   DeleteBandwidthRateLimitOutput({
     this.gatewayARN,
   });
+
   factory DeleteBandwidthRateLimitOutput.fromJson(Map<String, dynamic> json) {
     return DeleteBandwidthRateLimitOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -7607,6 +7634,7 @@ class DeleteChapCredentialsOutput {
     this.initiatorName,
     this.targetARN,
   });
+
   factory DeleteChapCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return DeleteChapCredentialsOutput(
       initiatorName: json['InitiatorName'] as String?,
@@ -7632,6 +7660,7 @@ class DeleteFileShareOutput {
   DeleteFileShareOutput({
     this.fileShareARN,
   });
+
   factory DeleteFileShareOutput.fromJson(Map<String, dynamic> json) {
     return DeleteFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -7653,6 +7682,7 @@ class DeleteGatewayOutput {
   DeleteGatewayOutput({
     this.gatewayARN,
   });
+
   factory DeleteGatewayOutput.fromJson(Map<String, dynamic> json) {
     return DeleteGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -7674,6 +7704,7 @@ class DeleteSnapshotScheduleOutput {
   DeleteSnapshotScheduleOutput({
     this.volumeARN,
   });
+
   factory DeleteSnapshotScheduleOutput.fromJson(Map<String, dynamic> json) {
     return DeleteSnapshotScheduleOutput(
       volumeARN: json['VolumeARN'] as String?,
@@ -7697,6 +7728,7 @@ class DeleteTapeArchiveOutput {
   DeleteTapeArchiveOutput({
     this.tapeARN,
   });
+
   factory DeleteTapeArchiveOutput.fromJson(Map<String, dynamic> json) {
     return DeleteTapeArchiveOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -7719,6 +7751,7 @@ class DeleteTapeOutput {
   DeleteTapeOutput({
     this.tapeARN,
   });
+
   factory DeleteTapeOutput.fromJson(Map<String, dynamic> json) {
     return DeleteTapeOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -7740,6 +7773,7 @@ class DeleteTapePoolOutput {
   DeleteTapePoolOutput({
     this.poolARN,
   });
+
   factory DeleteTapePoolOutput.fromJson(Map<String, dynamic> json) {
     return DeleteTapePoolOutput(
       poolARN: json['PoolARN'] as String?,
@@ -7764,6 +7798,7 @@ class DeleteVolumeOutput {
   DeleteVolumeOutput({
     this.volumeARN,
   });
+
   factory DeleteVolumeOutput.fromJson(Map<String, dynamic> json) {
     return DeleteVolumeOutput(
       volumeARN: json['VolumeARN'] as String?,
@@ -7794,6 +7829,7 @@ class DescribeAvailabilityMonitorTestOutput {
     this.startTime,
     this.status,
   });
+
   factory DescribeAvailabilityMonitorTestOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeAvailabilityMonitorTestOutput(
@@ -7831,6 +7867,7 @@ class DescribeBandwidthRateLimitOutput {
     this.averageUploadRateLimitInBitsPerSec,
     this.gatewayARN,
   });
+
   factory DescribeBandwidthRateLimitOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBandwidthRateLimitOutput(
       averageDownloadRateLimitInBitsPerSec:
@@ -7869,6 +7906,7 @@ class DescribeBandwidthRateLimitScheduleOutput {
     this.bandwidthRateLimitIntervals,
     this.gatewayARN,
   });
+
   factory DescribeBandwidthRateLimitScheduleOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeBandwidthRateLimitScheduleOutput(
@@ -7930,6 +7968,7 @@ class DescribeCacheOutput {
     this.diskIds,
     this.gatewayARN,
   });
+
   factory DescribeCacheOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCacheOutput(
       cacheAllocatedInBytes: json['CacheAllocatedInBytes'] as int?,
@@ -7978,6 +8017,7 @@ class DescribeCachediSCSIVolumesOutput {
   DescribeCachediSCSIVolumesOutput({
     this.cachediSCSIVolumes,
   });
+
   factory DescribeCachediSCSIVolumesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCachediSCSIVolumesOutput(
       cachediSCSIVolumes: (json['CachediSCSIVolumes'] as List?)
@@ -8026,6 +8066,7 @@ class DescribeChapCredentialsOutput {
   DescribeChapCredentialsOutput({
     this.chapCredentials,
   });
+
   factory DescribeChapCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeChapCredentialsOutput(
       chapCredentials: (json['ChapCredentials'] as List?)
@@ -8051,6 +8092,7 @@ class DescribeFileSystemAssociationsOutput {
   DescribeFileSystemAssociationsOutput({
     this.fileSystemAssociationInfoList,
   });
+
   factory DescribeFileSystemAssociationsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeFileSystemAssociationsOutput(
@@ -8171,6 +8213,7 @@ class DescribeGatewayInformationOutput {
     this.tags,
     this.vPCEndpoint,
   });
+
   factory DescribeGatewayInformationOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGatewayInformationOutput(
       cloudWatchLogGroupARN: json['CloudWatchLogGroupARN'] as String?,
@@ -8312,6 +8355,7 @@ class DescribeMaintenanceStartTimeOutput {
     this.minuteOfHour,
     this.timezone,
   });
+
   factory DescribeMaintenanceStartTimeOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceStartTimeOutput(
@@ -8350,6 +8394,7 @@ class DescribeNFSFileSharesOutput {
   DescribeNFSFileSharesOutput({
     this.nFSFileShareInfoList,
   });
+
   factory DescribeNFSFileSharesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeNFSFileSharesOutput(
       nFSFileShareInfoList: (json['NFSFileShareInfoList'] as List?)
@@ -8376,6 +8421,7 @@ class DescribeSMBFileSharesOutput {
   DescribeSMBFileSharesOutput({
     this.sMBFileShareInfoList,
   });
+
   factory DescribeSMBFileSharesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeSMBFileSharesOutput(
       sMBFileShareInfoList: (json['SMBFileShareInfoList'] as List?)
@@ -8477,6 +8523,7 @@ class DescribeSMBSettingsOutput {
     this.sMBGuestPasswordSet,
     this.sMBSecurityStrategy,
   });
+
   factory DescribeSMBSettingsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeSMBSettingsOutput(
       activeDirectoryStatus:
@@ -8544,6 +8591,7 @@ class DescribeSnapshotScheduleOutput {
     this.timezone,
     this.volumeARN,
   });
+
   factory DescribeSnapshotScheduleOutput.fromJson(Map<String, dynamic> json) {
     return DescribeSnapshotScheduleOutput(
       description: json['Description'] as String?,
@@ -8650,6 +8698,7 @@ class DescribeStorediSCSIVolumesOutput {
   DescribeStorediSCSIVolumesOutput({
     this.storediSCSIVolumes,
   });
+
   factory DescribeStorediSCSIVolumesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStorediSCSIVolumesOutput(
       storediSCSIVolumes: (json['StorediSCSIVolumes'] as List?)
@@ -8687,6 +8736,7 @@ class DescribeTapeArchivesOutput {
     this.marker,
     this.tapeArchives,
   });
+
   factory DescribeTapeArchivesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTapeArchivesOutput(
       marker: json['Marker'] as String?,
@@ -8728,6 +8778,7 @@ class DescribeTapeRecoveryPointsOutput {
     this.marker,
     this.tapeRecoveryPointInfos,
   });
+
   factory DescribeTapeRecoveryPointsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTapeRecoveryPointsOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -8768,6 +8819,7 @@ class DescribeTapesOutput {
     this.marker,
     this.tapes,
   });
+
   factory DescribeTapesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTapesOutput(
       marker: json['Marker'] as String?,
@@ -8808,6 +8860,7 @@ class DescribeUploadBufferOutput {
     this.uploadBufferAllocatedInBytes,
     this.uploadBufferUsedInBytes,
   });
+
   factory DescribeUploadBufferOutput.fromJson(Map<String, dynamic> json) {
     return DescribeUploadBufferOutput(
       diskIds: (json['DiskIds'] as List?)
@@ -8856,6 +8909,7 @@ class DescribeVTLDevicesOutput {
     this.marker,
     this.vTLDevices,
   });
+
   factory DescribeVTLDevicesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVTLDevicesOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -8902,6 +8956,7 @@ class DescribeWorkingStorageOutput {
     this.workingStorageAllocatedInBytes,
     this.workingStorageUsedInBytes,
   });
+
   factory DescribeWorkingStorageOutput.fromJson(Map<String, dynamic> json) {
     return DescribeWorkingStorageOutput(
       diskIds: (json['DiskIds'] as List?)
@@ -8939,6 +8994,7 @@ class DetachVolumeOutput {
   DetachVolumeOutput({
     this.volumeARN,
   });
+
   factory DetachVolumeOutput.fromJson(Map<String, dynamic> json) {
     return DetachVolumeOutput(
       volumeARN: json['VolumeARN'] as String?,
@@ -8974,6 +9030,7 @@ class DeviceiSCSIAttributes {
     this.networkInterfacePort,
     this.targetARN,
   });
+
   factory DeviceiSCSIAttributes.fromJson(Map<String, dynamic> json) {
     return DeviceiSCSIAttributes(
       chapEnabled: json['ChapEnabled'] as bool?,
@@ -9006,6 +9063,7 @@ class DisableGatewayOutput {
   DisableGatewayOutput({
     this.gatewayARN,
   });
+
   factory DisableGatewayOutput.fromJson(Map<String, dynamic> json) {
     return DisableGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -9027,6 +9085,7 @@ class DisassociateFileSystemOutput {
   DisassociateFileSystemOutput({
     this.fileSystemAssociationARN,
   });
+
   factory DisassociateFileSystemOutput.fromJson(Map<String, dynamic> json) {
     return DisassociateFileSystemOutput(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
@@ -9079,6 +9138,7 @@ class Disk {
     this.diskSizeInBytes,
     this.diskStatus,
   });
+
   factory Disk.fromJson(Map<String, dynamic> json) {
     return Disk(
       diskAllocationResource: json['DiskAllocationResource'] as String?,
@@ -9132,6 +9192,7 @@ class EndpointNetworkConfiguration {
   EndpointNetworkConfiguration({
     this.ipAddresses,
   });
+
   factory EndpointNetworkConfiguration.fromJson(Map<String, dynamic> json) {
     return EndpointNetworkConfiguration(
       ipAddresses: (json['IpAddresses'] as List?)
@@ -9164,6 +9225,7 @@ class FileShareInfo {
     this.fileShareType,
     this.gatewayARN,
   });
+
   factory FileShareInfo.fromJson(Map<String, dynamic> json) {
     return FileShareInfo(
       fileShareARN: json['FileShareARN'] as String?,
@@ -9263,6 +9325,7 @@ class FileSystemAssociationInfo {
     this.locationARN,
     this.tags,
   });
+
   factory FileSystemAssociationInfo.fromJson(Map<String, dynamic> json) {
     return FileSystemAssociationInfo(
       auditDestinationARN: json['AuditDestinationARN'] as String?,
@@ -9333,6 +9396,7 @@ class FileSystemAssociationSummary {
     this.fileSystemAssociationStatus,
     this.gatewayARN,
   });
+
   factory FileSystemAssociationSummary.fromJson(Map<String, dynamic> json) {
     return FileSystemAssociationSummary(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
@@ -9430,6 +9494,7 @@ class GatewayInfo {
     this.gatewayOperationalState,
     this.gatewayType,
   });
+
   factory GatewayInfo.fromJson(Map<String, dynamic> json) {
     return GatewayInfo(
       ec2InstanceId: json['Ec2InstanceId'] as String?,
@@ -9549,6 +9614,7 @@ class JoinDomainOutput {
     this.activeDirectoryStatus,
     this.gatewayARN,
   });
+
   factory JoinDomainOutput.fromJson(Map<String, dynamic> json) {
     return JoinDomainOutput(
       activeDirectoryStatus:
@@ -9577,6 +9643,7 @@ class ListAutomaticTapeCreationPoliciesOutput {
   ListAutomaticTapeCreationPoliciesOutput({
     this.automaticTapeCreationPolicyInfos,
   });
+
   factory ListAutomaticTapeCreationPoliciesOutput.fromJson(
       Map<String, dynamic> json) {
     return ListAutomaticTapeCreationPoliciesOutput(
@@ -9618,6 +9685,7 @@ class ListFileSharesOutput {
     this.marker,
     this.nextMarker,
   });
+
   factory ListFileSharesOutput.fromJson(Map<String, dynamic> json) {
     return ListFileSharesOutput(
       fileShareInfoList: (json['FileShareInfoList'] as List?)
@@ -9660,6 +9728,7 @@ class ListFileSystemAssociationsOutput {
     this.marker,
     this.nextMarker,
   });
+
   factory ListFileSystemAssociationsOutput.fromJson(Map<String, dynamic> json) {
     return ListFileSystemAssociationsOutput(
       fileSystemAssociationSummaryList:
@@ -9700,6 +9769,7 @@ class ListGatewaysOutput {
     this.gateways,
     this.marker,
   });
+
   factory ListGatewaysOutput.fromJson(Map<String, dynamic> json) {
     return ListGatewaysOutput(
       gateways: (json['Gateways'] as List?)
@@ -9735,6 +9805,7 @@ class ListLocalDisksOutput {
     this.disks,
     this.gatewayARN,
   });
+
   factory ListLocalDisksOutput.fromJson(Map<String, dynamic> json) {
     return ListLocalDisksOutput(
       disks: (json['Disks'] as List?)
@@ -9773,6 +9844,7 @@ class ListTagsForResourceOutput {
     this.resourceARN,
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       marker: json['Marker'] as String?,
@@ -9812,6 +9884,7 @@ class ListTapePoolsOutput {
     this.marker,
     this.poolInfos,
   });
+
   factory ListTapePoolsOutput.fromJson(Map<String, dynamic> json) {
     return ListTapePoolsOutput(
       marker: json['Marker'] as String?,
@@ -9854,6 +9927,7 @@ class ListTapesOutput {
     this.marker,
     this.tapeInfos,
   });
+
   factory ListTapesOutput.fromJson(Map<String, dynamic> json) {
     return ListTapesOutput(
       marker: json['Marker'] as String?,
@@ -9883,6 +9957,7 @@ class ListVolumeInitiatorsOutput {
   ListVolumeInitiatorsOutput({
     this.initiators,
   });
+
   factory ListVolumeInitiatorsOutput.fromJson(Map<String, dynamic> json) {
     return ListVolumeInitiatorsOutput(
       initiators: (json['Initiators'] as List?)
@@ -9910,6 +9985,7 @@ class ListVolumeRecoveryPointsOutput {
     this.gatewayARN,
     this.volumeRecoveryPointInfos,
   });
+
   factory ListVolumeRecoveryPointsOutput.fromJson(Map<String, dynamic> json) {
     return ListVolumeRecoveryPointsOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -9960,6 +10036,7 @@ class ListVolumesOutput {
     this.marker,
     this.volumeInfos,
   });
+
   factory ListVolumesOutput.fromJson(Map<String, dynamic> json) {
     return ListVolumesOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -10014,6 +10091,7 @@ class NFSFileShareDefaults {
     this.groupId,
     this.ownerId,
   });
+
   factory NFSFileShareDefaults.fromJson(Map<String, dynamic> json) {
     return NFSFileShareDefaults(
       directoryMode: json['DirectoryMode'] as String?,
@@ -10175,6 +10253,7 @@ class NFSFileShareInfo {
     this.tags,
     this.vPCEndpointDNSName,
   });
+
   factory NFSFileShareInfo.fromJson(Map<String, dynamic> json) {
     return NFSFileShareInfo(
       bucketRegion: json['BucketRegion'] as String?,
@@ -10290,6 +10369,7 @@ class NetworkInterface {
     this.ipv6Address,
     this.macAddress,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       ipv4Address: json['Ipv4Address'] as String?,
@@ -10318,6 +10398,7 @@ class NotifyWhenUploadedOutput {
     this.fileShareARN,
     this.notificationId,
   });
+
   factory NotifyWhenUploadedOutput.fromJson(Map<String, dynamic> json) {
     return NotifyWhenUploadedOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -10431,6 +10512,7 @@ class PoolInfo {
     this.retentionLockType,
     this.storageClass,
   });
+
   factory PoolInfo.fromJson(Map<String, dynamic> json) {
     return PoolInfo(
       poolARN: json['PoolARN'] as String?,
@@ -10500,6 +10582,7 @@ class RefreshCacheOutput {
     this.fileShareARN,
     this.notificationId,
   });
+
   factory RefreshCacheOutput.fromJson(Map<String, dynamic> json) {
     return RefreshCacheOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -10526,6 +10609,7 @@ class RemoveTagsFromResourceOutput {
   RemoveTagsFromResourceOutput({
     this.resourceARN,
   });
+
   factory RemoveTagsFromResourceOutput.fromJson(Map<String, dynamic> json) {
     return RemoveTagsFromResourceOutput(
       resourceARN: json['ResourceARN'] as String?,
@@ -10546,6 +10630,7 @@ class ResetCacheOutput {
   ResetCacheOutput({
     this.gatewayARN,
   });
+
   factory ResetCacheOutput.fromJson(Map<String, dynamic> json) {
     return ResetCacheOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -10601,6 +10686,7 @@ class RetrieveTapeArchiveOutput {
   RetrieveTapeArchiveOutput({
     this.tapeARN,
   });
+
   factory RetrieveTapeArchiveOutput.fromJson(Map<String, dynamic> json) {
     return RetrieveTapeArchiveOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -10624,6 +10710,7 @@ class RetrieveTapeRecoveryPointOutput {
   RetrieveTapeRecoveryPointOutput({
     this.tapeARN,
   });
+
   factory RetrieveTapeRecoveryPointOutput.fromJson(Map<String, dynamic> json) {
     return RetrieveTapeRecoveryPointOutput(
       tapeARN: json['TapeARN'] as String?,
@@ -10835,6 +10922,7 @@ class SMBFileShareInfo {
     this.vPCEndpointDNSName,
     this.validUserList,
   });
+
   factory SMBFileShareInfo.fromJson(Map<String, dynamic> json) {
     return SMBFileShareInfo(
       accessBasedEnumeration: json['AccessBasedEnumeration'] as bool?,
@@ -10992,6 +11080,7 @@ class SetLocalConsolePasswordOutput {
   SetLocalConsolePasswordOutput({
     this.gatewayARN,
   });
+
   factory SetLocalConsolePasswordOutput.fromJson(Map<String, dynamic> json) {
     return SetLocalConsolePasswordOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11012,6 +11101,7 @@ class SetSMBGuestPasswordOutput {
   SetSMBGuestPasswordOutput({
     this.gatewayARN,
   });
+
   factory SetSMBGuestPasswordOutput.fromJson(Map<String, dynamic> json) {
     return SetSMBGuestPasswordOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11034,6 +11124,7 @@ class ShutdownGatewayOutput {
   ShutdownGatewayOutput({
     this.gatewayARN,
   });
+
   factory ShutdownGatewayOutput.fromJson(Map<String, dynamic> json) {
     return ShutdownGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11054,6 +11145,7 @@ class StartAvailabilityMonitorTestOutput {
   StartAvailabilityMonitorTestOutput({
     this.gatewayARN,
   });
+
   factory StartAvailabilityMonitorTestOutput.fromJson(
       Map<String, dynamic> json) {
     return StartAvailabilityMonitorTestOutput(
@@ -11077,6 +11169,7 @@ class StartGatewayOutput {
   StartGatewayOutput({
     this.gatewayARN,
   });
+
   factory StartGatewayOutput.fromJson(Map<String, dynamic> json) {
     return StartGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11184,6 +11277,7 @@ class StorediSCSIVolume {
     this.volumeUsedInBytes,
     this.volumeiSCSIAttributes,
   });
+
   factory StorediSCSIVolume.fromJson(Map<String, dynamic> json) {
     return StorediSCSIVolume(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -11260,6 +11354,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -11346,6 +11441,7 @@ class Tape {
     this.vTLDevice,
     this.worm,
   });
+
   factory Tape.fromJson(Map<String, dynamic> json) {
     return Tape(
       kMSKey: json['KMSKey'] as String?,
@@ -11470,6 +11566,7 @@ class TapeArchive {
     this.tapeUsedInBytes,
     this.worm,
   });
+
   factory TapeArchive.fromJson(Map<String, dynamic> json) {
     return TapeArchive(
       completionTime: timeStampFromJson(json['CompletionTime']),
@@ -11568,6 +11665,7 @@ class TapeInfo {
     this.tapeSizeInBytes,
     this.tapeStatus,
   });
+
   factory TapeInfo.fromJson(Map<String, dynamic> json) {
     return TapeInfo(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11629,6 +11727,7 @@ class TapeRecoveryPointInfo {
     this.tapeSizeInBytes,
     this.tapeStatus,
   });
+
   factory TapeRecoveryPointInfo.fromJson(Map<String, dynamic> json) {
     return TapeRecoveryPointInfo(
       tapeARN: json['TapeARN'] as String?,
@@ -11687,6 +11786,7 @@ class UpdateAutomaticTapeCreationPolicyOutput {
   UpdateAutomaticTapeCreationPolicyOutput({
     this.gatewayARN,
   });
+
   factory UpdateAutomaticTapeCreationPolicyOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateAutomaticTapeCreationPolicyOutput(
@@ -11710,6 +11810,7 @@ class UpdateBandwidthRateLimitOutput {
   UpdateBandwidthRateLimitOutput({
     this.gatewayARN,
   });
+
   factory UpdateBandwidthRateLimitOutput.fromJson(Map<String, dynamic> json) {
     return UpdateBandwidthRateLimitOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11730,6 +11831,7 @@ class UpdateBandwidthRateLimitScheduleOutput {
   UpdateBandwidthRateLimitScheduleOutput({
     this.gatewayARN,
   });
+
   factory UpdateBandwidthRateLimitScheduleOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateBandwidthRateLimitScheduleOutput(
@@ -11759,6 +11861,7 @@ class UpdateChapCredentialsOutput {
     this.initiatorName,
     this.targetARN,
   });
+
   factory UpdateChapCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateChapCredentialsOutput(
       initiatorName: json['InitiatorName'] as String?,
@@ -11783,6 +11886,7 @@ class UpdateFileSystemAssociationOutput {
   UpdateFileSystemAssociationOutput({
     this.fileSystemAssociationARN,
   });
+
   factory UpdateFileSystemAssociationOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateFileSystemAssociationOutput(
@@ -11811,6 +11915,7 @@ class UpdateGatewayInformationOutput {
     this.gatewayARN,
     this.gatewayName,
   });
+
   factory UpdateGatewayInformationOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGatewayInformationOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11836,6 +11941,7 @@ class UpdateGatewaySoftwareNowOutput {
   UpdateGatewaySoftwareNowOutput({
     this.gatewayARN,
   });
+
   factory UpdateGatewaySoftwareNowOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGatewaySoftwareNowOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11858,6 +11964,7 @@ class UpdateMaintenanceStartTimeOutput {
   UpdateMaintenanceStartTimeOutput({
     this.gatewayARN,
   });
+
   factory UpdateMaintenanceStartTimeOutput.fromJson(Map<String, dynamic> json) {
     return UpdateMaintenanceStartTimeOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11880,6 +11987,7 @@ class UpdateNFSFileShareOutput {
   UpdateNFSFileShareOutput({
     this.fileShareARN,
   });
+
   factory UpdateNFSFileShareOutput.fromJson(Map<String, dynamic> json) {
     return UpdateNFSFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -11902,6 +12010,7 @@ class UpdateSMBFileShareOutput {
   UpdateSMBFileShareOutput({
     this.fileShareARN,
   });
+
   factory UpdateSMBFileShareOutput.fromJson(Map<String, dynamic> json) {
     return UpdateSMBFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
@@ -11922,6 +12031,7 @@ class UpdateSMBFileShareVisibilityOutput {
   UpdateSMBFileShareVisibilityOutput({
     this.gatewayARN,
   });
+
   factory UpdateSMBFileShareVisibilityOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateSMBFileShareVisibilityOutput(
@@ -11943,6 +12053,7 @@ class UpdateSMBSecurityStrategyOutput {
   UpdateSMBSecurityStrategyOutput({
     this.gatewayARN,
   });
+
   factory UpdateSMBSecurityStrategyOutput.fromJson(Map<String, dynamic> json) {
     return UpdateSMBSecurityStrategyOutput(
       gatewayARN: json['GatewayARN'] as String?,
@@ -11967,6 +12078,7 @@ class UpdateSnapshotScheduleOutput {
   UpdateSnapshotScheduleOutput({
     this.volumeARN,
   });
+
   factory UpdateSnapshotScheduleOutput.fromJson(Map<String, dynamic> json) {
     return UpdateSnapshotScheduleOutput(
       volumeARN: json['VolumeARN'] as String?,
@@ -11989,6 +12101,7 @@ class UpdateVTLDeviceTypeOutput {
   UpdateVTLDeviceTypeOutput({
     this.vTLDeviceARN,
   });
+
   factory UpdateVTLDeviceTypeOutput.fromJson(Map<String, dynamic> json) {
     return UpdateVTLDeviceTypeOutput(
       vTLDeviceARN: json['VTLDeviceARN'] as String?,
@@ -12028,6 +12141,7 @@ class VTLDevice {
     this.vTLDeviceType,
     this.vTLDeviceVendor,
   });
+
   factory VTLDevice.fromJson(Map<String, dynamic> json) {
     return VTLDevice(
       deviceiSCSIAttributes: json['DeviceiSCSIAttributes'] != null
@@ -12110,6 +12224,7 @@ class VolumeInfo {
     this.volumeSizeInBytes,
     this.volumeType,
   });
+
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
     return VolumeInfo(
       gatewayARN: json['GatewayARN'] as String?,
@@ -12167,6 +12282,7 @@ class VolumeRecoveryPointInfo {
     this.volumeSizeInBytes,
     this.volumeUsageInBytes,
   });
+
   factory VolumeRecoveryPointInfo.fromJson(Map<String, dynamic> json) {
     return VolumeRecoveryPointInfo(
       volumeARN: json['VolumeARN'] as String?,
@@ -12215,6 +12331,7 @@ class VolumeiSCSIAttributes {
     this.networkInterfacePort,
     this.targetARN,
   });
+
   factory VolumeiSCSIAttributes.fromJson(Map<String, dynamic> json) {
     return VolumeiSCSIAttributes(
       chapEnabled: json['ChapEnabled'] as bool?,

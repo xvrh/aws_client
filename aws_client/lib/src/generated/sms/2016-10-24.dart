@@ -1836,6 +1836,7 @@ class AppSummary {
     this.totalServerGroups,
     this.totalServers,
   });
+
   factory AppSummary.fromJson(Map<String, dynamic> json) {
     return AppSummary(
       appId: json['appId'] as String?,
@@ -1940,6 +1941,7 @@ class AppValidationConfiguration {
     this.ssmValidationParameters,
     this.validationId,
   });
+
   factory AppValidationConfiguration.fromJson(Map<String, dynamic> json) {
     return AppValidationConfiguration(
       appValidationStrategy:
@@ -1977,6 +1979,7 @@ class AppValidationOutput {
   AppValidationOutput({
     this.ssmOutput,
   });
+
   factory AppValidationOutput.fromJson(Map<String, dynamic> json) {
     return AppValidationOutput(
       ssmOutput: json['ssmOutput'] != null
@@ -2060,6 +2063,7 @@ class Connector {
     this.vmManagerName,
     this.vmManagerType,
   });
+
   factory Connector.fromJson(Map<String, dynamic> json) {
     return Connector(
       associatedOn: timeStampFromJson(json['associatedOn']),
@@ -2192,6 +2196,7 @@ class CreateAppResponse {
     this.serverGroups,
     this.tags,
   });
+
   factory CreateAppResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppResponse(
       appSummary: json['appSummary'] != null
@@ -2227,6 +2232,7 @@ class CreateReplicationJobResponse {
   CreateReplicationJobResponse({
     this.replicationJobId,
   });
+
   factory CreateReplicationJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateReplicationJobResponse(
       replicationJobId: json['replicationJobId'] as String?,
@@ -2243,6 +2249,7 @@ class CreateReplicationJobResponse {
 
 class DeleteAppLaunchConfigurationResponse {
   DeleteAppLaunchConfigurationResponse();
+
   factory DeleteAppLaunchConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteAppLaunchConfigurationResponse();
@@ -2255,6 +2262,7 @@ class DeleteAppLaunchConfigurationResponse {
 
 class DeleteAppReplicationConfigurationResponse {
   DeleteAppReplicationConfigurationResponse();
+
   factory DeleteAppReplicationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteAppReplicationConfigurationResponse();
@@ -2267,6 +2275,7 @@ class DeleteAppReplicationConfigurationResponse {
 
 class DeleteAppResponse {
   DeleteAppResponse();
+
   factory DeleteAppResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAppResponse();
   }
@@ -2278,6 +2287,7 @@ class DeleteAppResponse {
 
 class DeleteAppValidationConfigurationResponse {
   DeleteAppValidationConfigurationResponse();
+
   factory DeleteAppValidationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteAppValidationConfigurationResponse();
@@ -2290,6 +2300,7 @@ class DeleteAppValidationConfigurationResponse {
 
 class DeleteReplicationJobResponse {
   DeleteReplicationJobResponse();
+
   factory DeleteReplicationJobResponse.fromJson(Map<String, dynamic> _) {
     return DeleteReplicationJobResponse();
   }
@@ -2301,6 +2312,7 @@ class DeleteReplicationJobResponse {
 
 class DeleteServerCatalogResponse {
   DeleteServerCatalogResponse();
+
   factory DeleteServerCatalogResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServerCatalogResponse();
   }
@@ -2312,6 +2324,7 @@ class DeleteServerCatalogResponse {
 
 class DisassociateConnectorResponse {
   DisassociateConnectorResponse();
+
   factory DisassociateConnectorResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateConnectorResponse();
   }
@@ -2328,6 +2341,7 @@ class GenerateChangeSetResponse {
   GenerateChangeSetResponse({
     this.s3Location,
   });
+
   factory GenerateChangeSetResponse.fromJson(Map<String, dynamic> json) {
     return GenerateChangeSetResponse(
       s3Location: json['s3Location'] != null
@@ -2351,6 +2365,7 @@ class GenerateTemplateResponse {
   GenerateTemplateResponse({
     this.s3Location,
   });
+
   factory GenerateTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GenerateTemplateResponse(
       s3Location: json['s3Location'] != null
@@ -2388,6 +2403,7 @@ class GetAppLaunchConfigurationResponse {
     this.roleName,
     this.serverGroupLaunchConfigurations,
   });
+
   factory GetAppLaunchConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAppLaunchConfigurationResponse(
@@ -2428,6 +2444,7 @@ class GetAppReplicationConfigurationResponse {
   GetAppReplicationConfigurationResponse({
     this.serverGroupReplicationConfigurations,
   });
+
   factory GetAppReplicationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAppReplicationConfigurationResponse(
@@ -2466,6 +2483,7 @@ class GetAppResponse {
     this.serverGroups,
     this.tags,
   });
+
   factory GetAppResponse.fromJson(Map<String, dynamic> json) {
     return GetAppResponse(
       appSummary: json['appSummary'] != null
@@ -2506,6 +2524,7 @@ class GetAppValidationConfigurationResponse {
     this.appValidationConfigurations,
     this.serverGroupValidationConfigurations,
   });
+
   factory GetAppValidationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAppValidationConfigurationResponse(
@@ -2545,6 +2564,7 @@ class GetAppValidationOutputResponse {
   GetAppValidationOutputResponse({
     this.validationOutputList,
   });
+
   factory GetAppValidationOutputResponse.fromJson(Map<String, dynamic> json) {
     return GetAppValidationOutputResponse(
       validationOutputList: (json['validationOutputList'] as List?)
@@ -2575,6 +2595,7 @@ class GetConnectorsResponse {
     this.connectorList,
     this.nextToken,
   });
+
   factory GetConnectorsResponse.fromJson(Map<String, dynamic> json) {
     return GetConnectorsResponse(
       connectorList: (json['connectorList'] as List?)
@@ -2607,6 +2628,7 @@ class GetReplicationJobsResponse {
     this.nextToken,
     this.replicationJobList,
   });
+
   factory GetReplicationJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetReplicationJobsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2643,6 +2665,7 @@ class GetReplicationRunsResponse {
     this.replicationJob,
     this.replicationRunList,
   });
+
   factory GetReplicationRunsResponse.fromJson(Map<String, dynamic> json) {
     return GetReplicationRunsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2689,6 +2712,7 @@ class GetServersResponse {
     this.serverCatalogStatus,
     this.serverList,
   });
+
   factory GetServersResponse.fromJson(Map<String, dynamic> json) {
     return GetServersResponse(
       lastModifiedOn: timeStampFromJson(json['lastModifiedOn']),
@@ -2720,6 +2744,7 @@ class GetServersResponse {
 
 class ImportAppCatalogResponse {
   ImportAppCatalogResponse();
+
   factory ImportAppCatalogResponse.fromJson(Map<String, dynamic> _) {
     return ImportAppCatalogResponse();
   }
@@ -2731,6 +2756,7 @@ class ImportAppCatalogResponse {
 
 class ImportServerCatalogResponse {
   ImportServerCatalogResponse();
+
   factory ImportServerCatalogResponse.fromJson(Map<String, dynamic> _) {
     return ImportServerCatalogResponse();
   }
@@ -2742,6 +2768,7 @@ class ImportServerCatalogResponse {
 
 class LaunchAppResponse {
   LaunchAppResponse();
+
   factory LaunchAppResponse.fromJson(Map<String, dynamic> _) {
     return LaunchAppResponse();
   }
@@ -2767,6 +2794,7 @@ class LaunchDetails {
     this.stackId,
     this.stackName,
   });
+
   factory LaunchDetails.fromJson(Map<String, dynamic> json) {
     return LaunchDetails(
       latestLaunchTime: timeStampFromJson(json['latestLaunchTime']),
@@ -2828,6 +2856,7 @@ class ListAppsResponse {
     this.apps,
     this.nextToken,
   });
+
   factory ListAppsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppsResponse(
       apps: (json['apps'] as List?)
@@ -2864,6 +2893,7 @@ class NotificationContext {
     this.statusMessage,
     this.validationId,
   });
+
   factory NotificationContext.fromJson(Map<String, dynamic> json) {
     return NotificationContext(
       status: (json['status'] as String?)?.toValidationStatus(),
@@ -2886,6 +2916,7 @@ class NotificationContext {
 
 class NotifyAppValidationOutputResponse {
   NotifyAppValidationOutputResponse();
+
   factory NotifyAppValidationOutputResponse.fromJson(Map<String, dynamic> _) {
     return NotifyAppValidationOutputResponse();
   }
@@ -2925,6 +2956,7 @@ extension on String {
 
 class PutAppLaunchConfigurationResponse {
   PutAppLaunchConfigurationResponse();
+
   factory PutAppLaunchConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return PutAppLaunchConfigurationResponse();
   }
@@ -2936,6 +2968,7 @@ class PutAppLaunchConfigurationResponse {
 
 class PutAppReplicationConfigurationResponse {
   PutAppReplicationConfigurationResponse();
+
   factory PutAppReplicationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return PutAppReplicationConfigurationResponse();
@@ -2948,6 +2981,7 @@ class PutAppReplicationConfigurationResponse {
 
 class PutAppValidationConfigurationResponse {
   PutAppValidationConfigurationResponse();
+
   factory PutAppValidationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return PutAppValidationConfigurationResponse();
@@ -3055,6 +3089,7 @@ class ReplicationJob {
     this.statusMessage,
     this.vmServer,
   });
+
   factory ReplicationJob.fromJson(Map<String, dynamic> json) {
     return ReplicationJob(
       description: json['description'] as String?,
@@ -3254,6 +3289,7 @@ class ReplicationRun {
     this.statusMessage,
     this.type,
   });
+
   factory ReplicationRun.fromJson(Map<String, dynamic> json) {
     return ReplicationRun(
       amiId: json['amiId'] as String?,
@@ -3315,6 +3351,7 @@ class ReplicationRunStageDetails {
     this.stage,
     this.stageProgress,
   });
+
   factory ReplicationRunStageDetails.fromJson(Map<String, dynamic> json) {
     return ReplicationRunStageDetails(
       stage: json['stage'] as String?,
@@ -3425,6 +3462,7 @@ class S3Location {
     this.bucket,
     this.key,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['bucket'] as String?,
@@ -3449,6 +3487,7 @@ class SSMOutput {
   SSMOutput({
     this.s3Location,
   });
+
   factory SSMOutput.fromJson(Map<String, dynamic> json) {
     return SSMOutput(
       s3Location: json['s3Location'] != null
@@ -3494,6 +3533,7 @@ class SSMValidationParameters {
     this.scriptType,
     this.source,
   });
+
   factory SSMValidationParameters.fromJson(Map<String, dynamic> json) {
     return SSMValidationParameters(
       command: json['command'] as String?,
@@ -3578,6 +3618,7 @@ class Server {
     this.serverType,
     this.vmServer,
   });
+
   factory Server.fromJson(Map<String, dynamic> json) {
     return Server(
       replicationJobId: json['replicationJobId'] as String?,
@@ -3666,6 +3707,7 @@ class ServerGroup {
     this.serverGroupId,
     this.serverList,
   });
+
   factory ServerGroup.fromJson(Map<String, dynamic> json) {
     return ServerGroup(
       name: json['name'] as String?,
@@ -3706,6 +3748,7 @@ class ServerGroupLaunchConfiguration {
     this.serverGroupId,
     this.serverLaunchConfigurations,
   });
+
   factory ServerGroupLaunchConfiguration.fromJson(Map<String, dynamic> json) {
     return ServerGroupLaunchConfiguration(
       launchOrder: json['launchOrder'] as int?,
@@ -3744,6 +3787,7 @@ class ServerGroupReplicationConfiguration {
     this.serverGroupId,
     this.serverReplicationConfigurations,
   });
+
   factory ServerGroupReplicationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServerGroupReplicationConfiguration(
@@ -3781,6 +3825,7 @@ class ServerGroupValidationConfiguration {
     this.serverGroupId,
     this.serverValidationConfigurations,
   });
+
   factory ServerGroupValidationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServerGroupValidationConfiguration(
@@ -3857,6 +3902,7 @@ class ServerLaunchConfiguration {
     this.userData,
     this.vpc,
   });
+
   factory ServerLaunchConfiguration.fromJson(Map<String, dynamic> json) {
     return ServerLaunchConfiguration(
       associatePublicIpAddress: json['associatePublicIpAddress'] as bool?,
@@ -3927,6 +3973,7 @@ class ServerReplicationConfiguration {
     this.server,
     this.serverReplicationParameters,
   });
+
   factory ServerReplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return ServerReplicationConfiguration(
       server: json['server'] != null
@@ -4001,6 +4048,7 @@ class ServerReplicationParameters {
     this.runOnce,
     this.seedTime,
   });
+
   factory ServerReplicationParameters.fromJson(Map<String, dynamic> json) {
     return ServerReplicationParameters(
       encrypted: json['encrypted'] as bool?,
@@ -4079,6 +4127,7 @@ class ServerValidationConfiguration {
     this.userDataValidationParameters,
     this.validationId,
   });
+
   factory ServerValidationConfiguration.fromJson(Map<String, dynamic> json) {
     return ServerValidationConfiguration(
       name: json['name'] as String?,
@@ -4120,6 +4169,7 @@ class ServerValidationOutput {
   ServerValidationOutput({
     this.server,
   });
+
   factory ServerValidationOutput.fromJson(Map<String, dynamic> json) {
     return ServerValidationOutput(
       server: json['server'] != null
@@ -4166,6 +4216,7 @@ class Source {
   Source({
     this.s3Location,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       s3Location: json['s3Location'] != null
@@ -4184,6 +4235,7 @@ class Source {
 
 class StartAppReplicationResponse {
   StartAppReplicationResponse();
+
   factory StartAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartAppReplicationResponse();
   }
@@ -4195,6 +4247,7 @@ class StartAppReplicationResponse {
 
 class StartOnDemandAppReplicationResponse {
   StartOnDemandAppReplicationResponse();
+
   factory StartOnDemandAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartOnDemandAppReplicationResponse();
   }
@@ -4211,6 +4264,7 @@ class StartOnDemandReplicationRunResponse {
   StartOnDemandReplicationRunResponse({
     this.replicationRunId,
   });
+
   factory StartOnDemandReplicationRunResponse.fromJson(
       Map<String, dynamic> json) {
     return StartOnDemandReplicationRunResponse(
@@ -4228,6 +4282,7 @@ class StartOnDemandReplicationRunResponse {
 
 class StopAppReplicationResponse {
   StopAppReplicationResponse();
+
   factory StopAppReplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopAppReplicationResponse();
   }
@@ -4249,6 +4304,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String?,
@@ -4268,6 +4324,7 @@ class Tag {
 
 class TerminateAppResponse {
   TerminateAppResponse();
+
   factory TerminateAppResponse.fromJson(Map<String, dynamic> _) {
     return TerminateAppResponse();
   }
@@ -4292,6 +4349,7 @@ class UpdateAppResponse {
     this.serverGroups,
     this.tags,
   });
+
   factory UpdateAppResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAppResponse(
       appSummary: json['appSummary'] != null
@@ -4322,6 +4380,7 @@ class UpdateAppResponse {
 
 class UpdateReplicationJobResponse {
   UpdateReplicationJobResponse();
+
   factory UpdateReplicationJobResponse.fromJson(Map<String, dynamic> _) {
     return UpdateReplicationJobResponse();
   }
@@ -4340,6 +4399,7 @@ class UserData {
   UserData({
     this.s3Location,
   });
+
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
       s3Location: json['s3Location'] != null
@@ -4368,6 +4428,7 @@ class UserDataValidationParameters {
     this.scriptType,
     this.source,
   });
+
   factory UserDataValidationParameters.fromJson(Map<String, dynamic> json) {
     return UserDataValidationParameters(
       scriptType: (json['scriptType'] as String?)?.toScriptType(),
@@ -4419,6 +4480,7 @@ class ValidationOutput {
     this.statusMessage,
     this.validationId,
   });
+
   factory ValidationOutput.fromJson(Map<String, dynamic> json) {
     return ValidationOutput(
       appValidationOutput: json['appValidationOutput'] != null
@@ -4560,6 +4622,7 @@ class VmServer {
     this.vmPath,
     this.vmServerAddress,
   });
+
   factory VmServer.fromJson(Map<String, dynamic> json) {
     return VmServer(
       vmManagerName: json['vmManagerName'] as String?,
@@ -4601,6 +4664,7 @@ class VmServerAddress {
     this.vmId,
     this.vmManagerId,
   });
+
   factory VmServerAddress.fromJson(Map<String, dynamic> json) {
     return VmServerAddress(
       vmId: json['vmId'] as String?,

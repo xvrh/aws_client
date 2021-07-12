@@ -818,6 +818,7 @@ class AssetDestinationEntry {
     required this.bucket,
     this.key,
   });
+
   factory AssetDestinationEntry.fromJson(Map<String, dynamic> json) {
     return AssetDestinationEntry(
       assetId: json['AssetId'] as String,
@@ -844,6 +845,7 @@ class AssetDetails {
   AssetDetails({
     this.s3SnapshotAsset,
   });
+
   factory AssetDetails.fromJson(Map<String, dynamic> json) {
     return AssetDetails(
       s3SnapshotAsset: json['S3SnapshotAsset'] != null
@@ -913,6 +915,7 @@ class AssetEntry {
     required this.updatedAt,
     this.sourceId,
   });
+
   factory AssetEntry.fromJson(Map<String, dynamic> json) {
     return AssetEntry(
       arn: json['Arn'] as String,
@@ -967,6 +970,7 @@ class AssetSourceEntry {
     required this.bucket,
     required this.key,
   });
+
   factory AssetSourceEntry.fromJson(Map<String, dynamic> json) {
     return AssetSourceEntry(
       bucket: json['Bucket'] as String,
@@ -1114,6 +1118,7 @@ class CreateDataSetResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory CreateDataSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataSetResponse(
       arn: json['Arn'] as String?,
@@ -1197,6 +1202,7 @@ class CreateJobResponse {
     this.type,
     this.updatedAt,
   });
+
   factory CreateJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateJobResponse(
       arn: json['Arn'] as String?,
@@ -1286,6 +1292,7 @@ class CreateRevisionResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory CreateRevisionResponse.fromJson(Map<String, dynamic> json) {
     return CreateRevisionResponse(
       arn: json['Arn'] as String?,
@@ -1374,6 +1381,7 @@ class DataSetEntry {
     this.originDetails,
     this.sourceId,
   });
+
   factory DataSetEntry.fromJson(Map<String, dynamic> json) {
     return DataSetEntry(
       arn: json['Arn'] as String,
@@ -1427,6 +1435,7 @@ class Details {
     this.importAssetFromSignedUrlJobErrorDetails,
     this.importAssetsFromS3JobErrorDetails,
   });
+
   factory Details.fromJson(Map<String, dynamic> json) {
     return Details(
       importAssetFromSignedUrlJobErrorDetails:
@@ -1474,6 +1483,7 @@ class ExportAssetToSignedUrlRequestDetails {
     required this.dataSetId,
     required this.revisionId,
   });
+
   factory ExportAssetToSignedUrlRequestDetails.fromJson(
       Map<String, dynamic> json) {
     return ExportAssetToSignedUrlRequestDetails(
@@ -1519,6 +1529,7 @@ class ExportAssetToSignedUrlResponseDetails {
     this.signedUrl,
     this.signedUrlExpiresAt,
   });
+
   factory ExportAssetToSignedUrlResponseDetails.fromJson(
       Map<String, dynamic> json) {
     return ExportAssetToSignedUrlResponseDetails(
@@ -1567,6 +1578,7 @@ class ExportAssetsToS3RequestDetails {
     required this.revisionId,
     this.encryption,
   });
+
   factory ExportAssetsToS3RequestDetails.fromJson(Map<String, dynamic> json) {
     return ExportAssetsToS3RequestDetails(
       assetDestinations: (json['AssetDestinations'] as List)
@@ -1616,6 +1628,7 @@ class ExportAssetsToS3ResponseDetails {
     required this.revisionId,
     this.encryption,
   });
+
   factory ExportAssetsToS3ResponseDetails.fromJson(Map<String, dynamic> json) {
     return ExportAssetsToS3ResponseDetails(
       assetDestinations: (json['AssetDestinations'] as List)
@@ -1661,6 +1674,7 @@ class ExportRevisionsToS3RequestDetails {
     required this.revisionDestinations,
     this.encryption,
   });
+
   factory ExportRevisionsToS3RequestDetails.fromJson(
       Map<String, dynamic> json) {
     return ExportRevisionsToS3RequestDetails(
@@ -1705,6 +1719,7 @@ class ExportRevisionsToS3ResponseDetails {
     required this.revisionDestinations,
     this.encryption,
   });
+
   factory ExportRevisionsToS3ResponseDetails.fromJson(
       Map<String, dynamic> json) {
     return ExportRevisionsToS3ResponseDetails(
@@ -1750,6 +1765,7 @@ class ExportServerSideEncryption {
     required this.type,
     this.kmsKeyArn,
   });
+
   factory ExportServerSideEncryption.fromJson(Map<String, dynamic> json) {
     return ExportServerSideEncryption(
       type: (json['Type'] as String).toServerSideEncryptionTypes(),
@@ -1815,6 +1831,7 @@ class GetAssetResponse {
     this.sourceId,
     this.updatedAt,
   });
+
   factory GetAssetResponse.fromJson(Map<String, dynamic> json) {
     return GetAssetResponse(
       arn: json['Arn'] as String?,
@@ -1910,6 +1927,7 @@ class GetDataSetResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory GetDataSetResponse.fromJson(Map<String, dynamic> json) {
     return GetDataSetResponse(
       arn: json['Arn'] as String?,
@@ -1993,6 +2011,7 @@ class GetJobResponse {
     this.type,
     this.updatedAt,
   });
+
   factory GetJobResponse.fromJson(Map<String, dynamic> json) {
     return GetJobResponse(
       arn: json['Arn'] as String?,
@@ -2082,6 +2101,7 @@ class GetRevisionResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory GetRevisionResponse.fromJson(Map<String, dynamic> json) {
     return GetRevisionResponse(
       arn: json['Arn'] as String?,
@@ -2127,6 +2147,7 @@ class ImportAssetFromSignedUrlJobErrorDetails {
   ImportAssetFromSignedUrlJobErrorDetails({
     required this.assetName,
   });
+
   factory ImportAssetFromSignedUrlJobErrorDetails.fromJson(
       Map<String, dynamic> json) {
     return ImportAssetFromSignedUrlJobErrorDetails(
@@ -2164,6 +2185,7 @@ class ImportAssetFromSignedUrlRequestDetails {
     required this.md5Hash,
     required this.revisionId,
   });
+
   factory ImportAssetFromSignedUrlRequestDetails.fromJson(
       Map<String, dynamic> json) {
     return ImportAssetFromSignedUrlRequestDetails(
@@ -2218,6 +2240,7 @@ class ImportAssetFromSignedUrlResponseDetails {
     this.signedUrl,
     this.signedUrlExpiresAt,
   });
+
   factory ImportAssetFromSignedUrlResponseDetails.fromJson(
       Map<String, dynamic> json) {
     return ImportAssetFromSignedUrlResponseDetails(
@@ -2265,6 +2288,7 @@ class ImportAssetsFromS3RequestDetails {
     required this.dataSetId,
     required this.revisionId,
   });
+
   factory ImportAssetsFromS3RequestDetails.fromJson(Map<String, dynamic> json) {
     return ImportAssetsFromS3RequestDetails(
       assetSources: (json['AssetSources'] as List)
@@ -2304,6 +2328,7 @@ class ImportAssetsFromS3ResponseDetails {
     required this.dataSetId,
     required this.revisionId,
   });
+
   factory ImportAssetsFromS3ResponseDetails.fromJson(
       Map<String, dynamic> json) {
     return ImportAssetsFromS3ResponseDetails(
@@ -2368,6 +2393,7 @@ class JobEntry {
     required this.updatedAt,
     this.errors,
   });
+
   factory JobEntry.fromJson(Map<String, dynamic> json) {
     return JobEntry(
       arn: json['Arn'] as String,
@@ -2437,6 +2463,7 @@ class JobError {
     this.resourceId,
     this.resourceType,
   });
+
   factory JobError.fromJson(Map<String, dynamic> json) {
     return JobError(
       code: (json['Code'] as String).toCode(),
@@ -2542,6 +2569,7 @@ class ListDataSetRevisionsResponse {
     this.nextToken,
     this.revisions,
   });
+
   factory ListDataSetRevisionsResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSetRevisionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2574,6 +2602,7 @@ class ListDataSetsResponse {
     this.dataSets,
     this.nextToken,
   });
+
   factory ListDataSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSetsResponse(
       dataSets: (json['DataSets'] as List?)
@@ -2606,6 +2635,7 @@ class ListJobsResponse {
     this.jobs,
     this.nextToken,
   });
+
   factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobsResponse(
       jobs: (json['Jobs'] as List?)
@@ -2638,6 +2668,7 @@ class ListRevisionAssetsResponse {
     this.assets,
     this.nextToken,
   });
+
   factory ListRevisionAssetsResponse.fromJson(Map<String, dynamic> json) {
     return ListRevisionAssetsResponse(
       assets: (json['Assets'] as List?)
@@ -2665,6 +2696,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2718,6 +2750,7 @@ class OriginDetails {
   OriginDetails({
     required this.productId,
   });
+
   factory OriginDetails.fromJson(Map<String, dynamic> json) {
     return OriginDetails(
       productId: json['ProductId'] as String,
@@ -2756,6 +2789,7 @@ class RequestDetails {
     this.importAssetFromSignedUrl,
     this.importAssetsFromS3,
   });
+
   factory RequestDetails.fromJson(Map<String, dynamic> json) {
     return RequestDetails(
       exportAssetToSignedUrl: json['ExportAssetToSignedUrl'] != null
@@ -2824,6 +2858,7 @@ class ResponseDetails {
     this.importAssetFromSignedUrl,
     this.importAssetsFromS3,
   });
+
   factory ResponseDetails.fromJson(Map<String, dynamic> json) {
     return ResponseDetails(
       exportAssetToSignedUrl: json['ExportAssetToSignedUrl'] != null
@@ -2887,6 +2922,7 @@ class RevisionDestinationEntry {
     required this.revisionId,
     this.keyPattern,
   });
+
   factory RevisionDestinationEntry.fromJson(Map<String, dynamic> json) {
     return RevisionDestinationEntry(
       bucket: json['Bucket'] as String,
@@ -2953,6 +2989,7 @@ class RevisionEntry {
     this.finalized,
     this.sourceId,
   });
+
   factory RevisionEntry.fromJson(Map<String, dynamic> json) {
     return RevisionEntry(
       arn: json['Arn'] as String,
@@ -2996,6 +3033,7 @@ class S3SnapshotAsset {
   S3SnapshotAsset({
     required this.size,
   });
+
   factory S3SnapshotAsset.fromJson(Map<String, dynamic> json) {
     return S3SnapshotAsset(
       size: json['Size'] as double,
@@ -3041,6 +3079,7 @@ extension on String {
 
 class StartJobResponse {
   StartJobResponse();
+
   factory StartJobResponse.fromJson(Map<String, dynamic> _) {
     return StartJobResponse();
   }
@@ -3189,6 +3228,7 @@ class UpdateAssetResponse {
     this.sourceId,
     this.updatedAt,
   });
+
   factory UpdateAssetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssetResponse(
       arn: json['Arn'] as String?,
@@ -3280,6 +3320,7 @@ class UpdateDataSetResponse {
     this.sourceId,
     this.updatedAt,
   });
+
   factory UpdateDataSetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDataSetResponse(
       arn: json['Arn'] as String?,
@@ -3369,6 +3410,7 @@ class UpdateRevisionResponse {
     this.sourceId,
     this.updatedAt,
   });
+
   factory UpdateRevisionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRevisionResponse(
       arn: json['Arn'] as String?,

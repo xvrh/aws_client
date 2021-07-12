@@ -623,6 +623,7 @@ class ArrayValue {
     this.longValues,
     this.stringValues,
   });
+
   factory ArrayValue.fromJson(Map<String, dynamic> json) {
     return ArrayValue(
       arrayValues: (json['arrayValues'] as List?)
@@ -673,6 +674,7 @@ class BatchExecuteStatementResponse {
   BatchExecuteStatementResponse({
     this.updateResults,
   });
+
   factory BatchExecuteStatementResponse.fromJson(Map<String, dynamic> json) {
     return BatchExecuteStatementResponse(
       updateResults: (json['updateResults'] as List?)
@@ -699,6 +701,7 @@ class BeginTransactionResponse {
   BeginTransactionResponse({
     this.transactionId,
   });
+
   factory BeginTransactionResponse.fromJson(Map<String, dynamic> json) {
     return BeginTransactionResponse(
       transactionId: json['transactionId'] as String?,
@@ -773,6 +776,7 @@ class ColumnMetadata {
     this.type,
     this.typeName,
   });
+
   factory ColumnMetadata.fromJson(Map<String, dynamic> json) {
     return ColumnMetadata(
       arrayBaseColumnType: json['arrayBaseColumnType'] as int?,
@@ -835,6 +839,7 @@ class CommitTransactionResponse {
   CommitTransactionResponse({
     this.transactionStatus,
   });
+
   factory CommitTransactionResponse.fromJson(Map<String, dynamic> json) {
     return CommitTransactionResponse(
       transactionStatus: json['transactionStatus'] as String?,
@@ -886,6 +891,7 @@ class ExecuteSqlResponse {
   ExecuteSqlResponse({
     this.sqlStatementResults,
   });
+
   factory ExecuteSqlResponse.fromJson(Map<String, dynamic> json) {
     return ExecuteSqlResponse(
       sqlStatementResults: (json['sqlStatementResults'] as List?)
@@ -932,6 +938,7 @@ class ExecuteStatementResponse {
     this.numberOfRecordsUpdated,
     this.records,
   });
+
   factory ExecuteStatementResponse.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementResponse(
       columnMetadata: (json['columnMetadata'] as List?)
@@ -1000,6 +1007,7 @@ class Field {
     this.longValue,
     this.stringValue,
   });
+
   factory Field.fromJson(Map<String, dynamic> json) {
     return Field(
       arrayValue: json['arrayValue'] != null
@@ -1042,6 +1050,7 @@ class Record {
   Record({
     this.values,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       values: (json['values'] as List?)
@@ -1071,6 +1080,7 @@ class ResultFrame {
     this.records,
     this.resultSetMetadata,
   });
+
   factory ResultFrame.fromJson(Map<String, dynamic> json) {
     return ResultFrame(
       records: (json['records'] as List?)
@@ -1106,6 +1116,7 @@ class ResultSetMetadata {
     this.columnCount,
     this.columnMetadata,
   });
+
   factory ResultSetMetadata.fromJson(Map<String, dynamic> json) {
     return ResultSetMetadata(
       columnCount: json['columnCount'] as int?,
@@ -1143,6 +1154,7 @@ class ResultSetOptions {
   ResultSetOptions({
     this.decimalReturnType,
   });
+
   factory ResultSetOptions.fromJson(Map<String, dynamic> json) {
     return ResultSetOptions(
       decimalReturnType:
@@ -1168,6 +1180,7 @@ class RollbackTransactionResponse {
   RollbackTransactionResponse({
     this.transactionStatus,
   });
+
   factory RollbackTransactionResponse.fromJson(Map<String, dynamic> json) {
     return RollbackTransactionResponse(
       transactionStatus: json['transactionStatus'] as String?,
@@ -1229,6 +1242,7 @@ class SqlParameter {
     this.typeHint,
     this.value,
   });
+
   factory SqlParameter.fromJson(Map<String, dynamic> json) {
     return SqlParameter(
       name: json['name'] as String?,
@@ -1265,6 +1279,7 @@ class SqlStatementResult {
     this.numberOfRecordsUpdated,
     this.resultFrame,
   });
+
   factory SqlStatementResult.fromJson(Map<String, dynamic> json) {
     return SqlStatementResult(
       numberOfRecordsUpdated: json['numberOfRecordsUpdated'] as int?,
@@ -1293,6 +1308,7 @@ class StructValue {
   StructValue({
     this.attributes,
   });
+
   factory StructValue.fromJson(Map<String, dynamic> json) {
     return StructValue(
       attributes: (json['attributes'] as List?)
@@ -1366,6 +1382,7 @@ class UpdateResult {
   UpdateResult({
     this.generatedFields,
   });
+
   factory UpdateResult.fromJson(Map<String, dynamic> json) {
     return UpdateResult(
       generatedFields: (json['generatedFields'] as List?)
@@ -1429,6 +1446,7 @@ class Value {
     this.stringValue,
     this.structValue,
   });
+
   factory Value.fromJson(Map<String, dynamic> json) {
     return Value(
       arrayValues: (json['arrayValues'] as List?)

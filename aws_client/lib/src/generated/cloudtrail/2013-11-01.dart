@@ -1372,6 +1372,7 @@ class CloudTrail {
 /// an error.
 class AddTagsResponse {
   AddTagsResponse();
+
   factory AddTagsResponse.fromJson(Map<String, dynamic> _) {
     return AddTagsResponse();
   }
@@ -1422,6 +1423,7 @@ class AdvancedEventSelector {
     required this.fieldSelectors,
     this.name,
   });
+
   factory AdvancedEventSelector.fromJson(Map<String, dynamic> json) {
     return AdvancedEventSelector(
       fieldSelectors: (json['FieldSelectors'] as List)
@@ -1589,6 +1591,7 @@ class AdvancedFieldSelector {
     this.notStartsWith,
     this.startsWith,
   });
+
   factory AdvancedFieldSelector.fromJson(Map<String, dynamic> json) {
     return AdvancedFieldSelector(
       field: json['Field'] as String,
@@ -1712,6 +1715,7 @@ class CreateTrailResponse {
     this.snsTopicName,
     this.trailARN,
   });
+
   factory CreateTrailResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrailResponse(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,
@@ -1889,6 +1893,7 @@ class DataResource {
     this.type,
     this.values,
   });
+
   factory DataResource.fromJson(Map<String, dynamic> json) {
     return DataResource(
       type: json['Type'] as String?,
@@ -1913,6 +1918,7 @@ class DataResource {
 /// an error.
 class DeleteTrailResponse {
   DeleteTrailResponse();
+
   factory DeleteTrailResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrailResponse();
   }
@@ -1936,6 +1942,7 @@ class DescribeTrailsResponse {
   DescribeTrailsResponse({
     this.trailList,
   });
+
   factory DescribeTrailsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTrailsResponse(
       trailList: (json['trailList'] as List?)
@@ -1997,6 +2004,7 @@ class Event {
     this.resources,
     this.username,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       accessKeyId: json['AccessKeyId'] as String?,
@@ -2123,6 +2131,7 @@ class EventSelector {
     this.includeManagementEvents,
     this.readWriteType,
   });
+
   factory EventSelector.fromJson(Map<String, dynamic> json) {
     return EventSelector(
       dataResources: (json['DataResources'] as List?)
@@ -2170,6 +2179,7 @@ class GetEventSelectorsResponse {
     this.eventSelectors,
     this.trailARN,
   });
+
   factory GetEventSelectorsResponse.fromJson(Map<String, dynamic> json) {
     return GetEventSelectorsResponse(
       advancedEventSelectors: (json['AdvancedEventSelectors'] as List?)
@@ -2211,6 +2221,7 @@ class GetInsightSelectorsResponse {
     this.insightSelectors,
     this.trailARN,
   });
+
   factory GetInsightSelectorsResponse.fromJson(Map<String, dynamic> json) {
     return GetInsightSelectorsResponse(
       insightSelectors: (json['InsightSelectors'] as List?)
@@ -2237,6 +2248,7 @@ class GetTrailResponse {
   GetTrailResponse({
     this.trail,
   });
+
   factory GetTrailResponse.fromJson(Map<String, dynamic> json) {
     return GetTrailResponse(
       trail: json['Trail'] != null
@@ -2356,6 +2368,7 @@ class GetTrailStatusResponse {
     this.timeLoggingStarted,
     this.timeLoggingStopped,
   });
+
   factory GetTrailStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetTrailStatusResponse(
       isLogging: json['IsLogging'] as bool?,
@@ -2454,6 +2467,7 @@ class InsightSelector {
   InsightSelector({
     this.insightType,
   });
+
   factory InsightSelector.fromJson(Map<String, dynamic> json) {
     return InsightSelector(
       insightType: (json['InsightType'] as String?)?.toInsightType(),
@@ -2507,6 +2521,7 @@ class ListPublicKeysResponse {
     this.nextToken,
     this.publicKeyList,
   });
+
   factory ListPublicKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListPublicKeysResponse(
       nextToken: json['NextToken'] as String?,
@@ -2540,6 +2555,7 @@ class ListTagsResponse {
     this.nextToken,
     this.resourceTagList,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2576,6 +2592,7 @@ class ListTrailsResponse {
     this.nextToken,
     this.trails,
   });
+
   factory ListTrailsResponse.fromJson(Map<String, dynamic> json) {
     return ListTrailsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2608,6 +2625,7 @@ class LookupAttribute {
     required this.attributeKey,
     required this.attributeValue,
   });
+
   factory LookupAttribute.fromJson(Map<String, dynamic> json) {
     return LookupAttribute(
       attributeKey: (json['AttributeKey'] as String).toLookupAttributeKey(),
@@ -2702,6 +2720,7 @@ class LookupEventsResponse {
     this.events,
     this.nextToken,
   });
+
   factory LookupEventsResponse.fromJson(Map<String, dynamic> json) {
     return LookupEventsResponse(
       events: (json['Events'] as List?)
@@ -2742,6 +2761,7 @@ class PublicKey {
     this.validityStartTime,
     this.value,
   });
+
   factory PublicKey.fromJson(Map<String, dynamic> json) {
     return PublicKey(
       fingerprint: json['Fingerprint'] as String?,
@@ -2785,6 +2805,7 @@ class PutEventSelectorsResponse {
     this.eventSelectors,
     this.trailARN,
   });
+
   factory PutEventSelectorsResponse.fromJson(Map<String, dynamic> json) {
     return PutEventSelectorsResponse(
       advancedEventSelectors: (json['AdvancedEventSelectors'] as List?)
@@ -2826,6 +2847,7 @@ class PutInsightSelectorsResponse {
     this.insightSelectors,
     this.trailARN,
   });
+
   factory PutInsightSelectorsResponse.fromJson(Map<String, dynamic> json) {
     return PutInsightSelectorsResponse(
       insightSelectors: (json['InsightSelectors'] as List?)
@@ -2883,6 +2905,7 @@ extension on String {
 /// an error.
 class RemoveTagsResponse {
   RemoveTagsResponse();
+
   factory RemoveTagsResponse.fromJson(Map<String, dynamic> _) {
     return RemoveTagsResponse();
   }
@@ -2913,6 +2936,7 @@ class Resource {
     this.resourceName,
     this.resourceType,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       resourceName: json['ResourceName'] as String?,
@@ -2942,6 +2966,7 @@ class ResourceTag {
     this.resourceId,
     this.tagsList,
   });
+
   factory ResourceTag.fromJson(Map<String, dynamic> json) {
     return ResourceTag(
       resourceId: json['ResourceId'] as String?,
@@ -2966,6 +2991,7 @@ class ResourceTag {
 /// an error.
 class StartLoggingResponse {
   StartLoggingResponse();
+
   factory StartLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StartLoggingResponse();
   }
@@ -2979,6 +3005,7 @@ class StartLoggingResponse {
 /// an error.
 class StopLoggingResponse {
   StopLoggingResponse();
+
   factory StopLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StopLoggingResponse();
   }
@@ -3004,6 +3031,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -3109,6 +3137,7 @@ class Trail {
     this.snsTopicName,
     this.trailARN,
   });
+
   factory Trail.fromJson(Map<String, dynamic> json) {
     return Trail(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,
@@ -3192,6 +3221,7 @@ class TrailInfo {
     this.name,
     this.trailARN,
   });
+
   factory TrailInfo.fromJson(Map<String, dynamic> json) {
     return TrailInfo(
       homeRegion: json['HomeRegion'] as String?,
@@ -3285,6 +3315,7 @@ class UpdateTrailResponse {
     this.snsTopicName,
     this.trailARN,
   });
+
   factory UpdateTrailResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTrailResponse(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,

@@ -55,6 +55,7 @@ class OutputShape {
   OutputShape({
     this.stream,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       stream: _s.decodeNullableUint8List(json['Stream'] as String?),

@@ -59,6 +59,7 @@ class OutputShape {
     this.data,
     this.header,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       data: json['Data'] != null
@@ -83,6 +84,7 @@ class SingleStructure {
   SingleStructure({
     this.foo,
   });
+
   factory SingleStructure.fromJson(Map<String, dynamic> json) {
     return SingleStructure(
       foo: json['Foo'] as String?,

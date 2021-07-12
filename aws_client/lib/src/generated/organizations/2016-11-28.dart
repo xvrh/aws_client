@@ -4682,6 +4682,7 @@ class AcceptHandshakeResponse {
   AcceptHandshakeResponse({
     this.handshake,
   });
+
   factory AcceptHandshakeResponse.fromJson(Map<String, dynamic> json) {
     return AcceptHandshakeResponse(
       handshake: json['Handshake'] != null
@@ -4747,6 +4748,7 @@ class Account {
     this.name,
     this.status,
   });
+
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
       arn: json['Arn'] as String?,
@@ -4881,6 +4883,7 @@ class CancelHandshakeResponse {
   CancelHandshakeResponse({
     this.handshake,
   });
+
   factory CancelHandshakeResponse.fromJson(Map<String, dynamic> json) {
     return CancelHandshakeResponse(
       handshake: json['Handshake'] != null
@@ -4924,6 +4927,7 @@ class Child {
     this.id,
     this.type,
   });
+
   factory Child.fromJson(Map<String, dynamic> json) {
     return Child(
       id: json['Id'] as String?,
@@ -5068,6 +5072,7 @@ class CreateAccountResponse {
   CreateAccountResponse({
     this.createAccountStatus,
   });
+
   factory CreateAccountResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccountResponse(
       createAccountStatus: json['CreateAccountStatus'] != null
@@ -5226,6 +5231,7 @@ class CreateAccountStatus {
     this.requestedTimestamp,
     this.state,
   });
+
   factory CreateAccountStatus.fromJson(Map<String, dynamic> json) {
     return CreateAccountStatus(
       accountId: json['AccountId'] as String?,
@@ -5270,6 +5276,7 @@ class CreateGovCloudAccountResponse {
   CreateGovCloudAccountResponse({
     this.createAccountStatus,
   });
+
   factory CreateGovCloudAccountResponse.fromJson(Map<String, dynamic> json) {
     return CreateGovCloudAccountResponse(
       createAccountStatus: json['CreateAccountStatus'] != null
@@ -5295,6 +5302,7 @@ class CreateOrganizationResponse {
   CreateOrganizationResponse({
     this.organization,
   });
+
   factory CreateOrganizationResponse.fromJson(Map<String, dynamic> json) {
     return CreateOrganizationResponse(
       organization: json['Organization'] != null
@@ -5318,6 +5326,7 @@ class CreateOrganizationalUnitResponse {
   CreateOrganizationalUnitResponse({
     this.organizationalUnit,
   });
+
   factory CreateOrganizationalUnitResponse.fromJson(Map<String, dynamic> json) {
     return CreateOrganizationalUnitResponse(
       organizationalUnit: json['OrganizationalUnit'] != null
@@ -5342,6 +5351,7 @@ class CreatePolicyResponse {
   CreatePolicyResponse({
     this.policy,
   });
+
   factory CreatePolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreatePolicyResponse(
       policy: json['Policy'] != null
@@ -5366,6 +5376,7 @@ class DeclineHandshakeResponse {
   DeclineHandshakeResponse({
     this.handshake,
   });
+
   factory DeclineHandshakeResponse.fromJson(Map<String, dynamic> json) {
     return DeclineHandshakeResponse(
       handshake: json['Handshake'] != null
@@ -5421,6 +5432,7 @@ class DelegatedAdministrator {
     this.name,
     this.status,
   });
+
   factory DelegatedAdministrator.fromJson(Map<String, dynamic> json) {
     return DelegatedAdministrator(
       arn: json['Arn'] as String?,
@@ -5473,6 +5485,7 @@ class DelegatedService {
     this.delegationEnabledDate,
     this.servicePrincipal,
   });
+
   factory DelegatedService.fromJson(Map<String, dynamic> json) {
     return DelegatedService(
       delegationEnabledDate: timeStampFromJson(json['DelegationEnabledDate']),
@@ -5498,6 +5511,7 @@ class DescribeAccountResponse {
   DescribeAccountResponse({
     this.account,
   });
+
   factory DescribeAccountResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccountResponse(
       account: json['Account'] != null
@@ -5521,6 +5535,7 @@ class DescribeCreateAccountStatusResponse {
   DescribeCreateAccountStatusResponse({
     this.createAccountStatus,
   });
+
   factory DescribeCreateAccountStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCreateAccountStatusResponse(
@@ -5547,6 +5562,7 @@ class DescribeEffectivePolicyResponse {
   DescribeEffectivePolicyResponse({
     this.effectivePolicy,
   });
+
   factory DescribeEffectivePolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEffectivePolicyResponse(
       effectivePolicy: json['EffectivePolicy'] != null
@@ -5571,6 +5587,7 @@ class DescribeHandshakeResponse {
   DescribeHandshakeResponse({
     this.handshake,
   });
+
   factory DescribeHandshakeResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHandshakeResponse(
       handshake: json['Handshake'] != null
@@ -5601,6 +5618,7 @@ class DescribeOrganizationResponse {
   DescribeOrganizationResponse({
     this.organization,
   });
+
   factory DescribeOrganizationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOrganizationResponse(
       organization: json['Organization'] != null
@@ -5624,6 +5642,7 @@ class DescribeOrganizationalUnitResponse {
   DescribeOrganizationalUnitResponse({
     this.organizationalUnit,
   });
+
   factory DescribeOrganizationalUnitResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationalUnitResponse(
@@ -5649,6 +5668,7 @@ class DescribePolicyResponse {
   DescribePolicyResponse({
     this.policy,
   });
+
   factory DescribePolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribePolicyResponse(
       policy: json['Policy'] != null
@@ -5673,6 +5693,7 @@ class DisablePolicyTypeResponse {
   DisablePolicyTypeResponse({
     this.root,
   });
+
   factory DisablePolicyTypeResponse.fromJson(Map<String, dynamic> json) {
     return DisablePolicyTypeResponse(
       root: json['Root'] != null
@@ -5711,6 +5732,7 @@ class EffectivePolicy {
     this.policyType,
     this.targetId,
   });
+
   factory EffectivePolicy.fromJson(Map<String, dynamic> json) {
     return EffectivePolicy(
       lastUpdatedTimestamp: timeStampFromJson(json['LastUpdatedTimestamp']),
@@ -5776,6 +5798,7 @@ class EnableAllFeaturesResponse {
   EnableAllFeaturesResponse({
     this.handshake,
   });
+
   factory EnableAllFeaturesResponse.fromJson(Map<String, dynamic> json) {
     return EnableAllFeaturesResponse(
       handshake: json['Handshake'] != null
@@ -5800,6 +5823,7 @@ class EnablePolicyTypeResponse {
   EnablePolicyTypeResponse({
     this.root,
   });
+
   factory EnablePolicyTypeResponse.fromJson(Map<String, dynamic> json) {
     return EnablePolicyTypeResponse(
       root: json['Root'] != null
@@ -5831,6 +5855,7 @@ class EnabledServicePrincipal {
     this.dateEnabled,
     this.servicePrincipal,
   });
+
   factory EnabledServicePrincipal.fromJson(Map<String, dynamic> json) {
     return EnabledServicePrincipal(
       dateEnabled: timeStampFromJson(json['DateEnabled']),
@@ -5960,6 +5985,7 @@ class Handshake {
     this.resources,
     this.state,
   });
+
   factory Handshake.fromJson(Map<String, dynamic> json) {
     return Handshake(
       action: (json['Action'] as String?)?.toActionType(),
@@ -6027,6 +6053,7 @@ class HandshakeFilter {
     this.actionType,
     this.parentHandshakeId,
   });
+
   factory HandshakeFilter.fromJson(Map<String, dynamic> json) {
     return HandshakeFilter(
       actionType: (json['ActionType'] as String?)?.toActionType(),
@@ -6060,6 +6087,7 @@ class HandshakeParty {
     required this.id,
     required this.type,
   });
+
   factory HandshakeParty.fromJson(Map<String, dynamic> json) {
     return HandshakeParty(
       id: json['Id'] as String,
@@ -6155,6 +6183,7 @@ class HandshakeResource {
     this.type,
     this.value,
   });
+
   factory HandshakeResource.fromJson(Map<String, dynamic> json) {
     return HandshakeResource(
       resources: (json['Resources'] as List?)
@@ -6320,6 +6349,7 @@ class InviteAccountToOrganizationResponse {
   InviteAccountToOrganizationResponse({
     this.handshake,
   });
+
   factory InviteAccountToOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return InviteAccountToOrganizationResponse(
@@ -6355,6 +6385,7 @@ class ListAWSServiceAccessForOrganizationResponse {
     this.enabledServicePrincipals,
     this.nextToken,
   });
+
   factory ListAWSServiceAccessForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAWSServiceAccessForOrganizationResponse(
@@ -6393,6 +6424,7 @@ class ListAccountsForParentResponse {
     this.accounts,
     this.nextToken,
   });
+
   factory ListAccountsForParentResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountsForParentResponse(
       accounts: (json['Accounts'] as List?)
@@ -6428,6 +6460,7 @@ class ListAccountsResponse {
     this.accounts,
     this.nextToken,
   });
+
   factory ListAccountsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountsResponse(
       accounts: (json['Accounts'] as List?)
@@ -6463,6 +6496,7 @@ class ListChildrenResponse {
     this.children,
     this.nextToken,
   });
+
   factory ListChildrenResponse.fromJson(Map<String, dynamic> json) {
     return ListChildrenResponse(
       children: (json['Children'] as List?)
@@ -6500,6 +6534,7 @@ class ListCreateAccountStatusResponse {
     this.createAccountStatuses,
     this.nextToken,
   });
+
   factory ListCreateAccountStatusResponse.fromJson(Map<String, dynamic> json) {
     return ListCreateAccountStatusResponse(
       createAccountStatuses: (json['CreateAccountStatuses'] as List?)
@@ -6536,6 +6571,7 @@ class ListDelegatedAdministratorsResponse {
     this.delegatedAdministrators,
     this.nextToken,
   });
+
   factory ListDelegatedAdministratorsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDelegatedAdministratorsResponse(
@@ -6574,6 +6610,7 @@ class ListDelegatedServicesForAccountResponse {
     this.delegatedServices,
     this.nextToken,
   });
+
   factory ListDelegatedServicesForAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDelegatedServicesForAccountResponse(
@@ -6611,6 +6648,7 @@ class ListHandshakesForAccountResponse {
     this.handshakes,
     this.nextToken,
   });
+
   factory ListHandshakesForAccountResponse.fromJson(Map<String, dynamic> json) {
     return ListHandshakesForAccountResponse(
       handshakes: (json['Handshakes'] as List?)
@@ -6647,6 +6685,7 @@ class ListHandshakesForOrganizationResponse {
     this.handshakes,
     this.nextToken,
   });
+
   factory ListHandshakesForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListHandshakesForOrganizationResponse(
@@ -6683,6 +6722,7 @@ class ListOrganizationalUnitsForParentResponse {
     this.nextToken,
     this.organizationalUnits,
   });
+
   factory ListOrganizationalUnitsForParentResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOrganizationalUnitsForParentResponse(
@@ -6720,6 +6760,7 @@ class ListParentsResponse {
     this.nextToken,
     this.parents,
   });
+
   factory ListParentsResponse.fromJson(Map<String, dynamic> json) {
     return ListParentsResponse(
       nextToken: json['NextToken'] as String?,
@@ -6755,6 +6796,7 @@ class ListPoliciesForTargetResponse {
     this.nextToken,
     this.policies,
   });
+
   factory ListPoliciesForTargetResponse.fromJson(Map<String, dynamic> json) {
     return ListPoliciesForTargetResponse(
       nextToken: json['NextToken'] as String?,
@@ -6792,6 +6834,7 @@ class ListPoliciesResponse {
     this.nextToken,
     this.policies,
   });
+
   factory ListPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListPoliciesResponse(
       nextToken: json['NextToken'] as String?,
@@ -6827,6 +6870,7 @@ class ListRootsResponse {
     this.nextToken,
     this.roots,
   });
+
   factory ListRootsResponse.fromJson(Map<String, dynamic> json) {
     return ListRootsResponse(
       nextToken: json['NextToken'] as String?,
@@ -6862,6 +6906,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -6898,6 +6943,7 @@ class ListTargetsForPolicyResponse {
     this.nextToken,
     this.targets,
   });
+
   factory ListTargetsForPolicyResponse.fromJson(Map<String, dynamic> json) {
     return ListTargetsForPolicyResponse(
       nextToken: json['NextToken'] as String?,
@@ -6984,6 +7030,7 @@ class Organization {
     this.masterAccountEmail,
     this.masterAccountId,
   });
+
   factory Organization.fromJson(Map<String, dynamic> json) {
     return Organization(
       arn: json['Arn'] as String?,
@@ -7081,6 +7128,7 @@ class OrganizationalUnit {
     this.id,
     this.name,
   });
+
   factory OrganizationalUnit.fromJson(Map<String, dynamic> json) {
     return OrganizationalUnit(
       arn: json['Arn'] as String?,
@@ -7130,6 +7178,7 @@ class Parent {
     this.id,
     this.type,
   });
+
   factory Parent.fromJson(Map<String, dynamic> json) {
     return Parent(
       id: json['Id'] as String?,
@@ -7189,6 +7238,7 @@ class Policy {
     this.content,
     this.policySummary,
   });
+
   factory Policy.fromJson(Map<String, dynamic> json) {
     return Policy(
       content: json['Content'] as String?,
@@ -7253,6 +7303,7 @@ class PolicySummary {
     this.name,
     this.type,
   });
+
   factory PolicySummary.fromJson(Map<String, dynamic> json) {
     return PolicySummary(
       arn: json['Arn'] as String?,
@@ -7331,6 +7382,7 @@ class PolicyTargetSummary {
     this.targetId,
     this.type,
   });
+
   factory PolicyTargetSummary.fromJson(Map<String, dynamic> json) {
     return PolicyTargetSummary(
       arn: json['Arn'] as String?,
@@ -7441,6 +7493,7 @@ class PolicyTypeSummary {
     this.status,
     this.type,
   });
+
   factory PolicyTypeSummary.fromJson(Map<String, dynamic> json) {
     return PolicyTypeSummary(
       status: (json['Status'] as String?)?.toPolicyTypeStatus(),
@@ -7501,6 +7554,7 @@ class Root {
     this.name,
     this.policyTypes,
   });
+
   factory Root.fromJson(Map<String, dynamic> json) {
     return Root(
       arn: json['Arn'] as String?,
@@ -7558,6 +7612,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -7616,6 +7671,7 @@ class UpdateOrganizationalUnitResponse {
   UpdateOrganizationalUnitResponse({
     this.organizationalUnit,
   });
+
   factory UpdateOrganizationalUnitResponse.fromJson(Map<String, dynamic> json) {
     return UpdateOrganizationalUnitResponse(
       organizationalUnit: json['OrganizationalUnit'] != null
@@ -7641,6 +7697,7 @@ class UpdatePolicyResponse {
   UpdatePolicyResponse({
     this.policy,
   });
+
   factory UpdatePolicyResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePolicyResponse(
       policy: json['Policy'] != null

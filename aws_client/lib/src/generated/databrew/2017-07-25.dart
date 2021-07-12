@@ -2120,6 +2120,7 @@ class BatchDeleteRecipeVersionResponse {
     required this.name,
     this.errors,
   });
+
   factory BatchDeleteRecipeVersionResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteRecipeVersionResponse(
       name: json['Name'] as String,
@@ -2231,6 +2232,7 @@ class ConditionExpression {
     required this.targetColumn,
     this.value,
   });
+
   factory ConditionExpression.fromJson(Map<String, dynamic> json) {
     return ConditionExpression(
       condition: json['Condition'] as String,
@@ -2258,6 +2260,7 @@ class CreateDatasetResponse {
   CreateDatasetResponse({
     required this.name,
   });
+
   factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetResponse(
       name: json['Name'] as String,
@@ -2279,6 +2282,7 @@ class CreateProfileJobResponse {
   CreateProfileJobResponse({
     required this.name,
   });
+
   factory CreateProfileJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateProfileJobResponse(
       name: json['Name'] as String,
@@ -2300,6 +2304,7 @@ class CreateProjectResponse {
   CreateProjectResponse({
     required this.name,
   });
+
   factory CreateProjectResponse.fromJson(Map<String, dynamic> json) {
     return CreateProjectResponse(
       name: json['Name'] as String,
@@ -2321,6 +2326,7 @@ class CreateRecipeJobResponse {
   CreateRecipeJobResponse({
     required this.name,
   });
+
   factory CreateRecipeJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateRecipeJobResponse(
       name: json['Name'] as String,
@@ -2342,6 +2348,7 @@ class CreateRecipeResponse {
   CreateRecipeResponse({
     required this.name,
   });
+
   factory CreateRecipeResponse.fromJson(Map<String, dynamic> json) {
     return CreateRecipeResponse(
       name: json['Name'] as String,
@@ -2363,6 +2370,7 @@ class CreateScheduleResponse {
   CreateScheduleResponse({
     required this.name,
   });
+
   factory CreateScheduleResponse.fromJson(Map<String, dynamic> json) {
     return CreateScheduleResponse(
       name: json['Name'] as String,
@@ -2391,6 +2399,7 @@ class CsvOptions {
     this.delimiter,
     this.headerRow,
   });
+
   factory CsvOptions.fromJson(Map<String, dynamic> json) {
     return CsvOptions(
       delimiter: json['Delimiter'] as String?,
@@ -2418,6 +2427,7 @@ class CsvOutputOptions {
   CsvOutputOptions({
     this.delimiter,
   });
+
   factory CsvOutputOptions.fromJson(Map<String, dynamic> json) {
     return CsvOutputOptions(
       delimiter: json['Delimiter'] as String?,
@@ -2455,6 +2465,7 @@ class DataCatalogInputDefinition {
     this.catalogId,
     this.tempDirectory,
   });
+
   factory DataCatalogInputDefinition.fromJson(Map<String, dynamic> json) {
     return DataCatalogInputDefinition(
       databaseName: json['DatabaseName'] as String,
@@ -2513,6 +2524,7 @@ class DataCatalogOutput {
     this.overwrite,
     this.s3Options,
   });
+
   factory DataCatalogOutput.fromJson(Map<String, dynamic> json) {
     return DataCatalogOutput(
       databaseName: json['DatabaseName'] as String,
@@ -2563,6 +2575,7 @@ class DatabaseInputDefinition {
     required this.glueConnectionName,
     this.tempDirectory,
   });
+
   factory DatabaseInputDefinition.fromJson(Map<String, dynamic> json) {
     return DatabaseInputDefinition(
       databaseTableName: json['DatabaseTableName'] as String,
@@ -2599,6 +2612,7 @@ class DatabaseTableOutputOptions {
     required this.tableName,
     this.tempDirectory,
   });
+
   factory DatabaseTableOutputOptions.fromJson(Map<String, dynamic> json) {
     return DatabaseTableOutputOptions(
       tableName: json['TableName'] as String,
@@ -2679,6 +2693,7 @@ class Dataset {
     this.source,
     this.tags,
   });
+
   factory Dataset.fromJson(Map<String, dynamic> json) {
     return Dataset(
       input: Input.fromJson(json['Input'] as Map<String, dynamic>),
@@ -2765,6 +2780,7 @@ class DatasetParameter {
     this.datetimeOptions,
     this.filter,
   });
+
   factory DatasetParameter.fromJson(Map<String, dynamic> json) {
     return DatasetParameter(
       name: json['Name'] as String,
@@ -2819,6 +2835,7 @@ class DatetimeOptions {
     this.localeCode,
     this.timezoneOffset,
   });
+
   factory DatetimeOptions.fromJson(Map<String, dynamic> json) {
     return DatetimeOptions(
       format: json['Format'] as String,
@@ -2846,6 +2863,7 @@ class DeleteDatasetResponse {
   DeleteDatasetResponse({
     required this.name,
   });
+
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDatasetResponse(
       name: json['Name'] as String,
@@ -2867,6 +2885,7 @@ class DeleteJobResponse {
   DeleteJobResponse({
     required this.name,
   });
+
   factory DeleteJobResponse.fromJson(Map<String, dynamic> json) {
     return DeleteJobResponse(
       name: json['Name'] as String,
@@ -2888,6 +2907,7 @@ class DeleteProjectResponse {
   DeleteProjectResponse({
     required this.name,
   });
+
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProjectResponse(
       name: json['Name'] as String,
@@ -2913,6 +2933,7 @@ class DeleteRecipeVersionResponse {
     required this.name,
     required this.recipeVersion,
   });
+
   factory DeleteRecipeVersionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRecipeVersionResponse(
       name: json['Name'] as String,
@@ -2937,6 +2958,7 @@ class DeleteScheduleResponse {
   DeleteScheduleResponse({
     required this.name,
   });
+
   factory DeleteScheduleResponse.fromJson(Map<String, dynamic> json) {
     return DeleteScheduleResponse(
       name: json['Name'] as String,
@@ -3002,6 +3024,7 @@ class DescribeDatasetResponse {
     this.source,
     this.tags,
   });
+
   factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetResponse(
       input: Input.fromJson(json['Input'] as Map<String, dynamic>),
@@ -3168,6 +3191,7 @@ class DescribeJobResponse {
     this.timeout,
     this.type,
   });
+
   factory DescribeJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobResponse(
       name: json['Name'] as String,
@@ -3327,6 +3351,7 @@ class DescribeJobRunResponse {
     this.startedOn,
     this.state,
   });
+
   factory DescribeJobRunResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobRunResponse(
       jobName: json['JobName'] as String,
@@ -3468,6 +3493,7 @@ class DescribeProjectResponse {
     this.sessionStatus,
     this.tags,
   });
+
   factory DescribeProjectResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProjectResponse(
       name: json['Name'] as String,
@@ -3581,6 +3607,7 @@ class DescribeRecipeResponse {
     this.steps,
     this.tags,
   });
+
   factory DescribeRecipeResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRecipeResponse(
       name: json['Name'] as String,
@@ -3679,6 +3706,7 @@ class DescribeScheduleResponse {
     this.resourceArn,
     this.tags,
   });
+
   factory DescribeScheduleResponse.fromJson(Map<String, dynamic> json) {
     return DescribeScheduleResponse(
       name: json['Name'] as String,
@@ -3770,6 +3798,7 @@ class ExcelOptions {
     this.sheetIndexes,
     this.sheetNames,
   });
+
   factory ExcelOptions.fromJson(Map<String, dynamic> json) {
     return ExcelOptions(
       headerRow: json['HeaderRow'] as bool?,
@@ -3817,6 +3846,7 @@ class FilesLimit {
     this.order,
     this.orderedBy,
   });
+
   factory FilesLimit.fromJson(Map<String, dynamic> json) {
     return FilesLimit(
       maxFiles: json['MaxFiles'] as int,
@@ -3857,6 +3887,7 @@ class FilterExpression {
     required this.expression,
     required this.valuesMap,
   });
+
   factory FilterExpression.fromJson(Map<String, dynamic> json) {
     return FilterExpression(
       expression: json['Expression'] as String,
@@ -3892,6 +3923,7 @@ class FormatOptions {
     this.excel,
     this.json,
   });
+
   factory FormatOptions.fromJson(Map<String, dynamic> json) {
     return FormatOptions(
       csv: json['Csv'] != null
@@ -3935,6 +3967,7 @@ class Input {
     this.databaseInputDefinition,
     this.s3InputDefinition,
   });
+
   factory Input.fromJson(Map<String, dynamic> json) {
     return Input(
       dataCatalogInputDefinition: json['DataCatalogInputDefinition'] != null
@@ -4125,6 +4158,7 @@ class Job {
     this.timeout,
     this.type,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       name: json['Name'] as String,
@@ -4290,6 +4324,7 @@ class JobRun {
     this.startedOn,
     this.state,
   });
+
   factory JobRun.fromJson(Map<String, dynamic> json) {
     return JobRun(
       attempt: json['Attempt'] as int?,
@@ -4444,6 +4479,7 @@ class JobSample {
     this.mode,
     this.size,
   });
+
   factory JobSample.fromJson(Map<String, dynamic> json) {
     return JobSample(
       mode: (json['Mode'] as String?)?.toSampleMode(),
@@ -4499,6 +4535,7 @@ class JsonOptions {
   JsonOptions({
     this.multiLine,
   });
+
   factory JsonOptions.fromJson(Map<String, dynamic> json) {
     return JsonOptions(
       multiLine: json['MultiLine'] as bool?,
@@ -4525,6 +4562,7 @@ class ListDatasetsResponse {
     required this.datasets,
     this.nextToken,
   });
+
   factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetsResponse(
       datasets: (json['Datasets'] as List)
@@ -4557,6 +4595,7 @@ class ListJobRunsResponse {
     required this.jobRuns,
     this.nextToken,
   });
+
   factory ListJobRunsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobRunsResponse(
       jobRuns: (json['JobRuns'] as List)
@@ -4589,6 +4628,7 @@ class ListJobsResponse {
     required this.jobs,
     this.nextToken,
   });
+
   factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobsResponse(
       jobs: (json['Jobs'] as List)
@@ -4621,6 +4661,7 @@ class ListProjectsResponse {
     required this.projects,
     this.nextToken,
   });
+
   factory ListProjectsResponse.fromJson(Map<String, dynamic> json) {
     return ListProjectsResponse(
       projects: (json['Projects'] as List)
@@ -4653,6 +4694,7 @@ class ListRecipeVersionsResponse {
     required this.recipes,
     this.nextToken,
   });
+
   factory ListRecipeVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListRecipeVersionsResponse(
       recipes: (json['Recipes'] as List)
@@ -4685,6 +4727,7 @@ class ListRecipesResponse {
     required this.recipes,
     this.nextToken,
   });
+
   factory ListRecipesResponse.fromJson(Map<String, dynamic> json) {
     return ListRecipesResponse(
       recipes: (json['Recipes'] as List)
@@ -4717,6 +4760,7 @@ class ListSchedulesResponse {
     required this.schedules,
     this.nextToken,
   });
+
   factory ListSchedulesResponse.fromJson(Map<String, dynamic> json) {
     return ListSchedulesResponse(
       schedules: (json['Schedules'] as List)
@@ -4744,6 +4788,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -4868,6 +4913,7 @@ class Output {
     this.overwrite,
     this.partitionColumns,
   });
+
   factory Output.fromJson(Map<String, dynamic> json) {
     return Output(
       location: S3Location.fromJson(json['Location'] as Map<String, dynamic>),
@@ -4968,6 +5014,7 @@ class OutputFormatOptions {
   OutputFormatOptions({
     this.csv,
   });
+
   factory OutputFormatOptions.fromJson(Map<String, dynamic> json) {
     return OutputFormatOptions(
       csv: json['Csv'] != null
@@ -5037,6 +5084,7 @@ class PathOptions {
     this.lastModifiedDateCondition,
     this.parameters,
   });
+
   factory PathOptions.fromJson(Map<String, dynamic> json) {
     return PathOptions(
       filesLimit: json['FilesLimit'] != null
@@ -5127,6 +5175,7 @@ class Project {
     this.sample,
     this.tags,
   });
+
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       name: json['Name'] as String,
@@ -5191,6 +5240,7 @@ class PublishRecipeResponse {
   PublishRecipeResponse({
     required this.name,
   });
+
   factory PublishRecipeResponse.fromJson(Map<String, dynamic> json) {
     return PublishRecipeResponse(
       name: json['Name'] as String,
@@ -5277,6 +5327,7 @@ class Recipe {
     this.steps,
     this.tags,
   });
+
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       name: json['Name'] as String,
@@ -5348,6 +5399,7 @@ class RecipeAction {
     required this.operation,
     this.parameters,
   });
+
   factory RecipeAction.fromJson(Map<String, dynamic> json) {
     return RecipeAction(
       operation: json['Operation'] as String,
@@ -5378,6 +5430,7 @@ class RecipeReference {
     required this.name,
     this.recipeVersion,
   });
+
   factory RecipeReference.fromJson(Map<String, dynamic> json) {
     return RecipeReference(
       name: json['Name'] as String,
@@ -5411,6 +5464,7 @@ class RecipeStep {
     required this.action,
     this.conditionExpressions,
   });
+
   factory RecipeStep.fromJson(Map<String, dynamic> json) {
     return RecipeStep(
       action: RecipeAction.fromJson(json['Action'] as Map<String, dynamic>),
@@ -5449,6 +5503,7 @@ class RecipeVersionErrorDetail {
     this.errorMessage,
     this.recipeVersion,
   });
+
   factory RecipeVersionErrorDetail.fromJson(Map<String, dynamic> json) {
     return RecipeVersionErrorDetail(
       errorCode: json['ErrorCode'] as String?,
@@ -5482,6 +5537,7 @@ class S3Location {
     required this.bucket,
     this.key,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['Bucket'] as String,
@@ -5509,6 +5565,7 @@ class S3TableOutputOptions {
   S3TableOutputOptions({
     required this.location,
   });
+
   factory S3TableOutputOptions.fromJson(Map<String, dynamic> json) {
     return S3TableOutputOptions(
       location: S3Location.fromJson(json['Location'] as Map<String, dynamic>),
@@ -5536,6 +5593,7 @@ class Sample {
     required this.type,
     this.size,
   });
+
   factory Sample.fromJson(Map<String, dynamic> json) {
     return Sample(
       type: (json['Type'] as String).toSampleType(),
@@ -5660,6 +5718,7 @@ class Schedule {
     this.resourceArn,
     this.tags,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       name: json['Name'] as String,
@@ -5721,6 +5780,7 @@ class SendProjectSessionActionResponse {
     this.actionId,
     this.result,
   });
+
   factory SendProjectSessionActionResponse.fromJson(Map<String, dynamic> json) {
     return SendProjectSessionActionResponse(
       name: json['Name'] as String,
@@ -5849,6 +5909,7 @@ class StartJobRunResponse {
   StartJobRunResponse({
     required this.runId,
   });
+
   factory StartJobRunResponse.fromJson(Map<String, dynamic> json) {
     return StartJobRunResponse(
       runId: json['RunId'] as String,
@@ -5874,6 +5935,7 @@ class StartProjectSessionResponse {
     required this.name,
     this.clientSessionId,
   });
+
   factory StartProjectSessionResponse.fromJson(Map<String, dynamic> json) {
     return StartProjectSessionResponse(
       name: json['Name'] as String,
@@ -5898,6 +5960,7 @@ class StopJobRunResponse {
   StopJobRunResponse({
     required this.runId,
   });
+
   factory StopJobRunResponse.fromJson(Map<String, dynamic> json) {
     return StopJobRunResponse(
       runId: json['RunId'] as String,
@@ -5914,6 +5977,7 @@ class StopJobRunResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5925,6 +5989,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5941,6 +6006,7 @@ class UpdateDatasetResponse {
   UpdateDatasetResponse({
     required this.name,
   });
+
   factory UpdateDatasetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDatasetResponse(
       name: json['Name'] as String,
@@ -5962,6 +6028,7 @@ class UpdateProfileJobResponse {
   UpdateProfileJobResponse({
     required this.name,
   });
+
   factory UpdateProfileJobResponse.fromJson(Map<String, dynamic> json) {
     return UpdateProfileJobResponse(
       name: json['Name'] as String,
@@ -5987,6 +6054,7 @@ class UpdateProjectResponse {
     required this.name,
     this.lastModifiedDate,
   });
+
   factory UpdateProjectResponse.fromJson(Map<String, dynamic> json) {
     return UpdateProjectResponse(
       name: json['Name'] as String,
@@ -6012,6 +6080,7 @@ class UpdateRecipeJobResponse {
   UpdateRecipeJobResponse({
     required this.name,
   });
+
   factory UpdateRecipeJobResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRecipeJobResponse(
       name: json['Name'] as String,
@@ -6033,6 +6102,7 @@ class UpdateRecipeResponse {
   UpdateRecipeResponse({
     required this.name,
   });
+
   factory UpdateRecipeResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRecipeResponse(
       name: json['Name'] as String,
@@ -6054,6 +6124,7 @@ class UpdateScheduleResponse {
   UpdateScheduleResponse({
     required this.name,
   });
+
   factory UpdateScheduleResponse.fromJson(Map<String, dynamic> json) {
     return UpdateScheduleResponse(
       name: json['Name'] as String,
@@ -6086,6 +6157,7 @@ class ViewFrame {
     this.columnRange,
     this.hiddenColumns,
   });
+
   factory ViewFrame.fromJson(Map<String, dynamic> json) {
     return ViewFrame(
       startColumnIndex: json['StartColumnIndex'] as int,

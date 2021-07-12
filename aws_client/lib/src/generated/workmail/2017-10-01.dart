@@ -3675,6 +3675,7 @@ class AccessControlRule {
     this.notUserIds,
     this.userIds,
   });
+
   factory AccessControlRule.fromJson(Map<String, dynamic> json) {
     return AccessControlRule(
       actions: (json['Actions'] as List?)
@@ -3768,6 +3769,7 @@ extension on String {
 
 class AssociateDelegateToResourceResponse {
   AssociateDelegateToResourceResponse();
+
   factory AssociateDelegateToResourceResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDelegateToResourceResponse();
   }
@@ -3779,6 +3781,7 @@ class AssociateDelegateToResourceResponse {
 
 class AssociateMemberToGroupResponse {
   AssociateMemberToGroupResponse();
+
   factory AssociateMemberToGroupResponse.fromJson(Map<String, dynamic> _) {
     return AssociateMemberToGroupResponse();
   }
@@ -3806,6 +3809,7 @@ class BookingOptions {
     this.autoDeclineConflictingRequests,
     this.autoDeclineRecurringRequests,
   });
+
   factory BookingOptions.fromJson(Map<String, dynamic> json) {
     return BookingOptions(
       autoAcceptRequests: json['AutoAcceptRequests'] as bool?,
@@ -3832,6 +3836,7 @@ class BookingOptions {
 
 class CancelMailboxExportJobResponse {
   CancelMailboxExportJobResponse();
+
   factory CancelMailboxExportJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelMailboxExportJobResponse();
   }
@@ -3843,6 +3848,7 @@ class CancelMailboxExportJobResponse {
 
 class CreateAliasResponse {
   CreateAliasResponse();
+
   factory CreateAliasResponse.fromJson(Map<String, dynamic> _) {
     return CreateAliasResponse();
   }
@@ -3859,6 +3865,7 @@ class CreateGroupResponse {
   CreateGroupResponse({
     this.groupId,
   });
+
   factory CreateGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateGroupResponse(
       groupId: json['GroupId'] as String?,
@@ -3880,6 +3887,7 @@ class CreateMobileDeviceAccessRuleResponse {
   CreateMobileDeviceAccessRuleResponse({
     this.mobileDeviceAccessRuleId,
   });
+
   factory CreateMobileDeviceAccessRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateMobileDeviceAccessRuleResponse(
@@ -3903,6 +3911,7 @@ class CreateOrganizationResponse {
   CreateOrganizationResponse({
     this.organizationId,
   });
+
   factory CreateOrganizationResponse.fromJson(Map<String, dynamic> json) {
     return CreateOrganizationResponse(
       organizationId: json['OrganizationId'] as String?,
@@ -3924,6 +3933,7 @@ class CreateResourceResponse {
   CreateResourceResponse({
     this.resourceId,
   });
+
   factory CreateResourceResponse.fromJson(Map<String, dynamic> json) {
     return CreateResourceResponse(
       resourceId: json['ResourceId'] as String?,
@@ -3945,6 +3955,7 @@ class CreateUserResponse {
   CreateUserResponse({
     this.userId,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       userId: json['UserId'] as String?,
@@ -3972,6 +3983,7 @@ class Delegate {
     required this.id,
     required this.type,
   });
+
   factory Delegate.fromJson(Map<String, dynamic> json) {
     return Delegate(
       id: json['Id'] as String,
@@ -3991,6 +4003,7 @@ class Delegate {
 
 class DeleteAccessControlRuleResponse {
   DeleteAccessControlRuleResponse();
+
   factory DeleteAccessControlRuleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccessControlRuleResponse();
   }
@@ -4002,6 +4015,7 @@ class DeleteAccessControlRuleResponse {
 
 class DeleteAliasResponse {
   DeleteAliasResponse();
+
   factory DeleteAliasResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAliasResponse();
   }
@@ -4013,6 +4027,7 @@ class DeleteAliasResponse {
 
 class DeleteGroupResponse {
   DeleteGroupResponse();
+
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResponse();
   }
@@ -4024,6 +4039,7 @@ class DeleteGroupResponse {
 
 class DeleteMailboxPermissionsResponse {
   DeleteMailboxPermissionsResponse();
+
   factory DeleteMailboxPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMailboxPermissionsResponse();
   }
@@ -4035,6 +4051,7 @@ class DeleteMailboxPermissionsResponse {
 
 class DeleteMobileDeviceAccessRuleResponse {
   DeleteMobileDeviceAccessRuleResponse();
+
   factory DeleteMobileDeviceAccessRuleResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteMobileDeviceAccessRuleResponse();
@@ -4056,6 +4073,7 @@ class DeleteOrganizationResponse {
     this.organizationId,
     this.state,
   });
+
   factory DeleteOrganizationResponse.fromJson(Map<String, dynamic> json) {
     return DeleteOrganizationResponse(
       organizationId: json['OrganizationId'] as String?,
@@ -4075,6 +4093,7 @@ class DeleteOrganizationResponse {
 
 class DeleteResourceResponse {
   DeleteResourceResponse();
+
   factory DeleteResourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourceResponse();
   }
@@ -4086,6 +4105,7 @@ class DeleteResourceResponse {
 
 class DeleteRetentionPolicyResponse {
   DeleteRetentionPolicyResponse();
+
   factory DeleteRetentionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRetentionPolicyResponse();
   }
@@ -4097,6 +4117,7 @@ class DeleteRetentionPolicyResponse {
 
 class DeleteUserResponse {
   DeleteUserResponse();
+
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
   }
@@ -4108,6 +4129,7 @@ class DeleteUserResponse {
 
 class DeregisterFromWorkMailResponse {
   DeregisterFromWorkMailResponse();
+
   factory DeregisterFromWorkMailResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterFromWorkMailResponse();
   }
@@ -4147,6 +4169,7 @@ class DescribeGroupResponse {
     this.name,
     this.state,
   });
+
   factory DescribeGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGroupResponse(
       disabledDate: timeStampFromJson(json['DisabledDate']),
@@ -4231,6 +4254,7 @@ class DescribeMailboxExportJobResponse {
     this.startTime,
     this.state,
   });
+
   factory DescribeMailboxExportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeMailboxExportJobResponse(
       description: json['Description'] as String?,
@@ -4320,6 +4344,7 @@ class DescribeOrganizationResponse {
     this.organizationId,
     this.state,
   });
+
   factory DescribeOrganizationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOrganizationResponse(
       arn: json['ARN'] as String?,
@@ -4397,6 +4422,7 @@ class DescribeResourceResponse {
     this.state,
     this.type,
   });
+
   factory DescribeResourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeResourceResponse(
       bookingOptions: json['BookingOptions'] != null
@@ -4479,6 +4505,7 @@ class DescribeUserResponse {
     this.userId,
     this.userRole,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       disabledDate: timeStampFromJson(json['DisabledDate']),
@@ -4517,6 +4544,7 @@ class DescribeUserResponse {
 
 class DisassociateDelegateFromResourceResponse {
   DisassociateDelegateFromResourceResponse();
+
   factory DisassociateDelegateFromResourceResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateDelegateFromResourceResponse();
@@ -4529,6 +4557,7 @@ class DisassociateDelegateFromResourceResponse {
 
 class DisassociateMemberFromGroupResponse {
   DisassociateMemberFromGroupResponse();
+
   factory DisassociateMemberFromGroupResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMemberFromGroupResponse();
   }
@@ -4557,6 +4586,7 @@ class Domain {
     this.domainName,
     this.hostedZoneId,
   });
+
   factory Domain.fromJson(Map<String, dynamic> json) {
     return Domain(
       domainName: json['DomainName'] as String?,
@@ -4625,6 +4655,7 @@ class FolderConfiguration {
     required this.name,
     this.period,
   });
+
   factory FolderConfiguration.fromJson(Map<String, dynamic> json) {
     return FolderConfiguration(
       action: (json['Action'] as String).toRetentionAction(),
@@ -4699,6 +4730,7 @@ class GetAccessControlEffectResponse {
     this.effect,
     this.matchedRules,
   });
+
   factory GetAccessControlEffectResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessControlEffectResponse(
       effect: (json['Effect'] as String?)?.toAccessControlRuleEffect(),
@@ -4738,6 +4770,7 @@ class GetDefaultRetentionPolicyResponse {
     this.id,
     this.name,
   });
+
   factory GetDefaultRetentionPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return GetDefaultRetentionPolicyResponse(
@@ -4777,6 +4810,7 @@ class GetMailboxDetailsResponse {
     this.mailboxQuota,
     this.mailboxSize,
   });
+
   factory GetMailboxDetailsResponse.fromJson(Map<String, dynamic> json) {
     return GetMailboxDetailsResponse(
       mailboxQuota: json['MailboxQuota'] as int?,
@@ -4808,6 +4842,7 @@ class GetMobileDeviceAccessEffectResponse {
     this.effect,
     this.matchedRules,
   });
+
   factory GetMobileDeviceAccessEffectResponse.fromJson(
       Map<String, dynamic> json) {
     return GetMobileDeviceAccessEffectResponse(
@@ -4858,6 +4893,7 @@ class Group {
     this.name,
     this.state,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       disabledDate: timeStampFromJson(json['DisabledDate']),
@@ -4895,6 +4931,7 @@ class ListAccessControlRulesResponse {
   ListAccessControlRulesResponse({
     this.rules,
   });
+
   factory ListAccessControlRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListAccessControlRulesResponse(
       rules: (json['Rules'] as List?)
@@ -4924,6 +4961,7 @@ class ListAliasesResponse {
     this.aliases,
     this.nextToken,
   });
+
   factory ListAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListAliasesResponse(
       aliases: (json['Aliases'] as List?)
@@ -4956,6 +4994,7 @@ class ListGroupMembersResponse {
     this.members,
     this.nextToken,
   });
+
   factory ListGroupMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupMembersResponse(
       members: (json['Members'] as List?)
@@ -4988,6 +5027,7 @@ class ListGroupsResponse {
     this.groups,
     this.nextToken,
   });
+
   factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsResponse(
       groups: (json['Groups'] as List?)
@@ -5019,6 +5059,7 @@ class ListMailboxExportJobsResponse {
     this.jobs,
     this.nextToken,
   });
+
   factory ListMailboxExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListMailboxExportJobsResponse(
       jobs: (json['Jobs'] as List?)
@@ -5051,6 +5092,7 @@ class ListMailboxPermissionsResponse {
     this.nextToken,
     this.permissions,
   });
+
   factory ListMailboxPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return ListMailboxPermissionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -5079,6 +5121,7 @@ class ListMobileDeviceAccessRulesResponse {
   ListMobileDeviceAccessRulesResponse({
     this.rules,
   });
+
   factory ListMobileDeviceAccessRulesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListMobileDeviceAccessRulesResponse(
@@ -5111,6 +5154,7 @@ class ListOrganizationsResponse {
     this.nextToken,
     this.organizationSummaries,
   });
+
   factory ListOrganizationsResponse.fromJson(Map<String, dynamic> json) {
     return ListOrganizationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -5145,6 +5189,7 @@ class ListResourceDelegatesResponse {
     this.delegates,
     this.nextToken,
   });
+
   factory ListResourceDelegatesResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceDelegatesResponse(
       delegates: (json['Delegates'] as List?)
@@ -5178,6 +5223,7 @@ class ListResourcesResponse {
     this.nextToken,
     this.resources,
   });
+
   factory ListResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListResourcesResponse(
       nextToken: json['NextToken'] as String?,
@@ -5205,6 +5251,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -5234,6 +5281,7 @@ class ListUsersResponse {
     this.nextToken,
     this.users,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       nextToken: json['NextToken'] as String?,
@@ -5296,6 +5344,7 @@ class MailboxExportJob {
     this.startTime,
     this.state,
   });
+
   factory MailboxExportJob.fromJson(Map<String, dynamic> json) {
     return MailboxExportJob(
       description: json['Description'] as String?,
@@ -5400,6 +5449,7 @@ class Member {
     this.state,
     this.type,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       disabledDate: timeStampFromJson(json['DisabledDate']),
@@ -5470,6 +5520,7 @@ class MobileDeviceAccessMatchedRule {
     this.mobileDeviceAccessRuleId,
     this.name,
   });
+
   factory MobileDeviceAccessMatchedRule.fromJson(Map<String, dynamic> json) {
     return MobileDeviceAccessMatchedRule(
       mobileDeviceAccessRuleId: json['MobileDeviceAccessRuleId'] as String?,
@@ -5553,6 +5604,7 @@ class MobileDeviceAccessRule {
     this.notDeviceTypes,
     this.notDeviceUserAgents,
   });
+
   factory MobileDeviceAccessRule.fromJson(Map<String, dynamic> json) {
     return MobileDeviceAccessRule(
       dateCreated: timeStampFromJson(json['DateCreated']),
@@ -5689,6 +5741,7 @@ class OrganizationSummary {
     this.organizationId,
     this.state,
   });
+
   factory OrganizationSummary.fromJson(Map<String, dynamic> json) {
     return OrganizationSummary(
       alias: json['Alias'] as String?,
@@ -5738,6 +5791,7 @@ class Permission {
     required this.granteeType,
     required this.permissionValues,
   });
+
   factory Permission.fromJson(Map<String, dynamic> json) {
     return Permission(
       granteeId: json['GranteeId'] as String,
@@ -5796,6 +5850,7 @@ extension on String {
 
 class PutAccessControlRuleResponse {
   PutAccessControlRuleResponse();
+
   factory PutAccessControlRuleResponse.fromJson(Map<String, dynamic> _) {
     return PutAccessControlRuleResponse();
   }
@@ -5807,6 +5862,7 @@ class PutAccessControlRuleResponse {
 
 class PutMailboxPermissionsResponse {
   PutMailboxPermissionsResponse();
+
   factory PutMailboxPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return PutMailboxPermissionsResponse();
   }
@@ -5818,6 +5874,7 @@ class PutMailboxPermissionsResponse {
 
 class PutRetentionPolicyResponse {
   PutRetentionPolicyResponse();
+
   factory PutRetentionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutRetentionPolicyResponse();
   }
@@ -5829,6 +5886,7 @@ class PutRetentionPolicyResponse {
 
 class RegisterToWorkMailResponse {
   RegisterToWorkMailResponse();
+
   factory RegisterToWorkMailResponse.fromJson(Map<String, dynamic> _) {
     return RegisterToWorkMailResponse();
   }
@@ -5840,6 +5898,7 @@ class RegisterToWorkMailResponse {
 
 class ResetPasswordResponse {
   ResetPasswordResponse();
+
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> _) {
     return ResetPasswordResponse();
   }
@@ -5881,6 +5940,7 @@ class Resource {
     this.state,
     this.type,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       disabledDate: timeStampFromJson(json['DisabledDate']),
@@ -5982,6 +6042,7 @@ class StartMailboxExportJobResponse {
   StartMailboxExportJobResponse({
     this.jobId,
   });
+
   factory StartMailboxExportJobResponse.fromJson(Map<String, dynamic> json) {
     return StartMailboxExportJobResponse(
       jobId: json['JobId'] as String?,
@@ -6008,6 +6069,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -6027,6 +6089,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6038,6 +6101,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -6049,6 +6113,7 @@ class UntagResourceResponse {
 
 class UpdateMailboxQuotaResponse {
   UpdateMailboxQuotaResponse();
+
   factory UpdateMailboxQuotaResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMailboxQuotaResponse();
   }
@@ -6060,6 +6125,7 @@ class UpdateMailboxQuotaResponse {
 
 class UpdateMobileDeviceAccessRuleResponse {
   UpdateMobileDeviceAccessRuleResponse();
+
   factory UpdateMobileDeviceAccessRuleResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateMobileDeviceAccessRuleResponse();
@@ -6072,6 +6138,7 @@ class UpdateMobileDeviceAccessRuleResponse {
 
 class UpdatePrimaryEmailAddressResponse {
   UpdatePrimaryEmailAddressResponse();
+
   factory UpdatePrimaryEmailAddressResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePrimaryEmailAddressResponse();
   }
@@ -6083,6 +6150,7 @@ class UpdatePrimaryEmailAddressResponse {
 
 class UpdateResourceResponse {
   UpdateResourceResponse();
+
   factory UpdateResourceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceResponse();
   }
@@ -6128,6 +6196,7 @@ class User {
     this.state,
     this.userRole,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       disabledDate: timeStampFromJson(json['DisabledDate']),

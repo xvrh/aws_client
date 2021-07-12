@@ -3404,6 +3404,7 @@ class BatchCreateVariableError {
     this.message,
     this.name,
   });
+
   factory BatchCreateVariableError.fromJson(Map<String, dynamic> json) {
     return BatchCreateVariableError(
       code: json['code'] as int?,
@@ -3431,6 +3432,7 @@ class BatchCreateVariableResult {
   BatchCreateVariableResult({
     this.errors,
   });
+
   factory BatchCreateVariableResult.fromJson(Map<String, dynamic> json) {
     return BatchCreateVariableResult(
       errors: (json['errors'] as List?)
@@ -3465,6 +3467,7 @@ class BatchGetVariableError {
     this.message,
     this.name,
   });
+
   factory BatchGetVariableError.fromJson(Map<String, dynamic> json) {
     return BatchGetVariableError(
       code: json['code'] as int?,
@@ -3496,6 +3499,7 @@ class BatchGetVariableResult {
     this.errors,
     this.variables,
   });
+
   factory BatchGetVariableResult.fromJson(Map<String, dynamic> json) {
     return BatchGetVariableResult(
       errors: (json['errors'] as List?)
@@ -3584,6 +3588,7 @@ class BatchPrediction {
     this.status,
     this.totalRecordsCount,
   });
+
   factory BatchPrediction.fromJson(Map<String, dynamic> json) {
     return BatchPrediction(
       arn: json['arn'] as String?,
@@ -3643,6 +3648,7 @@ class BatchPrediction {
 
 class CancelBatchPredictionJobResult {
   CancelBatchPredictionJobResult();
+
   factory CancelBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return CancelBatchPredictionJobResult();
   }
@@ -3654,6 +3660,7 @@ class CancelBatchPredictionJobResult {
 
 class CreateBatchPredictionJobResult {
   CreateBatchPredictionJobResult();
+
   factory CreateBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return CreateBatchPredictionJobResult();
   }
@@ -3678,6 +3685,7 @@ class CreateDetectorVersionResult {
     this.detectorVersionId,
     this.status,
   });
+
   factory CreateDetectorVersionResult.fromJson(Map<String, dynamic> json) {
     return CreateDetectorVersionResult(
       detectorId: json['detectorId'] as String?,
@@ -3700,6 +3708,7 @@ class CreateDetectorVersionResult {
 
 class CreateModelResult {
   CreateModelResult();
+
   factory CreateModelResult.fromJson(Map<String, dynamic> _) {
     return CreateModelResult();
   }
@@ -3728,6 +3737,7 @@ class CreateModelVersionResult {
     this.modelVersionNumber,
     this.status,
   });
+
   factory CreateModelVersionResult.fromJson(Map<String, dynamic> json) {
     return CreateModelVersionResult(
       modelId: json['modelId'] as String?,
@@ -3758,6 +3768,7 @@ class CreateRuleResult {
   CreateRuleResult({
     this.rule,
   });
+
   factory CreateRuleResult.fromJson(Map<String, dynamic> json) {
     return CreateRuleResult(
       rule: json['rule'] != null
@@ -3776,6 +3787,7 @@ class CreateRuleResult {
 
 class CreateVariableResult {
   CreateVariableResult();
+
   factory CreateVariableResult.fromJson(Map<String, dynamic> _) {
     return CreateVariableResult();
   }
@@ -3868,6 +3880,7 @@ class DataValidationMetrics {
     this.fieldLevelMessages,
     this.fileLevelMessages,
   });
+
   factory DataValidationMetrics.fromJson(Map<String, dynamic> json) {
     return DataValidationMetrics(
       fieldLevelMessages: (json['fieldLevelMessages'] as List?)
@@ -3894,6 +3907,7 @@ class DataValidationMetrics {
 
 class DeleteBatchPredictionJobResult {
   DeleteBatchPredictionJobResult();
+
   factory DeleteBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return DeleteBatchPredictionJobResult();
   }
@@ -3905,6 +3919,7 @@ class DeleteBatchPredictionJobResult {
 
 class DeleteDetectorResult {
   DeleteDetectorResult();
+
   factory DeleteDetectorResult.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorResult();
   }
@@ -3916,6 +3931,7 @@ class DeleteDetectorResult {
 
 class DeleteDetectorVersionResult {
   DeleteDetectorVersionResult();
+
   factory DeleteDetectorVersionResult.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorVersionResult();
   }
@@ -3927,6 +3943,7 @@ class DeleteDetectorVersionResult {
 
 class DeleteEntityTypeResult {
   DeleteEntityTypeResult();
+
   factory DeleteEntityTypeResult.fromJson(Map<String, dynamic> _) {
     return DeleteEntityTypeResult();
   }
@@ -3938,6 +3955,7 @@ class DeleteEntityTypeResult {
 
 class DeleteEventResult {
   DeleteEventResult();
+
   factory DeleteEventResult.fromJson(Map<String, dynamic> _) {
     return DeleteEventResult();
   }
@@ -3949,6 +3967,7 @@ class DeleteEventResult {
 
 class DeleteEventTypeResult {
   DeleteEventTypeResult();
+
   factory DeleteEventTypeResult.fromJson(Map<String, dynamic> _) {
     return DeleteEventTypeResult();
   }
@@ -3960,6 +3979,7 @@ class DeleteEventTypeResult {
 
 class DeleteExternalModelResult {
   DeleteExternalModelResult();
+
   factory DeleteExternalModelResult.fromJson(Map<String, dynamic> _) {
     return DeleteExternalModelResult();
   }
@@ -3971,6 +3991,7 @@ class DeleteExternalModelResult {
 
 class DeleteLabelResult {
   DeleteLabelResult();
+
   factory DeleteLabelResult.fromJson(Map<String, dynamic> _) {
     return DeleteLabelResult();
   }
@@ -3982,6 +4003,7 @@ class DeleteLabelResult {
 
 class DeleteModelResult {
   DeleteModelResult();
+
   factory DeleteModelResult.fromJson(Map<String, dynamic> _) {
     return DeleteModelResult();
   }
@@ -3993,6 +4015,7 @@ class DeleteModelResult {
 
 class DeleteModelVersionResult {
   DeleteModelVersionResult();
+
   factory DeleteModelVersionResult.fromJson(Map<String, dynamic> _) {
     return DeleteModelVersionResult();
   }
@@ -4004,6 +4027,7 @@ class DeleteModelVersionResult {
 
 class DeleteOutcomeResult {
   DeleteOutcomeResult();
+
   factory DeleteOutcomeResult.fromJson(Map<String, dynamic> _) {
     return DeleteOutcomeResult();
   }
@@ -4015,6 +4039,7 @@ class DeleteOutcomeResult {
 
 class DeleteRuleResult {
   DeleteRuleResult();
+
   factory DeleteRuleResult.fromJson(Map<String, dynamic> _) {
     return DeleteRuleResult();
   }
@@ -4026,6 +4051,7 @@ class DeleteRuleResult {
 
 class DeleteVariableResult {
   DeleteVariableResult();
+
   factory DeleteVariableResult.fromJson(Map<String, dynamic> _) {
     return DeleteVariableResult();
   }
@@ -4054,6 +4080,7 @@ class DescribeDetectorResult {
     this.detectorVersionSummaries,
     this.nextToken,
   });
+
   factory DescribeDetectorResult.fromJson(Map<String, dynamic> json) {
     return DescribeDetectorResult(
       arn: json['arn'] as String?,
@@ -4093,6 +4120,7 @@ class DescribeModelVersionsResult {
     this.modelVersionDetails,
     this.nextToken,
   });
+
   factory DescribeModelVersionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeModelVersionsResult(
       modelVersionDetails: (json['modelVersionDetails'] as List?)
@@ -4142,6 +4170,7 @@ class Detector {
     this.eventTypeName,
     this.lastUpdatedTime,
   });
+
   factory Detector.fromJson(Map<String, dynamic> json) {
     return Detector(
       arn: json['arn'] as String?,
@@ -4224,6 +4253,7 @@ class DetectorVersionSummary {
     this.lastUpdatedTime,
     this.status,
   });
+
   factory DetectorVersionSummary.fromJson(Map<String, dynamic> json) {
     return DetectorVersionSummary(
       description: json['description'] as String?,
@@ -4260,6 +4290,7 @@ class Entity {
     required this.entityId,
     required this.entityType,
   });
+
   factory Entity.fromJson(Map<String, dynamic> json) {
     return Entity(
       entityId: json['entityId'] as String,
@@ -4301,6 +4332,7 @@ class EntityType {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory EntityType.fromJson(Map<String, dynamic> json) {
     return EntityType(
       arn: json['arn'] as String?,
@@ -4363,6 +4395,7 @@ class EventType {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory EventType.fromJson(Map<String, dynamic> json) {
     return EventType(
       arn: json['arn'] as String?,
@@ -4420,6 +4453,7 @@ class ExternalEventsDetail {
     required this.dataAccessRoleArn,
     required this.dataLocation,
   });
+
   factory ExternalEventsDetail.fromJson(Map<String, dynamic> json) {
     return ExternalEventsDetail(
       dataAccessRoleArn: json['dataAccessRoleArn'] as String,
@@ -4477,6 +4511,7 @@ class ExternalModel {
     this.modelSource,
     this.outputConfiguration,
   });
+
   factory ExternalModel.fromJson(Map<String, dynamic> json) {
     return ExternalModel(
       arn: json['arn'] as String?,
@@ -4549,6 +4584,7 @@ class FieldValidationMessage {
     this.title,
     this.type,
   });
+
   factory FieldValidationMessage.fromJson(Map<String, dynamic> json) {
     return FieldValidationMessage(
       content: json['content'] as String?,
@@ -4591,6 +4627,7 @@ class FileValidationMessage {
     this.title,
     this.type,
   });
+
   factory FileValidationMessage.fromJson(Map<String, dynamic> json) {
     return FileValidationMessage(
       content: json['content'] as String?,
@@ -4622,6 +4659,7 @@ class GetBatchPredictionJobsResult {
     this.batchPredictions,
     this.nextToken,
   });
+
   factory GetBatchPredictionJobsResult.fromJson(Map<String, dynamic> json) {
     return GetBatchPredictionJobsResult(
       batchPredictions: (json['batchPredictions'] as List?)
@@ -4698,6 +4736,7 @@ class GetDetectorVersionResult {
     this.rules,
     this.status,
   });
+
   factory GetDetectorVersionResult.fromJson(Map<String, dynamic> json) {
     return GetDetectorVersionResult(
       arn: json['arn'] as String?,
@@ -4765,6 +4804,7 @@ class GetDetectorsResult {
     this.detectors,
     this.nextToken,
   });
+
   factory GetDetectorsResult.fromJson(Map<String, dynamic> json) {
     return GetDetectorsResult(
       detectors: (json['detectors'] as List?)
@@ -4796,6 +4836,7 @@ class GetEntityTypesResult {
     this.entityTypes,
     this.nextToken,
   });
+
   factory GetEntityTypesResult.fromJson(Map<String, dynamic> json) {
     return GetEntityTypesResult(
       entityTypes: (json['entityTypes'] as List?)
@@ -4831,6 +4872,7 @@ class GetEventPredictionResult {
     this.modelScores,
     this.ruleResults,
   });
+
   factory GetEventPredictionResult.fromJson(Map<String, dynamic> json) {
     return GetEventPredictionResult(
       modelScores: (json['modelScores'] as List?)
@@ -4865,6 +4907,7 @@ class GetEventTypesResult {
     this.eventTypes,
     this.nextToken,
   });
+
   factory GetEventTypesResult.fromJson(Map<String, dynamic> json) {
     return GetEventTypesResult(
       eventTypes: (json['eventTypes'] as List?)
@@ -4896,6 +4939,7 @@ class GetExternalModelsResult {
     this.externalModels,
     this.nextToken,
   });
+
   factory GetExternalModelsResult.fromJson(Map<String, dynamic> json) {
     return GetExternalModelsResult(
       externalModels: (json['externalModels'] as List?)
@@ -4923,6 +4967,7 @@ class GetKMSEncryptionKeyResult {
   GetKMSEncryptionKeyResult({
     this.kmsKey,
   });
+
   factory GetKMSEncryptionKeyResult.fromJson(Map<String, dynamic> json) {
     return GetKMSEncryptionKeyResult(
       kmsKey: json['kmsKey'] != null
@@ -4950,6 +4995,7 @@ class GetLabelsResult {
     this.labels,
     this.nextToken,
   });
+
   factory GetLabelsResult.fromJson(Map<String, dynamic> json) {
     return GetLabelsResult(
       labels: (json['labels'] as List?)
@@ -5037,6 +5083,7 @@ class GetModelVersionResult {
     this.trainingDataSchema,
     this.trainingDataSource,
   });
+
   factory GetModelVersionResult.fromJson(Map<String, dynamic> json) {
     return GetModelVersionResult(
       arn: json['arn'] as String?,
@@ -5092,6 +5139,7 @@ class GetModelsResult {
     this.models,
     this.nextToken,
   });
+
   factory GetModelsResult.fromJson(Map<String, dynamic> json) {
     return GetModelsResult(
       models: (json['models'] as List?)
@@ -5123,6 +5171,7 @@ class GetOutcomesResult {
     this.nextToken,
     this.outcomes,
   });
+
   factory GetOutcomesResult.fromJson(Map<String, dynamic> json) {
     return GetOutcomesResult(
       nextToken: json['nextToken'] as String?,
@@ -5154,6 +5203,7 @@ class GetRulesResult {
     this.nextToken,
     this.ruleDetails,
   });
+
   factory GetRulesResult.fromJson(Map<String, dynamic> json) {
     return GetRulesResult(
       nextToken: json['nextToken'] as String?,
@@ -5185,6 +5235,7 @@ class GetVariablesResult {
     this.nextToken,
     this.variables,
   });
+
   factory GetVariablesResult.fromJson(Map<String, dynamic> json) {
     return GetVariablesResult(
       nextToken: json['nextToken'] as String?,
@@ -5213,6 +5264,7 @@ class KMSKey {
   KMSKey({
     this.kmsEncryptionKeyArn,
   });
+
   factory KMSKey.fromJson(Map<String, dynamic> json) {
     return KMSKey(
       kmsEncryptionKeyArn: json['kmsEncryptionKeyArn'] as String?,
@@ -5252,6 +5304,7 @@ class Label {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory Label.fromJson(Map<String, dynamic> json) {
     return Label(
       arn: json['arn'] as String?,
@@ -5295,6 +5348,7 @@ class LabelSchema {
   LabelSchema({
     required this.labelMapper,
   });
+
   factory LabelSchema.fromJson(Map<String, dynamic> json) {
     return LabelSchema(
       labelMapper: (json['labelMapper'] as Map<String, dynamic>).map((k, e) =>
@@ -5345,6 +5399,7 @@ class ListTagsForResourceResult {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       nextToken: json['nextToken'] as String?,
@@ -5381,6 +5436,7 @@ class LogitMetric {
     required this.variableName,
     required this.variableType,
   });
+
   factory LogitMetric.fromJson(Map<String, dynamic> json) {
     return LogitMetric(
       variableImportance: json['variableImportance'] as double,
@@ -5426,6 +5482,7 @@ class MetricDataPoint {
     this.threshold,
     this.tpr,
   });
+
   factory MetricDataPoint.fromJson(Map<String, dynamic> json) {
     return MetricDataPoint(
       fpr: json['fpr'] as double?,
@@ -5481,6 +5538,7 @@ class Model {
     this.modelId,
     this.modelType,
   });
+
   factory Model.fromJson(Map<String, dynamic> json) {
     return Model(
       arn: json['arn'] as String?,
@@ -5527,6 +5585,7 @@ class ModelEndpointDataBlob {
     this.byteBuffer,
     this.contentType,
   });
+
   factory ModelEndpointDataBlob.fromJson(Map<String, dynamic> json) {
     return ModelEndpointDataBlob(
       byteBuffer: _s.decodeNullableUint8List(json['byteBuffer'] as String?),
@@ -5602,6 +5661,7 @@ class ModelInputConfiguration {
     this.format,
     this.jsonInputTemplate,
   });
+
   factory ModelInputConfiguration.fromJson(Map<String, dynamic> json) {
     return ModelInputConfiguration(
       useEventVariables: json['useEventVariables'] as bool,
@@ -5674,6 +5734,7 @@ class ModelOutputConfiguration {
     this.csvIndexToVariableMap,
     this.jsonKeyToVariableMap,
   });
+
   factory ModelOutputConfiguration.fromJson(Map<String, dynamic> json) {
     return ModelOutputConfiguration(
       format: (json['format'] as String).toModelOutputDataFormat(),
@@ -5740,6 +5801,7 @@ class ModelScores {
     this.modelVersion,
     this.scores,
   });
+
   factory ModelScores.fromJson(Map<String, dynamic> json) {
     return ModelScores(
       modelVersion: json['modelVersion'] != null
@@ -5826,6 +5888,7 @@ class ModelVersion {
     required this.modelVersionNumber,
     this.arn,
   });
+
   factory ModelVersion.fromJson(Map<String, dynamic> json) {
     return ModelVersion(
       modelId: json['modelId'] as String,
@@ -5897,6 +5960,7 @@ class ModelVersionDetail {
     this.trainingDataSource,
     this.trainingResult,
   });
+
   factory ModelVersionDetail.fromJson(Map<String, dynamic> json) {
     return ModelVersionDetail(
       arn: json['arn'] as String?,
@@ -6010,6 +6074,7 @@ class Outcome {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory Outcome.fromJson(Map<String, dynamic> json) {
     return Outcome(
       arn: json['arn'] as String?,
@@ -6038,6 +6103,7 @@ class Outcome {
 
 class PutDetectorResult {
   PutDetectorResult();
+
   factory PutDetectorResult.fromJson(Map<String, dynamic> _) {
     return PutDetectorResult();
   }
@@ -6049,6 +6115,7 @@ class PutDetectorResult {
 
 class PutEntityTypeResult {
   PutEntityTypeResult();
+
   factory PutEntityTypeResult.fromJson(Map<String, dynamic> _) {
     return PutEntityTypeResult();
   }
@@ -6060,6 +6127,7 @@ class PutEntityTypeResult {
 
 class PutEventTypeResult {
   PutEventTypeResult();
+
   factory PutEventTypeResult.fromJson(Map<String, dynamic> _) {
     return PutEventTypeResult();
   }
@@ -6071,6 +6139,7 @@ class PutEventTypeResult {
 
 class PutExternalModelResult {
   PutExternalModelResult();
+
   factory PutExternalModelResult.fromJson(Map<String, dynamic> _) {
     return PutExternalModelResult();
   }
@@ -6082,6 +6151,7 @@ class PutExternalModelResult {
 
 class PutKMSEncryptionKeyResult {
   PutKMSEncryptionKeyResult();
+
   factory PutKMSEncryptionKeyResult.fromJson(Map<String, dynamic> _) {
     return PutKMSEncryptionKeyResult();
   }
@@ -6093,6 +6163,7 @@ class PutKMSEncryptionKeyResult {
 
 class PutLabelResult {
   PutLabelResult();
+
   factory PutLabelResult.fromJson(Map<String, dynamic> _) {
     return PutLabelResult();
   }
@@ -6104,6 +6175,7 @@ class PutLabelResult {
 
 class PutOutcomeResult {
   PutOutcomeResult();
+
   factory PutOutcomeResult.fromJson(Map<String, dynamic> _) {
     return PutOutcomeResult();
   }
@@ -6129,6 +6201,7 @@ class Rule {
     required this.ruleId,
     required this.ruleVersion,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       detectorId: json['detectorId'] as String,
@@ -6193,6 +6266,7 @@ class RuleDetail {
     this.ruleId,
     this.ruleVersion,
   });
+
   factory RuleDetail.fromJson(Map<String, dynamic> json) {
     return RuleDetail(
       arn: json['arn'] as String?,
@@ -6277,6 +6351,7 @@ class RuleResult {
     this.outcomes,
     this.ruleId,
   });
+
   factory RuleResult.fromJson(Map<String, dynamic> json) {
     return RuleResult(
       outcomes: (json['outcomes'] as List?)
@@ -6309,6 +6384,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -6328,6 +6404,7 @@ class Tag {
 
 class TagResourceResult {
   TagResourceResult();
+
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
@@ -6348,6 +6425,7 @@ class TrainingDataSchema {
     required this.labelSchema,
     required this.modelVariables,
   });
+
   factory TrainingDataSchema.fromJson(Map<String, dynamic> json) {
     return TrainingDataSchema(
       labelSchema:
@@ -6407,6 +6485,7 @@ class TrainingMetrics {
     this.auc,
     this.metricDataPoints,
   });
+
   factory TrainingMetrics.fromJson(Map<String, dynamic> json) {
     return TrainingMetrics(
       auc: json['auc'] as double?,
@@ -6443,6 +6522,7 @@ class TrainingResult {
     this.trainingMetrics,
     this.variableImportanceMetrics,
   });
+
   factory TrainingResult.fromJson(Map<String, dynamic> json) {
     return TrainingResult(
       dataValidationMetrics: json['dataValidationMetrics'] != null
@@ -6476,6 +6556,7 @@ class TrainingResult {
 
 class UntagResourceResult {
   UntagResourceResult();
+
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
@@ -6487,6 +6568,7 @@ class UntagResourceResult {
 
 class UpdateDetectorVersionMetadataResult {
   UpdateDetectorVersionMetadataResult();
+
   factory UpdateDetectorVersionMetadataResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionMetadataResult();
   }
@@ -6498,6 +6580,7 @@ class UpdateDetectorVersionMetadataResult {
 
 class UpdateDetectorVersionResult {
   UpdateDetectorVersionResult();
+
   factory UpdateDetectorVersionResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionResult();
   }
@@ -6509,6 +6592,7 @@ class UpdateDetectorVersionResult {
 
 class UpdateDetectorVersionStatusResult {
   UpdateDetectorVersionStatusResult();
+
   factory UpdateDetectorVersionStatusResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionStatusResult();
   }
@@ -6520,6 +6604,7 @@ class UpdateDetectorVersionStatusResult {
 
 class UpdateModelResult {
   UpdateModelResult();
+
   factory UpdateModelResult.fromJson(Map<String, dynamic> _) {
     return UpdateModelResult();
   }
@@ -6548,6 +6633,7 @@ class UpdateModelVersionResult {
     this.modelVersionNumber,
     this.status,
   });
+
   factory UpdateModelVersionResult.fromJson(Map<String, dynamic> json) {
     return UpdateModelVersionResult(
       modelId: json['modelId'] as String?,
@@ -6573,6 +6659,7 @@ class UpdateModelVersionResult {
 
 class UpdateModelVersionStatusResult {
   UpdateModelVersionStatusResult();
+
   factory UpdateModelVersionStatusResult.fromJson(Map<String, dynamic> _) {
     return UpdateModelVersionStatusResult();
   }
@@ -6584,6 +6671,7 @@ class UpdateModelVersionStatusResult {
 
 class UpdateRuleMetadataResult {
   UpdateRuleMetadataResult();
+
   factory UpdateRuleMetadataResult.fromJson(Map<String, dynamic> _) {
     return UpdateRuleMetadataResult();
   }
@@ -6600,6 +6688,7 @@ class UpdateRuleVersionResult {
   UpdateRuleVersionResult({
     this.rule,
   });
+
   factory UpdateRuleVersionResult.fromJson(Map<String, dynamic> json) {
     return UpdateRuleVersionResult(
       rule: json['rule'] != null
@@ -6618,6 +6707,7 @@ class UpdateRuleVersionResult {
 
 class UpdateVariableResult {
   UpdateVariableResult();
+
   factory UpdateVariableResult.fromJson(Map<String, dynamic> _) {
     return UpdateVariableResult();
   }
@@ -6678,6 +6768,7 @@ class Variable {
     this.name,
     this.variableType,
   });
+
   factory Variable.fromJson(Map<String, dynamic> json) {
     return Variable(
       arn: json['arn'] as String?,
@@ -6755,6 +6846,7 @@ class VariableEntry {
     this.name,
     this.variableType,
   });
+
   factory VariableEntry.fromJson(Map<String, dynamic> json) {
     return VariableEntry(
       dataSource: json['dataSource'] as String?,
@@ -6792,6 +6884,7 @@ class VariableImportanceMetrics {
   VariableImportanceMetrics({
     this.logitMetrics,
   });
+
   factory VariableImportanceMetrics.fromJson(Map<String, dynamic> json) {
     return VariableImportanceMetrics(
       logitMetrics: (json['LogitMetrics'] as List?)

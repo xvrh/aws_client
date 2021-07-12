@@ -155,6 +155,7 @@ class RecursiveStructType {
     this.recursiveMap,
     this.recursiveStruct,
   });
+
   factory RecursiveStructType.fromJson(Map<String, dynamic> json) {
     return RecursiveStructType(
       noRecurse: json['NoRecurse'] as String?,

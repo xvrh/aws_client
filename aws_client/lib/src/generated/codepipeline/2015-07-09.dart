@@ -2221,6 +2221,7 @@ class AWSSessionCredentials {
     required this.secretAccessKey,
     required this.sessionToken,
   });
+
   factory AWSSessionCredentials.fromJson(Map<String, dynamic> json) {
     return AWSSessionCredentials(
       accessKeyId: json['accessKeyId'] as String,
@@ -2249,6 +2250,7 @@ class AcknowledgeJobOutput {
   AcknowledgeJobOutput({
     this.status,
   });
+
   factory AcknowledgeJobOutput.fromJson(Map<String, dynamic> json) {
     return AcknowledgeJobOutput(
       status: (json['status'] as String?)?.toJobStatus(),
@@ -2271,6 +2273,7 @@ class AcknowledgeThirdPartyJobOutput {
   AcknowledgeThirdPartyJobOutput({
     this.status,
   });
+
   factory AcknowledgeThirdPartyJobOutput.fromJson(Map<String, dynamic> json) {
     return AcknowledgeThirdPartyJobOutput(
       status: (json['status'] as String?)?.toJobStatus(),
@@ -2341,6 +2344,7 @@ class ActionConfiguration {
   ActionConfiguration({
     this.configuration,
   });
+
   factory ActionConfiguration.fromJson(Map<String, dynamic> json) {
     return ActionConfiguration(
       configuration: (json['configuration'] as Map<String, dynamic>?)
@@ -2403,6 +2407,7 @@ class ActionConfigurationProperty {
     this.queryable,
     this.type,
   });
+
   factory ActionConfigurationProperty.fromJson(Map<String, dynamic> json) {
     return ActionConfigurationProperty(
       key: json['key'] as bool,
@@ -2482,6 +2487,7 @@ class ActionContext {
     this.actionExecutionId,
     this.name,
   });
+
   factory ActionContext.fromJson(Map<String, dynamic> json) {
     return ActionContext(
       actionExecutionId: json['actionExecutionId'] as String?,
@@ -2560,6 +2566,7 @@ class ActionDeclaration {
     this.roleArn,
     this.runOrder,
   });
+
   factory ActionDeclaration.fromJson(Map<String, dynamic> json) {
     return ActionDeclaration(
       actionTypeId:
@@ -2661,6 +2668,7 @@ class ActionExecution {
     this.summary,
     this.token,
   });
+
   factory ActionExecution.fromJson(Map<String, dynamic> json) {
     return ActionExecution(
       actionExecutionId: json['actionExecutionId'] as String?,
@@ -2755,6 +2763,7 @@ class ActionExecutionDetail {
     this.startTime,
     this.status,
   });
+
   factory ActionExecutionDetail.fromJson(Map<String, dynamic> json) {
     return ActionExecutionDetail(
       actionExecutionId: json['actionExecutionId'] as String?,
@@ -2811,6 +2820,7 @@ class ActionExecutionFilter {
   ActionExecutionFilter({
     this.pipelineExecutionId,
   });
+
   factory ActionExecutionFilter.fromJson(Map<String, dynamic> json) {
     return ActionExecutionFilter(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
@@ -2861,6 +2871,7 @@ class ActionExecutionInput {
     this.resolvedConfiguration,
     this.roleArn,
   });
+
   factory ActionExecutionInput.fromJson(Map<String, dynamic> json) {
     return ActionExecutionInput(
       actionTypeId: json['actionTypeId'] != null
@@ -2922,6 +2933,7 @@ class ActionExecutionOutput {
     this.outputArtifacts,
     this.outputVariables,
   });
+
   factory ActionExecutionOutput.fromJson(Map<String, dynamic> json) {
     return ActionExecutionOutput(
       executionResult: json['executionResult'] != null
@@ -2966,6 +2978,7 @@ class ActionExecutionResult {
     this.externalExecutionSummary,
     this.externalExecutionUrl,
   });
+
   factory ActionExecutionResult.fromJson(Map<String, dynamic> json) {
     return ActionExecutionResult(
       externalExecutionId: json['externalExecutionId'] as String?,
@@ -3079,6 +3092,7 @@ class ActionRevision {
     required this.revisionChangeId,
     required this.revisionId,
   });
+
   factory ActionRevision.fromJson(Map<String, dynamic> json) {
     return ActionRevision(
       created: nonNullableTimeStampFromJson(json['created'] as Object),
@@ -3125,6 +3139,7 @@ class ActionState {
     this.latestExecution,
     this.revisionUrl,
   });
+
   factory ActionState.fromJson(Map<String, dynamic> json) {
     return ActionState(
       actionName: json['actionName'] as String?,
@@ -3181,6 +3196,7 @@ class ActionType {
     this.actionConfigurationProperties,
     this.settings,
   });
+
   factory ActionType.fromJson(Map<String, dynamic> json) {
     return ActionType(
       id: ActionTypeId.fromJson(json['id'] as Map<String, dynamic>),
@@ -3235,6 +3251,7 @@ class ActionTypeArtifactDetails {
     required this.maximumCount,
     required this.minimumCount,
   });
+
   factory ActionTypeArtifactDetails.fromJson(Map<String, dynamic> json) {
     return ActionTypeArtifactDetails(
       maximumCount: json['maximumCount'] as int,
@@ -3295,6 +3312,7 @@ class ActionTypeDeclaration {
     this.properties,
     this.urls,
   });
+
   factory ActionTypeDeclaration.fromJson(Map<String, dynamic> json) {
     return ActionTypeDeclaration(
       executor:
@@ -3375,6 +3393,7 @@ class ActionTypeExecutor {
     this.jobTimeout,
     this.policyStatementsTemplate,
   });
+
   factory ActionTypeExecutor.fromJson(Map<String, dynamic> json) {
     return ActionTypeExecutor(
       configuration: ExecutorConfiguration.fromJson(
@@ -3453,6 +3472,7 @@ class ActionTypeId {
     required this.provider,
     required this.version,
   });
+
   factory ActionTypeId.fromJson(Map<String, dynamic> json) {
     return ActionTypeId(
       category: (json['category'] as String).toActionCategory(),
@@ -3519,6 +3539,7 @@ class ActionTypeIdentifier {
     required this.provider,
     required this.version,
   });
+
   factory ActionTypeIdentifier.fromJson(Map<String, dynamic> json) {
     return ActionTypeIdentifier(
       category: (json['category'] as String).toActionCategory(),
@@ -3551,6 +3572,7 @@ class ActionTypePermissions {
   ActionTypePermissions({
     required this.allowedAccounts,
   });
+
   factory ActionTypePermissions.fromJson(Map<String, dynamic> json) {
     return ActionTypePermissions(
       allowedAccounts: (json['allowedAccounts'] as List)
@@ -3602,6 +3624,7 @@ class ActionTypeProperty {
     this.description,
     this.queryable,
   });
+
   factory ActionTypeProperty.fromJson(Map<String, dynamic> json) {
     return ActionTypeProperty(
       key: json['key'] as bool,
@@ -3661,6 +3684,7 @@ class ActionTypeSettings {
     this.revisionUrlTemplate,
     this.thirdPartyConfigurationUrl,
   });
+
   factory ActionTypeSettings.fromJson(Map<String, dynamic> json) {
     return ActionTypeSettings(
       entityUrlTemplate: json['entityUrlTemplate'] as String?,
@@ -3716,6 +3740,7 @@ class ActionTypeUrls {
     this.executionUrlTemplate,
     this.revisionUrlTemplate,
   });
+
   factory ActionTypeUrls.fromJson(Map<String, dynamic> json) {
     return ActionTypeUrls(
       configurationUrl: json['configurationUrl'] as String?,
@@ -3753,6 +3778,7 @@ class ApprovalResult {
     required this.status,
     required this.summary,
   });
+
   factory ApprovalResult.fromJson(Map<String, dynamic> json) {
     return ApprovalResult(
       status: (json['status'] as String).toApprovalStatus(),
@@ -3816,6 +3842,7 @@ class Artifact {
     this.name,
     this.revision,
   });
+
   factory Artifact.fromJson(Map<String, dynamic> json) {
     return Artifact(
       location: json['location'] != null
@@ -3850,6 +3877,7 @@ class ArtifactDetail {
     this.name,
     this.s3location,
   });
+
   factory ArtifactDetail.fromJson(Map<String, dynamic> json) {
     return ArtifactDetail(
       name: json['name'] as String?,
@@ -3881,6 +3909,7 @@ class ArtifactDetails {
     required this.maximumCount,
     required this.minimumCount,
   });
+
   factory ArtifactDetails.fromJson(Map<String, dynamic> json) {
     return ArtifactDetails(
       maximumCount: json['maximumCount'] as int,
@@ -3910,6 +3939,7 @@ class ArtifactLocation {
     this.s3Location,
     this.type,
   });
+
   factory ArtifactLocation.fromJson(Map<String, dynamic> json) {
     return ArtifactLocation(
       s3Location: json['s3Location'] != null
@@ -3990,6 +4020,7 @@ class ArtifactRevision {
     this.revisionSummary,
     this.revisionUrl,
   });
+
   factory ArtifactRevision.fromJson(Map<String, dynamic> json) {
     return ArtifactRevision(
       created: timeStampFromJson(json['created']),
@@ -4048,6 +4079,7 @@ class ArtifactStore {
     required this.type,
     this.encryptionKey,
   });
+
   factory ArtifactStore.fromJson(Map<String, dynamic> json) {
     return ArtifactStore(
       location: json['location'] as String,
@@ -4106,6 +4138,7 @@ class BlockerDeclaration {
     required this.name,
     required this.type,
   });
+
   factory BlockerDeclaration.fromJson(Map<String, dynamic> json) {
     return BlockerDeclaration(
       name: json['name'] as String,
@@ -4158,6 +4191,7 @@ class CreateCustomActionTypeOutput {
     required this.actionType,
     this.tags,
   });
+
   factory CreateCustomActionTypeOutput.fromJson(Map<String, dynamic> json) {
     return CreateCustomActionTypeOutput(
       actionType:
@@ -4192,6 +4226,7 @@ class CreatePipelineOutput {
     this.pipeline,
     this.tags,
   });
+
   factory CreatePipelineOutput.fromJson(Map<String, dynamic> json) {
     return CreatePipelineOutput(
       pipeline: json['pipeline'] != null
@@ -4236,6 +4271,7 @@ class CurrentRevision {
     this.created,
     this.revisionSummary,
   });
+
   factory CurrentRevision.fromJson(Map<String, dynamic> json) {
     return CurrentRevision(
       changeIdentifier: json['changeIdentifier'] as String,
@@ -4261,6 +4297,7 @@ class CurrentRevision {
 
 class DeleteWebhookOutput {
   DeleteWebhookOutput();
+
   factory DeleteWebhookOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWebhookOutput();
   }
@@ -4272,6 +4309,7 @@ class DeleteWebhookOutput {
 
 class DeregisterWebhookWithThirdPartyOutput {
   DeregisterWebhookWithThirdPartyOutput();
+
   factory DeregisterWebhookWithThirdPartyOutput.fromJson(
       Map<String, dynamic> _) {
     return DeregisterWebhookWithThirdPartyOutput();
@@ -4302,6 +4340,7 @@ class EncryptionKey {
     required this.id,
     required this.type,
   });
+
   factory EncryptionKey.fromJson(Map<String, dynamic> json) {
     return EncryptionKey(
       id: json['id'] as String,
@@ -4354,6 +4393,7 @@ class ErrorDetails {
     this.code,
     this.message,
   });
+
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
       code: json['code'] as String?,
@@ -4390,6 +4430,7 @@ class ExecutionDetails {
     this.percentComplete,
     this.summary,
   });
+
   factory ExecutionDetails.fromJson(Map<String, dynamic> json) {
     return ExecutionDetails(
       externalExecutionId: json['externalExecutionId'] as String?,
@@ -4426,6 +4467,7 @@ class ExecutionTrigger {
     this.triggerDetail,
     this.triggerType,
   });
+
   factory ExecutionTrigger.fromJson(Map<String, dynamic> json) {
     return ExecutionTrigger(
       triggerDetail: json['triggerDetail'] as String?,
@@ -4457,6 +4499,7 @@ class ExecutorConfiguration {
     this.jobWorkerExecutorConfiguration,
     this.lambdaExecutorConfiguration,
   });
+
   factory ExecutorConfiguration.fromJson(Map<String, dynamic> json) {
     return ExecutorConfiguration(
       jobWorkerExecutorConfiguration: json['jobWorkerExecutorConfiguration'] !=
@@ -4527,6 +4570,7 @@ class FailureDetails {
     required this.type,
     this.externalExecutionId,
   });
+
   factory FailureDetails.fromJson(Map<String, dynamic> json) {
     return FailureDetails(
       message: json['message'] as String,
@@ -4604,6 +4648,7 @@ class GetActionTypeOutput {
   GetActionTypeOutput({
     this.actionType,
   });
+
   factory GetActionTypeOutput.fromJson(Map<String, dynamic> json) {
     return GetActionTypeOutput(
       actionType: json['actionType'] != null
@@ -4633,6 +4678,7 @@ class GetJobDetailsOutput {
   GetJobDetailsOutput({
     this.jobDetails,
   });
+
   factory GetJobDetailsOutput.fromJson(Map<String, dynamic> json) {
     return GetJobDetailsOutput(
       jobDetails: json['jobDetails'] != null
@@ -4657,6 +4703,7 @@ class GetPipelineExecutionOutput {
   GetPipelineExecutionOutput({
     this.pipelineExecution,
   });
+
   factory GetPipelineExecutionOutput.fromJson(Map<String, dynamic> json) {
     return GetPipelineExecutionOutput(
       pipelineExecution: json['pipelineExecution'] != null
@@ -4688,6 +4735,7 @@ class GetPipelineOutput {
     this.metadata,
     this.pipeline,
   });
+
   factory GetPipelineOutput.fromJson(Map<String, dynamic> json) {
     return GetPipelineOutput(
       metadata: json['metadata'] != null
@@ -4740,6 +4788,7 @@ class GetPipelineStateOutput {
     this.stageStates,
     this.updated,
   });
+
   factory GetPipelineStateOutput.fromJson(Map<String, dynamic> json) {
     return GetPipelineStateOutput(
       created: timeStampFromJson(json['created']),
@@ -4777,6 +4826,7 @@ class GetThirdPartyJobDetailsOutput {
   GetThirdPartyJobDetailsOutput({
     this.jobDetails,
   });
+
   factory GetThirdPartyJobDetailsOutput.fromJson(Map<String, dynamic> json) {
     return GetThirdPartyJobDetailsOutput(
       jobDetails: json['jobDetails'] != null
@@ -4809,6 +4859,7 @@ class InputArtifact {
   InputArtifact({
     required this.name,
   });
+
   factory InputArtifact.fromJson(Map<String, dynamic> json) {
     return InputArtifact(
       name: json['name'] as String,
@@ -4845,6 +4896,7 @@ class Job {
     this.id,
     this.nonce,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       accountId: json['accountId'] as String?,
@@ -4916,6 +4968,7 @@ class JobData {
     this.outputArtifacts,
     this.pipelineContext,
   });
+
   factory JobData.fromJson(Map<String, dynamic> json) {
     return JobData(
       actionConfiguration: json['actionConfiguration'] != null
@@ -4990,6 +5043,7 @@ class JobDetails {
     this.data,
     this.id,
   });
+
   factory JobDetails.fromJson(Map<String, dynamic> json) {
     return JobDetails(
       accountId: json['accountId'] as String?,
@@ -5080,6 +5134,7 @@ class JobWorkerExecutorConfiguration {
     this.pollingAccounts,
     this.pollingServicePrincipals,
   });
+
   factory JobWorkerExecutorConfiguration.fromJson(Map<String, dynamic> json) {
     return JobWorkerExecutorConfiguration(
       pollingAccounts: (json['pollingAccounts'] as List?)
@@ -5113,6 +5168,7 @@ class LambdaExecutorConfiguration {
   LambdaExecutorConfiguration({
     required this.lambdaFunctionArn,
   });
+
   factory LambdaExecutorConfiguration.fromJson(Map<String, dynamic> json) {
     return LambdaExecutorConfiguration(
       lambdaFunctionArn: json['lambdaFunctionArn'] as String,
@@ -5141,6 +5197,7 @@ class ListActionExecutionsOutput {
     this.actionExecutionDetails,
     this.nextToken,
   });
+
   factory ListActionExecutionsOutput.fromJson(Map<String, dynamic> json) {
     return ListActionExecutionsOutput(
       actionExecutionDetails: (json['actionExecutionDetails'] as List?)
@@ -5176,6 +5233,7 @@ class ListActionTypesOutput {
     required this.actionTypes,
     this.nextToken,
   });
+
   factory ListActionTypesOutput.fromJson(Map<String, dynamic> json) {
     return ListActionTypesOutput(
       actionTypes: (json['actionTypes'] as List)
@@ -5210,6 +5268,7 @@ class ListPipelineExecutionsOutput {
     this.nextToken,
     this.pipelineExecutionSummaries,
   });
+
   factory ListPipelineExecutionsOutput.fromJson(Map<String, dynamic> json) {
     return ListPipelineExecutionsOutput(
       nextToken: json['nextToken'] as String?,
@@ -5246,6 +5305,7 @@ class ListPipelinesOutput {
     this.nextToken,
     this.pipelines,
   });
+
   factory ListPipelinesOutput.fromJson(Map<String, dynamic> json) {
     return ListPipelinesOutput(
       nextToken: json['nextToken'] as String?,
@@ -5280,6 +5340,7 @@ class ListTagsForResourceOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       nextToken: json['nextToken'] as String?,
@@ -5338,6 +5399,7 @@ class ListWebhookItem {
     this.lastTriggered,
     this.tags,
   });
+
   factory ListWebhookItem.fromJson(Map<String, dynamic> json) {
     return ListWebhookItem(
       definition: WebhookDefinition.fromJson(
@@ -5389,6 +5451,7 @@ class ListWebhooksOutput {
     this.nextToken,
     this.webhooks,
   });
+
   factory ListWebhooksOutput.fromJson(Map<String, dynamic> json) {
     return ListWebhooksOutput(
       nextToken: json['NextToken'] as String?,
@@ -5425,6 +5488,7 @@ class OutputArtifact {
   OutputArtifact({
     required this.name,
   });
+
   factory OutputArtifact.fromJson(Map<String, dynamic> json) {
     return OutputArtifact(
       name: json['name'] as String,
@@ -5471,6 +5535,7 @@ class PipelineContext {
     this.pipelineName,
     this.stage,
   });
+
   factory PipelineContext.fromJson(Map<String, dynamic> json) {
     return PipelineContext(
       action: json['action'] != null
@@ -5549,6 +5614,7 @@ class PipelineDeclaration {
     this.artifactStores,
     this.version,
   });
+
   factory PipelineDeclaration.fromJson(Map<String, dynamic> json) {
     return PipelineDeclaration(
       name: json['name'] as String,
@@ -5651,6 +5717,7 @@ class PipelineExecution {
     this.status,
     this.statusSummary,
   });
+
   factory PipelineExecution.fromJson(Map<String, dynamic> json) {
     return PipelineExecution(
       artifactRevisions: (json['artifactRevisions'] as List?)
@@ -5804,6 +5871,7 @@ class PipelineExecutionSummary {
     this.stopTrigger,
     this.trigger,
   });
+
   factory PipelineExecutionSummary.fromJson(Map<String, dynamic> json) {
     return PipelineExecutionSummary(
       lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
@@ -5862,6 +5930,7 @@ class PipelineMetadata {
     this.pipelineArn,
     this.updated,
   });
+
   factory PipelineMetadata.fromJson(Map<String, dynamic> json) {
     return PipelineMetadata(
       created: timeStampFromJson(json['created']),
@@ -5902,6 +5971,7 @@ class PipelineSummary {
     this.updated,
     this.version,
   });
+
   factory PipelineSummary.fromJson(Map<String, dynamic> json) {
     return PipelineSummary(
       created: timeStampFromJson(json['created']),
@@ -5933,6 +6003,7 @@ class PollForJobsOutput {
   PollForJobsOutput({
     this.jobs,
   });
+
   factory PollForJobsOutput.fromJson(Map<String, dynamic> json) {
     return PollForJobsOutput(
       jobs: (json['jobs'] as List?)
@@ -5958,6 +6029,7 @@ class PollForThirdPartyJobsOutput {
   PollForThirdPartyJobsOutput({
     this.jobs,
   });
+
   factory PollForThirdPartyJobsOutput.fromJson(Map<String, dynamic> json) {
     return PollForThirdPartyJobsOutput(
       jobs: (json['jobs'] as List?)
@@ -5988,6 +6060,7 @@ class PutActionRevisionOutput {
     this.newRevision,
     this.pipelineExecutionId,
   });
+
   factory PutActionRevisionOutput.fromJson(Map<String, dynamic> json) {
     return PutActionRevisionOutput(
       newRevision: json['newRevision'] as bool?,
@@ -6014,6 +6087,7 @@ class PutApprovalResultOutput {
   PutApprovalResultOutput({
     this.approvedAt,
   });
+
   factory PutApprovalResultOutput.fromJson(Map<String, dynamic> json) {
     return PutApprovalResultOutput(
       approvedAt: timeStampFromJson(json['approvedAt']),
@@ -6036,6 +6110,7 @@ class PutWebhookOutput {
   PutWebhookOutput({
     this.webhook,
   });
+
   factory PutWebhookOutput.fromJson(Map<String, dynamic> json) {
     return PutWebhookOutput(
       webhook: json['webhook'] != null
@@ -6054,6 +6129,7 @@ class PutWebhookOutput {
 
 class RegisterWebhookWithThirdPartyOutput {
   RegisterWebhookWithThirdPartyOutput();
+
   factory RegisterWebhookWithThirdPartyOutput.fromJson(Map<String, dynamic> _) {
     return RegisterWebhookWithThirdPartyOutput();
   }
@@ -6071,6 +6147,7 @@ class RetryStageExecutionOutput {
   RetryStageExecutionOutput({
     this.pipelineExecutionId,
   });
+
   factory RetryStageExecutionOutput.fromJson(Map<String, dynamic> json) {
     return RetryStageExecutionOutput(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
@@ -6099,6 +6176,7 @@ class S3ArtifactLocation {
     required this.bucketName,
     required this.objectKey,
   });
+
   factory S3ArtifactLocation.fromJson(Map<String, dynamic> json) {
     return S3ArtifactLocation(
       bucketName: json['bucketName'] as String,
@@ -6128,6 +6206,7 @@ class S3Location {
     this.bucket,
     this.key,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['bucket'] as String?,
@@ -6173,6 +6252,7 @@ class SourceRevision {
     this.revisionSummary,
     this.revisionUrl,
   });
+
   factory SourceRevision.fromJson(Map<String, dynamic> json) {
     return SourceRevision(
       actionName: json['actionName'] as String,
@@ -6204,6 +6284,7 @@ class StageContext {
   StageContext({
     this.name,
   });
+
   factory StageContext.fromJson(Map<String, dynamic> json) {
     return StageContext(
       name: json['name'] as String?,
@@ -6234,6 +6315,7 @@ class StageDeclaration {
     required this.name,
     this.blockers,
   });
+
   factory StageDeclaration.fromJson(Map<String, dynamic> json) {
     return StageDeclaration(
       actions: (json['actions'] as List)
@@ -6277,6 +6359,7 @@ class StageExecution {
     required this.pipelineExecutionId,
     required this.status,
   });
+
   factory StageExecution.fromJson(Map<String, dynamic> json) {
     return StageExecution(
       pipelineExecutionId: json['pipelineExecutionId'] as String,
@@ -6388,6 +6471,7 @@ class StageState {
     this.latestExecution,
     this.stageName,
   });
+
   factory StageState.fromJson(Map<String, dynamic> json) {
     return StageState(
       actionStates: (json['actionStates'] as List?)
@@ -6463,6 +6547,7 @@ class StartPipelineExecutionOutput {
   StartPipelineExecutionOutput({
     this.pipelineExecutionId,
   });
+
   factory StartPipelineExecutionOutput.fromJson(Map<String, dynamic> json) {
     return StartPipelineExecutionOutput(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
@@ -6486,6 +6571,7 @@ class StopExecutionTrigger {
   StopExecutionTrigger({
     this.reason,
   });
+
   factory StopExecutionTrigger.fromJson(Map<String, dynamic> json) {
     return StopExecutionTrigger(
       reason: json['reason'] as String?,
@@ -6507,6 +6593,7 @@ class StopPipelineExecutionOutput {
   StopPipelineExecutionOutput({
     this.pipelineExecutionId,
   });
+
   factory StopPipelineExecutionOutput.fromJson(Map<String, dynamic> json) {
     return StopPipelineExecutionOutput(
       pipelineExecutionId: json['pipelineExecutionId'] as String?,
@@ -6534,6 +6621,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -6553,6 +6641,7 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -6577,6 +6666,7 @@ class ThirdPartyJob {
     this.clientId,
     this.jobId,
   });
+
   factory ThirdPartyJob.fromJson(Map<String, dynamic> json) {
     return ThirdPartyJob(
       clientId: json['clientId'] as String?,
@@ -6646,6 +6736,7 @@ class ThirdPartyJobData {
     this.outputArtifacts,
     this.pipelineContext,
   });
+
   factory ThirdPartyJobData.fromJson(Map<String, dynamic> json) {
     return ThirdPartyJobData(
       actionConfiguration: json['actionConfiguration'] != null
@@ -6722,6 +6813,7 @@ class ThirdPartyJobDetails {
     this.id,
     this.nonce,
   });
+
   factory ThirdPartyJobDetails.fromJson(Map<String, dynamic> json) {
     return ThirdPartyJobDetails(
       data: json['data'] != null
@@ -6766,6 +6858,7 @@ class TransitionState {
     this.lastChangedAt,
     this.lastChangedBy,
   });
+
   factory TransitionState.fromJson(Map<String, dynamic> json) {
     return TransitionState(
       disabledReason: json['disabledReason'] as String?,
@@ -6840,6 +6933,7 @@ extension on String {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -6857,6 +6951,7 @@ class UpdatePipelineOutput {
   UpdatePipelineOutput({
     this.pipeline,
   });
+
   factory UpdatePipelineOutput.fromJson(Map<String, dynamic> json) {
     return UpdatePipelineOutput(
       pipeline: json['pipeline'] != null
@@ -6889,6 +6984,7 @@ class WebhookAuthConfiguration {
     this.allowedIPRange,
     this.secretToken,
   });
+
   factory WebhookAuthConfiguration.fromJson(Map<String, dynamic> json) {
     return WebhookAuthConfiguration(
       allowedIPRange: json['AllowedIPRange'] as String?,
@@ -6989,6 +7085,7 @@ class WebhookDefinition {
     required this.targetAction,
     required this.targetPipeline,
   });
+
   factory WebhookDefinition.fromJson(Map<String, dynamic> json) {
     return WebhookDefinition(
       authentication:
@@ -7051,6 +7148,7 @@ class WebhookFilterRule {
     required this.jsonPath,
     this.matchEquals,
   });
+
   factory WebhookFilterRule.fromJson(Map<String, dynamic> json) {
     return WebhookFilterRule(
       jsonPath: json['jsonPath'] as String,

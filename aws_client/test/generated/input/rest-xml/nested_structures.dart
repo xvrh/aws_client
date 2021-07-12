@@ -64,6 +64,7 @@ class InputShape {
     this.description,
     this.subStructure,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       description: json['Description'] as String?,
@@ -109,6 +110,7 @@ class SubStructure {
     this.bar,
     this.foo,
   });
+
   factory SubStructure.fromJson(Map<String, dynamic> json) {
     return SubStructure(
       bar: json['Bar'] as String?,

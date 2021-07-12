@@ -1255,6 +1255,7 @@ class Attribute {
     this.traits,
     this.type,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       beginOffset: json['BeginOffset'] as int?,
@@ -1364,6 +1365,7 @@ class ComprehendMedicalAsyncJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   factory ComprehendMedicalAsyncJobFilter.fromJson(Map<String, dynamic> json) {
     return ComprehendMedicalAsyncJobFilter(
       jobName: json['JobName'] as String?,
@@ -1461,6 +1463,7 @@ class ComprehendMedicalAsyncJobProperties {
     this.outputDataConfig,
     this.submitTime,
   });
+
   factory ComprehendMedicalAsyncJobProperties.fromJson(
       Map<String, dynamic> json) {
     return ComprehendMedicalAsyncJobProperties(
@@ -1530,6 +1533,7 @@ class DescribeEntitiesDetectionV2JobResponse {
   DescribeEntitiesDetectionV2JobResponse({
     this.comprehendMedicalAsyncJobProperties,
   });
+
   factory DescribeEntitiesDetectionV2JobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEntitiesDetectionV2JobResponse(
@@ -1561,6 +1565,7 @@ class DescribeICD10CMInferenceJobResponse {
   DescribeICD10CMInferenceJobResponse({
     this.comprehendMedicalAsyncJobProperties,
   });
+
   factory DescribeICD10CMInferenceJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeICD10CMInferenceJobResponse(
@@ -1592,6 +1597,7 @@ class DescribePHIDetectionJobResponse {
   DescribePHIDetectionJobResponse({
     this.comprehendMedicalAsyncJobProperties,
   });
+
   factory DescribePHIDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribePHIDetectionJobResponse(
       comprehendMedicalAsyncJobProperties:
@@ -1622,6 +1628,7 @@ class DescribeRxNormInferenceJobResponse {
   DescribeRxNormInferenceJobResponse({
     this.comprehendMedicalAsyncJobProperties,
   });
+
   factory DescribeRxNormInferenceJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRxNormInferenceJobResponse(
@@ -1673,6 +1680,7 @@ class DetectEntitiesResponse {
     this.paginationToken,
     this.unmappedAttributes,
   });
+
   factory DetectEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return DetectEntitiesResponse(
       entities: (json['Entities'] as List)
@@ -1729,6 +1737,7 @@ class DetectEntitiesV2Response {
     this.paginationToken,
     this.unmappedAttributes,
   });
+
   factory DetectEntitiesV2Response.fromJson(Map<String, dynamic> json) {
     return DetectEntitiesV2Response(
       entities: (json['Entities'] as List)
@@ -1780,6 +1789,7 @@ class DetectPHIResponse {
     required this.modelVersion,
     this.paginationToken,
   });
+
   factory DetectPHIResponse.fromJson(Map<String, dynamic> json) {
     return DetectPHIResponse(
       entities: (json['Entities'] as List)
@@ -1847,6 +1857,7 @@ class Entity {
     this.traits,
     this.type,
   });
+
   factory Entity.fromJson(Map<String, dynamic> json) {
     return Entity(
       attributes: (json['Attributes'] as List?)
@@ -2187,6 +2198,7 @@ class ICD10CMAttribute {
     this.traits,
     this.type,
   });
+
   factory ICD10CMAttribute.fromJson(Map<String, dynamic> json) {
     return ICD10CMAttribute(
       beginOffset: json['BeginOffset'] as int?,
@@ -2305,6 +2317,7 @@ class ICD10CMConcept {
     this.description,
     this.score,
   });
+
   factory ICD10CMConcept.fromJson(Map<String, dynamic> json) {
     return ICD10CMConcept(
       code: json['Code'] as String?,
@@ -2385,6 +2398,7 @@ class ICD10CMEntity {
     this.traits,
     this.type,
   });
+
   factory ICD10CMEntity.fromJson(Map<String, dynamic> json) {
     return ICD10CMEntity(
       attributes: (json['Attributes'] as List?)
@@ -2529,6 +2543,7 @@ class ICD10CMTrait {
     this.name,
     this.score,
   });
+
   factory ICD10CMTrait.fromJson(Map<String, dynamic> json) {
     return ICD10CMTrait(
       name: (json['Name'] as String?)?.toICD10CMTraitName(),
@@ -2605,6 +2620,7 @@ class InferICD10CMResponse {
     this.modelVersion,
     this.paginationToken,
   });
+
   factory InferICD10CMResponse.fromJson(Map<String, dynamic> json) {
     return InferICD10CMResponse(
       entities: (json['Entities'] as List)
@@ -2649,6 +2665,7 @@ class InferRxNormResponse {
     this.modelVersion,
     this.paginationToken,
   });
+
   factory InferRxNormResponse.fromJson(Map<String, dynamic> json) {
     return InferRxNormResponse(
       entities: (json['Entities'] as List)
@@ -2689,6 +2706,7 @@ class InputDataConfig {
     required this.s3Bucket,
     this.s3Key,
   });
+
   factory InputDataConfig.fromJson(Map<String, dynamic> json) {
     return InputDataConfig(
       s3Bucket: json['S3Bucket'] as String,
@@ -2794,6 +2812,7 @@ class ListEntitiesDetectionV2JobsResponse {
     this.comprehendMedicalAsyncJobPropertiesList,
     this.nextToken,
   });
+
   factory ListEntitiesDetectionV2JobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListEntitiesDetectionV2JobsResponse(
@@ -2832,6 +2851,7 @@ class ListICD10CMInferenceJobsResponse {
     this.comprehendMedicalAsyncJobPropertiesList,
     this.nextToken,
   });
+
   factory ListICD10CMInferenceJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListICD10CMInferenceJobsResponse(
       comprehendMedicalAsyncJobPropertiesList:
@@ -2869,6 +2889,7 @@ class ListPHIDetectionJobsResponse {
     this.comprehendMedicalAsyncJobPropertiesList,
     this.nextToken,
   });
+
   factory ListPHIDetectionJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListPHIDetectionJobsResponse(
       comprehendMedicalAsyncJobPropertiesList:
@@ -2906,6 +2927,7 @@ class ListRxNormInferenceJobsResponse {
     this.comprehendMedicalAsyncJobPropertiesList,
     this.nextToken,
   });
+
   factory ListRxNormInferenceJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListRxNormInferenceJobsResponse(
       comprehendMedicalAsyncJobPropertiesList:
@@ -2949,6 +2971,7 @@ class OutputDataConfig {
     required this.s3Bucket,
     this.s3Key,
   });
+
   factory OutputDataConfig.fromJson(Map<String, dynamic> json) {
     return OutputDataConfig(
       s3Bucket: json['S3Bucket'] as String,
@@ -3122,6 +3145,7 @@ class RxNormAttribute {
     this.traits,
     this.type,
   });
+
   factory RxNormAttribute.fromJson(Map<String, dynamic> json) {
     return RxNormAttribute(
       beginOffset: json['BeginOffset'] as int?,
@@ -3231,6 +3255,7 @@ class RxNormConcept {
     this.description,
     this.score,
   });
+
   factory RxNormConcept.fromJson(Map<String, dynamic> json) {
     return RxNormConcept(
       code: json['Code'] as String?,
@@ -3309,6 +3334,7 @@ class RxNormEntity {
     this.traits,
     this.type,
   });
+
   factory RxNormEntity.fromJson(Map<String, dynamic> json) {
     return RxNormEntity(
       attributes: (json['Attributes'] as List?)
@@ -3425,6 +3451,7 @@ class RxNormTrait {
     this.name,
     this.score,
   });
+
   factory RxNormTrait.fromJson(Map<String, dynamic> json) {
     return RxNormTrait(
       name: (json['Name'] as String?)?.toRxNormTraitName(),
@@ -3473,6 +3500,7 @@ class StartEntitiesDetectionV2JobResponse {
   StartEntitiesDetectionV2JobResponse({
     this.jobId,
   });
+
   factory StartEntitiesDetectionV2JobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartEntitiesDetectionV2JobResponse(
@@ -3496,6 +3524,7 @@ class StartICD10CMInferenceJobResponse {
   StartICD10CMInferenceJobResponse({
     this.jobId,
   });
+
   factory StartICD10CMInferenceJobResponse.fromJson(Map<String, dynamic> json) {
     return StartICD10CMInferenceJobResponse(
       jobId: json['JobId'] as String?,
@@ -3518,6 +3547,7 @@ class StartPHIDetectionJobResponse {
   StartPHIDetectionJobResponse({
     this.jobId,
   });
+
   factory StartPHIDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StartPHIDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -3539,6 +3569,7 @@ class StartRxNormInferenceJobResponse {
   StartRxNormInferenceJobResponse({
     this.jobId,
   });
+
   factory StartRxNormInferenceJobResponse.fromJson(Map<String, dynamic> json) {
     return StartRxNormInferenceJobResponse(
       jobId: json['JobId'] as String?,
@@ -3560,6 +3591,7 @@ class StopEntitiesDetectionV2JobResponse {
   StopEntitiesDetectionV2JobResponse({
     this.jobId,
   });
+
   factory StopEntitiesDetectionV2JobResponse.fromJson(
       Map<String, dynamic> json) {
     return StopEntitiesDetectionV2JobResponse(
@@ -3583,6 +3615,7 @@ class StopICD10CMInferenceJobResponse {
   StopICD10CMInferenceJobResponse({
     this.jobId,
   });
+
   factory StopICD10CMInferenceJobResponse.fromJson(Map<String, dynamic> json) {
     return StopICD10CMInferenceJobResponse(
       jobId: json['JobId'] as String?,
@@ -3604,6 +3637,7 @@ class StopPHIDetectionJobResponse {
   StopPHIDetectionJobResponse({
     this.jobId,
   });
+
   factory StopPHIDetectionJobResponse.fromJson(Map<String, dynamic> json) {
     return StopPHIDetectionJobResponse(
       jobId: json['JobId'] as String?,
@@ -3626,6 +3660,7 @@ class StopRxNormInferenceJobResponse {
   StopRxNormInferenceJobResponse({
     this.jobId,
   });
+
   factory StopRxNormInferenceJobResponse.fromJson(Map<String, dynamic> json) {
     return StopRxNormInferenceJobResponse(
       jobId: json['JobId'] as String?,
@@ -3653,6 +3688,7 @@ class Trait {
     this.name,
     this.score,
   });
+
   factory Trait.fromJson(Map<String, dynamic> json) {
     return Trait(
       name: (json['Name'] as String?)?.toAttributeName(),
@@ -3684,6 +3720,7 @@ class UnmappedAttribute {
     this.attribute,
     this.type,
   });
+
   factory UnmappedAttribute.fromJson(Map<String, dynamic> json) {
     return UnmappedAttribute(
       attribute: json['Attribute'] != null

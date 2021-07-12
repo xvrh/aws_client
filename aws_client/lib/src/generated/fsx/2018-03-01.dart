@@ -1779,6 +1779,7 @@ class ActiveDirectoryBackupAttributes {
     this.domainName,
     this.resourceARN,
   });
+
   factory ActiveDirectoryBackupAttributes.fromJson(Map<String, dynamic> json) {
     return ActiveDirectoryBackupAttributes(
       activeDirectoryId: json['ActiveDirectoryId'] as String?,
@@ -1860,6 +1861,7 @@ class AdministrativeAction {
     this.status,
     this.targetFileSystemValues,
   });
+
   factory AdministrativeAction.fromJson(Map<String, dynamic> json) {
     return AdministrativeAction(
       administrativeActionType: (json['AdministrativeActionType'] as String?)
@@ -1906,6 +1908,7 @@ class AdministrativeActionFailureDetails {
   AdministrativeActionFailureDetails({
     this.message,
   });
+
   factory AdministrativeActionFailureDetails.fromJson(
       Map<String, dynamic> json) {
     return AdministrativeActionFailureDetails(
@@ -2063,6 +2066,7 @@ class Alias {
     this.lifecycle,
     this.name,
   });
+
   factory Alias.fromJson(Map<String, dynamic> json) {
     return Alias(
       lifecycle: (json['Lifecycle'] as String?)?.toAliasLifecycle(),
@@ -2136,6 +2140,7 @@ class AssociateFileSystemAliasesResponse {
   AssociateFileSystemAliasesResponse({
     this.aliases,
   });
+
   factory AssociateFileSystemAliasesResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateFileSystemAliasesResponse(
@@ -2272,6 +2277,7 @@ class Backup {
     this.sourceBackupRegion,
     this.tags,
   });
+
   factory Backup.fromJson(Map<String, dynamic> json) {
     return Backup(
       backupId: json['BackupId'] as String,
@@ -2346,6 +2352,7 @@ class BackupFailureDetails {
   BackupFailureDetails({
     this.message,
   });
+
   factory BackupFailureDetails.fromJson(Map<String, dynamic> json) {
     return BackupFailureDetails(
       message: json['Message'] as String?,
@@ -2511,6 +2518,7 @@ class CancelDataRepositoryTaskResponse {
     this.lifecycle,
     this.taskId,
   });
+
   factory CancelDataRepositoryTaskResponse.fromJson(Map<String, dynamic> json) {
     return CancelDataRepositoryTaskResponse(
       lifecycle:
@@ -2577,6 +2585,7 @@ class CompletionReport {
     this.path,
     this.scope,
   });
+
   factory CompletionReport.fromJson(Map<String, dynamic> json) {
     return CompletionReport(
       enabled: json['Enabled'] as bool,
@@ -2606,6 +2615,7 @@ class CopyBackupResponse {
   CopyBackupResponse({
     this.backup,
   });
+
   factory CopyBackupResponse.fromJson(Map<String, dynamic> json) {
     return CopyBackupResponse(
       backup: json['Backup'] != null
@@ -2630,6 +2640,7 @@ class CreateBackupResponse {
   CreateBackupResponse({
     this.backup,
   });
+
   factory CreateBackupResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackupResponse(
       backup: json['Backup'] != null
@@ -2653,6 +2664,7 @@ class CreateDataRepositoryTaskResponse {
   CreateDataRepositoryTaskResponse({
     this.dataRepositoryTask,
   });
+
   factory CreateDataRepositoryTaskResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataRepositoryTaskResponse(
       dataRepositoryTask: json['DataRepositoryTask'] != null
@@ -2679,6 +2691,7 @@ class CreateFileSystemFromBackupResponse {
   CreateFileSystemFromBackupResponse({
     this.fileSystem,
   });
+
   factory CreateFileSystemFromBackupResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateFileSystemFromBackupResponse(
@@ -2865,6 +2878,7 @@ class CreateFileSystemLustreConfiguration {
     this.perUnitStorageThroughput,
     this.weeklyMaintenanceStartTime,
   });
+
   factory CreateFileSystemLustreConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CreateFileSystemLustreConfiguration(
@@ -2933,6 +2947,7 @@ class CreateFileSystemResponse {
   CreateFileSystemResponse({
     this.fileSystem,
   });
+
   factory CreateFileSystemResponse.fromJson(Map<String, dynamic> json) {
     return CreateFileSystemResponse(
       fileSystem: json['FileSystem'] != null
@@ -3075,6 +3090,7 @@ class CreateFileSystemWindowsConfiguration {
     this.selfManagedActiveDirectoryConfiguration,
     this.weeklyMaintenanceStartTime,
   });
+
   factory CreateFileSystemWindowsConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CreateFileSystemWindowsConfiguration(
@@ -3258,6 +3274,7 @@ class DataRepositoryConfiguration {
     this.importedFileChunkSize,
     this.lifecycle,
   });
+
   factory DataRepositoryConfiguration.fromJson(Map<String, dynamic> json) {
     return DataRepositoryConfiguration(
       autoImportPolicy:
@@ -3301,6 +3318,7 @@ class DataRepositoryFailureDetails {
   DataRepositoryFailureDetails({
     this.message,
   });
+
   factory DataRepositoryFailureDetails.fromJson(Map<String, dynamic> json) {
     return DataRepositoryFailureDetails(
       message: json['Message'] as String?,
@@ -3450,6 +3468,7 @@ class DataRepositoryTask {
     this.status,
     this.tags,
   });
+
   factory DataRepositoryTask.fromJson(Map<String, dynamic> json) {
     return DataRepositoryTask(
       creationTime:
@@ -3523,6 +3542,7 @@ class DataRepositoryTaskFailureDetails {
   DataRepositoryTaskFailureDetails({
     this.message,
   });
+
   factory DataRepositoryTaskFailureDetails.fromJson(Map<String, dynamic> json) {
     return DataRepositoryTaskFailureDetails(
       message: json['Message'] as String?,
@@ -3567,6 +3587,7 @@ class DataRepositoryTaskFilter {
     this.name,
     this.values,
   });
+
   factory DataRepositoryTaskFilter.fromJson(Map<String, dynamic> json) {
     return DataRepositoryTaskFilter(
       name: (json['Name'] as String?)?.toDataRepositoryTaskFilterName(),
@@ -3690,6 +3711,7 @@ class DataRepositoryTaskStatus {
     this.succeededCount,
     this.totalCount,
   });
+
   factory DataRepositoryTaskStatus.fromJson(Map<String, dynamic> json) {
     return DataRepositoryTaskStatus(
       failedCount: json['FailedCount'] as int?,
@@ -3749,6 +3771,7 @@ class DeleteBackupResponse {
     this.backupId,
     this.lifecycle,
   });
+
   factory DeleteBackupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBackupResponse(
       backupId: json['BackupId'] as String?,
@@ -3786,6 +3809,7 @@ class DeleteFileSystemLustreConfiguration {
     this.finalBackupTags,
     this.skipFinalBackup,
   });
+
   factory DeleteFileSystemLustreConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DeleteFileSystemLustreConfiguration(
@@ -3820,6 +3844,7 @@ class DeleteFileSystemLustreResponse {
     this.finalBackupId,
     this.finalBackupTags,
   });
+
   factory DeleteFileSystemLustreResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFileSystemLustreResponse(
       finalBackupId: json['FinalBackupId'] as String?,
@@ -3857,6 +3882,7 @@ class DeleteFileSystemResponse {
     this.lustreResponse,
     this.windowsResponse,
   });
+
   factory DeleteFileSystemResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFileSystemResponse(
       fileSystemId: json['FileSystemId'] as String?,
@@ -3902,6 +3928,7 @@ class DeleteFileSystemWindowsConfiguration {
     this.finalBackupTags,
     this.skipFinalBackup,
   });
+
   factory DeleteFileSystemWindowsConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DeleteFileSystemWindowsConfiguration(
@@ -3936,6 +3963,7 @@ class DeleteFileSystemWindowsResponse {
     this.finalBackupId,
     this.finalBackupTags,
   });
+
   factory DeleteFileSystemWindowsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFileSystemWindowsResponse(
       finalBackupId: json['FinalBackupId'] as String?,
@@ -3970,6 +3998,7 @@ class DescribeBackupsResponse {
     this.backups,
     this.nextToken,
   });
+
   factory DescribeBackupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBackupsResponse(
       backups: (json['Backups'] as List?)
@@ -3999,6 +4028,7 @@ class DescribeDataRepositoryTasksResponse {
     this.dataRepositoryTasks,
     this.nextToken,
   });
+
   factory DescribeDataRepositoryTasksResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDataRepositoryTasksResponse(
@@ -4036,6 +4066,7 @@ class DescribeFileSystemAliasesResponse {
     this.aliases,
     this.nextToken,
   });
+
   factory DescribeFileSystemAliasesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeFileSystemAliasesResponse(
@@ -4071,6 +4102,7 @@ class DescribeFileSystemsResponse {
     this.fileSystems,
     this.nextToken,
   });
+
   factory DescribeFileSystemsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFileSystemsResponse(
       fileSystems: (json['FileSystems'] as List?)
@@ -4103,6 +4135,7 @@ class DisassociateFileSystemAliasesResponse {
   DisassociateFileSystemAliasesResponse({
     this.aliases,
   });
+
   factory DisassociateFileSystemAliasesResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateFileSystemAliasesResponse(
@@ -4286,6 +4319,7 @@ class FileSystem {
     this.vpcId,
     this.windowsConfiguration,
   });
+
   factory FileSystem.fromJson(Map<String, dynamic> json) {
     return FileSystem(
       administrativeActions: (json['AdministrativeActions'] as List?)
@@ -4386,6 +4420,7 @@ class FileSystemFailureDetails {
   FileSystemFailureDetails({
     this.message,
   });
+
   factory FileSystemFailureDetails.fromJson(Map<String, dynamic> json) {
     return FileSystemFailureDetails(
       message: json['Message'] as String?,
@@ -4523,6 +4558,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: (json['Name'] as String?)?.toFilterName(),
@@ -4591,6 +4627,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -4736,6 +4773,7 @@ class LustreFileSystemConfiguration {
     this.perUnitStorageThroughput,
     this.weeklyMaintenanceStartTime,
   });
+
   factory LustreFileSystemConfiguration.fromJson(Map<String, dynamic> json) {
     return LustreFileSystemConfiguration(
       automaticBackupRetentionDays:
@@ -4866,6 +4904,7 @@ class SelfManagedActiveDirectoryAttributes {
     this.organizationalUnitDistinguishedName,
     this.userName,
   });
+
   factory SelfManagedActiveDirectoryAttributes.fromJson(
       Map<String, dynamic> json) {
     return SelfManagedActiveDirectoryAttributes(
@@ -4957,6 +4996,7 @@ class SelfManagedActiveDirectoryConfiguration {
     this.fileSystemAdministratorsGroup,
     this.organizationalUnitDistinguishedName,
   });
+
   factory SelfManagedActiveDirectoryConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SelfManagedActiveDirectoryConfiguration(
@@ -5018,6 +5058,7 @@ class SelfManagedActiveDirectoryConfigurationUpdates {
     this.password,
     this.userName,
   });
+
   factory SelfManagedActiveDirectoryConfigurationUpdates.fromJson(
       Map<String, dynamic> json) {
     return SelfManagedActiveDirectoryConfigurationUpdates(
@@ -5130,6 +5171,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5150,6 +5192,7 @@ class Tag {
 /// The response object for the <code>TagResource</code> operation.
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5162,6 +5205,7 @@ class TagResourceResponse {
 /// The response object for <code>UntagResource</code> action.
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5237,6 +5281,7 @@ class UpdateFileSystemLustreConfiguration {
     this.dataCompressionType,
     this.weeklyMaintenanceStartTime,
   });
+
   factory UpdateFileSystemLustreConfiguration.fromJson(
       Map<String, dynamic> json) {
     return UpdateFileSystemLustreConfiguration(
@@ -5281,6 +5326,7 @@ class UpdateFileSystemResponse {
   UpdateFileSystemResponse({
     this.fileSystem,
   });
+
   factory UpdateFileSystemResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFileSystemResponse(
       fileSystem: json['FileSystem'] != null
@@ -5346,6 +5392,7 @@ class UpdateFileSystemWindowsConfiguration {
     this.throughputCapacity,
     this.weeklyMaintenanceStartTime,
   });
+
   factory UpdateFileSystemWindowsConfiguration.fromJson(
       Map<String, dynamic> json) {
     return UpdateFileSystemWindowsConfiguration(
@@ -5498,6 +5545,7 @@ class WindowsAuditLogConfiguration {
     required this.fileShareAccessAuditLogLevel,
     this.auditLogDestination,
   });
+
   factory WindowsAuditLogConfiguration.fromJson(Map<String, dynamic> json) {
     return WindowsAuditLogConfiguration(
       fileAccessAuditLogLevel: (json['FileAccessAuditLogLevel'] as String)
@@ -5608,6 +5656,7 @@ class WindowsAuditLogCreateConfiguration {
     required this.fileShareAccessAuditLogLevel,
     this.auditLogDestination,
   });
+
   factory WindowsAuditLogCreateConfiguration.fromJson(
       Map<String, dynamic> json) {
     return WindowsAuditLogCreateConfiguration(
@@ -5786,6 +5835,7 @@ class WindowsFileSystemConfiguration {
     this.throughputCapacity,
     this.weeklyMaintenanceStartTime,
   });
+
   factory WindowsFileSystemConfiguration.fromJson(Map<String, dynamic> json) {
     return WindowsFileSystemConfiguration(
       activeDirectoryId: json['ActiveDirectoryId'] as String?,

@@ -4825,6 +4825,7 @@ class AccountLimit {
     required this.type,
     required this.value,
   });
+
   factory AccountLimit.fromJson(Map<String, dynamic> json) {
     return AccountLimit(
       type: (json['Type'] as String).toAccountLimitType(),
@@ -4898,6 +4899,7 @@ class ActivateKeySigningKeyResponse {
   ActivateKeySigningKeyResponse({
     required this.changeInfo,
   });
+
   factory ActivateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
     return ActivateKeySigningKeyResponse(
       changeInfo:
@@ -4956,6 +4958,7 @@ class AlarmIdentifier {
     required this.name,
     required this.region,
   });
+
   factory AlarmIdentifier.fromJson(Map<String, dynamic> json) {
     return AlarmIdentifier(
       name: json['Name'] as String,
@@ -5365,6 +5368,7 @@ class AliasTarget {
     required this.evaluateTargetHealth,
     required this.hostedZoneId,
   });
+
   factory AliasTarget.fromJson(Map<String, dynamic> json) {
     return AliasTarget(
       dNSName: json['DNSName'] as String,
@@ -5435,6 +5439,7 @@ class AssociateVPCWithHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+
   factory AssociateVPCWithHostedZoneRequest.fromJson(
       Map<String, dynamic> json) {
     return AssociateVPCWithHostedZoneRequest(
@@ -5482,6 +5487,7 @@ class AssociateVPCWithHostedZoneResponse {
   AssociateVPCWithHostedZoneResponse({
     required this.changeInfo,
   });
+
   factory AssociateVPCWithHostedZoneResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateVPCWithHostedZoneResponse(
@@ -5540,6 +5546,7 @@ class Change {
     required this.action,
     required this.resourceRecordSet,
   });
+
   factory Change.fromJson(Map<String, dynamic> json) {
     return Change(
       action: (json['Action'] as String).toChangeAction(),
@@ -5621,6 +5628,7 @@ class ChangeBatch {
     required this.changes,
     this.comment,
   });
+
   factory ChangeBatch.fromJson(Map<String, dynamic> json) {
     return ChangeBatch(
       changes: (json['Changes'] as List)
@@ -5690,6 +5698,7 @@ class ChangeInfo {
     required this.submittedAt,
     this.comment,
   });
+
   factory ChangeInfo.fromJson(Map<String, dynamic> json) {
     return ChangeInfo(
       id: json['Id'] as String,
@@ -5736,6 +5745,7 @@ class ChangeResourceRecordSetsRequest {
     required this.changeBatch,
     required this.hostedZoneId,
   });
+
   factory ChangeResourceRecordSetsRequest.fromJson(Map<String, dynamic> json) {
     return ChangeResourceRecordSetsRequest(
       changeBatch:
@@ -5782,6 +5792,7 @@ class ChangeResourceRecordSetsResponse {
   ChangeResourceRecordSetsResponse({
     required this.changeInfo,
   });
+
   factory ChangeResourceRecordSetsResponse.fromJson(Map<String, dynamic> json) {
     return ChangeResourceRecordSetsResponse(
       changeInfo:
@@ -5866,6 +5877,7 @@ class ChangeTagsForResourceRequest {
     this.addTags,
     this.removeTagKeys,
   });
+
   factory ChangeTagsForResourceRequest.fromJson(Map<String, dynamic> json) {
     return ChangeTagsForResourceRequest(
       resourceId: json['ResourceId'] as String,
@@ -5919,6 +5931,7 @@ class ChangeTagsForResourceRequest {
 /// Empty response for the request.
 class ChangeTagsForResourceResponse {
   ChangeTagsForResourceResponse();
+
   factory ChangeTagsForResourceResponse.fromJson(Map<String, dynamic> _) {
     return ChangeTagsForResourceResponse();
   }
@@ -5985,6 +5998,7 @@ class CloudWatchAlarmConfiguration {
     required this.threshold,
     this.dimensions,
   });
+
   factory CloudWatchAlarmConfiguration.fromJson(Map<String, dynamic> json) {
     return CloudWatchAlarmConfiguration(
       comparisonOperator:
@@ -6272,6 +6286,7 @@ class CreateHealthCheckRequest {
     required this.callerReference,
     required this.healthCheckConfig,
   });
+
   factory CreateHealthCheckRequest.fromJson(Map<String, dynamic> json) {
     return CreateHealthCheckRequest(
       callerReference: json['CallerReference'] as String,
@@ -6319,6 +6334,7 @@ class CreateHealthCheckResponse {
     required this.healthCheck,
     required this.location,
   });
+
   factory CreateHealthCheckResponse.fromJson(Map<String, dynamic> json) {
     return CreateHealthCheckResponse(
       healthCheck:
@@ -6396,6 +6412,7 @@ class CreateHostedZoneRequest {
     this.hostedZoneConfig,
     this.vpc,
   });
+
   factory CreateHostedZoneRequest.fromJson(Map<String, dynamic> json) {
     return CreateHostedZoneRequest(
       callerReference: json['CallerReference'] as String,
@@ -6477,6 +6494,7 @@ class CreateHostedZoneResponse {
     required this.location,
     this.vpc,
   });
+
   factory CreateHostedZoneResponse.fromJson(Map<String, dynamic> json) {
     return CreateHostedZoneResponse(
       changeInfo:
@@ -6572,6 +6590,7 @@ class CreateKeySigningKeyRequest {
     required this.name,
     required this.status,
   });
+
   factory CreateKeySigningKeyRequest.fromJson(Map<String, dynamic> json) {
     return CreateKeySigningKeyRequest(
       callerReference: json['CallerReference'] as String,
@@ -6636,6 +6655,7 @@ class CreateKeySigningKeyResponse {
     required this.keySigningKey,
     required this.location,
   });
+
   factory CreateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
     return CreateKeySigningKeyResponse(
       changeInfo:
@@ -6678,6 +6698,7 @@ class CreateQueryLoggingConfigRequest {
     required this.cloudWatchLogsLogGroupArn,
     required this.hostedZoneId,
   });
+
   factory CreateQueryLoggingConfigRequest.fromJson(Map<String, dynamic> json) {
     return CreateQueryLoggingConfigRequest(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String,
@@ -6726,6 +6747,7 @@ class CreateQueryLoggingConfigResponse {
     required this.location,
     required this.queryLoggingConfig,
   });
+
   factory CreateQueryLoggingConfigResponse.fromJson(Map<String, dynamic> json) {
     return CreateQueryLoggingConfigResponse(
       location: json['Location'] as String,
@@ -6761,6 +6783,7 @@ class CreateReusableDelegationSetRequest {
     required this.callerReference,
     this.hostedZoneId,
   });
+
   factory CreateReusableDelegationSetRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateReusableDelegationSetRequest(
@@ -6808,6 +6831,7 @@ class CreateReusableDelegationSetResponse {
     required this.delegationSet,
     required this.location,
   });
+
   factory CreateReusableDelegationSetResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateReusableDelegationSetResponse(
@@ -6858,6 +6882,7 @@ class CreateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+
   factory CreateTrafficPolicyInstanceRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyInstanceRequest(
@@ -6921,6 +6946,7 @@ class CreateTrafficPolicyInstanceResponse {
     required this.location,
     required this.trafficPolicyInstance,
   });
+
   factory CreateTrafficPolicyInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyInstanceResponse(
@@ -6959,6 +6985,7 @@ class CreateTrafficPolicyRequest {
     required this.name,
     this.comment,
   });
+
   factory CreateTrafficPolicyRequest.fromJson(Map<String, dynamic> json) {
     return CreateTrafficPolicyRequest(
       document: json['Document'] as String,
@@ -7011,6 +7038,7 @@ class CreateTrafficPolicyResponse {
     required this.location,
     required this.trafficPolicy,
   });
+
   factory CreateTrafficPolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrafficPolicyResponse(
       location: json['Location'] as String,
@@ -7049,6 +7077,7 @@ class CreateTrafficPolicyVersionRequest {
     required this.id,
     this.comment,
   });
+
   factory CreateTrafficPolicyVersionRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyVersionRequest(
@@ -7101,6 +7130,7 @@ class CreateTrafficPolicyVersionResponse {
     required this.location,
     required this.trafficPolicy,
   });
+
   factory CreateTrafficPolicyVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyVersionResponse(
@@ -7136,6 +7166,7 @@ class CreateVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+
   factory CreateVPCAssociationAuthorizationRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateVPCAssociationAuthorizationRequest(
@@ -7182,6 +7213,7 @@ class CreateVPCAssociationAuthorizationResponse {
     required this.hostedZoneId,
     required this.vpc,
   });
+
   factory CreateVPCAssociationAuthorizationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateVPCAssociationAuthorizationResponse(
@@ -7240,6 +7272,7 @@ class DNSSECStatus {
     this.serveSignature,
     this.statusMessage,
   });
+
   factory DNSSECStatus.fromJson(Map<String, dynamic> json) {
     return DNSSECStatus(
       serveSignature: json['ServeSignature'] as String?,
@@ -7270,6 +7303,7 @@ class DeactivateKeySigningKeyResponse {
   DeactivateKeySigningKeyResponse({
     required this.changeInfo,
   });
+
   factory DeactivateKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
     return DeactivateKeySigningKeyResponse(
       changeInfo:
@@ -7311,6 +7345,7 @@ class DelegationSet {
     this.callerReference,
     this.id,
   });
+
   factory DelegationSet.fromJson(Map<String, dynamic> json) {
     return DelegationSet(
       nameServers: (json['NameServers'] as List)
@@ -7346,6 +7381,7 @@ class DelegationSet {
 /// An empty element.
 class DeleteHealthCheckResponse {
   DeleteHealthCheckResponse();
+
   factory DeleteHealthCheckResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHealthCheckResponse();
   }
@@ -7371,6 +7407,7 @@ class DeleteHostedZoneResponse {
   DeleteHostedZoneResponse({
     required this.changeInfo,
   });
+
   factory DeleteHostedZoneResponse.fromJson(Map<String, dynamic> json) {
     return DeleteHostedZoneResponse(
       changeInfo:
@@ -7398,6 +7435,7 @@ class DeleteKeySigningKeyResponse {
   DeleteKeySigningKeyResponse({
     required this.changeInfo,
   });
+
   factory DeleteKeySigningKeyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteKeySigningKeyResponse(
       changeInfo:
@@ -7421,6 +7459,7 @@ class DeleteKeySigningKeyResponse {
 
 class DeleteQueryLoggingConfigResponse {
   DeleteQueryLoggingConfigResponse();
+
   factory DeleteQueryLoggingConfigResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQueryLoggingConfigResponse();
   }
@@ -7439,6 +7478,7 @@ class DeleteQueryLoggingConfigResponse {
 /// An empty element.
 class DeleteReusableDelegationSetResponse {
   DeleteReusableDelegationSetResponse();
+
   factory DeleteReusableDelegationSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteReusableDelegationSetResponse();
   }
@@ -7457,6 +7497,7 @@ class DeleteReusableDelegationSetResponse {
 /// An empty element.
 class DeleteTrafficPolicyInstanceResponse {
   DeleteTrafficPolicyInstanceResponse();
+
   factory DeleteTrafficPolicyInstanceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrafficPolicyInstanceResponse();
   }
@@ -7475,6 +7516,7 @@ class DeleteTrafficPolicyInstanceResponse {
 /// An empty element.
 class DeleteTrafficPolicyResponse {
   DeleteTrafficPolicyResponse();
+
   factory DeleteTrafficPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrafficPolicyResponse();
   }
@@ -7508,6 +7550,7 @@ class DeleteVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+
   factory DeleteVPCAssociationAuthorizationRequest.fromJson(
       Map<String, dynamic> json) {
     return DeleteVPCAssociationAuthorizationRequest(
@@ -7544,6 +7587,7 @@ class DeleteVPCAssociationAuthorizationRequest {
 /// Empty response for the request.
 class DeleteVPCAssociationAuthorizationResponse {
   DeleteVPCAssociationAuthorizationResponse();
+
   factory DeleteVPCAssociationAuthorizationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteVPCAssociationAuthorizationResponse();
@@ -7575,6 +7619,7 @@ class Dimension {
     required this.name,
     required this.value,
   });
+
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return Dimension(
       name: json['Name'] as String,
@@ -7605,6 +7650,7 @@ class DisableHostedZoneDNSSECResponse {
   DisableHostedZoneDNSSECResponse({
     required this.changeInfo,
   });
+
   factory DisableHostedZoneDNSSECResponse.fromJson(Map<String, dynamic> json) {
     return DisableHostedZoneDNSSECResponse(
       changeInfo:
@@ -7644,6 +7690,7 @@ class DisassociateVPCFromHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+
   factory DisassociateVPCFromHostedZoneRequest.fromJson(
       Map<String, dynamic> json) {
     return DisassociateVPCFromHostedZoneRequest(
@@ -7692,6 +7739,7 @@ class DisassociateVPCFromHostedZoneResponse {
   DisassociateVPCFromHostedZoneResponse({
     required this.changeInfo,
   });
+
   factory DisassociateVPCFromHostedZoneResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateVPCFromHostedZoneResponse(
@@ -7720,6 +7768,7 @@ class EnableHostedZoneDNSSECResponse {
   EnableHostedZoneDNSSECResponse({
     required this.changeInfo,
   });
+
   factory EnableHostedZoneDNSSECResponse.fromJson(Map<String, dynamic> json) {
     return EnableHostedZoneDNSSECResponse(
       changeInfo:
@@ -7798,6 +7847,7 @@ class GeoLocation {
     this.countryCode,
     this.subdivisionCode,
   });
+
   factory GeoLocation.fromJson(Map<String, dynamic> json) {
     return GeoLocation(
       continentCode: json['ContinentCode'] as String?,
@@ -7884,6 +7934,7 @@ class GeoLocationDetails {
     this.subdivisionCode,
     this.subdivisionName,
   });
+
   factory GeoLocationDetails.fromJson(Map<String, dynamic> json) {
     return GeoLocationDetails(
       continentCode: json['ContinentCode'] as String?,
@@ -7943,6 +7994,7 @@ class GetAccountLimitResponse {
     required this.count,
     required this.limit,
   });
+
   factory GetAccountLimitResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountLimitResponse(
       count: json['Count'] as int,
@@ -7975,6 +8027,7 @@ class GetChangeResponse {
   GetChangeResponse({
     required this.changeInfo,
   });
+
   factory GetChangeResponse.fromJson(Map<String, dynamic> json) {
     return GetChangeResponse(
       changeInfo:
@@ -8005,6 +8058,7 @@ class GetCheckerIpRangesResponse {
   GetCheckerIpRangesResponse({
     required this.checkerIpRanges,
   });
+
   factory GetCheckerIpRangesResponse.fromJson(Map<String, dynamic> json) {
     return GetCheckerIpRangesResponse(
       checkerIpRanges: (json['CheckerIpRanges'] as List)
@@ -8040,6 +8094,7 @@ class GetDNSSECResponse {
     required this.keySigningKeys,
     required this.status,
   });
+
   factory GetDNSSECResponse.fromJson(Map<String, dynamic> json) {
     return GetDNSSECResponse(
       keySigningKeys: (json['KeySigningKeys'] as List)
@@ -8081,6 +8136,7 @@ class GetGeoLocationResponse {
   GetGeoLocationResponse({
     required this.geoLocationDetails,
   });
+
   factory GetGeoLocationResponse.fromJson(Map<String, dynamic> json) {
     return GetGeoLocationResponse(
       geoLocationDetails: GeoLocationDetails.fromJson(
@@ -8112,6 +8168,7 @@ class GetHealthCheckCountResponse {
   GetHealthCheckCountResponse({
     required this.healthCheckCount,
   });
+
   factory GetHealthCheckCountResponse.fromJson(Map<String, dynamic> json) {
     return GetHealthCheckCountResponse(
       healthCheckCount: json['HealthCheckCount'] as int,
@@ -8142,6 +8199,7 @@ class GetHealthCheckLastFailureReasonResponse {
   GetHealthCheckLastFailureReasonResponse({
     required this.healthCheckObservations,
   });
+
   factory GetHealthCheckLastFailureReasonResponse.fromJson(
       Map<String, dynamic> json) {
     return GetHealthCheckLastFailureReasonResponse(
@@ -8181,6 +8239,7 @@ class GetHealthCheckResponse {
   GetHealthCheckResponse({
     required this.healthCheck,
   });
+
   factory GetHealthCheckResponse.fromJson(Map<String, dynamic> json) {
     return GetHealthCheckResponse(
       healthCheck:
@@ -8214,6 +8273,7 @@ class GetHealthCheckStatusResponse {
   GetHealthCheckStatusResponse({
     required this.healthCheckObservations,
   });
+
   factory GetHealthCheckStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetHealthCheckStatusResponse(
       healthCheckObservations: (json['HealthCheckObservations'] as List)
@@ -8252,6 +8312,7 @@ class GetHostedZoneCountResponse {
   GetHostedZoneCountResponse({
     required this.hostedZoneCount,
   });
+
   factory GetHostedZoneCountResponse.fromJson(Map<String, dynamic> json) {
     return GetHostedZoneCountResponse(
       hostedZoneCount: json['HostedZoneCount'] as int,
@@ -8291,6 +8352,7 @@ class GetHostedZoneLimitResponse {
     required this.count,
     required this.limit,
   });
+
   factory GetHostedZoneLimitResponse.fromJson(Map<String, dynamic> json) {
     return GetHostedZoneLimitResponse(
       count: json['Count'] as int,
@@ -8335,6 +8397,7 @@ class GetHostedZoneResponse {
     this.delegationSet,
     this.vPCs,
   });
+
   factory GetHostedZoneResponse.fromJson(Map<String, dynamic> json) {
     return GetHostedZoneResponse(
       hostedZone:
@@ -8383,6 +8446,7 @@ class GetQueryLoggingConfigResponse {
   GetQueryLoggingConfigResponse({
     required this.queryLoggingConfig,
   });
+
   factory GetQueryLoggingConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetQueryLoggingConfigResponse(
       queryLoggingConfig: QueryLoggingConfig.fromJson(
@@ -8419,6 +8483,7 @@ class GetReusableDelegationSetLimitResponse {
     required this.count,
     required this.limit,
   });
+
   factory GetReusableDelegationSetLimitResponse.fromJson(
       Map<String, dynamic> json) {
     return GetReusableDelegationSetLimitResponse(
@@ -8455,6 +8520,7 @@ class GetReusableDelegationSetResponse {
   GetReusableDelegationSetResponse({
     required this.delegationSet,
   });
+
   factory GetReusableDelegationSetResponse.fromJson(Map<String, dynamic> json) {
     return GetReusableDelegationSetResponse(
       delegationSet:
@@ -8487,6 +8553,7 @@ class GetTrafficPolicyInstanceCountResponse {
   GetTrafficPolicyInstanceCountResponse({
     required this.trafficPolicyInstanceCount,
   });
+
   factory GetTrafficPolicyInstanceCountResponse.fromJson(
       Map<String, dynamic> json) {
     return GetTrafficPolicyInstanceCountResponse(
@@ -8518,6 +8585,7 @@ class GetTrafficPolicyInstanceResponse {
   GetTrafficPolicyInstanceResponse({
     required this.trafficPolicyInstance,
   });
+
   factory GetTrafficPolicyInstanceResponse.fromJson(Map<String, dynamic> json) {
     return GetTrafficPolicyInstanceResponse(
       trafficPolicyInstance: TrafficPolicyInstance.fromJson(
@@ -8548,6 +8616,7 @@ class GetTrafficPolicyResponse {
   GetTrafficPolicyResponse({
     required this.trafficPolicy,
   });
+
   factory GetTrafficPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetTrafficPolicyResponse(
       trafficPolicy:
@@ -8607,6 +8676,7 @@ class HealthCheck {
     this.cloudWatchAlarmConfiguration,
     this.linkedService,
   });
+
   factory HealthCheck.fromJson(Map<String, dynamic> json) {
     return HealthCheck(
       callerReference: json['CallerReference'] as String,
@@ -9049,6 +9119,7 @@ class HealthCheckConfig {
     this.resourcePath,
     this.searchString,
   });
+
   factory HealthCheckConfig.fromJson(Map<String, dynamic> json) {
     return HealthCheckConfig(
       type: (json['Type'] as String).toHealthCheckType(),
@@ -9239,6 +9310,7 @@ class HealthCheckObservation {
     this.region,
     this.statusReport,
   });
+
   factory HealthCheckObservation.fromJson(Map<String, dynamic> json) {
     return HealthCheckObservation(
       iPAddress: json['IPAddress'] as String?,
@@ -9423,6 +9495,7 @@ class HostedZone {
     this.linkedService,
     this.resourceRecordSetCount,
   });
+
   factory HostedZone.fromJson(Map<String, dynamic> json) {
     return HostedZone(
       callerReference: json['CallerReference'] as String,
@@ -9488,6 +9561,7 @@ class HostedZoneConfig {
     this.comment,
     this.privateZone,
   });
+
   factory HostedZoneConfig.fromJson(Map<String, dynamic> json) {
     return HostedZoneConfig(
       comment: json['Comment'] as String?,
@@ -9554,6 +9628,7 @@ class HostedZoneLimit {
     required this.type,
     required this.value,
   });
+
   factory HostedZoneLimit.fromJson(Map<String, dynamic> json) {
     return HostedZoneLimit(
       type: (json['Type'] as String).toHostedZoneLimitType(),
@@ -9630,6 +9705,7 @@ class HostedZoneOwner {
     this.owningAccount,
     this.owningService,
   });
+
   factory HostedZoneOwner.fromJson(Map<String, dynamic> json) {
     return HostedZoneOwner(
       owningAccount: json['OwningAccount'] as String?,
@@ -9677,6 +9753,7 @@ class HostedZoneSummary {
     required this.name,
     required this.owner,
   });
+
   factory HostedZoneSummary.fromJson(Map<String, dynamic> json) {
     return HostedZoneSummary(
       hostedZoneId: json['HostedZoneId'] as String,
@@ -9889,6 +9966,7 @@ class KeySigningKey {
     this.status,
     this.statusMessage,
   });
+
   factory KeySigningKey.fromJson(Map<String, dynamic> json) {
     return KeySigningKey(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -9996,6 +10074,7 @@ class LinkedService {
     this.description,
     this.servicePrincipal,
   });
+
   factory LinkedService.fromJson(Map<String, dynamic> json) {
     return LinkedService(
       description: json['Description'] as String?,
@@ -10064,6 +10143,7 @@ class ListGeoLocationsResponse {
     this.nextCountryCode,
     this.nextSubdivisionCode,
   });
+
   factory ListGeoLocationsResponse.fromJson(Map<String, dynamic> json) {
     return ListGeoLocationsResponse(
       geoLocationDetailsList: (json['GeoLocationDetailsList'] as List)
@@ -10149,6 +10229,7 @@ class ListHealthChecksResponse {
     required this.maxItems,
     this.nextMarker,
   });
+
   factory ListHealthChecksResponse.fromJson(Map<String, dynamic> json) {
     return ListHealthChecksResponse(
       healthChecks: (json['HealthChecks'] as List)
@@ -10250,6 +10331,7 @@ class ListHostedZonesByNameResponse {
     this.nextDNSName,
     this.nextHostedZoneId,
   });
+
   factory ListHostedZonesByNameResponse.fromJson(Map<String, dynamic> json) {
     return ListHostedZonesByNameResponse(
       hostedZones: (json['HostedZones'] as List)
@@ -10321,6 +10403,7 @@ class ListHostedZonesByVPCResponse {
     required this.maxItems,
     this.nextToken,
   });
+
   factory ListHostedZonesByVPCResponse.fromJson(Map<String, dynamic> json) {
     return ListHostedZonesByVPCResponse(
       hostedZoneSummaries: (json['HostedZoneSummaries'] as List)
@@ -10393,6 +10476,7 @@ class ListHostedZonesResponse {
     required this.maxItems,
     this.nextMarker,
   });
+
   factory ListHostedZonesResponse.fromJson(Map<String, dynamic> json) {
     return ListHostedZonesResponse(
       hostedZones: (json['HostedZones'] as List)
@@ -10459,6 +10543,7 @@ class ListQueryLoggingConfigsResponse {
     required this.queryLoggingConfigs,
     this.nextToken,
   });
+
   factory ListQueryLoggingConfigsResponse.fromJson(Map<String, dynamic> json) {
     return ListQueryLoggingConfigsResponse(
       queryLoggingConfigs: (json['QueryLoggingConfigs'] as List)
@@ -10531,6 +10616,7 @@ class ListResourceRecordSetsResponse {
     this.nextRecordName,
     this.nextRecordType,
   });
+
   factory ListResourceRecordSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceRecordSetsResponse(
       isTruncated: json['IsTruncated'] as bool,
@@ -10617,6 +10703,7 @@ class ListReusableDelegationSetsResponse {
     required this.maxItems,
     this.nextMarker,
   });
+
   factory ListReusableDelegationSetsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListReusableDelegationSetsResponse(
@@ -10671,6 +10758,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     required this.resourceTagSet,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       resourceTagSet: ResourceTagSet.fromJson(
@@ -10716,6 +10804,7 @@ class ListTagsForResourcesRequest {
     required this.resourceIds,
     required this.resourceType,
   });
+
   factory ListTagsForResourcesRequest.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourcesRequest(
       resourceIds: (json['ResourceIds'] as List)
@@ -10761,6 +10850,7 @@ class ListTagsForResourcesResponse {
   ListTagsForResourcesResponse({
     required this.resourceTagSets,
   });
+
   factory ListTagsForResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourcesResponse(
       resourceTagSets: (json['ResourceTagSets'] as List)
@@ -10816,6 +10906,7 @@ class ListTrafficPoliciesResponse {
     required this.trafficPolicyIdMarker,
     required this.trafficPolicySummaries,
   });
+
   factory ListTrafficPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListTrafficPoliciesResponse(
       isTruncated: json['IsTruncated'] as bool,
@@ -10895,6 +10986,7 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+
   factory ListTrafficPolicyInstancesByHostedZoneResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTrafficPolicyInstancesByHostedZoneResponse(
@@ -10995,6 +11087,7 @@ class ListTrafficPolicyInstancesByPolicyResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+
   factory ListTrafficPolicyInstancesByPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTrafficPolicyInstancesByPolicyResponse(
@@ -11101,6 +11194,7 @@ class ListTrafficPolicyInstancesResponse {
     this.trafficPolicyInstanceNameMarker,
     this.trafficPolicyInstanceTypeMarker,
   });
+
   factory ListTrafficPolicyInstancesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTrafficPolicyInstancesResponse(
@@ -11194,6 +11288,7 @@ class ListTrafficPolicyVersionsResponse {
     required this.trafficPolicies,
     required this.trafficPolicyVersionMarker,
   });
+
   factory ListTrafficPolicyVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTrafficPolicyVersionsResponse(
@@ -11256,6 +11351,7 @@ class ListVPCAssociationAuthorizationsResponse {
     required this.vPCs,
     this.nextToken,
   });
+
   factory ListVPCAssociationAuthorizationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListVPCAssociationAuthorizationsResponse(
@@ -11310,6 +11406,7 @@ class QueryLoggingConfig {
     required this.hostedZoneId,
     required this.id,
   });
+
   factory QueryLoggingConfig.fromJson(Map<String, dynamic> json) {
     return QueryLoggingConfig(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String,
@@ -11483,6 +11580,7 @@ class ResourceRecord {
   ResourceRecord({
     required this.value,
   });
+
   factory ResourceRecord.fromJson(Map<String, dynamic> json) {
     return ResourceRecord(
       value: json['Value'] as String,
@@ -12118,6 +12216,7 @@ class ResourceRecordSet {
     this.trafficPolicyInstanceId,
     this.weight,
   });
+
   factory ResourceRecordSet.fromJson(Map<String, dynamic> json) {
     return ResourceRecordSet(
       name: json['Name'] as String,
@@ -12439,6 +12538,7 @@ class ResourceTagSet {
     this.resourceType,
     this.tags,
   });
+
   factory ResourceTagSet.fromJson(Map<String, dynamic> json) {
     return ResourceTagSet(
       resourceId: json['ResourceId'] as String?,
@@ -12489,6 +12589,7 @@ class ReusableDelegationSetLimit {
     required this.type,
     required this.value,
   });
+
   factory ReusableDelegationSetLimit.fromJson(Map<String, dynamic> json) {
     return ReusableDelegationSetLimit(
       type: (json['Type'] as String).toReusableDelegationSetLimitType(),
@@ -12600,6 +12701,7 @@ class StatusReport {
     this.checkedTime,
     this.status,
   });
+
   factory StatusReport.fromJson(Map<String, dynamic> json) {
     return StatusReport(
       checkedTime: timeStampFromJson(json['CheckedTime']),
@@ -12671,6 +12773,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -12776,6 +12879,7 @@ class TestDNSAnswerResponse {
     required this.recordType,
     required this.responseCode,
   });
+
   factory TestDNSAnswerResponse.fromJson(Map<String, dynamic> json) {
     return TestDNSAnswerResponse(
       nameserver: json['Nameserver'] as String,
@@ -12857,6 +12961,7 @@ class TrafficPolicy {
     required this.version,
     this.comment,
   });
+
   factory TrafficPolicy.fromJson(Map<String, dynamic> json) {
     return TrafficPolicy(
       document: json['Document'] as String,
@@ -12958,6 +13063,7 @@ class TrafficPolicyInstance {
     required this.trafficPolicyType,
     required this.trafficPolicyVersion,
   });
+
   factory TrafficPolicyInstance.fromJson(Map<String, dynamic> json) {
     return TrafficPolicyInstance(
       hostedZoneId: json['HostedZoneId'] as String,
@@ -13040,6 +13146,7 @@ class TrafficPolicySummary {
     required this.trafficPolicyCount,
     required this.type,
   });
+
   factory TrafficPolicySummary.fromJson(Map<String, dynamic> json) {
     return TrafficPolicySummary(
       id: json['Id'] as String,
@@ -13457,6 +13564,7 @@ class UpdateHealthCheckRequest {
     this.resourcePath,
     this.searchString,
   });
+
   factory UpdateHealthCheckRequest.fromJson(Map<String, dynamic> json) {
     return UpdateHealthCheckRequest(
       healthCheckId: json['HealthCheckId'] as String,
@@ -13612,6 +13720,7 @@ class UpdateHealthCheckResponse {
   UpdateHealthCheckResponse({
     required this.healthCheck,
   });
+
   factory UpdateHealthCheckResponse.fromJson(Map<String, dynamic> json) {
     return UpdateHealthCheckResponse(
       healthCheck:
@@ -13648,6 +13757,7 @@ class UpdateHostedZoneCommentRequest {
     required this.id,
     this.comment,
   });
+
   factory UpdateHostedZoneCommentRequest.fromJson(Map<String, dynamic> json) {
     return UpdateHostedZoneCommentRequest(
       id: json['Id'] as String,
@@ -13690,6 +13800,7 @@ class UpdateHostedZoneCommentResponse {
   UpdateHostedZoneCommentResponse({
     required this.hostedZone,
   });
+
   factory UpdateHostedZoneCommentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateHostedZoneCommentResponse(
       hostedZone:
@@ -13730,6 +13841,7 @@ class UpdateTrafficPolicyCommentRequest {
     required this.id,
     required this.version,
   });
+
   factory UpdateTrafficPolicyCommentRequest.fromJson(
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyCommentRequest(
@@ -13775,6 +13887,7 @@ class UpdateTrafficPolicyCommentResponse {
   UpdateTrafficPolicyCommentResponse({
     required this.trafficPolicy,
   });
+
   factory UpdateTrafficPolicyCommentResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyCommentResponse(
@@ -13822,6 +13935,7 @@ class UpdateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+
   factory UpdateTrafficPolicyInstanceRequest.fromJson(
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyInstanceRequest(
@@ -13875,6 +13989,7 @@ class UpdateTrafficPolicyInstanceResponse {
   UpdateTrafficPolicyInstanceResponse({
     required this.trafficPolicyInstance,
   });
+
   factory UpdateTrafficPolicyInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyInstanceResponse(
@@ -13910,6 +14025,7 @@ class VPC {
     this.vPCId,
     this.vPCRegion,
   });
+
   factory VPC.fromJson(Map<String, dynamic> json) {
     return VPC(
       vPCId: json['VPCId'] as String?,

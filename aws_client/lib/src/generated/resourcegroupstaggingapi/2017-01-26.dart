@@ -724,6 +724,7 @@ class ComplianceDetails {
     this.keysWithNoncompliantValues,
     this.noncompliantKeys,
   });
+
   factory ComplianceDetails.fromJson(Map<String, dynamic> json) {
     return ComplianceDetails(
       complianceStatus: json['ComplianceStatus'] as bool?,
@@ -786,6 +787,7 @@ class DescribeReportCreationOutput {
     this.s3Location,
     this.status,
   });
+
   factory DescribeReportCreationOutput.fromJson(Map<String, dynamic> json) {
     return DescribeReportCreationOutput(
       errorMessage: json['ErrorMessage'] as String?,
@@ -884,6 +886,7 @@ class FailureInfo {
     this.errorMessage,
     this.statusCode,
   });
+
   factory FailureInfo.fromJson(Map<String, dynamic> json) {
     return FailureInfo(
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
@@ -918,6 +921,7 @@ class GetComplianceSummaryOutput {
     this.paginationToken,
     this.summaryList,
   });
+
   factory GetComplianceSummaryOutput.fromJson(Map<String, dynamic> json) {
     return GetComplianceSummaryOutput(
       paginationToken: json['PaginationToken'] as String?,
@@ -953,6 +957,7 @@ class GetResourcesOutput {
     this.paginationToken,
     this.resourceTagMappingList,
   });
+
   factory GetResourcesOutput.fromJson(Map<String, dynamic> json) {
     return GetResourcesOutput(
       paginationToken: json['PaginationToken'] as String?,
@@ -988,6 +993,7 @@ class GetTagKeysOutput {
     this.paginationToken,
     this.tagKeys,
   });
+
   factory GetTagKeysOutput.fromJson(Map<String, dynamic> json) {
     return GetTagKeysOutput(
       paginationToken: json['PaginationToken'] as String?,
@@ -1023,6 +1029,7 @@ class GetTagValuesOutput {
     this.paginationToken,
     this.tagValues,
   });
+
   factory GetTagValuesOutput.fromJson(Map<String, dynamic> json) {
     return GetTagValuesOutput(
       paginationToken: json['PaginationToken'] as String?,
@@ -1094,6 +1101,7 @@ class ResourceTagMapping {
     this.resourceARN,
     this.tags,
   });
+
   factory ResourceTagMapping.fromJson(Map<String, dynamic> json) {
     return ResourceTagMapping(
       complianceDetails: json['ComplianceDetails'] != null
@@ -1122,6 +1130,7 @@ class ResourceTagMapping {
 
 class StartReportCreationOutput {
   StartReportCreationOutput();
+
   factory StartReportCreationOutput.fromJson(Map<String, dynamic> _) {
     return StartReportCreationOutput();
   }
@@ -1162,6 +1171,7 @@ class Summary {
     this.targetId,
     this.targetIdType,
   });
+
   factory Summary.fromJson(Map<String, dynamic> json) {
     return Summary(
       lastUpdated: json['LastUpdated'] as String?,
@@ -1210,6 +1220,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -1242,6 +1253,7 @@ class TagFilter {
     this.key,
     this.values,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       key: json['Key'] as String?,
@@ -1273,6 +1285,7 @@ class TagResourcesOutput {
   TagResourcesOutput({
     this.failedResourcesMap,
   });
+
   factory TagResourcesOutput.fromJson(Map<String, dynamic> json) {
     return TagResourcesOutput(
       failedResourcesMap: (json['FailedResourcesMap'] as Map<String, dynamic>?)
@@ -1333,6 +1346,7 @@ class UntagResourcesOutput {
   UntagResourcesOutput({
     this.failedResourcesMap,
   });
+
   factory UntagResourcesOutput.fromJson(Map<String, dynamic> json) {
     return UntagResourcesOutput(
       failedResourcesMap: (json['FailedResourcesMap'] as Map<String, dynamic>?)

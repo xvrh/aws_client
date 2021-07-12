@@ -60,6 +60,7 @@ class InputShape {
   InputShape({
     this.listParam,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       listParam: (json['item'] as List?)
@@ -98,6 +99,7 @@ class SingleFieldStruct {
   SingleFieldStruct({
     this.element,
   });
+
   factory SingleFieldStruct.fromJson(Map<String, dynamic> json) {
     return SingleFieldStruct(
       element: json['value'] as String?,

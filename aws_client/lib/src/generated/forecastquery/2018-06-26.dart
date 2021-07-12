@@ -145,6 +145,7 @@ class DataPoint {
     this.timestamp,
     this.value,
   });
+
   factory DataPoint.fromJson(Map<String, dynamic> json) {
     return DataPoint(
       timestamp: json['Timestamp'] as String?,
@@ -185,6 +186,7 @@ class Forecast {
   Forecast({
     this.predictions,
   });
+
   factory Forecast.fromJson(Map<String, dynamic> json) {
     return Forecast(
       predictions: (json['Predictions'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -212,6 +214,7 @@ class QueryForecastResponse {
   QueryForecastResponse({
     this.forecast,
   });
+
   factory QueryForecastResponse.fromJson(Map<String, dynamic> json) {
     return QueryForecastResponse(
       forecast: json['Forecast'] != null

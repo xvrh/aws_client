@@ -262,6 +262,7 @@ class AcceleratorType {
     this.memoryInfo,
     this.throughputInfo,
   });
+
   factory AcceleratorType.fromJson(Map<String, dynamic> json) {
     return AcceleratorType(
       acceleratorTypeName: json['acceleratorTypeName'] as String?,
@@ -310,6 +311,7 @@ class AcceleratorTypeOffering {
     this.location,
     this.locationType,
   });
+
   factory AcceleratorTypeOffering.fromJson(Map<String, dynamic> json) {
     return AcceleratorTypeOffering(
       acceleratorType: json['acceleratorType'] as String?,
@@ -337,6 +339,7 @@ class DescribeAcceleratorOfferingsResponse {
   DescribeAcceleratorOfferingsResponse({
     this.acceleratorTypeOfferings,
   });
+
   factory DescribeAcceleratorOfferingsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAcceleratorOfferingsResponse(
@@ -364,6 +367,7 @@ class DescribeAcceleratorTypesResponse {
   DescribeAcceleratorTypesResponse({
     this.acceleratorTypes,
   });
+
   factory DescribeAcceleratorTypesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAcceleratorTypesResponse(
       acceleratorTypes: (json['acceleratorTypes'] as List?)
@@ -393,6 +397,7 @@ class DescribeAcceleratorsResponse {
     this.acceleratorSet,
     this.nextToken,
   });
+
   factory DescribeAcceleratorsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAcceleratorsResponse(
       acceleratorSet: (json['acceleratorSet'] as List?)
@@ -439,6 +444,7 @@ class ElasticInferenceAccelerator {
     this.attachedResource,
     this.availabilityZone,
   });
+
   factory ElasticInferenceAccelerator.fromJson(Map<String, dynamic> json) {
     return ElasticInferenceAccelerator(
       acceleratorHealth: json['acceleratorHealth'] != null
@@ -476,6 +482,7 @@ class ElasticInferenceAcceleratorHealth {
   ElasticInferenceAcceleratorHealth({
     this.status,
   });
+
   factory ElasticInferenceAcceleratorHealth.fromJson(
       Map<String, dynamic> json) {
     return ElasticInferenceAcceleratorHealth(
@@ -505,6 +512,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['name'] as String?,
@@ -539,6 +547,7 @@ class KeyValuePair {
     this.key,
     this.value,
   });
+
   factory KeyValuePair.fromJson(Map<String, dynamic> json) {
     return KeyValuePair(
       key: json['key'] as String?,
@@ -563,6 +572,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -619,6 +629,7 @@ class MemoryInfo {
   MemoryInfo({
     this.sizeInMiB,
   });
+
   factory MemoryInfo.fromJson(Map<String, dynamic> json) {
     return MemoryInfo(
       sizeInMiB: json['sizeInMiB'] as int?,
@@ -635,6 +646,7 @@ class MemoryInfo {
 
 class TagResourceResult {
   TagResourceResult();
+
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
@@ -646,6 +658,7 @@ class TagResourceResult {
 
 class UntagResourceResult {
   UntagResourceResult();
+
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }

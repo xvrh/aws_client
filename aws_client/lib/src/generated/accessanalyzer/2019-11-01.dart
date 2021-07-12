@@ -1302,6 +1302,7 @@ class AccessPreview {
     required this.status,
     this.statusReason,
   });
+
   factory AccessPreview.fromJson(Map<String, dynamic> json) {
     return AccessPreview(
       analyzerArn: json['analyzerArn'] as String,
@@ -1432,6 +1433,7 @@ class AccessPreviewFinding {
     this.resource,
     this.sources,
   });
+
   factory AccessPreviewFinding.fromJson(Map<String, dynamic> json) {
     return AccessPreviewFinding(
       changeType: (json['changeType'] as String).toFindingChangeType(),
@@ -1542,6 +1544,7 @@ class AccessPreviewStatusReason {
   AccessPreviewStatusReason({
     required this.code,
   });
+
   factory AccessPreviewStatusReason.fromJson(Map<String, dynamic> json) {
     return AccessPreviewStatusReason(
       code: (json['code'] as String).toAccessPreviewStatusReasonCode(),
@@ -1619,6 +1622,7 @@ class AccessPreviewSummary {
     required this.status,
     this.statusReason,
   });
+
   factory AccessPreviewSummary.fromJson(Map<String, dynamic> json) {
     return AccessPreviewSummary(
       analyzerArn: json['analyzerArn'] as String,
@@ -1662,6 +1666,7 @@ class AclGrantee {
     this.id,
     this.uri,
   });
+
   factory AclGrantee.fromJson(Map<String, dynamic> json) {
     return AclGrantee(
       id: json['id'] as String?,
@@ -1773,6 +1778,7 @@ class AnalyzedResource {
     this.sharedVia,
     this.status,
   });
+
   factory AnalyzedResource.fromJson(Map<String, dynamic> json) {
     return AnalyzedResource(
       analyzedAt: nonNullableTimeStampFromJson(json['analyzedAt'] as Object),
@@ -1839,6 +1845,7 @@ class AnalyzedResourceSummary {
     required this.resourceOwnerAccount,
     required this.resourceType,
   });
+
   factory AnalyzedResourceSummary.fromJson(Map<String, dynamic> json) {
     return AnalyzedResourceSummary(
       resourceArn: json['resourceArn'] as String,
@@ -1949,6 +1956,7 @@ class AnalyzerSummary {
     this.statusReason,
     this.tags,
   });
+
   factory AnalyzerSummary.fromJson(Map<String, dynamic> json) {
     return AnalyzerSummary(
       arn: json['arn'] as String,
@@ -2012,6 +2020,7 @@ class ArchiveRuleSummary {
     required this.ruleName,
     required this.updatedAt,
   });
+
   factory ArchiveRuleSummary.fromJson(Map<String, dynamic> json) {
     return ArchiveRuleSummary(
       createdAt: nonNullableTimeStampFromJson(json['createdAt'] as Object),
@@ -2038,6 +2047,7 @@ class ArchiveRuleSummary {
 
 class CancelPolicyGenerationResponse {
   CancelPolicyGenerationResponse();
+
   factory CancelPolicyGenerationResponse.fromJson(Map<String, dynamic> _) {
     return CancelPolicyGenerationResponse();
   }
@@ -2073,6 +2083,7 @@ class CloudTrailDetails {
     required this.trails,
     this.endTime,
   });
+
   factory CloudTrailDetails.fromJson(Map<String, dynamic> json) {
     return CloudTrailDetails(
       accessRole: json['accessRole'] as String,
@@ -2121,6 +2132,7 @@ class CloudTrailProperties {
     required this.startTime,
     required this.trailProperties,
   });
+
   factory CloudTrailProperties.fromJson(Map<String, dynamic> json) {
     return CloudTrailProperties(
       endTime: nonNullableTimeStampFromJson(json['endTime'] as Object),
@@ -2170,6 +2182,7 @@ class Configuration {
     this.secretsManagerSecret,
     this.sqsQueue,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       iamRole: json['iamRole'] != null
@@ -2218,6 +2231,7 @@ class CreateAccessPreviewResponse {
   CreateAccessPreviewResponse({
     required this.id,
   });
+
   factory CreateAccessPreviewResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccessPreviewResponse(
       id: json['id'] as String,
@@ -2240,6 +2254,7 @@ class CreateAnalyzerResponse {
   CreateAnalyzerResponse({
     this.arn,
   });
+
   factory CreateAnalyzerResponse.fromJson(Map<String, dynamic> json) {
     return CreateAnalyzerResponse(
       arn: json['arn'] as String?,
@@ -2274,6 +2289,7 @@ class Criterion {
     this.exists,
     this.neq,
   });
+
   factory Criterion.fromJson(Map<String, dynamic> json) {
     return Criterion(
       contains: (json['contains'] as List?)
@@ -2369,6 +2385,7 @@ class Finding {
     this.resource,
     this.sources,
   });
+
   factory Finding.fromJson(Map<String, dynamic> json) {
     return Finding(
       analyzedAt: nonNullableTimeStampFromJson(json['analyzedAt'] as Object),
@@ -2477,6 +2494,7 @@ class FindingSource {
     required this.type,
     this.detail,
   });
+
   factory FindingSource.fromJson(Map<String, dynamic> json) {
     return FindingSource(
       type: (json['type'] as String).toFindingSourceType(),
@@ -2505,6 +2523,7 @@ class FindingSourceDetail {
   FindingSourceDetail({
     this.accessPointArn,
   });
+
   factory FindingSourceDetail.fromJson(Map<String, dynamic> json) {
     return FindingSourceDetail(
       accessPointArn: json['accessPointArn'] as String?,
@@ -2678,6 +2697,7 @@ class FindingSummary {
     this.resource,
     this.sources,
   });
+
   factory FindingSummary.fromJson(Map<String, dynamic> json) {
     return FindingSummary(
       analyzedAt: nonNullableTimeStampFromJson(json['analyzedAt'] as Object),
@@ -2750,6 +2770,7 @@ class GeneratedPolicy {
   GeneratedPolicy({
     required this.policy,
   });
+
   factory GeneratedPolicy.fromJson(Map<String, dynamic> json) {
     return GeneratedPolicy(
       policy: json['policy'] as String,
@@ -2783,6 +2804,7 @@ class GeneratedPolicyProperties {
     this.cloudTrailProperties,
     this.isComplete,
   });
+
   factory GeneratedPolicyProperties.fromJson(Map<String, dynamic> json) {
     return GeneratedPolicyProperties(
       principalArn: json['principalArn'] as String,
@@ -2823,6 +2845,7 @@ class GeneratedPolicyResult {
     required this.properties,
     this.generatedPolicies,
   });
+
   factory GeneratedPolicyResult.fromJson(Map<String, dynamic> json) {
     return GeneratedPolicyResult(
       properties: GeneratedPolicyProperties.fromJson(
@@ -2851,6 +2874,7 @@ class GetAccessPreviewResponse {
   GetAccessPreviewResponse({
     required this.accessPreview,
   });
+
   factory GetAccessPreviewResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessPreviewResponse(
       accessPreview:
@@ -2875,6 +2899,7 @@ class GetAnalyzedResourceResponse {
   GetAnalyzedResourceResponse({
     this.resource,
   });
+
   factory GetAnalyzedResourceResponse.fromJson(Map<String, dynamic> json) {
     return GetAnalyzedResourceResponse(
       resource: json['resource'] != null
@@ -2900,6 +2925,7 @@ class GetAnalyzerResponse {
   GetAnalyzerResponse({
     required this.analyzer,
   });
+
   factory GetAnalyzerResponse.fromJson(Map<String, dynamic> json) {
     return GetAnalyzerResponse(
       analyzer:
@@ -2922,6 +2948,7 @@ class GetArchiveRuleResponse {
   GetArchiveRuleResponse({
     required this.archiveRule,
   });
+
   factory GetArchiveRuleResponse.fromJson(Map<String, dynamic> json) {
     return GetArchiveRuleResponse(
       archiveRule: ArchiveRuleSummary.fromJson(
@@ -2945,6 +2972,7 @@ class GetFindingResponse {
   GetFindingResponse({
     this.finding,
   });
+
   factory GetFindingResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingResponse(
       finding: json['finding'] != null
@@ -2974,6 +3002,7 @@ class GetGeneratedPolicyResponse {
     required this.generatedPolicyResult,
     required this.jobDetails,
   });
+
   factory GetGeneratedPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetGeneratedPolicyResponse(
       generatedPolicyResult: GeneratedPolicyResult.fromJson(
@@ -3010,6 +3039,7 @@ class IamRoleConfiguration {
   IamRoleConfiguration({
     this.trustPolicy,
   });
+
   factory IamRoleConfiguration.fromJson(Map<String, dynamic> json) {
     return IamRoleConfiguration(
       trustPolicy: json['trustPolicy'] as String?,
@@ -3037,6 +3067,7 @@ class InlineArchiveRule {
     required this.filter,
     required this.ruleName,
   });
+
   factory InlineArchiveRule.fromJson(Map<String, dynamic> json) {
     return InlineArchiveRule(
       filter: (json['filter'] as Map<String, dynamic>).map(
@@ -3059,6 +3090,7 @@ class InlineArchiveRule {
 /// <code>Internet</code>.
 class InternetConfiguration {
   InternetConfiguration();
+
   factory InternetConfiguration.fromJson(Map<String, dynamic> _) {
     return InternetConfiguration();
   }
@@ -3094,6 +3126,7 @@ class JobDetails {
     this.completedOn,
     this.jobError,
   });
+
   factory JobDetails.fromJson(Map<String, dynamic> json) {
     return JobDetails(
       jobId: json['jobId'] as String,
@@ -3135,6 +3168,7 @@ class JobError {
     required this.code,
     required this.message,
   });
+
   factory JobError.fromJson(Map<String, dynamic> json) {
     return JobError(
       code: (json['code'] as String).toJobErrorCode(),
@@ -3262,6 +3296,7 @@ class KmsGrantConfiguration {
     this.constraints,
     this.retiringPrincipal,
   });
+
   factory KmsGrantConfiguration.fromJson(Map<String, dynamic> json) {
     return KmsGrantConfiguration(
       granteePrincipal: json['granteePrincipal'] as String,
@@ -3323,6 +3358,7 @@ class KmsGrantConstraints {
     this.encryptionContextEquals,
     this.encryptionContextSubset,
   });
+
   factory KmsGrantConstraints.fromJson(Map<String, dynamic> json) {
     return KmsGrantConstraints(
       encryptionContextEquals:
@@ -3464,6 +3500,7 @@ class KmsKeyConfiguration {
     this.grants,
     this.keyPolicies,
   });
+
   factory KmsKeyConfiguration.fromJson(Map<String, dynamic> json) {
     return KmsKeyConfiguration(
       grants: (json['grants'] as List?)
@@ -3496,6 +3533,7 @@ class ListAccessPreviewFindingsResponse {
     required this.findings,
     this.nextToken,
   });
+
   factory ListAccessPreviewFindingsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAccessPreviewFindingsResponse(
@@ -3528,6 +3566,7 @@ class ListAccessPreviewsResponse {
     required this.accessPreviews,
     this.nextToken,
   });
+
   factory ListAccessPreviewsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccessPreviewsResponse(
       accessPreviews: (json['accessPreviews'] as List)
@@ -3560,6 +3599,7 @@ class ListAnalyzedResourcesResponse {
     required this.analyzedResources,
     this.nextToken,
   });
+
   factory ListAnalyzedResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListAnalyzedResourcesResponse(
       analyzedResources: (json['analyzedResources'] as List)
@@ -3593,6 +3633,7 @@ class ListAnalyzersResponse {
     required this.analyzers,
     this.nextToken,
   });
+
   factory ListAnalyzersResponse.fromJson(Map<String, dynamic> json) {
     return ListAnalyzersResponse(
       analyzers: (json['analyzers'] as List)
@@ -3625,6 +3666,7 @@ class ListArchiveRulesResponse {
     required this.archiveRules,
     this.nextToken,
   });
+
   factory ListArchiveRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListArchiveRulesResponse(
       archiveRules: (json['archiveRules'] as List)
@@ -3658,6 +3700,7 @@ class ListFindingsResponse {
     required this.findings,
     this.nextToken,
   });
+
   factory ListFindingsResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingsResponse(
       findings: (json['findings'] as List)
@@ -3690,6 +3733,7 @@ class ListPolicyGenerationsResponse {
     required this.policyGenerations,
     this.nextToken,
   });
+
   factory ListPolicyGenerationsResponse.fromJson(Map<String, dynamic> json) {
     return ListPolicyGenerationsResponse(
       policyGenerations: (json['policyGenerations'] as List)
@@ -3718,6 +3762,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -3814,6 +3859,7 @@ class Location {
     required this.path,
     required this.span,
   });
+
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       path: (json['path'] as List)
@@ -3852,6 +3898,7 @@ class NetworkOriginConfiguration {
     this.internetConfiguration,
     this.vpcConfiguration,
   });
+
   factory NetworkOriginConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkOriginConfiguration(
       internetConfiguration: json['internetConfiguration'] != null
@@ -3924,6 +3971,7 @@ class PathElement {
     this.substring,
     this.value,
   });
+
   factory PathElement.fromJson(Map<String, dynamic> json) {
     return PathElement(
       index: json['index'] as int?,
@@ -3978,6 +4026,7 @@ class PolicyGeneration {
     required this.status,
     this.completedOn,
   });
+
   factory PolicyGeneration.fromJson(Map<String, dynamic> json) {
     return PolicyGeneration(
       jobId: json['jobId'] as String,
@@ -4014,6 +4063,7 @@ class PolicyGenerationDetails {
   PolicyGenerationDetails({
     required this.principalArn,
   });
+
   factory PolicyGenerationDetails.fromJson(Map<String, dynamic> json) {
     return PolicyGenerationDetails(
       principalArn: json['principalArn'] as String,
@@ -4078,6 +4128,7 @@ class Position {
     required this.line,
     required this.offset,
   });
+
   factory Position.fromJson(Map<String, dynamic> json) {
     return Position(
       column: json['column'] as int,
@@ -4221,6 +4272,7 @@ class S3AccessPointConfiguration {
     this.networkOrigin,
     this.publicAccessBlock,
   });
+
   factory S3AccessPointConfiguration.fromJson(Map<String, dynamic> json) {
     return S3AccessPointConfiguration(
       accessPointPolicy: json['accessPointPolicy'] as String?,
@@ -4262,6 +4314,7 @@ class S3BucketAclGrantConfiguration {
     required this.grantee,
     required this.permission,
   });
+
   factory S3BucketAclGrantConfiguration.fromJson(Map<String, dynamic> json) {
     return S3BucketAclGrantConfiguration(
       grantee: AclGrantee.fromJson(json['grantee'] as Map<String, dynamic>),
@@ -4315,6 +4368,7 @@ class S3BucketConfiguration {
     this.bucketPolicy,
     this.bucketPublicAccessBlock,
   });
+
   factory S3BucketConfiguration.fromJson(Map<String, dynamic> json) {
     return S3BucketConfiguration(
       accessPoints: (json['accessPoints'] as Map<String, dynamic>?)?.map(
@@ -4370,6 +4424,7 @@ class S3PublicAccessBlockConfiguration {
     required this.ignorePublicAcls,
     required this.restrictPublicBuckets,
   });
+
   factory S3PublicAccessBlockConfiguration.fromJson(Map<String, dynamic> json) {
     return S3PublicAccessBlockConfiguration(
       ignorePublicAcls: json['ignorePublicAcls'] as bool,
@@ -4415,6 +4470,7 @@ class SecretsManagerSecretConfiguration {
     this.kmsKeyId,
     this.secretPolicy,
   });
+
   factory SecretsManagerSecretConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SecretsManagerSecretConfiguration(
@@ -4445,6 +4501,7 @@ class SortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory SortCriteria.fromJson(Map<String, dynamic> json) {
     return SortCriteria(
       attributeName: json['attributeName'] as String?,
@@ -4475,6 +4532,7 @@ class Span {
     required this.end,
     required this.start,
   });
+
   factory Span.fromJson(Map<String, dynamic> json) {
     return Span(
       end: Position.fromJson(json['end'] as Map<String, dynamic>),
@@ -4510,6 +4568,7 @@ class SqsQueueConfiguration {
   SqsQueueConfiguration({
     this.queuePolicy,
   });
+
   factory SqsQueueConfiguration.fromJson(Map<String, dynamic> json) {
     return SqsQueueConfiguration(
       queuePolicy: json['queuePolicy'] as String?,
@@ -4535,6 +4594,7 @@ class StartPolicyGenerationResponse {
   StartPolicyGenerationResponse({
     required this.jobId,
   });
+
   factory StartPolicyGenerationResponse.fromJson(Map<String, dynamic> json) {
     return StartPolicyGenerationResponse(
       jobId: json['jobId'] as String,
@@ -4561,6 +4621,7 @@ class StatusReason {
   StatusReason({
     required this.code,
   });
+
   factory StatusReason.fromJson(Map<String, dynamic> json) {
     return StatusReason(
       code: (json['code'] as String).toReasonCode(),
@@ -4587,6 +4648,7 @@ class Substring {
     required this.length,
     required this.start,
   });
+
   factory Substring.fromJson(Map<String, dynamic> json) {
     return Substring(
       length: json['length'] as int,
@@ -4607,6 +4669,7 @@ class Substring {
 /// The response to the request.
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4637,6 +4700,7 @@ class Trail {
     this.allRegions,
     this.regions,
   });
+
   factory Trail.fromJson(Map<String, dynamic> json) {
     return Trail(
       cloudTrailArn: json['cloudTrailArn'] as String,
@@ -4681,6 +4745,7 @@ class TrailProperties {
     this.allRegions,
     this.regions,
   });
+
   factory TrailProperties.fromJson(Map<String, dynamic> json) {
     return TrailProperties(
       cloudTrailArn: json['cloudTrailArn'] as String,
@@ -4735,6 +4800,7 @@ extension on String {
 /// The response to the request.
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4784,6 +4850,7 @@ class ValidatePolicyFinding {
     required this.learnMoreLink,
     required this.locations,
   });
+
   factory ValidatePolicyFinding.fromJson(Map<String, dynamic> json) {
     return ValidatePolicyFinding(
       findingDetails: json['findingDetails'] as String,
@@ -4864,6 +4931,7 @@ class ValidatePolicyResponse {
     required this.findings,
     this.nextToken,
   });
+
   factory ValidatePolicyResponse.fromJson(Map<String, dynamic> json) {
     return ValidatePolicyResponse(
       findings: (json['findings'] as List)
@@ -4895,6 +4963,7 @@ class VpcConfiguration {
   VpcConfiguration({
     required this.vpcId,
   });
+
   factory VpcConfiguration.fromJson(Map<String, dynamic> json) {
     return VpcConfiguration(
       vpcId: json['vpcId'] as String,

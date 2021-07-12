@@ -1070,6 +1070,7 @@ class AddAttachmentsToSetResponse {
     this.attachmentSetId,
     this.expiryTime,
   });
+
   factory AddAttachmentsToSetResponse.fromJson(Map<String, dynamic> json) {
     return AddAttachmentsToSetResponse(
       attachmentSetId: json['attachmentSetId'] as String?,
@@ -1095,6 +1096,7 @@ class AddCommunicationToCaseResponse {
   AddCommunicationToCaseResponse({
     this.result,
   });
+
   factory AddCommunicationToCaseResponse.fromJson(Map<String, dynamic> json) {
     return AddCommunicationToCaseResponse(
       result: json['result'] as bool?,
@@ -1122,6 +1124,7 @@ class Attachment {
     this.data,
     this.fileName,
   });
+
   factory Attachment.fromJson(Map<String, dynamic> json) {
     return Attachment(
       data: _s.decodeNullableUint8List(json['data'] as String?),
@@ -1153,6 +1156,7 @@ class AttachmentDetails {
     this.attachmentId,
     this.fileName,
   });
+
   factory AttachmentDetails.fromJson(Map<String, dynamic> json) {
     return AttachmentDetails(
       attachmentId: json['attachmentId'] as String?,
@@ -1330,6 +1334,7 @@ class CaseDetails {
     this.submittedBy,
     this.timeCreated,
   });
+
   factory CaseDetails.fromJson(Map<String, dynamic> json) {
     return CaseDetails(
       caseId: json['caseId'] as String?,
@@ -1398,6 +1403,7 @@ class Category {
     this.code,
     this.name,
   });
+
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       code: json['code'] as String?,
@@ -1447,6 +1453,7 @@ class Communication {
     this.submittedBy,
     this.timeCreated,
   });
+
   factory Communication.fromJson(Map<String, dynamic> json) {
     return Communication(
       attachmentSet: (json['attachmentSet'] as List?)
@@ -1487,6 +1494,7 @@ class CreateCaseResponse {
   CreateCaseResponse({
     this.caseId,
   });
+
   factory CreateCaseResponse.fromJson(Map<String, dynamic> json) {
     return CreateCaseResponse(
       caseId: json['caseId'] as String?,
@@ -1515,6 +1523,7 @@ class DescribeAttachmentResponse {
   DescribeAttachmentResponse({
     this.attachment,
   });
+
   factory DescribeAttachmentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAttachmentResponse(
       attachment: json['attachment'] != null
@@ -1546,6 +1555,7 @@ class DescribeCasesResponse {
     this.cases,
     this.nextToken,
   });
+
   factory DescribeCasesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCasesResponse(
       cases: (json['cases'] as List?)
@@ -1578,6 +1588,7 @@ class DescribeCommunicationsResponse {
     this.communications,
     this.nextToken,
   });
+
   factory DescribeCommunicationsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCommunicationsResponse(
       communications: (json['communications'] as List?)
@@ -1606,6 +1617,7 @@ class DescribeServicesResponse {
   DescribeServicesResponse({
     this.services,
   });
+
   factory DescribeServicesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeServicesResponse(
       services: (json['services'] as List?)
@@ -1633,6 +1645,7 @@ class DescribeSeverityLevelsResponse {
   DescribeSeverityLevelsResponse({
     this.severityLevels,
   });
+
   factory DescribeSeverityLevelsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSeverityLevelsResponse(
       severityLevels: (json['severityLevels'] as List?)
@@ -1659,6 +1672,7 @@ class DescribeTrustedAdvisorCheckRefreshStatusesResponse {
   DescribeTrustedAdvisorCheckRefreshStatusesResponse({
     required this.statuses,
   });
+
   factory DescribeTrustedAdvisorCheckRefreshStatusesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTrustedAdvisorCheckRefreshStatusesResponse(
@@ -1687,6 +1701,7 @@ class DescribeTrustedAdvisorCheckResultResponse {
   DescribeTrustedAdvisorCheckResultResponse({
     this.result,
   });
+
   factory DescribeTrustedAdvisorCheckResultResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTrustedAdvisorCheckResultResponse(
@@ -1714,6 +1729,7 @@ class DescribeTrustedAdvisorCheckSummariesResponse {
   DescribeTrustedAdvisorCheckSummariesResponse({
     required this.summaries,
   });
+
   factory DescribeTrustedAdvisorCheckSummariesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTrustedAdvisorCheckSummariesResponse(
@@ -1742,6 +1758,7 @@ class DescribeTrustedAdvisorChecksResponse {
   DescribeTrustedAdvisorChecksResponse({
     required this.checks,
   });
+
   factory DescribeTrustedAdvisorChecksResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTrustedAdvisorChecksResponse(
@@ -1773,6 +1790,7 @@ class RecentCaseCommunications {
     this.communications,
     this.nextToken,
   });
+
   factory RecentCaseCommunications.fromJson(Map<String, dynamic> json) {
     return RecentCaseCommunications(
       communications: (json['communications'] as List?)
@@ -1802,6 +1820,7 @@ class RefreshTrustedAdvisorCheckResponse {
   RefreshTrustedAdvisorCheckResponse({
     required this.status,
   });
+
   factory RefreshTrustedAdvisorCheckResponse.fromJson(
       Map<String, dynamic> json) {
     return RefreshTrustedAdvisorCheckResponse(
@@ -1830,6 +1849,7 @@ class ResolveCaseResponse {
     this.finalCaseStatus,
     this.initialCaseStatus,
   });
+
   factory ResolveCaseResponse.fromJson(Map<String, dynamic> json) {
     return ResolveCaseResponse(
       finalCaseStatus: json['finalCaseStatus'] as String?,
@@ -1870,6 +1890,7 @@ class Service {
     this.code,
     this.name,
   });
+
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       categories: (json['categories'] as List?)
@@ -1939,6 +1960,7 @@ class SeverityLevel {
     this.code,
     this.name,
   });
+
   factory SeverityLevel.fromJson(Map<String, dynamic> json) {
     return SeverityLevel(
       code: json['code'] as String?,
@@ -1966,6 +1988,7 @@ class TrustedAdvisorCategorySpecificSummary {
   TrustedAdvisorCategorySpecificSummary({
     this.costOptimizing,
   });
+
   factory TrustedAdvisorCategorySpecificSummary.fromJson(
       Map<String, dynamic> json) {
     return TrustedAdvisorCategorySpecificSummary(
@@ -2013,6 +2036,7 @@ class TrustedAdvisorCheckDescription {
     required this.metadata,
     required this.name,
   });
+
   factory TrustedAdvisorCheckDescription.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorCheckDescription(
       category: json['category'] as String,
@@ -2081,6 +2105,7 @@ class TrustedAdvisorCheckRefreshStatus {
     required this.millisUntilNextRefreshable,
     required this.status,
   });
+
   factory TrustedAdvisorCheckRefreshStatus.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorCheckRefreshStatus(
       checkId: json['checkId'] as String,
@@ -2130,6 +2155,7 @@ class TrustedAdvisorCheckResult {
     required this.status,
     required this.timestamp,
   });
+
   factory TrustedAdvisorCheckResult.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorCheckResult(
       categorySpecificSummary: TrustedAdvisorCategorySpecificSummary.fromJson(
@@ -2194,6 +2220,7 @@ class TrustedAdvisorCheckSummary {
     required this.timestamp,
     this.hasFlaggedResources,
   });
+
   factory TrustedAdvisorCheckSummary.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorCheckSummary(
       categorySpecificSummary: TrustedAdvisorCategorySpecificSummary.fromJson(
@@ -2241,6 +2268,7 @@ class TrustedAdvisorCostOptimizingSummary {
     required this.estimatedMonthlySavings,
     required this.estimatedPercentMonthlySavings,
   });
+
   factory TrustedAdvisorCostOptimizingSummary.fromJson(
       Map<String, dynamic> json) {
     return TrustedAdvisorCostOptimizingSummary(
@@ -2290,6 +2318,7 @@ class TrustedAdvisorResourceDetail {
     this.isSuppressed,
     this.region,
   });
+
   factory TrustedAdvisorResourceDetail.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorResourceDetail(
       metadata: (json['metadata'] as List)
@@ -2343,6 +2372,7 @@ class TrustedAdvisorResourcesSummary {
     required this.resourcesProcessed,
     required this.resourcesSuppressed,
   });
+
   factory TrustedAdvisorResourcesSummary.fromJson(Map<String, dynamic> json) {
     return TrustedAdvisorResourcesSummary(
       resourcesFlagged: json['resourcesFlagged'] as int,

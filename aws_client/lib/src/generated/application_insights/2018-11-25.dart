@@ -1695,6 +1695,7 @@ class ApplicationComponent {
     this.resourceType,
     this.tier,
   });
+
   factory ApplicationComponent.fromJson(Map<String, dynamic> json) {
     return ApplicationComponent(
       componentName: json['ComponentName'] as String?,
@@ -1775,6 +1776,7 @@ class ApplicationInfo {
     this.remarks,
     this.resourceGroupName,
   });
+
   factory ApplicationInfo.fromJson(Map<String, dynamic> json) {
     return ApplicationInfo(
       cWEMonitorEnabled: json['CWEMonitorEnabled'] as bool?,
@@ -1872,6 +1874,7 @@ class ConfigurationEvent {
     this.eventTime,
     this.monitoredResourceARN,
   });
+
   factory ConfigurationEvent.fromJson(Map<String, dynamic> json) {
     return ConfigurationEvent(
       eventDetail: json['EventDetail'] as String?,
@@ -1984,6 +1987,7 @@ class CreateApplicationResponse {
   CreateApplicationResponse({
     this.applicationInfo,
   });
+
   factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApplicationResponse(
       applicationInfo: json['ApplicationInfo'] != null
@@ -2003,6 +2007,7 @@ class CreateApplicationResponse {
 
 class CreateComponentResponse {
   CreateComponentResponse();
+
   factory CreateComponentResponse.fromJson(Map<String, dynamic> _) {
     return CreateComponentResponse();
   }
@@ -2023,6 +2028,7 @@ class CreateLogPatternResponse {
     this.logPattern,
     this.resourceGroupName,
   });
+
   factory CreateLogPatternResponse.fromJson(Map<String, dynamic> json) {
     return CreateLogPatternResponse(
       logPattern: json['LogPattern'] != null
@@ -2044,6 +2050,7 @@ class CreateLogPatternResponse {
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
+
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
   }
@@ -2055,6 +2062,7 @@ class DeleteApplicationResponse {
 
 class DeleteComponentResponse {
   DeleteComponentResponse();
+
   factory DeleteComponentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteComponentResponse();
   }
@@ -2066,6 +2074,7 @@ class DeleteComponentResponse {
 
 class DeleteLogPatternResponse {
   DeleteLogPatternResponse();
+
   factory DeleteLogPatternResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLogPatternResponse();
   }
@@ -2082,6 +2091,7 @@ class DescribeApplicationResponse {
   DescribeApplicationResponse({
     this.applicationInfo,
   });
+
   factory DescribeApplicationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeApplicationResponse(
       applicationInfo: json['ApplicationInfo'] != null
@@ -2107,6 +2117,7 @@ class DescribeComponentConfigurationRecommendationResponse {
   DescribeComponentConfigurationRecommendationResponse({
     this.componentConfiguration,
   });
+
   factory DescribeComponentConfigurationRecommendationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeComponentConfigurationRecommendationResponse(
@@ -2141,6 +2152,7 @@ class DescribeComponentConfigurationResponse {
     this.monitor,
     this.tier,
   });
+
   factory DescribeComponentConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeComponentConfigurationResponse(
@@ -2173,6 +2185,7 @@ class DescribeComponentResponse {
     this.applicationComponent,
     this.resourceList,
   });
+
   factory DescribeComponentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeComponentResponse(
       applicationComponent: json['ApplicationComponent'] != null
@@ -2208,6 +2221,7 @@ class DescribeLogPatternResponse {
     this.logPattern,
     this.resourceGroupName,
   });
+
   factory DescribeLogPatternResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLogPatternResponse(
       logPattern: json['LogPattern'] != null
@@ -2234,6 +2248,7 @@ class DescribeObservationResponse {
   DescribeObservationResponse({
     this.observation,
   });
+
   factory DescribeObservationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeObservationResponse(
       observation: json['Observation'] != null
@@ -2257,6 +2272,7 @@ class DescribeProblemObservationsResponse {
   DescribeProblemObservationsResponse({
     this.relatedObservations,
   });
+
   factory DescribeProblemObservationsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeProblemObservationsResponse(
@@ -2283,6 +2299,7 @@ class DescribeProblemResponse {
   DescribeProblemResponse({
     this.problem,
   });
+
   factory DescribeProblemResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProblemResponse(
       problem: json['Problem'] != null
@@ -2367,6 +2384,7 @@ class ListApplicationsResponse {
     this.applicationInfoList,
     this.nextToken,
   });
+
   factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationsResponse(
       applicationInfoList: (json['ApplicationInfoList'] as List?)
@@ -2399,6 +2417,7 @@ class ListComponentsResponse {
     this.applicationComponentList,
     this.nextToken,
   });
+
   factory ListComponentsResponse.fromJson(Map<String, dynamic> json) {
     return ListComponentsResponse(
       applicationComponentList: (json['ApplicationComponentList'] as List?)
@@ -2436,6 +2455,7 @@ class ListConfigurationHistoryResponse {
     this.eventList,
     this.nextToken,
   });
+
   factory ListConfigurationHistoryResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigurationHistoryResponse(
       eventList: (json['EventList'] as List?)
@@ -2472,6 +2492,7 @@ class ListLogPatternSetsResponse {
     this.nextToken,
     this.resourceGroupName,
   });
+
   factory ListLogPatternSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListLogPatternSetsResponse(
       logPatternSets: (json['LogPatternSets'] as List?)
@@ -2511,6 +2532,7 @@ class ListLogPatternsResponse {
     this.nextToken,
     this.resourceGroupName,
   });
+
   factory ListLogPatternsResponse.fromJson(Map<String, dynamic> json) {
     return ListLogPatternsResponse(
       logPatterns: (json['LogPatterns'] as List?)
@@ -2546,6 +2568,7 @@ class ListProblemsResponse {
     this.nextToken,
     this.problemList,
   });
+
   factory ListProblemsResponse.fromJson(Map<String, dynamic> json) {
     return ListProblemsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2575,6 +2598,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -2663,6 +2687,7 @@ class LogPattern {
     this.patternSetName,
     this.rank,
   });
+
   factory LogPattern.fromJson(Map<String, dynamic> json) {
     return LogPattern(
       pattern: json['Pattern'] as String?,
@@ -2881,6 +2906,7 @@ class Observation {
     this.xRayRequestCount,
     this.xRayThrottlePercent,
   });
+
   factory Observation.fromJson(Map<String, dynamic> json) {
     return Observation(
       cloudWatchEventDetailType: json['CloudWatchEventDetailType'] as String?,
@@ -3111,6 +3137,7 @@ class Problem {
     this.status,
     this.title,
   });
+
   factory Problem.fromJson(Map<String, dynamic> json) {
     return Problem(
       affectedResource: json['AffectedResource'] as String?,
@@ -3162,6 +3189,7 @@ class RelatedObservations {
   RelatedObservations({
     this.observationList,
   });
+
   factory RelatedObservations.fromJson(Map<String, dynamic> json) {
     return RelatedObservations(
       observationList: (json['ObservationList'] as List?)
@@ -3288,6 +3316,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -3307,6 +3336,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3396,6 +3426,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3412,6 +3443,7 @@ class UpdateApplicationResponse {
   UpdateApplicationResponse({
     this.applicationInfo,
   });
+
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApplicationResponse(
       applicationInfo: json['ApplicationInfo'] != null
@@ -3431,6 +3463,7 @@ class UpdateApplicationResponse {
 
 class UpdateComponentConfigurationResponse {
   UpdateComponentConfigurationResponse();
+
   factory UpdateComponentConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateComponentConfigurationResponse();
@@ -3443,6 +3476,7 @@ class UpdateComponentConfigurationResponse {
 
 class UpdateComponentResponse {
   UpdateComponentResponse();
+
   factory UpdateComponentResponse.fromJson(Map<String, dynamic> _) {
     return UpdateComponentResponse();
   }
@@ -3463,6 +3497,7 @@ class UpdateLogPatternResponse {
     this.logPattern,
     this.resourceGroupName,
   });
+
   factory UpdateLogPatternResponse.fromJson(Map<String, dynamic> json) {
     return UpdateLogPatternResponse(
       logPattern: json['LogPattern'] != null

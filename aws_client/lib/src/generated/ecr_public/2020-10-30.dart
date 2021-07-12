@@ -1412,6 +1412,7 @@ class AuthorizationData {
     this.authorizationToken,
     this.expiresAt,
   });
+
   factory AuthorizationData.fromJson(Map<String, dynamic> json) {
     return AuthorizationData(
       authorizationToken: json['authorizationToken'] as String?,
@@ -1441,6 +1442,7 @@ class BatchCheckLayerAvailabilityResponse {
     this.failures,
     this.layers,
   });
+
   factory BatchCheckLayerAvailabilityResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchCheckLayerAvailabilityResponse(
@@ -1476,6 +1478,7 @@ class BatchDeleteImageResponse {
     this.failures,
     this.imageIds,
   });
+
   factory BatchDeleteImageResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteImageResponse(
       failures: (json['failures'] as List?)
@@ -1518,6 +1521,7 @@ class CompleteLayerUploadResponse {
     this.repositoryName,
     this.uploadId,
   });
+
   factory CompleteLayerUploadResponse.fromJson(Map<String, dynamic> json) {
     return CompleteLayerUploadResponse(
       layerDigest: json['layerDigest'] as String?,
@@ -1551,6 +1555,7 @@ class CreateRepositoryResponse {
     this.catalogData,
     this.repository,
   });
+
   factory CreateRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return CreateRepositoryResponse(
       catalogData: json['catalogData'] != null
@@ -1588,6 +1593,7 @@ class DeleteRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory DeleteRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -1615,6 +1621,7 @@ class DeleteRepositoryResponse {
   DeleteRepositoryResponse({
     this.repository,
   });
+
   factory DeleteRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRepositoryResponse(
       repository: json['repository'] != null
@@ -1646,6 +1653,7 @@ class DescribeImageTagsResponse {
     this.imageTagDetails,
     this.nextToken,
   });
+
   factory DescribeImageTagsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImageTagsResponse(
       imageTagDetails: (json['imageTagDetails'] as List?)
@@ -1681,6 +1689,7 @@ class DescribeImagesResponse {
     this.imageDetails,
     this.nextToken,
   });
+
   factory DescribeImagesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImagesResponse(
       imageDetails: (json['imageDetails'] as List?)
@@ -1716,6 +1725,7 @@ class DescribeRegistriesResponse {
     required this.registries,
     this.nextToken,
   });
+
   factory DescribeRegistriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRegistriesResponse(
       registries: (json['registries'] as List)
@@ -1751,6 +1761,7 @@ class DescribeRepositoriesResponse {
     this.nextToken,
     this.repositories,
   });
+
   factory DescribeRepositoriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRepositoriesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1778,6 +1789,7 @@ class GetAuthorizationTokenResponse {
   GetAuthorizationTokenResponse({
     this.authorizationData,
   });
+
   factory GetAuthorizationTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetAuthorizationTokenResponse(
       authorizationData: json['authorizationData'] != null
@@ -1802,6 +1814,7 @@ class GetRegistryCatalogDataResponse {
   GetRegistryCatalogDataResponse({
     required this.registryCatalogData,
   });
+
   factory GetRegistryCatalogDataResponse.fromJson(Map<String, dynamic> json) {
     return GetRegistryCatalogDataResponse(
       registryCatalogData: RegistryCatalogData.fromJson(
@@ -1824,6 +1837,7 @@ class GetRepositoryCatalogDataResponse {
   GetRepositoryCatalogDataResponse({
     this.catalogData,
   });
+
   factory GetRepositoryCatalogDataResponse.fromJson(Map<String, dynamic> json) {
     return GetRepositoryCatalogDataResponse(
       catalogData: json['catalogData'] != null
@@ -1857,6 +1871,7 @@ class GetRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory GetRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -1902,6 +1917,7 @@ class Image {
     this.registryId,
     this.repositoryName,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       imageId: json['imageId'] != null
@@ -1979,6 +1995,7 @@ class ImageDetail {
     this.registryId,
     this.repositoryName,
   });
+
   factory ImageDetail.fromJson(Map<String, dynamic> json) {
     return ImageDetail(
       artifactMediaType: json['artifactMediaType'] as String?,
@@ -2035,6 +2052,7 @@ class ImageFailure {
     this.failureReason,
     this.imageId,
   });
+
   factory ImageFailure.fromJson(Map<String, dynamic> json) {
     return ImageFailure(
       failureCode: (json['failureCode'] as String?)?.toImageFailureCode(),
@@ -2122,6 +2140,7 @@ class ImageIdentifier {
     this.imageDigest,
     this.imageTag,
   });
+
   factory ImageIdentifier.fromJson(Map<String, dynamic> json) {
     return ImageIdentifier(
       imageDigest: json['imageDigest'] as String?,
@@ -2155,6 +2174,7 @@ class ImageTagDetail {
     this.imageDetail,
     this.imageTag,
   });
+
   factory ImageTagDetail.fromJson(Map<String, dynamic> json) {
     return ImageTagDetail(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -2190,6 +2210,7 @@ class InitiateLayerUploadResponse {
     this.partSize,
     this.uploadId,
   });
+
   factory InitiateLayerUploadResponse.fromJson(Map<String, dynamic> json) {
     return InitiateLayerUploadResponse(
       partSize: json['partSize'] as int?,
@@ -2229,6 +2250,7 @@ class Layer {
     this.layerSize,
     this.mediaType,
   });
+
   factory Layer.fromJson(Map<String, dynamic> json) {
     return Layer(
       layerAvailability:
@@ -2298,6 +2320,7 @@ class LayerFailure {
     this.failureReason,
     this.layerDigest,
   });
+
   factory LayerFailure.fromJson(Map<String, dynamic> json) {
     return LayerFailure(
       failureCode: (json['failureCode'] as String?)?.toLayerFailureCode(),
@@ -2353,6 +2376,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -2377,6 +2401,7 @@ class PutImageResponse {
   PutImageResponse({
     this.image,
   });
+
   factory PutImageResponse.fromJson(Map<String, dynamic> json) {
     return PutImageResponse(
       image: json['image'] != null
@@ -2400,6 +2425,7 @@ class PutRegistryCatalogDataResponse {
   PutRegistryCatalogDataResponse({
     required this.registryCatalogData,
   });
+
   factory PutRegistryCatalogDataResponse.fromJson(Map<String, dynamic> json) {
     return PutRegistryCatalogDataResponse(
       registryCatalogData: RegistryCatalogData.fromJson(
@@ -2422,6 +2448,7 @@ class PutRepositoryCatalogDataResponse {
   PutRepositoryCatalogDataResponse({
     this.catalogData,
   });
+
   factory PutRepositoryCatalogDataResponse.fromJson(Map<String, dynamic> json) {
     return PutRepositoryCatalogDataResponse(
       catalogData: json['catalogData'] != null
@@ -2474,6 +2501,7 @@ class ReferencedImageDetail {
     this.imagePushedAt,
     this.imageSizeInBytes,
   });
+
   factory ReferencedImageDetail.fromJson(Map<String, dynamic> json) {
     return ReferencedImageDetail(
       artifactMediaType: json['artifactMediaType'] as String?,
@@ -2530,6 +2558,7 @@ class Registry {
     required this.registryUri,
     required this.verified,
   });
+
   factory Registry.fromJson(Map<String, dynamic> json) {
     return Registry(
       aliases: (json['aliases'] as List)
@@ -2592,6 +2621,7 @@ class RegistryAlias {
     required this.primaryRegistryAlias,
     required this.status,
   });
+
   factory RegistryAlias.fromJson(Map<String, dynamic> json) {
     return RegistryAlias(
       defaultRegistryAlias: json['defaultRegistryAlias'] as bool,
@@ -2661,6 +2691,7 @@ class RegistryCatalogData {
   RegistryCatalogData({
     this.displayName,
   });
+
   factory RegistryCatalogData.fromJson(Map<String, dynamic> json) {
     return RegistryCatalogData(
       displayName: json['displayName'] as String?,
@@ -2706,6 +2737,7 @@ class Repository {
     this.repositoryName,
     this.repositoryUri,
   });
+
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -2775,6 +2807,7 @@ class RepositoryCatalogData {
     this.operatingSystems,
     this.usageText,
   });
+
   factory RepositoryCatalogData.fromJson(Map<String, dynamic> json) {
     return RepositoryCatalogData(
       aboutText: json['aboutText'] as String?,
@@ -2891,6 +2924,7 @@ class RepositoryCatalogDataInput {
     this.operatingSystems,
     this.usageText,
   });
+
   factory RepositoryCatalogDataInput.fromJson(Map<String, dynamic> json) {
     return RepositoryCatalogDataInput(
       aboutText: json['aboutText'] as String?,
@@ -2942,6 +2976,7 @@ class SetRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory SetRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return SetRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -2979,6 +3014,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -2998,6 +3034,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3009,6 +3046,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3037,6 +3075,7 @@ class UploadLayerPartResponse {
     this.repositoryName,
     this.uploadId,
   });
+
   factory UploadLayerPartResponse.fromJson(Map<String, dynamic> json) {
     return UploadLayerPartResponse(
       lastByteReceived: json['lastByteReceived'] as int?,

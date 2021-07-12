@@ -582,6 +582,7 @@ class CreateSuiteDefinitionResponse {
     this.suiteDefinitionId,
     this.suiteDefinitionName,
   });
+
   factory CreateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return CreateSuiteDefinitionResponse(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -608,6 +609,7 @@ class CreateSuiteDefinitionResponse {
 
 class DeleteSuiteDefinitionResponse {
   DeleteSuiteDefinitionResponse();
+
   factory DeleteSuiteDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSuiteDefinitionResponse();
   }
@@ -629,6 +631,7 @@ class DeviceUnderTest {
     this.certificateArn,
     this.thingArn,
   });
+
   factory DeviceUnderTest.fromJson(Map<String, dynamic> json) {
     return DeviceUnderTest(
       certificateArn: json['certificateArn'] as String?,
@@ -681,6 +684,7 @@ class GetSuiteDefinitionResponse {
     this.suiteDefinitionVersion,
     this.tags,
   });
+
   factory GetSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return GetSuiteDefinitionResponse(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -730,6 +734,7 @@ class GetSuiteRunReportResponse {
   GetSuiteRunReportResponse({
     this.qualificationReportDownloadUrl,
   });
+
   factory GetSuiteRunReportResponse.fromJson(Map<String, dynamic> json) {
     return GetSuiteRunReportResponse(
       qualificationReportDownloadUrl:
@@ -793,6 +798,7 @@ class GetSuiteRunResponse {
     this.tags,
     this.testResult,
   });
+
   factory GetSuiteRunResponse.fromJson(Map<String, dynamic> json) {
     return GetSuiteRunResponse(
       endTime: timeStampFromJson(json['endTime']),
@@ -861,6 +867,7 @@ class GroupResult {
     this.groupName,
     this.tests,
   });
+
   factory GroupResult.fromJson(Map<String, dynamic> json) {
     return GroupResult(
       groupId: json['groupId'] as String?,
@@ -896,6 +903,7 @@ class ListSuiteDefinitionsResponse {
     this.nextToken,
     this.suiteDefinitionInformationList,
   });
+
   factory ListSuiteDefinitionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSuiteDefinitionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -931,6 +939,7 @@ class ListSuiteRunsResponse {
     this.nextToken,
     this.suiteRunsList,
   });
+
   factory ListSuiteRunsResponse.fromJson(Map<String, dynamic> json) {
     return ListSuiteRunsResponse(
       nextToken: json['nextToken'] as String?,
@@ -958,6 +967,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -988,6 +998,7 @@ class StartSuiteRunResponse {
     this.suiteRunArn,
     this.suiteRunId,
   });
+
   factory StartSuiteRunResponse.fromJson(Map<String, dynamic> json) {
     return StartSuiteRunResponse(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -1073,6 +1084,7 @@ extension on String {
 
 class StopSuiteRunResponse {
   StopSuiteRunResponse();
+
   factory StopSuiteRunResponse.fromJson(Map<String, dynamic> _) {
     return StopSuiteRunResponse();
   }
@@ -1106,6 +1118,7 @@ class SuiteDefinitionConfiguration {
     this.rootGroup,
     this.suiteDefinitionName,
   });
+
   factory SuiteDefinitionConfiguration.fromJson(Map<String, dynamic> json) {
     return SuiteDefinitionConfiguration(
       devicePermissionRoleArn: json['devicePermissionRoleArn'] as String?,
@@ -1162,6 +1175,7 @@ class SuiteDefinitionInformation {
     this.suiteDefinitionId,
     this.suiteDefinitionName,
   });
+
   factory SuiteDefinitionInformation.fromJson(Map<String, dynamic> json) {
     return SuiteDefinitionInformation(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -1205,6 +1219,7 @@ class SuiteRunConfiguration {
     this.primaryDevice,
     this.selectedTestList,
   });
+
   factory SuiteRunConfiguration.fromJson(Map<String, dynamic> json) {
     return SuiteRunConfiguration(
       primaryDevice: json['primaryDevice'] != null
@@ -1272,6 +1287,7 @@ class SuiteRunInformation {
     this.suiteDefinitionVersion,
     this.suiteRunId,
   });
+
   factory SuiteRunInformation.fromJson(Map<String, dynamic> json) {
     return SuiteRunInformation(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -1380,6 +1396,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1429,6 +1446,7 @@ class TestCaseRun {
     this.testCaseRunId,
     this.warnings,
   });
+
   factory TestCaseRun.fromJson(Map<String, dynamic> json) {
     return TestCaseRun(
       endTime: timeStampFromJson(json['endTime']),
@@ -1477,6 +1495,7 @@ class TestResult {
   TestResult({
     this.groups,
   });
+
   factory TestResult.fromJson(Map<String, dynamic> json) {
     return TestResult(
       groups: (json['groups'] as List?)
@@ -1496,6 +1515,7 @@ class TestResult {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1532,6 +1552,7 @@ class UpdateSuiteDefinitionResponse {
     this.suiteDefinitionName,
     this.suiteDefinitionVersion,
   });
+
   factory UpdateSuiteDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSuiteDefinitionResponse(
       createdAt: timeStampFromJson(json['createdAt']),

@@ -2443,6 +2443,7 @@ class CheckIfPhoneNumberIsOptedOutResponse {
   CheckIfPhoneNumberIsOptedOutResponse({
     this.isOptedOut,
   });
+
   factory CheckIfPhoneNumberIsOptedOutResponse.fromJson(
       Map<String, dynamic> json) {
     return CheckIfPhoneNumberIsOptedOutResponse(
@@ -2472,6 +2473,7 @@ class ConfirmSubscriptionResponse {
   ConfirmSubscriptionResponse({
     this.subscriptionArn,
   });
+
   factory ConfirmSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return ConfirmSubscriptionResponse(
       subscriptionArn: json['SubscriptionArn'] as String?,
@@ -2500,6 +2502,7 @@ class CreateEndpointResponse {
   CreateEndpointResponse({
     this.endpointArn,
   });
+
   factory CreateEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateEndpointResponse(
       endpointArn: json['EndpointArn'] as String?,
@@ -2528,6 +2531,7 @@ class CreatePlatformApplicationResponse {
   CreatePlatformApplicationResponse({
     this.platformApplicationArn,
   });
+
   factory CreatePlatformApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreatePlatformApplicationResponse(
@@ -2553,6 +2557,7 @@ class CreatePlatformApplicationResponse {
 
 class CreateSMSSandboxPhoneNumberResult {
   CreateSMSSandboxPhoneNumberResult();
+
   factory CreateSMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
     return CreateSMSSandboxPhoneNumberResult();
   }
@@ -2576,6 +2581,7 @@ class CreateTopicResponse {
   CreateTopicResponse({
     this.topicArn,
   });
+
   factory CreateTopicResponse.fromJson(Map<String, dynamic> json) {
     return CreateTopicResponse(
       topicArn: json['TopicArn'] as String?,
@@ -2598,6 +2604,7 @@ class CreateTopicResponse {
 
 class DeleteSMSSandboxPhoneNumberResult {
   DeleteSMSSandboxPhoneNumberResult();
+
   factory DeleteSMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
     return DeleteSMSSandboxPhoneNumberResult();
   }
@@ -2625,6 +2632,7 @@ class Endpoint {
     this.attributes,
     this.endpointArn,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -2687,6 +2695,7 @@ class GetEndpointAttributesResponse {
   GetEndpointAttributesResponse({
     this.attributes,
   });
+
   factory GetEndpointAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetEndpointAttributesResponse(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -2744,6 +2753,7 @@ class GetPlatformApplicationAttributesResponse {
   GetPlatformApplicationAttributesResponse({
     this.attributes,
   });
+
   factory GetPlatformApplicationAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetPlatformApplicationAttributesResponse(
@@ -2782,6 +2792,7 @@ class GetSMSAttributesResponse {
   GetSMSAttributesResponse({
     this.attributes,
   });
+
   factory GetSMSAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetSMSAttributesResponse(
       attributes: (json['attributes'] as Map<String, dynamic>?)
@@ -2818,6 +2829,7 @@ class GetSMSSandboxAccountStatusResult {
   GetSMSSandboxAccountStatusResult({
     required this.isInSandbox,
   });
+
   factory GetSMSSandboxAccountStatusResult.fromJson(Map<String, dynamic> json) {
     return GetSMSSandboxAccountStatusResult(
       isInSandbox: json['IsInSandbox'] as bool,
@@ -2920,6 +2932,7 @@ class GetSubscriptionAttributesResponse {
   GetSubscriptionAttributesResponse({
     this.attributes,
   });
+
   factory GetSubscriptionAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSubscriptionAttributesResponse(
@@ -3045,6 +3058,7 @@ class GetTopicAttributesResponse {
   GetTopicAttributesResponse({
     this.attributes,
   });
+
   factory GetTopicAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetTopicAttributesResponse(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -3171,6 +3185,7 @@ class ListEndpointsByPlatformApplicationResponse {
     this.endpoints,
     this.nextToken,
   });
+
   factory ListEndpointsByPlatformApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListEndpointsByPlatformApplicationResponse(
@@ -3214,6 +3229,7 @@ class ListOriginationNumbersResult {
     this.nextToken,
     this.phoneNumbers,
   });
+
   factory ListOriginationNumbersResult.fromJson(Map<String, dynamic> json) {
     return ListOriginationNumbersResult(
       nextToken: json['NextToken'] as String?,
@@ -3260,6 +3276,7 @@ class ListPhoneNumbersOptedOutResponse {
     this.nextToken,
     this.phoneNumbers,
   });
+
   factory ListPhoneNumbersOptedOutResponse.fromJson(Map<String, dynamic> json) {
     return ListPhoneNumbersOptedOutResponse(
       nextToken: json['nextToken'] as String?,
@@ -3302,6 +3319,7 @@ class ListPlatformApplicationsResponse {
     this.nextToken,
     this.platformApplications,
   });
+
   factory ListPlatformApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListPlatformApplicationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3348,6 +3366,7 @@ class ListSMSSandboxPhoneNumbersResult {
     required this.phoneNumbers,
     this.nextToken,
   });
+
   factory ListSMSSandboxPhoneNumbersResult.fromJson(Map<String, dynamic> json) {
     return ListSMSSandboxPhoneNumbersResult(
       phoneNumbers: (json['PhoneNumbers'] as List)
@@ -3393,6 +3412,7 @@ class ListSubscriptionsByTopicResponse {
     this.nextToken,
     this.subscriptions,
   });
+
   factory ListSubscriptionsByTopicResponse.fromJson(Map<String, dynamic> json) {
     return ListSubscriptionsByTopicResponse(
       nextToken: json['NextToken'] as String?,
@@ -3437,6 +3457,7 @@ class ListSubscriptionsResponse {
     this.nextToken,
     this.subscriptions,
   });
+
   factory ListSubscriptionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSubscriptionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3475,6 +3496,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -3512,6 +3534,7 @@ class ListTopicsResponse {
     this.nextToken,
     this.topics,
   });
+
   factory ListTopicsResponse.fromJson(Map<String, dynamic> json) {
     return ListTopicsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3576,6 +3599,7 @@ class MessageAttributeValue {
     this.binaryValue,
     this.stringValue,
   });
+
   factory MessageAttributeValue.fromJson(Map<String, dynamic> json) {
     return MessageAttributeValue(
       dataType: json['DataType'] as String,
@@ -3633,6 +3657,7 @@ extension on String {
 /// The response for the OptInPhoneNumber action.
 class OptInPhoneNumberResponse {
   OptInPhoneNumberResponse();
+
   factory OptInPhoneNumberResponse.fromJson(Map<String, dynamic> _) {
     return OptInPhoneNumberResponse();
   }
@@ -3677,6 +3702,7 @@ class PhoneNumberInformation {
     this.routeType,
     this.status,
   });
+
   factory PhoneNumberInformation.fromJson(Map<String, dynamic> json) {
     return PhoneNumberInformation(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -3738,6 +3764,7 @@ class PlatformApplication {
     this.attributes,
     this.platformApplicationArn,
   });
+
   factory PlatformApplication.fromJson(Map<String, dynamic> json) {
     return PlatformApplication(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -3792,6 +3819,7 @@ class PublishResponse {
     this.messageId,
     this.sequenceNumber,
   });
+
   factory PublishResponse.fromJson(Map<String, dynamic> json) {
     return PublishResponse(
       messageId: json['MessageId'] as String?,
@@ -3874,6 +3902,7 @@ class SMSSandboxPhoneNumber {
     this.phoneNumber,
     this.status,
   });
+
   factory SMSSandboxPhoneNumber.fromJson(Map<String, dynamic> json) {
     return SMSSandboxPhoneNumber(
       phoneNumber: json['PhoneNumber'] as String?,
@@ -3938,6 +3967,7 @@ extension on String {
 /// The response for the SetSMSAttributes action.
 class SetSMSAttributesResponse {
   SetSMSAttributesResponse();
+
   factory SetSMSAttributesResponse.fromJson(Map<String, dynamic> _) {
     return SetSMSAttributesResponse();
   }
@@ -3965,6 +3995,7 @@ class SubscribeResponse {
   SubscribeResponse({
     this.subscriptionArn,
   });
+
   factory SubscribeResponse.fromJson(Map<String, dynamic> json) {
     return SubscribeResponse(
       subscriptionArn: json['SubscriptionArn'] as String?,
@@ -4009,6 +4040,7 @@ class Subscription {
     this.subscriptionArn,
     this.topicArn,
   });
+
   factory Subscription.fromJson(Map<String, dynamic> json) {
     return Subscription(
       endpoint: json['Endpoint'] as String?,
@@ -4057,6 +4089,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -4083,6 +4116,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4107,6 +4141,7 @@ class Topic {
   Topic({
     this.topicArn,
   });
+
   factory Topic.fromJson(Map<String, dynamic> json) {
     return Topic(
       topicArn: json['TopicArn'] as String?,
@@ -4129,6 +4164,7 @@ class Topic {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4147,6 +4183,7 @@ class UntagResourceResponse {
 /// The destination phone number's verification status.
 class VerifySMSSandboxPhoneNumberResult {
   VerifySMSSandboxPhoneNumberResult();
+
   factory VerifySMSSandboxPhoneNumberResult.fromJson(Map<String, dynamic> _) {
     return VerifySMSSandboxPhoneNumberResult();
   }

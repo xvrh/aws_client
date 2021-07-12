@@ -226,6 +226,7 @@ ${builder.constructor()}
         write('\n  $name({${constructorMembers.join()}});');
       }
 
+      writeln('');
       final members = shape.members.toList();
       writeln(
           '\n  factory $name.fromJson(Map<String, dynamic> ${members.isEmpty ? '_' : 'json'}) {');
@@ -271,6 +272,7 @@ ${builder.constructor()}
         writeln('  }');
       }
 
+      writeln('');
       writeln('\n  Map<String, dynamic> toJson() {');
       for (var member in shape.members) {
         writeln('final ${member.fieldName} = this.${member.fieldName};');

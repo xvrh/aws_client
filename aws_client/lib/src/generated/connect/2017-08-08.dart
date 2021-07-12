@@ -5996,6 +5996,7 @@ class AssociateInstanceStorageConfigResponse {
   AssociateInstanceStorageConfigResponse({
     this.associationId,
   });
+
   factory AssociateInstanceStorageConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateInstanceStorageConfigResponse(
@@ -6019,6 +6020,7 @@ class AssociateSecurityKeyResponse {
   AssociateSecurityKeyResponse({
     this.associationId,
   });
+
   factory AssociateSecurityKeyResponse.fromJson(Map<String, dynamic> json) {
     return AssociateSecurityKeyResponse(
       associationId: json['AssociationId'] as String?,
@@ -6045,6 +6047,7 @@ class Attribute {
     this.attributeType,
     this.value,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       attributeType:
@@ -6108,6 +6111,7 @@ class ChatMessage {
     required this.content,
     required this.contentType,
   });
+
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
     return ChatMessage(
       content: json['Content'] as String,
@@ -6183,6 +6187,7 @@ class ContactFlow {
     this.tags,
     this.type,
   });
+
   factory ContactFlow.fromJson(Map<String, dynamic> json) {
     return ContactFlow(
       arn: json['Arn'] as String?,
@@ -6240,6 +6245,7 @@ class ContactFlowSummary {
     this.id,
     this.name,
   });
+
   factory ContactFlowSummary.fromJson(Map<String, dynamic> json) {
     return ContactFlowSummary(
       arn: json['Arn'] as String?,
@@ -6338,6 +6344,7 @@ class CreateContactFlowResponse {
     this.contactFlowArn,
     this.contactFlowId,
   });
+
   factory CreateContactFlowResponse.fromJson(Map<String, dynamic> json) {
     return CreateContactFlowResponse(
       contactFlowArn: json['ContactFlowArn'] as String?,
@@ -6366,6 +6373,7 @@ class CreateInstanceResponse {
     this.arn,
     this.id,
   });
+
   factory CreateInstanceResponse.fromJson(Map<String, dynamic> json) {
     return CreateInstanceResponse(
       arn: json['Arn'] as String?,
@@ -6394,6 +6402,7 @@ class CreateIntegrationAssociationResponse {
     this.integrationAssociationArn,
     this.integrationAssociationId,
   });
+
   factory CreateIntegrationAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateIntegrationAssociationResponse(
@@ -6425,6 +6434,7 @@ class CreateQueueResponse {
     this.queueArn,
     this.queueId,
   });
+
   factory CreateQueueResponse.fromJson(Map<String, dynamic> json) {
     return CreateQueueResponse(
       queueArn: json['QueueArn'] as String?,
@@ -6453,6 +6463,7 @@ class CreateQuickConnectResponse {
     this.quickConnectARN,
     this.quickConnectId,
   });
+
   factory CreateQuickConnectResponse.fromJson(Map<String, dynamic> json) {
     return CreateQuickConnectResponse(
       quickConnectARN: json['QuickConnectARN'] as String?,
@@ -6481,6 +6492,7 @@ class CreateRoutingProfileResponse {
     this.routingProfileArn,
     this.routingProfileId,
   });
+
   factory CreateRoutingProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateRoutingProfileResponse(
       routingProfileArn: json['RoutingProfileArn'] as String?,
@@ -6509,6 +6521,7 @@ class CreateUseCaseResponse {
     this.useCaseArn,
     this.useCaseId,
   });
+
   factory CreateUseCaseResponse.fromJson(Map<String, dynamic> json) {
     return CreateUseCaseResponse(
       useCaseArn: json['UseCaseArn'] as String?,
@@ -6537,6 +6550,7 @@ class CreateUserHierarchyGroupResponse {
     this.hierarchyGroupArn,
     this.hierarchyGroupId,
   });
+
   factory CreateUserHierarchyGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserHierarchyGroupResponse(
       hierarchyGroupArn: json['HierarchyGroupArn'] as String?,
@@ -6565,6 +6579,7 @@ class CreateUserResponse {
     this.userArn,
     this.userId,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       userArn: json['UserArn'] as String?,
@@ -6603,6 +6618,7 @@ class Credentials {
     this.refreshToken,
     this.refreshTokenExpiration,
   });
+
   factory Credentials.fromJson(Map<String, dynamic> json) {
     return Credentials(
       accessToken: json['AccessToken'] as String?,
@@ -6643,6 +6659,7 @@ class CurrentMetric {
     this.name,
     this.unit,
   });
+
   factory CurrentMetric.fromJson(Map<String, dynamic> json) {
     return CurrentMetric(
       name: (json['Name'] as String?)?.toCurrentMetricName(),
@@ -6672,6 +6689,7 @@ class CurrentMetricData {
     this.metric,
     this.value,
   });
+
   factory CurrentMetricData.fromJson(Map<String, dynamic> json) {
     return CurrentMetricData(
       metric: json['Metric'] != null
@@ -6787,6 +6805,7 @@ class CurrentMetricResult {
     this.collections,
     this.dimensions,
   });
+
   factory CurrentMetricResult.fromJson(Map<String, dynamic> json) {
     return CurrentMetricResult(
       collections: (json['Collections'] as List?)
@@ -6816,6 +6835,7 @@ class DescribeContactFlowResponse {
   DescribeContactFlowResponse({
     this.contactFlow,
   });
+
   factory DescribeContactFlowResponse.fromJson(Map<String, dynamic> json) {
     return DescribeContactFlowResponse(
       contactFlow: json['ContactFlow'] != null
@@ -6839,6 +6859,7 @@ class DescribeHoursOfOperationResponse {
   DescribeHoursOfOperationResponse({
     this.hoursOfOperation,
   });
+
   factory DescribeHoursOfOperationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHoursOfOperationResponse(
       hoursOfOperation: json['HoursOfOperation'] != null
@@ -6863,6 +6884,7 @@ class DescribeInstanceAttributeResponse {
   DescribeInstanceAttributeResponse({
     this.attribute,
   });
+
   factory DescribeInstanceAttributeResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstanceAttributeResponse(
@@ -6887,6 +6909,7 @@ class DescribeInstanceResponse {
   DescribeInstanceResponse({
     this.instance,
   });
+
   factory DescribeInstanceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeInstanceResponse(
       instance: json['Instance'] != null
@@ -6910,6 +6933,7 @@ class DescribeInstanceStorageConfigResponse {
   DescribeInstanceStorageConfigResponse({
     this.storageConfig,
   });
+
   factory DescribeInstanceStorageConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstanceStorageConfigResponse(
@@ -6935,6 +6959,7 @@ class DescribeQueueResponse {
   DescribeQueueResponse({
     this.queue,
   });
+
   factory DescribeQueueResponse.fromJson(Map<String, dynamic> json) {
     return DescribeQueueResponse(
       queue: json['Queue'] != null
@@ -6958,6 +6983,7 @@ class DescribeQuickConnectResponse {
   DescribeQuickConnectResponse({
     this.quickConnect,
   });
+
   factory DescribeQuickConnectResponse.fromJson(Map<String, dynamic> json) {
     return DescribeQuickConnectResponse(
       quickConnect: json['QuickConnect'] != null
@@ -6981,6 +7007,7 @@ class DescribeRoutingProfileResponse {
   DescribeRoutingProfileResponse({
     this.routingProfile,
   });
+
   factory DescribeRoutingProfileResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRoutingProfileResponse(
       routingProfile: json['RoutingProfile'] != null
@@ -7005,6 +7032,7 @@ class DescribeUserHierarchyGroupResponse {
   DescribeUserHierarchyGroupResponse({
     this.hierarchyGroup,
   });
+
   factory DescribeUserHierarchyGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeUserHierarchyGroupResponse(
@@ -7030,6 +7058,7 @@ class DescribeUserHierarchyStructureResponse {
   DescribeUserHierarchyStructureResponse({
     this.hierarchyStructure,
   });
+
   factory DescribeUserHierarchyStructureResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeUserHierarchyStructureResponse(
@@ -7055,6 +7084,7 @@ class DescribeUserResponse {
   DescribeUserResponse({
     this.user,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       user: json['User'] != null
@@ -7083,6 +7113,7 @@ class Dimensions {
     this.channel,
     this.queue,
   });
+
   factory Dimensions.fromJson(Map<String, dynamic> json) {
     return Dimensions(
       channel: (json['Channel'] as String?)?.toChannel(),
@@ -7147,6 +7178,7 @@ class EncryptionConfig {
     required this.encryptionType,
     required this.keyId,
   });
+
   factory EncryptionConfig.fromJson(Map<String, dynamic> json) {
     return EncryptionConfig(
       encryptionType: (json['EncryptionType'] as String).toEncryptionType(),
@@ -7200,6 +7232,7 @@ class Filters {
     this.channels,
     this.queues,
   });
+
   factory Filters.fromJson(Map<String, dynamic> json) {
     return Filters(
       channels: (json['Channels'] as List?)
@@ -7231,6 +7264,7 @@ class GetContactAttributesResponse {
   GetContactAttributesResponse({
     this.attributes,
   });
+
   factory GetContactAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetContactAttributesResponse(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -7266,6 +7300,7 @@ class GetCurrentMetricDataResponse {
     this.metricResults,
     this.nextToken,
   });
+
   factory GetCurrentMetricDataResponse.fromJson(Map<String, dynamic> json) {
     return GetCurrentMetricDataResponse(
       dataSnapshotTime: timeStampFromJson(json['DataSnapshotTime']),
@@ -7297,6 +7332,7 @@ class GetFederationTokenResponse {
   GetFederationTokenResponse({
     this.credentials,
   });
+
   factory GetFederationTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetFederationTokenResponse(
       credentials: json['Credentials'] != null
@@ -7331,6 +7367,7 @@ class GetMetricDataResponse {
     this.metricResults,
     this.nextToken,
   });
+
   factory GetMetricDataResponse.fromJson(Map<String, dynamic> json) {
     return GetMetricDataResponse(
       metricResults: (json['MetricResults'] as List?)
@@ -7404,6 +7441,7 @@ class HierarchyGroup {
     this.levelId,
     this.name,
   });
+
   factory HierarchyGroup.fromJson(Map<String, dynamic> json) {
     return HierarchyGroup(
       arn: json['Arn'] as String?,
@@ -7449,6 +7487,7 @@ class HierarchyGroupSummary {
     this.id,
     this.name,
   });
+
   factory HierarchyGroupSummary.fromJson(Map<String, dynamic> json) {
     return HierarchyGroupSummary(
       arn: json['Arn'] as String?,
@@ -7485,6 +7524,7 @@ class HierarchyLevel {
     this.id,
     this.name,
   });
+
   factory HierarchyLevel.fromJson(Map<String, dynamic> json) {
     return HierarchyLevel(
       arn: json['Arn'] as String?,
@@ -7513,6 +7553,7 @@ class HierarchyLevelUpdate {
   HierarchyLevelUpdate({
     required this.name,
   });
+
   factory HierarchyLevelUpdate.fromJson(Map<String, dynamic> json) {
     return HierarchyLevelUpdate(
       name: json['Name'] as String,
@@ -7551,6 +7592,7 @@ class HierarchyPath {
     this.levelThree,
     this.levelTwo,
   });
+
   factory HierarchyPath.fromJson(Map<String, dynamic> json) {
     return HierarchyPath(
       levelFive: json['LevelFive'] != null
@@ -7616,6 +7658,7 @@ class HierarchyStructure {
     this.levelThree,
     this.levelTwo,
   });
+
   factory HierarchyStructure.fromJson(Map<String, dynamic> json) {
     return HierarchyStructure(
       levelFive: json['LevelFive'] != null
@@ -7676,6 +7719,7 @@ class HierarchyStructureUpdate {
     this.levelThree,
     this.levelTwo,
   });
+
   factory HierarchyStructureUpdate.fromJson(Map<String, dynamic> json) {
     return HierarchyStructureUpdate(
       levelFive: json['LevelFive'] != null
@@ -7740,6 +7784,7 @@ class HistoricalMetric {
     this.threshold,
     this.unit,
   });
+
   factory HistoricalMetric.fromJson(Map<String, dynamic> json) {
     return HistoricalMetric(
       name: (json['Name'] as String?)?.toHistoricalMetricName(),
@@ -7777,6 +7822,7 @@ class HistoricalMetricData {
     this.metric,
     this.value,
   });
+
   factory HistoricalMetricData.fromJson(Map<String, dynamic> json) {
     return HistoricalMetricData(
       metric: json['Metric'] != null
@@ -7952,6 +7998,7 @@ class HistoricalMetricResult {
     this.collections,
     this.dimensions,
   });
+
   factory HistoricalMetricResult.fromJson(Map<String, dynamic> json) {
     return HistoricalMetricResult(
       collections: (json['Collections'] as List?)
@@ -8006,6 +8053,7 @@ class HoursOfOperation {
     this.tags,
     this.timeZone,
   });
+
   factory HoursOfOperation.fromJson(Map<String, dynamic> json) {
     return HoursOfOperation(
       config: (json['Config'] as List?)
@@ -8060,6 +8108,7 @@ class HoursOfOperationConfig {
     this.endTime,
     this.startTime,
   });
+
   factory HoursOfOperationConfig.fromJson(Map<String, dynamic> json) {
     return HoursOfOperationConfig(
       day: (json['Day'] as String?)?.toHoursOfOperationDays(),
@@ -8155,6 +8204,7 @@ class HoursOfOperationSummary {
     this.id,
     this.name,
   });
+
   factory HoursOfOperationSummary.fromJson(Map<String, dynamic> json) {
     return HoursOfOperationSummary(
       arn: json['Arn'] as String?,
@@ -8187,6 +8237,7 @@ class HoursOfOperationTimeSlice {
     this.hours,
     this.minutes,
   });
+
   factory HoursOfOperationTimeSlice.fromJson(Map<String, dynamic> json) {
     return HoursOfOperationTimeSlice(
       hours: json['Hours'] as int?,
@@ -8249,6 +8300,7 @@ class Instance {
     this.serviceRole,
     this.statusReason,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       arn: json['Arn'] as String?,
@@ -8391,6 +8443,7 @@ class InstanceStatusReason {
   InstanceStatusReason({
     this.message,
   });
+
   factory InstanceStatusReason.fromJson(Map<String, dynamic> json) {
     return InstanceStatusReason(
       message: json['Message'] as String?,
@@ -8434,6 +8487,7 @@ class InstanceStorageConfig {
     this.kinesisVideoStreamConfig,
     this.s3Config,
   });
+
   factory InstanceStorageConfig.fromJson(Map<String, dynamic> json) {
     return InstanceStorageConfig(
       storageType: (json['StorageType'] as String).toStorageType(),
@@ -8565,6 +8619,7 @@ class InstanceSummary {
     this.outboundCallsEnabled,
     this.serviceRole,
   });
+
   factory InstanceSummary.fromJson(Map<String, dynamic> json) {
     return InstanceSummary(
       arn: json['Arn'] as String?,
@@ -8644,6 +8699,7 @@ class IntegrationAssociationSummary {
     this.sourceApplicationUrl,
     this.sourceType,
   });
+
   factory IntegrationAssociationSummary.fromJson(Map<String, dynamic> json) {
     return IntegrationAssociationSummary(
       instanceId: json['InstanceId'] as String?,
@@ -8715,6 +8771,7 @@ class KinesisFirehoseConfig {
   KinesisFirehoseConfig({
     required this.firehoseArn,
   });
+
   factory KinesisFirehoseConfig.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseConfig(
       firehoseArn: json['FirehoseArn'] as String,
@@ -8737,6 +8794,7 @@ class KinesisStreamConfig {
   KinesisStreamConfig({
     required this.streamArn,
   });
+
   factory KinesisStreamConfig.fromJson(Map<String, dynamic> json) {
     return KinesisStreamConfig(
       streamArn: json['StreamArn'] as String,
@@ -8770,6 +8828,7 @@ class KinesisVideoStreamConfig {
     required this.prefix,
     required this.retentionPeriodHours,
   });
+
   factory KinesisVideoStreamConfig.fromJson(Map<String, dynamic> json) {
     return KinesisVideoStreamConfig(
       encryptionConfig: EncryptionConfig.fromJson(
@@ -8803,6 +8862,7 @@ class LexBot {
     this.lexRegion,
     this.name,
   });
+
   factory LexBot.fromJson(Map<String, dynamic> json) {
     return LexBot(
       lexRegion: json['LexRegion'] as String?,
@@ -8831,6 +8891,7 @@ class LexBotConfig {
     this.lexBot,
     this.lexV2Bot,
   });
+
   factory LexBotConfig.fromJson(Map<String, dynamic> json) {
     return LexBotConfig(
       lexBot: json['LexBot'] != null
@@ -8860,6 +8921,7 @@ class LexV2Bot {
   LexV2Bot({
     this.aliasArn,
   });
+
   factory LexV2Bot.fromJson(Map<String, dynamic> json) {
     return LexV2Bot(
       aliasArn: json['AliasArn'] as String?,
@@ -8914,6 +8976,7 @@ class ListApprovedOriginsResponse {
     this.nextToken,
     this.origins,
   });
+
   factory ListApprovedOriginsResponse.fromJson(Map<String, dynamic> json) {
     return ListApprovedOriginsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8947,6 +9010,7 @@ class ListBotsResponse {
     this.lexBots,
     this.nextToken,
   });
+
   factory ListBotsResponse.fromJson(Map<String, dynamic> json) {
     return ListBotsResponse(
       lexBots: (json['LexBots'] as List?)
@@ -8979,6 +9043,7 @@ class ListContactFlowsResponse {
     this.contactFlowSummaryList,
     this.nextToken,
   });
+
   factory ListContactFlowsResponse.fromJson(Map<String, dynamic> json) {
     return ListContactFlowsResponse(
       contactFlowSummaryList: (json['ContactFlowSummaryList'] as List?)
@@ -9012,6 +9077,7 @@ class ListHoursOfOperationsResponse {
     this.hoursOfOperationSummaryList,
     this.nextToken,
   });
+
   factory ListHoursOfOperationsResponse.fromJson(Map<String, dynamic> json) {
     return ListHoursOfOperationsResponse(
       hoursOfOperationSummaryList:
@@ -9047,6 +9113,7 @@ class ListInstanceAttributesResponse {
     this.attributes,
     this.nextToken,
   });
+
   factory ListInstanceAttributesResponse.fromJson(Map<String, dynamic> json) {
     return ListInstanceAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -9079,6 +9146,7 @@ class ListInstanceStorageConfigsResponse {
     this.nextToken,
     this.storageConfigs,
   });
+
   factory ListInstanceStorageConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListInstanceStorageConfigsResponse(
@@ -9112,6 +9180,7 @@ class ListInstancesResponse {
     this.instanceSummaryList,
     this.nextToken,
   });
+
   factory ListInstancesResponse.fromJson(Map<String, dynamic> json) {
     return ListInstancesResponse(
       instanceSummaryList: (json['InstanceSummaryList'] as List?)
@@ -9145,6 +9214,7 @@ class ListIntegrationAssociationsResponse {
     this.integrationAssociationSummaryList,
     this.nextToken,
   });
+
   factory ListIntegrationAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListIntegrationAssociationsResponse(
@@ -9182,6 +9252,7 @@ class ListLambdaFunctionsResponse {
     this.lambdaFunctions,
     this.nextToken,
   });
+
   factory ListLambdaFunctionsResponse.fromJson(Map<String, dynamic> json) {
     return ListLambdaFunctionsResponse(
       lambdaFunctions: (json['LambdaFunctions'] as List?)
@@ -9215,6 +9286,7 @@ class ListLexBotsResponse {
     this.lexBots,
     this.nextToken,
   });
+
   factory ListLexBotsResponse.fromJson(Map<String, dynamic> json) {
     return ListLexBotsResponse(
       lexBots: (json['LexBots'] as List?)
@@ -9247,6 +9319,7 @@ class ListPhoneNumbersResponse {
     this.nextToken,
     this.phoneNumberSummaryList,
   });
+
   factory ListPhoneNumbersResponse.fromJson(Map<String, dynamic> json) {
     return ListPhoneNumbersResponse(
       nextToken: json['NextToken'] as String?,
@@ -9280,6 +9353,7 @@ class ListPromptsResponse {
     this.nextToken,
     this.promptSummaryList,
   });
+
   factory ListPromptsResponse.fromJson(Map<String, dynamic> json) {
     return ListPromptsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9312,6 +9386,7 @@ class ListQueueQuickConnectsResponse {
     this.nextToken,
     this.quickConnectSummaryList,
   });
+
   factory ListQueueQuickConnectsResponse.fromJson(Map<String, dynamic> json) {
     return ListQueueQuickConnectsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9345,6 +9420,7 @@ class ListQueuesResponse {
     this.nextToken,
     this.queueSummaryList,
   });
+
   factory ListQueuesResponse.fromJson(Map<String, dynamic> json) {
     return ListQueuesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9377,6 +9453,7 @@ class ListQuickConnectsResponse {
     this.nextToken,
     this.quickConnectSummaryList,
   });
+
   factory ListQuickConnectsResponse.fromJson(Map<String, dynamic> json) {
     return ListQuickConnectsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9411,6 +9488,7 @@ class ListRoutingProfileQueuesResponse {
     this.nextToken,
     this.routingProfileQueueConfigSummaryList,
   });
+
   factory ListRoutingProfileQueuesResponse.fromJson(Map<String, dynamic> json) {
     return ListRoutingProfileQueuesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9448,6 +9526,7 @@ class ListRoutingProfilesResponse {
     this.nextToken,
     this.routingProfileSummaryList,
   });
+
   factory ListRoutingProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListRoutingProfilesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9481,6 +9560,7 @@ class ListSecurityKeysResponse {
     this.nextToken,
     this.securityKeys,
   });
+
   factory ListSecurityKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListSecurityKeysResponse(
       nextToken: json['NextToken'] as String?,
@@ -9513,6 +9593,7 @@ class ListSecurityProfilesResponse {
     this.nextToken,
     this.securityProfileSummaryList,
   });
+
   factory ListSecurityProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListSecurityProfilesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9542,6 +9623,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -9569,6 +9651,7 @@ class ListUseCasesResponse {
     this.nextToken,
     this.useCaseSummaryList,
   });
+
   factory ListUseCasesResponse.fromJson(Map<String, dynamic> json) {
     return ListUseCasesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9601,6 +9684,7 @@ class ListUserHierarchyGroupsResponse {
     this.nextToken,
     this.userHierarchyGroupSummaryList,
   });
+
   factory ListUserHierarchyGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserHierarchyGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9635,6 +9719,7 @@ class ListUsersResponse {
     this.nextToken,
     this.userSummaryList,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       nextToken: json['NextToken'] as String?,
@@ -9674,6 +9759,7 @@ class MediaConcurrency {
     required this.channel,
     required this.concurrency,
   });
+
   factory MediaConcurrency.fromJson(Map<String, dynamic> json) {
     return MediaConcurrency(
       channel: (json['Channel'] as String).toChannel(),
@@ -9707,6 +9793,7 @@ class OutboundCallerConfig {
     this.outboundCallerIdNumberId,
     this.outboundFlowId,
   });
+
   factory OutboundCallerConfig.fromJson(Map<String, dynamic> json) {
     return OutboundCallerConfig(
       outboundCallerIdName: json['OutboundCallerIdName'] as String?,
@@ -9737,6 +9824,7 @@ class ParticipantDetails {
   ParticipantDetails({
     required this.displayName,
   });
+
   factory ParticipantDetails.fromJson(Map<String, dynamic> json) {
     return ParticipantDetails(
       displayName: json['DisplayName'] as String,
@@ -10962,6 +11050,7 @@ class PhoneNumberQuickConnectConfig {
   PhoneNumberQuickConnectConfig({
     required this.phoneNumber,
   });
+
   factory PhoneNumberQuickConnectConfig.fromJson(Map<String, dynamic> json) {
     return PhoneNumberQuickConnectConfig(
       phoneNumber: json['PhoneNumber'] as String,
@@ -11000,6 +11089,7 @@ class PhoneNumberSummary {
     this.phoneNumberCountryCode,
     this.phoneNumberType,
   });
+
   factory PhoneNumberSummary.fromJson(Map<String, dynamic> json) {
     return PhoneNumberSummary(
       arn: json['Arn'] as String?,
@@ -11101,6 +11191,7 @@ class PromptSummary {
     this.id,
     this.name,
   });
+
   factory PromptSummary.fromJson(Map<String, dynamic> json) {
     return PromptSummary(
       arn: json['Arn'] as String?,
@@ -11162,6 +11253,7 @@ class Queue {
     this.status,
     this.tags,
   });
+
   factory Queue.fromJson(Map<String, dynamic> json) {
     return Queue(
       description: json['Description'] as String?,
@@ -11218,6 +11310,7 @@ class QueueQuickConnectConfig {
     required this.contactFlowId,
     required this.queueId,
   });
+
   factory QueueQuickConnectConfig.fromJson(Map<String, dynamic> json) {
     return QueueQuickConnectConfig(
       contactFlowId: json['ContactFlowId'] as String,
@@ -11247,6 +11340,7 @@ class QueueReference {
     this.arn,
     this.id,
   });
+
   factory QueueReference.fromJson(Map<String, dynamic> json) {
     return QueueReference(
       arn: json['Arn'] as String?,
@@ -11312,6 +11406,7 @@ class QueueSummary {
     this.name,
     this.queueType,
   });
+
   factory QueueSummary.fromJson(Map<String, dynamic> json) {
     return QueueSummary(
       arn: json['Arn'] as String?,
@@ -11391,6 +11486,7 @@ class QuickConnect {
     this.quickConnectId,
     this.tags,
   });
+
   factory QuickConnect.fromJson(Map<String, dynamic> json) {
     return QuickConnect(
       description: json['Description'] as String?,
@@ -11447,6 +11543,7 @@ class QuickConnectConfig {
     this.queueConfig,
     this.userConfig,
   });
+
   factory QuickConnectConfig.fromJson(Map<String, dynamic> json) {
     return QuickConnectConfig(
       quickConnectType:
@@ -11502,6 +11599,7 @@ class QuickConnectSummary {
     this.name,
     this.quickConnectType,
   });
+
   factory QuickConnectSummary.fromJson(Map<String, dynamic> json) {
     return QuickConnectSummary(
       arn: json['Arn'] as String?,
@@ -11573,6 +11671,7 @@ class Reference {
     required this.type,
     required this.value,
   });
+
   factory Reference.fromJson(Map<String, dynamic> json) {
     return Reference(
       type: (json['Type'] as String).toReferenceType(),
@@ -11615,6 +11714,7 @@ extension on String {
 
 class ResumeContactRecordingResponse {
   ResumeContactRecordingResponse();
+
   factory ResumeContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return ResumeContactRecordingResponse();
   }
@@ -11662,6 +11762,7 @@ class RoutingProfile {
     this.routingProfileId,
     this.tags,
   });
+
   factory RoutingProfile.fromJson(Map<String, dynamic> json) {
     return RoutingProfile(
       defaultOutboundQueueId: json['DefaultOutboundQueueId'] as String?,
@@ -11725,6 +11826,7 @@ class RoutingProfileQueueConfig {
     required this.priority,
     required this.queueReference,
   });
+
   factory RoutingProfileQueueConfig.fromJson(Map<String, dynamic> json) {
     return RoutingProfileQueueConfig(
       delay: json['Delay'] as int,
@@ -11780,6 +11882,7 @@ class RoutingProfileQueueConfigSummary {
     required this.queueId,
     required this.queueName,
   });
+
   factory RoutingProfileQueueConfigSummary.fromJson(Map<String, dynamic> json) {
     return RoutingProfileQueueConfigSummary(
       channel: (json['Channel'] as String).toChannel(),
@@ -11822,6 +11925,7 @@ class RoutingProfileQueueReference {
     required this.channel,
     required this.queueId,
   });
+
   factory RoutingProfileQueueReference.fromJson(Map<String, dynamic> json) {
     return RoutingProfileQueueReference(
       channel: (json['Channel'] as String).toChannel(),
@@ -11855,6 +11959,7 @@ class RoutingProfileSummary {
     this.id,
     this.name,
   });
+
   factory RoutingProfileSummary.fromJson(Map<String, dynamic> json) {
     return RoutingProfileSummary(
       arn: json['Arn'] as String?,
@@ -11892,6 +11997,7 @@ class S3Config {
     required this.bucketPrefix,
     this.encryptionConfig,
   });
+
   factory S3Config.fromJson(Map<String, dynamic> json) {
     return S3Config(
       bucketName: json['BucketName'] as String,
@@ -11932,6 +12038,7 @@ class SecurityKey {
     this.creationTime,
     this.key,
   });
+
   factory SecurityKey.fromJson(Map<String, dynamic> json) {
     return SecurityKey(
       associationId: json['AssociationId'] as String?,
@@ -11969,6 +12076,7 @@ class SecurityProfileSummary {
     this.id,
     this.name,
   });
+
   factory SecurityProfileSummary.fromJson(Map<String, dynamic> json) {
     return SecurityProfileSummary(
       arn: json['Arn'] as String?,
@@ -12035,6 +12143,7 @@ class StartChatContactResponse {
     this.participantId,
     this.participantToken,
   });
+
   factory StartChatContactResponse.fromJson(Map<String, dynamic> json) {
     return StartChatContactResponse(
       contactId: json['ContactId'] as String?,
@@ -12057,6 +12166,7 @@ class StartChatContactResponse {
 
 class StartContactRecordingResponse {
   StartContactRecordingResponse();
+
   factory StartContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return StartContactRecordingResponse();
   }
@@ -12073,6 +12183,7 @@ class StartOutboundVoiceContactResponse {
   StartOutboundVoiceContactResponse({
     this.contactId,
   });
+
   factory StartOutboundVoiceContactResponse.fromJson(
       Map<String, dynamic> json) {
     return StartOutboundVoiceContactResponse(
@@ -12095,6 +12206,7 @@ class StartTaskContactResponse {
   StartTaskContactResponse({
     this.contactId,
   });
+
   factory StartTaskContactResponse.fromJson(Map<String, dynamic> json) {
     return StartTaskContactResponse(
       contactId: json['ContactId'] as String?,
@@ -12144,6 +12256,7 @@ extension on String {
 
 class StopContactRecordingResponse {
   StopContactRecordingResponse();
+
   factory StopContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return StopContactRecordingResponse();
   }
@@ -12155,6 +12268,7 @@ class StopContactRecordingResponse {
 
 class StopContactResponse {
   StopContactResponse();
+
   factory StopContactResponse.fromJson(Map<String, dynamic> _) {
     return StopContactResponse();
   }
@@ -12204,6 +12318,7 @@ extension on String {
 
 class SuspendContactRecordingResponse {
   SuspendContactRecordingResponse();
+
   factory SuspendContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return SuspendContactRecordingResponse();
   }
@@ -12225,6 +12340,7 @@ class Threshold {
     this.comparison,
     this.thresholdValue,
   });
+
   factory Threshold.fromJson(Map<String, dynamic> json) {
     return Threshold(
       comparison: (json['Comparison'] as String?)?.toComparison(),
@@ -12277,6 +12393,7 @@ extension on String {
 
 class UpdateContactAttributesResponse {
   UpdateContactAttributesResponse();
+
   factory UpdateContactAttributesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactAttributesResponse();
   }
@@ -12303,6 +12420,7 @@ class UseCase {
     this.useCaseId,
     this.useCaseType,
   });
+
   factory UseCase.fromJson(Map<String, dynamic> json) {
     return UseCase(
       useCaseArn: json['UseCaseArn'] as String?,
@@ -12391,6 +12509,7 @@ class User {
     this.tags,
     this.username,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       arn: json['Arn'] as String?,
@@ -12461,6 +12580,7 @@ class UserIdentityInfo {
     this.firstName,
     this.lastName,
   });
+
   factory UserIdentityInfo.fromJson(Map<String, dynamic> json) {
     return UserIdentityInfo(
       email: json['Email'] as String?,
@@ -12501,6 +12621,7 @@ class UserPhoneConfig {
     this.autoAccept,
     this.deskPhoneNumber,
   });
+
   factory UserPhoneConfig.fromJson(Map<String, dynamic> json) {
     return UserPhoneConfig(
       phoneType: (json['PhoneType'] as String).toPhoneType(),
@@ -12538,6 +12659,7 @@ class UserQuickConnectConfig {
     required this.contactFlowId,
     required this.userId,
   });
+
   factory UserQuickConnectConfig.fromJson(Map<String, dynamic> json) {
     return UserQuickConnectConfig(
       contactFlowId: json['ContactFlowId'] as String,
@@ -12571,6 +12693,7 @@ class UserSummary {
     this.id,
     this.username,
   });
+
   factory UserSummary.fromJson(Map<String, dynamic> json) {
     return UserSummary(
       arn: json['Arn'] as String?,
@@ -12599,6 +12722,7 @@ class VoiceRecordingConfiguration {
   VoiceRecordingConfiguration({
     this.voiceRecordingTrack,
   });
+
   factory VoiceRecordingConfiguration.fromJson(Map<String, dynamic> json) {
     return VoiceRecordingConfiguration(
       voiceRecordingTrack:

@@ -60,6 +60,7 @@ class InputShape {
   InputShape({
     this.structureParam,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       structureParam: json['StructureParam'] != null
@@ -98,6 +99,7 @@ class StructureShape {
   StructureShape({
     this.b,
   });
+
   factory StructureShape.fromJson(Map<String, dynamic> json) {
     return StructureShape(
       b: _s.decodeNullableUint8List(json['b'] as String?),

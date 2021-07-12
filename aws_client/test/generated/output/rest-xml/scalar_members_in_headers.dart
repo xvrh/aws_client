@@ -80,6 +80,7 @@ class OutputShape {
     this.timestamp,
     this.trueBool,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       char: json['x-char'] as String?,

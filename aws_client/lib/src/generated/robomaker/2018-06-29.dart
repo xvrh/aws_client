@@ -2734,6 +2734,7 @@ class BatchDeleteWorldsResponse {
   BatchDeleteWorldsResponse({
     this.unprocessedWorlds,
   });
+
   factory BatchDeleteWorldsResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteWorldsResponse(
       unprocessedWorlds: (json['unprocessedWorlds'] as List?)
@@ -2762,6 +2763,7 @@ class BatchDescribeSimulationJobResponse {
     this.jobs,
     this.unprocessedJobs,
   });
+
   factory BatchDescribeSimulationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDescribeSimulationJobResponse(
@@ -2810,6 +2812,7 @@ class BatchPolicy {
     this.maxConcurrency,
     this.timeoutInSeconds,
   });
+
   factory BatchPolicy.fromJson(Map<String, dynamic> json) {
     return BatchPolicy(
       maxConcurrency: json['maxConcurrency'] as int?,
@@ -2829,6 +2832,7 @@ class BatchPolicy {
 
 class CancelDeploymentJobResponse {
   CancelDeploymentJobResponse();
+
   factory CancelDeploymentJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelDeploymentJobResponse();
   }
@@ -2840,6 +2844,7 @@ class CancelDeploymentJobResponse {
 
 class CancelSimulationJobBatchResponse {
   CancelSimulationJobBatchResponse();
+
   factory CancelSimulationJobBatchResponse.fromJson(Map<String, dynamic> _) {
     return CancelSimulationJobBatchResponse();
   }
@@ -2851,6 +2856,7 @@ class CancelSimulationJobBatchResponse {
 
 class CancelSimulationJobResponse {
   CancelSimulationJobResponse();
+
   factory CancelSimulationJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelSimulationJobResponse();
   }
@@ -2862,6 +2868,7 @@ class CancelSimulationJobResponse {
 
 class CancelWorldExportJobResponse {
   CancelWorldExportJobResponse();
+
   factory CancelWorldExportJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelWorldExportJobResponse();
   }
@@ -2873,6 +2880,7 @@ class CancelWorldExportJobResponse {
 
 class CancelWorldGenerationJobResponse {
   CancelWorldGenerationJobResponse();
+
   factory CancelWorldGenerationJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelWorldGenerationJobResponse();
   }
@@ -2893,6 +2901,7 @@ class Compute {
   Compute({
     this.simulationUnitLimit,
   });
+
   factory Compute.fromJson(Map<String, dynamic> json) {
     return Compute(
       simulationUnitLimit: json['simulationUnitLimit'] as int?,
@@ -2919,6 +2928,7 @@ class ComputeResponse {
   ComputeResponse({
     this.simulationUnitLimit,
   });
+
   factory ComputeResponse.fromJson(Map<String, dynamic> json) {
     return ComputeResponse(
       simulationUnitLimit: json['simulationUnitLimit'] as int?,
@@ -3008,6 +3018,7 @@ class CreateDeploymentJobResponse {
     this.status,
     this.tags,
   });
+
   factory CreateDeploymentJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentJobResponse(
       arn: json['arn'] as String?,
@@ -3075,6 +3086,7 @@ class CreateFleetResponse {
     this.name,
     this.tags,
   });
+
   factory CreateFleetResponse.fromJson(Map<String, dynamic> json) {
     return CreateFleetResponse(
       arn: json['arn'] as String?,
@@ -3135,6 +3147,7 @@ class CreateRobotApplicationResponse {
     this.tags,
     this.version,
   });
+
   factory CreateRobotApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateRobotApplicationResponse(
       arn: json['arn'] as String?,
@@ -3210,6 +3223,7 @@ class CreateRobotApplicationVersionResponse {
     this.sources,
     this.version,
   });
+
   factory CreateRobotApplicationVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateRobotApplicationVersionResponse(
@@ -3278,6 +3292,7 @@ class CreateRobotResponse {
     this.name,
     this.tags,
   });
+
   factory CreateRobotResponse.fromJson(Map<String, dynamic> json) {
     return CreateRobotResponse(
       architecture: (json['architecture'] as String?)?.toArchitecture(),
@@ -3352,6 +3367,7 @@ class CreateSimulationApplicationResponse {
     this.tags,
     this.version,
   });
+
   factory CreateSimulationApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateSimulationApplicationResponse(
@@ -3449,6 +3465,7 @@ class CreateSimulationApplicationVersionResponse {
     this.sources,
     this.version,
   });
+
   factory CreateSimulationApplicationVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateSimulationApplicationVersionResponse(
@@ -3612,6 +3629,7 @@ class CreateSimulationJobResponse {
     this.tags,
     this.vpcConfig,
   });
+
   factory CreateSimulationJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateSimulationJobResponse(
       arn: json['arn'] as String?,
@@ -3775,6 +3793,7 @@ class CreateWorldExportJobResponse {
     this.status,
     this.tags,
   });
+
   factory CreateWorldExportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorldExportJobResponse(
       arn: json['arn'] as String?,
@@ -3886,6 +3905,7 @@ class CreateWorldGenerationJobResponse {
     this.worldCount,
     this.worldTags,
   });
+
   factory CreateWorldGenerationJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorldGenerationJobResponse(
       arn: json['arn'] as String?,
@@ -3955,6 +3975,7 @@ class CreateWorldTemplateResponse {
     this.name,
     this.tags,
   });
+
   factory CreateWorldTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorldTemplateResponse(
       arn: json['arn'] as String?,
@@ -3998,6 +4019,7 @@ class DataSource {
     this.s3Bucket,
     this.s3Keys,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       name: json['name'] as String?,
@@ -4037,6 +4059,7 @@ class DataSourceConfig {
     required this.s3Bucket,
     required this.s3Keys,
   });
+
   factory DataSourceConfig.fromJson(Map<String, dynamic> json) {
     return DataSourceConfig(
       name: json['name'] as String,
@@ -4062,6 +4085,7 @@ class DataSourceConfig {
 
 class DeleteFleetResponse {
   DeleteFleetResponse();
+
   factory DeleteFleetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFleetResponse();
   }
@@ -4073,6 +4097,7 @@ class DeleteFleetResponse {
 
 class DeleteRobotApplicationResponse {
   DeleteRobotApplicationResponse();
+
   factory DeleteRobotApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRobotApplicationResponse();
   }
@@ -4084,6 +4109,7 @@ class DeleteRobotApplicationResponse {
 
 class DeleteRobotResponse {
   DeleteRobotResponse();
+
   factory DeleteRobotResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRobotResponse();
   }
@@ -4095,6 +4121,7 @@ class DeleteRobotResponse {
 
 class DeleteSimulationApplicationResponse {
   DeleteSimulationApplicationResponse();
+
   factory DeleteSimulationApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSimulationApplicationResponse();
   }
@@ -4106,6 +4133,7 @@ class DeleteSimulationApplicationResponse {
 
 class DeleteWorldTemplateResponse {
   DeleteWorldTemplateResponse();
+
   factory DeleteWorldTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorldTemplateResponse();
   }
@@ -4131,6 +4159,7 @@ class DeploymentApplicationConfig {
     required this.applicationVersion,
     required this.launchConfig,
   });
+
   factory DeploymentApplicationConfig.fromJson(Map<String, dynamic> json) {
     return DeploymentApplicationConfig(
       application: json['application'] as String,
@@ -4173,6 +4202,7 @@ class DeploymentConfig {
     this.failureThresholdPercentage,
     this.robotDeploymentTimeoutInSeconds,
   });
+
   factory DeploymentConfig.fromJson(Map<String, dynamic> json) {
     return DeploymentConfig(
       concurrentDeploymentPercentage:
@@ -4243,6 +4273,7 @@ class DeploymentJob {
     this.fleet,
     this.status,
   });
+
   factory DeploymentJob.fromJson(Map<String, dynamic> json) {
     return DeploymentJob(
       arn: json['arn'] as String?,
@@ -4452,6 +4483,7 @@ class DeploymentLaunchConfig {
     this.postLaunchFile,
     this.preLaunchFile,
   });
+
   factory DeploymentLaunchConfig.fromJson(Map<String, dynamic> json) {
     return DeploymentLaunchConfig(
       launchFile: json['launchFile'] as String,
@@ -4540,6 +4572,7 @@ class DeregisterRobotResponse {
     this.fleet,
     this.robot,
   });
+
   factory DeregisterRobotResponse.fromJson(Map<String, dynamic> json) {
     return DeregisterRobotResponse(
       fleet: json['fleet'] as String?,
@@ -4601,6 +4634,7 @@ class DescribeDeploymentJobResponse {
     this.status,
     this.tags,
   });
+
   factory DescribeDeploymentJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDeploymentJobResponse(
       arn: json['arn'] as String?,
@@ -4691,6 +4725,7 @@ class DescribeFleetResponse {
     this.robots,
     this.tags,
   });
+
   factory DescribeFleetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFleetResponse(
       arn: json['arn'] as String?,
@@ -4769,6 +4804,7 @@ class DescribeRobotApplicationResponse {
     this.tags,
     this.version,
   });
+
   factory DescribeRobotApplicationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRobotApplicationResponse(
       arn: json['arn'] as String?,
@@ -4855,6 +4891,7 @@ class DescribeRobotResponse {
     this.status,
     this.tags,
   });
+
   factory DescribeRobotResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRobotResponse(
       architecture: (json['architecture'] as String?)?.toArchitecture(),
@@ -4942,6 +4979,7 @@ class DescribeSimulationApplicationResponse {
     this.tags,
     this.version,
   });
+
   factory DescribeSimulationApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSimulationApplicationResponse(
@@ -5088,6 +5126,7 @@ class DescribeSimulationJobBatchResponse {
     this.status,
     this.tags,
   });
+
   factory DescribeSimulationJobBatchResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSimulationJobBatchResponse(
@@ -5276,6 +5315,7 @@ class DescribeSimulationJobResponse {
     this.tags,
     this.vpcConfig,
   });
+
   factory DescribeSimulationJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSimulationJobResponse(
       arn: json['arn'] as String?,
@@ -5454,6 +5494,7 @@ class DescribeWorldExportJobResponse {
     this.tags,
     this.worlds,
   });
+
   factory DescribeWorldExportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorldExportJobResponse(
       arn: json['arn'] as String?,
@@ -5582,6 +5623,7 @@ class DescribeWorldGenerationJobResponse {
     this.worldCount,
     this.worldTags,
   });
+
   factory DescribeWorldGenerationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeWorldGenerationJobResponse(
@@ -5660,6 +5702,7 @@ class DescribeWorldResponse {
     this.tags,
     this.template,
   });
+
   factory DescribeWorldResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorldResponse(
       arn: json['arn'] as String?,
@@ -5718,6 +5761,7 @@ class DescribeWorldTemplateResponse {
     this.name,
     this.tags,
   });
+
   factory DescribeWorldTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorldTemplateResponse(
       arn: json['arn'] as String?,
@@ -5798,6 +5842,7 @@ class FailedCreateSimulationJobRequest {
     this.failureReason,
     this.request,
   });
+
   factory FailedCreateSimulationJobRequest.fromJson(Map<String, dynamic> json) {
     return FailedCreateSimulationJobRequest(
       failedAt: timeStampFromJson(json['failedAt']),
@@ -5864,6 +5909,7 @@ class FailureSummary {
     this.failures,
     this.totalFailureCount,
   });
+
   factory FailureSummary.fromJson(Map<String, dynamic> json) {
     return FailureSummary(
       failures: (json['failures'] as List?)
@@ -5896,6 +5942,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['name'] as String?,
@@ -5932,6 +5979,7 @@ class FinishedWorldsSummary {
     this.finishedCount,
     this.succeededWorlds,
   });
+
   factory FinishedWorldsSummary.fromJson(Map<String, dynamic> json) {
     return FinishedWorldsSummary(
       failureSummary: json['failureSummary'] != null
@@ -5986,6 +6034,7 @@ class Fleet {
     this.lastDeploymentTime,
     this.name,
   });
+
   factory Fleet.fromJson(Map<String, dynamic> json) {
     return Fleet(
       arn: json['arn'] as String?,
@@ -6025,6 +6074,7 @@ class GetWorldTemplateBodyResponse {
   GetWorldTemplateBodyResponse({
     this.templateBody,
   });
+
   factory GetWorldTemplateBodyResponse.fromJson(Map<String, dynamic> json) {
     return GetWorldTemplateBodyResponse(
       templateBody: json['templateBody'] as String?,
@@ -6067,6 +6117,7 @@ class LaunchConfig {
     this.portForwardingConfig,
     this.streamUI,
   });
+
   factory LaunchConfig.fromJson(Map<String, dynamic> json) {
     return LaunchConfig(
       launchFile: json['launchFile'] as String,
@@ -6116,6 +6167,7 @@ class ListDeploymentJobsResponse {
     this.deploymentJobs,
     this.nextToken,
   });
+
   factory ListDeploymentJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListDeploymentJobsResponse(
       deploymentJobs: (json['deploymentJobs'] as List?)
@@ -6152,6 +6204,7 @@ class ListFleetsResponse {
     this.fleetDetails,
     this.nextToken,
   });
+
   factory ListFleetsResponse.fromJson(Map<String, dynamic> json) {
     return ListFleetsResponse(
       fleetDetails: (json['fleetDetails'] as List?)
@@ -6188,6 +6241,7 @@ class ListRobotApplicationsResponse {
     this.nextToken,
     this.robotApplicationSummaries,
   });
+
   factory ListRobotApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListRobotApplicationsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6226,6 +6280,7 @@ class ListRobotsResponse {
     this.nextToken,
     this.robots,
   });
+
   factory ListRobotsResponse.fromJson(Map<String, dynamic> json) {
     return ListRobotsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6263,6 +6318,7 @@ class ListSimulationApplicationsResponse {
     this.nextToken,
     this.simulationApplicationSummaries,
   });
+
   factory ListSimulationApplicationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListSimulationApplicationsResponse(
@@ -6303,6 +6359,7 @@ class ListSimulationJobBatchesResponse {
     this.nextToken,
     this.simulationJobBatchSummaries,
   });
+
   factory ListSimulationJobBatchesResponse.fromJson(Map<String, dynamic> json) {
     return ListSimulationJobBatchesResponse(
       nextToken: json['nextToken'] as String?,
@@ -6342,6 +6399,7 @@ class ListSimulationJobsResponse {
     required this.simulationJobSummaries,
     this.nextToken,
   });
+
   factory ListSimulationJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListSimulationJobsResponse(
       simulationJobSummaries: (json['simulationJobSummaries'] as List)
@@ -6369,6 +6427,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -6400,6 +6459,7 @@ class ListWorldExportJobsResponse {
     required this.worldExportJobSummaries,
     this.nextToken,
   });
+
   factory ListWorldExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListWorldExportJobsResponse(
       worldExportJobSummaries: (json['worldExportJobSummaries'] as List)
@@ -6437,6 +6497,7 @@ class ListWorldGenerationJobsResponse {
     required this.worldGenerationJobSummaries,
     this.nextToken,
   });
+
   factory ListWorldGenerationJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListWorldGenerationJobsResponse(
       worldGenerationJobSummaries: (json['worldGenerationJobSummaries'] as List)
@@ -6474,6 +6535,7 @@ class ListWorldTemplatesResponse {
     this.nextToken,
     this.templateSummaries,
   });
+
   factory ListWorldTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return ListWorldTemplatesResponse(
       nextToken: json['nextToken'] as String?,
@@ -6510,6 +6572,7 @@ class ListWorldsResponse {
     this.nextToken,
     this.worldSummaries,
   });
+
   factory ListWorldsResponse.fromJson(Map<String, dynamic> json) {
     return ListWorldsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6538,6 +6601,7 @@ class LoggingConfig {
   LoggingConfig({
     required this.recordAllRosTopics,
   });
+
   factory LoggingConfig.fromJson(Map<String, dynamic> json) {
     return LoggingConfig(
       recordAllRosTopics: json['recordAllRosTopics'] as bool,
@@ -6568,6 +6632,7 @@ class NetworkInterface {
     this.privateIpAddress,
     this.publicIpAddress,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       networkInterfaceId: json['networkInterfaceId'] as String?,
@@ -6601,6 +6666,7 @@ class OutputLocation {
     this.s3Bucket,
     this.s3Prefix,
   });
+
   factory OutputLocation.fromJson(Map<String, dynamic> json) {
     return OutputLocation(
       s3Bucket: json['s3Bucket'] as String?,
@@ -6626,6 +6692,7 @@ class PortForwardingConfig {
   PortForwardingConfig({
     this.portMappings,
   });
+
   factory PortForwardingConfig.fromJson(Map<String, dynamic> json) {
     return PortForwardingConfig(
       portMappings: (json['portMappings'] as List?)
@@ -6660,6 +6727,7 @@ class PortMapping {
     required this.jobPort,
     this.enableOnPublicIp,
   });
+
   factory PortMapping.fromJson(Map<String, dynamic> json) {
     return PortMapping(
       applicationPort: json['applicationPort'] as int,
@@ -6717,6 +6785,7 @@ class ProgressDetail {
     this.percentDone,
     this.targetResource,
   });
+
   factory ProgressDetail.fromJson(Map<String, dynamic> json) {
     return ProgressDetail(
       currentProgress:
@@ -6754,6 +6823,7 @@ class RegisterRobotResponse {
     this.fleet,
     this.robot,
   });
+
   factory RegisterRobotResponse.fromJson(Map<String, dynamic> json) {
     return RegisterRobotResponse(
       fleet: json['fleet'] as String?,
@@ -6783,6 +6853,7 @@ class RenderingEngine {
     this.name,
     this.version,
   });
+
   factory RenderingEngine.fromJson(Map<String, dynamic> json) {
     return RenderingEngine(
       name: (json['name'] as String?)?.toRenderingEngineType(),
@@ -6825,6 +6896,7 @@ extension on String {
 
 class RestartSimulationJobResponse {
   RestartSimulationJobResponse();
+
   factory RestartSimulationJobResponse.fromJson(Map<String, dynamic> _) {
     return RestartSimulationJobResponse();
   }
@@ -6874,6 +6946,7 @@ class Robot {
     this.name,
     this.status,
   });
+
   factory Robot.fromJson(Map<String, dynamic> json) {
     return Robot(
       architecture: (json['architecture'] as String?)?.toArchitecture(),
@@ -6951,6 +7024,7 @@ class RobotApplicationConfig {
     this.useDefaultTools,
     this.useDefaultUploadConfigurations,
   });
+
   factory RobotApplicationConfig.fromJson(Map<String, dynamic> json) {
     return RobotApplicationConfig(
       application: json['application'] as String,
@@ -7018,6 +7092,7 @@ class RobotApplicationSummary {
     this.robotSoftwareSuite,
     this.version,
   });
+
   factory RobotApplicationSummary.fromJson(Map<String, dynamic> json) {
     return RobotApplicationSummary(
       arn: json['arn'] as String?,
@@ -7080,6 +7155,7 @@ class RobotDeployment {
     this.progressDetail,
     this.status,
   });
+
   factory RobotDeployment.fromJson(Map<String, dynamic> json) {
     return RobotDeployment(
       arn: json['arn'] as String?,
@@ -7182,6 +7258,7 @@ class RobotSoftwareSuite {
     this.name,
     this.version,
   });
+
   factory RobotSoftwareSuite.fromJson(Map<String, dynamic> json) {
     return RobotSoftwareSuite(
       name: (json['name'] as String?)?.toRobotSoftwareSuiteType(),
@@ -7330,6 +7407,7 @@ class S3KeyOutput {
     this.etag,
     this.s3Key,
   });
+
   factory S3KeyOutput.fromJson(Map<String, dynamic> json) {
     return S3KeyOutput(
       etag: json['etag'] as String?,
@@ -7363,6 +7441,7 @@ class S3Object {
     required this.key,
     this.etag,
   });
+
   factory S3Object.fromJson(Map<String, dynamic> json) {
     return S3Object(
       bucket: json['bucket'] as String,
@@ -7425,6 +7504,7 @@ class SimulationApplicationConfig {
     this.useDefaultUploadConfigurations,
     this.worldConfigs,
   });
+
   factory SimulationApplicationConfig.fromJson(Map<String, dynamic> json) {
     return SimulationApplicationConfig(
       application: json['application'] as String,
@@ -7502,6 +7582,7 @@ class SimulationApplicationSummary {
     this.simulationSoftwareSuite,
     this.version,
   });
+
   factory SimulationApplicationSummary.fromJson(Map<String, dynamic> json) {
     return SimulationApplicationSummary(
       arn: json['arn'] as String?,
@@ -7638,6 +7719,7 @@ class SimulationJob {
     this.tags,
     this.vpcConfig,
   });
+
   factory SimulationJob.fromJson(Map<String, dynamic> json) {
     return SimulationJob(
       arn: json['arn'] as String?,
@@ -7895,6 +7977,7 @@ class SimulationJobBatchSummary {
     this.pendingRequestCount,
     this.status,
   });
+
   factory SimulationJobBatchSummary.fromJson(Map<String, dynamic> json) {
     return SimulationJobBatchSummary(
       arn: json['arn'] as String?,
@@ -8166,6 +8249,7 @@ class SimulationJobRequest {
     this.useDefaultApplications,
     this.vpcConfig,
   });
+
   factory SimulationJobRequest.fromJson(Map<String, dynamic> json) {
     return SimulationJobRequest(
       maxJobDurationInSeconds: json['maxJobDurationInSeconds'] as int,
@@ -8339,6 +8423,7 @@ class SimulationJobSummary {
     this.simulationApplicationNames,
     this.status,
   });
+
   factory SimulationJobSummary.fromJson(Map<String, dynamic> json) {
     return SimulationJobSummary(
       arn: json['arn'] as String?,
@@ -8395,6 +8480,7 @@ class SimulationSoftwareSuite {
     this.name,
     this.version,
   });
+
   factory SimulationSoftwareSuite.fromJson(Map<String, dynamic> json) {
     return SimulationSoftwareSuite(
       name: (json['name'] as String?)?.toSimulationSoftwareSuiteType(),
@@ -8461,6 +8547,7 @@ class Source {
     this.s3Bucket,
     this.s3Key,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       architecture: (json['architecture'] as String?)?.toArchitecture(),
@@ -8500,6 +8587,7 @@ class SourceConfig {
     this.s3Bucket,
     this.s3Key,
   });
+
   factory SourceConfig.fromJson(Map<String, dynamic> json) {
     return SourceConfig(
       architecture: (json['architecture'] as String?)?.toArchitecture(),
@@ -8603,6 +8691,7 @@ class StartSimulationJobBatchResponse {
     this.status,
     this.tags,
   });
+
   factory StartSimulationJobBatchResponse.fromJson(Map<String, dynamic> json) {
     return StartSimulationJobBatchResponse(
       arn: json['arn'] as String?,
@@ -8727,6 +8816,7 @@ class SyncDeploymentJobResponse {
     this.fleet,
     this.status,
   });
+
   factory SyncDeploymentJobResponse.fromJson(Map<String, dynamic> json) {
     return SyncDeploymentJobResponse(
       arn: json['arn'] as String?,
@@ -8773,6 +8863,7 @@ class SyncDeploymentJobResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -8794,6 +8885,7 @@ class TemplateLocation {
     required this.s3Bucket,
     required this.s3Key,
   });
+
   factory TemplateLocation.fromJson(Map<String, dynamic> json) {
     return TemplateLocation(
       s3Bucket: json['s3Bucket'] as String,
@@ -8832,6 +8924,7 @@ class TemplateSummary {
     this.lastUpdatedAt,
     this.name,
   });
+
   factory TemplateSummary.fromJson(Map<String, dynamic> json) {
     return TemplateSummary(
       arn: json['arn'] as String?,
@@ -8887,6 +8980,7 @@ class Tool {
     this.streamOutputToCloudWatch,
     this.streamUI,
   });
+
   factory Tool.fromJson(Map<String, dynamic> json) {
     return Tool(
       command: json['command'] as String,
@@ -8916,6 +9010,7 @@ class Tool {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -8957,6 +9052,7 @@ class UpdateRobotApplicationResponse {
     this.sources,
     this.version,
   });
+
   factory UpdateRobotApplicationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRobotApplicationResponse(
       arn: json['arn'] as String?,
@@ -9036,6 +9132,7 @@ class UpdateSimulationApplicationResponse {
     this.sources,
     this.version,
   });
+
   factory UpdateSimulationApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateSimulationApplicationResponse(
@@ -9110,6 +9207,7 @@ class UpdateWorldTemplateResponse {
     this.lastUpdatedAt,
     this.name,
   });
+
   factory UpdateWorldTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateWorldTemplateResponse(
       arn: json['arn'] as String?,
@@ -9202,6 +9300,7 @@ class UploadConfiguration {
     required this.path,
     required this.uploadBehavior,
   });
+
   factory UploadConfiguration.fromJson(Map<String, dynamic> json) {
     return UploadConfiguration(
       name: json['name'] as String,
@@ -9241,6 +9340,7 @@ class VPCConfig {
     this.assignPublicIp,
     this.securityGroups,
   });
+
   factory VPCConfig.fromJson(Map<String, dynamic> json) {
     return VPCConfig(
       subnets: (json['subnets'] as List)
@@ -9287,6 +9387,7 @@ class VPCConfigResponse {
     this.subnets,
     this.vpcId,
   });
+
   factory VPCConfigResponse.fromJson(Map<String, dynamic> json) {
     return VPCConfigResponse(
       assignPublicIp: json['assignPublicIp'] as bool?,
@@ -9324,6 +9425,7 @@ class WorldConfig {
   WorldConfig({
     this.world,
   });
+
   factory WorldConfig.fromJson(Map<String, dynamic> json) {
     return WorldConfig(
       world: json['world'] as String?,
@@ -9359,6 +9461,7 @@ class WorldCount {
     this.floorplanCount,
     this.interiorCountPerFloorplan,
   });
+
   factory WorldCount.fromJson(Map<String, dynamic> json) {
     return WorldCount(
       floorplanCount: json['floorplanCount'] as int?,
@@ -9508,6 +9611,7 @@ class WorldExportJobSummary {
     this.status,
     this.worlds,
   });
+
   factory WorldExportJobSummary.fromJson(Map<String, dynamic> json) {
     return WorldExportJobSummary(
       arn: json['arn'] as String?,
@@ -9563,6 +9667,7 @@ class WorldFailure {
     this.failureCount,
     this.sampleFailureReason,
   });
+
   factory WorldFailure.fromJson(Map<String, dynamic> json) {
     return WorldFailure(
       failureCode:
@@ -9735,6 +9840,7 @@ class WorldGenerationJobSummary {
     this.template,
     this.worldCount,
   });
+
   factory WorldGenerationJobSummary.fromJson(Map<String, dynamic> json) {
     return WorldGenerationJobSummary(
       arn: json['arn'] as String?,
@@ -9790,6 +9896,7 @@ class WorldSummary {
     this.generationJob,
     this.template,
   });
+
   factory WorldSummary.fromJson(Map<String, dynamic> json) {
     return WorldSummary(
       arn: json['arn'] as String?,

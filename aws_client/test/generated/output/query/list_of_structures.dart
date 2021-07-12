@@ -62,6 +62,7 @@ class OutputShape {
   OutputShape({
     this.list,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       list: (json['List'] as List?)
@@ -98,6 +99,7 @@ class StructureShape {
     this.baz,
     this.foo,
   });
+
   factory StructureShape.fromJson(Map<String, dynamic> json) {
     return StructureShape(
       bar: json['Bar'] as String?,

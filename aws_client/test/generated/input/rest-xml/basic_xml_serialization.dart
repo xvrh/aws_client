@@ -88,6 +88,7 @@ class InputShape {
     this.description,
     this.name,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       description: json['Description'] as String?,

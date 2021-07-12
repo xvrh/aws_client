@@ -2497,6 +2497,7 @@ class ActionDefinition {
   ActionDefinition({
     this.publishMetricAction,
   });
+
   factory ActionDefinition.fromJson(Map<String, dynamic> json) {
     return ActionDefinition(
       publishMetricAction: json['PublishMetricAction'] != null
@@ -2542,6 +2543,7 @@ class Address {
   Address({
     required this.addressDefinition,
   });
+
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       addressDefinition: json['AddressDefinition'] as String,
@@ -2589,6 +2591,7 @@ class AssociateFirewallPolicyResponse {
     this.firewallPolicyArn,
     this.updateToken,
   });
+
   factory AssociateFirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return AssociateFirewallPolicyResponse(
       firewallArn: json['FirewallArn'] as String?,
@@ -2645,6 +2648,7 @@ class AssociateSubnetsResponse {
     this.subnetMappings,
     this.updateToken,
   });
+
   factory AssociateSubnetsResponse.fromJson(Map<String, dynamic> json) {
     return AssociateSubnetsResponse(
       firewallArn: json['FirewallArn'] as String?,
@@ -2699,6 +2703,7 @@ class Attachment {
     this.status,
     this.subnetId,
   });
+
   factory Attachment.fromJson(Map<String, dynamic> json) {
     return Attachment(
       endpointId: json['EndpointId'] as String?,
@@ -2807,6 +2812,7 @@ class CreateFirewallPolicyResponse {
     required this.firewallPolicyResponse,
     required this.updateToken,
   });
+
   factory CreateFirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreateFirewallPolicyResponse(
       firewallPolicyResponse: FirewallPolicyResponse.fromJson(
@@ -2840,6 +2846,7 @@ class CreateFirewallResponse {
     this.firewall,
     this.firewallStatus,
   });
+
   factory CreateFirewallResponse.fromJson(Map<String, dynamic> json) {
     return CreateFirewallResponse(
       firewall: json['Firewall'] != null
@@ -2884,6 +2891,7 @@ class CreateRuleGroupResponse {
     required this.ruleGroupResponse,
     required this.updateToken,
   });
+
   factory CreateRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateRuleGroupResponse(
       ruleGroupResponse: RuleGroupResponse.fromJson(
@@ -2938,6 +2946,7 @@ class CustomAction {
     required this.actionDefinition,
     required this.actionName,
   });
+
   factory CustomAction.fromJson(Map<String, dynamic> json) {
     return CustomAction(
       actionDefinition: ActionDefinition.fromJson(
@@ -2964,6 +2973,7 @@ class DeleteFirewallPolicyResponse {
   DeleteFirewallPolicyResponse({
     required this.firewallPolicyResponse,
   });
+
   factory DeleteFirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFirewallPolicyResponse(
       firewallPolicyResponse: FirewallPolicyResponse.fromJson(
@@ -2987,6 +2997,7 @@ class DeleteFirewallResponse {
     this.firewall,
     this.firewallStatus,
   });
+
   factory DeleteFirewallResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFirewallResponse(
       firewall: json['Firewall'] != null
@@ -3011,6 +3022,7 @@ class DeleteFirewallResponse {
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
+
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
   }
@@ -3029,6 +3041,7 @@ class DeleteRuleGroupResponse {
   DeleteRuleGroupResponse({
     required this.ruleGroupResponse,
   });
+
   factory DeleteRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRuleGroupResponse(
       ruleGroupResponse: RuleGroupResponse.fromJson(
@@ -3070,6 +3083,7 @@ class DescribeFirewallPolicyResponse {
     required this.updateToken,
     this.firewallPolicy,
   });
+
   factory DescribeFirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFirewallPolicyResponse(
       firewallPolicyResponse: FirewallPolicyResponse.fromJson(
@@ -3126,6 +3140,7 @@ class DescribeFirewallResponse {
     this.firewallStatus,
     this.updateToken,
   });
+
   factory DescribeFirewallResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFirewallResponse(
       firewall: json['Firewall'] != null
@@ -3160,6 +3175,7 @@ class DescribeLoggingConfigurationResponse {
     this.firewallArn,
     this.loggingConfiguration,
   });
+
   factory DescribeLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoggingConfigurationResponse(
@@ -3189,6 +3205,7 @@ class DescribeResourcePolicyResponse {
   DescribeResourcePolicyResponse({
     this.policy,
   });
+
   factory DescribeResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeResourcePolicyResponse(
       policy: json['Policy'] as String?,
@@ -3241,6 +3258,7 @@ class DescribeRuleGroupResponse {
     required this.updateToken,
     this.ruleGroup,
   });
+
   factory DescribeRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRuleGroupResponse(
       ruleGroupResponse: RuleGroupResponse.fromJson(
@@ -3284,6 +3302,7 @@ class Dimension {
   Dimension({
     required this.value,
   });
+
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return Dimension(
       value: json['Value'] as String,
@@ -3331,6 +3350,7 @@ class DisassociateSubnetsResponse {
     this.subnetMappings,
     this.updateToken,
   });
+
   factory DisassociateSubnetsResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateSubnetsResponse(
       firewallArn: json['FirewallArn'] as String?,
@@ -3430,6 +3450,7 @@ class Firewall {
     this.subnetChangeProtection,
     this.tags,
   });
+
   factory Firewall.fromJson(Map<String, dynamic> json) {
     return Firewall(
       firewallId: json['FirewallId'] as String,
@@ -3498,6 +3519,7 @@ class FirewallMetadata {
     this.firewallArn,
     this.firewallName,
   });
+
   factory FirewallMetadata.fromJson(Map<String, dynamic> json) {
     return FirewallMetadata(
       firewallArn: json['FirewallArn'] as String?,
@@ -3574,6 +3596,7 @@ class FirewallPolicy {
     this.statelessCustomActions,
     this.statelessRuleGroupReferences,
   });
+
   factory FirewallPolicy.fromJson(Map<String, dynamic> json) {
     return FirewallPolicy(
       statelessDefaultActions: (json['StatelessDefaultActions'] as List)
@@ -3640,6 +3663,7 @@ class FirewallPolicyMetadata {
     this.arn,
     this.name,
   });
+
   factory FirewallPolicyMetadata.fromJson(Map<String, dynamic> json) {
     return FirewallPolicyMetadata(
       arn: json['Arn'] as String?,
@@ -3695,6 +3719,7 @@ class FirewallPolicyResponse {
     this.firewallPolicyStatus,
     this.tags,
   });
+
   factory FirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return FirewallPolicyResponse(
       firewallPolicyArn: json['FirewallPolicyArn'] as String,
@@ -3768,6 +3793,7 @@ class FirewallStatus {
     required this.status,
     this.syncStates,
   });
+
   factory FirewallStatus.fromJson(Map<String, dynamic> json) {
     return FirewallStatus(
       configurationSyncStateSummary:
@@ -3933,6 +3959,7 @@ class Header {
     required this.source,
     required this.sourcePort,
   });
+
   factory Header.fromJson(Map<String, dynamic> json) {
     return Header(
       destination: json['Destination'] as String,
@@ -3971,6 +3998,7 @@ class IPSet {
   IPSet({
     required this.definition,
   });
+
   factory IPSet.fromJson(Map<String, dynamic> json) {
     return IPSet(
       definition: (json['Definition'] as List)
@@ -4005,6 +4033,7 @@ class ListFirewallPoliciesResponse {
     this.firewallPolicies,
     this.nextToken,
   });
+
   factory ListFirewallPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallPoliciesResponse(
       firewallPolicies: (json['FirewallPolicies'] as List?)
@@ -4043,6 +4072,7 @@ class ListFirewallsResponse {
     this.firewalls,
     this.nextToken,
   });
+
   factory ListFirewallsResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallsResponse(
       firewalls: (json['Firewalls'] as List?)
@@ -4080,6 +4110,7 @@ class ListRuleGroupsResponse {
     this.nextToken,
     this.ruleGroups,
   });
+
   factory ListRuleGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListRuleGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -4115,6 +4146,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -4191,6 +4223,7 @@ class LogDestinationConfig {
     required this.logDestinationType,
     required this.logType,
   });
+
   factory LogDestinationConfig.fromJson(Map<String, dynamic> json) {
     return LogDestinationConfig(
       logDestination: (json['LogDestination'] as Map<String, dynamic>)
@@ -4283,6 +4316,7 @@ class LoggingConfiguration {
   LoggingConfiguration({
     required this.logDestinationConfigs,
   });
+
   factory LoggingConfiguration.fromJson(Map<String, dynamic> json) {
     return LoggingConfiguration(
       logDestinationConfigs: (json['LogDestinationConfigs'] as List)
@@ -4344,6 +4378,7 @@ class MatchAttributes {
     this.sources,
     this.tCPFlags,
   });
+
   factory MatchAttributes.fromJson(Map<String, dynamic> json) {
     return MatchAttributes(
       destinationPorts: (json['DestinationPorts'] as List?)
@@ -4410,6 +4445,7 @@ class PerObjectStatus {
     this.syncStatus,
     this.updateToken,
   });
+
   factory PerObjectStatus.fromJson(Map<String, dynamic> json) {
     return PerObjectStatus(
       syncStatus: (json['SyncStatus'] as String?)?.toPerObjectSyncStatus(),
@@ -4471,6 +4507,7 @@ class PortRange {
     required this.fromPort,
     required this.toPort,
   });
+
   factory PortRange.fromJson(Map<String, dynamic> json) {
     return PortRange(
       fromPort: json['FromPort'] as int,
@@ -4496,6 +4533,7 @@ class PortSet {
   PortSet({
     this.definition,
   });
+
   factory PortSet.fromJson(Map<String, dynamic> json) {
     return PortSet(
       definition: (json['Definition'] as List?)
@@ -4523,6 +4561,7 @@ class PublishMetricAction {
   PublishMetricAction({
     required this.dimensions,
   });
+
   factory PublishMetricAction.fromJson(Map<String, dynamic> json) {
     return PublishMetricAction(
       dimensions: (json['Dimensions'] as List)
@@ -4542,6 +4581,7 @@ class PublishMetricAction {
 
 class PutResourcePolicyResponse {
   PutResourcePolicyResponse();
+
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutResourcePolicyResponse();
   }
@@ -4632,6 +4672,7 @@ class RuleDefinition {
     required this.actions,
     required this.matchAttributes,
   });
+
   factory RuleDefinition.fromJson(Map<String, dynamic> json) {
     return RuleDefinition(
       actions: (json['Actions'] as List)
@@ -4678,6 +4719,7 @@ class RuleGroup {
     required this.rulesSource,
     this.ruleVariables,
   });
+
   factory RuleGroup.fromJson(Map<String, dynamic> json) {
     return RuleGroup(
       rulesSource:
@@ -4714,6 +4756,7 @@ class RuleGroupMetadata {
     this.arn,
     this.name,
   });
+
   factory RuleGroupMetadata.fromJson(Map<String, dynamic> json) {
     return RuleGroupMetadata(
       arn: json['Arn'] as String?,
@@ -4784,6 +4827,7 @@ class RuleGroupResponse {
     this.tags,
     this.type,
   });
+
   factory RuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return RuleGroupResponse(
       ruleGroupArn: json['RuleGroupArn'] as String,
@@ -4863,6 +4907,7 @@ class RuleOption {
     required this.keyword,
     this.settings,
   });
+
   factory RuleOption.fromJson(Map<String, dynamic> json) {
     return RuleOption(
       keyword: json['Keyword'] as String,
@@ -4896,6 +4941,7 @@ class RuleVariables {
     this.iPSets,
     this.portSets,
   });
+
   factory RuleVariables.fromJson(Map<String, dynamic> json) {
     return RuleVariables(
       iPSets: (json['IPSets'] as Map<String, dynamic>?)?.map(
@@ -4945,6 +4991,7 @@ class RulesSource {
     this.statefulRules,
     this.statelessRulesAndCustomActions,
   });
+
   factory RulesSource.fromJson(Map<String, dynamic> json) {
     return RulesSource(
       rulesSourceList: json['RulesSourceList'] != null
@@ -5026,6 +5073,7 @@ class RulesSourceList {
     required this.targetTypes,
     required this.targets,
   });
+
   factory RulesSourceList.fromJson(Map<String, dynamic> json) {
     return RulesSourceList(
       generatedRulesType:
@@ -5129,6 +5177,7 @@ class StatefulRule {
     required this.header,
     required this.ruleOptions,
   });
+
   factory StatefulRule.fromJson(Map<String, dynamic> json) {
     return StatefulRule(
       action: (json['Action'] as String).toStatefulAction(),
@@ -5189,6 +5238,7 @@ class StatefulRuleGroupReference {
   StatefulRuleGroupReference({
     required this.resourceArn,
   });
+
   factory StatefulRuleGroupReference.fromJson(Map<String, dynamic> json) {
     return StatefulRuleGroupReference(
       resourceArn: json['ResourceArn'] as String,
@@ -5345,6 +5395,7 @@ class StatelessRule {
     required this.priority,
     required this.ruleDefinition,
   });
+
   factory StatelessRule.fromJson(Map<String, dynamic> json) {
     return StatelessRule(
       priority: json['Priority'] as int,
@@ -5380,6 +5431,7 @@ class StatelessRuleGroupReference {
     required this.priority,
     required this.resourceArn,
   });
+
   factory StatelessRuleGroupReference.fromJson(Map<String, dynamic> json) {
     return StatelessRuleGroupReference(
       priority: json['Priority'] as int,
@@ -5415,6 +5467,7 @@ class StatelessRulesAndCustomActions {
     required this.statelessRules,
     this.customActions,
   });
+
   factory StatelessRulesAndCustomActions.fromJson(Map<String, dynamic> json) {
     return StatelessRulesAndCustomActions(
       statelessRules: (json['StatelessRules'] as List)
@@ -5449,6 +5502,7 @@ class SubnetMapping {
   SubnetMapping({
     required this.subnetId,
   });
+
   factory SubnetMapping.fromJson(Map<String, dynamic> json) {
     return SubnetMapping(
       subnetId: json['SubnetId'] as String,
@@ -5500,6 +5554,7 @@ class SyncState {
     this.attachment,
     this.config,
   });
+
   factory SyncState.fromJson(Map<String, dynamic> json) {
     return SyncState(
       attachment: json['Attachment'] != null
@@ -5608,6 +5663,7 @@ class TCPFlagField {
     required this.flags,
     this.masks,
   });
+
   factory TCPFlagField.fromJson(Map<String, dynamic> json) {
     return TCPFlagField(
       flags: (json['Flags'] as List)
@@ -5651,6 +5707,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5670,6 +5727,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5709,6 +5767,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5751,6 +5810,7 @@ class UpdateFirewallDeleteProtectionResponse {
     this.firewallName,
     this.updateToken,
   });
+
   factory UpdateFirewallDeleteProtectionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateFirewallDeleteProtectionResponse(
@@ -5808,6 +5868,7 @@ class UpdateFirewallDescriptionResponse {
     this.firewallName,
     this.updateToken,
   });
+
   factory UpdateFirewallDescriptionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateFirewallDescriptionResponse(
@@ -5869,6 +5930,7 @@ class UpdateFirewallPolicyChangeProtectionResponse {
     this.firewallPolicyChangeProtection,
     this.updateToken,
   });
+
   factory UpdateFirewallPolicyChangeProtectionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateFirewallPolicyChangeProtectionResponse(
@@ -5917,6 +5979,7 @@ class UpdateFirewallPolicyResponse {
     required this.firewallPolicyResponse,
     required this.updateToken,
   });
+
   factory UpdateFirewallPolicyResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFirewallPolicyResponse(
       firewallPolicyResponse: FirewallPolicyResponse.fromJson(
@@ -5949,6 +6012,7 @@ class UpdateLoggingConfigurationResponse {
     this.firewallName,
     this.loggingConfiguration,
   });
+
   factory UpdateLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateLoggingConfigurationResponse(
@@ -5996,6 +6060,7 @@ class UpdateRuleGroupResponse {
     required this.ruleGroupResponse,
     required this.updateToken,
   });
+
   factory UpdateRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRuleGroupResponse(
       ruleGroupResponse: RuleGroupResponse.fromJson(
@@ -6051,6 +6116,7 @@ class UpdateSubnetChangeProtectionResponse {
     this.subnetChangeProtection,
     this.updateToken,
   });
+
   factory UpdateSubnetChangeProtectionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateSubnetChangeProtectionResponse(

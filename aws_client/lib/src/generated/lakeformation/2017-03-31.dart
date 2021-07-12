@@ -1332,6 +1332,7 @@ class AddLFTagsToResourceResponse {
   AddLFTagsToResourceResponse({
     this.failures,
   });
+
   factory AddLFTagsToResourceResponse.fromJson(Map<String, dynamic> json) {
     return AddLFTagsToResourceResponse(
       failures: (json['Failures'] as List?)
@@ -1356,6 +1357,7 @@ class BatchGrantPermissionsResponse {
   BatchGrantPermissionsResponse({
     this.failures,
   });
+
   factory BatchGrantPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return BatchGrantPermissionsResponse(
       failures: (json['Failures'] as List?)
@@ -1386,6 +1388,7 @@ class BatchPermissionsFailureEntry {
     this.error,
     this.requestEntry,
   });
+
   factory BatchPermissionsFailureEntry.fromJson(Map<String, dynamic> json) {
     return BatchPermissionsFailureEntry(
       error: json['Error'] != null
@@ -1432,6 +1435,7 @@ class BatchPermissionsRequestEntry {
     this.principal,
     this.resource,
   });
+
   factory BatchPermissionsRequestEntry.fromJson(Map<String, dynamic> json) {
     return BatchPermissionsRequestEntry(
       id: json['Id'] as String,
@@ -1479,6 +1483,7 @@ class BatchRevokePermissionsResponse {
   BatchRevokePermissionsResponse({
     this.failures,
   });
+
   factory BatchRevokePermissionsResponse.fromJson(Map<String, dynamic> json) {
     return BatchRevokePermissionsResponse(
       failures: (json['Failures'] as List?)
@@ -1500,6 +1505,7 @@ class BatchRevokePermissionsResponse {
 /// A structure for the catalog object.
 class CatalogResource {
   CatalogResource();
+
   factory CatalogResource.fromJson(Map<String, dynamic> _) {
     return CatalogResource();
   }
@@ -1522,6 +1528,7 @@ class ColumnLFTag {
     this.lFTags,
     this.name,
   });
+
   factory ColumnLFTag.fromJson(Map<String, dynamic> json) {
     return ColumnLFTag(
       lFTags: (json['LFTags'] as List?)
@@ -1551,6 +1558,7 @@ class ColumnWildcard {
   ColumnWildcard({
     this.excludedColumnNames,
   });
+
   factory ColumnWildcard.fromJson(Map<String, dynamic> json) {
     return ColumnWildcard(
       excludedColumnNames: (json['ExcludedColumnNames'] as List?)
@@ -1644,6 +1652,7 @@ extension on String {
 
 class CreateLFTagResponse {
   CreateLFTagResponse();
+
   factory CreateLFTagResponse.fromJson(Map<String, dynamic> _) {
     return CreateLFTagResponse();
   }
@@ -1662,6 +1671,7 @@ class DataLakePrincipal {
   DataLakePrincipal({
     this.dataLakePrincipalIdentifier,
   });
+
   factory DataLakePrincipal.fromJson(Map<String, dynamic> json) {
     return DataLakePrincipal(
       dataLakePrincipalIdentifier:
@@ -1766,6 +1776,7 @@ class DataLakeSettings {
     this.dataLakeAdmins,
     this.trustedResourceOwners,
   });
+
   factory DataLakeSettings.fromJson(Map<String, dynamic> json) {
     return DataLakeSettings(
       createDatabaseDefaultPermissions: (json[
@@ -1822,6 +1833,7 @@ class DataLocationResource {
     required this.resourceArn,
     this.catalogId,
   });
+
   factory DataLocationResource.fromJson(Map<String, dynamic> json) {
     return DataLocationResource(
       resourceArn: json['ResourceArn'] as String,
@@ -1852,6 +1864,7 @@ class DatabaseResource {
     required this.name,
     this.catalogId,
   });
+
   factory DatabaseResource.fromJson(Map<String, dynamic> json) {
     return DatabaseResource(
       name: json['Name'] as String,
@@ -1871,6 +1884,7 @@ class DatabaseResource {
 
 class DeleteLFTagResponse {
   DeleteLFTagResponse();
+
   factory DeleteLFTagResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLFTagResponse();
   }
@@ -1882,6 +1896,7 @@ class DeleteLFTagResponse {
 
 class DeregisterResourceResponse {
   DeregisterResourceResponse();
+
   factory DeregisterResourceResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterResourceResponse();
   }
@@ -1898,6 +1913,7 @@ class DescribeResourceResponse {
   DescribeResourceResponse({
     this.resourceInfo,
   });
+
   factory DescribeResourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeResourceResponse(
       resourceInfo: json['ResourceInfo'] != null
@@ -1928,6 +1944,7 @@ class DetailsMap {
   DetailsMap({
     this.resourceShare,
   });
+
   factory DetailsMap.fromJson(Map<String, dynamic> json) {
     return DetailsMap(
       resourceShare: (json['ResourceShare'] as List?)
@@ -1957,6 +1974,7 @@ class ErrorDetail {
     this.errorCode,
     this.errorMessage,
   });
+
   factory ErrorDetail.fromJson(Map<String, dynamic> json) {
     return ErrorDetail(
       errorCode: json['ErrorCode'] as String?,
@@ -2024,6 +2042,7 @@ class FilterCondition {
     this.field,
     this.stringValueList,
   });
+
   factory FilterCondition.fromJson(Map<String, dynamic> json) {
     return FilterCondition(
       comparisonOperator:
@@ -2057,6 +2076,7 @@ class GetDataLakeSettingsResponse {
   GetDataLakeSettingsResponse({
     this.dataLakeSettings,
   });
+
   factory GetDataLakeSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetDataLakeSettingsResponse(
       dataLakeSettings: json['DataLakeSettings'] != null
@@ -2086,6 +2106,7 @@ class GetEffectivePermissionsForPathResponse {
     this.nextToken,
     this.permissions,
   });
+
   factory GetEffectivePermissionsForPathResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEffectivePermissionsForPathResponse(
@@ -2126,6 +2147,7 @@ class GetLFTagResponse {
     this.tagKey,
     this.tagValues,
   });
+
   factory GetLFTagResponse.fromJson(Map<String, dynamic> json) {
     return GetLFTagResponse(
       catalogId: json['CatalogId'] as String?,
@@ -2164,6 +2186,7 @@ class GetResourceLFTagsResponse {
     this.lFTagsOnColumns,
     this.lFTagsOnTable,
   });
+
   factory GetResourceLFTagsResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceLFTagsResponse(
       lFTagOnDatabase: (json['LFTagOnDatabase'] as List?)
@@ -2195,6 +2218,7 @@ class GetResourceLFTagsResponse {
 
 class GrantPermissionsResponse {
   GrantPermissionsResponse();
+
   factory GrantPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return GrantPermissionsResponse();
   }
@@ -2218,6 +2242,7 @@ class LFTag {
     required this.tagKey,
     required this.tagValues,
   });
+
   factory LFTag.fromJson(Map<String, dynamic> json) {
     return LFTag(
       tagKey: json['TagKey'] as String,
@@ -2251,6 +2276,7 @@ class LFTagError {
     this.error,
     this.lFTag,
   });
+
   factory LFTagError.fromJson(Map<String, dynamic> json) {
     return LFTagError(
       error: json['Error'] != null
@@ -2291,6 +2317,7 @@ class LFTagKeyResource {
     required this.tagValues,
     this.catalogId,
   });
+
   factory LFTagKeyResource.fromJson(Map<String, dynamic> json) {
     return LFTagKeyResource(
       tagKey: json['TagKey'] as String,
@@ -2333,6 +2360,7 @@ class LFTagPair {
     required this.tagValues,
     this.catalogId,
   });
+
   factory LFTagPair.fromJson(Map<String, dynamic> json) {
     return LFTagPair(
       tagKey: json['TagKey'] as String,
@@ -2376,6 +2404,7 @@ class LFTagPolicyResource {
     required this.resourceType,
     this.catalogId,
   });
+
   factory LFTagPolicyResource.fromJson(Map<String, dynamic> json) {
     return LFTagPolicyResource(
       expression: (json['Expression'] as List)
@@ -2410,6 +2439,7 @@ class ListLFTagsResponse {
     this.lFTags,
     this.nextToken,
   });
+
   factory ListLFTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListLFTagsResponse(
       lFTags: (json['LFTags'] as List?)
@@ -2442,6 +2472,7 @@ class ListPermissionsResponse {
     this.nextToken,
     this.principalResourcePermissions,
   });
+
   factory ListPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return ListPermissionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2477,6 +2508,7 @@ class ListResourcesResponse {
     this.nextToken,
     this.resourceInfoList,
   });
+
   factory ListResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListResourcesResponse(
       nextToken: json['NextToken'] as String?,
@@ -2602,6 +2634,7 @@ class PrincipalPermissions {
     this.permissions,
     this.principal,
   });
+
   factory PrincipalPermissions.fromJson(Map<String, dynamic> json) {
     return PrincipalPermissions(
       permissions: (json['Permissions'] as List?)
@@ -2653,6 +2686,7 @@ class PrincipalResourcePermissions {
     this.principal,
     this.resource,
   });
+
   factory PrincipalResourcePermissions.fromJson(Map<String, dynamic> json) {
     return PrincipalResourcePermissions(
       additionalDetails: json['AdditionalDetails'] != null
@@ -2698,6 +2732,7 @@ class PrincipalResourcePermissions {
 
 class PutDataLakeSettingsResponse {
   PutDataLakeSettingsResponse();
+
   factory PutDataLakeSettingsResponse.fromJson(Map<String, dynamic> _) {
     return PutDataLakeSettingsResponse();
   }
@@ -2709,6 +2744,7 @@ class PutDataLakeSettingsResponse {
 
 class RegisterResourceResponse {
   RegisterResourceResponse();
+
   factory RegisterResourceResponse.fromJson(Map<String, dynamic> _) {
     return RegisterResourceResponse();
   }
@@ -2725,6 +2761,7 @@ class RemoveLFTagsFromResourceResponse {
   RemoveLFTagsFromResourceResponse({
     this.failures,
   });
+
   factory RemoveLFTagsFromResourceResponse.fromJson(Map<String, dynamic> json) {
     return RemoveLFTagsFromResourceResponse(
       failures: (json['Failures'] as List?)
@@ -2782,6 +2819,7 @@ class Resource {
     this.table,
     this.tableWithColumns,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       catalog: json['Catalog'] != null
@@ -2847,6 +2885,7 @@ class ResourceInfo {
     this.resourceArn,
     this.roleArn,
   });
+
   factory ResourceInfo.fromJson(Map<String, dynamic> json) {
     return ResourceInfo(
       lastModified: timeStampFromJson(json['LastModified']),
@@ -2926,6 +2965,7 @@ extension on String {
 
 class RevokePermissionsResponse {
   RevokePermissionsResponse();
+
   factory RevokePermissionsResponse.fromJson(Map<String, dynamic> _) {
     return RevokePermissionsResponse();
   }
@@ -2946,6 +2986,7 @@ class SearchDatabasesByLFTagsResponse {
     this.databaseList,
     this.nextToken,
   });
+
   factory SearchDatabasesByLFTagsResponse.fromJson(Map<String, dynamic> json) {
     return SearchDatabasesByLFTagsResponse(
       databaseList: (json['DatabaseList'] as List?)
@@ -2977,6 +3018,7 @@ class SearchTablesByLFTagsResponse {
     this.nextToken,
     this.tableList,
   });
+
   factory SearchTablesByLFTagsResponse.fromJson(Map<String, dynamic> json) {
     return SearchTablesByLFTagsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3025,6 +3067,7 @@ class TableResource {
     this.name,
     this.tableWildcard,
   });
+
   factory TableResource.fromJson(Map<String, dynamic> json) {
     return TableResource(
       databaseName: json['DatabaseName'] as String,
@@ -3054,6 +3097,7 @@ class TableResource {
 /// A wildcard object representing every table under a database.
 class TableWildcard {
   TableWildcard();
+
   factory TableWildcard.fromJson(Map<String, dynamic> _) {
     return TableWildcard();
   }
@@ -3099,6 +3143,7 @@ class TableWithColumnsResource {
     this.columnNames,
     this.columnWildcard,
   });
+
   factory TableWithColumnsResource.fromJson(Map<String, dynamic> json) {
     return TableWithColumnsResource(
       databaseName: json['DatabaseName'] as String,
@@ -3143,6 +3188,7 @@ class TaggedDatabase {
     this.database,
     this.lFTags,
   });
+
   factory TaggedDatabase.fromJson(Map<String, dynamic> json) {
     return TaggedDatabase(
       database: json['Database'] != null
@@ -3185,6 +3231,7 @@ class TaggedTable {
     this.lFTagsOnTable,
     this.table,
   });
+
   factory TaggedTable.fromJson(Map<String, dynamic> json) {
     return TaggedTable(
       lFTagOnDatabase: (json['LFTagOnDatabase'] as List?)
@@ -3221,6 +3268,7 @@ class TaggedTable {
 
 class UpdateLFTagResponse {
   UpdateLFTagResponse();
+
   factory UpdateLFTagResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLFTagResponse();
   }
@@ -3232,6 +3280,7 @@ class UpdateLFTagResponse {
 
 class UpdateResourceResponse {
   UpdateResourceResponse();
+
   factory UpdateResourceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceResponse();
   }

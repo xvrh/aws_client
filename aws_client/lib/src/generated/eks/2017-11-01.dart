@@ -2096,6 +2096,7 @@ class Addon {
     this.status,
     this.tags,
   });
+
   factory Addon.fromJson(Map<String, dynamic> json) {
     return Addon(
       addonArn: json['addonArn'] as String?,
@@ -2149,6 +2150,7 @@ class AddonHealth {
   AddonHealth({
     this.issues,
   });
+
   factory AddonHealth.fromJson(Map<String, dynamic> json) {
     return AddonHealth(
       issues: (json['issues'] as List?)
@@ -2183,6 +2185,7 @@ class AddonInfo {
     this.addonVersions,
     this.type,
   });
+
   factory AddonInfo.fromJson(Map<String, dynamic> json) {
     return AddonInfo(
       addonName: json['addonName'] as String?,
@@ -2222,6 +2225,7 @@ class AddonIssue {
     this.message,
     this.resourceIds,
   });
+
   factory AddonIssue.fromJson(Map<String, dynamic> json) {
     return AddonIssue(
       code: (json['code'] as String?)?.toAddonIssueCode(),
@@ -2367,6 +2371,7 @@ class AddonVersionInfo {
     this.architecture,
     this.compatibilities,
   });
+
   factory AddonVersionInfo.fromJson(Map<String, dynamic> json) {
     return AddonVersionInfo(
       addonVersion: json['addonVersion'] as String?,
@@ -2399,6 +2404,7 @@ class AssociateEncryptionConfigResponse {
   AssociateEncryptionConfigResponse({
     this.update,
   });
+
   factory AssociateEncryptionConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateEncryptionConfigResponse(
@@ -2425,6 +2431,7 @@ class AssociateIdentityProviderConfigResponse {
     this.tags,
     this.update,
   });
+
   factory AssociateIdentityProviderConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateIdentityProviderConfigResponse(
@@ -2456,6 +2463,7 @@ class AutoScalingGroup {
   AutoScalingGroup({
     this.name,
   });
+
   factory AutoScalingGroup.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroup(
       name: json['name'] as String?,
@@ -2509,6 +2517,7 @@ class Certificate {
   Certificate({
     this.data,
   });
+
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       data: json['data'] as String?,
@@ -2606,6 +2615,7 @@ class Cluster {
     this.tags,
     this.version,
   });
+
   factory Cluster.fromJson(Map<String, dynamic> json) {
     return Cluster(
       arn: json['arn'] as String?,
@@ -2743,6 +2753,7 @@ class Compatibility {
     this.defaultVersion,
     this.platformVersions,
   });
+
   factory Compatibility.fromJson(Map<String, dynamic> json) {
     return Compatibility(
       clusterVersion: json['clusterVersion'] as String?,
@@ -2772,6 +2783,7 @@ class CreateAddonResponse {
   CreateAddonResponse({
     this.addon,
   });
+
   factory CreateAddonResponse.fromJson(Map<String, dynamic> json) {
     return CreateAddonResponse(
       addon: json['addon'] != null
@@ -2795,6 +2807,7 @@ class CreateClusterResponse {
   CreateClusterResponse({
     this.cluster,
   });
+
   factory CreateClusterResponse.fromJson(Map<String, dynamic> json) {
     return CreateClusterResponse(
       cluster: json['cluster'] != null
@@ -2818,6 +2831,7 @@ class CreateFargateProfileResponse {
   CreateFargateProfileResponse({
     this.fargateProfile,
   });
+
   factory CreateFargateProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateFargateProfileResponse(
       fargateProfile: json['fargateProfile'] != null
@@ -2842,6 +2856,7 @@ class CreateNodegroupResponse {
   CreateNodegroupResponse({
     this.nodegroup,
   });
+
   factory CreateNodegroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateNodegroupResponse(
       nodegroup: json['nodegroup'] != null
@@ -2864,6 +2879,7 @@ class DeleteAddonResponse {
   DeleteAddonResponse({
     this.addon,
   });
+
   factory DeleteAddonResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAddonResponse(
       addon: json['addon'] != null
@@ -2887,6 +2903,7 @@ class DeleteClusterResponse {
   DeleteClusterResponse({
     this.cluster,
   });
+
   factory DeleteClusterResponse.fromJson(Map<String, dynamic> json) {
     return DeleteClusterResponse(
       cluster: json['cluster'] != null
@@ -2910,6 +2927,7 @@ class DeleteFargateProfileResponse {
   DeleteFargateProfileResponse({
     this.fargateProfile,
   });
+
   factory DeleteFargateProfileResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFargateProfileResponse(
       fargateProfile: json['fargateProfile'] != null
@@ -2934,6 +2952,7 @@ class DeleteNodegroupResponse {
   DeleteNodegroupResponse({
     this.nodegroup,
   });
+
   factory DeleteNodegroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteNodegroupResponse(
       nodegroup: json['nodegroup'] != null
@@ -2956,6 +2975,7 @@ class DescribeAddonResponse {
   DescribeAddonResponse({
     this.addon,
   });
+
   factory DescribeAddonResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAddonResponse(
       addon: json['addon'] != null
@@ -2991,6 +3011,7 @@ class DescribeAddonVersionsResponse {
     this.addons,
     this.nextToken,
   });
+
   factory DescribeAddonVersionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAddonVersionsResponse(
       addons: (json['addons'] as List?)
@@ -3018,6 +3039,7 @@ class DescribeClusterResponse {
   DescribeClusterResponse({
     this.cluster,
   });
+
   factory DescribeClusterResponse.fromJson(Map<String, dynamic> json) {
     return DescribeClusterResponse(
       cluster: json['cluster'] != null
@@ -3041,6 +3063,7 @@ class DescribeFargateProfileResponse {
   DescribeFargateProfileResponse({
     this.fargateProfile,
   });
+
   factory DescribeFargateProfileResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFargateProfileResponse(
       fargateProfile: json['fargateProfile'] != null
@@ -3066,6 +3089,7 @@ class DescribeIdentityProviderConfigResponse {
   DescribeIdentityProviderConfigResponse({
     this.identityProviderConfig,
   });
+
   factory DescribeIdentityProviderConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeIdentityProviderConfigResponse(
@@ -3092,6 +3116,7 @@ class DescribeNodegroupResponse {
   DescribeNodegroupResponse({
     this.nodegroup,
   });
+
   factory DescribeNodegroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeNodegroupResponse(
       nodegroup: json['nodegroup'] != null
@@ -3115,6 +3140,7 @@ class DescribeUpdateResponse {
   DescribeUpdateResponse({
     this.update,
   });
+
   factory DescribeUpdateResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUpdateResponse(
       update: json['update'] != null
@@ -3137,6 +3163,7 @@ class DisassociateIdentityProviderConfigResponse {
   DisassociateIdentityProviderConfigResponse({
     this.update,
   });
+
   factory DisassociateIdentityProviderConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateIdentityProviderConfigResponse(
@@ -3168,6 +3195,7 @@ class EncryptionConfig {
     this.provider,
     this.resources,
   });
+
   factory EncryptionConfig.fromJson(Map<String, dynamic> json) {
     return EncryptionConfig(
       provider: json['provider'] != null
@@ -3334,6 +3362,7 @@ class ErrorDetail {
     this.errorMessage,
     this.resourceIds,
   });
+
   factory ErrorDetail.fromJson(Map<String, dynamic> json) {
     return ErrorDetail(
       errorCode: (json['errorCode'] as String?)?.toErrorCode(),
@@ -3406,6 +3435,7 @@ class FargateProfile {
     this.subnets,
     this.tags,
   });
+
   factory FargateProfile.fromJson(Map<String, dynamic> json) {
     return FargateProfile(
       clusterName: json['clusterName'] as String?,
@@ -3467,6 +3497,7 @@ class FargateProfileSelector {
     this.labels,
     this.namespace,
   });
+
   factory FargateProfileSelector.fromJson(Map<String, dynamic> json) {
     return FargateProfileSelector(
       labels: (json['labels'] as Map<String, dynamic>?)
@@ -3537,6 +3568,7 @@ class Identity {
   Identity({
     this.oidc,
   });
+
   factory Identity.fromJson(Map<String, dynamic> json) {
     return Identity(
       oidc: json['oidc'] != null
@@ -3565,6 +3597,7 @@ class IdentityProviderConfig {
     required this.name,
     required this.type,
   });
+
   factory IdentityProviderConfig.fromJson(Map<String, dynamic> json) {
     return IdentityProviderConfig(
       name: json['name'] as String,
@@ -3591,6 +3624,7 @@ class IdentityProviderConfigResponse {
   IdentityProviderConfigResponse({
     this.oidc,
   });
+
   factory IdentityProviderConfigResponse.fromJson(Map<String, dynamic> json) {
     return IdentityProviderConfigResponse(
       oidc: json['oidc'] != null
@@ -3708,6 +3742,7 @@ class Issue {
     this.message,
     this.resourceIds,
   });
+
   factory Issue.fromJson(Map<String, dynamic> json) {
     return Issue(
       code: (json['code'] as String?)?.toNodegroupIssueCode(),
@@ -3760,6 +3795,7 @@ class KubernetesNetworkConfigRequest {
   KubernetesNetworkConfigRequest({
     this.serviceIpv4Cidr,
   });
+
   factory KubernetesNetworkConfigRequest.fromJson(Map<String, dynamic> json) {
     return KubernetesNetworkConfigRequest(
       serviceIpv4Cidr: json['serviceIpv4Cidr'] as String?,
@@ -3786,6 +3822,7 @@ class KubernetesNetworkConfigResponse {
   KubernetesNetworkConfigResponse({
     this.serviceIpv4Cidr,
   });
+
   factory KubernetesNetworkConfigResponse.fromJson(Map<String, dynamic> json) {
     return KubernetesNetworkConfigResponse(
       serviceIpv4Cidr: json['serviceIpv4Cidr'] as String?,
@@ -3836,6 +3873,7 @@ class LaunchTemplateSpecification {
     this.name,
     this.version,
   });
+
   factory LaunchTemplateSpecification.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateSpecification(
       id: json['id'] as String?,
@@ -3875,6 +3913,7 @@ class ListAddonsResponse {
     this.addons,
     this.nextToken,
   });
+
   factory ListAddonsResponse.fromJson(Map<String, dynamic> json) {
     return ListAddonsResponse(
       addons: (json['addons'] as List?)
@@ -3910,6 +3949,7 @@ class ListClustersResponse {
     this.clusters,
     this.nextToken,
   });
+
   factory ListClustersResponse.fromJson(Map<String, dynamic> json) {
     return ListClustersResponse(
       clusters: (json['clusters'] as List?)
@@ -3945,6 +3985,7 @@ class ListFargateProfilesResponse {
     this.fargateProfileNames,
     this.nextToken,
   });
+
   factory ListFargateProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListFargateProfilesResponse(
       fargateProfileNames: (json['fargateProfileNames'] as List?)
@@ -3981,6 +4022,7 @@ class ListIdentityProviderConfigsResponse {
     this.identityProviderConfigs,
     this.nextToken,
   });
+
   factory ListIdentityProviderConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListIdentityProviderConfigsResponse(
@@ -4019,6 +4061,7 @@ class ListNodegroupsResponse {
     this.nextToken,
     this.nodegroups,
   });
+
   factory ListNodegroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListNodegroupsResponse(
       nextToken: json['nextToken'] as String?,
@@ -4046,6 +4089,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -4076,6 +4120,7 @@ class ListUpdatesResponse {
     this.nextToken,
     this.updateIds,
   });
+
   factory ListUpdatesResponse.fromJson(Map<String, dynamic> json) {
     return ListUpdatesResponse(
       nextToken: json['nextToken'] as String?,
@@ -4112,6 +4157,7 @@ class LogSetup {
     this.enabled,
     this.types,
   });
+
   factory LogSetup.fromJson(Map<String, dynamic> json) {
     return LogSetup(
       enabled: json['enabled'] as bool?,
@@ -4184,6 +4230,7 @@ class Logging {
   Logging({
     this.clusterLogging,
   });
+
   factory Logging.fromJson(Map<String, dynamic> json) {
     return Logging(
       clusterLogging: (json['clusterLogging'] as List?)
@@ -4329,6 +4376,7 @@ class Nodegroup {
     this.updateConfig,
     this.version,
   });
+
   factory Nodegroup.fromJson(Map<String, dynamic> json) {
     return Nodegroup(
       amiType: (json['amiType'] as String?)?.toAMITypes(),
@@ -4445,6 +4493,7 @@ class NodegroupHealth {
   NodegroupHealth({
     this.issues,
   });
+
   factory NodegroupHealth.fromJson(Map<String, dynamic> json) {
     return NodegroupHealth(
       issues: (json['issues'] as List?)
@@ -4584,6 +4633,7 @@ class NodegroupResources {
     this.autoScalingGroups,
     this.remoteAccessSecurityGroup,
   });
+
   factory NodegroupResources.fromJson(Map<String, dynamic> json) {
     return NodegroupResources(
       autoScalingGroups: (json['autoScalingGroups'] as List?)
@@ -4628,6 +4678,7 @@ class NodegroupScalingConfig {
     this.maxSize,
     this.minSize,
   });
+
   factory NodegroupScalingConfig.fromJson(Map<String, dynamic> json) {
     return NodegroupScalingConfig(
       desiredSize: json['desiredSize'] as int?,
@@ -4709,6 +4760,7 @@ class NodegroupUpdateConfig {
     this.maxUnavailable,
     this.maxUnavailablePercentage,
   });
+
   factory NodegroupUpdateConfig.fromJson(Map<String, dynamic> json) {
     return NodegroupUpdateConfig(
       maxUnavailable: json['maxUnavailable'] as int?,
@@ -4736,6 +4788,7 @@ class OIDC {
   OIDC({
     this.issuer,
   });
+
   factory OIDC.fromJson(Map<String, dynamic> json) {
     return OIDC(
       issuer: json['issuer'] as String?,
@@ -4814,6 +4867,7 @@ class OidcIdentityProviderConfig {
     this.usernameClaim,
     this.usernamePrefix,
   });
+
   factory OidcIdentityProviderConfig.fromJson(Map<String, dynamic> json) {
     return OidcIdentityProviderConfig(
       clientId: json['clientId'] as String?,
@@ -4931,6 +4985,7 @@ class OidcIdentityProviderConfigRequest {
     this.usernameClaim,
     this.usernamePrefix,
   });
+
   factory OidcIdentityProviderConfigRequest.fromJson(
       Map<String, dynamic> json) {
     return OidcIdentityProviderConfigRequest(
@@ -4983,6 +5038,7 @@ class Provider {
   Provider({
     this.keyArn,
   });
+
   factory Provider.fromJson(Map<String, dynamic> json) {
     return Provider(
       keyArn: json['keyArn'] as String?,
@@ -5020,6 +5076,7 @@ class RemoteAccessConfig {
     this.ec2SshKey,
     this.sourceSecurityGroups,
   });
+
   factory RemoteAccessConfig.fromJson(Map<String, dynamic> json) {
     return RemoteAccessConfig(
       ec2SshKey: json['ec2SshKey'] as String?,
@@ -5071,6 +5128,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5096,6 +5154,7 @@ class Taint {
     this.key,
     this.value,
   });
+
   factory Taint.fromJson(Map<String, dynamic> json) {
     return Taint(
       effect: (json['effect'] as String?)?.toTaintEffect(),
@@ -5151,6 +5210,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5188,6 +5248,7 @@ class Update {
     this.status,
     this.type,
   });
+
   factory Update.fromJson(Map<String, dynamic> json) {
     return Update(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -5229,6 +5290,7 @@ class UpdateAddonResponse {
   UpdateAddonResponse({
     this.update,
   });
+
   factory UpdateAddonResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAddonResponse(
       update: json['update'] != null
@@ -5251,6 +5313,7 @@ class UpdateClusterConfigResponse {
   UpdateClusterConfigResponse({
     this.update,
   });
+
   factory UpdateClusterConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateClusterConfigResponse(
       update: json['update'] != null
@@ -5274,6 +5337,7 @@ class UpdateClusterVersionResponse {
   UpdateClusterVersionResponse({
     this.update,
   });
+
   factory UpdateClusterVersionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateClusterVersionResponse(
       update: json['update'] != null
@@ -5302,6 +5366,7 @@ class UpdateLabelsPayload {
     this.addOrUpdateLabels,
     this.removeLabels,
   });
+
   factory UpdateLabelsPayload.fromJson(Map<String, dynamic> json) {
     return UpdateLabelsPayload(
       addOrUpdateLabels: (json['addOrUpdateLabels'] as Map<String, dynamic>?)
@@ -5329,6 +5394,7 @@ class UpdateNodegroupConfigResponse {
   UpdateNodegroupConfigResponse({
     this.update,
   });
+
   factory UpdateNodegroupConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateNodegroupConfigResponse(
       update: json['update'] != null
@@ -5351,6 +5417,7 @@ class UpdateNodegroupVersionResponse {
   UpdateNodegroupVersionResponse({
     this.update,
   });
+
   factory UpdateNodegroupVersionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateNodegroupVersionResponse(
       update: json['update'] != null
@@ -5379,6 +5446,7 @@ class UpdateParam {
     this.type,
     this.value,
   });
+
   factory UpdateParam.fromJson(Map<String, dynamic> json) {
     return UpdateParam(
       type: (json['type'] as String?)?.toUpdateParamType(),
@@ -5579,6 +5647,7 @@ class UpdateTaintsPayload {
     this.addOrUpdateTaints,
     this.removeTaints,
   });
+
   factory UpdateTaintsPayload.fromJson(Map<String, dynamic> json) {
     return UpdateTaintsPayload(
       addOrUpdateTaints: (json['addOrUpdateTaints'] as List?)
@@ -5731,6 +5800,7 @@ class VpcConfigRequest {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory VpcConfigRequest.fromJson(Map<String, dynamic> json) {
     return VpcConfigRequest(
       endpointPrivateAccess: json['endpointPrivateAccess'] as bool?,
@@ -5825,6 +5895,7 @@ class VpcConfigResponse {
     this.subnetIds,
     this.vpcId,
   });
+
   factory VpcConfigResponse.fromJson(Map<String, dynamic> json) {
     return VpcConfigResponse(
       clusterSecurityGroupId: json['clusterSecurityGroupId'] as String?,

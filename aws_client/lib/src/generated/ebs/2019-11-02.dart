@@ -688,6 +688,7 @@ class Block {
     this.blockIndex,
     this.blockToken,
   });
+
   factory Block.fromJson(Map<String, dynamic> json) {
     return Block(
       blockIndex: json['BlockIndex'] as int?,
@@ -726,6 +727,7 @@ class ChangedBlock {
     this.firstBlockToken,
     this.secondBlockToken,
   });
+
   factory ChangedBlock.fromJson(Map<String, dynamic> json) {
     return ChangedBlock(
       blockIndex: json['BlockIndex'] as int?,
@@ -799,6 +801,7 @@ class CompleteSnapshotResponse {
   CompleteSnapshotResponse({
     this.status,
   });
+
   factory CompleteSnapshotResponse.fromJson(Map<String, dynamic> json) {
     return CompleteSnapshotResponse(
       status: (json['Status'] as String?)?.toStatus(),
@@ -832,6 +835,7 @@ class GetSnapshotBlockResponse {
     this.checksumAlgorithm,
     this.dataLength,
   });
+
   factory GetSnapshotBlockResponse.fromJson(Map<String, dynamic> json) {
     return GetSnapshotBlockResponse(
       blockData: _s.decodeNullableUint8List(json['BlockData'] as String?),
@@ -877,6 +881,7 @@ class ListChangedBlocksResponse {
     this.nextToken,
     this.volumeSize,
   });
+
   factory ListChangedBlocksResponse.fromJson(Map<String, dynamic> json) {
     return ListChangedBlocksResponse(
       blockSize: json['BlockSize'] as int?,
@@ -930,6 +935,7 @@ class ListSnapshotBlocksResponse {
     this.nextToken,
     this.volumeSize,
   });
+
   factory ListSnapshotBlocksResponse.fromJson(Map<String, dynamic> json) {
     return ListSnapshotBlocksResponse(
       blockSize: json['BlockSize'] as int?,
@@ -970,6 +976,7 @@ class PutSnapshotBlockResponse {
     this.checksum,
     this.checksumAlgorithm,
   });
+
   factory PutSnapshotBlockResponse.fromJson(Map<String, dynamic> json) {
     return PutSnapshotBlockResponse(
       checksum: json['x-amz-Checksum'] as String?,
@@ -1033,6 +1040,7 @@ class StartSnapshotResponse {
     this.tags,
     this.volumeSize,
   });
+
   factory StartSnapshotResponse.fromJson(Map<String, dynamic> json) {
     return StartSnapshotResponse(
       blockSize: json['BlockSize'] as int?,
@@ -1122,6 +1130,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,

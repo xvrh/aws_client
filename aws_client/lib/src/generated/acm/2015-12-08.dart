@@ -1231,6 +1231,7 @@ class CertificateDetail {
     this.subjectAlternativeNames,
     this.type,
   });
+
   factory CertificateDetail.fromJson(Map<String, dynamic> json) {
     return CertificateDetail(
       certificateArn: json['CertificateArn'] as String?,
@@ -1365,6 +1366,7 @@ class CertificateOptions {
   CertificateOptions({
     this.certificateTransparencyLoggingPreference,
   });
+
   factory CertificateOptions.fromJson(Map<String, dynamic> json) {
     return CertificateOptions(
       certificateTransparencyLoggingPreference:
@@ -1457,6 +1459,7 @@ class CertificateSummary {
     this.certificateArn,
     this.domainName,
   });
+
   factory CertificateSummary.fromJson(Map<String, dynamic> json) {
     return CertificateSummary(
       certificateArn: json['CertificateArn'] as String?,
@@ -1544,6 +1547,7 @@ class DescribeCertificateResponse {
   DescribeCertificateResponse({
     this.certificate,
   });
+
   factory DescribeCertificateResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCertificateResponse(
       certificate: json['Certificate'] != null
@@ -1646,6 +1650,7 @@ class DomainValidation {
     this.validationMethod,
     this.validationStatus,
   });
+
   factory DomainValidation.fromJson(Map<String, dynamic> json) {
     return DomainValidation(
       domainName: json['DomainName'] as String,
@@ -1721,6 +1726,7 @@ class DomainValidationOption {
     required this.domainName,
     required this.validationDomain,
   });
+
   factory DomainValidationOption.fromJson(Map<String, dynamic> json) {
     return DomainValidationOption(
       domainName: json['DomainName'] as String,
@@ -1749,6 +1755,7 @@ class ExpiryEventsConfiguration {
   ExpiryEventsConfiguration({
     this.daysBeforeExpiry,
   });
+
   factory ExpiryEventsConfiguration.fromJson(Map<String, dynamic> json) {
     return ExpiryEventsConfiguration(
       daysBeforeExpiry: json['DaysBeforeExpiry'] as int?,
@@ -1780,6 +1787,7 @@ class ExportCertificateResponse {
     this.certificateChain,
     this.privateKey,
   });
+
   factory ExportCertificateResponse.fromJson(Map<String, dynamic> json) {
     return ExportCertificateResponse(
       certificate: json['Certificate'] as String?,
@@ -1846,6 +1854,7 @@ class ExtendedKeyUsage {
     this.name,
     this.oid,
   });
+
   factory ExtendedKeyUsage.fromJson(Map<String, dynamic> json) {
     return ExtendedKeyUsage(
       name: (json['Name'] as String?)?.toExtendedKeyUsageName(),
@@ -2068,6 +2077,7 @@ class Filters {
     this.keyTypes,
     this.keyUsage,
   });
+
   factory Filters.fromJson(Map<String, dynamic> json) {
     return Filters(
       extendedKeyUsage: (json['extendedKeyUsage'] as List?)
@@ -2107,6 +2117,7 @@ class GetAccountConfigurationResponse {
   GetAccountConfigurationResponse({
     this.expiryEvents,
   });
+
   factory GetAccountConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountConfigurationResponse(
       expiryEvents: json['ExpiryEvents'] != null
@@ -2137,6 +2148,7 @@ class GetCertificateResponse {
     this.certificate,
     this.certificateChain,
   });
+
   factory GetCertificateResponse.fromJson(Map<String, dynamic> json) {
     return GetCertificateResponse(
       certificate: json['Certificate'] as String?,
@@ -2163,6 +2175,7 @@ class ImportCertificateResponse {
   ImportCertificateResponse({
     this.certificateArn,
   });
+
   factory ImportCertificateResponse.fromJson(Map<String, dynamic> json) {
     return ImportCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
@@ -2234,6 +2247,7 @@ class KeyUsage {
   KeyUsage({
     this.name,
   });
+
   factory KeyUsage.fromJson(Map<String, dynamic> json) {
     return KeyUsage(
       name: (json['Name'] as String?)?.toKeyUsageName(),
@@ -2334,6 +2348,7 @@ class ListCertificatesResponse {
     this.certificateSummaryList,
     this.nextToken,
   });
+
   factory ListCertificatesResponse.fromJson(Map<String, dynamic> json) {
     return ListCertificatesResponse(
       certificateSummaryList: (json['CertificateSummaryList'] as List?)
@@ -2362,6 +2377,7 @@ class ListTagsForCertificateResponse {
   ListTagsForCertificateResponse({
     this.tags,
   });
+
   factory ListTagsForCertificateResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForCertificateResponse(
       tags: (json['Tags'] as List?)
@@ -2498,6 +2514,7 @@ class RenewalSummary {
     required this.updatedAt,
     this.renewalStatusReason,
   });
+
   factory RenewalSummary.fromJson(Map<String, dynamic> json) {
     return RenewalSummary(
       domainValidationOptions: (json['DomainValidationOptions'] as List)
@@ -2536,6 +2553,7 @@ class RequestCertificateResponse {
   RequestCertificateResponse({
     this.certificateArn,
   });
+
   factory RequestCertificateResponse.fromJson(Map<String, dynamic> json) {
     return RequestCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
@@ -2570,6 +2588,7 @@ class ResourceRecord {
     required this.type,
     required this.value,
   });
+
   factory ResourceRecord.fromJson(Map<String, dynamic> json) {
     return ResourceRecord(
       name: json['Name'] as String,
@@ -2671,6 +2690,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,

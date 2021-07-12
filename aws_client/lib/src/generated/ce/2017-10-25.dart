@@ -3163,6 +3163,7 @@ class Anomaly {
     this.feedback,
     this.rootCauses,
   });
+
   factory Anomaly.fromJson(Map<String, dynamic> json) {
     return Anomaly(
       anomalyId: json['AnomalyId'] as String,
@@ -3217,6 +3218,7 @@ class AnomalyDateInterval {
     required this.startDate,
     this.endDate,
   });
+
   factory AnomalyDateInterval.fromJson(Map<String, dynamic> json) {
     return AnomalyDateInterval(
       startDate: json['StartDate'] as String,
@@ -3308,6 +3310,7 @@ class AnomalyMonitor {
     this.monitorDimension,
     this.monitorSpecification,
   });
+
   factory AnomalyMonitor.fromJson(Map<String, dynamic> json) {
     return AnomalyMonitor(
       monitorName: json['MonitorName'] as String,
@@ -3365,6 +3368,7 @@ class AnomalyScore {
     required this.currentScore,
     required this.maxScore,
   });
+
   factory AnomalyScore.fromJson(Map<String, dynamic> json) {
     return AnomalyScore(
       currentScore: json['CurrentScore'] as double,
@@ -3417,6 +3421,7 @@ class AnomalySubscription {
     this.accountId,
     this.subscriptionArn,
   });
+
   factory AnomalySubscription.fromJson(Map<String, dynamic> json) {
     return AnomalySubscription(
       frequency: (json['Frequency'] as String).toAnomalySubscriptionFrequency(),
@@ -3555,6 +3560,7 @@ class CostCategory {
     this.effectiveEnd,
     this.processingStatus,
   });
+
   factory CostCategory.fromJson(Map<String, dynamic> json) {
     return CostCategory(
       costCategoryArn: json['CostCategoryArn'] as String,
@@ -3620,6 +3626,7 @@ class CostCategoryInheritedValueDimension {
     this.dimensionKey,
     this.dimensionName,
   });
+
   factory CostCategoryInheritedValueDimension.fromJson(
       Map<String, dynamic> json) {
     return CostCategoryInheritedValueDimension(
@@ -3682,6 +3689,7 @@ class CostCategoryProcessingStatus {
     this.component,
     this.status,
   });
+
   factory CostCategoryProcessingStatus.fromJson(Map<String, dynamic> json) {
     return CostCategoryProcessingStatus(
       component:
@@ -3737,6 +3745,7 @@ class CostCategoryReference {
     this.processingStatus,
     this.values,
   });
+
   factory CostCategoryReference.fromJson(Map<String, dynamic> json) {
     return CostCategoryReference(
       costCategoryArn: json['CostCategoryArn'] as String?,
@@ -3822,6 +3831,7 @@ class CostCategoryRule {
     this.type,
     this.value,
   });
+
   factory CostCategoryRule.fromJson(Map<String, dynamic> json) {
     return CostCategoryRule(
       inheritedValue: json['InheritedValue'] != null
@@ -3981,6 +3991,7 @@ class CostCategoryValues {
     this.matchOptions,
     this.values,
   });
+
   factory CostCategoryValues.fromJson(Map<String, dynamic> json) {
     return CostCategoryValues(
       key: json['Key'] as String?,
@@ -4025,6 +4036,7 @@ class Coverage {
     this.coverageHours,
     this.coverageNormalizedUnits,
   });
+
   factory Coverage.fromJson(Map<String, dynamic> json) {
     return Coverage(
       coverageCost: json['CoverageCost'] != null
@@ -4070,6 +4082,7 @@ class CoverageByTime {
     this.timePeriod,
     this.total,
   });
+
   factory CoverageByTime.fromJson(Map<String, dynamic> json) {
     return CoverageByTime(
       groups: (json['Groups'] as List?)
@@ -4106,6 +4119,7 @@ class CoverageCost {
   CoverageCost({
     this.onDemandCost,
   });
+
   factory CoverageCost.fromJson(Map<String, dynamic> json) {
     return CoverageCost(
       onDemandCost: json['OnDemandCost'] as String?,
@@ -4140,6 +4154,7 @@ class CoverageHours {
     this.reservedHours,
     this.totalRunningHours,
   });
+
   factory CoverageHours.fromJson(Map<String, dynamic> json) {
     return CoverageHours(
       coverageHoursPercentage: json['CoverageHoursPercentage'] as String?,
@@ -4198,6 +4213,7 @@ class CoverageNormalizedUnits {
     this.reservedNormalizedUnits,
     this.totalRunningNormalizedUnits,
   });
+
   factory CoverageNormalizedUnits.fromJson(Map<String, dynamic> json) {
     return CoverageNormalizedUnits(
       coverageNormalizedUnitsPercentage:
@@ -4235,6 +4251,7 @@ class CreateAnomalyMonitorResponse {
   CreateAnomalyMonitorResponse({
     required this.monitorArn,
   });
+
   factory CreateAnomalyMonitorResponse.fromJson(Map<String, dynamic> json) {
     return CreateAnomalyMonitorResponse(
       monitorArn: json['MonitorArn'] as String,
@@ -4256,6 +4273,7 @@ class CreateAnomalySubscriptionResponse {
   CreateAnomalySubscriptionResponse({
     required this.subscriptionArn,
   });
+
   factory CreateAnomalySubscriptionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateAnomalySubscriptionResponse(
@@ -4282,6 +4300,7 @@ class CreateCostCategoryDefinitionResponse {
     this.costCategoryArn,
     this.effectiveStart,
   });
+
   factory CreateCostCategoryDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCostCategoryDefinitionResponse(
@@ -4349,6 +4368,7 @@ class CurrentInstance {
     this.tags,
     this.totalRunningHoursInLookbackPeriod,
   });
+
   factory CurrentInstance.fromJson(Map<String, dynamic> json) {
     return CurrentInstance(
       currencyCode: json['CurrencyCode'] as String?,
@@ -4434,6 +4454,7 @@ class DateInterval {
     required this.end,
     required this.start,
   });
+
   factory DateInterval.fromJson(Map<String, dynamic> json) {
     return DateInterval(
       end: json['End'] as String,
@@ -4453,6 +4474,7 @@ class DateInterval {
 
 class DeleteAnomalyMonitorResponse {
   DeleteAnomalyMonitorResponse();
+
   factory DeleteAnomalyMonitorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalyMonitorResponse();
   }
@@ -4464,6 +4486,7 @@ class DeleteAnomalyMonitorResponse {
 
 class DeleteAnomalySubscriptionResponse {
   DeleteAnomalySubscriptionResponse();
+
   factory DeleteAnomalySubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalySubscriptionResponse();
   }
@@ -4485,6 +4508,7 @@ class DeleteCostCategoryDefinitionResponse {
     this.costCategoryArn,
     this.effectiveEnd,
   });
+
   factory DeleteCostCategoryDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteCostCategoryDefinitionResponse(
@@ -4509,6 +4533,7 @@ class DescribeCostCategoryDefinitionResponse {
   DescribeCostCategoryDefinitionResponse({
     this.costCategory,
   });
+
   factory DescribeCostCategoryDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCostCategoryDefinitionResponse(
@@ -4721,6 +4746,7 @@ class DimensionValues {
     this.matchOptions,
     this.values,
   });
+
   factory DimensionValues.fromJson(Map<String, dynamic> json) {
     return DimensionValues(
       key: (json['Key'] as String?)?.toDimension(),
@@ -4762,6 +4788,7 @@ class DimensionValuesWithAttributes {
     this.attributes,
     this.value,
   });
+
   factory DimensionValuesWithAttributes.fromJson(Map<String, dynamic> json) {
     return DimensionValuesWithAttributes(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -4801,6 +4828,7 @@ class DiskResourceUtilization {
     this.diskWriteBytesPerSecond,
     this.diskWriteOpsPerSecond,
   });
+
   factory DiskResourceUtilization.fromJson(Map<String, dynamic> json) {
     return DiskResourceUtilization(
       diskReadBytesPerSecond: json['DiskReadBytesPerSecond'] as String?,
@@ -4849,6 +4877,7 @@ class EBSResourceUtilization {
     this.ebsWriteBytesPerSecond,
     this.ebsWriteOpsPerSecond,
   });
+
   factory EBSResourceUtilization.fromJson(Map<String, dynamic> json) {
     return EBSResourceUtilization(
       ebsReadBytesPerSecond: json['EbsReadBytesPerSecond'] as String?,
@@ -4914,6 +4943,7 @@ class EC2InstanceDetails {
     this.sizeFlexEligible,
     this.tenancy,
   });
+
   factory EC2InstanceDetails.fromJson(Map<String, dynamic> json) {
     return EC2InstanceDetails(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -4990,6 +5020,7 @@ class EC2ResourceDetails {
     this.storage,
     this.vcpu,
   });
+
   factory EC2ResourceDetails.fromJson(Map<String, dynamic> json) {
     return EC2ResourceDetails(
       hourlyOnDemandRate: json['HourlyOnDemandRate'] as String?,
@@ -5060,6 +5091,7 @@ class EC2ResourceUtilization {
     this.maxStorageUtilizationPercentage,
     this.networkResourceUtilization,
   });
+
   factory EC2ResourceUtilization.fromJson(Map<String, dynamic> json) {
     return EC2ResourceUtilization(
       diskResourceUtilization: json['DiskResourceUtilization'] != null
@@ -5117,6 +5149,7 @@ class EC2Specification {
   EC2Specification({
     this.offeringClass,
   });
+
   factory EC2Specification.fromJson(Map<String, dynamic> json) {
     return EC2Specification(
       offeringClass: (json['OfferingClass'] as String?)?.toOfferingClass(),
@@ -5155,6 +5188,7 @@ class ESInstanceDetails {
     this.region,
     this.sizeFlexEligible,
   });
+
   factory ESInstanceDetails.fromJson(Map<String, dynamic> json) {
     return ESInstanceDetails(
       currentGeneration: json['CurrentGeneration'] as bool?,
@@ -5210,6 +5244,7 @@ class ElastiCacheInstanceDetails {
     this.region,
     this.sizeFlexEligible,
   });
+
   factory ElastiCacheInstanceDetails.fromJson(Map<String, dynamic> json) {
     return ElastiCacheInstanceDetails(
       currentGeneration: json['CurrentGeneration'] as bool?,
@@ -5318,6 +5353,7 @@ class Expression {
     this.or,
     this.tags,
   });
+
   factory Expression.fromJson(Map<String, dynamic> json) {
     return Expression(
       and: (json['And'] as List?)
@@ -5480,6 +5516,7 @@ class ForecastResult {
     this.predictionIntervalUpperBound,
     this.timePeriod,
   });
+
   factory ForecastResult.fromJson(Map<String, dynamic> json) {
     return ForecastResult(
       meanValue: json['MeanValue'] as String?,
@@ -5522,6 +5559,7 @@ class GetAnomaliesResponse {
     required this.anomalies,
     this.nextPageToken,
   });
+
   factory GetAnomaliesResponse.fromJson(Map<String, dynamic> json) {
     return GetAnomaliesResponse(
       anomalies: (json['Anomalies'] as List)
@@ -5556,6 +5594,7 @@ class GetAnomalyMonitorsResponse {
     required this.anomalyMonitors,
     this.nextPageToken,
   });
+
   factory GetAnomalyMonitorsResponse.fromJson(Map<String, dynamic> json) {
     return GetAnomalyMonitorsResponse(
       anomalyMonitors: (json['AnomalyMonitors'] as List)
@@ -5590,6 +5629,7 @@ class GetAnomalySubscriptionsResponse {
     required this.anomalySubscriptions,
     this.nextPageToken,
   });
+
   factory GetAnomalySubscriptionsResponse.fromJson(Map<String, dynamic> json) {
     return GetAnomalySubscriptionsResponse(
       anomalySubscriptions: (json['AnomalySubscriptions'] as List)
@@ -5633,6 +5673,7 @@ class GetCostAndUsageResponse {
     this.nextPageToken,
     this.resultsByTime,
   });
+
   factory GetCostAndUsageResponse.fromJson(Map<String, dynamic> json) {
     return GetCostAndUsageResponse(
       dimensionValueAttributes: (json['DimensionValueAttributes'] as List?)
@@ -5690,6 +5731,7 @@ class GetCostAndUsageWithResourcesResponse {
     this.nextPageToken,
     this.resultsByTime,
   });
+
   factory GetCostAndUsageWithResourcesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCostAndUsageWithResourcesResponse(
@@ -5754,6 +5796,7 @@ class GetCostCategoriesResponse {
     this.costCategoryValues,
     this.nextPageToken,
   });
+
   factory GetCostCategoriesResponse.fromJson(Map<String, dynamic> json) {
     return GetCostCategoriesResponse(
       returnSize: json['ReturnSize'] as int,
@@ -5800,6 +5843,7 @@ class GetCostForecastResponse {
     this.forecastResultsByTime,
     this.total,
   });
+
   factory GetCostForecastResponse.fromJson(Map<String, dynamic> json) {
     return GetCostForecastResponse(
       forecastResultsByTime: (json['ForecastResultsByTime'] as List?)
@@ -5977,6 +6021,7 @@ class GetDimensionValuesResponse {
     required this.totalSize,
     this.nextPageToken,
   });
+
   factory GetDimensionValuesResponse.fromJson(Map<String, dynamic> json) {
     return GetDimensionValuesResponse(
       dimensionValues: (json['DimensionValues'] as List)
@@ -6021,6 +6066,7 @@ class GetReservationCoverageResponse {
     this.nextPageToken,
     this.total,
   });
+
   factory GetReservationCoverageResponse.fromJson(Map<String, dynamic> json) {
     return GetReservationCoverageResponse(
       coveragesByTime: (json['CoveragesByTime'] as List)
@@ -6062,6 +6108,7 @@ class GetReservationPurchaseRecommendationResponse {
     this.nextPageToken,
     this.recommendations,
   });
+
   factory GetReservationPurchaseRecommendationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetReservationPurchaseRecommendationResponse(
@@ -6107,6 +6154,7 @@ class GetReservationUtilizationResponse {
     this.nextPageToken,
     this.total,
   });
+
   factory GetReservationUtilizationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetReservationUtilizationResponse(
@@ -6161,6 +6209,7 @@ class GetRightsizingRecommendationResponse {
     this.rightsizingRecommendations,
     this.summary,
   });
+
   factory GetRightsizingRecommendationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRightsizingRecommendationResponse(
@@ -6215,6 +6264,7 @@ class GetSavingsPlansCoverageResponse {
     required this.savingsPlansCoverages,
     this.nextToken,
   });
+
   factory GetSavingsPlansCoverageResponse.fromJson(Map<String, dynamic> json) {
     return GetSavingsPlansCoverageResponse(
       savingsPlansCoverages: (json['SavingsPlansCoverages'] as List)
@@ -6253,6 +6303,7 @@ class GetSavingsPlansPurchaseRecommendationResponse {
     this.nextPageToken,
     this.savingsPlansPurchaseRecommendation,
   });
+
   factory GetSavingsPlansPurchaseRecommendationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSavingsPlansPurchaseRecommendationResponse(
@@ -6305,6 +6356,7 @@ class GetSavingsPlansUtilizationDetailsResponse {
     this.nextToken,
     this.total,
   });
+
   factory GetSavingsPlansUtilizationDetailsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSavingsPlansUtilizationDetailsResponse(
@@ -6351,6 +6403,7 @@ class GetSavingsPlansUtilizationResponse {
     required this.total,
     this.savingsPlansUtilizationsByTime,
   });
+
   factory GetSavingsPlansUtilizationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSavingsPlansUtilizationResponse(
@@ -6397,6 +6450,7 @@ class GetTagsResponse {
     required this.totalSize,
     this.nextPageToken,
   });
+
   factory GetTagsResponse.fromJson(Map<String, dynamic> json) {
     return GetTagsResponse(
       returnSize: json['ReturnSize'] as int,
@@ -6436,6 +6490,7 @@ class GetUsageForecastResponse {
     this.forecastResultsByTime,
     this.total,
   });
+
   factory GetUsageForecastResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageForecastResponse(
       forecastResultsByTime: (json['ForecastResultsByTime'] as List?)
@@ -6504,6 +6559,7 @@ class Group {
     this.keys,
     this.metrics,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       keys: (json['Keys'] as List?)
@@ -6538,6 +6594,7 @@ class GroupDefinition {
     this.key,
     this.type,
   });
+
   factory GroupDefinition.fromJson(Map<String, dynamic> json) {
     return GroupDefinition(
       key: json['Key'] as String?,
@@ -6600,6 +6657,7 @@ class Impact {
     required this.maxImpact,
     this.totalImpact,
   });
+
   factory Impact.fromJson(Map<String, dynamic> json) {
     return Impact(
       maxImpact: json['MaxImpact'] as double,
@@ -6641,6 +6699,7 @@ class InstanceDetails {
     this.rDSInstanceDetails,
     this.redshiftInstanceDetails,
   });
+
   factory InstanceDetails.fromJson(Map<String, dynamic> json) {
     return InstanceDetails(
       eC2InstanceDetails: json['EC2InstanceDetails'] != null
@@ -6698,6 +6757,7 @@ class ListCostCategoryDefinitionsResponse {
     this.costCategoryReferences,
     this.nextToken,
   });
+
   factory ListCostCategoryDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCostCategoryDefinitionsResponse(
@@ -6871,6 +6931,7 @@ class MetricValue {
     this.amount,
     this.unit,
   });
+
   factory MetricValue.fromJson(Map<String, dynamic> json) {
     return MetricValue(
       amount: json['Amount'] as String?,
@@ -6896,6 +6957,7 @@ class ModifyRecommendationDetail {
   ModifyRecommendationDetail({
     this.targetInstances,
   });
+
   factory ModifyRecommendationDetail.fromJson(Map<String, dynamic> json) {
     return ModifyRecommendationDetail(
       targetInstances: (json['TargetInstances'] as List?)
@@ -6985,6 +7047,7 @@ class NetworkResourceUtilization {
     this.networkPacketsInPerSecond,
     this.networkPacketsOutPerSecond,
   });
+
   factory NetworkResourceUtilization.fromJson(Map<String, dynamic> json) {
     return NetworkResourceUtilization(
       networkInBytesPerSecond: json['NetworkInBytesPerSecond'] as String?,
@@ -7186,6 +7249,7 @@ class ProvideAnomalyFeedbackResponse {
   ProvideAnomalyFeedbackResponse({
     required this.anomalyId,
   });
+
   factory ProvideAnomalyFeedbackResponse.fromJson(Map<String, dynamic> json) {
     return ProvideAnomalyFeedbackResponse(
       anomalyId: json['AnomalyId'] as String,
@@ -7242,6 +7306,7 @@ class RDSInstanceDetails {
     this.region,
     this.sizeFlexEligible,
   });
+
   factory RDSInstanceDetails.fromJson(Map<String, dynamic> json) {
     return RDSInstanceDetails(
       currentGeneration: json['CurrentGeneration'] as bool?,
@@ -7333,6 +7398,7 @@ class RedshiftInstanceDetails {
     this.region,
     this.sizeFlexEligible,
   });
+
   factory RedshiftInstanceDetails.fromJson(Map<String, dynamic> json) {
     return RedshiftInstanceDetails(
       currentGeneration: json['CurrentGeneration'] as bool?,
@@ -7441,6 +7507,7 @@ class ReservationAggregates {
     this.utilizationPercentage,
     this.utilizationPercentageInUnits,
   });
+
   factory ReservationAggregates.fromJson(Map<String, dynamic> json) {
     return ReservationAggregates(
       amortizedRecurringFee: json['AmortizedRecurringFee'] as String?,
@@ -7523,6 +7590,7 @@ class ReservationCoverageGroup {
     this.attributes,
     this.coverage,
   });
+
   factory ReservationCoverageGroup.fromJson(Map<String, dynamic> json) {
     return ReservationCoverageGroup(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -7579,6 +7647,7 @@ class ReservationPurchaseRecommendation {
     this.serviceSpecification,
     this.termInYears,
   });
+
   factory ReservationPurchaseRecommendation.fromJson(
       Map<String, dynamic> json) {
     return ReservationPurchaseRecommendation(
@@ -7724,6 +7793,7 @@ class ReservationPurchaseRecommendationDetail {
     this.recurringStandardMonthlyCost,
     this.upfrontCost,
   });
+
   factory ReservationPurchaseRecommendationDetail.fromJson(
       Map<String, dynamic> json) {
     return ReservationPurchaseRecommendationDetail(
@@ -7852,6 +7922,7 @@ class ReservationPurchaseRecommendationMetadata {
     this.generationTimestamp,
     this.recommendationId,
   });
+
   factory ReservationPurchaseRecommendationMetadata.fromJson(
       Map<String, dynamic> json) {
     return ReservationPurchaseRecommendationMetadata(
@@ -7891,6 +7962,7 @@ class ReservationPurchaseRecommendationSummary {
     this.totalEstimatedMonthlySavingsAmount,
     this.totalEstimatedMonthlySavingsPercentage,
   });
+
   factory ReservationPurchaseRecommendationSummary.fromJson(
       Map<String, dynamic> json) {
     return ReservationPurchaseRecommendationSummary(
@@ -7940,6 +8012,7 @@ class ReservationUtilizationGroup {
     this.utilization,
     this.value,
   });
+
   factory ReservationUtilizationGroup.fromJson(Map<String, dynamic> json) {
     return ReservationUtilizationGroup(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -7975,6 +8048,7 @@ class ResourceDetails {
   ResourceDetails({
     this.eC2ResourceDetails,
   });
+
   factory ResourceDetails.fromJson(Map<String, dynamic> json) {
     return ResourceDetails(
       eC2ResourceDetails: json['EC2ResourceDetails'] != null
@@ -8000,6 +8074,7 @@ class ResourceUtilization {
   ResourceUtilization({
     this.eC2ResourceUtilization,
   });
+
   factory ResourceUtilization.fromJson(Map<String, dynamic> json) {
     return ResourceUtilization(
       eC2ResourceUtilization: json['EC2ResourceUtilization'] != null
@@ -8038,6 +8113,7 @@ class ResultByTime {
     this.timePeriod,
     this.total,
   });
+
   factory ResultByTime.fromJson(Map<String, dynamic> json) {
     return ResultByTime(
       estimated: json['Estimated'] as bool?,
@@ -8097,6 +8173,7 @@ class RightsizingRecommendation {
     this.rightsizingType,
     this.terminateRecommendationDetail,
   });
+
   factory RightsizingRecommendation.fromJson(Map<String, dynamic> json) {
     return RightsizingRecommendation(
       accountId: json['AccountId'] as String?,
@@ -8163,6 +8240,7 @@ class RightsizingRecommendationConfiguration {
     required this.benefitsConsidered,
     required this.recommendationTarget,
   });
+
   factory RightsizingRecommendationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return RightsizingRecommendationConfiguration(
@@ -8203,6 +8281,7 @@ class RightsizingRecommendationMetadata {
     this.lookbackPeriodInDays,
     this.recommendationId,
   });
+
   factory RightsizingRecommendationMetadata.fromJson(
       Map<String, dynamic> json) {
     return RightsizingRecommendationMetadata(
@@ -8251,6 +8330,7 @@ class RightsizingRecommendationSummary {
     this.savingsPercentage,
     this.totalRecommendationCount,
   });
+
   factory RightsizingRecommendationSummary.fromJson(Map<String, dynamic> json) {
     return RightsizingRecommendationSummary(
       estimatedTotalMonthlySavingsAmount:
@@ -8329,6 +8409,7 @@ class RootCause {
     this.service,
     this.usageType,
   });
+
   factory RootCause.fromJson(Map<String, dynamic> json) {
     return RootCause(
       linkedAccount: json['LinkedAccount'] as String?,
@@ -8372,6 +8453,7 @@ class SavingsPlansAmortizedCommitment {
     this.amortizedUpfrontCommitment,
     this.totalAmortizedCommitment,
   });
+
   factory SavingsPlansAmortizedCommitment.fromJson(Map<String, dynamic> json) {
     return SavingsPlansAmortizedCommitment(
       amortizedRecurringCommitment:
@@ -8412,6 +8494,7 @@ class SavingsPlansCoverage {
     this.coverage,
     this.timePeriod,
   });
+
   factory SavingsPlansCoverage.fromJson(Map<String, dynamic> json) {
     return SavingsPlansCoverage(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -8460,6 +8543,7 @@ class SavingsPlansCoverageData {
     this.spendCoveredBySavingsPlans,
     this.totalCost,
   });
+
   factory SavingsPlansCoverageData.fromJson(Map<String, dynamic> json) {
     return SavingsPlansCoverageData(
       coveragePercentage: json['CoveragePercentage'] as String?,
@@ -8539,6 +8623,7 @@ class SavingsPlansDetails {
     this.offeringId,
     this.region,
   });
+
   factory SavingsPlansDetails.fromJson(Map<String, dynamic> json) {
     return SavingsPlansDetails(
       instanceFamily: json['InstanceFamily'] as String?,
@@ -8600,6 +8685,7 @@ class SavingsPlansPurchaseRecommendation {
     this.savingsPlansType,
     this.termInYears,
   });
+
   factory SavingsPlansPurchaseRecommendation.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlansPurchaseRecommendation(
@@ -8736,6 +8822,7 @@ class SavingsPlansPurchaseRecommendationDetail {
     this.savingsPlansDetails,
     this.upfrontCost,
   });
+
   factory SavingsPlansPurchaseRecommendationDetail.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlansPurchaseRecommendationDetail(
@@ -8837,6 +8924,7 @@ class SavingsPlansPurchaseRecommendationMetadata {
     this.generationTimestamp,
     this.recommendationId,
   });
+
   factory SavingsPlansPurchaseRecommendationMetadata.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlansPurchaseRecommendationMetadata(
@@ -8919,6 +9007,7 @@ class SavingsPlansPurchaseRecommendationSummary {
     this.hourlyCommitmentToPurchase,
     this.totalRecommendationCount,
   });
+
   factory SavingsPlansPurchaseRecommendationSummary.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlansPurchaseRecommendationSummary(
@@ -8992,6 +9081,7 @@ class SavingsPlansSavings {
     this.netSavings,
     this.onDemandCostEquivalent,
   });
+
   factory SavingsPlansSavings.fromJson(Map<String, dynamic> json) {
     return SavingsPlansSavings(
       netSavings: json['NetSavings'] as String?,
@@ -9034,6 +9124,7 @@ class SavingsPlansUtilization {
     this.usedCommitment,
     this.utilizationPercentage,
   });
+
   factory SavingsPlansUtilization.fromJson(Map<String, dynamic> json) {
     return SavingsPlansUtilization(
       totalCommitment: json['TotalCommitment'] as String?,
@@ -9079,6 +9170,7 @@ class SavingsPlansUtilizationAggregates {
     this.amortizedCommitment,
     this.savings,
   });
+
   factory SavingsPlansUtilizationAggregates.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlansUtilizationAggregates(
@@ -9132,6 +9224,7 @@ class SavingsPlansUtilizationByTime {
     this.amortizedCommitment,
     this.savings,
   });
+
   factory SavingsPlansUtilizationByTime.fromJson(Map<String, dynamic> json) {
     return SavingsPlansUtilizationByTime(
       timePeriod:
@@ -9196,6 +9289,7 @@ class SavingsPlansUtilizationDetail {
     this.savingsPlanArn,
     this.utilization,
   });
+
   factory SavingsPlansUtilizationDetail.fromJson(Map<String, dynamic> json) {
     return SavingsPlansUtilizationDetail(
       amortizedCommitment: json['AmortizedCommitment'] != null
@@ -9242,6 +9336,7 @@ class ServiceSpecification {
   ServiceSpecification({
     this.eC2Specification,
   });
+
   factory ServiceSpecification.fromJson(Map<String, dynamic> json) {
     return ServiceSpecification(
       eC2Specification: json['EC2Specification'] != null
@@ -9271,6 +9366,7 @@ class SortDefinition {
     required this.key,
     this.sortOrder,
   });
+
   factory SortDefinition.fromJson(Map<String, dynamic> json) {
     return SortDefinition(
       key: json['Key'] as String,
@@ -9333,6 +9429,7 @@ class Subscriber {
     this.status,
     this.type,
   });
+
   factory Subscriber.fromJson(Map<String, dynamic> json) {
     return Subscriber(
       address: json['Address'] as String?,
@@ -9470,6 +9567,7 @@ class TagValues {
     this.matchOptions,
     this.values,
   });
+
   factory TagValues.fromJson(Map<String, dynamic> json) {
     return TagValues(
       key: json['Key'] as String?,
@@ -9531,6 +9629,7 @@ class TargetInstance {
     this.platformDifferences,
     this.resourceDetails,
   });
+
   factory TargetInstance.fromJson(Map<String, dynamic> json) {
     return TargetInstance(
       currencyCode: json['CurrencyCode'] as String?,
@@ -9618,6 +9717,7 @@ class TerminateRecommendationDetail {
     this.currencyCode,
     this.estimatedMonthlySavings,
   });
+
   factory TerminateRecommendationDetail.fromJson(Map<String, dynamic> json) {
     return TerminateRecommendationDetail(
       currencyCode: json['CurrencyCode'] as String?,
@@ -9652,6 +9752,7 @@ class TotalImpactFilter {
     required this.startValue,
     this.endValue,
   });
+
   factory TotalImpactFilter.fromJson(Map<String, dynamic> json) {
     return TotalImpactFilter(
       numericOperator: (json['NumericOperator'] as String).toNumericOperator(),
@@ -9679,6 +9780,7 @@ class UpdateAnomalyMonitorResponse {
   UpdateAnomalyMonitorResponse({
     required this.monitorArn,
   });
+
   factory UpdateAnomalyMonitorResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAnomalyMonitorResponse(
       monitorArn: json['MonitorArn'] as String,
@@ -9700,6 +9802,7 @@ class UpdateAnomalySubscriptionResponse {
   UpdateAnomalySubscriptionResponse({
     required this.subscriptionArn,
   });
+
   factory UpdateAnomalySubscriptionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAnomalySubscriptionResponse(
@@ -9726,6 +9829,7 @@ class UpdateCostCategoryDefinitionResponse {
     this.costCategoryArn,
     this.effectiveStart,
   });
+
   factory UpdateCostCategoryDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateCostCategoryDefinitionResponse(
@@ -9760,6 +9864,7 @@ class UtilizationByTime {
     this.timePeriod,
     this.total,
   });
+
   factory UtilizationByTime.fromJson(Map<String, dynamic> json) {
     return UtilizationByTime(
       groups: (json['Groups'] as List?)

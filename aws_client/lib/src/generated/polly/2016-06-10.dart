@@ -585,6 +585,7 @@ class Polly {
 
 class DeleteLexiconOutput {
   DeleteLexiconOutput();
+
   factory DeleteLexiconOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLexiconOutput();
   }
@@ -607,6 +608,7 @@ class DescribeVoicesOutput {
     this.nextToken,
     this.voices,
   });
+
   factory DescribeVoicesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVoicesOutput(
       nextToken: json['NextToken'] as String?,
@@ -696,6 +698,7 @@ class GetLexiconOutput {
     this.lexicon,
     this.lexiconAttributes,
   });
+
   factory GetLexiconOutput.fromJson(Map<String, dynamic> json) {
     return GetLexiconOutput(
       lexicon: json['Lexicon'] != null
@@ -726,6 +729,7 @@ class GetSpeechSynthesisTaskOutput {
   GetSpeechSynthesisTaskOutput({
     this.synthesisTask,
   });
+
   factory GetSpeechSynthesisTaskOutput.fromJson(Map<String, dynamic> json) {
     return GetSpeechSynthesisTaskOutput(
       synthesisTask: json['SynthesisTask'] != null
@@ -922,6 +926,7 @@ class Lexicon {
     this.content,
     this.name,
   });
+
   factory Lexicon.fromJson(Map<String, dynamic> json) {
     return Lexicon(
       content: json['Content'] as String?,
@@ -973,6 +978,7 @@ class LexiconAttributes {
     this.lexiconArn,
     this.size,
   });
+
   factory LexiconAttributes.fromJson(Map<String, dynamic> json) {
     return LexiconAttributes(
       alphabet: json['Alphabet'] as String?,
@@ -1015,6 +1021,7 @@ class LexiconDescription {
     this.attributes,
     this.name,
   });
+
   factory LexiconDescription.fromJson(Map<String, dynamic> json) {
     return LexiconDescription(
       attributes: json['Attributes'] != null
@@ -1048,6 +1055,7 @@ class ListLexiconsOutput {
     this.lexicons,
     this.nextToken,
   });
+
   factory ListLexiconsOutput.fromJson(Map<String, dynamic> json) {
     return ListLexiconsOutput(
       lexicons: (json['Lexicons'] as List?)
@@ -1082,6 +1090,7 @@ class ListSpeechSynthesisTasksOutput {
     this.nextToken,
     this.synthesisTasks,
   });
+
   factory ListSpeechSynthesisTasksOutput.fromJson(Map<String, dynamic> json) {
     return ListSpeechSynthesisTasksOutput(
       nextToken: json['NextToken'] as String?,
@@ -1142,6 +1151,7 @@ extension on String {
 
 class PutLexiconOutput {
   PutLexiconOutput();
+
   factory PutLexiconOutput.fromJson(Map<String, dynamic> _) {
     return PutLexiconOutput();
   }
@@ -1197,6 +1207,7 @@ class StartSpeechSynthesisTaskOutput {
   StartSpeechSynthesisTaskOutput({
     this.synthesisTask,
   });
+
   factory StartSpeechSynthesisTaskOutput.fromJson(Map<String, dynamic> json) {
     return StartSpeechSynthesisTaskOutput(
       synthesisTask: json['SynthesisTask'] != null
@@ -1302,6 +1313,7 @@ class SynthesisTask {
     this.textType,
     this.voiceId,
   });
+
   factory SynthesisTask.fromJson(Map<String, dynamic> json) {
     return SynthesisTask(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -1403,6 +1415,7 @@ class SynthesizeSpeechOutput {
     this.contentType,
     this.requestCharacters,
   });
+
   factory SynthesizeSpeechOutput.fromJson(Map<String, dynamic> json) {
     return SynthesizeSpeechOutput(
       audioStream: _s.decodeNullableUint8List(json['AudioStream'] as String?),
@@ -1528,6 +1541,7 @@ class Voice {
     this.name,
     this.supportedEngines,
   });
+
   factory Voice.fromJson(Map<String, dynamic> json) {
     return Voice(
       additionalLanguageCodes: (json['AdditionalLanguageCodes'] as List?)

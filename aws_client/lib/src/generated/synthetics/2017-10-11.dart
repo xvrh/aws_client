@@ -941,6 +941,7 @@ class Canary {
     this.timeline,
     this.vpcConfig,
   });
+
   factory Canary.fromJson(Map<String, dynamic> json) {
     return Canary(
       artifactS3Location: json['ArtifactS3Location'] as String?,
@@ -1052,6 +1053,7 @@ class CanaryCodeInput {
     this.s3Version,
     this.zipFile,
   });
+
   factory CanaryCodeInput.fromJson(Map<String, dynamic> json) {
     return CanaryCodeInput(
       handler: json['Handler'] as String,
@@ -1091,6 +1093,7 @@ class CanaryCodeOutput {
     this.handler,
     this.sourceLocationArn,
   });
+
   factory CanaryCodeOutput.fromJson(Map<String, dynamic> json) {
     return CanaryCodeOutput(
       handler: json['Handler'] as String?,
@@ -1121,6 +1124,7 @@ class CanaryLastRun {
     this.canaryName,
     this.lastRun,
   });
+
   factory CanaryLastRun.fromJson(Map<String, dynamic> json) {
     return CanaryLastRun(
       canaryName: json['CanaryName'] as String?,
@@ -1165,6 +1169,7 @@ class CanaryRun {
     this.status,
     this.timeline,
   });
+
   factory CanaryRun.fromJson(Map<String, dynamic> json) {
     return CanaryRun(
       artifactS3Location: json['ArtifactS3Location'] as String?,
@@ -1239,6 +1244,7 @@ class CanaryRunConfigInput {
     this.memoryInMB,
     this.timeoutInSeconds,
   });
+
   factory CanaryRunConfigInput.fromJson(Map<String, dynamic> json) {
     return CanaryRunConfigInput(
       activeTracing: json['ActiveTracing'] as bool?,
@@ -1282,6 +1288,7 @@ class CanaryRunConfigOutput {
     this.memoryInMB,
     this.timeoutInSeconds,
   });
+
   factory CanaryRunConfigOutput.fromJson(Map<String, dynamic> json) {
     return CanaryRunConfigOutput(
       activeTracing: json['ActiveTracing'] as bool?,
@@ -1381,6 +1388,7 @@ class CanaryRunStatus {
     this.stateReason,
     this.stateReasonCode,
   });
+
   factory CanaryRunStatus.fromJson(Map<String, dynamic> json) {
     return CanaryRunStatus(
       state: (json['State'] as String?)?.toCanaryRunState(),
@@ -1414,6 +1422,7 @@ class CanaryRunTimeline {
     this.completed,
     this.started,
   });
+
   factory CanaryRunTimeline.fromJson(Map<String, dynamic> json) {
     return CanaryRunTimeline(
       completed: timeStampFromJson(json['Completed']),
@@ -1457,6 +1466,7 @@ class CanaryScheduleInput {
     required this.expression,
     this.durationInSeconds,
   });
+
   factory CanaryScheduleInput.fromJson(Map<String, dynamic> json) {
     return CanaryScheduleInput(
       expression: json['Expression'] as String,
@@ -1498,6 +1508,7 @@ class CanaryScheduleOutput {
     this.durationInSeconds,
     this.expression,
   });
+
   factory CanaryScheduleOutput.fromJson(Map<String, dynamic> json) {
     return CanaryScheduleOutput(
       durationInSeconds: json['DurationInSeconds'] as int?,
@@ -1618,6 +1629,7 @@ class CanaryStatus {
     this.stateReason,
     this.stateReasonCode,
   });
+
   factory CanaryStatus.fromJson(Map<String, dynamic> json) {
     return CanaryStatus(
       state: (json['State'] as String?)?.toCanaryState(),
@@ -1660,6 +1672,7 @@ class CanaryTimeline {
     this.lastStarted,
     this.lastStopped,
   });
+
   factory CanaryTimeline.fromJson(Map<String, dynamic> json) {
     return CanaryTimeline(
       created: timeStampFromJson(json['Created']),
@@ -1691,6 +1704,7 @@ class CreateCanaryResponse {
   CreateCanaryResponse({
     this.canary,
   });
+
   factory CreateCanaryResponse.fromJson(Map<String, dynamic> json) {
     return CreateCanaryResponse(
       canary: json['Canary'] != null
@@ -1709,6 +1723,7 @@ class CreateCanaryResponse {
 
 class DeleteCanaryResponse {
   DeleteCanaryResponse();
+
   factory DeleteCanaryResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCanaryResponse();
   }
@@ -1732,6 +1747,7 @@ class DescribeCanariesLastRunResponse {
     this.canariesLastRun,
     this.nextToken,
   });
+
   factory DescribeCanariesLastRunResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCanariesLastRunResponse(
       canariesLastRun: (json['CanariesLastRun'] as List?)
@@ -1766,6 +1782,7 @@ class DescribeCanariesResponse {
     this.canaries,
     this.nextToken,
   });
+
   factory DescribeCanariesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCanariesResponse(
       canaries: (json['Canaries'] as List?)
@@ -1800,6 +1817,7 @@ class DescribeRuntimeVersionsResponse {
     this.nextToken,
     this.runtimeVersions,
   });
+
   factory DescribeRuntimeVersionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRuntimeVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1827,6 +1845,7 @@ class GetCanaryResponse {
   GetCanaryResponse({
     this.canary,
   });
+
   factory GetCanaryResponse.fromJson(Map<String, dynamic> json) {
     return GetCanaryResponse(
       canary: json['Canary'] != null
@@ -1857,6 +1876,7 @@ class GetCanaryRunsResponse {
     this.canaryRuns,
     this.nextToken,
   });
+
   factory GetCanaryRunsResponse.fromJson(Map<String, dynamic> json) {
     return GetCanaryRunsResponse(
       canaryRuns: (json['CanaryRuns'] as List?)
@@ -1885,6 +1905,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1927,6 +1948,7 @@ class RuntimeVersion {
     this.releaseDate,
     this.versionName,
   });
+
   factory RuntimeVersion.fromJson(Map<String, dynamic> json) {
     return RuntimeVersion(
       deprecationDate: timeStampFromJson(json['DeprecationDate']),
@@ -1953,6 +1975,7 @@ class RuntimeVersion {
 
 class StartCanaryResponse {
   StartCanaryResponse();
+
   factory StartCanaryResponse.fromJson(Map<String, dynamic> _) {
     return StartCanaryResponse();
   }
@@ -1964,6 +1987,7 @@ class StartCanaryResponse {
 
 class StopCanaryResponse {
   StopCanaryResponse();
+
   factory StopCanaryResponse.fromJson(Map<String, dynamic> _) {
     return StopCanaryResponse();
   }
@@ -1975,6 +1999,7 @@ class StopCanaryResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1986,6 +2011,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1997,6 +2023,7 @@ class UntagResourceResponse {
 
 class UpdateCanaryResponse {
   UpdateCanaryResponse();
+
   factory UpdateCanaryResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCanaryResponse();
   }
@@ -2022,6 +2049,7 @@ class VpcConfigInput {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory VpcConfigInput.fromJson(Map<String, dynamic> json) {
     return VpcConfigInput(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -2065,6 +2093,7 @@ class VpcConfigOutput {
     this.subnetIds,
     this.vpcId,
   });
+
   factory VpcConfigOutput.fromJson(Map<String, dynamic> json) {
     return VpcConfigOutput(
       securityGroupIds: (json['SecurityGroupIds'] as List?)

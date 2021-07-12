@@ -2231,6 +2231,7 @@ class AdditionalAuthenticationProvider {
     this.openIDConnectConfig,
     this.userPoolConfig,
   });
+
   factory AdditionalAuthenticationProvider.fromJson(Map<String, dynamic> json) {
     return AdditionalAuthenticationProvider(
       authenticationType:
@@ -2377,6 +2378,7 @@ class ApiCache {
     this.ttl,
     this.type,
   });
+
   factory ApiCache.fromJson(Map<String, dynamic> json) {
     return ApiCache(
       apiCachingBehavior:
@@ -2656,6 +2658,7 @@ class ApiKey {
     this.expires,
     this.id,
   });
+
   factory ApiKey.fromJson(Map<String, dynamic> json) {
     return ApiKey(
       deletes: json['deletes'] as int?,
@@ -2735,6 +2738,7 @@ class AuthorizationConfig {
     required this.authorizationType,
     this.awsIamConfig,
   });
+
   factory AuthorizationConfig.fromJson(Map<String, dynamic> json) {
     return AuthorizationConfig(
       authorizationType:
@@ -2790,6 +2794,7 @@ class AwsIamConfig {
     this.signingRegion,
     this.signingServiceName,
   });
+
   factory AwsIamConfig.fromJson(Map<String, dynamic> json) {
     return AwsIamConfig(
       signingRegion: json['signingRegion'] as String?,
@@ -2824,6 +2829,7 @@ class CachingConfig {
     this.cachingKeys,
     this.ttl,
   });
+
   factory CachingConfig.fromJson(Map<String, dynamic> json) {
     return CachingConfig(
       cachingKeys: (json['cachingKeys'] as List?)
@@ -2861,6 +2867,7 @@ class CognitoUserPoolConfig {
     required this.userPoolId,
     this.appIdClientRegex,
   });
+
   factory CognitoUserPoolConfig.fromJson(Map<String, dynamic> json) {
     return CognitoUserPoolConfig(
       awsRegion: json['awsRegion'] as String,
@@ -2955,6 +2962,7 @@ class CreateApiCacheResponse {
   CreateApiCacheResponse({
     this.apiCache,
   });
+
   factory CreateApiCacheResponse.fromJson(Map<String, dynamic> json) {
     return CreateApiCacheResponse(
       apiCache: json['apiCache'] != null
@@ -2978,6 +2986,7 @@ class CreateApiKeyResponse {
   CreateApiKeyResponse({
     this.apiKey,
   });
+
   factory CreateApiKeyResponse.fromJson(Map<String, dynamic> json) {
     return CreateApiKeyResponse(
       apiKey: json['apiKey'] != null
@@ -3001,6 +3010,7 @@ class CreateDataSourceResponse {
   CreateDataSourceResponse({
     this.dataSource,
   });
+
   factory CreateDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataSourceResponse(
       dataSource: json['dataSource'] != null
@@ -3024,6 +3034,7 @@ class CreateFunctionResponse {
   CreateFunctionResponse({
     this.functionConfiguration,
   });
+
   factory CreateFunctionResponse.fromJson(Map<String, dynamic> json) {
     return CreateFunctionResponse(
       functionConfiguration: json['functionConfiguration'] != null
@@ -3049,6 +3060,7 @@ class CreateGraphqlApiResponse {
   CreateGraphqlApiResponse({
     this.graphqlApi,
   });
+
   factory CreateGraphqlApiResponse.fromJson(Map<String, dynamic> json) {
     return CreateGraphqlApiResponse(
       graphqlApi: json['graphqlApi'] != null
@@ -3072,6 +3084,7 @@ class CreateResolverResponse {
   CreateResolverResponse({
     this.resolver,
   });
+
   factory CreateResolverResponse.fromJson(Map<String, dynamic> json) {
     return CreateResolverResponse(
       resolver: json['resolver'] != null
@@ -3095,6 +3108,7 @@ class CreateTypeResponse {
   CreateTypeResponse({
     this.type,
   });
+
   factory CreateTypeResponse.fromJson(Map<String, dynamic> json) {
     return CreateTypeResponse(
       type: json['type'] != null
@@ -3181,6 +3195,7 @@ class DataSource {
     this.serviceRoleArn,
     this.type,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       dataSourceArn: json['dataSourceArn'] as String?,
@@ -3318,6 +3333,7 @@ extension on String {
 /// Represents the output of a <code>DeleteApiCache</code> operation.
 class DeleteApiCacheResponse {
   DeleteApiCacheResponse();
+
   factory DeleteApiCacheResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiCacheResponse();
   }
@@ -3329,6 +3345,7 @@ class DeleteApiCacheResponse {
 
 class DeleteApiKeyResponse {
   DeleteApiKeyResponse();
+
   factory DeleteApiKeyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiKeyResponse();
   }
@@ -3340,6 +3357,7 @@ class DeleteApiKeyResponse {
 
 class DeleteDataSourceResponse {
   DeleteDataSourceResponse();
+
   factory DeleteDataSourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDataSourceResponse();
   }
@@ -3351,6 +3369,7 @@ class DeleteDataSourceResponse {
 
 class DeleteFunctionResponse {
   DeleteFunctionResponse();
+
   factory DeleteFunctionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFunctionResponse();
   }
@@ -3362,6 +3381,7 @@ class DeleteFunctionResponse {
 
 class DeleteGraphqlApiResponse {
   DeleteGraphqlApiResponse();
+
   factory DeleteGraphqlApiResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGraphqlApiResponse();
   }
@@ -3373,6 +3393,7 @@ class DeleteGraphqlApiResponse {
 
 class DeleteResolverResponse {
   DeleteResolverResponse();
+
   factory DeleteResolverResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResolverResponse();
   }
@@ -3384,6 +3405,7 @@ class DeleteResolverResponse {
 
 class DeleteTypeResponse {
   DeleteTypeResponse();
+
   factory DeleteTypeResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTypeResponse();
   }
@@ -3410,6 +3432,7 @@ class DeltaSyncConfig {
     this.deltaSyncTableName,
     this.deltaSyncTableTTL,
   });
+
   factory DeltaSyncConfig.fromJson(Map<String, dynamic> json) {
     return DeltaSyncConfig(
       baseTableTTL: json['baseTableTTL'] as int?,
@@ -3454,6 +3477,7 @@ class DynamodbDataSourceConfig {
     this.useCallerCredentials,
     this.versioned,
   });
+
   factory DynamodbDataSourceConfig.fromJson(Map<String, dynamic> json) {
     return DynamodbDataSourceConfig(
       awsRegion: json['awsRegion'] as String,
@@ -3496,6 +3520,7 @@ class ElasticsearchDataSourceConfig {
     required this.awsRegion,
     required this.endpoint,
   });
+
   factory ElasticsearchDataSourceConfig.fromJson(Map<String, dynamic> json) {
     return ElasticsearchDataSourceConfig(
       awsRegion: json['awsRegion'] as String,
@@ -3549,6 +3574,7 @@ extension on String {
 /// Represents the output of a <code>FlushApiCache</code> operation.
 class FlushApiCacheResponse {
   FlushApiCacheResponse();
+
   factory FlushApiCacheResponse.fromJson(Map<String, dynamic> _) {
     return FlushApiCacheResponse();
   }
@@ -3599,6 +3625,7 @@ class FunctionConfiguration {
     this.responseMappingTemplate,
     this.syncConfig,
   });
+
   factory FunctionConfiguration.fromJson(Map<String, dynamic> json) {
     return FunctionConfiguration(
       dataSourceName: json['dataSourceName'] as String?,
@@ -3649,6 +3676,7 @@ class GetApiCacheResponse {
   GetApiCacheResponse({
     this.apiCache,
   });
+
   factory GetApiCacheResponse.fromJson(Map<String, dynamic> json) {
     return GetApiCacheResponse(
       apiCache: json['apiCache'] != null
@@ -3672,6 +3700,7 @@ class GetDataSourceResponse {
   GetDataSourceResponse({
     this.dataSource,
   });
+
   factory GetDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return GetDataSourceResponse(
       dataSource: json['dataSource'] != null
@@ -3695,6 +3724,7 @@ class GetFunctionResponse {
   GetFunctionResponse({
     this.functionConfiguration,
   });
+
   factory GetFunctionResponse.fromJson(Map<String, dynamic> json) {
     return GetFunctionResponse(
       functionConfiguration: json['functionConfiguration'] != null
@@ -3720,6 +3750,7 @@ class GetGraphqlApiResponse {
   GetGraphqlApiResponse({
     this.graphqlApi,
   });
+
   factory GetGraphqlApiResponse.fromJson(Map<String, dynamic> json) {
     return GetGraphqlApiResponse(
       graphqlApi: json['graphqlApi'] != null
@@ -3746,6 +3777,7 @@ class GetIntrospectionSchemaResponse {
   GetIntrospectionSchemaResponse({
     this.schema,
   });
+
   factory GetIntrospectionSchemaResponse.fromJson(Map<String, dynamic> json) {
     return GetIntrospectionSchemaResponse(
       schema: _s.decodeNullableUint8List(json['schema'] as String?),
@@ -3767,6 +3799,7 @@ class GetResolverResponse {
   GetResolverResponse({
     this.resolver,
   });
+
   factory GetResolverResponse.fromJson(Map<String, dynamic> json) {
     return GetResolverResponse(
       resolver: json['resolver'] != null
@@ -3795,6 +3828,7 @@ class GetSchemaCreationStatusResponse {
     this.details,
     this.status,
   });
+
   factory GetSchemaCreationStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaCreationStatusResponse(
       details: json['details'] as String?,
@@ -3819,6 +3853,7 @@ class GetTypeResponse {
   GetTypeResponse({
     this.type,
   });
+
   factory GetTypeResponse.fromJson(Map<String, dynamic> json) {
     return GetTypeResponse(
       type: json['type'] != null
@@ -3891,6 +3926,7 @@ class GraphqlApi {
     this.wafWebAclArn,
     this.xrayEnabled,
   });
+
   factory GraphqlApi.fromJson(Map<String, dynamic> json) {
     return GraphqlApi(
       additionalAuthenticationProviders:
@@ -3973,6 +4009,7 @@ class HttpDataSourceConfig {
     this.authorizationConfig,
     this.endpoint,
   });
+
   factory HttpDataSourceConfig.fromJson(Map<String, dynamic> json) {
     return HttpDataSourceConfig(
       authorizationConfig: json['authorizationConfig'] != null
@@ -4003,6 +4040,7 @@ class LambdaConflictHandlerConfig {
   LambdaConflictHandlerConfig({
     this.lambdaConflictHandlerArn,
   });
+
   factory LambdaConflictHandlerConfig.fromJson(Map<String, dynamic> json) {
     return LambdaConflictHandlerConfig(
       lambdaConflictHandlerArn: json['lambdaConflictHandlerArn'] as String?,
@@ -4026,6 +4064,7 @@ class LambdaDataSourceConfig {
   LambdaDataSourceConfig({
     required this.lambdaFunctionArn,
   });
+
   factory LambdaDataSourceConfig.fromJson(Map<String, dynamic> json) {
     return LambdaDataSourceConfig(
       lambdaFunctionArn: json['lambdaFunctionArn'] as String,
@@ -4052,6 +4091,7 @@ class ListApiKeysResponse {
     this.apiKeys,
     this.nextToken,
   });
+
   factory ListApiKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListApiKeysResponse(
       apiKeys: (json['apiKeys'] as List?)
@@ -4084,6 +4124,7 @@ class ListDataSourcesResponse {
     this.dataSources,
     this.nextToken,
   });
+
   factory ListDataSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSourcesResponse(
       dataSources: (json['dataSources'] as List?)
@@ -4116,6 +4157,7 @@ class ListFunctionsResponse {
     this.functions,
     this.nextToken,
   });
+
   factory ListFunctionsResponse.fromJson(Map<String, dynamic> json) {
     return ListFunctionsResponse(
       functions: (json['functions'] as List?)
@@ -4148,6 +4190,7 @@ class ListGraphqlApisResponse {
     this.graphqlApis,
     this.nextToken,
   });
+
   factory ListGraphqlApisResponse.fromJson(Map<String, dynamic> json) {
     return ListGraphqlApisResponse(
       graphqlApis: (json['graphqlApis'] as List?)
@@ -4179,6 +4222,7 @@ class ListResolversByFunctionResponse {
     this.nextToken,
     this.resolvers,
   });
+
   factory ListResolversByFunctionResponse.fromJson(Map<String, dynamic> json) {
     return ListResolversByFunctionResponse(
       nextToken: json['nextToken'] as String?,
@@ -4211,6 +4255,7 @@ class ListResolversResponse {
     this.nextToken,
     this.resolvers,
   });
+
   factory ListResolversResponse.fromJson(Map<String, dynamic> json) {
     return ListResolversResponse(
       nextToken: json['nextToken'] as String?,
@@ -4238,6 +4283,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -4265,6 +4311,7 @@ class ListTypesResponse {
     this.nextToken,
     this.types,
   });
+
   factory ListTypesResponse.fromJson(Map<String, dynamic> json) {
     return ListTypesResponse(
       nextToken: json['nextToken'] as String?,
@@ -4335,6 +4382,7 @@ class LogConfig {
     required this.fieldLogLevel,
     this.excludeVerboseContent,
   });
+
   factory LogConfig.fromJson(Map<String, dynamic> json) {
     return LogConfig(
       cloudWatchLogsRoleArn: json['cloudWatchLogsRoleArn'] as String,
@@ -4380,6 +4428,7 @@ class OpenIDConnectConfig {
     this.clientId,
     this.iatTTL,
   });
+
   factory OpenIDConnectConfig.fromJson(Map<String, dynamic> json) {
     return OpenIDConnectConfig(
       issuer: json['issuer'] as String,
@@ -4439,6 +4488,7 @@ class PipelineConfig {
   PipelineConfig({
     this.functions,
   });
+
   factory PipelineConfig.fromJson(Map<String, dynamic> json) {
     return PipelineConfig(
       functions: (json['functions'] as List?)
@@ -4480,6 +4530,7 @@ class RdsHttpEndpointConfig {
     this.dbClusterIdentifier,
     this.schema,
   });
+
   factory RdsHttpEndpointConfig.fromJson(Map<String, dynamic> json) {
     return RdsHttpEndpointConfig(
       awsRegion: json['awsRegion'] as String?,
@@ -4526,6 +4577,7 @@ class RelationalDatabaseDataSourceConfig {
     this.rdsHttpEndpointConfig,
     this.relationalDatabaseSourceType,
   });
+
   factory RelationalDatabaseDataSourceConfig.fromJson(
       Map<String, dynamic> json) {
     return RelationalDatabaseDataSourceConfig(
@@ -4633,6 +4685,7 @@ class Resolver {
     this.syncConfig,
     this.typeName,
   });
+
   factory Resolver.fromJson(Map<String, dynamic> json) {
     return Resolver(
       cachingConfig: json['cachingConfig'] != null
@@ -4768,6 +4821,7 @@ class StartSchemaCreationResponse {
   StartSchemaCreationResponse({
     this.status,
   });
+
   factory StartSchemaCreationResponse.fromJson(Map<String, dynamic> json) {
     return StartSchemaCreationResponse(
       status: (json['status'] as String?)?.toSchemaStatus(),
@@ -4826,6 +4880,7 @@ class SyncConfig {
     this.conflictHandler,
     this.lambdaConflictHandlerConfig,
   });
+
   factory SyncConfig.fromJson(Map<String, dynamic> json) {
     return SyncConfig(
       conflictDetection:
@@ -4855,6 +4910,7 @@ class SyncConfig {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4888,6 +4944,7 @@ class Type {
     this.format,
     this.name,
   });
+
   factory Type.fromJson(Map<String, dynamic> json) {
     return Type(
       arn: json['arn'] as String?,
@@ -4944,6 +5001,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4961,6 +5019,7 @@ class UpdateApiCacheResponse {
   UpdateApiCacheResponse({
     this.apiCache,
   });
+
   factory UpdateApiCacheResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApiCacheResponse(
       apiCache: json['apiCache'] != null
@@ -4984,6 +5043,7 @@ class UpdateApiKeyResponse {
   UpdateApiKeyResponse({
     this.apiKey,
   });
+
   factory UpdateApiKeyResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApiKeyResponse(
       apiKey: json['apiKey'] != null
@@ -5007,6 +5067,7 @@ class UpdateDataSourceResponse {
   UpdateDataSourceResponse({
     this.dataSource,
   });
+
   factory UpdateDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDataSourceResponse(
       dataSource: json['dataSource'] != null
@@ -5030,6 +5091,7 @@ class UpdateFunctionResponse {
   UpdateFunctionResponse({
     this.functionConfiguration,
   });
+
   factory UpdateFunctionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFunctionResponse(
       functionConfiguration: json['functionConfiguration'] != null
@@ -5055,6 +5117,7 @@ class UpdateGraphqlApiResponse {
   UpdateGraphqlApiResponse({
     this.graphqlApi,
   });
+
   factory UpdateGraphqlApiResponse.fromJson(Map<String, dynamic> json) {
     return UpdateGraphqlApiResponse(
       graphqlApi: json['graphqlApi'] != null
@@ -5078,6 +5141,7 @@ class UpdateResolverResponse {
   UpdateResolverResponse({
     this.resolver,
   });
+
   factory UpdateResolverResponse.fromJson(Map<String, dynamic> json) {
     return UpdateResolverResponse(
       resolver: json['resolver'] != null
@@ -5101,6 +5165,7 @@ class UpdateTypeResponse {
   UpdateTypeResponse({
     this.type,
   });
+
   factory UpdateTypeResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTypeResponse(
       type: json['type'] != null
@@ -5140,6 +5205,7 @@ class UserPoolConfig {
     required this.userPoolId,
     this.appIdClientRegex,
   });
+
   factory UserPoolConfig.fromJson(Map<String, dynamic> json) {
     return UserPoolConfig(
       awsRegion: json['awsRegion'] as String,

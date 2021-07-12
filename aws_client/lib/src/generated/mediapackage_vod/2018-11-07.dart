@@ -630,6 +630,7 @@ class AssetShallow {
     this.sourceRoleArn,
     this.tags,
   });
+
   factory AssetShallow.fromJson(Map<String, dynamic> json) {
     return AssetShallow(
       arn: json['arn'] as String?,
@@ -680,6 +681,7 @@ class Authorization {
     required this.cdnIdentifierSecret,
     required this.secretsRoleArn,
   });
+
   factory Authorization.fromJson(Map<String, dynamic> json) {
     return Authorization(
       cdnIdentifierSecret: json['cdnIdentifierSecret'] as String,
@@ -710,6 +712,7 @@ class CmafEncryption {
     required this.spekeKeyProvider,
     this.constantInitializationVector,
   });
+
   factory CmafEncryption.fromJson(Map<String, dynamic> json) {
     return CmafEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -753,6 +756,7 @@ class CmafPackage {
     this.includeEncoderConfigurationInSegments,
     this.segmentDurationSeconds,
   });
+
   factory CmafPackage.fromJson(Map<String, dynamic> json) {
     return CmafPackage(
       hlsManifests: (json['hlsManifests'] as List)
@@ -807,6 +811,7 @@ class ConfigureLogsResponse {
     this.id,
     this.tags,
   });
+
   factory ConfigureLogsResponse.fromJson(Map<String, dynamic> json) {
     return ConfigureLogsResponse(
       arn: json['arn'] as String?,
@@ -880,6 +885,7 @@ class CreateAssetResponse {
     this.sourceRoleArn,
     this.tags,
   });
+
   factory CreateAssetResponse.fromJson(Map<String, dynamic> json) {
     return CreateAssetResponse(
       arn: json['arn'] as String?,
@@ -947,6 +953,7 @@ class CreatePackagingConfigurationResponse {
     this.packagingGroupId,
     this.tags,
   });
+
   factory CreatePackagingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreatePackagingConfigurationResponse(
@@ -1013,6 +1020,7 @@ class CreatePackagingGroupResponse {
     this.id,
     this.tags,
   });
+
   factory CreatePackagingGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreatePackagingGroupResponse(
       arn: json['arn'] as String?,
@@ -1056,6 +1064,7 @@ class DashEncryption {
   DashEncryption({
     required this.spekeKeyProvider,
   });
+
   factory DashEncryption.fromJson(Map<String, dynamic> json) {
     return DashEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -1098,6 +1107,7 @@ class DashManifest {
     this.profile,
     this.streamSelection,
   });
+
   factory DashManifest.fromJson(Map<String, dynamic> json) {
     return DashManifest(
       manifestLayout: (json['manifestLayout'] as String?)?.toManifestLayout(),
@@ -1170,6 +1180,7 @@ class DashPackage {
     this.segmentDurationSeconds,
     this.segmentTemplateFormat,
   });
+
   factory DashPackage.fromJson(Map<String, dynamic> json) {
     return DashPackage(
       dashManifests: (json['dashManifests'] as List)
@@ -1217,6 +1228,7 @@ class DashPackage {
 
 class DeleteAssetResponse {
   DeleteAssetResponse();
+
   factory DeleteAssetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssetResponse();
   }
@@ -1228,6 +1240,7 @@ class DeleteAssetResponse {
 
 class DeletePackagingConfigurationResponse {
   DeletePackagingConfigurationResponse();
+
   factory DeletePackagingConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeletePackagingConfigurationResponse();
@@ -1240,6 +1253,7 @@ class DeletePackagingConfigurationResponse {
 
 class DeletePackagingGroupResponse {
   DeletePackagingGroupResponse();
+
   factory DeletePackagingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeletePackagingGroupResponse();
   }
@@ -1286,6 +1300,7 @@ class DescribeAssetResponse {
     this.sourceRoleArn,
     this.tags,
   });
+
   factory DescribeAssetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAssetResponse(
       arn: json['arn'] as String?,
@@ -1353,6 +1368,7 @@ class DescribePackagingConfigurationResponse {
     this.packagingGroupId,
     this.tags,
   });
+
   factory DescribePackagingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePackagingConfigurationResponse(
@@ -1419,6 +1435,7 @@ class DescribePackagingGroupResponse {
     this.id,
     this.tags,
   });
+
   factory DescribePackagingGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribePackagingGroupResponse(
       arn: json['arn'] as String?,
@@ -1463,6 +1480,7 @@ class EgressAccessLogs {
   EgressAccessLogs({
     this.logGroupName,
   });
+
   factory EgressAccessLogs.fromJson(Map<String, dynamic> json) {
     return EgressAccessLogs(
       logGroupName: json['logGroupName'] as String?,
@@ -1489,6 +1507,7 @@ class EgressEndpoint {
     this.packagingConfigurationId,
     this.url,
   });
+
   factory EgressEndpoint.fromJson(Map<String, dynamic> json) {
     return EgressEndpoint(
       packagingConfigurationId: json['packagingConfigurationId'] as String?,
@@ -1551,6 +1570,7 @@ class HlsEncryption {
     this.constantInitializationVector,
     this.encryptionMethod,
   });
+
   factory HlsEncryption.fromJson(Map<String, dynamic> json) {
     return HlsEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -1618,6 +1638,7 @@ class HlsManifest {
     this.repeatExtXKey,
     this.streamSelection,
   });
+
   factory HlsManifest.fromJson(Map<String, dynamic> json) {
     return HlsManifest(
       adMarkers: (json['adMarkers'] as String?)?.toAdMarkers(),
@@ -1673,6 +1694,7 @@ class HlsPackage {
     this.segmentDurationSeconds,
     this.useAudioRenditionGroup,
   });
+
   factory HlsPackage.fromJson(Map<String, dynamic> json) {
     return HlsPackage(
       hlsManifests: (json['hlsManifests'] as List)
@@ -1715,6 +1737,7 @@ class ListAssetsResponse {
     this.assets,
     this.nextToken,
   });
+
   factory ListAssetsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssetsResponse(
       assets: (json['assets'] as List?)
@@ -1747,6 +1770,7 @@ class ListPackagingConfigurationsResponse {
     this.nextToken,
     this.packagingConfigurations,
   });
+
   factory ListPackagingConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPackagingConfigurationsResponse(
@@ -1782,6 +1806,7 @@ class ListPackagingGroupsResponse {
     this.nextToken,
     this.packagingGroups,
   });
+
   factory ListPackagingGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListPackagingGroupsResponse(
       nextToken: json['nextToken'] as String?,
@@ -1809,6 +1834,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -1859,6 +1885,7 @@ class MssEncryption {
   MssEncryption({
     required this.spekeKeyProvider,
   });
+
   factory MssEncryption.fromJson(Map<String, dynamic> json) {
     return MssEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -1884,6 +1911,7 @@ class MssManifest {
     this.manifestName,
     this.streamSelection,
   });
+
   factory MssManifest.fromJson(Map<String, dynamic> json) {
     return MssManifest(
       manifestName: json['manifestName'] as String?,
@@ -1918,6 +1946,7 @@ class MssPackage {
     this.encryption,
     this.segmentDurationSeconds,
   });
+
   factory MssPackage.fromJson(Map<String, dynamic> json) {
     return MssPackage(
       mssManifests: (json['mssManifests'] as List)
@@ -1970,6 +1999,7 @@ class PackagingConfiguration {
     this.packagingGroupId,
     this.tags,
   });
+
   factory PackagingConfiguration.fromJson(Map<String, dynamic> json) {
     return PackagingConfiguration(
       arn: json['arn'] as String?,
@@ -2036,6 +2066,7 @@ class PackagingGroup {
     this.id,
     this.tags,
   });
+
   factory PackagingGroup.fromJson(Map<String, dynamic> json) {
     return PackagingGroup(
       arn: json['arn'] as String?,
@@ -2151,6 +2182,7 @@ class SpekeKeyProvider {
     required this.systemIds,
     required this.url,
   });
+
   factory SpekeKeyProvider.fromJson(Map<String, dynamic> json) {
     return SpekeKeyProvider(
       roleArn: json['roleArn'] as String,
@@ -2223,6 +2255,7 @@ class StreamSelection {
     this.minVideoBitsPerSecond,
     this.streamOrder,
   });
+
   factory StreamSelection.fromJson(Map<String, dynamic> json) {
     return StreamSelection(
       maxVideoBitsPerSecond: json['maxVideoBitsPerSecond'] as int?,
@@ -2266,6 +2299,7 @@ class UpdatePackagingGroupResponse {
     this.id,
     this.tags,
   });
+
   factory UpdatePackagingGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePackagingGroupResponse(
       arn: json['arn'] as String?,

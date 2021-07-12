@@ -8935,6 +8935,7 @@ class AccountRecoverySettingType {
   AccountRecoverySettingType({
     this.recoveryMechanisms,
   });
+
   factory AccountRecoverySettingType.fromJson(Map<String, dynamic> json) {
     return AccountRecoverySettingType(
       recoveryMechanisms: (json['RecoveryMechanisms'] as List?)
@@ -8981,6 +8982,7 @@ class AccountTakeoverActionType {
     required this.eventAction,
     required this.notify,
   });
+
   factory AccountTakeoverActionType.fromJson(Map<String, dynamic> json) {
     return AccountTakeoverActionType(
       eventAction:
@@ -9015,6 +9017,7 @@ class AccountTakeoverActionsType {
     this.lowAction,
     this.mediumAction,
   });
+
   factory AccountTakeoverActionsType.fromJson(Map<String, dynamic> json) {
     return AccountTakeoverActionsType(
       highAction: json['HighAction'] != null
@@ -9096,6 +9099,7 @@ class AccountTakeoverRiskConfigurationType {
     required this.actions,
     this.notifyConfiguration,
   });
+
   factory AccountTakeoverRiskConfigurationType.fromJson(
       Map<String, dynamic> json) {
     return AccountTakeoverRiskConfigurationType(
@@ -9123,6 +9127,7 @@ class AccountTakeoverRiskConfigurationType {
 /// attributes.
 class AddCustomAttributesResponse {
   AddCustomAttributesResponse();
+
   factory AddCustomAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AddCustomAttributesResponse();
   }
@@ -9136,6 +9141,7 @@ class AddCustomAttributesResponse {
 /// registration.
 class AdminConfirmSignUpResponse {
   AdminConfirmSignUpResponse();
+
   factory AdminConfirmSignUpResponse.fromJson(Map<String, dynamic> _) {
     return AdminConfirmSignUpResponse();
   }
@@ -9177,6 +9183,7 @@ class AdminCreateUserConfigType {
     this.inviteMessageTemplate,
     this.unusedAccountValidityDays,
   });
+
   factory AdminCreateUserConfigType.fromJson(Map<String, dynamic> json) {
     return AdminCreateUserConfigType(
       allowAdminCreateUserOnly: json['AllowAdminCreateUserOnly'] as bool?,
@@ -9211,6 +9218,7 @@ class AdminCreateUserResponse {
   AdminCreateUserResponse({
     this.user,
   });
+
   factory AdminCreateUserResponse.fromJson(Map<String, dynamic> json) {
     return AdminCreateUserResponse(
       user: json['User'] != null
@@ -9231,6 +9239,7 @@ class AdminCreateUserResponse {
 /// user attributes.
 class AdminDeleteUserAttributesResponse {
   AdminDeleteUserAttributesResponse();
+
   factory AdminDeleteUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AdminDeleteUserAttributesResponse();
   }
@@ -9242,6 +9251,7 @@ class AdminDeleteUserAttributesResponse {
 
 class AdminDisableProviderForUserResponse {
   AdminDisableProviderForUserResponse();
+
   factory AdminDisableProviderForUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminDisableProviderForUserResponse();
   }
@@ -9255,6 +9265,7 @@ class AdminDisableProviderForUserResponse {
 /// administrator.
 class AdminDisableUserResponse {
   AdminDisableUserResponse();
+
   factory AdminDisableUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminDisableUserResponse();
   }
@@ -9268,6 +9279,7 @@ class AdminDisableUserResponse {
 /// an administrator.
 class AdminEnableUserResponse {
   AdminEnableUserResponse();
+
   factory AdminEnableUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminEnableUserResponse();
   }
@@ -9285,6 +9297,7 @@ class AdminGetDeviceResponse {
   AdminGetDeviceResponse({
     required this.device,
   });
+
   factory AdminGetDeviceResponse.fromJson(Map<String, dynamic> json) {
     return AdminGetDeviceResponse(
       device: DeviceType.fromJson(json['Device'] as Map<String, dynamic>),
@@ -9372,6 +9385,7 @@ class AdminGetUserResponse {
     this.userMFASettingList,
     this.userStatus,
   });
+
   factory AdminGetUserResponse.fromJson(Map<String, dynamic> json) {
     return AdminGetUserResponse(
       username: json['Username'] as String,
@@ -9527,6 +9541,7 @@ class AdminInitiateAuthResponse {
     this.challengeParameters,
     this.session,
   });
+
   factory AdminInitiateAuthResponse.fromJson(Map<String, dynamic> json) {
     return AdminInitiateAuthResponse(
       authenticationResult: json['AuthenticationResult'] != null
@@ -9559,6 +9574,7 @@ class AdminInitiateAuthResponse {
 
 class AdminLinkProviderForUserResponse {
   AdminLinkProviderForUserResponse();
+
   factory AdminLinkProviderForUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminLinkProviderForUserResponse();
   }
@@ -9580,6 +9596,7 @@ class AdminListDevicesResponse {
     this.devices,
     this.paginationToken,
   });
+
   factory AdminListDevicesResponse.fromJson(Map<String, dynamic> json) {
     return AdminListDevicesResponse(
       devices: (json['Devices'] as List?)
@@ -9612,6 +9629,7 @@ class AdminListGroupsForUserResponse {
     this.groups,
     this.nextToken,
   });
+
   factory AdminListGroupsForUserResponse.fromJson(Map<String, dynamic> json) {
     return AdminListGroupsForUserResponse(
       groups: (json['Groups'] as List?)
@@ -9645,6 +9663,7 @@ class AdminListUserAuthEventsResponse {
     this.authEvents,
     this.nextToken,
   });
+
   factory AdminListUserAuthEventsResponse.fromJson(Map<String, dynamic> json) {
     return AdminListUserAuthEventsResponse(
       authEvents: (json['AuthEvents'] as List?)
@@ -9669,6 +9688,7 @@ class AdminListUserAuthEventsResponse {
 /// administrator.
 class AdminResetUserPasswordResponse {
   AdminResetUserPasswordResponse();
+
   factory AdminResetUserPasswordResponse.fromJson(Map<String, dynamic> _) {
     return AdminResetUserPasswordResponse();
   }
@@ -9703,6 +9723,7 @@ class AdminRespondToAuthChallengeResponse {
     this.challengeParameters,
     this.session,
   });
+
   factory AdminRespondToAuthChallengeResponse.fromJson(
       Map<String, dynamic> json) {
     return AdminRespondToAuthChallengeResponse(
@@ -9736,6 +9757,7 @@ class AdminRespondToAuthChallengeResponse {
 
 class AdminSetUserMFAPreferenceResponse {
   AdminSetUserMFAPreferenceResponse();
+
   factory AdminSetUserMFAPreferenceResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserMFAPreferenceResponse();
   }
@@ -9747,6 +9769,7 @@ class AdminSetUserMFAPreferenceResponse {
 
 class AdminSetUserPasswordResponse {
   AdminSetUserPasswordResponse();
+
   factory AdminSetUserPasswordResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserPasswordResponse();
   }
@@ -9760,6 +9783,7 @@ class AdminSetUserPasswordResponse {
 /// administrator.
 class AdminSetUserSettingsResponse {
   AdminSetUserSettingsResponse();
+
   factory AdminSetUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserSettingsResponse();
   }
@@ -9771,6 +9795,7 @@ class AdminSetUserSettingsResponse {
 
 class AdminUpdateAuthEventFeedbackResponse {
   AdminUpdateAuthEventFeedbackResponse();
+
   factory AdminUpdateAuthEventFeedbackResponse.fromJson(
       Map<String, dynamic> _) {
     return AdminUpdateAuthEventFeedbackResponse();
@@ -9785,6 +9810,7 @@ class AdminUpdateAuthEventFeedbackResponse {
 /// administrator.
 class AdminUpdateDeviceStatusResponse {
   AdminUpdateDeviceStatusResponse();
+
   factory AdminUpdateDeviceStatusResponse.fromJson(Map<String, dynamic> _) {
     return AdminUpdateDeviceStatusResponse();
   }
@@ -9798,6 +9824,7 @@ class AdminUpdateDeviceStatusResponse {
 /// attributes as an administrator.
 class AdminUpdateUserAttributesResponse {
   AdminUpdateUserAttributesResponse();
+
   factory AdminUpdateUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AdminUpdateUserAttributesResponse();
   }
@@ -9810,6 +9837,7 @@ class AdminUpdateUserAttributesResponse {
 /// The global sign-out response, as an administrator.
 class AdminUserGlobalSignOutResponse {
   AdminUserGlobalSignOutResponse();
+
   factory AdminUserGlobalSignOutResponse.fromJson(Map<String, dynamic> _) {
     return AdminUserGlobalSignOutResponse();
   }
@@ -9921,6 +9949,7 @@ class AnalyticsConfigurationType {
     this.roleArn,
     this.userDataShared,
   });
+
   factory AnalyticsConfigurationType.fromJson(Map<String, dynamic> json) {
     return AnalyticsConfigurationType(
       applicationArn: json['ApplicationArn'] as String?,
@@ -9963,6 +9992,7 @@ class AnalyticsMetadataType {
   AnalyticsMetadataType({
     this.analyticsEndpointId,
   });
+
   factory AnalyticsMetadataType.fromJson(Map<String, dynamic> json) {
     return AnalyticsMetadataType(
       analyticsEndpointId: json['AnalyticsEndpointId'] as String?,
@@ -9992,6 +10022,7 @@ class AssociateSoftwareTokenResponse {
     this.secretCode,
     this.session,
   });
+
   factory AssociateSoftwareTokenResponse.fromJson(Map<String, dynamic> json) {
     return AssociateSoftwareTokenResponse(
       secretCode: json['SecretCode'] as String?,
@@ -10059,6 +10090,7 @@ class AttributeType {
     required this.name,
     this.value,
   });
+
   factory AttributeType.fromJson(Map<String, dynamic> json) {
     return AttributeType(
       name: json['Name'] as String,
@@ -10115,6 +10147,7 @@ class AuthEventType {
     this.eventRisk,
     this.eventType,
   });
+
   factory AuthEventType.fromJson(Map<String, dynamic> json) {
     return AuthEventType(
       challengeResponses: (json['ChallengeResponses'] as List?)
@@ -10243,6 +10276,7 @@ class AuthenticationResultType {
     this.refreshToken,
     this.tokenType,
   });
+
   factory AuthenticationResultType.fromJson(Map<String, dynamic> json) {
     return AuthenticationResultType(
       accessToken: json['AccessToken'] as String?,
@@ -10411,6 +10445,7 @@ class ChallengeResponseType {
     this.challengeName,
     this.challengeResponse,
   });
+
   factory ChallengeResponseType.fromJson(Map<String, dynamic> json) {
     return ChallengeResponseType(
       challengeName: (json['ChallengeName'] as String?)?.toChallengeName(),
@@ -10433,6 +10468,7 @@ class ChallengeResponseType {
 /// The response from the server to the change password request.
 class ChangePasswordResponse {
   ChangePasswordResponse();
+
   factory ChangePasswordResponse.fromJson(Map<String, dynamic> _) {
     return ChangePasswordResponse();
   }
@@ -10458,6 +10494,7 @@ class CodeDeliveryDetailsType {
     this.deliveryMedium,
     this.destination,
   });
+
   factory CodeDeliveryDetailsType.fromJson(Map<String, dynamic> json) {
     return CodeDeliveryDetailsType(
       attributeName: json['AttributeName'] as String?,
@@ -10487,6 +10524,7 @@ class CompromisedCredentialsActionsType {
   CompromisedCredentialsActionsType({
     required this.eventAction,
   });
+
   factory CompromisedCredentialsActionsType.fromJson(
       Map<String, dynamic> json) {
     return CompromisedCredentialsActionsType(
@@ -10546,6 +10584,7 @@ class CompromisedCredentialsRiskConfigurationType {
     required this.actions,
     this.eventFilter,
   });
+
   factory CompromisedCredentialsRiskConfigurationType.fromJson(
       Map<String, dynamic> json) {
     return CompromisedCredentialsRiskConfigurationType(
@@ -10578,6 +10617,7 @@ class ConfirmDeviceResponse {
   ConfirmDeviceResponse({
     this.userConfirmationNecessary,
   });
+
   factory ConfirmDeviceResponse.fromJson(Map<String, dynamic> json) {
     return ConfirmDeviceResponse(
       userConfirmationNecessary: json['UserConfirmationNecessary'] as bool?,
@@ -10597,6 +10637,7 @@ class ConfirmDeviceResponse {
 /// a forgotten password.
 class ConfirmForgotPasswordResponse {
   ConfirmForgotPasswordResponse();
+
   factory ConfirmForgotPasswordResponse.fromJson(Map<String, dynamic> _) {
     return ConfirmForgotPasswordResponse();
   }
@@ -10609,6 +10650,7 @@ class ConfirmForgotPasswordResponse {
 /// Represents the response from the server for the registration confirmation.
 class ConfirmSignUpResponse {
   ConfirmSignUpResponse();
+
   factory ConfirmSignUpResponse.fromJson(Map<String, dynamic> _) {
     return ConfirmSignUpResponse();
   }
@@ -10644,6 +10686,7 @@ class ContextDataType {
     required this.serverPath,
     this.encodedData,
   });
+
   factory ContextDataType.fromJson(Map<String, dynamic> json) {
     return ContextDataType(
       httpHeaders: (json['HttpHeaders'] as List)
@@ -10680,6 +10723,7 @@ class CreateGroupResponse {
   CreateGroupResponse({
     this.group,
   });
+
   factory CreateGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateGroupResponse(
       group: json['Group'] != null
@@ -10703,6 +10747,7 @@ class CreateIdentityProviderResponse {
   CreateIdentityProviderResponse({
     required this.identityProvider,
   });
+
   factory CreateIdentityProviderResponse.fromJson(Map<String, dynamic> json) {
     return CreateIdentityProviderResponse(
       identityProvider: IdentityProviderType.fromJson(
@@ -10725,6 +10770,7 @@ class CreateResourceServerResponse {
   CreateResourceServerResponse({
     required this.resourceServer,
   });
+
   factory CreateResourceServerResponse.fromJson(Map<String, dynamic> json) {
     return CreateResourceServerResponse(
       resourceServer: ResourceServerType.fromJson(
@@ -10749,6 +10795,7 @@ class CreateUserImportJobResponse {
   CreateUserImportJobResponse({
     this.userImportJob,
   });
+
   factory CreateUserImportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserImportJobResponse(
       userImportJob: json['UserImportJob'] != null
@@ -10774,6 +10821,7 @@ class CreateUserPoolClientResponse {
   CreateUserPoolClientResponse({
     this.userPoolClient,
   });
+
   factory CreateUserPoolClientResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserPoolClientResponse(
       userPoolClient: json['UserPoolClient'] != null
@@ -10799,6 +10847,7 @@ class CreateUserPoolDomainResponse {
   CreateUserPoolDomainResponse({
     this.cloudFrontDomain,
   });
+
   factory CreateUserPoolDomainResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserPoolDomainResponse(
       cloudFrontDomain: json['CloudFrontDomain'] as String?,
@@ -10822,6 +10871,7 @@ class CreateUserPoolResponse {
   CreateUserPoolResponse({
     this.userPool,
   });
+
   factory CreateUserPoolResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserPoolResponse(
       userPool: json['UserPool'] != null
@@ -10849,6 +10899,7 @@ class CustomDomainConfigType {
   CustomDomainConfigType({
     required this.certificateArn,
   });
+
   factory CustomDomainConfigType.fromJson(Map<String, dynamic> json) {
     return CustomDomainConfigType(
       certificateArn: json['CertificateArn'] as String,
@@ -10878,6 +10929,7 @@ class CustomEmailLambdaVersionConfigType {
     required this.lambdaArn,
     required this.lambdaVersion,
   });
+
   factory CustomEmailLambdaVersionConfigType.fromJson(
       Map<String, dynamic> json) {
     return CustomEmailLambdaVersionConfigType(
@@ -10936,6 +10988,7 @@ class CustomSMSLambdaVersionConfigType {
     required this.lambdaArn,
     required this.lambdaVersion,
   });
+
   factory CustomSMSLambdaVersionConfigType.fromJson(Map<String, dynamic> json) {
     return CustomSMSLambdaVersionConfigType(
       lambdaArn: json['LambdaArn'] as String,
@@ -11009,6 +11062,7 @@ extension on String {
 /// Represents the response from the server to delete user attributes.
 class DeleteUserAttributesResponse {
   DeleteUserAttributesResponse();
+
   factory DeleteUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserAttributesResponse();
   }
@@ -11020,6 +11074,7 @@ class DeleteUserAttributesResponse {
 
 class DeleteUserPoolDomainResponse {
   DeleteUserPoolDomainResponse();
+
   factory DeleteUserPoolDomainResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserPoolDomainResponse();
   }
@@ -11064,6 +11119,7 @@ class DescribeIdentityProviderResponse {
   DescribeIdentityProviderResponse({
     required this.identityProvider,
   });
+
   factory DescribeIdentityProviderResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIdentityProviderResponse(
       identityProvider: IdentityProviderType.fromJson(
@@ -11086,6 +11142,7 @@ class DescribeResourceServerResponse {
   DescribeResourceServerResponse({
     required this.resourceServer,
   });
+
   factory DescribeResourceServerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeResourceServerResponse(
       resourceServer: ResourceServerType.fromJson(
@@ -11108,6 +11165,7 @@ class DescribeRiskConfigurationResponse {
   DescribeRiskConfigurationResponse({
     required this.riskConfiguration,
   });
+
   factory DescribeRiskConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRiskConfigurationResponse(
@@ -11133,6 +11191,7 @@ class DescribeUserImportJobResponse {
   DescribeUserImportJobResponse({
     this.userImportJob,
   });
+
   factory DescribeUserImportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserImportJobResponse(
       userImportJob: json['UserImportJob'] != null
@@ -11160,6 +11219,7 @@ class DescribeUserPoolClientResponse {
   DescribeUserPoolClientResponse({
     this.userPoolClient,
   });
+
   factory DescribeUserPoolClientResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserPoolClientResponse(
       userPoolClient: json['UserPoolClient'] != null
@@ -11184,6 +11244,7 @@ class DescribeUserPoolDomainResponse {
   DescribeUserPoolDomainResponse({
     this.domainDescription,
   });
+
   factory DescribeUserPoolDomainResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserPoolDomainResponse(
       domainDescription: json['DomainDescription'] != null
@@ -11209,6 +11270,7 @@ class DescribeUserPoolResponse {
   DescribeUserPoolResponse({
     this.userPool,
   });
+
   factory DescribeUserPoolResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserPoolResponse(
       userPool: json['UserPool'] != null
@@ -11238,6 +11300,7 @@ class DeviceConfigurationType {
     this.challengeRequiredOnNewDevice,
     this.deviceOnlyRememberedOnUserPrompt,
   });
+
   factory DeviceConfigurationType.fromJson(Map<String, dynamic> json) {
     return DeviceConfigurationType(
       challengeRequiredOnNewDevice:
@@ -11300,6 +11363,7 @@ class DeviceSecretVerifierConfigType {
     this.passwordVerifier,
     this.salt,
   });
+
   factory DeviceSecretVerifierConfigType.fromJson(Map<String, dynamic> json) {
     return DeviceSecretVerifierConfigType(
       passwordVerifier: json['PasswordVerifier'] as String?,
@@ -11341,6 +11405,7 @@ class DeviceType {
     this.deviceLastAuthenticatedDate,
     this.deviceLastModifiedDate,
   });
+
   factory DeviceType.fromJson(Map<String, dynamic> json) {
     return DeviceType(
       deviceAttributes: (json['DeviceAttributes'] as List?)
@@ -11412,6 +11477,7 @@ class DomainDescriptionType {
     this.userPoolId,
     this.version,
   });
+
   factory DomainDescriptionType.fromJson(Map<String, dynamic> json) {
     return DomainDescriptionType(
       awsAccountId: json['AWSAccountId'] as String?,
@@ -11629,6 +11695,7 @@ class EmailConfigurationType {
     this.replyToEmailAddress,
     this.sourceArn,
   });
+
   factory EmailConfigurationType.fromJson(Map<String, dynamic> json) {
     return EmailConfigurationType(
       configurationSet: json['ConfigurationSet'] as String?,
@@ -11710,6 +11777,7 @@ class EventContextDataType {
     this.ipAddress,
     this.timezone,
   });
+
   factory EventContextDataType.fromJson(Map<String, dynamic> json) {
     return EventContextDataType(
       city: json['City'] as String?,
@@ -11752,6 +11820,7 @@ class EventFeedbackType {
     required this.provider,
     this.feedbackDate,
   });
+
   factory EventFeedbackType.fromJson(Map<String, dynamic> json) {
     return EventFeedbackType(
       feedbackValue: (json['FeedbackValue'] as String).toFeedbackValueType(),
@@ -11851,6 +11920,7 @@ class EventRiskType {
     this.riskDecision,
     this.riskLevel,
   });
+
   factory EventRiskType.fromJson(Map<String, dynamic> json) {
     return EventRiskType(
       compromisedCredentialsDetected:
@@ -12002,6 +12072,7 @@ class ForgotPasswordResponse {
   ForgotPasswordResponse({
     this.codeDeliveryDetails,
   });
+
   factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) {
     return ForgotPasswordResponse(
       codeDeliveryDetails: json['CodeDeliveryDetails'] != null
@@ -12033,6 +12104,7 @@ class GetCSVHeaderResponse {
     this.cSVHeader,
     this.userPoolId,
   });
+
   factory GetCSVHeaderResponse.fromJson(Map<String, dynamic> json) {
     return GetCSVHeaderResponse(
       cSVHeader: (json['CSVHeader'] as List?)
@@ -12061,6 +12133,7 @@ class GetDeviceResponse {
   GetDeviceResponse({
     required this.device,
   });
+
   factory GetDeviceResponse.fromJson(Map<String, dynamic> json) {
     return GetDeviceResponse(
       device: DeviceType.fromJson(json['Device'] as Map<String, dynamic>),
@@ -12082,6 +12155,7 @@ class GetGroupResponse {
   GetGroupResponse({
     this.group,
   });
+
   factory GetGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetGroupResponse(
       group: json['Group'] != null
@@ -12105,6 +12179,7 @@ class GetIdentityProviderByIdentifierResponse {
   GetIdentityProviderByIdentifierResponse({
     required this.identityProvider,
   });
+
   factory GetIdentityProviderByIdentifierResponse.fromJson(
       Map<String, dynamic> json) {
     return GetIdentityProviderByIdentifierResponse(
@@ -12129,6 +12204,7 @@ class GetSigningCertificateResponse {
   GetSigningCertificateResponse({
     this.certificate,
   });
+
   factory GetSigningCertificateResponse.fromJson(Map<String, dynamic> json) {
     return GetSigningCertificateResponse(
       certificate: json['Certificate'] as String?,
@@ -12150,6 +12226,7 @@ class GetUICustomizationResponse {
   GetUICustomizationResponse({
     required this.uICustomization,
   });
+
   factory GetUICustomizationResponse.fromJson(Map<String, dynamic> json) {
     return GetUICustomizationResponse(
       uICustomization: UICustomizationType.fromJson(
@@ -12175,6 +12252,7 @@ class GetUserAttributeVerificationCodeResponse {
   GetUserAttributeVerificationCodeResponse({
     this.codeDeliveryDetails,
   });
+
   factory GetUserAttributeVerificationCodeResponse.fromJson(
       Map<String, dynamic> json) {
     return GetUserAttributeVerificationCodeResponse(
@@ -12222,6 +12300,7 @@ class GetUserPoolMfaConfigResponse {
     this.smsMfaConfiguration,
     this.softwareTokenMfaConfiguration,
   });
+
   factory GetUserPoolMfaConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetUserPoolMfaConfigResponse(
       mfaConfiguration:
@@ -12286,6 +12365,7 @@ class GetUserResponse {
     this.preferredMfaSetting,
     this.userMFASettingList,
   });
+
   factory GetUserResponse.fromJson(Map<String, dynamic> json) {
     return GetUserResponse(
       userAttributes: (json['UserAttributes'] as List)
@@ -12325,6 +12405,7 @@ class GetUserResponse {
 /// The response to the request to sign out all devices.
 class GlobalSignOutResponse {
   GlobalSignOutResponse();
+
   factory GlobalSignOutResponse.fromJson(Map<String, dynamic> _) {
     return GlobalSignOutResponse();
   }
@@ -12381,6 +12462,7 @@ class GroupType {
     this.roleArn,
     this.userPoolId,
   });
+
   factory GroupType.fromJson(Map<String, dynamic> json) {
     return GroupType(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -12427,6 +12509,7 @@ class HttpHeader {
     this.headerName,
     this.headerValue,
   });
+
   factory HttpHeader.fromJson(Map<String, dynamic> json) {
     return HttpHeader(
       headerName: json['headerName'] as String?,
@@ -12583,6 +12666,7 @@ class IdentityProviderType {
     this.providerType,
     this.userPoolId,
   });
+
   factory IdentityProviderType.fromJson(Map<String, dynamic> json) {
     return IdentityProviderType(
       attributeMapping: (json['AttributeMapping'] as Map<String, dynamic>?)
@@ -12758,6 +12842,7 @@ class InitiateAuthResponse {
     this.challengeParameters,
     this.session,
   });
+
   factory InitiateAuthResponse.fromJson(Map<String, dynamic> json) {
     return InitiateAuthResponse(
       authenticationResult: json['AuthenticationResult'] != null
@@ -12848,6 +12933,7 @@ class LambdaConfigType {
     this.userMigration,
     this.verifyAuthChallengeResponse,
   });
+
   factory LambdaConfigType.fromJson(Map<String, dynamic> json) {
     return LambdaConfigType(
       createAuthChallenge: json['CreateAuthChallenge'] as String?,
@@ -12920,6 +13006,7 @@ class ListDevicesResponse {
     this.devices,
     this.paginationToken,
   });
+
   factory ListDevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListDevicesResponse(
       devices: (json['Devices'] as List?)
@@ -12952,6 +13039,7 @@ class ListGroupsResponse {
     this.groups,
     this.nextToken,
   });
+
   factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsResponse(
       groups: (json['Groups'] as List?)
@@ -12983,6 +13071,7 @@ class ListIdentityProvidersResponse {
     required this.providers,
     this.nextToken,
   });
+
   factory ListIdentityProvidersResponse.fromJson(Map<String, dynamic> json) {
     return ListIdentityProvidersResponse(
       providers: (json['Providers'] as List)
@@ -13014,6 +13103,7 @@ class ListResourceServersResponse {
     required this.resourceServers,
     this.nextToken,
   });
+
   factory ListResourceServersResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceServersResponse(
       resourceServers: (json['ResourceServers'] as List)
@@ -13041,6 +13131,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -13070,6 +13161,7 @@ class ListUserImportJobsResponse {
     this.paginationToken,
     this.userImportJobs,
   });
+
   factory ListUserImportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserImportJobsResponse(
       paginationToken: json['PaginationToken'] as String?,
@@ -13103,6 +13195,7 @@ class ListUserPoolClientsResponse {
     this.nextToken,
     this.userPoolClients,
   });
+
   factory ListUserPoolClientsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserPoolClientsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13137,6 +13230,7 @@ class ListUserPoolsResponse {
     this.nextToken,
     this.userPools,
   });
+
   factory ListUserPoolsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserPoolsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13170,6 +13264,7 @@ class ListUsersInGroupResponse {
     this.nextToken,
     this.users,
   });
+
   factory ListUsersInGroupResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersInGroupResponse(
       nextToken: json['NextToken'] as String?,
@@ -13203,6 +13298,7 @@ class ListUsersResponse {
     this.paginationToken,
     this.users,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       paginationToken: json['PaginationToken'] as String?,
@@ -13239,6 +13335,7 @@ class MFAOptionType {
     this.attributeName,
     this.deliveryMedium,
   });
+
   factory MFAOptionType.fromJson(Map<String, dynamic> json) {
     return MFAOptionType(
       attributeName: json['AttributeName'] as String?,
@@ -13305,6 +13402,7 @@ class MessageTemplateType {
     this.emailSubject,
     this.sMSMessage,
   });
+
   factory MessageTemplateType.fromJson(Map<String, dynamic> json) {
     return MessageTemplateType(
       emailMessage: json['EmailMessage'] as String?,
@@ -13337,6 +13435,7 @@ class NewDeviceMetadataType {
     this.deviceGroupKey,
     this.deviceKey,
   });
+
   factory NewDeviceMetadataType.fromJson(Map<String, dynamic> json) {
     return NewDeviceMetadataType(
       deviceGroupKey: json['DeviceGroupKey'] as String?,
@@ -13387,6 +13486,7 @@ class NotifyConfigurationType {
     this.noActionEmail,
     this.replyTo,
   });
+
   factory NotifyConfigurationType.fromJson(Map<String, dynamic> json) {
     return NotifyConfigurationType(
       sourceArn: json['SourceArn'] as String,
@@ -13439,6 +13539,7 @@ class NotifyEmailType {
     this.htmlBody,
     this.textBody,
   });
+
   factory NotifyEmailType.fromJson(Map<String, dynamic> json) {
     return NotifyEmailType(
       subject: json['Subject'] as String,
@@ -13472,6 +13573,7 @@ class NumberAttributeConstraintsType {
     this.maxValue,
     this.minValue,
   });
+
   factory NumberAttributeConstraintsType.fromJson(Map<String, dynamic> json) {
     return NumberAttributeConstraintsType(
       maxValue: json['MaxValue'] as String?,
@@ -13562,6 +13664,7 @@ class PasswordPolicyType {
     this.requireUppercase,
     this.temporaryPasswordValidityDays,
   });
+
   factory PasswordPolicyType.fromJson(Map<String, dynamic> json) {
     return PasswordPolicyType(
       minimumLength: json['MinimumLength'] as int?,
@@ -13642,6 +13745,7 @@ class ProviderDescription {
     this.providerName,
     this.providerType,
   });
+
   factory ProviderDescription.fromJson(Map<String, dynamic> json) {
     return ProviderDescription(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -13687,6 +13791,7 @@ class ProviderUserIdentifierType {
     this.providerAttributeValue,
     this.providerName,
   });
+
   factory ProviderUserIdentifierType.fromJson(Map<String, dynamic> json) {
     return ProviderUserIdentifierType(
       providerAttributeName: json['ProviderAttributeName'] as String?,
@@ -13755,6 +13860,7 @@ class RecoveryOptionType {
     required this.name,
     required this.priority,
   });
+
   factory RecoveryOptionType.fromJson(Map<String, dynamic> json) {
     return RecoveryOptionType(
       name: (json['Name'] as String).toRecoveryOptionNameType(),
@@ -13782,6 +13888,7 @@ class ResendConfirmationCodeResponse {
   ResendConfirmationCodeResponse({
     this.codeDeliveryDetails,
   });
+
   factory ResendConfirmationCodeResponse.fromJson(Map<String, dynamic> json) {
     return ResendConfirmationCodeResponse(
       codeDeliveryDetails: json['CodeDeliveryDetails'] != null
@@ -13812,6 +13919,7 @@ class ResourceServerScopeType {
     required this.scopeDescription,
     required this.scopeName,
   });
+
   factory ResourceServerScopeType.fromJson(Map<String, dynamic> json) {
     return ResourceServerScopeType(
       scopeDescription: json['ScopeDescription'] as String,
@@ -13849,6 +13957,7 @@ class ResourceServerType {
     this.scopes,
     this.userPoolId,
   });
+
   factory ResourceServerType.fromJson(Map<String, dynamic> json) {
     return ResourceServerType(
       identifier: json['Identifier'] as String?,
@@ -13902,6 +14011,7 @@ class RespondToAuthChallengeResponse {
     this.challengeParameters,
     this.session,
   });
+
   factory RespondToAuthChallengeResponse.fromJson(Map<String, dynamic> json) {
     return RespondToAuthChallengeResponse(
       authenticationResult: json['AuthenticationResult'] != null
@@ -13934,6 +14044,7 @@ class RespondToAuthChallengeResponse {
 
 class RevokeTokenResponse {
   RevokeTokenResponse();
+
   factory RevokeTokenResponse.fromJson(Map<String, dynamic> _) {
     return RevokeTokenResponse();
   }
@@ -13975,6 +14086,7 @@ class RiskConfigurationType {
     this.riskExceptionConfiguration,
     this.userPoolId,
   });
+
   factory RiskConfigurationType.fromJson(Map<String, dynamic> json) {
     return RiskConfigurationType(
       accountTakeoverRiskConfiguration:
@@ -14072,6 +14184,7 @@ class RiskExceptionConfigurationType {
     this.blockedIPRangeList,
     this.skippedIPRangeList,
   });
+
   factory RiskExceptionConfigurationType.fromJson(Map<String, dynamic> json) {
     return RiskExceptionConfigurationType(
       blockedIPRangeList: (json['BlockedIPRangeList'] as List?)
@@ -14148,6 +14261,7 @@ class SMSMfaSettingsType {
     this.enabled,
     this.preferredMfa,
   });
+
   factory SMSMfaSettingsType.fromJson(Map<String, dynamic> json) {
     return SMSMfaSettingsType(
       enabled: json['Enabled'] as bool?,
@@ -14217,6 +14331,7 @@ class SchemaAttributeType {
     this.required,
     this.stringAttributeConstraints,
   });
+
   factory SchemaAttributeType.fromJson(Map<String, dynamic> json) {
     return SchemaAttributeType(
       attributeDataType:
@@ -14267,6 +14382,7 @@ class SetRiskConfigurationResponse {
   SetRiskConfigurationResponse({
     required this.riskConfiguration,
   });
+
   factory SetRiskConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return SetRiskConfigurationResponse(
       riskConfiguration: RiskConfigurationType.fromJson(
@@ -14289,6 +14405,7 @@ class SetUICustomizationResponse {
   SetUICustomizationResponse({
     required this.uICustomization,
   });
+
   factory SetUICustomizationResponse.fromJson(Map<String, dynamic> json) {
     return SetUICustomizationResponse(
       uICustomization: UICustomizationType.fromJson(
@@ -14306,6 +14423,7 @@ class SetUICustomizationResponse {
 
 class SetUserMFAPreferenceResponse {
   SetUserMFAPreferenceResponse();
+
   factory SetUserMFAPreferenceResponse.fromJson(Map<String, dynamic> _) {
     return SetUserMFAPreferenceResponse();
   }
@@ -14343,6 +14461,7 @@ class SetUserPoolMfaConfigResponse {
     this.smsMfaConfiguration,
     this.softwareTokenMfaConfiguration,
   });
+
   factory SetUserPoolMfaConfigResponse.fromJson(Map<String, dynamic> json) {
     return SetUserPoolMfaConfigResponse(
       mfaConfiguration:
@@ -14377,6 +14496,7 @@ class SetUserPoolMfaConfigResponse {
 /// The response from the server for a set user settings request.
 class SetUserSettingsResponse {
   SetUserSettingsResponse();
+
   factory SetUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return SetUserSettingsResponse();
   }
@@ -14405,6 +14525,7 @@ class SignUpResponse {
     required this.userSub,
     this.codeDeliveryDetails,
   });
+
   factory SignUpResponse.fromJson(Map<String, dynamic> json) {
     return SignUpResponse(
       userConfirmed: json['UserConfirmed'] as bool,
@@ -14460,6 +14581,7 @@ class SmsConfigurationType {
     required this.snsCallerArn,
     this.externalId,
   });
+
   factory SmsConfigurationType.fromJson(Map<String, dynamic> json) {
     return SmsConfigurationType(
       snsCallerArn: json['SnsCallerArn'] as String,
@@ -14492,6 +14614,7 @@ class SmsMfaConfigType {
     this.smsAuthenticationMessage,
     this.smsConfiguration,
   });
+
   factory SmsMfaConfigType.fromJson(Map<String, dynamic> json) {
     return SmsMfaConfigType(
       smsAuthenticationMessage: json['SmsAuthenticationMessage'] as String?,
@@ -14521,6 +14644,7 @@ class SoftwareTokenMfaConfigType {
   SoftwareTokenMfaConfigType({
     this.enabled,
   });
+
   factory SoftwareTokenMfaConfigType.fromJson(Map<String, dynamic> json) {
     return SoftwareTokenMfaConfigType(
       enabled: json['Enabled'] as bool?,
@@ -14554,6 +14678,7 @@ class SoftwareTokenMfaSettingsType {
     this.enabled,
     this.preferredMfa,
   });
+
   factory SoftwareTokenMfaSettingsType.fromJson(Map<String, dynamic> json) {
     return SoftwareTokenMfaSettingsType(
       enabled: json['Enabled'] as bool?,
@@ -14580,6 +14705,7 @@ class StartUserImportJobResponse {
   StartUserImportJobResponse({
     this.userImportJob,
   });
+
   factory StartUserImportJobResponse.fromJson(Map<String, dynamic> json) {
     return StartUserImportJobResponse(
       userImportJob: json['UserImportJob'] != null
@@ -14634,6 +14760,7 @@ class StopUserImportJobResponse {
   StopUserImportJobResponse({
     this.userImportJob,
   });
+
   factory StopUserImportJobResponse.fromJson(Map<String, dynamic> json) {
     return StopUserImportJobResponse(
       userImportJob: json['UserImportJob'] != null
@@ -14663,6 +14790,7 @@ class StringAttributeConstraintsType {
     this.maxLength,
     this.minLength,
   });
+
   factory StringAttributeConstraintsType.fromJson(Map<String, dynamic> json) {
     return StringAttributeConstraintsType(
       maxLength: json['MaxLength'] as String?,
@@ -14682,6 +14810,7 @@ class StringAttributeConstraintsType {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -14749,6 +14878,7 @@ class TokenValidityUnitsType {
     this.idToken,
     this.refreshToken,
   });
+
   factory TokenValidityUnitsType.fromJson(Map<String, dynamic> json) {
     return TokenValidityUnitsType(
       accessToken: (json['AccessToken'] as String?)?.toTimeUnitsType(),
@@ -14802,6 +14932,7 @@ class UICustomizationType {
     this.lastModifiedDate,
     this.userPoolId,
   });
+
   factory UICustomizationType.fromJson(Map<String, dynamic> json) {
     return UICustomizationType(
       css: json['CSS'] as String?,
@@ -14838,6 +14969,7 @@ class UICustomizationType {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -14849,6 +14981,7 @@ class UntagResourceResponse {
 
 class UpdateAuthEventFeedbackResponse {
   UpdateAuthEventFeedbackResponse();
+
   factory UpdateAuthEventFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAuthEventFeedbackResponse();
   }
@@ -14861,6 +14994,7 @@ class UpdateAuthEventFeedbackResponse {
 /// The response to the request to update the device status.
 class UpdateDeviceStatusResponse {
   UpdateDeviceStatusResponse();
+
   factory UpdateDeviceStatusResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceStatusResponse();
   }
@@ -14877,6 +15011,7 @@ class UpdateGroupResponse {
   UpdateGroupResponse({
     this.group,
   });
+
   factory UpdateGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateGroupResponse(
       group: json['Group'] != null
@@ -14900,6 +15035,7 @@ class UpdateIdentityProviderResponse {
   UpdateIdentityProviderResponse({
     required this.identityProvider,
   });
+
   factory UpdateIdentityProviderResponse.fromJson(Map<String, dynamic> json) {
     return UpdateIdentityProviderResponse(
       identityProvider: IdentityProviderType.fromJson(
@@ -14922,6 +15058,7 @@ class UpdateResourceServerResponse {
   UpdateResourceServerResponse({
     required this.resourceServer,
   });
+
   factory UpdateResourceServerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateResourceServerResponse(
       resourceServer: ResourceServerType.fromJson(
@@ -14947,6 +15084,7 @@ class UpdateUserAttributesResponse {
   UpdateUserAttributesResponse({
     this.codeDeliveryDetailsList,
   });
+
   factory UpdateUserAttributesResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserAttributesResponse(
       codeDeliveryDetailsList: (json['CodeDeliveryDetailsList'] as List?)
@@ -14976,6 +15114,7 @@ class UpdateUserPoolClientResponse {
   UpdateUserPoolClientResponse({
     this.userPoolClient,
   });
+
   factory UpdateUserPoolClientResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserPoolClientResponse(
       userPoolClient: json['UserPoolClient'] != null
@@ -15002,6 +15141,7 @@ class UpdateUserPoolDomainResponse {
   UpdateUserPoolDomainResponse({
     this.cloudFrontDomain,
   });
+
   factory UpdateUserPoolDomainResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserPoolDomainResponse(
       cloudFrontDomain: json['CloudFrontDomain'] as String?,
@@ -15020,6 +15160,7 @@ class UpdateUserPoolDomainResponse {
 /// the user pool.
 class UpdateUserPoolResponse {
   UpdateUserPoolResponse();
+
   factory UpdateUserPoolResponse.fromJson(Map<String, dynamic> _) {
     return UpdateUserPoolResponse();
   }
@@ -15041,6 +15182,7 @@ class UserContextDataType {
   UserContextDataType({
     this.encodedData,
   });
+
   factory UserContextDataType.fromJson(Map<String, dynamic> json) {
     return UserContextDataType(
       encodedData: json['EncodedData'] as String?,
@@ -15203,6 +15345,7 @@ class UserImportJobType {
     this.status,
     this.userPoolId,
   });
+
   factory UserImportJobType.fromJson(Map<String, dynamic> json) {
     return UserImportJobType(
       cloudWatchLogsRoleArn: json['CloudWatchLogsRoleArn'] as String?,
@@ -15264,6 +15407,7 @@ class UserPoolAddOnsType {
   UserPoolAddOnsType({
     required this.advancedSecurityMode,
   });
+
   factory UserPoolAddOnsType.fromJson(Map<String, dynamic> json) {
     return UserPoolAddOnsType(
       advancedSecurityMode:
@@ -15296,6 +15440,7 @@ class UserPoolClientDescription {
     this.clientName,
     this.userPoolId,
   });
+
   factory UserPoolClientDescription.fromJson(Map<String, dynamic> json) {
     return UserPoolClientDescription(
       clientId: json['ClientId'] as String?,
@@ -15538,6 +15683,7 @@ class UserPoolClientType {
     this.userPoolId,
     this.writeAttributes,
   });
+
   factory UserPoolClientType.fromJson(Map<String, dynamic> json) {
     return UserPoolClientType(
       accessTokenValidity: json['AccessTokenValidity'] as int?,
@@ -15691,6 +15837,7 @@ class UserPoolDescriptionType {
     this.name,
     this.status,
   });
+
   factory UserPoolDescriptionType.fromJson(Map<String, dynamic> json) {
     return UserPoolDescriptionType(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -15766,6 +15913,7 @@ class UserPoolPolicyType {
   UserPoolPolicyType({
     this.passwordPolicy,
   });
+
   factory UserPoolPolicyType.fromJson(Map<String, dynamic> json) {
     return UserPoolPolicyType(
       passwordPolicy: json['PasswordPolicy'] != null
@@ -15966,6 +16114,7 @@ class UserPoolType {
     this.usernameConfiguration,
     this.verificationMessageTemplate,
   });
+
   factory UserPoolType.fromJson(Map<String, dynamic> json) {
     return UserPoolType(
       accountRecoverySetting: json['AccountRecoverySetting'] != null
@@ -16246,6 +16395,7 @@ class UserType {
     this.userStatus,
     this.username,
   });
+
   factory UserType.fromJson(Map<String, dynamic> json) {
     return UserType(
       attributes: (json['Attributes'] as List?)
@@ -16342,6 +16492,7 @@ class UsernameConfigurationType {
   UsernameConfigurationType({
     required this.caseSensitive,
   });
+
   factory UsernameConfigurationType.fromJson(Map<String, dynamic> json) {
     return UsernameConfigurationType(
       caseSensitive: json['CaseSensitive'] as bool,
@@ -16395,6 +16546,7 @@ class VerificationMessageTemplateType {
     this.emailSubjectByLink,
     this.smsMessage,
   });
+
   factory VerificationMessageTemplateType.fromJson(Map<String, dynamic> json) {
     return VerificationMessageTemplateType(
       defaultEmailOption:
@@ -16466,6 +16618,7 @@ class VerifySoftwareTokenResponse {
     this.session,
     this.status,
   });
+
   factory VerifySoftwareTokenResponse.fromJson(Map<String, dynamic> json) {
     return VerifySoftwareTokenResponse(
       session: json['Session'] as String?,
@@ -16516,6 +16669,7 @@ extension on String {
 /// verify user attributes.
 class VerifyUserAttributeResponse {
   VerifyUserAttributeResponse();
+
   factory VerifyUserAttributeResponse.fromJson(Map<String, dynamic> _) {
     return VerifyUserAttributeResponse();
   }

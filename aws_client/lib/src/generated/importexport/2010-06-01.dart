@@ -311,6 +311,7 @@ class Artifact {
     this.description,
     this.url,
   });
+
   factory Artifact.fromJson(Map<String, dynamic> json) {
     return Artifact(
       description: json['Description'] as String?,
@@ -342,6 +343,7 @@ class BucketPermissionException implements _s.AwsException {
   BucketPermissionException({
     this.message,
   });
+
   factory BucketPermissionException.fromJson(Map<String, dynamic> json) {
     return BucketPermissionException(
       message: json['message'] as String?,
@@ -369,6 +371,7 @@ class CancelJobOutput {
   CancelJobOutput({
     this.success,
   });
+
   factory CancelJobOutput.fromJson(Map<String, dynamic> json) {
     return CancelJobOutput(
       success: json['Success'] as bool?,
@@ -396,6 +399,7 @@ class CanceledJobIdException implements _s.AwsException {
   CanceledJobIdException({
     this.message,
   });
+
   factory CanceledJobIdException.fromJson(Map<String, dynamic> json) {
     return CanceledJobIdException(
       message: json['message'] as String?,
@@ -433,6 +437,7 @@ class CreateJobOutput {
     this.signatureFileContents,
     this.warningMessage,
   });
+
   factory CreateJobOutput.fromJson(Map<String, dynamic> json) {
     return CreateJobOutput(
       artifactList: (json['ArtifactList'] as List?)
@@ -488,6 +493,7 @@ class CreateJobQuotaExceededException implements _s.AwsException {
   CreateJobQuotaExceededException({
     this.message,
   });
+
   factory CreateJobQuotaExceededException.fromJson(Map<String, dynamic> json) {
     return CreateJobQuotaExceededException(
       message: json['message'] as String?,
@@ -515,6 +521,7 @@ class ExpiredJobIdException implements _s.AwsException {
   ExpiredJobIdException({
     this.message,
   });
+
   factory ExpiredJobIdException.fromJson(Map<String, dynamic> json) {
     return ExpiredJobIdException(
       message: json['message'] as String?,
@@ -543,6 +550,7 @@ class GetShippingLabelOutput {
     this.shippingLabelURL,
     this.warning,
   });
+
   factory GetShippingLabelOutput.fromJson(Map<String, dynamic> json) {
     return GetShippingLabelOutput(
       shippingLabelURL: json['ShippingLabelURL'] as String?,
@@ -604,6 +612,7 @@ class GetStatusOutput {
     this.signatureFileContents,
     this.trackingNumber,
   });
+
   factory GetStatusOutput.fromJson(Map<String, dynamic> json) {
     return GetStatusOutput(
       artifactList: (json['ArtifactList'] as List?)
@@ -700,6 +709,7 @@ class InvalidAccessKeyIdException implements _s.AwsException {
   InvalidAccessKeyIdException({
     this.message,
   });
+
   factory InvalidAccessKeyIdException.fromJson(Map<String, dynamic> json) {
     return InvalidAccessKeyIdException(
       message: json['message'] as String?,
@@ -727,6 +737,7 @@ class InvalidAddressException implements _s.AwsException {
   InvalidAddressException({
     this.message,
   });
+
   factory InvalidAddressException.fromJson(Map<String, dynamic> json) {
     return InvalidAddressException(
       message: json['message'] as String?,
@@ -754,6 +765,7 @@ class InvalidCustomsException implements _s.AwsException {
   InvalidCustomsException({
     this.message,
   });
+
   factory InvalidCustomsException.fromJson(Map<String, dynamic> json) {
     return InvalidCustomsException(
       message: json['message'] as String?,
@@ -781,6 +793,7 @@ class InvalidFileSystemException implements _s.AwsException {
   InvalidFileSystemException({
     this.message,
   });
+
   factory InvalidFileSystemException.fromJson(Map<String, dynamic> json) {
     return InvalidFileSystemException(
       message: json['message'] as String?,
@@ -808,6 +821,7 @@ class InvalidJobIdException implements _s.AwsException {
   InvalidJobIdException({
     this.message,
   });
+
   factory InvalidJobIdException.fromJson(Map<String, dynamic> json) {
     return InvalidJobIdException(
       message: json['message'] as String?,
@@ -835,6 +849,7 @@ class InvalidManifestFieldException implements _s.AwsException {
   InvalidManifestFieldException({
     this.message,
   });
+
   factory InvalidManifestFieldException.fromJson(Map<String, dynamic> json) {
     return InvalidManifestFieldException(
       message: json['message'] as String?,
@@ -862,6 +877,7 @@ class InvalidParameterException implements _s.AwsException {
   InvalidParameterException({
     this.message,
   });
+
   factory InvalidParameterException.fromJson(Map<String, dynamic> json) {
     return InvalidParameterException(
       message: json['message'] as String?,
@@ -889,6 +905,7 @@ class InvalidVersionException implements _s.AwsException {
   InvalidVersionException({
     this.message,
   });
+
   factory InvalidVersionException.fromJson(Map<String, dynamic> json) {
     return InvalidVersionException(
       message: json['message'] as String?,
@@ -922,6 +939,7 @@ class Job {
     this.jobId,
     this.jobType,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -993,6 +1011,7 @@ class ListJobsOutput {
     this.isTruncated,
     this.jobs,
   });
+
   factory ListJobsOutput.fromJson(Map<String, dynamic> json) {
     return ListJobsOutput(
       isTruncated: json['IsTruncated'] as bool?,
@@ -1028,6 +1047,7 @@ class MalformedManifestException implements _s.AwsException {
   MalformedManifestException({
     this.message,
   });
+
   factory MalformedManifestException.fromJson(Map<String, dynamic> json) {
     return MalformedManifestException(
       message: json['message'] as String?,
@@ -1055,6 +1075,7 @@ class MissingCustomsException implements _s.AwsException {
   MissingCustomsException({
     this.message,
   });
+
   factory MissingCustomsException.fromJson(Map<String, dynamic> json) {
     return MissingCustomsException(
       message: json['message'] as String?,
@@ -1083,6 +1104,7 @@ class MissingManifestFieldException implements _s.AwsException {
   MissingManifestFieldException({
     this.message,
   });
+
   factory MissingManifestFieldException.fromJson(Map<String, dynamic> json) {
     return MissingManifestFieldException(
       message: json['message'] as String?,
@@ -1110,6 +1132,7 @@ class MissingParameterException implements _s.AwsException {
   MissingParameterException({
     this.message,
   });
+
   factory MissingParameterException.fromJson(Map<String, dynamic> json) {
     return MissingParameterException(
       message: json['message'] as String?,
@@ -1138,6 +1161,7 @@ class MultipleRegionsException implements _s.AwsException {
   MultipleRegionsException({
     this.message,
   });
+
   factory MultipleRegionsException.fromJson(Map<String, dynamic> json) {
     return MultipleRegionsException(
       message: json['message'] as String?,
@@ -1168,6 +1192,7 @@ class NoSuchBucketException implements _s.AwsException {
   NoSuchBucketException({
     this.message,
   });
+
   factory NoSuchBucketException.fromJson(Map<String, dynamic> json) {
     return NoSuchBucketException(
       message: json['message'] as String?,
@@ -1195,6 +1220,7 @@ class UnableToCancelJobIdException implements _s.AwsException {
   UnableToCancelJobIdException({
     this.message,
   });
+
   factory UnableToCancelJobIdException.fromJson(Map<String, dynamic> json) {
     return UnableToCancelJobIdException(
       message: json['message'] as String?,
@@ -1222,6 +1248,7 @@ class UnableToUpdateJobIdException implements _s.AwsException {
   UnableToUpdateJobIdException({
     this.message,
   });
+
   factory UnableToUpdateJobIdException.fromJson(Map<String, dynamic> json) {
     return UnableToUpdateJobIdException(
       message: json['message'] as String?,
@@ -1253,6 +1280,7 @@ class UpdateJobOutput {
     this.success,
     this.warningMessage,
   });
+
   factory UpdateJobOutput.fromJson(Map<String, dynamic> json) {
     return UpdateJobOutput(
       artifactList: (json['ArtifactList'] as List?)

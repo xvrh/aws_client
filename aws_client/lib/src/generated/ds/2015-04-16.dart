@@ -3268,6 +3268,7 @@ class AcceptSharedDirectoryResult {
   AcceptSharedDirectoryResult({
     this.sharedDirectory,
   });
+
   factory AcceptSharedDirectoryResult.fromJson(Map<String, dynamic> json) {
     return AcceptSharedDirectoryResult(
       sharedDirectory: json['SharedDirectory'] != null
@@ -3287,6 +3288,7 @@ class AcceptSharedDirectoryResult {
 
 class AddIpRoutesResult {
   AddIpRoutesResult();
+
   factory AddIpRoutesResult.fromJson(Map<String, dynamic> _) {
     return AddIpRoutesResult();
   }
@@ -3298,6 +3300,7 @@ class AddIpRoutesResult {
 
 class AddRegionResult {
   AddRegionResult();
+
   factory AddRegionResult.fromJson(Map<String, dynamic> _) {
     return AddRegionResult();
   }
@@ -3309,6 +3312,7 @@ class AddRegionResult {
 
 class AddTagsToResourceResult {
   AddTagsToResourceResult();
+
   factory AddTagsToResourceResult.fromJson(Map<String, dynamic> _) {
     return AddTagsToResourceResult();
   }
@@ -3330,6 +3334,7 @@ class Attribute {
     this.name,
     this.value,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       name: json['Name'] as String?,
@@ -3349,6 +3354,7 @@ class Attribute {
 
 class CancelSchemaExtensionResult {
   CancelSchemaExtensionResult();
+
   factory CancelSchemaExtensionResult.fromJson(Map<String, dynamic> _) {
     return CancelSchemaExtensionResult();
   }
@@ -3397,6 +3403,7 @@ class Certificate {
     this.stateReason,
     this.type,
   });
+
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       certificateId: json['CertificateId'] as String?,
@@ -3464,6 +3471,7 @@ class CertificateInfo {
     this.state,
     this.type,
   });
+
   factory CertificateInfo.fromJson(Map<String, dynamic> json) {
     return CertificateInfo(
       certificateId: json['CertificateId'] as String?,
@@ -3602,6 +3610,7 @@ class ClientCertAuthSettings {
   ClientCertAuthSettings({
     this.oCSPUrl,
   });
+
   factory ClientCertAuthSettings.fromJson(Map<String, dynamic> json) {
     return ClientCertAuthSettings(
       oCSPUrl: json['OCSPUrl'] as String?,
@@ -3633,6 +3642,7 @@ class Computer {
     this.computerId,
     this.computerName,
   });
+
   factory Computer.fromJson(Map<String, dynamic> json) {
     return Computer(
       computerAttributes: (json['ComputerAttributes'] as List?)
@@ -3679,6 +3689,7 @@ class ConditionalForwarder {
     this.remoteDomainName,
     this.replicationScope,
   });
+
   factory ConditionalForwarder.fromJson(Map<String, dynamic> json) {
     return ConditionalForwarder(
       dnsIpAddrs: (json['DnsIpAddrs'] as List?)
@@ -3712,6 +3723,7 @@ class ConnectDirectoryResult {
   ConnectDirectoryResult({
     this.directoryId,
   });
+
   factory ConnectDirectoryResult.fromJson(Map<String, dynamic> json) {
     return ConnectDirectoryResult(
       directoryId: json['DirectoryId'] as String?,
@@ -3738,6 +3750,7 @@ class CreateAliasResult {
     this.alias,
     this.directoryId,
   });
+
   factory CreateAliasResult.fromJson(Map<String, dynamic> json) {
     return CreateAliasResult(
       alias: json['Alias'] as String?,
@@ -3763,6 +3776,7 @@ class CreateComputerResult {
   CreateComputerResult({
     this.computer,
   });
+
   factory CreateComputerResult.fromJson(Map<String, dynamic> json) {
     return CreateComputerResult(
       computer: json['Computer'] != null
@@ -3782,6 +3796,7 @@ class CreateComputerResult {
 /// The result of a CreateConditinalForwarder request.
 class CreateConditionalForwarderResult {
   CreateConditionalForwarderResult();
+
   factory CreateConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return CreateConditionalForwarderResult();
   }
@@ -3799,6 +3814,7 @@ class CreateDirectoryResult {
   CreateDirectoryResult({
     this.directoryId,
   });
+
   factory CreateDirectoryResult.fromJson(Map<String, dynamic> json) {
     return CreateDirectoryResult(
       directoryId: json['DirectoryId'] as String?,
@@ -3815,6 +3831,7 @@ class CreateDirectoryResult {
 
 class CreateLogSubscriptionResult {
   CreateLogSubscriptionResult();
+
   factory CreateLogSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return CreateLogSubscriptionResult();
   }
@@ -3832,6 +3849,7 @@ class CreateMicrosoftADResult {
   CreateMicrosoftADResult({
     this.directoryId,
   });
+
   factory CreateMicrosoftADResult.fromJson(Map<String, dynamic> json) {
     return CreateMicrosoftADResult(
       directoryId: json['DirectoryId'] as String?,
@@ -3854,6 +3872,7 @@ class CreateSnapshotResult {
   CreateSnapshotResult({
     this.snapshotId,
   });
+
   factory CreateSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateSnapshotResult(
       snapshotId: json['SnapshotId'] as String?,
@@ -3876,6 +3895,7 @@ class CreateTrustResult {
   CreateTrustResult({
     this.trustId,
   });
+
   factory CreateTrustResult.fromJson(Map<String, dynamic> json) {
     return CreateTrustResult(
       trustId: json['TrustId'] as String?,
@@ -3893,6 +3913,7 @@ class CreateTrustResult {
 /// The result of a DeleteConditionalForwarder request.
 class DeleteConditionalForwarderResult {
   DeleteConditionalForwarderResult();
+
   factory DeleteConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return DeleteConditionalForwarderResult();
   }
@@ -3910,6 +3931,7 @@ class DeleteDirectoryResult {
   DeleteDirectoryResult({
     this.directoryId,
   });
+
   factory DeleteDirectoryResult.fromJson(Map<String, dynamic> json) {
     return DeleteDirectoryResult(
       directoryId: json['DirectoryId'] as String?,
@@ -3926,6 +3948,7 @@ class DeleteDirectoryResult {
 
 class DeleteLogSubscriptionResult {
   DeleteLogSubscriptionResult();
+
   factory DeleteLogSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return DeleteLogSubscriptionResult();
   }
@@ -3943,6 +3966,7 @@ class DeleteSnapshotResult {
   DeleteSnapshotResult({
     this.snapshotId,
   });
+
   factory DeleteSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteSnapshotResult(
       snapshotId: json['SnapshotId'] as String?,
@@ -3965,6 +3989,7 @@ class DeleteTrustResult {
   DeleteTrustResult({
     this.trustId,
   });
+
   factory DeleteTrustResult.fromJson(Map<String, dynamic> json) {
     return DeleteTrustResult(
       trustId: json['TrustId'] as String?,
@@ -3981,6 +4006,7 @@ class DeleteTrustResult {
 
 class DeregisterCertificateResult {
   DeregisterCertificateResult();
+
   factory DeregisterCertificateResult.fromJson(Map<String, dynamic> _) {
     return DeregisterCertificateResult();
   }
@@ -3993,6 +4019,7 @@ class DeregisterCertificateResult {
 /// The result of a DeregisterEventTopic request.
 class DeregisterEventTopicResult {
   DeregisterEventTopicResult();
+
   factory DeregisterEventTopicResult.fromJson(Map<String, dynamic> _) {
     return DeregisterEventTopicResult();
   }
@@ -4011,6 +4038,7 @@ class DescribeCertificateResult {
   DescribeCertificateResult({
     this.certificate,
   });
+
   factory DescribeCertificateResult.fromJson(Map<String, dynamic> json) {
     return DescribeCertificateResult(
       certificate: json['Certificate'] != null
@@ -4035,6 +4063,7 @@ class DescribeConditionalForwardersResult {
   DescribeConditionalForwardersResult({
     this.conditionalForwarders,
   });
+
   factory DescribeConditionalForwardersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeConditionalForwardersResult(
@@ -4073,6 +4102,7 @@ class DescribeDirectoriesResult {
     this.directoryDescriptions,
     this.nextToken,
   });
+
   factory DescribeDirectoriesResult.fromJson(Map<String, dynamic> json) {
     return DescribeDirectoriesResult(
       directoryDescriptions: (json['DirectoryDescriptions'] as List?)
@@ -4107,6 +4137,7 @@ class DescribeDomainControllersResult {
     this.domainControllers,
     this.nextToken,
   });
+
   factory DescribeDomainControllersResult.fromJson(Map<String, dynamic> json) {
     return DescribeDomainControllersResult(
       domainControllers: (json['DomainControllers'] as List?)
@@ -4136,6 +4167,7 @@ class DescribeEventTopicsResult {
   DescribeEventTopicsResult({
     this.eventTopics,
   });
+
   factory DescribeEventTopicsResult.fromJson(Map<String, dynamic> json) {
     return DescribeEventTopicsResult(
       eventTopics: (json['EventTopics'] as List?)
@@ -4167,6 +4199,7 @@ class DescribeLDAPSSettingsResult {
     this.lDAPSSettingsInfo,
     this.nextToken,
   });
+
   factory DescribeLDAPSSettingsResult.fromJson(Map<String, dynamic> json) {
     return DescribeLDAPSSettingsResult(
       lDAPSSettingsInfo: (json['LDAPSSettingsInfo'] as List?)
@@ -4201,6 +4234,7 @@ class DescribeRegionsResult {
     this.nextToken,
     this.regionsDescription,
   });
+
   factory DescribeRegionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeRegionsResult(
       nextToken: json['NextToken'] as String?,
@@ -4234,6 +4268,7 @@ class DescribeSharedDirectoriesResult {
     this.nextToken,
     this.sharedDirectories,
   });
+
   factory DescribeSharedDirectoriesResult.fromJson(Map<String, dynamic> json) {
     return DescribeSharedDirectoriesResult(
       nextToken: json['NextToken'] as String?,
@@ -4272,6 +4307,7 @@ class DescribeSnapshotsResult {
     this.nextToken,
     this.snapshots,
   });
+
   factory DescribeSnapshotsResult.fromJson(Map<String, dynamic> json) {
     return DescribeSnapshotsResult(
       nextToken: json['NextToken'] as String?,
@@ -4311,6 +4347,7 @@ class DescribeTrustsResult {
     this.nextToken,
     this.trusts,
   });
+
   factory DescribeTrustsResult.fromJson(Map<String, dynamic> json) {
     return DescribeTrustsResult(
       nextToken: json['NextToken'] as String?,
@@ -4367,6 +4404,7 @@ class DirectoryConnectSettings {
     required this.subnetIds,
     required this.vpcId,
   });
+
   factory DirectoryConnectSettings.fromJson(Map<String, dynamic> json) {
     return DirectoryConnectSettings(
       customerDnsIps: (json['CustomerDnsIps'] as List)
@@ -4424,6 +4462,7 @@ class DirectoryConnectSettingsDescription {
     this.subnetIds,
     this.vpcId,
   });
+
   factory DirectoryConnectSettingsDescription.fromJson(
       Map<String, dynamic> json) {
     return DirectoryConnectSettingsDescription(
@@ -4589,6 +4628,7 @@ class DirectoryDescription {
     this.type,
     this.vpcSettings,
   });
+
   factory DirectoryDescription.fromJson(Map<String, dynamic> json) {
     return DirectoryDescription(
       accessUrl: json['AccessUrl'] as String?,
@@ -4768,6 +4808,7 @@ class DirectoryLimits {
     this.connectedDirectoriesLimit,
     this.connectedDirectoriesLimitReached,
   });
+
   factory DirectoryLimits.fromJson(Map<String, dynamic> json) {
     return DirectoryLimits(
       cloudOnlyDirectoriesCurrentCount:
@@ -4981,6 +5022,7 @@ class DirectoryVpcSettings {
     required this.subnetIds,
     required this.vpcId,
   });
+
   factory DirectoryVpcSettings.fromJson(Map<String, dynamic> json) {
     return DirectoryVpcSettings(
       subnetIds: (json['SubnetIds'] as List)
@@ -5021,6 +5063,7 @@ class DirectoryVpcSettingsDescription {
     this.subnetIds,
     this.vpcId,
   });
+
   factory DirectoryVpcSettingsDescription.fromJson(Map<String, dynamic> json) {
     return DirectoryVpcSettingsDescription(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -5052,6 +5095,7 @@ class DirectoryVpcSettingsDescription {
 
 class DisableClientAuthenticationResult {
   DisableClientAuthenticationResult();
+
   factory DisableClientAuthenticationResult.fromJson(Map<String, dynamic> _) {
     return DisableClientAuthenticationResult();
   }
@@ -5063,6 +5107,7 @@ class DisableClientAuthenticationResult {
 
 class DisableLDAPSResult {
   DisableLDAPSResult();
+
   factory DisableLDAPSResult.fromJson(Map<String, dynamic> _) {
     return DisableLDAPSResult();
   }
@@ -5075,6 +5120,7 @@ class DisableLDAPSResult {
 /// Contains the results of the <a>DisableRadius</a> operation.
 class DisableRadiusResult {
   DisableRadiusResult();
+
   factory DisableRadiusResult.fromJson(Map<String, dynamic> _) {
     return DisableRadiusResult();
   }
@@ -5087,6 +5133,7 @@ class DisableRadiusResult {
 /// Contains the results of the <a>DisableSso</a> operation.
 class DisableSsoResult {
   DisableSsoResult();
+
   factory DisableSsoResult.fromJson(Map<String, dynamic> _) {
     return DisableSsoResult();
   }
@@ -5140,6 +5187,7 @@ class DomainController {
     this.subnetId,
     this.vpcId,
   });
+
   factory DomainController.fromJson(Map<String, dynamic> json) {
     return DomainController(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -5239,6 +5287,7 @@ extension on String {
 
 class EnableClientAuthenticationResult {
   EnableClientAuthenticationResult();
+
   factory EnableClientAuthenticationResult.fromJson(Map<String, dynamic> _) {
     return EnableClientAuthenticationResult();
   }
@@ -5250,6 +5299,7 @@ class EnableClientAuthenticationResult {
 
 class EnableLDAPSResult {
   EnableLDAPSResult();
+
   factory EnableLDAPSResult.fromJson(Map<String, dynamic> _) {
     return EnableLDAPSResult();
   }
@@ -5262,6 +5312,7 @@ class EnableLDAPSResult {
 /// Contains the results of the <a>EnableRadius</a> operation.
 class EnableRadiusResult {
   EnableRadiusResult();
+
   factory EnableRadiusResult.fromJson(Map<String, dynamic> _) {
     return EnableRadiusResult();
   }
@@ -5274,6 +5325,7 @@ class EnableRadiusResult {
 /// Contains the results of the <a>EnableSso</a> operation.
 class EnableSsoResult {
   EnableSsoResult();
+
   factory EnableSsoResult.fromJson(Map<String, dynamic> _) {
     return EnableSsoResult();
   }
@@ -5310,6 +5362,7 @@ class EventTopic {
     this.topicArn,
     this.topicName,
   });
+
   factory EventTopic.fromJson(Map<String, dynamic> json) {
     return EventTopic(
       createdDateTime: timeStampFromJson(json['CreatedDateTime']),
@@ -5346,6 +5399,7 @@ class GetDirectoryLimitsResult {
   GetDirectoryLimitsResult({
     this.directoryLimits,
   });
+
   factory GetDirectoryLimitsResult.fromJson(Map<String, dynamic> json) {
     return GetDirectoryLimitsResult(
       directoryLimits: json['DirectoryLimits'] != null
@@ -5372,6 +5426,7 @@ class GetSnapshotLimitsResult {
   GetSnapshotLimitsResult({
     this.snapshotLimits,
   });
+
   factory GetSnapshotLimitsResult.fromJson(Map<String, dynamic> json) {
     return GetSnapshotLimitsResult(
       snapshotLimits: json['SnapshotLimits'] != null
@@ -5405,6 +5460,7 @@ class IpRoute {
     this.cidrIp,
     this.description,
   });
+
   factory IpRoute.fromJson(Map<String, dynamic> json) {
     return IpRoute(
       cidrIp: json['CidrIp'] as String?,
@@ -5450,6 +5506,7 @@ class IpRouteInfo {
     this.ipRouteStatusMsg,
     this.ipRouteStatusReason,
   });
+
   factory IpRouteInfo.fromJson(Map<String, dynamic> json) {
     return IpRouteInfo(
       addedDateTime: timeStampFromJson(json['AddedDateTime']),
@@ -5547,6 +5604,7 @@ class LDAPSSettingInfo {
     this.lDAPSStatusReason,
     this.lastUpdatedDateTime,
   });
+
   factory LDAPSSettingInfo.fromJson(Map<String, dynamic> json) {
     return LDAPSSettingInfo(
       lDAPSStatus: (json['LDAPSStatus'] as String?)?.toLDAPSStatus(),
@@ -5642,6 +5700,7 @@ class ListCertificatesResult {
     this.certificatesInfo,
     this.nextToken,
   });
+
   factory ListCertificatesResult.fromJson(Map<String, dynamic> json) {
     return ListCertificatesResult(
       certificatesInfo: (json['CertificatesInfo'] as List?)
@@ -5675,6 +5734,7 @@ class ListIpRoutesResult {
     this.ipRoutesInfo,
     this.nextToken,
   });
+
   factory ListIpRoutesResult.fromJson(Map<String, dynamic> json) {
     return ListIpRoutesResult(
       ipRoutesInfo: (json['IpRoutesInfo'] as List?)
@@ -5706,6 +5766,7 @@ class ListLogSubscriptionsResult {
     this.logSubscriptions,
     this.nextToken,
   });
+
   factory ListLogSubscriptionsResult.fromJson(Map<String, dynamic> json) {
     return ListLogSubscriptionsResult(
       logSubscriptions: (json['LogSubscriptions'] as List?)
@@ -5739,6 +5800,7 @@ class ListSchemaExtensionsResult {
     this.nextToken,
     this.schemaExtensionsInfo,
   });
+
   factory ListSchemaExtensionsResult.fromJson(Map<String, dynamic> json) {
     return ListSchemaExtensionsResult(
       nextToken: json['NextToken'] as String?,
@@ -5771,6 +5833,7 @@ class ListTagsForResourceResult {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       nextToken: json['NextToken'] as String?,
@@ -5809,6 +5872,7 @@ class LogSubscription {
     this.logGroupName,
     this.subscriptionCreatedDateTime,
   });
+
   factory LogSubscription.fromJson(Map<String, dynamic> json) {
     return LogSubscription(
       directoryId: json['DirectoryId'] as String?,
@@ -5863,6 +5927,7 @@ class OwnerDirectoryDescription {
     this.radiusStatus,
     this.vpcSettings,
   });
+
   factory OwnerDirectoryDescription.fromJson(Map<String, dynamic> json) {
     return OwnerDirectoryDescription(
       accountId: json['AccountId'] as String?,
@@ -5981,6 +6046,7 @@ class RadiusSettings {
     this.sharedSecret,
     this.useSameUsername,
   });
+
   factory RadiusSettings.fromJson(Map<String, dynamic> json) {
     return RadiusSettings(
       authenticationProtocol: (json['AuthenticationProtocol'] as String?)
@@ -6093,6 +6159,7 @@ class RegionDescription {
     this.statusLastUpdatedDateTime,
     this.vpcSettings,
   });
+
   factory RegionDescription.fromJson(Map<String, dynamic> json) {
     return RegionDescription(
       desiredNumberOfDomainControllers:
@@ -6184,6 +6251,7 @@ class RegionsInfo {
     this.additionalRegions,
     this.primaryRegion,
   });
+
   factory RegionsInfo.fromJson(Map<String, dynamic> json) {
     return RegionsInfo(
       additionalRegions: (json['AdditionalRegions'] as List?)
@@ -6211,6 +6279,7 @@ class RegisterCertificateResult {
   RegisterCertificateResult({
     this.certificateId,
   });
+
   factory RegisterCertificateResult.fromJson(Map<String, dynamic> json) {
     return RegisterCertificateResult(
       certificateId: json['CertificateId'] as String?,
@@ -6228,6 +6297,7 @@ class RegisterCertificateResult {
 /// The result of a RegisterEventTopic request.
 class RegisterEventTopicResult {
   RegisterEventTopicResult();
+
   factory RegisterEventTopicResult.fromJson(Map<String, dynamic> _) {
     return RegisterEventTopicResult();
   }
@@ -6244,6 +6314,7 @@ class RejectSharedDirectoryResult {
   RejectSharedDirectoryResult({
     this.sharedDirectoryId,
   });
+
   factory RejectSharedDirectoryResult.fromJson(Map<String, dynamic> json) {
     return RejectSharedDirectoryResult(
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
@@ -6260,6 +6331,7 @@ class RejectSharedDirectoryResult {
 
 class RemoveIpRoutesResult {
   RemoveIpRoutesResult();
+
   factory RemoveIpRoutesResult.fromJson(Map<String, dynamic> _) {
     return RemoveIpRoutesResult();
   }
@@ -6271,6 +6343,7 @@ class RemoveIpRoutesResult {
 
 class RemoveRegionResult {
   RemoveRegionResult();
+
   factory RemoveRegionResult.fromJson(Map<String, dynamic> _) {
     return RemoveRegionResult();
   }
@@ -6282,6 +6355,7 @@ class RemoveRegionResult {
 
 class RemoveTagsFromResourceResult {
   RemoveTagsFromResourceResult();
+
   factory RemoveTagsFromResourceResult.fromJson(Map<String, dynamic> _) {
     return RemoveTagsFromResourceResult();
   }
@@ -6316,6 +6390,7 @@ extension on String {
 
 class ResetUserPasswordResult {
   ResetUserPasswordResult();
+
   factory ResetUserPasswordResult.fromJson(Map<String, dynamic> _) {
     return ResetUserPasswordResult();
   }
@@ -6328,6 +6403,7 @@ class ResetUserPasswordResult {
 /// Contains the results of the <a>RestoreFromSnapshot</a> operation.
 class RestoreFromSnapshotResult {
   RestoreFromSnapshotResult();
+
   factory RestoreFromSnapshotResult.fromJson(Map<String, dynamic> _) {
     return RestoreFromSnapshotResult();
   }
@@ -6370,6 +6446,7 @@ class SchemaExtensionInfo {
     this.schemaExtensionStatusReason,
     this.startDateTime,
   });
+
   factory SchemaExtensionInfo.fromJson(Map<String, dynamic> json) {
     return SchemaExtensionInfo(
       description: json['Description'] as String?,
@@ -6506,6 +6583,7 @@ class ShareDirectoryResult {
   ShareDirectoryResult({
     this.sharedDirectoryId,
   });
+
   factory ShareDirectoryResult.fromJson(Map<String, dynamic> json) {
     return ShareDirectoryResult(
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
@@ -6623,6 +6701,7 @@ class ShareTarget {
     required this.id,
     required this.type,
   });
+
   factory ShareTarget.fromJson(Map<String, dynamic> json) {
     return ShareTarget(
       id: json['Id'] as String,
@@ -6690,6 +6769,7 @@ class SharedDirectory {
     this.sharedAccountId,
     this.sharedDirectoryId,
   });
+
   factory SharedDirectory.fromJson(Map<String, dynamic> json) {
     return SharedDirectory(
       createdDateTime: timeStampFromJson(json['CreatedDateTime']),
@@ -6758,6 +6838,7 @@ class Snapshot {
     this.status,
     this.type,
   });
+
   factory Snapshot.fromJson(Map<String, dynamic> json) {
     return Snapshot(
       directoryId: json['DirectoryId'] as String?,
@@ -6803,6 +6884,7 @@ class SnapshotLimits {
     this.manualSnapshotsLimit,
     this.manualSnapshotsLimitReached,
   });
+
   factory SnapshotLimits.fromJson(Map<String, dynamic> json) {
     return SnapshotLimits(
       manualSnapshotsCurrentCount: json['ManualSnapshotsCurrentCount'] as int?,
@@ -6894,6 +6976,7 @@ class StartSchemaExtensionResult {
   StartSchemaExtensionResult({
     this.schemaExtensionId,
   });
+
   factory StartSchemaExtensionResult.fromJson(Map<String, dynamic> json) {
     return StartSchemaExtensionResult(
       schemaExtensionId: json['SchemaExtensionId'] as String?,
@@ -6926,6 +7009,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -7054,6 +7138,7 @@ class Trust {
     this.trustStateReason,
     this.trustType,
   });
+
   factory Trust.fromJson(Map<String, dynamic> json) {
     return Trust(
       createdDateTime: timeStampFromJson(json['CreatedDateTime']),
@@ -7245,6 +7330,7 @@ class UnshareDirectoryResult {
   UnshareDirectoryResult({
     this.sharedDirectoryId,
   });
+
   factory UnshareDirectoryResult.fromJson(Map<String, dynamic> json) {
     return UnshareDirectoryResult(
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
@@ -7272,6 +7358,7 @@ class UnshareTarget {
     required this.id,
     required this.type,
   });
+
   factory UnshareTarget.fromJson(Map<String, dynamic> json) {
     return UnshareTarget(
       id: json['Id'] as String,
@@ -7292,6 +7379,7 @@ class UnshareTarget {
 /// The result of an UpdateConditionalForwarder request.
 class UpdateConditionalForwarderResult {
   UpdateConditionalForwarderResult();
+
   factory UpdateConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return UpdateConditionalForwarderResult();
   }
@@ -7303,6 +7391,7 @@ class UpdateConditionalForwarderResult {
 
 class UpdateNumberOfDomainControllersResult {
   UpdateNumberOfDomainControllersResult();
+
   factory UpdateNumberOfDomainControllersResult.fromJson(
       Map<String, dynamic> _) {
     return UpdateNumberOfDomainControllersResult();
@@ -7316,6 +7405,7 @@ class UpdateNumberOfDomainControllersResult {
 /// Contains the results of the <a>UpdateRadius</a> operation.
 class UpdateRadiusResult {
   UpdateRadiusResult();
+
   factory UpdateRadiusResult.fromJson(Map<String, dynamic> _) {
     return UpdateRadiusResult();
   }
@@ -7335,6 +7425,7 @@ class UpdateTrustResult {
     this.requestId,
     this.trustId,
   });
+
   factory UpdateTrustResult.fromJson(Map<String, dynamic> json) {
     return UpdateTrustResult(
       requestId: json['RequestId'] as String?,
@@ -7360,6 +7451,7 @@ class VerifyTrustResult {
   VerifyTrustResult({
     this.trustId,
   });
+
   factory VerifyTrustResult.fromJson(Map<String, dynamic> json) {
     return VerifyTrustResult(
       trustId: json['TrustId'] as String?,

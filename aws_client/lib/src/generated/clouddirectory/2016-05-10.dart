@@ -3469,6 +3469,7 @@ class AccessDeniedException implements _s.AwsException {
   AccessDeniedException({
     this.message,
   });
+
   factory AccessDeniedException.fromJson(Map<String, dynamic> json) {
     return AccessDeniedException(
       message: json['Message'] as String?,
@@ -3485,6 +3486,7 @@ class AccessDeniedException implements _s.AwsException {
 
 class AddFacetToObjectResponse {
   AddFacetToObjectResponse();
+
   factory AddFacetToObjectResponse.fromJson(Map<String, dynamic> _) {
     return AddFacetToObjectResponse();
   }
@@ -3508,6 +3510,7 @@ class ApplySchemaResponse {
     this.appliedSchemaArn,
     this.directoryArn,
   });
+
   factory ApplySchemaResponse.fromJson(Map<String, dynamic> json) {
     return ApplySchemaResponse(
       appliedSchemaArn: json['AppliedSchemaArn'] as String?,
@@ -3533,6 +3536,7 @@ class AttachObjectResponse {
   AttachObjectResponse({
     this.attachedObjectIdentifier,
   });
+
   factory AttachObjectResponse.fromJson(Map<String, dynamic> json) {
     return AttachObjectResponse(
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
@@ -3550,6 +3554,7 @@ class AttachObjectResponse {
 
 class AttachPolicyResponse {
   AttachPolicyResponse();
+
   factory AttachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return AttachPolicyResponse();
   }
@@ -3567,6 +3572,7 @@ class AttachToIndexResponse {
   AttachToIndexResponse({
     this.attachedObjectIdentifier,
   });
+
   factory AttachToIndexResponse.fromJson(Map<String, dynamic> json) {
     return AttachToIndexResponse(
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
@@ -3589,6 +3595,7 @@ class AttachTypedLinkResponse {
   AttachTypedLinkResponse({
     this.typedLinkSpecifier,
   });
+
   factory AttachTypedLinkResponse.fromJson(Map<String, dynamic> json) {
     return AttachTypedLinkResponse(
       typedLinkSpecifier: json['TypedLinkSpecifier'] != null
@@ -3623,6 +3630,7 @@ class AttributeKey {
     required this.name,
     required this.schemaArn,
   });
+
   factory AttributeKey.fromJson(Map<String, dynamic> json) {
     return AttributeKey(
       facetName: json['FacetName'] as String,
@@ -3655,6 +3663,7 @@ class AttributeKeyAndValue {
     required this.key,
     required this.value,
   });
+
   factory AttributeKeyAndValue.fromJson(Map<String, dynamic> json) {
     return AttributeKeyAndValue(
       key: AttributeKey.fromJson(json['Key'] as Map<String, dynamic>),
@@ -3685,6 +3694,7 @@ class AttributeNameAndValue {
     required this.attributeName,
     required this.value,
   });
+
   factory AttributeNameAndValue.fromJson(Map<String, dynamic> json) {
     return AttributeNameAndValue(
       attributeName: json['AttributeName'] as String,
@@ -3719,6 +3729,7 @@ class BatchAddFacetToObject {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   factory BatchAddFacetToObject.fromJson(Map<String, dynamic> json) {
     return BatchAddFacetToObject(
       objectAttributeList: (json['ObjectAttributeList'] as List)
@@ -3747,6 +3758,7 @@ class BatchAddFacetToObject {
 /// The result of a batch add facet to object operation.
 class BatchAddFacetToObjectResponse {
   BatchAddFacetToObjectResponse();
+
   factory BatchAddFacetToObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchAddFacetToObjectResponse();
   }
@@ -3772,6 +3784,7 @@ class BatchAttachObject {
     required this.linkName,
     required this.parentReference,
   });
+
   factory BatchAttachObject.fromJson(Map<String, dynamic> json) {
     return BatchAttachObject(
       childReference: ObjectReference.fromJson(
@@ -3802,6 +3815,7 @@ class BatchAttachObjectResponse {
   BatchAttachObjectResponse({
     this.attachedObjectIdentifier,
   });
+
   factory BatchAttachObjectResponse.fromJson(Map<String, dynamic> json) {
     return BatchAttachObjectResponse(
       attachedObjectIdentifier: json['attachedObjectIdentifier'] as String?,
@@ -3832,6 +3846,7 @@ class BatchAttachPolicy {
     required this.objectReference,
     required this.policyReference,
   });
+
   factory BatchAttachPolicy.fromJson(Map<String, dynamic> json) {
     return BatchAttachPolicy(
       objectReference: ObjectReference.fromJson(
@@ -3854,6 +3869,7 @@ class BatchAttachPolicy {
 /// Represents the output of an <a>AttachPolicy</a> response operation.
 class BatchAttachPolicyResponse {
   BatchAttachPolicyResponse();
+
   factory BatchAttachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return BatchAttachPolicyResponse();
   }
@@ -3877,6 +3893,7 @@ class BatchAttachToIndex {
     required this.indexReference,
     required this.targetReference,
   });
+
   factory BatchAttachToIndex.fromJson(Map<String, dynamic> json) {
     return BatchAttachToIndex(
       indexReference: ObjectReference.fromJson(
@@ -3905,6 +3922,7 @@ class BatchAttachToIndexResponse {
   BatchAttachToIndexResponse({
     this.attachedObjectIdentifier,
   });
+
   factory BatchAttachToIndexResponse.fromJson(Map<String, dynamic> json) {
     return BatchAttachToIndexResponse(
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
@@ -3942,6 +3960,7 @@ class BatchAttachTypedLink {
     required this.targetObjectReference,
     required this.typedLinkFacet,
   });
+
   factory BatchAttachTypedLink.fromJson(Map<String, dynamic> json) {
     return BatchAttachTypedLink(
       attributes: (json['Attributes'] as List)
@@ -3979,6 +3998,7 @@ class BatchAttachTypedLinkResponse {
   BatchAttachTypedLinkResponse({
     this.typedLinkSpecifier,
   });
+
   factory BatchAttachTypedLinkResponse.fromJson(Map<String, dynamic> json) {
     return BatchAttachTypedLinkResponse(
       typedLinkSpecifier: json['TypedLinkSpecifier'] != null
@@ -4025,6 +4045,7 @@ class BatchCreateIndex {
     this.linkName,
     this.parentReference,
   });
+
   factory BatchCreateIndex.fromJson(Map<String, dynamic> json) {
     return BatchCreateIndex(
       isUnique: json['IsUnique'] as bool,
@@ -4065,6 +4086,7 @@ class BatchCreateIndexResponse {
   BatchCreateIndexResponse({
     this.objectIdentifier,
   });
+
   factory BatchCreateIndexResponse.fromJson(Map<String, dynamic> json) {
     return BatchCreateIndexResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -4107,6 +4129,7 @@ class BatchCreateObject {
     this.linkName,
     this.parentReference,
   });
+
   factory BatchCreateObject.fromJson(Map<String, dynamic> json) {
     return BatchCreateObject(
       objectAttributeList: (json['ObjectAttributeList'] as List)
@@ -4150,6 +4173,7 @@ class BatchCreateObjectResponse {
   BatchCreateObjectResponse({
     this.objectIdentifier,
   });
+
   factory BatchCreateObjectResponse.fromJson(Map<String, dynamic> json) {
     return BatchCreateObjectResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -4172,6 +4196,7 @@ class BatchDeleteObject {
   BatchDeleteObject({
     required this.objectReference,
   });
+
   factory BatchDeleteObject.fromJson(Map<String, dynamic> json) {
     return BatchDeleteObject(
       objectReference: ObjectReference.fromJson(
@@ -4190,6 +4215,7 @@ class BatchDeleteObject {
 /// Represents the output of a <a>DeleteObject</a> response operation.
 class BatchDeleteObjectResponse {
   BatchDeleteObjectResponse();
+
   factory BatchDeleteObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchDeleteObjectResponse();
   }
@@ -4213,6 +4239,7 @@ class BatchDetachFromIndex {
     required this.indexReference,
     required this.targetReference,
   });
+
   factory BatchDetachFromIndex.fromJson(Map<String, dynamic> json) {
     return BatchDetachFromIndex(
       indexReference: ObjectReference.fromJson(
@@ -4241,6 +4268,7 @@ class BatchDetachFromIndexResponse {
   BatchDetachFromIndexResponse({
     this.detachedObjectIdentifier,
   });
+
   factory BatchDetachFromIndexResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetachFromIndexResponse(
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
@@ -4275,6 +4303,7 @@ class BatchDetachObject {
     required this.parentReference,
     this.batchReferenceName,
   });
+
   factory BatchDetachObject.fromJson(Map<String, dynamic> json) {
     return BatchDetachObject(
       linkName: json['LinkName'] as String,
@@ -4304,6 +4333,7 @@ class BatchDetachObjectResponse {
   BatchDetachObjectResponse({
     this.detachedObjectIdentifier,
   });
+
   factory BatchDetachObjectResponse.fromJson(Map<String, dynamic> json) {
     return BatchDetachObjectResponse(
       detachedObjectIdentifier: json['detachedObjectIdentifier'] as String?,
@@ -4333,6 +4363,7 @@ class BatchDetachPolicy {
     required this.objectReference,
     required this.policyReference,
   });
+
   factory BatchDetachPolicy.fromJson(Map<String, dynamic> json) {
     return BatchDetachPolicy(
       objectReference: ObjectReference.fromJson(
@@ -4355,6 +4386,7 @@ class BatchDetachPolicy {
 /// Represents the output of a <a>DetachPolicy</a> response operation.
 class BatchDetachPolicyResponse {
   BatchDetachPolicyResponse();
+
   factory BatchDetachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return BatchDetachPolicyResponse();
   }
@@ -4374,6 +4406,7 @@ class BatchDetachTypedLink {
   BatchDetachTypedLink({
     required this.typedLinkSpecifier,
   });
+
   factory BatchDetachTypedLink.fromJson(Map<String, dynamic> json) {
     return BatchDetachTypedLink(
       typedLinkSpecifier: TypedLinkSpecifier.fromJson(
@@ -4392,6 +4425,7 @@ class BatchDetachTypedLink {
 /// Represents the output of a <a>DetachTypedLink</a> response operation.
 class BatchDetachTypedLinkResponse {
   BatchDetachTypedLinkResponse();
+
   factory BatchDetachTypedLinkResponse.fromJson(Map<String, dynamic> _) {
     return BatchDetachTypedLinkResponse();
   }
@@ -4415,6 +4449,7 @@ class BatchGetLinkAttributes {
     required this.attributeNames,
     required this.typedLinkSpecifier,
   });
+
   factory BatchGetLinkAttributes.fromJson(Map<String, dynamic> json) {
     return BatchGetLinkAttributes(
       attributeNames: (json['AttributeNames'] as List)
@@ -4444,6 +4479,7 @@ class BatchGetLinkAttributesResponse {
   BatchGetLinkAttributesResponse({
     this.attributes,
   });
+
   factory BatchGetLinkAttributesResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetLinkAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -4480,6 +4516,7 @@ class BatchGetObjectAttributes {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   factory BatchGetObjectAttributes.fromJson(Map<String, dynamic> json) {
     return BatchGetObjectAttributes(
       attributeNames: (json['AttributeNames'] as List)
@@ -4513,6 +4550,7 @@ class BatchGetObjectAttributesResponse {
   BatchGetObjectAttributesResponse({
     this.attributes,
   });
+
   factory BatchGetObjectAttributesResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetObjectAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -4540,6 +4578,7 @@ class BatchGetObjectInformation {
   BatchGetObjectInformation({
     required this.objectReference,
   });
+
   factory BatchGetObjectInformation.fromJson(Map<String, dynamic> json) {
     return BatchGetObjectInformation(
       objectReference: ObjectReference.fromJson(
@@ -4567,6 +4606,7 @@ class BatchGetObjectInformationResponse {
     this.objectIdentifier,
     this.schemaFacets,
   });
+
   factory BatchGetObjectInformationResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchGetObjectInformationResponse(
@@ -4606,6 +4646,7 @@ class BatchListAttachedIndices {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListAttachedIndices.fromJson(Map<String, dynamic> json) {
     return BatchListAttachedIndices(
       targetReference: ObjectReference.fromJson(
@@ -4639,6 +4680,7 @@ class BatchListAttachedIndicesResponse {
     this.indexAttachments,
     this.nextToken,
   });
+
   factory BatchListAttachedIndicesResponse.fromJson(Map<String, dynamic> json) {
     return BatchListAttachedIndicesResponse(
       indexAttachments: (json['IndexAttachments'] as List?)
@@ -4690,6 +4732,7 @@ class BatchListIncomingTypedLinks {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListIncomingTypedLinks.fromJson(Map<String, dynamic> json) {
     return BatchListIncomingTypedLinks(
       objectReference: ObjectReference.fromJson(
@@ -4737,6 +4780,7 @@ class BatchListIncomingTypedLinksResponse {
     this.linkSpecifiers,
     this.nextToken,
   });
+
   factory BatchListIncomingTypedLinksResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchListIncomingTypedLinksResponse(
@@ -4780,6 +4824,7 @@ class BatchListIndex {
     this.nextToken,
     this.rangesOnIndexedValues,
   });
+
   factory BatchListIndex.fromJson(Map<String, dynamic> json) {
     return BatchListIndex(
       indexReference: ObjectReference.fromJson(
@@ -4820,6 +4865,7 @@ class BatchListIndexResponse {
     this.indexAttachments,
     this.nextToken,
   });
+
   factory BatchListIndexResponse.fromJson(Map<String, dynamic> json) {
     return BatchListIndexResponse(
       indexAttachments: (json['IndexAttachments'] as List?)
@@ -4862,6 +4908,7 @@ class BatchListObjectAttributes {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListObjectAttributes.fromJson(Map<String, dynamic> json) {
     return BatchListObjectAttributes(
       objectReference: ObjectReference.fromJson(
@@ -4901,6 +4948,7 @@ class BatchListObjectAttributesResponse {
     this.attributes,
     this.nextToken,
   });
+
   factory BatchListObjectAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchListObjectAttributesResponse(
@@ -4939,6 +4987,7 @@ class BatchListObjectChildren {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListObjectChildren.fromJson(Map<String, dynamic> json) {
     return BatchListObjectChildren(
       objectReference: ObjectReference.fromJson(
@@ -4973,6 +5022,7 @@ class BatchListObjectChildrenResponse {
     this.children,
     this.nextToken,
   });
+
   factory BatchListObjectChildrenResponse.fromJson(Map<String, dynamic> json) {
     return BatchListObjectChildrenResponse(
       children: (json['Children'] as Map<String, dynamic>?)
@@ -5010,6 +5060,7 @@ class BatchListObjectParentPaths {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListObjectParentPaths.fromJson(Map<String, dynamic> json) {
     return BatchListObjectParentPaths(
       objectReference: ObjectReference.fromJson(
@@ -5044,6 +5095,7 @@ class BatchListObjectParentPathsResponse {
     this.nextToken,
     this.pathToObjectIdentifiersList,
   });
+
   factory BatchListObjectParentPathsResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchListObjectParentPathsResponse(
@@ -5086,6 +5138,7 @@ class BatchListObjectPolicies {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListObjectPolicies.fromJson(Map<String, dynamic> json) {
     return BatchListObjectPolicies(
       objectReference: ObjectReference.fromJson(
@@ -5120,6 +5173,7 @@ class BatchListObjectPoliciesResponse {
     this.attachedPolicyIds,
     this.nextToken,
   });
+
   factory BatchListObjectPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return BatchListObjectPoliciesResponse(
       attachedPolicyIds: (json['AttachedPolicyIds'] as List?)
@@ -5171,6 +5225,7 @@ class BatchListOutgoingTypedLinks {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListOutgoingTypedLinks.fromJson(Map<String, dynamic> json) {
     return BatchListOutgoingTypedLinks(
       objectReference: ObjectReference.fromJson(
@@ -5218,6 +5273,7 @@ class BatchListOutgoingTypedLinksResponse {
     this.nextToken,
     this.typedLinkSpecifiers,
   });
+
   factory BatchListOutgoingTypedLinksResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchListOutgoingTypedLinksResponse(
@@ -5258,6 +5314,7 @@ class BatchListPolicyAttachments {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchListPolicyAttachments.fromJson(Map<String, dynamic> json) {
     return BatchListPolicyAttachments(
       policyReference: ObjectReference.fromJson(
@@ -5291,6 +5348,7 @@ class BatchListPolicyAttachmentsResponse {
     this.nextToken,
     this.objectIdentifiers,
   });
+
   factory BatchListPolicyAttachmentsResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchListPolicyAttachmentsResponse(
@@ -5330,6 +5388,7 @@ class BatchLookupPolicy {
     this.maxResults,
     this.nextToken,
   });
+
   factory BatchLookupPolicy.fromJson(Map<String, dynamic> json) {
     return BatchLookupPolicy(
       objectReference: ObjectReference.fromJson(
@@ -5366,6 +5425,7 @@ class BatchLookupPolicyResponse {
     this.nextToken,
     this.policyToPathList,
   });
+
   factory BatchLookupPolicyResponse.fromJson(Map<String, dynamic> json) {
     return BatchLookupPolicyResponse(
       nextToken: json['NextToken'] as String?,
@@ -5399,6 +5459,7 @@ class BatchReadException {
     this.message,
     this.type,
   });
+
   factory BatchReadException.fromJson(Map<String, dynamic> json) {
     return BatchReadException(
       message: json['Message'] as String?,
@@ -5576,6 +5637,7 @@ class BatchReadOperation {
     this.listPolicyAttachments,
     this.lookupPolicy,
   });
+
   factory BatchReadOperation.fromJson(Map<String, dynamic> json) {
     return BatchReadOperation(
       getLinkAttributes: json['GetLinkAttributes'] != null
@@ -5684,6 +5746,7 @@ class BatchReadOperationResponse {
     this.exceptionResponse,
     this.successfulResponse,
   });
+
   factory BatchReadOperationResponse.fromJson(Map<String, dynamic> json) {
     return BatchReadOperationResponse(
       exceptionResponse: json['ExceptionResponse'] != null
@@ -5714,6 +5777,7 @@ class BatchReadResponse {
   BatchReadResponse({
     this.responses,
   });
+
   factory BatchReadResponse.fromJson(Map<String, dynamic> json) {
     return BatchReadResponse(
       responses: (json['Responses'] as List?)
@@ -5810,6 +5874,7 @@ class BatchReadSuccessfulResponse {
     this.listPolicyAttachments,
     this.lookupPolicy,
   });
+
   factory BatchReadSuccessfulResponse.fromJson(Map<String, dynamic> json) {
     return BatchReadSuccessfulResponse(
       getLinkAttributes: json['GetLinkAttributes'] != null
@@ -5919,6 +5984,7 @@ class BatchRemoveFacetFromObject {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   factory BatchRemoveFacetFromObject.fromJson(Map<String, dynamic> json) {
     return BatchRemoveFacetFromObject(
       objectReference: ObjectReference.fromJson(
@@ -5941,6 +6007,7 @@ class BatchRemoveFacetFromObject {
 /// An empty result that represents success.
 class BatchRemoveFacetFromObjectResponse {
   BatchRemoveFacetFromObjectResponse();
+
   factory BatchRemoveFacetFromObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchRemoveFacetFromObjectResponse();
   }
@@ -5965,6 +6032,7 @@ class BatchUpdateLinkAttributes {
     required this.attributeUpdates,
     required this.typedLinkSpecifier,
   });
+
   factory BatchUpdateLinkAttributes.fromJson(Map<String, dynamic> json) {
     return BatchUpdateLinkAttributes(
       attributeUpdates: (json['AttributeUpdates'] as List)
@@ -5989,6 +6057,7 @@ class BatchUpdateLinkAttributes {
 /// Represents the output of a <a>UpdateLinkAttributes</a> response operation.
 class BatchUpdateLinkAttributesResponse {
   BatchUpdateLinkAttributesResponse();
+
   factory BatchUpdateLinkAttributesResponse.fromJson(Map<String, dynamic> _) {
     return BatchUpdateLinkAttributesResponse();
   }
@@ -6010,6 +6079,7 @@ class BatchUpdateObjectAttributes {
     required this.attributeUpdates,
     required this.objectReference,
   });
+
   factory BatchUpdateObjectAttributes.fromJson(Map<String, dynamic> json) {
     return BatchUpdateObjectAttributes(
       attributeUpdates: (json['AttributeUpdates'] as List)
@@ -6039,6 +6109,7 @@ class BatchUpdateObjectAttributesResponse {
   BatchUpdateObjectAttributesResponse({
     this.objectIdentifier,
   });
+
   factory BatchUpdateObjectAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchUpdateObjectAttributesResponse(
@@ -6065,6 +6136,7 @@ class BatchWriteException implements _s.AwsException {
     this.message,
     this.type,
   });
+
   factory BatchWriteException.fromJson(Map<String, dynamic> json) {
     return BatchWriteException(
       index: json['Index'] as int?,
@@ -6266,6 +6338,7 @@ class BatchWriteOperation {
     this.updateLinkAttributes,
     this.updateObjectAttributes,
   });
+
   factory BatchWriteOperation.fromJson(Map<String, dynamic> json) {
     return BatchWriteOperation(
       addFacetToObject: json['AddFacetToObject'] != null
@@ -6443,6 +6516,7 @@ class BatchWriteOperationResponse {
     this.updateLinkAttributes,
     this.updateObjectAttributes,
   });
+
   factory BatchWriteOperationResponse.fromJson(Map<String, dynamic> json) {
     return BatchWriteOperationResponse(
       addFacetToObject: json['AddFacetToObject'] != null
@@ -6554,6 +6628,7 @@ class BatchWriteResponse {
   BatchWriteResponse({
     this.responses,
   });
+
   factory BatchWriteResponse.fromJson(Map<String, dynamic> json) {
     return BatchWriteResponse(
       responses: (json['Responses'] as List?)
@@ -6579,6 +6654,7 @@ class CannotListParentOfRootException implements _s.AwsException {
   CannotListParentOfRootException({
     this.message,
   });
+
   factory CannotListParentOfRootException.fromJson(Map<String, dynamic> json) {
     return CannotListParentOfRootException(
       message: json['Message'] as String?,
@@ -6643,6 +6719,7 @@ class CreateDirectoryResponse {
     required this.name,
     required this.objectIdentifier,
   });
+
   factory CreateDirectoryResponse.fromJson(Map<String, dynamic> json) {
     return CreateDirectoryResponse(
       appliedSchemaArn: json['AppliedSchemaArn'] as String,
@@ -6668,6 +6745,7 @@ class CreateDirectoryResponse {
 
 class CreateFacetResponse {
   CreateFacetResponse();
+
   factory CreateFacetResponse.fromJson(Map<String, dynamic> _) {
     return CreateFacetResponse();
   }
@@ -6684,6 +6762,7 @@ class CreateIndexResponse {
   CreateIndexResponse({
     this.objectIdentifier,
   });
+
   factory CreateIndexResponse.fromJson(Map<String, dynamic> json) {
     return CreateIndexResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -6705,6 +6784,7 @@ class CreateObjectResponse {
   CreateObjectResponse({
     this.objectIdentifier,
   });
+
   factory CreateObjectResponse.fromJson(Map<String, dynamic> json) {
     return CreateObjectResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -6727,6 +6807,7 @@ class CreateSchemaResponse {
   CreateSchemaResponse({
     this.schemaArn,
   });
+
   factory CreateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return CreateSchemaResponse(
       schemaArn: json['SchemaArn'] as String?,
@@ -6743,6 +6824,7 @@ class CreateSchemaResponse {
 
 class CreateTypedLinkFacetResponse {
   CreateTypedLinkFacetResponse();
+
   factory CreateTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return CreateTypedLinkFacetResponse();
   }
@@ -6759,6 +6841,7 @@ class DeleteDirectoryResponse {
   DeleteDirectoryResponse({
     required this.directoryArn,
   });
+
   factory DeleteDirectoryResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDirectoryResponse(
       directoryArn: json['DirectoryArn'] as String,
@@ -6775,6 +6858,7 @@ class DeleteDirectoryResponse {
 
 class DeleteFacetResponse {
   DeleteFacetResponse();
+
   factory DeleteFacetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFacetResponse();
   }
@@ -6786,6 +6870,7 @@ class DeleteFacetResponse {
 
 class DeleteObjectResponse {
   DeleteObjectResponse();
+
   factory DeleteObjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteObjectResponse();
   }
@@ -6803,6 +6888,7 @@ class DeleteSchemaResponse {
   DeleteSchemaResponse({
     this.schemaArn,
   });
+
   factory DeleteSchemaResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSchemaResponse(
       schemaArn: json['SchemaArn'] as String?,
@@ -6819,6 +6905,7 @@ class DeleteSchemaResponse {
 
 class DeleteTypedLinkFacetResponse {
   DeleteTypedLinkFacetResponse();
+
   factory DeleteTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTypedLinkFacetResponse();
   }
@@ -6836,6 +6923,7 @@ class DetachFromIndexResponse {
   DetachFromIndexResponse({
     this.detachedObjectIdentifier,
   });
+
   factory DetachFromIndexResponse.fromJson(Map<String, dynamic> json) {
     return DetachFromIndexResponse(
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
@@ -6858,6 +6946,7 @@ class DetachObjectResponse {
   DetachObjectResponse({
     this.detachedObjectIdentifier,
   });
+
   factory DetachObjectResponse.fromJson(Map<String, dynamic> json) {
     return DetachObjectResponse(
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
@@ -6875,6 +6964,7 @@ class DetachObjectResponse {
 
 class DetachPolicyResponse {
   DetachPolicyResponse();
+
   factory DetachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DetachPolicyResponse();
   }
@@ -6906,6 +6996,7 @@ class Directory {
     this.name,
     this.state,
   });
+
   factory Directory.fromJson(Map<String, dynamic> json) {
     return Directory(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -6938,6 +7029,7 @@ class DirectoryAlreadyExistsException implements _s.AwsException {
   DirectoryAlreadyExistsException({
     this.message,
   });
+
   factory DirectoryAlreadyExistsException.fromJson(Map<String, dynamic> json) {
     return DirectoryAlreadyExistsException(
       message: json['Message'] as String?,
@@ -6960,6 +7052,7 @@ class DirectoryDeletedException implements _s.AwsException {
   DirectoryDeletedException({
     this.message,
   });
+
   factory DirectoryDeletedException.fromJson(Map<String, dynamic> json) {
     return DirectoryDeletedException(
       message: json['Message'] as String?,
@@ -6981,6 +7074,7 @@ class DirectoryNotDisabledException implements _s.AwsException {
   DirectoryNotDisabledException({
     this.message,
   });
+
   factory DirectoryNotDisabledException.fromJson(Map<String, dynamic> json) {
     return DirectoryNotDisabledException(
       message: json['Message'] as String?,
@@ -7002,6 +7096,7 @@ class DirectoryNotEnabledException implements _s.AwsException {
   DirectoryNotEnabledException({
     this.message,
   });
+
   factory DirectoryNotEnabledException.fromJson(Map<String, dynamic> json) {
     return DirectoryNotEnabledException(
       message: json['Message'] as String?,
@@ -7056,6 +7151,7 @@ class DisableDirectoryResponse {
   DisableDirectoryResponse({
     required this.directoryArn,
   });
+
   factory DisableDirectoryResponse.fromJson(Map<String, dynamic> json) {
     return DisableDirectoryResponse(
       directoryArn: json['DirectoryArn'] as String,
@@ -7077,6 +7173,7 @@ class EnableDirectoryResponse {
   EnableDirectoryResponse({
     required this.directoryArn,
   });
+
   factory EnableDirectoryResponse.fromJson(Map<String, dynamic> json) {
     return EnableDirectoryResponse(
       directoryArn: json['DirectoryArn'] as String,
@@ -7108,6 +7205,7 @@ class Facet {
     this.name,
     this.objectType,
   });
+
   factory Facet.fromJson(Map<String, dynamic> json) {
     return Facet(
       name: json['Name'] as String?,
@@ -7132,6 +7230,7 @@ class FacetAlreadyExistsException implements _s.AwsException {
   FacetAlreadyExistsException({
     this.message,
   });
+
   factory FacetAlreadyExistsException.fromJson(Map<String, dynamic> json) {
     return FacetAlreadyExistsException(
       message: json['Message'] as String?,
@@ -7171,6 +7270,7 @@ class FacetAttribute {
     this.attributeReference,
     this.requiredBehavior,
   });
+
   factory FacetAttribute.fromJson(Map<String, dynamic> json) {
     return FacetAttribute(
       name: json['Name'] as String,
@@ -7225,6 +7325,7 @@ class FacetAttributeDefinition {
     this.isImmutable,
     this.rules,
   });
+
   factory FacetAttributeDefinition.fromJson(Map<String, dynamic> json) {
     return FacetAttributeDefinition(
       type: (json['Type'] as String).toFacetAttributeType(),
@@ -7270,6 +7371,7 @@ class FacetAttributeReference {
     required this.targetAttributeName,
     required this.targetFacetName,
   });
+
   factory FacetAttributeReference.fromJson(Map<String, dynamic> json) {
     return FacetAttributeReference(
       targetAttributeName: json['TargetAttributeName'] as String,
@@ -7342,6 +7444,7 @@ class FacetAttributeUpdate {
     this.action,
     this.attribute,
   });
+
   factory FacetAttributeUpdate.fromJson(Map<String, dynamic> json) {
     return FacetAttributeUpdate(
       action: (json['Action'] as String?)?.toUpdateActionType(),
@@ -7369,6 +7472,7 @@ class FacetInUseException implements _s.AwsException {
   FacetInUseException({
     this.message,
   });
+
   factory FacetInUseException.fromJson(Map<String, dynamic> json) {
     return FacetInUseException(
       message: json['Message'] as String?,
@@ -7390,6 +7494,7 @@ class FacetNotFoundException implements _s.AwsException {
   FacetNotFoundException({
     this.message,
   });
+
   factory FacetNotFoundException.fromJson(Map<String, dynamic> json) {
     return FacetNotFoundException(
       message: json['Message'] as String?,
@@ -7412,6 +7517,7 @@ class FacetValidationException implements _s.AwsException {
   FacetValidationException({
     this.message,
   });
+
   factory FacetValidationException.fromJson(Map<String, dynamic> json) {
     return FacetValidationException(
       message: json['Message'] as String?,
@@ -7434,6 +7540,7 @@ class GetAppliedSchemaVersionResponse {
   GetAppliedSchemaVersionResponse({
     this.appliedSchemaArn,
   });
+
   factory GetAppliedSchemaVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetAppliedSchemaVersionResponse(
       appliedSchemaArn: json['AppliedSchemaArn'] as String?,
@@ -7455,6 +7562,7 @@ class GetDirectoryResponse {
   GetDirectoryResponse({
     required this.directory,
   });
+
   factory GetDirectoryResponse.fromJson(Map<String, dynamic> json) {
     return GetDirectoryResponse(
       directory: Directory.fromJson(json['Directory'] as Map<String, dynamic>),
@@ -7476,6 +7584,7 @@ class GetFacetResponse {
   GetFacetResponse({
     this.facet,
   });
+
   factory GetFacetResponse.fromJson(Map<String, dynamic> json) {
     return GetFacetResponse(
       facet: json['Facet'] != null
@@ -7499,6 +7608,7 @@ class GetLinkAttributesResponse {
   GetLinkAttributesResponse({
     this.attributes,
   });
+
   factory GetLinkAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetLinkAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -7523,6 +7633,7 @@ class GetObjectAttributesResponse {
   GetObjectAttributesResponse({
     this.attributes,
   });
+
   factory GetObjectAttributesResponse.fromJson(Map<String, dynamic> json) {
     return GetObjectAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -7553,6 +7664,7 @@ class GetObjectInformationResponse {
     this.objectIdentifier,
     this.schemaFacets,
   });
+
   factory GetObjectInformationResponse.fromJson(Map<String, dynamic> json) {
     return GetObjectInformationResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -7584,6 +7696,7 @@ class GetSchemaAsJsonResponse {
     this.document,
     this.name,
   });
+
   factory GetSchemaAsJsonResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaAsJsonResponse(
       document: json['Document'] as String?,
@@ -7617,6 +7730,7 @@ class GetTypedLinkFacetInformationResponse {
   GetTypedLinkFacetInformationResponse({
     this.identityAttributeOrder,
   });
+
   factory GetTypedLinkFacetInformationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetTypedLinkFacetInformationResponse(
@@ -7645,6 +7759,7 @@ class IncompatibleSchemaException implements _s.AwsException {
   IncompatibleSchemaException({
     this.message,
   });
+
   factory IncompatibleSchemaException.fromJson(Map<String, dynamic> json) {
     return IncompatibleSchemaException(
       message: json['Message'] as String?,
@@ -7675,6 +7790,7 @@ class IndexAttachment {
     this.indexedAttributes,
     this.objectIdentifier,
   });
+
   factory IndexAttachment.fromJson(Map<String, dynamic> json) {
     return IndexAttachment(
       indexedAttributes: (json['IndexedAttributes'] as List?)
@@ -7703,6 +7819,7 @@ class IndexedAttributeMissingException implements _s.AwsException {
   IndexedAttributeMissingException({
     this.message,
   });
+
   factory IndexedAttributeMissingException.fromJson(Map<String, dynamic> json) {
     return IndexedAttributeMissingException(
       message: json['Message'] as String?,
@@ -7728,6 +7845,7 @@ class InternalServiceException implements _s.AwsException {
   InternalServiceException({
     this.message,
   });
+
   factory InternalServiceException.fromJson(Map<String, dynamic> json) {
     return InternalServiceException(
       message: json['Message'] as String?,
@@ -7749,6 +7867,7 @@ class InvalidArnException implements _s.AwsException {
   InvalidArnException({
     this.message,
   });
+
   factory InvalidArnException.fromJson(Map<String, dynamic> json) {
     return InvalidArnException(
       message: json['Message'] as String?,
@@ -7772,6 +7891,7 @@ class InvalidAttachmentException implements _s.AwsException {
   InvalidAttachmentException({
     this.message,
   });
+
   factory InvalidAttachmentException.fromJson(Map<String, dynamic> json) {
     return InvalidAttachmentException(
       message: json['Message'] as String?,
@@ -7793,6 +7913,7 @@ class InvalidFacetUpdateException implements _s.AwsException {
   InvalidFacetUpdateException({
     this.message,
   });
+
   factory InvalidFacetUpdateException.fromJson(Map<String, dynamic> json) {
     return InvalidFacetUpdateException(
       message: json['Message'] as String?,
@@ -7814,6 +7935,7 @@ class InvalidNextTokenException implements _s.AwsException {
   InvalidNextTokenException({
     this.message,
   });
+
   factory InvalidNextTokenException.fromJson(Map<String, dynamic> json) {
     return InvalidNextTokenException(
       message: json['Message'] as String?,
@@ -7835,6 +7957,7 @@ class InvalidRuleException implements _s.AwsException {
   InvalidRuleException({
     this.message,
   });
+
   factory InvalidRuleException.fromJson(Map<String, dynamic> json) {
     return InvalidRuleException(
       message: json['Message'] as String?,
@@ -7856,6 +7979,7 @@ class InvalidSchemaDocException implements _s.AwsException {
   InvalidSchemaDocException({
     this.message,
   });
+
   factory InvalidSchemaDocException.fromJson(Map<String, dynamic> json) {
     return InvalidSchemaDocException(
       message: json['Message'] as String?,
@@ -7879,6 +8003,7 @@ class InvalidTaggingRequestException implements _s.AwsException {
   InvalidTaggingRequestException({
     this.message,
   });
+
   factory InvalidTaggingRequestException.fromJson(Map<String, dynamic> json) {
     return InvalidTaggingRequestException(
       message: json['Message'] as String?,
@@ -7902,6 +8027,7 @@ class LimitExceededException implements _s.AwsException {
   LimitExceededException({
     this.message,
   });
+
   factory LimitExceededException.fromJson(Map<String, dynamic> json) {
     return LimitExceededException(
       message: json['Message'] as String?,
@@ -7930,6 +8056,7 @@ class LinkAttributeAction {
     this.attributeActionType,
     this.attributeUpdateValue,
   });
+
   factory LinkAttributeAction.fromJson(Map<String, dynamic> json) {
     return LinkAttributeAction(
       attributeActionType:
@@ -7965,6 +8092,7 @@ class LinkAttributeUpdate {
     this.attributeAction,
     this.attributeKey,
   });
+
   factory LinkAttributeUpdate.fromJson(Map<String, dynamic> json) {
     return LinkAttributeUpdate(
       attributeAction: json['AttributeAction'] != null
@@ -7995,6 +8123,7 @@ class LinkNameAlreadyInUseException implements _s.AwsException {
   LinkNameAlreadyInUseException({
     this.message,
   });
+
   factory LinkNameAlreadyInUseException.fromJson(Map<String, dynamic> json) {
     return LinkNameAlreadyInUseException(
       message: json['Message'] as String?,
@@ -8020,6 +8149,7 @@ class ListAppliedSchemaArnsResponse {
     this.nextToken,
     this.schemaArns,
   });
+
   factory ListAppliedSchemaArnsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppliedSchemaArnsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8051,6 +8181,7 @@ class ListAttachedIndicesResponse {
     this.indexAttachments,
     this.nextToken,
   });
+
   factory ListAttachedIndicesResponse.fromJson(Map<String, dynamic> json) {
     return ListAttachedIndicesResponse(
       indexAttachments: (json['IndexAttachments'] as List?)
@@ -8082,6 +8213,7 @@ class ListDevelopmentSchemaArnsResponse {
     this.nextToken,
     this.schemaArns,
   });
+
   factory ListDevelopmentSchemaArnsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDevelopmentSchemaArnsResponse(
@@ -8115,6 +8247,7 @@ class ListDirectoriesResponse {
     required this.directories,
     this.nextToken,
   });
+
   factory ListDirectoriesResponse.fromJson(Map<String, dynamic> json) {
     return ListDirectoriesResponse(
       directories: (json['Directories'] as List)
@@ -8146,6 +8279,7 @@ class ListFacetAttributesResponse {
     this.attributes,
     this.nextToken,
   });
+
   factory ListFacetAttributesResponse.fromJson(Map<String, dynamic> json) {
     return ListFacetAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -8177,6 +8311,7 @@ class ListFacetNamesResponse {
     this.facetNames,
     this.nextToken,
   });
+
   factory ListFacetNamesResponse.fromJson(Map<String, dynamic> json) {
     return ListFacetNamesResponse(
       facetNames: (json['FacetNames'] as List?)
@@ -8208,6 +8343,7 @@ class ListIncomingTypedLinksResponse {
     this.linkSpecifiers,
     this.nextToken,
   });
+
   factory ListIncomingTypedLinksResponse.fromJson(Map<String, dynamic> json) {
     return ListIncomingTypedLinksResponse(
       linkSpecifiers: (json['LinkSpecifiers'] as List?)
@@ -8239,6 +8375,7 @@ class ListIndexResponse {
     this.indexAttachments,
     this.nextToken,
   });
+
   factory ListIndexResponse.fromJson(Map<String, dynamic> json) {
     return ListIndexResponse(
       indexAttachments: (json['IndexAttachments'] as List?)
@@ -8271,6 +8408,7 @@ class ListObjectAttributesResponse {
     this.attributes,
     this.nextToken,
   });
+
   factory ListObjectAttributesResponse.fromJson(Map<String, dynamic> json) {
     return ListObjectAttributesResponse(
       attributes: (json['Attributes'] as List?)
@@ -8303,6 +8441,7 @@ class ListObjectChildrenResponse {
     this.children,
     this.nextToken,
   });
+
   factory ListObjectChildrenResponse.fromJson(Map<String, dynamic> json) {
     return ListObjectChildrenResponse(
       children: (json['Children'] as Map<String, dynamic>?)
@@ -8333,6 +8472,7 @@ class ListObjectParentPathsResponse {
     this.nextToken,
     this.pathToObjectIdentifiersList,
   });
+
   factory ListObjectParentPathsResponse.fromJson(Map<String, dynamic> json) {
     return ListObjectParentPathsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8368,6 +8508,7 @@ class ListObjectParentsResponse {
     this.nextToken,
     this.parents,
   });
+
   factory ListObjectParentsResponse.fromJson(Map<String, dynamic> json) {
     return ListObjectParentsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8398,6 +8539,7 @@ class ListObjectPoliciesResponse {
     this.attachedPolicyIds,
     this.nextToken,
   });
+
   factory ListObjectPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListObjectPoliciesResponse(
       attachedPolicyIds: (json['AttachedPolicyIds'] as List?)
@@ -8429,6 +8571,7 @@ class ListOutgoingTypedLinksResponse {
     this.nextToken,
     this.typedLinkSpecifiers,
   });
+
   factory ListOutgoingTypedLinksResponse.fromJson(Map<String, dynamic> json) {
     return ListOutgoingTypedLinksResponse(
       nextToken: json['NextToken'] as String?,
@@ -8461,6 +8604,7 @@ class ListPolicyAttachmentsResponse {
     this.nextToken,
     this.objectIdentifiers,
   });
+
   factory ListPolicyAttachmentsResponse.fromJson(Map<String, dynamic> json) {
     return ListPolicyAttachmentsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8492,6 +8636,7 @@ class ListPublishedSchemaArnsResponse {
     this.nextToken,
     this.schemaArns,
   });
+
   factory ListPublishedSchemaArnsResponse.fromJson(Map<String, dynamic> json) {
     return ListPublishedSchemaArnsResponse(
       nextToken: json['NextToken'] as String?,
@@ -8524,6 +8669,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -8555,6 +8701,7 @@ class ListTypedLinkFacetAttributesResponse {
     this.attributes,
     this.nextToken,
   });
+
   factory ListTypedLinkFacetAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTypedLinkFacetAttributesResponse(
@@ -8588,6 +8735,7 @@ class ListTypedLinkFacetNamesResponse {
     this.facetNames,
     this.nextToken,
   });
+
   factory ListTypedLinkFacetNamesResponse.fromJson(Map<String, dynamic> json) {
     return ListTypedLinkFacetNamesResponse(
       facetNames: (json['FacetNames'] as List?)
@@ -8622,6 +8770,7 @@ class LookupPolicyResponse {
     this.nextToken,
     this.policyToPathList,
   });
+
   factory LookupPolicyResponse.fromJson(Map<String, dynamic> json) {
     return LookupPolicyResponse(
       nextToken: json['NextToken'] as String?,
@@ -8649,6 +8798,7 @@ class NotIndexException implements _s.AwsException {
   NotIndexException({
     this.message,
   });
+
   factory NotIndexException.fromJson(Map<String, dynamic> json) {
     return NotIndexException(
       message: json['Message'] as String?,
@@ -8672,6 +8822,7 @@ class NotNodeException implements _s.AwsException {
   NotNodeException({
     this.message,
   });
+
   factory NotNodeException.fromJson(Map<String, dynamic> json) {
     return NotNodeException(
       message: json['Message'] as String?,
@@ -8693,6 +8844,7 @@ class NotPolicyException implements _s.AwsException {
   NotPolicyException({
     this.message,
   });
+
   factory NotPolicyException.fromJson(Map<String, dynamic> json) {
     return NotPolicyException(
       message: json['Message'] as String?,
@@ -8714,6 +8866,7 @@ class ObjectAlreadyDetachedException implements _s.AwsException {
   ObjectAlreadyDetachedException({
     this.message,
   });
+
   factory ObjectAlreadyDetachedException.fromJson(Map<String, dynamic> json) {
     return ObjectAlreadyDetachedException(
       message: json['Message'] as String?,
@@ -8740,6 +8893,7 @@ class ObjectAttributeAction {
     this.objectAttributeActionType,
     this.objectAttributeUpdateValue,
   });
+
   factory ObjectAttributeAction.fromJson(Map<String, dynamic> json) {
     return ObjectAttributeAction(
       objectAttributeActionType:
@@ -8775,6 +8929,7 @@ class ObjectAttributeRange {
     this.attributeKey,
     this.range,
   });
+
   factory ObjectAttributeRange.fromJson(Map<String, dynamic> json) {
     return ObjectAttributeRange(
       attributeKey: json['AttributeKey'] != null
@@ -8809,6 +8964,7 @@ class ObjectAttributeUpdate {
     this.objectAttributeAction,
     this.objectAttributeKey,
   });
+
   factory ObjectAttributeUpdate.fromJson(Map<String, dynamic> json) {
     return ObjectAttributeUpdate(
       objectAttributeAction: json['ObjectAttributeAction'] != null
@@ -8841,6 +8997,7 @@ class ObjectNotDetachedException implements _s.AwsException {
   ObjectNotDetachedException({
     this.message,
   });
+
   factory ObjectNotDetachedException.fromJson(Map<String, dynamic> json) {
     return ObjectNotDetachedException(
       message: json['Message'] as String?,
@@ -8884,6 +9041,7 @@ class ObjectReference {
   ObjectReference({
     this.selector,
   });
+
   factory ObjectReference.fromJson(Map<String, dynamic> json) {
     return ObjectReference(
       selector: json['Selector'] as String?,
@@ -8950,6 +9108,7 @@ class PathToObjectIdentifiers {
     this.objectIdentifiers,
     this.path,
   });
+
   factory PathToObjectIdentifiers.fromJson(Map<String, dynamic> json) {
     return PathToObjectIdentifiers(
       objectIdentifiers: (json['ObjectIdentifiers'] as List?)
@@ -8991,6 +9150,7 @@ class PolicyAttachment {
     this.policyId,
     this.policyType,
   });
+
   factory PolicyAttachment.fromJson(Map<String, dynamic> json) {
     return PolicyAttachment(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -9025,6 +9185,7 @@ class PolicyToPath {
     this.path,
     this.policies,
   });
+
   factory PolicyToPath.fromJson(Map<String, dynamic> json) {
     return PolicyToPath(
       path: json['Path'] as String?,
@@ -9053,6 +9214,7 @@ class PublishSchemaResponse {
   PublishSchemaResponse({
     this.publishedSchemaArn,
   });
+
   factory PublishSchemaResponse.fromJson(Map<String, dynamic> json) {
     return PublishSchemaResponse(
       publishedSchemaArn: json['PublishedSchemaArn'] as String?,
@@ -9074,6 +9236,7 @@ class PutSchemaFromJsonResponse {
   PutSchemaFromJsonResponse({
     this.arn,
   });
+
   factory PutSchemaFromJsonResponse.fromJson(Map<String, dynamic> json) {
     return PutSchemaFromJsonResponse(
       arn: json['Arn'] as String?,
@@ -9133,6 +9296,7 @@ extension on String {
 
 class RemoveFacetFromObjectResponse {
   RemoveFacetFromObjectResponse();
+
   factory RemoveFacetFromObjectResponse.fromJson(Map<String, dynamic> _) {
     return RemoveFacetFromObjectResponse();
   }
@@ -9177,6 +9341,7 @@ class ResourceNotFoundException implements _s.AwsException {
   ResourceNotFoundException({
     this.message,
   });
+
   factory ResourceNotFoundException.fromJson(Map<String, dynamic> json) {
     return ResourceNotFoundException(
       message: json['Message'] as String?,
@@ -9203,6 +9368,7 @@ class RetryableConflictException implements _s.AwsException {
   RetryableConflictException({
     this.message,
   });
+
   factory RetryableConflictException.fromJson(Map<String, dynamic> json) {
     return RetryableConflictException(
       message: json['Message'] as String?,
@@ -9230,6 +9396,7 @@ class Rule {
     this.parameters,
     this.type,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       parameters: (json['Parameters'] as Map<String, dynamic>?)
@@ -9294,6 +9461,7 @@ class SchemaAlreadyExistsException implements _s.AwsException {
   SchemaAlreadyExistsException({
     this.message,
   });
+
   factory SchemaAlreadyExistsException.fromJson(Map<String, dynamic> json) {
     return SchemaAlreadyExistsException(
       message: json['Message'] as String?,
@@ -9315,6 +9483,7 @@ class SchemaAlreadyPublishedException implements _s.AwsException {
   SchemaAlreadyPublishedException({
     this.message,
   });
+
   factory SchemaAlreadyPublishedException.fromJson(Map<String, dynamic> json) {
     return SchemaAlreadyPublishedException(
       message: json['Message'] as String?,
@@ -9344,6 +9513,7 @@ class SchemaFacet {
     this.facetName,
     this.schemaArn,
   });
+
   factory SchemaFacet.fromJson(Map<String, dynamic> json) {
     return SchemaFacet(
       facetName: json['FacetName'] as String?,
@@ -9369,6 +9539,7 @@ class StillContainsLinksException implements _s.AwsException {
   StillContainsLinksException({
     this.message,
   });
+
   factory StillContainsLinksException.fromJson(Map<String, dynamic> json) {
     return StillContainsLinksException(
       message: json['Message'] as String?,
@@ -9395,6 +9566,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -9414,6 +9586,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -9449,6 +9622,7 @@ class TypedAttributeValue {
     this.numberValue,
     this.stringValue,
   });
+
   factory TypedAttributeValue.fromJson(Map<String, dynamic> json) {
     return TypedAttributeValue(
       binaryValue: _s.decodeNullableUint8List(json['BinaryValue'] as String?),
@@ -9498,6 +9672,7 @@ class TypedAttributeValueRange {
     this.endValue,
     this.startValue,
   });
+
   factory TypedAttributeValueRange.fromJson(Map<String, dynamic> json) {
     return TypedAttributeValueRange(
       endMode: (json['EndMode'] as String).toRangeMode(),
@@ -9555,6 +9730,7 @@ class TypedLinkAttributeDefinition {
     this.isImmutable,
     this.rules,
   });
+
   factory TypedLinkAttributeDefinition.fromJson(Map<String, dynamic> json) {
     return TypedLinkAttributeDefinition(
       name: json['Name'] as String,
@@ -9601,6 +9777,7 @@ class TypedLinkAttributeRange {
     required this.range,
     this.attributeName,
   });
+
   factory TypedLinkAttributeRange.fromJson(Map<String, dynamic> json) {
     return TypedLinkAttributeRange(
       range: TypedAttributeValueRange.fromJson(
@@ -9643,6 +9820,7 @@ class TypedLinkFacet {
     required this.identityAttributeOrder,
     required this.name,
   });
+
   factory TypedLinkFacet.fromJson(Map<String, dynamic> json) {
     return TypedLinkFacet(
       attributes: (json['Attributes'] as List)
@@ -9682,6 +9860,7 @@ class TypedLinkFacetAttributeUpdate {
     required this.action,
     required this.attribute,
   });
+
   factory TypedLinkFacetAttributeUpdate.fromJson(Map<String, dynamic> json) {
     return TypedLinkFacetAttributeUpdate(
       action: (json['Action'] as String).toUpdateActionType(),
@@ -9714,6 +9893,7 @@ class TypedLinkSchemaAndFacetName {
     required this.schemaArn,
     required this.typedLinkName,
   });
+
   factory TypedLinkSchemaAndFacetName.fromJson(Map<String, dynamic> json) {
     return TypedLinkSchemaAndFacetName(
       schemaArn: json['SchemaArn'] as String,
@@ -9757,6 +9937,7 @@ class TypedLinkSpecifier {
     required this.targetObjectReference,
     required this.typedLinkFacet,
   });
+
   factory TypedLinkSpecifier.fromJson(Map<String, dynamic> json) {
     return TypedLinkSpecifier(
       identityAttributeValues: (json['IdentityAttributeValues'] as List)
@@ -9793,6 +9974,7 @@ class UnsupportedIndexTypeException implements _s.AwsException {
   UnsupportedIndexTypeException({
     this.message,
   });
+
   factory UnsupportedIndexTypeException.fromJson(Map<String, dynamic> json) {
     return UnsupportedIndexTypeException(
       message: json['Message'] as String?,
@@ -9809,6 +9991,7 @@ class UnsupportedIndexTypeException implements _s.AwsException {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -9848,6 +10031,7 @@ extension on String {
 
 class UpdateFacetResponse {
   UpdateFacetResponse();
+
   factory UpdateFacetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFacetResponse();
   }
@@ -9859,6 +10043,7 @@ class UpdateFacetResponse {
 
 class UpdateLinkAttributesResponse {
   UpdateLinkAttributesResponse();
+
   factory UpdateLinkAttributesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLinkAttributesResponse();
   }
@@ -9875,6 +10060,7 @@ class UpdateObjectAttributesResponse {
   UpdateObjectAttributesResponse({
     this.objectIdentifier,
   });
+
   factory UpdateObjectAttributesResponse.fromJson(Map<String, dynamic> json) {
     return UpdateObjectAttributesResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
@@ -9897,6 +10083,7 @@ class UpdateSchemaResponse {
   UpdateSchemaResponse({
     this.schemaArn,
   });
+
   factory UpdateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSchemaResponse(
       schemaArn: json['SchemaArn'] as String?,
@@ -9913,6 +10100,7 @@ class UpdateSchemaResponse {
 
 class UpdateTypedLinkFacetResponse {
   UpdateTypedLinkFacetResponse();
+
   factory UpdateTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTypedLinkFacetResponse();
   }
@@ -9933,6 +10121,7 @@ class UpgradeAppliedSchemaResponse {
     this.directoryArn,
     this.upgradedSchemaArn,
   });
+
   factory UpgradeAppliedSchemaResponse.fromJson(Map<String, dynamic> json) {
     return UpgradeAppliedSchemaResponse(
       directoryArn: json['DirectoryArn'] as String?,
@@ -9957,6 +10146,7 @@ class UpgradePublishedSchemaResponse {
   UpgradePublishedSchemaResponse({
     this.upgradedSchemaArn,
   });
+
   factory UpgradePublishedSchemaResponse.fromJson(Map<String, dynamic> json) {
     return UpgradePublishedSchemaResponse(
       upgradedSchemaArn: json['UpgradedSchemaArn'] as String?,
@@ -9979,6 +10169,7 @@ class ValidationException implements _s.AwsException {
   ValidationException({
     this.message,
   });
+
   factory ValidationException.fromJson(Map<String, dynamic> json) {
     return ValidationException(
       message: json['Message'] as String?,

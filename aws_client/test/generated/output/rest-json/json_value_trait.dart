@@ -92,6 +92,7 @@ class OutputShape {
     this.bodyListField,
     this.headerField,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       bodyField: json['BodyField'] == null

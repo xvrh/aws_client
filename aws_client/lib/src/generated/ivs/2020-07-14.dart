@@ -1495,6 +1495,7 @@ class BatchError {
     this.code,
     this.message,
   });
+
   factory BatchError.fromJson(Map<String, dynamic> json) {
     return BatchError(
       arn: json['arn'] as String?,
@@ -1525,6 +1526,7 @@ class BatchGetChannelResponse {
     this.channels,
     this.errors,
   });
+
   factory BatchGetChannelResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetChannelResponse(
       channels: (json['channels'] as List?)
@@ -1556,6 +1558,7 @@ class BatchGetStreamKeyResponse {
     this.errors,
     this.streamKeys,
   });
+
   factory BatchGetStreamKeyResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetStreamKeyResponse(
       errors: (json['errors'] as List?)
@@ -1643,6 +1646,7 @@ class Channel {
     this.tags,
     this.type,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       arn: json['arn'] as String?,
@@ -1746,6 +1750,7 @@ class ChannelSummary {
     this.recordingConfigurationArn,
     this.tags,
   });
+
   factory ChannelSummary.fromJson(Map<String, dynamic> json) {
     return ChannelSummary(
       arn: json['arn'] as String?,
@@ -1813,6 +1818,7 @@ class CreateChannelResponse {
     this.channel,
     this.streamKey,
   });
+
   factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelResponse(
       channel: json['channel'] != null
@@ -1840,6 +1846,7 @@ class CreateRecordingConfigurationResponse {
   CreateRecordingConfigurationResponse({
     this.recordingConfiguration,
   });
+
   factory CreateRecordingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateRecordingConfigurationResponse(
@@ -1866,6 +1873,7 @@ class CreateStreamKeyResponse {
   CreateStreamKeyResponse({
     this.streamKey,
   });
+
   factory CreateStreamKeyResponse.fromJson(Map<String, dynamic> json) {
     return CreateStreamKeyResponse(
       streamKey: json['streamKey'] != null
@@ -1884,6 +1892,7 @@ class CreateStreamKeyResponse {
 
 class DeletePlaybackKeyPairResponse {
   DeletePlaybackKeyPairResponse();
+
   factory DeletePlaybackKeyPairResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaybackKeyPairResponse();
   }
@@ -1903,6 +1912,7 @@ class DestinationConfiguration {
   DestinationConfiguration({
     this.s3,
   });
+
   factory DestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return DestinationConfiguration(
       s3: json['s3'] != null
@@ -1926,6 +1936,7 @@ class GetChannelResponse {
   GetChannelResponse({
     this.channel,
   });
+
   factory GetChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetChannelResponse(
       channel: json['channel'] != null
@@ -1948,6 +1959,7 @@ class GetPlaybackKeyPairResponse {
   GetPlaybackKeyPairResponse({
     this.keyPair,
   });
+
   factory GetPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) {
     return GetPlaybackKeyPairResponse(
       keyPair: json['keyPair'] != null
@@ -1970,6 +1982,7 @@ class GetRecordingConfigurationResponse {
   GetRecordingConfigurationResponse({
     this.recordingConfiguration,
   });
+
   factory GetRecordingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRecordingConfigurationResponse(
@@ -1995,6 +2008,7 @@ class GetStreamKeyResponse {
   GetStreamKeyResponse({
     this.streamKey,
   });
+
   factory GetStreamKeyResponse.fromJson(Map<String, dynamic> json) {
     return GetStreamKeyResponse(
       streamKey: json['streamKey'] != null
@@ -2017,6 +2031,7 @@ class GetStreamResponse {
   GetStreamResponse({
     this.stream,
   });
+
   factory GetStreamResponse.fromJson(Map<String, dynamic> json) {
     return GetStreamResponse(
       stream: json['stream'] != null
@@ -2039,6 +2054,7 @@ class ImportPlaybackKeyPairResponse {
   ImportPlaybackKeyPairResponse({
     this.keyPair,
   });
+
   factory ImportPlaybackKeyPairResponse.fromJson(Map<String, dynamic> json) {
     return ImportPlaybackKeyPairResponse(
       keyPair: json['keyPair'] != null
@@ -2067,6 +2083,7 @@ class ListChannelsResponse {
     required this.channels,
     this.nextToken,
   });
+
   factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelsResponse(
       channels: (json['channels'] as List)
@@ -2099,6 +2116,7 @@ class ListPlaybackKeyPairsResponse {
     required this.keyPairs,
     this.nextToken,
   });
+
   factory ListPlaybackKeyPairsResponse.fromJson(Map<String, dynamic> json) {
     return ListPlaybackKeyPairsResponse(
       keyPairs: (json['keyPairs'] as List)
@@ -2132,6 +2150,7 @@ class ListRecordingConfigurationsResponse {
     required this.recordingConfigurations,
     this.nextToken,
   });
+
   factory ListRecordingConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListRecordingConfigurationsResponse(
@@ -2166,6 +2185,7 @@ class ListStreamKeysResponse {
     required this.streamKeys,
     this.nextToken,
   });
+
   factory ListStreamKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListStreamKeysResponse(
       streamKeys: (json['streamKeys'] as List)
@@ -2198,6 +2218,7 @@ class ListStreamsResponse {
     required this.streams,
     this.nextToken,
   });
+
   factory ListStreamsResponse.fromJson(Map<String, dynamic> json) {
     return ListStreamsResponse(
       streams: (json['streams'] as List)
@@ -2229,6 +2250,7 @@ class ListTagsForResourceResponse {
     required this.tags,
     this.nextToken,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>)
@@ -2268,6 +2290,7 @@ class PlaybackKeyPair {
     this.name,
     this.tags,
   });
+
   factory PlaybackKeyPair.fromJson(Map<String, dynamic> json) {
     return PlaybackKeyPair(
       arn: json['arn'] as String?,
@@ -2309,6 +2332,7 @@ class PlaybackKeyPairSummary {
     this.name,
     this.tags,
   });
+
   factory PlaybackKeyPairSummary.fromJson(Map<String, dynamic> json) {
     return PlaybackKeyPairSummary(
       arn: json['arn'] as String?,
@@ -2359,6 +2383,7 @@ class RecordingConfiguration {
     this.name,
     this.tags,
   });
+
   factory RecordingConfiguration.fromJson(Map<String, dynamic> json) {
     return RecordingConfiguration(
       arn: json['arn'] as String,
@@ -2449,6 +2474,7 @@ class RecordingConfigurationSummary {
     this.name,
     this.tags,
   });
+
   factory RecordingConfigurationSummary.fromJson(Map<String, dynamic> json) {
     return RecordingConfigurationSummary(
       arn: json['arn'] as String,
@@ -2486,6 +2512,7 @@ class S3DestinationConfiguration {
   S3DestinationConfiguration({
     required this.bucketName,
   });
+
   factory S3DestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return S3DestinationConfiguration(
       bucketName: json['bucketName'] as String,
@@ -2502,6 +2529,7 @@ class S3DestinationConfiguration {
 
 class StopStreamResponse {
   StopStreamResponse();
+
   factory StopStreamResponse.fromJson(Map<String, dynamic> _) {
     return StopStreamResponse();
   }
@@ -2541,6 +2569,7 @@ class Stream {
     this.state,
     this.viewerCount,
   });
+
   factory Stream.fromJson(Map<String, dynamic> json) {
     return Stream(
       channelArn: json['channelArn'] as String?,
@@ -2623,6 +2652,7 @@ class StreamKey {
     this.tags,
     this.value,
   });
+
   factory StreamKey.fromJson(Map<String, dynamic> json) {
     return StreamKey(
       arn: json['arn'] as String?,
@@ -2663,6 +2693,7 @@ class StreamKeySummary {
     this.channelArn,
     this.tags,
   });
+
   factory StreamKeySummary.fromJson(Map<String, dynamic> json) {
     return StreamKeySummary(
       arn: json['arn'] as String?,
@@ -2737,6 +2768,7 @@ class StreamSummary {
     this.state,
     this.viewerCount,
   });
+
   factory StreamSummary.fromJson(Map<String, dynamic> json) {
     return StreamSummary(
       channelArn: json['channelArn'] as String?,
@@ -2765,6 +2797,7 @@ class StreamSummary {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2776,6 +2809,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2791,6 +2825,7 @@ class UpdateChannelResponse {
   UpdateChannelResponse({
     this.channel,
   });
+
   factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelResponse(
       channel: json['channel'] != null

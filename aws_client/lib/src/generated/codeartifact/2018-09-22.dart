@@ -3575,6 +3575,7 @@ class AssetSummary {
     this.hashes,
     this.size,
   });
+
   factory AssetSummary.fromJson(Map<String, dynamic> json) {
     return AssetSummary(
       name: json['name'] as String,
@@ -3604,6 +3605,7 @@ class AssociateExternalConnectionResult {
   AssociateExternalConnectionResult({
     this.repository,
   });
+
   factory AssociateExternalConnectionResult.fromJson(
       Map<String, dynamic> json) {
     return AssociateExternalConnectionResult(
@@ -3657,6 +3659,7 @@ class CopyPackageVersionsResult {
     this.failedVersions,
     this.successfulVersions,
   });
+
   factory CopyPackageVersionsResult.fromJson(Map<String, dynamic> json) {
     return CopyPackageVersionsResult(
       failedVersions: (json['failedVersions'] as Map<String, dynamic>?)?.map((k,
@@ -3687,6 +3690,7 @@ class CreateDomainResult {
   CreateDomainResult({
     this.domain,
   });
+
   factory CreateDomainResult.fromJson(Map<String, dynamic> json) {
     return CreateDomainResult(
       domain: json['domain'] != null
@@ -3710,6 +3714,7 @@ class CreateRepositoryResult {
   CreateRepositoryResult({
     this.repository,
   });
+
   factory CreateRepositoryResult.fromJson(Map<String, dynamic> json) {
     return CreateRepositoryResult(
       repository: json['repository'] != null
@@ -3734,6 +3739,7 @@ class DeleteDomainPermissionsPolicyResult {
   DeleteDomainPermissionsPolicyResult({
     this.policy,
   });
+
   factory DeleteDomainPermissionsPolicyResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteDomainPermissionsPolicyResult(
@@ -3758,6 +3764,7 @@ class DeleteDomainResult {
   DeleteDomainResult({
     this.domain,
   });
+
   factory DeleteDomainResult.fromJson(Map<String, dynamic> json) {
     return DeleteDomainResult(
       domain: json['domain'] != null
@@ -3807,6 +3814,7 @@ class DeletePackageVersionsResult {
     this.failedVersions,
     this.successfulVersions,
   });
+
   factory DeletePackageVersionsResult.fromJson(Map<String, dynamic> json) {
     return DeletePackageVersionsResult(
       failedVersions: (json['failedVersions'] as Map<String, dynamic>?)?.map((k,
@@ -3837,6 +3845,7 @@ class DeleteRepositoryPermissionsPolicyResult {
   DeleteRepositoryPermissionsPolicyResult({
     this.policy,
   });
+
   factory DeleteRepositoryPermissionsPolicyResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteRepositoryPermissionsPolicyResult(
@@ -3861,6 +3870,7 @@ class DeleteRepositoryResult {
   DeleteRepositoryResult({
     this.repository,
   });
+
   factory DeleteRepositoryResult.fromJson(Map<String, dynamic> json) {
     return DeleteRepositoryResult(
       repository: json['repository'] != null
@@ -3884,6 +3894,7 @@ class DescribeDomainResult {
   DescribeDomainResult({
     this.domain,
   });
+
   factory DescribeDomainResult.fromJson(Map<String, dynamic> json) {
     return DescribeDomainResult(
       domain: json['domain'] != null
@@ -3909,6 +3920,7 @@ class DescribePackageVersionResult {
   DescribePackageVersionResult({
     required this.packageVersion,
   });
+
   factory DescribePackageVersionResult.fromJson(Map<String, dynamic> json) {
     return DescribePackageVersionResult(
       packageVersion: PackageVersionDescription.fromJson(
@@ -3932,6 +3944,7 @@ class DescribeRepositoryResult {
   DescribeRepositoryResult({
     this.repository,
   });
+
   factory DescribeRepositoryResult.fromJson(Map<String, dynamic> json) {
     return DescribeRepositoryResult(
       repository: json['repository'] != null
@@ -3956,6 +3969,7 @@ class DisassociateExternalConnectionResult {
   DisassociateExternalConnectionResult({
     this.repository,
   });
+
   factory DisassociateExternalConnectionResult.fromJson(
       Map<String, dynamic> json) {
     return DisassociateExternalConnectionResult(
@@ -4008,6 +4022,7 @@ class DisposePackageVersionsResult {
     this.failedVersions,
     this.successfulVersions,
   });
+
   factory DisposePackageVersionsResult.fromJson(Map<String, dynamic> json) {
     return DisposePackageVersionsResult(
       failedVersions: (json['failedVersions'] as Map<String, dynamic>?)?.map((k,
@@ -4083,6 +4098,7 @@ class DomainDescription {
     this.s3BucketArn,
     this.status,
   });
+
   factory DomainDescription.fromJson(Map<String, dynamic> json) {
     return DomainDescription(
       arn: json['arn'] as String?,
@@ -4190,6 +4206,7 @@ class DomainSummary {
     this.owner,
     this.status,
   });
+
   factory DomainSummary.fromJson(Map<String, dynamic> json) {
     return DomainSummary(
       arn: json['arn'] as String?,
@@ -4254,6 +4271,7 @@ class GetAuthorizationTokenResult {
     this.authorizationToken,
     this.expiration,
   });
+
   factory GetAuthorizationTokenResult.fromJson(Map<String, dynamic> json) {
     return GetAuthorizationTokenResult(
       authorizationToken: json['authorizationToken'] as String?,
@@ -4278,6 +4296,7 @@ class GetDomainPermissionsPolicyResult {
   GetDomainPermissionsPolicyResult({
     this.policy,
   });
+
   factory GetDomainPermissionsPolicyResult.fromJson(Map<String, dynamic> json) {
     return GetDomainPermissionsPolicyResult(
       policy: json['policy'] != null
@@ -4314,6 +4333,7 @@ class GetPackageVersionAssetResult {
     this.packageVersion,
     this.packageVersionRevision,
   });
+
   factory GetPackageVersionAssetResult.fromJson(Map<String, dynamic> json) {
     return GetPackageVersionAssetResult(
       asset: _s.decodeNullableUint8List(json['asset'] as String?),
@@ -4388,6 +4408,7 @@ class GetPackageVersionReadmeResult {
     this.version,
     this.versionRevision,
   });
+
   factory GetPackageVersionReadmeResult.fromJson(Map<String, dynamic> json) {
     return GetPackageVersionReadmeResult(
       format: (json['format'] as String?)?.toPackageFormat(),
@@ -4424,6 +4445,7 @@ class GetRepositoryEndpointResult {
   GetRepositoryEndpointResult({
     this.repositoryEndpoint,
   });
+
   factory GetRepositoryEndpointResult.fromJson(Map<String, dynamic> json) {
     return GetRepositoryEndpointResult(
       repositoryEndpoint: json['repositoryEndpoint'] as String?,
@@ -4445,6 +4467,7 @@ class GetRepositoryPermissionsPolicyResult {
   GetRepositoryPermissionsPolicyResult({
     this.policy,
   });
+
   factory GetRepositoryPermissionsPolicyResult.fromJson(
       Map<String, dynamic> json) {
     return GetRepositoryPermissionsPolicyResult(
@@ -4512,6 +4535,7 @@ class LicenseInfo {
     this.name,
     this.url,
   });
+
   factory LicenseInfo.fromJson(Map<String, dynamic> json) {
     return LicenseInfo(
       name: json['name'] as String?,
@@ -4543,6 +4567,7 @@ class ListDomainsResult {
     this.domains,
     this.nextToken,
   });
+
   factory ListDomainsResult.fromJson(Map<String, dynamic> json) {
     return ListDomainsResult(
       domains: (json['domains'] as List?)
@@ -4611,6 +4636,7 @@ class ListPackageVersionAssetsResult {
     this.version,
     this.versionRevision,
   });
+
   factory ListPackageVersionAssetsResult.fromJson(Map<String, dynamic> json) {
     return ListPackageVersionAssetsResult(
       assets: (json['assets'] as List?)
@@ -4708,6 +4734,7 @@ class ListPackageVersionDependenciesResult {
     this.version,
     this.versionRevision,
   });
+
   factory ListPackageVersionDependenciesResult.fromJson(
       Map<String, dynamic> json) {
     return ListPackageVersionDependenciesResult(
@@ -4812,6 +4839,7 @@ class ListPackageVersionsResult {
     this.package,
     this.versions,
   });
+
   factory ListPackageVersionsResult.fromJson(Map<String, dynamic> json) {
     return ListPackageVersionsResult(
       defaultDisplayVersion: json['defaultDisplayVersion'] as String?,
@@ -4859,6 +4887,7 @@ class ListPackagesResult {
     this.nextToken,
     this.packages,
   });
+
   factory ListPackagesResult.fromJson(Map<String, dynamic> json) {
     return ListPackagesResult(
       nextToken: json['nextToken'] as String?,
@@ -4891,6 +4920,7 @@ class ListRepositoriesInDomainResult {
     this.nextToken,
     this.repositories,
   });
+
   factory ListRepositoriesInDomainResult.fromJson(Map<String, dynamic> json) {
     return ListRepositoriesInDomainResult(
       nextToken: json['nextToken'] as String?,
@@ -4925,6 +4955,7 @@ class ListRepositoriesResult {
     this.nextToken,
     this.repositories,
   });
+
   factory ListRepositoriesResult.fromJson(Map<String, dynamic> json) {
     return ListRepositoriesResult(
       nextToken: json['nextToken'] as String?,
@@ -4952,6 +4983,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tags: (json['tags'] as List?)
@@ -5009,6 +5041,7 @@ class PackageDependency {
     this.package,
     this.versionRequirement,
   });
+
   factory PackageDependency.fromJson(Map<String, dynamic> json) {
     return PackageDependency(
       dependencyType: json['dependencyType'] as String?,
@@ -5114,6 +5147,7 @@ class PackageSummary {
     this.namespace,
     this.package,
   });
+
   factory PackageSummary.fromJson(Map<String, dynamic> json) {
     return PackageSummary(
       format: (json['format'] as String?)?.toPackageFormat(),
@@ -5240,6 +5274,7 @@ class PackageVersionDescription {
     this.summary,
     this.version,
   });
+
   factory PackageVersionDescription.fromJson(Map<String, dynamic> json) {
     return PackageVersionDescription(
       displayName: json['displayName'] as String?,
@@ -5325,6 +5360,7 @@ class PackageVersionError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory PackageVersionError.fromJson(Map<String, dynamic> json) {
     return PackageVersionError(
       errorCode: (json['errorCode'] as String?)?.toPackageVersionErrorCode(),
@@ -5499,6 +5535,7 @@ class PackageVersionSummary {
     required this.version,
     this.revision,
   });
+
   factory PackageVersionSummary.fromJson(Map<String, dynamic> json) {
     return PackageVersionSummary(
       status: (json['status'] as String).toPackageVersionStatus(),
@@ -5526,6 +5563,7 @@ class PutDomainPermissionsPolicyResult {
   PutDomainPermissionsPolicyResult({
     this.policy,
   });
+
   factory PutDomainPermissionsPolicyResult.fromJson(Map<String, dynamic> json) {
     return PutDomainPermissionsPolicyResult(
       policy: json['policy'] != null
@@ -5549,6 +5587,7 @@ class PutRepositoryPermissionsPolicyResult {
   PutRepositoryPermissionsPolicyResult({
     this.policy,
   });
+
   factory PutRepositoryPermissionsPolicyResult.fromJson(
       Map<String, dynamic> json) {
     return PutRepositoryPermissionsPolicyResult(
@@ -5614,6 +5653,7 @@ class RepositoryDescription {
     this.name,
     this.upstreams,
   });
+
   factory RepositoryDescription.fromJson(Map<String, dynamic> json) {
     return RepositoryDescription(
       administratorAccount: json['administratorAccount'] as String?,
@@ -5690,6 +5730,7 @@ class RepositoryExternalConnectionInfo {
     this.packageFormat,
     this.status,
   });
+
   factory RepositoryExternalConnectionInfo.fromJson(Map<String, dynamic> json) {
     return RepositoryExternalConnectionInfo(
       externalConnectionName: json['externalConnectionName'] as String?,
@@ -5743,6 +5784,7 @@ class RepositorySummary {
     this.domainOwner,
     this.name,
   });
+
   factory RepositorySummary.fromJson(Map<String, dynamic> json) {
     return RepositorySummary(
       administratorAccount: json['administratorAccount'] as String?,
@@ -5790,6 +5832,7 @@ class ResourcePolicy {
     this.resourceArn,
     this.revision,
   });
+
   factory ResourcePolicy.fromJson(Map<String, dynamic> json) {
     return ResourcePolicy(
       document: json['document'] as String?,
@@ -5840,6 +5883,7 @@ class SuccessfulPackageVersionInfo {
     this.revision,
     this.status,
   });
+
   factory SuccessfulPackageVersionInfo.fromJson(Map<String, dynamic> json) {
     return SuccessfulPackageVersionInfo(
       revision: json['revision'] as String?,
@@ -5870,6 +5914,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -5889,6 +5934,7 @@ class Tag {
 
 class TagResourceResult {
   TagResourceResult();
+
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
@@ -5900,6 +5946,7 @@ class TagResourceResult {
 
 class UntagResourceResult {
   UntagResourceResult();
+
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
@@ -5922,6 +5969,7 @@ class UpdatePackageVersionsStatusResult {
     this.failedVersions,
     this.successfulVersions,
   });
+
   factory UpdatePackageVersionsStatusResult.fromJson(
       Map<String, dynamic> json) {
     return UpdatePackageVersionsStatusResult(
@@ -5953,6 +6001,7 @@ class UpdateRepositoryResult {
   UpdateRepositoryResult({
     this.repository,
   });
+
   factory UpdateRepositoryResult.fromJson(Map<String, dynamic> json) {
     return UpdateRepositoryResult(
       repository: json['repository'] != null
@@ -5982,6 +6031,7 @@ class UpstreamRepository {
   UpstreamRepository({
     required this.repositoryName,
   });
+
   factory UpstreamRepository.fromJson(Map<String, dynamic> json) {
     return UpstreamRepository(
       repositoryName: json['repositoryName'] as String,
@@ -6004,6 +6054,7 @@ class UpstreamRepositoryInfo {
   UpstreamRepositoryInfo({
     this.repositoryName,
   });
+
   factory UpstreamRepositoryInfo.fromJson(Map<String, dynamic> json) {
     return UpstreamRepositoryInfo(
       repositoryName: json['repositoryName'] as String?,

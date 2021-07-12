@@ -4472,6 +4472,7 @@ class AddressBook {
     this.description,
     this.name,
   });
+
   factory AddressBook.fromJson(Map<String, dynamic> json) {
     return AddressBook(
       addressBookArn: json['AddressBookArn'] as String?,
@@ -4508,6 +4509,7 @@ class AddressBookData {
     this.description,
     this.name,
   });
+
   factory AddressBookData.fromJson(Map<String, dynamic> json) {
     return AddressBookData(
       addressBookArn: json['AddressBookArn'] as String?,
@@ -4530,6 +4532,7 @@ class AddressBookData {
 
 class ApproveSkillResponse {
   ApproveSkillResponse();
+
   factory ApproveSkillResponse.fromJson(Map<String, dynamic> _) {
     return ApproveSkillResponse();
   }
@@ -4541,6 +4544,7 @@ class ApproveSkillResponse {
 
 class AssociateContactWithAddressBookResponse {
   AssociateContactWithAddressBookResponse();
+
   factory AssociateContactWithAddressBookResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateContactWithAddressBookResponse();
@@ -4553,6 +4557,7 @@ class AssociateContactWithAddressBookResponse {
 
 class AssociateDeviceWithNetworkProfileResponse {
   AssociateDeviceWithNetworkProfileResponse();
+
   factory AssociateDeviceWithNetworkProfileResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateDeviceWithNetworkProfileResponse();
@@ -4565,6 +4570,7 @@ class AssociateDeviceWithNetworkProfileResponse {
 
 class AssociateDeviceWithRoomResponse {
   AssociateDeviceWithRoomResponse();
+
   factory AssociateDeviceWithRoomResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDeviceWithRoomResponse();
   }
@@ -4576,6 +4582,7 @@ class AssociateDeviceWithRoomResponse {
 
 class AssociateSkillGroupWithRoomResponse {
   AssociateSkillGroupWithRoomResponse();
+
   factory AssociateSkillGroupWithRoomResponse.fromJson(Map<String, dynamic> _) {
     return AssociateSkillGroupWithRoomResponse();
   }
@@ -4587,6 +4594,7 @@ class AssociateSkillGroupWithRoomResponse {
 
 class AssociateSkillWithSkillGroupResponse {
   AssociateSkillWithSkillGroupResponse();
+
   factory AssociateSkillWithSkillGroupResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateSkillWithSkillGroupResponse();
@@ -4599,6 +4607,7 @@ class AssociateSkillWithSkillGroupResponse {
 
 class AssociateSkillWithUsersResponse {
   AssociateSkillWithUsersResponse();
+
   factory AssociateSkillWithUsersResponse.fromJson(Map<String, dynamic> _) {
     return AssociateSkillWithUsersResponse();
   }
@@ -4635,6 +4644,7 @@ class Audio {
     required this.locale,
     required this.location,
   });
+
   factory Audio.fromJson(Map<String, dynamic> json) {
     return Audio(
       locale: (json['Locale'] as String).toLocale(),
@@ -4677,6 +4687,7 @@ class BusinessReport {
     this.s3Location,
     this.status,
   });
+
   factory BusinessReport.fromJson(Map<String, dynamic> json) {
     return BusinessReport(
       deliveryTime: timeStampFromJson(json['DeliveryTime']),
@@ -4716,6 +4727,7 @@ class BusinessReportContentRange {
   BusinessReportContentRange({
     required this.interval,
   });
+
   factory BusinessReportContentRange.fromJson(Map<String, dynamic> json) {
     return BusinessReportContentRange(
       interval: (json['Interval'] as String).toBusinessReportInterval(),
@@ -4832,6 +4844,7 @@ class BusinessReportRecurrence {
   BusinessReportRecurrence({
     this.startDate,
   });
+
   factory BusinessReportRecurrence.fromJson(Map<String, dynamic> json) {
     return BusinessReportRecurrence(
       startDate: json['StartDate'] as String?,
@@ -4858,6 +4871,7 @@ class BusinessReportS3Location {
     this.bucketName,
     this.path,
   });
+
   factory BusinessReportS3Location.fromJson(Map<String, dynamic> json) {
     return BusinessReportS3Location(
       bucketName: json['BucketName'] as String?,
@@ -4913,6 +4927,7 @@ class BusinessReportSchedule {
     this.scheduleArn,
     this.scheduleName,
   });
+
   factory BusinessReportSchedule.fromJson(Map<String, dynamic> json) {
     return BusinessReportSchedule(
       contentRange: json['ContentRange'] != null
@@ -5003,6 +5018,7 @@ class Category {
     this.categoryId,
     this.categoryName,
   });
+
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
       categoryId: json['CategoryId'] as int?,
@@ -5062,6 +5078,7 @@ class ConferencePreference {
   ConferencePreference({
     this.defaultConferenceProviderArn,
   });
+
   factory ConferencePreference.fromJson(Map<String, dynamic> json) {
     return ConferencePreference(
       defaultConferenceProviderArn:
@@ -5109,6 +5126,7 @@ class ConferenceProvider {
     this.pSTNDialIn,
     this.type,
   });
+
   factory ConferenceProvider.fromJson(Map<String, dynamic> json) {
     return ConferenceProvider(
       arn: json['Arn'] as String?,
@@ -5276,6 +5294,7 @@ class Contact {
     this.phoneNumbers,
     this.sipAddresses,
   });
+
   factory Contact.fromJson(Map<String, dynamic> json) {
     return Contact(
       contactArn: json['ContactArn'] as String?,
@@ -5349,6 +5368,7 @@ class ContactData {
     this.phoneNumbers,
     this.sipAddresses,
   });
+
   factory ContactData.fromJson(Map<String, dynamic> json) {
     return ContactData(
       contactArn: json['ContactArn'] as String?,
@@ -5404,6 +5424,7 @@ class Content {
     this.ssmlList,
     this.textList,
   });
+
   factory Content.fromJson(Map<String, dynamic> json) {
     return Content(
       audioList: (json['AudioList'] as List?)
@@ -5440,6 +5461,7 @@ class CreateAddressBookResponse {
   CreateAddressBookResponse({
     this.addressBookArn,
   });
+
   factory CreateAddressBookResponse.fromJson(Map<String, dynamic> json) {
     return CreateAddressBookResponse(
       addressBookArn: json['AddressBookArn'] as String?,
@@ -5461,6 +5483,7 @@ class CreateBusinessReportScheduleResponse {
   CreateBusinessReportScheduleResponse({
     this.scheduleArn,
   });
+
   factory CreateBusinessReportScheduleResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateBusinessReportScheduleResponse(
@@ -5483,6 +5506,7 @@ class CreateConferenceProviderResponse {
   CreateConferenceProviderResponse({
     this.conferenceProviderArn,
   });
+
   factory CreateConferenceProviderResponse.fromJson(Map<String, dynamic> json) {
     return CreateConferenceProviderResponse(
       conferenceProviderArn: json['ConferenceProviderArn'] as String?,
@@ -5505,6 +5529,7 @@ class CreateContactResponse {
   CreateContactResponse({
     this.contactArn,
   });
+
   factory CreateContactResponse.fromJson(Map<String, dynamic> json) {
     return CreateContactResponse(
       contactArn: json['ContactArn'] as String?,
@@ -5537,6 +5562,7 @@ class CreateEndOfMeetingReminder {
     required this.reminderAtMinutes,
     required this.reminderType,
   });
+
   factory CreateEndOfMeetingReminder.fromJson(Map<String, dynamic> json) {
     return CreateEndOfMeetingReminder(
       enabled: json['Enabled'] as bool,
@@ -5568,6 +5594,7 @@ class CreateGatewayGroupResponse {
   CreateGatewayGroupResponse({
     this.gatewayGroupArn,
   });
+
   factory CreateGatewayGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateGatewayGroupResponse(
       gatewayGroupArn: json['GatewayGroupArn'] as String?,
@@ -5597,6 +5624,7 @@ class CreateInstantBooking {
     required this.durationInMinutes,
     required this.enabled,
   });
+
   factory CreateInstantBooking.fromJson(Map<String, dynamic> json) {
     return CreateInstantBooking(
       durationInMinutes: json['DurationInMinutes'] as int,
@@ -5637,6 +5665,7 @@ class CreateMeetingRoomConfiguration {
     this.requireCheckIn,
     this.roomUtilizationMetricsEnabled,
   });
+
   factory CreateMeetingRoomConfiguration.fromJson(Map<String, dynamic> json) {
     return CreateMeetingRoomConfiguration(
       endOfMeetingReminder: json['EndOfMeetingReminder'] != null
@@ -5679,6 +5708,7 @@ class CreateNetworkProfileResponse {
   CreateNetworkProfileResponse({
     this.networkProfileArn,
   });
+
   factory CreateNetworkProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateNetworkProfileResponse(
       networkProfileArn: json['NetworkProfileArn'] as String?,
@@ -5700,6 +5730,7 @@ class CreateProfileResponse {
   CreateProfileResponse({
     this.profileArn,
   });
+
   factory CreateProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateProfileResponse(
       profileArn: json['ProfileArn'] as String?,
@@ -5729,6 +5760,7 @@ class CreateRequireCheckIn {
     required this.enabled,
     required this.releaseAfterMinutes,
   });
+
   factory CreateRequireCheckIn.fromJson(Map<String, dynamic> json) {
     return CreateRequireCheckIn(
       enabled: json['Enabled'] as bool,
@@ -5753,6 +5785,7 @@ class CreateRoomResponse {
   CreateRoomResponse({
     this.roomArn,
   });
+
   factory CreateRoomResponse.fromJson(Map<String, dynamic> json) {
     return CreateRoomResponse(
       roomArn: json['RoomArn'] as String?,
@@ -5774,6 +5807,7 @@ class CreateSkillGroupResponse {
   CreateSkillGroupResponse({
     this.skillGroupArn,
   });
+
   factory CreateSkillGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateSkillGroupResponse(
       skillGroupArn: json['SkillGroupArn'] as String?,
@@ -5795,6 +5829,7 @@ class CreateUserResponse {
   CreateUserResponse({
     this.userArn,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       userArn: json['UserArn'] as String?,
@@ -5811,6 +5846,7 @@ class CreateUserResponse {
 
 class DeleteAddressBookResponse {
   DeleteAddressBookResponse();
+
   factory DeleteAddressBookResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAddressBookResponse();
   }
@@ -5822,6 +5858,7 @@ class DeleteAddressBookResponse {
 
 class DeleteBusinessReportScheduleResponse {
   DeleteBusinessReportScheduleResponse();
+
   factory DeleteBusinessReportScheduleResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteBusinessReportScheduleResponse();
@@ -5834,6 +5871,7 @@ class DeleteBusinessReportScheduleResponse {
 
 class DeleteConferenceProviderResponse {
   DeleteConferenceProviderResponse();
+
   factory DeleteConferenceProviderResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConferenceProviderResponse();
   }
@@ -5845,6 +5883,7 @@ class DeleteConferenceProviderResponse {
 
 class DeleteContactResponse {
   DeleteContactResponse();
+
   factory DeleteContactResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContactResponse();
   }
@@ -5856,6 +5895,7 @@ class DeleteContactResponse {
 
 class DeleteDeviceResponse {
   DeleteDeviceResponse();
+
   factory DeleteDeviceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceResponse();
   }
@@ -5867,6 +5907,7 @@ class DeleteDeviceResponse {
 
 class DeleteDeviceUsageDataResponse {
   DeleteDeviceUsageDataResponse();
+
   factory DeleteDeviceUsageDataResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceUsageDataResponse();
   }
@@ -5878,6 +5919,7 @@ class DeleteDeviceUsageDataResponse {
 
 class DeleteGatewayGroupResponse {
   DeleteGatewayGroupResponse();
+
   factory DeleteGatewayGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGatewayGroupResponse();
   }
@@ -5889,6 +5931,7 @@ class DeleteGatewayGroupResponse {
 
 class DeleteNetworkProfileResponse {
   DeleteNetworkProfileResponse();
+
   factory DeleteNetworkProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteNetworkProfileResponse();
   }
@@ -5900,6 +5943,7 @@ class DeleteNetworkProfileResponse {
 
 class DeleteProfileResponse {
   DeleteProfileResponse();
+
   factory DeleteProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProfileResponse();
   }
@@ -5911,6 +5955,7 @@ class DeleteProfileResponse {
 
 class DeleteRoomResponse {
   DeleteRoomResponse();
+
   factory DeleteRoomResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoomResponse();
   }
@@ -5922,6 +5967,7 @@ class DeleteRoomResponse {
 
 class DeleteRoomSkillParameterResponse {
   DeleteRoomSkillParameterResponse();
+
   factory DeleteRoomSkillParameterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoomSkillParameterResponse();
   }
@@ -5933,6 +5979,7 @@ class DeleteRoomSkillParameterResponse {
 
 class DeleteSkillAuthorizationResponse {
   DeleteSkillAuthorizationResponse();
+
   factory DeleteSkillAuthorizationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSkillAuthorizationResponse();
   }
@@ -5944,6 +5991,7 @@ class DeleteSkillAuthorizationResponse {
 
 class DeleteSkillGroupResponse {
   DeleteSkillGroupResponse();
+
   factory DeleteSkillGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSkillGroupResponse();
   }
@@ -5955,6 +6003,7 @@ class DeleteSkillGroupResponse {
 
 class DeleteUserResponse {
   DeleteUserResponse();
+
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
   }
@@ -5984,6 +6033,7 @@ class DeveloperInfo {
     this.privacyPolicy,
     this.url,
   });
+
   factory DeveloperInfo.fromJson(Map<String, dynamic> json) {
     return DeveloperInfo(
       developerName: json['DeveloperName'] as String?,
@@ -6052,6 +6102,7 @@ class Device {
     this.roomArn,
     this.softwareVersion,
   });
+
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
       deviceArn: json['DeviceArn'] as String?,
@@ -6155,6 +6206,7 @@ class DeviceData {
     this.roomName,
     this.softwareVersion,
   });
+
   factory DeviceData.fromJson(Map<String, dynamic> json) {
     return DeviceData(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -6224,6 +6276,7 @@ class DeviceEvent {
     this.type,
     this.value,
   });
+
   factory DeviceEvent.fromJson(Map<String, dynamic> json) {
     return DeviceEvent(
       timestamp: timeStampFromJson(json['Timestamp']),
@@ -6288,6 +6341,7 @@ class DeviceNetworkProfileInfo {
     this.certificateExpirationTime,
     this.networkProfileArn,
   });
+
   factory DeviceNetworkProfileInfo.fromJson(Map<String, dynamic> json) {
     return DeviceNetworkProfileInfo(
       certificateArn: json['CertificateArn'] as String?,
@@ -6366,6 +6420,7 @@ class DeviceStatusDetail {
     this.code,
     this.feature,
   });
+
   factory DeviceStatusDetail.fromJson(Map<String, dynamic> json) {
     return DeviceStatusDetail(
       code: (json['Code'] as String?)?.toDeviceStatusDetailCode(),
@@ -6502,6 +6557,7 @@ class DeviceStatusInfo {
     this.connectionStatusUpdatedTime,
     this.deviceStatusDetails,
   });
+
   factory DeviceStatusInfo.fromJson(Map<String, dynamic> json) {
     return DeviceStatusInfo(
       connectionStatus:
@@ -6556,6 +6612,7 @@ extension on String {
 
 class DisassociateContactFromAddressBookResponse {
   DisassociateContactFromAddressBookResponse();
+
   factory DisassociateContactFromAddressBookResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateContactFromAddressBookResponse();
@@ -6568,6 +6625,7 @@ class DisassociateContactFromAddressBookResponse {
 
 class DisassociateDeviceFromRoomResponse {
   DisassociateDeviceFromRoomResponse();
+
   factory DisassociateDeviceFromRoomResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDeviceFromRoomResponse();
   }
@@ -6579,6 +6637,7 @@ class DisassociateDeviceFromRoomResponse {
 
 class DisassociateSkillFromSkillGroupResponse {
   DisassociateSkillFromSkillGroupResponse();
+
   factory DisassociateSkillFromSkillGroupResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateSkillFromSkillGroupResponse();
@@ -6591,6 +6650,7 @@ class DisassociateSkillFromSkillGroupResponse {
 
 class DisassociateSkillFromUsersResponse {
   DisassociateSkillFromUsersResponse();
+
   factory DisassociateSkillFromUsersResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateSkillFromUsersResponse();
   }
@@ -6602,6 +6662,7 @@ class DisassociateSkillFromUsersResponse {
 
 class DisassociateSkillGroupFromRoomResponse {
   DisassociateSkillGroupFromRoomResponse();
+
   factory DisassociateSkillGroupFromRoomResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateSkillGroupFromRoomResponse();
@@ -6714,6 +6775,7 @@ class EndOfMeetingReminder {
     this.reminderAtMinutes,
     this.reminderType,
   });
+
   factory EndOfMeetingReminder.fromJson(Map<String, dynamic> json) {
     return EndOfMeetingReminder(
       enabled: json['Enabled'] as bool?,
@@ -6891,6 +6953,7 @@ class Filter {
     required this.key,
     required this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       key: json['Key'] as String,
@@ -6913,6 +6976,7 @@ class Filter {
 
 class ForgetSmartHomeAppliancesResponse {
   ForgetSmartHomeAppliancesResponse();
+
   factory ForgetSmartHomeAppliancesResponse.fromJson(Map<String, dynamic> _) {
     return ForgetSmartHomeAppliancesResponse();
   }
@@ -6947,6 +7011,7 @@ class Gateway {
     this.name,
     this.softwareVersion,
   });
+
   factory Gateway.fromJson(Map<String, dynamic> json) {
     return Gateway(
       arn: json['Arn'] as String?,
@@ -6989,6 +7054,7 @@ class GatewayGroup {
     this.description,
     this.name,
   });
+
   factory GatewayGroup.fromJson(Map<String, dynamic> json) {
     return GatewayGroup(
       arn: json['Arn'] as String?,
@@ -7025,6 +7091,7 @@ class GatewayGroupSummary {
     this.description,
     this.name,
   });
+
   factory GatewayGroupSummary.fromJson(Map<String, dynamic> json) {
     return GatewayGroupSummary(
       arn: json['Arn'] as String?,
@@ -7070,6 +7137,7 @@ class GatewaySummary {
     this.name,
     this.softwareVersion,
   });
+
   factory GatewaySummary.fromJson(Map<String, dynamic> json) {
     return GatewaySummary(
       arn: json['Arn'] as String?,
@@ -7103,6 +7171,7 @@ class GetAddressBookResponse {
   GetAddressBookResponse({
     this.addressBook,
   });
+
   factory GetAddressBookResponse.fromJson(Map<String, dynamic> json) {
     return GetAddressBookResponse(
       addressBook: json['AddressBook'] != null
@@ -7126,6 +7195,7 @@ class GetConferencePreferenceResponse {
   GetConferencePreferenceResponse({
     this.preference,
   });
+
   factory GetConferencePreferenceResponse.fromJson(Map<String, dynamic> json) {
     return GetConferencePreferenceResponse(
       preference: json['Preference'] != null
@@ -7150,6 +7220,7 @@ class GetConferenceProviderResponse {
   GetConferenceProviderResponse({
     this.conferenceProvider,
   });
+
   factory GetConferenceProviderResponse.fromJson(Map<String, dynamic> json) {
     return GetConferenceProviderResponse(
       conferenceProvider: json['ConferenceProvider'] != null
@@ -7174,6 +7245,7 @@ class GetContactResponse {
   GetContactResponse({
     this.contact,
   });
+
   factory GetContactResponse.fromJson(Map<String, dynamic> json) {
     return GetContactResponse(
       contact: json['Contact'] != null
@@ -7197,6 +7269,7 @@ class GetDeviceResponse {
   GetDeviceResponse({
     this.device,
   });
+
   factory GetDeviceResponse.fromJson(Map<String, dynamic> json) {
     return GetDeviceResponse(
       device: json['Device'] != null
@@ -7219,6 +7292,7 @@ class GetGatewayGroupResponse {
   GetGatewayGroupResponse({
     this.gatewayGroup,
   });
+
   factory GetGatewayGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetGatewayGroupResponse(
       gatewayGroup: json['GatewayGroup'] != null
@@ -7242,6 +7316,7 @@ class GetGatewayResponse {
   GetGatewayResponse({
     this.gateway,
   });
+
   factory GetGatewayResponse.fromJson(Map<String, dynamic> json) {
     return GetGatewayResponse(
       gateway: json['Gateway'] != null
@@ -7275,6 +7350,7 @@ class GetInvitationConfigurationResponse {
     this.organizationName,
     this.privateSkillIds,
   });
+
   factory GetInvitationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetInvitationConfigurationResponse(
@@ -7306,6 +7382,7 @@ class GetNetworkProfileResponse {
   GetNetworkProfileResponse({
     this.networkProfile,
   });
+
   factory GetNetworkProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetNetworkProfileResponse(
       networkProfile: json['NetworkProfile'] != null
@@ -7330,6 +7407,7 @@ class GetProfileResponse {
   GetProfileResponse({
     this.profile,
   });
+
   factory GetProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetProfileResponse(
       profile: json['Profile'] != null
@@ -7353,6 +7431,7 @@ class GetRoomResponse {
   GetRoomResponse({
     this.room,
   });
+
   factory GetRoomResponse.fromJson(Map<String, dynamic> json) {
     return GetRoomResponse(
       room: json['Room'] != null
@@ -7376,6 +7455,7 @@ class GetRoomSkillParameterResponse {
   GetRoomSkillParameterResponse({
     this.roomSkillParameter,
   });
+
   factory GetRoomSkillParameterResponse.fromJson(Map<String, dynamic> json) {
     return GetRoomSkillParameterResponse(
       roomSkillParameter: json['RoomSkillParameter'] != null
@@ -7400,6 +7480,7 @@ class GetSkillGroupResponse {
   GetSkillGroupResponse({
     this.skillGroup,
   });
+
   factory GetSkillGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetSkillGroupResponse(
       skillGroup: json['SkillGroup'] != null
@@ -7428,6 +7509,7 @@ class IPDialIn {
     required this.commsProtocol,
     required this.endpoint,
   });
+
   factory IPDialIn.fromJson(Map<String, dynamic> json) {
     return IPDialIn(
       commsProtocol: (json['CommsProtocol'] as String).toCommsProtocol(),
@@ -7460,6 +7542,7 @@ class InstantBooking {
     this.durationInMinutes,
     this.enabled,
   });
+
   factory InstantBooking.fromJson(Map<String, dynamic> json) {
     return InstantBooking(
       durationInMinutes: json['DurationInMinutes'] as int?,
@@ -7488,6 +7571,7 @@ class ListBusinessReportSchedulesResponse {
     this.businessReportSchedules,
     this.nextToken,
   });
+
   factory ListBusinessReportSchedulesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListBusinessReportSchedulesResponse(
@@ -7522,6 +7606,7 @@ class ListConferenceProvidersResponse {
     this.conferenceProviders,
     this.nextToken,
   });
+
   factory ListConferenceProvidersResponse.fromJson(Map<String, dynamic> json) {
     return ListConferenceProvidersResponse(
       conferenceProviders: (json['ConferenceProviders'] as List?)
@@ -7554,6 +7639,7 @@ class ListDeviceEventsResponse {
     this.deviceEvents,
     this.nextToken,
   });
+
   factory ListDeviceEventsResponse.fromJson(Map<String, dynamic> json) {
     return ListDeviceEventsResponse(
       deviceEvents: (json['DeviceEvents'] as List?)
@@ -7585,6 +7671,7 @@ class ListGatewayGroupsResponse {
     this.gatewayGroups,
     this.nextToken,
   });
+
   factory ListGatewayGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGatewayGroupsResponse(
       gatewayGroups: (json['GatewayGroups'] as List?)
@@ -7616,6 +7703,7 @@ class ListGatewaysResponse {
     this.gateways,
     this.nextToken,
   });
+
   factory ListGatewaysResponse.fromJson(Map<String, dynamic> json) {
     return ListGatewaysResponse(
       gateways: (json['Gateways'] as List?)
@@ -7647,6 +7735,7 @@ class ListSkillsResponse {
     this.nextToken,
     this.skillSummaries,
   });
+
   factory ListSkillsResponse.fromJson(Map<String, dynamic> json) {
     return ListSkillsResponse(
       nextToken: json['NextToken'] as String?,
@@ -7678,6 +7767,7 @@ class ListSkillsStoreCategoriesResponse {
     this.categoryList,
     this.nextToken,
   });
+
   factory ListSkillsStoreCategoriesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListSkillsStoreCategoriesResponse(
@@ -7710,6 +7800,7 @@ class ListSkillsStoreSkillsByCategoryResponse {
     this.nextToken,
     this.skillsStoreSkills,
   });
+
   factory ListSkillsStoreSkillsByCategoryResponse.fromJson(
       Map<String, dynamic> json) {
     return ListSkillsStoreSkillsByCategoryResponse(
@@ -7742,6 +7833,7 @@ class ListSmartHomeAppliancesResponse {
     this.nextToken,
     this.smartHomeAppliances,
   });
+
   factory ListSmartHomeAppliancesResponse.fromJson(Map<String, dynamic> json) {
     return ListSmartHomeAppliancesResponse(
       nextToken: json['NextToken'] as String?,
@@ -7774,6 +7866,7 @@ class ListTagsResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       nextToken: json['NextToken'] as String?,
@@ -7843,6 +7936,7 @@ class MeetingRoomConfiguration {
     this.requireCheckIn,
     this.roomUtilizationMetricsEnabled,
   });
+
   factory MeetingRoomConfiguration.fromJson(Map<String, dynamic> json) {
     return MeetingRoomConfiguration(
       endOfMeetingReminder: json['EndOfMeetingReminder'] != null
@@ -7900,6 +7994,7 @@ class MeetingSetting {
   MeetingSetting({
     required this.requirePin,
   });
+
   factory MeetingSetting.fromJson(Map<String, dynamic> json) {
     return MeetingSetting(
       requirePin: (json['RequirePin'] as String).toRequirePin(),
@@ -7989,6 +8084,7 @@ class NetworkProfile {
     this.ssid,
     this.trustAnchors,
   });
+
   factory NetworkProfile.fromJson(Map<String, dynamic> json) {
     return NetworkProfile(
       certificateAuthorityArn: json['CertificateAuthorityArn'] as String?,
@@ -8070,6 +8166,7 @@ class NetworkProfileData {
     this.securityType,
     this.ssid,
   });
+
   factory NetworkProfileData.fromJson(Map<String, dynamic> json) {
     return NetworkProfileData(
       certificateAuthorityArn: json['CertificateAuthorityArn'] as String?,
@@ -8170,6 +8267,7 @@ class PSTNDialIn {
     required this.oneClickPinDelay,
     required this.phoneNumber,
   });
+
   factory PSTNDialIn.fromJson(Map<String, dynamic> json) {
     return PSTNDialIn(
       countryCode: json['CountryCode'] as String,
@@ -8206,6 +8304,7 @@ class PhoneNumber {
     required this.number,
     required this.type,
   });
+
   factory PhoneNumber.fromJson(Map<String, dynamic> json) {
     return PhoneNumber(
       number: json['Number'] as String,
@@ -8321,6 +8420,7 @@ class Profile {
     this.timezone,
     this.wakeWord,
   });
+
   factory Profile.fromJson(Map<String, dynamic> json) {
     return Profile(
       address: json['Address'] as String?,
@@ -8423,6 +8523,7 @@ class ProfileData {
     this.timezone,
     this.wakeWord,
   });
+
   factory ProfileData.fromJson(Map<String, dynamic> json) {
     return ProfileData(
       address: json['Address'] as String?,
@@ -8464,6 +8565,7 @@ class ProfileData {
 
 class PutConferencePreferenceResponse {
   PutConferencePreferenceResponse();
+
   factory PutConferencePreferenceResponse.fromJson(Map<String, dynamic> _) {
     return PutConferencePreferenceResponse();
   }
@@ -8475,6 +8577,7 @@ class PutConferencePreferenceResponse {
 
 class PutInvitationConfigurationResponse {
   PutInvitationConfigurationResponse();
+
   factory PutInvitationConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return PutInvitationConfigurationResponse();
   }
@@ -8486,6 +8589,7 @@ class PutInvitationConfigurationResponse {
 
 class PutRoomSkillParameterResponse {
   PutRoomSkillParameterResponse();
+
   factory PutRoomSkillParameterResponse.fromJson(Map<String, dynamic> _) {
     return PutRoomSkillParameterResponse();
   }
@@ -8497,6 +8601,7 @@ class PutRoomSkillParameterResponse {
 
 class PutSkillAuthorizationResponse {
   PutSkillAuthorizationResponse();
+
   factory PutSkillAuthorizationResponse.fromJson(Map<String, dynamic> _) {
     return PutSkillAuthorizationResponse();
   }
@@ -8513,6 +8618,7 @@ class RegisterAVSDeviceResponse {
   RegisterAVSDeviceResponse({
     this.deviceArn,
   });
+
   factory RegisterAVSDeviceResponse.fromJson(Map<String, dynamic> json) {
     return RegisterAVSDeviceResponse(
       deviceArn: json['DeviceArn'] as String?,
@@ -8529,6 +8635,7 @@ class RegisterAVSDeviceResponse {
 
 class RejectSkillResponse {
   RejectSkillResponse();
+
   factory RejectSkillResponse.fromJson(Map<String, dynamic> _) {
     return RejectSkillResponse();
   }
@@ -8553,6 +8660,7 @@ class RequireCheckIn {
     this.enabled,
     this.releaseAfterMinutes,
   });
+
   factory RequireCheckIn.fromJson(Map<String, dynamic> json) {
     return RequireCheckIn(
       enabled: json['Enabled'] as bool?,
@@ -8619,6 +8727,7 @@ class ResolveRoomResponse {
     this.roomName,
     this.roomSkillParameters,
   });
+
   factory ResolveRoomResponse.fromJson(Map<String, dynamic> json) {
     return ResolveRoomResponse(
       roomArn: json['RoomArn'] as String?,
@@ -8645,6 +8754,7 @@ class ResolveRoomResponse {
 
 class RevokeInvitationResponse {
   RevokeInvitationResponse();
+
   factory RevokeInvitationResponse.fromJson(Map<String, dynamic> _) {
     return RevokeInvitationResponse();
   }
@@ -8678,6 +8788,7 @@ class Room {
     this.roomArn,
     this.roomName,
   });
+
   factory Room.fromJson(Map<String, dynamic> json) {
     return Room(
       description: json['Description'] as String?,
@@ -8732,6 +8843,7 @@ class RoomData {
     this.roomArn,
     this.roomName,
   });
+
   factory RoomData.fromJson(Map<String, dynamic> json) {
     return RoomData(
       description: json['Description'] as String?,
@@ -8774,6 +8886,7 @@ class RoomSkillParameter {
     required this.parameterKey,
     required this.parameterValue,
   });
+
   factory RoomSkillParameter.fromJson(Map<String, dynamic> json) {
     return RoomSkillParameter(
       parameterKey: json['ParameterKey'] as String,
@@ -8807,6 +8920,7 @@ class SearchAddressBooksResponse {
     this.nextToken,
     this.totalCount,
   });
+
   factory SearchAddressBooksResponse.fromJson(Map<String, dynamic> json) {
     return SearchAddressBooksResponse(
       addressBooks: (json['AddressBooks'] as List?)
@@ -8845,6 +8959,7 @@ class SearchContactsResponse {
     this.nextToken,
     this.totalCount,
   });
+
   factory SearchContactsResponse.fromJson(Map<String, dynamic> json) {
     return SearchContactsResponse(
       contacts: (json['Contacts'] as List?)
@@ -8883,6 +8998,7 @@ class SearchDevicesResponse {
     this.nextToken,
     this.totalCount,
   });
+
   factory SearchDevicesResponse.fromJson(Map<String, dynamic> json) {
     return SearchDevicesResponse(
       devices: (json['Devices'] as List?)
@@ -8925,6 +9041,7 @@ class SearchNetworkProfilesResponse {
     this.nextToken,
     this.totalCount,
   });
+
   factory SearchNetworkProfilesResponse.fromJson(Map<String, dynamic> json) {
     return SearchNetworkProfilesResponse(
       networkProfiles: (json['NetworkProfiles'] as List?)
@@ -8963,6 +9080,7 @@ class SearchProfilesResponse {
     this.profiles,
     this.totalCount,
   });
+
   factory SearchProfilesResponse.fromJson(Map<String, dynamic> json) {
     return SearchProfilesResponse(
       nextToken: json['NextToken'] as String?,
@@ -9001,6 +9119,7 @@ class SearchRoomsResponse {
     this.rooms,
     this.totalCount,
   });
+
   factory SearchRoomsResponse.fromJson(Map<String, dynamic> json) {
     return SearchRoomsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9039,6 +9158,7 @@ class SearchSkillGroupsResponse {
     this.skillGroups,
     this.totalCount,
   });
+
   factory SearchSkillGroupsResponse.fromJson(Map<String, dynamic> json) {
     return SearchSkillGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -9077,6 +9197,7 @@ class SearchUsersResponse {
     this.totalCount,
     this.users,
   });
+
   factory SearchUsersResponse.fromJson(Map<String, dynamic> json) {
     return SearchUsersResponse(
       nextToken: json['NextToken'] as String?,
@@ -9107,6 +9228,7 @@ class SendAnnouncementResponse {
   SendAnnouncementResponse({
     this.announcementArn,
   });
+
   factory SendAnnouncementResponse.fromJson(Map<String, dynamic> json) {
     return SendAnnouncementResponse(
       announcementArn: json['AnnouncementArn'] as String?,
@@ -9123,6 +9245,7 @@ class SendAnnouncementResponse {
 
 class SendInvitationResponse {
   SendInvitationResponse();
+
   factory SendInvitationResponse.fromJson(Map<String, dynamic> _) {
     return SendInvitationResponse();
   }
@@ -9144,6 +9267,7 @@ class SipAddress {
     required this.type,
     required this.uri,
   });
+
   factory SipAddress.fromJson(Map<String, dynamic> json) {
     return SipAddress(
       type: (json['Type'] as String).toSipType(),
@@ -9231,6 +9355,7 @@ class SkillDetails {
     this.reviews,
     this.skillTypes,
   });
+
   factory SkillDetails.fromJson(Map<String, dynamic> json) {
     return SkillDetails(
       bulletPoints: (json['BulletPoints'] as List?)
@@ -9307,6 +9432,7 @@ class SkillGroup {
     this.skillGroupArn,
     this.skillGroupName,
   });
+
   factory SkillGroup.fromJson(Map<String, dynamic> json) {
     return SkillGroup(
       description: json['Description'] as String?,
@@ -9343,6 +9469,7 @@ class SkillGroupData {
     this.skillGroupArn,
     this.skillGroupName,
   });
+
   factory SkillGroupData.fromJson(Map<String, dynamic> json) {
     return SkillGroupData(
       description: json['Description'] as String?,
@@ -9388,6 +9515,7 @@ class SkillSummary {
     this.skillType,
     this.supportsLinking,
   });
+
   factory SkillSummary.fromJson(Map<String, dynamic> json) {
     return SkillSummary(
       enablementType: (json['EnablementType'] as String?)?.toEnablementType(),
@@ -9507,6 +9635,7 @@ class SkillsStoreSkill {
     this.skillName,
     this.supportsLinking,
   });
+
   factory SkillsStoreSkill.fromJson(Map<String, dynamic> json) {
     return SkillsStoreSkill(
       iconUrl: json['IconUrl'] as String?,
@@ -9561,6 +9690,7 @@ class SmartHomeAppliance {
     this.friendlyName,
     this.manufacturerName,
   });
+
   factory SmartHomeAppliance.fromJson(Map<String, dynamic> json) {
     return SmartHomeAppliance(
       description: json['Description'] as String?,
@@ -9593,6 +9723,7 @@ class Sort {
     required this.key,
     required this.value,
   });
+
   factory Sort.fromJson(Map<String, dynamic> json) {
     return Sort(
       key: json['Key'] as String,
@@ -9653,6 +9784,7 @@ class Ssml {
     required this.locale,
     required this.value,
   });
+
   factory Ssml.fromJson(Map<String, dynamic> json) {
     return Ssml(
       locale: (json['Locale'] as String).toLocale(),
@@ -9672,6 +9804,7 @@ class Ssml {
 
 class StartDeviceSyncResponse {
   StartDeviceSyncResponse();
+
   factory StartDeviceSyncResponse.fromJson(Map<String, dynamic> _) {
     return StartDeviceSyncResponse();
   }
@@ -9683,6 +9816,7 @@ class StartDeviceSyncResponse {
 
 class StartSmartHomeApplianceDiscoveryResponse {
   StartSmartHomeApplianceDiscoveryResponse();
+
   factory StartSmartHomeApplianceDiscoveryResponse.fromJson(
       Map<String, dynamic> _) {
     return StartSmartHomeApplianceDiscoveryResponse();
@@ -9705,6 +9839,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -9724,6 +9859,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -9773,6 +9909,7 @@ class Text {
     required this.locale,
     required this.value,
   });
+
   factory Text.fromJson(Map<String, dynamic> json) {
     return Text(
       locale: (json['Locale'] as String).toLocale(),
@@ -9792,6 +9929,7 @@ class Text {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -9803,6 +9941,7 @@ class UntagResourceResponse {
 
 class UpdateAddressBookResponse {
   UpdateAddressBookResponse();
+
   factory UpdateAddressBookResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAddressBookResponse();
   }
@@ -9814,6 +9953,7 @@ class UpdateAddressBookResponse {
 
 class UpdateBusinessReportScheduleResponse {
   UpdateBusinessReportScheduleResponse();
+
   factory UpdateBusinessReportScheduleResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateBusinessReportScheduleResponse();
@@ -9826,6 +9966,7 @@ class UpdateBusinessReportScheduleResponse {
 
 class UpdateConferenceProviderResponse {
   UpdateConferenceProviderResponse();
+
   factory UpdateConferenceProviderResponse.fromJson(Map<String, dynamic> _) {
     return UpdateConferenceProviderResponse();
   }
@@ -9837,6 +9978,7 @@ class UpdateConferenceProviderResponse {
 
 class UpdateContactResponse {
   UpdateContactResponse();
+
   factory UpdateContactResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactResponse();
   }
@@ -9848,6 +9990,7 @@ class UpdateContactResponse {
 
 class UpdateDeviceResponse {
   UpdateDeviceResponse();
+
   factory UpdateDeviceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceResponse();
   }
@@ -9877,6 +10020,7 @@ class UpdateEndOfMeetingReminder {
     this.reminderAtMinutes,
     this.reminderType,
   });
+
   factory UpdateEndOfMeetingReminder.fromJson(Map<String, dynamic> json) {
     return UpdateEndOfMeetingReminder(
       enabled: json['Enabled'] as bool?,
@@ -9903,6 +10047,7 @@ class UpdateEndOfMeetingReminder {
 
 class UpdateGatewayGroupResponse {
   UpdateGatewayGroupResponse();
+
   factory UpdateGatewayGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateGatewayGroupResponse();
   }
@@ -9914,6 +10059,7 @@ class UpdateGatewayGroupResponse {
 
 class UpdateGatewayResponse {
   UpdateGatewayResponse();
+
   factory UpdateGatewayResponse.fromJson(Map<String, dynamic> _) {
     return UpdateGatewayResponse();
   }
@@ -9938,6 +10084,7 @@ class UpdateInstantBooking {
     this.durationInMinutes,
     this.enabled,
   });
+
   factory UpdateInstantBooking.fromJson(Map<String, dynamic> json) {
     return UpdateInstantBooking(
       durationInMinutes: json['DurationInMinutes'] as int?,
@@ -9981,6 +10128,7 @@ class UpdateMeetingRoomConfiguration {
     this.requireCheckIn,
     this.roomUtilizationMetricsEnabled,
   });
+
   factory UpdateMeetingRoomConfiguration.fromJson(Map<String, dynamic> json) {
     return UpdateMeetingRoomConfiguration(
       endOfMeetingReminder: json['EndOfMeetingReminder'] != null
@@ -10018,6 +10166,7 @@ class UpdateMeetingRoomConfiguration {
 
 class UpdateNetworkProfileResponse {
   UpdateNetworkProfileResponse();
+
   factory UpdateNetworkProfileResponse.fromJson(Map<String, dynamic> _) {
     return UpdateNetworkProfileResponse();
   }
@@ -10029,6 +10178,7 @@ class UpdateNetworkProfileResponse {
 
 class UpdateProfileResponse {
   UpdateProfileResponse();
+
   factory UpdateProfileResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProfileResponse();
   }
@@ -10053,6 +10203,7 @@ class UpdateRequireCheckIn {
     this.enabled,
     this.releaseAfterMinutes,
   });
+
   factory UpdateRequireCheckIn.fromJson(Map<String, dynamic> json) {
     return UpdateRequireCheckIn(
       enabled: json['Enabled'] as bool?,
@@ -10073,6 +10224,7 @@ class UpdateRequireCheckIn {
 
 class UpdateRoomResponse {
   UpdateRoomResponse();
+
   factory UpdateRoomResponse.fromJson(Map<String, dynamic> _) {
     return UpdateRoomResponse();
   }
@@ -10084,6 +10236,7 @@ class UpdateRoomResponse {
 
 class UpdateSkillGroupResponse {
   UpdateSkillGroupResponse();
+
   factory UpdateSkillGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSkillGroupResponse();
   }
@@ -10121,6 +10274,7 @@ class UserData {
     this.lastName,
     this.userArn,
   });
+
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
       email: json['Email'] as String?,

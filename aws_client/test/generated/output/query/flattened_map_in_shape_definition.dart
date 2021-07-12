@@ -62,6 +62,7 @@ class OutputShape {
   OutputShape({
     this.map,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       map: (json['Attribute'] as Map<String, dynamic>?)

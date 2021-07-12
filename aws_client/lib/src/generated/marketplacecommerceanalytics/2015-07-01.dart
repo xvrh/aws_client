@@ -522,6 +522,7 @@ class GenerateDataSetResult {
   GenerateDataSetResult({
     this.dataSetRequestId,
   });
+
   factory GenerateDataSetResult.fromJson(Map<String, dynamic> json) {
     return GenerateDataSetResult(
       dataSetRequestId: json['dataSetRequestId'] as String?,
@@ -546,6 +547,7 @@ class StartSupportDataExportResult {
   StartSupportDataExportResult({
     this.dataSetRequestId,
   });
+
   factory StartSupportDataExportResult.fromJson(Map<String, dynamic> json) {
     return StartSupportDataExportResult(
       dataSetRequestId: json['dataSetRequestId'] as String?,

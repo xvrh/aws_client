@@ -5047,6 +5047,7 @@ class AgentVersion {
     this.configurationManager,
     this.version,
   });
+
   factory AgentVersion.fromJson(Map<String, dynamic> json) {
     return AgentVersion(
       configurationManager: json['ConfigurationManager'] != null
@@ -5142,6 +5143,7 @@ class App {
     this.stackId,
     this.type,
   });
+
   factory App.fromJson(Map<String, dynamic> json) {
     return App(
       appId: json['AppId'] as String?,
@@ -5387,6 +5389,7 @@ class AutoScalingThresholds {
     this.memoryThreshold,
     this.thresholdsWaitTime,
   });
+
   factory AutoScalingThresholds.fromJson(Map<String, dynamic> json) {
     return AutoScalingThresholds(
       alarms: (json['Alarms'] as List?)
@@ -5478,6 +5481,7 @@ class BlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
   factory BlockDeviceMapping.fromJson(Map<String, dynamic> json) {
     return BlockDeviceMapping(
       deviceName: json['DeviceName'] as String?,
@@ -5515,6 +5519,7 @@ class ChefConfiguration {
     this.berkshelfVersion,
     this.manageBerkshelf,
   });
+
   factory ChefConfiguration.fromJson(Map<String, dynamic> json) {
     return ChefConfiguration(
       berkshelfVersion: json['BerkshelfVersion'] as String?,
@@ -5540,6 +5545,7 @@ class CloneStackResult {
   CloneStackResult({
     this.stackId,
   });
+
   factory CloneStackResult.fromJson(Map<String, dynamic> json) {
     return CloneStackResult(
       stackId: json['StackId'] as String?,
@@ -5566,6 +5572,7 @@ class CloudWatchLogsConfiguration {
     this.enabled,
     this.logStreams,
   });
+
   factory CloudWatchLogsConfiguration.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsConfiguration(
       enabled: json['Enabled'] as bool?,
@@ -6182,6 +6189,7 @@ class CloudWatchLogsLogStream {
     this.multiLineStartPattern,
     this.timeZone,
   });
+
   factory CloudWatchLogsLogStream.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsLogStream(
       batchCount: json['BatchCount'] as int?,
@@ -6357,6 +6365,7 @@ class Command {
     this.status,
     this.type,
   });
+
   factory Command.fromJson(Map<String, dynamic> json) {
     return Command(
       acknowledgedAt: json['AcknowledgedAt'] as String?,
@@ -6406,6 +6415,7 @@ class CreateAppResult {
   CreateAppResult({
     this.appId,
   });
+
   factory CreateAppResult.fromJson(Map<String, dynamic> json) {
     return CreateAppResult(
       appId: json['AppId'] as String?,
@@ -6429,6 +6439,7 @@ class CreateDeploymentResult {
   CreateDeploymentResult({
     this.deploymentId,
   });
+
   factory CreateDeploymentResult.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentResult(
       deploymentId: json['DeploymentId'] as String?,
@@ -6451,6 +6462,7 @@ class CreateInstanceResult {
   CreateInstanceResult({
     this.instanceId,
   });
+
   factory CreateInstanceResult.fromJson(Map<String, dynamic> json) {
     return CreateInstanceResult(
       instanceId: json['InstanceId'] as String?,
@@ -6473,6 +6485,7 @@ class CreateLayerResult {
   CreateLayerResult({
     this.layerId,
   });
+
   factory CreateLayerResult.fromJson(Map<String, dynamic> json) {
     return CreateLayerResult(
       layerId: json['LayerId'] as String?,
@@ -6496,6 +6509,7 @@ class CreateStackResult {
   CreateStackResult({
     this.stackId,
   });
+
   factory CreateStackResult.fromJson(Map<String, dynamic> json) {
     return CreateStackResult(
       stackId: json['StackId'] as String?,
@@ -6518,6 +6532,7 @@ class CreateUserProfileResult {
   CreateUserProfileResult({
     this.iamUserArn,
   });
+
   factory CreateUserProfileResult.fromJson(Map<String, dynamic> json) {
     return CreateUserProfileResult(
       iamUserArn: json['IamUserArn'] as String?,
@@ -6550,6 +6565,7 @@ class DataSource {
     this.databaseName,
     this.type,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       arn: json['Arn'] as String?,
@@ -6642,6 +6658,7 @@ class Deployment {
     this.stackId,
     this.status,
   });
+
   factory Deployment.fromJson(Map<String, dynamic> json) {
     return Deployment(
       appId: json['AppId'] as String?,
@@ -6785,6 +6802,7 @@ class DeploymentCommand {
     required this.name,
     this.args,
   });
+
   factory DeploymentCommand.fromJson(Map<String, dynamic> json) {
     return DeploymentCommand(
       name: (json['Name'] as String).toDeploymentCommandName(),
@@ -6891,6 +6909,7 @@ class DescribeAgentVersionsResult {
   DescribeAgentVersionsResult({
     this.agentVersions,
   });
+
   factory DescribeAgentVersionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeAgentVersionsResult(
       agentVersions: (json['AgentVersions'] as List?)
@@ -6916,6 +6935,7 @@ class DescribeAppsResult {
   DescribeAppsResult({
     this.apps,
   });
+
   factory DescribeAppsResult.fromJson(Map<String, dynamic> json) {
     return DescribeAppsResult(
       apps: (json['Apps'] as List?)
@@ -6942,6 +6962,7 @@ class DescribeCommandsResult {
   DescribeCommandsResult({
     this.commands,
   });
+
   factory DescribeCommandsResult.fromJson(Map<String, dynamic> json) {
     return DescribeCommandsResult(
       commands: (json['Commands'] as List?)
@@ -6967,6 +6988,7 @@ class DescribeDeploymentsResult {
   DescribeDeploymentsResult({
     this.deployments,
   });
+
   factory DescribeDeploymentsResult.fromJson(Map<String, dynamic> json) {
     return DescribeDeploymentsResult(
       deployments: (json['Deployments'] as List?)
@@ -7001,6 +7023,7 @@ class DescribeEcsClustersResult {
     this.ecsClusters,
     this.nextToken,
   });
+
   factory DescribeEcsClustersResult.fromJson(Map<String, dynamic> json) {
     return DescribeEcsClustersResult(
       ecsClusters: (json['EcsClusters'] as List?)
@@ -7030,6 +7053,7 @@ class DescribeElasticIpsResult {
   DescribeElasticIpsResult({
     this.elasticIps,
   });
+
   factory DescribeElasticIpsResult.fromJson(Map<String, dynamic> json) {
     return DescribeElasticIpsResult(
       elasticIps: (json['ElasticIps'] as List?)
@@ -7057,6 +7081,7 @@ class DescribeElasticLoadBalancersResult {
   DescribeElasticLoadBalancersResult({
     this.elasticLoadBalancers,
   });
+
   factory DescribeElasticLoadBalancersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeElasticLoadBalancersResult(
@@ -7084,6 +7109,7 @@ class DescribeInstancesResult {
   DescribeInstancesResult({
     this.instances,
   });
+
   factory DescribeInstancesResult.fromJson(Map<String, dynamic> json) {
     return DescribeInstancesResult(
       instances: (json['Instances'] as List?)
@@ -7109,6 +7135,7 @@ class DescribeLayersResult {
   DescribeLayersResult({
     this.layers,
   });
+
   factory DescribeLayersResult.fromJson(Map<String, dynamic> json) {
     return DescribeLayersResult(
       layers: (json['Layers'] as List?)
@@ -7137,6 +7164,7 @@ class DescribeLoadBasedAutoScalingResult {
   DescribeLoadBasedAutoScalingResult({
     this.loadBasedAutoScalingConfigurations,
   });
+
   factory DescribeLoadBasedAutoScalingResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBasedAutoScalingResult(
@@ -7168,6 +7196,7 @@ class DescribeMyUserProfileResult {
   DescribeMyUserProfileResult({
     this.userProfile,
   });
+
   factory DescribeMyUserProfileResult.fromJson(Map<String, dynamic> json) {
     return DescribeMyUserProfileResult(
       userProfile: json['UserProfile'] != null
@@ -7194,6 +7223,7 @@ class DescribeOperatingSystemsResponse {
   DescribeOperatingSystemsResponse({
     this.operatingSystems,
   });
+
   factory DescribeOperatingSystemsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOperatingSystemsResponse(
       operatingSystems: (json['OperatingSystems'] as List?)
@@ -7238,6 +7268,7 @@ class DescribePermissionsResult {
   DescribePermissionsResult({
     this.permissions,
   });
+
   factory DescribePermissionsResult.fromJson(Map<String, dynamic> json) {
     return DescribePermissionsResult(
       permissions: (json['Permissions'] as List?)
@@ -7263,6 +7294,7 @@ class DescribeRaidArraysResult {
   DescribeRaidArraysResult({
     this.raidArrays,
   });
+
   factory DescribeRaidArraysResult.fromJson(Map<String, dynamic> json) {
     return DescribeRaidArraysResult(
       raidArrays: (json['RaidArrays'] as List?)
@@ -7289,6 +7321,7 @@ class DescribeRdsDbInstancesResult {
   DescribeRdsDbInstancesResult({
     this.rdsDbInstances,
   });
+
   factory DescribeRdsDbInstancesResult.fromJson(Map<String, dynamic> json) {
     return DescribeRdsDbInstancesResult(
       rdsDbInstances: (json['RdsDbInstances'] as List?)
@@ -7315,6 +7348,7 @@ class DescribeServiceErrorsResult {
   DescribeServiceErrorsResult({
     this.serviceErrors,
   });
+
   factory DescribeServiceErrorsResult.fromJson(Map<String, dynamic> json) {
     return DescribeServiceErrorsResult(
       serviceErrors: (json['ServiceErrors'] as List?)
@@ -7345,6 +7379,7 @@ class DescribeStackProvisioningParametersResult {
     this.agentInstallerUrl,
     this.parameters,
   });
+
   factory DescribeStackProvisioningParametersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeStackProvisioningParametersResult(
@@ -7372,6 +7407,7 @@ class DescribeStackSummaryResult {
   DescribeStackSummaryResult({
     this.stackSummary,
   });
+
   factory DescribeStackSummaryResult.fromJson(Map<String, dynamic> json) {
     return DescribeStackSummaryResult(
       stackSummary: json['StackSummary'] != null
@@ -7396,6 +7432,7 @@ class DescribeStacksResult {
   DescribeStacksResult({
     this.stacks,
   });
+
   factory DescribeStacksResult.fromJson(Map<String, dynamic> json) {
     return DescribeStacksResult(
       stacks: (json['Stacks'] as List?)
@@ -7424,6 +7461,7 @@ class DescribeTimeBasedAutoScalingResult {
   DescribeTimeBasedAutoScalingResult({
     this.timeBasedAutoScalingConfigurations,
   });
+
   factory DescribeTimeBasedAutoScalingResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeTimeBasedAutoScalingResult(
@@ -7455,6 +7493,7 @@ class DescribeUserProfilesResult {
   DescribeUserProfilesResult({
     this.userProfiles,
   });
+
   factory DescribeUserProfilesResult.fromJson(Map<String, dynamic> json) {
     return DescribeUserProfilesResult(
       userProfiles: (json['UserProfiles'] as List?)
@@ -7480,6 +7519,7 @@ class DescribeVolumesResult {
   DescribeVolumesResult({
     this.volumes,
   });
+
   factory DescribeVolumesResult.fromJson(Map<String, dynamic> json) {
     return DescribeVolumesResult(
       volumes: (json['Volumes'] as List?)
@@ -7536,6 +7576,7 @@ class EbsBlockDevice {
     this.volumeSize,
     this.volumeType,
   });
+
   factory EbsBlockDevice.fromJson(Map<String, dynamic> json) {
     return EbsBlockDevice(
       deleteOnTermination: json['DeleteOnTermination'] as bool?,
@@ -7583,6 +7624,7 @@ class EcsCluster {
     this.registeredAt,
     this.stackId,
   });
+
   factory EcsCluster.fromJson(Map<String, dynamic> json) {
     return EcsCluster(
       ecsClusterArn: json['EcsClusterArn'] as String?,
@@ -7632,6 +7674,7 @@ class ElasticIp {
     this.name,
     this.region,
   });
+
   factory ElasticIp.fromJson(Map<String, dynamic> json) {
     return ElasticIp(
       domain: json['Domain'] as String?,
@@ -7699,6 +7742,7 @@ class ElasticLoadBalancer {
     this.subnetIds,
     this.vpcId,
   });
+
   factory ElasticLoadBalancer.fromJson(Map<String, dynamic> json) {
     return ElasticLoadBalancer(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -7772,6 +7816,7 @@ class EnvironmentVariable {
     required this.value,
     this.secure,
   });
+
   factory EnvironmentVariable.fromJson(Map<String, dynamic> json) {
     return EnvironmentVariable(
       key: json['Key'] as String,
@@ -7804,6 +7849,7 @@ class GetHostnameSuggestionResult {
     this.hostname,
     this.layerId,
   });
+
   factory GetHostnameSuggestionResult.fromJson(Map<String, dynamic> json) {
     return GetHostnameSuggestionResult(
       hostname: json['Hostname'] as String?,
@@ -7831,6 +7877,7 @@ class GrantAccessResult {
   GrantAccessResult({
     this.temporaryCredential,
   });
+
   factory GrantAccessResult.fromJson(Map<String, dynamic> json) {
     return GrantAccessResult(
       temporaryCredential: json['TemporaryCredential'] != null
@@ -8092,6 +8139,7 @@ class Instance {
     this.tenancy,
     this.virtualizationType,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       agentVersion: json['AgentVersion'] as String?,
@@ -8263,6 +8311,7 @@ class InstanceIdentity {
     this.document,
     this.signature,
   });
+
   factory InstanceIdentity.fromJson(Map<String, dynamic> json) {
     return InstanceIdentity(
       document: json['Document'] as String?,
@@ -8364,6 +8413,7 @@ class InstancesCount {
     this.terminating,
     this.unassigning,
   });
+
   factory InstancesCount.fromJson(Map<String, dynamic> json) {
     return InstancesCount(
       assigning: json['Assigning'] as int?,
@@ -8573,6 +8623,7 @@ class Layer {
     this.useEbsOptimizedInstances,
     this.volumeConfigurations,
   });
+
   factory Layer.fromJson(Map<String, dynamic> json) {
     return Layer(
       arn: json['Arn'] as String?,
@@ -8917,6 +8968,7 @@ class LifecycleEventConfiguration {
   LifecycleEventConfiguration({
     this.shutdown,
   });
+
   factory LifecycleEventConfiguration.fromJson(Map<String, dynamic> json) {
     return LifecycleEventConfiguration(
       shutdown: json['Shutdown'] != null
@@ -8951,6 +9003,7 @@ class ListTagsResult {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsResult.fromJson(Map<String, dynamic> json) {
     return ListTagsResult(
       nextToken: json['NextToken'] as String?,
@@ -8993,6 +9046,7 @@ class LoadBasedAutoScalingConfiguration {
     this.layerId,
     this.upScaling,
   });
+
   factory LoadBasedAutoScalingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return LoadBasedAutoScalingConfiguration(
@@ -9059,6 +9113,7 @@ class OperatingSystem {
     this.supported,
     this.type,
   });
+
   factory OperatingSystem.fromJson(Map<String, dynamic> json) {
     return OperatingSystem(
       configurationManagers: (json['ConfigurationManagers'] as List?)
@@ -9111,6 +9166,7 @@ class OperatingSystemConfigurationManager {
     this.name,
     this.version,
   });
+
   factory OperatingSystemConfigurationManager.fromJson(
       Map<String, dynamic> json) {
     return OperatingSystemConfigurationManager(
@@ -9177,6 +9233,7 @@ class Permission {
     this.level,
     this.stackId,
   });
+
   factory Permission.fromJson(Map<String, dynamic> json) {
     return Permission(
       allowSsh: json['AllowSsh'] as bool?,
@@ -9262,6 +9319,7 @@ class RaidArray {
     this.stackId,
     this.volumeType,
   });
+
   factory RaidArray.fromJson(Map<String, dynamic> json) {
     return RaidArray(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -9356,6 +9414,7 @@ class RdsDbInstance {
     this.region,
     this.stackId,
   });
+
   factory RdsDbInstance.fromJson(Map<String, dynamic> json) {
     return RdsDbInstance(
       address: json['Address'] as String?,
@@ -9435,6 +9494,7 @@ class Recipes {
     this.shutdown,
     this.undeploy,
   });
+
   factory Recipes.fromJson(Map<String, dynamic> json) {
     return Recipes(
       configure: (json['Configure'] as List?)
@@ -9484,6 +9544,7 @@ class RegisterEcsClusterResult {
   RegisterEcsClusterResult({
     this.ecsClusterArn,
   });
+
   factory RegisterEcsClusterResult.fromJson(Map<String, dynamic> json) {
     return RegisterEcsClusterResult(
       ecsClusterArn: json['EcsClusterArn'] as String?,
@@ -9506,6 +9567,7 @@ class RegisterElasticIpResult {
   RegisterElasticIpResult({
     this.elasticIp,
   });
+
   factory RegisterElasticIpResult.fromJson(Map<String, dynamic> json) {
     return RegisterElasticIpResult(
       elasticIp: json['ElasticIp'] as String?,
@@ -9528,6 +9590,7 @@ class RegisterInstanceResult {
   RegisterInstanceResult({
     this.instanceId,
   });
+
   factory RegisterInstanceResult.fromJson(Map<String, dynamic> json) {
     return RegisterInstanceResult(
       instanceId: json['InstanceId'] as String?,
@@ -9550,6 +9613,7 @@ class RegisterVolumeResult {
   RegisterVolumeResult({
     this.volumeId,
   });
+
   factory RegisterVolumeResult.fromJson(Map<String, dynamic> json) {
     return RegisterVolumeResult(
       volumeId: json['VolumeId'] as String?,
@@ -9580,6 +9644,7 @@ class ReportedOs {
     this.name,
     this.version,
   });
+
   factory ReportedOs.fromJson(Map<String, dynamic> json) {
     return ReportedOs(
       family: json['Family'] as String?,
@@ -9648,6 +9713,7 @@ class SelfUserProfile {
     this.sshPublicKey,
     this.sshUsername,
   });
+
   factory SelfUserProfile.fromJson(Map<String, dynamic> json) {
     return SelfUserProfile(
       iamUserArn: json['IamUserArn'] as String?,
@@ -9699,6 +9765,7 @@ class ServiceError {
     this.stackId,
     this.type,
   });
+
   factory ServiceError.fromJson(Map<String, dynamic> json) {
     return ServiceError(
       createdAt: json['CreatedAt'] as String?,
@@ -9744,6 +9811,7 @@ class ShutdownEventConfiguration {
     this.delayUntilElbConnectionsDrained,
     this.executionTimeout,
   });
+
   factory ShutdownEventConfiguration.fromJson(Map<String, dynamic> json) {
     return ShutdownEventConfiguration(
       delayUntilElbConnectionsDrained:
@@ -9831,6 +9899,7 @@ class Source {
     this.url,
     this.username,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       password: json['Password'] as String?,
@@ -9915,6 +9984,7 @@ class SslConfiguration {
     required this.privateKey,
     this.chain,
   });
+
   factory SslConfiguration.fromJson(Map<String, dynamic> json) {
     return SslConfiguration(
       certificate: json['Certificate'] as String,
@@ -10059,6 +10129,7 @@ class Stack {
     this.useOpsworksSecurityGroups,
     this.vpcId,
   });
+
   factory Stack.fromJson(Map<String, dynamic> json) {
     return Stack(
       agentVersion: json['AgentVersion'] as String?,
@@ -10191,6 +10262,7 @@ class StackConfigurationManager {
     this.name,
     this.version,
   });
+
   factory StackConfigurationManager.fromJson(Map<String, dynamic> json) {
     return StackConfigurationManager(
       name: json['Name'] as String?,
@@ -10237,6 +10309,7 @@ class StackSummary {
     this.name,
     this.stackId,
   });
+
   factory StackSummary.fromJson(Map<String, dynamic> json) {
     return StackSummary(
       appsCount: json['AppsCount'] as int?,
@@ -10293,6 +10366,7 @@ class TemporaryCredential {
     this.username,
     this.validForInMinutes,
   });
+
   factory TemporaryCredential.fromJson(Map<String, dynamic> json) {
     return TemporaryCredential(
       instanceId: json['InstanceId'] as String?,
@@ -10328,6 +10402,7 @@ class TimeBasedAutoScalingConfiguration {
     this.autoScalingSchedule,
     this.instanceId,
   });
+
   factory TimeBasedAutoScalingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return TimeBasedAutoScalingConfiguration(
@@ -10377,6 +10452,7 @@ class UserProfile {
     this.sshPublicKey,
     this.sshUsername,
   });
+
   factory UserProfile.fromJson(Map<String, dynamic> json) {
     return UserProfile(
       allowSelfManagement: json['AllowSelfManagement'] as bool?,
@@ -10526,6 +10602,7 @@ class Volume {
     this.volumeId,
     this.volumeType,
   });
+
   factory Volume.fromJson(Map<String, dynamic> json) {
     return Volume(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -10641,6 +10718,7 @@ class VolumeConfiguration {
     this.raidLevel,
     this.volumeType,
   });
+
   factory VolumeConfiguration.fromJson(Map<String, dynamic> json) {
     return VolumeConfiguration(
       mountPoint: json['MountPoint'] as String,
@@ -10758,6 +10836,7 @@ class WeeklyAutoScalingSchedule {
     this.tuesday,
     this.wednesday,
   });
+
   factory WeeklyAutoScalingSchedule.fromJson(Map<String, dynamic> json) {
     return WeeklyAutoScalingSchedule(
       friday: (json['Friday'] as Map<String, dynamic>?)

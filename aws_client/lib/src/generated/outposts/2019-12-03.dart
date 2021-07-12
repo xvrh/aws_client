@@ -453,6 +453,7 @@ class CreateOutpostOutput {
   CreateOutpostOutput({
     this.outpost,
   });
+
   factory CreateOutpostOutput.fromJson(Map<String, dynamic> json) {
     return CreateOutpostOutput(
       outpost: json['Outpost'] != null
@@ -471,6 +472,7 @@ class CreateOutpostOutput {
 
 class DeleteOutpostOutput {
   DeleteOutpostOutput();
+
   factory DeleteOutpostOutput.fromJson(Map<String, dynamic> _) {
     return DeleteOutpostOutput();
   }
@@ -482,6 +484,7 @@ class DeleteOutpostOutput {
 
 class DeleteSiteOutput {
   DeleteSiteOutput();
+
   factory DeleteSiteOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSiteOutput();
   }
@@ -503,6 +506,7 @@ class GetOutpostInstanceTypesOutput {
     this.outpostArn,
     this.outpostId,
   });
+
   factory GetOutpostInstanceTypesOutput.fromJson(Map<String, dynamic> json) {
     return GetOutpostInstanceTypesOutput(
       instanceTypes: (json['InstanceTypes'] as List?)
@@ -535,6 +539,7 @@ class GetOutpostOutput {
   GetOutpostOutput({
     this.outpost,
   });
+
   factory GetOutpostOutput.fromJson(Map<String, dynamic> json) {
     return GetOutpostOutput(
       outpost: json['Outpost'] != null
@@ -558,6 +563,7 @@ class InstanceTypeItem {
   InstanceTypeItem({
     this.instanceType,
   });
+
   factory InstanceTypeItem.fromJson(Map<String, dynamic> json) {
     return InstanceTypeItem(
       instanceType: json['InstanceType'] as String?,
@@ -580,6 +586,7 @@ class ListOutpostsOutput {
     this.nextToken,
     this.outposts,
   });
+
   factory ListOutpostsOutput.fromJson(Map<String, dynamic> json) {
     return ListOutpostsOutput(
       nextToken: json['NextToken'] as String?,
@@ -608,6 +615,7 @@ class ListSitesOutput {
     this.nextToken,
     this.sites,
   });
+
   factory ListSitesOutput.fromJson(Map<String, dynamic> json) {
     return ListSitesOutput(
       nextToken: json['NextToken'] as String?,
@@ -635,6 +643,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -679,6 +688,7 @@ class Outpost {
     this.siteId,
     this.tags,
   });
+
   factory Outpost.fromJson(Map<String, dynamic> json) {
     return Outpost(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -743,6 +753,7 @@ class Site {
     this.siteId,
     this.tags,
   });
+
   factory Site.fromJson(Map<String, dynamic> json) {
     return Site(
       accountId: json['AccountId'] as String?,
@@ -775,6 +786,7 @@ class Site {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -786,6 +798,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

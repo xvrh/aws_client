@@ -169,6 +169,7 @@ class EdgeMetric {
     this.timestamp,
     this.value,
   });
+
   factory EdgeMetric.fromJson(Map<String, dynamic> json) {
     return EdgeMetric(
       dimension: json['Dimension'] as String?,
@@ -204,6 +205,7 @@ class GetDeviceRegistrationResult {
     this.cacheTTL,
     this.deviceRegistration,
   });
+
   factory GetDeviceRegistrationResult.fromJson(Map<String, dynamic> json) {
     return GetDeviceRegistrationResult(
       cacheTTL: json['CacheTTL'] as String?,
@@ -246,6 +248,7 @@ class Model {
     this.modelName,
     this.modelVersion,
   });
+
   factory Model.fromJson(Map<String, dynamic> json) {
     return Model(
       latestInference: timeStampFromJson(json['LatestInference']),

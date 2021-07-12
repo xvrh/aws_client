@@ -5182,6 +5182,7 @@ class AccessLogSettings {
     this.destinationArn,
     this.format,
   });
+
   factory AccessLogSettings.fromJson(Map<String, dynamic> json) {
     return AccessLogSettings(
       destinationArn: json['destinationArn'] as String?,
@@ -5258,6 +5259,7 @@ class Account {
     this.features,
     this.throttleSettings,
   });
+
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
       apiKeyVersion: json['apiKeyVersion'] as String?,
@@ -5340,6 +5342,7 @@ class ApiKey {
     this.tags,
     this.value,
   });
+
   factory ApiKey.fromJson(Map<String, dynamic> json) {
     return ApiKey(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -5398,6 +5401,7 @@ class ApiKeyIds {
     this.ids,
     this.warnings,
   });
+
   factory ApiKeyIds.fromJson(Map<String, dynamic> json) {
     return ApiKeyIds(
       ids: (json['ids'] as List?)
@@ -5468,6 +5472,7 @@ class ApiKeys {
     this.position,
     this.warnings,
   });
+
   factory ApiKeys.fromJson(Map<String, dynamic> json) {
     return ApiKeys(
       items: (json['item'] as List?)
@@ -5534,6 +5539,7 @@ class ApiStage {
     this.stage,
     this.throttle,
   });
+
   factory ApiStage.fromJson(Map<String, dynamic> json) {
     return ApiStage(
       apiId: json['apiId'] as String?,
@@ -5659,6 +5665,7 @@ class Authorizer {
     this.providerARNs,
     this.type,
   });
+
   factory Authorizer.fromJson(Map<String, dynamic> json) {
     return Authorizer(
       authType: json['authType'] as String?,
@@ -5761,6 +5768,7 @@ class Authorizers {
     this.items,
     this.position,
   });
+
   factory Authorizers.fromJson(Map<String, dynamic> json) {
     return Authorizers(
       items: (json['item'] as List?)
@@ -5805,6 +5813,7 @@ class BasePathMapping {
     this.restApiId,
     this.stage,
   });
+
   factory BasePathMapping.fromJson(Map<String, dynamic> json) {
     return BasePathMapping(
       basePath: json['basePath'] as String?,
@@ -5838,6 +5847,7 @@ class BasePathMappings {
     this.items,
     this.position,
   });
+
   factory BasePathMappings.fromJson(Map<String, dynamic> json) {
     return BasePathMappings(
       items: (json['item'] as List?)
@@ -5985,6 +5995,7 @@ class CanarySettings {
     this.stageVariableOverrides,
     this.useStageCache,
   });
+
   factory CanarySettings.fromJson(Map<String, dynamic> json) {
     return CanarySettings(
       deploymentId: json['deploymentId'] as String?,
@@ -6048,6 +6059,7 @@ class ClientCertificate {
     this.pemEncodedCertificate,
     this.tags,
   });
+
   factory ClientCertificate.fromJson(Map<String, dynamic> json) {
     return ClientCertificate(
       clientCertificateId: json['clientCertificateId'] as String?,
@@ -6094,6 +6106,7 @@ class ClientCertificates {
     this.items,
     this.position,
   });
+
   factory ClientCertificates.fromJson(Map<String, dynamic> json) {
     return ClientCertificates(
       items: (json['item'] as List?)
@@ -6201,6 +6214,7 @@ class Deployment {
     this.description,
     this.id,
   });
+
   factory Deployment.fromJson(Map<String, dynamic> json) {
     return Deployment(
       apiSummary: (json['apiSummary'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -6248,6 +6262,7 @@ class DeploymentCanarySettings {
     this.stageVariableOverrides,
     this.useStageCache,
   });
+
   factory DeploymentCanarySettings.fromJson(Map<String, dynamic> json) {
     return DeploymentCanarySettings(
       percentTraffic: json['percentTraffic'] as double?,
@@ -6293,6 +6308,7 @@ class Deployments {
     this.items,
     this.position,
   });
+
   factory Deployments.fromJson(Map<String, dynamic> json) {
     return Deployments(
       items: (json['item'] as List?)
@@ -6359,6 +6375,7 @@ class DocumentationPart {
     this.location,
     this.properties,
   });
+
   factory DocumentationPart.fromJson(Map<String, dynamic> json) {
     return DocumentationPart(
       id: json['id'] as String?,
@@ -6401,6 +6418,7 @@ class DocumentationPartIds {
     this.ids,
     this.warnings,
   });
+
   factory DocumentationPartIds.fromJson(Map<String, dynamic> json) {
     return DocumentationPartIds(
       ids: (json['ids'] as List?)
@@ -6486,6 +6504,7 @@ class DocumentationPartLocation {
     this.path,
     this.statusCode,
   });
+
   factory DocumentationPartLocation.fromJson(Map<String, dynamic> json) {
     return DocumentationPartLocation(
       type: (json['type'] as String).toDocumentationPartType(),
@@ -6603,6 +6622,7 @@ class DocumentationParts {
     this.items,
     this.position,
   });
+
   factory DocumentationParts.fromJson(Map<String, dynamic> json) {
     return DocumentationParts(
       items: (json['item'] as List?)
@@ -6646,6 +6666,7 @@ class DocumentationVersion {
     this.description,
     this.version,
   });
+
   factory DocumentationVersion.fromJson(Map<String, dynamic> json) {
     return DocumentationVersion(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -6682,6 +6703,7 @@ class DocumentationVersions {
     this.items,
     this.position,
   });
+
   factory DocumentationVersions.fromJson(Map<String, dynamic> json) {
     return DocumentationVersions(
       items: (json['item'] as List?)
@@ -6825,6 +6847,7 @@ class DomainName {
     this.securityPolicy,
     this.tags,
   });
+
   factory DomainName.fromJson(Map<String, dynamic> json) {
     return DomainName(
       certificateArn: json['certificateArn'] as String?,
@@ -6948,6 +6971,7 @@ class DomainNames {
     this.items,
     this.position,
   });
+
   factory DomainNames.fromJson(Map<String, dynamic> json) {
     return DomainNames(
       items: (json['item'] as List?)
@@ -6987,6 +7011,7 @@ class EndpointConfiguration {
     this.types,
     this.vpcEndpointIds,
   });
+
   factory EndpointConfiguration.fromJson(Map<String, dynamic> json) {
     return EndpointConfiguration(
       types: (json['types'] as List?)
@@ -7065,6 +7090,7 @@ class ExportResponse {
     this.contentDisposition,
     this.contentType,
   });
+
   factory ExportResponse.fromJson(Map<String, dynamic> json) {
     return ExportResponse(
       body: _s.decodeNullableUint8List(json['body'] as String?),
@@ -7180,6 +7206,7 @@ class GatewayResponse {
     this.responseType,
     this.statusCode,
   });
+
   factory GatewayResponse.fromJson(Map<String, dynamic> json) {
     return GatewayResponse(
       defaultResponse: json['defaultResponse'] as bool?,
@@ -7554,6 +7581,7 @@ class GatewayResponses {
     this.items,
     this.position,
   });
+
   factory GatewayResponses.fromJson(Map<String, dynamic> json) {
     return GatewayResponses(
       items: (json['item'] as List?)
@@ -7800,6 +7828,7 @@ class Integration {
     this.type,
     this.uri,
   });
+
   factory Integration.fromJson(Map<String, dynamic> json) {
     return Integration(
       cacheKeyParameters: (json['cacheKeyParameters'] as List?)
@@ -7934,6 +7963,7 @@ class IntegrationResponse {
     this.selectionPattern,
     this.statusCode,
   });
+
   factory IntegrationResponse.fromJson(Map<String, dynamic> json) {
     return IntegrationResponse(
       contentHandling:
@@ -8288,6 +8318,7 @@ class Method {
     this.requestParameters,
     this.requestValidatorId,
   });
+
   factory Method.fromJson(Map<String, dynamic> json) {
     return Method(
       apiKeyRequired: json['apiKeyRequired'] as bool?,
@@ -8406,6 +8437,7 @@ class MethodResponse {
     this.responseParameters,
     this.statusCode,
   });
+
   factory MethodResponse.fromJson(Map<String, dynamic> json) {
     return MethodResponse(
       responseModels: (json['responseModels'] as Map<String, dynamic>?)
@@ -8506,6 +8538,7 @@ class MethodSetting {
     this.throttlingRateLimit,
     this.unauthorizedCacheControlHeaderStrategy,
   });
+
   factory MethodSetting.fromJson(Map<String, dynamic> json) {
     return MethodSetting(
       cacheDataEncrypted: json['cacheDataEncrypted'] as bool?,
@@ -8574,6 +8607,7 @@ class MethodSnapshot {
     this.apiKeyRequired,
     this.authorizationType,
   });
+
   factory MethodSnapshot.fromJson(Map<String, dynamic> json) {
     return MethodSnapshot(
       apiKeyRequired: json['apiKeyRequired'] as bool?,
@@ -8632,6 +8666,7 @@ class Model {
     this.name,
     this.schema,
   });
+
   factory Model.fromJson(Map<String, dynamic> json) {
     return Model(
       contentType: json['contentType'] as String?,
@@ -8671,6 +8706,7 @@ class Models {
     this.items,
     this.position,
   });
+
   factory Models.fromJson(Map<String, dynamic> json) {
     return Models(
       items: (json['item'] as List?)
@@ -8719,6 +8755,7 @@ class MutualTlsAuthentication {
     this.truststoreVersion,
     this.truststoreWarnings,
   });
+
   factory MutualTlsAuthentication.fromJson(Map<String, dynamic> json) {
     return MutualTlsAuthentication(
       truststoreUri: json['truststoreUri'] as String?,
@@ -8762,6 +8799,7 @@ class MutualTlsAuthenticationInput {
     this.truststoreUri,
     this.truststoreVersion,
   });
+
   factory MutualTlsAuthenticationInput.fromJson(Map<String, dynamic> json) {
     return MutualTlsAuthenticationInput(
       truststoreUri: json['truststoreUri'] as String?,
@@ -8876,6 +8914,7 @@ class PatchOperation {
     this.path,
     this.value,
   });
+
   factory PatchOperation.fromJson(Map<String, dynamic> json) {
     return PatchOperation(
       from: json['from'] as String?,
@@ -8979,6 +9018,7 @@ class QuotaSettings {
     this.offset,
     this.period,
   });
+
   factory QuotaSettings.fromJson(Map<String, dynamic> json) {
     return QuotaSettings(
       limit: json['limit'] as int?,
@@ -9030,6 +9070,7 @@ class RequestValidator {
     this.validateRequestBody,
     this.validateRequestParameters,
   });
+
   factory RequestValidator.fromJson(Map<String, dynamic> json) {
     return RequestValidator(
       id: json['id'] as String?,
@@ -9072,6 +9113,7 @@ class RequestValidators {
     this.items,
     this.position,
   });
+
   factory RequestValidators.fromJson(Map<String, dynamic> json) {
     return RequestValidators(
       items: (json['item'] as List?)
@@ -9198,6 +9240,7 @@ class Resource {
     this.pathPart,
     this.resourceMethods,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       id: json['id'] as String?,
@@ -9238,6 +9281,7 @@ class Resources {
     this.items,
     this.position,
   });
+
   factory Resources.fromJson(Map<String, dynamic> json) {
     return Resources(
       items: (json['item'] as List?)
@@ -9338,6 +9382,7 @@ class RestApi {
     this.version,
     this.warnings,
   });
+
   factory RestApi.fromJson(Map<String, dynamic> json) {
     return RestApi(
       apiKeySource: (json['apiKeySource'] as String?)?.toApiKeySourceType(),
@@ -9415,6 +9460,7 @@ class RestApis {
     this.items,
     this.position,
   });
+
   factory RestApis.fromJson(Map<String, dynamic> json) {
     return RestApis(
       items: (json['item'] as List?)
@@ -9461,6 +9507,7 @@ class SdkConfigurationProperty {
     this.name,
     this.required,
   });
+
   factory SdkConfigurationProperty.fromJson(Map<String, dynamic> json) {
     return SdkConfigurationProperty(
       defaultValue: json['defaultValue'] as String?,
@@ -9503,6 +9550,7 @@ class SdkResponse {
     this.contentDisposition,
     this.contentType,
   });
+
   factory SdkResponse.fromJson(Map<String, dynamic> json) {
     return SdkResponse(
       body: _s.decodeNullableUint8List(json['body'] as String?),
@@ -9541,6 +9589,7 @@ class SdkType {
     this.friendlyName,
     this.id,
   });
+
   factory SdkType.fromJson(Map<String, dynamic> json) {
     return SdkType(
       configurationProperties: (json['configurationProperties'] as List?)
@@ -9579,6 +9628,7 @@ class SdkTypes {
     this.items,
     this.position,
   });
+
   factory SdkTypes.fromJson(Map<String, dynamic> json) {
     return SdkTypes(
       items: (json['item'] as List?)
@@ -9713,6 +9763,7 @@ class Stage {
     this.variables,
     this.webAclArn,
   });
+
   factory Stage.fromJson(Map<String, dynamic> json) {
     return Stage(
       accessLogSettings: json['accessLogSettings'] != null
@@ -9806,6 +9857,7 @@ class StageKey {
     this.restApiId,
     this.stageName,
   });
+
   factory StageKey.fromJson(Map<String, dynamic> json) {
     return StageKey(
       restApiId: json['restApiId'] as String?,
@@ -9835,6 +9887,7 @@ class Stages {
   Stages({
     this.item,
   });
+
   factory Stages.fromJson(Map<String, dynamic> json) {
     return Stages(
       item: (json['item'] as List?)
@@ -9862,6 +9915,7 @@ class Tags {
   Tags({
     this.tags,
   });
+
   factory Tags.fromJson(Map<String, dynamic> json) {
     return Tags(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -9891,6 +9945,7 @@ class Template {
   Template({
     this.value,
   });
+
   factory Template.fromJson(Map<String, dynamic> json) {
     return Template(
       value: json['value'] as String?,
@@ -9941,6 +9996,7 @@ class TestInvokeAuthorizerResponse {
     this.policy,
     this.principalId,
   });
+
   factory TestInvokeAuthorizerResponse.fromJson(Map<String, dynamic> json) {
     return TestInvokeAuthorizerResponse(
       authorization: (json['authorization'] as Map<String, dynamic>?)?.map(
@@ -10007,6 +10063,7 @@ class TestInvokeMethodResponse {
     this.multiValueHeaders,
     this.status,
   });
+
   factory TestInvokeMethodResponse.fromJson(Map<String, dynamic> json) {
     return TestInvokeMethodResponse(
       body: json['body'] as String?,
@@ -10053,6 +10110,7 @@ class ThrottleSettings {
     this.burstLimit,
     this.rateLimit,
   });
+
   factory ThrottleSettings.fromJson(Map<String, dynamic> json) {
     return ThrottleSettings(
       burstLimit: json['burstLimit'] as int?,
@@ -10086,6 +10144,7 @@ class TlsConfig {
   TlsConfig({
     this.insecureSkipVerification,
   });
+
   factory TlsConfig.fromJson(Map<String, dynamic> json) {
     return TlsConfig(
       insecureSkipVerification: json['insecureSkipVerification'] as bool?,
@@ -10169,6 +10228,7 @@ class Usage {
     this.startDate,
     this.usagePlanId,
   });
+
   factory Usage.fromJson(Map<String, dynamic> json) {
     return Usage(
       endDate: json['endDate'] as String?,
@@ -10247,6 +10307,7 @@ class UsagePlan {
     this.tags,
     this.throttle,
   });
+
   factory UsagePlan.fromJson(Map<String, dynamic> json) {
     return UsagePlan(
       apiStages: (json['apiStages'] as List?)
@@ -10317,6 +10378,7 @@ class UsagePlanKey {
     this.type,
     this.value,
   });
+
   factory UsagePlanKey.fromJson(Map<String, dynamic> json) {
     return UsagePlanKey(
       id: json['id'] as String?,
@@ -10354,6 +10416,7 @@ class UsagePlanKeys {
     this.items,
     this.position,
   });
+
   factory UsagePlanKeys.fromJson(Map<String, dynamic> json) {
     return UsagePlanKeys(
       items: (json['item'] as List?)
@@ -10387,6 +10450,7 @@ class UsagePlans {
     this.items,
     this.position,
   });
+
   factory UsagePlans.fromJson(Map<String, dynamic> json) {
     return UsagePlans(
       items: (json['item'] as List?)
@@ -10459,6 +10523,7 @@ class VpcLink {
     this.tags,
     this.targetArns,
   });
+
   factory VpcLink.fromJson(Map<String, dynamic> json) {
     return VpcLink(
       description: json['description'] as String?,
@@ -10548,6 +10613,7 @@ class VpcLinks {
     this.items,
     this.position,
   });
+
   factory VpcLinks.fromJson(Map<String, dynamic> json) {
     return VpcLinks(
       items: (json['item'] as List?)

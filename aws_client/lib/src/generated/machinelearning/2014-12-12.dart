@@ -2604,6 +2604,7 @@ class AddTagsOutput {
     this.resourceId,
     this.resourceType,
   });
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> json) {
     return AddTagsOutput(
       resourceId: json['ResourceId'] as String?,
@@ -2751,6 +2752,7 @@ class BatchPrediction {
     this.status,
     this.totalRecordCount,
   });
+
   factory BatchPrediction.fromJson(Map<String, dynamic> json) {
     return BatchPrediction(
       batchPredictionDataSourceId:
@@ -2921,6 +2923,7 @@ class CreateBatchPredictionOutput {
   CreateBatchPredictionOutput({
     this.batchPredictionId,
   });
+
   factory CreateBatchPredictionOutput.fromJson(Map<String, dynamic> json) {
     return CreateBatchPredictionOutput(
       batchPredictionId: json['BatchPredictionId'] as String?,
@@ -2954,6 +2957,7 @@ class CreateDataSourceFromRDSOutput {
   CreateDataSourceFromRDSOutput({
     this.dataSourceId,
   });
+
   factory CreateDataSourceFromRDSOutput.fromJson(Map<String, dynamic> json) {
     return CreateDataSourceFromRDSOutput(
       dataSourceId: json['DataSourceId'] as String?,
@@ -2983,6 +2987,7 @@ class CreateDataSourceFromRedshiftOutput {
   CreateDataSourceFromRedshiftOutput({
     this.dataSourceId,
   });
+
   factory CreateDataSourceFromRedshiftOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateDataSourceFromRedshiftOutput(
@@ -3013,6 +3018,7 @@ class CreateDataSourceFromS3Output {
   CreateDataSourceFromS3Output({
     this.dataSourceId,
   });
+
   factory CreateDataSourceFromS3Output.fromJson(Map<String, dynamic> json) {
     return CreateDataSourceFromS3Output(
       dataSourceId: json['DataSourceId'] as String?,
@@ -3042,6 +3048,7 @@ class CreateEvaluationOutput {
   CreateEvaluationOutput({
     this.evaluationId,
   });
+
   factory CreateEvaluationOutput.fromJson(Map<String, dynamic> json) {
     return CreateEvaluationOutput(
       evaluationId: json['EvaluationId'] as String?,
@@ -3071,6 +3078,7 @@ class CreateMLModelOutput {
   CreateMLModelOutput({
     this.mLModelId,
   });
+
   factory CreateMLModelOutput.fromJson(Map<String, dynamic> json) {
     return CreateMLModelOutput(
       mLModelId: json['MLModelId'] as String?,
@@ -3106,6 +3114,7 @@ class CreateRealtimeEndpointOutput {
     this.mLModelId,
     this.realtimeEndpointInfo,
   });
+
   factory CreateRealtimeEndpointOutput.fromJson(Map<String, dynamic> json) {
     return CreateRealtimeEndpointOutput(
       mLModelId: json['MLModelId'] as String?,
@@ -3225,6 +3234,7 @@ class DataSource {
     this.startedAt,
     this.status,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       computeStatistics: json['ComputeStatistics'] as bool?,
@@ -3386,6 +3396,7 @@ class DeleteBatchPredictionOutput {
   DeleteBatchPredictionOutput({
     this.batchPredictionId,
   });
+
   factory DeleteBatchPredictionOutput.fromJson(Map<String, dynamic> json) {
     return DeleteBatchPredictionOutput(
       batchPredictionId: json['BatchPredictionId'] as String?,
@@ -3410,6 +3421,7 @@ class DeleteDataSourceOutput {
   DeleteDataSourceOutput({
     this.dataSourceId,
   });
+
   factory DeleteDataSourceOutput.fromJson(Map<String, dynamic> json) {
     return DeleteDataSourceOutput(
       dataSourceId: json['DataSourceId'] as String?,
@@ -3440,6 +3452,7 @@ class DeleteEvaluationOutput {
   DeleteEvaluationOutput({
     this.evaluationId,
   });
+
   factory DeleteEvaluationOutput.fromJson(Map<String, dynamic> json) {
     return DeleteEvaluationOutput(
       evaluationId: json['EvaluationId'] as String?,
@@ -3468,6 +3481,7 @@ class DeleteMLModelOutput {
   DeleteMLModelOutput({
     this.mLModelId,
   });
+
   factory DeleteMLModelOutput.fromJson(Map<String, dynamic> json) {
     return DeleteMLModelOutput(
       mLModelId: json['MLModelId'] as String?,
@@ -3499,6 +3513,7 @@ class DeleteRealtimeEndpointOutput {
     this.mLModelId,
     this.realtimeEndpointInfo,
   });
+
   factory DeleteRealtimeEndpointOutput.fromJson(Map<String, dynamic> json) {
     return DeleteRealtimeEndpointOutput(
       mLModelId: json['MLModelId'] as String?,
@@ -3532,6 +3547,7 @@ class DeleteTagsOutput {
     this.resourceId,
     this.resourceType,
   });
+
   factory DeleteTagsOutput.fromJson(Map<String, dynamic> json) {
     return DeleteTagsOutput(
       resourceId: json['ResourceId'] as String?,
@@ -3564,6 +3580,7 @@ class DescribeBatchPredictionsOutput {
     this.nextToken,
     this.results,
   });
+
   factory DescribeBatchPredictionsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBatchPredictionsOutput(
       nextToken: json['NextToken'] as String?,
@@ -3598,6 +3615,7 @@ class DescribeDataSourcesOutput {
     this.nextToken,
     this.results,
   });
+
   factory DescribeDataSourcesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeDataSourcesOutput(
       nextToken: json['NextToken'] as String?,
@@ -3632,6 +3650,7 @@ class DescribeEvaluationsOutput {
     this.nextToken,
     this.results,
   });
+
   factory DescribeEvaluationsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeEvaluationsOutput(
       nextToken: json['NextToken'] as String?,
@@ -3666,6 +3685,7 @@ class DescribeMLModelsOutput {
     this.nextToken,
     this.results,
   });
+
   factory DescribeMLModelsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeMLModelsOutput(
       nextToken: json['NextToken'] as String?,
@@ -3702,6 +3722,7 @@ class DescribeTagsOutput {
     this.resourceType,
     this.tags,
   });
+
   factory DescribeTagsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTagsOutput(
       resourceId: json['ResourceId'] as String?,
@@ -3935,6 +3956,7 @@ class Evaluation {
     this.startedAt,
     this.status,
   });
+
   factory Evaluation.fromJson(Map<String, dynamic> json) {
     return Evaluation(
       computeTime: json['ComputeTime'] as int?,
@@ -4206,6 +4228,7 @@ class GetBatchPredictionOutput {
     this.status,
     this.totalRecordCount,
   });
+
   factory GetBatchPredictionOutput.fromJson(Map<String, dynamic> json) {
     return GetBatchPredictionOutput(
       batchPredictionDataSourceId:
@@ -4396,6 +4419,7 @@ class GetDataSourceOutput {
     this.startedAt,
     this.status,
   });
+
   factory GetDataSourceOutput.fromJson(Map<String, dynamic> json) {
     return GetDataSourceOutput(
       computeStatistics: json['ComputeStatistics'] as bool?,
@@ -4598,6 +4622,7 @@ class GetEvaluationOutput {
     this.startedAt,
     this.status,
   });
+
   factory GetEvaluationOutput.fromJson(Map<String, dynamic> json) {
     return GetEvaluationOutput(
       computeTime: json['ComputeTime'] as int?,
@@ -4866,6 +4891,7 @@ class GetMLModelOutput {
     this.trainingDataSourceId,
     this.trainingParameters,
   });
+
   factory GetMLModelOutput.fromJson(Map<String, dynamic> json) {
     return GetMLModelOutput(
       computeTime: json['ComputeTime'] as int?,
@@ -5127,6 +5153,7 @@ class MLModel {
     this.trainingDataSourceId,
     this.trainingParameters,
   });
+
   factory MLModel.fromJson(Map<String, dynamic> json) {
     return MLModel(
       algorithm: (json['Algorithm'] as String?)?.toAlgorithm(),
@@ -5334,6 +5361,7 @@ class PerformanceMetrics {
   PerformanceMetrics({
     this.properties,
   });
+
   factory PerformanceMetrics.fromJson(Map<String, dynamic> json) {
     return PerformanceMetrics(
       properties: (json['Properties'] as Map<String, dynamic>?)
@@ -5355,6 +5383,7 @@ class PredictOutput {
   PredictOutput({
     this.prediction,
   });
+
   factory PredictOutput.fromJson(Map<String, dynamic> json) {
     return PredictOutput(
       prediction: json['Prediction'] != null
@@ -5409,6 +5438,7 @@ class Prediction {
     this.predictedScores,
     this.predictedValue,
   });
+
   factory Prediction.fromJson(Map<String, dynamic> json) {
     return Prediction(
       details: (json['details'] as Map<String, dynamic>?)
@@ -5629,6 +5659,7 @@ class RDSDataSpec {
     this.dataSchema,
     this.dataSchemaUri,
   });
+
   factory RDSDataSpec.fromJson(Map<String, dynamic> json) {
     return RDSDataSpec(
       databaseCredentials: RDSDatabaseCredentials.fromJson(
@@ -5689,6 +5720,7 @@ class RDSDatabase {
     required this.databaseName,
     required this.instanceIdentifier,
   });
+
   factory RDSDatabase.fromJson(Map<String, dynamic> json) {
     return RDSDatabase(
       databaseName: json['DatabaseName'] as String,
@@ -5715,6 +5747,7 @@ class RDSDatabaseCredentials {
     required this.password,
     required this.username,
   });
+
   factory RDSDatabaseCredentials.fromJson(Map<String, dynamic> json) {
     return RDSDatabaseCredentials(
       password: json['Password'] as String,
@@ -5770,6 +5803,7 @@ class RDSMetadata {
     this.selectSqlQuery,
     this.serviceRole,
   });
+
   factory RDSMetadata.fromJson(Map<String, dynamic> json) {
     return RDSMetadata(
       dataPipelineId: json['DataPipelineId'] as String?,
@@ -5840,6 +5874,7 @@ class RealtimeEndpointInfo {
     this.endpointUrl,
     this.peakRequestsPerSecond,
   });
+
   factory RealtimeEndpointInfo.fromJson(Map<String, dynamic> json) {
     return RealtimeEndpointInfo(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -6069,6 +6104,7 @@ class RedshiftDataSpec {
     this.dataSchema,
     this.dataSchemaUri,
   });
+
   factory RedshiftDataSpec.fromJson(Map<String, dynamic> json) {
     return RedshiftDataSpec(
       databaseCredentials: RedshiftDatabaseCredentials.fromJson(
@@ -6113,6 +6149,7 @@ class RedshiftDatabase {
     required this.clusterIdentifier,
     required this.databaseName,
   });
+
   factory RedshiftDatabase.fromJson(Map<String, dynamic> json) {
     return RedshiftDatabase(
       clusterIdentifier: json['ClusterIdentifier'] as String,
@@ -6140,6 +6177,7 @@ class RedshiftDatabaseCredentials {
     required this.password,
     required this.username,
   });
+
   factory RedshiftDatabaseCredentials.fromJson(Map<String, dynamic> json) {
     return RedshiftDatabaseCredentials(
       password: json['Password'] as String,
@@ -6171,6 +6209,7 @@ class RedshiftMetadata {
     this.redshiftDatabase,
     this.selectSqlQuery,
   });
+
   factory RedshiftMetadata.fromJson(Map<String, dynamic> json) {
     return RedshiftMetadata(
       databaseUserName: json['DatabaseUserName'] as String?,
@@ -6345,6 +6384,7 @@ class S3DataSpec {
     this.dataSchema,
     this.dataSchemaLocationS3,
   });
+
   factory S3DataSpec.fromJson(Map<String, dynamic> json) {
     return S3DataSpec(
       dataLocationS3: json['DataLocationS3'] as String,
@@ -6423,6 +6463,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -6491,6 +6532,7 @@ class UpdateBatchPredictionOutput {
   UpdateBatchPredictionOutput({
     this.batchPredictionId,
   });
+
   factory UpdateBatchPredictionOutput.fromJson(Map<String, dynamic> json) {
     return UpdateBatchPredictionOutput(
       batchPredictionId: json['BatchPredictionId'] as String?,
@@ -6518,6 +6560,7 @@ class UpdateDataSourceOutput {
   UpdateDataSourceOutput({
     this.dataSourceId,
   });
+
   factory UpdateDataSourceOutput.fromJson(Map<String, dynamic> json) {
     return UpdateDataSourceOutput(
       dataSourceId: json['DataSourceId'] as String?,
@@ -6545,6 +6588,7 @@ class UpdateEvaluationOutput {
   UpdateEvaluationOutput({
     this.evaluationId,
   });
+
   factory UpdateEvaluationOutput.fromJson(Map<String, dynamic> json) {
     return UpdateEvaluationOutput(
       evaluationId: json['EvaluationId'] as String?,
@@ -6572,6 +6616,7 @@ class UpdateMLModelOutput {
   UpdateMLModelOutput({
     this.mLModelId,
   });
+
   factory UpdateMLModelOutput.fromJson(Map<String, dynamic> json) {
     return UpdateMLModelOutput(
       mLModelId: json['MLModelId'] as String?,

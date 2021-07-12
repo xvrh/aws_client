@@ -1749,6 +1749,7 @@ class AccountAttribute {
     this.name,
     this.used,
   });
+
   factory AccountAttribute.fromJson(Map<String, dynamic> json) {
     return AccountAttribute(
       maximum: json['Maximum'] as int?,
@@ -1778,6 +1779,7 @@ class AssociateNodeResponse {
   AssociateNodeResponse({
     this.nodeAssociationStatusToken,
   });
+
   factory AssociateNodeResponse.fromJson(Map<String, dynamic> json) {
     return AssociateNodeResponse(
       nodeAssociationStatusToken: json['NodeAssociationStatusToken'] as String?,
@@ -1908,6 +1910,7 @@ class Backup {
     this.toolsVersion,
     this.userArn,
   });
+
   factory Backup.fromJson(Map<String, dynamic> json) {
     return Backup(
       backupArn: json['BackupArn'] as String?,
@@ -2072,6 +2075,7 @@ class CreateBackupResponse {
   CreateBackupResponse({
     this.backup,
   });
+
   factory CreateBackupResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackupResponse(
       backup: json['Backup'] != null
@@ -2095,6 +2099,7 @@ class CreateServerResponse {
   CreateServerResponse({
     this.server,
   });
+
   factory CreateServerResponse.fromJson(Map<String, dynamic> json) {
     return CreateServerResponse(
       server: json['Server'] != null
@@ -2113,6 +2118,7 @@ class CreateServerResponse {
 
 class DeleteBackupResponse {
   DeleteBackupResponse();
+
   factory DeleteBackupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBackupResponse();
   }
@@ -2124,6 +2130,7 @@ class DeleteBackupResponse {
 
 class DeleteServerResponse {
   DeleteServerResponse();
+
   factory DeleteServerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServerResponse();
   }
@@ -2140,6 +2147,7 @@ class DescribeAccountAttributesResponse {
   DescribeAccountAttributesResponse({
     this.attributes,
   });
+
   factory DescribeAccountAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountAttributesResponse(
@@ -2169,6 +2177,7 @@ class DescribeBackupsResponse {
     this.backups,
     this.nextToken,
   });
+
   factory DescribeBackupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBackupsResponse(
       backups: (json['Backups'] as List?)
@@ -2208,6 +2217,7 @@ class DescribeEventsResponse {
     this.nextToken,
     this.serverEvents,
   });
+
   factory DescribeEventsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2254,6 +2264,7 @@ class DescribeNodeAssociationStatusResponse {
     this.engineAttributes,
     this.nodeAssociationStatus,
   });
+
   factory DescribeNodeAssociationStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeNodeAssociationStatusResponse(
@@ -2314,6 +2325,7 @@ class DescribeServersResponse {
     this.nextToken,
     this.servers,
   });
+
   factory DescribeServersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeServersResponse(
       nextToken: json['NextToken'] as String?,
@@ -2343,6 +2355,7 @@ class DisassociateNodeResponse {
   DisassociateNodeResponse({
     this.nodeAssociationStatusToken,
   });
+
   factory DisassociateNodeResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateNodeResponse(
       nodeAssociationStatusToken: json['NodeAssociationStatusToken'] as String?,
@@ -2370,6 +2383,7 @@ class EngineAttribute {
     this.name,
     this.value,
   });
+
   factory EngineAttribute.fromJson(Map<String, dynamic> json) {
     return EngineAttribute(
       name: json['Name'] as String?,
@@ -2398,6 +2412,7 @@ class ExportServerEngineAttributeResponse {
     this.engineAttribute,
     this.serverName,
   });
+
   factory ExportServerEngineAttributeResponse.fromJson(
       Map<String, dynamic> json) {
     return ExportServerEngineAttributeResponse(
@@ -2431,6 +2446,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -2533,6 +2549,7 @@ class RestoreServerResponse {
   RestoreServerResponse({
     this.server,
   });
+
   factory RestoreServerResponse.fromJson(Map<String, dynamic> json) {
     return RestoreServerResponse(
       server: json['Server'] != null
@@ -2702,6 +2719,7 @@ class Server {
     this.statusReason,
     this.subnetIds,
   });
+
   factory Server.fromJson(Map<String, dynamic> json) {
     return Server(
       associatePublicIpAddress: json['AssociatePublicIpAddress'] as bool?,
@@ -2823,6 +2841,7 @@ class ServerEvent {
     this.message,
     this.serverName,
   });
+
   factory ServerEvent.fromJson(Map<String, dynamic> json) {
     return ServerEvent(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -2936,6 +2955,7 @@ class StartMaintenanceResponse {
   StartMaintenanceResponse({
     this.server,
   });
+
   factory StartMaintenanceResponse.fromJson(Map<String, dynamic> json) {
     return StartMaintenanceResponse(
       server: json['Server'] != null
@@ -2973,6 +2993,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -2992,6 +3013,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3003,6 +3025,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3020,6 +3043,7 @@ class UpdateServerEngineAttributesResponse {
   UpdateServerEngineAttributesResponse({
     this.server,
   });
+
   factory UpdateServerEngineAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateServerEngineAttributesResponse(
@@ -3044,6 +3068,7 @@ class UpdateServerResponse {
   UpdateServerResponse({
     this.server,
   });
+
   factory UpdateServerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateServerResponse(
       server: json['Server'] != null

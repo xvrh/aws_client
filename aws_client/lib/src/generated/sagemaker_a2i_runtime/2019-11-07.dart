@@ -342,6 +342,7 @@ extension on String {
 
 class DeleteHumanLoopResponse {
   DeleteHumanLoopResponse();
+
   factory DeleteHumanLoopResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHumanLoopResponse();
   }
@@ -392,6 +393,7 @@ class DescribeHumanLoopResponse {
     this.failureReason,
     this.humanLoopOutput,
   });
+
   factory DescribeHumanLoopResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHumanLoopResponse(
       creationTime:
@@ -444,6 +446,7 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     required this.contentClassifiers,
   });
+
   factory HumanLoopDataAttributes.fromJson(Map<String, dynamic> json) {
     return HumanLoopDataAttributes(
       contentClassifiers: (json['ContentClassifiers'] as List)
@@ -470,6 +473,7 @@ class HumanLoopInput {
   HumanLoopInput({
     required this.inputContent,
   });
+
   factory HumanLoopInput.fromJson(Map<String, dynamic> json) {
     return HumanLoopInput(
       inputContent: json['InputContent'] as String,
@@ -493,6 +497,7 @@ class HumanLoopOutput {
   HumanLoopOutput({
     required this.outputS3Uri,
   });
+
   factory HumanLoopOutput.fromJson(Map<String, dynamic> json) {
     return HumanLoopOutput(
       outputS3Uri: json['OutputS3Uri'] as String,
@@ -576,6 +581,7 @@ class HumanLoopSummary {
     this.humanLoopName,
     this.humanLoopStatus,
   });
+
   factory HumanLoopSummary.fromJson(Map<String, dynamic> json) {
     return HumanLoopSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -615,6 +621,7 @@ class ListHumanLoopsResponse {
     required this.humanLoopSummaries,
     this.nextToken,
   });
+
   factory ListHumanLoopsResponse.fromJson(Map<String, dynamic> json) {
     return ListHumanLoopsResponse(
       humanLoopSummaries: (json['HumanLoopSummaries'] as List)
@@ -670,6 +677,7 @@ class StartHumanLoopResponse {
   StartHumanLoopResponse({
     this.humanLoopArn,
   });
+
   factory StartHumanLoopResponse.fromJson(Map<String, dynamic> json) {
     return StartHumanLoopResponse(
       humanLoopArn: json['HumanLoopArn'] as String?,
@@ -686,6 +694,7 @@ class StartHumanLoopResponse {
 
 class StopHumanLoopResponse {
   StopHumanLoopResponse();
+
   factory StopHumanLoopResponse.fromJson(Map<String, dynamic> _) {
     return StopHumanLoopResponse();
   }

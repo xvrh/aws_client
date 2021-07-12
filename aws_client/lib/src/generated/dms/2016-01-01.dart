@@ -3761,6 +3761,7 @@ class AccountQuota {
     this.max,
     this.used,
   });
+
   factory AccountQuota.fromJson(Map<String, dynamic> json) {
     return AccountQuota(
       accountQuotaName: json['AccountQuotaName'] as String?,
@@ -3784,6 +3785,7 @@ class AccountQuota {
 /// <p/>
 class AddTagsToResourceResponse {
   AddTagsToResourceResponse();
+
   factory AddTagsToResourceResponse.fromJson(Map<String, dynamic> _) {
     return AddTagsToResourceResponse();
   }
@@ -3801,6 +3803,7 @@ class ApplyPendingMaintenanceActionResponse {
   ApplyPendingMaintenanceActionResponse({
     this.resourcePendingMaintenanceActions,
   });
+
   factory ApplyPendingMaintenanceActionResponse.fromJson(
       Map<String, dynamic> json) {
     return ApplyPendingMaintenanceActionResponse(
@@ -3898,6 +3901,7 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       name: json['Name'] as String?,
@@ -3921,6 +3925,7 @@ class CancelReplicationTaskAssessmentRunResponse {
   CancelReplicationTaskAssessmentRunResponse({
     this.replicationTaskAssessmentRun,
   });
+
   factory CancelReplicationTaskAssessmentRunResponse.fromJson(
       Map<String, dynamic> json) {
     return CancelReplicationTaskAssessmentRunResponse(
@@ -3988,6 +3993,7 @@ class Certificate {
     this.validFromDate,
     this.validToDate,
   });
+
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       certificateArn: json['CertificateArn'] as String?,
@@ -4144,6 +4150,7 @@ class Connection {
     this.replicationInstanceIdentifier,
     this.status,
   });
+
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       endpointArn: json['EndpointArn'] as String?,
@@ -4184,6 +4191,7 @@ class CreateEndpointResponse {
   CreateEndpointResponse({
     this.endpoint,
   });
+
   factory CreateEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateEndpointResponse(
       endpoint: json['Endpoint'] != null
@@ -4208,6 +4216,7 @@ class CreateEventSubscriptionResponse {
   CreateEventSubscriptionResponse({
     this.eventSubscription,
   });
+
   factory CreateEventSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return CreateEventSubscriptionResponse(
       eventSubscription: json['EventSubscription'] != null
@@ -4233,6 +4242,7 @@ class CreateReplicationInstanceResponse {
   CreateReplicationInstanceResponse({
     this.replicationInstance,
   });
+
   factory CreateReplicationInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateReplicationInstanceResponse(
@@ -4260,6 +4270,7 @@ class CreateReplicationSubnetGroupResponse {
   CreateReplicationSubnetGroupResponse({
     this.replicationSubnetGroup,
   });
+
   factory CreateReplicationSubnetGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateReplicationSubnetGroupResponse(
@@ -4287,6 +4298,7 @@ class CreateReplicationTaskResponse {
   CreateReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory CreateReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return CreateReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -4420,6 +4432,7 @@ class DeleteCertificateResponse {
   DeleteCertificateResponse({
     this.certificate,
   });
+
   factory DeleteCertificateResponse.fromJson(Map<String, dynamic> json) {
     return DeleteCertificateResponse(
       certificate: json['Certificate'] != null
@@ -4444,6 +4457,7 @@ class DeleteConnectionResponse {
   DeleteConnectionResponse({
     this.connection,
   });
+
   factory DeleteConnectionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteConnectionResponse(
       connection: json['Connection'] != null
@@ -4468,6 +4482,7 @@ class DeleteEndpointResponse {
   DeleteEndpointResponse({
     this.endpoint,
   });
+
   factory DeleteEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEndpointResponse(
       endpoint: json['Endpoint'] != null
@@ -4492,6 +4507,7 @@ class DeleteEventSubscriptionResponse {
   DeleteEventSubscriptionResponse({
     this.eventSubscription,
   });
+
   factory DeleteEventSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEventSubscriptionResponse(
       eventSubscription: json['EventSubscription'] != null
@@ -4517,6 +4533,7 @@ class DeleteReplicationInstanceResponse {
   DeleteReplicationInstanceResponse({
     this.replicationInstance,
   });
+
   factory DeleteReplicationInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteReplicationInstanceResponse(
@@ -4539,6 +4556,7 @@ class DeleteReplicationInstanceResponse {
 /// <p/>
 class DeleteReplicationSubnetGroupResponse {
   DeleteReplicationSubnetGroupResponse();
+
   factory DeleteReplicationSubnetGroupResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteReplicationSubnetGroupResponse();
@@ -4558,6 +4576,7 @@ class DeleteReplicationTaskAssessmentRunResponse {
   DeleteReplicationTaskAssessmentRunResponse({
     this.replicationTaskAssessmentRun,
   });
+
   factory DeleteReplicationTaskAssessmentRunResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteReplicationTaskAssessmentRunResponse(
@@ -4585,6 +4604,7 @@ class DeleteReplicationTaskResponse {
   DeleteReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory DeleteReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return DeleteReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -4626,6 +4646,7 @@ class DescribeAccountAttributesResponse {
     this.accountQuotas,
     this.uniqueAccountIdentifier,
   });
+
   factory DescribeAccountAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountAttributesResponse(
@@ -4669,6 +4690,7 @@ class DescribeApplicableIndividualAssessmentsResponse {
     this.individualAssessmentNames,
     this.marker,
   });
+
   factory DescribeApplicableIndividualAssessmentsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeApplicableIndividualAssessmentsResponse(
@@ -4703,6 +4725,7 @@ class DescribeCertificatesResponse {
     this.certificates,
     this.marker,
   });
+
   factory DescribeCertificatesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCertificatesResponse(
       certificates: (json['Certificates'] as List?)
@@ -4737,6 +4760,7 @@ class DescribeConnectionsResponse {
     this.connections,
     this.marker,
   });
+
   factory DescribeConnectionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConnectionsResponse(
       connections: (json['Connections'] as List?)
@@ -4771,6 +4795,7 @@ class DescribeEndpointSettingsResponse {
     this.endpointSettings,
     this.marker,
   });
+
   factory DescribeEndpointSettingsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointSettingsResponse(
       endpointSettings: (json['EndpointSettings'] as List?)
@@ -4805,6 +4830,7 @@ class DescribeEndpointTypesResponse {
     this.marker,
     this.supportedEndpointTypes,
   });
+
   factory DescribeEndpointTypesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointTypesResponse(
       marker: json['Marker'] as String?,
@@ -4840,6 +4866,7 @@ class DescribeEndpointsResponse {
     this.endpoints,
     this.marker,
   });
+
   factory DescribeEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointsResponse(
       endpoints: (json['Endpoints'] as List?)
@@ -4868,6 +4895,7 @@ class DescribeEventCategoriesResponse {
   DescribeEventCategoriesResponse({
     this.eventCategoryGroupList,
   });
+
   factory DescribeEventCategoriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventCategoriesResponse(
       eventCategoryGroupList: (json['EventCategoryGroupList'] as List?)
@@ -4900,6 +4928,7 @@ class DescribeEventSubscriptionsResponse {
     this.eventSubscriptionsList,
     this.marker,
   });
+
   factory DescribeEventSubscriptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEventSubscriptionsResponse(
@@ -4936,6 +4965,7 @@ class DescribeEventsResponse {
     this.events,
     this.marker,
   });
+
   factory DescribeEventsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventsResponse(
       events: (json['Events'] as List?)
@@ -4970,6 +5000,7 @@ class DescribeOrderableReplicationInstancesResponse {
     this.marker,
     this.orderableReplicationInstances,
   });
+
   factory DescribeOrderableReplicationInstancesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrderableReplicationInstancesResponse(
@@ -5008,6 +5039,7 @@ class DescribePendingMaintenanceActionsResponse {
     this.marker,
     this.pendingMaintenanceActions,
   });
+
   factory DescribePendingMaintenanceActionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePendingMaintenanceActionsResponse(
@@ -5039,6 +5071,7 @@ class DescribeRefreshSchemasStatusResponse {
   DescribeRefreshSchemasStatusResponse({
     this.refreshSchemasStatus,
   });
+
   factory DescribeRefreshSchemasStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRefreshSchemasStatusResponse(
@@ -5076,6 +5109,7 @@ class DescribeReplicationInstanceTaskLogsResponse {
     this.replicationInstanceArn,
     this.replicationInstanceTaskLogs,
   });
+
   factory DescribeReplicationInstanceTaskLogsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationInstanceTaskLogsResponse(
@@ -5118,6 +5152,7 @@ class DescribeReplicationInstancesResponse {
     this.marker,
     this.replicationInstances,
   });
+
   factory DescribeReplicationInstancesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationInstancesResponse(
@@ -5154,6 +5189,7 @@ class DescribeReplicationSubnetGroupsResponse {
     this.marker,
     this.replicationSubnetGroups,
   });
+
   factory DescribeReplicationSubnetGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationSubnetGroupsResponse(
@@ -5195,6 +5231,7 @@ class DescribeReplicationTaskAssessmentResultsResponse {
     this.marker,
     this.replicationTaskAssessmentResults,
   });
+
   factory DescribeReplicationTaskAssessmentResultsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationTaskAssessmentResultsResponse(
@@ -5239,6 +5276,7 @@ class DescribeReplicationTaskAssessmentRunsResponse {
     this.marker,
     this.replicationTaskAssessmentRuns,
   });
+
   factory DescribeReplicationTaskAssessmentRunsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationTaskAssessmentRunsResponse(
@@ -5279,6 +5317,7 @@ class DescribeReplicationTaskIndividualAssessmentsResponse {
     this.marker,
     this.replicationTaskIndividualAssessments,
   });
+
   factory DescribeReplicationTaskIndividualAssessmentsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReplicationTaskIndividualAssessmentsResponse(
@@ -5319,6 +5358,7 @@ class DescribeReplicationTasksResponse {
     this.marker,
     this.replicationTasks,
   });
+
   factory DescribeReplicationTasksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeReplicationTasksResponse(
       marker: json['Marker'] as String?,
@@ -5353,6 +5393,7 @@ class DescribeSchemasResponse {
     this.marker,
     this.schemas,
   });
+
   factory DescribeSchemasResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSchemasResponse(
       marker: json['Marker'] as String?,
@@ -5391,6 +5432,7 @@ class DescribeTableStatisticsResponse {
     this.replicationTaskArn,
     this.tableStatistics,
   });
+
   factory DescribeTableStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTableStatisticsResponse(
       marker: json['Marker'] as String?,
@@ -5464,6 +5506,7 @@ class DmsTransferSettings {
     this.bucketName,
     this.serviceAccessRoleArn,
   });
+
   factory DmsTransferSettings.fromJson(Map<String, dynamic> json) {
     return DmsTransferSettings(
       bucketName: json['BucketName'] as String?,
@@ -5565,6 +5608,7 @@ class DocDbSettings {
     this.serverName,
     this.username,
   });
+
   factory DocDbSettings.fromJson(Map<String, dynamic> json) {
     return DocDbSettings(
       databaseName: json['DatabaseName'] as String?,
@@ -5621,6 +5665,7 @@ class DynamoDbSettings {
   DynamoDbSettings({
     required this.serviceAccessRoleArn,
   });
+
   factory DynamoDbSettings.fromJson(Map<String, dynamic> json) {
     return DynamoDbSettings(
       serviceAccessRoleArn: json['ServiceAccessRoleArn'] as String,
@@ -5663,6 +5708,7 @@ class ElasticsearchSettings {
     this.errorRetryDuration,
     this.fullLoadErrorPercentage,
   });
+
   factory ElasticsearchSettings.fromJson(Map<String, dynamic> json) {
     return ElasticsearchSettings(
       endpointUri: json['EndpointUri'] as String,
@@ -5957,6 +6003,7 @@ class Endpoint {
     this.sybaseSettings,
     this.username,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       certificateArn: json['CertificateArn'] as String?,
@@ -6159,6 +6206,7 @@ class EndpointSetting {
     this.type,
     this.units,
   });
+
   factory EndpointSetting.fromJson(Map<String, dynamic> json) {
     return EndpointSetting(
       applicability: json['Applicability'] as String?,
@@ -6263,6 +6311,7 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       date: timeStampFromJson(json['Date']),
@@ -6310,6 +6359,7 @@ class EventCategoryGroup {
     this.eventCategories,
     this.sourceType,
   });
+
   factory EventCategoryGroup.fromJson(Map<String, dynamic> json) {
     return EventCategoryGroup(
       eventCategories: (json['EventCategories'] as List?)
@@ -6384,6 +6434,7 @@ class EventSubscription {
     this.status,
     this.subscriptionCreationTime,
   });
+
   factory EventSubscription.fromJson(Map<String, dynamic> json) {
     return EventSubscription(
       custSubscriptionId: json['CustSubscriptionId'] as String?,
@@ -6447,6 +6498,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String,
@@ -6531,6 +6583,7 @@ class IBMDb2Settings {
     this.setDataCaptureChanges,
     this.username,
   });
+
   factory IBMDb2Settings.fromJson(Map<String, dynamic> json) {
     return IBMDb2Settings(
       currentLsn: json['CurrentLsn'] as String?,
@@ -6583,6 +6636,7 @@ class ImportCertificateResponse {
   ImportCertificateResponse({
     this.certificate,
   });
+
   factory ImportCertificateResponse.fromJson(Map<String, dynamic> json) {
     return ImportCertificateResponse(
       certificate: json['Certificate'] != null
@@ -6751,6 +6805,7 @@ class KafkaSettings {
     this.sslClientKeyPassword,
     this.topic,
   });
+
   factory KafkaSettings.fromJson(Map<String, dynamic> json) {
     return KafkaSettings(
       broker: json['Broker'] as String?,
@@ -6886,6 +6941,7 @@ class KinesisSettings {
     this.serviceAccessRoleArn,
     this.streamArn,
   });
+
   factory KinesisSettings.fromJson(Map<String, dynamic> json) {
     return KinesisSettings(
       includeControlDetails: json['IncludeControlDetails'] as bool?,
@@ -6939,6 +6995,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tagList,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tagList: (json['TagList'] as List?)
@@ -7093,6 +7150,7 @@ class MicrosoftSQLServerSettings {
     this.useThirdPartyBackupDevice,
     this.username,
   });
+
   factory MicrosoftSQLServerSettings.fromJson(Map<String, dynamic> json) {
     return MicrosoftSQLServerSettings(
       bcpPacketSize: json['BcpPacketSize'] as int?,
@@ -7194,6 +7252,7 @@ class ModifyEndpointResponse {
   ModifyEndpointResponse({
     this.endpoint,
   });
+
   factory ModifyEndpointResponse.fromJson(Map<String, dynamic> json) {
     return ModifyEndpointResponse(
       endpoint: json['Endpoint'] != null
@@ -7218,6 +7277,7 @@ class ModifyEventSubscriptionResponse {
   ModifyEventSubscriptionResponse({
     this.eventSubscription,
   });
+
   factory ModifyEventSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return ModifyEventSubscriptionResponse(
       eventSubscription: json['EventSubscription'] != null
@@ -7243,6 +7303,7 @@ class ModifyReplicationInstanceResponse {
   ModifyReplicationInstanceResponse({
     this.replicationInstance,
   });
+
   factory ModifyReplicationInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return ModifyReplicationInstanceResponse(
@@ -7270,6 +7331,7 @@ class ModifyReplicationSubnetGroupResponse {
   ModifyReplicationSubnetGroupResponse({
     this.replicationSubnetGroup,
   });
+
   factory ModifyReplicationSubnetGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return ModifyReplicationSubnetGroupResponse(
@@ -7297,6 +7359,7 @@ class ModifyReplicationTaskResponse {
   ModifyReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory ModifyReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return ModifyReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -7420,6 +7483,7 @@ class MongoDbSettings {
     this.serverName,
     this.username,
   });
+
   factory MongoDbSettings.fromJson(Map<String, dynamic> json) {
     return MongoDbSettings(
       authMechanism: (json['AuthMechanism'] as String?)?.toAuthMechanismValue(),
@@ -7484,6 +7548,7 @@ class MoveReplicationTaskResponse {
   MoveReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory MoveReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return MoveReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -7607,6 +7672,7 @@ class MySQLSettings {
     this.targetDbType,
     this.username,
   });
+
   factory MySQLSettings.fromJson(Map<String, dynamic> json) {
     return MySQLSettings(
       afterConnectScript: json['AfterConnectScript'] as String?,
@@ -7715,6 +7781,7 @@ class NeptuneSettings {
     this.maxRetryCount,
     this.serviceAccessRoleArn,
   });
+
   factory NeptuneSettings.fromJson(Map<String, dynamic> json) {
     return NeptuneSettings(
       s3BucketFolder: json['S3BucketFolder'] as String,
@@ -8062,6 +8129,7 @@ class OracleSettings {
     this.usePathPrefix,
     this.username,
   });
+
   factory OracleSettings.fromJson(Map<String, dynamic> json) {
     return OracleSettings(
       accessAlternateDirectly: json['AccessAlternateDirectly'] as bool?,
@@ -8267,6 +8335,7 @@ class OrderableReplicationInstance {
     this.replicationInstanceClass,
     this.storageType,
   });
+
   factory OrderableReplicationInstance.fromJson(Map<String, dynamic> json) {
     return OrderableReplicationInstance(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -8384,6 +8453,7 @@ class PendingMaintenanceAction {
     this.forcedApplyDate,
     this.optInStatus,
   });
+
   factory PendingMaintenanceAction.fromJson(Map<String, dynamic> json) {
     return PendingMaintenanceAction(
       action: json['Action'] as String?,
@@ -8521,6 +8591,7 @@ class PostgreSQLSettings {
     this.slotName,
     this.username,
   });
+
   factory PostgreSQLSettings.fromJson(Map<String, dynamic> json) {
     return PostgreSQLSettings(
       afterConnectScript: json['AfterConnectScript'] as String?,
@@ -8585,6 +8656,7 @@ class RebootReplicationInstanceResponse {
   RebootReplicationInstanceResponse({
     this.replicationInstance,
   });
+
   factory RebootReplicationInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return RebootReplicationInstanceResponse(
@@ -8841,6 +8913,7 @@ class RedshiftSettings {
     this.username,
     this.writeBufferSize,
   });
+
   factory RedshiftSettings.fromJson(Map<String, dynamic> json) {
     return RedshiftSettings(
       acceptAnyDate: json['AcceptAnyDate'] as bool?,
@@ -8959,6 +9032,7 @@ class RefreshSchemasResponse {
   RefreshSchemasResponse({
     this.refreshSchemasStatus,
   });
+
   factory RefreshSchemasResponse.fromJson(Map<String, dynamic> json) {
     return RefreshSchemasResponse(
       refreshSchemasStatus: json['RefreshSchemasStatus'] != null
@@ -9002,6 +9076,7 @@ class RefreshSchemasStatus {
     this.replicationInstanceArn,
     this.status,
   });
+
   factory RefreshSchemasStatus.fromJson(Map<String, dynamic> json) {
     return RefreshSchemasStatus(
       endpointArn: json['EndpointArn'] as String?,
@@ -9121,6 +9196,7 @@ class ReloadTablesResponse {
   ReloadTablesResponse({
     this.replicationTaskArn,
   });
+
   factory ReloadTablesResponse.fromJson(Map<String, dynamic> json) {
     return ReloadTablesResponse(
       replicationTaskArn: json['ReplicationTaskArn'] as String?,
@@ -9138,6 +9214,7 @@ class ReloadTablesResponse {
 /// <p/>
 class RemoveTagsFromResourceResponse {
   RemoveTagsFromResourceResponse();
+
   factory RemoveTagsFromResourceResponse.fromJson(Map<String, dynamic> _) {
     return RemoveTagsFromResourceResponse();
   }
@@ -9360,6 +9437,7 @@ class ReplicationInstance {
     this.secondaryAvailabilityZone,
     this.vpcSecurityGroups,
   });
+
   factory ReplicationInstance.fromJson(Map<String, dynamic> json) {
     return ReplicationInstance(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -9499,6 +9577,7 @@ class ReplicationInstanceTaskLog {
     this.replicationTaskArn,
     this.replicationTaskName,
   });
+
   factory ReplicationInstanceTaskLog.fromJson(Map<String, dynamic> json) {
     return ReplicationInstanceTaskLog(
       replicationInstanceTaskLogSize:
@@ -9554,6 +9633,7 @@ class ReplicationPendingModifiedValues {
     this.multiAZ,
     this.replicationInstanceClass,
   });
+
   factory ReplicationPendingModifiedValues.fromJson(Map<String, dynamic> json) {
     return ReplicationPendingModifiedValues(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -9603,6 +9683,7 @@ class ReplicationSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+
   factory ReplicationSubnetGroup.fromJson(Map<String, dynamic> json) {
     return ReplicationSubnetGroup(
       replicationSubnetGroupDescription:
@@ -9877,6 +9958,7 @@ class ReplicationTask {
     this.targetReplicationInstanceArn,
     this.taskData,
   });
+
   factory ReplicationTask.fromJson(Map<String, dynamic> json) {
     return ReplicationTask(
       cdcStartPosition: json['CdcStartPosition'] as String?,
@@ -9993,6 +10075,7 @@ class ReplicationTaskAssessmentResult {
     this.replicationTaskLastAssessmentDate,
     this.s3ObjectUrl,
   });
+
   factory ReplicationTaskAssessmentResult.fromJson(Map<String, dynamic> json) {
     return ReplicationTaskAssessmentResult(
       assessmentResults: json['AssessmentResults'] as String?,
@@ -10136,6 +10219,7 @@ class ReplicationTaskAssessmentRun {
     this.serviceAccessRoleArn,
     this.status,
   });
+
   factory ReplicationTaskAssessmentRun.fromJson(Map<String, dynamic> json) {
     return ReplicationTaskAssessmentRun(
       assessmentProgress: json['AssessmentProgress'] != null
@@ -10211,6 +10295,7 @@ class ReplicationTaskAssessmentRunProgress {
     this.individualAssessmentCompletedCount,
     this.individualAssessmentCount,
   });
+
   factory ReplicationTaskAssessmentRunProgress.fromJson(
       Map<String, dynamic> json) {
     return ReplicationTaskAssessmentRunProgress(
@@ -10284,6 +10369,7 @@ class ReplicationTaskIndividualAssessment {
     this.replicationTaskIndividualAssessmentStartDate,
     this.status,
   });
+
   factory ReplicationTaskIndividualAssessment.fromJson(
       Map<String, dynamic> json) {
     return ReplicationTaskIndividualAssessment(
@@ -10376,6 +10462,7 @@ class ReplicationTaskStats {
     this.tablesLoading,
     this.tablesQueued,
   });
+
   factory ReplicationTaskStats.fromJson(Map<String, dynamic> json) {
     return ReplicationTaskStats(
       elapsedTimeMillis: json['ElapsedTimeMillis'] as int?,
@@ -10440,6 +10527,7 @@ class ResourcePendingMaintenanceActions {
     this.pendingMaintenanceActionDetails,
     this.resourceIdentifier,
   });
+
   factory ResourcePendingMaintenanceActions.fromJson(
       Map<String, dynamic> json) {
     return ResourcePendingMaintenanceActions(
@@ -10884,6 +10972,7 @@ class S3Settings {
     this.timestampColumnName,
     this.useCsvNoSupValue,
   });
+
   factory S3Settings.fromJson(Map<String, dynamic> json) {
     return S3Settings(
       bucketFolder: json['BucketFolder'] as String?,
@@ -11061,6 +11150,7 @@ class StartReplicationTaskAssessmentResponse {
   StartReplicationTaskAssessmentResponse({
     this.replicationTask,
   });
+
   factory StartReplicationTaskAssessmentResponse.fromJson(
       Map<String, dynamic> json) {
     return StartReplicationTaskAssessmentResponse(
@@ -11087,6 +11177,7 @@ class StartReplicationTaskAssessmentRunResponse {
   StartReplicationTaskAssessmentRunResponse({
     this.replicationTaskAssessmentRun,
   });
+
   factory StartReplicationTaskAssessmentRunResponse.fromJson(
       Map<String, dynamic> json) {
     return StartReplicationTaskAssessmentRunResponse(
@@ -11114,6 +11205,7 @@ class StartReplicationTaskResponse {
   StartReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory StartReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return StartReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -11172,6 +11264,7 @@ class StopReplicationTaskResponse {
   StopReplicationTaskResponse({
     this.replicationTask,
   });
+
   factory StopReplicationTaskResponse.fromJson(Map<String, dynamic> json) {
     return StopReplicationTaskResponse(
       replicationTask: json['ReplicationTask'] != null
@@ -11207,6 +11300,7 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+
   factory Subnet.fromJson(Map<String, dynamic> json) {
     return Subnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
@@ -11271,6 +11365,7 @@ class SupportedEndpointType {
     this.replicationInstanceEngineMinimumVersion,
     this.supportsCDC,
   });
+
   factory SupportedEndpointType.fromJson(Map<String, dynamic> json) {
     return SupportedEndpointType(
       endpointType:
@@ -11353,6 +11448,7 @@ class SybaseSettings {
     this.serverName,
     this.username,
   });
+
   factory SybaseSettings.fromJson(Map<String, dynamic> json) {
     return SybaseSettings(
       databaseName: json['DatabaseName'] as String?,
@@ -11521,6 +11617,7 @@ class TableStatistics {
     this.validationStateDetails,
     this.validationSuspendedRecords,
   });
+
   factory TableStatistics.fromJson(Map<String, dynamic> json) {
     return TableStatistics(
       ddls: json['Ddls'] as int?,
@@ -11610,6 +11707,7 @@ class TableToReload {
     required this.schemaName,
     required this.tableName,
   });
+
   factory TableToReload.fromJson(Map<String, dynamic> json) {
     return TableToReload(
       schemaName: json['SchemaName'] as String,
@@ -11660,6 +11758,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -11713,6 +11812,7 @@ class TestConnectionResponse {
   TestConnectionResponse({
     this.connection,
   });
+
   factory TestConnectionResponse.fromJson(Map<String, dynamic> json) {
     return TestConnectionResponse(
       connection: json['Connection'] != null
@@ -11742,6 +11842,7 @@ class VpcSecurityGroupMembership {
     this.status,
     this.vpcSecurityGroupId,
   });
+
   factory VpcSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return VpcSecurityGroupMembership(
       status: json['Status'] as String?,

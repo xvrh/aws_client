@@ -1137,6 +1137,7 @@ class AccessDenied implements _s.AwsException {
   AccessDenied({
     this.message,
   });
+
   factory AccessDenied.fromJson(Map<String, dynamic> json) {
     return AccessDenied(
       message: json['Message'] as String?,
@@ -1200,6 +1201,7 @@ class ActiveTrustedSigners {
     required this.quantity,
     this.items,
   });
+
   factory ActiveTrustedSigners.fromJson(Map<String, dynamic> json) {
     return ActiveTrustedSigners(
       enabled: json['Enabled'] as bool,
@@ -1247,6 +1249,7 @@ class Aliases {
     required this.quantity,
     this.items,
   });
+
   factory Aliases.fromJson(Map<String, dynamic> json) {
     return Aliases(
       quantity: json['Quantity'] as int,
@@ -1334,6 +1337,7 @@ class AllowedMethods {
     required this.quantity,
     this.cachedMethods,
   });
+
   factory AllowedMethods.fromJson(Map<String, dynamic> json) {
     return AllowedMethods(
       items: (json['Items'] as List)
@@ -1400,6 +1404,7 @@ class BatchTooLarge implements _s.AwsException {
   BatchTooLarge({
     this.message,
   });
+
   factory BatchTooLarge.fromJson(Map<String, dynamic> json) {
     return BatchTooLarge(
       message: json['Message'] as String?,
@@ -1426,6 +1431,7 @@ class CNAMEAlreadyExists implements _s.AwsException {
   CNAMEAlreadyExists({
     this.message,
   });
+
   factory CNAMEAlreadyExists.fromJson(Map<String, dynamic> json) {
     return CNAMEAlreadyExists(
       message: json['Message'] as String?,
@@ -1637,6 +1643,7 @@ class CacheBehavior {
     this.maxTTL,
     this.smoothStreaming,
   });
+
   factory CacheBehavior.fromJson(Map<String, dynamic> json) {
     return CacheBehavior(
       forwardedValues: ForwardedValues.fromJson(
@@ -1774,6 +1781,7 @@ class CacheBehaviors {
     required this.quantity,
     this.items,
   });
+
   factory CacheBehaviors.fromJson(Map<String, dynamic> json) {
     return CacheBehaviors(
       quantity: json['Quantity'] as int,
@@ -1854,6 +1862,7 @@ class CachedMethods {
     required this.items,
     required this.quantity,
   });
+
   factory CachedMethods.fromJson(Map<String, dynamic> json) {
     return CachedMethods(
       items: (json['Items'] as List)
@@ -1955,6 +1964,7 @@ class CloudFrontOriginAccessIdentity {
     required this.s3CanonicalUserId,
     this.cloudFrontOriginAccessIdentityConfig,
   });
+
   factory CloudFrontOriginAccessIdentity.fromJson(Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentity(
       id: json['Id'] as String,
@@ -2004,6 +2014,7 @@ class CloudFrontOriginAccessIdentityAlreadyExists implements _s.AwsException {
   CloudFrontOriginAccessIdentityAlreadyExists({
     this.message,
   });
+
   factory CloudFrontOriginAccessIdentityAlreadyExists.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityAlreadyExists(
@@ -2056,6 +2067,7 @@ class CloudFrontOriginAccessIdentityConfig {
     required this.callerReference,
     required this.comment,
   });
+
   factory CloudFrontOriginAccessIdentityConfig.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityConfig(
@@ -2104,6 +2116,7 @@ class CloudFrontOriginAccessIdentityInUse implements _s.AwsException {
   CloudFrontOriginAccessIdentityInUse({
     this.message,
   });
+
   factory CloudFrontOriginAccessIdentityInUse.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityInUse(
@@ -2175,6 +2188,7 @@ class CloudFrontOriginAccessIdentityList {
     this.items,
     this.nextMarker,
   });
+
   factory CloudFrontOriginAccessIdentityList.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityList(
@@ -2243,6 +2257,7 @@ class CloudFrontOriginAccessIdentitySummary {
     required this.id,
     required this.s3CanonicalUserId,
   });
+
   factory CloudFrontOriginAccessIdentitySummary.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentitySummary(
@@ -2291,6 +2306,7 @@ class CookieNames {
     required this.quantity,
     this.items,
   });
+
   factory CookieNames.fromJson(Map<String, dynamic> json) {
     return CookieNames(
       quantity: json['Quantity'] as int,
@@ -2376,6 +2392,7 @@ class CookiePreference {
     required this.forward,
     this.whitelistedNames,
   });
+
   factory CookiePreference.fromJson(Map<String, dynamic> json) {
     return CookiePreference(
       forward: (json['Forward'] as String).toItemSelection(),
@@ -2440,6 +2457,7 @@ class CreateCloudFrontOriginAccessIdentityResult {
     this.eTag,
     this.location,
   });
+
   factory CreateCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return CreateCloudFrontOriginAccessIdentityResult(
@@ -2482,6 +2500,7 @@ class CreateDistributionResult {
     this.eTag,
     this.location,
   });
+
   factory CreateDistributionResult.fromJson(Map<String, dynamic> json) {
     return CreateDistributionResult(
       distribution: json['Distribution'] != null
@@ -2520,6 +2539,7 @@ class CreateDistributionWithTagsResult {
     this.eTag,
     this.location,
   });
+
   factory CreateDistributionWithTagsResult.fromJson(Map<String, dynamic> json) {
     return CreateDistributionWithTagsResult(
       distribution: json['Distribution'] != null
@@ -2553,6 +2573,7 @@ class CreateInvalidationResult {
     this.invalidation,
     this.location,
   });
+
   factory CreateInvalidationResult.fromJson(Map<String, dynamic> json) {
     return CreateInvalidationResult(
       invalidation: json['Invalidation'] != null
@@ -2589,6 +2610,7 @@ class CreateStreamingDistributionResult {
     this.location,
     this.streamingDistribution,
   });
+
   factory CreateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionResult(
@@ -2629,6 +2651,7 @@ class CreateStreamingDistributionWithTagsResult {
     this.location,
     this.streamingDistribution,
   });
+
   factory CreateStreamingDistributionWithTagsResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionWithTagsResult(
@@ -2752,6 +2775,7 @@ class CustomErrorResponse {
     this.responseCode,
     this.responsePagePath,
   });
+
   factory CustomErrorResponse.fromJson(Map<String, dynamic> json) {
     return CustomErrorResponse(
       errorCode: json['ErrorCode'] as int,
@@ -2837,6 +2861,7 @@ class CustomErrorResponses {
     required this.quantity,
     this.items,
   });
+
   factory CustomErrorResponses.fromJson(Map<String, dynamic> json) {
     return CustomErrorResponses(
       quantity: json['Quantity'] as int,
@@ -2900,6 +2925,7 @@ class CustomHeaders {
     required this.quantity,
     this.items,
   });
+
   factory CustomHeaders.fromJson(Map<String, dynamic> json) {
     return CustomHeaders(
       quantity: json['Quantity'] as int,
@@ -2970,6 +2996,7 @@ class CustomOriginConfig {
     required this.originProtocolPolicy,
     this.originSslProtocols,
   });
+
   factory CustomOriginConfig.fromJson(Map<String, dynamic> json) {
     return CustomOriginConfig(
       hTTPPort: json['HTTPPort'] as int,
@@ -3167,6 +3194,7 @@ class DefaultCacheBehavior {
     this.maxTTL,
     this.smoothStreaming,
   });
+
   factory DefaultCacheBehavior.fromJson(Map<String, dynamic> json) {
     return DefaultCacheBehavior(
       forwardedValues: ForwardedValues.fromJson(
@@ -3335,6 +3363,7 @@ class Distribution {
     required this.lastModifiedTime,
     required this.status,
   });
+
   factory Distribution.fromJson(Map<String, dynamic> json) {
     return Distribution(
       arn: json['ARN'] as String,
@@ -3398,6 +3427,7 @@ class DistributionAlreadyExists implements _s.AwsException {
   DistributionAlreadyExists({
     this.message,
   });
+
   factory DistributionAlreadyExists.fromJson(Map<String, dynamic> json) {
     return DistributionAlreadyExists(
       message: json['Message'] as String?,
@@ -3641,6 +3671,7 @@ class DistributionConfig {
     this.viewerCertificate,
     this.webACLId,
   });
+
   factory DistributionConfig.fromJson(Map<String, dynamic> json) {
     return DistributionConfig(
       callerReference: json['CallerReference'] as String,
@@ -3815,6 +3846,7 @@ class DistributionConfigWithTags {
     required this.distributionConfig,
     required this.tags,
   });
+
   factory DistributionConfigWithTags.fromJson(Map<String, dynamic> json) {
     return DistributionConfigWithTags(
       distributionConfig: DistributionConfig.fromJson(
@@ -3884,6 +3916,7 @@ class DistributionList {
     this.items,
     this.nextMarker,
   });
+
   factory DistributionList.fromJson(Map<String, dynamic> json) {
     return DistributionList(
       isTruncated: json['IsTruncated'] as bool,
@@ -3936,6 +3969,7 @@ class DistributionNotDisabled implements _s.AwsException {
   DistributionNotDisabled({
     this.message,
   });
+
   factory DistributionNotDisabled.fromJson(Map<String, dynamic> json) {
     return DistributionNotDisabled(
       message: json['Message'] as String?,
@@ -4043,6 +4077,7 @@ class DistributionSummary {
     required this.viewerCertificate,
     required this.webACLId,
   });
+
   factory DistributionSummary.fromJson(Map<String, dynamic> json) {
     return DistributionSummary(
       arn: json['ARN'] as String,
@@ -4234,6 +4269,7 @@ class ForwardedValues {
     this.headers,
     this.queryStringCacheKeys,
   });
+
   factory ForwardedValues.fromJson(Map<String, dynamic> json) {
     return ForwardedValues(
       cookies:
@@ -4349,6 +4385,7 @@ class GeoRestriction {
     required this.restrictionType,
     this.items,
   });
+
   factory GeoRestriction.fromJson(Map<String, dynamic> json) {
     return GeoRestriction(
       quantity: json['Quantity'] as int,
@@ -4453,6 +4490,7 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
     this.cloudFrontOriginAccessIdentityConfig,
     this.eTag,
   });
+
   factory GetCloudFrontOriginAccessIdentityConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetCloudFrontOriginAccessIdentityConfigResult(
@@ -4491,6 +4529,7 @@ class GetCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
   factory GetCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return GetCloudFrontOriginAccessIdentityResult(
@@ -4526,6 +4565,7 @@ class GetDistributionConfigResult {
     this.distributionConfig,
     this.eTag,
   });
+
   factory GetDistributionConfigResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionConfigResult(
       distributionConfig: json['DistributionConfig'] != null
@@ -4558,6 +4598,7 @@ class GetDistributionResult {
     this.distribution,
     this.eTag,
   });
+
   factory GetDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionResult(
       distribution: json['Distribution'] != null
@@ -4586,6 +4627,7 @@ class GetInvalidationResult {
   GetInvalidationResult({
     this.invalidation,
   });
+
   factory GetInvalidationResult.fromJson(Map<String, dynamic> json) {
     return GetInvalidationResult(
       invalidation: json['Invalidation'] != null
@@ -4615,6 +4657,7 @@ class GetStreamingDistributionConfigResult {
     this.eTag,
     this.streamingDistributionConfig,
   });
+
   factory GetStreamingDistributionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetStreamingDistributionConfigResult(
@@ -4649,6 +4692,7 @@ class GetStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
   factory GetStreamingDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetStreamingDistributionResult(
       eTag: json['ETag'] as String?,
@@ -4724,6 +4768,7 @@ class Headers {
     required this.quantity,
     this.items,
   });
+
   factory Headers.fromJson(Map<String, dynamic> json) {
     return Headers(
       quantity: json['Quantity'] as int,
@@ -4807,6 +4852,7 @@ class IllegalUpdate implements _s.AwsException {
   IllegalUpdate({
     this.message,
   });
+
   factory IllegalUpdate.fromJson(Map<String, dynamic> json) {
     return IllegalUpdate(
       message: json['Message'] as String?,
@@ -4835,6 +4881,7 @@ class InconsistentQuantities implements _s.AwsException {
   InconsistentQuantities({
     this.message,
   });
+
   factory InconsistentQuantities.fromJson(Map<String, dynamic> json) {
     return InconsistentQuantities(
       message: json['Message'] as String?,
@@ -4862,6 +4909,7 @@ class InvalidArgument implements _s.AwsException {
   InvalidArgument({
     this.message,
   });
+
   factory InvalidArgument.fromJson(Map<String, dynamic> json) {
     return InvalidArgument(
       message: json['Message'] as String?,
@@ -4890,6 +4938,7 @@ class InvalidDefaultRootObject implements _s.AwsException {
   InvalidDefaultRootObject({
     this.message,
   });
+
   factory InvalidDefaultRootObject.fromJson(Map<String, dynamic> json) {
     return InvalidDefaultRootObject(
       message: json['Message'] as String?,
@@ -4916,6 +4965,7 @@ class InvalidErrorCode implements _s.AwsException {
   InvalidErrorCode({
     this.message,
   });
+
   factory InvalidErrorCode.fromJson(Map<String, dynamic> json) {
     return InvalidErrorCode(
       message: json['Message'] as String?,
@@ -4946,6 +4996,7 @@ class InvalidForwardCookies implements _s.AwsException {
   InvalidForwardCookies({
     this.message,
   });
+
   factory InvalidForwardCookies.fromJson(Map<String, dynamic> json) {
     return InvalidForwardCookies(
       message: json['Message'] as String?,
@@ -4972,6 +5023,7 @@ class InvalidGeoRestrictionParameter implements _s.AwsException {
   InvalidGeoRestrictionParameter({
     this.message,
   });
+
   factory InvalidGeoRestrictionParameter.fromJson(Map<String, dynamic> json) {
     return InvalidGeoRestrictionParameter(
       message: json['Message'] as String?,
@@ -4998,6 +5050,7 @@ class InvalidHeadersForS3Origin implements _s.AwsException {
   InvalidHeadersForS3Origin({
     this.message,
   });
+
   factory InvalidHeadersForS3Origin.fromJson(Map<String, dynamic> json) {
     return InvalidHeadersForS3Origin(
       message: json['Message'] as String?,
@@ -5026,6 +5079,7 @@ class InvalidIfMatchVersion implements _s.AwsException {
   InvalidIfMatchVersion({
     this.message,
   });
+
   factory InvalidIfMatchVersion.fromJson(Map<String, dynamic> json) {
     return InvalidIfMatchVersion(
       message: json['Message'] as String?,
@@ -5053,6 +5107,7 @@ class InvalidLambdaFunctionAssociation implements _s.AwsException {
   InvalidLambdaFunctionAssociation({
     this.message,
   });
+
   factory InvalidLambdaFunctionAssociation.fromJson(Map<String, dynamic> json) {
     return InvalidLambdaFunctionAssociation(
       message: json['Message'] as String?,
@@ -5079,6 +5134,7 @@ class InvalidLocationCode implements _s.AwsException {
   InvalidLocationCode({
     this.message,
   });
+
   factory InvalidLocationCode.fromJson(Map<String, dynamic> json) {
     return InvalidLocationCode(
       message: json['Message'] as String?,
@@ -5105,6 +5161,7 @@ class InvalidMinimumProtocolVersion implements _s.AwsException {
   InvalidMinimumProtocolVersion({
     this.message,
   });
+
   factory InvalidMinimumProtocolVersion.fromJson(Map<String, dynamic> json) {
     return InvalidMinimumProtocolVersion(
       message: json['Message'] as String?,
@@ -5133,6 +5190,7 @@ class InvalidOrigin implements _s.AwsException {
   InvalidOrigin({
     this.message,
   });
+
   factory InvalidOrigin.fromJson(Map<String, dynamic> json) {
     return InvalidOrigin(
       message: json['Message'] as String?,
@@ -5160,6 +5218,7 @@ class InvalidOriginAccessIdentity implements _s.AwsException {
   InvalidOriginAccessIdentity({
     this.message,
   });
+
   factory InvalidOriginAccessIdentity.fromJson(Map<String, dynamic> json) {
     return InvalidOriginAccessIdentity(
       message: json['Message'] as String?,
@@ -5188,6 +5247,7 @@ class InvalidProtocolSettings implements _s.AwsException {
   InvalidProtocolSettings({
     this.message,
   });
+
   factory InvalidProtocolSettings.fromJson(Map<String, dynamic> json) {
     return InvalidProtocolSettings(
       message: json['Message'] as String?,
@@ -5214,6 +5274,7 @@ class InvalidQueryStringParameters implements _s.AwsException {
   InvalidQueryStringParameters({
     this.message,
   });
+
   factory InvalidQueryStringParameters.fromJson(Map<String, dynamic> json) {
     return InvalidQueryStringParameters(
       message: json['Message'] as String?,
@@ -5242,6 +5303,7 @@ class InvalidRelativePath implements _s.AwsException {
   InvalidRelativePath({
     this.message,
   });
+
   factory InvalidRelativePath.fromJson(Map<String, dynamic> json) {
     return InvalidRelativePath(
       message: json['Message'] as String?,
@@ -5271,6 +5333,7 @@ class InvalidRequiredProtocol implements _s.AwsException {
   InvalidRequiredProtocol({
     this.message,
   });
+
   factory InvalidRequiredProtocol.fromJson(Map<String, dynamic> json) {
     return InvalidRequiredProtocol(
       message: json['Message'] as String?,
@@ -5297,6 +5360,7 @@ class InvalidResponseCode implements _s.AwsException {
   InvalidResponseCode({
     this.message,
   });
+
   factory InvalidResponseCode.fromJson(Map<String, dynamic> json) {
     return InvalidResponseCode(
       message: json['Message'] as String?,
@@ -5323,6 +5387,7 @@ class InvalidTTLOrder implements _s.AwsException {
   InvalidTTLOrder({
     this.message,
   });
+
   factory InvalidTTLOrder.fromJson(Map<String, dynamic> json) {
     return InvalidTTLOrder(
       message: json['Message'] as String?,
@@ -5349,6 +5414,7 @@ class InvalidTagging implements _s.AwsException {
   InvalidTagging({
     this.message,
   });
+
   factory InvalidTagging.fromJson(Map<String, dynamic> json) {
     return InvalidTagging(
       message: json['Message'] as String?,
@@ -5375,6 +5441,7 @@ class InvalidViewerCertificate implements _s.AwsException {
   InvalidViewerCertificate({
     this.message,
   });
+
   factory InvalidViewerCertificate.fromJson(Map<String, dynamic> json) {
     return InvalidViewerCertificate(
       message: json['Message'] as String?,
@@ -5401,6 +5468,7 @@ class InvalidWebACLId implements _s.AwsException {
   InvalidWebACLId({
     this.message,
   });
+
   factory InvalidWebACLId.fromJson(Map<String, dynamic> json) {
     return InvalidWebACLId(
       message: json['Message'] as String?,
@@ -5443,6 +5511,7 @@ class Invalidation {
     required this.invalidationBatch,
     required this.status,
   });
+
   factory Invalidation.fromJson(Map<String, dynamic> json) {
     return Invalidation(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5510,6 +5579,7 @@ class InvalidationBatch {
     required this.callerReference,
     required this.paths,
   });
+
   factory InvalidationBatch.fromJson(Map<String, dynamic> json) {
     return InvalidationBatch(
       callerReference: json['CallerReference'] as String,
@@ -5590,6 +5660,7 @@ class InvalidationList {
     this.items,
     this.nextMarker,
   });
+
   factory InvalidationList.fromJson(Map<String, dynamic> json) {
     return InvalidationList(
       isTruncated: json['IsTruncated'] as bool,
@@ -5651,6 +5722,7 @@ class InvalidationSummary {
     required this.id,
     required this.status,
   });
+
   factory InvalidationSummary.fromJson(Map<String, dynamic> json) {
     return InvalidationSummary(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5732,6 +5804,7 @@ class KeyPairIds {
     required this.quantity,
     this.items,
   });
+
   factory KeyPairIds.fromJson(Map<String, dynamic> json) {
     return KeyPairIds(
       quantity: json['Quantity'] as int,
@@ -5789,6 +5862,7 @@ class LambdaFunctionAssociation {
     this.eventType,
     this.lambdaFunctionARN,
   });
+
   factory LambdaFunctionAssociation.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionAssociation(
       eventType: (json['EventType'] as String?)?.toEventType(),
@@ -5858,6 +5932,7 @@ class LambdaFunctionAssociations {
     required this.quantity,
     this.items,
   });
+
   factory LambdaFunctionAssociations.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionAssociations(
       quantity: json['Quantity'] as int,
@@ -5916,6 +5991,7 @@ class ListCloudFrontOriginAccessIdentitiesResult {
   ListCloudFrontOriginAccessIdentitiesResult({
     this.cloudFrontOriginAccessIdentityList,
   });
+
   factory ListCloudFrontOriginAccessIdentitiesResult.fromJson(
       Map<String, dynamic> json) {
     return ListCloudFrontOriginAccessIdentitiesResult(
@@ -5948,6 +6024,7 @@ class ListDistributionsByWebACLIdResult {
   ListDistributionsByWebACLIdResult({
     this.distributionList,
   });
+
   factory ListDistributionsByWebACLIdResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByWebACLIdResult(
@@ -5974,6 +6051,7 @@ class ListDistributionsResult {
   ListDistributionsResult({
     this.distributionList,
   });
+
   factory ListDistributionsResult.fromJson(Map<String, dynamic> json) {
     return ListDistributionsResult(
       distributionList: json['DistributionList'] != null
@@ -5999,6 +6077,7 @@ class ListInvalidationsResult {
   ListInvalidationsResult({
     this.invalidationList,
   });
+
   factory ListInvalidationsResult.fromJson(Map<String, dynamic> json) {
     return ListInvalidationsResult(
       invalidationList: json['InvalidationList'] != null
@@ -6024,6 +6103,7 @@ class ListStreamingDistributionsResult {
   ListStreamingDistributionsResult({
     this.streamingDistributionList,
   });
+
   factory ListStreamingDistributionsResult.fromJson(Map<String, dynamic> json) {
     return ListStreamingDistributionsResult(
       streamingDistributionList: json['StreamingDistributionList'] != null
@@ -6050,6 +6130,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     required this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tags: Tags.fromJson(json['Tags'] as Map<String, dynamic>),
@@ -6103,6 +6184,7 @@ class LoggingConfig {
     required this.includeCookies,
     required this.prefix,
   });
+
   factory LoggingConfig.fromJson(Map<String, dynamic> json) {
     return LoggingConfig(
       bucket: json['Bucket'] as String,
@@ -6245,6 +6327,7 @@ class MissingBody implements _s.AwsException {
   MissingBody({
     this.message,
   });
+
   factory MissingBody.fromJson(Map<String, dynamic> json) {
     return MissingBody(
       message: json['Message'] as String?,
@@ -6272,6 +6355,7 @@ class NoSuchCloudFrontOriginAccessIdentity implements _s.AwsException {
   NoSuchCloudFrontOriginAccessIdentity({
     this.message,
   });
+
   factory NoSuchCloudFrontOriginAccessIdentity.fromJson(
       Map<String, dynamic> json) {
     return NoSuchCloudFrontOriginAccessIdentity(
@@ -6300,6 +6384,7 @@ class NoSuchDistribution implements _s.AwsException {
   NoSuchDistribution({
     this.message,
   });
+
   factory NoSuchDistribution.fromJson(Map<String, dynamic> json) {
     return NoSuchDistribution(
       message: json['Message'] as String?,
@@ -6327,6 +6412,7 @@ class NoSuchInvalidation implements _s.AwsException {
   NoSuchInvalidation({
     this.message,
   });
+
   factory NoSuchInvalidation.fromJson(Map<String, dynamic> json) {
     return NoSuchInvalidation(
       message: json['Message'] as String?,
@@ -6354,6 +6440,7 @@ class NoSuchOrigin implements _s.AwsException {
   NoSuchOrigin({
     this.message,
   });
+
   factory NoSuchOrigin.fromJson(Map<String, dynamic> json) {
     return NoSuchOrigin(
       message: json['Message'] as String?,
@@ -6380,6 +6467,7 @@ class NoSuchResource implements _s.AwsException {
   NoSuchResource({
     this.message,
   });
+
   factory NoSuchResource.fromJson(Map<String, dynamic> json) {
     return NoSuchResource(
       message: json['Message'] as String?,
@@ -6407,6 +6495,7 @@ class NoSuchStreamingDistribution implements _s.AwsException {
   NoSuchStreamingDistribution({
     this.message,
   });
+
   factory NoSuchStreamingDistribution.fromJson(Map<String, dynamic> json) {
     return NoSuchStreamingDistribution(
       message: json['Message'] as String?,
@@ -6540,6 +6629,7 @@ class Origin {
     this.originPath,
     this.s3OriginConfig,
   });
+
   factory Origin.fromJson(Map<String, dynamic> json) {
     return Origin(
       domainName: json['DomainName'] as String,
@@ -6639,6 +6729,7 @@ class OriginCustomHeader {
     required this.headerName,
     required this.headerValue,
   });
+
   factory OriginCustomHeader.fromJson(Map<String, dynamic> json) {
     return OriginCustomHeader(
       headerName: json['HeaderName'] as String,
@@ -6727,6 +6818,7 @@ class OriginSslProtocols {
     required this.items,
     required this.quantity,
   });
+
   factory OriginSslProtocols.fromJson(Map<String, dynamic> json) {
     return OriginSslProtocols(
       items: (json['Items'] as List)
@@ -6792,6 +6884,7 @@ class Origins {
     required this.quantity,
     this.items,
   });
+
   factory Origins.fromJson(Map<String, dynamic> json) {
     return Origins(
       quantity: json['Quantity'] as int,
@@ -6856,6 +6949,7 @@ class Paths {
     required this.quantity,
     this.items,
   });
+
   factory Paths.fromJson(Map<String, dynamic> json) {
     return Paths(
       quantity: json['Quantity'] as int,
@@ -6912,6 +7006,7 @@ class PreconditionFailed implements _s.AwsException {
   PreconditionFailed({
     this.message,
   });
+
   factory PreconditionFailed.fromJson(Map<String, dynamic> json) {
     return PreconditionFailed(
       message: json['Message'] as String?,
@@ -6979,6 +7074,7 @@ class QueryStringCacheKeys {
     required this.quantity,
     this.items,
   });
+
   factory QueryStringCacheKeys.fromJson(Map<String, dynamic> json) {
     return QueryStringCacheKeys(
       quantity: json['Quantity'] as int,
@@ -7035,6 +7131,7 @@ class Restrictions {
   Restrictions({
     required this.geoRestriction,
   });
+
   factory Restrictions.fromJson(Map<String, dynamic> json) {
     return Restrictions(
       geoRestriction: GeoRestriction.fromJson(
@@ -7104,6 +7201,7 @@ class S3Origin {
     required this.domainName,
     required this.originAccessIdentity,
   });
+
   factory S3Origin.fromJson(Map<String, dynamic> json) {
     return S3Origin(
       domainName: json['DomainName'] as String,
@@ -7181,6 +7279,7 @@ class S3OriginConfig {
   S3OriginConfig({
     required this.originAccessIdentity,
   });
+
   factory S3OriginConfig.fromJson(Map<String, dynamic> json) {
     return S3OriginConfig(
       originAccessIdentity: json['OriginAccessIdentity'] as String,
@@ -7270,6 +7369,7 @@ class Signer {
     this.awsAccountNumber,
     this.keyPairIds,
   });
+
   factory Signer.fromJson(Map<String, dynamic> json) {
     return Signer(
       awsAccountNumber: json['AwsAccountNumber'] as String?,
@@ -7386,6 +7486,7 @@ class StreamingDistribution {
     required this.streamingDistributionConfig,
     this.lastModifiedTime,
   });
+
   factory StreamingDistribution.fromJson(Map<String, dynamic> json) {
     return StreamingDistribution(
       arn: json['ARN'] as String,
@@ -7441,6 +7542,7 @@ class StreamingDistributionAlreadyExists implements _s.AwsException {
   StreamingDistributionAlreadyExists({
     this.message,
   });
+
   factory StreamingDistributionAlreadyExists.fromJson(
       Map<String, dynamic> json) {
     return StreamingDistributionAlreadyExists(
@@ -7520,6 +7622,7 @@ class StreamingDistributionConfig {
     this.logging,
     this.priceClass,
   });
+
   factory StreamingDistributionConfig.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionConfig(
       callerReference: json['CallerReference'] as String,
@@ -7621,6 +7724,7 @@ class StreamingDistributionConfigWithTags {
     required this.streamingDistributionConfig,
     required this.tags,
   });
+
   factory StreamingDistributionConfigWithTags.fromJson(
       Map<String, dynamic> json) {
     return StreamingDistributionConfigWithTags(
@@ -7692,6 +7796,7 @@ class StreamingDistributionList {
     this.items,
     this.nextMarker,
   });
+
   factory StreamingDistributionList.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionList(
       isTruncated: json['IsTruncated'] as bool,
@@ -7745,6 +7850,7 @@ class StreamingDistributionNotDisabled implements _s.AwsException {
   StreamingDistributionNotDisabled({
     this.message,
   });
+
   factory StreamingDistributionNotDisabled.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionNotDisabled(
       message: json['Message'] as String?,
@@ -7832,6 +7938,7 @@ class StreamingDistributionSummary {
     required this.status,
     required this.trustedSigners,
   });
+
   factory StreamingDistributionSummary.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionSummary(
       arn: json['ARN'] as String,
@@ -7924,6 +8031,7 @@ class StreamingLoggingConfig {
     required this.enabled,
     required this.prefix,
   });
+
   factory StreamingLoggingConfig.fromJson(Map<String, dynamic> json) {
     return StreamingLoggingConfig(
       bucket: json['Bucket'] as String,
@@ -7992,6 +8100,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -8041,6 +8150,7 @@ class TagKeys {
   TagKeys({
     this.items,
   });
+
   factory TagKeys.fromJson(Map<String, dynamic> json) {
     return TagKeys(
       items: (json['Items'] as List?)
@@ -8083,6 +8193,7 @@ class Tags {
   Tags({
     this.items,
   });
+
   factory Tags.fromJson(Map<String, dynamic> json) {
     return Tags(
       items: (json['Items'] as List?)
@@ -8131,6 +8242,7 @@ class TooManyCacheBehaviors implements _s.AwsException {
   TooManyCacheBehaviors({
     this.message,
   });
+
   factory TooManyCacheBehaviors.fromJson(Map<String, dynamic> json) {
     return TooManyCacheBehaviors(
       message: json['Message'] as String?,
@@ -8158,6 +8270,7 @@ class TooManyCertificates implements _s.AwsException {
   TooManyCertificates({
     this.message,
   });
+
   factory TooManyCertificates.fromJson(Map<String, dynamic> json) {
     return TooManyCertificates(
       message: json['Message'] as String?,
@@ -8186,6 +8299,7 @@ class TooManyCloudFrontOriginAccessIdentities implements _s.AwsException {
   TooManyCloudFrontOriginAccessIdentities({
     this.message,
   });
+
   factory TooManyCloudFrontOriginAccessIdentities.fromJson(
       Map<String, dynamic> json) {
     return TooManyCloudFrontOriginAccessIdentities(
@@ -8215,6 +8329,7 @@ class TooManyCookieNamesInWhiteList implements _s.AwsException {
   TooManyCookieNamesInWhiteList({
     this.message,
   });
+
   factory TooManyCookieNamesInWhiteList.fromJson(Map<String, dynamic> json) {
     return TooManyCookieNamesInWhiteList(
       message: json['Message'] as String?,
@@ -8242,6 +8357,7 @@ class TooManyDistributionCNAMEs implements _s.AwsException {
   TooManyDistributionCNAMEs({
     this.message,
   });
+
   factory TooManyDistributionCNAMEs.fromJson(Map<String, dynamic> json) {
     return TooManyDistributionCNAMEs(
       message: json['Message'] as String?,
@@ -8270,6 +8386,7 @@ class TooManyDistributions implements _s.AwsException {
   TooManyDistributions({
     this.message,
   });
+
   factory TooManyDistributions.fromJson(Map<String, dynamic> json) {
     return TooManyDistributions(
       message: json['Message'] as String?,
@@ -8298,6 +8415,7 @@ class TooManyDistributionsWithLambdaAssociations implements _s.AwsException {
   TooManyDistributionsWithLambdaAssociations({
     this.message,
   });
+
   factory TooManyDistributionsWithLambdaAssociations.fromJson(
       Map<String, dynamic> json) {
     return TooManyDistributionsWithLambdaAssociations(
@@ -8326,6 +8444,7 @@ class TooManyHeadersInForwardedValues implements _s.AwsException {
   TooManyHeadersInForwardedValues({
     this.message,
   });
+
   factory TooManyHeadersInForwardedValues.fromJson(Map<String, dynamic> json) {
     return TooManyHeadersInForwardedValues(
       message: json['Message'] as String?,
@@ -8354,6 +8473,7 @@ class TooManyInvalidationsInProgress implements _s.AwsException {
   TooManyInvalidationsInProgress({
     this.message,
   });
+
   factory TooManyInvalidationsInProgress.fromJson(Map<String, dynamic> json) {
     return TooManyInvalidationsInProgress(
       message: json['Message'] as String?,
@@ -8382,6 +8502,7 @@ class TooManyLambdaFunctionAssociations implements _s.AwsException {
   TooManyLambdaFunctionAssociations({
     this.message,
   });
+
   factory TooManyLambdaFunctionAssociations.fromJson(
       Map<String, dynamic> json) {
     return TooManyLambdaFunctionAssociations(
@@ -8409,6 +8530,7 @@ class TooManyOriginCustomHeaders implements _s.AwsException {
   TooManyOriginCustomHeaders({
     this.message,
   });
+
   factory TooManyOriginCustomHeaders.fromJson(Map<String, dynamic> json) {
     return TooManyOriginCustomHeaders(
       message: json['Message'] as String?,
@@ -8436,6 +8558,7 @@ class TooManyOrigins implements _s.AwsException {
   TooManyOrigins({
     this.message,
   });
+
   factory TooManyOrigins.fromJson(Map<String, dynamic> json) {
     return TooManyOrigins(
       message: json['Message'] as String?,
@@ -8462,6 +8585,7 @@ class TooManyQueryStringParameters implements _s.AwsException {
   TooManyQueryStringParameters({
     this.message,
   });
+
   factory TooManyQueryStringParameters.fromJson(Map<String, dynamic> json) {
     return TooManyQueryStringParameters(
       message: json['Message'] as String?,
@@ -8488,6 +8612,7 @@ class TooManyStreamingDistributionCNAMEs implements _s.AwsException {
   TooManyStreamingDistributionCNAMEs({
     this.message,
   });
+
   factory TooManyStreamingDistributionCNAMEs.fromJson(
       Map<String, dynamic> json) {
     return TooManyStreamingDistributionCNAMEs(
@@ -8517,6 +8642,7 @@ class TooManyStreamingDistributions implements _s.AwsException {
   TooManyStreamingDistributions({
     this.message,
   });
+
   factory TooManyStreamingDistributions.fromJson(Map<String, dynamic> json) {
     return TooManyStreamingDistributions(
       message: json['Message'] as String?,
@@ -8545,6 +8671,7 @@ class TooManyTrustedSigners implements _s.AwsException {
   TooManyTrustedSigners({
     this.message,
   });
+
   factory TooManyTrustedSigners.fromJson(Map<String, dynamic> json) {
     return TooManyTrustedSigners(
       message: json['Message'] as String?,
@@ -8572,6 +8699,7 @@ class TrustedSignerDoesNotExist implements _s.AwsException {
   TrustedSignerDoesNotExist({
     this.message,
   });
+
   factory TrustedSignerDoesNotExist.fromJson(Map<String, dynamic> json) {
     return TrustedSignerDoesNotExist(
       message: json['Message'] as String?,
@@ -8636,6 +8764,7 @@ class TrustedSigners {
     required this.quantity,
     this.items,
   });
+
   factory TrustedSigners.fromJson(Map<String, dynamic> json) {
     return TrustedSigners(
       enabled: json['Enabled'] as bool,
@@ -8702,6 +8831,7 @@ class UpdateCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
   factory UpdateCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateCloudFrontOriginAccessIdentityResult(
@@ -8737,6 +8867,7 @@ class UpdateDistributionResult {
     this.distribution,
     this.eTag,
   });
+
   factory UpdateDistributionResult.fromJson(Map<String, dynamic> json) {
     return UpdateDistributionResult(
       distribution: json['Distribution'] != null
@@ -8768,6 +8899,7 @@ class UpdateStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
   factory UpdateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateStreamingDistributionResult(
@@ -9021,6 +9153,7 @@ class ViewerCertificate {
     this.minimumProtocolVersion,
     this.sSLSupportMethod,
   });
+
   factory ViewerCertificate.fromJson(Map<String, dynamic> json) {
     return ViewerCertificate(
       aCMCertificateArn: json['ACMCertificateArn'] as String?,

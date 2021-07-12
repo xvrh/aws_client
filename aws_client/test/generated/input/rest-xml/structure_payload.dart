@@ -88,6 +88,7 @@ class FooShape {
   FooShape({
     this.baz,
   });
+
   factory FooShape.fromJson(Map<String, dynamic> json) {
     return FooShape(
       baz: json['baz'] as String?,

@@ -1336,6 +1336,7 @@ class Alias {
     this.names,
     this.type,
   });
+
   factory Alias.fromJson(Map<String, dynamic> json) {
     return Alias(
       name: json['Name'] as String?,
@@ -1376,6 +1377,7 @@ class AnnotationValue {
     this.numberValue,
     this.stringValue,
   });
+
   factory AnnotationValue.fromJson(Map<String, dynamic> json) {
     return AnnotationValue(
       booleanValue: json['BooleanValue'] as bool?,
@@ -1403,6 +1405,7 @@ class AnomalousService {
   AnomalousService({
     this.serviceId,
   });
+
   factory AnomalousService.fromJson(Map<String, dynamic> json) {
     return AnomalousService(
       serviceId: json['ServiceId'] != null
@@ -1427,6 +1430,7 @@ class AvailabilityZoneDetail {
   AvailabilityZoneDetail({
     this.name,
   });
+
   factory AvailabilityZoneDetail.fromJson(Map<String, dynamic> json) {
     return AvailabilityZoneDetail(
       name: json['Name'] as String?,
@@ -1469,6 +1473,7 @@ class BackendConnectionErrors {
     this.timeoutCount,
     this.unknownHostCount,
   });
+
   factory BackendConnectionErrors.fromJson(Map<String, dynamic> json) {
     return BackendConnectionErrors(
       connectionRefusedCount: json['ConnectionRefusedCount'] as int?,
@@ -1514,6 +1519,7 @@ class BatchGetTracesResult {
     this.traces,
     this.unprocessedTraceIds,
   });
+
   factory BatchGetTracesResult.fromJson(Map<String, dynamic> json) {
     return BatchGetTracesResult(
       nextToken: json['NextToken'] as String?,
@@ -1551,6 +1557,7 @@ class CreateGroupResult {
   CreateGroupResult({
     this.group,
   });
+
   factory CreateGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateGroupResult(
       group: json['Group'] != null
@@ -1574,6 +1581,7 @@ class CreateSamplingRuleResult {
   CreateSamplingRuleResult({
     this.samplingRuleRecord,
   });
+
   factory CreateSamplingRuleResult.fromJson(Map<String, dynamic> json) {
     return CreateSamplingRuleResult(
       samplingRuleRecord: json['SamplingRuleRecord'] != null
@@ -1593,6 +1601,7 @@ class CreateSamplingRuleResult {
 
 class DeleteGroupResult {
   DeleteGroupResult();
+
   factory DeleteGroupResult.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResult();
   }
@@ -1609,6 +1618,7 @@ class DeleteSamplingRuleResult {
   DeleteSamplingRuleResult({
     this.samplingRuleRecord,
   });
+
   factory DeleteSamplingRuleResult.fromJson(Map<String, dynamic> json) {
     return DeleteSamplingRuleResult(
       samplingRuleRecord: json['SamplingRuleRecord'] != null
@@ -1654,6 +1664,7 @@ class Edge {
     this.startTime,
     this.summaryStatistics,
   });
+
   factory Edge.fromJson(Map<String, dynamic> json) {
     return Edge(
       aliases: (json['Aliases'] as List?)
@@ -1717,6 +1728,7 @@ class EdgeStatistics {
     this.totalCount,
     this.totalResponseTime,
   });
+
   factory EdgeStatistics.fromJson(Map<String, dynamic> json) {
     return EdgeStatistics(
       errorStatistics: json['ErrorStatistics'] != null
@@ -1767,6 +1779,7 @@ class EncryptionConfig {
     this.status,
     this.type,
   });
+
   factory EncryptionConfig.fromJson(Map<String, dynamic> json) {
     return EncryptionConfig(
       keyId: json['KeyId'] as String?,
@@ -1856,6 +1869,7 @@ class ErrorRootCause {
     this.clientImpacting,
     this.services,
   });
+
   factory ErrorRootCause.fromJson(Map<String, dynamic> json) {
     return ErrorRootCause(
       clientImpacting: json['ClientImpacting'] as bool?,
@@ -1893,6 +1907,7 @@ class ErrorRootCauseEntity {
     this.name,
     this.remote,
   });
+
   factory ErrorRootCauseEntity.fromJson(Map<String, dynamic> json) {
     return ErrorRootCauseEntity(
       exceptions: (json['Exceptions'] as List?)
@@ -1944,6 +1959,7 @@ class ErrorRootCauseService {
     this.names,
     this.type,
   });
+
   factory ErrorRootCauseService.fromJson(Map<String, dynamic> json) {
     return ErrorRootCauseService(
       accountId: json['AccountId'] as String?,
@@ -1997,6 +2013,7 @@ class ErrorStatistics {
     this.throttleCount,
     this.totalCount,
   });
+
   factory ErrorStatistics.fromJson(Map<String, dynamic> json) {
     return ErrorStatistics(
       otherCount: json['OtherCount'] as int?,
@@ -2030,6 +2047,7 @@ class FaultRootCause {
     this.clientImpacting,
     this.services,
   });
+
   factory FaultRootCause.fromJson(Map<String, dynamic> json) {
     return FaultRootCause(
       clientImpacting: json['ClientImpacting'] as bool?,
@@ -2067,6 +2085,7 @@ class FaultRootCauseEntity {
     this.name,
     this.remote,
   });
+
   factory FaultRootCauseEntity.fromJson(Map<String, dynamic> json) {
     return FaultRootCauseEntity(
       exceptions: (json['Exceptions'] as List?)
@@ -2118,6 +2137,7 @@ class FaultRootCauseService {
     this.names,
     this.type,
   });
+
   factory FaultRootCauseService.fromJson(Map<String, dynamic> json) {
     return FaultRootCauseService(
       accountId: json['AccountId'] as String?,
@@ -2167,6 +2187,7 @@ class FaultStatistics {
     this.otherCount,
     this.totalCount,
   });
+
   factory FaultStatistics.fromJson(Map<String, dynamic> json) {
     return FaultStatistics(
       otherCount: json['OtherCount'] as int?,
@@ -2197,6 +2218,7 @@ class ForecastStatistics {
     this.faultCountHigh,
     this.faultCountLow,
   });
+
   factory ForecastStatistics.fromJson(Map<String, dynamic> json) {
     return ForecastStatistics(
       faultCountHigh: json['FaultCountHigh'] as int?,
@@ -2221,6 +2243,7 @@ class GetEncryptionConfigResult {
   GetEncryptionConfigResult({
     this.encryptionConfig,
   });
+
   factory GetEncryptionConfigResult.fromJson(Map<String, dynamic> json) {
     return GetEncryptionConfigResult(
       encryptionConfig: json['EncryptionConfig'] != null
@@ -2247,6 +2270,7 @@ class GetGroupResult {
   GetGroupResult({
     this.group,
   });
+
   factory GetGroupResult.fromJson(Map<String, dynamic> json) {
     return GetGroupResult(
       group: json['Group'] != null
@@ -2274,6 +2298,7 @@ class GetGroupsResult {
     this.groups,
     this.nextToken,
   });
+
   factory GetGroupsResult.fromJson(Map<String, dynamic> json) {
     return GetGroupsResult(
       groups: (json['Groups'] as List?)
@@ -2307,6 +2332,7 @@ class GetInsightEventsResult {
     this.insightEvents,
     this.nextToken,
   });
+
   factory GetInsightEventsResult.fromJson(Map<String, dynamic> json) {
     return GetInsightEventsResult(
       insightEvents: (json['InsightEvents'] as List?)
@@ -2358,6 +2384,7 @@ class GetInsightImpactGraphResult {
     this.services,
     this.startTime,
   });
+
   factory GetInsightImpactGraphResult.fromJson(Map<String, dynamic> json) {
     return GetInsightImpactGraphResult(
       endTime: timeStampFromJson(json['EndTime']),
@@ -2403,6 +2430,7 @@ class GetInsightResult {
   GetInsightResult({
     this.insight,
   });
+
   factory GetInsightResult.fromJson(Map<String, dynamic> json) {
     return GetInsightResult(
       insight: json['Insight'] != null
@@ -2433,6 +2461,7 @@ class GetInsightSummariesResult {
     this.insightSummaries,
     this.nextToken,
   });
+
   factory GetInsightSummariesResult.fromJson(Map<String, dynamic> json) {
     return GetInsightSummariesResult(
       insightSummaries: (json['InsightSummaries'] as List?)
@@ -2464,6 +2493,7 @@ class GetSamplingRulesResult {
     this.nextToken,
     this.samplingRuleRecords,
   });
+
   factory GetSamplingRulesResult.fromJson(Map<String, dynamic> json) {
     return GetSamplingRulesResult(
       nextToken: json['NextToken'] as String?,
@@ -2497,6 +2527,7 @@ class GetSamplingStatisticSummariesResult {
     this.nextToken,
     this.samplingStatisticSummaries,
   });
+
   factory GetSamplingStatisticSummariesResult.fromJson(
       Map<String, dynamic> json) {
     return GetSamplingStatisticSummariesResult(
@@ -2538,6 +2569,7 @@ class GetSamplingTargetsResult {
     this.samplingTargetDocuments,
     this.unprocessedStatistics,
   });
+
   factory GetSamplingTargetsResult.fromJson(Map<String, dynamic> json) {
     return GetSamplingTargetsResult(
       lastRuleModification: timeStampFromJson(json['LastRuleModification']),
@@ -2594,6 +2626,7 @@ class GetServiceGraphResult {
     this.services,
     this.startTime,
   });
+
   factory GetServiceGraphResult.fromJson(Map<String, dynamic> json) {
     return GetServiceGraphResult(
       containsOldGroupVersions: json['ContainsOldGroupVersions'] as bool?,
@@ -2641,6 +2674,7 @@ class GetTimeSeriesServiceStatisticsResult {
     this.nextToken,
     this.timeSeriesServiceStatistics,
   });
+
   factory GetTimeSeriesServiceStatisticsResult.fromJson(
       Map<String, dynamic> json) {
     return GetTimeSeriesServiceStatisticsResult(
@@ -2680,6 +2714,7 @@ class GetTraceGraphResult {
     this.nextToken,
     this.services,
   });
+
   factory GetTraceGraphResult.fromJson(Map<String, dynamic> json) {
     return GetTraceGraphResult(
       nextToken: json['NextToken'] as String?,
@@ -2723,6 +2758,7 @@ class GetTraceSummariesResult {
     this.traceSummaries,
     this.tracesProcessedCount,
   });
+
   factory GetTraceSummariesResult.fromJson(Map<String, dynamic> json) {
     return GetTraceSummariesResult(
       approximateTime: timeStampFromJson(json['ApproximateTime']),
@@ -2783,6 +2819,7 @@ class Group {
     this.groupName,
     this.insightsConfiguration,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       filterExpression: json['FilterExpression'] as String?,
@@ -2842,6 +2879,7 @@ class GroupSummary {
     this.groupName,
     this.insightsConfiguration,
   });
+
   factory GroupSummary.fromJson(Map<String, dynamic> json) {
     return GroupSummary(
       filterExpression: json['FilterExpression'] as String?,
@@ -2883,6 +2921,7 @@ class HistogramEntry {
     this.count,
     this.value,
   });
+
   factory HistogramEntry.fromJson(Map<String, dynamic> json) {
     return HistogramEntry(
       count: json['Count'] as int?,
@@ -2924,6 +2963,7 @@ class Http {
     this.httpURL,
     this.userAgent,
   });
+
   factory Http.fromJson(Map<String, dynamic> json) {
     return Http(
       clientIp: json['ClientIp'] as String?,
@@ -3004,6 +3044,7 @@ class Insight {
     this.summary,
     this.topAnomalousServices,
   });
+
   factory Insight.fromJson(Map<String, dynamic> json) {
     return Insight(
       categories: (json['Categories'] as List?)
@@ -3127,6 +3168,7 @@ class InsightEvent {
     this.summary,
     this.topAnomalousServices,
   });
+
   factory InsightEvent.fromJson(Map<String, dynamic> json) {
     return InsightEvent(
       clientRequestImpactStatistics:
@@ -3178,6 +3220,7 @@ class InsightImpactGraphEdge {
   InsightImpactGraphEdge({
     this.referenceId,
   });
+
   factory InsightImpactGraphEdge.fromJson(Map<String, dynamic> json) {
     return InsightImpactGraphEdge(
       referenceId: json['ReferenceId'] as int?,
@@ -3241,6 +3284,7 @@ class InsightImpactGraphService {
     this.referenceId,
     this.type,
   });
+
   factory InsightImpactGraphService.fromJson(Map<String, dynamic> json) {
     return InsightImpactGraphService(
       accountId: json['AccountId'] as String?,
@@ -3362,6 +3406,7 @@ class InsightSummary {
     this.summary,
     this.topAnomalousServices,
   });
+
   factory InsightSummary.fromJson(Map<String, dynamic> json) {
     return InsightSummary(
       categories: (json['Categories'] as List?)
@@ -3452,6 +3497,7 @@ class InsightsConfiguration {
     this.insightsEnabled,
     this.notificationsEnabled,
   });
+
   factory InsightsConfiguration.fromJson(Map<String, dynamic> json) {
     return InsightsConfiguration(
       insightsEnabled: json['InsightsEnabled'] as bool?,
@@ -3478,6 +3524,7 @@ class InstanceIdDetail {
   InstanceIdDetail({
     this.id,
   });
+
   factory InstanceIdDetail.fromJson(Map<String, dynamic> json) {
     return InstanceIdDetail(
       id: json['Id'] as String?,
@@ -3506,6 +3553,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -3533,6 +3581,7 @@ class PutEncryptionConfigResult {
   PutEncryptionConfigResult({
     this.encryptionConfig,
   });
+
   factory PutEncryptionConfigResult.fromJson(Map<String, dynamic> json) {
     return PutEncryptionConfigResult(
       encryptionConfig: json['EncryptionConfig'] != null
@@ -3552,6 +3601,7 @@ class PutEncryptionConfigResult {
 
 class PutTelemetryRecordsResult {
   PutTelemetryRecordsResult();
+
   factory PutTelemetryRecordsResult.fromJson(Map<String, dynamic> _) {
     return PutTelemetryRecordsResult();
   }
@@ -3568,6 +3618,7 @@ class PutTraceSegmentsResult {
   PutTraceSegmentsResult({
     this.unprocessedTraceSegments,
   });
+
   factory PutTraceSegmentsResult.fromJson(Map<String, dynamic> json) {
     return PutTraceSegmentsResult(
       unprocessedTraceSegments: (json['UnprocessedTraceSegments'] as List?)
@@ -3603,6 +3654,7 @@ class RequestImpactStatistics {
     this.okCount,
     this.totalCount,
   });
+
   factory RequestImpactStatistics.fromJson(Map<String, dynamic> json) {
     return RequestImpactStatistics(
       faultCount: json['FaultCount'] as int?,
@@ -3631,6 +3683,7 @@ class ResourceARNDetail {
   ResourceARNDetail({
     this.arn,
   });
+
   factory ResourceARNDetail.fromJson(Map<String, dynamic> json) {
     return ResourceARNDetail(
       arn: json['ARN'] as String?,
@@ -3658,6 +3711,7 @@ class ResponseTimeRootCause {
     this.clientImpacting,
     this.services,
   });
+
   factory ResponseTimeRootCause.fromJson(Map<String, dynamic> json) {
     return ResponseTimeRootCause(
       clientImpacting: json['ClientImpacting'] as bool?,
@@ -3696,6 +3750,7 @@ class ResponseTimeRootCauseEntity {
     this.name,
     this.remote,
   });
+
   factory ResponseTimeRootCauseEntity.fromJson(Map<String, dynamic> json) {
     return ResponseTimeRootCauseEntity(
       coverage: json['Coverage'] as double?,
@@ -3744,6 +3799,7 @@ class ResponseTimeRootCauseService {
     this.names,
     this.type,
   });
+
   factory ResponseTimeRootCauseService.fromJson(Map<String, dynamic> json) {
     return ResponseTimeRootCauseService(
       accountId: json['AccountId'] as String?,
@@ -3792,6 +3848,7 @@ class RootCauseException {
     this.message,
     this.name,
   });
+
   factory RootCauseException.fromJson(Map<String, dynamic> json) {
     return RootCauseException(
       message: json['Message'] as String?,
@@ -3874,6 +3931,7 @@ class SamplingRule {
     this.ruleARN,
     this.ruleName,
   });
+
   factory SamplingRule.fromJson(Map<String, dynamic> json) {
     return SamplingRule(
       fixedRate: json['FixedRate'] as double,
@@ -3941,6 +3999,7 @@ class SamplingRuleRecord {
     this.modifiedAt,
     this.samplingRule,
   });
+
   factory SamplingRuleRecord.fromJson(Map<String, dynamic> json) {
     return SamplingRuleRecord(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -4022,6 +4081,7 @@ class SamplingRuleUpdate {
     this.serviceType,
     this.uRLPath,
   });
+
   factory SamplingRuleUpdate.fromJson(Map<String, dynamic> json) {
     return SamplingRuleUpdate(
       attributes: (json['Attributes'] as Map<String, dynamic>?)
@@ -4095,6 +4155,7 @@ class SamplingStatisticSummary {
     this.sampledCount,
     this.timestamp,
   });
+
   factory SamplingStatisticSummary.fromJson(Map<String, dynamic> json) {
     return SamplingStatisticSummary(
       borrowCount: json['BorrowCount'] as int?,
@@ -4151,6 +4212,7 @@ class SamplingStatisticsDocument {
     required this.timestamp,
     this.borrowCount,
   });
+
   factory SamplingStatisticsDocument.fromJson(Map<String, dynamic> json) {
     return SamplingStatisticsDocument(
       clientID: json['ClientID'] as String,
@@ -4192,6 +4254,7 @@ class SamplingStrategy {
     this.name,
     this.value,
   });
+
   factory SamplingStrategy.fromJson(Map<String, dynamic> json) {
     return SamplingStrategy(
       name: (json['Name'] as String?)?.toSamplingStrategyName(),
@@ -4266,6 +4329,7 @@ class SamplingTargetDocument {
     this.reservoirQuotaTTL,
     this.ruleName,
   });
+
   factory SamplingTargetDocument.fromJson(Map<String, dynamic> json) {
     return SamplingTargetDocument(
       fixedRate: json['FixedRate'] as double?,
@@ -4313,6 +4377,7 @@ class Segment {
     this.document,
     this.id,
   });
+
   factory Segment.fromJson(Map<String, dynamic> json) {
     return Segment(
       document: json['Document'] as String?,
@@ -4409,6 +4474,7 @@ class Service {
     this.summaryStatistics,
     this.type,
   });
+
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       accountId: json['AccountId'] as String?,
@@ -4495,6 +4561,7 @@ class ServiceId {
     this.names,
     this.type,
   });
+
   factory ServiceId.fromJson(Map<String, dynamic> json) {
     return ServiceId(
       accountId: json['AccountId'] as String?,
@@ -4545,6 +4612,7 @@ class ServiceStatistics {
     this.totalCount,
     this.totalResponseTime,
   });
+
   factory ServiceStatistics.fromJson(Map<String, dynamic> json) {
     return ServiceStatistics(
       errorStatistics: json['ErrorStatistics'] != null
@@ -4613,6 +4681,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -4632,6 +4701,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4669,6 +4739,7 @@ class TelemetryRecord {
     this.segmentsSentCount,
     this.segmentsSpilloverCount,
   });
+
   factory TelemetryRecord.fromJson(Map<String, dynamic> json) {
     return TelemetryRecord(
       timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
@@ -4754,6 +4825,7 @@ class TimeSeriesServiceStatistics {
     this.serviceSummaryStatistics,
     this.timestamp,
   });
+
   factory TimeSeriesServiceStatistics.fromJson(Map<String, dynamic> json) {
     return TimeSeriesServiceStatistics(
       edgeSummaryStatistics: json['EdgeSummaryStatistics'] != null
@@ -4821,6 +4893,7 @@ class Trace {
     this.limitExceeded,
     this.segments,
   });
+
   factory Trace.fromJson(Map<String, dynamic> json) {
     return Trace(
       duration: json['Duration'] as double?,
@@ -4943,6 +5016,7 @@ class TraceSummary {
     this.serviceIds,
     this.users,
   });
+
   factory TraceSummary.fromJson(Map<String, dynamic> json) {
     return TraceSummary(
       annotations: (json['Annotations'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -5064,6 +5138,7 @@ class TraceUser {
     this.serviceIds,
     this.userName,
   });
+
   factory TraceUser.fromJson(Map<String, dynamic> json) {
     return TraceUser(
       serviceIds: (json['ServiceIds'] as List?)
@@ -5101,6 +5176,7 @@ class UnprocessedStatistics {
     this.message,
     this.ruleName,
   });
+
   factory UnprocessedStatistics.fromJson(Map<String, dynamic> json) {
     return UnprocessedStatistics(
       errorCode: json['ErrorCode'] as String?,
@@ -5137,6 +5213,7 @@ class UnprocessedTraceSegment {
     this.id,
     this.message,
   });
+
   factory UnprocessedTraceSegment.fromJson(Map<String, dynamic> json) {
     return UnprocessedTraceSegment(
       errorCode: json['ErrorCode'] as String?,
@@ -5159,6 +5236,7 @@ class UnprocessedTraceSegment {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5177,6 +5255,7 @@ class UpdateGroupResult {
   UpdateGroupResult({
     this.group,
   });
+
   factory UpdateGroupResult.fromJson(Map<String, dynamic> json) {
     return UpdateGroupResult(
       group: json['Group'] != null
@@ -5200,6 +5279,7 @@ class UpdateSamplingRuleResult {
   UpdateSamplingRuleResult({
     this.samplingRuleRecord,
   });
+
   factory UpdateSamplingRuleResult.fromJson(Map<String, dynamic> json) {
     return UpdateSamplingRuleResult(
       samplingRuleRecord: json['SamplingRuleRecord'] != null
@@ -5229,6 +5309,7 @@ class ValueWithServiceIds {
     this.annotationValue,
     this.serviceIds,
   });
+
   factory ValueWithServiceIds.fromJson(Map<String, dynamic> json) {
     return ValueWithServiceIds(
       annotationValue: json['AnnotationValue'] != null

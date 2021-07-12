@@ -1895,6 +1895,7 @@ class AddSourceIdentifierToSubscriptionResult {
   AddSourceIdentifierToSubscriptionResult({
     this.eventSubscription,
   });
+
   factory AddSourceIdentifierToSubscriptionResult.fromJson(
       Map<String, dynamic> json) {
     return AddSourceIdentifierToSubscriptionResult(
@@ -1955,6 +1956,7 @@ class AuthorizeDBSecurityGroupIngressResult {
   AuthorizeDBSecurityGroupIngressResult({
     this.dBSecurityGroup,
   });
+
   factory AuthorizeDBSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return AuthorizeDBSecurityGroupIngressResult(
@@ -1987,6 +1989,7 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       name: json['Name'] as String?,
@@ -2015,6 +2018,7 @@ class CharacterSet {
     this.characterSetDescription,
     this.characterSetName,
   });
+
   factory CharacterSet.fromJson(Map<String, dynamic> json) {
     return CharacterSet(
       characterSetDescription: json['CharacterSetDescription'] as String?,
@@ -2047,6 +2051,7 @@ class CopyDBParameterGroupResult {
   CopyDBParameterGroupResult({
     this.dBParameterGroup,
   });
+
   factory CopyDBParameterGroupResult.fromJson(Map<String, dynamic> json) {
     return CopyDBParameterGroupResult(
       dBParameterGroup: json['DBParameterGroup'] != null
@@ -2078,6 +2083,7 @@ class CopyDBSnapshotResult {
   CopyDBSnapshotResult({
     this.dBSnapshot,
   });
+
   factory CopyDBSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CopyDBSnapshotResult(
       dBSnapshot: json['DBSnapshot'] != null
@@ -2108,6 +2114,7 @@ class CopyOptionGroupResult {
   CopyOptionGroupResult({
     this.optionGroup,
   });
+
   factory CopyOptionGroupResult.fromJson(Map<String, dynamic> json) {
     return CopyOptionGroupResult(
       optionGroup: json['OptionGroup'] != null
@@ -2138,6 +2145,7 @@ class CreateDBInstanceReadReplicaResult {
   CreateDBInstanceReadReplicaResult({
     this.dBInstance,
   });
+
   factory CreateDBInstanceReadReplicaResult.fromJson(
       Map<String, dynamic> json) {
     return CreateDBInstanceReadReplicaResult(
@@ -2169,6 +2177,7 @@ class CreateDBInstanceResult {
   CreateDBInstanceResult({
     this.dBInstance,
   });
+
   factory CreateDBInstanceResult.fromJson(Map<String, dynamic> json) {
     return CreateDBInstanceResult(
       dBInstance: json['DBInstance'] != null
@@ -2199,6 +2208,7 @@ class CreateDBParameterGroupResult {
   CreateDBParameterGroupResult({
     this.dBParameterGroup,
   });
+
   factory CreateDBParameterGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateDBParameterGroupResult(
       dBParameterGroup: json['DBParameterGroup'] != null
@@ -2230,6 +2240,7 @@ class CreateDBSecurityGroupResult {
   CreateDBSecurityGroupResult({
     this.dBSecurityGroup,
   });
+
   factory CreateDBSecurityGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateDBSecurityGroupResult(
       dBSecurityGroup: json['DBSecurityGroup'] != null
@@ -2261,6 +2272,7 @@ class CreateDBSnapshotResult {
   CreateDBSnapshotResult({
     this.dBSnapshot,
   });
+
   factory CreateDBSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateDBSnapshotResult(
       dBSnapshot: json['DBSnapshot'] != null
@@ -2291,6 +2303,7 @@ class CreateDBSubnetGroupResult {
   CreateDBSubnetGroupResult({
     this.dBSubnetGroup,
   });
+
   factory CreateDBSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateDBSubnetGroupResult(
       dBSubnetGroup: json['DBSubnetGroup'] != null
@@ -2322,6 +2335,7 @@ class CreateEventSubscriptionResult {
   CreateEventSubscriptionResult({
     this.eventSubscription,
   });
+
   factory CreateEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return CreateEventSubscriptionResult(
       eventSubscription: json['EventSubscription'] != null
@@ -2353,6 +2367,7 @@ class CreateOptionGroupResult {
   CreateOptionGroupResult({
     this.optionGroup,
   });
+
   factory CreateOptionGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateOptionGroupResult(
       optionGroup: json['OptionGroup'] != null
@@ -2395,6 +2410,7 @@ class DBEngineVersion {
     this.engineVersion,
     this.supportedCharacterSets,
   });
+
   factory DBEngineVersion.fromJson(Map<String, dynamic> json) {
     return DBEngineVersion(
       dBEngineDescription: json['DBEngineDescription'] as String?,
@@ -2468,6 +2484,7 @@ class DBEngineVersionMessage {
     this.dBEngineVersions,
     this.marker,
   });
+
   factory DBEngineVersionMessage.fromJson(Map<String, dynamic> json) {
     return DBEngineVersionMessage(
       dBEngineVersions: (json['DBEngineVersions'] as List?)
@@ -2569,6 +2586,7 @@ class DBInstance {
     this.tdeCredentialArn,
     this.vpcSecurityGroups,
   });
+
   factory DBInstance.fromJson(Map<String, dynamic> json) {
     return DBInstance(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -2808,6 +2826,7 @@ class DBInstanceMessage {
     this.dBInstances,
     this.marker,
   });
+
   factory DBInstanceMessage.fromJson(Map<String, dynamic> json) {
     return DBInstanceMessage(
       dBInstances: (json['DBInstances'] as List?)
@@ -2850,6 +2869,7 @@ class DBInstanceStatusInfo {
     this.status,
     this.statusType,
   });
+
   factory DBInstanceStatusInfo.fromJson(Map<String, dynamic> json) {
     return DBInstanceStatusInfo(
       message: json['Message'] as String?,
@@ -2892,6 +2912,7 @@ class DBParameterGroup {
     this.dBParameterGroupName,
     this.description,
   });
+
   factory DBParameterGroup.fromJson(Map<String, dynamic> json) {
     return DBParameterGroup(
       dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
@@ -2932,6 +2953,7 @@ class DBParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+
   factory DBParameterGroupDetails.fromJson(Map<String, dynamic> json) {
     return DBParameterGroupDetails(
       marker: json['Marker'] as String?,
@@ -2968,6 +2990,7 @@ class DBParameterGroupNameMessage {
   DBParameterGroupNameMessage({
     this.dBParameterGroupName,
   });
+
   factory DBParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
     return DBParameterGroupNameMessage(
       dBParameterGroupName: json['DBParameterGroupName'] as String?,
@@ -2998,6 +3021,7 @@ class DBParameterGroupStatus {
     this.dBParameterGroupName,
     this.parameterApplyStatus,
   });
+
   factory DBParameterGroupStatus.fromJson(Map<String, dynamic> json) {
     return DBParameterGroupStatus(
       dBParameterGroupName: json['DBParameterGroupName'] as String?,
@@ -3034,6 +3058,7 @@ class DBParameterGroupsMessage {
     this.dBParameterGroups,
     this.marker,
   });
+
   factory DBParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
     return DBParameterGroupsMessage(
       dBParameterGroups: (json['DBParameterGroups'] as List?)
@@ -3081,6 +3106,7 @@ class DBSecurityGroup {
     this.ownerId,
     this.vpcId,
   });
+
   factory DBSecurityGroup.fromJson(Map<String, dynamic> json) {
     return DBSecurityGroup(
       dBSecurityGroupDescription: json['DBSecurityGroupDescription'] as String?,
@@ -3144,6 +3170,7 @@ class DBSecurityGroupMembership {
     this.dBSecurityGroupName,
     this.status,
   });
+
   factory DBSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return DBSecurityGroupMembership(
       dBSecurityGroupName: json['DBSecurityGroupName'] as String?,
@@ -3178,6 +3205,7 @@ class DBSecurityGroupMessage {
     this.dBSecurityGroups,
     this.marker,
   });
+
   factory DBSecurityGroupMessage.fromJson(Map<String, dynamic> json) {
     return DBSecurityGroupMessage(
       dBSecurityGroups: (json['DBSecurityGroups'] as List?)
@@ -3253,6 +3281,7 @@ class DBSnapshot {
     this.tdeCredentialArn,
     this.vpcId,
   });
+
   factory DBSnapshot.fromJson(Map<String, dynamic> json) {
     return DBSnapshot(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -3365,6 +3394,7 @@ class DBSnapshotMessage {
     this.dBSnapshots,
     this.marker,
   });
+
   factory DBSnapshotMessage.fromJson(Map<String, dynamic> json) {
     return DBSnapshotMessage(
       dBSnapshots: (json['DBSnapshots'] as List?)
@@ -3409,6 +3439,7 @@ class DBSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+
   factory DBSubnetGroup.fromJson(Map<String, dynamic> json) {
     return DBSubnetGroup(
       dBSubnetGroupDescription: json['DBSubnetGroupDescription'] as String?,
@@ -3459,6 +3490,7 @@ class DBSubnetGroupMessage {
     this.dBSubnetGroups,
     this.marker,
   });
+
   factory DBSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
     return DBSubnetGroupMessage(
       dBSubnetGroups: (json['DBSubnetGroups'] as List?)
@@ -3496,6 +3528,7 @@ class DeleteDBInstanceResult {
   DeleteDBInstanceResult({
     this.dBInstance,
   });
+
   factory DeleteDBInstanceResult.fromJson(Map<String, dynamic> json) {
     return DeleteDBInstanceResult(
       dBInstance: json['DBInstance'] != null
@@ -3526,6 +3559,7 @@ class DeleteDBSnapshotResult {
   DeleteDBSnapshotResult({
     this.dBSnapshot,
   });
+
   factory DeleteDBSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteDBSnapshotResult(
       dBSnapshot: json['DBSnapshot'] != null
@@ -3556,6 +3590,7 @@ class DeleteEventSubscriptionResult {
   DeleteEventSubscriptionResult({
     this.eventSubscription,
   });
+
   factory DeleteEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return DeleteEventSubscriptionResult(
       eventSubscription: json['EventSubscription'] != null
@@ -3591,6 +3626,7 @@ class DescribeDBLogFilesDetails {
     this.logFileName,
     this.size,
   });
+
   factory DescribeDBLogFilesDetails.fromJson(Map<String, dynamic> json) {
     return DescribeDBLogFilesDetails(
       lastWritten: json['LastWritten'] as int?,
@@ -3627,6 +3663,7 @@ class DescribeDBLogFilesResponse {
     this.describeDBLogFiles,
     this.marker,
   });
+
   factory DescribeDBLogFilesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDBLogFilesResponse(
       describeDBLogFiles: (json['DescribeDBLogFiles'] as List?)
@@ -3665,6 +3702,7 @@ class DescribeEngineDefaultParametersResult {
   DescribeEngineDefaultParametersResult({
     this.engineDefaults,
   });
+
   factory DescribeEngineDefaultParametersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEngineDefaultParametersResult(
@@ -3701,6 +3739,7 @@ class DownloadDBLogFilePortionDetails {
     this.logFileData,
     this.marker,
   });
+
   factory DownloadDBLogFilePortionDetails.fromJson(Map<String, dynamic> json) {
     return DownloadDBLogFilePortionDetails(
       additionalDataPending: json['AdditionalDataPending'] as bool?,
@@ -3743,6 +3782,7 @@ class EC2SecurityGroup {
     this.eC2SecurityGroupOwnerId,
     this.status,
   });
+
   factory EC2SecurityGroup.fromJson(Map<String, dynamic> json) {
     return EC2SecurityGroup(
       eC2SecurityGroupId: json['EC2SecurityGroupId'] as String?,
@@ -3787,6 +3827,7 @@ class Endpoint {
     this.address,
     this.port,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String?,
@@ -3821,6 +3862,7 @@ class EngineDefaults {
     this.marker,
     this.parameters,
   });
+
   factory EngineDefaults.fromJson(Map<String, dynamic> json) {
     return EngineDefaults(
       dBParameterGroupFamily: json['DBParameterGroupFamily'] as String?,
@@ -3871,6 +3913,7 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       date: timeStampFromJson(json['Date']),
@@ -3920,6 +3963,7 @@ class EventCategoriesMap {
     this.eventCategories,
     this.sourceType,
   });
+
   factory EventCategoriesMap.fromJson(Map<String, dynamic> json) {
     return EventCategoriesMap(
       eventCategories: (json['EventCategories'] as List?)
@@ -3955,6 +3999,7 @@ class EventCategoriesMessage {
   EventCategoriesMessage({
     this.eventCategoriesMapList,
   });
+
   factory EventCategoriesMessage.fromJson(Map<String, dynamic> json) {
     return EventCategoriesMessage(
       eventCategoriesMapList: (json['EventCategoriesMapList'] as List?)
@@ -4006,6 +4051,7 @@ class EventSubscription {
     this.status,
     this.subscriptionCreationTime,
   });
+
   factory EventSubscription.fromJson(Map<String, dynamic> json) {
     return EventSubscription(
       custSubscriptionId: json['CustSubscriptionId'] as String?,
@@ -4079,6 +4125,7 @@ class EventSubscriptionsMessage {
     this.eventSubscriptionsList,
     this.marker,
   });
+
   factory EventSubscriptionsMessage.fromJson(Map<String, dynamic> json) {
     return EventSubscriptionsMessage(
       eventSubscriptionsList: (json['EventSubscriptionsList'] as List?)
@@ -4120,6 +4167,7 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+
   factory EventsMessage.fromJson(Map<String, dynamic> json) {
     return EventsMessage(
       events: (json['Events'] as List?)
@@ -4156,6 +4204,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String,
@@ -4184,6 +4233,7 @@ class IPRange {
     this.cidrip,
     this.status,
   });
+
   factory IPRange.fromJson(Map<String, dynamic> json) {
     return IPRange(
       cidrip: json['CIDRIP'] as String?,
@@ -4214,6 +4264,7 @@ class ModifyDBInstanceResult {
   ModifyDBInstanceResult({
     this.dBInstance,
   });
+
   factory ModifyDBInstanceResult.fromJson(Map<String, dynamic> json) {
     return ModifyDBInstanceResult(
       dBInstance: json['DBInstance'] != null
@@ -4244,6 +4295,7 @@ class ModifyDBSubnetGroupResult {
   ModifyDBSubnetGroupResult({
     this.dBSubnetGroup,
   });
+
   factory ModifyDBSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return ModifyDBSubnetGroupResult(
       dBSubnetGroup: json['DBSubnetGroup'] != null
@@ -4275,6 +4327,7 @@ class ModifyEventSubscriptionResult {
   ModifyEventSubscriptionResult({
     this.eventSubscription,
   });
+
   factory ModifyEventSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return ModifyEventSubscriptionResult(
       eventSubscription: json['EventSubscription'] != null
@@ -4306,6 +4359,7 @@ class ModifyOptionGroupResult {
   ModifyOptionGroupResult({
     this.optionGroup,
   });
+
   factory ModifyOptionGroupResult.fromJson(Map<String, dynamic> json) {
     return ModifyOptionGroupResult(
       optionGroup: json['OptionGroup'] != null
@@ -4350,6 +4404,7 @@ class Option {
     this.port,
     this.vpcSecurityGroupMemberships,
   });
+
   factory Option.fromJson(Map<String, dynamic> json) {
     return Option(
       dBSecurityGroupMemberships: (json['DBSecurityGroupMemberships'] as List?)
@@ -4440,6 +4495,7 @@ class OptionConfiguration {
     this.port,
     this.vpcSecurityGroupMemberships,
   });
+
   factory OptionConfiguration.fromJson(Map<String, dynamic> json) {
     return OptionConfiguration(
       optionName: json['OptionName'] as String,
@@ -4496,6 +4552,7 @@ class OptionGroup {
     this.options,
     this.vpcId,
   });
+
   factory OptionGroup.fromJson(Map<String, dynamic> json) {
     return OptionGroup(
       allowsVpcAndNonVpcInstanceMemberships:
@@ -4559,6 +4616,7 @@ class OptionGroupMembership {
     this.optionGroupName,
     this.status,
   });
+
   factory OptionGroupMembership.fromJson(Map<String, dynamic> json) {
     return OptionGroupMembership(
       optionGroupName: json['OptionGroupName'] as String?,
@@ -4609,6 +4667,7 @@ class OptionGroupOption {
     this.persistent,
     this.portRequired,
   });
+
   factory OptionGroupOption.fromJson(Map<String, dynamic> json) {
     return OptionGroupOption(
       defaultPort: json['DefaultPort'] as int?,
@@ -4704,6 +4763,7 @@ class OptionGroupOptionSetting {
     this.settingDescription,
     this.settingName,
   });
+
   factory OptionGroupOptionSetting.fromJson(Map<String, dynamic> json) {
     return OptionGroupOptionSetting(
       allowedValues: json['AllowedValues'] as String?,
@@ -4752,6 +4812,7 @@ class OptionGroupOptionsMessage {
     this.marker,
     this.optionGroupOptions,
   });
+
   factory OptionGroupOptionsMessage.fromJson(Map<String, dynamic> json) {
     return OptionGroupOptionsMessage(
       marker: json['Marker'] as String?,
@@ -4791,6 +4852,7 @@ class OptionGroups {
     this.marker,
     this.optionGroupsList,
   });
+
   factory OptionGroups.fromJson(Map<String, dynamic> json) {
     return OptionGroups(
       marker: json['Marker'] as String?,
@@ -4844,6 +4906,7 @@ class OptionSetting {
     this.name,
     this.value,
   });
+
   factory OptionSetting.fromJson(Map<String, dynamic> json) {
     return OptionSetting(
       allowedValues: json['AllowedValues'] as String?,
@@ -4920,6 +4983,7 @@ class OrderableDBInstanceOption {
     this.supportsIops,
     this.vpc,
   });
+
   factory OrderableDBInstanceOption.fromJson(Map<String, dynamic> json) {
     return OrderableDBInstanceOption(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -4991,6 +5055,7 @@ class OrderableDBInstanceOptionsMessage {
     this.marker,
     this.orderableDBInstanceOptions,
   });
+
   factory OrderableDBInstanceOptionsMessage.fromJson(
       Map<String, dynamic> json) {
     return OrderableDBInstanceOptionsMessage(
@@ -5050,6 +5115,7 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       allowedValues: json['AllowedValues'] as String?,
@@ -5133,6 +5199,7 @@ class PendingModifiedValues {
     this.port,
     this.storageType,
   });
+
   factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
     return PendingModifiedValues(
       allocatedStorage: json['AllocatedStorage'] as int?,
@@ -5199,6 +5266,7 @@ class PromoteReadReplicaResult {
   PromoteReadReplicaResult({
     this.dBInstance,
   });
+
   factory PromoteReadReplicaResult.fromJson(Map<String, dynamic> json) {
     return PromoteReadReplicaResult(
       dBInstance: json['DBInstance'] != null
@@ -5229,6 +5297,7 @@ class PurchaseReservedDBInstancesOfferingResult {
   PurchaseReservedDBInstancesOfferingResult({
     this.reservedDBInstance,
   });
+
   factory PurchaseReservedDBInstancesOfferingResult.fromJson(
       Map<String, dynamic> json) {
     return PurchaseReservedDBInstancesOfferingResult(
@@ -5262,6 +5331,7 @@ class RebootDBInstanceResult {
   RebootDBInstanceResult({
     this.dBInstance,
   });
+
   factory RebootDBInstanceResult.fromJson(Map<String, dynamic> json) {
     return RebootDBInstanceResult(
       dBInstance: json['DBInstance'] != null
@@ -5294,6 +5364,7 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+
   factory RecurringCharge.fromJson(Map<String, dynamic> json) {
     return RecurringCharge(
       recurringChargeAmount: json['RecurringChargeAmount'] as double?,
@@ -5328,6 +5399,7 @@ class RemoveSourceIdentifierFromSubscriptionResult {
   RemoveSourceIdentifierFromSubscriptionResult({
     this.eventSubscription,
   });
+
   factory RemoveSourceIdentifierFromSubscriptionResult.fromJson(
       Map<String, dynamic> json) {
     return RemoveSourceIdentifierFromSubscriptionResult(
@@ -5387,6 +5459,7 @@ class ReservedDBInstance {
     this.state,
     this.usagePrice,
   });
+
   factory ReservedDBInstance.fromJson(Map<String, dynamic> json) {
     return ReservedDBInstance(
       currencyCode: json['CurrencyCode'] as String?,
@@ -5479,6 +5552,7 @@ class ReservedDBInstanceMessage {
     this.marker,
     this.reservedDBInstances,
   });
+
   factory ReservedDBInstanceMessage.fromJson(Map<String, dynamic> json) {
     return ReservedDBInstanceMessage(
       marker: json['Marker'] as String?,
@@ -5535,6 +5609,7 @@ class ReservedDBInstancesOffering {
     this.reservedDBInstancesOfferingId,
     this.usagePrice,
   });
+
   factory ReservedDBInstancesOffering.fromJson(Map<String, dynamic> json) {
     return ReservedDBInstancesOffering(
       currencyCode: json['CurrencyCode'] as String?,
@@ -5609,6 +5684,7 @@ class ReservedDBInstancesOfferingMessage {
     this.marker,
     this.reservedDBInstancesOfferings,
   });
+
   factory ReservedDBInstancesOfferingMessage.fromJson(
       Map<String, dynamic> json) {
     return ReservedDBInstancesOfferingMessage(
@@ -5651,6 +5727,7 @@ class RestoreDBInstanceFromDBSnapshotResult {
   RestoreDBInstanceFromDBSnapshotResult({
     this.dBInstance,
   });
+
   factory RestoreDBInstanceFromDBSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return RestoreDBInstanceFromDBSnapshotResult(
@@ -5682,6 +5759,7 @@ class RestoreDBInstanceToPointInTimeResult {
   RestoreDBInstanceToPointInTimeResult({
     this.dBInstance,
   });
+
   factory RestoreDBInstanceToPointInTimeResult.fromJson(
       Map<String, dynamic> json) {
     return RestoreDBInstanceToPointInTimeResult(
@@ -5713,6 +5791,7 @@ class RevokeDBSecurityGroupIngressResult {
   RevokeDBSecurityGroupIngressResult({
     this.dBSecurityGroup,
   });
+
   factory RevokeDBSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return RevokeDBSecurityGroupIngressResult(
@@ -5787,6 +5866,7 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetStatus,
   });
+
   factory Subnet.fromJson(Map<String, dynamic> json) {
     return Subnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
@@ -5829,6 +5909,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -5859,6 +5940,7 @@ class TagListMessage {
   TagListMessage({
     this.tagList,
   });
+
   factory TagListMessage.fromJson(Map<String, dynamic> json) {
     return TagListMessage(
       tagList: (json['TagList'] as List?)
@@ -5891,6 +5973,7 @@ class VpcSecurityGroupMembership {
     this.status,
     this.vpcSecurityGroupId,
   });
+
   factory VpcSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return VpcSecurityGroupMembership(
       status: json['Status'] as String?,

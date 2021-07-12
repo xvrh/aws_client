@@ -1400,6 +1400,7 @@ class CreateDatasetResponse {
   CreateDatasetResponse({
     this.datasetMetadata,
   });
+
   factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetResponse(
       datasetMetadata: json['DatasetMetadata'] != null
@@ -1424,6 +1425,7 @@ class CreateModelResponse {
   CreateModelResponse({
     this.modelMetadata,
   });
+
   factory CreateModelResponse.fromJson(Map<String, dynamic> json) {
     return CreateModelResponse(
       modelMetadata: json['ModelMetadata'] != null
@@ -1448,6 +1450,7 @@ class CreateProjectResponse {
   CreateProjectResponse({
     this.projectMetadata,
   });
+
   factory CreateProjectResponse.fromJson(Map<String, dynamic> json) {
     return CreateProjectResponse(
       projectMetadata: json['ProjectMetadata'] != null
@@ -1500,6 +1503,7 @@ class DatasetDescription {
     this.status,
     this.statusMessage,
   });
+
   factory DatasetDescription.fromJson(Map<String, dynamic> json) {
     return DatasetDescription(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -1546,6 +1550,7 @@ class DatasetGroundTruthManifest {
   DatasetGroundTruthManifest({
     this.s3Object,
   });
+
   factory DatasetGroundTruthManifest.fromJson(Map<String, dynamic> json) {
     return DatasetGroundTruthManifest(
       s3Object: json['S3Object'] != null
@@ -1582,6 +1587,7 @@ class DatasetImageStats {
     this.normal,
     this.total,
   });
+
   factory DatasetImageStats.fromJson(Map<String, dynamic> json) {
     return DatasetImageStats(
       anomaly: json['Anomaly'] as int?,
@@ -1625,6 +1631,7 @@ class DatasetMetadata {
     this.status,
     this.statusMessage,
   });
+
   factory DatasetMetadata.fromJson(Map<String, dynamic> json) {
     return DatasetMetadata(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -1658,6 +1665,7 @@ class DatasetSource {
   DatasetSource({
     this.groundTruthManifest,
   });
+
   factory DatasetSource.fromJson(Map<String, dynamic> json) {
     return DatasetSource(
       groundTruthManifest: json['GroundTruthManifest'] != null
@@ -1746,6 +1754,7 @@ extension on String {
 
 class DeleteDatasetResponse {
   DeleteDatasetResponse();
+
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDatasetResponse();
   }
@@ -1762,6 +1771,7 @@ class DeleteModelResponse {
   DeleteModelResponse({
     this.modelArn,
   });
+
   factory DeleteModelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteModelResponse(
       modelArn: json['ModelArn'] as String?,
@@ -1783,6 +1793,7 @@ class DeleteProjectResponse {
   DeleteProjectResponse({
     this.projectArn,
   });
+
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProjectResponse(
       projectArn: json['ProjectArn'] as String?,
@@ -1804,6 +1815,7 @@ class DescribeDatasetResponse {
   DescribeDatasetResponse({
     this.datasetDescription,
   });
+
   factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetResponse(
       datasetDescription: json['DatasetDescription'] != null
@@ -1828,6 +1840,7 @@ class DescribeModelResponse {
   DescribeModelResponse({
     this.modelDescription,
   });
+
   factory DescribeModelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeModelResponse(
       modelDescription: json['ModelDescription'] != null
@@ -1852,6 +1865,7 @@ class DescribeProjectResponse {
   DescribeProjectResponse({
     this.projectDescription,
   });
+
   factory DescribeProjectResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProjectResponse(
       projectDescription: json['ProjectDescription'] != null
@@ -1876,6 +1890,7 @@ class DetectAnomaliesResponse {
   DetectAnomaliesResponse({
     this.detectAnomalyResult,
   });
+
   factory DetectAnomaliesResponse.fromJson(Map<String, dynamic> json) {
     return DetectAnomaliesResponse(
       detectAnomalyResult: json['DetectAnomalyResult'] != null
@@ -1913,6 +1928,7 @@ class DetectAnomalyResult {
     this.isAnomalous,
     this.source,
   });
+
   factory DetectAnomalyResult.fromJson(Map<String, dynamic> json) {
     return DetectAnomalyResult(
       confidence: json['Confidence'] as double?,
@@ -1943,6 +1959,7 @@ class ImageSource {
   ImageSource({
     this.type,
   });
+
   factory ImageSource.fromJson(Map<String, dynamic> json) {
     return ImageSource(
       type: json['Type'] as String?,
@@ -1973,6 +1990,7 @@ class InputS3Object {
     required this.key,
     this.versionId,
   });
+
   factory InputS3Object.fromJson(Map<String, dynamic> json) {
     return InputS3Object(
       bucket: json['Bucket'] as String,
@@ -2006,6 +2024,7 @@ class ListDatasetEntriesResponse {
     this.datasetEntries,
     this.nextToken,
   });
+
   factory ListDatasetEntriesResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetEntriesResponse(
       datasetEntries: (json['DatasetEntries'] as List?)
@@ -2039,6 +2058,7 @@ class ListModelsResponse {
     this.models,
     this.nextToken,
   });
+
   factory ListModelsResponse.fromJson(Map<String, dynamic> json) {
     return ListModelsResponse(
       models: (json['Models'] as List?)
@@ -2072,6 +2092,7 @@ class ListProjectsResponse {
     this.nextToken,
     this.projects,
   });
+
   factory ListProjectsResponse.fromJson(Map<String, dynamic> json) {
     return ListProjectsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2099,6 +2120,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -2171,6 +2193,7 @@ class ModelDescription {
     this.status,
     this.statusMessage,
   });
+
   factory ModelDescription.fromJson(Map<String, dynamic> json) {
     return ModelDescription(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -2307,6 +2330,7 @@ class ModelMetadata {
     this.status,
     this.statusMessage,
   });
+
   factory ModelMetadata.fromJson(Map<String, dynamic> json) {
     return ModelMetadata(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -2359,6 +2383,7 @@ class ModelPerformance {
     this.precision,
     this.recall,
   });
+
   factory ModelPerformance.fromJson(Map<String, dynamic> json) {
     return ModelPerformance(
       f1Score: json['F1Score'] as double?,
@@ -2450,6 +2475,7 @@ class OutputConfig {
   OutputConfig({
     required this.s3Location,
   });
+
   factory OutputConfig.fromJson(Map<String, dynamic> json) {
     return OutputConfig(
       s3Location:
@@ -2477,6 +2503,7 @@ class OutputS3Object {
     required this.bucket,
     required this.key,
   });
+
   factory OutputS3Object.fromJson(Map<String, dynamic> json) {
     return OutputS3Object(
       bucket: json['Bucket'] as String,
@@ -2515,6 +2542,7 @@ class ProjectDescription {
     this.projectArn,
     this.projectName,
   });
+
   factory ProjectDescription.fromJson(Map<String, dynamic> json) {
     return ProjectDescription(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -2558,6 +2586,7 @@ class ProjectMetadata {
     this.projectArn,
     this.projectName,
   });
+
   factory ProjectMetadata.fromJson(Map<String, dynamic> json) {
     return ProjectMetadata(
       creationTimestamp: timeStampFromJson(json['CreationTimestamp']),
@@ -2592,6 +2621,7 @@ class S3Location {
     required this.bucket,
     this.prefix,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['Bucket'] as String,
@@ -2616,6 +2646,7 @@ class StartModelResponse {
   StartModelResponse({
     this.status,
   });
+
   factory StartModelResponse.fromJson(Map<String, dynamic> json) {
     return StartModelResponse(
       status: (json['Status'] as String?)?.toModelHostingStatus(),
@@ -2637,6 +2668,7 @@ class StopModelResponse {
   StopModelResponse({
     this.status,
   });
+
   factory StopModelResponse.fromJson(Map<String, dynamic> json) {
     return StopModelResponse(
       status: (json['Status'] as String?)?.toModelHostingStatus(),
@@ -2664,6 +2696,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -2683,6 +2716,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2694,6 +2728,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2710,6 +2745,7 @@ class UpdateDatasetEntriesResponse {
   UpdateDatasetEntriesResponse({
     this.status,
   });
+
   factory UpdateDatasetEntriesResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDatasetEntriesResponse(
       status: (json['Status'] as String?)?.toDatasetStatus(),

@@ -1214,6 +1214,7 @@ class DataPipeline {
 /// Contains the output of ActivatePipeline.
 class ActivatePipelineOutput {
   ActivatePipelineOutput();
+
   factory ActivatePipelineOutput.fromJson(Map<String, dynamic> _) {
     return ActivatePipelineOutput();
   }
@@ -1226,6 +1227,7 @@ class ActivatePipelineOutput {
 /// Contains the output of AddTags.
 class AddTagsOutput {
   AddTagsOutput();
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
   }
@@ -1244,6 +1246,7 @@ class CreatePipelineOutput {
   CreatePipelineOutput({
     required this.pipelineId,
   });
+
   factory CreatePipelineOutput.fromJson(Map<String, dynamic> json) {
     return CreatePipelineOutput(
       pipelineId: json['pipelineId'] as String,
@@ -1261,6 +1264,7 @@ class CreatePipelineOutput {
 /// Contains the output of DeactivatePipeline.
 class DeactivatePipelineOutput {
   DeactivatePipelineOutput();
+
   factory DeactivatePipelineOutput.fromJson(Map<String, dynamic> _) {
     return DeactivatePipelineOutput();
   }
@@ -1288,6 +1292,7 @@ class DescribeObjectsOutput {
     this.hasMoreResults,
     this.marker,
   });
+
   factory DescribeObjectsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeObjectsOutput(
       pipelineObjects: (json['pipelineObjects'] as List)
@@ -1319,6 +1324,7 @@ class DescribePipelinesOutput {
   DescribePipelinesOutput({
     required this.pipelineDescriptionList,
   });
+
   factory DescribePipelinesOutput.fromJson(Map<String, dynamic> json) {
     return DescribePipelinesOutput(
       pipelineDescriptionList: (json['pipelineDescriptionList'] as List)
@@ -1344,6 +1350,7 @@ class EvaluateExpressionOutput {
   EvaluateExpressionOutput({
     required this.evaluatedExpression,
   });
+
   factory EvaluateExpressionOutput.fromJson(Map<String, dynamic> json) {
     return EvaluateExpressionOutput(
       evaluatedExpression: json['evaluatedExpression'] as String,
@@ -1376,6 +1383,7 @@ class Field {
     this.refValue,
     this.stringValue,
   });
+
   factory Field.fromJson(Map<String, dynamic> json) {
     return Field(
       key: json['key'] as String,
@@ -1412,6 +1420,7 @@ class GetPipelineDefinitionOutput {
     this.parameterValues,
     this.pipelineObjects,
   });
+
   factory GetPipelineDefinitionOutput.fromJson(Map<String, dynamic> json) {
     return GetPipelineDefinitionOutput(
       parameterObjects: (json['parameterObjects'] as List?)
@@ -1465,6 +1474,7 @@ class InstanceIdentity {
     this.document,
     this.signature,
   });
+
   factory InstanceIdentity.fromJson(Map<String, dynamic> json) {
     return InstanceIdentity(
       document: json['document'] as String?,
@@ -1503,6 +1513,7 @@ class ListPipelinesOutput {
     this.hasMoreResults,
     this.marker,
   });
+
   factory ListPipelinesOutput.fromJson(Map<String, dynamic> json) {
     return ListPipelinesOutput(
       pipelineIdList: (json['pipelineIdList'] as List)
@@ -1574,6 +1585,7 @@ class Operator {
     this.type,
     this.values,
   });
+
   factory Operator.fromJson(Map<String, dynamic> json) {
     return Operator(
       type: (json['type'] as String?)?.toOperatorType(),
@@ -1649,6 +1661,7 @@ class ParameterAttribute {
     required this.key,
     required this.stringValue,
   });
+
   factory ParameterAttribute.fromJson(Map<String, dynamic> json) {
     return ParameterAttribute(
       key: json['key'] as String,
@@ -1678,6 +1691,7 @@ class ParameterObject {
     required this.attributes,
     required this.id,
   });
+
   factory ParameterObject.fromJson(Map<String, dynamic> json) {
     return ParameterObject(
       attributes: (json['attributes'] as List)
@@ -1710,6 +1724,7 @@ class ParameterValue {
     required this.id,
     required this.stringValue,
   });
+
   factory ParameterValue.fromJson(Map<String, dynamic> json) {
     return ParameterValue(
       id: json['id'] as String,
@@ -1757,6 +1772,7 @@ class PipelineDescription {
     this.description,
     this.tags,
   });
+
   factory PipelineDescription.fromJson(Map<String, dynamic> json) {
     return PipelineDescription(
       fields: (json['fields'] as List)
@@ -1802,6 +1818,7 @@ class PipelineIdName {
     this.id,
     this.name,
   });
+
   factory PipelineIdName.fromJson(Map<String, dynamic> json) {
     return PipelineIdName(
       id: json['id'] as String?,
@@ -1837,6 +1854,7 @@ class PipelineObject {
     required this.id,
     required this.name,
   });
+
   factory PipelineObject.fromJson(Map<String, dynamic> json) {
     return PipelineObject(
       fields: (json['fields'] as List)
@@ -1872,6 +1890,7 @@ class PollForTaskOutput {
   PollForTaskOutput({
     this.taskObject,
   });
+
   factory PollForTaskOutput.fromJson(Map<String, dynamic> json) {
     return PollForTaskOutput(
       taskObject: json['taskObject'] != null
@@ -1908,6 +1927,7 @@ class PutPipelineDefinitionOutput {
     this.validationErrors,
     this.validationWarnings,
   });
+
   factory PutPipelineDefinitionOutput.fromJson(Map<String, dynamic> json) {
     return PutPipelineDefinitionOutput(
       errored: json['errored'] as bool,
@@ -1943,6 +1963,7 @@ class Query {
   Query({
     this.selectors,
   });
+
   factory Query.fromJson(Map<String, dynamic> json) {
     return Query(
       selectors: (json['selectors'] as List?)
@@ -1979,6 +2000,7 @@ class QueryObjectsOutput {
     this.ids,
     this.marker,
   });
+
   factory QueryObjectsOutput.fromJson(Map<String, dynamic> json) {
     return QueryObjectsOutput(
       hasMoreResults: json['hasMoreResults'] as bool?,
@@ -2005,6 +2027,7 @@ class QueryObjectsOutput {
 /// Contains the output of RemoveTags.
 class RemoveTagsOutput {
   RemoveTagsOutput();
+
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
   }
@@ -2023,6 +2046,7 @@ class ReportTaskProgressOutput {
   ReportTaskProgressOutput({
     required this.canceled,
   });
+
   factory ReportTaskProgressOutput.fromJson(Map<String, dynamic> json) {
     return ReportTaskProgressOutput(
       canceled: json['canceled'] as bool,
@@ -2045,6 +2069,7 @@ class ReportTaskRunnerHeartbeatOutput {
   ReportTaskRunnerHeartbeatOutput({
     required this.terminate,
   });
+
   factory ReportTaskRunnerHeartbeatOutput.fromJson(Map<String, dynamic> json) {
     return ReportTaskRunnerHeartbeatOutput(
       terminate: json['terminate'] as bool,
@@ -2073,6 +2098,7 @@ class Selector {
     this.fieldName,
     this.operator,
   });
+
   factory Selector.fromJson(Map<String, dynamic> json) {
     return Selector(
       fieldName: json['fieldName'] as String?,
@@ -2095,6 +2121,7 @@ class Selector {
 /// Contains the output of SetTaskStatus.
 class SetTaskStatusOutput {
   SetTaskStatusOutput();
+
   factory SetTaskStatusOutput.fromJson(Map<String, dynamic> _) {
     return SetTaskStatusOutput();
   }
@@ -2128,6 +2155,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -2169,6 +2197,7 @@ class TaskObject {
     this.pipelineId,
     this.taskId,
   });
+
   factory TaskObject.fromJson(Map<String, dynamic> json) {
     return TaskObject(
       attemptId: json['attemptId'] as String?,
@@ -2242,6 +2271,7 @@ class ValidatePipelineDefinitionOutput {
     this.validationErrors,
     this.validationWarnings,
   });
+
   factory ValidatePipelineDefinitionOutput.fromJson(Map<String, dynamic> json) {
     return ValidatePipelineDefinitionOutput(
       errored: json['errored'] as bool,
@@ -2282,6 +2312,7 @@ class ValidationError {
     this.errors,
     this.id,
   });
+
   factory ValidationError.fromJson(Map<String, dynamic> json) {
     return ValidationError(
       errors: (json['errors'] as List?)
@@ -2316,6 +2347,7 @@ class ValidationWarning {
     this.id,
     this.warnings,
   });
+
   factory ValidationWarning.fromJson(Map<String, dynamic> json) {
     return ValidationWarning(
       id: json['id'] as String?,

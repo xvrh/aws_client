@@ -1050,6 +1050,7 @@ class BackendAPIAppSyncAuthSettings {
     this.openIDIssueURL,
     this.openIDProviderName,
   });
+
   factory BackendAPIAppSyncAuthSettings.fromJson(Map<String, dynamic> json) {
     return BackendAPIAppSyncAuthSettings(
       cognitoUserPoolId: json['cognitoUserPoolId'] as String?,
@@ -1097,6 +1098,7 @@ class BackendAPIAuthType {
     this.mode,
     this.settings,
   });
+
   factory BackendAPIAuthType.fromJson(Map<String, dynamic> json) {
     return BackendAPIAuthType(
       mode: (json['mode'] as String?)?.toMode(),
@@ -1126,6 +1128,7 @@ class BackendAPIConflictResolution {
   BackendAPIConflictResolution({
     this.resolutionStrategy,
   });
+
   factory BackendAPIConflictResolution.fromJson(Map<String, dynamic> json) {
     return BackendAPIConflictResolution(
       resolutionStrategy:
@@ -1174,6 +1177,7 @@ class BackendAPIResourceConfig {
     this.service,
     this.transformSchema,
   });
+
   factory BackendAPIResourceConfig.fromJson(Map<String, dynamic> json) {
     return BackendAPIResourceConfig(
       additionalAuthTypes: (json['additionalAuthTypes'] as List?)
@@ -1228,6 +1232,7 @@ class BackendAuthSocialProviderConfig {
     this.clientId,
     this.clientSecret,
   });
+
   factory BackendAuthSocialProviderConfig.fromJson(Map<String, dynamic> json) {
     return BackendAuthSocialProviderConfig(
       clientId: json['client_id'] as String?,
@@ -1281,6 +1286,7 @@ class BackendJobRespObj {
     this.status,
     this.updateTime,
   });
+
   factory BackendJobRespObj.fromJson(Map<String, dynamic> json) {
     return BackendJobRespObj(
       appId: json['appId'] as String,
@@ -1343,6 +1349,7 @@ class CloneBackendResponse {
     this.operation,
     this.status,
   });
+
   factory CloneBackendResponse.fromJson(Map<String, dynamic> json) {
     return CloneBackendResponse(
       appId: json['appId'] as String?,
@@ -1400,6 +1407,7 @@ class CreateBackendAPIResponse {
     this.operation,
     this.status,
   });
+
   factory CreateBackendAPIResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackendAPIResponse(
       appId: json['appId'] as String?,
@@ -1450,6 +1458,7 @@ class CreateBackendAuthForgotPasswordConfig {
     this.emailSettings,
     this.smsSettings,
   });
+
   factory CreateBackendAuthForgotPasswordConfig.fromJson(
       Map<String, dynamic> json) {
     return CreateBackendAuthForgotPasswordConfig(
@@ -1490,6 +1499,7 @@ class CreateBackendAuthIdentityPoolConfig {
     required this.identityPoolName,
     required this.unauthenticatedLogin,
   });
+
   factory CreateBackendAuthIdentityPoolConfig.fromJson(
       Map<String, dynamic> json) {
     return CreateBackendAuthIdentityPoolConfig(
@@ -1523,6 +1533,7 @@ class CreateBackendAuthMFAConfig {
     required this.mFAMode,
     this.settings,
   });
+
   factory CreateBackendAuthMFAConfig.fromJson(Map<String, dynamic> json) {
     return CreateBackendAuthMFAConfig(
       mFAMode: (json['MFAMode'] as String).toMFAMode(),
@@ -1572,6 +1583,7 @@ class CreateBackendAuthOAuthConfig {
     this.domainPrefix,
     this.socialProviderSettings,
   });
+
   factory CreateBackendAuthOAuthConfig.fromJson(Map<String, dynamic> json) {
     return CreateBackendAuthOAuthConfig(
       oAuthGrantType: (json['oAuthGrantType'] as String).toOAuthGrantType(),
@@ -1628,6 +1640,7 @@ class CreateBackendAuthPasswordPolicyConfig {
     required this.minimumLength,
     this.additionalConstraints,
   });
+
   factory CreateBackendAuthPasswordPolicyConfig.fromJson(
       Map<String, dynamic> json) {
     return CreateBackendAuthPasswordPolicyConfig(
@@ -1676,6 +1689,7 @@ class CreateBackendAuthResourceConfig {
     required this.userPoolConfigs,
     this.identityPoolConfigs,
   });
+
   factory CreateBackendAuthResourceConfig.fromJson(Map<String, dynamic> json) {
     return CreateBackendAuthResourceConfig(
       authResources: (json['authResources'] as String).toAuthResources(),
@@ -1731,6 +1745,7 @@ class CreateBackendAuthResponse {
     this.operation,
     this.status,
   });
+
   factory CreateBackendAuthResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackendAuthResponse(
       appId: json['appId'] as String?,
@@ -1800,6 +1815,7 @@ class CreateBackendAuthUserPoolConfig {
     this.oAuth,
     this.passwordPolicy,
   });
+
   factory CreateBackendAuthUserPoolConfig.fromJson(Map<String, dynamic> json) {
     return CreateBackendAuthUserPoolConfig(
       requiredSignUpAttributes: (json['requiredSignUpAttributes'] as List)
@@ -1867,6 +1883,7 @@ class CreateBackendConfigResponse {
     this.jobId,
     this.status,
   });
+
   factory CreateBackendConfigResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackendConfigResponse(
       appId: json['appId'] as String?,
@@ -1918,6 +1935,7 @@ class CreateBackendResponse {
     this.operation,
     this.status,
   });
+
   factory CreateBackendResponse.fromJson(Map<String, dynamic> json) {
     return CreateBackendResponse(
       appId: json['appId'] as String?,
@@ -1967,6 +1985,7 @@ class CreateTokenResponse {
     this.sessionId,
     this.ttl,
   });
+
   factory CreateTokenResponse.fromJson(Map<String, dynamic> json) {
     return CreateTokenResponse(
       appId: json['appId'] as String?,
@@ -2017,6 +2036,7 @@ class DeleteBackendAPIResponse {
     this.operation,
     this.status,
   });
+
   factory DeleteBackendAPIResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBackendAPIResponse(
       appId: json['appId'] as String?,
@@ -2074,6 +2094,7 @@ class DeleteBackendAuthResponse {
     this.operation,
     this.status,
   });
+
   factory DeleteBackendAuthResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBackendAuthResponse(
       appId: json['appId'] as String?,
@@ -2131,6 +2152,7 @@ class DeleteBackendResponse {
     this.operation,
     this.status,
   });
+
   factory DeleteBackendResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBackendResponse(
       appId: json['appId'] as String?,
@@ -2168,6 +2190,7 @@ class DeleteTokenResponse {
   DeleteTokenResponse({
     this.isSuccess,
   });
+
   factory DeleteTokenResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTokenResponse(
       isSuccess: json['isSuccess'] as bool?,
@@ -2223,6 +2246,7 @@ class EmailSettings {
     this.emailMessage,
     this.emailSubject,
   });
+
   factory EmailSettings.fromJson(Map<String, dynamic> json) {
     return EmailSettings(
       emailMessage: json['emailMessage'] as String?,
@@ -2267,6 +2291,7 @@ class GenerateBackendAPIModelsResponse {
     this.operation,
     this.status,
   });
+
   factory GenerateBackendAPIModelsResponse.fromJson(Map<String, dynamic> json) {
     return GenerateBackendAPIModelsResponse(
       appId: json['appId'] as String?,
@@ -2308,6 +2333,7 @@ class GetBackendAPIModelsResponse {
     this.models,
     this.status,
   });
+
   factory GetBackendAPIModelsResponse.fromJson(Map<String, dynamic> json) {
     return GetBackendAPIModelsResponse(
       models: json['models'] as String?,
@@ -2348,6 +2374,7 @@ class GetBackendAPIResponse {
     this.resourceConfig,
     this.resourceName,
   });
+
   factory GetBackendAPIResponse.fromJson(Map<String, dynamic> json) {
     return GetBackendAPIResponse(
       appId: json['appId'] as String?,
@@ -2402,6 +2429,7 @@ class GetBackendAuthResponse {
     this.resourceConfig,
     this.resourceName,
   });
+
   factory GetBackendAuthResponse.fromJson(Map<String, dynamic> json) {
     return GetBackendAuthResponse(
       appId: json['appId'] as String?,
@@ -2467,6 +2495,7 @@ class GetBackendJobResponse {
     this.status,
     this.updateTime,
   });
+
   factory GetBackendJobResponse.fromJson(Map<String, dynamic> json) {
     return GetBackendJobResponse(
       appId: json['appId'] as String?,
@@ -2530,6 +2559,7 @@ class GetBackendResponse {
     this.backendEnvironmentName,
     this.error,
   });
+
   factory GetBackendResponse.fromJson(Map<String, dynamic> json) {
     return GetBackendResponse(
       amplifyMetaConfig: json['amplifyMetaConfig'] as String?,
@@ -2583,6 +2613,7 @@ class GetTokenResponse {
     this.sessionId,
     this.ttl,
   });
+
   factory GetTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetTokenResponse(
       appId: json['appId'] as String?,
@@ -2633,6 +2664,7 @@ class ImportBackendAuthResponse {
     this.operation,
     this.status,
   });
+
   factory ImportBackendAuthResponse.fromJson(Map<String, dynamic> json) {
     return ImportBackendAuthResponse(
       appId: json['appId'] as String?,
@@ -2674,6 +2706,7 @@ class ListBackendJobsResponse {
     this.jobs,
     this.nextToken,
   });
+
   factory ListBackendJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListBackendJobsResponse(
       jobs: (json['jobs'] as List?)
@@ -2716,6 +2749,7 @@ class LoginAuthConfigReqObj {
     this.awsUserPoolsId,
     this.awsUserPoolsWebClientId,
   });
+
   factory LoginAuthConfigReqObj.fromJson(Map<String, dynamic> json) {
     return LoginAuthConfigReqObj(
       awsCognitoIdentityPoolId: json['aws_cognito_identity_pool_id'] as String?,
@@ -2863,6 +2897,7 @@ class RemoveAllBackendsResponse {
     this.operation,
     this.status,
   });
+
   factory RemoveAllBackendsResponse.fromJson(Map<String, dynamic> json) {
     return RemoveAllBackendsResponse(
       appId: json['appId'] as String?,
@@ -2896,6 +2931,7 @@ class RemoveBackendConfigResponse {
   RemoveBackendConfigResponse({
     this.error,
   });
+
   factory RemoveBackendConfigResponse.fromJson(Map<String, dynamic> json) {
     return RemoveBackendConfigResponse(
       error: json['error'] as String?,
@@ -2952,6 +2988,7 @@ extension on String {
 /// project.
 class ResourceConfig {
   ResourceConfig();
+
   factory ResourceConfig.fromJson(Map<String, dynamic> _) {
     return ResourceConfig();
   }
@@ -2997,6 +3034,7 @@ class Settings {
     this.mfaTypes,
     this.smsMessage,
   });
+
   factory Settings.fromJson(Map<String, dynamic> json) {
     return Settings(
       mfaTypes: (json['mfaTypes'] as List?)
@@ -3064,6 +3102,7 @@ class SmsSettings {
   SmsSettings({
     this.smsMessage,
   });
+
   factory SmsSettings.fromJson(Map<String, dynamic> json) {
     return SmsSettings(
       smsMessage: json['smsMessage'] as String?,
@@ -3090,6 +3129,7 @@ class SocialProviderSettings {
     this.google,
     this.loginWithAmazon,
   });
+
   factory SocialProviderSettings.fromJson(Map<String, dynamic> json) {
     return SocialProviderSettings(
       facebook: json['Facebook'] != null
@@ -3174,6 +3214,7 @@ class UpdateBackendAPIResponse {
     this.operation,
     this.status,
   });
+
   factory UpdateBackendAPIResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAPIResponse(
       appId: json['appId'] as String?,
@@ -3224,6 +3265,7 @@ class UpdateBackendAuthForgotPasswordConfig {
     this.emailSettings,
     this.smsSettings,
   });
+
   factory UpdateBackendAuthForgotPasswordConfig.fromJson(
       Map<String, dynamic> json) {
     return UpdateBackendAuthForgotPasswordConfig(
@@ -3260,6 +3302,7 @@ class UpdateBackendAuthIdentityPoolConfig {
   UpdateBackendAuthIdentityPoolConfig({
     this.unauthenticatedLogin,
   });
+
   factory UpdateBackendAuthIdentityPoolConfig.fromJson(
       Map<String, dynamic> json) {
     return UpdateBackendAuthIdentityPoolConfig(
@@ -3290,6 +3333,7 @@ class UpdateBackendAuthMFAConfig {
     this.mFAMode,
     this.settings,
   });
+
   factory UpdateBackendAuthMFAConfig.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAuthMFAConfig(
       mFAMode: (json['MFAMode'] as String?)?.toMFAMode(),
@@ -3341,6 +3385,7 @@ class UpdateBackendAuthOAuthConfig {
     this.redirectSignOutURIs,
     this.socialProviderSettings,
   });
+
   factory UpdateBackendAuthOAuthConfig.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAuthOAuthConfig(
       domainPrefix: json['domainPrefix'] as String?,
@@ -3400,6 +3445,7 @@ class UpdateBackendAuthPasswordPolicyConfig {
     this.additionalConstraints,
     this.minimumLength,
   });
+
   factory UpdateBackendAuthPasswordPolicyConfig.fromJson(
       Map<String, dynamic> json) {
     return UpdateBackendAuthPasswordPolicyConfig(
@@ -3448,6 +3494,7 @@ class UpdateBackendAuthResourceConfig {
     required this.userPoolConfigs,
     this.identityPoolConfigs,
   });
+
   factory UpdateBackendAuthResourceConfig.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAuthResourceConfig(
       authResources: (json['authResources'] as String).toAuthResources(),
@@ -3503,6 +3550,7 @@ class UpdateBackendAuthResponse {
     this.operation,
     this.status,
   });
+
   factory UpdateBackendAuthResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAuthResponse(
       appId: json['appId'] as String?,
@@ -3558,6 +3606,7 @@ class UpdateBackendAuthUserPoolConfig {
     this.oAuth,
     this.passwordPolicy,
   });
+
   factory UpdateBackendAuthUserPoolConfig.fromJson(Map<String, dynamic> json) {
     return UpdateBackendAuthUserPoolConfig(
       forgotPassword: json['forgotPassword'] != null
@@ -3613,6 +3662,7 @@ class UpdateBackendConfigResponse {
     this.error,
     this.loginAuthConfig,
   });
+
   factory UpdateBackendConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBackendConfigResponse(
       appId: json['appId'] as String?,
@@ -3675,6 +3725,7 @@ class UpdateBackendJobResponse {
     this.status,
     this.updateTime,
   });
+
   factory UpdateBackendJobResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBackendJobResponse(
       appId: json['appId'] as String?,

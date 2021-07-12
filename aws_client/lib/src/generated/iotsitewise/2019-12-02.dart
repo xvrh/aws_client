@@ -3916,6 +3916,7 @@ class AccessPolicySummary {
     this.creationDate,
     this.lastUpdateDate,
   });
+
   factory AccessPolicySummary.fromJson(Map<String, dynamic> json) {
     return AccessPolicySummary(
       id: json['id'] as String,
@@ -4012,6 +4013,7 @@ class AggregatedValue {
     required this.value,
     this.quality,
   });
+
   factory AggregatedValue.fromJson(Map<String, dynamic> json) {
     return AggregatedValue(
       timestamp: nonNullableTimeStampFromJson(json['timestamp'] as Object),
@@ -4060,6 +4062,7 @@ class Aggregates {
     this.standardDeviation,
     this.sum,
   });
+
   factory Aggregates.fromJson(Map<String, dynamic> json) {
     return Aggregates(
       average: json['average'] as double?,
@@ -4114,6 +4117,7 @@ class Alarms {
     required this.alarmRoleArn,
     this.notificationLambdaArn,
   });
+
   factory Alarms.fromJson(Map<String, dynamic> json) {
     return Alarms(
       alarmRoleArn: json['alarmRoleArn'] as String,
@@ -4154,6 +4158,7 @@ class AssetCompositeModel {
     required this.type,
     this.description,
   });
+
   factory AssetCompositeModel.fromJson(Map<String, dynamic> json) {
     return AssetCompositeModel(
       name: json['name'] as String,
@@ -4219,6 +4224,7 @@ class AssetErrorDetails {
     required this.code,
     required this.message,
   });
+
   factory AssetErrorDetails.fromJson(Map<String, dynamic> json) {
     return AssetErrorDetails(
       assetId: json['assetId'] as String,
@@ -4255,6 +4261,7 @@ class AssetHierarchy {
     required this.name,
     this.id,
   });
+
   factory AssetHierarchy.fromJson(Map<String, dynamic> json) {
     return AssetHierarchy(
       name: json['name'] as String,
@@ -4285,6 +4292,7 @@ class AssetHierarchyInfo {
     this.childAssetId,
     this.parentAssetId,
   });
+
   factory AssetHierarchyInfo.fromJson(Map<String, dynamic> json) {
     return AssetHierarchyInfo(
       childAssetId: json['childAssetId'] as String?,
@@ -4325,6 +4333,7 @@ class AssetModelCompositeModel {
     this.description,
     this.properties,
   });
+
   factory AssetModelCompositeModel.fromJson(Map<String, dynamic> json) {
     return AssetModelCompositeModel(
       name: json['name'] as String,
@@ -4373,6 +4382,7 @@ class AssetModelCompositeModelDefinition {
     this.description,
     this.properties,
   });
+
   factory AssetModelCompositeModelDefinition.fromJson(
       Map<String, dynamic> json) {
     return AssetModelCompositeModelDefinition(
@@ -4424,6 +4434,7 @@ class AssetModelHierarchy {
     required this.name,
     this.id,
   });
+
   factory AssetModelHierarchy.fromJson(Map<String, dynamic> json) {
     return AssetModelHierarchy(
       childAssetModelId: json['childAssetModelId'] as String,
@@ -4462,6 +4473,7 @@ class AssetModelHierarchyDefinition {
     required this.childAssetModelId,
     required this.name,
   });
+
   factory AssetModelHierarchyDefinition.fromJson(Map<String, dynamic> json) {
     return AssetModelHierarchyDefinition(
       childAssetModelId: json['childAssetModelId'] as String,
@@ -4509,6 +4521,7 @@ class AssetModelProperty {
     this.id,
     this.unit,
   });
+
   factory AssetModelProperty.fromJson(Map<String, dynamic> json) {
     return AssetModelProperty(
       dataType: (json['dataType'] as String).toPropertyDataType(),
@@ -4574,6 +4587,7 @@ class AssetModelPropertyDefinition {
     this.dataTypeSpec,
     this.unit,
   });
+
   factory AssetModelPropertyDefinition.fromJson(Map<String, dynamic> json) {
     return AssetModelPropertyDefinition(
       dataType: (json['dataType'] as String).toPropertyDataType(),
@@ -4663,6 +4677,7 @@ class AssetModelStatus {
     required this.state,
     this.error,
   });
+
   factory AssetModelStatus.fromJson(Map<String, dynamic> json) {
     return AssetModelStatus(
       state: (json['state'] as String).toAssetModelState(),
@@ -4718,6 +4733,7 @@ class AssetModelSummary {
     required this.name,
     required this.status,
   });
+
   factory AssetModelSummary.fromJson(Map<String, dynamic> json) {
     return AssetModelSummary(
       arn: json['arn'] as String,
@@ -4793,6 +4809,7 @@ class AssetProperty {
     this.notification,
     this.unit,
   });
+
   factory AssetProperty.fromJson(Map<String, dynamic> json) {
     return AssetProperty(
       dataType: (json['dataType'] as String).toPropertyDataType(),
@@ -4844,6 +4861,7 @@ class AssetPropertyValue {
     required this.value,
     this.quality,
   });
+
   factory AssetPropertyValue.fromJson(Map<String, dynamic> json) {
     return AssetPropertyValue(
       timestamp:
@@ -4889,6 +4907,7 @@ class AssetRelationshipSummary {
     required this.relationshipType,
     this.hierarchyInfo,
   });
+
   factory AssetRelationshipSummary.fromJson(Map<String, dynamic> json) {
     return AssetRelationshipSummary(
       relationshipType:
@@ -4991,6 +5010,7 @@ class AssetStatus {
     required this.state,
     this.error,
   });
+
   factory AssetStatus.fromJson(Map<String, dynamic> json) {
     return AssetStatus(
       state: (json['state'] as String).toAssetState(),
@@ -5051,6 +5071,7 @@ class AssetSummary {
     required this.name,
     required this.status,
   });
+
   factory AssetSummary.fromJson(Map<String, dynamic> json) {
     return AssetSummary(
       arn: json['arn'] as String,
@@ -5132,6 +5153,7 @@ class AssociatedAssetsSummary {
     required this.name,
     required this.status,
   });
+
   factory AssociatedAssetsSummary.fromJson(Map<String, dynamic> json) {
     return AssociatedAssetsSummary(
       arn: json['arn'] as String,
@@ -5186,6 +5208,7 @@ class Attribute {
   Attribute({
     this.defaultValue,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       defaultValue: json['defaultValue'] as String?,
@@ -5235,6 +5258,7 @@ class BatchAssociateProjectAssetsResponse {
   BatchAssociateProjectAssetsResponse({
     this.errors,
   });
+
   factory BatchAssociateProjectAssetsResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchAssociateProjectAssetsResponse(
@@ -5260,6 +5284,7 @@ class BatchDisassociateProjectAssetsResponse {
   BatchDisassociateProjectAssetsResponse({
     this.errors,
   });
+
   factory BatchDisassociateProjectAssetsResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDisassociateProjectAssetsResponse(
@@ -5294,6 +5319,7 @@ class BatchPutAssetPropertyError {
     required this.errorMessage,
     required this.timestamps,
   });
+
   factory BatchPutAssetPropertyError.fromJson(Map<String, dynamic> json) {
     return BatchPutAssetPropertyError(
       errorCode:
@@ -5333,6 +5359,7 @@ class BatchPutAssetPropertyErrorEntry {
     required this.entryId,
     required this.errors,
   });
+
   factory BatchPutAssetPropertyErrorEntry.fromJson(Map<String, dynamic> json) {
     return BatchPutAssetPropertyErrorEntry(
       entryId: json['entryId'] as String,
@@ -5427,6 +5454,7 @@ class BatchPutAssetPropertyValueResponse {
   BatchPutAssetPropertyValueResponse({
     required this.errorEntries,
   });
+
   factory BatchPutAssetPropertyValueResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchPutAssetPropertyValueResponse(
@@ -5494,6 +5522,7 @@ class CompositeModelProperty {
     required this.name,
     required this.type,
   });
+
   factory CompositeModelProperty.fromJson(Map<String, dynamic> json) {
     return CompositeModelProperty(
       assetProperty:
@@ -5527,6 +5556,7 @@ class ConfigurationErrorDetails {
     required this.code,
     required this.message,
   });
+
   factory ConfigurationErrorDetails.fromJson(Map<String, dynamic> json) {
     return ConfigurationErrorDetails(
       code: (json['code'] as String).toErrorCode(),
@@ -5589,6 +5619,7 @@ class ConfigurationStatus {
     required this.state,
     this.error,
   });
+
   factory ConfigurationStatus.fromJson(Map<String, dynamic> json) {
     return ConfigurationStatus(
       state: (json['state'] as String).toConfigurationState(),
@@ -5624,6 +5655,7 @@ class CreateAccessPolicyResponse {
     required this.accessPolicyArn,
     required this.accessPolicyId,
   });
+
   factory CreateAccessPolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccessPolicyResponse(
       accessPolicyArn: json['accessPolicyArn'] as String,
@@ -5662,6 +5694,7 @@ class CreateAssetModelResponse {
     required this.assetModelId,
     required this.assetModelStatus,
   });
+
   factory CreateAssetModelResponse.fromJson(Map<String, dynamic> json) {
     return CreateAssetModelResponse(
       assetModelArn: json['assetModelArn'] as String,
@@ -5704,6 +5737,7 @@ class CreateAssetResponse {
     required this.assetId,
     required this.assetStatus,
   });
+
   factory CreateAssetResponse.fromJson(Map<String, dynamic> json) {
     return CreateAssetResponse(
       assetArn: json['assetArn'] as String,
@@ -5740,6 +5774,7 @@ class CreateDashboardResponse {
     required this.dashboardArn,
     required this.dashboardId,
   });
+
   factory CreateDashboardResponse.fromJson(Map<String, dynamic> json) {
     return CreateDashboardResponse(
       dashboardArn: json['dashboardArn'] as String,
@@ -5773,6 +5808,7 @@ class CreateGatewayResponse {
     required this.gatewayArn,
     required this.gatewayId,
   });
+
   factory CreateGatewayResponse.fromJson(Map<String, dynamic> json) {
     return CreateGatewayResponse(
       gatewayArn: json['gatewayArn'] as String,
@@ -5822,6 +5858,7 @@ class CreatePortalResponse {
     required this.portalStatus,
     required this.ssoApplicationId,
   });
+
   factory CreatePortalResponse.fromJson(Map<String, dynamic> json) {
     return CreatePortalResponse(
       portalArn: json['portalArn'] as String,
@@ -5864,6 +5901,7 @@ class CreateProjectResponse {
     required this.projectArn,
     required this.projectId,
   });
+
   factory CreateProjectResponse.fromJson(Map<String, dynamic> json) {
     return CreateProjectResponse(
       projectArn: json['projectArn'] as String,
@@ -5901,6 +5939,7 @@ class CustomerManagedS3Storage {
     required this.roleArn,
     required this.s3ResourceArn,
   });
+
   factory CustomerManagedS3Storage.fromJson(Map<String, dynamic> json) {
     return CustomerManagedS3Storage(
       roleArn: json['roleArn'] as String,
@@ -5942,6 +5981,7 @@ class DashboardSummary {
     this.description,
     this.lastUpdateDate,
   });
+
   factory DashboardSummary.fromJson(Map<String, dynamic> json) {
     return DashboardSummary(
       id: json['id'] as String,
@@ -5972,6 +6012,7 @@ class DashboardSummary {
 
 class DeleteAccessPolicyResponse {
   DeleteAccessPolicyResponse();
+
   factory DeleteAccessPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccessPolicyResponse();
   }
@@ -5989,6 +6030,7 @@ class DeleteAssetModelResponse {
   DeleteAssetModelResponse({
     required this.assetModelStatus,
   });
+
   factory DeleteAssetModelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAssetModelResponse(
       assetModelStatus: AssetModelStatus.fromJson(
@@ -6012,6 +6054,7 @@ class DeleteAssetResponse {
   DeleteAssetResponse({
     required this.assetStatus,
   });
+
   factory DeleteAssetResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAssetResponse(
       assetStatus:
@@ -6029,6 +6072,7 @@ class DeleteAssetResponse {
 
 class DeleteDashboardResponse {
   DeleteDashboardResponse();
+
   factory DeleteDashboardResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDashboardResponse();
   }
@@ -6046,6 +6090,7 @@ class DeletePortalResponse {
   DeletePortalResponse({
     required this.portalStatus,
   });
+
   factory DeletePortalResponse.fromJson(Map<String, dynamic> json) {
     return DeletePortalResponse(
       portalStatus:
@@ -6063,6 +6108,7 @@ class DeletePortalResponse {
 
 class DeleteProjectResponse {
   DeleteProjectResponse();
+
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProjectResponse();
   }
@@ -6110,6 +6156,7 @@ class DescribeAccessPolicyResponse {
     required this.accessPolicyPermission,
     required this.accessPolicyResource,
   });
+
   factory DescribeAccessPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccessPolicyResponse(
       accessPolicyArn: json['accessPolicyArn'] as String,
@@ -6203,6 +6250,7 @@ class DescribeAssetModelResponse {
     required this.assetModelStatus,
     this.assetModelCompositeModels,
   });
+
   factory DescribeAssetModelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAssetModelResponse(
       assetModelArn: json['assetModelArn'] as String,
@@ -6286,6 +6334,7 @@ class DescribeAssetPropertyResponse {
     this.assetProperty,
     this.compositeModel,
   });
+
   factory DescribeAssetPropertyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAssetPropertyResponse(
       assetId: json['assetId'] as String,
@@ -6370,6 +6419,7 @@ class DescribeAssetResponse {
     required this.assetStatus,
     this.assetCompositeModels,
   });
+
   factory DescribeAssetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAssetResponse(
       assetArn: json['assetArn'] as String,
@@ -6465,6 +6515,7 @@ class DescribeDashboardResponse {
     required this.projectId,
     this.dashboardDescription,
   });
+
   factory DescribeDashboardResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDashboardResponse(
       dashboardArn: json['dashboardArn'] as String,
@@ -6521,6 +6572,7 @@ class DescribeDefaultEncryptionConfigurationResponse {
     required this.encryptionType,
     this.kmsKeyArn,
   });
+
   factory DescribeDefaultEncryptionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDefaultEncryptionConfigurationResponse(
@@ -6580,6 +6632,7 @@ class DescribeGatewayCapabilityConfigurationResponse {
     required this.capabilitySyncStatus,
     required this.gatewayId,
   });
+
   factory DescribeGatewayCapabilityConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeGatewayCapabilityConfigurationResponse(
@@ -6643,6 +6696,7 @@ class DescribeGatewayResponse {
     required this.lastUpdateDate,
     this.gatewayPlatform,
   });
+
   factory DescribeGatewayResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGatewayResponse(
       creationDate:
@@ -6691,6 +6745,7 @@ class DescribeLoggingOptionsResponse {
   DescribeLoggingOptionsResponse({
     required this.loggingOptions,
   });
+
   factory DescribeLoggingOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLoggingOptionsResponse(
       loggingOptions: LoggingOptions.fromJson(
@@ -6787,6 +6842,7 @@ class DescribePortalResponse {
     this.portalLogoImageLocation,
     this.roleArn,
   });
+
   factory DescribePortalResponse.fromJson(Map<String, dynamic> json) {
     return DescribePortalResponse(
       portalArn: json['portalArn'] as String,
@@ -6888,6 +6944,7 @@ class DescribeProjectResponse {
     required this.projectName,
     this.projectDescription,
   });
+
   factory DescribeProjectResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProjectResponse(
       portalId: json['portalId'] as String,
@@ -6953,6 +7010,7 @@ class DescribeStorageConfigurationResponse {
     this.lastUpdateDate,
     this.multiLayerStorage,
   });
+
   factory DescribeStorageConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeStorageConfigurationResponse(
@@ -7050,6 +7108,7 @@ class ErrorDetails {
     required this.code,
     required this.message,
   });
+
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
       code: (json['code'] as String).toErrorCode(),
@@ -7079,6 +7138,7 @@ class ExpressionVariable {
     required this.name,
     required this.value,
   });
+
   factory ExpressionVariable.fromJson(Map<String, dynamic> json) {
     return ExpressionVariable(
       name: json['name'] as String,
@@ -7127,6 +7187,7 @@ class GatewayCapabilitySummary {
     required this.capabilityNamespace,
     required this.capabilitySyncStatus,
   });
+
   factory GatewayCapabilitySummary.fromJson(Map<String, dynamic> json) {
     return GatewayCapabilitySummary(
       capabilityNamespace: json['capabilityNamespace'] as String,
@@ -7153,6 +7214,7 @@ class GatewayPlatform {
   GatewayPlatform({
     required this.greengrass,
   });
+
   factory GatewayPlatform.fromJson(Map<String, dynamic> json) {
     return GatewayPlatform(
       greengrass:
@@ -7195,6 +7257,7 @@ class GatewaySummary {
     required this.lastUpdateDate,
     this.gatewayCapabilitySummaries,
   });
+
   factory GatewaySummary.fromJson(Map<String, dynamic> json) {
     return GatewaySummary(
       creationDate:
@@ -7240,6 +7303,7 @@ class GetAssetPropertyAggregatesResponse {
     required this.aggregatedValues,
     this.nextToken,
   });
+
   factory GetAssetPropertyAggregatesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAssetPropertyAggregatesResponse(
@@ -7273,6 +7337,7 @@ class GetAssetPropertyValueHistoryResponse {
     required this.assetPropertyValueHistory,
     this.nextToken,
   });
+
   factory GetAssetPropertyValueHistoryResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAssetPropertyValueHistoryResponse(
@@ -7301,6 +7366,7 @@ class GetAssetPropertyValueResponse {
   GetAssetPropertyValueResponse({
     this.propertyValue,
   });
+
   factory GetAssetPropertyValueResponse.fromJson(Map<String, dynamic> json) {
     return GetAssetPropertyValueResponse(
       propertyValue: json['propertyValue'] != null
@@ -7330,6 +7396,7 @@ class GetInterpolatedAssetPropertyValuesResponse {
     required this.interpolatedAssetPropertyValues,
     this.nextToken,
   });
+
   factory GetInterpolatedAssetPropertyValuesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetInterpolatedAssetPropertyValuesResponse(
@@ -7374,6 +7441,7 @@ class Greengrass {
   Greengrass({
     required this.groupArn,
   });
+
   factory Greengrass.fromJson(Map<String, dynamic> json) {
     return Greengrass(
       groupArn: json['groupArn'] as String,
@@ -7396,6 +7464,7 @@ class GroupIdentity {
   GroupIdentity({
     required this.id,
   });
+
   factory GroupIdentity.fromJson(Map<String, dynamic> json) {
     return GroupIdentity(
       id: json['id'] as String,
@@ -7423,6 +7492,7 @@ class IAMRoleIdentity {
   IAMRoleIdentity({
     required this.arn,
   });
+
   factory IAMRoleIdentity.fromJson(Map<String, dynamic> json) {
     return IAMRoleIdentity(
       arn: json['arn'] as String,
@@ -7452,6 +7522,7 @@ class IAMUserIdentity {
   IAMUserIdentity({
     required this.arn,
   });
+
   factory IAMUserIdentity.fromJson(Map<String, dynamic> json) {
     return IAMUserIdentity(
       arn: json['arn'] as String,
@@ -7493,6 +7564,7 @@ class Identity {
     this.iamUser,
     this.user,
   });
+
   factory Identity.fromJson(Map<String, dynamic> json) {
     return Identity(
       group: json['group'] != null
@@ -7578,6 +7650,7 @@ class Image {
     this.file,
     this.id,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       file: json['file'] != null
@@ -7610,6 +7683,7 @@ class ImageFile {
     required this.data,
     required this.type,
   });
+
   factory ImageFile.fromJson(Map<String, dynamic> json) {
     return ImageFile(
       data: _s.decodeUint8List(json['data']! as String),
@@ -7663,6 +7737,7 @@ class ImageLocation {
     required this.id,
     required this.url,
   });
+
   factory ImageLocation.fromJson(Map<String, dynamic> json) {
     return ImageLocation(
       id: json['id'] as String,
@@ -7689,6 +7764,7 @@ class InterpolatedAssetPropertyValue {
     required this.timestamp,
     required this.value,
   });
+
   factory InterpolatedAssetPropertyValue.fromJson(Map<String, dynamic> json) {
     return InterpolatedAssetPropertyValue(
       timestamp:
@@ -7719,6 +7795,7 @@ class ListAccessPoliciesResponse {
     required this.accessPolicySummaries,
     this.nextToken,
   });
+
   factory ListAccessPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListAccessPoliciesResponse(
       accessPolicySummaries: (json['accessPolicySummaries'] as List)
@@ -7751,6 +7828,7 @@ class ListAssetModelsResponse {
     required this.assetModelSummaries,
     this.nextToken,
   });
+
   factory ListAssetModelsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssetModelsResponse(
       assetModelSummaries: (json['assetModelSummaries'] as List)
@@ -7783,6 +7861,7 @@ class ListAssetRelationshipsResponse {
     required this.assetRelationshipSummaries,
     this.nextToken,
   });
+
   factory ListAssetRelationshipsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssetRelationshipsResponse(
       assetRelationshipSummaries: (json['assetRelationshipSummaries'] as List)
@@ -7844,6 +7923,7 @@ class ListAssetsResponse {
     required this.assetSummaries,
     this.nextToken,
   });
+
   factory ListAssetsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssetsResponse(
       assetSummaries: (json['assetSummaries'] as List)
@@ -7876,6 +7956,7 @@ class ListAssociatedAssetsResponse {
     required this.assetSummaries,
     this.nextToken,
   });
+
   factory ListAssociatedAssetsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssociatedAssetsResponse(
       assetSummaries: (json['assetSummaries'] as List)
@@ -7909,6 +7990,7 @@ class ListDashboardsResponse {
     required this.dashboardSummaries,
     this.nextToken,
   });
+
   factory ListDashboardsResponse.fromJson(Map<String, dynamic> json) {
     return ListDashboardsResponse(
       dashboardSummaries: (json['dashboardSummaries'] as List)
@@ -7941,6 +8023,7 @@ class ListGatewaysResponse {
     required this.gatewaySummaries,
     this.nextToken,
   });
+
   factory ListGatewaysResponse.fromJson(Map<String, dynamic> json) {
     return ListGatewaysResponse(
       gatewaySummaries: (json['gatewaySummaries'] as List)
@@ -7973,6 +8056,7 @@ class ListPortalsResponse {
     this.nextToken,
     this.portalSummaries,
   });
+
   factory ListPortalsResponse.fromJson(Map<String, dynamic> json) {
     return ListPortalsResponse(
       nextToken: json['nextToken'] as String?,
@@ -8005,6 +8089,7 @@ class ListProjectAssetsResponse {
     required this.assetIds,
     this.nextToken,
   });
+
   factory ListProjectAssetsResponse.fromJson(Map<String, dynamic> json) {
     return ListProjectAssetsResponse(
       assetIds: (json['assetIds'] as List)
@@ -8037,6 +8122,7 @@ class ListProjectsResponse {
     required this.projectSummaries,
     this.nextToken,
   });
+
   factory ListProjectsResponse.fromJson(Map<String, dynamic> json) {
     return ListProjectsResponse(
       projectSummaries: (json['projectSummaries'] as List)
@@ -8067,6 +8153,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -8123,6 +8210,7 @@ class LoggingOptions {
   LoggingOptions({
     required this.level,
   });
+
   factory LoggingOptions.fromJson(Map<String, dynamic> json) {
     return LoggingOptions(
       level: (json['level'] as String).toLoggingLevel(),
@@ -8142,6 +8230,7 @@ class LoggingOptions {
 /// in the <i>IoT SiteWise User Guide</i>.
 class Measurement {
   Measurement();
+
   factory Measurement.fromJson(Map<String, dynamic> _) {
     return Measurement();
   }
@@ -8187,6 +8276,7 @@ class Metric {
     required this.variables,
     required this.window,
   });
+
   factory Metric.fromJson(Map<String, dynamic> json) {
     return Metric(
       expression: json['expression'] as String,
@@ -8219,6 +8309,7 @@ class MetricWindow {
   MetricWindow({
     this.tumbling,
   });
+
   factory MetricWindow.fromJson(Map<String, dynamic> json) {
     return MetricWindow(
       tumbling: json['tumbling'] != null
@@ -8280,6 +8371,7 @@ class MonitorErrorDetails {
     this.code,
     this.message,
   });
+
   factory MonitorErrorDetails.fromJson(Map<String, dynamic> json) {
     return MonitorErrorDetails(
       code: (json['code'] as String?)?.toMonitorErrorCode(),
@@ -8305,6 +8397,7 @@ class MultiLayerStorage {
   MultiLayerStorage({
     required this.customerManagedS3Storage,
   });
+
   factory MultiLayerStorage.fromJson(Map<String, dynamic> json) {
     return MultiLayerStorage(
       customerManagedS3Storage: CustomerManagedS3Storage.fromJson(
@@ -8356,6 +8449,7 @@ class PortalResource {
   PortalResource({
     required this.id,
   });
+
   factory PortalResource.fromJson(Map<String, dynamic> json) {
     return PortalResource(
       id: json['id'] as String,
@@ -8425,6 +8519,7 @@ class PortalStatus {
     required this.state,
     this.error,
   });
+
   factory PortalStatus.fromJson(Map<String, dynamic> json) {
     return PortalStatus(
       state: (json['state'] as String).toPortalState(),
@@ -8487,6 +8582,7 @@ class PortalSummary {
     this.lastUpdateDate,
     this.roleArn,
   });
+
   factory PortalSummary.fromJson(Map<String, dynamic> json) {
     return PortalSummary(
       id: json['id'] as String,
@@ -8532,6 +8628,7 @@ class ProjectResource {
   ProjectResource({
     required this.id,
   });
+
   factory ProjectResource.fromJson(Map<String, dynamic> json) {
     return ProjectResource(
       id: json['id'] as String,
@@ -8570,6 +8667,7 @@ class ProjectSummary {
     this.description,
     this.lastUpdateDate,
   });
+
   factory ProjectSummary.fromJson(Map<String, dynamic> json) {
     return ProjectSummary(
       id: json['id'] as String,
@@ -8639,6 +8737,7 @@ class Property {
     this.type,
     this.unit,
   });
+
   factory Property.fromJson(Map<String, dynamic> json) {
     return Property(
       dataType: (json['dataType'] as String).toPropertyDataType(),
@@ -8736,6 +8835,7 @@ class PropertyNotification {
     required this.state,
     required this.topic,
   });
+
   factory PropertyNotification.fromJson(Map<String, dynamic> json) {
     return PropertyNotification(
       state: (json['state'] as String).toPropertyNotificationState(),
@@ -8812,6 +8912,7 @@ class PropertyType {
     this.metric,
     this.transform,
   });
+
   factory PropertyType.fromJson(Map<String, dynamic> json) {
     return PropertyType(
       attribute: json['attribute'] != null
@@ -8877,6 +8978,7 @@ class PutAssetPropertyValueEntry {
     this.propertyAlias,
     this.propertyId,
   });
+
   factory PutAssetPropertyValueEntry.fromJson(Map<String, dynamic> json) {
     return PutAssetPropertyValueEntry(
       entryId: json['entryId'] as String,
@@ -8924,6 +9026,7 @@ class PutDefaultEncryptionConfigurationResponse {
     required this.encryptionType,
     this.kmsKeyArn,
   });
+
   factory PutDefaultEncryptionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutDefaultEncryptionConfigurationResponse(
@@ -8948,6 +9051,7 @@ class PutDefaultEncryptionConfigurationResponse {
 
 class PutLoggingOptionsResponse {
   PutLoggingOptionsResponse();
+
   factory PutLoggingOptionsResponse.fromJson(Map<String, dynamic> _) {
     return PutLoggingOptionsResponse();
   }
@@ -8984,6 +9088,7 @@ class PutStorageConfigurationResponse {
     required this.storageType,
     this.multiLayerStorage,
   });
+
   factory PutStorageConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return PutStorageConfigurationResponse(
       configurationStatus: ConfigurationStatus.fromJson(
@@ -9053,6 +9158,7 @@ class Resource {
     this.portal,
     this.project,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       portal: json['portal'] != null
@@ -9132,6 +9238,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -9154,6 +9261,7 @@ class TimeInNanos {
     required this.timeInSeconds,
     this.offsetInNanos,
   });
+
   factory TimeInNanos.fromJson(Map<String, dynamic> json) {
     return TimeInNanos(
       timeInSeconds: json['timeInSeconds'] as int,
@@ -9226,6 +9334,7 @@ class Transform {
     required this.expression,
     required this.variables,
   });
+
   factory Transform.fromJson(Map<String, dynamic> json) {
     return Transform(
       expression: json['expression'] as String,
@@ -9316,6 +9425,7 @@ class TumblingWindow {
   TumblingWindow({
     required this.interval,
   });
+
   factory TumblingWindow.fromJson(Map<String, dynamic> json) {
     return TumblingWindow(
       interval: json['interval'] as String,
@@ -9332,6 +9442,7 @@ class TumblingWindow {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -9343,6 +9454,7 @@ class UntagResourceResponse {
 
 class UpdateAccessPolicyResponse {
   UpdateAccessPolicyResponse();
+
   factory UpdateAccessPolicyResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAccessPolicyResponse();
   }
@@ -9360,6 +9472,7 @@ class UpdateAssetModelResponse {
   UpdateAssetModelResponse({
     required this.assetModelStatus,
   });
+
   factory UpdateAssetModelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssetModelResponse(
       assetModelStatus: AssetModelStatus.fromJson(
@@ -9383,6 +9496,7 @@ class UpdateAssetResponse {
   UpdateAssetResponse({
     required this.assetStatus,
   });
+
   factory UpdateAssetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssetResponse(
       assetStatus:
@@ -9400,6 +9514,7 @@ class UpdateAssetResponse {
 
 class UpdateDashboardResponse {
   UpdateDashboardResponse();
+
   factory UpdateDashboardResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDashboardResponse();
   }
@@ -9438,6 +9553,7 @@ class UpdateGatewayCapabilityConfigurationResponse {
     required this.capabilityNamespace,
     required this.capabilitySyncStatus,
   });
+
   factory UpdateGatewayCapabilityConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateGatewayCapabilityConfigurationResponse(
@@ -9465,6 +9581,7 @@ class UpdatePortalResponse {
   UpdatePortalResponse({
     required this.portalStatus,
   });
+
   factory UpdatePortalResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePortalResponse(
       portalStatus:
@@ -9482,6 +9599,7 @@ class UpdatePortalResponse {
 
 class UpdateProjectResponse {
   UpdateProjectResponse();
+
   factory UpdateProjectResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProjectResponse();
   }
@@ -9499,6 +9617,7 @@ class UserIdentity {
   UserIdentity({
     required this.id,
   });
+
   factory UserIdentity.fromJson(Map<String, dynamic> json) {
     return UserIdentity(
       id: json['id'] as String,
@@ -9534,6 +9653,7 @@ class VariableValue {
     required this.propertyId,
     this.hierarchyId,
   });
+
   factory VariableValue.fromJson(Map<String, dynamic> json) {
     return VariableValue(
       propertyId: json['propertyId'] as String,
@@ -9571,6 +9691,7 @@ class Variant {
     this.integerValue,
     this.stringValue,
   });
+
   factory Variant.fromJson(Map<String, dynamic> json) {
     return Variant(
       booleanValue: json['booleanValue'] as bool?,

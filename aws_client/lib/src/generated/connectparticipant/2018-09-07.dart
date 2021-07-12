@@ -672,6 +672,7 @@ class AttachmentItem {
     this.contentType,
     this.status,
   });
+
   factory AttachmentItem.fromJson(Map<String, dynamic> json) {
     return AttachmentItem(
       attachmentId: json['AttachmentId'] as String?,
@@ -765,6 +766,7 @@ extension on String {
 
 class CompleteAttachmentUploadResponse {
   CompleteAttachmentUploadResponse();
+
   factory CompleteAttachmentUploadResponse.fromJson(Map<String, dynamic> _) {
     return CompleteAttachmentUploadResponse();
   }
@@ -789,6 +791,7 @@ class ConnectionCredentials {
     this.connectionToken,
     this.expiry,
   });
+
   factory ConnectionCredentials.fromJson(Map<String, dynamic> json) {
     return ConnectionCredentials(
       connectionToken: json['ConnectionToken'] as String?,
@@ -846,6 +849,7 @@ class CreateParticipantConnectionResponse {
     this.connectionCredentials,
     this.websocket,
   });
+
   factory CreateParticipantConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateParticipantConnectionResponse(
@@ -872,6 +876,7 @@ class CreateParticipantConnectionResponse {
 
 class DisconnectParticipantResponse {
   DisconnectParticipantResponse();
+
   factory DisconnectParticipantResponse.fromJson(Map<String, dynamic> _) {
     return DisconnectParticipantResponse();
   }
@@ -894,6 +899,7 @@ class GetAttachmentResponse {
     this.url,
     this.urlExpiry,
   });
+
   factory GetAttachmentResponse.fromJson(Map<String, dynamic> json) {
     return GetAttachmentResponse(
       url: json['Url'] as String?,
@@ -927,6 +933,7 @@ class GetTranscriptResponse {
     this.nextToken,
     this.transcript,
   });
+
   factory GetTranscriptResponse.fromJson(Map<String, dynamic> json) {
     return GetTranscriptResponse(
       initialContactId: json['InitialContactId'] as String?,
@@ -993,6 +1000,7 @@ class Item {
     this.participantRole,
     this.type,
   });
+
   factory Item.fromJson(Map<String, dynamic> json) {
     return Item(
       absoluteTime: json['AbsoluteTime'] as String?,
@@ -1110,6 +1118,7 @@ class SendEventResponse {
     this.absoluteTime,
     this.id,
   });
+
   factory SendEventResponse.fromJson(Map<String, dynamic> json) {
     return SendEventResponse(
       absoluteTime: json['AbsoluteTime'] as String?,
@@ -1141,6 +1150,7 @@ class SendMessageResponse {
     this.absoluteTime,
     this.id,
   });
+
   factory SendMessageResponse.fromJson(Map<String, dynamic> json) {
     return SendMessageResponse(
       absoluteTime: json['AbsoluteTime'] as String?,
@@ -1197,6 +1207,7 @@ class StartAttachmentUploadResponse {
     this.attachmentId,
     this.uploadMetadata,
   });
+
   factory StartAttachmentUploadResponse.fromJson(Map<String, dynamic> json) {
     return StartAttachmentUploadResponse(
       attachmentId: json['AttachmentId'] as String?,
@@ -1237,6 +1248,7 @@ class StartPosition {
     this.id,
     this.mostRecent,
   });
+
   factory StartPosition.fromJson(Map<String, dynamic> json) {
     return StartPosition(
       absoluteTime: json['AbsoluteTime'] as String?,
@@ -1275,6 +1287,7 @@ class UploadMetadata {
     this.url,
     this.urlExpiry,
   });
+
   factory UploadMetadata.fromJson(Map<String, dynamic> json) {
     return UploadMetadata(
       headersToInclude: (json['HeadersToInclude'] as Map<String, dynamic>?)
@@ -1311,6 +1324,7 @@ class Websocket {
     this.connectionExpiry,
     this.url,
   });
+
   factory Websocket.fromJson(Map<String, dynamic> json) {
     return Websocket(
       connectionExpiry: json['ConnectionExpiry'] as String?,

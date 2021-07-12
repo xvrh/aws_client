@@ -90,6 +90,7 @@ class OutputShape {
     this.headerEnum,
     this.listEnums,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       fooEnum: (json['FooEnum'] as String?)?.toRESTJSONEnumType(),

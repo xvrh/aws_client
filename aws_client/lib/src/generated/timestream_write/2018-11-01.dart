@@ -913,6 +913,7 @@ class CreateDatabaseResponse {
   CreateDatabaseResponse({
     this.database,
   });
+
   factory CreateDatabaseResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatabaseResponse(
       database: json['Database'] != null
@@ -936,6 +937,7 @@ class CreateTableResponse {
   CreateTableResponse({
     this.table,
   });
+
   factory CreateTableResponse.fromJson(Map<String, dynamic> json) {
     return CreateTableResponse(
       table: json['Table'] != null
@@ -983,6 +985,7 @@ class Database {
     this.lastUpdatedTime,
     this.tableCount,
   });
+
   factory Database.fromJson(Map<String, dynamic> json) {
     return Database(
       arn: json['Arn'] as String?,
@@ -1021,6 +1024,7 @@ class DescribeDatabaseResponse {
   DescribeDatabaseResponse({
     this.database,
   });
+
   factory DescribeDatabaseResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatabaseResponse(
       database: json['Database'] != null
@@ -1045,6 +1049,7 @@ class DescribeEndpointsResponse {
   DescribeEndpointsResponse({
     required this.endpoints,
   });
+
   factory DescribeEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointsResponse(
       endpoints: (json['Endpoints'] as List)
@@ -1069,6 +1074,7 @@ class DescribeTableResponse {
   DescribeTableResponse({
     this.table,
   });
+
   factory DescribeTableResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTableResponse(
       table: json['Table'] != null
@@ -1109,6 +1115,7 @@ class Dimension {
     required this.value,
     this.dimensionValueType,
   });
+
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return Dimension(
       name: json['Name'] as String,
@@ -1167,6 +1174,7 @@ class Endpoint {
     required this.address,
     required this.cachePeriodInMinutes,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String,
@@ -1196,6 +1204,7 @@ class ListDatabasesResponse {
     this.databases,
     this.nextToken,
   });
+
   factory ListDatabasesResponse.fromJson(Map<String, dynamic> json) {
     return ListDatabasesResponse(
       databases: (json['Databases'] as List?)
@@ -1228,6 +1237,7 @@ class ListTablesResponse {
     this.nextToken,
     this.tables,
   });
+
   factory ListTablesResponse.fromJson(Map<String, dynamic> json) {
     return ListTablesResponse(
       nextToken: json['NextToken'] as String?,
@@ -1255,6 +1265,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -1359,6 +1370,7 @@ class Record {
     this.timeUnit,
     this.version,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       dimensions: (json['Dimensions'] as List?)
@@ -1409,6 +1421,7 @@ class RetentionProperties {
     required this.magneticStoreRetentionPeriodInDays,
     required this.memoryStoreRetentionPeriodInHours,
   });
+
   factory RetentionProperties.fromJson(Map<String, dynamic> json) {
     return RetentionProperties(
       magneticStoreRetentionPeriodInDays:
@@ -1473,6 +1486,7 @@ class Table {
     this.tableName,
     this.tableStatus,
   });
+
   factory Table.fromJson(Map<String, dynamic> json) {
     return Table(
       arn: json['Arn'] as String?,
@@ -1554,6 +1568,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -1573,6 +1588,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1622,6 +1638,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1637,6 +1654,7 @@ class UpdateDatabaseResponse {
   UpdateDatabaseResponse({
     this.database,
   });
+
   factory UpdateDatabaseResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDatabaseResponse(
       database: json['Database'] != null
@@ -1660,6 +1678,7 @@ class UpdateTableResponse {
   UpdateTableResponse({
     this.table,
   });
+
   factory UpdateTableResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTableResponse(
       table: json['Table'] != null

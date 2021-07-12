@@ -163,6 +163,7 @@ class QldbSession {
 /// Contains the details of the transaction to abort.
 class AbortTransactionRequest {
   AbortTransactionRequest();
+
   factory AbortTransactionRequest.fromJson(Map<String, dynamic> _) {
     return AbortTransactionRequest();
   }
@@ -180,6 +181,7 @@ class AbortTransactionResult {
   AbortTransactionResult({
     this.timingInformation,
   });
+
   factory AbortTransactionResult.fromJson(Map<String, dynamic> json) {
     return AbortTransactionResult(
       timingInformation: json['TimingInformation'] != null
@@ -217,6 +219,7 @@ class CommitTransactionRequest {
     required this.commitDigest,
     required this.transactionId,
   });
+
   factory CommitTransactionRequest.fromJson(Map<String, dynamic> json) {
     return CommitTransactionRequest(
       commitDigest: _s.decodeUint8List(json['CommitDigest']! as String),
@@ -254,6 +257,7 @@ class CommitTransactionResult {
     this.timingInformation,
     this.transactionId,
   });
+
   factory CommitTransactionResult.fromJson(Map<String, dynamic> json) {
     return CommitTransactionResult(
       commitDigest: _s.decodeNullableUint8List(json['CommitDigest'] as String?),
@@ -285,6 +289,7 @@ class CommitTransactionResult {
 /// Specifies a request to end the session.
 class EndSessionRequest {
   EndSessionRequest();
+
   factory EndSessionRequest.fromJson(Map<String, dynamic> _) {
     return EndSessionRequest();
   }
@@ -302,6 +307,7 @@ class EndSessionResult {
   EndSessionResult({
     this.timingInformation,
   });
+
   factory EndSessionResult.fromJson(Map<String, dynamic> json) {
     return EndSessionResult(
       timingInformation: json['TimingInformation'] != null
@@ -335,6 +341,7 @@ class ExecuteStatementRequest {
     required this.transactionId,
     this.parameters,
   });
+
   factory ExecuteStatementRequest.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementRequest(
       statement: json['Statement'] as String,
@@ -374,6 +381,7 @@ class ExecuteStatementResult {
     this.firstPage,
     this.timingInformation,
   });
+
   factory ExecuteStatementResult.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementResult(
       consumedIOs: json['ConsumedIOs'] != null
@@ -413,6 +421,7 @@ class FetchPageRequest {
     required this.nextPageToken,
     required this.transactionId,
   });
+
   factory FetchPageRequest.fromJson(Map<String, dynamic> json) {
     return FetchPageRequest(
       nextPageToken: json['NextPageToken'] as String,
@@ -446,6 +455,7 @@ class FetchPageResult {
     this.page,
     this.timingInformation,
   });
+
   factory FetchPageResult.fromJson(Map<String, dynamic> json) {
     return FetchPageResult(
       consumedIOs: json['ConsumedIOs'] != null
@@ -485,6 +495,7 @@ class IOUsage {
     this.readIOs,
     this.writeIOs,
   });
+
   factory IOUsage.fromJson(Map<String, dynamic> json) {
     return IOUsage(
       readIOs: json['ReadIOs'] as int?,
@@ -514,6 +525,7 @@ class Page {
     this.nextPageToken,
     this.values,
   });
+
   factory Page.fromJson(Map<String, dynamic> json) {
     return Page(
       nextPageToken: json['NextPageToken'] as String?,
@@ -567,6 +579,7 @@ class SendCommandResult {
     this.startSession,
     this.startTransaction,
   });
+
   factory SendCommandResult.fromJson(Map<String, dynamic> json) {
     return SendCommandResult(
       abortTransaction: json['AbortTransaction'] != null
@@ -627,6 +640,7 @@ class StartSessionRequest {
   StartSessionRequest({
     required this.ledgerName,
   });
+
   factory StartSessionRequest.fromJson(Map<String, dynamic> json) {
     return StartSessionRequest(
       ledgerName: json['LedgerName'] as String,
@@ -655,6 +669,7 @@ class StartSessionResult {
     this.sessionToken,
     this.timingInformation,
   });
+
   factory StartSessionResult.fromJson(Map<String, dynamic> json) {
     return StartSessionResult(
       sessionToken: json['SessionToken'] as String?,
@@ -678,6 +693,7 @@ class StartSessionResult {
 /// Specifies a request to start a transaction.
 class StartTransactionRequest {
   StartTransactionRequest();
+
   factory StartTransactionRequest.fromJson(Map<String, dynamic> _) {
     return StartTransactionRequest();
   }
@@ -699,6 +715,7 @@ class StartTransactionResult {
     this.timingInformation,
     this.transactionId,
   });
+
   factory StartTransactionResult.fromJson(Map<String, dynamic> json) {
     return StartTransactionResult(
       timingInformation: json['TimingInformation'] != null
@@ -730,6 +747,7 @@ class TimingInformation {
   TimingInformation({
     this.processingTimeMilliseconds,
   });
+
   factory TimingInformation.fromJson(Map<String, dynamic> json) {
     return TimingInformation(
       processingTimeMilliseconds: json['ProcessingTimeMilliseconds'] as int?,
@@ -759,6 +777,7 @@ class ValueHolder {
     this.ionBinary,
     this.ionText,
   });
+
   factory ValueHolder.fromJson(Map<String, dynamic> json) {
     return ValueHolder(
       ionBinary: _s.decodeNullableUint8List(json['IonBinary'] as String?),

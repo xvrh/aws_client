@@ -3221,6 +3221,7 @@ class ApplicationDescription {
     this.resourceLifecycleConfig,
     this.versions,
   });
+
   factory ApplicationDescription.fromJson(Map<String, dynamic> json) {
     return ApplicationDescription(
       applicationArn: json['ApplicationArn'] as String?,
@@ -3294,6 +3295,7 @@ class ApplicationDescriptionMessage {
   ApplicationDescriptionMessage({
     this.application,
   });
+
   factory ApplicationDescriptionMessage.fromJson(Map<String, dynamic> json) {
     return ApplicationDescriptionMessage(
       application: json['Application'] != null
@@ -3327,6 +3329,7 @@ class ApplicationDescriptionsMessage {
   ApplicationDescriptionsMessage({
     this.applications,
   });
+
   factory ApplicationDescriptionsMessage.fromJson(Map<String, dynamic> json) {
     return ApplicationDescriptionsMessage(
       applications: (json['Applications'] as List?)
@@ -3380,6 +3383,7 @@ class ApplicationMetrics {
     this.requestCount,
     this.statusCodes,
   });
+
   factory ApplicationMetrics.fromJson(Map<String, dynamic> json) {
     return ApplicationMetrics(
       duration: json['Duration'] as int?,
@@ -3445,6 +3449,7 @@ class ApplicationResourceLifecycleConfig {
     this.serviceRole,
     this.versionLifecycleConfig,
   });
+
   factory ApplicationResourceLifecycleConfig.fromJson(
       Map<String, dynamic> json) {
     return ApplicationResourceLifecycleConfig(
@@ -3487,6 +3492,7 @@ class ApplicationResourceLifecycleDescriptionMessage {
     this.applicationName,
     this.resourceLifecycleConfig,
   });
+
   factory ApplicationResourceLifecycleDescriptionMessage.fromJson(
       Map<String, dynamic> json) {
     return ApplicationResourceLifecycleDescriptionMessage(
@@ -3593,6 +3599,7 @@ class ApplicationVersionDescription {
     this.status,
     this.versionLabel,
   });
+
   factory ApplicationVersionDescription.fromJson(Map<String, dynamic> json) {
     return ApplicationVersionDescription(
       applicationName: json['ApplicationName'] as String?,
@@ -3671,6 +3678,7 @@ class ApplicationVersionDescriptionMessage {
   ApplicationVersionDescriptionMessage({
     this.applicationVersion,
   });
+
   factory ApplicationVersionDescriptionMessage.fromJson(
       Map<String, dynamic> json) {
     return ApplicationVersionDescriptionMessage(
@@ -3711,6 +3719,7 @@ class ApplicationVersionDescriptionsMessage {
     this.applicationVersions,
     this.nextToken,
   });
+
   factory ApplicationVersionDescriptionsMessage.fromJson(
       Map<String, dynamic> json) {
     return ApplicationVersionDescriptionsMessage(
@@ -3765,6 +3774,7 @@ class ApplicationVersionLifecycleConfig {
     this.maxAgeRule,
     this.maxCountRule,
   });
+
   factory ApplicationVersionLifecycleConfig.fromJson(
       Map<String, dynamic> json) {
     return ApplicationVersionLifecycleConfig(
@@ -3861,6 +3871,7 @@ class ApplyEnvironmentManagedActionResult {
     this.actionType,
     this.status,
   });
+
   factory ApplyEnvironmentManagedActionResult.fromJson(
       Map<String, dynamic> json) {
     return ApplyEnvironmentManagedActionResult(
@@ -3902,6 +3913,7 @@ class AutoScalingGroup {
   AutoScalingGroup({
     this.name,
   });
+
   factory AutoScalingGroup.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroup(
       name: json['Name'] as String?,
@@ -3970,6 +3982,7 @@ class BuildConfiguration {
     this.computeType,
     this.timeoutInMinutes,
   });
+
   factory BuildConfiguration.fromJson(Map<String, dynamic> json) {
     return BuildConfiguration(
       codeBuildServiceRole: json['CodeBuildServiceRole'] as String,
@@ -4004,6 +4017,7 @@ class Builder {
   Builder({
     this.arn,
   });
+
   factory Builder.fromJson(Map<String, dynamic> json) {
     return Builder(
       arn: json['ARN'] as String?,
@@ -4080,6 +4094,7 @@ class CPUUtilization {
     this.system,
     this.user,
   });
+
   factory CPUUtilization.fromJson(Map<String, dynamic> json) {
     return CPUUtilization(
       iOWait: json['IOWait'] as double?,
@@ -4150,6 +4165,7 @@ class CheckDNSAvailabilityResultMessage {
     this.available,
     this.fullyQualifiedCNAME,
   });
+
   factory CheckDNSAvailabilityResultMessage.fromJson(
       Map<String, dynamic> json) {
     return CheckDNSAvailabilityResultMessage(
@@ -4350,6 +4366,7 @@ class ConfigurationOptionDescription {
     this.valueOptions,
     this.valueType,
   });
+
   factory ConfigurationOptionDescription.fromJson(Map<String, dynamic> json) {
     return ConfigurationOptionDescription(
       changeSeverity: json['ChangeSeverity'] as String?,
@@ -4448,6 +4465,7 @@ class ConfigurationOptionSetting {
     this.resourceName,
     this.value,
   });
+
   factory ConfigurationOptionSetting.fromJson(Map<String, dynamic> json) {
     return ConfigurationOptionSetting(
       namespace: json['Namespace'] as String?,
@@ -4524,6 +4542,7 @@ class ConfigurationOptionsDescription {
     this.platformArn,
     this.solutionStackName,
   });
+
   factory ConfigurationOptionsDescription.fromJson(Map<String, dynamic> json) {
     return ConfigurationOptionsDescription(
       options: (json['Options'] as List?)
@@ -4627,6 +4646,7 @@ class ConfigurationSettingsDescription {
     this.solutionStackName,
     this.templateName,
   });
+
   factory ConfigurationSettingsDescription.fromJson(Map<String, dynamic> json) {
     return ConfigurationSettingsDescription(
       applicationName: json['ApplicationName'] as String?,
@@ -4704,6 +4724,7 @@ class ConfigurationSettingsDescriptions {
   ConfigurationSettingsDescriptions({
     this.configurationSettings,
   });
+
   factory ConfigurationSettingsDescriptions.fromJson(
       Map<String, dynamic> json) {
     return ConfigurationSettingsDescriptions(
@@ -4743,6 +4764,7 @@ class ConfigurationSettingsValidationMessages {
   ConfigurationSettingsValidationMessages({
     this.messages,
   });
+
   factory ConfigurationSettingsValidationMessages.fromJson(
       Map<String, dynamic> json) {
     return ConfigurationSettingsValidationMessages(
@@ -4781,6 +4803,7 @@ class CreatePlatformVersionResult {
     this.builder,
     this.platformSummary,
   });
+
   factory CreatePlatformVersionResult.fromJson(Map<String, dynamic> json) {
     return CreatePlatformVersionResult(
       builder: json['Builder'] != null
@@ -4821,6 +4844,7 @@ class CreateStorageLocationResultMessage {
   CreateStorageLocationResultMessage({
     this.s3Bucket,
   });
+
   factory CreateStorageLocationResultMessage.fromJson(
       Map<String, dynamic> json) {
     return CreateStorageLocationResultMessage(
@@ -4854,6 +4878,7 @@ class CustomAmi {
     this.imageId,
     this.virtualizationType,
   });
+
   factory CustomAmi.fromJson(Map<String, dynamic> json) {
     return CustomAmi(
       imageId: json['ImageId'] as String?,
@@ -4885,6 +4910,7 @@ class DeletePlatformVersionResult {
   DeletePlatformVersionResult({
     this.platformSummary,
   });
+
   factory DeletePlatformVersionResult.fromJson(Map<String, dynamic> json) {
     return DeletePlatformVersionResult(
       platformSummary: json['PlatformSummary'] != null
@@ -4945,6 +4971,7 @@ class Deployment {
     this.status,
     this.versionLabel,
   });
+
   factory Deployment.fromJson(Map<String, dynamic> json) {
     return Deployment(
       deploymentId: json['DeploymentId'] as int?,
@@ -4986,6 +5013,7 @@ class DescribeAccountAttributesResult {
   DescribeAccountAttributesResult({
     this.resourceQuotas,
   });
+
   factory DescribeAccountAttributesResult.fromJson(Map<String, dynamic> json) {
     return DescribeAccountAttributesResult(
       resourceQuotas: json['ResourceQuotas'] != null
@@ -5054,6 +5082,7 @@ class DescribeEnvironmentHealthResult {
     this.refreshedAt,
     this.status,
   });
+
   factory DescribeEnvironmentHealthResult.fromJson(Map<String, dynamic> json) {
     return DescribeEnvironmentHealthResult(
       applicationMetrics: json['ApplicationMetrics'] != null
@@ -5131,6 +5160,7 @@ class DescribeEnvironmentManagedActionHistoryResult {
     this.managedActionHistoryItems,
     this.nextToken,
   });
+
   factory DescribeEnvironmentManagedActionHistoryResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEnvironmentManagedActionHistoryResult(
@@ -5175,6 +5205,7 @@ class DescribeEnvironmentManagedActionsResult {
   DescribeEnvironmentManagedActionsResult({
     this.managedActions,
   });
+
   factory DescribeEnvironmentManagedActionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEnvironmentManagedActionsResult(
@@ -5224,6 +5255,7 @@ class DescribeInstancesHealthResult {
     this.nextToken,
     this.refreshedAt,
   });
+
   factory DescribeInstancesHealthResult.fromJson(Map<String, dynamic> json) {
     return DescribeInstancesHealthResult(
       instanceHealthList: (json['InstanceHealthList'] as List?)
@@ -5266,6 +5298,7 @@ class DescribePlatformVersionResult {
   DescribePlatformVersionResult({
     this.platformDescription,
   });
+
   factory DescribePlatformVersionResult.fromJson(Map<String, dynamic> json) {
     return DescribePlatformVersionResult(
       platformDescription: json['PlatformDescription'] != null
@@ -5437,6 +5470,7 @@ class EnvironmentDescription {
     this.tier,
     this.versionLabel,
   });
+
   factory EnvironmentDescription.fromJson(Map<String, dynamic> json) {
     return EnvironmentDescription(
       abortableOperationInProgress:
@@ -5572,6 +5606,7 @@ class EnvironmentDescriptionsMessage {
     this.environments,
     this.nextToken,
   });
+
   factory EnvironmentDescriptionsMessage.fromJson(Map<String, dynamic> json) {
     return EnvironmentDescriptionsMessage(
       environments: (json['Environments'] as List?)
@@ -5786,6 +5821,7 @@ class EnvironmentInfoDescription {
     this.message,
     this.sampleTimestamp,
   });
+
   factory EnvironmentInfoDescription.fromJson(Map<String, dynamic> json) {
     return EnvironmentInfoDescription(
       ec2InstanceId: json['Ec2InstanceId'] as String?,
@@ -5864,6 +5900,7 @@ class EnvironmentLink {
     this.environmentName,
     this.linkName,
   });
+
   factory EnvironmentLink.fromJson(Map<String, dynamic> json) {
     return EnvironmentLink(
       environmentName: json['EnvironmentName'] as String?,
@@ -5924,6 +5961,7 @@ class EnvironmentResourceDescription {
     this.queues,
     this.triggers,
   });
+
   factory EnvironmentResourceDescription.fromJson(Map<String, dynamic> json) {
     return EnvironmentResourceDescription(
       autoScalingGroups: (json['AutoScalingGroups'] as List?)
@@ -6022,6 +6060,7 @@ class EnvironmentResourceDescriptionsMessage {
   EnvironmentResourceDescriptionsMessage({
     this.environmentResources,
   });
+
   factory EnvironmentResourceDescriptionsMessage.fromJson(
       Map<String, dynamic> json) {
     return EnvironmentResourceDescriptionsMessage(
@@ -6058,6 +6097,7 @@ class EnvironmentResourcesDescription {
   EnvironmentResourcesDescription({
     this.loadBalancer,
   });
+
   factory EnvironmentResourcesDescription.fromJson(Map<String, dynamic> json) {
     return EnvironmentResourcesDescription(
       loadBalancer: json['LoadBalancer'] != null
@@ -6184,6 +6224,7 @@ class EnvironmentTier {
     this.type,
     this.version,
   });
+
   factory EnvironmentTier.fromJson(Map<String, dynamic> json) {
     return EnvironmentTier(
       name: json['Name'] as String?,
@@ -6252,6 +6293,7 @@ class EventDescription {
     this.templateName,
     this.versionLabel,
   });
+
   factory EventDescription.fromJson(Map<String, dynamic> json) {
     return EventDescription(
       applicationName: json['ApplicationName'] as String?,
@@ -6318,6 +6360,7 @@ class EventDescriptionsMessage {
     this.events,
     this.nextToken,
   });
+
   factory EventDescriptionsMessage.fromJson(Map<String, dynamic> json) {
     return EventDescriptionsMessage(
       events: (json['Events'] as List?)
@@ -6457,6 +6500,7 @@ class Instance {
   Instance({
     this.id,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       id: json['Id'] as String?,
@@ -6523,6 +6567,7 @@ class InstanceHealthSummary {
     this.unknown,
     this.warning,
   });
+
   factory InstanceHealthSummary.fromJson(Map<String, dynamic> json) {
     return InstanceHealthSummary(
       degraded: json['Degraded'] as int?,
@@ -6689,6 +6734,7 @@ class Latency {
     this.p99,
     this.p999,
   });
+
   factory Latency.fromJson(Map<String, dynamic> json) {
     return Latency(
       p10: json['P10'] as double?,
@@ -6745,6 +6791,7 @@ class LaunchConfiguration {
   LaunchConfiguration({
     this.name,
   });
+
   factory LaunchConfiguration.fromJson(Map<String, dynamic> json) {
     return LaunchConfiguration(
       name: json['Name'] as String?,
@@ -6773,6 +6820,7 @@ class LaunchTemplate {
   LaunchTemplate({
     this.id,
   });
+
   factory LaunchTemplate.fromJson(Map<String, dynamic> json) {
     return LaunchTemplate(
       id: json['Id'] as String?,
@@ -6806,6 +6854,7 @@ class ListAvailableSolutionStacksResultMessage {
     this.solutionStackDetails,
     this.solutionStacks,
   });
+
   factory ListAvailableSolutionStacksResultMessage.fromJson(
       Map<String, dynamic> json) {
     return ListAvailableSolutionStacksResultMessage(
@@ -6859,6 +6908,7 @@ class ListPlatformBranchesResult {
     this.nextToken,
     this.platformBranchSummaryList,
   });
+
   factory ListPlatformBranchesResult.fromJson(Map<String, dynamic> json) {
     return ListPlatformBranchesResult(
       nextToken: json['NextToken'] as String?,
@@ -6905,6 +6955,7 @@ class ListPlatformVersionsResult {
     this.nextToken,
     this.platformSummaryList,
   });
+
   factory ListPlatformVersionsResult.fromJson(Map<String, dynamic> json) {
     return ListPlatformVersionsResult(
       nextToken: json['NextToken'] as String?,
@@ -6949,6 +7000,7 @@ class Listener {
     this.port,
     this.protocol,
   });
+
   factory Listener.fromJson(Map<String, dynamic> json) {
     return Listener(
       port: json['Port'] as int?,
@@ -6981,6 +7033,7 @@ class LoadBalancer {
   LoadBalancer({
     this.name,
   });
+
   factory LoadBalancer.fromJson(Map<String, dynamic> json) {
     return LoadBalancer(
       name: json['Name'] as String?,
@@ -7017,6 +7070,7 @@ class LoadBalancerDescription {
     this.listeners,
     this.loadBalancerName,
   });
+
   factory LoadBalancerDescription.fromJson(Map<String, dynamic> json) {
     return LoadBalancerDescription(
       domain: json['Domain'] as String?,
@@ -7075,6 +7129,7 @@ class ManagedAction {
     this.status,
     this.windowStartTime,
   });
+
   factory ManagedAction.fromJson(Map<String, dynamic> json) {
     return ManagedAction(
       actionDescription: json['ActionDescription'] as String?,
@@ -7148,6 +7203,7 @@ class ManagedActionHistoryItem {
     this.finishedTime,
     this.status,
   });
+
   factory ManagedActionHistoryItem.fromJson(Map<String, dynamic> json) {
     return ManagedActionHistoryItem(
       actionDescription: json['ActionDescription'] as String?,
@@ -7218,6 +7274,7 @@ class MaxAgeRule {
     this.deleteSourceFromS3,
     this.maxAgeInDays,
   });
+
   factory MaxAgeRule.fromJson(Map<String, dynamic> json) {
     return MaxAgeRule(
       enabled: json['Enabled'] as bool,
@@ -7265,6 +7322,7 @@ class MaxCountRule {
     this.deleteSourceFromS3,
     this.maxCount,
   });
+
   factory MaxCountRule.fromJson(Map<String, dynamic> json) {
     return MaxCountRule(
       enabled: json['Enabled'] as bool,
@@ -7307,6 +7365,7 @@ class OptionRestrictionRegex {
     this.label,
     this.pattern,
   });
+
   factory OptionRestrictionRegex.fromJson(Map<String, dynamic> json) {
     return OptionRestrictionRegex(
       label: json['Label'] as String?,
@@ -7347,6 +7406,7 @@ class OptionSpecification {
     this.optionName,
     this.resourceName,
   });
+
   factory OptionSpecification.fromJson(Map<String, dynamic> json) {
     return OptionSpecification(
       namespace: json['Namespace'] as String?,
@@ -7403,6 +7463,7 @@ class PlatformBranchSummary {
     this.platformName,
     this.supportedTierList,
   });
+
   factory PlatformBranchSummary.fromJson(Map<String, dynamic> json) {
     return PlatformBranchSummary(
       branchName: json['BranchName'] as String?,
@@ -7541,6 +7602,7 @@ class PlatformDescription {
     this.supportedAddonList,
     this.supportedTierList,
   });
+
   factory PlatformDescription.fromJson(Map<String, dynamic> json) {
     return PlatformDescription(
       customAmiList: (json['CustomAmiList'] as List?)
@@ -7734,6 +7796,7 @@ class PlatformFilter {
     this.type,
     this.values,
   });
+
   factory PlatformFilter.fromJson(Map<String, dynamic> json) {
     return PlatformFilter(
       operator: json['Operator'] as String?,
@@ -7769,6 +7832,7 @@ class PlatformFramework {
     this.name,
     this.version,
   });
+
   factory PlatformFramework.fromJson(Map<String, dynamic> json) {
     return PlatformFramework(
       name: json['Name'] as String?,
@@ -7805,6 +7869,7 @@ class PlatformProgrammingLanguage {
     this.name,
     this.version,
   });
+
   factory PlatformProgrammingLanguage.fromJson(Map<String, dynamic> json) {
     return PlatformProgrammingLanguage(
       name: json['Name'] as String?,
@@ -7933,6 +7998,7 @@ class PlatformSummary {
     this.supportedAddonList,
     this.supportedTierList,
   });
+
   factory PlatformSummary.fromJson(Map<String, dynamic> json) {
     return PlatformSummary(
       operatingSystemName: json['OperatingSystemName'] as String?,
@@ -8029,6 +8095,7 @@ class Queue {
     this.name,
     this.url,
   });
+
   factory Queue.fromJson(Map<String, dynamic> json) {
     return Queue(
       name: json['Name'] as String?,
@@ -8063,6 +8130,7 @@ class ResourceQuota {
   ResourceQuota({
     this.maximum,
   });
+
   factory ResourceQuota.fromJson(Map<String, dynamic> json) {
     return ResourceQuota(
       maximum: json['Maximum'] as int?,
@@ -8108,6 +8176,7 @@ class ResourceQuotas {
     this.customPlatformQuota,
     this.environmentQuota,
   });
+
   factory ResourceQuotas.fromJson(Map<String, dynamic> json) {
     return ResourceQuotas(
       applicationQuota: json['ApplicationQuota'] != null
@@ -8184,6 +8253,7 @@ class ResourceTagsDescriptionMessage {
     this.resourceArn,
     this.resourceTags,
   });
+
   factory ResourceTagsDescriptionMessage.fromJson(Map<String, dynamic> json) {
     return ResourceTagsDescriptionMessage(
       resourceArn: json['ResourceArn'] as String?,
@@ -8220,6 +8290,7 @@ class RetrieveEnvironmentInfoResultMessage {
   RetrieveEnvironmentInfoResultMessage({
     this.environmentInfo,
   });
+
   factory RetrieveEnvironmentInfoResultMessage.fromJson(
       Map<String, dynamic> json) {
     return RetrieveEnvironmentInfoResultMessage(
@@ -8261,6 +8332,7 @@ class S3Location {
     this.s3Bucket,
     this.s3Key,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       s3Bucket: json['S3Bucket'] as String?,
@@ -8317,6 +8389,7 @@ class SearchFilter {
     this.operator,
     this.values,
   });
+
   factory SearchFilter.fromJson(Map<String, dynamic> json) {
     return SearchFilter(
       attribute: json['Attribute'] as String?,
@@ -8392,6 +8465,7 @@ class SingleInstanceHealth {
     this.launchedAt,
     this.system,
   });
+
   factory SingleInstanceHealth.fromJson(Map<String, dynamic> json) {
     return SingleInstanceHealth(
       applicationMetrics: json['ApplicationMetrics'] != null
@@ -8478,6 +8552,7 @@ class SolutionStackDescription {
     this.permittedFileTypes,
     this.solutionStackName,
   });
+
   factory SolutionStackDescription.fromJson(Map<String, dynamic> json) {
     return SolutionStackDescription(
       permittedFileTypes: (json['PermittedFileTypes'] as List?)
@@ -8555,6 +8630,7 @@ class SourceBuildInformation {
     required this.sourceRepository,
     required this.sourceType,
   });
+
   factory SourceBuildInformation.fromJson(Map<String, dynamic> json) {
     return SourceBuildInformation(
       sourceLocation: json['SourceLocation'] as String,
@@ -8598,6 +8674,7 @@ class SourceConfiguration {
     this.applicationName,
     this.templateName,
   });
+
   factory SourceConfiguration.fromJson(Map<String, dynamic> json) {
     return SourceConfiguration(
       applicationName: json['ApplicationName'] as String?,
@@ -8698,6 +8775,7 @@ class StatusCodes {
     this.status4xx,
     this.status5xx,
   });
+
   factory StatusCodes.fromJson(Map<String, dynamic> json) {
     return StatusCodes(
       status2xx: json['Status2xx'] as int?,
@@ -8745,6 +8823,7 @@ class SystemStatus {
     this.cPUUtilization,
     this.loadAverage,
   });
+
   factory SystemStatus.fromJson(Map<String, dynamic> json) {
     return SystemStatus(
       cPUUtilization: json['CPUUtilization'] != null
@@ -8791,6 +8870,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -8823,6 +8903,7 @@ class Trigger {
   Trigger({
     this.name,
   });
+
   factory Trigger.fromJson(Map<String, dynamic> json) {
     return Trigger(
       name: json['Name'] as String?,
@@ -8874,6 +8955,7 @@ class ValidationMessage {
     this.optionName,
     this.severity,
   });
+
   factory ValidationMessage.fromJson(Map<String, dynamic> json) {
     return ValidationMessage(
       message: json['Message'] as String?,

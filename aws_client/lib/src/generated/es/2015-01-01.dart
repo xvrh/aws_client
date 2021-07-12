@@ -1773,6 +1773,7 @@ class AcceptInboundCrossClusterSearchConnectionResponse {
   AcceptInboundCrossClusterSearchConnectionResponse({
     this.crossClusterSearchConnection,
   });
+
   factory AcceptInboundCrossClusterSearchConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return AcceptInboundCrossClusterSearchConnectionResponse(
@@ -1809,6 +1810,7 @@ class AccessPoliciesStatus {
     required this.options,
     required this.status,
   });
+
   factory AccessPoliciesStatus.fromJson(Map<String, dynamic> json) {
     return AccessPoliciesStatus(
       options: json['Options'] as String,
@@ -1850,6 +1852,7 @@ class AdditionalLimit {
     this.limitName,
     this.limitValues,
   });
+
   factory AdditionalLimit.fromJson(Map<String, dynamic> json) {
     return AdditionalLimit(
       limitName: json['LimitName'] as String?,
@@ -1899,6 +1902,7 @@ class AdvancedOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory AdvancedOptionsStatus.fromJson(Map<String, dynamic> json) {
     return AdvancedOptionsStatus(
       options: (json['Options'] as Map<String, dynamic>)
@@ -1934,6 +1938,7 @@ class AdvancedSecurityOptions {
     this.internalUserDatabaseEnabled,
     this.sAMLOptions,
   });
+
   factory AdvancedSecurityOptions.fromJson(Map<String, dynamic> json) {
     return AdvancedSecurityOptions(
       enabled: json['Enabled'] as bool?,
@@ -1981,6 +1986,7 @@ class AdvancedSecurityOptionsInput {
     this.masterUserOptions,
     this.sAMLOptions,
   });
+
   factory AdvancedSecurityOptionsInput.fromJson(Map<String, dynamic> json) {
     return AdvancedSecurityOptionsInput(
       enabled: json['Enabled'] as bool?,
@@ -2025,6 +2031,7 @@ class AdvancedSecurityOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory AdvancedSecurityOptionsStatus.fromJson(Map<String, dynamic> json) {
     return AdvancedSecurityOptionsStatus(
       options: AdvancedSecurityOptions.fromJson(
@@ -2052,6 +2059,7 @@ class AssociatePackageResponse {
   AssociatePackageResponse({
     this.domainPackageDetails,
   });
+
   factory AssociatePackageResponse.fromJson(Map<String, dynamic> json) {
     return AssociatePackageResponse(
       domainPackageDetails: json['DomainPackageDetails'] != null
@@ -2084,6 +2092,7 @@ class AutoTune {
     this.autoTuneDetails,
     this.autoTuneType,
   });
+
   factory AutoTune.fromJson(Map<String, dynamic> json) {
     return AutoTune(
       autoTuneDetails: json['AutoTuneDetails'] != null
@@ -2142,6 +2151,7 @@ class AutoTuneDetails {
   AutoTuneDetails({
     this.scheduledAutoTuneDetails,
   });
+
   factory AutoTuneDetails.fromJson(Map<String, dynamic> json) {
     return AutoTuneDetails(
       scheduledAutoTuneDetails: json['ScheduledAutoTuneDetails'] != null
@@ -2183,6 +2193,7 @@ class AutoTuneMaintenanceSchedule {
     this.duration,
     this.startAt,
   });
+
   factory AutoTuneMaintenanceSchedule.fromJson(Map<String, dynamic> json) {
     return AutoTuneMaintenanceSchedule(
       cronExpressionForRecurrence:
@@ -2228,6 +2239,7 @@ class AutoTuneOptions {
     this.maintenanceSchedules,
     this.rollbackOnDisable,
   });
+
   factory AutoTuneOptions.fromJson(Map<String, dynamic> json) {
     return AutoTuneOptions(
       desiredState: (json['DesiredState'] as String?)?.toAutoTuneDesiredState(),
@@ -2270,6 +2282,7 @@ class AutoTuneOptionsInput {
     this.desiredState,
     this.maintenanceSchedules,
   });
+
   factory AutoTuneOptionsInput.fromJson(Map<String, dynamic> json) {
     return AutoTuneOptionsInput(
       desiredState: (json['DesiredState'] as String?)?.toAutoTuneDesiredState(),
@@ -2305,6 +2318,7 @@ class AutoTuneOptionsOutput {
     this.errorMessage,
     this.state,
   });
+
   factory AutoTuneOptionsOutput.fromJson(Map<String, dynamic> json) {
     return AutoTuneOptionsOutput(
       errorMessage: json['ErrorMessage'] as String?,
@@ -2336,6 +2350,7 @@ class AutoTuneOptionsStatus {
     this.options,
     this.status,
   });
+
   factory AutoTuneOptionsStatus.fromJson(Map<String, dynamic> json) {
     return AutoTuneOptionsStatus(
       options: json['Options'] != null
@@ -2453,6 +2468,7 @@ class AutoTuneStatus {
     this.pendingDeletion,
     this.updateVersion,
   });
+
   factory AutoTuneStatus.fromJson(Map<String, dynamic> json) {
     return AutoTuneStatus(
       creationDate:
@@ -2516,6 +2532,7 @@ class CancelElasticsearchServiceSoftwareUpdateResponse {
   CancelElasticsearchServiceSoftwareUpdateResponse({
     this.serviceSoftwareOptions,
   });
+
   factory CancelElasticsearchServiceSoftwareUpdateResponse.fromJson(
       Map<String, dynamic> json) {
     return CancelElasticsearchServiceSoftwareUpdateResponse(
@@ -2559,6 +2576,7 @@ class CognitoOptions {
     this.roleArn,
     this.userPoolId,
   });
+
   factory CognitoOptions.fromJson(Map<String, dynamic> json) {
     return CognitoOptions(
       enabled: json['Enabled'] as bool?,
@@ -2595,6 +2613,7 @@ class CognitoOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory CognitoOptionsStatus.fromJson(Map<String, dynamic> json) {
     return CognitoOptionsStatus(
       options: CognitoOptions.fromJson(json['Options'] as Map<String, dynamic>),
@@ -2620,6 +2639,7 @@ class ColdStorageOptions {
   ColdStorageOptions({
     required this.enabled,
   });
+
   factory ColdStorageOptions.fromJson(Map<String, dynamic> json) {
     return ColdStorageOptions(
       enabled: json['Enabled'] as bool,
@@ -2646,6 +2666,7 @@ class CompatibleVersionsMap {
     this.sourceVersion,
     this.targetVersions,
   });
+
   factory CompatibleVersionsMap.fromJson(Map<String, dynamic> json) {
     return CompatibleVersionsMap(
       sourceVersion: json['SourceVersion'] as String?,
@@ -2675,6 +2696,7 @@ class CreateElasticsearchDomainResponse {
   CreateElasticsearchDomainResponse({
     this.domainStatus,
   });
+
   factory CreateElasticsearchDomainResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateElasticsearchDomainResponse(
@@ -2724,6 +2746,7 @@ class CreateOutboundCrossClusterSearchConnectionResponse {
     this.destinationDomainInfo,
     this.sourceDomainInfo,
   });
+
   factory CreateOutboundCrossClusterSearchConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateOutboundCrossClusterSearchConnectionResponse(
@@ -2772,6 +2795,7 @@ class CreatePackageResponse {
   CreatePackageResponse({
     this.packageDetails,
   });
+
   factory CreatePackageResponse.fromJson(Map<String, dynamic> json) {
     return CreatePackageResponse(
       packageDetails: json['PackageDetails'] != null
@@ -2799,6 +2823,7 @@ class DeleteElasticsearchDomainResponse {
   DeleteElasticsearchDomainResponse({
     this.domainStatus,
   });
+
   factory DeleteElasticsearchDomainResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteElasticsearchDomainResponse(
@@ -2828,6 +2853,7 @@ class DeleteInboundCrossClusterSearchConnectionResponse {
   DeleteInboundCrossClusterSearchConnectionResponse({
     this.crossClusterSearchConnection,
   });
+
   factory DeleteInboundCrossClusterSearchConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteInboundCrossClusterSearchConnectionResponse(
@@ -2858,6 +2884,7 @@ class DeleteOutboundCrossClusterSearchConnectionResponse {
   DeleteOutboundCrossClusterSearchConnectionResponse({
     this.crossClusterSearchConnection,
   });
+
   factory DeleteOutboundCrossClusterSearchConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteOutboundCrossClusterSearchConnectionResponse(
@@ -2886,6 +2913,7 @@ class DeletePackageResponse {
   DeletePackageResponse({
     this.packageDetails,
   });
+
   factory DeletePackageResponse.fromJson(Map<String, dynamic> json) {
     return DeletePackageResponse(
       packageDetails: json['PackageDetails'] != null
@@ -2963,6 +2991,7 @@ class DescribeDomainAutoTunesResponse {
     this.autoTunes,
     this.nextToken,
   });
+
   factory DescribeDomainAutoTunesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDomainAutoTunesResponse(
       autoTunes: (json['AutoTunes'] as List?)
@@ -2993,6 +3022,7 @@ class DescribeElasticsearchDomainConfigResponse {
   DescribeElasticsearchDomainConfigResponse({
     required this.domainConfig,
   });
+
   factory DescribeElasticsearchDomainConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeElasticsearchDomainConfigResponse(
@@ -3018,6 +3048,7 @@ class DescribeElasticsearchDomainResponse {
   DescribeElasticsearchDomainResponse({
     required this.domainStatus,
   });
+
   factory DescribeElasticsearchDomainResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeElasticsearchDomainResponse(
@@ -3044,6 +3075,7 @@ class DescribeElasticsearchDomainsResponse {
   DescribeElasticsearchDomainsResponse({
     required this.domainStatusList,
   });
+
   factory DescribeElasticsearchDomainsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeElasticsearchDomainsResponse(
@@ -3071,6 +3103,7 @@ class DescribeElasticsearchInstanceTypeLimitsResponse {
   DescribeElasticsearchInstanceTypeLimitsResponse({
     this.limitsByRole,
   });
+
   factory DescribeElasticsearchInstanceTypeLimitsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeElasticsearchInstanceTypeLimitsResponse(
@@ -3105,6 +3138,7 @@ class DescribeInboundCrossClusterSearchConnectionsResponse {
     this.crossClusterSearchConnections,
     this.nextToken,
   });
+
   factory DescribeInboundCrossClusterSearchConnectionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeInboundCrossClusterSearchConnectionsResponse(
@@ -3147,6 +3181,7 @@ class DescribeOutboundCrossClusterSearchConnectionsResponse {
     this.crossClusterSearchConnections,
     this.nextToken,
   });
+
   factory DescribeOutboundCrossClusterSearchConnectionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOutboundCrossClusterSearchConnectionsResponse(
@@ -3183,6 +3218,7 @@ class DescribePackagesFilter {
     this.name,
     this.value,
   });
+
   factory DescribePackagesFilter.fromJson(Map<String, dynamic> json) {
     return DescribePackagesFilter(
       name: (json['Name'] as String?)?.toDescribePackagesFilterName(),
@@ -3248,6 +3284,7 @@ class DescribePackagesResponse {
     this.nextToken,
     this.packageDetailsList,
   });
+
   factory DescribePackagesResponse.fromJson(Map<String, dynamic> json) {
     return DescribePackagesResponse(
       nextToken: json['NextToken'] as String?,
@@ -3282,6 +3319,7 @@ class DescribeReservedElasticsearchInstanceOfferingsResponse {
     this.nextToken,
     this.reservedElasticsearchInstanceOfferings,
   });
+
   factory DescribeReservedElasticsearchInstanceOfferingsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReservedElasticsearchInstanceOfferingsResponse(
@@ -3321,6 +3359,7 @@ class DescribeReservedElasticsearchInstancesResponse {
     this.nextToken,
     this.reservedElasticsearchInstances,
   });
+
   factory DescribeReservedElasticsearchInstancesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReservedElasticsearchInstancesResponse(
@@ -3354,6 +3393,7 @@ class DissociatePackageResponse {
   DissociatePackageResponse({
     this.domainPackageDetails,
   });
+
   factory DissociatePackageResponse.fromJson(Map<String, dynamic> json) {
     return DissociatePackageResponse(
       domainPackageDetails: json['DomainPackageDetails'] != null
@@ -3405,6 +3445,7 @@ class DomainEndpointOptions {
     this.enforceHTTPS,
     this.tLSSecurityPolicy,
   });
+
   factory DomainEndpointOptions.fromJson(Map<String, dynamic> json) {
     return DomainEndpointOptions(
       customEndpoint: json['CustomEndpoint'] as String?,
@@ -3449,6 +3490,7 @@ class DomainEndpointOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory DomainEndpointOptionsStatus.fromJson(Map<String, dynamic> json) {
     return DomainEndpointOptionsStatus(
       options: DomainEndpointOptions.fromJson(
@@ -3474,6 +3516,7 @@ class DomainInfo {
   DomainInfo({
     this.domainName,
   });
+
   factory DomainInfo.fromJson(Map<String, dynamic> json) {
     return DomainInfo(
       domainName: json['DomainName'] as String?,
@@ -3498,6 +3541,7 @@ class DomainInformation {
     this.ownerId,
     this.region,
   });
+
   factory DomainInformation.fromJson(Map<String, dynamic> json) {
     return DomainInformation(
       domainName: json['DomainName'] as String,
@@ -3558,6 +3602,7 @@ class DomainPackageDetails {
     this.packageVersion,
     this.referencePath,
   });
+
   factory DomainPackageDetails.fromJson(Map<String, dynamic> json) {
     return DomainPackageDetails(
       domainName: json['DomainName'] as String?,
@@ -3663,6 +3708,7 @@ class Duration {
     this.unit,
     this.value,
   });
+
   factory Duration.fromJson(Map<String, dynamic> json) {
     return Duration(
       unit: (json['Unit'] as String?)?.toTimeUnit(),
@@ -3703,6 +3749,7 @@ class EBSOptions {
     this.volumeSize,
     this.volumeType,
   });
+
   factory EBSOptions.fromJson(Map<String, dynamic> json) {
     return EBSOptions(
       eBSEnabled: json['EBSEnabled'] as bool?,
@@ -3739,6 +3786,7 @@ class EBSOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory EBSOptionsStatus.fromJson(Map<String, dynamic> json) {
     return EBSOptionsStatus(
       options: EBSOptions.fromJson(json['Options'] as Map<String, dynamic>),
@@ -4150,6 +4198,7 @@ class ElasticsearchClusterConfig {
     this.zoneAwarenessConfig,
     this.zoneAwarenessEnabled,
   });
+
   factory ElasticsearchClusterConfig.fromJson(Map<String, dynamic> json) {
     return ElasticsearchClusterConfig(
       coldStorageOptions: json['ColdStorageOptions'] != null
@@ -4220,6 +4269,7 @@ class ElasticsearchClusterConfigStatus {
     required this.options,
     required this.status,
   });
+
   factory ElasticsearchClusterConfigStatus.fromJson(Map<String, dynamic> json) {
     return ElasticsearchClusterConfigStatus(
       options: ElasticsearchClusterConfig.fromJson(
@@ -4310,6 +4360,7 @@ class ElasticsearchDomainConfig {
     this.snapshotOptions,
     this.vPCOptions,
   });
+
   factory ElasticsearchDomainConfig.fromJson(Map<String, dynamic> json) {
     return ElasticsearchDomainConfig(
       accessPolicies: json['AccessPolicies'] != null
@@ -4536,6 +4587,7 @@ class ElasticsearchDomainStatus {
     this.upgradeProcessing,
     this.vPCOptions,
   });
+
   factory ElasticsearchDomainStatus.fromJson(Map<String, dynamic> json) {
     return ElasticsearchDomainStatus(
       arn: json['ARN'] as String,
@@ -4675,6 +4727,7 @@ class ElasticsearchVersionStatus {
     required this.options,
     required this.status,
   });
+
   factory ElasticsearchVersionStatus.fromJson(Map<String, dynamic> json) {
     return ElasticsearchVersionStatus(
       options: json['Options'] as String,
@@ -4704,6 +4757,7 @@ class EncryptionAtRestOptions {
     this.enabled,
     this.kmsKeyId,
   });
+
   factory EncryptionAtRestOptions.fromJson(Map<String, dynamic> json) {
     return EncryptionAtRestOptions(
       enabled: json['Enabled'] as bool?,
@@ -4736,6 +4790,7 @@ class EncryptionAtRestOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory EncryptionAtRestOptionsStatus.fromJson(Map<String, dynamic> json) {
     return EncryptionAtRestOptionsStatus(
       options: EncryptionAtRestOptions.fromJson(
@@ -4762,6 +4817,7 @@ class ErrorDetails {
     this.errorMessage,
     this.errorType,
   });
+
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
       errorMessage: json['ErrorMessage'] as String?,
@@ -4794,6 +4850,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String?,
@@ -4824,6 +4881,7 @@ class GetCompatibleElasticsearchVersionsResponse {
   GetCompatibleElasticsearchVersionsResponse({
     this.compatibleElasticsearchVersions,
   });
+
   factory GetCompatibleElasticsearchVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCompatibleElasticsearchVersionsResponse(
@@ -4859,6 +4917,7 @@ class GetPackageVersionHistoryResponse {
     this.packageID,
     this.packageVersionHistoryList,
   });
+
   factory GetPackageVersionHistoryResponse.fromJson(Map<String, dynamic> json) {
     return GetPackageVersionHistoryResponse(
       nextToken: json['NextToken'] as String?,
@@ -4899,6 +4958,7 @@ class GetUpgradeHistoryResponse {
     this.nextToken,
     this.upgradeHistories,
   });
+
   factory GetUpgradeHistoryResponse.fromJson(Map<String, dynamic> json) {
     return GetUpgradeHistoryResponse(
       nextToken: json['NextToken'] as String?,
@@ -4950,6 +5010,7 @@ class GetUpgradeStatusResponse {
     this.upgradeName,
     this.upgradeStep,
   });
+
   factory GetUpgradeStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetUpgradeStatusResponse(
       stepStatus: (json['StepStatus'] as String?)?.toUpgradeStatus(),
@@ -4993,6 +5054,7 @@ class InboundCrossClusterSearchConnection {
     this.destinationDomainInfo,
     this.sourceDomainInfo,
   });
+
   factory InboundCrossClusterSearchConnection.fromJson(
       Map<String, dynamic> json) {
     return InboundCrossClusterSearchConnection(
@@ -5053,6 +5115,7 @@ class InboundCrossClusterSearchConnectionStatus {
     this.message,
     this.statusCode,
   });
+
   factory InboundCrossClusterSearchConnectionStatus.fromJson(
       Map<String, dynamic> json) {
     return InboundCrossClusterSearchConnectionStatus(
@@ -5132,6 +5195,7 @@ class InstanceCountLimits {
     this.maximumInstanceCount,
     this.minimumInstanceCount,
   });
+
   factory InstanceCountLimits.fromJson(Map<String, dynamic> json) {
     return InstanceCountLimits(
       maximumInstanceCount: json['MaximumInstanceCount'] as int?,
@@ -5159,6 +5223,7 @@ class InstanceLimits {
   InstanceLimits({
     this.instanceCountLimits,
   });
+
   factory InstanceLimits.fromJson(Map<String, dynamic> json) {
     return InstanceLimits(
       instanceCountLimits: json['InstanceCountLimits'] != null
@@ -5195,6 +5260,7 @@ class Limits {
     this.instanceLimits,
     this.storageTypes,
   });
+
   factory Limits.fromJson(Map<String, dynamic> json) {
     return Limits(
       additionalLimits: (json['AdditionalLimits'] as List?)
@@ -5233,6 +5299,7 @@ class ListDomainNamesResponse {
   ListDomainNamesResponse({
     this.domainNames,
   });
+
   factory ListDomainNamesResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainNamesResponse(
       domainNames: (json['DomainNames'] as List?)
@@ -5261,6 +5328,7 @@ class ListDomainsForPackageResponse {
     this.domainPackageDetailsList,
     this.nextToken,
   });
+
   factory ListDomainsForPackageResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainsForPackageResponse(
       domainPackageDetailsList: (json['DomainPackageDetailsList'] as List?)
@@ -5298,6 +5366,7 @@ class ListElasticsearchInstanceTypesResponse {
     this.elasticsearchInstanceTypes,
     this.nextToken,
   });
+
   factory ListElasticsearchInstanceTypesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListElasticsearchInstanceTypesResponse(
@@ -5331,6 +5400,7 @@ class ListElasticsearchVersionsResponse {
     this.elasticsearchVersions,
     this.nextToken,
   });
+
   factory ListElasticsearchVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListElasticsearchVersionsResponse(
@@ -5367,6 +5437,7 @@ class ListPackagesForDomainResponse {
     this.domainPackageDetailsList,
     this.nextToken,
   });
+
   factory ListPackagesForDomainResponse.fromJson(Map<String, dynamic> json) {
     return ListPackagesForDomainResponse(
       domainPackageDetailsList: (json['DomainPackageDetailsList'] as List?)
@@ -5397,6 +5468,7 @@ class ListTagsResponse {
   ListTagsResponse({
     this.tagList,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       tagList: (json['TagList'] as List?)
@@ -5432,6 +5504,7 @@ class LogPublishingOption {
     this.cloudWatchLogsLogGroupArn,
     this.enabled,
   });
+
   factory LogPublishingOption.fromJson(Map<String, dynamic> json) {
     return LogPublishingOption(
       cloudWatchLogsLogGroupArn: json['CloudWatchLogsLogGroupArn'] as String?,
@@ -5464,6 +5537,7 @@ class LogPublishingOptionsStatus {
     this.options,
     this.status,
   });
+
   factory LogPublishingOptionsStatus.fromJson(Map<String, dynamic> json) {
     return LogPublishingOptionsStatus(
       options: (json['Options'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -5554,6 +5628,7 @@ class MasterUserOptions {
     this.masterUserName,
     this.masterUserPassword,
   });
+
   factory MasterUserOptions.fromJson(Map<String, dynamic> json) {
     return MasterUserOptions(
       masterUserARN: json['MasterUserARN'] as String?,
@@ -5582,6 +5657,7 @@ class NodeToNodeEncryptionOptions {
   NodeToNodeEncryptionOptions({
     this.enabled,
   });
+
   factory NodeToNodeEncryptionOptions.fromJson(Map<String, dynamic> json) {
     return NodeToNodeEncryptionOptions(
       enabled: json['Enabled'] as bool?,
@@ -5611,6 +5687,7 @@ class NodeToNodeEncryptionOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory NodeToNodeEncryptionOptionsStatus.fromJson(
       Map<String, dynamic> json) {
     return NodeToNodeEncryptionOptionsStatus(
@@ -5694,6 +5771,7 @@ class OptionStatus {
     this.pendingDeletion,
     this.updateVersion,
   });
+
   factory OptionStatus.fromJson(Map<String, dynamic> json) {
     return OptionStatus(
       creationDate:
@@ -5750,6 +5828,7 @@ class OutboundCrossClusterSearchConnection {
     this.destinationDomainInfo,
     this.sourceDomainInfo,
   });
+
   factory OutboundCrossClusterSearchConnection.fromJson(
       Map<String, dynamic> json) {
     return OutboundCrossClusterSearchConnection(
@@ -5815,6 +5894,7 @@ class OutboundCrossClusterSearchConnectionStatus {
     this.message,
     this.statusCode,
   });
+
   factory OutboundCrossClusterSearchConnectionStatus.fromJson(
       Map<String, dynamic> json) {
     return OutboundCrossClusterSearchConnectionStatus(
@@ -5932,6 +6012,7 @@ class PackageDetails {
     this.packageStatus,
     this.packageType,
   });
+
   factory PackageDetails.fromJson(Map<String, dynamic> json) {
     return PackageDetails(
       availablePackageVersion: json['AvailablePackageVersion'] as String?,
@@ -5987,6 +6068,7 @@ class PackageSource {
     this.s3BucketName,
     this.s3Key,
   });
+
   factory PackageSource.fromJson(Map<String, dynamic> json) {
     return PackageSource(
       s3BucketName: json['S3BucketName'] as String?,
@@ -6101,6 +6183,7 @@ class PackageVersionHistory {
     this.createdAt,
     this.packageVersion,
   });
+
   factory PackageVersionHistory.fromJson(Map<String, dynamic> json) {
     return PackageVersionHistory(
       commitMessage: json['CommitMessage'] as String?,
@@ -6134,6 +6217,7 @@ class PurchaseReservedElasticsearchInstanceOfferingResponse {
     this.reservationName,
     this.reservedElasticsearchInstanceId,
   });
+
   factory PurchaseReservedElasticsearchInstanceOfferingResponse.fromJson(
       Map<String, dynamic> json) {
     return PurchaseReservedElasticsearchInstanceOfferingResponse(
@@ -6169,6 +6253,7 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+
   factory RecurringCharge.fromJson(Map<String, dynamic> json) {
     return RecurringCharge(
       recurringChargeAmount: json['RecurringChargeAmount'] as double?,
@@ -6199,6 +6284,7 @@ class RejectInboundCrossClusterSearchConnectionResponse {
   RejectInboundCrossClusterSearchConnectionResponse({
     this.crossClusterSearchConnection,
   });
+
   factory RejectInboundCrossClusterSearchConnectionResponse.fromJson(
       Map<String, dynamic> json) {
     return RejectInboundCrossClusterSearchConnectionResponse(
@@ -6278,6 +6364,7 @@ class ReservedElasticsearchInstance {
     this.state,
     this.usagePrice,
   });
+
   factory ReservedElasticsearchInstance.fromJson(Map<String, dynamic> json) {
     return ReservedElasticsearchInstance(
       currencyCode: json['CurrencyCode'] as String?,
@@ -6382,6 +6469,7 @@ class ReservedElasticsearchInstanceOffering {
     this.reservedElasticsearchInstanceOfferingId,
     this.usagePrice,
   });
+
   factory ReservedElasticsearchInstanceOffering.fromJson(
       Map<String, dynamic> json) {
     return ReservedElasticsearchInstanceOffering(
@@ -6505,6 +6593,7 @@ class SAMLIdp {
     required this.entityId,
     required this.metadataContent,
   });
+
   factory SAMLIdp.fromJson(Map<String, dynamic> json) {
     return SAMLIdp(
       entityId: json['EntityId'] as String,
@@ -6556,6 +6645,7 @@ class SAMLOptionsInput {
     this.sessionTimeoutMinutes,
     this.subjectKey,
   });
+
   factory SAMLOptionsInput.fromJson(Map<String, dynamic> json) {
     return SAMLOptionsInput(
       enabled: json['Enabled'] as bool?,
@@ -6615,6 +6705,7 @@ class SAMLOptionsOutput {
     this.sessionTimeoutMinutes,
     this.subjectKey,
   });
+
   factory SAMLOptionsOutput.fromJson(Map<String, dynamic> json) {
     return SAMLOptionsOutput(
       enabled: json['Enabled'] as bool?,
@@ -6697,6 +6788,7 @@ class ScheduledAutoTuneDetails {
     this.date,
     this.severity,
   });
+
   factory ScheduledAutoTuneDetails.fromJson(Map<String, dynamic> json) {
     return ScheduledAutoTuneDetails(
       action: json['Action'] as String?,
@@ -6803,6 +6895,7 @@ class ServiceSoftwareOptions {
     this.updateAvailable,
     this.updateStatus,
   });
+
   factory ServiceSoftwareOptions.fromJson(Map<String, dynamic> json) {
     return ServiceSoftwareOptions(
       automatedUpdateDate: timeStampFromJson(json['AutomatedUpdateDate']),
@@ -6851,6 +6944,7 @@ class SnapshotOptions {
   SnapshotOptions({
     this.automatedSnapshotStartHour,
   });
+
   factory SnapshotOptions.fromJson(Map<String, dynamic> json) {
     return SnapshotOptions(
       automatedSnapshotStartHour: json['AutomatedSnapshotStartHour'] as int?,
@@ -6878,6 +6972,7 @@ class SnapshotOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory SnapshotOptionsStatus.fromJson(Map<String, dynamic> json) {
     return SnapshotOptionsStatus(
       options:
@@ -6905,6 +7000,7 @@ class StartElasticsearchServiceSoftwareUpdateResponse {
   StartElasticsearchServiceSoftwareUpdateResponse({
     this.serviceSoftwareOptions,
   });
+
   factory StartElasticsearchServiceSoftwareUpdateResponse.fromJson(
       Map<String, dynamic> json) {
     return StartElasticsearchServiceSoftwareUpdateResponse(
@@ -6938,6 +7034,7 @@ class StorageType {
     this.storageTypeLimits,
     this.storageTypeName,
   });
+
   factory StorageType.fromJson(Map<String, dynamic> json) {
     return StorageType(
       storageSubTypeName: json['StorageSubTypeName'] as String?,
@@ -6983,6 +7080,7 @@ class StorageTypeLimit {
     this.limitName,
     this.limitValues,
   });
+
   factory StorageTypeLimit.fromJson(Map<String, dynamic> json) {
     return StorageTypeLimit(
       limitName: json['LimitName'] as String?,
@@ -7047,6 +7145,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -7100,6 +7199,7 @@ class UpdateElasticsearchDomainConfigResponse {
   UpdateElasticsearchDomainConfigResponse({
     required this.domainConfig,
   });
+
   factory UpdateElasticsearchDomainConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateElasticsearchDomainConfigResponse(
@@ -7125,6 +7225,7 @@ class UpdatePackageResponse {
   UpdatePackageResponse({
     this.packageDetails,
   });
+
   factory UpdatePackageResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePackageResponse(
       packageDetails: json['PackageDetails'] != null
@@ -7159,6 +7260,7 @@ class UpgradeElasticsearchDomainResponse {
     this.performCheckOnly,
     this.targetVersion,
   });
+
   factory UpgradeElasticsearchDomainResponse.fromJson(
       Map<String, dynamic> json) {
     return UpgradeElasticsearchDomainResponse(
@@ -7210,6 +7312,7 @@ class UpgradeHistory {
     this.upgradeName,
     this.upgradeStatus,
   });
+
   factory UpgradeHistory.fromJson(Map<String, dynamic> json) {
     return UpgradeHistory(
       startTimestamp: timeStampFromJson(json['StartTimestamp']),
@@ -7344,6 +7447,7 @@ class UpgradeStepItem {
     this.upgradeStep,
     this.upgradeStepStatus,
   });
+
   factory UpgradeStepItem.fromJson(Map<String, dynamic> json) {
     return UpgradeStepItem(
       issues: (json['Issues'] as List?)
@@ -7397,6 +7501,7 @@ class VPCDerivedInfo {
     this.subnetIds,
     this.vPCId,
   });
+
   factory VPCDerivedInfo.fromJson(Map<String, dynamic> json) {
     return VPCDerivedInfo(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -7442,6 +7547,7 @@ class VPCDerivedInfoStatus {
     required this.options,
     required this.status,
   });
+
   factory VPCDerivedInfoStatus.fromJson(Map<String, dynamic> json) {
     return VPCDerivedInfoStatus(
       options: VPCDerivedInfo.fromJson(json['Options'] as Map<String, dynamic>),
@@ -7474,6 +7580,7 @@ class VPCOptions {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory VPCOptions.fromJson(Map<String, dynamic> json) {
     return VPCOptions(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -7544,6 +7651,7 @@ class ZoneAwarenessConfig {
   ZoneAwarenessConfig({
     this.availabilityZoneCount,
   });
+
   factory ZoneAwarenessConfig.fromJson(Map<String, dynamic> json) {
     return ZoneAwarenessConfig(
       availabilityZoneCount: json['AvailabilityZoneCount'] as int?,

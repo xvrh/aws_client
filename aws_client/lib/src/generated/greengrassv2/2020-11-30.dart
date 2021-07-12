@@ -1140,6 +1140,7 @@ class AssociateClientDeviceWithCoreDeviceEntry {
   AssociateClientDeviceWithCoreDeviceEntry({
     required this.thingName,
   });
+
   factory AssociateClientDeviceWithCoreDeviceEntry.fromJson(
       Map<String, dynamic> json) {
     return AssociateClientDeviceWithCoreDeviceEntry(
@@ -1174,6 +1175,7 @@ class AssociateClientDeviceWithCoreDeviceErrorEntry {
     this.message,
     this.thingName,
   });
+
   factory AssociateClientDeviceWithCoreDeviceErrorEntry.fromJson(
       Map<String, dynamic> json) {
     return AssociateClientDeviceWithCoreDeviceErrorEntry(
@@ -1209,6 +1211,7 @@ class AssociatedClientDevice {
     this.associationTimestamp,
     this.thingName,
   });
+
   factory AssociatedClientDevice.fromJson(Map<String, dynamic> json) {
     return AssociatedClientDevice(
       associationTimestamp: timeStampFromJson(json['associationTimestamp']),
@@ -1235,6 +1238,7 @@ class BatchAssociateClientDeviceWithCoreDeviceResponse {
   BatchAssociateClientDeviceWithCoreDeviceResponse({
     this.errorEntries,
   });
+
   factory BatchAssociateClientDeviceWithCoreDeviceResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchAssociateClientDeviceWithCoreDeviceResponse(
@@ -1262,6 +1266,7 @@ class BatchDisassociateClientDeviceFromCoreDeviceResponse {
   BatchDisassociateClientDeviceFromCoreDeviceResponse({
     this.errorEntries,
   });
+
   factory BatchDisassociateClientDeviceFromCoreDeviceResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDisassociateClientDeviceFromCoreDeviceResponse(
@@ -1288,6 +1293,7 @@ class CancelDeploymentResponse {
   CancelDeploymentResponse({
     this.message,
   });
+
   factory CancelDeploymentResponse.fromJson(Map<String, dynamic> json) {
     return CancelDeploymentResponse(
       message: json['message'] as String?,
@@ -1365,6 +1371,7 @@ class CloudComponentStatus {
     this.errors,
     this.message,
   });
+
   factory CloudComponentStatus.fromJson(Map<String, dynamic> json) {
     return CloudComponentStatus(
       componentState:
@@ -1405,6 +1412,7 @@ class Component {
     this.componentName,
     this.latestVersion,
   });
+
   factory Component.fromJson(Map<String, dynamic> json) {
     return Component(
       arn: json['arn'] as String?,
@@ -1449,6 +1457,7 @@ class ComponentCandidate {
     this.componentVersion,
     this.versionRequirements,
   });
+
   factory ComponentCandidate.fromJson(Map<String, dynamic> json) {
     return ComponentCandidate(
       componentName: json['componentName'] as String?,
@@ -1505,6 +1514,7 @@ class ComponentConfigurationUpdate {
     this.merge,
     this.reset,
   });
+
   factory ComponentConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return ComponentConfigurationUpdate(
       merge: json['merge'] as String?,
@@ -1552,6 +1562,7 @@ class ComponentDependencyRequirement {
     this.dependencyType,
     this.versionRequirement,
   });
+
   factory ComponentDependencyRequirement.fromJson(Map<String, dynamic> json) {
     return ComponentDependencyRequirement(
       dependencyType:
@@ -1628,6 +1639,7 @@ class ComponentDeploymentSpecification {
     this.configurationUpdate,
     this.runWith,
   });
+
   factory ComponentDeploymentSpecification.fromJson(Map<String, dynamic> json) {
     return ComponentDeploymentSpecification(
       componentVersion: json['componentVersion'] as String?,
@@ -1684,6 +1696,7 @@ class ComponentLatestVersion {
     this.platforms,
     this.publisher,
   });
+
   factory ComponentLatestVersion.fromJson(Map<String, dynamic> json) {
     return ComponentLatestVersion(
       arn: json['arn'] as String?,
@@ -1740,6 +1753,7 @@ class ComponentPlatform {
     this.attributes,
     this.name,
   });
+
   factory ComponentPlatform.fromJson(Map<String, dynamic> json) {
     return ComponentPlatform(
       attributes: (json['attributes'] as Map<String, dynamic>?)
@@ -1775,6 +1789,7 @@ class ComponentRunWith {
   ComponentRunWith({
     this.posixUser,
   });
+
   factory ComponentRunWith.fromJson(Map<String, dynamic> json) {
     return ComponentRunWith(
       posixUser: json['posixUser'] as String?,
@@ -1807,6 +1822,7 @@ class ComponentVersionListItem {
     this.componentName,
     this.componentVersion,
   });
+
   factory ComponentVersionListItem.fromJson(Map<String, dynamic> json) {
     return ComponentVersionListItem(
       arn: json['arn'] as String?,
@@ -1884,6 +1900,7 @@ class CoreDevice {
     this.lastStatusUpdateTimestamp,
     this.status,
   });
+
   factory CoreDevice.fromJson(Map<String, dynamic> json) {
     return CoreDevice(
       coreDeviceThingName: json['coreDeviceThingName'] as String?,
@@ -1962,6 +1979,7 @@ class CreateComponentVersionResponse {
     required this.status,
     this.arn,
   });
+
   factory CreateComponentVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateComponentVersionResponse(
       componentName: json['componentName'] as String,
@@ -2007,6 +2025,7 @@ class CreateDeploymentResponse {
     this.iotJobArn,
     this.iotJobId,
   });
+
   factory CreateDeploymentResponse.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentResponse(
       deploymentId: json['deploymentId'] as String?,
@@ -2067,6 +2086,7 @@ class Deployment {
     this.revisionId,
     this.targetArn,
   });
+
   factory Deployment.fromJson(Map<String, dynamic> json) {
     return Deployment(
       creationTimestamp: timeStampFromJson(json['creationTimestamp']),
@@ -2145,6 +2165,7 @@ class DeploymentComponentUpdatePolicy {
     this.action,
     this.timeoutInSeconds,
   });
+
   factory DeploymentComponentUpdatePolicy.fromJson(Map<String, dynamic> json) {
     return DeploymentComponentUpdatePolicy(
       action: (json['action'] as String?)
@@ -2214,6 +2235,7 @@ class DeploymentConfigurationValidationPolicy {
   DeploymentConfigurationValidationPolicy({
     this.timeoutInSeconds,
   });
+
   factory DeploymentConfigurationValidationPolicy.fromJson(
       Map<String, dynamic> json) {
     return DeploymentConfigurationValidationPolicy(
@@ -2305,6 +2327,7 @@ class DeploymentIoTJobConfiguration {
     this.jobExecutionsRolloutConfig,
     this.timeoutConfig,
   });
+
   factory DeploymentIoTJobConfiguration.fromJson(Map<String, dynamic> json) {
     return DeploymentIoTJobConfiguration(
       abortConfig: json['abortConfig'] != null
@@ -2358,6 +2381,7 @@ class DeploymentPolicies {
     this.configurationValidationPolicy,
     this.failureHandlingPolicy,
   });
+
   factory DeploymentPolicies.fromJson(Map<String, dynamic> json) {
     return DeploymentPolicies(
       componentUpdatePolicy: json['componentUpdatePolicy'] != null
@@ -2477,6 +2501,7 @@ class DescribeComponentResponse {
     this.status,
     this.tags,
   });
+
   factory DescribeComponentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeComponentResponse(
       arn: json['arn'] as String?,
@@ -2535,6 +2560,7 @@ class DisassociateClientDeviceFromCoreDeviceEntry {
   DisassociateClientDeviceFromCoreDeviceEntry({
     required this.thingName,
   });
+
   factory DisassociateClientDeviceFromCoreDeviceEntry.fromJson(
       Map<String, dynamic> json) {
     return DisassociateClientDeviceFromCoreDeviceEntry(
@@ -2569,6 +2595,7 @@ class DisassociateClientDeviceFromCoreDeviceErrorEntry {
     this.message,
     this.thingName,
   });
+
   factory DisassociateClientDeviceFromCoreDeviceErrorEntry.fromJson(
       Map<String, dynamic> json) {
     return DisassociateClientDeviceFromCoreDeviceErrorEntry(
@@ -2646,6 +2673,7 @@ class EffectiveDeployment {
     this.iotJobId,
     this.reason,
   });
+
   factory EffectiveDeployment.fromJson(Map<String, dynamic> json) {
     return EffectiveDeployment(
       coreDeviceExecutionStatus: (json['coreDeviceExecutionStatus'] as String)
@@ -2762,6 +2790,7 @@ class GetComponentResponse {
     required this.recipeOutputFormat,
     this.tags,
   });
+
   factory GetComponentResponse.fromJson(Map<String, dynamic> json) {
     return GetComponentResponse(
       recipe: _s.decodeUint8List(json['recipe']! as String),
@@ -2791,6 +2820,7 @@ class GetComponentVersionArtifactResponse {
   GetComponentVersionArtifactResponse({
     required this.preSignedUrl,
   });
+
   factory GetComponentVersionArtifactResponse.fromJson(
       Map<String, dynamic> json) {
     return GetComponentVersionArtifactResponse(
@@ -2858,6 +2888,7 @@ class GetCoreDeviceResponse {
     this.status,
     this.tags,
   });
+
   factory GetCoreDeviceResponse.fromJson(Map<String, dynamic> json) {
     return GetCoreDeviceResponse(
       architecture: json['architecture'] as String?,
@@ -2968,6 +2999,7 @@ class GetDeploymentResponse {
     this.tags,
     this.targetArn,
   });
+
   factory GetDeploymentResponse.fromJson(Map<String, dynamic> json) {
     return GetDeploymentResponse(
       components: (json['components'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -3057,6 +3089,7 @@ class InstalledComponent {
     this.lifecycleState,
     this.lifecycleStateDetails,
   });
+
   factory InstalledComponent.fromJson(Map<String, dynamic> json) {
     return InstalledComponent(
       componentName: json['componentName'] as String?,
@@ -3177,6 +3210,7 @@ class IoTJobAbortConfig {
   IoTJobAbortConfig({
     required this.criteriaList,
   });
+
   factory IoTJobAbortConfig.fromJson(Map<String, dynamic> json) {
     return IoTJobAbortConfig(
       criteriaList: (json['criteriaList'] as List)
@@ -3231,6 +3265,7 @@ class IoTJobAbortCriteria {
     required this.minNumberOfExecutedThings,
     required this.thresholdPercentage,
   });
+
   factory IoTJobAbortCriteria.fromJson(Map<String, dynamic> json) {
     return IoTJobAbortCriteria(
       action: (json['action'] as String).toIoTJobAbortAction(),
@@ -3308,6 +3343,7 @@ class IoTJobExecutionsRolloutConfig {
     this.exponentialRate,
     this.maximumPerMinute,
   });
+
   factory IoTJobExecutionsRolloutConfig.fromJson(Map<String, dynamic> json) {
     return IoTJobExecutionsRolloutConfig(
       exponentialRate: json['exponentialRate'] != null
@@ -3350,6 +3386,7 @@ class IoTJobExponentialRolloutRate {
     required this.incrementFactor,
     required this.rateIncreaseCriteria,
   });
+
   factory IoTJobExponentialRolloutRate.fromJson(Map<String, dynamic> json) {
     return IoTJobExponentialRolloutRate(
       baseRatePerMinute: json['baseRatePerMinute'] as int,
@@ -3387,6 +3424,7 @@ class IoTJobRateIncreaseCriteria {
     this.numberOfNotifiedThings,
     this.numberOfSucceededThings,
   });
+
   factory IoTJobRateIncreaseCriteria.fromJson(Map<String, dynamic> json) {
     return IoTJobRateIncreaseCriteria(
       numberOfNotifiedThings: json['numberOfNotifiedThings'] as int?,
@@ -3419,6 +3457,7 @@ class IoTJobTimeoutConfig {
   IoTJobTimeoutConfig({
     this.inProgressTimeoutInMinutes,
   });
+
   factory IoTJobTimeoutConfig.fromJson(Map<String, dynamic> json) {
     return IoTJobTimeoutConfig(
       inProgressTimeoutInMinutes: json['inProgressTimeoutInMinutes'] as int?,
@@ -3460,6 +3499,7 @@ class LambdaContainerParams {
     this.mountROSysfs,
     this.volumes,
   });
+
   factory LambdaContainerParams.fromJson(Map<String, dynamic> json) {
     return LambdaContainerParams(
       devices: (json['devices'] as List?)
@@ -3511,6 +3551,7 @@ class LambdaDeviceMount {
     this.addGroupOwner,
     this.permission,
   });
+
   factory LambdaDeviceMount.fromJson(Map<String, dynamic> json) {
     return LambdaDeviceMount(
       path: json['path'] as String,
@@ -3559,6 +3600,7 @@ class LambdaEventSource {
     required this.topic,
     required this.type,
   });
+
   factory LambdaEventSource.fromJson(Map<String, dynamic> json) {
     return LambdaEventSource(
       topic: json['topic'] as String,
@@ -3678,6 +3720,7 @@ class LambdaExecutionParameters {
     this.statusTimeoutInSeconds,
     this.timeoutInSeconds,
   });
+
   factory LambdaExecutionParameters.fromJson(Map<String, dynamic> json) {
     return LambdaExecutionParameters(
       environmentVariables:
@@ -3805,6 +3848,7 @@ class LambdaFunctionRecipeSource {
     this.componentPlatforms,
     this.componentVersion,
   });
+
   factory LambdaFunctionRecipeSource.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionRecipeSource(
       lambdaArn: json['lambdaArn'] as String,
@@ -3921,6 +3965,7 @@ class LambdaLinuxProcessParams {
     this.containerParams,
     this.isolationMode,
   });
+
   factory LambdaLinuxProcessParams.fromJson(Map<String, dynamic> json) {
     return LambdaLinuxProcessParams(
       containerParams: json['containerParams'] != null
@@ -3970,6 +4015,7 @@ class LambdaVolumeMount {
     this.addGroupOwner,
     this.permission,
   });
+
   factory LambdaVolumeMount.fromJson(Map<String, dynamic> json) {
     return LambdaVolumeMount(
       destinationPath: json['destinationPath'] as String,
@@ -4007,6 +4053,7 @@ class ListClientDevicesAssociatedWithCoreDeviceResponse {
     this.associatedClientDevices,
     this.nextToken,
   });
+
   factory ListClientDevicesAssociatedWithCoreDeviceResponse.fromJson(
       Map<String, dynamic> json) {
     return ListClientDevicesAssociatedWithCoreDeviceResponse(
@@ -4042,6 +4089,7 @@ class ListComponentVersionsResponse {
     this.componentVersions,
     this.nextToken,
   });
+
   factory ListComponentVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListComponentVersionsResponse(
       componentVersions: (json['componentVersions'] as List?)
@@ -4075,6 +4123,7 @@ class ListComponentsResponse {
     this.components,
     this.nextToken,
   });
+
   factory ListComponentsResponse.fromJson(Map<String, dynamic> json) {
     return ListComponentsResponse(
       components: (json['components'] as List?)
@@ -4107,6 +4156,7 @@ class ListCoreDevicesResponse {
     this.coreDevices,
     this.nextToken,
   });
+
   factory ListCoreDevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListCoreDevicesResponse(
       coreDevices: (json['coreDevices'] as List?)
@@ -4139,6 +4189,7 @@ class ListDeploymentsResponse {
     this.deployments,
     this.nextToken,
   });
+
   factory ListDeploymentsResponse.fromJson(Map<String, dynamic> json) {
     return ListDeploymentsResponse(
       deployments: (json['deployments'] as List?)
@@ -4171,6 +4222,7 @@ class ListEffectiveDeploymentsResponse {
     this.effectiveDeployments,
     this.nextToken,
   });
+
   factory ListEffectiveDeploymentsResponse.fromJson(Map<String, dynamic> json) {
     return ListEffectiveDeploymentsResponse(
       effectiveDeployments: (json['effectiveDeployments'] as List?)
@@ -4204,6 +4256,7 @@ class ListInstalledComponentsResponse {
     this.installedComponents,
     this.nextToken,
   });
+
   factory ListInstalledComponentsResponse.fromJson(Map<String, dynamic> json) {
     return ListInstalledComponentsResponse(
       installedComponents: (json['installedComponents'] as List?)
@@ -4235,6 +4288,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -4287,6 +4341,7 @@ class ResolveComponentCandidatesResponse {
   ResolveComponentCandidatesResponse({
     this.resolvedComponentVersions,
   });
+
   factory ResolveComponentCandidatesResponse.fromJson(
       Map<String, dynamic> json) {
     return ResolveComponentCandidatesResponse(
@@ -4330,6 +4385,7 @@ class ResolvedComponentVersion {
     this.componentVersion,
     this.recipe,
   });
+
   factory ResolvedComponentVersion.fromJson(Map<String, dynamic> json) {
     return ResolvedComponentVersion(
       arn: json['arn'] as String?,
@@ -4355,6 +4411,7 @@ class ResolvedComponentVersion {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4366,6 +4423,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

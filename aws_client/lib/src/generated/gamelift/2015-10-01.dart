@@ -9786,6 +9786,7 @@ class GameLift {
 
 class AcceptMatchOutput {
   AcceptMatchOutput();
+
   factory AcceptMatchOutput.fromJson(Map<String, dynamic> _) {
     return AcceptMatchOutput();
   }
@@ -9873,6 +9874,7 @@ class Alias {
     this.name,
     this.routingStrategy,
   });
+
   factory Alias.fromJson(Map<String, dynamic> json) {
     return Alias(
       aliasArn: json['AliasArn'] as String?,
@@ -9936,6 +9938,7 @@ class AttributeValue {
     this.sdm,
     this.sl,
   });
+
   factory AttributeValue.fromJson(Map<String, dynamic> json) {
     return AttributeValue(
       n: json['N'] as double?,
@@ -9983,6 +9986,7 @@ class AwsCredentials {
     this.secretAccessKey,
     this.sessionToken,
   });
+
   factory AwsCredentials.fromJson(Map<String, dynamic> json) {
     return AwsCredentials(
       accessKeyId: json['AccessKeyId'] as String?,
@@ -10138,6 +10142,7 @@ class Build {
     this.status,
     this.version,
   });
+
   factory Build.fromJson(Map<String, dynamic> json) {
     return Build(
       buildArn: json['BuildArn'] as String?,
@@ -10236,6 +10241,7 @@ class CertificateConfiguration {
   CertificateConfiguration({
     required this.certificateType,
   });
+
   factory CertificateConfiguration.fromJson(Map<String, dynamic> json) {
     return CertificateConfiguration(
       certificateType: (json['CertificateType'] as String).toCertificateType(),
@@ -10285,6 +10291,7 @@ class ClaimGameServerOutput {
   ClaimGameServerOutput({
     this.gameServer,
   });
+
   factory ClaimGameServerOutput.fromJson(Map<String, dynamic> json) {
     return ClaimGameServerOutput(
       gameServer: json['GameServer'] != null
@@ -10347,6 +10354,7 @@ class CreateAliasOutput {
   CreateAliasOutput({
     this.alias,
   });
+
   factory CreateAliasOutput.fromJson(Map<String, dynamic> json) {
     return CreateAliasOutput(
       alias: json['Alias'] != null
@@ -10383,6 +10391,7 @@ class CreateBuildOutput {
     this.storageLocation,
     this.uploadCredentials,
   });
+
   factory CreateBuildOutput.fromJson(Map<String, dynamic> json) {
     return CreateBuildOutput(
       build: json['Build'] != null
@@ -10435,6 +10444,7 @@ class CreateFleetLocationsOutput {
     this.fleetId,
     this.locationStates,
   });
+
   factory CreateFleetLocationsOutput.fromJson(Map<String, dynamic> json) {
     return CreateFleetLocationsOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -10476,6 +10486,7 @@ class CreateFleetOutput {
     this.fleetAttributes,
     this.locationStates,
   });
+
   factory CreateFleetOutput.fromJson(Map<String, dynamic> json) {
     return CreateFleetOutput(
       fleetAttributes: json['FleetAttributes'] != null
@@ -10510,6 +10521,7 @@ class CreateGameServerGroupOutput {
   CreateGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory CreateGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -10535,6 +10547,7 @@ class CreateGameSessionOutput {
   CreateGameSessionOutput({
     this.gameSession,
   });
+
   factory CreateGameSessionOutput.fromJson(Map<String, dynamic> json) {
     return CreateGameSessionOutput(
       gameSession: json['GameSession'] != null
@@ -10559,6 +10572,7 @@ class CreateGameSessionQueueOutput {
   CreateGameSessionQueueOutput({
     this.gameSessionQueue,
   });
+
   factory CreateGameSessionQueueOutput.fromJson(Map<String, dynamic> json) {
     return CreateGameSessionQueueOutput(
       gameSessionQueue: json['GameSessionQueue'] != null
@@ -10584,6 +10598,7 @@ class CreateMatchmakingConfigurationOutput {
   CreateMatchmakingConfigurationOutput({
     this.configuration,
   });
+
   factory CreateMatchmakingConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateMatchmakingConfigurationOutput(
@@ -10610,6 +10625,7 @@ class CreateMatchmakingRuleSetOutput {
   CreateMatchmakingRuleSetOutput({
     required this.ruleSet,
   });
+
   factory CreateMatchmakingRuleSetOutput.fromJson(Map<String, dynamic> json) {
     return CreateMatchmakingRuleSetOutput(
       ruleSet:
@@ -10633,6 +10649,7 @@ class CreatePlayerSessionOutput {
   CreatePlayerSessionOutput({
     this.playerSession,
   });
+
   factory CreatePlayerSessionOutput.fromJson(Map<String, dynamic> json) {
     return CreatePlayerSessionOutput(
       playerSession: json['PlayerSession'] != null
@@ -10658,6 +10675,7 @@ class CreatePlayerSessionsOutput {
   CreatePlayerSessionsOutput({
     this.playerSessions,
   });
+
   factory CreatePlayerSessionsOutput.fromJson(Map<String, dynamic> json) {
     return CreatePlayerSessionsOutput(
       playerSessions: (json['PlayerSessions'] as List?)
@@ -10688,6 +10706,7 @@ class CreateScriptOutput {
   CreateScriptOutput({
     this.script,
   });
+
   factory CreateScriptOutput.fromJson(Map<String, dynamic> json) {
     return CreateScriptOutput(
       script: json['Script'] != null
@@ -10712,6 +10731,7 @@ class CreateVpcPeeringAuthorizationOutput {
   CreateVpcPeeringAuthorizationOutput({
     this.vpcPeeringAuthorization,
   });
+
   factory CreateVpcPeeringAuthorizationOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateVpcPeeringAuthorizationOutput(
@@ -10733,6 +10753,7 @@ class CreateVpcPeeringAuthorizationOutput {
 
 class CreateVpcPeeringConnectionOutput {
   CreateVpcPeeringConnectionOutput();
+
   factory CreateVpcPeeringConnectionOutput.fromJson(Map<String, dynamic> _) {
     return CreateVpcPeeringConnectionOutput();
   }
@@ -10764,6 +10785,7 @@ class DeleteFleetLocationsOutput {
     this.fleetId,
     this.locationStates,
   });
+
   factory DeleteFleetLocationsOutput.fromJson(Map<String, dynamic> json) {
     return DeleteFleetLocationsOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -10795,6 +10817,7 @@ class DeleteGameServerGroupOutput {
   DeleteGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory DeleteGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return DeleteGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -10814,6 +10837,7 @@ class DeleteGameServerGroupOutput {
 
 class DeleteGameSessionQueueOutput {
   DeleteGameSessionQueueOutput();
+
   factory DeleteGameSessionQueueOutput.fromJson(Map<String, dynamic> _) {
     return DeleteGameSessionQueueOutput();
   }
@@ -10825,6 +10849,7 @@ class DeleteGameSessionQueueOutput {
 
 class DeleteMatchmakingConfigurationOutput {
   DeleteMatchmakingConfigurationOutput();
+
   factory DeleteMatchmakingConfigurationOutput.fromJson(
       Map<String, dynamic> _) {
     return DeleteMatchmakingConfigurationOutput();
@@ -10838,6 +10863,7 @@ class DeleteMatchmakingConfigurationOutput {
 /// Represents the returned data in response to a request operation.
 class DeleteMatchmakingRuleSetOutput {
   DeleteMatchmakingRuleSetOutput();
+
   factory DeleteMatchmakingRuleSetOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMatchmakingRuleSetOutput();
   }
@@ -10849,6 +10875,7 @@ class DeleteMatchmakingRuleSetOutput {
 
 class DeleteVpcPeeringAuthorizationOutput {
   DeleteVpcPeeringAuthorizationOutput();
+
   factory DeleteVpcPeeringAuthorizationOutput.fromJson(Map<String, dynamic> _) {
     return DeleteVpcPeeringAuthorizationOutput();
   }
@@ -10860,6 +10887,7 @@ class DeleteVpcPeeringAuthorizationOutput {
 
 class DeleteVpcPeeringConnectionOutput {
   DeleteVpcPeeringConnectionOutput();
+
   factory DeleteVpcPeeringConnectionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteVpcPeeringConnectionOutput();
   }
@@ -10877,6 +10905,7 @@ class DescribeAliasOutput {
   DescribeAliasOutput({
     this.alias,
   });
+
   factory DescribeAliasOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAliasOutput(
       alias: json['Alias'] != null
@@ -10901,6 +10930,7 @@ class DescribeBuildOutput {
   DescribeBuildOutput({
     this.build,
   });
+
   factory DescribeBuildOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBuildOutput(
       build: json['Build'] != null
@@ -10925,6 +10955,7 @@ class DescribeEC2InstanceLimitsOutput {
   DescribeEC2InstanceLimitsOutput({
     this.eC2InstanceLimits,
   });
+
   factory DescribeEC2InstanceLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeEC2InstanceLimitsOutput(
       eC2InstanceLimits: (json['EC2InstanceLimits'] as List?)
@@ -10958,6 +10989,7 @@ class DescribeFleetAttributesOutput {
     this.fleetAttributes,
     this.nextToken,
   });
+
   factory DescribeFleetAttributesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetAttributesOutput(
       fleetAttributes: (json['FleetAttributes'] as List?)
@@ -10994,6 +11026,7 @@ class DescribeFleetCapacityOutput {
     this.fleetCapacity,
     this.nextToken,
   });
+
   factory DescribeFleetCapacityOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetCapacityOutput(
       fleetCapacity: (json['FleetCapacity'] as List?)
@@ -11029,6 +11062,7 @@ class DescribeFleetEventsOutput {
     this.events,
     this.nextToken,
   });
+
   factory DescribeFleetEventsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetEventsOutput(
       events: (json['Events'] as List?)
@@ -11076,6 +11110,7 @@ class DescribeFleetLocationAttributesOutput {
     this.locationAttributes,
     this.nextToken,
   });
+
   factory DescribeFleetLocationAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeFleetLocationAttributesOutput(
@@ -11112,6 +11147,7 @@ class DescribeFleetLocationCapacityOutput {
   DescribeFleetLocationCapacityOutput({
     this.fleetCapacity,
   });
+
   factory DescribeFleetLocationCapacityOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeFleetLocationCapacityOutput(
@@ -11139,6 +11175,7 @@ class DescribeFleetLocationUtilizationOutput {
   DescribeFleetLocationUtilizationOutput({
     this.fleetUtilization,
   });
+
   factory DescribeFleetLocationUtilizationOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeFleetLocationUtilizationOutput(
@@ -11189,6 +11226,7 @@ class DescribeFleetPortSettingsOutput {
     this.location,
     this.updateStatus,
   });
+
   factory DescribeFleetPortSettingsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetPortSettingsOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -11234,6 +11272,7 @@ class DescribeFleetUtilizationOutput {
     this.fleetUtilization,
     this.nextToken,
   });
+
   factory DescribeFleetUtilizationOutput.fromJson(Map<String, dynamic> json) {
     return DescribeFleetUtilizationOutput(
       fleetUtilization: (json['FleetUtilization'] as List?)
@@ -11262,6 +11301,7 @@ class DescribeGameServerGroupOutput {
   DescribeGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory DescribeGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -11292,6 +11332,7 @@ class DescribeGameServerInstancesOutput {
     this.gameServerInstances,
     this.nextToken,
   });
+
   factory DescribeGameServerInstancesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeGameServerInstancesOutput(
@@ -11321,6 +11362,7 @@ class DescribeGameServerOutput {
   DescribeGameServerOutput({
     this.gameServer,
   });
+
   factory DescribeGameServerOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGameServerOutput(
       gameServer: json['GameServer'] != null
@@ -11351,6 +11393,7 @@ class DescribeGameSessionDetailsOutput {
     this.gameSessionDetails,
     this.nextToken,
   });
+
   factory DescribeGameSessionDetailsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGameSessionDetailsOutput(
       gameSessionDetails: (json['GameSessionDetails'] as List?)
@@ -11379,6 +11422,7 @@ class DescribeGameSessionPlacementOutput {
   DescribeGameSessionPlacementOutput({
     this.gameSessionPlacement,
   });
+
   factory DescribeGameSessionPlacementOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeGameSessionPlacementOutput(
@@ -11412,6 +11456,7 @@ class DescribeGameSessionQueuesOutput {
     this.gameSessionQueues,
     this.nextToken,
   });
+
   factory DescribeGameSessionQueuesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGameSessionQueuesOutput(
       gameSessionQueues: (json['GameSessionQueues'] as List?)
@@ -11446,6 +11491,7 @@ class DescribeGameSessionsOutput {
     this.gameSessions,
     this.nextToken,
   });
+
   factory DescribeGameSessionsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGameSessionsOutput(
       gameSessions: (json['GameSessions'] as List?)
@@ -11480,6 +11526,7 @@ class DescribeInstancesOutput {
     this.instances,
     this.nextToken,
   });
+
   factory DescribeInstancesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeInstancesOutput(
       instances: (json['Instances'] as List?)
@@ -11514,6 +11561,7 @@ class DescribeMatchmakingConfigurationsOutput {
     this.configurations,
     this.nextToken,
   });
+
   factory DescribeMatchmakingConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeMatchmakingConfigurationsOutput(
@@ -11544,6 +11592,7 @@ class DescribeMatchmakingOutput {
   DescribeMatchmakingOutput({
     this.ticketList,
   });
+
   factory DescribeMatchmakingOutput.fromJson(Map<String, dynamic> json) {
     return DescribeMatchmakingOutput(
       ticketList: (json['TicketList'] as List?)
@@ -11575,6 +11624,7 @@ class DescribeMatchmakingRuleSetsOutput {
     required this.ruleSets,
     this.nextToken,
   });
+
   factory DescribeMatchmakingRuleSetsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeMatchmakingRuleSetsOutput(
@@ -11611,6 +11661,7 @@ class DescribePlayerSessionsOutput {
     this.nextToken,
     this.playerSessions,
   });
+
   factory DescribePlayerSessionsOutput.fromJson(Map<String, dynamic> json) {
     return DescribePlayerSessionsOutput(
       nextToken: json['NextToken'] as String?,
@@ -11640,6 +11691,7 @@ class DescribeRuntimeConfigurationOutput {
   DescribeRuntimeConfigurationOutput({
     this.runtimeConfiguration,
   });
+
   factory DescribeRuntimeConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeRuntimeConfigurationOutput(
@@ -11674,6 +11726,7 @@ class DescribeScalingPoliciesOutput {
     this.nextToken,
     this.scalingPolicies,
   });
+
   factory DescribeScalingPoliciesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeScalingPoliciesOutput(
       nextToken: json['NextToken'] as String?,
@@ -11701,6 +11754,7 @@ class DescribeScriptOutput {
   DescribeScriptOutput({
     this.script,
   });
+
   factory DescribeScriptOutput.fromJson(Map<String, dynamic> json) {
     return DescribeScriptOutput(
       script: json['Script'] != null
@@ -11725,6 +11779,7 @@ class DescribeVpcPeeringAuthorizationsOutput {
   DescribeVpcPeeringAuthorizationsOutput({
     this.vpcPeeringAuthorizations,
   });
+
   factory DescribeVpcPeeringAuthorizationsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeVpcPeeringAuthorizationsOutput(
@@ -11753,6 +11808,7 @@ class DescribeVpcPeeringConnectionsOutput {
   DescribeVpcPeeringConnectionsOutput({
     this.vpcPeeringConnections,
   });
+
   factory DescribeVpcPeeringConnectionsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeVpcPeeringConnectionsOutput(
@@ -11786,6 +11842,7 @@ class DesiredPlayerSession {
     this.playerData,
     this.playerId,
   });
+
   factory DesiredPlayerSession.fromJson(Map<String, dynamic> json) {
     return DesiredPlayerSession(
       playerData: json['PlayerData'] as String?,
@@ -11843,6 +11900,7 @@ class EC2InstanceCounts {
     this.pending,
     this.terminating,
   });
+
   factory EC2InstanceCounts.fromJson(Map<String, dynamic> json) {
     return EC2InstanceCounts(
       active: json['ACTIVE'] as int?,
@@ -11907,6 +11965,7 @@ class EC2InstanceLimit {
     this.instanceLimit,
     this.location,
   });
+
   factory EC2InstanceLimit.fromJson(Map<String, dynamic> json) {
     return EC2InstanceLimit(
       currentInstances: json['CurrentInstances'] as int?,
@@ -12525,6 +12584,7 @@ class Event {
     this.preSignedLogUrl,
     this.resourceId,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       eventCode: (json['EventCode'] as String?)?.toEventCode(),
@@ -12752,6 +12812,7 @@ class FilterConfiguration {
   FilterConfiguration({
     this.allowedLocations,
   });
+
   factory FilterConfiguration.fromJson(Map<String, dynamic> json) {
     return FilterConfiguration(
       allowedLocations: (json['AllowedLocations'] as List?)
@@ -12977,6 +13038,7 @@ class FleetAttributes {
     this.stoppedActions,
     this.terminationTime,
   });
+
   factory FleetAttributes.fromJson(Map<String, dynamic> json) {
     return FleetAttributes(
       buildArn: json['BuildArn'] as String?,
@@ -13122,6 +13184,7 @@ class FleetCapacity {
     this.instanceType,
     this.location,
   });
+
   factory FleetCapacity.fromJson(Map<String, dynamic> json) {
     return FleetCapacity(
       fleetArn: json['FleetArn'] as String?,
@@ -13289,6 +13352,7 @@ class FleetUtilization {
     this.location,
     this.maximumPlayerSessionCount,
   });
+
   factory FleetUtilization.fromJson(Map<String, dynamic> json) {
     return FleetUtilization(
       activeGameSessionCount: json['ActiveGameSessionCount'] as int?,
@@ -13372,6 +13436,7 @@ class GameProperty {
     required this.key,
     required this.value,
   });
+
   factory GameProperty.fromJson(Map<String, dynamic> json) {
     return GameProperty(
       key: json['Key'] as String,
@@ -13492,6 +13557,7 @@ class GameServer {
     this.registrationTime,
     this.utilizationStatus,
   });
+
   factory GameServer.fromJson(Map<String, dynamic> json) {
     return GameServer(
       claimStatus: (json['ClaimStatus'] as String?)?.toGameServerClaimStatus(),
@@ -13713,6 +13779,7 @@ class GameServerGroup {
     this.statusReason,
     this.suspendedActions,
   });
+
   factory GameServerGroup.fromJson(Map<String, dynamic> json) {
     return GameServerGroup(
       autoScalingGroupArn: json['AutoScalingGroupArn'] as String?,
@@ -13828,6 +13895,7 @@ class GameServerGroupAutoScalingPolicy {
     required this.targetTrackingConfiguration,
     this.estimatedInstanceWarmup,
   });
+
   factory GameServerGroupAutoScalingPolicy.fromJson(Map<String, dynamic> json) {
     return GameServerGroupAutoScalingPolicy(
       targetTrackingConfiguration: TargetTrackingConfiguration.fromJson(
@@ -14356,6 +14424,7 @@ class GameServerInstance {
     this.instanceId,
     this.instanceStatus,
   });
+
   factory GameServerInstance.fromJson(Map<String, dynamic> json) {
     return GameServerInstance(
       gameServerGroupArn: json['GameServerGroupArn'] as String?,
@@ -14618,6 +14687,7 @@ class GameSession {
     this.statusReason,
     this.terminationTime,
   });
+
   factory GameSession.fromJson(Map<String, dynamic> json) {
     return GameSession(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -14745,6 +14815,7 @@ class GameSessionConnectionInfo {
     this.matchedPlayerSessions,
     this.port,
   });
+
   factory GameSessionConnectionInfo.fromJson(Map<String, dynamic> json) {
     return GameSessionConnectionInfo(
       dnsName: json['DnsName'] as String?,
@@ -14798,6 +14869,7 @@ class GameSessionDetail {
     this.gameSession,
     this.protectionPolicy,
   });
+
   factory GameSessionDetail.fromJson(Map<String, dynamic> json) {
     return GameSessionDetail(
       gameSession: json['GameSession'] != null
@@ -14989,6 +15061,7 @@ class GameSessionPlacement {
     this.startTime,
     this.status,
   });
+
   factory GameSessionPlacement.fromJson(Map<String, dynamic> json) {
     return GameSessionPlacement(
       dnsName: json['DnsName'] as String?,
@@ -15183,6 +15256,7 @@ class GameSessionQueue {
     this.priorityConfiguration,
     this.timeoutInSeconds,
   });
+
   factory GameSessionQueue.fromJson(Map<String, dynamic> json) {
     return GameSessionQueue(
       customEventData: json['CustomEventData'] as String?,
@@ -15252,6 +15326,7 @@ class GameSessionQueueDestination {
   GameSessionQueueDestination({
     this.destinationArn,
   });
+
   factory GameSessionQueueDestination.fromJson(Map<String, dynamic> json) {
     return GameSessionQueueDestination(
       destinationArn: json['DestinationArn'] as String?,
@@ -15343,6 +15418,7 @@ class GetGameSessionLogUrlOutput {
   GetGameSessionLogUrlOutput({
     this.preSignedUrl,
   });
+
   factory GetGameSessionLogUrlOutput.fromJson(Map<String, dynamic> json) {
     return GetGameSessionLogUrlOutput(
       preSignedUrl: json['PreSignedUrl'] as String?,
@@ -15366,6 +15442,7 @@ class GetInstanceAccessOutput {
   GetInstanceAccessOutput({
     this.instanceAccess,
   });
+
   factory GetInstanceAccessOutput.fromJson(Map<String, dynamic> json) {
     return GetInstanceAccessOutput(
       instanceAccess: json['InstanceAccess'] != null
@@ -15473,6 +15550,7 @@ class Instance {
     this.status,
     this.type,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -15541,6 +15619,7 @@ class InstanceAccess {
     this.ipAddress,
     this.operatingSystem,
   });
+
   factory InstanceAccess.fromJson(Map<String, dynamic> json) {
     return InstanceAccess(
       credentials: json['Credentials'] != null
@@ -15587,6 +15666,7 @@ class InstanceCredentials {
     this.secret,
     this.userName,
   });
+
   factory InstanceCredentials.fromJson(Map<String, dynamic> json) {
     return InstanceCredentials(
       secret: json['Secret'] as String?,
@@ -15629,6 +15709,7 @@ class InstanceDefinition {
     required this.instanceType,
     this.weightedCapacity,
   });
+
   factory InstanceDefinition.fromJson(Map<String, dynamic> json) {
     return InstanceDefinition(
       instanceType:
@@ -15712,6 +15793,7 @@ class IpPermission {
     required this.protocol,
     required this.toPort,
   });
+
   factory IpPermission.fromJson(Map<String, dynamic> json) {
     return IpPermission(
       fromPort: json['FromPort'] as int,
@@ -15788,6 +15870,7 @@ class LaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+
   factory LaunchTemplateSpecification.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateSpecification(
       launchTemplateId: json['LaunchTemplateId'] as String?,
@@ -15822,6 +15905,7 @@ class ListAliasesOutput {
     this.aliases,
     this.nextToken,
   });
+
   factory ListAliasesOutput.fromJson(Map<String, dynamic> json) {
     return ListAliasesOutput(
       aliases: (json['Aliases'] as List?)
@@ -15856,6 +15940,7 @@ class ListBuildsOutput {
     this.builds,
     this.nextToken,
   });
+
   factory ListBuildsOutput.fromJson(Map<String, dynamic> json) {
     return ListBuildsOutput(
       builds: (json['Builds'] as List?)
@@ -15893,6 +15978,7 @@ class ListFleetsOutput {
     this.fleetIds,
     this.nextToken,
   });
+
   factory ListFleetsOutput.fromJson(Map<String, dynamic> json) {
     return ListFleetsOutput(
       fleetIds: (json['FleetIds'] as List?)
@@ -15926,6 +16012,7 @@ class ListGameServerGroupsOutput {
     this.gameServerGroups,
     this.nextToken,
   });
+
   factory ListGameServerGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListGameServerGroupsOutput(
       gameServerGroups: (json['GameServerGroups'] as List?)
@@ -15959,6 +16046,7 @@ class ListGameServersOutput {
     this.gameServers,
     this.nextToken,
   });
+
   factory ListGameServersOutput.fromJson(Map<String, dynamic> json) {
     return ListGameServersOutput(
       gameServers: (json['GameServers'] as List?)
@@ -15992,6 +16080,7 @@ class ListScriptsOutput {
     this.nextToken,
     this.scripts,
   });
+
   factory ListScriptsOutput.fromJson(Map<String, dynamic> json) {
     return ListScriptsOutput(
       nextToken: json['NextToken'] as String?,
@@ -16019,6 +16108,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -16059,6 +16149,7 @@ class LocationAttributes {
     this.stoppedActions,
     this.updateStatus,
   });
+
   factory LocationAttributes.fromJson(Map<String, dynamic> json) {
     return LocationAttributes(
       locationState: json['LocationState'] != null
@@ -16099,6 +16190,7 @@ class LocationConfiguration {
   LocationConfiguration({
     this.location,
   });
+
   factory LocationConfiguration.fromJson(Map<String, dynamic> json) {
     return LocationConfiguration(
       location: json['Location'] as String?,
@@ -16135,6 +16227,7 @@ class LocationState {
     this.location,
     this.status,
   });
+
   factory LocationState.fromJson(Map<String, dynamic> json) {
     return LocationState(
       location: json['Location'] as String?,
@@ -16193,6 +16286,7 @@ class MatchedPlayerSession {
     this.playerId,
     this.playerSessionId,
   });
+
   factory MatchedPlayerSession.fromJson(Map<String, dynamic> json) {
     return MatchedPlayerSession(
       playerId: json['PlayerId'] as String?,
@@ -16352,6 +16446,7 @@ class MatchmakingConfiguration {
     this.ruleSetArn,
     this.ruleSetName,
   });
+
   factory MatchmakingConfiguration.fromJson(Map<String, dynamic> json) {
     return MatchmakingConfiguration(
       acceptanceRequired: json['AcceptanceRequired'] as bool?,
@@ -16553,6 +16648,7 @@ class MatchmakingRuleSet {
     this.ruleSetArn,
     this.ruleSetName,
   });
+
   factory MatchmakingRuleSet.fromJson(Map<String, dynamic> json) {
     return MatchmakingRuleSet(
       ruleSetBody: json['RuleSetBody'] as String,
@@ -16688,6 +16784,7 @@ class MatchmakingTicket {
     this.statusReason,
     this.ticketId,
   });
+
   factory MatchmakingTicket.fromJson(Map<String, dynamic> json) {
     return MatchmakingTicket(
       configurationArn: json['ConfigurationArn'] as String?,
@@ -16869,6 +16966,7 @@ class PlacedPlayerSession {
     this.playerId,
     this.playerSessionId,
   });
+
   factory PlacedPlayerSession.fromJson(Map<String, dynamic> json) {
     return PlacedPlayerSession(
       playerId: json['PlayerId'] as String?,
@@ -16920,6 +17018,7 @@ class Player {
     this.playerId,
     this.team,
   });
+
   factory Player.fromJson(Map<String, dynamic> json) {
     return Player(
       latencyInMs: (json['LatencyInMs'] as Map<String, dynamic>?)
@@ -16968,6 +17067,7 @@ class PlayerLatency {
     this.playerId,
     this.regionIdentifier,
   });
+
   factory PlayerLatency.fromJson(Map<String, dynamic> json) {
     return PlayerLatency(
       latencyInMilliseconds: json['LatencyInMilliseconds'] as double?,
@@ -17011,6 +17111,7 @@ class PlayerLatencyPolicy {
     this.maximumIndividualPlayerLatencyMilliseconds,
     this.policyDurationSeconds,
   });
+
   factory PlayerLatencyPolicy.fromJson(Map<String, dynamic> json) {
     return PlayerLatencyPolicy(
       maximumIndividualPlayerLatencyMilliseconds:
@@ -17150,6 +17251,7 @@ class PlayerSession {
     this.status,
     this.terminationTime,
   });
+
   factory PlayerSession.fromJson(Map<String, dynamic> json) {
     return PlayerSession(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -17354,6 +17456,7 @@ class PriorityConfiguration {
     this.locationOrder,
     this.priorityOrder,
   });
+
   factory PriorityConfiguration.fromJson(Map<String, dynamic> json) {
     return PriorityConfiguration(
       locationOrder: (json['LocationOrder'] as List?)
@@ -17453,6 +17556,7 @@ class PutScalingPolicyOutput {
   PutScalingPolicyOutput({
     this.name,
   });
+
   factory PutScalingPolicyOutput.fromJson(Map<String, dynamic> json) {
     return PutScalingPolicyOutput(
       name: json['Name'] as String?,
@@ -17474,6 +17578,7 @@ class RegisterGameServerOutput {
   RegisterGameServerOutput({
     this.gameServer,
   });
+
   factory RegisterGameServerOutput.fromJson(Map<String, dynamic> json) {
     return RegisterGameServerOutput(
       gameServer: json['GameServer'] != null
@@ -17504,6 +17609,7 @@ class RequestUploadCredentialsOutput {
     this.storageLocation,
     this.uploadCredentials,
   });
+
   factory RequestUploadCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return RequestUploadCredentialsOutput(
       storageLocation: json['StorageLocation'] != null
@@ -17540,6 +17646,7 @@ class ResolveAliasOutput {
     this.fleetArn,
     this.fleetId,
   });
+
   factory ResolveAliasOutput.fromJson(Map<String, dynamic> json) {
     return ResolveAliasOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -17579,6 +17686,7 @@ class ResourceCreationLimitPolicy {
     this.newGameSessionsPerCreator,
     this.policyPeriodInMinutes,
   });
+
   factory ResourceCreationLimitPolicy.fromJson(Map<String, dynamic> json) {
     return ResourceCreationLimitPolicy(
       newGameSessionsPerCreator: json['NewGameSessionsPerCreator'] as int?,
@@ -17607,6 +17715,7 @@ class ResumeGameServerGroupOutput {
   ResumeGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory ResumeGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return ResumeGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -17663,6 +17772,7 @@ class RoutingStrategy {
     this.message,
     this.type,
   });
+
   factory RoutingStrategy.fromJson(Map<String, dynamic> json) {
     return RoutingStrategy(
       fleetId: json['FleetId'] as String?,
@@ -17750,6 +17860,7 @@ class RuntimeConfiguration {
     this.maxConcurrentGameSessionActivations,
     this.serverProcesses,
   });
+
   factory RuntimeConfiguration.fromJson(Map<String, dynamic> json) {
     return RuntimeConfiguration(
       gameSessionActivationTimeoutSeconds:
@@ -17812,6 +17923,7 @@ class S3Location {
     this.objectVersion,
     this.roleArn,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['Bucket'] as String?,
@@ -18054,6 +18166,7 @@ class ScalingPolicy {
     this.threshold,
     this.updateStatus,
   });
+
   factory ScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ScalingPolicy(
       comparisonOperator:
@@ -18214,6 +18327,7 @@ class Script {
     this.storageLocation,
     this.version,
   });
+
   factory Script.fromJson(Map<String, dynamic> json) {
     return Script(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -18264,6 +18378,7 @@ class SearchGameSessionsOutput {
     this.gameSessions,
     this.nextToken,
   });
+
   factory SearchGameSessionsOutput.fromJson(Map<String, dynamic> json) {
     return SearchGameSessionsOutput(
       gameSessions: (json['GameSessions'] as List?)
@@ -18319,6 +18434,7 @@ class ServerProcess {
     required this.launchPath,
     this.parameters,
   });
+
   factory ServerProcess.fromJson(Map<String, dynamic> json) {
     return ServerProcess(
       concurrentExecutions: json['ConcurrentExecutions'] as int,
@@ -18383,6 +18499,7 @@ class StartFleetActionsOutput {
     this.fleetArn,
     this.fleetId,
   });
+
   factory StartFleetActionsOutput.fromJson(Map<String, dynamic> json) {
     return StartFleetActionsOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -18410,6 +18527,7 @@ class StartGameSessionPlacementOutput {
   StartGameSessionPlacementOutput({
     this.gameSessionPlacement,
   });
+
   factory StartGameSessionPlacementOutput.fromJson(Map<String, dynamic> json) {
     return StartGameSessionPlacementOutput(
       gameSessionPlacement: json['GameSessionPlacement'] != null
@@ -18438,6 +18556,7 @@ class StartMatchBackfillOutput {
   StartMatchBackfillOutput({
     this.matchmakingTicket,
   });
+
   factory StartMatchBackfillOutput.fromJson(Map<String, dynamic> json) {
     return StartMatchBackfillOutput(
       matchmakingTicket: json['MatchmakingTicket'] != null
@@ -18465,6 +18584,7 @@ class StartMatchmakingOutput {
   StartMatchmakingOutput({
     this.matchmakingTicket,
   });
+
   factory StartMatchmakingOutput.fromJson(Map<String, dynamic> json) {
     return StartMatchmakingOutput(
       matchmakingTicket: json['MatchmakingTicket'] != null
@@ -18498,6 +18618,7 @@ class StopFleetActionsOutput {
     this.fleetArn,
     this.fleetId,
   });
+
   factory StopFleetActionsOutput.fromJson(Map<String, dynamic> json) {
     return StopFleetActionsOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -18524,6 +18645,7 @@ class StopGameSessionPlacementOutput {
   StopGameSessionPlacementOutput({
     this.gameSessionPlacement,
   });
+
   factory StopGameSessionPlacementOutput.fromJson(Map<String, dynamic> json) {
     return StopGameSessionPlacementOutput(
       gameSessionPlacement: json['GameSessionPlacement'] != null
@@ -18544,6 +18666,7 @@ class StopGameSessionPlacementOutput {
 
 class StopMatchmakingOutput {
   StopMatchmakingOutput();
+
   factory StopMatchmakingOutput.fromJson(Map<String, dynamic> _) {
     return StopMatchmakingOutput();
   }
@@ -18562,6 +18685,7 @@ class SuspendGameServerGroupOutput {
   SuspendGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory SuspendGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return SuspendGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -18608,6 +18732,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -18627,6 +18752,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -18662,6 +18788,7 @@ class TargetConfiguration {
   TargetConfiguration({
     required this.targetValue,
   });
+
   factory TargetConfiguration.fromJson(Map<String, dynamic> json) {
     return TargetConfiguration(
       targetValue: json['TargetValue'] as double,
@@ -18692,6 +18819,7 @@ class TargetTrackingConfiguration {
   TargetTrackingConfiguration({
     required this.targetValue,
   });
+
   factory TargetTrackingConfiguration.fromJson(Map<String, dynamic> json) {
     return TargetTrackingConfiguration(
       targetValue: json['TargetValue'] as double,
@@ -18708,6 +18836,7 @@ class TargetTrackingConfiguration {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -18725,6 +18854,7 @@ class UpdateAliasOutput {
   UpdateAliasOutput({
     this.alias,
   });
+
   factory UpdateAliasOutput.fromJson(Map<String, dynamic> json) {
     return UpdateAliasOutput(
       alias: json['Alias'] != null
@@ -18749,6 +18879,7 @@ class UpdateBuildOutput {
   UpdateBuildOutput({
     this.build,
   });
+
   factory UpdateBuildOutput.fromJson(Map<String, dynamic> json) {
     return UpdateBuildOutput(
       build: json['Build'] != null
@@ -18773,6 +18904,7 @@ class UpdateFleetAttributesOutput {
   UpdateFleetAttributesOutput({
     this.fleetId,
   });
+
   factory UpdateFleetAttributesOutput.fromJson(Map<String, dynamic> json) {
     return UpdateFleetAttributesOutput(
       fleetId: json['FleetId'] as String?,
@@ -18808,6 +18940,7 @@ class UpdateFleetCapacityOutput {
     this.fleetId,
     this.location,
   });
+
   factory UpdateFleetCapacityOutput.fromJson(Map<String, dynamic> json) {
     return UpdateFleetCapacityOutput(
       fleetArn: json['FleetArn'] as String?,
@@ -18836,6 +18969,7 @@ class UpdateFleetPortSettingsOutput {
   UpdateFleetPortSettingsOutput({
     this.fleetId,
   });
+
   factory UpdateFleetPortSettingsOutput.fromJson(Map<String, dynamic> json) {
     return UpdateFleetPortSettingsOutput(
       fleetId: json['FleetId'] as String?,
@@ -18858,6 +18992,7 @@ class UpdateGameServerGroupOutput {
   UpdateGameServerGroupOutput({
     this.gameServerGroup,
   });
+
   factory UpdateGameServerGroupOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGameServerGroupOutput(
       gameServerGroup: json['GameServerGroup'] != null
@@ -18882,6 +19017,7 @@ class UpdateGameServerOutput {
   UpdateGameServerOutput({
     this.gameServer,
   });
+
   factory UpdateGameServerOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGameServerOutput(
       gameServer: json['GameServer'] != null
@@ -18906,6 +19042,7 @@ class UpdateGameSessionOutput {
   UpdateGameSessionOutput({
     this.gameSession,
   });
+
   factory UpdateGameSessionOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGameSessionOutput(
       gameSession: json['GameSession'] != null
@@ -18930,6 +19067,7 @@ class UpdateGameSessionQueueOutput {
   UpdateGameSessionQueueOutput({
     this.gameSessionQueue,
   });
+
   factory UpdateGameSessionQueueOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGameSessionQueueOutput(
       gameSessionQueue: json['GameSessionQueue'] != null
@@ -18955,6 +19093,7 @@ class UpdateMatchmakingConfigurationOutput {
   UpdateMatchmakingConfigurationOutput({
     this.configuration,
   });
+
   factory UpdateMatchmakingConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateMatchmakingConfigurationOutput(
@@ -18982,6 +19121,7 @@ class UpdateRuntimeConfigurationOutput {
   UpdateRuntimeConfigurationOutput({
     this.runtimeConfiguration,
   });
+
   factory UpdateRuntimeConfigurationOutput.fromJson(Map<String, dynamic> json) {
     return UpdateRuntimeConfigurationOutput(
       runtimeConfiguration: json['RuntimeConfiguration'] != null
@@ -19012,6 +19152,7 @@ class UpdateScriptOutput {
   UpdateScriptOutput({
     this.script,
   });
+
   factory UpdateScriptOutput.fromJson(Map<String, dynamic> json) {
     return UpdateScriptOutput(
       script: json['Script'] != null
@@ -19036,6 +19177,7 @@ class ValidateMatchmakingRuleSetOutput {
   ValidateMatchmakingRuleSetOutput({
     this.valid,
   });
+
   factory ValidateMatchmakingRuleSetOutput.fromJson(Map<String, dynamic> json) {
     return ValidateMatchmakingRuleSetOutput(
       valid: json['Valid'] as bool?,
@@ -19098,6 +19240,7 @@ class VpcPeeringAuthorization {
     this.peerVpcAwsAccountId,
     this.peerVpcId,
   });
+
   factory VpcPeeringAuthorization.fromJson(Map<String, dynamic> json) {
     return VpcPeeringAuthorization(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -19188,6 +19331,7 @@ class VpcPeeringConnection {
     this.status,
     this.vpcPeeringConnectionId,
   });
+
   factory VpcPeeringConnection.fromJson(Map<String, dynamic> json) {
     return VpcPeeringConnection(
       fleetArn: json['FleetArn'] as String?,
@@ -19240,6 +19384,7 @@ class VpcPeeringConnectionStatus {
     this.code,
     this.message,
   });
+
   factory VpcPeeringConnectionStatus.fromJson(Map<String, dynamic> json) {
     return VpcPeeringConnectionStatus(
       code: json['Code'] as String?,

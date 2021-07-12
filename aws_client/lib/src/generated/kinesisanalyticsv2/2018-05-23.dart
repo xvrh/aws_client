@@ -2250,6 +2250,7 @@ class AddApplicationCloudWatchLoggingOptionResponse {
     this.applicationVersionId,
     this.cloudWatchLoggingOptionDescriptions,
   });
+
   factory AddApplicationCloudWatchLoggingOptionResponse.fromJson(
       Map<String, dynamic> json) {
     return AddApplicationCloudWatchLoggingOptionResponse(
@@ -2303,6 +2304,7 @@ class AddApplicationInputProcessingConfigurationResponse {
     this.inputId,
     this.inputProcessingConfigurationDescription,
   });
+
   factory AddApplicationInputProcessingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return AddApplicationInputProcessingConfigurationResponse(
@@ -2351,6 +2353,7 @@ class AddApplicationInputResponse {
     this.applicationVersionId,
     this.inputDescriptions,
   });
+
   factory AddApplicationInputResponse.fromJson(Map<String, dynamic> json) {
     return AddApplicationInputResponse(
       applicationARN: json['ApplicationARN'] as String?,
@@ -2393,6 +2396,7 @@ class AddApplicationOutputResponse {
     this.applicationVersionId,
     this.outputDescriptions,
   });
+
   factory AddApplicationOutputResponse.fromJson(Map<String, dynamic> json) {
     return AddApplicationOutputResponse(
       applicationARN: json['ApplicationARN'] as String?,
@@ -2433,6 +2437,7 @@ class AddApplicationReferenceDataSourceResponse {
     this.applicationVersionId,
     this.referenceDataSourceDescriptions,
   });
+
   factory AddApplicationReferenceDataSourceResponse.fromJson(
       Map<String, dynamic> json) {
     return AddApplicationReferenceDataSourceResponse(
@@ -2478,6 +2483,7 @@ class AddApplicationVpcConfigurationResponse {
     this.applicationVersionId,
     this.vpcConfigurationDescription,
   });
+
   factory AddApplicationVpcConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return AddApplicationVpcConfigurationResponse(
@@ -2516,6 +2522,7 @@ class ApplicationCodeConfiguration {
     required this.codeContentType,
     this.codeContent,
   });
+
   factory ApplicationCodeConfiguration.fromJson(Map<String, dynamic> json) {
     return ApplicationCodeConfiguration(
       codeContentType: (json['CodeContentType'] as String).toCodeContentType(),
@@ -2547,6 +2554,7 @@ class ApplicationCodeConfigurationDescription {
     required this.codeContentType,
     this.codeContentDescription,
   });
+
   factory ApplicationCodeConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ApplicationCodeConfigurationDescription(
@@ -2583,6 +2591,7 @@ class ApplicationCodeConfigurationUpdate {
     this.codeContentTypeUpdate,
     this.codeContentUpdate,
   });
+
   factory ApplicationCodeConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return ApplicationCodeConfigurationUpdate(
@@ -2644,6 +2653,7 @@ class ApplicationConfiguration {
     this.vpcConfigurations,
     this.zeppelinApplicationConfiguration,
   });
+
   factory ApplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return ApplicationConfiguration(
       applicationCodeConfiguration: json['ApplicationCodeConfiguration'] != null
@@ -2758,6 +2768,7 @@ class ApplicationConfigurationDescription {
     this.vpcConfigurationDescriptions,
     this.zeppelinApplicationConfigurationDescription,
   });
+
   factory ApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ApplicationConfigurationDescription(
@@ -2891,6 +2902,7 @@ class ApplicationConfigurationUpdate {
     this.vpcConfigurationUpdates,
     this.zeppelinApplicationConfigurationUpdate,
   });
+
   factory ApplicationConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return ApplicationConfigurationUpdate(
       applicationCodeConfigurationUpdate:
@@ -3055,6 +3067,7 @@ class ApplicationDetail {
     this.lastUpdateTimestamp,
     this.serviceExecutionRole,
   });
+
   factory ApplicationDetail.fromJson(Map<String, dynamic> json) {
     return ApplicationDetail(
       applicationARN: json['ApplicationARN'] as String,
@@ -3167,6 +3180,7 @@ class ApplicationMaintenanceConfigurationDescription {
     required this.applicationMaintenanceWindowEndTime,
     required this.applicationMaintenanceWindowStartTime,
   });
+
   factory ApplicationMaintenanceConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ApplicationMaintenanceConfigurationDescription(
@@ -3199,6 +3213,7 @@ class ApplicationMaintenanceConfigurationUpdate {
   ApplicationMaintenanceConfigurationUpdate({
     required this.applicationMaintenanceWindowStartTimeUpdate,
   });
+
   factory ApplicationMaintenanceConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return ApplicationMaintenanceConfigurationUpdate(
@@ -3261,6 +3276,7 @@ class ApplicationRestoreConfiguration {
     required this.applicationRestoreType,
     this.snapshotName,
   });
+
   factory ApplicationRestoreConfiguration.fromJson(Map<String, dynamic> json) {
     return ApplicationRestoreConfiguration(
       applicationRestoreType:
@@ -3322,6 +3338,7 @@ class ApplicationSnapshotConfiguration {
   ApplicationSnapshotConfiguration({
     required this.snapshotsEnabled,
   });
+
   factory ApplicationSnapshotConfiguration.fromJson(Map<String, dynamic> json) {
     return ApplicationSnapshotConfiguration(
       snapshotsEnabled: json['SnapshotsEnabled'] as bool,
@@ -3346,6 +3363,7 @@ class ApplicationSnapshotConfigurationDescription {
   ApplicationSnapshotConfigurationDescription({
     required this.snapshotsEnabled,
   });
+
   factory ApplicationSnapshotConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ApplicationSnapshotConfigurationDescription(
@@ -3370,6 +3388,7 @@ class ApplicationSnapshotConfigurationUpdate {
   ApplicationSnapshotConfigurationUpdate({
     required this.snapshotsEnabledUpdate,
   });
+
   factory ApplicationSnapshotConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return ApplicationSnapshotConfigurationUpdate(
@@ -3489,6 +3508,7 @@ class ApplicationSummary {
     required this.runtimeEnvironment,
     this.applicationMode,
   });
+
   factory ApplicationSummary.fromJson(Map<String, dynamic> json) {
     return ApplicationSummary(
       applicationARN: json['ApplicationARN'] as String,
@@ -3534,6 +3554,7 @@ class ApplicationVersionSummary {
     required this.applicationStatus,
     required this.applicationVersionId,
   });
+
   factory ApplicationVersionSummary.fromJson(Map<String, dynamic> json) {
     return ApplicationVersionSummary(
       applicationStatus:
@@ -3602,6 +3623,7 @@ class CSVMappingParameters {
     required this.recordColumnDelimiter,
     required this.recordRowDelimiter,
   });
+
   factory CSVMappingParameters.fromJson(Map<String, dynamic> json) {
     return CSVMappingParameters(
       recordColumnDelimiter: json['RecordColumnDelimiter'] as String,
@@ -3631,6 +3653,7 @@ class CatalogConfiguration {
   CatalogConfiguration({
     required this.glueDataCatalogConfiguration,
   });
+
   factory CatalogConfiguration.fromJson(Map<String, dynamic> json) {
     return CatalogConfiguration(
       glueDataCatalogConfiguration: GlueDataCatalogConfiguration.fromJson(
@@ -3659,6 +3682,7 @@ class CatalogConfigurationDescription {
   CatalogConfigurationDescription({
     required this.glueDataCatalogConfigurationDescription,
   });
+
   factory CatalogConfigurationDescription.fromJson(Map<String, dynamic> json) {
     return CatalogConfigurationDescription(
       glueDataCatalogConfigurationDescription:
@@ -3688,6 +3712,7 @@ class CatalogConfigurationUpdate {
   CatalogConfigurationUpdate({
     required this.glueDataCatalogConfigurationUpdate,
   });
+
   factory CatalogConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return CatalogConfigurationUpdate(
       glueDataCatalogConfigurationUpdate:
@@ -3779,6 +3804,7 @@ class CheckpointConfiguration {
     this.checkpointingEnabled,
     this.minPauseBetweenCheckpoints,
   });
+
   factory CheckpointConfiguration.fromJson(Map<String, dynamic> json) {
     return CheckpointConfiguration(
       configurationType:
@@ -3863,6 +3889,7 @@ class CheckpointConfigurationDescription {
     this.configurationType,
     this.minPauseBetweenCheckpoints,
   });
+
   factory CheckpointConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return CheckpointConfigurationDescription(
@@ -3952,6 +3979,7 @@ class CheckpointConfigurationUpdate {
     this.configurationTypeUpdate,
     this.minPauseBetweenCheckpointsUpdate,
   });
+
   factory CheckpointConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return CheckpointConfigurationUpdate(
       checkpointIntervalUpdate: json['CheckpointIntervalUpdate'] as int?,
@@ -3991,6 +4019,7 @@ class CloudWatchLoggingOption {
   CloudWatchLoggingOption({
     required this.logStreamARN,
   });
+
   factory CloudWatchLoggingOption.fromJson(Map<String, dynamic> json) {
     return CloudWatchLoggingOption(
       logStreamARN: json['LogStreamARN'] as String,
@@ -4027,6 +4056,7 @@ class CloudWatchLoggingOptionDescription {
     this.cloudWatchLoggingOptionId,
     this.roleARN,
   });
+
   factory CloudWatchLoggingOptionDescription.fromJson(
       Map<String, dynamic> json) {
     return CloudWatchLoggingOptionDescription(
@@ -4062,6 +4092,7 @@ class CloudWatchLoggingOptionUpdate {
     required this.cloudWatchLoggingOptionId,
     this.logStreamARNUpdate,
   });
+
   factory CloudWatchLoggingOptionUpdate.fromJson(Map<String, dynamic> json) {
     return CloudWatchLoggingOptionUpdate(
       cloudWatchLoggingOptionId: json['CloudWatchLoggingOptionId'] as String,
@@ -4096,6 +4127,7 @@ class CodeContent {
     this.textContent,
     this.zipFileContent,
   });
+
   factory CodeContent.fromJson(Map<String, dynamic> json) {
     return CodeContent(
       s3ContentLocation: json['S3ContentLocation'] != null
@@ -4144,6 +4176,7 @@ class CodeContentDescription {
     this.s3ApplicationCodeLocationDescription,
     this.textContent,
   });
+
   factory CodeContentDescription.fromJson(Map<String, dynamic> json) {
     return CodeContentDescription(
       codeMD5: json['CodeMD5'] as String?,
@@ -4220,6 +4253,7 @@ class CodeContentUpdate {
     this.textContentUpdate,
     this.zipFileContentUpdate,
   });
+
   factory CodeContentUpdate.fromJson(Map<String, dynamic> json) {
     return CodeContentUpdate(
       s3ContentLocationUpdate: json['S3ContentLocationUpdate'] != null
@@ -4281,6 +4315,7 @@ class CreateApplicationPresignedUrlResponse {
   CreateApplicationPresignedUrlResponse({
     this.authorizedUrl,
   });
+
   factory CreateApplicationPresignedUrlResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateApplicationPresignedUrlResponse(
@@ -4304,6 +4339,7 @@ class CreateApplicationResponse {
   CreateApplicationResponse({
     required this.applicationDetail,
   });
+
   factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApplicationResponse(
       applicationDetail: ApplicationDetail.fromJson(
@@ -4321,6 +4357,7 @@ class CreateApplicationResponse {
 
 class CreateApplicationSnapshotResponse {
   CreateApplicationSnapshotResponse();
+
   factory CreateApplicationSnapshotResponse.fromJson(Map<String, dynamic> _) {
     return CreateApplicationSnapshotResponse();
   }
@@ -4347,6 +4384,7 @@ class CustomArtifactConfiguration {
     this.mavenReference,
     this.s3ContentLocation,
   });
+
   factory CustomArtifactConfiguration.fromJson(Map<String, dynamic> json) {
     return CustomArtifactConfiguration(
       artifactType: (json['ArtifactType'] as String).toArtifactType(),
@@ -4389,6 +4427,7 @@ class CustomArtifactConfigurationDescription {
     this.mavenReferenceDescription,
     this.s3ContentLocationDescription,
   });
+
   factory CustomArtifactConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return CustomArtifactConfigurationDescription(
@@ -4437,6 +4476,7 @@ class DeleteApplicationCloudWatchLoggingOptionResponse {
     this.applicationVersionId,
     this.cloudWatchLoggingOptionDescriptions,
   });
+
   factory DeleteApplicationCloudWatchLoggingOptionResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteApplicationCloudWatchLoggingOptionResponse(
@@ -4478,6 +4518,7 @@ class DeleteApplicationInputProcessingConfigurationResponse {
     this.applicationARN,
     this.applicationVersionId,
   });
+
   factory DeleteApplicationInputProcessingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteApplicationInputProcessingConfigurationResponse(
@@ -4508,6 +4549,7 @@ class DeleteApplicationOutputResponse {
     this.applicationARN,
     this.applicationVersionId,
   });
+
   factory DeleteApplicationOutputResponse.fromJson(Map<String, dynamic> json) {
     return DeleteApplicationOutputResponse(
       applicationARN: json['ApplicationARN'] as String?,
@@ -4537,6 +4579,7 @@ class DeleteApplicationReferenceDataSourceResponse {
     this.applicationARN,
     this.applicationVersionId,
   });
+
   factory DeleteApplicationReferenceDataSourceResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteApplicationReferenceDataSourceResponse(
@@ -4558,6 +4601,7 @@ class DeleteApplicationReferenceDataSourceResponse {
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
+
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
   }
@@ -4569,6 +4613,7 @@ class DeleteApplicationResponse {
 
 class DeleteApplicationSnapshotResponse {
   DeleteApplicationSnapshotResponse();
+
   factory DeleteApplicationSnapshotResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationSnapshotResponse();
   }
@@ -4589,6 +4634,7 @@ class DeleteApplicationVpcConfigurationResponse {
     this.applicationARN,
     this.applicationVersionId,
   });
+
   factory DeleteApplicationVpcConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteApplicationVpcConfigurationResponse(
@@ -4620,6 +4666,7 @@ class DeployAsApplicationConfiguration {
   DeployAsApplicationConfiguration({
     required this.s3ContentLocation,
   });
+
   factory DeployAsApplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return DeployAsApplicationConfiguration(
       s3ContentLocation: S3ContentBaseLocation.fromJson(
@@ -4645,6 +4692,7 @@ class DeployAsApplicationConfigurationDescription {
   DeployAsApplicationConfigurationDescription({
     required this.s3ContentLocationDescription,
   });
+
   factory DeployAsApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return DeployAsApplicationConfigurationDescription(
@@ -4671,6 +4719,7 @@ class DeployAsApplicationConfigurationUpdate {
   DeployAsApplicationConfigurationUpdate({
     required this.s3ContentLocationUpdate,
   });
+
   factory DeployAsApplicationConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return DeployAsApplicationConfigurationUpdate(
@@ -4695,6 +4744,7 @@ class DescribeApplicationResponse {
   DescribeApplicationResponse({
     required this.applicationDetail,
   });
+
   factory DescribeApplicationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeApplicationResponse(
       applicationDetail: ApplicationDetail.fromJson(
@@ -4717,6 +4767,7 @@ class DescribeApplicationSnapshotResponse {
   DescribeApplicationSnapshotResponse({
     required this.snapshotDetails,
   });
+
   factory DescribeApplicationSnapshotResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeApplicationSnapshotResponse(
@@ -4739,6 +4790,7 @@ class DescribeApplicationVersionResponse {
   DescribeApplicationVersionResponse({
     this.applicationVersionDetail,
   });
+
   factory DescribeApplicationVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeApplicationVersionResponse(
@@ -4767,6 +4819,7 @@ class DestinationSchema {
   DestinationSchema({
     required this.recordFormatType,
   });
+
   factory DestinationSchema.fromJson(Map<String, dynamic> json) {
     return DestinationSchema(
       recordFormatType:
@@ -4805,6 +4858,7 @@ class DiscoverInputSchemaResponse {
     this.processedInputRecords,
     this.rawInputRecords,
   });
+
   factory DiscoverInputSchemaResponse.fromJson(Map<String, dynamic> json) {
     return DiscoverInputSchemaResponse(
       inputSchema: json['InputSchema'] != null
@@ -4850,6 +4904,7 @@ class EnvironmentProperties {
   EnvironmentProperties({
     required this.propertyGroups,
   });
+
   factory EnvironmentProperties.fromJson(Map<String, dynamic> json) {
     return EnvironmentProperties(
       propertyGroups: (json['PropertyGroups'] as List)
@@ -4875,6 +4930,7 @@ class EnvironmentPropertyDescriptions {
   EnvironmentPropertyDescriptions({
     this.propertyGroupDescriptions,
   });
+
   factory EnvironmentPropertyDescriptions.fromJson(Map<String, dynamic> json) {
     return EnvironmentPropertyDescriptions(
       propertyGroupDescriptions: (json['PropertyGroupDescriptions'] as List?)
@@ -4902,6 +4958,7 @@ class EnvironmentPropertyUpdates {
   EnvironmentPropertyUpdates({
     required this.propertyGroups,
   });
+
   factory EnvironmentPropertyUpdates.fromJson(Map<String, dynamic> json) {
     return EnvironmentPropertyUpdates(
       propertyGroups: (json['PropertyGroups'] as List)
@@ -4944,6 +5001,7 @@ class FlinkApplicationConfiguration {
     this.monitoringConfiguration,
     this.parallelismConfiguration,
   });
+
   factory FlinkApplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return FlinkApplicationConfiguration(
       checkpointConfiguration: json['CheckpointConfiguration'] != null
@@ -5008,6 +5066,7 @@ class FlinkApplicationConfigurationDescription {
     this.monitoringConfigurationDescription,
     this.parallelismConfigurationDescription,
   });
+
   factory FlinkApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return FlinkApplicationConfigurationDescription(
@@ -5077,6 +5136,7 @@ class FlinkApplicationConfigurationUpdate {
     this.monitoringConfigurationUpdate,
     this.parallelismConfigurationUpdate,
   });
+
   factory FlinkApplicationConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return FlinkApplicationConfigurationUpdate(
@@ -5136,6 +5196,7 @@ class FlinkRunConfiguration {
   FlinkRunConfiguration({
     this.allowNonRestoredState,
   });
+
   factory FlinkRunConfiguration.fromJson(Map<String, dynamic> json) {
     return FlinkRunConfiguration(
       allowNonRestoredState: json['AllowNonRestoredState'] as bool?,
@@ -5160,6 +5221,7 @@ class GlueDataCatalogConfiguration {
   GlueDataCatalogConfiguration({
     required this.databaseARN,
   });
+
   factory GlueDataCatalogConfiguration.fromJson(Map<String, dynamic> json) {
     return GlueDataCatalogConfiguration(
       databaseARN: json['DatabaseARN'] as String,
@@ -5183,6 +5245,7 @@ class GlueDataCatalogConfigurationDescription {
   GlueDataCatalogConfigurationDescription({
     required this.databaseARN,
   });
+
   factory GlueDataCatalogConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return GlueDataCatalogConfigurationDescription(
@@ -5207,6 +5270,7 @@ class GlueDataCatalogConfigurationUpdate {
   GlueDataCatalogConfigurationUpdate({
     this.databaseARNUpdate,
   });
+
   factory GlueDataCatalogConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return GlueDataCatalogConfigurationUpdate(
@@ -5266,6 +5330,7 @@ class Input {
     this.kinesisFirehoseInput,
     this.kinesisStreamsInput,
   });
+
   factory Input.fromJson(Map<String, dynamic> json) {
     return Input(
       inputSchema:
@@ -5363,6 +5428,7 @@ class InputDescription {
     this.kinesisStreamsInputDescription,
     this.namePrefix,
   });
+
   factory InputDescription.fromJson(Map<String, dynamic> json) {
     return InputDescription(
       inAppStreamNames: (json['InAppStreamNames'] as List?)
@@ -5454,6 +5520,7 @@ class InputLambdaProcessor {
   InputLambdaProcessor({
     required this.resourceARN,
   });
+
   factory InputLambdaProcessor.fromJson(Map<String, dynamic> json) {
     return InputLambdaProcessor(
       resourceARN: json['ResourceARN'] as String,
@@ -5495,6 +5562,7 @@ class InputLambdaProcessorDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory InputLambdaProcessorDescription.fromJson(Map<String, dynamic> json) {
     return InputLambdaProcessorDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -5530,6 +5598,7 @@ class InputLambdaProcessorUpdate {
   InputLambdaProcessorUpdate({
     required this.resourceARNUpdate,
   });
+
   factory InputLambdaProcessorUpdate.fromJson(Map<String, dynamic> json) {
     return InputLambdaProcessorUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -5553,6 +5622,7 @@ class InputParallelism {
   InputParallelism({
     this.count,
   });
+
   factory InputParallelism.fromJson(Map<String, dynamic> json) {
     return InputParallelism(
       count: json['Count'] as int?,
@@ -5577,6 +5647,7 @@ class InputParallelismUpdate {
   InputParallelismUpdate({
     required this.countUpdate,
   });
+
   factory InputParallelismUpdate.fromJson(Map<String, dynamic> json) {
     return InputParallelismUpdate(
       countUpdate: json['CountUpdate'] as int,
@@ -5603,6 +5674,7 @@ class InputProcessingConfiguration {
   InputProcessingConfiguration({
     required this.inputLambdaProcessor,
   });
+
   factory InputProcessingConfiguration.fromJson(Map<String, dynamic> json) {
     return InputProcessingConfiguration(
       inputLambdaProcessor: InputLambdaProcessor.fromJson(
@@ -5630,6 +5702,7 @@ class InputProcessingConfigurationDescription {
   InputProcessingConfigurationDescription({
     this.inputLambdaProcessorDescription,
   });
+
   factory InputProcessingConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return InputProcessingConfigurationDescription(
@@ -5661,6 +5734,7 @@ class InputProcessingConfigurationUpdate {
   InputProcessingConfigurationUpdate({
     required this.inputLambdaProcessorUpdate,
   });
+
   factory InputProcessingConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return InputProcessingConfigurationUpdate(
@@ -5697,6 +5771,7 @@ class InputSchemaUpdate {
     this.recordEncodingUpdate,
     this.recordFormatUpdate,
   });
+
   factory InputSchemaUpdate.fromJson(Map<String, dynamic> json) {
     return InputSchemaUpdate(
       recordColumnUpdates: (json['RecordColumnUpdates'] as List?)
@@ -5783,6 +5858,7 @@ class InputStartingPositionConfiguration {
   InputStartingPositionConfiguration({
     this.inputStartingPosition,
   });
+
   factory InputStartingPositionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return InputStartingPositionConfiguration(
@@ -5840,6 +5916,7 @@ class InputUpdate {
     this.kinesisStreamsInputUpdate,
     this.namePrefixUpdate,
   });
+
   factory InputUpdate.fromJson(Map<String, dynamic> json) {
     return InputUpdate(
       inputId: json['InputId'] as String,
@@ -5904,6 +5981,7 @@ class JSONMappingParameters {
   JSONMappingParameters({
     required this.recordRowPath,
   });
+
   factory JSONMappingParameters.fromJson(Map<String, dynamic> json) {
     return JSONMappingParameters(
       recordRowPath: json['RecordRowPath'] as String,
@@ -5928,6 +6006,7 @@ class KinesisFirehoseInput {
   KinesisFirehoseInput({
     required this.resourceARN,
   });
+
   factory KinesisFirehoseInput.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseInput(
       resourceARN: json['ResourceARN'] as String,
@@ -5961,6 +6040,7 @@ class KinesisFirehoseInputDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory KinesisFirehoseInputDescription.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseInputDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -5988,6 +6068,7 @@ class KinesisFirehoseInputUpdate {
   KinesisFirehoseInputUpdate({
     required this.resourceARNUpdate,
   });
+
   factory KinesisFirehoseInputUpdate.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseInputUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -6013,6 +6094,7 @@ class KinesisFirehoseOutput {
   KinesisFirehoseOutput({
     required this.resourceARN,
   });
+
   factory KinesisFirehoseOutput.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseOutput(
       resourceARN: json['ResourceARN'] as String,
@@ -6046,6 +6128,7 @@ class KinesisFirehoseOutputDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory KinesisFirehoseOutputDescription.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseOutputDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -6074,6 +6157,7 @@ class KinesisFirehoseOutputUpdate {
   KinesisFirehoseOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   factory KinesisFirehoseOutputUpdate.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseOutputUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -6097,6 +6181,7 @@ class KinesisStreamsInput {
   KinesisStreamsInput({
     required this.resourceARN,
   });
+
   factory KinesisStreamsInput.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsInput(
       resourceARN: json['ResourceARN'] as String,
@@ -6131,6 +6216,7 @@ class KinesisStreamsInputDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory KinesisStreamsInputDescription.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsInputDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -6158,6 +6244,7 @@ class KinesisStreamsInputUpdate {
   KinesisStreamsInputUpdate({
     required this.resourceARNUpdate,
   });
+
   factory KinesisStreamsInputUpdate.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsInputUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -6182,6 +6269,7 @@ class KinesisStreamsOutput {
   KinesisStreamsOutput({
     required this.resourceARN,
   });
+
   factory KinesisStreamsOutput.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsOutput(
       resourceARN: json['ResourceARN'] as String,
@@ -6215,6 +6303,7 @@ class KinesisStreamsOutputDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory KinesisStreamsOutputDescription.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsOutputDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -6244,6 +6333,7 @@ class KinesisStreamsOutputUpdate {
   KinesisStreamsOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   factory KinesisStreamsOutputUpdate.fromJson(Map<String, dynamic> json) {
     return KinesisStreamsOutputUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -6276,6 +6366,7 @@ class LambdaOutput {
   LambdaOutput({
     required this.resourceARN,
   });
+
   factory LambdaOutput.fromJson(Map<String, dynamic> json) {
     return LambdaOutput(
       resourceARN: json['ResourceARN'] as String,
@@ -6309,6 +6400,7 @@ class LambdaOutputDescription {
     required this.resourceARN,
     this.roleARN,
   });
+
   factory LambdaOutputDescription.fromJson(Map<String, dynamic> json) {
     return LambdaOutputDescription(
       resourceARN: json['ResourceARN'] as String,
@@ -6344,6 +6436,7 @@ class LambdaOutputUpdate {
   LambdaOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   factory LambdaOutputUpdate.fromJson(Map<String, dynamic> json) {
     return LambdaOutputUpdate(
       resourceARNUpdate: json['ResourceARNUpdate'] as String,
@@ -6371,6 +6464,7 @@ class ListApplicationSnapshotsResponse {
     this.nextToken,
     this.snapshotSummaries,
   });
+
   factory ListApplicationSnapshotsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationSnapshotsResponse(
       nextToken: json['NextToken'] as String?,
@@ -6411,6 +6505,7 @@ class ListApplicationVersionsResponse {
     this.applicationVersionSummaries,
     this.nextToken,
   });
+
   factory ListApplicationVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationVersionsResponse(
       applicationVersionSummaries:
@@ -6450,6 +6545,7 @@ class ListApplicationsResponse {
     required this.applicationSummaries,
     this.nextToken,
   });
+
   factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationsResponse(
       applicationSummaries: (json['ApplicationSummaries'] as List)
@@ -6477,6 +6573,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -6549,6 +6646,7 @@ class MappingParameters {
     this.cSVMappingParameters,
     this.jSONMappingParameters,
   });
+
   factory MappingParameters.fromJson(Map<String, dynamic> json) {
     return MappingParameters(
       cSVMappingParameters: json['CSVMappingParameters'] != null
@@ -6591,6 +6689,7 @@ class MavenReference {
     required this.groupId,
     required this.version,
   });
+
   factory MavenReference.fromJson(Map<String, dynamic> json) {
     return MavenReference(
       artifactId: json['ArtifactId'] as String,
@@ -6671,6 +6770,7 @@ class MonitoringConfiguration {
     this.logLevel,
     this.metricsLevel,
   });
+
   factory MonitoringConfiguration.fromJson(Map<String, dynamic> json) {
     return MonitoringConfiguration(
       configurationType:
@@ -6710,6 +6810,7 @@ class MonitoringConfigurationDescription {
     this.logLevel,
     this.metricsLevel,
   });
+
   factory MonitoringConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return MonitoringConfigurationDescription(
@@ -6756,6 +6857,7 @@ class MonitoringConfigurationUpdate {
     this.logLevelUpdate,
     this.metricsLevelUpdate,
   });
+
   factory MonitoringConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return MonitoringConfigurationUpdate(
       configurationTypeUpdate:
@@ -6809,6 +6911,7 @@ class Output {
     this.kinesisStreamsOutput,
     this.lambdaOutput,
   });
+
   factory Output.fromJson(Map<String, dynamic> json) {
     return Output(
       destinationSchema: DestinationSchema.fromJson(
@@ -6880,6 +6983,7 @@ class OutputDescription {
     this.name,
     this.outputId,
   });
+
   factory OutputDescription.fromJson(Map<String, dynamic> json) {
     return OutputDescription(
       destinationSchema: json['DestinationSchema'] != null
@@ -6961,6 +7065,7 @@ class OutputUpdate {
     this.lambdaOutputUpdate,
     this.nameUpdate,
   });
+
   factory OutputUpdate.fromJson(Map<String, dynamic> json) {
     return OutputUpdate(
       outputId: json['OutputId'] as String,
@@ -7050,6 +7155,7 @@ class ParallelismConfiguration {
     this.parallelism,
     this.parallelismPerKPU,
   });
+
   factory ParallelismConfiguration.fromJson(Map<String, dynamic> json) {
     return ParallelismConfiguration(
       configurationType:
@@ -7120,6 +7226,7 @@ class ParallelismConfigurationDescription {
     this.parallelism,
     this.parallelismPerKPU,
   });
+
   factory ParallelismConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ParallelismConfigurationDescription(
@@ -7186,6 +7293,7 @@ class ParallelismConfigurationUpdate {
     this.parallelismPerKPUUpdate,
     this.parallelismUpdate,
   });
+
   factory ParallelismConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return ParallelismConfigurationUpdate(
       autoScalingEnabledUpdate: json['AutoScalingEnabledUpdate'] as bool?,
@@ -7225,6 +7333,7 @@ class PropertyGroup {
     required this.propertyGroupId,
     required this.propertyMap,
   });
+
   factory PropertyGroup.fromJson(Map<String, dynamic> json) {
     return PropertyGroup(
       propertyGroupId: json['PropertyGroupId'] as String,
@@ -7266,6 +7375,7 @@ class RecordColumn {
     required this.sqlType,
     this.mapping,
   });
+
   factory RecordColumn.fromJson(Map<String, dynamic> json) {
     return RecordColumn(
       name: json['Name'] as String,
@@ -7303,6 +7413,7 @@ class RecordFormat {
     required this.recordFormatType,
     this.mappingParameters,
   });
+
   factory RecordFormat.fromJson(Map<String, dynamic> json) {
     return RecordFormat(
       recordFormatType:
@@ -7376,6 +7487,7 @@ class ReferenceDataSource {
     required this.tableName,
     this.s3ReferenceDataSource,
   });
+
   factory ReferenceDataSource.fromJson(Map<String, dynamic> json) {
     return ReferenceDataSource(
       referenceSchema: SourceSchema.fromJson(
@@ -7427,6 +7539,7 @@ class ReferenceDataSourceDescription {
     required this.tableName,
     this.referenceSchema,
   });
+
   factory ReferenceDataSourceDescription.fromJson(Map<String, dynamic> json) {
     return ReferenceDataSourceDescription(
       referenceId: json['ReferenceId'] as String,
@@ -7485,6 +7598,7 @@ class ReferenceDataSourceUpdate {
     this.s3ReferenceDataSourceUpdate,
     this.tableNameUpdate,
   });
+
   factory ReferenceDataSourceUpdate.fromJson(Map<String, dynamic> json) {
     return ReferenceDataSourceUpdate(
       referenceId: json['ReferenceId'] as String,
@@ -7522,6 +7636,7 @@ class RollbackApplicationResponse {
   RollbackApplicationResponse({
     required this.applicationDetail,
   });
+
   factory RollbackApplicationResponse.fromJson(Map<String, dynamic> json) {
     return RollbackApplicationResponse(
       applicationDetail: ApplicationDetail.fromJson(
@@ -7555,6 +7670,7 @@ class RunConfiguration {
     this.flinkRunConfiguration,
     this.sqlRunConfigurations,
   });
+
   factory RunConfiguration.fromJson(Map<String, dynamic> json) {
     return RunConfiguration(
       applicationRestoreConfiguration:
@@ -7601,6 +7717,7 @@ class RunConfigurationDescription {
     this.applicationRestoreConfigurationDescription,
     this.flinkRunConfigurationDescription,
   });
+
   factory RunConfigurationDescription.fromJson(Map<String, dynamic> json) {
     return RunConfigurationDescription(
       applicationRestoreConfigurationDescription:
@@ -7647,6 +7764,7 @@ class RunConfigurationUpdate {
     this.applicationRestoreConfiguration,
     this.flinkRunConfiguration,
   });
+
   factory RunConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return RunConfigurationUpdate(
       applicationRestoreConfiguration:
@@ -7735,6 +7853,7 @@ class S3ApplicationCodeLocationDescription {
     required this.fileKey,
     this.objectVersion,
   });
+
   factory S3ApplicationCodeLocationDescription.fromJson(
       Map<String, dynamic> json) {
     return S3ApplicationCodeLocationDescription(
@@ -7770,6 +7889,7 @@ class S3Configuration {
     required this.bucketARN,
     required this.fileKey,
   });
+
   factory S3Configuration.fromJson(Map<String, dynamic> json) {
     return S3Configuration(
       bucketARN: json['BucketARN'] as String,
@@ -7799,6 +7919,7 @@ class S3ContentBaseLocation {
     required this.bucketARN,
     this.basePath,
   });
+
   factory S3ContentBaseLocation.fromJson(Map<String, dynamic> json) {
     return S3ContentBaseLocation(
       bucketARN: json['BucketARN'] as String,
@@ -7828,6 +7949,7 @@ class S3ContentBaseLocationDescription {
     required this.bucketARN,
     this.basePath,
   });
+
   factory S3ContentBaseLocationDescription.fromJson(Map<String, dynamic> json) {
     return S3ContentBaseLocationDescription(
       bucketARN: json['BucketARN'] as String,
@@ -7858,6 +7980,7 @@ class S3ContentBaseLocationUpdate {
     required this.bucketARNUpdate,
     this.basePathUpdate,
   });
+
   factory S3ContentBaseLocationUpdate.fromJson(Map<String, dynamic> json) {
     return S3ContentBaseLocationUpdate(
       bucketARNUpdate: json['BucketARNUpdate'] as String,
@@ -7895,6 +8018,7 @@ class S3ContentLocation {
     required this.fileKey,
     this.objectVersion,
   });
+
   factory S3ContentLocation.fromJson(Map<String, dynamic> json) {
     return S3ContentLocation(
       bucketARN: json['BucketARN'] as String,
@@ -7933,6 +8057,7 @@ class S3ContentLocationUpdate {
     this.fileKeyUpdate,
     this.objectVersionUpdate,
   });
+
   factory S3ContentLocationUpdate.fromJson(Map<String, dynamic> json) {
     return S3ContentLocationUpdate(
       bucketARNUpdate: json['BucketARNUpdate'] as String?,
@@ -7971,6 +8096,7 @@ class S3ReferenceDataSource {
     this.bucketARN,
     this.fileKey,
   });
+
   factory S3ReferenceDataSource.fromJson(Map<String, dynamic> json) {
     return S3ReferenceDataSource(
       bucketARN: json['BucketARN'] as String?,
@@ -8012,6 +8138,7 @@ class S3ReferenceDataSourceDescription {
     required this.fileKey,
     this.referenceRoleARN,
   });
+
   factory S3ReferenceDataSourceDescription.fromJson(Map<String, dynamic> json) {
     return S3ReferenceDataSourceDescription(
       bucketARN: json['BucketARN'] as String,
@@ -8045,6 +8172,7 @@ class S3ReferenceDataSourceUpdate {
     this.bucketARNUpdate,
     this.fileKeyUpdate,
   });
+
   factory S3ReferenceDataSourceUpdate.fromJson(Map<String, dynamic> json) {
     return S3ReferenceDataSourceUpdate(
       bucketARNUpdate: json['BucketARNUpdate'] as String?,
@@ -8082,6 +8210,7 @@ class SnapshotDetails {
     required this.snapshotStatus,
     this.snapshotCreationTimestamp,
   });
+
   factory SnapshotDetails.fromJson(Map<String, dynamic> json) {
     return SnapshotDetails(
       applicationVersionId: json['ApplicationVersionId'] as int,
@@ -8165,6 +8294,7 @@ class SourceSchema {
     required this.recordFormat,
     this.recordEncoding,
   });
+
   factory SourceSchema.fromJson(Map<String, dynamic> json) {
     return SourceSchema(
       recordColumns: (json['RecordColumns'] as List)
@@ -8209,6 +8339,7 @@ class SqlApplicationConfiguration {
     this.outputs,
     this.referenceDataSources,
   });
+
   factory SqlApplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return SqlApplicationConfiguration(
       inputs: (json['Inputs'] as List?)
@@ -8259,6 +8390,7 @@ class SqlApplicationConfigurationDescription {
     this.outputDescriptions,
     this.referenceDataSourceDescriptions,
   });
+
   factory SqlApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return SqlApplicationConfigurationDescription(
@@ -8313,6 +8445,7 @@ class SqlApplicationConfigurationUpdate {
     this.outputUpdates,
     this.referenceDataSourceUpdates,
   });
+
   factory SqlApplicationConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return SqlApplicationConfigurationUpdate(
@@ -8360,6 +8493,7 @@ class SqlRunConfiguration {
     required this.inputId,
     required this.inputStartingPositionConfiguration,
   });
+
   factory SqlRunConfiguration.fromJson(Map<String, dynamic> json) {
     return SqlRunConfiguration(
       inputId: json['InputId'] as String,
@@ -8383,6 +8517,7 @@ class SqlRunConfiguration {
 
 class StartApplicationResponse {
   StartApplicationResponse();
+
   factory StartApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartApplicationResponse();
   }
@@ -8394,6 +8529,7 @@ class StartApplicationResponse {
 
 class StopApplicationResponse {
   StopApplicationResponse();
+
   factory StopApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopApplicationResponse();
   }
@@ -8421,6 +8557,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -8440,6 +8577,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -8451,6 +8589,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -8472,6 +8611,7 @@ class UpdateApplicationMaintenanceConfigurationResponse {
     this.applicationARN,
     this.applicationMaintenanceConfigurationDescription,
   });
+
   factory UpdateApplicationMaintenanceConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateApplicationMaintenanceConfigurationResponse(
@@ -8505,6 +8645,7 @@ class UpdateApplicationResponse {
   UpdateApplicationResponse({
     required this.applicationDetail,
   });
+
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApplicationResponse(
       applicationDetail: ApplicationDetail.fromJson(
@@ -8564,6 +8705,7 @@ class VpcConfiguration {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+
   factory VpcConfiguration.fromJson(Map<String, dynamic> json) {
     return VpcConfiguration(
       securityGroupIds: (json['SecurityGroupIds'] as List)
@@ -8611,6 +8753,7 @@ class VpcConfigurationDescription {
     required this.vpcConfigurationId,
     required this.vpcId,
   });
+
   factory VpcConfigurationDescription.fromJson(Map<String, dynamic> json) {
     return VpcConfigurationDescription(
       securityGroupIds: (json['SecurityGroupIds'] as List)
@@ -8660,6 +8803,7 @@ class VpcConfigurationUpdate {
     this.securityGroupIdUpdates,
     this.subnetIdUpdates,
   });
+
   factory VpcConfigurationUpdate.fromJson(Map<String, dynamic> json) {
     return VpcConfigurationUpdate(
       vpcConfigurationId: json['VpcConfigurationId'] as String,
@@ -8709,6 +8853,7 @@ class ZeppelinApplicationConfiguration {
     this.deployAsApplicationConfiguration,
     this.monitoringConfiguration,
   });
+
   factory ZeppelinApplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return ZeppelinApplicationConfiguration(
       catalogConfiguration: json['CatalogConfiguration'] != null
@@ -8778,6 +8923,7 @@ class ZeppelinApplicationConfigurationDescription {
     this.customArtifactsConfigurationDescription,
     this.deployAsApplicationConfigurationDescription,
   });
+
   factory ZeppelinApplicationConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ZeppelinApplicationConfigurationDescription(
@@ -8851,6 +8997,7 @@ class ZeppelinApplicationConfigurationUpdate {
     this.deployAsApplicationConfigurationUpdate,
     this.monitoringConfigurationUpdate,
   });
+
   factory ZeppelinApplicationConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return ZeppelinApplicationConfigurationUpdate(
@@ -8911,6 +9058,7 @@ class ZeppelinMonitoringConfiguration {
   ZeppelinMonitoringConfiguration({
     required this.logLevel,
   });
+
   factory ZeppelinMonitoringConfiguration.fromJson(Map<String, dynamic> json) {
     return ZeppelinMonitoringConfiguration(
       logLevel: (json['LogLevel'] as String).toLogLevel(),
@@ -8934,6 +9082,7 @@ class ZeppelinMonitoringConfigurationDescription {
   ZeppelinMonitoringConfigurationDescription({
     this.logLevel,
   });
+
   factory ZeppelinMonitoringConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return ZeppelinMonitoringConfigurationDescription(
@@ -8959,6 +9108,7 @@ class ZeppelinMonitoringConfigurationUpdate {
   ZeppelinMonitoringConfigurationUpdate({
     required this.logLevelUpdate,
   });
+
   factory ZeppelinMonitoringConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return ZeppelinMonitoringConfigurationUpdate(

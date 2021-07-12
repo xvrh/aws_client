@@ -817,6 +817,7 @@ class Authorization {
     required this.cdnIdentifierSecret,
     required this.secretsRoleArn,
   });
+
   factory Authorization.fromJson(Map<String, dynamic> json) {
     return Authorization(
       cdnIdentifierSecret: json['cdnIdentifierSecret'] as String,
@@ -858,6 +859,7 @@ class Channel {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       arn: json['arn'] as String?,
@@ -916,6 +918,7 @@ class CmafEncryption {
     this.constantInitializationVector,
     this.keyRotationIntervalSeconds,
   });
+
   factory CmafEncryption.fromJson(Map<String, dynamic> json) {
     return CmafEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -963,6 +966,7 @@ class CmafPackage {
     this.segmentPrefix,
     this.streamSelection,
   });
+
   factory CmafPackage.fromJson(Map<String, dynamic> json) {
     return CmafPackage(
       encryption: json['encryption'] != null
@@ -1021,6 +1025,7 @@ class CmafPackageCreateOrUpdateParameters {
     this.segmentPrefix,
     this.streamSelection,
   });
+
   factory CmafPackageCreateOrUpdateParameters.fromJson(
       Map<String, dynamic> json) {
     return CmafPackageCreateOrUpdateParameters(
@@ -1081,6 +1086,7 @@ class ConfigureLogsResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory ConfigureLogsResponse.fromJson(Map<String, dynamic> json) {
     return ConfigureLogsResponse(
       arn: json['arn'] as String?,
@@ -1145,6 +1151,7 @@ class CreateChannelResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelResponse(
       arn: json['arn'] as String?,
@@ -1229,6 +1236,7 @@ class CreateHarvestJobResponse {
     this.startTime,
     this.status,
   });
+
   factory CreateHarvestJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateHarvestJobResponse(
       arn: json['arn'] as String?,
@@ -1335,6 +1343,7 @@ class CreateOriginEndpointResponse {
     this.url,
     this.whitelist,
   });
+
   factory CreateOriginEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateOriginEndpointResponse(
       arn: json['arn'] as String?,
@@ -1421,6 +1430,7 @@ class DashEncryption {
     required this.spekeKeyProvider,
     this.keyRotationIntervalSeconds,
   });
+
   factory DashEncryption.fromJson(Map<String, dynamic> json) {
     return DashEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -1517,6 +1527,7 @@ class DashPackage {
     this.utcTiming,
     this.utcTimingUri,
   });
+
   factory DashPackage.fromJson(Map<String, dynamic> json) {
     return DashPackage(
       adTriggers: (json['adTriggers'] as List?)
@@ -1599,6 +1610,7 @@ class DashPackage {
 
 class DeleteChannelResponse {
   DeleteChannelResponse();
+
   factory DeleteChannelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelResponse();
   }
@@ -1610,6 +1622,7 @@ class DeleteChannelResponse {
 
 class DeleteOriginEndpointResponse {
   DeleteOriginEndpointResponse();
+
   factory DeleteOriginEndpointResponse.fromJson(Map<String, dynamic> _) {
     return DeleteOriginEndpointResponse();
   }
@@ -1642,6 +1655,7 @@ class DescribeChannelResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory DescribeChannelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelResponse(
       arn: json['arn'] as String?,
@@ -1726,6 +1740,7 @@ class DescribeHarvestJobResponse {
     this.startTime,
     this.status,
   });
+
   factory DescribeHarvestJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHarvestJobResponse(
       arn: json['arn'] as String?,
@@ -1832,6 +1847,7 @@ class DescribeOriginEndpointResponse {
     this.url,
     this.whitelist,
   });
+
   factory DescribeOriginEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOriginEndpointResponse(
       arn: json['arn'] as String?,
@@ -1915,6 +1931,7 @@ class EgressAccessLogs {
   EgressAccessLogs({
     this.logGroupName,
   });
+
   factory EgressAccessLogs.fromJson(Map<String, dynamic> json) {
     return EgressAccessLogs(
       logGroupName: json['logGroupName'] as String?,
@@ -1952,6 +1969,7 @@ class EncryptionContractConfiguration {
     required this.presetSpeke20Audio,
     required this.presetSpeke20Video,
   });
+
   factory EncryptionContractConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionContractConfiguration(
       presetSpeke20Audio:
@@ -2043,6 +2061,7 @@ class HarvestJob {
     this.startTime,
     this.status,
   });
+
   factory HarvestJob.fromJson(Map<String, dynamic> json) {
     return HarvestJob(
       arn: json['arn'] as String?,
@@ -2108,6 +2127,7 @@ class HlsEncryption {
     this.keyRotationIntervalSeconds,
     this.repeatExtXKey,
   });
+
   factory HlsEncryption.fromJson(Map<String, dynamic> json) {
     return HlsEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -2148,6 +2168,7 @@ class HlsIngest {
   HlsIngest({
     this.ingestEndpoints,
   });
+
   factory HlsIngest.fromJson(Map<String, dynamic> json) {
     return HlsIngest(
       ingestEndpoints: (json['ingestEndpoints'] as List?)
@@ -2227,6 +2248,7 @@ class HlsManifest {
     this.programDateTimeIntervalSeconds,
     this.url,
   });
+
   factory HlsManifest.fromJson(Map<String, dynamic> json) {
     return HlsManifest(
       id: json['id'] as String,
@@ -2328,6 +2350,7 @@ class HlsManifestCreateOrUpdateParameters {
     this.playlistWindowSeconds,
     this.programDateTimeIntervalSeconds,
   });
+
   factory HlsManifestCreateOrUpdateParameters.fromJson(
       Map<String, dynamic> json) {
     return HlsManifestCreateOrUpdateParameters(
@@ -2443,6 +2466,7 @@ class HlsPackage {
     this.streamSelection,
     this.useAudioRenditionGroup,
   });
+
   factory HlsPackage.fromJson(Map<String, dynamic> json) {
     return HlsPackage(
       adMarkers: (json['adMarkers'] as String?)?.toAdMarkers(),
@@ -2524,6 +2548,7 @@ class IngestEndpoint {
     this.url,
     this.username,
   });
+
   factory IngestEndpoint.fromJson(Map<String, dynamic> json) {
     return IngestEndpoint(
       id: json['id'] as String?,
@@ -2555,6 +2580,7 @@ class IngressAccessLogs {
   IngressAccessLogs({
     this.logGroupName,
   });
+
   factory IngressAccessLogs.fromJson(Map<String, dynamic> json) {
     return IngressAccessLogs(
       logGroupName: json['logGroupName'] as String?,
@@ -2581,6 +2607,7 @@ class ListChannelsResponse {
     this.channels,
     this.nextToken,
   });
+
   factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelsResponse(
       channels: (json['channels'] as List?)
@@ -2613,6 +2640,7 @@ class ListHarvestJobsResponse {
     this.harvestJobs,
     this.nextToken,
   });
+
   factory ListHarvestJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListHarvestJobsResponse(
       harvestJobs: (json['harvestJobs'] as List?)
@@ -2645,6 +2673,7 @@ class ListOriginEndpointsResponse {
     this.nextToken,
     this.originEndpoints,
   });
+
   factory ListOriginEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return ListOriginEndpointsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2671,6 +2700,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2721,6 +2751,7 @@ class MssEncryption {
   MssEncryption({
     required this.spekeKeyProvider,
   });
+
   factory MssEncryption.fromJson(Map<String, dynamic> json) {
     return MssEncryption(
       spekeKeyProvider: SpekeKeyProvider.fromJson(
@@ -2753,6 +2784,7 @@ class MssPackage {
     this.segmentDurationSeconds,
     this.streamSelection,
   });
+
   factory MssPackage.fromJson(Map<String, dynamic> json) {
     return MssPackage(
       encryption: json['encryption'] != null
@@ -2849,6 +2881,7 @@ class OriginEndpoint {
     this.url,
     this.whitelist,
   });
+
   factory OriginEndpoint.fromJson(Map<String, dynamic> json) {
     return OriginEndpoint(
       arn: json['arn'] as String?,
@@ -3083,6 +3116,7 @@ class RotateChannelCredentialsResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory RotateChannelCredentialsResponse.fromJson(Map<String, dynamic> json) {
     return RotateChannelCredentialsResponse(
       arn: json['arn'] as String?,
@@ -3147,6 +3181,7 @@ class RotateIngestEndpointCredentialsResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory RotateIngestEndpointCredentialsResponse.fromJson(
       Map<String, dynamic> json) {
     return RotateIngestEndpointCredentialsResponse(
@@ -3207,6 +3242,7 @@ class S3Destination {
     required this.manifestKey,
     required this.roleArn,
   });
+
   factory S3Destination.fromJson(Map<String, dynamic> json) {
     return S3Destination(
       bucketName: json['bucketName'] as String,
@@ -3290,6 +3326,7 @@ class SpekeKeyProvider {
     this.certificateArn,
     this.encryptionContractConfiguration,
   });
+
   factory SpekeKeyProvider.fromJson(Map<String, dynamic> json) {
     return SpekeKeyProvider(
       resourceId: json['resourceId'] as String,
@@ -3411,6 +3448,7 @@ class StreamSelection {
     this.minVideoBitsPerSecond,
     this.streamOrder,
   });
+
   factory StreamSelection.fromJson(Map<String, dynamic> json) {
     return StreamSelection(
       maxVideoBitsPerSecond: json['maxVideoBitsPerSecond'] as int?,
@@ -3456,6 +3494,7 @@ class UpdateChannelResponse {
     this.ingressAccessLogs,
     this.tags,
   });
+
   factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelResponse(
       arn: json['arn'] as String?,
@@ -3562,6 +3601,7 @@ class UpdateOriginEndpointResponse {
     this.url,
     this.whitelist,
   });
+
   factory UpdateOriginEndpointResponse.fromJson(Map<String, dynamic> json) {
     return UpdateOriginEndpointResponse(
       arn: json['arn'] as String?,

@@ -403,6 +403,7 @@ class DeleteReportDefinitionResponse {
   DeleteReportDefinitionResponse({
     this.responseMessage,
   });
+
   factory DeleteReportDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteReportDefinitionResponse(
       responseMessage: json['ResponseMessage'] as String?,
@@ -428,6 +429,7 @@ class DescribeReportDefinitionsResponse {
     this.nextToken,
     this.reportDefinitions,
   });
+
   factory DescribeReportDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeReportDefinitionsResponse(
@@ -451,6 +453,7 @@ class DescribeReportDefinitionsResponse {
 
 class ModifyReportDefinitionResponse {
   ModifyReportDefinitionResponse();
+
   factory ModifyReportDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return ModifyReportDefinitionResponse();
   }
@@ -464,6 +467,7 @@ class ModifyReportDefinitionResponse {
 /// with an empty HTTP body.
 class PutReportDefinitionResponse {
   PutReportDefinitionResponse();
+
   factory PutReportDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return PutReportDefinitionResponse();
   }
@@ -519,6 +523,7 @@ class ReportDefinition {
     this.refreshClosedReports,
     this.reportVersioning,
   });
+
   factory ReportDefinition.fromJson(Map<String, dynamic> json) {
     return ReportDefinition(
       additionalSchemaElements: (json['AdditionalSchemaElements'] as List)

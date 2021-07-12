@@ -60,6 +60,7 @@ class OutputShape {
     this.allHeaders,
     this.prefixedHeaders,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       allHeaders: (json['AllHeaders'] as Map<String, dynamic>?)

@@ -3175,6 +3175,7 @@ class AlarmHistoryItem {
     this.historySummary,
     this.timestamp,
   });
+
   factory AlarmHistoryItem.fromJson(Map<String, dynamic> json) {
     return AlarmHistoryItem(
       alarmName: json['AlarmName'] as String?,
@@ -3279,6 +3280,7 @@ class AnomalyDetector {
     this.stat,
     this.stateValue,
   });
+
   factory AnomalyDetector.fromJson(Map<String, dynamic> json) {
     return AnomalyDetector(
       configuration: json['Configuration'] != null
@@ -3356,6 +3358,7 @@ class AnomalyDetectorConfiguration {
     this.excludedTimeRanges,
     this.metricTimezone,
   });
+
   factory AnomalyDetectorConfiguration.fromJson(Map<String, dynamic> json) {
     return AnomalyDetectorConfiguration(
       excludedTimeRanges: (json['ExcludedTimeRanges'] as List?)
@@ -3534,6 +3537,7 @@ class CompositeAlarm {
     this.stateUpdatedTimestamp,
     this.stateValue,
   });
+
   factory CompositeAlarm.fromJson(Map<String, dynamic> json) {
     return CompositeAlarm(
       actionsEnabled: json['ActionsEnabled'] as bool?,
@@ -3647,6 +3651,7 @@ class DashboardEntry {
     this.lastModified,
     this.size,
   });
+
   factory DashboardEntry.fromJson(Map<String, dynamic> json) {
     return DashboardEntry(
       dashboardArn: json['DashboardArn'] as String?,
@@ -3692,6 +3697,7 @@ class DashboardValidationMessage {
     this.dataPath,
     this.message,
   });
+
   factory DashboardValidationMessage.fromJson(Map<String, dynamic> json) {
     return DashboardValidationMessage(
       dataPath: json['DataPath'] as String?,
@@ -3753,6 +3759,7 @@ class Datapoint {
     this.timestamp,
     this.unit,
   });
+
   factory Datapoint.fromJson(Map<String, dynamic> json) {
     return Datapoint(
       average: json['Average'] as double?,
@@ -3812,6 +3819,7 @@ class Datapoint {
 
 class DeleteAnomalyDetectorOutput {
   DeleteAnomalyDetectorOutput();
+
   factory DeleteAnomalyDetectorOutput.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalyDetectorOutput();
   }
@@ -3829,6 +3837,7 @@ class DeleteAnomalyDetectorOutput {
 
 class DeleteDashboardsOutput {
   DeleteDashboardsOutput();
+
   factory DeleteDashboardsOutput.fromJson(Map<String, dynamic> _) {
     return DeleteDashboardsOutput();
   }
@@ -3852,6 +3861,7 @@ class DeleteInsightRulesOutput {
   DeleteInsightRulesOutput({
     this.failures,
   });
+
   factory DeleteInsightRulesOutput.fromJson(Map<String, dynamic> json) {
     return DeleteInsightRulesOutput(
       failures: (json['Failures'] as List?)
@@ -3880,6 +3890,7 @@ class DeleteInsightRulesOutput {
 
 class DeleteMetricStreamOutput {
   DeleteMetricStreamOutput();
+
   factory DeleteMetricStreamOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMetricStreamOutput();
   }
@@ -3906,6 +3917,7 @@ class DescribeAlarmHistoryOutput {
     this.alarmHistoryItems,
     this.nextToken,
   });
+
   factory DescribeAlarmHistoryOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAlarmHistoryOutput(
       alarmHistoryItems: (json['AlarmHistoryItems'] as List?)
@@ -3944,6 +3956,7 @@ class DescribeAlarmsForMetricOutput {
   DescribeAlarmsForMetricOutput({
     this.metricAlarms,
   });
+
   factory DescribeAlarmsForMetricOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAlarmsForMetricOutput(
       metricAlarms: (json['MetricAlarms'] as List?)
@@ -3985,6 +3998,7 @@ class DescribeAlarmsOutput {
     this.metricAlarms,
     this.nextToken,
   });
+
   factory DescribeAlarmsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAlarmsOutput(
       compositeAlarms: (json['CompositeAlarms'] as List?)
@@ -4038,6 +4052,7 @@ class DescribeAnomalyDetectorsOutput {
     this.anomalyDetectors,
     this.nextToken,
   });
+
   factory DescribeAnomalyDetectorsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAnomalyDetectorsOutput(
       anomalyDetectors: (json['AnomalyDetectors'] as List?)
@@ -4081,6 +4096,7 @@ class DescribeInsightRulesOutput {
     this.insightRules,
     this.nextToken,
   });
+
   factory DescribeInsightRulesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeInsightRulesOutput(
       insightRules: (json['InsightRules'] as List?)
@@ -4129,6 +4145,7 @@ class Dimension {
     required this.name,
     required this.value,
   });
+
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return Dimension(
       name: json['Name'] as String,
@@ -4165,6 +4182,7 @@ class DimensionFilter {
     required this.name,
     this.value,
   });
+
   factory DimensionFilter.fromJson(Map<String, dynamic> json) {
     return DimensionFilter(
       name: json['Name'] as String,
@@ -4190,6 +4208,7 @@ class DisableInsightRulesOutput {
   DisableInsightRulesOutput({
     this.failures,
   });
+
   factory DisableInsightRulesOutput.fromJson(Map<String, dynamic> json) {
     return DisableInsightRulesOutput(
       failures: (json['Failures'] as List?)
@@ -4224,6 +4243,7 @@ class EnableInsightRulesOutput {
   EnableInsightRulesOutput({
     this.failures,
   });
+
   factory EnableInsightRulesOutput.fromJson(Map<String, dynamic> json) {
     return EnableInsightRulesOutput(
       failures: (json['Failures'] as List?)
@@ -4269,6 +4289,7 @@ class GetDashboardOutput {
     this.dashboardBody,
     this.dashboardName,
   });
+
   factory GetDashboardOutput.fromJson(Map<String, dynamic> json) {
     return GetDashboardOutput(
       dashboardArn: json['DashboardArn'] as String?,
@@ -4331,6 +4352,7 @@ class GetInsightRuleReportOutput {
     this.keyLabels,
     this.metricDatapoints,
   });
+
   factory GetInsightRuleReportOutput.fromJson(Map<String, dynamic> json) {
     return GetInsightRuleReportOutput(
       aggregateValue: json['AggregateValue'] as double?,
@@ -4419,6 +4441,7 @@ class GetMetricDataOutput {
     this.metricDataResults,
     this.nextToken,
   });
+
   factory GetMetricDataOutput.fromJson(Map<String, dynamic> json) {
     return GetMetricDataOutput(
       messages: (json['Messages'] as List?)
@@ -4471,6 +4494,7 @@ class GetMetricStatisticsOutput {
     this.datapoints,
     this.label,
   });
+
   factory GetMetricStatisticsOutput.fromJson(Map<String, dynamic> json) {
     return GetMetricStatisticsOutput(
       datapoints: (json['Datapoints'] as List?)
@@ -4550,6 +4574,7 @@ class GetMetricStreamOutput {
     this.roleArn,
     this.state,
   });
+
   factory GetMetricStreamOutput.fromJson(Map<String, dynamic> json) {
     return GetMetricStreamOutput(
       arn: json['Arn'] as String?,
@@ -4633,6 +4658,7 @@ class GetMetricWidgetImageOutput {
   GetMetricWidgetImageOutput({
     this.metricWidgetImage,
   });
+
   factory GetMetricWidgetImageOutput.fromJson(Map<String, dynamic> json) {
     return GetMetricWidgetImageOutput(
       metricWidgetImage:
@@ -4715,6 +4741,7 @@ class InsightRule {
     required this.schema,
     required this.state,
   });
+
   factory InsightRule.fromJson(Map<String, dynamic> json) {
     return InsightRule(
       definition: json['Definition'] as String,
@@ -4773,6 +4800,7 @@ class InsightRuleContributor {
     required this.datapoints,
     required this.keys,
   });
+
   factory InsightRuleContributor.fromJson(Map<String, dynamic> json) {
     return InsightRuleContributor(
       approximateAggregateValue: json['ApproximateAggregateValue'] as double,
@@ -4831,6 +4859,7 @@ class InsightRuleContributorDatapoint {
     required this.approximateValue,
     required this.timestamp,
   });
+
   factory InsightRuleContributorDatapoint.fromJson(Map<String, dynamic> json) {
     return InsightRuleContributorDatapoint(
       approximateValue: json['ApproximateValue'] as double,
@@ -4922,6 +4951,7 @@ class InsightRuleMetricDatapoint {
     this.sum,
     this.uniqueContributors,
   });
+
   factory InsightRuleMetricDatapoint.fromJson(Map<String, dynamic> json) {
     return InsightRuleMetricDatapoint(
       timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
@@ -4992,6 +5022,7 @@ class LabelOptions {
   LabelOptions({
     this.timezone,
   });
+
   factory LabelOptions.fromJson(Map<String, dynamic> json) {
     return LabelOptions(
       timezone: json['Timezone'] as String?,
@@ -5017,6 +5048,7 @@ class ListDashboardsOutput {
     this.dashboardEntries,
     this.nextToken,
   });
+
   factory ListDashboardsOutput.fromJson(Map<String, dynamic> json) {
     return ListDashboardsOutput(
       dashboardEntries: (json['DashboardEntries'] as List?)
@@ -5061,6 +5093,7 @@ class ListMetricStreamsOutput {
     this.entries,
     this.nextToken,
   });
+
   factory ListMetricStreamsOutput.fromJson(Map<String, dynamic> json) {
     return ListMetricStreamsOutput(
       entries: (json['Entries'] as List?)
@@ -5102,6 +5135,7 @@ class ListMetricsOutput {
     this.metrics,
     this.nextToken,
   });
+
   factory ListMetricsOutput.fromJson(Map<String, dynamic> json) {
     return ListMetricsOutput(
       metrics: (json['Metrics'] as List?)
@@ -5137,6 +5171,7 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['Tags'] as List?)
@@ -5174,6 +5209,7 @@ class MessageData {
     this.code,
     this.value,
   });
+
   factory MessageData.fromJson(Map<String, dynamic> json) {
     return MessageData(
       code: json['Code'] as String?,
@@ -5214,6 +5250,7 @@ class Metric {
     this.metricName,
     this.namespace,
   });
+
   factory Metric.fromJson(Map<String, dynamic> json) {
     return Metric(
       dimensions: (json['Dimensions'] as List?)
@@ -5383,6 +5420,7 @@ class MetricAlarm {
     this.treatMissingData,
     this.unit,
   });
+
   factory MetricAlarm.fromJson(Map<String, dynamic> json) {
     return MetricAlarm(
       actionsEnabled: json['ActionsEnabled'] as bool?,
@@ -5650,6 +5688,7 @@ class MetricDataQuery {
     this.period,
     this.returnData,
   });
+
   factory MetricDataQuery.fromJson(Map<String, dynamic> json) {
     return MetricDataQuery(
       id: json['Id'] as String,
@@ -5736,6 +5775,7 @@ class MetricDataResult {
     this.timestamps,
     this.values,
   });
+
   factory MetricDataResult.fromJson(Map<String, dynamic> json) {
     return MetricDataResult(
       id: json['Id'] as String?,
@@ -5870,6 +5910,7 @@ class MetricDatum {
     this.value,
     this.values,
   });
+
   factory MetricDatum.fromJson(Map<String, dynamic> json) {
     return MetricDatum(
       metricName: json['MetricName'] as String,
@@ -5976,6 +6017,7 @@ class MetricStat {
     required this.stat,
     this.unit,
   });
+
   factory MetricStat.fromJson(Map<String, dynamic> json) {
     return MetricStat(
       metric: Metric.fromJson(json['Metric'] as Map<String, dynamic>),
@@ -6045,6 +6087,7 @@ class MetricStreamEntry {
     this.outputFormat,
     this.state,
   });
+
   factory MetricStreamEntry.fromJson(Map<String, dynamic> json) {
     return MetricStreamEntry(
       arn: json['Arn'] as String?,
@@ -6103,6 +6146,7 @@ class MetricStreamFilter {
   MetricStreamFilter({
     this.namespace,
   });
+
   factory MetricStreamFilter.fromJson(Map<String, dynamic> json) {
     return MetricStreamFilter(
       namespace: json['Namespace'] as String?,
@@ -6173,6 +6217,7 @@ class PartialFailure {
     this.failureDescription,
     this.failureResource,
   });
+
   factory PartialFailure.fromJson(Map<String, dynamic> json) {
     return PartialFailure(
       exceptionType: json['ExceptionType'] as String?,
@@ -6207,6 +6252,7 @@ class PartialFailure {
 
 class PutAnomalyDetectorOutput {
   PutAnomalyDetectorOutput();
+
   factory PutAnomalyDetectorOutput.fromJson(Map<String, dynamic> _) {
     return PutAnomalyDetectorOutput();
   }
@@ -6237,6 +6283,7 @@ class PutDashboardOutput {
   PutDashboardOutput({
     this.dashboardValidationMessages,
   });
+
   factory PutDashboardOutput.fromJson(Map<String, dynamic> json) {
     return PutDashboardOutput(
       dashboardValidationMessages: (json['DashboardValidationMessages']
@@ -6270,6 +6317,7 @@ class PutDashboardOutput {
 
 class PutInsightRuleOutput {
   PutInsightRuleOutput();
+
   factory PutInsightRuleOutput.fromJson(Map<String, dynamic> _) {
     return PutInsightRuleOutput();
   }
@@ -6292,6 +6340,7 @@ class PutMetricStreamOutput {
   PutMetricStreamOutput({
     this.arn,
   });
+
   factory PutMetricStreamOutput.fromJson(Map<String, dynamic> json) {
     return PutMetricStreamOutput(
       arn: json['Arn'] as String?,
@@ -6329,6 +6378,7 @@ class Range {
     required this.endTime,
     required this.startTime,
   });
+
   factory Range.fromJson(Map<String, dynamic> json) {
     return Range(
       endTime: nonNullableTimeStampFromJson(json['EndTime'] as Object),
@@ -6559,6 +6609,7 @@ extension on String {
 
 class StartMetricStreamsOutput {
   StartMetricStreamsOutput();
+
   factory StartMetricStreamsOutput.fromJson(Map<String, dynamic> _) {
     return StartMetricStreamsOutput();
   }
@@ -6670,6 +6721,7 @@ class StatisticSet {
     required this.sampleCount,
     required this.sum,
   });
+
   factory StatisticSet.fromJson(Map<String, dynamic> json) {
     return StatisticSet(
       maximum: json['Maximum'] as double,
@@ -6728,6 +6780,7 @@ extension on String {
 
 class StopMetricStreamsOutput {
   StopMetricStreamsOutput();
+
   factory StopMetricStreamsOutput.fromJson(Map<String, dynamic> _) {
     return StopMetricStreamsOutput();
   }
@@ -6756,6 +6809,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -6782,6 +6836,7 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -6799,6 +6854,7 @@ class TagResourceOutput {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }

@@ -887,6 +887,7 @@ class AccessPoliciesStatus {
     required this.options,
     required this.status,
   });
+
   factory AccessPoliciesStatus.fromJson(Map<String, dynamic> json) {
     return AccessPoliciesStatus(
       options: json['Options'] as String,
@@ -921,6 +922,7 @@ class AvailabilityOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory AvailabilityOptionsStatus.fromJson(Map<String, dynamic> json) {
     return AvailabilityOptionsStatus(
       options: json['Options'] as bool,
@@ -954,6 +956,7 @@ class BaseException implements _s.AwsException {
     this.code,
     this.message,
   });
+
   factory BaseException.fromJson(Map<String, dynamic> json) {
     return BaseException(
       code: json['Code'] as String?,
@@ -985,6 +988,7 @@ class CreateDomainResponse {
   CreateDomainResponse({
     this.domainStatus,
   });
+
   factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
     return CreateDomainResponse(
       domainStatus: json['DomainStatus'] != null
@@ -1022,6 +1026,7 @@ class DefaultSearchFieldStatus {
     required this.options,
     required this.status,
   });
+
   factory DefaultSearchFieldStatus.fromJson(Map<String, dynamic> json) {
     return DefaultSearchFieldStatus(
       options: json['Options'] as String,
@@ -1053,6 +1058,7 @@ class DefineIndexFieldResponse {
   DefineIndexFieldResponse({
     required this.indexField,
   });
+
   factory DefineIndexFieldResponse.fromJson(Map<String, dynamic> json) {
     return DefineIndexFieldResponse(
       indexField:
@@ -1083,6 +1089,7 @@ class DefineRankExpressionResponse {
   DefineRankExpressionResponse({
     required this.rankExpression,
   });
+
   factory DefineRankExpressionResponse.fromJson(Map<String, dynamic> json) {
     return DefineRankExpressionResponse(
       rankExpression: RankExpressionStatus.fromJson(
@@ -1113,6 +1120,7 @@ class DeleteDomainResponse {
   DeleteDomainResponse({
     this.domainStatus,
   });
+
   factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDomainResponse(
       domainStatus: json['DomainStatus'] != null
@@ -1144,6 +1152,7 @@ class DeleteIndexFieldResponse {
   DeleteIndexFieldResponse({
     required this.indexField,
   });
+
   factory DeleteIndexFieldResponse.fromJson(Map<String, dynamic> json) {
     return DeleteIndexFieldResponse(
       indexField:
@@ -1174,6 +1183,7 @@ class DeleteRankExpressionResponse {
   DeleteRankExpressionResponse({
     required this.rankExpression,
   });
+
   factory DeleteRankExpressionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRankExpressionResponse(
       rankExpression: RankExpressionStatus.fromJson(
@@ -1207,6 +1217,7 @@ class DescribeAvailabilityOptionsResponse {
   DescribeAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+
   factory DescribeAvailabilityOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAvailabilityOptionsResponse(
@@ -1245,6 +1256,7 @@ class DescribeDefaultSearchFieldResponse {
   DescribeDefaultSearchFieldResponse({
     required this.defaultSearchField,
   });
+
   factory DescribeDefaultSearchFieldResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDefaultSearchFieldResponse(
@@ -1275,6 +1287,7 @@ class DescribeDomainsResponse {
   DescribeDomainsResponse({
     required this.domainStatusList,
   });
+
   factory DescribeDomainsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDomainsResponse(
       domainStatusList: (json['DomainStatusList'] as List)
@@ -1310,6 +1323,7 @@ class DescribeIndexFieldsResponse {
   DescribeIndexFieldsResponse({
     required this.indexFields,
   });
+
   factory DescribeIndexFieldsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIndexFieldsResponse(
       indexFields: (json['IndexFields'] as List)
@@ -1345,6 +1359,7 @@ class DescribeRankExpressionsResponse {
   DescribeRankExpressionsResponse({
     required this.rankExpressions,
   });
+
   factory DescribeRankExpressionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRankExpressionsResponse(
       rankExpressions: (json['RankExpressions'] as List)
@@ -1379,6 +1394,7 @@ class DescribeServiceAccessPoliciesResponse {
   DescribeServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+
   factory DescribeServiceAccessPoliciesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeServiceAccessPoliciesResponse(
@@ -1409,6 +1425,7 @@ class DescribeStemmingOptionsResponse {
   DescribeStemmingOptionsResponse({
     required this.stems,
   });
+
   factory DescribeStemmingOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeStemmingOptionsResponse(
       stems:
@@ -1437,6 +1454,7 @@ class DescribeStopwordOptionsResponse {
   DescribeStopwordOptionsResponse({
     required this.stopwords,
   });
+
   factory DescribeStopwordOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeStopwordOptionsResponse(
       stopwords: StopwordOptionsStatus.fromJson(
@@ -1466,6 +1484,7 @@ class DescribeSynonymOptionsResponse {
   DescribeSynonymOptionsResponse({
     required this.synonyms,
   });
+
   factory DescribeSynonymOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSynonymOptionsResponse(
       synonyms: SynonymOptionsStatus.fromJson(
@@ -1492,6 +1511,7 @@ class DescribeSynonymOptionsResponse {
 /// enabled.
 class DisabledOperationException implements _s.AwsException {
   DisabledOperationException();
+
   factory DisabledOperationException.fromJson(Map<String, dynamic> _) {
     return DisabledOperationException();
   }
@@ -1567,6 +1587,7 @@ class DomainStatus {
     this.searchPartitionCount,
     this.searchService,
   });
+
   factory DomainStatus.fromJson(Map<String, dynamic> json) {
     return DomainStatus(
       domainId: json['DomainId'] as String,
@@ -1652,6 +1673,7 @@ class IndexDocumentsResponse {
   IndexDocumentsResponse({
     this.fieldNames,
   });
+
   factory IndexDocumentsResponse.fromJson(Map<String, dynamic> json) {
     return IndexDocumentsResponse(
       fieldNames: (json['FieldNames'] as List?)
@@ -1722,6 +1744,7 @@ class IndexField {
     this.textOptions,
     this.uIntOptions,
   });
+
   factory IndexField.fromJson(Map<String, dynamic> json) {
     return IndexField(
       indexFieldName: json['IndexFieldName'] as String,
@@ -1792,6 +1815,7 @@ class IndexFieldStatus {
     required this.options,
     required this.status,
   });
+
   factory IndexFieldStatus.fromJson(Map<String, dynamic> json) {
     return IndexFieldStatus(
       options: IndexField.fromJson(json['Options'] as Map<String, dynamic>),
@@ -1855,6 +1879,7 @@ extension on String {
 /// href="http://status.aws.amazon.com/">Service Health Dashboard</a>.
 class InternalException implements _s.AwsException {
   InternalException();
+
   factory InternalException.fromJson(Map<String, dynamic> _) {
     return InternalException();
   }
@@ -1873,6 +1898,7 @@ class InternalException implements _s.AwsException {
 /// The request was rejected because it specified an invalid type definition.
 class InvalidTypeException implements _s.AwsException {
   InvalidTypeException();
+
   factory InvalidTypeException.fromJson(Map<String, dynamic> _) {
     return InvalidTypeException();
   }
@@ -1891,6 +1917,7 @@ class InvalidTypeException implements _s.AwsException {
 /// The request was rejected because a resource limit has already been met.
 class LimitExceededException implements _s.AwsException {
   LimitExceededException();
+
   factory LimitExceededException.fromJson(Map<String, dynamic> _) {
     return LimitExceededException();
   }
@@ -1927,6 +1954,7 @@ class LiteralOptions {
     this.resultEnabled,
     this.searchEnabled,
   });
+
   factory LiteralOptions.fromJson(Map<String, dynamic> json) {
     return LiteralOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -2015,6 +2043,7 @@ class NamedRankExpression {
     required this.rankExpression,
     required this.rankName,
   });
+
   factory NamedRankExpression.fromJson(Map<String, dynamic> json) {
     return NamedRankExpression(
       rankExpression: json['RankExpression'] as String,
@@ -2109,6 +2138,7 @@ class OptionStatus {
     this.pendingDeletion,
     this.updateVersion,
   });
+
   factory OptionStatus.fromJson(Map<String, dynamic> json) {
     return OptionStatus(
       creationDate:
@@ -2157,6 +2187,7 @@ class RankExpressionStatus {
     required this.options,
     required this.status,
   });
+
   factory RankExpressionStatus.fromJson(Map<String, dynamic> json) {
     return RankExpressionStatus(
       options:
@@ -2187,6 +2218,7 @@ class RankExpressionStatus {
 /// does not exist.
 class ResourceNotFoundException implements _s.AwsException {
   ResourceNotFoundException();
+
   factory ResourceNotFoundException.fromJson(Map<String, dynamic> _) {
     return ResourceNotFoundException();
   }
@@ -2214,6 +2246,7 @@ class ServiceEndpoint {
     this.arn,
     this.endpoint,
   });
+
   factory ServiceEndpoint.fromJson(Map<String, dynamic> json) {
     return ServiceEndpoint(
       arn: json['Arn'] as String?,
@@ -2265,6 +2298,7 @@ class SourceAttribute {
     this.sourceDataMap,
     this.sourceDataTrimTitle,
   });
+
   factory SourceAttribute.fromJson(Map<String, dynamic> json) {
     return SourceAttribute(
       sourceDataFunction:
@@ -2330,6 +2364,7 @@ class SourceData {
     required this.sourceName,
     this.defaultValue,
   });
+
   factory SourceData.fromJson(Map<String, dynamic> json) {
     return SourceData(
       sourceName: json['SourceName'] as String,
@@ -2406,6 +2441,7 @@ class SourceDataMap {
     this.cases,
     this.defaultValue,
   });
+
   factory SourceDataMap.fromJson(Map<String, dynamic> json) {
     return SourceDataMap(
       sourceName: json['SourceName'] as String,
@@ -2464,6 +2500,7 @@ class SourceDataTrimTitle {
     this.language,
     this.separator,
   });
+
   factory SourceDataTrimTitle.fromJson(Map<String, dynamic> json) {
     return SourceDataTrimTitle(
       sourceName: json['SourceName'] as String,
@@ -2506,6 +2543,7 @@ class StemmingOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory StemmingOptionsStatus.fromJson(Map<String, dynamic> json) {
     return StemmingOptionsStatus(
       options: json['Options'] as String,
@@ -2540,6 +2578,7 @@ class StopwordOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory StopwordOptionsStatus.fromJson(Map<String, dynamic> json) {
     return StopwordOptionsStatus(
       options: json['Options'] as String,
@@ -2574,6 +2613,7 @@ class SynonymOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory SynonymOptionsStatus.fromJson(Map<String, dynamic> json) {
     return SynonymOptionsStatus(
       options: json['Options'] as String,
@@ -2625,6 +2665,7 @@ class TextOptions {
     this.resultEnabled,
     this.textProcessor,
   });
+
   factory TextOptions.fromJson(Map<String, dynamic> json) {
     return TextOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -2665,6 +2706,7 @@ class UIntOptions {
   UIntOptions({
     this.defaultValue,
   });
+
   factory UIntOptions.fromJson(Map<String, dynamic> json) {
     return UIntOptions(
       defaultValue: json['DefaultValue'] as int?,
@@ -2695,6 +2737,7 @@ class UpdateAvailabilityOptionsResponse {
   UpdateAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+
   factory UpdateAvailabilityOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAvailabilityOptionsResponse(
@@ -2730,6 +2773,7 @@ class UpdateDefaultSearchFieldResponse {
   UpdateDefaultSearchFieldResponse({
     required this.defaultSearchField,
   });
+
   factory UpdateDefaultSearchFieldResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDefaultSearchFieldResponse(
       defaultSearchField: DefaultSearchFieldStatus.fromJson(
@@ -2759,6 +2803,7 @@ class UpdateServiceAccessPoliciesResponse {
   UpdateServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+
   factory UpdateServiceAccessPoliciesResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateServiceAccessPoliciesResponse(
@@ -2789,6 +2834,7 @@ class UpdateStemmingOptionsResponse {
   UpdateStemmingOptionsResponse({
     required this.stems,
   });
+
   factory UpdateStemmingOptionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateStemmingOptionsResponse(
       stems:
@@ -2817,6 +2863,7 @@ class UpdateStopwordOptionsResponse {
   UpdateStopwordOptionsResponse({
     required this.stopwords,
   });
+
   factory UpdateStopwordOptionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateStopwordOptionsResponse(
       stopwords: StopwordOptionsStatus.fromJson(
@@ -2846,6 +2893,7 @@ class UpdateSynonymOptionsResponse {
   UpdateSynonymOptionsResponse({
     required this.synonyms,
   });
+
   factory UpdateSynonymOptionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSynonymOptionsResponse(
       synonyms: SynonymOptionsStatus.fromJson(

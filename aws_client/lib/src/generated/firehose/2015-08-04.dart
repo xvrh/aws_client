@@ -1155,6 +1155,7 @@ class BufferingHints {
     this.intervalInSeconds,
     this.sizeInMBs,
   });
+
   factory BufferingHints.fromJson(Map<String, dynamic> json) {
     return BufferingHints(
       intervalInSeconds: json['IntervalInSeconds'] as int?,
@@ -1190,6 +1191,7 @@ class CloudWatchLoggingOptions {
     this.logGroupName,
     this.logStreamName,
   });
+
   factory CloudWatchLoggingOptions.fromJson(Map<String, dynamic> json) {
     return CloudWatchLoggingOptions(
       enabled: json['Enabled'] as bool?,
@@ -1321,6 +1323,7 @@ class CopyCommand {
     this.copyOptions,
     this.dataTableColumns,
   });
+
   factory CopyCommand.fromJson(Map<String, dynamic> json) {
     return CopyCommand(
       dataTableName: json['DataTableName'] as String,
@@ -1348,6 +1351,7 @@ class CreateDeliveryStreamOutput {
   CreateDeliveryStreamOutput({
     this.deliveryStreamARN,
   });
+
   factory CreateDeliveryStreamOutput.fromJson(Map<String, dynamic> json) {
     return CreateDeliveryStreamOutput(
       deliveryStreamARN: json['DeliveryStreamARN'] as String?,
@@ -1396,6 +1400,7 @@ class DataFormatConversionConfiguration {
     this.outputFormatConfiguration,
     this.schemaConfiguration,
   });
+
   factory DataFormatConversionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DataFormatConversionConfiguration(
@@ -1434,6 +1439,7 @@ class DataFormatConversionConfiguration {
 
 class DeleteDeliveryStreamOutput {
   DeleteDeliveryStreamOutput();
+
   factory DeleteDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return DeleteDeliveryStreamOutput();
   }
@@ -1521,6 +1527,7 @@ class DeliveryStreamDescription {
     this.lastUpdateTimestamp,
     this.source,
   });
+
   factory DeliveryStreamDescription.fromJson(Map<String, dynamic> json) {
     return DeliveryStreamDescription(
       deliveryStreamARN: json['DeliveryStreamARN'] as String,
@@ -1629,6 +1636,7 @@ class DeliveryStreamEncryptionConfiguration {
     this.keyType,
     this.status,
   });
+
   factory DeliveryStreamEncryptionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DeliveryStreamEncryptionConfiguration(
@@ -1700,6 +1708,7 @@ class DeliveryStreamEncryptionConfigurationInput {
     required this.keyType,
     this.keyARN,
   });
+
   factory DeliveryStreamEncryptionConfigurationInput.fromJson(
       Map<String, dynamic> json) {
     return DeliveryStreamEncryptionConfigurationInput(
@@ -1938,6 +1947,7 @@ class DescribeDeliveryStreamOutput {
   DescribeDeliveryStreamOutput({
     required this.deliveryStreamDescription,
   });
+
   factory DescribeDeliveryStreamOutput.fromJson(Map<String, dynamic> json) {
     return DescribeDeliveryStreamOutput(
       deliveryStreamDescription: DeliveryStreamDescription.fromJson(
@@ -1979,6 +1989,7 @@ class Deserializer {
     this.hiveJsonSerDe,
     this.openXJsonSerDe,
   });
+
   factory Deserializer.fromJson(Map<String, dynamic> json) {
     return Deserializer(
       hiveJsonSerDe: json['HiveJsonSerDe'] != null
@@ -2035,6 +2046,7 @@ class DestinationDescription {
     this.s3DestinationDescription,
     this.splunkDestinationDescription,
   });
+
   factory DestinationDescription.fromJson(Map<String, dynamic> json) {
     return DestinationDescription(
       destinationId: json['DestinationId'] as String,
@@ -2123,6 +2135,7 @@ class ElasticsearchBufferingHints {
     this.intervalInSeconds,
     this.sizeInMBs,
   });
+
   factory ElasticsearchBufferingHints.fromJson(Map<String, dynamic> json) {
     return ElasticsearchBufferingHints(
       intervalInSeconds: json['IntervalInSeconds'] as int?,
@@ -2235,6 +2248,7 @@ class ElasticsearchDestinationConfiguration {
     this.typeName,
     this.vpcConfiguration,
   });
+
   factory ElasticsearchDestinationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ElasticsearchDestinationConfiguration(
@@ -2374,6 +2388,7 @@ class ElasticsearchDestinationDescription {
     this.typeName,
     this.vpcConfigurationDescription,
   });
+
   factory ElasticsearchDestinationDescription.fromJson(
       Map<String, dynamic> json) {
     return ElasticsearchDestinationDescription(
@@ -2528,6 +2543,7 @@ class ElasticsearchDestinationUpdate {
     this.s3Update,
     this.typeName,
   });
+
   factory ElasticsearchDestinationUpdate.fromJson(Map<String, dynamic> json) {
     return ElasticsearchDestinationUpdate(
       bufferingHints: json['BufferingHints'] != null
@@ -2648,6 +2664,7 @@ class ElasticsearchRetryOptions {
   ElasticsearchRetryOptions({
     this.durationInSeconds,
   });
+
   factory ElasticsearchRetryOptions.fromJson(Map<String, dynamic> json) {
     return ElasticsearchRetryOptions(
       durationInSeconds: json['DurationInSeconds'] as int?,
@@ -2703,6 +2720,7 @@ class EncryptionConfiguration {
     this.kMSEncryptionConfig,
     this.noEncryptionConfig,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       kMSEncryptionConfig: json['KMSEncryptionConfig'] != null
@@ -2795,6 +2813,7 @@ class ExtendedS3DestinationConfiguration {
     this.s3BackupConfiguration,
     this.s3BackupMode,
   });
+
   factory ExtendedS3DestinationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ExtendedS3DestinationConfiguration(
@@ -2938,6 +2957,7 @@ class ExtendedS3DestinationDescription {
     this.s3BackupDescription,
     this.s3BackupMode,
   });
+
   factory ExtendedS3DestinationDescription.fromJson(Map<String, dynamic> json) {
     return ExtendedS3DestinationDescription(
       bucketARN: json['BucketARN'] as String,
@@ -3076,6 +3096,7 @@ class ExtendedS3DestinationUpdate {
     this.s3BackupMode,
     this.s3BackupUpdate,
   });
+
   factory ExtendedS3DestinationUpdate.fromJson(Map<String, dynamic> json) {
     return ExtendedS3DestinationUpdate(
       bucketARN: json['BucketARN'] as String?,
@@ -3165,6 +3186,7 @@ class FailureDescription {
     required this.details,
     required this.type,
   });
+
   factory FailureDescription.fromJson(Map<String, dynamic> json) {
     return FailureDescription(
       details: json['Details'] as String,
@@ -3230,6 +3252,7 @@ class HiveJsonSerDe {
   HiveJsonSerDe({
     this.timestampFormats,
   });
+
   factory HiveJsonSerDe.fromJson(Map<String, dynamic> json) {
     return HiveJsonSerDe(
       timestampFormats: (json['TimestampFormats'] as List?)
@@ -3271,6 +3294,7 @@ class HttpEndpointBufferingHints {
     this.intervalInSeconds,
     this.sizeInMBs,
   });
+
   factory HttpEndpointBufferingHints.fromJson(Map<String, dynamic> json) {
     return HttpEndpointBufferingHints(
       intervalInSeconds: json['IntervalInSeconds'] as int?,
@@ -3301,6 +3325,7 @@ class HttpEndpointCommonAttribute {
     required this.attributeName,
     required this.attributeValue,
   });
+
   factory HttpEndpointCommonAttribute.fromJson(Map<String, dynamic> json) {
     return HttpEndpointCommonAttribute(
       attributeName: json['AttributeName'] as String,
@@ -3336,6 +3361,7 @@ class HttpEndpointConfiguration {
     this.accessKey,
     this.name,
   });
+
   factory HttpEndpointConfiguration.fromJson(Map<String, dynamic> json) {
     return HttpEndpointConfiguration(
       url: json['Url'] as String,
@@ -3368,6 +3394,7 @@ class HttpEndpointDescription {
     this.name,
     this.url,
   });
+
   factory HttpEndpointDescription.fromJson(Map<String, dynamic> json) {
     return HttpEndpointDescription(
       name: json['Name'] as String?,
@@ -3433,6 +3460,7 @@ class HttpEndpointDestinationConfiguration {
     this.roleARN,
     this.s3BackupMode,
   });
+
   factory HttpEndpointDestinationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return HttpEndpointDestinationConfiguration(
@@ -3541,6 +3569,7 @@ class HttpEndpointDestinationDescription {
     this.s3BackupMode,
     this.s3DestinationDescription,
   });
+
   factory HttpEndpointDestinationDescription.fromJson(
       Map<String, dynamic> json) {
     return HttpEndpointDestinationDescription(
@@ -3655,6 +3684,7 @@ class HttpEndpointDestinationUpdate {
     this.s3BackupMode,
     this.s3Update,
   });
+
   factory HttpEndpointDestinationUpdate.fromJson(Map<String, dynamic> json) {
     return HttpEndpointDestinationUpdate(
       bufferingHints: json['BufferingHints'] != null
@@ -3735,6 +3765,7 @@ class HttpEndpointRequestConfiguration {
     this.commonAttributes,
     this.contentEncoding,
   });
+
   factory HttpEndpointRequestConfiguration.fromJson(Map<String, dynamic> json) {
     return HttpEndpointRequestConfiguration(
       commonAttributes: (json['CommonAttributes'] as List?)
@@ -3772,6 +3803,7 @@ class HttpEndpointRetryOptions {
   HttpEndpointRetryOptions({
     this.durationInSeconds,
   });
+
   factory HttpEndpointRetryOptions.fromJson(Map<String, dynamic> json) {
     return HttpEndpointRetryOptions(
       durationInSeconds: json['DurationInSeconds'] as int?,
@@ -3826,6 +3858,7 @@ class InputFormatConfiguration {
   InputFormatConfiguration({
     this.deserializer,
   });
+
   factory InputFormatConfiguration.fromJson(Map<String, dynamic> json) {
     return InputFormatConfiguration(
       deserializer: json['Deserializer'] != null
@@ -3854,6 +3887,7 @@ class KMSEncryptionConfig {
   KMSEncryptionConfig({
     required this.awsKMSKeyARN,
   });
+
   factory KMSEncryptionConfig.fromJson(Map<String, dynamic> json) {
     return KMSEncryptionConfig(
       awsKMSKeyARN: json['AWSKMSKeyARN'] as String,
@@ -3914,6 +3948,7 @@ class KinesisStreamSourceConfiguration {
     required this.kinesisStreamARN,
     required this.roleARN,
   });
+
   factory KinesisStreamSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return KinesisStreamSourceConfiguration(
       kinesisStreamARN: json['KinesisStreamARN'] as String,
@@ -3955,6 +3990,7 @@ class KinesisStreamSourceDescription {
     this.kinesisStreamARN,
     this.roleARN,
   });
+
   factory KinesisStreamSourceDescription.fromJson(Map<String, dynamic> json) {
     return KinesisStreamSourceDescription(
       deliveryStartTimestamp: timeStampFromJson(json['DeliveryStartTimestamp']),
@@ -3987,6 +4023,7 @@ class ListDeliveryStreamsOutput {
     required this.deliveryStreamNames,
     required this.hasMoreDeliveryStreams,
   });
+
   factory ListDeliveryStreamsOutput.fromJson(Map<String, dynamic> json) {
     return ListDeliveryStreamsOutput(
       deliveryStreamNames: (json['DeliveryStreamNames'] as List)
@@ -4022,6 +4059,7 @@ class ListTagsForDeliveryStreamOutput {
     required this.hasMoreTags,
     required this.tags,
   });
+
   factory ListTagsForDeliveryStreamOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForDeliveryStreamOutput(
       hasMoreTags: json['HasMoreTags'] as bool,
@@ -4096,6 +4134,7 @@ class OpenXJsonSerDe {
     this.columnToJsonKeyMappings,
     this.convertDotsInJsonKeysToUnderscores,
   });
+
   factory OpenXJsonSerDe.fromJson(Map<String, dynamic> json) {
     return OpenXJsonSerDe(
       caseInsensitive: json['CaseInsensitive'] as bool?,
@@ -4257,6 +4296,7 @@ class OrcSerDe {
     this.rowIndexStride,
     this.stripeSizeBytes,
   });
+
   factory OrcSerDe.fromJson(Map<String, dynamic> json) {
     return OrcSerDe(
       blockSizeBytes: json['BlockSizeBytes'] as int?,
@@ -4317,6 +4357,7 @@ class OutputFormatConfiguration {
   OutputFormatConfiguration({
     this.serializer,
   });
+
   factory OutputFormatConfiguration.fromJson(Map<String, dynamic> json) {
     return OutputFormatConfiguration(
       serializer: json['Serializer'] != null
@@ -4407,6 +4448,7 @@ class ParquetSerDe {
     this.pageSizeBytes,
     this.writerVersion,
   });
+
   factory ParquetSerDe.fromJson(Map<String, dynamic> json) {
     return ParquetSerDe(
       blockSizeBytes: json['BlockSizeBytes'] as int?,
@@ -4478,6 +4520,7 @@ class ProcessingConfiguration {
     this.enabled,
     this.processors,
   });
+
   factory ProcessingConfiguration.fromJson(Map<String, dynamic> json) {
     return ProcessingConfiguration(
       enabled: json['Enabled'] as bool?,
@@ -4510,6 +4553,7 @@ class Processor {
     required this.type,
     this.parameters,
   });
+
   factory Processor.fromJson(Map<String, dynamic> json) {
     return Processor(
       type: (json['Type'] as String).toProcessorType(),
@@ -4542,6 +4586,7 @@ class ProcessorParameter {
     required this.parameterName,
     required this.parameterValue,
   });
+
   factory ProcessorParameter.fromJson(Map<String, dynamic> json) {
     return ProcessorParameter(
       parameterName:
@@ -4646,6 +4691,7 @@ class PutRecordBatchOutput {
     required this.requestResponses,
     this.encrypted,
   });
+
   factory PutRecordBatchOutput.fromJson(Map<String, dynamic> json) {
     return PutRecordBatchOutput(
       failedPutCount: json['FailedPutCount'] as int,
@@ -4689,6 +4735,7 @@ class PutRecordBatchResponseEntry {
     this.errorMessage,
     this.recordId,
   });
+
   factory PutRecordBatchResponseEntry.fromJson(Map<String, dynamic> json) {
     return PutRecordBatchResponseEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -4721,6 +4768,7 @@ class PutRecordOutput {
     required this.recordId,
     this.encrypted,
   });
+
   factory PutRecordOutput.fromJson(Map<String, dynamic> json) {
     return PutRecordOutput(
       recordId: json['RecordId'] as String,
@@ -4747,6 +4795,7 @@ class Record {
   Record({
     required this.data,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       data: _s.decodeUint8List(json['Data']! as String),
@@ -4822,6 +4871,7 @@ class RedshiftDestinationConfiguration {
     this.s3BackupConfiguration,
     this.s3BackupMode,
   });
+
   factory RedshiftDestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return RedshiftDestinationConfiguration(
       clusterJDBCURL: json['ClusterJDBCURL'] as String,
@@ -4931,6 +4981,7 @@ class RedshiftDestinationDescription {
     this.s3BackupDescription,
     this.s3BackupMode,
   });
+
   factory RedshiftDestinationDescription.fromJson(Map<String, dynamic> json) {
     return RedshiftDestinationDescription(
       clusterJDBCURL: json['ClusterJDBCURL'] as String,
@@ -5048,6 +5099,7 @@ class RedshiftDestinationUpdate {
     this.s3Update,
     this.username,
   });
+
   factory RedshiftDestinationUpdate.fromJson(Map<String, dynamic> json) {
     return RedshiftDestinationUpdate(
       cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
@@ -5124,6 +5176,7 @@ class RedshiftRetryOptions {
   RedshiftRetryOptions({
     this.durationInSeconds,
   });
+
   factory RedshiftRetryOptions.fromJson(Map<String, dynamic> json) {
     return RedshiftRetryOptions(
       durationInSeconds: json['DurationInSeconds'] as int?,
@@ -5250,6 +5303,7 @@ class S3DestinationConfiguration {
     this.errorOutputPrefix,
     this.prefix,
   });
+
   factory S3DestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return S3DestinationConfiguration(
       bucketARN: json['BucketARN'] as String,
@@ -5349,6 +5403,7 @@ class S3DestinationDescription {
     this.errorOutputPrefix,
     this.prefix,
   });
+
   factory S3DestinationDescription.fromJson(Map<String, dynamic> json) {
     return S3DestinationDescription(
       bucketARN: json['BucketARN'] as String,
@@ -5447,6 +5502,7 @@ class S3DestinationUpdate {
     this.prefix,
     this.roleARN,
   });
+
   factory S3DestinationUpdate.fromJson(Map<String, dynamic> json) {
     return S3DestinationUpdate(
       bucketARN: json['BucketARN'] as String?,
@@ -5533,6 +5589,7 @@ class SchemaConfiguration {
     this.tableName,
     this.versionId,
   });
+
   factory SchemaConfiguration.fromJson(Map<String, dynamic> json) {
     return SchemaConfiguration(
       catalogId: json['CatalogId'] as String?,
@@ -5584,6 +5641,7 @@ class Serializer {
     this.orcSerDe,
     this.parquetSerDe,
   });
+
   factory Serializer.fromJson(Map<String, dynamic> json) {
     return Serializer(
       orcSerDe: json['OrcSerDe'] != null
@@ -5615,6 +5673,7 @@ class SourceDescription {
   SourceDescription({
     this.kinesisStreamSourceDescription,
   });
+
   factory SourceDescription.fromJson(Map<String, dynamic> json) {
     return SourceDescription(
       kinesisStreamSourceDescription: json['KinesisStreamSourceDescription'] !=
@@ -5690,6 +5749,7 @@ class SplunkDestinationConfiguration {
     this.retryOptions,
     this.s3BackupMode,
   });
+
   factory SplunkDestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return SplunkDestinationConfiguration(
       hECEndpoint: json['HECEndpoint'] as String,
@@ -5794,6 +5854,7 @@ class SplunkDestinationDescription {
     this.s3BackupMode,
     this.s3DestinationDescription,
   });
+
   factory SplunkDestinationDescription.fromJson(Map<String, dynamic> json) {
     return SplunkDestinationDescription(
       cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
@@ -5906,6 +5967,7 @@ class SplunkDestinationUpdate {
     this.s3BackupMode,
     this.s3Update,
   });
+
   factory SplunkDestinationUpdate.fromJson(Map<String, dynamic> json) {
     return SplunkDestinationUpdate(
       cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
@@ -5974,6 +6036,7 @@ class SplunkRetryOptions {
   SplunkRetryOptions({
     this.durationInSeconds,
   });
+
   factory SplunkRetryOptions.fromJson(Map<String, dynamic> json) {
     return SplunkRetryOptions(
       durationInSeconds: json['DurationInSeconds'] as int?,
@@ -6018,6 +6081,7 @@ extension on String {
 
 class StartDeliveryStreamEncryptionOutput {
   StartDeliveryStreamEncryptionOutput();
+
   factory StartDeliveryStreamEncryptionOutput.fromJson(Map<String, dynamic> _) {
     return StartDeliveryStreamEncryptionOutput();
   }
@@ -6029,6 +6093,7 @@ class StartDeliveryStreamEncryptionOutput {
 
 class StopDeliveryStreamEncryptionOutput {
   StopDeliveryStreamEncryptionOutput();
+
   factory StopDeliveryStreamEncryptionOutput.fromJson(Map<String, dynamic> _) {
     return StopDeliveryStreamEncryptionOutput();
   }
@@ -6054,6 +6119,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -6073,6 +6139,7 @@ class Tag {
 
 class TagDeliveryStreamOutput {
   TagDeliveryStreamOutput();
+
   factory TagDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return TagDeliveryStreamOutput();
   }
@@ -6084,6 +6151,7 @@ class TagDeliveryStreamOutput {
 
 class UntagDeliveryStreamOutput {
   UntagDeliveryStreamOutput();
+
   factory UntagDeliveryStreamOutput.fromJson(Map<String, dynamic> _) {
     return UntagDeliveryStreamOutput();
   }
@@ -6095,6 +6163,7 @@ class UntagDeliveryStreamOutput {
 
 class UpdateDestinationOutput {
   UpdateDestinationOutput();
+
   factory UpdateDestinationOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDestinationOutput();
   }
@@ -6180,6 +6249,7 @@ class VpcConfiguration {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+
   factory VpcConfiguration.fromJson(Map<String, dynamic> json) {
     return VpcConfiguration(
       roleARN: json['RoleARN'] as String,
@@ -6286,6 +6356,7 @@ class VpcConfigurationDescription {
     required this.subnetIds,
     required this.vpcId,
   });
+
   factory VpcConfigurationDescription.fromJson(Map<String, dynamic> json) {
     return VpcConfigurationDescription(
       roleARN: json['RoleARN'] as String,

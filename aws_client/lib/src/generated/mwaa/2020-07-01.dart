@@ -922,6 +922,7 @@ class CreateCliTokenResponse {
     this.cliToken,
     this.webServerHostname,
   });
+
   factory CreateCliTokenResponse.fromJson(Map<String, dynamic> json) {
     return CreateCliTokenResponse(
       cliToken: json['CliToken'] as String?,
@@ -946,6 +947,7 @@ class CreateEnvironmentOutput {
   CreateEnvironmentOutput({
     this.arn,
   });
+
   factory CreateEnvironmentOutput.fromJson(Map<String, dynamic> json) {
     return CreateEnvironmentOutput(
       arn: json['Arn'] as String?,
@@ -972,6 +974,7 @@ class CreateWebLoginTokenResponse {
     this.webServerHostname,
     this.webToken,
   });
+
   factory CreateWebLoginTokenResponse.fromJson(Map<String, dynamic> json) {
     return CreateWebLoginTokenResponse(
       webServerHostname: json['WebServerHostname'] as String?,
@@ -991,6 +994,7 @@ class CreateWebLoginTokenResponse {
 
 class DeleteEnvironmentOutput {
   DeleteEnvironmentOutput();
+
   factory DeleteEnvironmentOutput.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentOutput();
   }
@@ -1012,6 +1016,7 @@ class Dimension {
     required this.name,
     required this.value,
   });
+
   factory Dimension.fromJson(Map<String, dynamic> json) {
     return Dimension(
       name: json['Name'] as String,
@@ -1224,6 +1229,7 @@ class Environment {
     this.webserverUrl,
     this.weeklyMaintenanceWindowStart,
   });
+
   factory Environment.fromJson(Map<String, dynamic> json) {
     return Environment(
       airflowConfigurationOptions:
@@ -1399,6 +1405,7 @@ class GetEnvironmentOutput {
   GetEnvironmentOutput({
     this.environment,
   });
+
   factory GetEnvironmentOutput.fromJson(Map<String, dynamic> json) {
     return GetEnvironmentOutput(
       environment: json['Environment'] != null
@@ -1433,6 +1440,7 @@ class LastUpdate {
     this.error,
     this.status,
   });
+
   factory LastUpdate.fromJson(Map<String, dynamic> json) {
     return LastUpdate(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -1466,6 +1474,7 @@ class ListEnvironmentsOutput {
     required this.environments,
     this.nextToken,
   });
+
   factory ListEnvironmentsOutput.fromJson(Map<String, dynamic> json) {
     return ListEnvironmentsOutput(
       environments: (json['Environments'] as List)
@@ -1496,6 +1505,7 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1528,6 +1538,7 @@ class LoggingConfiguration {
     this.webserverLogs,
     this.workerLogs,
   });
+
   factory LoggingConfiguration.fromJson(Map<String, dynamic> json) {
     return LoggingConfiguration(
       dagProcessingLogs: json['DagProcessingLogs'] != null
@@ -1586,6 +1597,7 @@ class LoggingConfigurationInput {
     this.webserverLogs,
     this.workerLogs,
   });
+
   factory LoggingConfigurationInput.fromJson(Map<String, dynamic> json) {
     return LoggingConfigurationInput(
       dagProcessingLogs: json['DagProcessingLogs'] != null
@@ -1696,6 +1708,7 @@ class MetricDatum {
     this.unit,
     this.value,
   });
+
   factory MetricDatum.fromJson(Map<String, dynamic> json) {
     return MetricDatum(
       metricName: json['MetricName'] as String,
@@ -1757,6 +1770,7 @@ class ModuleLoggingConfiguration {
     this.enabled,
     this.logLevel,
   });
+
   factory ModuleLoggingConfiguration.fromJson(Map<String, dynamic> json) {
     return ModuleLoggingConfiguration(
       cloudWatchLogGroupArn: json['CloudWatchLogGroupArn'] as String?,
@@ -1797,6 +1811,7 @@ class ModuleLoggingConfigurationInput {
     required this.enabled,
     required this.logLevel,
   });
+
   factory ModuleLoggingConfigurationInput.fromJson(Map<String, dynamic> json) {
     return ModuleLoggingConfigurationInput(
       enabled: json['Enabled'] as bool,
@@ -1835,6 +1850,7 @@ class NetworkConfiguration {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory NetworkConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkConfiguration(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -1860,6 +1876,7 @@ class NetworkConfiguration {
 
 class PublishMetricsOutput {
   PublishMetricsOutput();
+
   factory PublishMetricsOutput.fromJson(Map<String, dynamic> _) {
     return PublishMetricsOutput();
   }
@@ -1889,6 +1906,7 @@ class StatisticSet {
     this.sampleCount,
     this.sum,
   });
+
   factory StatisticSet.fromJson(Map<String, dynamic> json) {
     return StatisticSet(
       maximum: json['Maximum'] as double?,
@@ -1914,6 +1932,7 @@ class StatisticSet {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -2079,6 +2098,7 @@ extension on String {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -2096,6 +2116,7 @@ class UpdateEnvironmentOutput {
   UpdateEnvironmentOutput({
     this.arn,
   });
+
   factory UpdateEnvironmentOutput.fromJson(Map<String, dynamic> json) {
     return UpdateEnvironmentOutput(
       arn: json['Arn'] as String?,
@@ -2123,6 +2144,7 @@ class UpdateError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory UpdateError.fromJson(Map<String, dynamic> json) {
     return UpdateError(
       errorCode: json['ErrorCode'] as String?,
@@ -2155,6 +2177,7 @@ class UpdateNetworkConfigurationInput {
   UpdateNetworkConfigurationInput({
     required this.securityGroupIds,
   });
+
   factory UpdateNetworkConfigurationInput.fromJson(Map<String, dynamic> json) {
     return UpdateNetworkConfigurationInput(
       securityGroupIds: (json['SecurityGroupIds'] as List)

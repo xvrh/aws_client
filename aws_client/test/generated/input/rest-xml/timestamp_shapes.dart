@@ -118,6 +118,7 @@ class InputShape {
     this.timeFormatInHeader,
     this.timeFormatInQuery,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       timeArg: timeStampFromJson(json['TimeArg']),

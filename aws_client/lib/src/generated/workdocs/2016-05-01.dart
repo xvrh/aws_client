@@ -3129,6 +3129,7 @@ class ActivateUserResponse {
   ActivateUserResponse({
     this.user,
   });
+
   factory ActivateUserResponse.fromJson(Map<String, dynamic> json) {
     return ActivateUserResponse(
       user: json['User'] != null
@@ -3192,6 +3193,7 @@ class Activity {
     this.timeStamp,
     this.type,
   });
+
   factory Activity.fromJson(Map<String, dynamic> json) {
     return Activity(
       commentMetadata: json['CommentMetadata'] != null
@@ -3433,6 +3435,7 @@ class AddResourcePermissionsResponse {
   AddResourcePermissionsResponse({
     this.shareResults,
   });
+
   factory AddResourcePermissionsResponse.fromJson(Map<String, dynamic> json) {
     return AddResourcePermissionsResponse(
       shareResults: (json['ShareResults'] as List?)
@@ -3522,6 +3525,7 @@ class Comment {
     this.threadId,
     this.visibility,
   });
+
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
       commentId: json['CommentId'] as String,
@@ -3587,6 +3591,7 @@ class CommentMetadata {
     this.createdTimestamp,
     this.recipientId,
   });
+
   factory CommentMetadata.fromJson(Map<String, dynamic> json) {
     return CommentMetadata(
       commentId: json['CommentId'] as String?,
@@ -3684,6 +3689,7 @@ class CreateCommentResponse {
   CreateCommentResponse({
     this.comment,
   });
+
   factory CreateCommentResponse.fromJson(Map<String, dynamic> json) {
     return CreateCommentResponse(
       comment: json['Comment'] != null
@@ -3702,6 +3708,7 @@ class CreateCommentResponse {
 
 class CreateCustomMetadataResponse {
   CreateCustomMetadataResponse();
+
   factory CreateCustomMetadataResponse.fromJson(Map<String, dynamic> _) {
     return CreateCustomMetadataResponse();
   }
@@ -3718,6 +3725,7 @@ class CreateFolderResponse {
   CreateFolderResponse({
     this.metadata,
   });
+
   factory CreateFolderResponse.fromJson(Map<String, dynamic> json) {
     return CreateFolderResponse(
       metadata: json['Metadata'] != null
@@ -3736,6 +3744,7 @@ class CreateFolderResponse {
 
 class CreateLabelsResponse {
   CreateLabelsResponse();
+
   factory CreateLabelsResponse.fromJson(Map<String, dynamic> _) {
     return CreateLabelsResponse();
   }
@@ -3752,6 +3761,7 @@ class CreateNotificationSubscriptionResponse {
   CreateNotificationSubscriptionResponse({
     this.subscription,
   });
+
   factory CreateNotificationSubscriptionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateNotificationSubscriptionResponse(
@@ -3776,6 +3786,7 @@ class CreateUserResponse {
   CreateUserResponse({
     this.user,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       user: json['User'] != null
@@ -3794,6 +3805,7 @@ class CreateUserResponse {
 
 class DeleteCustomMetadataResponse {
   DeleteCustomMetadataResponse();
+
   factory DeleteCustomMetadataResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomMetadataResponse();
   }
@@ -3805,6 +3817,7 @@ class DeleteCustomMetadataResponse {
 
 class DeleteLabelsResponse {
   DeleteLabelsResponse();
+
   factory DeleteLabelsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLabelsResponse();
   }
@@ -3825,6 +3838,7 @@ class DescribeActivitiesResponse {
     this.marker,
     this.userActivities,
   });
+
   factory DescribeActivitiesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeActivitiesResponse(
       marker: json['Marker'] as String?,
@@ -3857,6 +3871,7 @@ class DescribeCommentsResponse {
     this.comments,
     this.marker,
   });
+
   factory DescribeCommentsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCommentsResponse(
       comments: (json['Comments'] as List?)
@@ -3889,6 +3904,7 @@ class DescribeDocumentVersionsResponse {
     this.documentVersions,
     this.marker,
   });
+
   factory DescribeDocumentVersionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDocumentVersionsResponse(
       documentVersions: (json['DocumentVersions'] as List?)
@@ -3926,6 +3942,7 @@ class DescribeFolderContentsResponse {
     this.folders,
     this.marker,
   });
+
   factory DescribeFolderContentsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFolderContentsResponse(
       documents: (json['Documents'] as List?)
@@ -3964,6 +3981,7 @@ class DescribeGroupsResponse {
     this.groups,
     this.marker,
   });
+
   factory DescribeGroupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGroupsResponse(
       groups: (json['Groups'] as List?)
@@ -3996,6 +4014,7 @@ class DescribeNotificationSubscriptionsResponse {
     this.marker,
     this.subscriptions,
   });
+
   factory DescribeNotificationSubscriptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeNotificationSubscriptionsResponse(
@@ -4029,6 +4048,7 @@ class DescribeResourcePermissionsResponse {
     this.marker,
     this.principals,
   });
+
   factory DescribeResourcePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeResourcePermissionsResponse(
@@ -4061,6 +4081,7 @@ class DescribeRootFoldersResponse {
     this.folders,
     this.marker,
   });
+
   factory DescribeRootFoldersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRootFoldersResponse(
       folders: (json['Folders'] as List?)
@@ -4097,6 +4118,7 @@ class DescribeUsersResponse {
     this.totalNumberOfUsers,
     this.users,
   });
+
   factory DescribeUsersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUsersResponse(
       marker: json['Marker'] as String?,
@@ -4156,6 +4178,7 @@ class DocumentMetadata {
     this.parentFolderId,
     this.resourceState,
   });
+
   factory DocumentMetadata.fromJson(Map<String, dynamic> json) {
     return DocumentMetadata(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -4345,6 +4368,7 @@ class DocumentVersionMetadata {
     this.status,
     this.thumbnail,
   });
+
   factory DocumentVersionMetadata.fromJson(Map<String, dynamic> json) {
     return DocumentVersionMetadata(
       contentCreatedTimestamp:
@@ -4511,6 +4535,7 @@ class FolderMetadata {
     this.signature,
     this.size,
   });
+
   factory FolderMetadata.fromJson(Map<String, dynamic> json) {
     return FolderMetadata(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -4567,6 +4592,7 @@ class GetCurrentUserResponse {
   GetCurrentUserResponse({
     this.user,
   });
+
   factory GetCurrentUserResponse.fromJson(Map<String, dynamic> json) {
     return GetCurrentUserResponse(
       user: json['User'] != null
@@ -4590,6 +4616,7 @@ class GetDocumentPathResponse {
   GetDocumentPathResponse({
     this.path,
   });
+
   factory GetDocumentPathResponse.fromJson(Map<String, dynamic> json) {
     return GetDocumentPathResponse(
       path: json['Path'] != null
@@ -4617,6 +4644,7 @@ class GetDocumentResponse {
     this.customMetadata,
     this.metadata,
   });
+
   factory GetDocumentResponse.fromJson(Map<String, dynamic> json) {
     return GetDocumentResponse(
       customMetadata: (json['CustomMetadata'] as Map<String, dynamic>?)
@@ -4648,6 +4676,7 @@ class GetDocumentVersionResponse {
     this.customMetadata,
     this.metadata,
   });
+
   factory GetDocumentVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetDocumentVersionResponse(
       customMetadata: (json['CustomMetadata'] as Map<String, dynamic>?)
@@ -4676,6 +4705,7 @@ class GetFolderPathResponse {
   GetFolderPathResponse({
     this.path,
   });
+
   factory GetFolderPathResponse.fromJson(Map<String, dynamic> json) {
     return GetFolderPathResponse(
       path: json['Path'] != null
@@ -4703,6 +4733,7 @@ class GetFolderResponse {
     this.customMetadata,
     this.metadata,
   });
+
   factory GetFolderResponse.fromJson(Map<String, dynamic> json) {
     return GetFolderResponse(
       customMetadata: (json['CustomMetadata'] as Map<String, dynamic>?)
@@ -4739,6 +4770,7 @@ class GetResourcesResponse {
     this.folders,
     this.marker,
   });
+
   factory GetResourcesResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcesResponse(
       documents: (json['Documents'] as List?)
@@ -4777,6 +4809,7 @@ class GroupMetadata {
     this.id,
     this.name,
   });
+
   factory GroupMetadata.fromJson(Map<String, dynamic> json) {
     return GroupMetadata(
       id: json['Id'] as String?,
@@ -4805,6 +4838,7 @@ class InitiateDocumentVersionUploadResponse {
     this.metadata,
     this.uploadMetadata,
   });
+
   factory InitiateDocumentVersionUploadResponse.fromJson(
       Map<String, dynamic> json) {
     return InitiateDocumentVersionUploadResponse(
@@ -4914,6 +4948,7 @@ class NotificationOptions {
     this.emailMessage,
     this.sendEmail,
   });
+
   factory NotificationOptions.fromJson(Map<String, dynamic> json) {
     return NotificationOptions(
       emailMessage: json['EmailMessage'] as String?,
@@ -4971,6 +5006,7 @@ class Participants {
     this.groups,
     this.users,
   });
+
   factory Participants.fromJson(Map<String, dynamic> json) {
     return Participants(
       groups: (json['Groups'] as List?)
@@ -5006,6 +5042,7 @@ class PermissionInfo {
     this.role,
     this.type,
   });
+
   factory PermissionInfo.fromJson(Map<String, dynamic> json) {
     return PermissionInfo(
       role: (json['Role'] as String?)?.toRoleType(),
@@ -5039,6 +5076,7 @@ class Principal {
     this.roles,
     this.type,
   });
+
   factory Principal.fromJson(Map<String, dynamic> json) {
     return Principal(
       id: json['Id'] as String?,
@@ -5161,6 +5199,7 @@ class ResourceMetadata {
     this.type,
     this.versionId,
   });
+
   factory ResourceMetadata.fromJson(Map<String, dynamic> json) {
     return ResourceMetadata(
       id: json['Id'] as String?,
@@ -5203,6 +5242,7 @@ class ResourcePath {
   ResourcePath({
     this.components,
   });
+
   factory ResourcePath.fromJson(Map<String, dynamic> json) {
     return ResourcePath(
       components: (json['Components'] as List?)
@@ -5232,6 +5272,7 @@ class ResourcePathComponent {
     this.id,
     this.name,
   });
+
   factory ResourcePathComponent.fromJson(Map<String, dynamic> json) {
     return ResourcePathComponent(
       id: json['Id'] as String?,
@@ -5425,6 +5466,7 @@ class SharePrincipal {
     required this.role,
     required this.type,
   });
+
   factory SharePrincipal.fromJson(Map<String, dynamic> json) {
     return SharePrincipal(
       id: json['Id'] as String,
@@ -5473,6 +5515,7 @@ class ShareResult {
     this.status,
     this.statusMessage,
   });
+
   factory ShareResult.fromJson(Map<String, dynamic> json) {
     return ShareResult(
       inviteePrincipalId: json['InviteePrincipalId'] as String?,
@@ -5542,6 +5585,7 @@ class StorageRuleType {
     this.storageAllocatedInBytes,
     this.storageType,
   });
+
   factory StorageRuleType.fromJson(Map<String, dynamic> json) {
     return StorageRuleType(
       storageAllocatedInBytes: json['StorageAllocatedInBytes'] as int?,
@@ -5604,6 +5648,7 @@ class Subscription {
     this.protocol,
     this.subscriptionId,
   });
+
   factory Subscription.fromJson(Map<String, dynamic> json) {
     return Subscription(
       endPoint: json['EndPoint'] as String?,
@@ -5677,6 +5722,7 @@ class UpdateUserResponse {
   UpdateUserResponse({
     this.user,
   });
+
   factory UpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserResponse(
       user: json['User'] != null
@@ -5705,6 +5751,7 @@ class UploadMetadata {
     this.signedHeaders,
     this.uploadUrl,
   });
+
   factory UploadMetadata.fromJson(Map<String, dynamic> json) {
     return UploadMetadata(
       signedHeaders: (json['SignedHeaders'] as Map<String, dynamic>?)
@@ -5787,6 +5834,7 @@ class User {
     this.type,
     this.username,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -5900,6 +5948,7 @@ class UserMetadata {
     this.surname,
     this.username,
   });
+
   factory UserMetadata.fromJson(Map<String, dynamic> json) {
     return UserMetadata(
       emailAddress: json['EmailAddress'] as String?,
@@ -6014,6 +6063,7 @@ class UserStorageMetadata {
     this.storageRule,
     this.storageUtilizedInBytes,
   });
+
   factory UserStorageMetadata.fromJson(Map<String, dynamic> json) {
     return UserStorageMetadata(
       storageRule: json['StorageRule'] != null

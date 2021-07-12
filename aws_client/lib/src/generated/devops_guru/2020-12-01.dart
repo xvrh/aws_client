@@ -902,6 +902,7 @@ class AddNotificationChannelResponse {
   AddNotificationChannelResponse({
     required this.id,
   });
+
   factory AddNotificationChannelResponse.fromJson(Map<String, dynamic> json) {
     return AddNotificationChannelResponse(
       id: json['Id'] as String,
@@ -931,6 +932,7 @@ class AnomalyReportedTimeRange {
     required this.openTime,
     this.closeTime,
   });
+
   factory AnomalyReportedTimeRange.fromJson(Map<String, dynamic> json) {
     return AnomalyReportedTimeRange(
       openTime: nonNullableTimeStampFromJson(json['OpenTime'] as Object),
@@ -991,6 +993,7 @@ class AnomalySourceDetails {
   AnomalySourceDetails({
     this.cloudWatchMetrics,
   });
+
   factory AnomalySourceDetails.fromJson(Map<String, dynamic> json) {
     return AnomalySourceDetails(
       cloudWatchMetrics: (json['CloudWatchMetrics'] as List?)
@@ -1052,6 +1055,7 @@ class AnomalyTimeRange {
     required this.startTime,
     this.endTime,
   });
+
   factory AnomalyTimeRange.fromJson(Map<String, dynamic> json) {
     return AnomalyTimeRange(
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
@@ -1081,6 +1085,7 @@ class CloudFormationCollection {
   CloudFormationCollection({
     this.stackNames,
   });
+
   factory CloudFormationCollection.fromJson(Map<String, dynamic> json) {
     return CloudFormationCollection(
       stackNames: (json['StackNames'] as List?)
@@ -1110,6 +1115,7 @@ class CloudFormationCollectionFilter {
   CloudFormationCollectionFilter({
     this.stackNames,
   });
+
   factory CloudFormationCollectionFilter.fromJson(Map<String, dynamic> json) {
     return CloudFormationCollectionFilter(
       stackNames: (json['StackNames'] as List?)
@@ -1141,6 +1147,7 @@ class CloudFormationCostEstimationResourceCollectionFilter {
   CloudFormationCostEstimationResourceCollectionFilter({
     this.stackNames,
   });
+
   factory CloudFormationCostEstimationResourceCollectionFilter.fromJson(
       Map<String, dynamic> json) {
     return CloudFormationCostEstimationResourceCollectionFilter(
@@ -1175,6 +1182,7 @@ class CloudFormationHealth {
     this.insight,
     this.stackName,
   });
+
   factory CloudFormationHealth.fromJson(Map<String, dynamic> json) {
     return CloudFormationHealth(
       insight: json['Insight'] != null
@@ -1229,6 +1237,7 @@ class CloudWatchMetricsDetail {
     this.stat,
     this.unit,
   });
+
   factory CloudWatchMetricsDetail.fromJson(Map<String, dynamic> json) {
     return CloudWatchMetricsDetail(
       dimensions: (json['Dimensions'] as List?)
@@ -1280,6 +1289,7 @@ class CloudWatchMetricsDimension {
     this.name,
     this.value,
   });
+
   factory CloudWatchMetricsDimension.fromJson(Map<String, dynamic> json) {
     return CloudWatchMetricsDimension(
       name: json['Name'] as String?,
@@ -1369,6 +1379,7 @@ class CostEstimationResourceCollectionFilter {
   CostEstimationResourceCollectionFilter({
     this.cloudFormation,
   });
+
   factory CostEstimationResourceCollectionFilter.fromJson(
       Map<String, dynamic> json) {
     return CostEstimationResourceCollectionFilter(
@@ -1456,6 +1467,7 @@ class CostEstimationTimeRange {
     this.endTime,
     this.startTime,
   });
+
   factory CostEstimationTimeRange.fromJson(Map<String, dynamic> json) {
     return CostEstimationTimeRange(
       endTime: timeStampFromJson(json['EndTime']),
@@ -1496,6 +1508,7 @@ class DescribeAccountHealthResponse {
     required this.openReactiveInsights,
     required this.resourceHours,
   });
+
   factory DescribeAccountHealthResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccountHealthResponse(
       metricsAnalyzed: json['MetricsAnalyzed'] as int,
@@ -1537,6 +1550,7 @@ class DescribeAccountOverviewResponse {
     required this.proactiveInsights,
     required this.reactiveInsights,
   });
+
   factory DescribeAccountOverviewResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccountOverviewResponse(
       meanTimeToRecoverInMilliseconds:
@@ -1571,6 +1585,7 @@ class DescribeAnomalyResponse {
     this.proactiveAnomaly,
     this.reactiveAnomaly,
   });
+
   factory DescribeAnomalyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAnomalyResponse(
       proactiveAnomaly: json['ProactiveAnomaly'] != null
@@ -1600,6 +1615,7 @@ class DescribeFeedbackResponse {
   DescribeFeedbackResponse({
     this.insightFeedback,
   });
+
   factory DescribeFeedbackResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFeedbackResponse(
       insightFeedback: json['InsightFeedback'] != null
@@ -1629,6 +1645,7 @@ class DescribeInsightResponse {
     this.proactiveInsight,
     this.reactiveInsight,
   });
+
   factory DescribeInsightResponse.fromJson(Map<String, dynamic> json) {
     return DescribeInsightResponse(
       proactiveInsight: json['ProactiveInsight'] != null
@@ -1671,6 +1688,7 @@ class DescribeResourceCollectionHealthResponse {
     this.nextToken,
     this.service,
   });
+
   factory DescribeResourceCollectionHealthResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeResourceCollectionHealthResponse(
@@ -1704,6 +1722,7 @@ class DescribeServiceIntegrationResponse {
   DescribeServiceIntegrationResponse({
     this.serviceIntegration,
   });
+
   factory DescribeServiceIntegrationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeServiceIntegrationResponse(
@@ -1735,6 +1754,7 @@ class EndTimeRange {
     this.fromTime,
     this.toTime,
   });
+
   factory EndTimeRange.fromJson(Map<String, dynamic> json) {
     return EndTimeRange(
       fromTime: timeStampFromJson(json['FromTime']),
@@ -1791,6 +1811,7 @@ class Event {
     this.resources,
     this.time,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       dataSource: (json['DataSource'] as String?)?.toEventDataSource(),
@@ -1921,6 +1942,7 @@ class EventResource {
     this.name,
     this.type,
   });
+
   factory EventResource.fromJson(Map<String, dynamic> json) {
     return EventResource(
       arn: json['Arn'] as String?,
@@ -1955,6 +1977,7 @@ class EventTimeRange {
     required this.fromTime,
     required this.toTime,
   });
+
   factory EventTimeRange.fromJson(Map<String, dynamic> json) {
     return EventTimeRange(
       fromTime: nonNullableTimeStampFromJson(json['FromTime'] as Object),
@@ -2006,6 +2029,7 @@ class GetCostEstimationResponse {
     this.timeRange,
     this.totalCost,
   });
+
   factory GetCostEstimationResponse.fromJson(Map<String, dynamic> json) {
     return GetCostEstimationResponse(
       costs: (json['Costs'] as List?)
@@ -2059,6 +2083,7 @@ class GetResourceCollectionResponse {
     this.nextToken,
     this.resourceCollection,
   });
+
   factory GetResourceCollectionResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceCollectionResponse(
       nextToken: json['NextToken'] as String?,
@@ -2091,6 +2116,7 @@ class InsightFeedback {
     this.feedback,
     this.id,
   });
+
   factory InsightFeedback.fromJson(Map<String, dynamic> json) {
     return InsightFeedback(
       feedback: (json['Feedback'] as String?)?.toInsightFeedbackOption(),
@@ -2168,6 +2194,7 @@ class InsightHealth {
     this.openProactiveInsights,
     this.openReactiveInsights,
   });
+
   factory InsightHealth.fromJson(Map<String, dynamic> json) {
     return InsightHealth(
       meanTimeToRecoverInMilliseconds:
@@ -2267,6 +2294,7 @@ class InsightTimeRange {
     required this.startTime,
     this.endTime,
   });
+
   factory InsightTimeRange.fromJson(Map<String, dynamic> json) {
     return InsightTimeRange(
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
@@ -2330,6 +2358,7 @@ class ListAnomaliesForInsightResponse {
     this.proactiveAnomalies,
     this.reactiveAnomalies,
   });
+
   factory ListAnomaliesForInsightResponse.fromJson(Map<String, dynamic> json) {
     return ListAnomaliesForInsightResponse(
       nextToken: json['NextToken'] as String?,
@@ -2387,6 +2416,7 @@ class ListEventsFilters {
     this.insightId,
     this.resourceCollection,
   });
+
   factory ListEventsFilters.fromJson(Map<String, dynamic> json) {
     return ListEventsFilters(
       dataSource: (json['DataSource'] as String?)?.toEventDataSource(),
@@ -2434,6 +2464,7 @@ class ListEventsResponse {
     required this.events,
     this.nextToken,
   });
+
   factory ListEventsResponse.fromJson(Map<String, dynamic> json) {
     return ListEventsResponse(
       events: (json['Events'] as List)
@@ -2468,6 +2499,7 @@ class ListInsightsAnyStatusFilter {
     required this.startTimeRange,
     required this.type,
   });
+
   factory ListInsightsAnyStatusFilter.fromJson(Map<String, dynamic> json) {
     return ListInsightsAnyStatusFilter(
       startTimeRange: StartTimeRange.fromJson(
@@ -2500,6 +2532,7 @@ class ListInsightsClosedStatusFilter {
     required this.endTimeRange,
     required this.type,
   });
+
   factory ListInsightsClosedStatusFilter.fromJson(Map<String, dynamic> json) {
     return ListInsightsClosedStatusFilter(
       endTimeRange:
@@ -2527,6 +2560,7 @@ class ListInsightsOngoingStatusFilter {
   ListInsightsOngoingStatusFilter({
     required this.type,
   });
+
   factory ListInsightsOngoingStatusFilter.fromJson(Map<String, dynamic> json) {
     return ListInsightsOngoingStatusFilter(
       type: (json['Type'] as String).toInsightType(),
@@ -2557,6 +2591,7 @@ class ListInsightsResponse {
     this.proactiveInsights,
     this.reactiveInsights,
   });
+
   factory ListInsightsResponse.fromJson(Map<String, dynamic> json) {
     return ListInsightsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2605,6 +2640,7 @@ class ListInsightsStatusFilter {
     this.closed,
     this.ongoing,
   });
+
   factory ListInsightsStatusFilter.fromJson(Map<String, dynamic> json) {
     return ListInsightsStatusFilter(
       any: json['Any'] != null
@@ -2646,6 +2682,7 @@ class ListNotificationChannelsResponse {
     this.channels,
     this.nextToken,
   });
+
   factory ListNotificationChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListNotificationChannelsResponse(
       channels: (json['Channels'] as List?)
@@ -2678,6 +2715,7 @@ class ListRecommendationsResponse {
     this.nextToken,
     this.recommendations,
   });
+
   factory ListRecommendationsResponse.fromJson(Map<String, dynamic> json) {
     return ListRecommendationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2799,6 +2837,7 @@ class NotificationChannel {
     this.config,
     this.id,
   });
+
   factory NotificationChannel.fromJson(Map<String, dynamic> json) {
     return NotificationChannel(
       config: json['Config'] != null
@@ -2843,6 +2882,7 @@ class NotificationChannelConfig {
   NotificationChannelConfig({
     required this.sns,
   });
+
   factory NotificationChannelConfig.fromJson(Map<String, dynamic> json) {
     return NotificationChannelConfig(
       sns: SnsChannelConfig.fromJson(json['Sns'] as Map<String, dynamic>),
@@ -2867,6 +2907,7 @@ class OpsCenterIntegration {
   OpsCenterIntegration({
     this.optInStatus,
   });
+
   factory OpsCenterIntegration.fromJson(Map<String, dynamic> json) {
     return OpsCenterIntegration(
       optInStatus: (json['OptInStatus'] as String?)?.toOptInStatus(),
@@ -2891,6 +2932,7 @@ class OpsCenterIntegrationConfig {
   OpsCenterIntegrationConfig({
     this.optInStatus,
   });
+
   factory OpsCenterIntegrationConfig.fromJson(Map<String, dynamic> json) {
     return OpsCenterIntegrationConfig(
       optInStatus: (json['OptInStatus'] as String?)?.toOptInStatus(),
@@ -2949,6 +2991,7 @@ class PredictionTimeRange {
     required this.startTime,
     this.endTime,
   });
+
   factory PredictionTimeRange.fromJson(Map<String, dynamic> json) {
     return PredictionTimeRange(
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
@@ -3014,6 +3057,7 @@ class ProactiveAnomaly {
     this.status,
     this.updateTime,
   });
+
   factory ProactiveAnomaly.fromJson(Map<String, dynamic> json) {
     return ProactiveAnomaly(
       anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
@@ -3124,6 +3168,7 @@ class ProactiveAnomalySummary {
     this.status,
     this.updateTime,
   });
+
   factory ProactiveAnomalySummary.fromJson(Map<String, dynamic> json) {
     return ProactiveAnomalySummary(
       anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
@@ -3219,6 +3264,7 @@ class ProactiveInsight {
     this.ssmOpsItemId,
     this.status,
   });
+
   factory ProactiveInsight.fromJson(Map<String, dynamic> json) {
     return ProactiveInsight(
       id: json['Id'] as String?,
@@ -3295,6 +3341,7 @@ class ProactiveInsightSummary {
     this.severity,
     this.status,
   });
+
   factory ProactiveInsightSummary.fromJson(Map<String, dynamic> json) {
     return ProactiveInsightSummary(
       id: json['Id'] as String?,
@@ -3345,6 +3392,7 @@ class ProactiveInsightSummary {
 
 class PutFeedbackResponse {
   PutFeedbackResponse();
+
   factory PutFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return PutFeedbackResponse();
   }
@@ -3390,6 +3438,7 @@ class ReactiveAnomaly {
     this.sourceDetails,
     this.status,
   });
+
   factory ReactiveAnomaly.fromJson(Map<String, dynamic> json) {
     return ReactiveAnomaly(
       anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
@@ -3475,6 +3524,7 @@ class ReactiveAnomalySummary {
     this.sourceDetails,
     this.status,
   });
+
   factory ReactiveAnomalySummary.fromJson(Map<String, dynamic> json) {
     return ReactiveAnomalySummary(
       anomalyReportedTimeRange: json['AnomalyReportedTimeRange'] != null
@@ -3555,6 +3605,7 @@ class ReactiveInsight {
     this.ssmOpsItemId,
     this.status,
   });
+
   factory ReactiveInsight.fromJson(Map<String, dynamic> json) {
     return ReactiveInsight(
       id: json['Id'] as String?,
@@ -3622,6 +3673,7 @@ class ReactiveInsightSummary {
     this.severity,
     this.status,
   });
+
   factory ReactiveInsightSummary.fromJson(Map<String, dynamic> json) {
     return ReactiveInsightSummary(
       id: json['Id'] as String?,
@@ -3694,6 +3746,7 @@ class Recommendation {
     this.relatedAnomalies,
     this.relatedEvents,
   });
+
   factory Recommendation.fromJson(Map<String, dynamic> json) {
     return Recommendation(
       description: json['Description'] as String?,
@@ -3745,6 +3798,7 @@ class RecommendationRelatedAnomaly {
     this.resources,
     this.sourceDetails,
   });
+
   factory RecommendationRelatedAnomaly.fromJson(Map<String, dynamic> json) {
     return RecommendationRelatedAnomaly(
       resources: (json['Resources'] as List?)
@@ -3783,6 +3837,7 @@ class RecommendationRelatedAnomalyResource {
     this.name,
     this.type,
   });
+
   factory RecommendationRelatedAnomalyResource.fromJson(
       Map<String, dynamic> json) {
     return RecommendationRelatedAnomalyResource(
@@ -3813,6 +3868,7 @@ class RecommendationRelatedAnomalySourceDetail {
   RecommendationRelatedAnomalySourceDetail({
     this.cloudWatchMetrics,
   });
+
   factory RecommendationRelatedAnomalySourceDetail.fromJson(
       Map<String, dynamic> json) {
     return RecommendationRelatedAnomalySourceDetail(
@@ -3847,6 +3903,7 @@ class RecommendationRelatedCloudWatchMetricsSourceDetail {
     this.metricName,
     this.namespace,
   });
+
   factory RecommendationRelatedCloudWatchMetricsSourceDetail.fromJson(
       Map<String, dynamic> json) {
     return RecommendationRelatedCloudWatchMetricsSourceDetail(
@@ -3880,6 +3937,7 @@ class RecommendationRelatedEvent {
     this.name,
     this.resources,
   });
+
   factory RecommendationRelatedEvent.fromJson(Map<String, dynamic> json) {
     return RecommendationRelatedEvent(
       name: json['Name'] as String?,
@@ -3916,6 +3974,7 @@ class RecommendationRelatedEventResource {
     this.name,
     this.type,
   });
+
   factory RecommendationRelatedEventResource.fromJson(
       Map<String, dynamic> json) {
     return RecommendationRelatedEventResource(
@@ -3936,6 +3995,7 @@ class RecommendationRelatedEventResource {
 
 class RemoveNotificationChannelResponse {
   RemoveNotificationChannelResponse();
+
   factory RemoveNotificationChannelResponse.fromJson(Map<String, dynamic> _) {
     return RemoveNotificationChannelResponse();
   }
@@ -3958,6 +4018,7 @@ class ResourceCollection {
   ResourceCollection({
     this.cloudFormation,
   });
+
   factory ResourceCollection.fromJson(Map<String, dynamic> json) {
     return ResourceCollection(
       cloudFormation: json['CloudFormation'] != null
@@ -3988,6 +4049,7 @@ class ResourceCollectionFilter {
   ResourceCollectionFilter({
     this.cloudFormation,
   });
+
   factory ResourceCollectionFilter.fromJson(Map<String, dynamic> json) {
     return ResourceCollectionFilter(
       cloudFormation: json['CloudFormation'] != null
@@ -4053,6 +4115,7 @@ class SearchInsightsFilters {
     this.severities,
     this.statuses,
   });
+
   factory SearchInsightsFilters.fromJson(Map<String, dynamic> json) {
     return SearchInsightsFilters(
       resourceCollection: json['ResourceCollection'] != null
@@ -4106,6 +4169,7 @@ class SearchInsightsResponse {
     this.proactiveInsights,
     this.reactiveInsights,
   });
+
   factory SearchInsightsResponse.fromJson(Map<String, dynamic> json) {
     return SearchInsightsResponse(
       nextToken: json['NextToken'] as String?,
@@ -4142,6 +4206,7 @@ class ServiceCollection {
   ServiceCollection({
     this.serviceNames,
   });
+
   factory ServiceCollection.fromJson(Map<String, dynamic> json) {
     return ServiceCollection(
       serviceNames: (json['ServiceNames'] as List?)
@@ -4174,6 +4239,7 @@ class ServiceHealth {
     this.insight,
     this.serviceName,
   });
+
   factory ServiceHealth.fromJson(Map<String, dynamic> json) {
     return ServiceHealth(
       insight: json['Insight'] != null
@@ -4207,6 +4273,7 @@ class ServiceInsightHealth {
     this.openProactiveInsights,
     this.openReactiveInsights,
   });
+
   factory ServiceInsightHealth.fromJson(Map<String, dynamic> json) {
     return ServiceInsightHealth(
       openProactiveInsights: json['OpenProactiveInsights'] as int?,
@@ -4236,6 +4303,7 @@ class ServiceIntegrationConfig {
   ServiceIntegrationConfig({
     this.opsCenter,
   });
+
   factory ServiceIntegrationConfig.fromJson(Map<String, dynamic> json) {
     return ServiceIntegrationConfig(
       opsCenter: json['OpsCenter'] != null
@@ -4435,6 +4503,7 @@ class ServiceResourceCost {
     this.type,
     this.unitCost,
   });
+
   factory ServiceResourceCost.fromJson(Map<String, dynamic> json) {
     return ServiceResourceCost(
       cost: json['Cost'] as double?,
@@ -4484,6 +4553,7 @@ class SnsChannelConfig {
   SnsChannelConfig({
     this.topicArn,
   });
+
   factory SnsChannelConfig.fromJson(Map<String, dynamic> json) {
     return SnsChannelConfig(
       topicArn: json['TopicArn'] as String?,
@@ -4500,6 +4570,7 @@ class SnsChannelConfig {
 
 class StartCostEstimationResponse {
   StartCostEstimationResponse();
+
   factory StartCostEstimationResponse.fromJson(Map<String, dynamic> _) {
     return StartCostEstimationResponse();
   }
@@ -4522,6 +4593,7 @@ class StartTimeRange {
     this.fromTime,
     this.toTime,
   });
+
   factory StartTimeRange.fromJson(Map<String, dynamic> json) {
     return StartTimeRange(
       fromTime: timeStampFromJson(json['FromTime']),
@@ -4549,6 +4621,7 @@ class UpdateCloudFormationCollectionFilter {
   UpdateCloudFormationCollectionFilter({
     this.stackNames,
   });
+
   factory UpdateCloudFormationCollectionFilter.fromJson(
       Map<String, dynamic> json) {
     return UpdateCloudFormationCollectionFilter(
@@ -4605,6 +4678,7 @@ class UpdateResourceCollectionFilter {
   UpdateResourceCollectionFilter({
     this.cloudFormation,
   });
+
   factory UpdateResourceCollectionFilter.fromJson(Map<String, dynamic> json) {
     return UpdateResourceCollectionFilter(
       cloudFormation: json['CloudFormation'] != null
@@ -4624,6 +4698,7 @@ class UpdateResourceCollectionFilter {
 
 class UpdateResourceCollectionResponse {
   UpdateResourceCollectionResponse();
+
   factory UpdateResourceCollectionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceCollectionResponse();
   }
@@ -4641,6 +4716,7 @@ class UpdateServiceIntegrationConfig {
   UpdateServiceIntegrationConfig({
     this.opsCenter,
   });
+
   factory UpdateServiceIntegrationConfig.fromJson(Map<String, dynamic> json) {
     return UpdateServiceIntegrationConfig(
       opsCenter: json['OpsCenter'] != null
@@ -4660,6 +4736,7 @@ class UpdateServiceIntegrationConfig {
 
 class UpdateServiceIntegrationResponse {
   UpdateServiceIntegrationResponse();
+
   factory UpdateServiceIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateServiceIntegrationResponse();
   }

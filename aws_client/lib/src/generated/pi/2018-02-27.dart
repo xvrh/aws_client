@@ -486,6 +486,7 @@ class DataPoint {
     required this.timestamp,
     required this.value,
   });
+
   factory DataPoint.fromJson(Map<String, dynamic> json) {
     return DataPoint(
       timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
@@ -536,6 +537,7 @@ class DescribeDimensionKeysResponse {
     this.nextToken,
     this.partitionKeys,
   });
+
   factory DescribeDimensionKeysResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDimensionKeysResponse(
       alignedEndTime: timeStampFromJson(json['AlignedEndTime']),
@@ -736,6 +738,7 @@ class DimensionGroup {
     this.dimensions,
     this.limit,
   });
+
   factory DimensionGroup.fromJson(Map<String, dynamic> json) {
     return DimensionGroup(
       group: json['Group'] as String,
@@ -778,6 +781,7 @@ class DimensionKeyDescription {
     this.partitions,
     this.total,
   });
+
   factory DimensionKeyDescription.fromJson(Map<String, dynamic> json) {
     return DimensionKeyDescription(
       dimensions: (json['Dimensions'] as Map<String, dynamic>?)
@@ -838,6 +842,7 @@ class DimensionKeyDetail {
     this.status,
     this.value,
   });
+
   factory DimensionKeyDetail.fromJson(Map<String, dynamic> json) {
     return DimensionKeyDetail(
       dimension: json['Dimension'] as String?,
@@ -865,6 +870,7 @@ class GetDimensionKeyDetailsResponse {
   GetDimensionKeyDetailsResponse({
     this.dimensions,
   });
+
   factory GetDimensionKeyDetailsResponse.fromJson(Map<String, dynamic> json) {
     return GetDimensionKeyDetailsResponse(
       dimensions: (json['Dimensions'] as List?)
@@ -919,6 +925,7 @@ class GetResourceMetricsResponse {
     this.metricList,
     this.nextToken,
   });
+
   factory GetResourceMetricsResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceMetricsResponse(
       alignedEndTime: timeStampFromJson(json['AlignedEndTime']),
@@ -964,6 +971,7 @@ class MetricKeyDataPoints {
     this.dataPoints,
     this.key,
   });
+
   factory MetricKeyDataPoints.fromJson(Map<String, dynamic> json) {
     return MetricKeyDataPoints(
       dataPoints: (json['DataPoints'] as List?)
@@ -1042,6 +1050,7 @@ class MetricQuery {
     this.filter,
     this.groupBy,
   });
+
   factory MetricQuery.fromJson(Map<String, dynamic> json) {
     return MetricQuery(
       metric: json['Metric'] as String,
@@ -1075,6 +1084,7 @@ class ResponsePartitionKey {
   ResponsePartitionKey({
     required this.dimensions,
   });
+
   factory ResponsePartitionKey.fromJson(Map<String, dynamic> json) {
     return ResponsePartitionKey(
       dimensions: (json['Dimensions'] as Map<String, dynamic>)
@@ -1124,6 +1134,7 @@ class ResponseResourceMetricKey {
     required this.metric,
     this.dimensions,
   });
+
   factory ResponseResourceMetricKey.fromJson(Map<String, dynamic> json) {
     return ResponseResourceMetricKey(
       metric: json['Metric'] as String,

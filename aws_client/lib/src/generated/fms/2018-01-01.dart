@@ -1434,6 +1434,7 @@ class ActionTarget {
     this.description,
     this.resourceId,
   });
+
   factory ActionTarget.fromJson(Map<String, dynamic> json) {
     return ActionTarget(
       description: json['Description'] as String?,
@@ -1471,6 +1472,7 @@ class App {
     required this.port,
     required this.protocol,
   });
+
   factory App.fromJson(Map<String, dynamic> json) {
     return App(
       appName: json['AppName'] as String,
@@ -1526,6 +1528,7 @@ class AppsListData {
     this.listUpdateToken,
     this.previousAppsList,
   });
+
   factory AppsListData.fromJson(Map<String, dynamic> json) {
     return AppsListData(
       appsList: (json['AppsList'] as List)
@@ -1589,6 +1592,7 @@ class AppsListDataSummary {
     this.listId,
     this.listName,
   });
+
   factory AppsListDataSummary.fromJson(Map<String, dynamic> json) {
     return AppsListDataSummary(
       appsList: (json['AppsList'] as List?)
@@ -1627,6 +1631,7 @@ class AwsEc2InstanceViolation {
     this.awsEc2NetworkInterfaceViolations,
     this.violationTarget,
   });
+
   factory AwsEc2InstanceViolation.fromJson(Map<String, dynamic> json) {
     return AwsEc2InstanceViolation(
       awsEc2NetworkInterfaceViolations:
@@ -1664,6 +1669,7 @@ class AwsEc2NetworkInterfaceViolation {
     this.violatingSecurityGroups,
     this.violationTarget,
   });
+
   factory AwsEc2NetworkInterfaceViolation.fromJson(Map<String, dynamic> json) {
     return AwsEc2NetworkInterfaceViolation(
       violatingSecurityGroups: (json['ViolatingSecurityGroups'] as List?)
@@ -1709,6 +1715,7 @@ class AwsVPCSecurityGroupViolation {
     this.violationTarget,
     this.violationTargetDescription,
   });
+
   factory AwsVPCSecurityGroupViolation.fromJson(Map<String, dynamic> json) {
     return AwsVPCSecurityGroupViolation(
       partialMatches: (json['PartialMatches'] as List?)
@@ -1765,6 +1772,7 @@ class ComplianceViolator {
     this.resourceType,
     this.violationReason,
   });
+
   factory ComplianceViolator.fromJson(Map<String, dynamic> json) {
     return ComplianceViolator(
       resourceId: json['ResourceId'] as String?,
@@ -1898,6 +1906,7 @@ class DnsDuplicateRuleGroupViolation {
     this.violationTarget,
     this.violationTargetDescription,
   });
+
   factory DnsDuplicateRuleGroupViolation.fromJson(Map<String, dynamic> json) {
     return DnsDuplicateRuleGroupViolation(
       violationTarget: json['ViolationTarget'] as String?,
@@ -1934,6 +1943,7 @@ class DnsRuleGroupLimitExceededViolation {
     this.violationTarget,
     this.violationTargetDescription,
   });
+
   factory DnsRuleGroupLimitExceededViolation.fromJson(
       Map<String, dynamic> json) {
     return DnsRuleGroupLimitExceededViolation(
@@ -1990,6 +2000,7 @@ class DnsRuleGroupPriorityConflictViolation {
     this.violationTarget,
     this.violationTargetDescription,
   });
+
   factory DnsRuleGroupPriorityConflictViolation.fromJson(
       Map<String, dynamic> json) {
     return DnsRuleGroupPriorityConflictViolation(
@@ -2049,6 +2060,7 @@ class EC2AssociateRouteTableAction {
     this.gatewayId,
     this.subnetId,
   });
+
   factory EC2AssociateRouteTableAction.fromJson(Map<String, dynamic> json) {
     return EC2AssociateRouteTableAction(
       routeTableId:
@@ -2096,6 +2108,7 @@ class EC2CopyRouteTableAction {
     required this.vpcId,
     this.description,
   });
+
   factory EC2CopyRouteTableAction.fromJson(Map<String, dynamic> json) {
     return EC2CopyRouteTableAction(
       routeTableId:
@@ -2152,6 +2165,7 @@ class EC2CreateRouteAction {
     this.gatewayId,
     this.vpcEndpointId,
   });
+
   factory EC2CreateRouteAction.fromJson(Map<String, dynamic> json) {
     return EC2CreateRouteAction(
       routeTableId:
@@ -2204,6 +2218,7 @@ class EC2CreateRouteTableAction {
     required this.vpcId,
     this.description,
   });
+
   factory EC2CreateRouteTableAction.fromJson(Map<String, dynamic> json) {
     return EC2CreateRouteTableAction(
       vpcId: ActionTarget.fromJson(json['VpcId'] as Map<String, dynamic>),
@@ -2247,6 +2262,7 @@ class EC2DeleteRouteAction {
     this.destinationIpv6CidrBlock,
     this.destinationPrefixListId,
   });
+
   factory EC2DeleteRouteAction.fromJson(Map<String, dynamic> json) {
     return EC2DeleteRouteAction(
       routeTableId:
@@ -2309,6 +2325,7 @@ class EC2ReplaceRouteAction {
     this.destinationPrefixListId,
     this.gatewayId,
   });
+
   factory EC2ReplaceRouteAction.fromJson(Map<String, dynamic> json) {
     return EC2ReplaceRouteAction(
       routeTableId:
@@ -2361,6 +2378,7 @@ class EC2ReplaceRouteTableAssociationAction {
     required this.routeTableId,
     this.description,
   });
+
   factory EC2ReplaceRouteTableAssociationAction.fromJson(
       Map<String, dynamic> json) {
     return EC2ReplaceRouteTableAssociationAction(
@@ -2408,6 +2426,7 @@ class EvaluationResult {
     this.evaluationLimitExceeded,
     this.violatorCount,
   });
+
   factory EvaluationResult.fromJson(Map<String, dynamic> json) {
     return EvaluationResult(
       complianceStatus:
@@ -2459,6 +2478,7 @@ class ExpectedRoute {
     this.prefixListId,
     this.routeTableId,
   });
+
   factory ExpectedRoute.fromJson(Map<String, dynamic> json) {
     return ExpectedRoute(
       allowedTargets: (json['AllowedTargets'] as List?)
@@ -2508,6 +2528,7 @@ class GetAdminAccountResponse {
     this.adminAccount,
     this.roleStatus,
   });
+
   factory GetAdminAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetAdminAccountResponse(
       adminAccount: json['AdminAccount'] as String?,
@@ -2536,6 +2557,7 @@ class GetAppsListResponse {
     this.appsList,
     this.appsListArn,
   });
+
   factory GetAppsListResponse.fromJson(Map<String, dynamic> json) {
     return GetAppsListResponse(
       appsList: json['AppsList'] != null
@@ -2563,6 +2585,7 @@ class GetComplianceDetailResponse {
   GetComplianceDetailResponse({
     this.policyComplianceDetail,
   });
+
   factory GetComplianceDetailResponse.fromJson(Map<String, dynamic> json) {
     return GetComplianceDetailResponse(
       policyComplianceDetail: json['PolicyComplianceDetail'] != null
@@ -2592,6 +2615,7 @@ class GetNotificationChannelResponse {
     this.snsRoleName,
     this.snsTopicArn,
   });
+
   factory GetNotificationChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetNotificationChannelResponse(
       snsRoleName: json['SnsRoleName'] as String?,
@@ -2620,6 +2644,7 @@ class GetPolicyResponse {
     this.policy,
     this.policyArn,
   });
+
   factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyResponse(
       policy: json['Policy'] != null
@@ -2689,6 +2714,7 @@ class GetProtectionStatusResponse {
     this.nextToken,
     this.serviceType,
   });
+
   factory GetProtectionStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetProtectionStatusResponse(
       adminAccountId: json['AdminAccountId'] as String?,
@@ -2723,6 +2749,7 @@ class GetProtocolsListResponse {
     this.protocolsList,
     this.protocolsListArn,
   });
+
   factory GetProtocolsListResponse.fromJson(Map<String, dynamic> json) {
     return GetProtocolsListResponse(
       protocolsList: json['ProtocolsList'] != null
@@ -2750,6 +2777,7 @@ class GetViolationDetailsResponse {
   GetViolationDetailsResponse({
     this.violationDetail,
   });
+
   factory GetViolationDetailsResponse.fromJson(Map<String, dynamic> json) {
     return GetViolationDetailsResponse(
       violationDetail: json['ViolationDetail'] != null
@@ -2781,6 +2809,7 @@ class ListAppsListsResponse {
     this.appsLists,
     this.nextToken,
   });
+
   factory ListAppsListsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppsListsResponse(
       appsLists: (json['AppsLists'] as List?)
@@ -2818,6 +2847,7 @@ class ListComplianceStatusResponse {
     this.nextToken,
     this.policyComplianceStatusList,
   });
+
   factory ListComplianceStatusResponse.fromJson(Map<String, dynamic> json) {
     return ListComplianceStatusResponse(
       nextToken: json['NextToken'] as String?,
@@ -2856,6 +2886,7 @@ class ListMemberAccountsResponse {
     this.memberAccounts,
     this.nextToken,
   });
+
   factory ListMemberAccountsResponse.fromJson(Map<String, dynamic> json) {
     return ListMemberAccountsResponse(
       memberAccounts: (json['MemberAccounts'] as List?)
@@ -2892,6 +2923,7 @@ class ListPoliciesResponse {
     this.nextToken,
     this.policyList,
   });
+
   factory ListPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListPoliciesResponse(
       nextToken: json['NextToken'] as String?,
@@ -2926,6 +2958,7 @@ class ListProtocolsListsResponse {
     this.nextToken,
     this.protocolsLists,
   });
+
   factory ListProtocolsListsResponse.fromJson(Map<String, dynamic> json) {
     return ListProtocolsListsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2954,6 +2987,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tagList,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tagList: (json['TagList'] as List?)
@@ -2992,6 +3026,7 @@ class NetworkFirewallBlackHoleRouteDetectedViolation {
     this.violationTarget,
     this.vpcId,
   });
+
   factory NetworkFirewallBlackHoleRouteDetectedViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallBlackHoleRouteDetectedViolation(
@@ -3085,6 +3120,7 @@ class NetworkFirewallInternetTrafficNotInspectedViolation {
     this.violatingRoutes,
     this.vpcId,
   });
+
   factory NetworkFirewallInternetTrafficNotInspectedViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallInternetTrafficNotInspectedViolation(
@@ -3245,6 +3281,7 @@ class NetworkFirewallInvalidRouteConfigurationViolation {
     this.violatingRoute,
     this.vpcId,
   });
+
   factory NetworkFirewallInvalidRouteConfigurationViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallInvalidRouteConfigurationViolation(
@@ -3368,6 +3405,7 @@ class NetworkFirewallMissingExpectedRTViolation {
     this.vpc,
     this.violationTarget,
   });
+
   factory NetworkFirewallMissingExpectedRTViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallMissingExpectedRTViolation(
@@ -3411,6 +3449,7 @@ class NetworkFirewallMissingExpectedRoutesViolation {
     this.violationTarget,
     this.vpcId,
   });
+
   factory NetworkFirewallMissingExpectedRoutesViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallMissingExpectedRoutesViolation(
@@ -3456,6 +3495,7 @@ class NetworkFirewallMissingFirewallViolation {
     this.vpc,
     this.violationTarget,
   });
+
   factory NetworkFirewallMissingFirewallViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallMissingFirewallViolation(
@@ -3502,6 +3542,7 @@ class NetworkFirewallMissingSubnetViolation {
     this.vpc,
     this.violationTarget,
   });
+
   factory NetworkFirewallMissingSubnetViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallMissingSubnetViolation(
@@ -3556,6 +3597,7 @@ class NetworkFirewallPolicyDescription {
     this.statelessFragmentDefaultActions,
     this.statelessRuleGroups,
   });
+
   factory NetworkFirewallPolicyDescription.fromJson(Map<String, dynamic> json) {
     return NetworkFirewallPolicyDescription(
       statefulRuleGroups: (json['StatefulRuleGroups'] as List?)
@@ -3622,6 +3664,7 @@ class NetworkFirewallPolicyModifiedViolation {
     this.expectedPolicyDescription,
     this.violationTarget,
   });
+
   factory NetworkFirewallPolicyModifiedViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallPolicyModifiedViolation(
@@ -3675,6 +3718,7 @@ class NetworkFirewallUnexpectedFirewallRoutesViolation {
     this.violatingRoutes,
     this.vpcId,
   });
+
   factory NetworkFirewallUnexpectedFirewallRoutesViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallUnexpectedFirewallRoutesViolation(
@@ -3726,6 +3770,7 @@ class NetworkFirewallUnexpectedGatewayRoutesViolation {
     this.violatingRoutes,
     this.vpcId,
   });
+
   factory NetworkFirewallUnexpectedGatewayRoutesViolation.fromJson(
       Map<String, dynamic> json) {
     return NetworkFirewallUnexpectedGatewayRoutesViolation(
@@ -3767,6 +3812,7 @@ class PartialMatch {
     this.reference,
     this.targetViolationReasons,
   });
+
   factory PartialMatch.fromJson(Map<String, dynamic> json) {
     return PartialMatch(
       reference: json['Reference'] as String?,
@@ -3922,6 +3968,7 @@ class Policy {
     this.resourceTags,
     this.resourceTypeList,
   });
+
   factory Policy.fromJson(Map<String, dynamic> json) {
     return Policy(
       excludeResourceTags: json['ExcludeResourceTags'] as bool,
@@ -4018,6 +4065,7 @@ class PolicyComplianceDetail {
     this.policyOwner,
     this.violators,
   });
+
   factory PolicyComplianceDetail.fromJson(Map<String, dynamic> json) {
     return PolicyComplianceDetail(
       evaluationLimitExceeded: json['EvaluationLimitExceeded'] as bool?,
@@ -4092,6 +4140,7 @@ class PolicyComplianceStatus {
     this.policyName,
     this.policyOwner,
   });
+
   factory PolicyComplianceStatus.fromJson(Map<String, dynamic> json) {
     return PolicyComplianceStatus(
       evaluationResults: (json['EvaluationResults'] as List?)
@@ -4199,6 +4248,7 @@ class PolicySummary {
     this.resourceType,
     this.securityServiceType,
   });
+
   factory PolicySummary.fromJson(Map<String, dynamic> json) {
     return PolicySummary(
       policyArn: json['PolicyArn'] as String?,
@@ -4246,6 +4296,7 @@ class PossibleRemediationAction {
     this.description,
     this.isDefaultAction,
   });
+
   factory PossibleRemediationAction.fromJson(Map<String, dynamic> json) {
     return PossibleRemediationAction(
       orderedRemediationActions: (json['OrderedRemediationActions'] as List)
@@ -4283,6 +4334,7 @@ class PossibleRemediationActions {
     this.actions,
     this.description,
   });
+
   factory PossibleRemediationActions.fromJson(Map<String, dynamic> json) {
     return PossibleRemediationActions(
       actions: (json['Actions'] as List?)
@@ -4338,6 +4390,7 @@ class ProtocolsListData {
     this.listUpdateToken,
     this.previousProtocolsList,
   });
+
   factory ProtocolsListData.fromJson(Map<String, dynamic> json) {
     return ProtocolsListData(
       listName: json['ListName'] as String,
@@ -4398,6 +4451,7 @@ class ProtocolsListDataSummary {
     this.listName,
     this.protocolsList,
   });
+
   factory ProtocolsListDataSummary.fromJson(Map<String, dynamic> json) {
     return ProtocolsListDataSummary(
       listArn: json['ListArn'] as String?,
@@ -4435,6 +4489,7 @@ class PutAppsListResponse {
     this.appsList,
     this.appsListArn,
   });
+
   factory PutAppsListResponse.fromJson(Map<String, dynamic> json) {
     return PutAppsListResponse(
       appsList: json['AppsList'] != null
@@ -4465,6 +4520,7 @@ class PutPolicyResponse {
     this.policy,
     this.policyArn,
   });
+
   factory PutPolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutPolicyResponse(
       policy: json['Policy'] != null
@@ -4495,6 +4551,7 @@ class PutProtocolsListResponse {
     this.protocolsList,
     this.protocolsListArn,
   });
+
   factory PutProtocolsListResponse.fromJson(Map<String, dynamic> json) {
     return PutProtocolsListResponse(
       protocolsList: json['ProtocolsList'] != null
@@ -4554,6 +4611,7 @@ class RemediationAction {
     this.eC2ReplaceRouteAction,
     this.eC2ReplaceRouteTableAssociationAction,
   });
+
   factory RemediationAction.fromJson(Map<String, dynamic> json) {
     return RemediationAction(
       description: json['Description'] as String?,
@@ -4661,6 +4719,7 @@ class RemediationActionWithOrder {
     this.order,
     this.remediationAction,
   });
+
   factory RemediationActionWithOrder.fromJson(Map<String, dynamic> json) {
     return RemediationActionWithOrder(
       order: json['Order'] as int?,
@@ -4702,6 +4761,7 @@ class ResourceTag {
     required this.key,
     this.value,
   });
+
   factory ResourceTag.fromJson(Map<String, dynamic> json) {
     return ResourceTag(
       key: json['Key'] as String,
@@ -4815,6 +4875,7 @@ class ResourceViolation {
     this.networkFirewallUnexpectedGatewayRoutesViolation,
     this.possibleRemediationActions,
   });
+
   factory ResourceViolation.fromJson(Map<String, dynamic> json) {
     return ResourceViolation(
       awsEc2InstanceViolation: json['AwsEc2InstanceViolation'] != null
@@ -5017,6 +5078,7 @@ class Route {
     this.target,
     this.targetType,
   });
+
   factory Route.fromJson(Map<String, dynamic> json) {
     return Route(
       destination: json['Destination'] as String?,
@@ -5063,6 +5125,7 @@ class SecurityGroupRemediationAction {
     this.remediationActionType,
     this.remediationResult,
   });
+
   factory SecurityGroupRemediationAction.fromJson(Map<String, dynamic> json) {
     return SecurityGroupRemediationAction(
       description: json['Description'] as String?,
@@ -5122,6 +5185,7 @@ class SecurityGroupRuleDescription {
     this.protocol,
     this.toPort,
   });
+
   factory SecurityGroupRuleDescription.fromJson(Map<String, dynamic> json) {
     return SecurityGroupRuleDescription(
       fromPort: json['FromPort'] as int?,
@@ -5235,6 +5299,7 @@ class SecurityServicePolicyData {
     required this.type,
     this.managedServiceData,
   });
+
   factory SecurityServicePolicyData.fromJson(Map<String, dynamic> json) {
     return SecurityServicePolicyData(
       type: (json['Type'] as String).toSecurityServiceType(),
@@ -5323,6 +5388,7 @@ class StatefulRuleGroup {
     this.resourceId,
     this.ruleGroupName,
   });
+
   factory StatefulRuleGroup.fromJson(Map<String, dynamic> json) {
     return StatefulRuleGroup(
       resourceId: json['ResourceId'] as String?,
@@ -5358,6 +5424,7 @@ class StatelessRuleGroup {
     this.resourceId,
     this.ruleGroupName,
   });
+
   factory StatelessRuleGroup.fromJson(Map<String, dynamic> json) {
     return StatelessRuleGroup(
       priority: json['Priority'] as int?,
@@ -5399,6 +5466,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5418,6 +5486,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5497,6 +5566,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5541,6 +5611,7 @@ class ViolationDetail {
     this.resourceDescription,
     this.resourceTags,
   });
+
   factory ViolationDetail.fromJson(Map<String, dynamic> json) {
     return ViolationDetail(
       memberAccount: json['MemberAccount'] as String,

@@ -2787,6 +2787,7 @@ class Location {
 
 class AssociateTrackerConsumerResponse {
   AssociateTrackerConsumerResponse();
+
   factory AssociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
     return AssociateTrackerConsumerResponse();
   }
@@ -2806,6 +2807,7 @@ class BatchDeleteDevicePositionHistoryError {
     required this.deviceId,
     required this.error,
   });
+
   factory BatchDeleteDevicePositionHistoryError.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteDevicePositionHistoryError(
@@ -2831,6 +2833,7 @@ class BatchDeleteDevicePositionHistoryResponse {
   BatchDeleteDevicePositionHistoryResponse({
     required this.errors,
   });
+
   factory BatchDeleteDevicePositionHistoryResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteDevicePositionHistoryResponse(
@@ -2863,6 +2866,7 @@ class BatchDeleteGeofenceError {
     required this.error,
     required this.geofenceId,
   });
+
   factory BatchDeleteGeofenceError.fromJson(Map<String, dynamic> json) {
     return BatchDeleteGeofenceError(
       error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
@@ -2887,6 +2891,7 @@ class BatchDeleteGeofenceResponse {
   BatchDeleteGeofenceResponse({
     required this.errors,
   });
+
   factory BatchDeleteGeofenceResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteGeofenceResponse(
       errors: (json['Errors'] as List)
@@ -2924,6 +2929,7 @@ class BatchEvaluateGeofencesError {
     required this.error,
     required this.sampleTime,
   });
+
   factory BatchEvaluateGeofencesError.fromJson(Map<String, dynamic> json) {
     return BatchEvaluateGeofencesError(
       deviceId: json['DeviceId'] as String,
@@ -2952,6 +2958,7 @@ class BatchEvaluateGeofencesResponse {
   BatchEvaluateGeofencesResponse({
     required this.errors,
   });
+
   factory BatchEvaluateGeofencesResponse.fromJson(Map<String, dynamic> json) {
     return BatchEvaluateGeofencesResponse(
       errors: (json['Errors'] as List)
@@ -2982,6 +2989,7 @@ class BatchGetDevicePositionError {
     required this.deviceId,
     required this.error,
   });
+
   factory BatchGetDevicePositionError.fromJson(Map<String, dynamic> json) {
     return BatchGetDevicePositionError(
       deviceId: json['DeviceId'] as String,
@@ -3012,6 +3020,7 @@ class BatchGetDevicePositionResponse {
     required this.devicePositions,
     required this.errors,
   });
+
   factory BatchGetDevicePositionResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetDevicePositionResponse(
       devicePositions: (json['DevicePositions'] as List)
@@ -3048,6 +3057,7 @@ class BatchItemError {
     this.code,
     this.message,
   });
+
   factory BatchItemError.fromJson(Map<String, dynamic> json) {
     return BatchItemError(
       code: (json['Code'] as String?)?.toBatchItemErrorCode(),
@@ -3126,6 +3136,7 @@ class BatchPutGeofenceError {
     required this.error,
     required this.geofenceId,
   });
+
   factory BatchPutGeofenceError.fromJson(Map<String, dynamic> json) {
     return BatchPutGeofenceError(
       error: BatchItemError.fromJson(json['Error'] as Map<String, dynamic>),
@@ -3160,6 +3171,7 @@ class BatchPutGeofenceRequestEntry {
     required this.geofenceId,
     required this.geometry,
   });
+
   factory BatchPutGeofenceRequestEntry.fromJson(Map<String, dynamic> json) {
     return BatchPutGeofenceRequestEntry(
       geofenceId: json['GeofenceId'] as String,
@@ -3191,6 +3203,7 @@ class BatchPutGeofenceResponse {
     required this.errors,
     required this.successes,
   });
+
   factory BatchPutGeofenceResponse.fromJson(Map<String, dynamic> json) {
     return BatchPutGeofenceResponse(
       errors: (json['Errors'] as List)
@@ -3236,6 +3249,7 @@ class BatchPutGeofenceSuccess {
     required this.geofenceId,
     required this.updateTime,
   });
+
   factory BatchPutGeofenceSuccess.fromJson(Map<String, dynamic> json) {
     return BatchPutGeofenceSuccess(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -3275,6 +3289,7 @@ class BatchUpdateDevicePositionError {
     required this.error,
     required this.sampleTime,
   });
+
   factory BatchUpdateDevicePositionError.fromJson(Map<String, dynamic> json) {
     return BatchUpdateDevicePositionError(
       deviceId: json['DeviceId'] as String,
@@ -3302,6 +3317,7 @@ class BatchUpdateDevicePositionResponse {
   BatchUpdateDevicePositionResponse({
     required this.errors,
   });
+
   factory BatchUpdateDevicePositionResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchUpdateDevicePositionResponse(
@@ -3342,6 +3358,7 @@ class CalculateRouteCarModeOptions {
     this.avoidFerries,
     this.avoidTolls,
   });
+
   factory CalculateRouteCarModeOptions.fromJson(Map<String, dynamic> json) {
     return CalculateRouteCarModeOptions(
       avoidFerries: json['AvoidFerries'] as bool?,
@@ -3405,6 +3422,7 @@ class CalculateRouteResponse {
     required this.legs,
     required this.summary,
   });
+
   factory CalculateRouteResponse.fromJson(Map<String, dynamic> json) {
     return CalculateRouteResponse(
       legs: (json['Legs'] as List)
@@ -3498,6 +3516,7 @@ class CalculateRouteSummary {
     required this.durationSeconds,
     required this.routeBBox,
   });
+
   factory CalculateRouteSummary.fromJson(Map<String, dynamic> json) {
     return CalculateRouteSummary(
       dataSource: json['DataSource'] as String,
@@ -3559,6 +3578,7 @@ class CalculateRouteTruckModeOptions {
     this.dimensions,
     this.weight,
   });
+
   factory CalculateRouteTruckModeOptions.fromJson(Map<String, dynamic> json) {
     return CalculateRouteTruckModeOptions(
       avoidFerries: json['AvoidFerries'] as bool?,
@@ -3611,6 +3631,7 @@ class CreateGeofenceCollectionResponse {
     required this.collectionName,
     required this.createTime,
   });
+
   factory CreateGeofenceCollectionResponse.fromJson(Map<String, dynamic> json) {
     return CreateGeofenceCollectionResponse(
       collectionArn: json['CollectionArn'] as String,
@@ -3655,6 +3676,7 @@ class CreateMapResponse {
     required this.mapArn,
     required this.mapName,
   });
+
   factory CreateMapResponse.fromJson(Map<String, dynamic> json) {
     return CreateMapResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -3700,6 +3722,7 @@ class CreatePlaceIndexResponse {
     required this.indexArn,
     required this.indexName,
   });
+
   factory CreatePlaceIndexResponse.fromJson(Map<String, dynamic> json) {
     return CreatePlaceIndexResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -3757,6 +3780,7 @@ class CreateRouteCalculatorResponse {
     required this.calculatorName,
     required this.createTime,
   });
+
   factory CreateRouteCalculatorResponse.fromJson(Map<String, dynamic> json) {
     return CreateRouteCalculatorResponse(
       calculatorArn: json['CalculatorArn'] as String,
@@ -3802,6 +3826,7 @@ class CreateTrackerResponse {
     required this.trackerArn,
     required this.trackerName,
   });
+
   factory CreateTrackerResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrackerResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -3847,6 +3872,7 @@ class DataSourceConfiguration {
   DataSourceConfiguration({
     this.intendedUse,
   });
+
   factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSourceConfiguration(
       intendedUse: (json['IntendedUse'] as String?)?.toIntendedUse(),
@@ -3863,6 +3889,7 @@ class DataSourceConfiguration {
 
 class DeleteGeofenceCollectionResponse {
   DeleteGeofenceCollectionResponse();
+
   factory DeleteGeofenceCollectionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGeofenceCollectionResponse();
   }
@@ -3874,6 +3901,7 @@ class DeleteGeofenceCollectionResponse {
 
 class DeleteMapResponse {
   DeleteMapResponse();
+
   factory DeleteMapResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMapResponse();
   }
@@ -3885,6 +3913,7 @@ class DeleteMapResponse {
 
 class DeletePlaceIndexResponse {
   DeletePlaceIndexResponse();
+
   factory DeletePlaceIndexResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaceIndexResponse();
   }
@@ -3896,6 +3925,7 @@ class DeletePlaceIndexResponse {
 
 class DeleteRouteCalculatorResponse {
   DeleteRouteCalculatorResponse();
+
   factory DeleteRouteCalculatorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRouteCalculatorResponse();
   }
@@ -3907,6 +3937,7 @@ class DeleteRouteCalculatorResponse {
 
 class DeleteTrackerResponse {
   DeleteTrackerResponse();
+
   factory DeleteTrackerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrackerResponse();
   }
@@ -3973,6 +4004,7 @@ class DescribeGeofenceCollectionResponse {
     this.pricingPlanDataSource,
     this.tags,
   });
+
   factory DescribeGeofenceCollectionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeGeofenceCollectionResponse(
@@ -4068,6 +4100,7 @@ class DescribeMapResponse {
     required this.updateTime,
     this.tags,
   });
+
   factory DescribeMapResponse.fromJson(Map<String, dynamic> json) {
     return DescribeMapResponse(
       configuration: MapConfiguration.fromJson(
@@ -4176,6 +4209,7 @@ class DescribePlaceIndexResponse {
     required this.updateTime,
     this.tags,
   });
+
   factory DescribePlaceIndexResponse.fromJson(Map<String, dynamic> json) {
     return DescribePlaceIndexResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -4292,6 +4326,7 @@ class DescribeRouteCalculatorResponse {
     required this.updateTime,
     this.tags,
   });
+
   factory DescribeRouteCalculatorResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRouteCalculatorResponse(
       calculatorArn: json['CalculatorArn'] as String,
@@ -4385,6 +4420,7 @@ class DescribeTrackerResponse {
     this.pricingPlanDataSource,
     this.tags,
   });
+
   factory DescribeTrackerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTrackerResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -4449,6 +4485,7 @@ class DevicePosition {
     required this.sampleTime,
     this.deviceId,
   });
+
   factory DevicePosition.fromJson(Map<String, dynamic> json) {
     return DevicePosition(
       position: (json['Position'] as List)
@@ -4496,6 +4533,7 @@ class DevicePositionUpdate {
     required this.position,
     required this.sampleTime,
   });
+
   factory DevicePositionUpdate.fromJson(Map<String, dynamic> json) {
     return DevicePositionUpdate(
       deviceId: json['DeviceId'] as String,
@@ -4549,6 +4587,7 @@ extension on String {
 
 class DisassociateTrackerConsumerResponse {
   DisassociateTrackerConsumerResponse();
+
   factory DisassociateTrackerConsumerResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateTrackerConsumerResponse();
   }
@@ -4609,6 +4648,7 @@ class GeofenceGeometry {
   GeofenceGeometry({
     this.polygon,
   });
+
   factory GeofenceGeometry.fromJson(Map<String, dynamic> json) {
     return GeofenceGeometry(
       polygon: (json['Polygon'] as List?)
@@ -4642,6 +4682,7 @@ class GetDevicePositionHistoryResponse {
     required this.devicePositions,
     this.nextToken,
   });
+
   factory GetDevicePositionHistoryResponse.fromJson(Map<String, dynamic> json) {
     return GetDevicePositionHistoryResponse(
       devicePositions: (json['DevicePositions'] as List)
@@ -4685,6 +4726,7 @@ class GetDevicePositionResponse {
     required this.sampleTime,
     this.deviceId,
   });
+
   factory GetDevicePositionResponse.fromJson(Map<String, dynamic> json) {
     return GetDevicePositionResponse(
       position: (json['Position'] as List)
@@ -4758,6 +4800,7 @@ class GetGeofenceResponse {
     required this.status,
     required this.updateTime,
   });
+
   factory GetGeofenceResponse.fromJson(Map<String, dynamic> json) {
     return GetGeofenceResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -4797,6 +4840,7 @@ class GetMapGlyphsResponse {
     this.blob,
     this.contentType,
   });
+
   factory GetMapGlyphsResponse.fromJson(Map<String, dynamic> json) {
     return GetMapGlyphsResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
@@ -4826,6 +4870,7 @@ class GetMapSpritesResponse {
     this.blob,
     this.contentType,
   });
+
   factory GetMapSpritesResponse.fromJson(Map<String, dynamic> json) {
     return GetMapSpritesResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
@@ -4854,6 +4899,7 @@ class GetMapStyleDescriptorResponse {
     this.blob,
     this.contentType,
   });
+
   factory GetMapStyleDescriptorResponse.fromJson(Map<String, dynamic> json) {
     return GetMapStyleDescriptorResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
@@ -4882,6 +4928,7 @@ class GetMapTileResponse {
     this.blob,
     this.contentType,
   });
+
   factory GetMapTileResponse.fromJson(Map<String, dynamic> json) {
     return GetMapTileResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
@@ -5008,6 +5055,7 @@ class Leg {
     required this.steps,
     this.geometry,
   });
+
   factory Leg.fromJson(Map<String, dynamic> json) {
     return Leg(
       distance: json['Distance'] as double,
@@ -5067,6 +5115,7 @@ class LegGeometry {
   LegGeometry({
     this.lineString,
   });
+
   factory LegGeometry.fromJson(Map<String, dynamic> json) {
     return LegGeometry(
       lineString: (json['LineString'] as List?)
@@ -5100,6 +5149,7 @@ class ListDevicePositionsResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListDevicePositionsResponse.fromJson(Map<String, dynamic> json) {
     return ListDevicePositionsResponse(
       entries: (json['Entries'] as List)
@@ -5139,6 +5189,7 @@ class ListDevicePositionsResponseEntry {
     required this.position,
     required this.sampleTime,
   });
+
   factory ListDevicePositionsResponseEntry.fromJson(Map<String, dynamic> json) {
     return ListDevicePositionsResponseEntry(
       deviceId: json['DeviceId'] as String,
@@ -5174,6 +5225,7 @@ class ListGeofenceCollectionsResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListGeofenceCollectionsResponse.fromJson(Map<String, dynamic> json) {
     return ListGeofenceCollectionsResponse(
       entries: (json['Entries'] as List)
@@ -5231,6 +5283,7 @@ class ListGeofenceCollectionsResponseEntry {
     required this.updateTime,
     this.pricingPlanDataSource,
   });
+
   factory ListGeofenceCollectionsResponseEntry.fromJson(
       Map<String, dynamic> json) {
     return ListGeofenceCollectionsResponseEntry(
@@ -5309,6 +5362,7 @@ class ListGeofenceResponseEntry {
     required this.status,
     required this.updateTime,
   });
+
   factory ListGeofenceResponseEntry.fromJson(Map<String, dynamic> json) {
     return ListGeofenceResponseEntry(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5348,6 +5402,7 @@ class ListGeofencesResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListGeofencesResponse.fromJson(Map<String, dynamic> json) {
     return ListGeofencesResponse(
       entries: (json['Entries'] as List)
@@ -5381,6 +5436,7 @@ class ListMapsResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListMapsResponse.fromJson(Map<String, dynamic> json) {
     return ListMapsResponse(
       entries: (json['Entries'] as List)
@@ -5437,6 +5493,7 @@ class ListMapsResponseEntry {
     required this.pricingPlan,
     required this.updateTime,
   });
+
   factory ListMapsResponseEntry.fromJson(Map<String, dynamic> json) {
     return ListMapsResponseEntry(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5478,6 +5535,7 @@ class ListPlaceIndexesResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListPlaceIndexesResponse.fromJson(Map<String, dynamic> json) {
     return ListPlaceIndexesResponse(
       entries: (json['Entries'] as List)
@@ -5548,6 +5606,7 @@ class ListPlaceIndexesResponseEntry {
     required this.pricingPlan,
     required this.updateTime,
   });
+
   factory ListPlaceIndexesResponseEntry.fromJson(Map<String, dynamic> json) {
     return ListPlaceIndexesResponseEntry(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5589,6 +5648,7 @@ class ListRouteCalculatorsResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListRouteCalculatorsResponse.fromJson(Map<String, dynamic> json) {
     return ListRouteCalculatorsResponse(
       entries: (json['Entries'] as List)
@@ -5671,6 +5731,7 @@ class ListRouteCalculatorsResponseEntry {
     required this.pricingPlan,
     required this.updateTime,
   });
+
   factory ListRouteCalculatorsResponseEntry.fromJson(
       Map<String, dynamic> json) {
     return ListRouteCalculatorsResponseEntry(
@@ -5709,6 +5770,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -5737,6 +5799,7 @@ class ListTrackerConsumersResponse {
     required this.consumerArns,
     this.nextToken,
   });
+
   factory ListTrackerConsumersResponse.fromJson(Map<String, dynamic> json) {
     return ListTrackerConsumersResponse(
       consumerArns: (json['ConsumerArns'] as List)
@@ -5771,6 +5834,7 @@ class ListTrackersResponse {
     required this.entries,
     this.nextToken,
   });
+
   factory ListTrackersResponse.fromJson(Map<String, dynamic> json) {
     return ListTrackersResponse(
       entries: (json['Entries'] as List)
@@ -5828,6 +5892,7 @@ class ListTrackersResponseEntry {
     required this.updateTime,
     this.pricingPlanDataSource,
   });
+
   factory ListTrackersResponseEntry.fromJson(Map<String, dynamic> json) {
     return ListTrackersResponseEntry(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -5877,6 +5942,7 @@ class MapConfiguration {
   MapConfiguration({
     required this.style,
   });
+
   factory MapConfiguration.fromJson(Map<String, dynamic> json) {
     return MapConfiguration(
       style: json['Style'] as String,
@@ -5943,6 +6009,7 @@ class Place {
     this.street,
     this.subRegion,
   });
+
   factory Place.fromJson(Map<String, dynamic> json) {
     return Place(
       geometry:
@@ -6004,6 +6071,7 @@ class PlaceGeometry {
   PlaceGeometry({
     this.point,
   });
+
   factory PlaceGeometry.fromJson(Map<String, dynamic> json) {
     return PlaceGeometry(
       point: (json['Point'] as List?)
@@ -6073,6 +6141,7 @@ class PutGeofenceResponse {
     required this.geofenceId,
     required this.updateTime,
   });
+
   factory PutGeofenceResponse.fromJson(Map<String, dynamic> json) {
     return PutGeofenceResponse(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -6102,6 +6171,7 @@ class SearchForPositionResult {
   SearchForPositionResult({
     required this.place,
   });
+
   factory SearchForPositionResult.fromJson(Map<String, dynamic> json) {
     return SearchForPositionResult(
       place: Place.fromJson(json['Place'] as Map<String, dynamic>),
@@ -6125,6 +6195,7 @@ class SearchForTextResult {
   SearchForTextResult({
     required this.place,
   });
+
   factory SearchForTextResult.fromJson(Map<String, dynamic> json) {
     return SearchForTextResult(
       place: Place.fromJson(json['Place'] as Map<String, dynamic>),
@@ -6151,6 +6222,7 @@ class SearchPlaceIndexForPositionResponse {
     required this.results,
     required this.summary,
   });
+
   factory SearchPlaceIndexForPositionResponse.fromJson(
       Map<String, dynamic> json) {
     return SearchPlaceIndexForPositionResponse(
@@ -6206,6 +6278,7 @@ class SearchPlaceIndexForPositionSummary {
     required this.position,
     this.maxResults,
   });
+
   factory SearchPlaceIndexForPositionSummary.fromJson(
       Map<String, dynamic> json) {
     return SearchPlaceIndexForPositionSummary(
@@ -6245,6 +6318,7 @@ class SearchPlaceIndexForTextResponse {
     required this.results,
     required this.summary,
   });
+
   factory SearchPlaceIndexForTextResponse.fromJson(Map<String, dynamic> json) {
     return SearchPlaceIndexForTextResponse(
       results: (json['Results'] as List)
@@ -6317,6 +6391,7 @@ class SearchPlaceIndexForTextSummary {
     this.maxResults,
     this.resultBBox,
   });
+
   factory SearchPlaceIndexForTextSummary.fromJson(Map<String, dynamic> json) {
     return SearchPlaceIndexForTextSummary(
       dataSource: json['DataSource'] as String,
@@ -6397,6 +6472,7 @@ class Step {
     required this.startPosition,
     this.geometryOffset,
   });
+
   factory Step.fromJson(Map<String, dynamic> json) {
     return Step(
       distance: json['Distance'] as double,
@@ -6431,6 +6507,7 @@ class Step {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6516,6 +6593,7 @@ class TruckDimensions {
     this.unit,
     this.width,
   });
+
   factory TruckDimensions.fromJson(Map<String, dynamic> json) {
     return TruckDimensions(
       height: json['Height'] as double?,
@@ -6561,6 +6639,7 @@ class TruckWeight {
     this.total,
     this.unit,
   });
+
   factory TruckWeight.fromJson(Map<String, dynamic> json) {
     return TruckWeight(
       total: json['Total'] as double?,
@@ -6580,6 +6659,7 @@ class TruckWeight {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

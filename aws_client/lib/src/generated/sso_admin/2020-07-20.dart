@@ -2202,6 +2202,7 @@ class AccessControlAttribute {
     required this.key,
     required this.value,
   });
+
   factory AccessControlAttribute.fromJson(Map<String, dynamic> json) {
     return AccessControlAttribute(
       key: json['Key'] as String,
@@ -2228,6 +2229,7 @@ class AccessControlAttributeValue {
   AccessControlAttributeValue({
     required this.source,
   });
+
   factory AccessControlAttributeValue.fromJson(Map<String, dynamic> json) {
     return AccessControlAttributeValue(
       source: (json['Source'] as List)
@@ -2276,6 +2278,7 @@ class AccountAssignment {
     this.principalId,
     this.principalType,
   });
+
   factory AccountAssignment.fromJson(Map<String, dynamic> json) {
     return AccountAssignment(
       accountId: json['AccountId'] as String?,
@@ -2349,6 +2352,7 @@ class AccountAssignmentOperationStatus {
     this.targetId,
     this.targetType,
   });
+
   factory AccountAssignmentOperationStatus.fromJson(Map<String, dynamic> json) {
     return AccountAssignmentOperationStatus(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -2404,6 +2408,7 @@ class AccountAssignmentOperationStatusMetadata {
     this.requestId,
     this.status,
   });
+
   factory AccountAssignmentOperationStatusMetadata.fromJson(
       Map<String, dynamic> json) {
     return AccountAssignmentOperationStatusMetadata(
@@ -2427,6 +2432,7 @@ class AccountAssignmentOperationStatusMetadata {
 
 class AttachManagedPolicyToPermissionSetResponse {
   AttachManagedPolicyToPermissionSetResponse();
+
   factory AttachManagedPolicyToPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return AttachManagedPolicyToPermissionSetResponse();
@@ -2451,6 +2457,7 @@ class AttachedManagedPolicy {
     this.arn,
     this.name,
   });
+
   factory AttachedManagedPolicy.fromJson(Map<String, dynamic> json) {
     return AttachedManagedPolicy(
       arn: json['Arn'] as String?,
@@ -2475,6 +2482,7 @@ class CreateAccountAssignmentResponse {
   CreateAccountAssignmentResponse({
     this.accountAssignmentCreationStatus,
   });
+
   factory CreateAccountAssignmentResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccountAssignmentResponse(
       accountAssignmentCreationStatus:
@@ -2498,6 +2506,7 @@ class CreateAccountAssignmentResponse {
 
 class CreateInstanceAccessControlAttributeConfigurationResponse {
   CreateInstanceAccessControlAttributeConfigurationResponse();
+
   factory CreateInstanceAccessControlAttributeConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return CreateInstanceAccessControlAttributeConfigurationResponse();
@@ -2515,6 +2524,7 @@ class CreatePermissionSetResponse {
   CreatePermissionSetResponse({
     this.permissionSet,
   });
+
   factory CreatePermissionSetResponse.fromJson(Map<String, dynamic> json) {
     return CreatePermissionSetResponse(
       permissionSet: json['PermissionSet'] != null
@@ -2539,6 +2549,7 @@ class DeleteAccountAssignmentResponse {
   DeleteAccountAssignmentResponse({
     this.accountAssignmentDeletionStatus,
   });
+
   factory DeleteAccountAssignmentResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAccountAssignmentResponse(
       accountAssignmentDeletionStatus:
@@ -2562,6 +2573,7 @@ class DeleteAccountAssignmentResponse {
 
 class DeleteInlinePolicyFromPermissionSetResponse {
   DeleteInlinePolicyFromPermissionSetResponse();
+
   factory DeleteInlinePolicyFromPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteInlinePolicyFromPermissionSetResponse();
@@ -2574,6 +2586,7 @@ class DeleteInlinePolicyFromPermissionSetResponse {
 
 class DeleteInstanceAccessControlAttributeConfigurationResponse {
   DeleteInstanceAccessControlAttributeConfigurationResponse();
+
   factory DeleteInstanceAccessControlAttributeConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteInstanceAccessControlAttributeConfigurationResponse();
@@ -2586,6 +2599,7 @@ class DeleteInstanceAccessControlAttributeConfigurationResponse {
 
 class DeletePermissionSetResponse {
   DeletePermissionSetResponse();
+
   factory DeletePermissionSetResponse.fromJson(Map<String, dynamic> _) {
     return DeletePermissionSetResponse();
   }
@@ -2602,6 +2616,7 @@ class DescribeAccountAssignmentCreationStatusResponse {
   DescribeAccountAssignmentCreationStatusResponse({
     this.accountAssignmentCreationStatus,
   });
+
   factory DescribeAccountAssignmentCreationStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountAssignmentCreationStatusResponse(
@@ -2631,6 +2646,7 @@ class DescribeAccountAssignmentDeletionStatusResponse {
   DescribeAccountAssignmentDeletionStatusResponse({
     this.accountAssignmentDeletionStatus,
   });
+
   factory DescribeAccountAssignmentDeletionStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountAssignmentDeletionStatusResponse(
@@ -2670,6 +2686,7 @@ class DescribeInstanceAccessControlAttributeConfigurationResponse {
     this.status,
     this.statusReason,
   });
+
   factory DescribeInstanceAccessControlAttributeConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstanceAccessControlAttributeConfigurationResponse(
@@ -2707,6 +2724,7 @@ class DescribePermissionSetProvisioningStatusResponse {
   DescribePermissionSetProvisioningStatusResponse({
     this.permissionSetProvisioningStatus,
   });
+
   factory DescribePermissionSetProvisioningStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePermissionSetProvisioningStatusResponse(
@@ -2736,6 +2754,7 @@ class DescribePermissionSetResponse {
   DescribePermissionSetResponse({
     this.permissionSet,
   });
+
   factory DescribePermissionSetResponse.fromJson(Map<String, dynamic> json) {
     return DescribePermissionSetResponse(
       permissionSet: json['PermissionSet'] != null
@@ -2755,6 +2774,7 @@ class DescribePermissionSetResponse {
 
 class DetachManagedPolicyFromPermissionSetResponse {
   DetachManagedPolicyFromPermissionSetResponse();
+
   factory DetachManagedPolicyFromPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return DetachManagedPolicyFromPermissionSetResponse();
@@ -2772,6 +2792,7 @@ class GetInlinePolicyForPermissionSetResponse {
   GetInlinePolicyForPermissionSetResponse({
     this.inlinePolicy,
   });
+
   factory GetInlinePolicyForPermissionSetResponse.fromJson(
       Map<String, dynamic> json) {
     return GetInlinePolicyForPermissionSetResponse(
@@ -2797,6 +2818,7 @@ class InstanceAccessControlAttributeConfiguration {
   InstanceAccessControlAttributeConfiguration({
     required this.accessControlAttributes,
   });
+
   factory InstanceAccessControlAttributeConfiguration.fromJson(
       Map<String, dynamic> json) {
     return InstanceAccessControlAttributeConfiguration(
@@ -2867,6 +2889,7 @@ class InstanceMetadata {
     this.identityStoreId,
     this.instanceArn,
   });
+
   factory InstanceMetadata.fromJson(Map<String, dynamic> json) {
     return InstanceMetadata(
       identityStoreId: json['IdentityStoreId'] as String?,
@@ -2897,6 +2920,7 @@ class ListAccountAssignmentCreationStatusResponse {
     this.accountAssignmentsCreationStatus,
     this.nextToken,
   });
+
   factory ListAccountAssignmentCreationStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAccountAssignmentCreationStatusResponse(
@@ -2935,6 +2959,7 @@ class ListAccountAssignmentDeletionStatusResponse {
     this.accountAssignmentsDeletionStatus,
     this.nextToken,
   });
+
   factory ListAccountAssignmentDeletionStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAccountAssignmentDeletionStatusResponse(
@@ -2972,6 +2997,7 @@ class ListAccountAssignmentsResponse {
     this.accountAssignments,
     this.nextToken,
   });
+
   factory ListAccountAssignmentsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountAssignmentsResponse(
       accountAssignments: (json['AccountAssignments'] as List?)
@@ -3004,6 +3030,7 @@ class ListAccountsForProvisionedPermissionSetResponse {
     this.accountIds,
     this.nextToken,
   });
+
   factory ListAccountsForProvisionedPermissionSetResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAccountsForProvisionedPermissionSetResponse(
@@ -3037,6 +3064,7 @@ class ListInstancesResponse {
     this.instances,
     this.nextToken,
   });
+
   factory ListInstancesResponse.fromJson(Map<String, dynamic> json) {
     return ListInstancesResponse(
       instances: (json['Instances'] as List?)
@@ -3069,6 +3097,7 @@ class ListManagedPoliciesInPermissionSetResponse {
     this.attachedManagedPolicies,
     this.nextToken,
   });
+
   factory ListManagedPoliciesInPermissionSetResponse.fromJson(
       Map<String, dynamic> json) {
     return ListManagedPoliciesInPermissionSetResponse(
@@ -3104,6 +3133,7 @@ class ListPermissionSetProvisioningStatusResponse {
     this.nextToken,
     this.permissionSetsProvisioningStatus,
   });
+
   factory ListPermissionSetProvisioningStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPermissionSetProvisioningStatusResponse(
@@ -3141,6 +3171,7 @@ class ListPermissionSetsProvisionedToAccountResponse {
     this.nextToken,
     this.permissionSets,
   });
+
   factory ListPermissionSetsProvisionedToAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPermissionSetsProvisionedToAccountResponse(
@@ -3174,6 +3205,7 @@ class ListPermissionSetsResponse {
     this.nextToken,
     this.permissionSets,
   });
+
   factory ListPermissionSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListPermissionSetsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3206,6 +3238,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -3234,6 +3267,7 @@ class OperationStatusFilter {
   OperationStatusFilter({
     this.status,
   });
+
   factory OperationStatusFilter.fromJson(Map<String, dynamic> json) {
     return OperationStatusFilter(
       status: (json['Status'] as String?)?.toStatusValues(),
@@ -3280,6 +3314,7 @@ class PermissionSet {
     this.relayState,
     this.sessionDuration,
   });
+
   factory PermissionSet.fromJson(Map<String, dynamic> json) {
     return PermissionSet(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -3343,6 +3378,7 @@ class PermissionSetProvisioningStatus {
     this.requestId,
     this.status,
   });
+
   factory PermissionSetProvisioningStatus.fromJson(Map<String, dynamic> json) {
     return PermissionSetProvisioningStatus(
       accountId: json['AccountId'] as String?,
@@ -3389,6 +3425,7 @@ class PermissionSetProvisioningStatusMetadata {
     this.requestId,
     this.status,
   });
+
   factory PermissionSetProvisioningStatusMetadata.fromJson(
       Map<String, dynamic> json) {
     return PermissionSetProvisioningStatusMetadata(
@@ -3445,6 +3482,7 @@ class ProvisionPermissionSetResponse {
   ProvisionPermissionSetResponse({
     this.permissionSetProvisioningStatus,
   });
+
   factory ProvisionPermissionSetResponse.fromJson(Map<String, dynamic> json) {
     return ProvisionPermissionSetResponse(
       permissionSetProvisioningStatus:
@@ -3524,6 +3562,7 @@ extension on String {
 
 class PutInlinePolicyToPermissionSetResponse {
   PutInlinePolicyToPermissionSetResponse();
+
   factory PutInlinePolicyToPermissionSetResponse.fromJson(
       Map<String, dynamic> _) {
     return PutInlinePolicyToPermissionSetResponse();
@@ -3581,6 +3620,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -3600,6 +3640,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3634,6 +3675,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3645,6 +3687,7 @@ class UntagResourceResponse {
 
 class UpdateInstanceAccessControlAttributeConfigurationResponse {
   UpdateInstanceAccessControlAttributeConfigurationResponse();
+
   factory UpdateInstanceAccessControlAttributeConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateInstanceAccessControlAttributeConfigurationResponse();
@@ -3657,6 +3700,7 @@ class UpdateInstanceAccessControlAttributeConfigurationResponse {
 
 class UpdatePermissionSetResponse {
   UpdatePermissionSetResponse();
+
   factory UpdatePermissionSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePermissionSetResponse();
   }

@@ -1608,6 +1608,7 @@ class Action {
     required this.status,
     required this.subscribers,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       actionId: json['ActionId'] as String,
@@ -1674,6 +1675,7 @@ class ActionHistory {
     required this.status,
     required this.timestamp,
   });
+
   factory ActionHistory.fromJson(Map<String, dynamic> json) {
     return ActionHistory(
       actionHistoryDetails: ActionHistoryDetails.fromJson(
@@ -1708,6 +1710,7 @@ class ActionHistoryDetails {
     required this.action,
     required this.message,
   });
+
   factory ActionHistoryDetails.fromJson(Map<String, dynamic> json) {
     return ActionHistoryDetails(
       action: Action.fromJson(json['Action'] as Map<String, dynamic>),
@@ -1830,6 +1833,7 @@ class ActionThreshold {
     required this.actionThresholdType,
     required this.actionThresholdValue,
   });
+
   factory ActionThreshold.fromJson(Map<String, dynamic> json) {
     return ActionThreshold(
       actionThresholdType:
@@ -2049,6 +2053,7 @@ class Budget {
     this.plannedBudgetLimits,
     this.timePeriod,
   });
+
   factory Budget.fromJson(Map<String, dynamic> json) {
     return Budget(
       budgetName: json['BudgetName'] as String,
@@ -2131,6 +2136,7 @@ class BudgetPerformanceHistory {
     this.costTypes,
     this.timeUnit,
   });
+
   factory BudgetPerformanceHistory.fromJson(Map<String, dynamic> json) {
     return BudgetPerformanceHistory(
       budgetName: json['BudgetName'] as String?,
@@ -2240,6 +2246,7 @@ class BudgetedAndActualAmounts {
     this.budgetedAmount,
     this.timePeriod,
   });
+
   factory BudgetedAndActualAmounts.fromJson(Map<String, dynamic> json) {
     return BudgetedAndActualAmounts(
       actualAmount: json['ActualAmount'] != null
@@ -2288,6 +2295,7 @@ class CalculatedSpend {
     required this.actualSpend,
     this.forecastedSpend,
   });
+
   factory CalculatedSpend.fromJson(Map<String, dynamic> json) {
     return CalculatedSpend(
       actualSpend: Spend.fromJson(json['ActualSpend'] as Map<String, dynamic>),
@@ -2420,6 +2428,7 @@ class CostTypes {
     this.useAmortized,
     this.useBlended,
   });
+
   factory CostTypes.fromJson(Map<String, dynamic> json) {
     return CostTypes(
       includeCredit: json['IncludeCredit'] as bool?,
@@ -2478,6 +2487,7 @@ class CreateBudgetActionResponse {
     required this.actionId,
     required this.budgetName,
   });
+
   factory CreateBudgetActionResponse.fromJson(Map<String, dynamic> json) {
     return CreateBudgetActionResponse(
       accountId: json['AccountId'] as String,
@@ -2501,6 +2511,7 @@ class CreateBudgetActionResponse {
 /// Response of CreateBudget
 class CreateBudgetResponse {
   CreateBudgetResponse();
+
   factory CreateBudgetResponse.fromJson(Map<String, dynamic> _) {
     return CreateBudgetResponse();
   }
@@ -2513,6 +2524,7 @@ class CreateBudgetResponse {
 /// Response of CreateNotification
 class CreateNotificationResponse {
   CreateNotificationResponse();
+
   factory CreateNotificationResponse.fromJson(Map<String, dynamic> _) {
     return CreateNotificationResponse();
   }
@@ -2525,6 +2537,7 @@ class CreateNotificationResponse {
 /// Response of CreateSubscriber
 class CreateSubscriberResponse {
   CreateSubscriberResponse();
+
   factory CreateSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return CreateSubscriberResponse();
   }
@@ -2550,6 +2563,7 @@ class Definition {
     this.scpActionDefinition,
     this.ssmActionDefinition,
   });
+
   factory Definition.fromJson(Map<String, dynamic> json) {
     return Definition(
       iamActionDefinition: json['IamActionDefinition'] != null
@@ -2592,6 +2606,7 @@ class DeleteBudgetActionResponse {
     required this.action,
     required this.budgetName,
   });
+
   factory DeleteBudgetActionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBudgetActionResponse(
       accountId: json['AccountId'] as String,
@@ -2615,6 +2630,7 @@ class DeleteBudgetActionResponse {
 /// Response of DeleteBudget
 class DeleteBudgetResponse {
   DeleteBudgetResponse();
+
   factory DeleteBudgetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBudgetResponse();
   }
@@ -2627,6 +2643,7 @@ class DeleteBudgetResponse {
 /// Response of DeleteNotification
 class DeleteNotificationResponse {
   DeleteNotificationResponse();
+
   factory DeleteNotificationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteNotificationResponse();
   }
@@ -2639,6 +2656,7 @@ class DeleteNotificationResponse {
 /// Response of DeleteSubscriber
 class DeleteSubscriberResponse {
   DeleteSubscriberResponse();
+
   factory DeleteSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSubscriberResponse();
   }
@@ -2657,6 +2675,7 @@ class DescribeBudgetActionHistoriesResponse {
     required this.actionHistories,
     this.nextToken,
   });
+
   factory DescribeBudgetActionHistoriesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBudgetActionHistoriesResponse(
@@ -2690,6 +2709,7 @@ class DescribeBudgetActionResponse {
     required this.action,
     required this.budgetName,
   });
+
   factory DescribeBudgetActionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBudgetActionResponse(
       accountId: json['AccountId'] as String,
@@ -2719,6 +2739,7 @@ class DescribeBudgetActionsForAccountResponse {
     required this.actions,
     this.nextToken,
   });
+
   factory DescribeBudgetActionsForAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBudgetActionsForAccountResponse(
@@ -2749,6 +2770,7 @@ class DescribeBudgetActionsForBudgetResponse {
     required this.actions,
     this.nextToken,
   });
+
   factory DescribeBudgetActionsForBudgetResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBudgetActionsForBudgetResponse(
@@ -2786,6 +2808,7 @@ class DescribeBudgetPerformanceHistoryResponse {
     this.budgetPerformanceHistory,
     this.nextToken,
   });
+
   factory DescribeBudgetPerformanceHistoryResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBudgetPerformanceHistoryResponse(
@@ -2816,6 +2839,7 @@ class DescribeBudgetResponse {
   DescribeBudgetResponse({
     this.budget,
   });
+
   factory DescribeBudgetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBudgetResponse(
       budget: json['Budget'] != null
@@ -2845,6 +2869,7 @@ class DescribeBudgetsResponse {
     this.budgets,
     this.nextToken,
   });
+
   factory DescribeBudgetsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBudgetsResponse(
       budgets: (json['Budgets'] as List?)
@@ -2878,6 +2903,7 @@ class DescribeNotificationsForBudgetResponse {
     this.nextToken,
     this.notifications,
   });
+
   factory DescribeNotificationsForBudgetResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeNotificationsForBudgetResponse(
@@ -2912,6 +2938,7 @@ class DescribeSubscribersForNotificationResponse {
     this.nextToken,
     this.subscribers,
   });
+
   factory DescribeSubscribersForNotificationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSubscribersForNotificationResponse(
@@ -2992,6 +3019,7 @@ class ExecuteBudgetActionResponse {
     required this.budgetName,
     required this.executionType,
   });
+
   factory ExecuteBudgetActionResponse.fromJson(Map<String, dynamic> json) {
     return ExecuteBudgetActionResponse(
       accountId: json['AccountId'] as String,
@@ -3073,6 +3101,7 @@ class IamActionDefinition {
     this.roles,
     this.users,
   });
+
   factory IamActionDefinition.fromJson(Map<String, dynamic> json) {
     return IamActionDefinition(
       policyArn: json['PolicyArn'] as String,
@@ -3165,6 +3194,7 @@ class Notification {
     this.notificationState,
     this.thresholdType,
   });
+
   factory Notification.fromJson(Map<String, dynamic> json) {
     return Notification(
       comparisonOperator:
@@ -3265,6 +3295,7 @@ class NotificationWithSubscribers {
     required this.notification,
     required this.subscribers,
   });
+
   factory NotificationWithSubscribers.fromJson(Map<String, dynamic> json) {
     return NotificationWithSubscribers(
       notification:
@@ -3298,6 +3329,7 @@ class ScpActionDefinition {
     required this.policyId,
     required this.targetIds,
   });
+
   factory ScpActionDefinition.fromJson(Map<String, dynamic> json) {
     return ScpActionDefinition(
       policyId: json['PolicyId'] as String,
@@ -3344,6 +3376,7 @@ class Spend {
     required this.amount,
     required this.unit,
   });
+
   factory Spend.fromJson(Map<String, dynamic> json) {
     return Spend(
       amount: json['Amount'] as String,
@@ -3377,6 +3410,7 @@ class SsmActionDefinition {
     required this.instanceIds,
     required this.region,
   });
+
   factory SsmActionDefinition.fromJson(Map<String, dynamic> json) {
     return SsmActionDefinition(
       actionSubType: (json['ActionSubType'] as String).toActionSubType(),
@@ -3428,6 +3462,7 @@ class Subscriber {
     required this.address,
     required this.subscriptionType,
   });
+
   factory Subscriber.fromJson(Map<String, dynamic> json) {
     return Subscriber(
       address: json['Address'] as String,
@@ -3533,6 +3568,7 @@ class TimePeriod {
     this.end,
     this.start,
   });
+
   factory TimePeriod.fromJson(Map<String, dynamic> json) {
     return TimePeriod(
       end: timeStampFromJson(json['End']),
@@ -3605,6 +3641,7 @@ class UpdateBudgetActionResponse {
     required this.newAction,
     required this.oldAction,
   });
+
   factory UpdateBudgetActionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBudgetActionResponse(
       accountId: json['AccountId'] as String,
@@ -3631,6 +3668,7 @@ class UpdateBudgetActionResponse {
 /// Response of UpdateBudget
 class UpdateBudgetResponse {
   UpdateBudgetResponse();
+
   factory UpdateBudgetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateBudgetResponse();
   }
@@ -3643,6 +3681,7 @@ class UpdateBudgetResponse {
 /// Response of UpdateNotification
 class UpdateNotificationResponse {
   UpdateNotificationResponse();
+
   factory UpdateNotificationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateNotificationResponse();
   }
@@ -3655,6 +3694,7 @@ class UpdateNotificationResponse {
 /// Response of UpdateSubscriber
 class UpdateSubscriberResponse {
   UpdateSubscriberResponse();
+
   factory UpdateSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSubscriberResponse();
   }

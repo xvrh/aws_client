@@ -1282,6 +1282,7 @@ class AddFlowMediaStreamsResponse {
     this.flowArn,
     this.mediaStreams,
   });
+
   factory AddFlowMediaStreamsResponse.fromJson(Map<String, dynamic> json) {
     return AddFlowMediaStreamsResponse(
       flowArn: json['flowArn'] as String?,
@@ -1313,6 +1314,7 @@ class AddFlowOutputsResponse {
     this.flowArn,
     this.outputs,
   });
+
   factory AddFlowOutputsResponse.fromJson(Map<String, dynamic> json) {
     return AddFlowOutputsResponse(
       flowArn: json['flowArn'] as String?,
@@ -1344,6 +1346,7 @@ class AddFlowSourcesResponse {
     this.flowArn,
     this.sources,
   });
+
   factory AddFlowSourcesResponse.fromJson(Map<String, dynamic> json) {
     return AddFlowSourcesResponse(
       flowArn: json['flowArn'] as String?,
@@ -1375,6 +1378,7 @@ class AddFlowVpcInterfacesResponse {
     this.flowArn,
     this.vpcInterfaces,
   });
+
   factory AddFlowVpcInterfacesResponse.fromJson(Map<String, dynamic> json) {
     return AddFlowVpcInterfacesResponse(
       flowArn: json['flowArn'] as String?,
@@ -1430,6 +1434,7 @@ class AddMediaStreamRequest {
     this.description,
     this.videoFormat,
   });
+
   factory AddMediaStreamRequest.fromJson(Map<String, dynamic> json) {
     return AddMediaStreamRequest(
       mediaStreamId: json['mediaStreamId'] as int,
@@ -1536,6 +1541,7 @@ class AddOutputRequest {
     this.streamId,
     this.vpcInterfaceAttachment,
   });
+
   factory AddOutputRequest.fromJson(Map<String, dynamic> json) {
     return AddOutputRequest(
       protocol: (json['protocol'] as String).toProtocol(),
@@ -1697,6 +1703,7 @@ class CreateFlowResponse {
   CreateFlowResponse({
     this.flow,
   });
+
   factory CreateFlowResponse.fromJson(Map<String, dynamic> json) {
     return CreateFlowResponse(
       flow: json['flow'] != null
@@ -1724,6 +1731,7 @@ class DeleteFlowResponse {
     this.flowArn,
     this.status,
   });
+
   factory DeleteFlowResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFlowResponse(
       flowArn: json['flowArn'] as String?,
@@ -1749,6 +1757,7 @@ class DescribeFlowResponse {
     this.flow,
     this.messages,
   });
+
   factory DescribeFlowResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFlowResponse(
       flow: json['flow'] != null
@@ -1776,6 +1785,7 @@ class DescribeOfferingResponse {
   DescribeOfferingResponse({
     this.offering,
   });
+
   factory DescribeOfferingResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOfferingResponse(
       offering: json['offering'] != null
@@ -1798,6 +1808,7 @@ class DescribeReservationResponse {
   DescribeReservationResponse({
     this.reservation,
   });
+
   factory DescribeReservationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeReservationResponse(
       reservation: json['reservation'] != null
@@ -1839,6 +1850,7 @@ class DestinationConfiguration {
     required this.interface,
     required this.outboundIp,
   });
+
   factory DestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return DestinationConfiguration(
       destinationIp: json['destinationIp'] as String,
@@ -1882,6 +1894,7 @@ class DestinationConfigurationRequest {
     required this.destinationPort,
     required this.interface,
   });
+
   factory DestinationConfigurationRequest.fromJson(Map<String, dynamic> json) {
     return DestinationConfigurationRequest(
       destinationIp: json['destinationIp'] as String,
@@ -2012,6 +2025,7 @@ class EncodingParameters {
     required this.compressionFactor,
     required this.encoderProfile,
   });
+
   factory EncodingParameters.fromJson(Map<String, dynamic> json) {
     return EncodingParameters(
       compressionFactor: json['compressionFactor'] as double,
@@ -2050,6 +2064,7 @@ class EncodingParametersRequest {
     required this.compressionFactor,
     required this.encoderProfile,
   });
+
   factory EncodingParametersRequest.fromJson(Map<String, dynamic> json) {
     return EncodingParametersRequest(
       compressionFactor: json['compressionFactor'] as double,
@@ -2123,6 +2138,7 @@ class Encryption {
     this.secretArn,
     this.url,
   });
+
   factory Encryption.fromJson(Map<String, dynamic> json) {
     return Encryption(
       roleArn: json['roleArn'] as String,
@@ -2199,6 +2215,7 @@ class Entitlement {
     this.encryption,
     this.entitlementStatus,
   });
+
   factory Entitlement.fromJson(Map<String, dynamic> json) {
     return Entitlement(
       entitlementArn: json['entitlementArn'] as String,
@@ -2290,6 +2307,7 @@ class FailoverConfig {
     this.sourcePriority,
     this.state,
   });
+
   factory FailoverConfig.fromJson(Map<String, dynamic> json) {
     return FailoverConfig(
       failoverMode: (json['failoverMode'] as String?)?.toFailoverMode(),
@@ -2399,6 +2417,7 @@ class Flow {
     this.sources,
     this.vpcInterfaces,
   });
+
   factory Flow.fromJson(Map<String, dynamic> json) {
     return Flow(
       availabilityZone: json['availabilityZone'] as String,
@@ -2503,6 +2522,7 @@ class Fmtp {
     this.scanMode,
     this.tcs,
   });
+
   factory Fmtp.fromJson(Map<String, dynamic> json) {
     return Fmtp(
       channelOrder: json['channelOrder'] as String?,
@@ -2570,6 +2590,7 @@ class FmtpRequest {
     this.scanMode,
     this.tcs,
   });
+
   factory FmtpRequest.fromJson(Map<String, dynamic> json) {
     return FmtpRequest(
       channelOrder: json['channelOrder'] as String?,
@@ -2639,6 +2660,7 @@ class GrantEntitlementRequest {
     this.entitlementStatus,
     this.name,
   });
+
   factory GrantEntitlementRequest.fromJson(Map<String, dynamic> json) {
     return GrantEntitlementRequest(
       subscribers: (json['subscribers'] as List)
@@ -2689,6 +2711,7 @@ class GrantFlowEntitlementsResponse {
     this.entitlements,
     this.flowArn,
   });
+
   factory GrantFlowEntitlementsResponse.fromJson(Map<String, dynamic> json) {
     return GrantFlowEntitlementsResponse(
       entitlements: (json['entitlements'] as List?)
@@ -2726,6 +2749,7 @@ class InputConfiguration {
     required this.inputPort,
     required this.interface,
   });
+
   factory InputConfiguration.fromJson(Map<String, dynamic> json) {
     return InputConfiguration(
       inputIp: json['inputIp'] as String,
@@ -2759,6 +2783,7 @@ class InputConfigurationRequest {
     required this.inputPort,
     required this.interface,
   });
+
   factory InputConfigurationRequest.fromJson(Map<String, dynamic> json) {
     return InputConfigurationRequest(
       inputPort: json['inputPort'] as int,
@@ -2786,6 +2811,7 @@ class Interface {
   Interface({
     required this.name,
   });
+
   factory Interface.fromJson(Map<String, dynamic> json) {
     return Interface(
       name: json['name'] as String,
@@ -2809,6 +2835,7 @@ class InterfaceRequest {
   InterfaceRequest({
     required this.name,
   });
+
   factory InterfaceRequest.fromJson(Map<String, dynamic> json) {
     return InterfaceRequest(
       name: json['name'] as String,
@@ -2872,6 +2899,7 @@ class ListEntitlementsResponse {
     this.entitlements,
     this.nextToken,
   });
+
   factory ListEntitlementsResponse.fromJson(Map<String, dynamic> json) {
     return ListEntitlementsResponse(
       entitlements: (json['entitlements'] as List?)
@@ -2907,6 +2935,7 @@ class ListFlowsResponse {
     this.flows,
     this.nextToken,
   });
+
   factory ListFlowsResponse.fromJson(Map<String, dynamic> json) {
     return ListFlowsResponse(
       flows: (json['flows'] as List?)
@@ -2943,6 +2972,7 @@ class ListOfferingsResponse {
     this.nextToken,
     this.offerings,
   });
+
   factory ListOfferingsResponse.fromJson(Map<String, dynamic> json) {
     return ListOfferingsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2979,6 +3009,7 @@ class ListReservationsResponse {
     this.nextToken,
     this.reservations,
   });
+
   factory ListReservationsResponse.fromJson(Map<String, dynamic> json) {
     return ListReservationsResponse(
       nextToken: json['nextToken'] as String?,
@@ -3008,6 +3039,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -3040,6 +3072,7 @@ class ListedEntitlement {
     required this.entitlementName,
     this.dataTransferSubscriberFeePercent,
   });
+
   factory ListedEntitlement.fromJson(Map<String, dynamic> json) {
     return ListedEntitlement(
       entitlementArn: json['entitlementArn'] as String,
@@ -3095,6 +3128,7 @@ class ListedFlow {
     required this.sourceType,
     required this.status,
   });
+
   factory ListedFlow.fromJson(Map<String, dynamic> json) {
     return ListedFlow(
       availabilityZone: json['availabilityZone'] as String,
@@ -3167,6 +3201,7 @@ class MediaStream {
     this.description,
     this.videoFormat,
   });
+
   factory MediaStream.fromJson(Map<String, dynamic> json) {
     return MediaStream(
       fmt: json['fmt'] as int,
@@ -3217,6 +3252,7 @@ class MediaStreamAttributes {
     required this.fmtp,
     this.lang,
   });
+
   factory MediaStreamAttributes.fromJson(Map<String, dynamic> json) {
     return MediaStreamAttributes(
       fmtp: Fmtp.fromJson(json['fmtp'] as Map<String, dynamic>),
@@ -3246,6 +3282,7 @@ class MediaStreamAttributesRequest {
     this.fmtp,
     this.lang,
   });
+
   factory MediaStreamAttributesRequest.fromJson(Map<String, dynamic> json) {
     return MediaStreamAttributesRequest(
       fmtp: json['fmtp'] != null
@@ -3290,6 +3327,7 @@ class MediaStreamOutputConfiguration {
     this.destinationConfigurations,
     this.encodingParameters,
   });
+
   factory MediaStreamOutputConfiguration.fromJson(Map<String, dynamic> json) {
     return MediaStreamOutputConfiguration(
       encodingName: (json['encodingName'] as String).toEncodingName(),
@@ -3346,6 +3384,7 @@ class MediaStreamOutputConfigurationRequest {
     this.destinationConfigurations,
     this.encodingParameters,
   });
+
   factory MediaStreamOutputConfigurationRequest.fromJson(
       Map<String, dynamic> json) {
     return MediaStreamOutputConfigurationRequest(
@@ -3398,6 +3437,7 @@ class MediaStreamSourceConfiguration {
     required this.mediaStreamName,
     this.inputConfigurations,
   });
+
   factory MediaStreamSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return MediaStreamSourceConfiguration(
       encodingName: (json['encodingName'] as String).toEncodingName(),
@@ -3441,6 +3481,7 @@ class MediaStreamSourceConfigurationRequest {
     required this.mediaStreamName,
     this.inputConfigurations,
   });
+
   factory MediaStreamSourceConfigurationRequest.fromJson(
       Map<String, dynamic> json) {
     return MediaStreamSourceConfigurationRequest(
@@ -3508,6 +3549,7 @@ class Messages {
   Messages({
     required this.errors,
   });
+
   factory Messages.fromJson(Map<String, dynamic> json) {
     return Messages(
       errors: (json['errors'] as List)
@@ -3594,6 +3636,7 @@ class Offering {
     required this.priceUnits,
     required this.resourceSpecification,
   });
+
   factory Offering.fromJson(Map<String, dynamic> json) {
     return Offering(
       currencyCode: json['currencyCode'] as String,
@@ -3695,6 +3738,7 @@ class Output {
     this.transport,
     this.vpcInterfaceAttachment,
   });
+
   factory Output.fromJson(Map<String, dynamic> json) {
     return Output(
       name: json['name'] as String,
@@ -3850,6 +3894,7 @@ class PurchaseOfferingResponse {
   PurchaseOfferingResponse({
     this.reservation,
   });
+
   factory PurchaseOfferingResponse.fromJson(Map<String, dynamic> json) {
     return PurchaseOfferingResponse(
       reservation: json['reservation'] != null
@@ -3910,6 +3955,7 @@ class RemoveFlowMediaStreamResponse {
     this.flowArn,
     this.mediaStreamName,
   });
+
   factory RemoveFlowMediaStreamResponse.fromJson(Map<String, dynamic> json) {
     return RemoveFlowMediaStreamResponse(
       flowArn: json['flowArn'] as String?,
@@ -3938,6 +3984,7 @@ class RemoveFlowOutputResponse {
     this.flowArn,
     this.outputArn,
   });
+
   factory RemoveFlowOutputResponse.fromJson(Map<String, dynamic> json) {
     return RemoveFlowOutputResponse(
       flowArn: json['flowArn'] as String?,
@@ -3966,6 +4013,7 @@ class RemoveFlowSourceResponse {
     this.flowArn,
     this.sourceArn,
   });
+
   factory RemoveFlowSourceResponse.fromJson(Map<String, dynamic> json) {
     return RemoveFlowSourceResponse(
       flowArn: json['flowArn'] as String?,
@@ -3999,6 +4047,7 @@ class RemoveFlowVpcInterfaceResponse {
     this.nonDeletedNetworkInterfaceIds,
     this.vpcInterfaceName,
   });
+
   factory RemoveFlowVpcInterfaceResponse.fromJson(Map<String, dynamic> json) {
     return RemoveFlowVpcInterfaceResponse(
       flowArn: json['flowArn'] as String?,
@@ -4099,6 +4148,7 @@ class Reservation {
     required this.resourceSpecification,
     required this.start,
   });
+
   factory Reservation.fromJson(Map<String, dynamic> json) {
     return Reservation(
       currencyCode: json['currencyCode'] as String,
@@ -4201,6 +4251,7 @@ class ResourceSpecification {
     required this.resourceType,
     this.reservedBitrate,
   });
+
   factory ResourceSpecification.fromJson(Map<String, dynamic> json) {
     return ResourceSpecification(
       resourceType: (json['resourceType'] as String).toResourceType(),
@@ -4252,6 +4303,7 @@ class RevokeFlowEntitlementResponse {
     this.entitlementArn,
     this.flowArn,
   });
+
   factory RevokeFlowEntitlementResponse.fromJson(Map<String, dynamic> json) {
     return RevokeFlowEntitlementResponse(
       entitlementArn: json['entitlementArn'] as String?,
@@ -4377,6 +4429,7 @@ class SetSourceRequest {
     this.vpcInterfaceName,
     this.whitelistCidr,
   });
+
   factory SetSourceRequest.fromJson(Map<String, dynamic> json) {
     return SetSourceRequest(
       decryption: json['decryption'] != null
@@ -4499,6 +4552,7 @@ class Source {
     this.vpcInterfaceName,
     this.whitelistCidr,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       name: json['name'] as String,
@@ -4569,6 +4623,7 @@ class SourcePriority {
   SourcePriority({
     this.primarySource,
   });
+
   factory SourcePriority.fromJson(Map<String, dynamic> json) {
     return SourcePriority(
       primarySource: json['primarySource'] as String?,
@@ -4622,6 +4677,7 @@ class StartFlowResponse {
     this.flowArn,
     this.status,
   });
+
   factory StartFlowResponse.fromJson(Map<String, dynamic> json) {
     return StartFlowResponse(
       flowArn: json['flowArn'] as String?,
@@ -4731,6 +4787,7 @@ class StopFlowResponse {
     this.flowArn,
     this.status,
   });
+
   factory StopFlowResponse.fromJson(Map<String, dynamic> json) {
     return StopFlowResponse(
       flowArn: json['flowArn'] as String?,
@@ -4861,6 +4918,7 @@ class Transport {
     this.smoothingLatency,
     this.streamId,
   });
+
   factory Transport.fromJson(Map<String, dynamic> json) {
     return Transport(
       protocol: (json['protocol'] as String).toProtocol(),
@@ -4958,6 +5016,7 @@ class UpdateEncryption {
     this.secretArn,
     this.url,
   });
+
   factory UpdateEncryption.fromJson(Map<String, dynamic> json) {
     return UpdateEncryption(
       algorithm: (json['algorithm'] as String?)?.toAlgorithm(),
@@ -5019,6 +5078,7 @@ class UpdateFailoverConfig {
     this.sourcePriority,
     this.state,
   });
+
   factory UpdateFailoverConfig.fromJson(Map<String, dynamic> json) {
     return UpdateFailoverConfig(
       failoverMode: (json['failoverMode'] as String?)?.toFailoverMode(),
@@ -5056,6 +5116,7 @@ class UpdateFlowEntitlementResponse {
     this.entitlement,
     this.flowArn,
   });
+
   factory UpdateFlowEntitlementResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowEntitlementResponse(
       entitlement: json['entitlement'] != null
@@ -5087,6 +5148,7 @@ class UpdateFlowMediaStreamResponse {
     this.flowArn,
     this.mediaStream,
   });
+
   factory UpdateFlowMediaStreamResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowMediaStreamResponse(
       flowArn: json['flowArn'] as String?,
@@ -5117,6 +5179,7 @@ class UpdateFlowOutputResponse {
     this.flowArn,
     this.output,
   });
+
   factory UpdateFlowOutputResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowOutputResponse(
       flowArn: json['flowArn'] as String?,
@@ -5142,6 +5205,7 @@ class UpdateFlowResponse {
   UpdateFlowResponse({
     this.flow,
   });
+
   factory UpdateFlowResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowResponse(
       flow: json['flow'] != null
@@ -5169,6 +5233,7 @@ class UpdateFlowSourceResponse {
     this.flowArn,
     this.source,
   });
+
   factory UpdateFlowSourceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowSourceResponse(
       flowArn: json['flowArn'] as String?,
@@ -5216,6 +5281,7 @@ class VpcInterface {
     required this.securityGroupIds,
     required this.subnetId,
   });
+
   factory VpcInterface.fromJson(Map<String, dynamic> json) {
     return VpcInterface(
       name: json['name'] as String,
@@ -5260,6 +5326,7 @@ class VpcInterfaceAttachment {
   VpcInterfaceAttachment({
     this.vpcInterfaceName,
   });
+
   factory VpcInterfaceAttachment.fromJson(Map<String, dynamic> json) {
     return VpcInterfaceAttachment(
       vpcInterfaceName: json['vpcInterfaceName'] as String?,
@@ -5300,6 +5367,7 @@ class VpcInterfaceRequest {
     required this.subnetId,
     this.networkInterfaceType,
   });
+
   factory VpcInterfaceRequest.fromJson(Map<String, dynamic> json) {
     return VpcInterfaceRequest(
       name: json['name'] as String,

@@ -1042,6 +1042,7 @@ class Container {
     this.name,
     this.status,
   });
+
   factory Container.fromJson(Map<String, dynamic> json) {
     return Container(
       arn: json['ARN'] as String?,
@@ -1184,6 +1185,7 @@ class CorsRule {
     this.exposeHeaders,
     this.maxAgeSeconds,
   });
+
   factory CorsRule.fromJson(Map<String, dynamic> json) {
     return CorsRule(
       allowedHeaders: (json['AllowedHeaders'] as List)
@@ -1247,6 +1249,7 @@ class CreateContainerOutput {
   CreateContainerOutput({
     required this.container,
   });
+
   factory CreateContainerOutput.fromJson(Map<String, dynamic> json) {
     return CreateContainerOutput(
       container: Container.fromJson(json['Container'] as Map<String, dynamic>),
@@ -1263,6 +1266,7 @@ class CreateContainerOutput {
 
 class DeleteContainerOutput {
   DeleteContainerOutput();
+
   factory DeleteContainerOutput.fromJson(Map<String, dynamic> _) {
     return DeleteContainerOutput();
   }
@@ -1274,6 +1278,7 @@ class DeleteContainerOutput {
 
 class DeleteContainerPolicyOutput {
   DeleteContainerPolicyOutput();
+
   factory DeleteContainerPolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteContainerPolicyOutput();
   }
@@ -1285,6 +1290,7 @@ class DeleteContainerPolicyOutput {
 
 class DeleteCorsPolicyOutput {
   DeleteCorsPolicyOutput();
+
   factory DeleteCorsPolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteCorsPolicyOutput();
   }
@@ -1296,6 +1302,7 @@ class DeleteCorsPolicyOutput {
 
 class DeleteLifecyclePolicyOutput {
   DeleteLifecyclePolicyOutput();
+
   factory DeleteLifecyclePolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLifecyclePolicyOutput();
   }
@@ -1307,6 +1314,7 @@ class DeleteLifecyclePolicyOutput {
 
 class DeleteMetricPolicyOutput {
   DeleteMetricPolicyOutput();
+
   factory DeleteMetricPolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMetricPolicyOutput();
   }
@@ -1323,6 +1331,7 @@ class DescribeContainerOutput {
   DescribeContainerOutput({
     this.container,
   });
+
   factory DescribeContainerOutput.fromJson(Map<String, dynamic> json) {
     return DescribeContainerOutput(
       container: json['Container'] != null
@@ -1346,6 +1355,7 @@ class GetContainerPolicyOutput {
   GetContainerPolicyOutput({
     required this.policy,
   });
+
   factory GetContainerPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetContainerPolicyOutput(
       policy: json['Policy'] as String,
@@ -1367,6 +1377,7 @@ class GetCorsPolicyOutput {
   GetCorsPolicyOutput({
     required this.corsPolicy,
   });
+
   factory GetCorsPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetCorsPolicyOutput(
       corsPolicy: (json['CorsPolicy'] as List)
@@ -1391,6 +1402,7 @@ class GetLifecyclePolicyOutput {
   GetLifecyclePolicyOutput({
     required this.lifecyclePolicy,
   });
+
   factory GetLifecyclePolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetLifecyclePolicyOutput(
       lifecyclePolicy: json['LifecyclePolicy'] as String,
@@ -1412,6 +1424,7 @@ class GetMetricPolicyOutput {
   GetMetricPolicyOutput({
     required this.metricPolicy,
   });
+
   factory GetMetricPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetMetricPolicyOutput(
       metricPolicy:
@@ -1441,6 +1454,7 @@ class ListContainersOutput {
     required this.containers,
     this.nextToken,
   });
+
   factory ListContainersOutput.fromJson(Map<String, dynamic> json) {
     return ListContainersOutput(
       containers: (json['Containers'] as List)
@@ -1468,6 +1482,7 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['Tags'] as List?)
@@ -1549,6 +1564,7 @@ class MetricPolicy {
     required this.containerLevelMetrics,
     this.metricPolicyRules,
   });
+
   factory MetricPolicy.fromJson(Map<String, dynamic> json) {
     return MetricPolicy(
       containerLevelMetrics:
@@ -1588,6 +1604,7 @@ class MetricPolicyRule {
     required this.objectGroup,
     required this.objectGroupName,
   });
+
   factory MetricPolicyRule.fromJson(Map<String, dynamic> json) {
     return MetricPolicyRule(
       objectGroup: json['ObjectGroup'] as String,
@@ -1607,6 +1624,7 @@ class MetricPolicyRule {
 
 class PutContainerPolicyOutput {
   PutContainerPolicyOutput();
+
   factory PutContainerPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutContainerPolicyOutput();
   }
@@ -1618,6 +1636,7 @@ class PutContainerPolicyOutput {
 
 class PutCorsPolicyOutput {
   PutCorsPolicyOutput();
+
   factory PutCorsPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutCorsPolicyOutput();
   }
@@ -1629,6 +1648,7 @@ class PutCorsPolicyOutput {
 
 class PutLifecyclePolicyOutput {
   PutLifecyclePolicyOutput();
+
   factory PutLifecyclePolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutLifecyclePolicyOutput();
   }
@@ -1640,6 +1660,7 @@ class PutLifecyclePolicyOutput {
 
 class PutMetricPolicyOutput {
   PutMetricPolicyOutput();
+
   factory PutMetricPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutMetricPolicyOutput();
   }
@@ -1651,6 +1672,7 @@ class PutMetricPolicyOutput {
 
 class StartAccessLoggingOutput {
   StartAccessLoggingOutput();
+
   factory StartAccessLoggingOutput.fromJson(Map<String, dynamic> _) {
     return StartAccessLoggingOutput();
   }
@@ -1662,6 +1684,7 @@ class StartAccessLoggingOutput {
 
 class StopAccessLoggingOutput {
   StopAccessLoggingOutput();
+
   factory StopAccessLoggingOutput.fromJson(Map<String, dynamic> _) {
     return StopAccessLoggingOutput();
   }
@@ -1694,6 +1717,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -1713,6 +1737,7 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -1724,6 +1749,7 @@ class TagResourceOutput {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }

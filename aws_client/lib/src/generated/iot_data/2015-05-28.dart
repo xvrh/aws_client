@@ -312,6 +312,7 @@ class DeleteThingShadowResponse {
   DeleteThingShadowResponse({
     required this.payload,
   });
+
   factory DeleteThingShadowResponse.fromJson(Map<String, dynamic> json) {
     return DeleteThingShadowResponse(
       payload: _s.decodeUint8List(json['payload']! as String),
@@ -334,6 +335,7 @@ class GetThingShadowResponse {
   GetThingShadowResponse({
     this.payload,
   });
+
   factory GetThingShadowResponse.fromJson(Map<String, dynamic> json) {
     return GetThingShadowResponse(
       payload: _s.decodeNullableUint8List(json['payload'] as String?),
@@ -364,6 +366,7 @@ class ListNamedShadowsForThingResponse {
     this.results,
     this.timestamp,
   });
+
   factory ListNamedShadowsForThingResponse.fromJson(Map<String, dynamic> json) {
     return ListNamedShadowsForThingResponse(
       nextToken: json['nextToken'] as String?,
@@ -395,6 +398,7 @@ class UpdateThingShadowResponse {
   UpdateThingShadowResponse({
     this.payload,
   });
+
   factory UpdateThingShadowResponse.fromJson(Map<String, dynamic> json) {
     return UpdateThingShadowResponse(
       payload: _s.decodeNullableUint8List(json['payload'] as String?),

@@ -1200,6 +1200,7 @@ class ClipFragmentSelector {
     required this.fragmentSelectorType,
     required this.timestampRange,
   });
+
   factory ClipFragmentSelector.fromJson(Map<String, dynamic> json) {
     return ClipFragmentSelector(
       fragmentSelectorType:
@@ -1278,6 +1279,7 @@ class ClipTimestampRange {
     required this.endTimestamp,
     required this.startTimestamp,
   });
+
   factory ClipTimestampRange.fromJson(Map<String, dynamic> json) {
     return ClipTimestampRange(
       endTimestamp:
@@ -1428,6 +1430,7 @@ class DASHFragmentSelector {
     this.fragmentSelectorType,
     this.timestampRange,
   });
+
   factory DASHFragmentSelector.fromJson(Map<String, dynamic> json) {
     return DASHFragmentSelector(
       fragmentSelectorType: (json['FragmentSelectorType'] as String?)
@@ -1558,6 +1561,7 @@ class DASHTimestampRange {
     this.endTimestamp,
     this.startTimestamp,
   });
+
   factory DASHTimestampRange.fromJson(Map<String, dynamic> json) {
     return DASHTimestampRange(
       endTimestamp: timeStampFromJson(json['EndTimestamp']),
@@ -1603,6 +1607,7 @@ class Fragment {
     this.producerTimestamp,
     this.serverTimestamp,
   });
+
   factory Fragment.fromJson(Map<String, dynamic> json) {
     return Fragment(
       fragmentLengthInMilliseconds:
@@ -1668,6 +1673,7 @@ class FragmentSelector {
     required this.fragmentSelectorType,
     required this.timestampRange,
   });
+
   factory FragmentSelector.fromJson(Map<String, dynamic> json) {
     return FragmentSelector(
       fragmentSelectorType:
@@ -1730,6 +1736,7 @@ class GetClipOutput {
     this.contentType,
     this.payload,
   });
+
   factory GetClipOutput.fromJson(Map<String, dynamic> json) {
     return GetClipOutput(
       contentType: json['Content-Type'] as String?,
@@ -1754,6 +1761,7 @@ class GetDASHStreamingSessionURLOutput {
   GetDASHStreamingSessionURLOutput({
     this.dASHStreamingSessionURL,
   });
+
   factory GetDASHStreamingSessionURLOutput.fromJson(Map<String, dynamic> json) {
     return GetDASHStreamingSessionURLOutput(
       dASHStreamingSessionURL: json['DASHStreamingSessionURL'] as String?,
@@ -1777,6 +1785,7 @@ class GetHLSStreamingSessionURLOutput {
   GetHLSStreamingSessionURLOutput({
     this.hLSStreamingSessionURL,
   });
+
   factory GetHLSStreamingSessionURLOutput.fromJson(Map<String, dynamic> json) {
     return GetHLSStreamingSessionURLOutput(
       hLSStreamingSessionURL: json['HLSStreamingSessionURL'] as String?,
@@ -1836,6 +1845,7 @@ class GetMediaForFragmentListOutput {
     this.contentType,
     this.payload,
   });
+
   factory GetMediaForFragmentListOutput.fromJson(Map<String, dynamic> json) {
     return GetMediaForFragmentListOutput(
       contentType: json['Content-Type'] as String?,
@@ -1959,6 +1969,7 @@ class HLSFragmentSelector {
     this.fragmentSelectorType,
     this.timestampRange,
   });
+
   factory HLSFragmentSelector.fromJson(Map<String, dynamic> json) {
     return HLSFragmentSelector(
       fragmentSelectorType: (json['FragmentSelectorType'] as String?)
@@ -2084,6 +2095,7 @@ class HLSTimestampRange {
     this.endTimestamp,
     this.startTimestamp,
   });
+
   factory HLSTimestampRange.fromJson(Map<String, dynamic> json) {
     return HLSTimestampRange(
       endTimestamp: timeStampFromJson(json['EndTimestamp']),
@@ -2117,6 +2129,7 @@ class ListFragmentsOutput {
     this.fragments,
     this.nextToken,
   });
+
   factory ListFragmentsOutput.fromJson(Map<String, dynamic> json) {
     return ListFragmentsOutput(
       fragments: (json['Fragments'] as List?)
@@ -2151,6 +2164,7 @@ class TimestampRange {
     required this.endTimestamp,
     required this.startTimestamp,
   });
+
   factory TimestampRange.fromJson(Map<String, dynamic> json) {
     return TimestampRange(
       endTimestamp:

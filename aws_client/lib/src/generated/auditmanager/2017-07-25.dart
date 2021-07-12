@@ -2501,6 +2501,7 @@ class AWSAccount {
     this.id,
     this.name,
   });
+
   factory AWSAccount.fromJson(Map<String, dynamic> json) {
     return AWSAccount(
       emailAddress: json['emailAddress'] as String?,
@@ -2529,6 +2530,7 @@ class AWSService {
   AWSService({
     this.serviceName,
   });
+
   factory AWSService.fromJson(Map<String, dynamic> json) {
     return AWSService(
       serviceName: json['serviceName'] as String?,
@@ -2660,6 +2662,7 @@ class Assessment {
     this.metadata,
     this.tags,
   });
+
   factory Assessment.fromJson(Map<String, dynamic> json) {
     return Assessment(
       arn: json['arn'] as String?,
@@ -2736,6 +2739,7 @@ class AssessmentControl {
     this.response,
     this.status,
   });
+
   factory AssessmentControl.fromJson(Map<String, dynamic> json) {
     return AssessmentControl(
       assessmentReportEvidenceCount:
@@ -2820,6 +2824,7 @@ class AssessmentControlSet {
     this.status,
     this.systemEvidenceCount,
   });
+
   factory AssessmentControlSet.fromJson(Map<String, dynamic> json) {
     return AssessmentControlSet(
       controls: (json['controls'] as List?)
@@ -2948,6 +2953,7 @@ class AssessmentEvidenceFolder {
     this.name,
     this.totalEvidence,
   });
+
   factory AssessmentEvidenceFolder.fromJson(Map<String, dynamic> json) {
     return AssessmentEvidenceFolder(
       assessmentId: json['assessmentId'] as String?,
@@ -3054,6 +3060,7 @@ class AssessmentFramework {
     this.id,
     this.metadata,
   });
+
   factory AssessmentFramework.fromJson(Map<String, dynamic> json) {
     return AssessmentFramework(
       arn: json['arn'] as String?,
@@ -3131,6 +3138,7 @@ class AssessmentFrameworkMetadata {
     this.name,
     this.type,
   });
+
   factory AssessmentFrameworkMetadata.fromJson(Map<String, dynamic> json) {
     return AssessmentFrameworkMetadata(
       arn: json['arn'] as String?,
@@ -3226,6 +3234,7 @@ class AssessmentMetadata {
     this.scope,
     this.status,
   });
+
   factory AssessmentMetadata.fromJson(Map<String, dynamic> json) {
     return AssessmentMetadata(
       assessmentReportsDestination: json['assessmentReportsDestination'] != null
@@ -3320,6 +3329,7 @@ class AssessmentMetadataItem {
     this.roles,
     this.status,
   });
+
   factory AssessmentMetadataItem.fromJson(Map<String, dynamic> json) {
     return AssessmentMetadataItem(
       complianceType: json['complianceType'] as String?,
@@ -3405,6 +3415,7 @@ class AssessmentReport {
     this.name,
     this.status,
   });
+
   factory AssessmentReport.fromJson(Map<String, dynamic> json) {
     return AssessmentReport(
       assessmentId: json['assessmentId'] as String?,
@@ -3485,6 +3496,7 @@ class AssessmentReportEvidenceError {
     this.errorMessage,
     this.evidenceId,
   });
+
   factory AssessmentReportEvidenceError.fromJson(Map<String, dynamic> json) {
     return AssessmentReportEvidenceError(
       errorCode: json['errorCode'] as String?,
@@ -3541,6 +3553,7 @@ class AssessmentReportMetadata {
     this.name,
     this.status,
   });
+
   factory AssessmentReportMetadata.fromJson(Map<String, dynamic> json) {
     return AssessmentReportMetadata(
       assessmentId: json['assessmentId'] as String?,
@@ -3623,6 +3636,7 @@ class AssessmentReportsDestination {
     this.destination,
     this.destinationType,
   });
+
   factory AssessmentReportsDestination.fromJson(Map<String, dynamic> json) {
     return AssessmentReportsDestination(
       destination: json['destination'] as String?,
@@ -3671,6 +3685,7 @@ extension on String {
 
 class AssociateAssessmentReportEvidenceFolderResponse {
   AssociateAssessmentReportEvidenceFolderResponse();
+
   factory AssociateAssessmentReportEvidenceFolderResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateAssessmentReportEvidenceFolderResponse();
@@ -3693,6 +3708,7 @@ class BatchAssociateAssessmentReportEvidenceResponse {
     this.errors,
     this.evidenceIds,
   });
+
   factory BatchAssociateAssessmentReportEvidenceResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchAssociateAssessmentReportEvidenceResponse(
@@ -3737,6 +3753,7 @@ class BatchCreateDelegationByAssessmentError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory BatchCreateDelegationByAssessmentError.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateDelegationByAssessmentError(
@@ -3774,6 +3791,7 @@ class BatchCreateDelegationByAssessmentResponse {
     this.delegations,
     this.errors,
   });
+
   factory BatchCreateDelegationByAssessmentResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateDelegationByAssessmentResponse(
@@ -3818,6 +3836,7 @@ class BatchDeleteDelegationByAssessmentError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory BatchDeleteDelegationByAssessmentError.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteDelegationByAssessmentError(
@@ -3847,6 +3866,7 @@ class BatchDeleteDelegationByAssessmentResponse {
   BatchDeleteDelegationByAssessmentResponse({
     this.errors,
   });
+
   factory BatchDeleteDelegationByAssessmentResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteDelegationByAssessmentResponse(
@@ -3878,6 +3898,7 @@ class BatchDisassociateAssessmentReportEvidenceResponse {
     this.errors,
     this.evidenceIds,
   });
+
   factory BatchDisassociateAssessmentReportEvidenceResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDisassociateAssessmentReportEvidenceResponse(
@@ -3923,6 +3944,7 @@ class BatchImportEvidenceToAssessmentControlError {
     this.errorMessage,
     this.manualEvidence,
   });
+
   factory BatchImportEvidenceToAssessmentControlError.fromJson(
       Map<String, dynamic> json) {
     return BatchImportEvidenceToAssessmentControlError(
@@ -3955,6 +3977,7 @@ class BatchImportEvidenceToAssessmentControlResponse {
   BatchImportEvidenceToAssessmentControlResponse({
     this.errors,
   });
+
   factory BatchImportEvidenceToAssessmentControlResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchImportEvidenceToAssessmentControlResponse(
@@ -3999,6 +4022,7 @@ class ChangeLog {
     this.objectName,
     this.objectType,
   });
+
   factory ChangeLog.fromJson(Map<String, dynamic> json) {
     return ChangeLog(
       action: (json['action'] as String?)?.toActionEnum(),
@@ -4090,6 +4114,7 @@ class Control {
     this.testingInformation,
     this.type,
   });
+
   factory Control.fromJson(Map<String, dynamic> json) {
     return Control(
       actionPlanInstructions: json['actionPlanInstructions'] as String?,
@@ -4170,6 +4195,7 @@ class ControlComment {
     this.commentBody,
     this.postedDate,
   });
+
   factory ControlComment.fromJson(Map<String, dynamic> json) {
     return ControlComment(
       authorName: json['authorName'] as String?,
@@ -4227,6 +4253,7 @@ class ControlMappingSource {
     this.sourceType,
     this.troubleshootingText,
   });
+
   factory ControlMappingSource.fromJson(Map<String, dynamic> json) {
     return ControlMappingSource(
       sourceDescription: json['sourceDescription'] as String?,
@@ -4298,6 +4325,7 @@ class ControlMetadata {
     this.lastUpdatedAt,
     this.name,
   });
+
   factory ControlMetadata.fromJson(Map<String, dynamic> json) {
     return ControlMetadata(
       arn: json['arn'] as String?,
@@ -4383,6 +4411,7 @@ class ControlSet {
     this.id,
     this.name,
   });
+
   factory ControlSet.fromJson(Map<String, dynamic> json) {
     return ControlSet(
       controls: (json['controls'] as List?)
@@ -4509,6 +4538,7 @@ class CreateAssessmentFrameworkControl {
   CreateAssessmentFrameworkControl({
     this.id,
   });
+
   factory CreateAssessmentFrameworkControl.fromJson(Map<String, dynamic> json) {
     return CreateAssessmentFrameworkControl(
       id: json['id'] as String?,
@@ -4537,6 +4567,7 @@ class CreateAssessmentFrameworkControlSet {
     required this.name,
     this.controls,
   });
+
   factory CreateAssessmentFrameworkControlSet.fromJson(
       Map<String, dynamic> json) {
     return CreateAssessmentFrameworkControlSet(
@@ -4567,6 +4598,7 @@ class CreateAssessmentFrameworkResponse {
   CreateAssessmentFrameworkResponse({
     this.framework,
   });
+
   factory CreateAssessmentFrameworkResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateAssessmentFrameworkResponse(
@@ -4592,6 +4624,7 @@ class CreateAssessmentReportResponse {
   CreateAssessmentReportResponse({
     this.assessmentReport,
   });
+
   factory CreateAssessmentReportResponse.fromJson(Map<String, dynamic> json) {
     return CreateAssessmentReportResponse(
       assessmentReport: json['assessmentReport'] != null
@@ -4615,6 +4648,7 @@ class CreateAssessmentResponse {
   CreateAssessmentResponse({
     this.assessment,
   });
+
   factory CreateAssessmentResponse.fromJson(Map<String, dynamic> json) {
     return CreateAssessmentResponse(
       assessment: json['assessment'] != null
@@ -4666,6 +4700,7 @@ class CreateControlMappingSource {
     this.sourceType,
     this.troubleshootingText,
   });
+
   factory CreateControlMappingSource.fromJson(Map<String, dynamic> json) {
     return CreateControlMappingSource(
       sourceDescription: json['sourceDescription'] as String?,
@@ -4712,6 +4747,7 @@ class CreateControlResponse {
   CreateControlResponse({
     this.control,
   });
+
   factory CreateControlResponse.fromJson(Map<String, dynamic> json) {
     return CreateControlResponse(
       control: json['control'] != null
@@ -4759,6 +4795,7 @@ class CreateDelegationRequest {
     this.roleArn,
     this.roleType,
   });
+
   factory CreateDelegationRequest.fromJson(Map<String, dynamic> json) {
     return CreateDelegationRequest(
       comment: json['comment'] as String?,
@@ -4840,6 +4877,7 @@ class Delegation {
     this.roleType,
     this.status,
   });
+
   factory Delegation.fromJson(Map<String, dynamic> json) {
     return Delegation(
       assessmentId: json['assessmentId'] as String?,
@@ -4917,6 +4955,7 @@ class DelegationMetadata {
     this.roleArn,
     this.status,
   });
+
   factory DelegationMetadata.fromJson(Map<String, dynamic> json) {
     return DelegationMetadata(
       assessmentId: json['assessmentId'] as String?,
@@ -4985,6 +5024,7 @@ extension on String {
 
 class DeleteAssessmentFrameworkResponse {
   DeleteAssessmentFrameworkResponse();
+
   factory DeleteAssessmentFrameworkResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentFrameworkResponse();
   }
@@ -4996,6 +5036,7 @@ class DeleteAssessmentFrameworkResponse {
 
 class DeleteAssessmentReportResponse {
   DeleteAssessmentReportResponse();
+
   factory DeleteAssessmentReportResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentReportResponse();
   }
@@ -5007,6 +5048,7 @@ class DeleteAssessmentReportResponse {
 
 class DeleteAssessmentResponse {
   DeleteAssessmentResponse();
+
   factory DeleteAssessmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentResponse();
   }
@@ -5018,6 +5060,7 @@ class DeleteAssessmentResponse {
 
 class DeleteControlResponse {
   DeleteControlResponse();
+
   factory DeleteControlResponse.fromJson(Map<String, dynamic> _) {
     return DeleteControlResponse();
   }
@@ -5034,6 +5077,7 @@ class DeregisterAccountResponse {
   DeregisterAccountResponse({
     this.status,
   });
+
   factory DeregisterAccountResponse.fromJson(Map<String, dynamic> json) {
     return DeregisterAccountResponse(
       status: (json['status'] as String?)?.toAccountStatus(),
@@ -5050,6 +5094,7 @@ class DeregisterAccountResponse {
 
 class DeregisterOrganizationAdminAccountResponse {
   DeregisterOrganizationAdminAccountResponse();
+
   factory DeregisterOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DeregisterOrganizationAdminAccountResponse();
@@ -5062,6 +5107,7 @@ class DeregisterOrganizationAdminAccountResponse {
 
 class DisassociateAssessmentReportEvidenceFolderResponse {
   DisassociateAssessmentReportEvidenceFolderResponse();
+
   factory DisassociateAssessmentReportEvidenceFolderResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateAssessmentReportEvidenceFolderResponse();
@@ -5144,6 +5190,7 @@ class Evidence {
     this.resourcesIncluded,
     this.time,
   });
+
   factory Evidence.fromJson(Map<String, dynamic> json) {
     return Evidence(
       assessmentReportSelection: json['assessmentReportSelection'] as String?,
@@ -5268,6 +5315,7 @@ class Framework {
     this.tags,
     this.type,
   });
+
   factory Framework.fromJson(Map<String, dynamic> json) {
     return Framework(
       arn: json['arn'] as String?,
@@ -5347,6 +5395,7 @@ class FrameworkMetadata {
     this.logo,
     this.name,
   });
+
   factory FrameworkMetadata.fromJson(Map<String, dynamic> json) {
     return FrameworkMetadata(
       complianceType: json['complianceType'] as String?,
@@ -5405,6 +5454,7 @@ class GetAccountStatusResponse {
   GetAccountStatusResponse({
     this.status,
   });
+
   factory GetAccountStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountStatusResponse(
       status: (json['status'] as String?)?.toAccountStatus(),
@@ -5426,6 +5476,7 @@ class GetAssessmentFrameworkResponse {
   GetAssessmentFrameworkResponse({
     this.framework,
   });
+
   factory GetAssessmentFrameworkResponse.fromJson(Map<String, dynamic> json) {
     return GetAssessmentFrameworkResponse(
       framework: json['framework'] != null
@@ -5448,6 +5499,7 @@ class GetAssessmentReportUrlResponse {
   GetAssessmentReportUrlResponse({
     this.preSignedUrl,
   });
+
   factory GetAssessmentReportUrlResponse.fromJson(Map<String, dynamic> json) {
     return GetAssessmentReportUrlResponse(
       preSignedUrl: json['preSignedUrl'] != null
@@ -5472,6 +5524,7 @@ class GetAssessmentResponse {
     this.assessment,
     this.userRole,
   });
+
   factory GetAssessmentResponse.fromJson(Map<String, dynamic> json) {
     return GetAssessmentResponse(
       assessment: json['assessment'] != null
@@ -5504,6 +5557,7 @@ class GetChangeLogsResponse {
     this.changeLogs,
     this.nextToken,
   });
+
   factory GetChangeLogsResponse.fromJson(Map<String, dynamic> json) {
     return GetChangeLogsResponse(
       changeLogs: (json['changeLogs'] as List?)
@@ -5531,6 +5585,7 @@ class GetControlResponse {
   GetControlResponse({
     this.control,
   });
+
   factory GetControlResponse.fromJson(Map<String, dynamic> json) {
     return GetControlResponse(
       control: json['control'] != null
@@ -5558,6 +5613,7 @@ class GetDelegationsResponse {
     this.delegations,
     this.nextToken,
   });
+
   factory GetDelegationsResponse.fromJson(Map<String, dynamic> json) {
     return GetDelegationsResponse(
       delegations: (json['delegations'] as List?)
@@ -5590,6 +5646,7 @@ class GetEvidenceByEvidenceFolderResponse {
     this.evidence,
     this.nextToken,
   });
+
   factory GetEvidenceByEvidenceFolderResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEvidenceByEvidenceFolderResponse(
@@ -5618,6 +5675,7 @@ class GetEvidenceFolderResponse {
   GetEvidenceFolderResponse({
     this.evidenceFolder,
   });
+
   factory GetEvidenceFolderResponse.fromJson(Map<String, dynamic> json) {
     return GetEvidenceFolderResponse(
       evidenceFolder: json['evidenceFolder'] != null
@@ -5647,6 +5705,7 @@ class GetEvidenceFoldersByAssessmentControlResponse {
     this.evidenceFolders,
     this.nextToken,
   });
+
   factory GetEvidenceFoldersByAssessmentControlResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEvidenceFoldersByAssessmentControlResponse(
@@ -5681,6 +5740,7 @@ class GetEvidenceFoldersByAssessmentResponse {
     this.evidenceFolders,
     this.nextToken,
   });
+
   factory GetEvidenceFoldersByAssessmentResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEvidenceFoldersByAssessmentResponse(
@@ -5710,6 +5770,7 @@ class GetEvidenceResponse {
   GetEvidenceResponse({
     this.evidence,
   });
+
   factory GetEvidenceResponse.fromJson(Map<String, dynamic> json) {
     return GetEvidenceResponse(
       evidence: json['evidence'] != null
@@ -5737,6 +5798,7 @@ class GetOrganizationAdminAccountResponse {
     this.adminAccountId,
     this.organizationId,
   });
+
   factory GetOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return GetOrganizationAdminAccountResponse(
@@ -5762,6 +5824,7 @@ class GetServicesInScopeResponse {
   GetServicesInScopeResponse({
     this.serviceMetadata,
   });
+
   factory GetServicesInScopeResponse.fromJson(Map<String, dynamic> json) {
     return GetServicesInScopeResponse(
       serviceMetadata: (json['serviceMetadata'] as List?)
@@ -5786,6 +5849,7 @@ class GetSettingsResponse {
   GetSettingsResponse({
     this.settings,
   });
+
   factory GetSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetSettingsResponse(
       settings: json['settings'] != null
@@ -5836,6 +5900,7 @@ class ListAssessmentFrameworksResponse {
     this.frameworkMetadataList,
     this.nextToken,
   });
+
   factory ListAssessmentFrameworksResponse.fromJson(Map<String, dynamic> json) {
     return ListAssessmentFrameworksResponse(
       frameworkMetadataList: (json['frameworkMetadataList'] as List?)
@@ -5870,6 +5935,7 @@ class ListAssessmentReportsResponse {
     this.assessmentReports,
     this.nextToken,
   });
+
   factory ListAssessmentReportsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssessmentReportsResponse(
       assessmentReports: (json['assessmentReports'] as List?)
@@ -5902,6 +5968,7 @@ class ListAssessmentsResponse {
     this.assessmentMetadata,
     this.nextToken,
   });
+
   factory ListAssessmentsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssessmentsResponse(
       assessmentMetadata: (json['assessmentMetadata'] as List?)
@@ -5935,6 +6002,7 @@ class ListControlsResponse {
     this.controlMetadataList,
     this.nextToken,
   });
+
   factory ListControlsResponse.fromJson(Map<String, dynamic> json) {
     return ListControlsResponse(
       controlMetadataList: (json['controlMetadataList'] as List?)
@@ -5967,6 +6035,7 @@ class ListKeywordsForDataSourceResponse {
     this.keywords,
     this.nextToken,
   });
+
   factory ListKeywordsForDataSourceResponse.fromJson(
       Map<String, dynamic> json) {
     return ListKeywordsForDataSourceResponse(
@@ -5999,6 +6068,7 @@ class ListNotificationsResponse {
     this.nextToken,
     this.notifications,
   });
+
   factory ListNotificationsResponse.fromJson(Map<String, dynamic> json) {
     return ListNotificationsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6026,6 +6096,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -6049,6 +6120,7 @@ class ManualEvidence {
   ManualEvidence({
     this.s3ResourcePath,
   });
+
   factory ManualEvidence.fromJson(Map<String, dynamic> json) {
     return ManualEvidence(
       s3ResourcePath: json['s3ResourcePath'] as String?,
@@ -6101,6 +6173,7 @@ class Notification {
     this.id,
     this.source,
   });
+
   factory Notification.fromJson(Map<String, dynamic> json) {
     return Notification(
       assessmentId: json['assessmentId'] as String?,
@@ -6186,6 +6259,7 @@ class RegisterAccountResponse {
   RegisterAccountResponse({
     this.status,
   });
+
   factory RegisterAccountResponse.fromJson(Map<String, dynamic> json) {
     return RegisterAccountResponse(
       status: (json['status'] as String?)?.toAccountStatus(),
@@ -6211,6 +6285,7 @@ class RegisterOrganizationAdminAccountResponse {
     this.adminAccountId,
     this.organizationId,
   });
+
   factory RegisterOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return RegisterOrganizationAdminAccountResponse(
@@ -6241,6 +6316,7 @@ class Resource {
     this.arn,
     this.value,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       arn: json['arn'] as String?,
@@ -6281,6 +6357,7 @@ class Role {
     this.roleArn,
     this.roleType,
   });
+
   factory Role.fromJson(Map<String, dynamic> json) {
     return Role(
       roleArn: json['roleArn'] as String?,
@@ -6339,6 +6416,7 @@ class Scope {
     this.awsAccounts,
     this.awsServices,
   });
+
   factory Scope.fromJson(Map<String, dynamic> json) {
     return Scope(
       awsAccounts: (json['awsAccounts'] as List?)
@@ -6383,6 +6461,7 @@ class ServiceMetadata {
     this.displayName,
     this.name,
   });
+
   factory ServiceMetadata.fromJson(Map<String, dynamic> json) {
     return ServiceMetadata(
       category: json['category'] as String?,
@@ -6473,6 +6552,7 @@ class Settings {
     this.kmsKey,
     this.snsTopic,
   });
+
   factory Settings.fromJson(Map<String, dynamic> json) {
     return Settings(
       defaultAssessmentReportsDestination:
@@ -6559,6 +6639,7 @@ class SourceKeyword {
     this.keywordInputType,
     this.keywordValue,
   });
+
   factory SourceKeyword.fromJson(Map<String, dynamic> json) {
     return SourceKeyword(
       keywordInputType:
@@ -6651,6 +6732,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6673,6 +6755,7 @@ class URL {
     this.hyperlinkName,
     this.link,
   });
+
   factory URL.fromJson(Map<String, dynamic> json) {
     return URL(
       hyperlinkName: json['hyperlinkName'] as String?,
@@ -6692,6 +6775,7 @@ class URL {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -6709,6 +6793,7 @@ class UpdateAssessmentControlResponse {
   UpdateAssessmentControlResponse({
     this.control,
   });
+
   factory UpdateAssessmentControlResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssessmentControlResponse(
       control: json['control'] != null
@@ -6733,6 +6818,7 @@ class UpdateAssessmentControlSetStatusResponse {
   UpdateAssessmentControlSetStatusResponse({
     this.controlSet,
   });
+
   factory UpdateAssessmentControlSetStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAssessmentControlSetStatusResponse(
@@ -6768,6 +6854,7 @@ class UpdateAssessmentFrameworkControlSet {
     this.controls,
     this.id,
   });
+
   factory UpdateAssessmentFrameworkControlSet.fromJson(
       Map<String, dynamic> json) {
     return UpdateAssessmentFrameworkControlSet(
@@ -6800,6 +6887,7 @@ class UpdateAssessmentFrameworkResponse {
   UpdateAssessmentFrameworkResponse({
     this.framework,
   });
+
   factory UpdateAssessmentFrameworkResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAssessmentFrameworkResponse(
@@ -6825,6 +6913,7 @@ class UpdateAssessmentResponse {
   UpdateAssessmentResponse({
     this.assessment,
   });
+
   factory UpdateAssessmentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssessmentResponse(
       assessment: json['assessment'] != null
@@ -6849,6 +6938,7 @@ class UpdateAssessmentStatusResponse {
   UpdateAssessmentStatusResponse({
     this.assessment,
   });
+
   factory UpdateAssessmentStatusResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAssessmentStatusResponse(
       assessment: json['assessment'] != null
@@ -6873,6 +6963,7 @@ class UpdateControlResponse {
   UpdateControlResponse({
     this.control,
   });
+
   factory UpdateControlResponse.fromJson(Map<String, dynamic> json) {
     return UpdateControlResponse(
       control: json['control'] != null
@@ -6896,6 +6987,7 @@ class UpdateSettingsResponse {
   UpdateSettingsResponse({
     this.settings,
   });
+
   factory UpdateSettingsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSettingsResponse(
       settings: json['settings'] != null
@@ -6936,6 +7028,7 @@ class ValidateAssessmentReportIntegrityResponse {
     this.signatureValid,
     this.validationErrors,
   });
+
   factory ValidateAssessmentReportIntegrityResponse.fromJson(
       Map<String, dynamic> json) {
     return ValidateAssessmentReportIntegrityResponse(

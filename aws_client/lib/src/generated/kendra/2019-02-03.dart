@@ -2986,6 +2986,7 @@ class AccessControlListConfiguration {
   AccessControlListConfiguration({
     this.keyPath,
   });
+
   factory AccessControlListConfiguration.fromJson(Map<String, dynamic> json) {
     return AccessControlListConfiguration(
       keyPath: json['KeyPath'] as String?,
@@ -3012,6 +3013,7 @@ class AclConfiguration {
   AclConfiguration({
     required this.allowedGroupsColumnName,
   });
+
   factory AclConfiguration.fromJson(Map<String, dynamic> json) {
     return AclConfiguration(
       allowedGroupsColumnName: json['AllowedGroupsColumnName'] as String,
@@ -3042,6 +3044,7 @@ class AdditionalResultAttribute {
     required this.value,
     required this.valueType,
   });
+
   factory AdditionalResultAttribute.fromJson(Map<String, dynamic> json) {
     return AdditionalResultAttribute(
       key: json['Key'] as String,
@@ -3073,6 +3076,7 @@ class AdditionalResultAttributeValue {
   AdditionalResultAttributeValue({
     this.textWithHighlightsValue,
   });
+
   factory AdditionalResultAttributeValue.fromJson(Map<String, dynamic> json) {
     return AdditionalResultAttributeValue(
       textWithHighlightsValue: json['TextWithHighlightsValue'] != null
@@ -3183,6 +3187,7 @@ class AttributeFilter {
     this.notFilter,
     this.orAllFilters,
   });
+
   factory AttributeFilter.fromJson(Map<String, dynamic> json) {
     return AttributeFilter(
       andAllFilters: (json['AndAllFilters'] as List?)
@@ -3264,6 +3269,7 @@ class AuthenticationConfiguration {
   AuthenticationConfiguration({
     this.basicAuthentication,
   });
+
   factory AuthenticationConfiguration.fromJson(Map<String, dynamic> json) {
     return AuthenticationConfiguration(
       basicAuthentication: (json['BasicAuthentication'] as List?)
@@ -3313,6 +3319,7 @@ class BasicAuthenticationConfiguration {
     required this.host,
     required this.port,
   });
+
   factory BasicAuthenticationConfiguration.fromJson(Map<String, dynamic> json) {
     return BasicAuthenticationConfiguration(
       credentials: json['Credentials'] as String,
@@ -3342,6 +3349,7 @@ class BatchDeleteDocumentResponse {
   BatchDeleteDocumentResponse({
     this.failedDocuments,
   });
+
   factory BatchDeleteDocumentResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteDocumentResponse(
       failedDocuments: (json['FailedDocuments'] as List?)
@@ -3377,6 +3385,7 @@ class BatchDeleteDocumentResponseFailedDocument {
     this.errorMessage,
     this.id,
   });
+
   factory BatchDeleteDocumentResponseFailedDocument.fromJson(
       Map<String, dynamic> json) {
     return BatchDeleteDocumentResponseFailedDocument(
@@ -3413,6 +3422,7 @@ class BatchGetDocumentStatusResponse {
     this.documentStatusList,
     this.errors,
   });
+
   factory BatchGetDocumentStatusResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetDocumentStatusResponse(
       documentStatusList: (json['DocumentStatusList'] as List?)
@@ -3454,6 +3464,7 @@ class BatchGetDocumentStatusResponseError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory BatchGetDocumentStatusResponseError.fromJson(
       Map<String, dynamic> json) {
     return BatchGetDocumentStatusResponseError(
@@ -3489,6 +3500,7 @@ class BatchPutDocumentResponse {
   BatchPutDocumentResponse({
     this.failedDocuments,
   });
+
   factory BatchPutDocumentResponse.fromJson(Map<String, dynamic> json) {
     return BatchPutDocumentResponse(
       failedDocuments: (json['FailedDocuments'] as List?)
@@ -3523,6 +3535,7 @@ class BatchPutDocumentResponseFailedDocument {
     this.errorMessage,
     this.id,
   });
+
   factory BatchPutDocumentResponseFailedDocument.fromJson(
       Map<String, dynamic> json) {
     return BatchPutDocumentResponseFailedDocument(
@@ -3573,6 +3586,7 @@ class CapacityUnitsConfiguration {
     required this.queryCapacityUnits,
     required this.storageCapacityUnits,
   });
+
   factory CapacityUnitsConfiguration.fromJson(Map<String, dynamic> json) {
     return CapacityUnitsConfiguration(
       queryCapacityUnits: json['QueryCapacityUnits'] as int,
@@ -3604,6 +3618,7 @@ class ClickFeedback {
     required this.clickTime,
     required this.resultId,
   });
+
   factory ClickFeedback.fromJson(Map<String, dynamic> json) {
     return ClickFeedback(
       clickTime: nonNullableTimeStampFromJson(json['ClickTime'] as Object),
@@ -3649,6 +3664,7 @@ class ColumnConfiguration {
     this.documentTitleColumnName,
     this.fieldMappings,
   });
+
   factory ColumnConfiguration.fromJson(Map<String, dynamic> json) {
     return ColumnConfiguration(
       changeDetectingColumns: (json['ChangeDetectingColumns'] as List)
@@ -3703,6 +3719,7 @@ class ConfluenceAttachmentConfiguration {
     this.attachmentFieldMappings,
     this.crawlAttachments,
   });
+
   factory ConfluenceAttachmentConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ConfluenceAttachmentConfiguration(
@@ -3825,6 +3842,7 @@ class ConfluenceAttachmentToIndexFieldMapping {
     this.dateFieldFormat,
     this.indexFieldName,
   });
+
   factory ConfluenceAttachmentToIndexFieldMapping.fromJson(
       Map<String, dynamic> json) {
     return ConfluenceAttachmentToIndexFieldMapping(
@@ -3864,6 +3882,7 @@ class ConfluenceBlogConfiguration {
   ConfluenceBlogConfiguration({
     this.blogFieldMappings,
   });
+
   factory ConfluenceBlogConfiguration.fromJson(Map<String, dynamic> json) {
     return ConfluenceBlogConfiguration(
       blogFieldMappings: (json['BlogFieldMappings'] as List?)
@@ -3968,6 +3987,7 @@ class ConfluenceBlogToIndexFieldMapping {
     this.dateFieldFormat,
     this.indexFieldName,
   });
+
   factory ConfluenceBlogToIndexFieldMapping.fromJson(
       Map<String, dynamic> json) {
     return ConfluenceBlogToIndexFieldMapping(
@@ -4063,6 +4083,7 @@ class ConfluenceConfiguration {
     this.spaceConfiguration,
     this.vpcConfiguration,
   });
+
   factory ConfluenceConfiguration.fromJson(Map<String, dynamic> json) {
     return ConfluenceConfiguration(
       secretArn: json['SecretArn'] as String,
@@ -4139,6 +4160,7 @@ class ConfluencePageConfiguration {
   ConfluencePageConfiguration({
     this.pageFieldMappings,
   });
+
   factory ConfluencePageConfiguration.fromJson(Map<String, dynamic> json) {
     return ConfluencePageConfiguration(
       pageFieldMappings: (json['PageFieldMappings'] as List?)
@@ -4258,6 +4280,7 @@ class ConfluencePageToIndexFieldMapping {
     this.dateFieldFormat,
     this.indexFieldName,
   });
+
   factory ConfluencePageToIndexFieldMapping.fromJson(
       Map<String, dynamic> json) {
     return ConfluencePageToIndexFieldMapping(
@@ -4323,6 +4346,7 @@ class ConfluenceSpaceConfiguration {
     this.includeSpaces,
     this.spaceFieldMappings,
   });
+
   factory ConfluenceSpaceConfiguration.fromJson(Map<String, dynamic> json) {
     return ConfluenceSpaceConfiguration(
       crawlArchivedSpaces: json['CrawlArchivedSpaces'] as bool?,
@@ -4422,6 +4446,7 @@ class ConfluenceSpaceToIndexFieldMapping {
     this.dateFieldFormat,
     this.indexFieldName,
   });
+
   factory ConfluenceSpaceToIndexFieldMapping.fromJson(
       Map<String, dynamic> json) {
     return ConfluenceSpaceToIndexFieldMapping(
@@ -4505,6 +4530,7 @@ class ConnectionConfiguration {
     required this.secretArn,
     required this.tableName,
   });
+
   factory ConnectionConfiguration.fromJson(Map<String, dynamic> json) {
     return ConnectionConfiguration(
       databaseHost: json['DatabaseHost'] as String,
@@ -4581,6 +4607,7 @@ class CreateDataSourceResponse {
   CreateDataSourceResponse({
     required this.id,
   });
+
   factory CreateDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataSourceResponse(
       id: json['Id'] as String,
@@ -4602,6 +4629,7 @@ class CreateFaqResponse {
   CreateFaqResponse({
     this.id,
   });
+
   factory CreateFaqResponse.fromJson(Map<String, dynamic> json) {
     return CreateFaqResponse(
       id: json['Id'] as String?,
@@ -4624,6 +4652,7 @@ class CreateIndexResponse {
   CreateIndexResponse({
     this.id,
   });
+
   factory CreateIndexResponse.fromJson(Map<String, dynamic> json) {
     return CreateIndexResponse(
       id: json['Id'] as String?,
@@ -4645,6 +4674,7 @@ class CreateQuerySuggestionsBlockListResponse {
   CreateQuerySuggestionsBlockListResponse({
     this.id,
   });
+
   factory CreateQuerySuggestionsBlockListResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateQuerySuggestionsBlockListResponse(
@@ -4667,6 +4697,7 @@ class CreateThesaurusResponse {
   CreateThesaurusResponse({
     this.id,
   });
+
   factory CreateThesaurusResponse.fromJson(Map<String, dynamic> json) {
     return CreateThesaurusResponse(
       id: json['Id'] as String?,
@@ -4725,6 +4756,7 @@ class DataSourceConfiguration {
     this.sharePointConfiguration,
     this.webCrawlerConfiguration,
   });
+
   factory DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSourceConfiguration(
       confluenceConfiguration: json['ConfluenceConfiguration'] != null
@@ -4871,6 +4903,7 @@ class DataSourceSummary {
     this.type,
     this.updatedAt,
   });
+
   factory DataSourceSummary.fromJson(Map<String, dynamic> json) {
     return DataSourceSummary(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -4948,6 +4981,7 @@ class DataSourceSyncJob {
     this.startTime,
     this.status,
   });
+
   factory DataSourceSyncJob.fromJson(Map<String, dynamic> json) {
     return DataSourceSyncJob(
       dataSourceErrorCode: json['DataSourceErrorCode'] as String?,
@@ -5007,6 +5041,7 @@ class DataSourceSyncJobMetricTarget {
     required this.dataSourceId,
     this.dataSourceSyncJobId,
   });
+
   factory DataSourceSyncJobMetricTarget.fromJson(Map<String, dynamic> json) {
     return DataSourceSyncJobMetricTarget(
       dataSourceId: json['DataSourceId'] as String,
@@ -5056,6 +5091,7 @@ class DataSourceSyncJobMetrics {
     this.documentsModified,
     this.documentsScanned,
   });
+
   factory DataSourceSyncJobMetrics.fromJson(Map<String, dynamic> json) {
     return DataSourceSyncJobMetrics(
       documentsAdded: json['DocumentsAdded'] as String?,
@@ -5153,6 +5189,7 @@ class DataSourceToIndexFieldMapping {
     required this.indexFieldName,
     this.dateFieldFormat,
   });
+
   factory DataSourceToIndexFieldMapping.fromJson(Map<String, dynamic> json) {
     return DataSourceToIndexFieldMapping(
       dataSourceFieldName: json['DataSourceFieldName'] as String,
@@ -5256,6 +5293,7 @@ class DataSourceVpcConfiguration {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+
   factory DataSourceVpcConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSourceVpcConfiguration(
       securityGroupIds: (json['SecurityGroupIds'] as List)
@@ -5308,6 +5346,7 @@ class DatabaseConfiguration {
     this.sqlConfiguration,
     this.vpcConfiguration,
   });
+
   factory DatabaseConfiguration.fromJson(Map<String, dynamic> json) {
     return DatabaseConfiguration(
       columnConfiguration: ColumnConfiguration.fromJson(
@@ -5446,6 +5485,7 @@ class DescribeDataSourceResponse {
     this.type,
     this.updatedAt,
   });
+
   factory DescribeDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDataSourceResponse(
       configuration: json['Configuration'] != null
@@ -5544,6 +5584,7 @@ class DescribeFaqResponse {
     this.status,
     this.updatedAt,
   });
+
   factory DescribeFaqResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFaqResponse(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -5665,6 +5706,7 @@ class DescribeIndexResponse {
     this.userContextPolicy,
     this.userTokenConfigurations,
   });
+
   factory DescribeIndexResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIndexResponse(
       capacityUnits: json['CapacityUnits'] != null
@@ -5811,6 +5853,7 @@ class DescribeQuerySuggestionsBlockListResponse {
     this.status,
     this.updatedAt,
   });
+
   factory DescribeQuerySuggestionsBlockListResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeQuerySuggestionsBlockListResponse(
@@ -5923,6 +5966,7 @@ class DescribeQuerySuggestionsConfigResponse {
     this.status,
     this.totalSuggestionsCount,
   });
+
   factory DescribeQuerySuggestionsConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeQuerySuggestionsConfigResponse(
@@ -6038,6 +6082,7 @@ class DescribeThesaurusResponse {
     this.termCount,
     this.updatedAt,
   });
+
   factory DescribeThesaurusResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThesaurusResponse(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -6128,6 +6173,7 @@ class Document {
     this.s3Path,
     this.title,
   });
+
   factory Document.fromJson(Map<String, dynamic> json) {
     return Document(
       id: json['Id'] as String,
@@ -6180,6 +6226,7 @@ class DocumentAttribute {
     required this.key,
     required this.value,
   });
+
   factory DocumentAttribute.fromJson(Map<String, dynamic> json) {
     return DocumentAttribute(
       key: json['Key'] as String,
@@ -6223,6 +6270,7 @@ class DocumentAttributeValue {
     this.stringListValue,
     this.stringValue,
   });
+
   factory DocumentAttributeValue.fromJson(Map<String, dynamic> json) {
     return DocumentAttributeValue(
       dateValue: timeStampFromJson(json['DateValue']),
@@ -6263,6 +6311,7 @@ class DocumentAttributeValueCountPair {
     this.count,
     this.documentAttributeValue,
   });
+
   factory DocumentAttributeValueCountPair.fromJson(Map<String, dynamic> json) {
     return DocumentAttributeValueCountPair(
       count: json['Count'] as int?,
@@ -6364,6 +6413,7 @@ class DocumentInfo {
     required this.documentId,
     this.attributes,
   });
+
   factory DocumentInfo.fromJson(Map<String, dynamic> json) {
     return DocumentInfo(
       documentId: json['DocumentId'] as String,
@@ -6405,6 +6455,7 @@ class DocumentMetadataConfiguration {
     this.relevance,
     this.search,
   });
+
   factory DocumentMetadataConfiguration.fromJson(Map<String, dynamic> json) {
     return DocumentMetadataConfiguration(
       name: json['Name'] as String,
@@ -6443,6 +6494,7 @@ class DocumentRelevanceConfiguration {
     required this.name,
     required this.relevance,
   });
+
   factory DocumentRelevanceConfiguration.fromJson(Map<String, dynamic> json) {
     return DocumentRelevanceConfiguration(
       name: json['Name'] as String,
@@ -6520,6 +6572,7 @@ class DocumentsMetadataConfiguration {
   DocumentsMetadataConfiguration({
     this.s3Prefix,
   });
+
   factory DocumentsMetadataConfiguration.fromJson(Map<String, dynamic> json) {
     return DocumentsMetadataConfiguration(
       s3Prefix: json['S3Prefix'] as String?,
@@ -6570,6 +6623,7 @@ class Facet {
   Facet({
     this.documentAttributeKey,
   });
+
   factory Facet.fromJson(Map<String, dynamic> json) {
     return Facet(
       documentAttributeKey: json['DocumentAttributeKey'] as String?,
@@ -6604,6 +6658,7 @@ class FacetResult {
     this.documentAttributeValueCountPairs,
     this.documentAttributeValueType,
   });
+
   factory FacetResult.fromJson(Map<String, dynamic> json) {
     return FacetResult(
       documentAttributeKey: json['DocumentAttributeKey'] as String?,
@@ -6677,6 +6732,7 @@ class FaqStatistics {
   FaqStatistics({
     required this.indexedQuestionAnswersCount,
   });
+
   factory FaqStatistics.fromJson(Map<String, dynamic> json) {
     return FaqStatistics(
       indexedQuestionAnswersCount: json['IndexedQuestionAnswersCount'] as int,
@@ -6764,6 +6820,7 @@ class FaqSummary {
     this.status,
     this.updatedAt,
   });
+
   factory FaqSummary.fromJson(Map<String, dynamic> json) {
     return FaqSummary(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -6804,6 +6861,7 @@ class GetQuerySuggestionsResponse {
     this.querySuggestionsId,
     this.suggestions,
   });
+
   factory GetQuerySuggestionsResponse.fromJson(Map<String, dynamic> json) {
     return GetQuerySuggestionsResponse(
       querySuggestionsId: json['QuerySuggestionsId'] as String?,
@@ -6882,6 +6940,7 @@ class GoogleDriveConfiguration {
     this.fieldMappings,
     this.inclusionPatterns,
   });
+
   factory GoogleDriveConfiguration.fromJson(Map<String, dynamic> json) {
     return GoogleDriveConfiguration(
       secretArn: json['SecretArn'] as String,
@@ -6957,6 +7016,7 @@ class Highlight {
     this.topAnswer,
     this.type,
   });
+
   factory Highlight.fromJson(Map<String, dynamic> json) {
     return Highlight(
       beginOffset: json['BeginOffset'] as int,
@@ -7041,6 +7101,7 @@ class IndexConfigurationSummary {
     this.id,
     this.name,
   });
+
   factory IndexConfigurationSummary.fromJson(Map<String, dynamic> json) {
     return IndexConfigurationSummary(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -7111,6 +7172,7 @@ class IndexStatistics {
     required this.faqStatistics,
     required this.textDocumentStatistics,
   });
+
   factory IndexStatistics.fromJson(Map<String, dynamic> json) {
     return IndexStatistics(
       faqStatistics:
@@ -7190,6 +7252,7 @@ class JsonTokenTypeConfiguration {
     required this.groupAttributeField,
     required this.userNameAttributeField,
   });
+
   factory JsonTokenTypeConfiguration.fromJson(Map<String, dynamic> json) {
     return JsonTokenTypeConfiguration(
       groupAttributeField: json['GroupAttributeField'] as String,
@@ -7239,6 +7302,7 @@ class JwtTokenTypeConfiguration {
     this.url,
     this.userNameAttributeField,
   });
+
   factory JwtTokenTypeConfiguration.fromJson(Map<String, dynamic> json) {
     return JwtTokenTypeConfiguration(
       keyLocation: (json['KeyLocation'] as String).toKeyLocation(),
@@ -7317,6 +7381,7 @@ class ListDataSourceSyncJobsResponse {
     this.history,
     this.nextToken,
   });
+
   factory ListDataSourceSyncJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSourceSyncJobsResponse(
       history: (json['History'] as List?)
@@ -7349,6 +7414,7 @@ class ListDataSourcesResponse {
     this.nextToken,
     this.summaryItems,
   });
+
   factory ListDataSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSourcesResponse(
       nextToken: json['NextToken'] as String?,
@@ -7384,6 +7450,7 @@ class ListFaqsResponse {
     this.faqSummaryItems,
     this.nextToken,
   });
+
   factory ListFaqsResponse.fromJson(Map<String, dynamic> json) {
     return ListFaqsResponse(
       faqSummaryItems: (json['FaqSummaryItems'] as List?)
@@ -7416,6 +7483,7 @@ class ListIndicesResponse {
     this.indexConfigurationSummaryItems,
     this.nextToken,
   });
+
   factory ListIndicesResponse.fromJson(Map<String, dynamic> json) {
     return ListIndicesResponse(
       indexConfigurationSummaryItems:
@@ -7459,6 +7527,7 @@ class ListQuerySuggestionsBlockListsResponse {
     this.blockListSummaryItems,
     this.nextToken,
   });
+
   factory ListQuerySuggestionsBlockListsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListQuerySuggestionsBlockListsResponse(
@@ -7489,6 +7558,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -7518,6 +7588,7 @@ class ListThesauriResponse {
     this.nextToken,
     this.thesaurusSummaryItems,
   });
+
   factory ListThesauriResponse.fromJson(Map<String, dynamic> json) {
     return ListThesauriResponse(
       nextToken: json['NextToken'] as String?,
@@ -7616,6 +7687,7 @@ class OneDriveConfiguration {
     this.fieldMappings,
     this.inclusionPatterns,
   });
+
   factory OneDriveConfiguration.fromJson(Map<String, dynamic> json) {
     return OneDriveConfiguration(
       oneDriveUsers:
@@ -7676,6 +7748,7 @@ class OneDriveUsers {
     this.oneDriveUserList,
     this.oneDriveUserS3Path,
   });
+
   factory OneDriveUsers.fromJson(Map<String, dynamic> json) {
     return OneDriveUsers(
       oneDriveUserList: (json['OneDriveUserList'] as List?)
@@ -7742,6 +7815,7 @@ class Principal {
     required this.name,
     required this.type,
   });
+
   factory Principal.fromJson(Map<String, dynamic> json) {
     return Principal(
       access: (json['Access'] as String).toReadAccessType(),
@@ -7821,6 +7895,7 @@ class ProxyConfiguration {
     required this.port,
     this.credentials,
   });
+
   factory ProxyConfiguration.fromJson(Map<String, dynamic> json) {
     return ProxyConfiguration(
       host: json['Host'] as String,
@@ -7894,6 +7969,7 @@ class QueryResult {
     this.resultItems,
     this.totalNumberOfResults,
   });
+
   factory QueryResult.fromJson(Map<String, dynamic> json) {
     return QueryResult(
       facetResults: (json['FacetResults'] as List?)
@@ -7989,6 +8065,7 @@ class QueryResultItem {
     this.scoreAttributes,
     this.type,
   });
+
   factory QueryResultItem.fromJson(Map<String, dynamic> json) {
     return QueryResultItem(
       additionalAttributes: (json['AdditionalAttributes'] as List?)
@@ -8166,6 +8243,7 @@ class QuerySuggestionsBlockListSummary {
     this.status,
     this.updatedAt,
   });
+
   factory QuerySuggestionsBlockListSummary.fromJson(Map<String, dynamic> json) {
     return QuerySuggestionsBlockListSummary(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -8310,6 +8388,7 @@ class Relevance {
     this.rankOrder,
     this.valueImportanceMap,
   });
+
   factory Relevance.fromJson(Map<String, dynamic> json) {
     return Relevance(
       duration: json['Duration'] as String?,
@@ -8352,6 +8431,7 @@ class RelevanceFeedback {
     required this.relevanceValue,
     required this.resultId,
   });
+
   factory RelevanceFeedback.fromJson(Map<String, dynamic> json) {
     return RelevanceFeedback(
       relevanceValue: (json['RelevanceValue'] as String).toRelevanceType(),
@@ -8471,6 +8551,7 @@ class S3DataSourceConfiguration {
     this.inclusionPatterns,
     this.inclusionPrefixes,
   });
+
   factory S3DataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return S3DataSourceConfiguration(
       bucketName: json['BucketName'] as String,
@@ -8531,6 +8612,7 @@ class S3Path {
     required this.bucket,
     required this.key,
   });
+
   factory S3Path.fromJson(Map<String, dynamic> json) {
     return S3Path(
       bucket: json['Bucket'] as String,
@@ -8575,6 +8657,7 @@ class SalesforceChatterFeedConfiguration {
     this.fieldMappings,
     this.includeFilterTypes,
   });
+
   factory SalesforceChatterFeedConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceChatterFeedConfiguration(
@@ -8725,6 +8808,7 @@ class SalesforceConfiguration {
     this.standardObjectAttachmentConfiguration,
     this.standardObjectConfigurations,
   });
+
   factory SalesforceConfiguration.fromJson(Map<String, dynamic> json) {
     return SalesforceConfiguration(
       secretArn: json['SecretArn'] as String,
@@ -8819,6 +8903,7 @@ class SalesforceCustomKnowledgeArticleTypeConfiguration {
     this.documentTitleFieldName,
     this.fieldMappings,
   });
+
   factory SalesforceCustomKnowledgeArticleTypeConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceCustomKnowledgeArticleTypeConfiguration(
@@ -8871,6 +8956,7 @@ class SalesforceKnowledgeArticleConfiguration {
     this.customKnowledgeArticleTypeConfigurations,
     this.standardKnowledgeArticleTypeConfiguration,
   });
+
   factory SalesforceKnowledgeArticleConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceKnowledgeArticleConfiguration(
@@ -8965,6 +9051,7 @@ class SalesforceStandardKnowledgeArticleTypeConfiguration {
     this.documentTitleFieldName,
     this.fieldMappings,
   });
+
   factory SalesforceStandardKnowledgeArticleTypeConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceStandardKnowledgeArticleTypeConfiguration(
@@ -9005,6 +9092,7 @@ class SalesforceStandardObjectAttachmentConfiguration {
     this.documentTitleFieldName,
     this.fieldMappings,
   });
+
   factory SalesforceStandardObjectAttachmentConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceStandardObjectAttachmentConfiguration(
@@ -9052,6 +9140,7 @@ class SalesforceStandardObjectConfiguration {
     this.documentTitleFieldName,
     this.fieldMappings,
   });
+
   factory SalesforceStandardObjectConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SalesforceStandardObjectConfiguration(
@@ -9193,6 +9282,7 @@ class ScoreAttributes {
   ScoreAttributes({
     this.scoreConfidence,
   });
+
   factory ScoreAttributes.fromJson(Map<String, dynamic> json) {
     return ScoreAttributes(
       scoreConfidence:
@@ -9276,6 +9366,7 @@ class Search {
     this.searchable,
     this.sortable,
   });
+
   factory Search.fromJson(Map<String, dynamic> json) {
     return Search(
       displayable: json['Displayable'] as bool?,
@@ -9338,6 +9429,7 @@ class SeedUrlConfiguration {
     required this.seedUrls,
     this.webCrawlerMode,
   });
+
   factory SeedUrlConfiguration.fromJson(Map<String, dynamic> json) {
     return SeedUrlConfiguration(
       seedUrls: (json['SeedUrls'] as List)
@@ -9369,6 +9461,7 @@ class ServerSideEncryptionConfiguration {
   ServerSideEncryptionConfiguration({
     this.kmsKeyId,
   });
+
   factory ServerSideEncryptionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServerSideEncryptionConfiguration(
@@ -9489,6 +9582,7 @@ class ServiceNowConfiguration {
     this.knowledgeArticleConfiguration,
     this.serviceCatalogConfiguration,
   });
+
   factory ServiceNowConfiguration.fromJson(Map<String, dynamic> json) {
     return ServiceNowConfiguration(
       hostUrl: json['HostUrl'] as String,
@@ -9578,6 +9672,7 @@ class ServiceNowKnowledgeArticleConfiguration {
     this.filterQuery,
     this.includeAttachmentFilePatterns,
   });
+
   factory ServiceNowKnowledgeArticleConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServiceNowKnowledgeArticleConfiguration(
@@ -9669,6 +9764,7 @@ class ServiceNowServiceCatalogConfiguration {
     this.fieldMappings,
     this.includeAttachmentFilePatterns,
   });
+
   factory ServiceNowServiceCatalogConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServiceNowServiceCatalogConfiguration(
@@ -9793,6 +9889,7 @@ class SharePointConfiguration {
     this.useChangeLog,
     this.vpcConfiguration,
   });
+
   factory SharePointConfiguration.fromJson(Map<String, dynamic> json) {
     return SharePointConfiguration(
       secretArn: json['SecretArn'] as String,
@@ -9911,6 +10008,7 @@ class SiteMapsConfiguration {
   SiteMapsConfiguration({
     required this.siteMaps,
   });
+
   factory SiteMapsConfiguration.fromJson(Map<String, dynamic> json) {
     return SiteMapsConfiguration(
       siteMaps: (json['SiteMaps'] as List)
@@ -10015,6 +10113,7 @@ class SortingConfiguration {
     required this.documentAttributeKey,
     required this.sortOrder,
   });
+
   factory SortingConfiguration.fromJson(Map<String, dynamic> json) {
     return SortingConfiguration(
       documentAttributeKey: json['DocumentAttributeKey'] as String,
@@ -10053,6 +10152,7 @@ class SqlConfiguration {
   SqlConfiguration({
     this.queryIdentifiersEnclosingOption,
   });
+
   factory SqlConfiguration.fromJson(Map<String, dynamic> json) {
     return SqlConfiguration(
       queryIdentifiersEnclosingOption:
@@ -10079,6 +10179,7 @@ class StartDataSourceSyncJobResponse {
   StartDataSourceSyncJobResponse({
     this.executionId,
   });
+
   factory StartDataSourceSyncJobResponse.fromJson(Map<String, dynamic> json) {
     return StartDataSourceSyncJobResponse(
       executionId: json['ExecutionId'] as String?,
@@ -10118,6 +10219,7 @@ class Status {
     this.failureCode,
     this.failureReason,
   });
+
   factory Status.fromJson(Map<String, dynamic> json) {
     return Status(
       documentId: json['DocumentId'] as String?,
@@ -10157,6 +10259,7 @@ class Suggestion {
     this.id,
     this.value,
   });
+
   factory Suggestion.fromJson(Map<String, dynamic> json) {
     return Suggestion(
       id: json['Id'] as String?,
@@ -10188,6 +10291,7 @@ class SuggestionHighlight {
     this.beginOffset,
     this.endOffset,
   });
+
   factory SuggestionHighlight.fromJson(Map<String, dynamic> json) {
     return SuggestionHighlight(
       beginOffset: json['BeginOffset'] as int?,
@@ -10219,6 +10323,7 @@ class SuggestionTextWithHighlights {
     this.highlights,
     this.text,
   });
+
   factory SuggestionTextWithHighlights.fromJson(Map<String, dynamic> json) {
     return SuggestionTextWithHighlights(
       highlights: (json['Highlights'] as List?)
@@ -10248,6 +10353,7 @@ class SuggestionValue {
   SuggestionValue({
     this.text,
   });
+
   factory SuggestionValue.fromJson(Map<String, dynamic> json) {
     return SuggestionValue(
       text: json['Text'] != null
@@ -10281,6 +10387,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -10300,6 +10407,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -10321,6 +10429,7 @@ class TextDocumentStatistics {
     required this.indexedTextBytes,
     required this.indexedTextDocumentsCount,
   });
+
   factory TextDocumentStatistics.fromJson(Map<String, dynamic> json) {
     return TextDocumentStatistics(
       indexedTextBytes: json['IndexedTextBytes'] as int,
@@ -10350,6 +10459,7 @@ class TextWithHighlights {
     this.highlights,
     this.text,
   });
+
   factory TextWithHighlights.fromJson(Map<String, dynamic> json) {
     return TextWithHighlights(
       highlights: (json['Highlights'] as List?)
@@ -10442,6 +10552,7 @@ class ThesaurusSummary {
     this.status,
     this.updatedAt,
   });
+
   factory ThesaurusSummary.fromJson(Map<String, dynamic> json) {
     return ThesaurusSummary(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -10480,6 +10591,7 @@ class TimeRange {
     this.endTime,
     this.startTime,
   });
+
   factory TimeRange.fromJson(Map<String, dynamic> json) {
     return TimeRange(
       endTime: timeStampFromJson(json['EndTime']),
@@ -10499,6 +10611,7 @@ class TimeRange {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -10537,6 +10650,7 @@ class Urls {
     this.seedUrlConfiguration,
     this.siteMapsConfiguration,
   });
+
   factory Urls.fromJson(Map<String, dynamic> json) {
     return Urls(
       seedUrlConfiguration: json['SeedUrlConfiguration'] != null
@@ -10570,6 +10684,7 @@ class UserContext {
   UserContext({
     this.token,
   });
+
   factory UserContext.fromJson(Map<String, dynamic> json) {
     return UserContext(
       token: json['Token'] as String?,
@@ -10624,6 +10739,7 @@ class UserTokenConfiguration {
     this.jsonTokenTypeConfiguration,
     this.jwtTokenTypeConfiguration,
   });
+
   factory UserTokenConfiguration.fromJson(Map<String, dynamic> json) {
     return UserTokenConfiguration(
       jsonTokenTypeConfiguration: json['JsonTokenTypeConfiguration'] != null
@@ -10750,6 +10866,7 @@ class WebCrawlerConfiguration {
     this.urlExclusionPatterns,
     this.urlInclusionPatterns,
   });
+
   factory WebCrawlerConfiguration.fromJson(Map<String, dynamic> json) {
     return WebCrawlerConfiguration(
       urls: Urls.fromJson(json['Urls'] as Map<String, dynamic>),

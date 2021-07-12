@@ -1161,6 +1161,7 @@ class AutoScalingGroupConfiguration {
     this.maxSize,
     this.minSize,
   });
+
   factory AutoScalingGroupConfiguration.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroupConfiguration(
       desiredCapacity: json['desiredCapacity'] as int?,
@@ -1246,6 +1247,7 @@ class AutoScalingGroupRecommendation {
     this.recommendationOptions,
     this.utilizationMetrics,
   });
+
   factory AutoScalingGroupRecommendation.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroupRecommendation(
       accountId: json['accountId'] as String?,
@@ -1345,6 +1347,7 @@ class AutoScalingGroupRecommendationOption {
     this.projectedUtilizationMetrics,
     this.rank,
   });
+
   factory AutoScalingGroupRecommendationOption.fromJson(
       Map<String, dynamic> json) {
     return AutoScalingGroupRecommendationOption(
@@ -1390,6 +1393,7 @@ class DescribeRecommendationExportJobsResponse {
     this.nextToken,
     this.recommendationExportJobs,
   });
+
   factory DescribeRecommendationExportJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRecommendationExportJobsResponse(
@@ -1438,6 +1442,7 @@ class EBSFilter {
     this.name,
     this.values,
   });
+
   factory EBSFilter.fromJson(Map<String, dynamic> json) {
     return EBSFilter(
       name: (json['name'] as String?)?.toEBSFilterName(),
@@ -1612,6 +1617,7 @@ class EBSUtilizationMetric {
     this.statistic,
     this.value,
   });
+
   factory EBSUtilizationMetric.fromJson(Map<String, dynamic> json) {
     return EBSUtilizationMetric(
       name: (json['name'] as String?)?.toEBSMetricName(),
@@ -1647,6 +1653,7 @@ class ExportAutoScalingGroupRecommendationsResponse {
     this.jobId,
     this.s3Destination,
   });
+
   factory ExportAutoScalingGroupRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ExportAutoScalingGroupRecommendationsResponse(
@@ -1678,6 +1685,7 @@ class ExportDestination {
   ExportDestination({
     this.s3,
   });
+
   factory ExportDestination.fromJson(Map<String, dynamic> json) {
     return ExportDestination(
       s3: json['s3'] != null
@@ -1706,6 +1714,7 @@ class ExportEBSVolumeRecommendationsResponse {
     this.jobId,
     this.s3Destination,
   });
+
   factory ExportEBSVolumeRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ExportEBSVolumeRecommendationsResponse(
@@ -1742,6 +1751,7 @@ class ExportEC2InstanceRecommendationsResponse {
     this.jobId,
     this.s3Destination,
   });
+
   factory ExportEC2InstanceRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ExportEC2InstanceRecommendationsResponse(
@@ -1775,6 +1785,7 @@ class ExportLambdaFunctionRecommendationsResponse {
     this.jobId,
     this.s3Destination,
   });
+
   factory ExportLambdaFunctionRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ExportLambdaFunctionRecommendationsResponse(
@@ -2821,6 +2832,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: (json['name'] as String?)?.toFilterName(),
@@ -2962,6 +2974,7 @@ class GetAutoScalingGroupRecommendationsResponse {
     this.errors,
     this.nextToken,
   });
+
   factory GetAutoScalingGroupRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAutoScalingGroupRecommendationsResponse(
@@ -3015,6 +3028,7 @@ class GetEBSVolumeRecommendationsResponse {
     this.nextToken,
     this.volumeRecommendations,
   });
+
   factory GetEBSVolumeRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEBSVolumeRecommendationsResponse(
@@ -3065,6 +3079,7 @@ class GetEC2InstanceRecommendationsResponse {
     this.instanceRecommendations,
     this.nextToken,
   });
+
   factory GetEC2InstanceRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEC2InstanceRecommendationsResponse(
@@ -3103,6 +3118,7 @@ class GetEC2RecommendationProjectedMetricsResponse {
   GetEC2RecommendationProjectedMetricsResponse({
     this.recommendedOptionProjectedMetrics,
   });
+
   factory GetEC2RecommendationProjectedMetricsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetEC2RecommendationProjectedMetricsResponse(
@@ -3145,6 +3161,7 @@ class GetEnrollmentStatusResponse {
     this.status,
     this.statusReason,
   });
+
   factory GetEnrollmentStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetEnrollmentStatusResponse(
       memberAccountsEnrolled: json['memberAccountsEnrolled'] as bool?,
@@ -3180,6 +3197,7 @@ class GetLambdaFunctionRecommendationsResponse {
     this.lambdaFunctionRecommendations,
     this.nextToken,
   });
+
   factory GetLambdaFunctionRecommendationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetLambdaFunctionRecommendationsResponse(
@@ -3224,6 +3242,7 @@ class GetRecommendationError {
     this.identifier,
     this.message,
   });
+
   factory GetRecommendationError.fromJson(Map<String, dynamic> json) {
     return GetRecommendationError(
       code: json['code'] as String?,
@@ -3258,6 +3277,7 @@ class GetRecommendationSummariesResponse {
     this.nextToken,
     this.recommendationSummaries,
   });
+
   factory GetRecommendationSummariesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRecommendationSummariesResponse(
@@ -3500,6 +3520,7 @@ class InstanceRecommendation {
     this.recommendationSources,
     this.utilizationMetrics,
   });
+
   factory InstanceRecommendation.fromJson(Map<String, dynamic> json) {
     return InstanceRecommendation(
       accountId: json['accountId'] as String?,
@@ -3821,6 +3842,7 @@ class InstanceRecommendationOption {
     this.projectedUtilizationMetrics,
     this.rank,
   });
+
   factory InstanceRecommendationOption.fromJson(Map<String, dynamic> json) {
     return InstanceRecommendationOption(
       instanceType: json['instanceType'] as String?,
@@ -3901,6 +3923,7 @@ class JobFilter {
     this.name,
     this.values,
   });
+
   factory JobFilter.fromJson(Map<String, dynamic> json) {
     return JobFilter(
       name: (json['name'] as String?)?.toJobFilterName(),
@@ -4062,6 +4085,7 @@ class LambdaFunctionMemoryProjectedMetric {
     this.statistic,
     this.value,
   });
+
   factory LambdaFunctionMemoryProjectedMetric.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionMemoryProjectedMetric(
@@ -4103,6 +4127,7 @@ class LambdaFunctionMemoryRecommendationOption {
     this.projectedUtilizationMetrics,
     this.rank,
   });
+
   factory LambdaFunctionMemoryRecommendationOption.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionMemoryRecommendationOption(
@@ -4307,6 +4332,7 @@ class LambdaFunctionRecommendation {
     this.numberOfInvocations,
     this.utilizationMetrics,
   });
+
   factory LambdaFunctionRecommendation.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionRecommendation(
       accountId: json['accountId'] as String?,
@@ -4415,6 +4441,7 @@ class LambdaFunctionRecommendationFilter {
     this.name,
     this.values,
   });
+
   factory LambdaFunctionRecommendationFilter.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionRecommendationFilter(
@@ -4586,6 +4613,7 @@ class LambdaFunctionUtilizationMetric {
     this.statistic,
     this.value,
   });
+
   factory LambdaFunctionUtilizationMetric.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionUtilizationMetric(
       name: (json['name'] as String?)?.toLambdaFunctionMetricName(),
@@ -4827,6 +4855,7 @@ class ProjectedMetric {
     this.timestamps,
     this.values,
   });
+
   factory ProjectedMetric.fromJson(Map<String, dynamic> json) {
     return ProjectedMetric(
       name: (json['name'] as String?)?.toMetricName(),
@@ -4866,6 +4895,7 @@ class ReasonCodeSummary {
     this.name,
     this.value,
   });
+
   factory ReasonCodeSummary.fromJson(Map<String, dynamic> json) {
     return ReasonCodeSummary(
       name: (json['name'] as String?)?.toFindingReasonCode(),
@@ -4922,6 +4952,7 @@ class RecommendationExportJob {
     this.resourceType,
     this.status,
   });
+
   factory RecommendationExportJob.fromJson(Map<String, dynamic> json) {
     return RecommendationExportJob(
       creationTimestamp: timeStampFromJson(json['creationTimestamp']),
@@ -4972,6 +5003,7 @@ class RecommendationSource {
     this.recommendationSourceArn,
     this.recommendationSourceType,
   });
+
   factory RecommendationSource.fromJson(Map<String, dynamic> json) {
     return RecommendationSource(
       recommendationSourceArn: json['recommendationSourceArn'] as String?,
@@ -5046,6 +5078,7 @@ class RecommendationSummary {
     this.recommendationResourceType,
     this.summaries,
   });
+
   factory RecommendationSummary.fromJson(Map<String, dynamic> json) {
     return RecommendationSummary(
       accountId: json['accountId'] as String?,
@@ -5104,6 +5137,7 @@ class RecommendedOptionProjectedMetric {
     this.rank,
     this.recommendedInstanceType,
   });
+
   factory RecommendedOptionProjectedMetric.fromJson(Map<String, dynamic> json) {
     return RecommendedOptionProjectedMetric(
       projectedMetrics: (json['projectedMetrics'] as List?)
@@ -5188,6 +5222,7 @@ class S3Destination {
     this.key,
     this.metadataKey,
   });
+
   factory S3Destination.fromJson(Map<String, dynamic> json) {
     return S3Destination(
       bucket: json['bucket'] as String?,
@@ -5233,6 +5268,7 @@ class S3DestinationConfig {
     this.bucket,
     this.keyPrefix,
   });
+
   factory S3DestinationConfig.fromJson(Map<String, dynamic> json) {
     return S3DestinationConfig(
       bucket: json['bucket'] as String?,
@@ -5304,6 +5340,7 @@ class Summary {
     this.reasonCodeSummaries,
     this.value,
   });
+
   factory Summary.fromJson(Map<String, dynamic> json) {
     return Summary(
       name: (json['name'] as String?)?.toFinding(),
@@ -5341,6 +5378,7 @@ class UpdateEnrollmentStatusResponse {
     this.status,
     this.statusReason,
   });
+
   factory UpdateEnrollmentStatusResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEnrollmentStatusResponse(
       status: (json['status'] as String?)?.toStatus(),
@@ -5500,6 +5538,7 @@ class UtilizationMetric {
     this.statistic,
     this.value,
   });
+
   factory UtilizationMetric.fromJson(Map<String, dynamic> json) {
     return UtilizationMetric(
       name: (json['name'] as String?)?.toMetricName(),
@@ -5554,6 +5593,7 @@ class VolumeConfiguration {
     this.volumeSize,
     this.volumeType,
   });
+
   factory VolumeConfiguration.fromJson(Map<String, dynamic> json) {
     return VolumeConfiguration(
       volumeBaselineIOPS: json['volumeBaselineIOPS'] as int?,
@@ -5638,6 +5678,7 @@ class VolumeRecommendation {
     this.volumeArn,
     this.volumeRecommendationOptions,
   });
+
   factory VolumeRecommendation.fromJson(Map<String, dynamic> json) {
     return VolumeRecommendation(
       accountId: json['accountId'] as String?,
@@ -5716,6 +5757,7 @@ class VolumeRecommendationOption {
     this.performanceRisk,
     this.rank,
   });
+
   factory VolumeRecommendationOption.fromJson(Map<String, dynamic> json) {
     return VolumeRecommendationOption(
       configuration: json['configuration'] != null

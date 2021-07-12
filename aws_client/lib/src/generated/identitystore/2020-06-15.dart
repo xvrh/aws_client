@@ -326,6 +326,7 @@ class DescribeGroupResponse {
     required this.displayName,
     required this.groupId,
   });
+
   factory DescribeGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGroupResponse(
       displayName: json['DisplayName'] as String,
@@ -358,6 +359,7 @@ class DescribeUserResponse {
     required this.userId,
     required this.userName,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       userId: json['UserId'] as String,
@@ -394,6 +396,7 @@ class Filter {
     required this.attributePath,
     required this.attributeValue,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       attributePath: json['AttributePath'] as String,
@@ -428,6 +431,7 @@ class Group {
     required this.displayName,
     required this.groupId,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       displayName: json['DisplayName'] as String,
@@ -460,6 +464,7 @@ class ListGroupsResponse {
     required this.groups,
     this.nextToken,
   });
+
   factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsResponse(
       groups: (json['Groups'] as List)
@@ -495,6 +500,7 @@ class ListUsersResponse {
     required this.users,
     this.nextToken,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       users: (json['Users'] as List)
@@ -531,6 +537,7 @@ class User {
     required this.userId,
     required this.userName,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['UserId'] as String,

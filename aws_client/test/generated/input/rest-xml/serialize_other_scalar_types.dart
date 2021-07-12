@@ -71,6 +71,7 @@ class InputShape {
     this.second,
     this.third,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       first: json['First'] as bool?,

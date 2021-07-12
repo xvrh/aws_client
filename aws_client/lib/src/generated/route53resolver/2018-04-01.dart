@@ -4271,6 +4271,7 @@ class AssociateFirewallRuleGroupResponse {
   AssociateFirewallRuleGroupResponse({
     this.firewallRuleGroupAssociation,
   });
+
   factory AssociateFirewallRuleGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateFirewallRuleGroupResponse(
@@ -4297,6 +4298,7 @@ class AssociateResolverEndpointIpAddressResponse {
   AssociateResolverEndpointIpAddressResponse({
     this.resolverEndpoint,
   });
+
   factory AssociateResolverEndpointIpAddressResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateResolverEndpointIpAddressResponse(
@@ -4323,6 +4325,7 @@ class AssociateResolverQueryLogConfigResponse {
   AssociateResolverQueryLogConfigResponse({
     this.resolverQueryLogConfigAssociation,
   });
+
   factory AssociateResolverQueryLogConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateResolverQueryLogConfigResponse(
@@ -4353,6 +4356,7 @@ class AssociateResolverRuleResponse {
   AssociateResolverRuleResponse({
     this.resolverRuleAssociation,
   });
+
   factory AssociateResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return AssociateResolverRuleResponse(
       resolverRuleAssociation: json['ResolverRuleAssociation'] != null
@@ -4434,6 +4438,7 @@ class CreateFirewallDomainListResponse {
   CreateFirewallDomainListResponse({
     this.firewallDomainList,
   });
+
   factory CreateFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
     return CreateFirewallDomainListResponse(
       firewallDomainList: json['FirewallDomainList'] != null
@@ -4458,6 +4463,7 @@ class CreateFirewallRuleGroupResponse {
   CreateFirewallRuleGroupResponse({
     this.firewallRuleGroup,
   });
+
   factory CreateFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateFirewallRuleGroupResponse(
       firewallRuleGroup: json['FirewallRuleGroup'] != null
@@ -4482,6 +4488,7 @@ class CreateFirewallRuleResponse {
   CreateFirewallRuleResponse({
     this.firewallRule,
   });
+
   factory CreateFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
     return CreateFirewallRuleResponse(
       firewallRule: json['FirewallRule'] != null
@@ -4506,6 +4513,7 @@ class CreateResolverEndpointResponse {
   CreateResolverEndpointResponse({
     this.resolverEndpoint,
   });
+
   factory CreateResolverEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateResolverEndpointResponse(
       resolverEndpoint: json['ResolverEndpoint'] != null
@@ -4531,6 +4539,7 @@ class CreateResolverQueryLogConfigResponse {
   CreateResolverQueryLogConfigResponse({
     this.resolverQueryLogConfig,
   });
+
   factory CreateResolverQueryLogConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateResolverQueryLogConfigResponse(
@@ -4558,6 +4567,7 @@ class CreateResolverRuleResponse {
   CreateResolverRuleResponse({
     this.resolverRule,
   });
+
   factory CreateResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return CreateResolverRuleResponse(
       resolverRule: json['ResolverRule'] != null
@@ -4581,6 +4591,7 @@ class DeleteFirewallDomainListResponse {
   DeleteFirewallDomainListResponse({
     this.firewallDomainList,
   });
+
   factory DeleteFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFirewallDomainListResponse(
       firewallDomainList: json['FirewallDomainList'] != null
@@ -4605,6 +4616,7 @@ class DeleteFirewallRuleGroupResponse {
   DeleteFirewallRuleGroupResponse({
     this.firewallRuleGroup,
   });
+
   factory DeleteFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFirewallRuleGroupResponse(
       firewallRuleGroup: json['FirewallRuleGroup'] != null
@@ -4629,6 +4641,7 @@ class DeleteFirewallRuleResponse {
   DeleteFirewallRuleResponse({
     this.firewallRule,
   });
+
   factory DeleteFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFirewallRuleResponse(
       firewallRule: json['FirewallRule'] != null
@@ -4653,6 +4666,7 @@ class DeleteResolverEndpointResponse {
   DeleteResolverEndpointResponse({
     this.resolverEndpoint,
   });
+
   factory DeleteResolverEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DeleteResolverEndpointResponse(
       resolverEndpoint: json['ResolverEndpoint'] != null
@@ -4678,6 +4692,7 @@ class DeleteResolverQueryLogConfigResponse {
   DeleteResolverQueryLogConfigResponse({
     this.resolverQueryLogConfig,
   });
+
   factory DeleteResolverQueryLogConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteResolverQueryLogConfigResponse(
@@ -4705,6 +4720,7 @@ class DeleteResolverRuleResponse {
   DeleteResolverRuleResponse({
     this.resolverRule,
   });
+
   factory DeleteResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return DeleteResolverRuleResponse(
       resolverRule: json['ResolverRule'] != null
@@ -4728,6 +4744,7 @@ class DisassociateFirewallRuleGroupResponse {
   DisassociateFirewallRuleGroupResponse({
     this.firewallRuleGroupAssociation,
   });
+
   factory DisassociateFirewallRuleGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateFirewallRuleGroupResponse(
@@ -4755,6 +4772,7 @@ class DisassociateResolverEndpointIpAddressResponse {
   DisassociateResolverEndpointIpAddressResponse({
     this.resolverEndpoint,
   });
+
   factory DisassociateResolverEndpointIpAddressResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateResolverEndpointIpAddressResponse(
@@ -4781,6 +4799,7 @@ class DisassociateResolverQueryLogConfigResponse {
   DisassociateResolverQueryLogConfigResponse({
     this.resolverQueryLogConfigAssociation,
   });
+
   factory DisassociateResolverQueryLogConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateResolverQueryLogConfigResponse(
@@ -4811,6 +4830,7 @@ class DisassociateResolverRuleResponse {
   DisassociateResolverRuleResponse({
     this.resolverRuleAssociation,
   });
+
   factory DisassociateResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateResolverRuleResponse(
       resolverRuleAssociation: json['ResolverRuleAssociation'] != null
@@ -5094,6 +5114,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String?,
@@ -5152,6 +5173,7 @@ class FirewallConfig {
     this.ownerId,
     this.resourceId,
   });
+
   factory FirewallConfig.fromJson(Map<String, dynamic> json) {
     return FirewallConfig(
       firewallFailOpen:
@@ -5255,6 +5277,7 @@ class FirewallDomainList {
     this.status,
     this.statusMessage,
   });
+
   factory FirewallDomainList.fromJson(Map<String, dynamic> json) {
     return FirewallDomainList(
       arn: json['Arn'] as String?,
@@ -5329,6 +5352,7 @@ class FirewallDomainListMetadata {
     this.managedOwnerName,
     this.name,
   });
+
   factory FirewallDomainListMetadata.fromJson(Map<String, dynamic> json) {
     return FirewallDomainListMetadata(
       arn: json['Arn'] as String?,
@@ -5558,6 +5582,7 @@ class FirewallRule {
     this.name,
     this.priority,
   });
+
   factory FirewallRule.fromJson(Map<String, dynamic> json) {
     return FirewallRule(
       action: (json['Action'] as String?)?.toAction(),
@@ -5669,6 +5694,7 @@ class FirewallRuleGroup {
     this.status,
     this.statusMessage,
   });
+
   factory FirewallRuleGroup.fromJson(Map<String, dynamic> json) {
     return FirewallRuleGroup(
       arn: json['Arn'] as String?,
@@ -5780,6 +5806,7 @@ class FirewallRuleGroupAssociation {
     this.statusMessage,
     this.vpcId,
   });
+
   factory FirewallRuleGroupAssociation.fromJson(Map<String, dynamic> json) {
     return FirewallRuleGroupAssociation(
       arn: json['Arn'] as String?,
@@ -5906,6 +5933,7 @@ class FirewallRuleGroupMetadata {
     this.ownerId,
     this.shareStatus,
   });
+
   factory FirewallRuleGroupMetadata.fromJson(Map<String, dynamic> json) {
     return FirewallRuleGroupMetadata(
       arn: json['Arn'] as String?,
@@ -5976,6 +6004,7 @@ class GetFirewallConfigResponse {
   GetFirewallConfigResponse({
     this.firewallConfig,
   });
+
   factory GetFirewallConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetFirewallConfigResponse(
       firewallConfig: json['FirewallConfig'] != null
@@ -6000,6 +6029,7 @@ class GetFirewallDomainListResponse {
   GetFirewallDomainListResponse({
     this.firewallDomainList,
   });
+
   factory GetFirewallDomainListResponse.fromJson(Map<String, dynamic> json) {
     return GetFirewallDomainListResponse(
       firewallDomainList: json['FirewallDomainList'] != null
@@ -6024,6 +6054,7 @@ class GetFirewallRuleGroupAssociationResponse {
   GetFirewallRuleGroupAssociationResponse({
     this.firewallRuleGroupAssociation,
   });
+
   factory GetFirewallRuleGroupAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetFirewallRuleGroupAssociationResponse(
@@ -6052,6 +6083,7 @@ class GetFirewallRuleGroupPolicyResponse {
   GetFirewallRuleGroupPolicyResponse({
     this.firewallRuleGroupPolicy,
   });
+
   factory GetFirewallRuleGroupPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return GetFirewallRuleGroupPolicyResponse(
@@ -6075,6 +6107,7 @@ class GetFirewallRuleGroupResponse {
   GetFirewallRuleGroupResponse({
     this.firewallRuleGroup,
   });
+
   factory GetFirewallRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetFirewallRuleGroupResponse(
       firewallRuleGroup: json['FirewallRuleGroup'] != null
@@ -6099,6 +6132,7 @@ class GetResolverDnssecConfigResponse {
   GetResolverDnssecConfigResponse({
     this.resolverDNSSECConfig,
   });
+
   factory GetResolverDnssecConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetResolverDnssecConfigResponse(
       resolverDNSSECConfig: json['ResolverDNSSECConfig'] != null
@@ -6125,6 +6159,7 @@ class GetResolverEndpointResponse {
   GetResolverEndpointResponse({
     this.resolverEndpoint,
   });
+
   factory GetResolverEndpointResponse.fromJson(Map<String, dynamic> json) {
     return GetResolverEndpointResponse(
       resolverEndpoint: json['ResolverEndpoint'] != null
@@ -6150,6 +6185,7 @@ class GetResolverQueryLogConfigAssociationResponse {
   GetResolverQueryLogConfigAssociationResponse({
     this.resolverQueryLogConfigAssociation,
   });
+
   factory GetResolverQueryLogConfigAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResolverQueryLogConfigAssociationResponse(
@@ -6181,6 +6217,7 @@ class GetResolverQueryLogConfigPolicyResponse {
   GetResolverQueryLogConfigPolicyResponse({
     this.resolverQueryLogConfigPolicy,
   });
+
   factory GetResolverQueryLogConfigPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResolverQueryLogConfigPolicyResponse(
@@ -6206,6 +6243,7 @@ class GetResolverQueryLogConfigResponse {
   GetResolverQueryLogConfigResponse({
     this.resolverQueryLogConfig,
   });
+
   factory GetResolverQueryLogConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResolverQueryLogConfigResponse(
@@ -6233,6 +6271,7 @@ class GetResolverRuleAssociationResponse {
   GetResolverRuleAssociationResponse({
     this.resolverRuleAssociation,
   });
+
   factory GetResolverRuleAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResolverRuleAssociationResponse(
@@ -6260,6 +6299,7 @@ class GetResolverRulePolicyResponse {
   GetResolverRulePolicyResponse({
     this.resolverRulePolicy,
   });
+
   factory GetResolverRulePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetResolverRulePolicyResponse(
       resolverRulePolicy: json['ResolverRulePolicy'] as String?,
@@ -6282,6 +6322,7 @@ class GetResolverRuleResponse {
   GetResolverRuleResponse({
     this.resolverRule,
   });
+
   factory GetResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return GetResolverRuleResponse(
       resolverRule: json['ResolverRule'] != null
@@ -6317,6 +6358,7 @@ class ImportFirewallDomainsResponse {
     this.status,
     this.statusMessage,
   });
+
   factory ImportFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ImportFirewallDomainsResponse(
       id: json['Id'] as String?,
@@ -6357,6 +6399,7 @@ class IpAddressRequest {
     required this.subnetId,
     this.ip,
   });
+
   factory IpAddressRequest.fromJson(Map<String, dynamic> json) {
     return IpAddressRequest(
       subnetId: json['SubnetId'] as String,
@@ -6412,6 +6455,7 @@ class IpAddressResponse {
     this.statusMessage,
     this.subnetId,
   });
+
   factory IpAddressResponse.fromJson(Map<String, dynamic> json) {
     return IpAddressResponse(
       creationTime: json['CreationTime'] as String?,
@@ -6534,6 +6578,7 @@ class IpAddressUpdate {
     this.ipId,
     this.subnetId,
   });
+
   factory IpAddressUpdate.fromJson(Map<String, dynamic> json) {
     return IpAddressUpdate(
       ip: json['Ip'] as String?,
@@ -6568,6 +6613,7 @@ class ListFirewallConfigsResponse {
     this.firewallConfigs,
     this.nextToken,
   });
+
   factory ListFirewallConfigsResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallConfigsResponse(
       firewallConfigs: (json['FirewallConfigs'] as List?)
@@ -6604,6 +6650,7 @@ class ListFirewallDomainListsResponse {
     this.firewallDomainLists,
     this.nextToken,
   });
+
   factory ListFirewallDomainListsResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallDomainListsResponse(
       firewallDomainLists: (json['FirewallDomainLists'] as List?)
@@ -6642,6 +6689,7 @@ class ListFirewallDomainsResponse {
     this.domains,
     this.nextToken,
   });
+
   factory ListFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallDomainsResponse(
       domains: (json['Domains'] as List?)
@@ -6678,6 +6726,7 @@ class ListFirewallRuleGroupAssociationsResponse {
     this.firewallRuleGroupAssociations,
     this.nextToken,
   });
+
   factory ListFirewallRuleGroupAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListFirewallRuleGroupAssociationsResponse(
@@ -6718,6 +6767,7 @@ class ListFirewallRuleGroupsResponse {
     this.firewallRuleGroups,
     this.nextToken,
   });
+
   factory ListFirewallRuleGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallRuleGroupsResponse(
       firewallRuleGroups: (json['FirewallRuleGroups'] as List?)
@@ -6755,6 +6805,7 @@ class ListFirewallRulesResponse {
     this.firewallRules,
     this.nextToken,
   });
+
   factory ListFirewallRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListFirewallRulesResponse(
       firewallRules: (json['FirewallRules'] as List?)
@@ -6798,6 +6849,7 @@ class ListResolverDnssecConfigsResponse {
     this.nextToken,
     this.resolverDnssecConfigs,
   });
+
   factory ListResolverDnssecConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResolverDnssecConfigsResponse(
@@ -6841,6 +6893,7 @@ class ListResolverEndpointIpAddressesResponse {
     this.maxResults,
     this.nextToken,
   });
+
   factory ListResolverEndpointIpAddressesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResolverEndpointIpAddressesResponse(
@@ -6884,6 +6937,7 @@ class ListResolverEndpointsResponse {
     this.nextToken,
     this.resolverEndpoints,
   });
+
   factory ListResolverEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return ListResolverEndpointsResponse(
       maxResults: json['MaxResults'] as int?,
@@ -6940,6 +6994,7 @@ class ListResolverQueryLogConfigAssociationsResponse {
     this.totalCount,
     this.totalFilteredCount,
   });
+
   factory ListResolverQueryLogConfigAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResolverQueryLogConfigAssociationsResponse(
@@ -7004,6 +7059,7 @@ class ListResolverQueryLogConfigsResponse {
     this.totalCount,
     this.totalFilteredCount,
   });
+
   factory ListResolverQueryLogConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResolverQueryLogConfigsResponse(
@@ -7052,6 +7108,7 @@ class ListResolverRuleAssociationsResponse {
     this.nextToken,
     this.resolverRuleAssociations,
   });
+
   factory ListResolverRuleAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResolverRuleAssociationsResponse(
@@ -7097,6 +7154,7 @@ class ListResolverRulesResponse {
     this.nextToken,
     this.resolverRules,
   });
+
   factory ListResolverRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListResolverRulesResponse(
       maxResults: json['MaxResults'] as int?,
@@ -7135,6 +7193,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -7190,6 +7249,7 @@ class PutFirewallRuleGroupPolicyResponse {
   PutFirewallRuleGroupPolicyResponse({
     this.returnValue,
   });
+
   factory PutFirewallRuleGroupPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return PutFirewallRuleGroupPolicyResponse(
@@ -7214,6 +7274,7 @@ class PutResolverQueryLogConfigPolicyResponse {
   PutResolverQueryLogConfigPolicyResponse({
     this.returnValue,
   });
+
   factory PutResolverQueryLogConfigPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return PutResolverQueryLogConfigPolicyResponse(
@@ -7237,6 +7298,7 @@ class PutResolverRulePolicyResponse {
   PutResolverRulePolicyResponse({
     this.returnValue,
   });
+
   factory PutResolverRulePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutResolverRulePolicyResponse(
       returnValue: json['ReturnValue'] as bool?,
@@ -7329,6 +7391,7 @@ class ResolverDnssecConfig {
     this.resourceId,
     this.validationStatus,
   });
+
   factory ResolverDnssecConfig.fromJson(Map<String, dynamic> json) {
     return ResolverDnssecConfig(
       id: json['Id'] as String?,
@@ -7488,6 +7551,7 @@ class ResolverEndpoint {
     this.status,
     this.statusMessage,
   });
+
   factory ResolverEndpoint.fromJson(Map<String, dynamic> json) {
     return ResolverEndpoint(
       arn: json['Arn'] as String?,
@@ -7703,6 +7767,7 @@ class ResolverQueryLogConfig {
     this.shareStatus,
     this.status,
   });
+
   factory ResolverQueryLogConfig.fromJson(Map<String, dynamic> json) {
     return ResolverQueryLogConfig(
       arn: json['Arn'] as String?,
@@ -7823,6 +7888,7 @@ class ResolverQueryLogConfigAssociation {
     this.resourceId,
     this.status,
   });
+
   factory ResolverQueryLogConfigAssociation.fromJson(
       Map<String, dynamic> json) {
     return ResolverQueryLogConfigAssociation(
@@ -8082,6 +8148,7 @@ class ResolverRule {
     this.statusMessage,
     this.targetIps,
   });
+
   factory ResolverRule.fromJson(Map<String, dynamic> json) {
     return ResolverRule(
       arn: json['Arn'] as String?,
@@ -8180,6 +8247,7 @@ class ResolverRuleAssociation {
     this.statusMessage,
     this.vPCId,
   });
+
   factory ResolverRuleAssociation.fromJson(Map<String, dynamic> json) {
     return ResolverRuleAssociation(
       id: json['Id'] as String?,
@@ -8273,6 +8341,7 @@ class ResolverRuleConfig {
     this.resolverEndpointId,
     this.targetIps,
   });
+
   factory ResolverRuleConfig.fromJson(Map<String, dynamic> json) {
     return ResolverRuleConfig(
       name: json['Name'] as String?,
@@ -8445,6 +8514,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -8464,6 +8534,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -8488,6 +8559,7 @@ class TargetAddress {
     required this.ip,
     this.port,
   });
+
   factory TargetAddress.fromJson(Map<String, dynamic> json) {
     return TargetAddress(
       ip: json['Ip'] as String,
@@ -8507,6 +8579,7 @@ class TargetAddress {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -8524,6 +8597,7 @@ class UpdateFirewallConfigResponse {
   UpdateFirewallConfigResponse({
     this.firewallConfig,
   });
+
   factory UpdateFirewallConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFirewallConfigResponse(
       firewallConfig: json['FirewallConfig'] != null
@@ -8560,6 +8634,7 @@ class UpdateFirewallDomainsResponse {
     this.status,
     this.statusMessage,
   });
+
   factory UpdateFirewallDomainsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFirewallDomainsResponse(
       id: json['Id'] as String?,
@@ -8590,6 +8665,7 @@ class UpdateFirewallRuleGroupAssociationResponse {
   UpdateFirewallRuleGroupAssociationResponse({
     this.firewallRuleGroupAssociation,
   });
+
   factory UpdateFirewallRuleGroupAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateFirewallRuleGroupAssociationResponse(
@@ -8616,6 +8692,7 @@ class UpdateFirewallRuleResponse {
   UpdateFirewallRuleResponse({
     this.firewallRule,
   });
+
   factory UpdateFirewallRuleResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFirewallRuleResponse(
       firewallRule: json['FirewallRule'] != null
@@ -8640,6 +8717,7 @@ class UpdateResolverDnssecConfigResponse {
   UpdateResolverDnssecConfigResponse({
     this.resolverDNSSECConfig,
   });
+
   factory UpdateResolverDnssecConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateResolverDnssecConfigResponse(
@@ -8666,6 +8744,7 @@ class UpdateResolverEndpointResponse {
   UpdateResolverEndpointResponse({
     this.resolverEndpoint,
   });
+
   factory UpdateResolverEndpointResponse.fromJson(Map<String, dynamic> json) {
     return UpdateResolverEndpointResponse(
       resolverEndpoint: json['ResolverEndpoint'] != null
@@ -8690,6 +8769,7 @@ class UpdateResolverRuleResponse {
   UpdateResolverRuleResponse({
     this.resolverRule,
   });
+
   factory UpdateResolverRuleResponse.fromJson(Map<String, dynamic> json) {
     return UpdateResolverRuleResponse(
       resolverRule: json['ResolverRule'] != null

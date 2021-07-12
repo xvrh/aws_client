@@ -2564,6 +2564,7 @@ class App {
     this.productionBranch,
     this.tags,
   });
+
   factory App.fromJson(Map<String, dynamic> json) {
     return App(
       appArn: json['appArn'] as String,
@@ -2676,6 +2677,7 @@ class Artifact {
     required this.artifactFileName,
     required this.artifactId,
   });
+
   factory Artifact.fromJson(Map<String, dynamic> json) {
     return Artifact(
       artifactFileName: json['artifactFileName'] as String,
@@ -2741,6 +2743,7 @@ class AutoBranchCreationConfig {
     this.pullRequestEnvironmentName,
     this.stage,
   });
+
   factory AutoBranchCreationConfig.fromJson(Map<String, dynamic> json) {
     return AutoBranchCreationConfig(
       basicAuthCredentials: json['basicAuthCredentials'] as String?,
@@ -2820,6 +2823,7 @@ class BackendEnvironment {
     this.deploymentArtifacts,
     this.stackName,
   });
+
   factory BackendEnvironment.fromJson(Map<String, dynamic> json) {
     return BackendEnvironment(
       backendEnvironmentArn: json['backendEnvironmentArn'] as String,
@@ -2969,6 +2973,7 @@ class Branch {
     this.tags,
     this.thumbnailUrl,
   });
+
   factory Branch.fromJson(Map<String, dynamic> json) {
     return Branch(
       activeJobId: json['activeJobId'] as String,
@@ -3081,6 +3086,7 @@ class CreateAppResult {
   CreateAppResult({
     required this.app,
   });
+
   factory CreateAppResult.fromJson(Map<String, dynamic> json) {
     return CreateAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
@@ -3103,6 +3109,7 @@ class CreateBackendEnvironmentResult {
   CreateBackendEnvironmentResult({
     required this.backendEnvironment,
   });
+
   factory CreateBackendEnvironmentResult.fromJson(Map<String, dynamic> json) {
     return CreateBackendEnvironmentResult(
       backendEnvironment: BackendEnvironment.fromJson(
@@ -3127,6 +3134,7 @@ class CreateBranchResult {
   CreateBranchResult({
     required this.branch,
   });
+
   factory CreateBranchResult.fromJson(Map<String, dynamic> json) {
     return CreateBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
@@ -3159,6 +3167,7 @@ class CreateDeploymentResult {
     required this.zipUploadUrl,
     this.jobId,
   });
+
   factory CreateDeploymentResult.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentResult(
       fileUploadUrls: (json['fileUploadUrls'] as Map<String, dynamic>)
@@ -3189,6 +3198,7 @@ class CreateDomainAssociationResult {
   CreateDomainAssociationResult({
     required this.domainAssociation,
   });
+
   factory CreateDomainAssociationResult.fromJson(Map<String, dynamic> json) {
     return CreateDomainAssociationResult(
       domainAssociation: DomainAssociation.fromJson(
@@ -3212,6 +3222,7 @@ class CreateWebhookResult {
   CreateWebhookResult({
     required this.webhook,
   });
+
   factory CreateWebhookResult.fromJson(Map<String, dynamic> json) {
     return CreateWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
@@ -3258,6 +3269,7 @@ class CustomRule {
     this.condition,
     this.status,
   });
+
   factory CustomRule.fromJson(Map<String, dynamic> json) {
     return CustomRule(
       source: json['source'] as String,
@@ -3288,6 +3300,7 @@ class DeleteAppResult {
   DeleteAppResult({
     required this.app,
   });
+
   factory DeleteAppResult.fromJson(Map<String, dynamic> json) {
     return DeleteAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
@@ -3310,6 +3323,7 @@ class DeleteBackendEnvironmentResult {
   DeleteBackendEnvironmentResult({
     required this.backendEnvironment,
   });
+
   factory DeleteBackendEnvironmentResult.fromJson(Map<String, dynamic> json) {
     return DeleteBackendEnvironmentResult(
       backendEnvironment: BackendEnvironment.fromJson(
@@ -3334,6 +3348,7 @@ class DeleteBranchResult {
   DeleteBranchResult({
     required this.branch,
   });
+
   factory DeleteBranchResult.fromJson(Map<String, dynamic> json) {
     return DeleteBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
@@ -3354,6 +3369,7 @@ class DeleteDomainAssociationResult {
   DeleteDomainAssociationResult({
     required this.domainAssociation,
   });
+
   factory DeleteDomainAssociationResult.fromJson(Map<String, dynamic> json) {
     return DeleteDomainAssociationResult(
       domainAssociation: DomainAssociation.fromJson(
@@ -3376,6 +3392,7 @@ class DeleteJobResult {
   DeleteJobResult({
     required this.jobSummary,
   });
+
   factory DeleteJobResult.fromJson(Map<String, dynamic> json) {
     return DeleteJobResult(
       jobSummary:
@@ -3399,6 +3416,7 @@ class DeleteWebhookResult {
   DeleteWebhookResult({
     required this.webhook,
   });
+
   factory DeleteWebhookResult.fromJson(Map<String, dynamic> json) {
     return DeleteWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
@@ -3455,6 +3473,7 @@ class DomainAssociation {
     this.autoSubDomainIAMRole,
     this.certificateVerificationDNSRecord,
   });
+
   factory DomainAssociation.fromJson(Map<String, dynamic> json) {
     return DomainAssociation(
       domainAssociationArn: json['domainAssociationArn'] as String,
@@ -3571,6 +3590,7 @@ class GenerateAccessLogsResult {
   GenerateAccessLogsResult({
     this.logUrl,
   });
+
   factory GenerateAccessLogsResult.fromJson(Map<String, dynamic> json) {
     return GenerateAccessLogsResult(
       logUrl: json['logUrl'] as String?,
@@ -3591,6 +3611,7 @@ class GetAppResult {
   GetAppResult({
     required this.app,
   });
+
   factory GetAppResult.fromJson(Map<String, dynamic> json) {
     return GetAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
@@ -3617,6 +3638,7 @@ class GetArtifactUrlResult {
     required this.artifactId,
     required this.artifactUrl,
   });
+
   factory GetArtifactUrlResult.fromJson(Map<String, dynamic> json) {
     return GetArtifactUrlResult(
       artifactId: json['artifactId'] as String,
@@ -3642,6 +3664,7 @@ class GetBackendEnvironmentResult {
   GetBackendEnvironmentResult({
     required this.backendEnvironment,
   });
+
   factory GetBackendEnvironmentResult.fromJson(Map<String, dynamic> json) {
     return GetBackendEnvironmentResult(
       backendEnvironment: BackendEnvironment.fromJson(
@@ -3663,6 +3686,7 @@ class GetBranchResult {
   GetBranchResult({
     required this.branch,
   });
+
   factory GetBranchResult.fromJson(Map<String, dynamic> json) {
     return GetBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
@@ -3686,6 +3710,7 @@ class GetDomainAssociationResult {
   GetDomainAssociationResult({
     required this.domainAssociation,
   });
+
   factory GetDomainAssociationResult.fromJson(Map<String, dynamic> json) {
     return GetDomainAssociationResult(
       domainAssociation: DomainAssociation.fromJson(
@@ -3707,6 +3732,7 @@ class GetJobResult {
   GetJobResult({
     required this.job,
   });
+
   factory GetJobResult.fromJson(Map<String, dynamic> json) {
     return GetJobResult(
       job: Job.fromJson(json['job'] as Map<String, dynamic>),
@@ -3729,6 +3755,7 @@ class GetWebhookResult {
   GetWebhookResult({
     required this.webhook,
   });
+
   factory GetWebhookResult.fromJson(Map<String, dynamic> json) {
     return GetWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
@@ -3755,6 +3782,7 @@ class Job {
     required this.steps,
     required this.summary,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       steps: (json['steps'] as List)
@@ -3872,6 +3900,7 @@ class JobSummary {
     required this.status,
     this.endTime,
   });
+
   factory JobSummary.fromJson(Map<String, dynamic> json) {
     return JobSummary(
       commitId: json['commitId'] as String,
@@ -3962,6 +3991,7 @@ class ListAppsResult {
     required this.apps,
     this.nextToken,
   });
+
   factory ListAppsResult.fromJson(Map<String, dynamic> json) {
     return ListAppsResult(
       apps: (json['apps'] as List)
@@ -3995,6 +4025,7 @@ class ListArtifactsResult {
     required this.artifacts,
     this.nextToken,
   });
+
   factory ListArtifactsResult.fromJson(Map<String, dynamic> json) {
     return ListArtifactsResult(
       artifacts: (json['artifacts'] as List)
@@ -4028,6 +4059,7 @@ class ListBackendEnvironmentsResult {
     required this.backendEnvironments,
     this.nextToken,
   });
+
   factory ListBackendEnvironmentsResult.fromJson(Map<String, dynamic> json) {
     return ListBackendEnvironmentsResult(
       backendEnvironments: (json['backendEnvironments'] as List)
@@ -4061,6 +4093,7 @@ class ListBranchesResult {
     required this.branches,
     this.nextToken,
   });
+
   factory ListBranchesResult.fromJson(Map<String, dynamic> json) {
     return ListBranchesResult(
       branches: (json['branches'] as List)
@@ -4094,6 +4127,7 @@ class ListDomainAssociationsResult {
     required this.domainAssociations,
     this.nextToken,
   });
+
   factory ListDomainAssociationsResult.fromJson(Map<String, dynamic> json) {
     return ListDomainAssociationsResult(
       domainAssociations: (json['domainAssociations'] as List)
@@ -4127,6 +4161,7 @@ class ListJobsResult {
     required this.jobSummaries,
     this.nextToken,
   });
+
   factory ListJobsResult.fromJson(Map<String, dynamic> json) {
     return ListJobsResult(
       jobSummaries: (json['jobSummaries'] as List)
@@ -4155,6 +4190,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -4183,6 +4219,7 @@ class ListWebhooksResult {
     required this.webhooks,
     this.nextToken,
   });
+
   factory ListWebhooksResult.fromJson(Map<String, dynamic> json) {
     return ListWebhooksResult(
       webhooks: (json['webhooks'] as List)
@@ -4246,6 +4283,7 @@ class ProductionBranch {
     this.status,
     this.thumbnailUrl,
   });
+
   factory ProductionBranch.fromJson(Map<String, dynamic> json) {
     return ProductionBranch(
       branchName: json['branchName'] as String?,
@@ -4321,6 +4359,7 @@ class StartDeploymentResult {
   StartDeploymentResult({
     required this.jobSummary,
   });
+
   factory StartDeploymentResult.fromJson(Map<String, dynamic> json) {
     return StartDeploymentResult(
       jobSummary:
@@ -4344,6 +4383,7 @@ class StartJobResult {
   StartJobResult({
     required this.jobSummary,
   });
+
   factory StartJobResult.fromJson(Map<String, dynamic> json) {
     return StartJobResult(
       jobSummary:
@@ -4408,6 +4448,7 @@ class Step {
     this.testArtifactsUrl,
     this.testConfigUrl,
   });
+
   factory Step.fromJson(Map<String, dynamic> json) {
     return Step(
       endTime: nonNullableTimeStampFromJson(json['endTime'] as Object),
@@ -4461,6 +4502,7 @@ class StopJobResult {
   StopJobResult({
     required this.jobSummary,
   });
+
   factory StopJobResult.fromJson(Map<String, dynamic> json) {
     return StopJobResult(
       jobSummary:
@@ -4492,6 +4534,7 @@ class SubDomain {
     required this.subDomainSetting,
     required this.verified,
   });
+
   factory SubDomain.fromJson(Map<String, dynamic> json) {
     return SubDomain(
       dnsRecord: json['dnsRecord'] as String,
@@ -4525,6 +4568,7 @@ class SubDomainSetting {
     required this.branchName,
     required this.prefix,
   });
+
   factory SubDomainSetting.fromJson(Map<String, dynamic> json) {
     return SubDomainSetting(
       branchName: json['branchName'] as String,
@@ -4545,6 +4589,7 @@ class SubDomainSetting {
 /// The response for the tag resource request.
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4557,6 +4602,7 @@ class TagResourceResponse {
 /// The response for the untag resource request.
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4574,6 +4620,7 @@ class UpdateAppResult {
   UpdateAppResult({
     required this.app,
   });
+
   factory UpdateAppResult.fromJson(Map<String, dynamic> json) {
     return UpdateAppResult(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
@@ -4597,6 +4644,7 @@ class UpdateBranchResult {
   UpdateBranchResult({
     required this.branch,
   });
+
   factory UpdateBranchResult.fromJson(Map<String, dynamic> json) {
     return UpdateBranchResult(
       branch: Branch.fromJson(json['branch'] as Map<String, dynamic>),
@@ -4620,6 +4668,7 @@ class UpdateDomainAssociationResult {
   UpdateDomainAssociationResult({
     required this.domainAssociation,
   });
+
   factory UpdateDomainAssociationResult.fromJson(Map<String, dynamic> json) {
     return UpdateDomainAssociationResult(
       domainAssociation: DomainAssociation.fromJson(
@@ -4643,6 +4692,7 @@ class UpdateWebhookResult {
   UpdateWebhookResult({
     required this.webhook,
   });
+
   factory UpdateWebhookResult.fromJson(Map<String, dynamic> json) {
     return UpdateWebhookResult(
       webhook: Webhook.fromJson(json['webhook'] as Map<String, dynamic>),
@@ -4689,6 +4739,7 @@ class Webhook {
     required this.webhookId,
     required this.webhookUrl,
   });
+
   factory Webhook.fromJson(Map<String, dynamic> json) {
     return Webhook(
       branchName: json['branchName'] as String,

@@ -219,6 +219,7 @@ class CancelQueryResponse {
   CancelQueryResponse({
     this.cancellationMessage,
   });
+
   factory CancelQueryResponse.fromJson(Map<String, dynamic> json) {
     return CancelQueryResponse(
       cancellationMessage: json['CancellationMessage'] as String?,
@@ -250,6 +251,7 @@ class ColumnInfo {
     required this.type,
     this.name,
   });
+
   factory ColumnInfo.fromJson(Map<String, dynamic> json) {
     return ColumnInfo(
       type: Type.fromJson(json['Type'] as Map<String, dynamic>),
@@ -292,6 +294,7 @@ class Datum {
     this.scalarValue,
     this.timeSeriesValue,
   });
+
   factory Datum.fromJson(Map<String, dynamic> json) {
     return Datum(
       arrayValue: (json['ArrayValue'] as List?)
@@ -334,6 +337,7 @@ class DescribeEndpointsResponse {
   DescribeEndpointsResponse({
     required this.endpoints,
   });
+
   factory DescribeEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointsResponse(
       endpoints: (json['Endpoints'] as List)
@@ -364,6 +368,7 @@ class Endpoint {
     required this.address,
     required this.cachePeriodInMinutes,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String,
@@ -406,6 +411,7 @@ class QueryResponse {
     this.nextToken,
     this.queryStatus,
   });
+
   factory QueryResponse.fromJson(Map<String, dynamic> json) {
     return QueryResponse(
       columnInfo: (json['ColumnInfo'] as List)
@@ -463,6 +469,7 @@ class QueryStatus {
     this.cumulativeBytesScanned,
     this.progressPercentage,
   });
+
   factory QueryStatus.fromJson(Map<String, dynamic> json) {
     return QueryStatus(
       cumulativeBytesMetered: json['CumulativeBytesMetered'] as int?,
@@ -493,6 +500,7 @@ class Row {
   Row({
     required this.data,
   });
+
   factory Row.fromJson(Map<String, dynamic> json) {
     return Row(
       data: (json['Data'] as List)
@@ -599,6 +607,7 @@ class TimeSeriesDataPoint {
     required this.time,
     required this.value,
   });
+
   factory TimeSeriesDataPoint.fromJson(Map<String, dynamic> json) {
     return TimeSeriesDataPoint(
       time: json['Time'] as String,
@@ -640,6 +649,7 @@ class Type {
     this.scalarType,
     this.timeSeriesMeasureValueColumnInfo,
   });
+
   factory Type.fromJson(Map<String, dynamic> json) {
     return Type(
       arrayColumnInfo: json['ArrayColumnInfo'] != null

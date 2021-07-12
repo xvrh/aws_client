@@ -989,6 +989,7 @@ class AntennaDemodDecodeDetails {
   AntennaDemodDecodeDetails({
     this.outputNode,
   });
+
   factory AntennaDemodDecodeDetails.fromJson(Map<String, dynamic> json) {
     return AntennaDemodDecodeDetails(
       outputNode: json['outputNode'] as String?,
@@ -1012,6 +1013,7 @@ class AntennaDownlinkConfig {
   AntennaDownlinkConfig({
     required this.spectrumConfig,
   });
+
   factory AntennaDownlinkConfig.fromJson(Map<String, dynamic> json) {
     return AntennaDownlinkConfig(
       spectrumConfig: SpectrumConfig.fromJson(
@@ -1044,6 +1046,7 @@ class AntennaDownlinkDemodDecodeConfig {
     required this.demodulationConfig,
     required this.spectrumConfig,
   });
+
   factory AntennaDownlinkDemodDecodeConfig.fromJson(Map<String, dynamic> json) {
     return AntennaDownlinkDemodDecodeConfig(
       decodeConfig:
@@ -1083,6 +1086,7 @@ class AntennaUplinkConfig {
     required this.targetEirp,
     this.transmitDisabled,
   });
+
   factory AntennaUplinkConfig.fromJson(Map<String, dynamic> json) {
     return AntennaUplinkConfig(
       spectrumConfig: UplinkSpectrumConfig.fromJson(
@@ -1204,6 +1208,7 @@ class ConfigDetails {
     this.endpointDetails,
     this.s3RecordingDetails,
   });
+
   factory ConfigDetails.fromJson(Map<String, dynamic> json) {
     return ConfigDetails(
       antennaDemodDecodeDetails: json['antennaDemodDecodeDetails'] != null
@@ -1250,6 +1255,7 @@ class ConfigIdResponse {
     this.configId,
     this.configType,
   });
+
   factory ConfigIdResponse.fromJson(Map<String, dynamic> json) {
     return ConfigIdResponse(
       configArn: json['configArn'] as String?,
@@ -1290,6 +1296,7 @@ class ConfigListItem {
     this.configType,
     this.name,
   });
+
   factory ConfigListItem.fromJson(Map<String, dynamic> json) {
     return ConfigListItem(
       configArn: json['configArn'] as String?,
@@ -1356,6 +1363,7 @@ class ConfigTypeData {
     this.trackingConfig,
     this.uplinkEchoConfig,
   });
+
   factory ConfigTypeData.fromJson(Map<String, dynamic> json) {
     return ConfigTypeData(
       antennaDownlinkConfig: json['antennaDownlinkConfig'] != null
@@ -1474,6 +1482,7 @@ class ContactData {
     this.startTime,
     this.tags,
   });
+
   factory ContactData.fromJson(Map<String, dynamic> json) {
     return ContactData(
       contactId: json['contactId'] as String?,
@@ -1537,6 +1546,7 @@ class ContactIdResponse {
   ContactIdResponse({
     this.contactId,
   });
+
   factory ContactIdResponse.fromJson(Map<String, dynamic> json) {
     return ContactIdResponse(
       contactId: json['contactId'] as String?,
@@ -1680,6 +1690,7 @@ class DataflowDetail {
     this.errorMessage,
     this.source,
   });
+
   factory DataflowDetail.fromJson(Map<String, dynamic> json) {
     return DataflowDetail(
       destination: json['destination'] != null
@@ -1724,6 +1735,7 @@ class DataflowEndpoint {
     this.name,
     this.status,
   });
+
   factory DataflowEndpoint.fromJson(Map<String, dynamic> json) {
     return DataflowEndpoint(
       address: json['address'] != null
@@ -1761,6 +1773,7 @@ class DataflowEndpointConfig {
     required this.dataflowEndpointName,
     this.dataflowEndpointRegion,
   });
+
   factory DataflowEndpointConfig.fromJson(Map<String, dynamic> json) {
     return DataflowEndpointConfig(
       dataflowEndpointName: json['dataflowEndpointName'] as String,
@@ -1787,6 +1800,7 @@ class DataflowEndpointGroupIdResponse {
   DataflowEndpointGroupIdResponse({
     this.dataflowEndpointGroupId,
   });
+
   factory DataflowEndpointGroupIdResponse.fromJson(Map<String, dynamic> json) {
     return DataflowEndpointGroupIdResponse(
       dataflowEndpointGroupId: json['dataflowEndpointGroupId'] as String?,
@@ -1814,6 +1828,7 @@ class DataflowEndpointListItem {
     this.dataflowEndpointGroupArn,
     this.dataflowEndpointGroupId,
   });
+
   factory DataflowEndpointListItem.fromJson(Map<String, dynamic> json) {
     return DataflowEndpointListItem(
       dataflowEndpointGroupArn: json['dataflowEndpointGroupArn'] as String?,
@@ -1841,6 +1856,7 @@ class DecodeConfig {
   DecodeConfig({
     required this.unvalidatedJSON,
   });
+
   factory DecodeConfig.fromJson(Map<String, dynamic> json) {
     return DecodeConfig(
       unvalidatedJSON: json['unvalidatedJSON'] as String,
@@ -1863,6 +1879,7 @@ class DemodulationConfig {
   DemodulationConfig({
     required this.unvalidatedJSON,
   });
+
   factory DemodulationConfig.fromJson(Map<String, dynamic> json) {
     return DemodulationConfig(
       unvalidatedJSON: json['unvalidatedJSON'] as String,
@@ -1939,6 +1956,7 @@ class DescribeContactResponse {
     this.startTime,
     this.tags,
   });
+
   factory DescribeContactResponse.fromJson(Map<String, dynamic> json) {
     return DescribeContactResponse(
       contactId: json['contactId'] as String?,
@@ -2021,6 +2039,7 @@ class Destination {
     this.configType,
     this.dataflowDestinationRegion,
   });
+
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(
       configDetails: json['configDetails'] != null
@@ -2060,6 +2079,7 @@ class Eirp {
     required this.units,
     required this.value,
   });
+
   factory Eirp.fromJson(Map<String, dynamic> json) {
     return Eirp(
       units: (json['units'] as String).toEirpUnits(),
@@ -2112,6 +2132,7 @@ class Elevation {
     required this.unit,
     required this.value,
   });
+
   factory Elevation.fromJson(Map<String, dynamic> json) {
     return Elevation(
       unit: (json['unit'] as String).toAngleUnits(),
@@ -2141,6 +2162,7 @@ class EndpointDetails {
     this.endpoint,
     this.securityDetails,
   });
+
   factory EndpointDetails.fromJson(Map<String, dynamic> json) {
     return EndpointDetails(
       endpoint: json['endpoint'] != null
@@ -2219,6 +2241,7 @@ class Frequency {
     required this.units,
     required this.value,
   });
+
   factory Frequency.fromJson(Map<String, dynamic> json) {
     return Frequency(
       units: (json['units'] as String).toFrequencyUnits(),
@@ -2264,6 +2287,7 @@ class FrequencyBandwidth {
     required this.units,
     required this.value,
   });
+
   factory FrequencyBandwidth.fromJson(Map<String, dynamic> json) {
     return FrequencyBandwidth(
       units: (json['units'] as String).toBandwidthUnits(),
@@ -2342,6 +2366,7 @@ class GetConfigResponse {
     this.configType,
     this.tags,
   });
+
   factory GetConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetConfigResponse(
       configArn: json['configArn'] as String,
@@ -2393,6 +2418,7 @@ class GetDataflowEndpointGroupResponse {
     this.endpointsDetails,
     this.tags,
   });
+
   factory GetDataflowEndpointGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetDataflowEndpointGroupResponse(
       dataflowEndpointGroupArn: json['dataflowEndpointGroupArn'] as String?,
@@ -2451,6 +2477,7 @@ class GetMinuteUsageResponse {
     this.totalScheduledMinutes,
     this.upcomingMinutesScheduled,
   });
+
   factory GetMinuteUsageResponse.fromJson(Map<String, dynamic> json) {
     return GetMinuteUsageResponse(
       estimatedMinutesRemaining: json['estimatedMinutesRemaining'] as int?,
@@ -2532,6 +2559,7 @@ class GetMissionProfileResponse {
     this.tags,
     this.trackingConfigArn,
   });
+
   factory GetMissionProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetMissionProfileResponse(
       contactPostPassDurationSeconds:
@@ -2606,6 +2634,7 @@ class GetSatelliteResponse {
     this.satelliteArn,
     this.satelliteId,
   });
+
   factory GetSatelliteResponse.fromJson(Map<String, dynamic> json) {
     return GetSatelliteResponse(
       groundStations: (json['groundStations'] as List?)
@@ -2648,6 +2677,7 @@ class GroundStationData {
     this.groundStationName,
     this.region,
   });
+
   factory GroundStationData.fromJson(Map<String, dynamic> json) {
     return GroundStationData(
       groundStationId: json['groundStationId'] as String?,
@@ -2681,6 +2711,7 @@ class ListConfigsResponse {
     this.configList,
     this.nextToken,
   });
+
   factory ListConfigsResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigsResponse(
       configList: (json['configList'] as List?)
@@ -2714,6 +2745,7 @@ class ListContactsResponse {
     this.contactList,
     this.nextToken,
   });
+
   factory ListContactsResponse.fromJson(Map<String, dynamic> json) {
     return ListContactsResponse(
       contactList: (json['contactList'] as List?)
@@ -2748,6 +2780,7 @@ class ListDataflowEndpointGroupsResponse {
     this.dataflowEndpointGroupList,
     this.nextToken,
   });
+
   factory ListDataflowEndpointGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDataflowEndpointGroupsResponse(
@@ -2784,6 +2817,7 @@ class ListGroundStationsResponse {
     this.groundStationList,
     this.nextToken,
   });
+
   factory ListGroundStationsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroundStationsResponse(
       groundStationList: (json['groundStationList'] as List?)
@@ -2817,6 +2851,7 @@ class ListMissionProfilesResponse {
     this.missionProfileList,
     this.nextToken,
   });
+
   factory ListMissionProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListMissionProfilesResponse(
       missionProfileList: (json['missionProfileList'] as List?)
@@ -2851,6 +2886,7 @@ class ListSatellitesResponse {
     this.nextToken,
     this.satellites,
   });
+
   factory ListSatellitesResponse.fromJson(Map<String, dynamic> json) {
     return ListSatellitesResponse(
       nextToken: json['nextToken'] as String?,
@@ -2879,6 +2915,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2902,6 +2939,7 @@ class MissionProfileIdResponse {
   MissionProfileIdResponse({
     this.missionProfileId,
   });
+
   factory MissionProfileIdResponse.fromJson(Map<String, dynamic> json) {
     return MissionProfileIdResponse(
       missionProfileId: json['missionProfileId'] as String?,
@@ -2936,6 +2974,7 @@ class MissionProfileListItem {
     this.name,
     this.region,
   });
+
   factory MissionProfileListItem.fromJson(Map<String, dynamic> json) {
     return MissionProfileListItem(
       missionProfileArn: json['missionProfileArn'] as String?,
@@ -3008,6 +3047,7 @@ class S3RecordingConfig {
     required this.roleArn,
     this.prefix,
   });
+
   factory S3RecordingConfig.fromJson(Map<String, dynamic> json) {
     return S3RecordingConfig(
       bucketArn: json['bucketArn'] as String,
@@ -3040,6 +3080,7 @@ class S3RecordingDetails {
     this.bucketArn,
     this.keyTemplate,
   });
+
   factory S3RecordingDetails.fromJson(Map<String, dynamic> json) {
     return S3RecordingDetails(
       bucketArn: json['bucketArn'] as String?,
@@ -3077,6 +3118,7 @@ class SatelliteListItem {
     this.satelliteArn,
     this.satelliteId,
   });
+
   factory SatelliteListItem.fromJson(Map<String, dynamic> json) {
     return SatelliteListItem(
       groundStations: (json['groundStations'] as List?)
@@ -3120,6 +3162,7 @@ class SecurityDetails {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+
   factory SecurityDetails.fromJson(Map<String, dynamic> json) {
     return SecurityDetails(
       roleArn: json['roleArn'] as String,
@@ -3158,6 +3201,7 @@ class SocketAddress {
     required this.name,
     required this.port,
   });
+
   factory SocketAddress.fromJson(Map<String, dynamic> json) {
     return SocketAddress(
       name: json['name'] as String,
@@ -3196,6 +3240,7 @@ class Source {
     this.configType,
     this.dataflowSourceRegion,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       configDetails: json['configDetails'] != null
@@ -3259,6 +3304,7 @@ class SpectrumConfig {
     required this.centerFrequency,
     this.polarization,
   });
+
   factory SpectrumConfig.fromJson(Map<String, dynamic> json) {
     return SpectrumConfig(
       bandwidth: FrequencyBandwidth.fromJson(
@@ -3284,6 +3330,7 @@ class SpectrumConfig {
 /// <p/>
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3302,6 +3349,7 @@ class TrackingConfig {
   TrackingConfig({
     required this.autotrack,
   });
+
   factory TrackingConfig.fromJson(Map<String, dynamic> json) {
     return TrackingConfig(
       autotrack: (json['autotrack'] as String).toCriticality(),
@@ -3319,6 +3367,7 @@ class TrackingConfig {
 /// <p/>
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3344,6 +3393,7 @@ class UplinkEchoConfig {
     required this.antennaUplinkConfigArn,
     required this.enabled,
   });
+
   factory UplinkEchoConfig.fromJson(Map<String, dynamic> json) {
     return UplinkEchoConfig(
       antennaUplinkConfigArn: json['antennaUplinkConfigArn'] as String,
@@ -3376,6 +3426,7 @@ class UplinkSpectrumConfig {
     required this.centerFrequency,
     this.polarization,
   });
+
   factory UplinkSpectrumConfig.fromJson(Map<String, dynamic> json) {
     return UplinkSpectrumConfig(
       centerFrequency:

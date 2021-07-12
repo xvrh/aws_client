@@ -1285,6 +1285,7 @@ class AgentConfigurationStatus {
     this.description,
     this.operationSucceeded,
   });
+
   factory AgentConfigurationStatus.fromJson(Map<String, dynamic> json) {
     return AgentConfigurationStatus(
       agentId: json['agentId'] as String?,
@@ -1353,6 +1354,7 @@ class AgentInfo {
     this.registeredTime,
     this.version,
   });
+
   factory AgentInfo.fromJson(Map<String, dynamic> json) {
     return AgentInfo(
       agentId: json['agentId'] as String?,
@@ -1410,6 +1412,7 @@ class AgentNetworkInfo {
     this.ipAddress,
     this.macAddress,
   });
+
   factory AgentNetworkInfo.fromJson(Map<String, dynamic> json) {
     return AgentNetworkInfo(
       ipAddress: json['ipAddress'] as String?,
@@ -1477,6 +1480,7 @@ extension on String {
 
 class AssociateConfigurationItemsToApplicationResponse {
   AssociateConfigurationItemsToApplicationResponse();
+
   factory AssociateConfigurationItemsToApplicationResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateConfigurationItemsToApplicationResponse();
@@ -1504,6 +1508,7 @@ class BatchDeleteImportDataError {
     this.errorDescription,
     this.importTaskId,
   });
+
   factory BatchDeleteImportDataError.fromJson(Map<String, dynamic> json) {
     return BatchDeleteImportDataError(
       errorCode:
@@ -1567,6 +1572,7 @@ class BatchDeleteImportDataResponse {
   BatchDeleteImportDataResponse({
     this.errors,
   });
+
   factory BatchDeleteImportDataResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteImportDataResponse(
       errors: (json['errors'] as List?)
@@ -1651,6 +1657,7 @@ class ConfigurationTag {
     this.timeOfCreation,
     this.value,
   });
+
   factory ConfigurationTag.fromJson(Map<String, dynamic> json) {
     return ConfigurationTag(
       configurationId: json['configurationId'] as String?,
@@ -1804,6 +1811,7 @@ class ContinuousExportDescription {
     this.statusDetail,
     this.stopTime,
   });
+
   factory ContinuousExportDescription.fromJson(Map<String, dynamic> json) {
     return ContinuousExportDescription(
       dataSource: (json['dataSource'] as String?)?.toDataSource(),
@@ -1902,6 +1910,7 @@ class CreateApplicationResponse {
   CreateApplicationResponse({
     this.configurationId,
   });
+
   factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApplicationResponse(
       configurationId: json['configurationId'] as String?,
@@ -1918,6 +1927,7 @@ class CreateApplicationResponse {
 
 class CreateTagsResponse {
   CreateTagsResponse();
+
   factory CreateTagsResponse.fromJson(Map<String, dynamic> _) {
     return CreateTagsResponse();
   }
@@ -1959,6 +1969,7 @@ class CustomerAgentInfo {
     required this.unhealthyAgents,
     required this.unknownAgents,
   });
+
   factory CustomerAgentInfo.fromJson(Map<String, dynamic> json) {
     return CustomerAgentInfo(
       activeAgents: json['activeAgents'] as int,
@@ -2023,6 +2034,7 @@ class CustomerConnectorInfo {
     required this.unhealthyConnectors,
     required this.unknownConnectors,
   });
+
   factory CustomerConnectorInfo.fromJson(Map<String, dynamic> json) {
     return CustomerConnectorInfo(
       activeConnectors: json['activeConnectors'] as int,
@@ -2080,6 +2092,7 @@ extension on String {
 
 class DeleteApplicationsResponse {
   DeleteApplicationsResponse();
+
   factory DeleteApplicationsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationsResponse();
   }
@@ -2091,6 +2104,7 @@ class DeleteApplicationsResponse {
 
 class DeleteTagsResponse {
   DeleteTagsResponse();
+
   factory DeleteTagsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTagsResponse();
   }
@@ -2119,6 +2133,7 @@ class DescribeAgentsResponse {
     this.agentsInfo,
     this.nextToken,
   });
+
   factory DescribeAgentsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAgentsResponse(
       agentsInfo: (json['agentsInfo'] as List?)
@@ -2146,6 +2161,7 @@ class DescribeConfigurationsResponse {
   DescribeConfigurationsResponse({
     this.configurations,
   });
+
   factory DescribeConfigurationsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConfigurationsResponse(
       configurations: (json['configurations'] as List?)
@@ -2175,6 +2191,7 @@ class DescribeContinuousExportsResponse {
     this.descriptions,
     this.nextToken,
   });
+
   factory DescribeContinuousExportsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeContinuousExportsResponse(
@@ -2208,6 +2225,7 @@ class DescribeExportConfigurationsResponse {
     this.exportsInfo,
     this.nextToken,
   });
+
   factory DescribeExportConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeExportConfigurationsResponse(
@@ -2246,6 +2264,7 @@ class DescribeExportTasksResponse {
     this.exportsInfo,
     this.nextToken,
   });
+
   factory DescribeExportTasksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeExportTasksResponse(
       exportsInfo: (json['exportsInfo'] as List?)
@@ -2278,6 +2297,7 @@ class DescribeImportTasksResponse {
     this.nextToken,
     this.tasks,
   });
+
   factory DescribeImportTasksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImportTasksResponse(
       nextToken: json['nextToken'] as String?,
@@ -2310,6 +2330,7 @@ class DescribeTagsResponse {
     this.nextToken,
     this.tags,
   });
+
   factory DescribeTagsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTagsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2332,6 +2353,7 @@ class DescribeTagsResponse {
 
 class DisassociateConfigurationItemsFromApplicationResponse {
   DisassociateConfigurationItemsFromApplicationResponse();
+
   factory DisassociateConfigurationItemsFromApplicationResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateConfigurationItemsFromApplicationResponse();
@@ -2349,6 +2371,7 @@ class ExportConfigurationsResponse {
   ExportConfigurationsResponse({
     this.exportId,
   });
+
   factory ExportConfigurationsResponse.fromJson(Map<String, dynamic> json) {
     return ExportConfigurationsResponse(
       exportId: json['exportId'] as String?,
@@ -2415,6 +2438,7 @@ class ExportFilter {
     required this.name,
     required this.values,
   });
+
   factory ExportFilter.fromJson(Map<String, dynamic> json) {
     return ExportFilter(
       condition: json['condition'] as String,
@@ -2483,6 +2507,7 @@ class ExportInfo {
     this.requestedEndTime,
     this.requestedStartTime,
   });
+
   factory ExportInfo.fromJson(Map<String, dynamic> json) {
     return ExportInfo(
       exportId: json['exportId'] as String,
@@ -2584,6 +2609,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       condition: json['condition'] as String,
@@ -2634,6 +2660,7 @@ class GetDiscoverySummaryResponse {
     this.serversMappedToApplications,
     this.serversMappedtoTags,
   });
+
   factory GetDiscoverySummaryResponse.fromJson(Map<String, dynamic> json) {
     return GetDiscoverySummaryResponse(
       agentSummary: json['agentSummary'] != null
@@ -2831,6 +2858,7 @@ class ImportTask {
     this.serverImportSuccess,
     this.status,
   });
+
   factory ImportTask.fromJson(Map<String, dynamic> json) {
     return ImportTask(
       applicationImportFailure: json['applicationImportFailure'] as int?,
@@ -2908,6 +2936,7 @@ class ImportTaskFilter {
     this.name,
     this.values,
   });
+
   factory ImportTaskFilter.fromJson(Map<String, dynamic> json) {
     return ImportTaskFilter(
       name: (json['name'] as String?)?.toImportTaskFilterName(),
@@ -2977,6 +3006,7 @@ class ListConfigurationsResponse {
     this.configurations,
     this.nextToken,
   });
+
   factory ListConfigurationsResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigurationsResponse(
       configurations: (json['configurations'] as List?)
@@ -3017,6 +3047,7 @@ class ListServerNeighborsResponse {
     this.knownDependencyCount,
     this.nextToken,
   });
+
   factory ListServerNeighborsResponse.fromJson(Map<String, dynamic> json) {
     return ListServerNeighborsResponse(
       neighbors: (json['neighbors'] as List)
@@ -3066,6 +3097,7 @@ class NeighborConnectionDetail {
     this.destinationPort,
     this.transportProtocol,
   });
+
   factory NeighborConnectionDetail.fromJson(Map<String, dynamic> json) {
     return NeighborConnectionDetail(
       connectionsCount: json['connectionsCount'] as int,
@@ -3104,6 +3136,7 @@ class OrderByElement {
     required this.fieldName,
     this.sortOrder,
   });
+
   factory OrderByElement.fromJson(Map<String, dynamic> json) {
     return OrderByElement(
       fieldName: json['fieldName'] as String,
@@ -3152,6 +3185,7 @@ class StartContinuousExportResponse {
     this.schemaStorageConfig,
     this.startTime,
   });
+
   factory StartContinuousExportResponse.fromJson(Map<String, dynamic> json) {
     return StartContinuousExportResponse(
       dataSource: (json['dataSource'] as String?)?.toDataSource(),
@@ -3191,6 +3225,7 @@ class StartDataCollectionByAgentIdsResponse {
   StartDataCollectionByAgentIdsResponse({
     this.agentsConfigurationStatus,
   });
+
   factory StartDataCollectionByAgentIdsResponse.fromJson(
       Map<String, dynamic> json) {
     return StartDataCollectionByAgentIdsResponse(
@@ -3218,6 +3253,7 @@ class StartExportTaskResponse {
   StartExportTaskResponse({
     this.exportId,
   });
+
   factory StartExportTaskResponse.fromJson(Map<String, dynamic> json) {
     return StartExportTaskResponse(
       exportId: json['exportId'] as String?,
@@ -3241,6 +3277,7 @@ class StartImportTaskResponse {
   StartImportTaskResponse({
     this.task,
   });
+
   factory StartImportTaskResponse.fromJson(Map<String, dynamic> json) {
     return StartImportTaskResponse(
       task: json['task'] != null
@@ -3269,6 +3306,7 @@ class StopContinuousExportResponse {
     this.startTime,
     this.stopTime,
   });
+
   factory StopContinuousExportResponse.fromJson(Map<String, dynamic> json) {
     return StopContinuousExportResponse(
       startTime: timeStampFromJson(json['startTime']),
@@ -3296,6 +3334,7 @@ class StopDataCollectionByAgentIdsResponse {
   StopDataCollectionByAgentIdsResponse({
     this.agentsConfigurationStatus,
   });
+
   factory StopDataCollectionByAgentIdsResponse.fromJson(
       Map<String, dynamic> json) {
     return StopDataCollectionByAgentIdsResponse(
@@ -3328,6 +3367,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -3358,6 +3398,7 @@ class TagFilter {
     required this.name,
     required this.values,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       name: json['name'] as String,
@@ -3380,6 +3421,7 @@ class TagFilter {
 
 class UpdateApplicationResponse {
   UpdateApplicationResponse();
+
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateApplicationResponse();
   }

@@ -3312,6 +3312,7 @@ class AccessEndpoint {
     required this.endpointType,
     this.vpceId,
   });
+
   factory AccessEndpoint.fromJson(Map<String, dynamic> json) {
     return AccessEndpoint(
       endpointType: (json['EndpointType'] as String).toAccessEndpointType(),
@@ -3437,6 +3438,7 @@ class Application {
     this.metadata,
     this.name,
   });
+
   factory Application.fromJson(Map<String, dynamic> json) {
     return Application(
       displayName: json['DisplayName'] as String?,
@@ -3486,6 +3488,7 @@ class ApplicationSettings {
     required this.enabled,
     this.settingsGroup,
   });
+
   factory ApplicationSettings.fromJson(Map<String, dynamic> json) {
     return ApplicationSettings(
       enabled: json['Enabled'] as bool,
@@ -3524,6 +3527,7 @@ class ApplicationSettingsResponse {
     this.s3BucketName,
     this.settingsGroup,
   });
+
   factory ApplicationSettingsResponse.fromJson(Map<String, dynamic> json) {
     return ApplicationSettingsResponse(
       enabled: json['Enabled'] as bool?,
@@ -3546,6 +3550,7 @@ class ApplicationSettingsResponse {
 
 class AssociateFleetResult {
   AssociateFleetResult();
+
   factory AssociateFleetResult.fromJson(Map<String, dynamic> _) {
     return AssociateFleetResult();
   }
@@ -3595,6 +3600,7 @@ class BatchAssociateUserStackResult {
   BatchAssociateUserStackResult({
     this.errors,
   });
+
   factory BatchAssociateUserStackResult.fromJson(Map<String, dynamic> json) {
     return BatchAssociateUserStackResult(
       errors: (json['errors'] as List?)
@@ -3620,6 +3626,7 @@ class BatchDisassociateUserStackResult {
   BatchDisassociateUserStackResult({
     this.errors,
   });
+
   factory BatchDisassociateUserStackResult.fromJson(Map<String, dynamic> json) {
     return BatchDisassociateUserStackResult(
       errors: (json['errors'] as List?)
@@ -3646,6 +3653,7 @@ class ComputeCapacity {
   ComputeCapacity({
     required this.desiredInstances,
   });
+
   factory ComputeCapacity.fromJson(Map<String, dynamic> json) {
     return ComputeCapacity(
       desiredInstances: json['DesiredInstances'] as int,
@@ -3681,6 +3689,7 @@ class ComputeCapacityStatus {
     this.inUse,
     this.running,
   });
+
   factory ComputeCapacityStatus.fromJson(Map<String, dynamic> json) {
     return ComputeCapacityStatus(
       desired: json['Desired'] as int,
@@ -3711,6 +3720,7 @@ class CopyImageResponse {
   CopyImageResponse({
     this.destinationImageName,
   });
+
   factory CopyImageResponse.fromJson(Map<String, dynamic> json) {
     return CopyImageResponse(
       destinationImageName: json['DestinationImageName'] as String?,
@@ -3733,6 +3743,7 @@ class CreateDirectoryConfigResult {
   CreateDirectoryConfigResult({
     this.directoryConfig,
   });
+
   factory CreateDirectoryConfigResult.fromJson(Map<String, dynamic> json) {
     return CreateDirectoryConfigResult(
       directoryConfig: json['DirectoryConfig'] != null
@@ -3757,6 +3768,7 @@ class CreateFleetResult {
   CreateFleetResult({
     this.fleet,
   });
+
   factory CreateFleetResult.fromJson(Map<String, dynamic> json) {
     return CreateFleetResult(
       fleet: json['Fleet'] != null
@@ -3780,6 +3792,7 @@ class CreateImageBuilderResult {
   CreateImageBuilderResult({
     this.imageBuilder,
   });
+
   factory CreateImageBuilderResult.fromJson(Map<String, dynamic> json) {
     return CreateImageBuilderResult(
       imageBuilder: json['ImageBuilder'] != null
@@ -3807,6 +3820,7 @@ class CreateImageBuilderStreamingURLResult {
     this.expires,
     this.streamingURL,
   });
+
   factory CreateImageBuilderStreamingURLResult.fromJson(
       Map<String, dynamic> json) {
     return CreateImageBuilderStreamingURLResult(
@@ -3832,6 +3846,7 @@ class CreateStackResult {
   CreateStackResult({
     this.stack,
   });
+
   factory CreateStackResult.fromJson(Map<String, dynamic> json) {
     return CreateStackResult(
       stack: json['Stack'] != null
@@ -3859,6 +3874,7 @@ class CreateStreamingURLResult {
     this.expires,
     this.streamingURL,
   });
+
   factory CreateStreamingURLResult.fromJson(Map<String, dynamic> json) {
     return CreateStreamingURLResult(
       expires: timeStampFromJson(json['Expires']),
@@ -3885,6 +3901,7 @@ class CreateUpdatedImageResult {
     this.canUpdateImage,
     this.image,
   });
+
   factory CreateUpdatedImageResult.fromJson(Map<String, dynamic> json) {
     return CreateUpdatedImageResult(
       canUpdateImage: json['canUpdateImage'] as bool?,
@@ -3923,6 +3940,7 @@ class CreateUsageReportSubscriptionResult {
     this.s3BucketName,
     this.schedule,
   });
+
   factory CreateUsageReportSubscriptionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateUsageReportSubscriptionResult(
@@ -3943,6 +3961,7 @@ class CreateUsageReportSubscriptionResult {
 
 class CreateUserResult {
   CreateUserResult();
+
   factory CreateUserResult.fromJson(Map<String, dynamic> _) {
     return CreateUserResult();
   }
@@ -3954,6 +3973,7 @@ class CreateUserResult {
 
 class DeleteDirectoryConfigResult {
   DeleteDirectoryConfigResult();
+
   factory DeleteDirectoryConfigResult.fromJson(Map<String, dynamic> _) {
     return DeleteDirectoryConfigResult();
   }
@@ -3965,6 +3985,7 @@ class DeleteDirectoryConfigResult {
 
 class DeleteFleetResult {
   DeleteFleetResult();
+
   factory DeleteFleetResult.fromJson(Map<String, dynamic> _) {
     return DeleteFleetResult();
   }
@@ -3981,6 +4002,7 @@ class DeleteImageBuilderResult {
   DeleteImageBuilderResult({
     this.imageBuilder,
   });
+
   factory DeleteImageBuilderResult.fromJson(Map<String, dynamic> json) {
     return DeleteImageBuilderResult(
       imageBuilder: json['ImageBuilder'] != null
@@ -3999,6 +4021,7 @@ class DeleteImageBuilderResult {
 
 class DeleteImagePermissionsResult {
   DeleteImagePermissionsResult();
+
   factory DeleteImagePermissionsResult.fromJson(Map<String, dynamic> _) {
     return DeleteImagePermissionsResult();
   }
@@ -4015,6 +4038,7 @@ class DeleteImageResult {
   DeleteImageResult({
     this.image,
   });
+
   factory DeleteImageResult.fromJson(Map<String, dynamic> json) {
     return DeleteImageResult(
       image: json['Image'] != null
@@ -4033,6 +4057,7 @@ class DeleteImageResult {
 
 class DeleteStackResult {
   DeleteStackResult();
+
   factory DeleteStackResult.fromJson(Map<String, dynamic> _) {
     return DeleteStackResult();
   }
@@ -4044,6 +4069,7 @@ class DeleteStackResult {
 
 class DeleteUsageReportSubscriptionResult {
   DeleteUsageReportSubscriptionResult();
+
   factory DeleteUsageReportSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return DeleteUsageReportSubscriptionResult();
   }
@@ -4055,6 +4081,7 @@ class DeleteUsageReportSubscriptionResult {
 
 class DeleteUserResult {
   DeleteUserResult();
+
   factory DeleteUserResult.fromJson(Map<String, dynamic> _) {
     return DeleteUserResult();
   }
@@ -4078,6 +4105,7 @@ class DescribeDirectoryConfigsResult {
     this.directoryConfigs,
     this.nextToken,
   });
+
   factory DescribeDirectoryConfigsResult.fromJson(Map<String, dynamic> json) {
     return DescribeDirectoryConfigsResult(
       directoryConfigs: (json['DirectoryConfigs'] as List?)
@@ -4110,6 +4138,7 @@ class DescribeFleetsResult {
     this.fleets,
     this.nextToken,
   });
+
   factory DescribeFleetsResult.fromJson(Map<String, dynamic> json) {
     return DescribeFleetsResult(
       fleets: (json['Fleets'] as List?)
@@ -4142,6 +4171,7 @@ class DescribeImageBuildersResult {
     this.imageBuilders,
     this.nextToken,
   });
+
   factory DescribeImageBuildersResult.fromJson(Map<String, dynamic> json) {
     return DescribeImageBuildersResult(
       imageBuilders: (json['ImageBuilders'] as List?)
@@ -4178,6 +4208,7 @@ class DescribeImagePermissionsResult {
     this.nextToken,
     this.sharedImagePermissionsList,
   });
+
   factory DescribeImagePermissionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeImagePermissionsResult(
       name: json['Name'] as String?,
@@ -4215,6 +4246,7 @@ class DescribeImagesResult {
     this.images,
     this.nextToken,
   });
+
   factory DescribeImagesResult.fromJson(Map<String, dynamic> json) {
     return DescribeImagesResult(
       images: (json['Images'] as List?)
@@ -4247,6 +4279,7 @@ class DescribeSessionsResult {
     this.nextToken,
     this.sessions,
   });
+
   factory DescribeSessionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeSessionsResult(
       nextToken: json['NextToken'] as String?,
@@ -4279,6 +4312,7 @@ class DescribeStacksResult {
     this.nextToken,
     this.stacks,
   });
+
   factory DescribeStacksResult.fromJson(Map<String, dynamic> json) {
     return DescribeStacksResult(
       nextToken: json['NextToken'] as String?,
@@ -4311,6 +4345,7 @@ class DescribeUsageReportSubscriptionsResult {
     this.nextToken,
     this.usageReportSubscriptions,
   });
+
   factory DescribeUsageReportSubscriptionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeUsageReportSubscriptionsResult(
@@ -4346,6 +4381,7 @@ class DescribeUserStackAssociationsResult {
     this.nextToken,
     this.userStackAssociations,
   });
+
   factory DescribeUserStackAssociationsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeUserStackAssociationsResult(
@@ -4380,6 +4416,7 @@ class DescribeUsersResult {
     this.nextToken,
     this.users,
   });
+
   factory DescribeUsersResult.fromJson(Map<String, dynamic> json) {
     return DescribeUsersResult(
       nextToken: json['NextToken'] as String?,
@@ -4422,6 +4459,7 @@ class DirectoryConfig {
     this.organizationalUnitDistinguishedNames,
     this.serviceAccountCredentials,
   });
+
   factory DirectoryConfig.fromJson(Map<String, dynamic> json) {
     return DirectoryConfig(
       directoryName: json['DirectoryName'] as String,
@@ -4458,6 +4496,7 @@ class DirectoryConfig {
 
 class DisableUserResult {
   DisableUserResult();
+
   factory DisableUserResult.fromJson(Map<String, dynamic> _) {
     return DisableUserResult();
   }
@@ -4469,6 +4508,7 @@ class DisableUserResult {
 
 class DisassociateFleetResult {
   DisassociateFleetResult();
+
   factory DisassociateFleetResult.fromJson(Map<String, dynamic> _) {
     return DisassociateFleetResult();
   }
@@ -4491,6 +4531,7 @@ class DomainJoinInfo {
     this.directoryName,
     this.organizationalUnitDistinguishedName,
   });
+
   factory DomainJoinInfo.fromJson(Map<String, dynamic> json) {
     return DomainJoinInfo(
       directoryName: json['DirectoryName'] as String?,
@@ -4514,6 +4555,7 @@ class DomainJoinInfo {
 
 class EnableUserResult {
   EnableUserResult();
+
   factory EnableUserResult.fromJson(Map<String, dynamic> _) {
     return EnableUserResult();
   }
@@ -4525,6 +4567,7 @@ class EnableUserResult {
 
 class ExpireSessionResult {
   ExpireSessionResult();
+
   factory ExpireSessionResult.fromJson(Map<String, dynamic> _) {
     return ExpireSessionResult();
   }
@@ -4782,6 +4825,7 @@ class Fleet {
     this.streamView,
     this.vpcConfig,
   });
+
   factory Fleet.fromJson(Map<String, dynamic> json) {
     return Fleet(
       arn: json['Arn'] as String,
@@ -4918,6 +4962,7 @@ class FleetError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory FleetError.fromJson(Map<String, dynamic> json) {
     return FleetError(
       errorCode: (json['ErrorCode'] as String?)?.toFleetErrorCode(),
@@ -5247,6 +5292,7 @@ class Image {
     this.stateChangeReason,
     this.visibility,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       name: json['Name'] as String,
@@ -5518,6 +5564,7 @@ class ImageBuilder {
     this.stateChangeReason,
     this.vpcConfig,
   });
+
   factory ImageBuilder.fromJson(Map<String, dynamic> json) {
     return ImageBuilder(
       name: json['Name'] as String,
@@ -5688,6 +5735,7 @@ class ImageBuilderStateChangeReason {
     this.code,
     this.message,
   });
+
   factory ImageBuilderStateChangeReason.fromJson(Map<String, dynamic> json) {
     return ImageBuilderStateChangeReason(
       code: (json['Code'] as String?)?.toImageBuilderStateChangeReasonCode(),
@@ -5746,6 +5794,7 @@ class ImagePermissions {
     this.allowFleet,
     this.allowImageBuilder,
   });
+
   factory ImagePermissions.fromJson(Map<String, dynamic> json) {
     return ImagePermissions(
       allowFleet: json['allowFleet'] as bool?,
@@ -5828,6 +5877,7 @@ class ImageStateChangeReason {
     this.code,
     this.message,
   });
+
   factory ImageStateChangeReason.fromJson(Map<String, dynamic> json) {
     return ImageStateChangeReason(
       code: (json['Code'] as String?)?.toImageStateChangeReasonCode(),
@@ -5892,6 +5942,7 @@ class LastReportGenerationExecutionError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory LastReportGenerationExecutionError.fromJson(
       Map<String, dynamic> json) {
     return LastReportGenerationExecutionError(
@@ -5923,6 +5974,7 @@ class ListAssociatedFleetsResult {
     this.names,
     this.nextToken,
   });
+
   factory ListAssociatedFleetsResult.fromJson(Map<String, dynamic> json) {
     return ListAssociatedFleetsResult(
       names: (json['Names'] as List?)
@@ -5955,6 +6007,7 @@ class ListAssociatedStacksResult {
     this.names,
     this.nextToken,
   });
+
   factory ListAssociatedStacksResult.fromJson(Map<String, dynamic> json) {
     return ListAssociatedStacksResult(
       names: (json['Names'] as List?)
@@ -5982,6 +6035,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -6040,6 +6094,7 @@ class NetworkAccessConfiguration {
     this.eniId,
     this.eniPrivateIpAddress,
   });
+
   factory NetworkAccessConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkAccessConfiguration(
       eniId: json['EniId'] as String?,
@@ -6135,6 +6190,7 @@ class ResourceError {
     this.errorMessage,
     this.errorTimestamp,
   });
+
   factory ResourceError.fromJson(Map<String, dynamic> json) {
     return ResourceError(
       errorCode: (json['ErrorCode'] as String?)?.toFleetErrorCode(),
@@ -6172,6 +6228,7 @@ class ServiceAccountCredentials {
     required this.accountName,
     required this.accountPassword,
   });
+
   factory ServiceAccountCredentials.fromJson(Map<String, dynamic> json) {
     return ServiceAccountCredentials(
       accountName: json['AccountName'] as String,
@@ -6242,6 +6299,7 @@ class Session {
     this.networkAccessConfiguration,
     this.startTime,
   });
+
   factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
       fleetName: json['FleetName'] as String,
@@ -6366,6 +6424,7 @@ class SharedImagePermissions {
     required this.imagePermissions,
     required this.sharedAccountId,
   });
+
   factory SharedImagePermissions.fromJson(Map<String, dynamic> json) {
     return SharedImagePermissions(
       imagePermissions: ImagePermissions.fromJson(
@@ -6445,6 +6504,7 @@ class Stack {
     this.storageConnectors,
     this.userSettings,
   });
+
   factory Stack.fromJson(Map<String, dynamic> json) {
     return Stack(
       name: json['Name'] as String,
@@ -6599,6 +6659,7 @@ class StackError {
     this.errorCode,
     this.errorMessage,
   });
+
   factory StackError.fromJson(Map<String, dynamic> json) {
     return StackError(
       errorCode: (json['ErrorCode'] as String?)?.toStackErrorCode(),
@@ -6646,6 +6707,7 @@ extension on String {
 
 class StartFleetResult {
   StartFleetResult();
+
   factory StartFleetResult.fromJson(Map<String, dynamic> _) {
     return StartFleetResult();
   }
@@ -6662,6 +6724,7 @@ class StartImageBuilderResult {
   StartImageBuilderResult({
     this.imageBuilder,
   });
+
   factory StartImageBuilderResult.fromJson(Map<String, dynamic> json) {
     return StartImageBuilderResult(
       imageBuilder: json['ImageBuilder'] != null
@@ -6680,6 +6743,7 @@ class StartImageBuilderResult {
 
 class StopFleetResult {
   StopFleetResult();
+
   factory StopFleetResult.fromJson(Map<String, dynamic> _) {
     return StopFleetResult();
   }
@@ -6696,6 +6760,7 @@ class StopImageBuilderResult {
   StopImageBuilderResult({
     this.imageBuilder,
   });
+
   factory StopImageBuilderResult.fromJson(Map<String, dynamic> json) {
     return StopImageBuilderResult(
       imageBuilder: json['ImageBuilder'] != null
@@ -6728,6 +6793,7 @@ class StorageConnector {
     this.domains,
     this.resourceIdentifier,
   });
+
   factory StorageConnector.fromJson(Map<String, dynamic> json) {
     return StorageConnector(
       connectorType: (json['ConnectorType'] as String).toStorageConnectorType(),
@@ -6815,6 +6881,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6826,6 +6893,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -6842,6 +6910,7 @@ class UpdateDirectoryConfigResult {
   UpdateDirectoryConfigResult({
     this.directoryConfig,
   });
+
   factory UpdateDirectoryConfigResult.fromJson(Map<String, dynamic> json) {
     return UpdateDirectoryConfigResult(
       directoryConfig: json['DirectoryConfig'] != null
@@ -6866,6 +6935,7 @@ class UpdateFleetResult {
   UpdateFleetResult({
     this.fleet,
   });
+
   factory UpdateFleetResult.fromJson(Map<String, dynamic> json) {
     return UpdateFleetResult(
       fleet: json['Fleet'] != null
@@ -6884,6 +6954,7 @@ class UpdateFleetResult {
 
 class UpdateImagePermissionsResult {
   UpdateImagePermissionsResult();
+
   factory UpdateImagePermissionsResult.fromJson(Map<String, dynamic> _) {
     return UpdateImagePermissionsResult();
   }
@@ -6900,6 +6971,7 @@ class UpdateStackResult {
   UpdateStackResult({
     this.stack,
   });
+
   factory UpdateStackResult.fromJson(Map<String, dynamic> json) {
     return UpdateStackResult(
       stack: json['Stack'] != null
@@ -7000,6 +7072,7 @@ class UsageReportSubscription {
     this.schedule,
     this.subscriptionErrors,
   });
+
   factory UsageReportSubscription.fromJson(Map<String, dynamic> json) {
     return UsageReportSubscription(
       lastGeneratedReportDate:
@@ -7087,6 +7160,7 @@ class User {
     this.status,
     this.userName,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       authenticationType:
@@ -7136,6 +7210,7 @@ class UserSetting {
     required this.action,
     required this.permission,
   });
+
   factory UserSetting.fromJson(Map<String, dynamic> json) {
     return UserSetting(
       action: (json['Action'] as String).toAction(),
@@ -7177,6 +7252,7 @@ class UserStackAssociation {
     required this.userName,
     this.sendEmailNotification,
   });
+
   factory UserStackAssociation.fromJson(Map<String, dynamic> json) {
     return UserStackAssociation(
       authenticationType:
@@ -7221,6 +7297,7 @@ class UserStackAssociationError {
     this.errorMessage,
     this.userStackAssociation,
   });
+
   factory UserStackAssociationError.fromJson(Map<String, dynamic> json) {
     return UserStackAssociationError(
       errorCode:
@@ -7331,6 +7408,7 @@ class VpcConfig {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory VpcConfig.fromJson(Map<String, dynamic> json) {
     return VpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List?)

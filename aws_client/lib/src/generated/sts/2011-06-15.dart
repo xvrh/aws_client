@@ -1915,6 +1915,7 @@ class AssumeRoleResponse {
     this.packedPolicySize,
     this.sourceIdentity,
   });
+
   factory AssumeRoleResponse.fromJson(Map<String, dynamic> json) {
     return AssumeRoleResponse(
       assumedRoleUser: json['AssumedRoleUser'] != null
@@ -2058,6 +2059,7 @@ class AssumeRoleWithSAMLResponse {
     this.subject,
     this.subjectType,
   });
+
   factory AssumeRoleWithSAMLResponse.fromJson(Map<String, dynamic> json) {
     return AssumeRoleWithSAMLResponse(
       assumedRoleUser: json['AssumedRoleUser'] != null
@@ -2202,6 +2204,7 @@ class AssumeRoleWithWebIdentityResponse {
     this.sourceIdentity,
     this.subjectFromWebIdentityToken,
   });
+
   factory AssumeRoleWithWebIdentityResponse.fromJson(
       Map<String, dynamic> json) {
     return AssumeRoleWithWebIdentityResponse(
@@ -2278,6 +2281,7 @@ class AssumedRoleUser {
     required this.arn,
     required this.assumedRoleId,
   });
+
   factory AssumedRoleUser.fromJson(Map<String, dynamic> json) {
     return AssumedRoleUser(
       arn: json['Arn'] as String,
@@ -2323,6 +2327,7 @@ class Credentials {
     required this.secretAccessKey,
     required this.sessionToken,
   });
+
   factory Credentials.fromJson(Map<String, dynamic> json) {
     return Credentials(
       accessKeyId: json['AccessKeyId'] as String,
@@ -2365,6 +2370,7 @@ class DecodeAuthorizationMessageResponse {
   DecodeAuthorizationMessageResponse({
     this.decodedMessage,
   });
+
   factory DecodeAuthorizationMessageResponse.fromJson(
       Map<String, dynamic> json) {
     return DecodeAuthorizationMessageResponse(
@@ -2403,6 +2409,7 @@ class FederatedUser {
     required this.arn,
     required this.federatedUserId,
   });
+
   factory FederatedUser.fromJson(Map<String, dynamic> json) {
     return FederatedUser(
       arn: json['Arn'] as String,
@@ -2434,6 +2441,7 @@ class GetAccessKeyInfoResponse {
   GetAccessKeyInfoResponse({
     this.account,
   });
+
   factory GetAccessKeyInfoResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessKeyInfoResponse(
       account: json['Account'] as String?,
@@ -2477,6 +2485,7 @@ class GetCallerIdentityResponse {
     this.arn,
     this.userId,
   });
+
   factory GetCallerIdentityResponse.fromJson(Map<String, dynamic> json) {
     return GetCallerIdentityResponse(
       account: json['Account'] as String?,
@@ -2534,6 +2543,7 @@ class GetFederationTokenResponse {
     this.federatedUser,
     this.packedPolicySize,
   });
+
   factory GetFederationTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetFederationTokenResponse(
       credentials: json['Credentials'] != null
@@ -2586,6 +2596,7 @@ class GetSessionTokenResponse {
   GetSessionTokenResponse({
     this.credentials,
   });
+
   factory GetSessionTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetSessionTokenResponse(
       credentials: json['Credentials'] != null
@@ -2623,6 +2634,7 @@ class PolicyDescriptorType {
   PolicyDescriptorType({
     this.arn,
   });
+
   factory PolicyDescriptorType.fromJson(Map<String, dynamic> json) {
     return PolicyDescriptorType(
       arn: json['arn'] as String?,
@@ -2663,6 +2675,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,

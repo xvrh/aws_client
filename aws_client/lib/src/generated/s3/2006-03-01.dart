@@ -11564,6 +11564,7 @@ class AbortIncompleteMultipartUpload {
   AbortIncompleteMultipartUpload({
     this.daysAfterInitiation,
   });
+
   factory AbortIncompleteMultipartUpload.fromJson(Map<String, dynamic> json) {
     return AbortIncompleteMultipartUpload(
       daysAfterInitiation: json['DaysAfterInitiation'] as int?,
@@ -11607,6 +11608,7 @@ class AbortMultipartUploadOutput {
   AbortMultipartUploadOutput({
     this.requestCharged,
   });
+
   factory AbortMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
     return AbortMultipartUploadOutput(
       requestCharged:
@@ -11631,6 +11633,7 @@ class AccelerateConfiguration {
   AccelerateConfiguration({
     this.status,
   });
+
   factory AccelerateConfiguration.fromJson(Map<String, dynamic> json) {
     return AccelerateConfiguration(
       status: (json['Status'] as String?)?.toBucketAccelerateStatus(),
@@ -11673,6 +11676,7 @@ class AccessControlPolicy {
     this.grants,
     this.owner,
   });
+
   factory AccessControlPolicy.fromJson(Map<String, dynamic> json) {
     return AccessControlPolicy(
       grants: (json['AccessControlList'] as List?)
@@ -11724,6 +11728,7 @@ class AccessControlTranslation {
   AccessControlTranslation({
     required this.owner,
   });
+
   factory AccessControlTranslation.fromJson(Map<String, dynamic> json) {
     return AccessControlTranslation(
       owner: (json['Owner'] as String).toOwnerOverride(),
@@ -11775,6 +11780,7 @@ class AnalyticsAndOperator {
     this.prefix,
     this.tags,
   });
+
   factory AnalyticsAndOperator.fromJson(Map<String, dynamic> json) {
     return AnalyticsAndOperator(
       prefix: json['Prefix'] as String?,
@@ -11839,6 +11845,7 @@ class AnalyticsConfiguration {
     required this.storageClassAnalysis,
     this.filter,
   });
+
   factory AnalyticsConfiguration.fromJson(Map<String, dynamic> json) {
     return AnalyticsConfiguration(
       id: json['Id'] as String,
@@ -11900,6 +11907,7 @@ class AnalyticsExportDestination {
   AnalyticsExportDestination({
     required this.s3BucketDestination,
   });
+
   factory AnalyticsExportDestination.fromJson(Map<String, dynamic> json) {
     return AnalyticsExportDestination(
       s3BucketDestination: AnalyticsS3BucketDestination.fromJson(
@@ -11956,6 +11964,7 @@ class AnalyticsFilter {
     this.prefix,
     this.tag,
   });
+
   factory AnalyticsFilter.fromJson(Map<String, dynamic> json) {
     return AnalyticsFilter(
       and: json['And'] != null
@@ -12035,6 +12044,7 @@ class AnalyticsS3BucketDestination {
     this.bucketAccountId,
     this.prefix,
   });
+
   factory AnalyticsS3BucketDestination.fromJson(Map<String, dynamic> json) {
     return AnalyticsS3BucketDestination(
       bucket: json['Bucket'] as String,
@@ -12156,6 +12166,7 @@ class Bucket {
     this.creationDate,
     this.name,
   });
+
   factory Bucket.fromJson(Map<String, dynamic> json) {
     return Bucket(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -12258,6 +12269,7 @@ class BucketLifecycleConfiguration {
   BucketLifecycleConfiguration({
     required this.rules,
   });
+
   factory BucketLifecycleConfiguration.fromJson(Map<String, dynamic> json) {
     return BucketLifecycleConfiguration(
       rules: (json['Rule'] as List)
@@ -12440,6 +12452,7 @@ class BucketLoggingStatus {
   BucketLoggingStatus({
     this.loggingEnabled,
   });
+
   factory BucketLoggingStatus.fromJson(Map<String, dynamic> json) {
     return BucketLoggingStatus(
       loggingEnabled: json['LoggingEnabled'] != null
@@ -12545,6 +12558,7 @@ class CORSConfiguration {
   CORSConfiguration({
     required this.cORSRules,
   });
+
   factory CORSConfiguration.fromJson(Map<String, dynamic> json) {
     return CORSConfiguration(
       cORSRules: (json['CORSRule'] as List)
@@ -12614,6 +12628,7 @@ class CORSRule {
     this.id,
     this.maxAgeSeconds,
   });
+
   factory CORSRule.fromJson(Map<String, dynamic> json) {
     return CORSRule(
       allowedMethods: (json['AllowedMethod'] as List)
@@ -12761,6 +12776,7 @@ class CSVInput {
     this.quoteEscapeCharacter,
     this.recordDelimiter,
   });
+
   factory CSVInput.fromJson(Map<String, dynamic> json) {
     return CSVInput(
       allowQuotedRecordDelimiter: json['AllowQuotedRecordDelimiter'] as bool?,
@@ -12868,6 +12884,7 @@ class CSVOutput {
     this.quoteFields,
     this.recordDelimiter,
   });
+
   factory CSVOutput.fromJson(Map<String, dynamic> json) {
     return CSVOutput(
       fieldDelimiter: json['FieldDelimiter'] as String?,
@@ -12944,6 +12961,7 @@ class CloudFunctionConfiguration {
     this.id,
     this.invocationRole,
   });
+
   factory CloudFunctionConfiguration.fromJson(Map<String, dynamic> json) {
     return CloudFunctionConfiguration(
       cloudFunction: json['CloudFunction'] as String?,
@@ -13024,6 +13042,7 @@ class CommonPrefix {
   CommonPrefix({
     this.prefix,
   });
+
   factory CommonPrefix.fromJson(Map<String, dynamic> json) {
     return CommonPrefix(
       prefix: json['Prefix'] as String?,
@@ -13117,6 +13136,7 @@ class CompleteMultipartUploadOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
   factory CompleteMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
     return CompleteMultipartUploadOutput(
       bucket: json['Bucket'] as String?,
@@ -13164,6 +13184,7 @@ class CompletedMultipartUpload {
   CompletedMultipartUpload({
     this.parts,
   });
+
   factory CompletedMultipartUpload.fromJson(Map<String, dynamic> json) {
     return CompletedMultipartUpload(
       parts: (json['Part'] as List?)
@@ -13209,6 +13230,7 @@ class CompletedPart {
     this.eTag,
     this.partNumber,
   });
+
   factory CompletedPart.fromJson(Map<String, dynamic> json) {
     return CompletedPart(
       eTag: json['ETag'] as String?,
@@ -13309,6 +13331,7 @@ class Condition {
     this.httpErrorCodeReturnedEquals,
     this.keyPrefixEquals,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       httpErrorCodeReturnedEquals:
@@ -13359,6 +13382,7 @@ class Condition {
 /// <p/>
 class ContinuationEvent {
   ContinuationEvent();
+
   factory ContinuationEvent.fromJson(Map<String, dynamic> _) {
     return ContinuationEvent();
   }
@@ -13429,6 +13453,7 @@ class CopyObjectOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
   factory CopyObjectOutput.fromJson(Map<String, dynamic> json) {
     return CopyObjectOutput(
       bucketKeyEnabled:
@@ -13487,6 +13512,7 @@ class CopyObjectResult {
     this.eTag,
     this.lastModified,
   });
+
   factory CopyObjectResult.fromJson(Map<String, dynamic> json) {
     return CopyObjectResult(
       eTag: json['ETag'] as String?,
@@ -13524,6 +13550,7 @@ class CopyPartResult {
     this.eTag,
     this.lastModified,
   });
+
   factory CopyPartResult.fromJson(Map<String, dynamic> json) {
     return CopyPartResult(
       eTag: json['ETag'] as String?,
@@ -13559,6 +13586,7 @@ class CreateBucketConfiguration {
   CreateBucketConfiguration({
     this.locationConstraint,
   });
+
   factory CreateBucketConfiguration.fromJson(Map<String, dynamic> json) {
     return CreateBucketConfiguration(
       locationConstraint:
@@ -13601,6 +13629,7 @@ class CreateBucketOutput {
   CreateBucketOutput({
     this.location,
   });
+
   factory CreateBucketOutput.fromJson(Map<String, dynamic> json) {
     return CreateBucketOutput(
       location: json['Location'] as String?,
@@ -13702,6 +13731,7 @@ class CreateMultipartUploadOutput {
     this.serverSideEncryption,
     this.uploadId,
   });
+
   factory CreateMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
     return CreateMultipartUploadOutput(
       abortDate: timeStampFromJson(json['x-amz-abort-date']),
@@ -13779,6 +13809,7 @@ class DefaultRetention {
     this.mode,
     this.years,
   });
+
   factory DefaultRetention.fromJson(Map<String, dynamic> json) {
     return DefaultRetention(
       days: json['Days'] as int?,
@@ -13839,6 +13870,7 @@ class Delete {
     required this.objects,
     this.quiet,
   });
+
   factory Delete.fromJson(Map<String, dynamic> json) {
     return Delete(
       objects: (json['Object'] as List)
@@ -13901,6 +13933,7 @@ class DeleteMarkerEntry {
     this.owner,
     this.versionId,
   });
+
   factory DeleteMarkerEntry.fromJson(Map<String, dynamic> json) {
     return DeleteMarkerEntry(
       isLatest: json['IsLatest'] as bool?,
@@ -13970,6 +14003,7 @@ class DeleteMarkerReplication {
   DeleteMarkerReplication({
     this.status,
   });
+
   factory DeleteMarkerReplication.fromJson(Map<String, dynamic> json) {
     return DeleteMarkerReplication(
       status: (json['Status'] as String?)?.toDeleteMarkerReplicationStatus(),
@@ -14050,6 +14084,7 @@ class DeleteObjectOutput {
     this.requestCharged,
     this.versionId,
   });
+
   factory DeleteObjectOutput.fromJson(Map<String, dynamic> json) {
     return DeleteObjectOutput(
       deleteMarker: json['x-amz-delete-marker'] as bool?,
@@ -14074,6 +14109,7 @@ class DeleteObjectTaggingOutput {
   DeleteObjectTaggingOutput({
     this.versionId,
   });
+
   factory DeleteObjectTaggingOutput.fromJson(Map<String, dynamic> json) {
     return DeleteObjectTaggingOutput(
       versionId: json['x-amz-version-id'] as String?,
@@ -14101,6 +14137,7 @@ class DeleteObjectsOutput {
     this.errors,
     this.requestCharged,
   });
+
   factory DeleteObjectsOutput.fromJson(Map<String, dynamic> json) {
     return DeleteObjectsOutput(
       deleted: (json['Deleted'] as List?)
@@ -14151,6 +14188,7 @@ class DeletedObject {
     this.key,
     this.versionId,
   });
+
   factory DeletedObject.fromJson(Map<String, dynamic> json) {
     return DeletedObject(
       deleteMarker: json['DeleteMarker'] as bool?,
@@ -14242,6 +14280,7 @@ class Destination {
     this.replicationTime,
     this.storageClass,
   });
+
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(
       bucket: json['Bucket'] as String,
@@ -14390,6 +14429,7 @@ class Encryption {
     this.kMSContext,
     this.kMSKeyId,
   });
+
   factory Encryption.fromJson(Map<String, dynamic> json) {
     return Encryption(
       encryptionType:
@@ -14445,6 +14485,7 @@ class EncryptionConfiguration {
   EncryptionConfiguration({
     this.replicaKmsKeyID,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       replicaKmsKeyID: json['ReplicaKmsKeyID'] as String?,
@@ -14486,6 +14527,7 @@ class EncryptionConfiguration {
 /// receives an <code>EndEvent</code>.
 class EndEvent {
   EndEvent();
+
   factory EndEvent.fromJson(Map<String, dynamic> _) {
     return EndEvent();
   }
@@ -15922,6 +15964,7 @@ class Error {
     this.message,
     this.versionId,
   });
+
   factory Error.fromJson(Map<String, dynamic> json) {
     return Error(
       code: json['Code'] as String?,
@@ -15968,6 +16011,7 @@ class ErrorDocument {
   ErrorDocument({
     required this.key,
   });
+
   factory ErrorDocument.fromJson(Map<String, dynamic> json) {
     return ErrorDocument(
       key: json['Key'] as String,
@@ -16118,6 +16162,7 @@ class ExistingObjectReplication {
   ExistingObjectReplication({
     required this.status,
   });
+
   factory ExistingObjectReplication.fromJson(Map<String, dynamic> json) {
     return ExistingObjectReplication(
       status: (json['Status'] as String).toExistingObjectReplicationStatus(),
@@ -16286,6 +16331,7 @@ class FilterRule {
     this.name,
     this.value,
   });
+
   factory FilterRule.fromJson(Map<String, dynamic> json) {
     return FilterRule(
       name: (json['Name'] as String?)?.toFilterRuleName(),
@@ -16362,6 +16408,7 @@ class GetBucketAccelerateConfigurationOutput {
   GetBucketAccelerateConfigurationOutput({
     this.status,
   });
+
   factory GetBucketAccelerateConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketAccelerateConfigurationOutput(
@@ -16395,6 +16442,7 @@ class GetBucketAclOutput {
     this.grants,
     this.owner,
   });
+
   factory GetBucketAclOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketAclOutput(
       grants: (json['AccessControlList'] as List?)
@@ -16432,6 +16480,7 @@ class GetBucketAnalyticsConfigurationOutput {
   GetBucketAnalyticsConfigurationOutput({
     this.analyticsConfiguration,
   });
+
   factory GetBucketAnalyticsConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketAnalyticsConfigurationOutput(
@@ -16459,6 +16508,7 @@ class GetBucketCorsOutput {
   GetBucketCorsOutput({
     this.cORSRules,
   });
+
   factory GetBucketCorsOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketCorsOutput(
       cORSRules: (json['CORSRule'] as List?)
@@ -16491,6 +16541,7 @@ class GetBucketEncryptionOutput {
   GetBucketEncryptionOutput({
     this.serverSideEncryptionConfiguration,
   });
+
   factory GetBucketEncryptionOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketEncryptionOutput(
       serverSideEncryptionConfiguration:
@@ -16519,6 +16570,7 @@ class GetBucketIntelligentTieringConfigurationOutput {
   GetBucketIntelligentTieringConfigurationOutput({
     this.intelligentTieringConfiguration,
   });
+
   factory GetBucketIntelligentTieringConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketIntelligentTieringConfigurationOutput(
@@ -16548,6 +16600,7 @@ class GetBucketInventoryConfigurationOutput {
   GetBucketInventoryConfigurationOutput({
     this.inventoryConfiguration,
   });
+
   factory GetBucketInventoryConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketInventoryConfigurationOutput(
@@ -16574,6 +16627,7 @@ class GetBucketLifecycleConfigurationOutput {
   GetBucketLifecycleConfigurationOutput({
     this.rules,
   });
+
   factory GetBucketLifecycleConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketLifecycleConfigurationOutput(
@@ -16608,6 +16662,7 @@ class GetBucketLifecycleOutput {
   GetBucketLifecycleOutput({
     this.rules,
   });
+
   factory GetBucketLifecycleOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketLifecycleOutput(
       rules: (json['Rule'] as List?)
@@ -16642,6 +16697,7 @@ class GetBucketLocationOutput {
   GetBucketLocationOutput({
     this.locationConstraint,
   });
+
   factory GetBucketLocationOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketLocationOutput(
       locationConstraint:
@@ -16672,6 +16728,7 @@ class GetBucketLoggingOutput {
   GetBucketLoggingOutput({
     this.loggingEnabled,
   });
+
   factory GetBucketLoggingOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketLoggingOutput(
       loggingEnabled: json['LoggingEnabled'] != null
@@ -16704,6 +16761,7 @@ class GetBucketMetricsConfigurationOutput {
   GetBucketMetricsConfigurationOutput({
     this.metricsConfiguration,
   });
+
   factory GetBucketMetricsConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBucketMetricsConfigurationOutput(
@@ -16731,6 +16789,7 @@ class GetBucketOwnershipControlsOutput {
   GetBucketOwnershipControlsOutput({
     this.ownershipControls,
   });
+
   factory GetBucketOwnershipControlsOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketOwnershipControlsOutput(
       ownershipControls: json['OwnershipControls'] != null
@@ -16755,6 +16814,7 @@ class GetBucketPolicyOutput {
   GetBucketPolicyOutput({
     this.policy,
   });
+
   factory GetBucketPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketPolicyOutput(
       policy: json['Policy'] as String?,
@@ -16776,6 +16836,7 @@ class GetBucketPolicyStatusOutput {
   GetBucketPolicyStatusOutput({
     this.policyStatus,
   });
+
   factory GetBucketPolicyStatusOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketPolicyStatusOutput(
       policyStatus: json['PolicyStatus'] != null
@@ -16798,6 +16859,7 @@ class GetBucketReplicationOutput {
   GetBucketReplicationOutput({
     this.replicationConfiguration,
   });
+
   factory GetBucketReplicationOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketReplicationOutput(
       replicationConfiguration: json['ReplicationConfiguration'] != null
@@ -16823,6 +16885,7 @@ class GetBucketRequestPaymentOutput {
   GetBucketRequestPaymentOutput({
     this.payer,
   });
+
   factory GetBucketRequestPaymentOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketRequestPaymentOutput(
       payer: (json['Payer'] as String?)?.toPayer(),
@@ -16850,6 +16913,7 @@ class GetBucketTaggingOutput {
   GetBucketTaggingOutput({
     required this.tagSet,
   });
+
   factory GetBucketTaggingOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketTaggingOutput(
       tagSet: (json['TagSet'] as List)
@@ -16891,6 +16955,7 @@ class GetBucketVersioningOutput {
     this.mFADelete,
     this.status,
   });
+
   factory GetBucketVersioningOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketVersioningOutput(
       mFADelete: (json['MfaDelete'] as String?)?.toMFADeleteStatus(),
@@ -16939,6 +17004,7 @@ class GetBucketWebsiteOutput {
     this.redirectAllRequestsTo,
     this.routingRules,
   });
+
   factory GetBucketWebsiteOutput.fromJson(Map<String, dynamic> json) {
     return GetBucketWebsiteOutput(
       errorDocument: json['ErrorDocument'] != null
@@ -17006,6 +17072,7 @@ class GetObjectAclOutput {
     this.owner,
     this.requestCharged,
   });
+
   factory GetObjectAclOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectAclOutput(
       grants: (json['AccessControlList'] as List?)
@@ -17038,6 +17105,7 @@ class GetObjectLegalHoldOutput {
   GetObjectLegalHoldOutput({
     this.legalHold,
   });
+
   factory GetObjectLegalHoldOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectLegalHoldOutput(
       legalHold: json['LegalHold'] != null
@@ -17062,6 +17130,7 @@ class GetObjectLockConfigurationOutput {
   GetObjectLockConfigurationOutput({
     this.objectLockConfiguration,
   });
+
   factory GetObjectLockConfigurationOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectLockConfigurationOutput(
       objectLockConfiguration: json['ObjectLockConfiguration'] != null
@@ -17235,6 +17304,7 @@ class GetObjectOutput {
     this.versionId,
     this.websiteRedirectLocation,
   });
+
   factory GetObjectOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectOutput(
       acceptRanges: json['accept-ranges'] as String?,
@@ -17331,6 +17401,7 @@ class GetObjectRetentionOutput {
   GetObjectRetentionOutput({
     this.retention,
   });
+
   factory GetObjectRetentionOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectRetentionOutput(
       retention: json['Retention'] != null
@@ -17359,6 +17430,7 @@ class GetObjectTaggingOutput {
     required this.tagSet,
     this.versionId,
   });
+
   factory GetObjectTaggingOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectTaggingOutput(
       tagSet: (json['TagSet'] as List)
@@ -17387,6 +17459,7 @@ class GetObjectTorrentOutput {
     this.body,
     this.requestCharged,
   });
+
   factory GetObjectTorrentOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectTorrentOutput(
       body: _s.decodeNullableUint8List(json['Body'] as String?),
@@ -17412,6 +17485,7 @@ class GetPublicAccessBlockOutput {
   GetPublicAccessBlockOutput({
     this.publicAccessBlockConfiguration,
   });
+
   factory GetPublicAccessBlockOutput.fromJson(Map<String, dynamic> json) {
     return GetPublicAccessBlockOutput(
       publicAccessBlockConfiguration: json['PublicAccessBlockConfiguration'] !=
@@ -17439,6 +17513,7 @@ class GlacierJobParameters {
   GlacierJobParameters({
     required this.tier,
   });
+
   factory GlacierJobParameters.fromJson(Map<String, dynamic> json) {
     return GlacierJobParameters(
       tier: (json['Tier'] as String).toTier(),
@@ -17480,6 +17555,7 @@ class Grant {
     this.grantee,
     this.permission,
   });
+
   factory Grant.fromJson(Map<String, dynamic> json) {
     return Grant(
       grantee: json['Grantee'] != null
@@ -17583,6 +17659,7 @@ class Grantee {
     this.id,
     this.uri,
   });
+
   factory Grantee.fromJson(Map<String, dynamic> json) {
     return Grantee(
       type: (json['xsi:type'] as String).toType(),
@@ -17865,6 +17942,7 @@ class HeadObjectOutput {
     this.versionId,
     this.websiteRedirectLocation,
   });
+
   factory HeadObjectOutput.fromJson(Map<String, dynamic> json) {
     return HeadObjectOutput(
       acceptRanges: json['accept-ranges'] as String?,
@@ -17967,6 +18045,7 @@ class IndexDocument {
   IndexDocument({
     required this.suffix,
   });
+
   factory IndexDocument.fromJson(Map<String, dynamic> json) {
     return IndexDocument(
       suffix: json['Suffix'] as String,
@@ -18015,6 +18094,7 @@ class Initiator {
     this.displayName,
     this.id,
   });
+
   factory Initiator.fromJson(Map<String, dynamic> json) {
     return Initiator(
       displayName: json['DisplayName'] as String?,
@@ -18060,6 +18140,7 @@ class InputSerialization {
     this.json,
     this.parquet,
   });
+
   factory InputSerialization.fromJson(Map<String, dynamic> json) {
     return InputSerialization(
       csv: json['CSV'] != null
@@ -18155,6 +18236,7 @@ class IntelligentTieringAndOperator {
     this.prefix,
     this.tags,
   });
+
   factory IntelligentTieringAndOperator.fromJson(Map<String, dynamic> json) {
     return IntelligentTieringAndOperator(
       prefix: json['Prefix'] as String?,
@@ -18226,6 +18308,7 @@ class IntelligentTieringConfiguration {
     required this.tierings,
     this.filter,
   });
+
   factory IntelligentTieringConfiguration.fromJson(Map<String, dynamic> json) {
     return IntelligentTieringConfiguration(
       id: json['Id'] as String,
@@ -18314,6 +18397,7 @@ class IntelligentTieringFilter {
     this.prefix,
     this.tag,
   });
+
   factory IntelligentTieringFilter.fromJson(Map<String, dynamic> json) {
     return IntelligentTieringFilter(
       and: json['And'] != null
@@ -18438,6 +18522,7 @@ class InventoryConfiguration {
     this.filter,
     this.optionalFields,
   });
+
   factory InventoryConfiguration.fromJson(Map<String, dynamic> json) {
     return InventoryConfiguration(
       destination: InventoryDestination.fromJson(
@@ -18543,6 +18628,7 @@ class InventoryDestination {
   InventoryDestination({
     required this.s3BucketDestination,
   });
+
   factory InventoryDestination.fromJson(Map<String, dynamic> json) {
     return InventoryDestination(
       s3BucketDestination: InventoryS3BucketDestination.fromJson(
@@ -18593,6 +18679,7 @@ class InventoryEncryption {
     this.ssekms,
     this.sses3,
   });
+
   factory InventoryEncryption.fromJson(Map<String, dynamic> json) {
     return InventoryEncryption(
       ssekms: json['SSE-KMS'] != null
@@ -18648,6 +18735,7 @@ class InventoryFilter {
   InventoryFilter({
     required this.prefix,
   });
+
   factory InventoryFilter.fromJson(Map<String, dynamic> json) {
     return InventoryFilter(
       prefix: json['Prefix'] as String,
@@ -18883,6 +18971,7 @@ class InventoryS3BucketDestination {
     this.encryption,
     this.prefix,
   });
+
   factory InventoryS3BucketDestination.fromJson(Map<String, dynamic> json) {
     return InventoryS3BucketDestination(
       bucket: json['Bucket'] as String,
@@ -18955,6 +19044,7 @@ class InventorySchedule {
   InventorySchedule({
     required this.frequency,
   });
+
   factory InventorySchedule.fromJson(Map<String, dynamic> json) {
     return InventorySchedule(
       frequency: (json['Frequency'] as String).toInventoryFrequency(),
@@ -18999,6 +19089,7 @@ class JSONInput {
   JSONInput({
     this.type,
   });
+
   factory JSONInput.fromJson(Map<String, dynamic> json) {
     return JSONInput(
       type: (json['Type'] as String?)?.toJSONType(),
@@ -19037,6 +19128,7 @@ class JSONOutput {
   JSONOutput({
     this.recordDelimiter,
   });
+
   factory JSONOutput.fromJson(Map<String, dynamic> json) {
     return JSONOutput(
       recordDelimiter: json['RecordDelimiter'] as String?,
@@ -19115,6 +19207,7 @@ class LambdaFunctionConfiguration {
     this.filter,
     this.id,
   });
+
   factory LambdaFunctionConfiguration.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionConfiguration(
       events: (json['Event'] as List)
@@ -19187,6 +19280,7 @@ class LifecycleConfiguration {
   LifecycleConfiguration({
     required this.rules,
   });
+
   factory LifecycleConfiguration.fromJson(Map<String, dynamic> json) {
     return LifecycleConfiguration(
       rules: (json['Rule'] as List)
@@ -19240,6 +19334,7 @@ class LifecycleExpiration {
     this.days,
     this.expiredObjectDeleteMarker,
   });
+
   factory LifecycleExpiration.fromJson(Map<String, dynamic> json) {
     return LifecycleExpiration(
       date: timeStampFromJson(json['Date']),
@@ -19347,6 +19442,7 @@ class LifecycleRule {
     this.prefix,
     this.transitions,
   });
+
   factory LifecycleRule.fromJson(Map<String, dynamic> json) {
     return LifecycleRule(
       status: (json['Status'] as String).toExpirationStatus(),
@@ -19486,6 +19582,7 @@ class LifecycleRuleAndOperator {
     this.prefix,
     this.tags,
   });
+
   factory LifecycleRuleAndOperator.fromJson(Map<String, dynamic> json) {
     return LifecycleRuleAndOperator(
       prefix: json['Prefix'] as String?,
@@ -19553,6 +19650,7 @@ class LifecycleRuleFilter {
     this.prefix,
     this.tag,
   });
+
   factory LifecycleRuleFilter.fromJson(Map<String, dynamic> json) {
     return LifecycleRuleFilter(
       and: json['And'] != null
@@ -19632,6 +19730,7 @@ class ListBucketAnalyticsConfigurationsOutput {
     this.isTruncated,
     this.nextContinuationToken,
   });
+
   factory ListBucketAnalyticsConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListBucketAnalyticsConfigurationsOutput(
@@ -19701,6 +19800,7 @@ class ListBucketIntelligentTieringConfigurationsOutput {
     this.isTruncated,
     this.nextContinuationToken,
   });
+
   factory ListBucketIntelligentTieringConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListBucketIntelligentTieringConfigurationsOutput(
@@ -19772,6 +19872,7 @@ class ListBucketInventoryConfigurationsOutput {
     this.isTruncated,
     this.nextContinuationToken,
   });
+
   factory ListBucketInventoryConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListBucketInventoryConfigurationsOutput(
@@ -19840,6 +19941,7 @@ class ListBucketMetricsConfigurationsOutput {
     this.metricsConfigurationList,
     this.nextContinuationToken,
   });
+
   factory ListBucketMetricsConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListBucketMetricsConfigurationsOutput(
@@ -19893,6 +19995,7 @@ class ListBucketsOutput {
     this.buckets,
     this.owner,
   });
+
   factory ListBucketsOutput.fromJson(Map<String, dynamic> json) {
     return ListBucketsOutput(
       buckets: (json['Buckets'] as List?)
@@ -19994,6 +20097,7 @@ class ListMultipartUploadsOutput {
     this.uploadIdMarker,
     this.uploads,
   });
+
   factory ListMultipartUploadsOutput.fromJson(Map<String, dynamic> json) {
     return ListMultipartUploadsOutput(
       bucket: json['Bucket'] as String?,
@@ -20150,6 +20254,7 @@ class ListObjectVersionsOutput {
     this.versionIdMarker,
     this.versions,
   });
+
   factory ListObjectVersionsOutput.fromJson(Map<String, dynamic> json) {
     return ListObjectVersionsOutput(
       commonPrefixes: (json['CommonPrefixes'] as List?)
@@ -20308,6 +20413,7 @@ class ListObjectsOutput {
     this.nextMarker,
     this.prefix,
   });
+
   factory ListObjectsOutput.fromJson(Map<String, dynamic> json) {
     return ListObjectsOutput(
       commonPrefixes: (json['CommonPrefixes'] as List?)
@@ -20483,6 +20589,7 @@ class ListObjectsV2Output {
     this.prefix,
     this.startAfter,
   });
+
   factory ListObjectsV2Output.fromJson(Map<String, dynamic> json) {
     return ListObjectsV2Output(
       commonPrefixes: (json['CommonPrefixes'] as List?)
@@ -20642,6 +20749,7 @@ class ListPartsOutput {
     this.storageClass,
     this.uploadId,
   });
+
   factory ListPartsOutput.fromJson(Map<String, dynamic> json) {
     return ListPartsOutput(
       abortDate: timeStampFromJson(json['x-amz-abort-date']),
@@ -20727,6 +20835,7 @@ class LoggingEnabled {
     required this.targetPrefix,
     this.targetGrants,
   });
+
   factory LoggingEnabled.fromJson(Map<String, dynamic> json) {
     return LoggingEnabled(
       targetBucket: json['TargetBucket'] as String,
@@ -20878,6 +20987,7 @@ class MetadataEntry {
     this.name,
     this.value,
   });
+
   factory MetadataEntry.fromJson(Map<String, dynamic> json) {
     return MetadataEntry(
       name: json['Name'] as String?,
@@ -20926,6 +21036,7 @@ class Metrics {
     required this.status,
     this.eventThreshold,
   });
+
   factory Metrics.fromJson(Map<String, dynamic> json) {
     return Metrics(
       status: (json['Status'] as String).toMetricsStatus(),
@@ -20986,6 +21097,7 @@ class MetricsAndOperator {
     this.prefix,
     this.tags,
   });
+
   factory MetricsAndOperator.fromJson(Map<String, dynamic> json) {
     return MetricsAndOperator(
       prefix: json['Prefix'] as String?,
@@ -21050,6 +21162,7 @@ class MetricsConfiguration {
     required this.id,
     this.filter,
   });
+
   factory MetricsConfiguration.fromJson(Map<String, dynamic> json) {
     return MetricsConfiguration(
       id: json['Id'] as String,
@@ -21115,6 +21228,7 @@ class MetricsFilter {
     this.prefix,
     this.tag,
   });
+
   factory MetricsFilter.fromJson(Map<String, dynamic> json) {
     return MetricsFilter(
       and: json['And'] != null
@@ -21224,6 +21338,7 @@ class MultipartUpload {
     this.storageClass,
     this.uploadId,
   });
+
   factory MultipartUpload.fromJson(Map<String, dynamic> json) {
     return MultipartUpload(
       initiated: timeStampFromJson(json['Initiated']),
@@ -21288,6 +21403,7 @@ class NoncurrentVersionExpiration {
   NoncurrentVersionExpiration({
     this.noncurrentDays,
   });
+
   factory NoncurrentVersionExpiration.fromJson(Map<String, dynamic> json) {
     return NoncurrentVersionExpiration(
       noncurrentDays: json['NoncurrentDays'] as int?,
@@ -21350,6 +21466,7 @@ class NoncurrentVersionTransition {
     this.noncurrentDays,
     this.storageClass,
   });
+
   factory NoncurrentVersionTransition.fromJson(Map<String, dynamic> json) {
     return NoncurrentVersionTransition(
       noncurrentDays: json['NoncurrentDays'] as int?,
@@ -21416,6 +21533,7 @@ class NotificationConfiguration {
     this.queueConfigurations,
     this.topicConfigurations,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       lambdaFunctionConfigurations: (json['CloudFunctionConfiguration']
@@ -21509,6 +21627,7 @@ class NotificationConfigurationDeprecated {
     this.queueConfiguration,
     this.topicConfiguration,
   });
+
   factory NotificationConfigurationDeprecated.fromJson(
       Map<String, dynamic> json) {
     return NotificationConfigurationDeprecated(
@@ -21586,6 +21705,7 @@ class NotificationConfigurationFilter {
   NotificationConfigurationFilter({
     this.key,
   });
+
   factory NotificationConfigurationFilter.fromJson(Map<String, dynamic> json) {
     return NotificationConfigurationFilter(
       key: json['S3Key'] != null
@@ -21674,6 +21794,7 @@ class Object {
     this.size,
     this.storageClass,
   });
+
   factory Object.fromJson(Map<String, dynamic> json) {
     return Object(
       eTag: json['ETag'] as String?,
@@ -21790,6 +21911,7 @@ class ObjectIdentifier {
     required this.key,
     this.versionId,
   });
+
   factory ObjectIdentifier.fromJson(Map<String, dynamic> json) {
     return ObjectIdentifier(
       key: json['Key'] as String,
@@ -21842,6 +21964,7 @@ class ObjectLockConfiguration {
     this.objectLockEnabled,
     this.rule,
   });
+
   factory ObjectLockConfiguration.fromJson(Map<String, dynamic> json) {
     return ObjectLockConfiguration(
       objectLockEnabled:
@@ -21924,6 +22047,7 @@ class ObjectLockLegalHold {
   ObjectLockLegalHold({
     this.status,
   });
+
   factory ObjectLockLegalHold.fromJson(Map<String, dynamic> json) {
     return ObjectLockLegalHold(
       status: (json['Status'] as String?)?.toObjectLockLegalHoldStatus(),
@@ -22029,6 +22153,7 @@ class ObjectLockRetention {
     this.mode,
     this.retainUntilDate,
   });
+
   factory ObjectLockRetention.fromJson(Map<String, dynamic> json) {
     return ObjectLockRetention(
       mode: (json['Mode'] as String?)?.toObjectLockRetentionMode(),
@@ -22114,6 +22239,7 @@ class ObjectLockRule {
   ObjectLockRule({
     this.defaultRetention,
   });
+
   factory ObjectLockRule.fromJson(Map<String, dynamic> json) {
     return ObjectLockRule(
       defaultRetention: json['DefaultRetention'] != null
@@ -22286,6 +22412,7 @@ class ObjectVersion {
     this.storageClass,
     this.versionId,
   });
+
   factory ObjectVersion.fromJson(Map<String, dynamic> json) {
     return ObjectVersion(
       eTag: json['ETag'] as String?,
@@ -22372,6 +22499,7 @@ class OutputLocation {
   OutputLocation({
     this.s3,
   });
+
   factory OutputLocation.fromJson(Map<String, dynamic> json) {
     return OutputLocation(
       s3: json['S3'] != null
@@ -22415,6 +22543,7 @@ class OutputSerialization {
     this.csv,
     this.json,
   });
+
   factory OutputSerialization.fromJson(Map<String, dynamic> json) {
     return OutputSerialization(
       csv: json['CSV'] != null
@@ -22465,6 +22594,7 @@ class Owner {
     this.displayName,
     this.id,
   });
+
   factory Owner.fromJson(Map<String, dynamic> json) {
     return Owner(
       displayName: json['DisplayName'] as String?,
@@ -22538,6 +22668,7 @@ class OwnershipControls {
   OwnershipControls({
     required this.rules,
   });
+
   factory OwnershipControls.fromJson(Map<String, dynamic> json) {
     return OwnershipControls(
       rules: (json['Rule'] as List)
@@ -22586,6 +22717,7 @@ class OwnershipControlsRule {
   OwnershipControlsRule({
     required this.objectOwnership,
   });
+
   factory OwnershipControlsRule.fromJson(Map<String, dynamic> json) {
     return OwnershipControlsRule(
       objectOwnership: (json['ObjectOwnership'] as String).toObjectOwnership(),
@@ -22626,6 +22758,7 @@ class OwnershipControlsRule {
 /// Container for Parquet.
 class ParquetInput {
   ParquetInput();
+
   factory ParquetInput.fromJson(Map<String, dynamic> _) {
     return ParquetInput();
   }
@@ -22668,6 +22801,7 @@ class Part {
     this.partNumber,
     this.size,
   });
+
   factory Part.fromJson(Map<String, dynamic> json) {
     return Part(
       eTag: json['ETag'] as String?,
@@ -22782,6 +22916,7 @@ class PolicyStatus {
   PolicyStatus({
     this.isPublic,
   });
+
   factory PolicyStatus.fromJson(Map<String, dynamic> json) {
     return PolicyStatus(
       isPublic: json['IsPublic'] as bool?,
@@ -22818,6 +22953,7 @@ class Progress {
     this.bytesReturned,
     this.bytesScanned,
   });
+
   factory Progress.fromJson(Map<String, dynamic> json) {
     return Progress(
       bytesProcessed: json['BytesProcessed'] as int?,
@@ -22855,6 +22991,7 @@ class ProgressEvent {
   ProgressEvent({
     this.details,
   });
+
   factory ProgressEvent.fromJson(Map<String, dynamic> json) {
     return ProgressEvent(
       details: json['Details'] != null
@@ -22964,6 +23101,7 @@ class PublicAccessBlockConfiguration {
     this.ignorePublicAcls,
     this.restrictPublicBuckets,
   });
+
   factory PublicAccessBlockConfiguration.fromJson(Map<String, dynamic> json) {
     return PublicAccessBlockConfiguration(
       blockPublicAcls: json['BlockPublicAcls'] as bool?,
@@ -23029,6 +23167,7 @@ class PutObjectAclOutput {
   PutObjectAclOutput({
     this.requestCharged,
   });
+
   factory PutObjectAclOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectAclOutput(
       requestCharged:
@@ -23048,6 +23187,7 @@ class PutObjectLegalHoldOutput {
   PutObjectLegalHoldOutput({
     this.requestCharged,
   });
+
   factory PutObjectLegalHoldOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectLegalHoldOutput(
       requestCharged:
@@ -23067,6 +23207,7 @@ class PutObjectLockConfigurationOutput {
   PutObjectLockConfigurationOutput({
     this.requestCharged,
   });
+
   factory PutObjectLockConfigurationOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectLockConfigurationOutput(
       requestCharged:
@@ -23138,6 +23279,7 @@ class PutObjectOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
   factory PutObjectOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectOutput(
       bucketKeyEnabled:
@@ -23181,6 +23323,7 @@ class PutObjectRetentionOutput {
   PutObjectRetentionOutput({
     this.requestCharged,
   });
+
   factory PutObjectRetentionOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectRetentionOutput(
       requestCharged:
@@ -23201,6 +23344,7 @@ class PutObjectTaggingOutput {
   PutObjectTaggingOutput({
     this.versionId,
   });
+
   factory PutObjectTaggingOutput.fromJson(Map<String, dynamic> json) {
     return PutObjectTaggingOutput(
       versionId: json['x-amz-version-id'] as String?,
@@ -23231,6 +23375,7 @@ class QueueConfiguration {
     this.filter,
     this.id,
   });
+
   factory QueueConfiguration.fromJson(Map<String, dynamic> json) {
     return QueueConfiguration(
       events: (json['Event'] as List)
@@ -23317,6 +23462,7 @@ class QueueConfigurationDeprecated {
     this.id,
     this.queue,
   });
+
   factory QueueConfigurationDeprecated.fromJson(Map<String, dynamic> json) {
     return QueueConfigurationDeprecated(
       event: (json['Event'] as String?)?.toEvent(),
@@ -23413,6 +23559,7 @@ class RecordsEvent {
   RecordsEvent({
     this.payload,
   });
+
   factory RecordsEvent.fromJson(Map<String, dynamic> json) {
     return RecordsEvent(
       payload: _s.decodeNullableUint8List(json['Payload'] as String?),
@@ -23481,6 +23628,7 @@ class Redirect {
     this.replaceKeyPrefixWith,
     this.replaceKeyWith,
   });
+
   factory Redirect.fromJson(Map<String, dynamic> json) {
     return Redirect(
       hostName: json['HostName'] as String?,
@@ -23560,6 +23708,7 @@ class RedirectAllRequestsTo {
     required this.hostName,
     this.protocol,
   });
+
   factory RedirectAllRequestsTo.fromJson(Map<String, dynamic> json) {
     return RedirectAllRequestsTo(
       hostName: json['HostName'] as String,
@@ -23619,6 +23768,7 @@ class ReplicaModifications {
   ReplicaModifications({
     required this.status,
   });
+
   factory ReplicaModifications.fromJson(Map<String, dynamic> json) {
     return ReplicaModifications(
       status: (json['Status'] as String).toReplicaModificationsStatus(),
@@ -23702,6 +23852,7 @@ class ReplicationConfiguration {
     required this.role,
     required this.rules,
   });
+
   factory ReplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return ReplicationConfiguration(
       role: json['Role'] as String,
@@ -23808,6 +23959,7 @@ class ReplicationRule {
     this.priority,
     this.sourceSelectionCriteria,
   });
+
   factory ReplicationRule.fromJson(Map<String, dynamic> json) {
     return ReplicationRule(
       destination:
@@ -23948,6 +24100,7 @@ class ReplicationRuleAndOperator {
     this.prefix,
     this.tags,
   });
+
   factory ReplicationRuleAndOperator.fromJson(Map<String, dynamic> json) {
     return ReplicationRuleAndOperator(
       prefix: json['Prefix'] as String?,
@@ -24032,6 +24185,7 @@ class ReplicationRuleFilter {
     this.prefix,
     this.tag,
   });
+
   factory ReplicationRuleFilter.fromJson(Map<String, dynamic> json) {
     return ReplicationRuleFilter(
       and: json['And'] != null
@@ -24168,6 +24322,7 @@ class ReplicationTime {
     required this.status,
     required this.time,
   });
+
   factory ReplicationTime.fromJson(Map<String, dynamic> json) {
     return ReplicationTime(
       status: (json['Status'] as String).toReplicationTimeStatus(),
@@ -24249,6 +24404,7 @@ class ReplicationTimeValue {
   ReplicationTimeValue({
     this.minutes,
   });
+
   factory ReplicationTimeValue.fromJson(Map<String, dynamic> json) {
     return ReplicationTimeValue(
       minutes: json['Minutes'] as int?,
@@ -24345,6 +24501,7 @@ class RequestPaymentConfiguration {
   RequestPaymentConfiguration({
     required this.payer,
   });
+
   factory RequestPaymentConfiguration.fromJson(Map<String, dynamic> json) {
     return RequestPaymentConfiguration(
       payer: (json['Payer'] as String).toPayer(),
@@ -24384,6 +24541,7 @@ class RequestProgress {
   RequestProgress({
     this.enabled,
   });
+
   factory RequestProgress.fromJson(Map<String, dynamic> json) {
     return RequestProgress(
       enabled: json['Enabled'] as bool?,
@@ -24424,6 +24582,7 @@ class RestoreObjectOutput {
     this.requestCharged,
     this.restoreOutputPath,
   });
+
   factory RestoreObjectOutput.fromJson(Map<String, dynamic> json) {
     return RestoreObjectOutput(
       requestCharged:
@@ -24476,6 +24635,7 @@ class RestoreRequest {
     this.tier,
     this.type,
   });
+
   factory RestoreRequest.fromJson(Map<String, dynamic> json) {
     return RestoreRequest(
       days: json['Days'] as int?,
@@ -24591,6 +24751,7 @@ class RoutingRule {
     required this.redirect,
     this.condition,
   });
+
   factory RoutingRule.fromJson(Map<String, dynamic> json) {
     return RoutingRule(
       redirect: Redirect.fromJson(json['Redirect'] as Map<String, dynamic>),
@@ -24684,6 +24845,7 @@ class Rule {
     this.noncurrentVersionTransition,
     this.transition,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       prefix: json['Prefix'] as String,
@@ -24799,6 +24961,7 @@ class S3KeyFilter {
   S3KeyFilter({
     this.filterRules,
   });
+
   factory S3KeyFilter.fromJson(Map<String, dynamic> json) {
     return S3KeyFilter(
       filterRules: (json['FilterRule'] as List?)
@@ -24875,6 +25038,7 @@ class S3Location {
     this.tagging,
     this.userMetadata,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucketName: json['BucketName'] as String,
@@ -24965,6 +25129,7 @@ class SSEKMS {
   SSEKMS({
     required this.keyId,
   });
+
   factory SSEKMS.fromJson(Map<String, dynamic> json) {
     return SSEKMS(
       keyId: json['KeyId'] as String,
@@ -25003,6 +25168,7 @@ class SSEKMS {
 /// Specifies the use of SSE-S3 to encrypt delivered inventory reports.
 class SSES3 {
   SSES3();
+
   factory SSES3.fromJson(Map<String, dynamic> _) {
     return SSES3();
   }
@@ -25054,6 +25220,7 @@ class ScanRange {
     this.end,
     this.start,
   });
+
   factory ScanRange.fromJson(Map<String, dynamic> json) {
     return ScanRange(
       end: json['End'] as int?,
@@ -25112,6 +25279,7 @@ class SelectObjectContentEventStream {
     this.records,
     this.stats,
   });
+
   factory SelectObjectContentEventStream.fromJson(Map<String, dynamic> json) {
     return SelectObjectContentEventStream(
       cont: json['Cont'] != null
@@ -25172,6 +25340,7 @@ class SelectObjectContentOutput {
   SelectObjectContentOutput({
     this.payload,
   });
+
   factory SelectObjectContentOutput.fromJson(Map<String, dynamic> json) {
     return SelectObjectContentOutput(
       payload: json['Payload'] != null
@@ -25279,6 +25448,7 @@ class SelectObjectContentRequest {
     this.sSECustomerKeyMD5,
     this.scanRange,
   });
+
   factory SelectObjectContentRequest.fromJson(Map<String, dynamic> json) {
     return SelectObjectContentRequest(
       bucket: json['Bucket'] as String,
@@ -25381,6 +25551,7 @@ class SelectParameters {
     required this.inputSerialization,
     required this.outputSerialization,
   });
+
   factory SelectParameters.fromJson(Map<String, dynamic> json) {
     return SelectParameters(
       expression: json['Expression'] as String,
@@ -25497,6 +25668,7 @@ class ServerSideEncryptionByDefault {
     required this.sSEAlgorithm,
     this.kMSMasterKeyID,
   });
+
   factory ServerSideEncryptionByDefault.fromJson(Map<String, dynamic> json) {
     return ServerSideEncryptionByDefault(
       sSEAlgorithm: (json['SSEAlgorithm'] as String).toServerSideEncryption(),
@@ -25550,6 +25722,7 @@ class ServerSideEncryptionConfiguration {
   ServerSideEncryptionConfiguration({
     required this.rules,
   });
+
   factory ServerSideEncryptionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ServerSideEncryptionConfiguration(
@@ -25615,6 +25788,7 @@ class ServerSideEncryptionRule {
     this.applyServerSideEncryptionByDefault,
     this.bucketKeyEnabled,
   });
+
   factory ServerSideEncryptionRule.fromJson(Map<String, dynamic> json) {
     return ServerSideEncryptionRule(
       applyServerSideEncryptionByDefault:
@@ -25697,6 +25871,7 @@ class SourceSelectionCriteria {
     this.replicaModifications,
     this.sseKmsEncryptedObjects,
   });
+
   factory SourceSelectionCriteria.fromJson(Map<String, dynamic> json) {
     return SourceSelectionCriteria(
       replicaModifications: json['ReplicaModifications'] != null
@@ -25762,6 +25937,7 @@ class SseKmsEncryptedObjects {
   SseKmsEncryptedObjects({
     required this.status,
   });
+
   factory SseKmsEncryptedObjects.fromJson(Map<String, dynamic> json) {
     return SseKmsEncryptedObjects(
       status: (json['Status'] as String).toSseKmsEncryptedObjectsStatus(),
@@ -25843,6 +26019,7 @@ class Stats {
     this.bytesReturned,
     this.bytesScanned,
   });
+
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
       bytesProcessed: json['BytesProcessed'] as int?,
@@ -25879,6 +26056,7 @@ class StatsEvent {
   StatsEvent({
     this.details,
   });
+
   factory StatsEvent.fromJson(Map<String, dynamic> json) {
     return StatsEvent(
       details: json['Details'] != null
@@ -25971,6 +26149,7 @@ class StorageClassAnalysis {
   StorageClassAnalysis({
     this.dataExport,
   });
+
   factory StorageClassAnalysis.fromJson(Map<String, dynamic> json) {
     return StorageClassAnalysis(
       dataExport: json['DataExport'] != null
@@ -26025,6 +26204,7 @@ class StorageClassAnalysisDataExport {
     required this.destination,
     required this.outputSchemaVersion,
   });
+
   factory StorageClassAnalysisDataExport.fromJson(Map<String, dynamic> json) {
     return StorageClassAnalysisDataExport(
       destination: AnalyticsExportDestination.fromJson(
@@ -26108,6 +26288,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -26157,6 +26338,7 @@ class Tagging {
   Tagging({
     required this.tagSet,
   });
+
   factory Tagging.fromJson(Map<String, dynamic> json) {
     return Tagging(
       tagSet: (json['TagSet'] as List)
@@ -26230,6 +26412,7 @@ class TargetGrant {
     this.grantee,
     this.permission,
   });
+
   factory TargetGrant.fromJson(Map<String, dynamic> json) {
     return TargetGrant(
       grantee: json['Grantee'] != null
@@ -26332,6 +26515,7 @@ class Tiering {
     required this.accessTier,
     required this.days,
   });
+
   factory Tiering.fromJson(Map<String, dynamic> json) {
     return Tiering(
       accessTier:
@@ -26398,6 +26582,7 @@ class TopicConfiguration {
     this.filter,
     this.id,
   });
+
   factory TopicConfiguration.fromJson(Map<String, dynamic> json) {
     return TopicConfiguration(
       events: (json['Event'] as List)
@@ -26485,6 +26670,7 @@ class TopicConfigurationDeprecated {
     this.id,
     this.topic,
   });
+
   factory TopicConfigurationDeprecated.fromJson(Map<String, dynamic> json) {
     return TopicConfigurationDeprecated(
       event: (json['Event'] as String?)?.toEvent(),
@@ -26566,6 +26752,7 @@ class Transition {
     this.days,
     this.storageClass,
   });
+
   factory Transition.fromJson(Map<String, dynamic> json) {
     return Transition(
       date: timeStampFromJson(json['Date']),
@@ -26737,6 +26924,7 @@ class UploadPartCopyOutput {
     this.sSEKMSKeyId,
     this.serverSideEncryption,
   });
+
   factory UploadPartCopyOutput.fromJson(Map<String, dynamic> json) {
     return UploadPartCopyOutput(
       bucketKeyEnabled:
@@ -26811,6 +26999,7 @@ class UploadPartOutput {
     this.sSEKMSKeyId,
     this.serverSideEncryption,
   });
+
   factory UploadPartOutput.fromJson(Map<String, dynamic> json) {
     return UploadPartOutput(
       bucketKeyEnabled:
@@ -26859,6 +27048,7 @@ class VersioningConfiguration {
     this.mFADelete,
     this.status,
   });
+
   factory VersioningConfiguration.fromJson(Map<String, dynamic> json) {
     return VersioningConfiguration(
       mFADelete: (json['MfaDelete'] as String?)?.toMFADelete(),
@@ -26917,6 +27107,7 @@ class WebsiteConfiguration {
     this.redirectAllRequestsTo,
     this.routingRules,
   });
+
   factory WebsiteConfiguration.fromJson(Map<String, dynamic> json) {
     return WebsiteConfiguration(
       errorDocument: json['ErrorDocument'] != null

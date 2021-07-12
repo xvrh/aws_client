@@ -1371,6 +1371,7 @@ class Answer {
     this.risk,
     this.selectedChoices,
   });
+
   factory Answer.fromJson(Map<String, dynamic> json) {
     return Answer(
       choices: (json['Choices'] as List?)
@@ -1441,6 +1442,7 @@ class AnswerSummary {
     this.risk,
     this.selectedChoices,
   });
+
   factory AnswerSummary.fromJson(Map<String, dynamic> json) {
     return AnswerSummary(
       choices: (json['Choices'] as List?)
@@ -1490,6 +1492,7 @@ class Choice {
     this.description,
     this.title,
   });
+
   factory Choice.fromJson(Map<String, dynamic> json) {
     return Choice(
       choiceId: json['ChoiceId'] as String?,
@@ -1519,6 +1522,7 @@ class CreateMilestoneOutput {
     this.milestoneNumber,
     this.workloadId,
   });
+
   factory CreateMilestoneOutput.fromJson(Map<String, dynamic> json) {
     return CreateMilestoneOutput(
       milestoneNumber: json['MilestoneNumber'] as int?,
@@ -1545,6 +1549,7 @@ class CreateWorkloadOutput {
     this.workloadArn,
     this.workloadId,
   });
+
   factory CreateWorkloadOutput.fromJson(Map<String, dynamic> json) {
     return CreateWorkloadOutput(
       workloadArn: json['WorkloadArn'] as String?,
@@ -1571,6 +1576,7 @@ class CreateWorkloadShareOutput {
     this.shareId,
     this.workloadId,
   });
+
   factory CreateWorkloadShareOutput.fromJson(Map<String, dynamic> json) {
     return CreateWorkloadShareOutput(
       shareId: json['ShareId'] as String?,
@@ -1634,6 +1640,7 @@ class GetAnswerOutput {
     this.milestoneNumber,
     this.workloadId,
   });
+
   factory GetAnswerOutput.fromJson(Map<String, dynamic> json) {
     return GetAnswerOutput(
       answer: json['Answer'] != null
@@ -1670,6 +1677,7 @@ class GetLensReviewOutput {
     this.milestoneNumber,
     this.workloadId,
   });
+
   factory GetLensReviewOutput.fromJson(Map<String, dynamic> json) {
     return GetLensReviewOutput(
       lensReview: json['LensReview'] != null
@@ -1703,6 +1711,7 @@ class GetLensReviewReportOutput {
     this.milestoneNumber,
     this.workloadId,
   });
+
   factory GetLensReviewReportOutput.fromJson(Map<String, dynamic> json) {
     return GetLensReviewReportOutput(
       lensReviewReport: json['LensReviewReport'] != null
@@ -1741,6 +1750,7 @@ class GetLensVersionDifferenceOutput {
     this.lensAlias,
     this.versionDifferences,
   });
+
   factory GetLensVersionDifferenceOutput.fromJson(Map<String, dynamic> json) {
     return GetLensVersionDifferenceOutput(
       baseLensVersion: json['BaseLensVersion'] as String?,
@@ -1776,6 +1786,7 @@ class GetMilestoneOutput {
     this.milestone,
     this.workloadId,
   });
+
   factory GetMilestoneOutput.fromJson(Map<String, dynamic> json) {
     return GetMilestoneOutput(
       milestone: json['Milestone'] != null
@@ -1802,6 +1813,7 @@ class GetWorkloadOutput {
   GetWorkloadOutput({
     this.workload,
   });
+
   factory GetWorkloadOutput.fromJson(Map<String, dynamic> json) {
     return GetWorkloadOutput(
       workload: json['Workload'] != null
@@ -1833,6 +1845,7 @@ class ImprovementSummary {
     this.questionTitle,
     this.risk,
   });
+
   factory ImprovementSummary.fromJson(Map<String, dynamic> json) {
     return ImprovementSummary(
       improvementPlanUrl: json['ImprovementPlanUrl'] as String?,
@@ -1886,6 +1899,7 @@ class LensReview {
     this.riskCounts,
     this.updatedAt,
   });
+
   factory LensReview.fromJson(Map<String, dynamic> json) {
     return LensReview(
       lensAlias: json['LensAlias'] as String?,
@@ -1939,6 +1953,7 @@ class LensReviewReport {
     this.base64String,
     this.lensAlias,
   });
+
   factory LensReviewReport.fromJson(Map<String, dynamic> json) {
     return LensReviewReport(
       base64String: json['Base64String'] as String?,
@@ -1977,6 +1992,7 @@ class LensReviewSummary {
     this.riskCounts,
     this.updatedAt,
   });
+
   factory LensReviewSummary.fromJson(Map<String, dynamic> json) {
     return LensReviewSummary(
       lensAlias: json['LensAlias'] as String?,
@@ -2056,6 +2072,7 @@ class LensSummary {
     this.lensName,
     this.lensVersion,
   });
+
   factory LensSummary.fromJson(Map<String, dynamic> json) {
     return LensSummary(
       description: json['Description'] as String?,
@@ -2097,6 +2114,7 @@ class LensUpgradeSummary {
     this.workloadId,
     this.workloadName,
   });
+
   factory LensUpgradeSummary.fromJson(Map<String, dynamic> json) {
     return LensUpgradeSummary(
       currentLensVersion: json['CurrentLensVersion'] as String?,
@@ -2138,6 +2156,7 @@ class ListAnswersOutput {
     this.nextToken,
     this.workloadId,
   });
+
   factory ListAnswersOutput.fromJson(Map<String, dynamic> json) {
     return ListAnswersOutput(
       answerSummaries: (json['AnswerSummaries'] as List?)
@@ -2182,6 +2201,7 @@ class ListLensReviewImprovementsOutput {
     this.nextToken,
     this.workloadId,
   });
+
   factory ListLensReviewImprovementsOutput.fromJson(Map<String, dynamic> json) {
     return ListLensReviewImprovementsOutput(
       improvementSummaries: (json['ImprovementSummaries'] as List?)
@@ -2225,6 +2245,7 @@ class ListLensReviewsOutput {
     this.nextToken,
     this.workloadId,
   });
+
   factory ListLensReviewsOutput.fromJson(Map<String, dynamic> json) {
     return ListLensReviewsOutput(
       lensReviewSummaries: (json['LensReviewSummaries'] as List?)
@@ -2261,6 +2282,7 @@ class ListLensesOutput {
     this.lensSummaries,
     this.nextToken,
   });
+
   factory ListLensesOutput.fromJson(Map<String, dynamic> json) {
     return ListLensesOutput(
       lensSummaries: (json['LensSummaries'] as List?)
@@ -2292,6 +2314,7 @@ class ListMilestonesOutput {
     this.nextToken,
     this.workloadId,
   });
+
   factory ListMilestonesOutput.fromJson(Map<String, dynamic> json) {
     return ListMilestonesOutput(
       milestoneSummaries: (json['MilestoneSummaries'] as List?)
@@ -2325,6 +2348,7 @@ class ListNotificationsOutput {
     this.nextToken,
     this.notificationSummaries,
   });
+
   factory ListNotificationsOutput.fromJson(Map<String, dynamic> json) {
     return ListNotificationsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2357,6 +2381,7 @@ class ListShareInvitationsOutput {
     this.nextToken,
     this.shareInvitationSummaries,
   });
+
   factory ListShareInvitationsOutput.fromJson(Map<String, dynamic> json) {
     return ListShareInvitationsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2386,6 +2411,7 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2412,6 +2438,7 @@ class ListWorkloadSharesOutput {
     this.workloadId,
     this.workloadShareSummaries,
   });
+
   factory ListWorkloadSharesOutput.fromJson(Map<String, dynamic> json) {
     return ListWorkloadSharesOutput(
       nextToken: json['NextToken'] as String?,
@@ -2445,6 +2472,7 @@ class ListWorkloadsOutput {
     this.nextToken,
     this.workloadSummaries,
   });
+
   factory ListWorkloadsOutput.fromJson(Map<String, dynamic> json) {
     return ListWorkloadsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2478,6 +2506,7 @@ class Milestone {
     this.recordedAt,
     this.workload,
   });
+
   factory Milestone.fromJson(Map<String, dynamic> json) {
     return Milestone(
       milestoneName: json['MilestoneName'] as String?,
@@ -2516,6 +2545,7 @@ class MilestoneSummary {
     this.recordedAt,
     this.workloadSummary,
   });
+
   factory MilestoneSummary.fromJson(Map<String, dynamic> json) {
     return MilestoneSummary(
       milestoneName: json['MilestoneName'] as String?,
@@ -2554,6 +2584,7 @@ class NotificationSummary {
     this.lensUpgradeSummary,
     this.type,
   });
+
   factory NotificationSummary.fromJson(Map<String, dynamic> json) {
     return NotificationSummary(
       lensUpgradeSummary: json['LensUpgradeSummary'] != null
@@ -2645,6 +2676,7 @@ class PillarDifference {
     this.pillarId,
     this.questionDifferences,
   });
+
   factory PillarDifference.fromJson(Map<String, dynamic> json) {
     return PillarDifference(
       differenceStatus:
@@ -2684,6 +2716,7 @@ class PillarReviewSummary {
     this.pillarName,
     this.riskCounts,
   });
+
   factory PillarReviewSummary.fromJson(Map<String, dynamic> json) {
     return PillarReviewSummary(
       notes: json['Notes'] as String?,
@@ -2721,6 +2754,7 @@ class QuestionDifference {
     this.questionId,
     this.questionTitle,
   });
+
   factory QuestionDifference.fromJson(Map<String, dynamic> json) {
     return QuestionDifference(
       differenceStatus:
@@ -2797,6 +2831,7 @@ class ShareInvitation {
     this.shareInvitationId,
     this.workloadId,
   });
+
   factory ShareInvitation.fromJson(Map<String, dynamic> json) {
     return ShareInvitation(
       shareInvitationId: json['ShareInvitationId'] as String?,
@@ -2862,6 +2897,7 @@ class ShareInvitationSummary {
     this.workloadId,
     this.workloadName,
   });
+
   factory ShareInvitationSummary.fromJson(Map<String, dynamic> json) {
     return ShareInvitationSummary(
       permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
@@ -2937,6 +2973,7 @@ extension on String {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -2948,6 +2985,7 @@ class TagResourceOutput {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -2968,6 +3006,7 @@ class UpdateAnswerOutput {
     this.lensAlias,
     this.workloadId,
   });
+
   factory UpdateAnswerOutput.fromJson(Map<String, dynamic> json) {
     return UpdateAnswerOutput(
       answer: json['Answer'] != null
@@ -2999,6 +3038,7 @@ class UpdateLensReviewOutput {
     this.lensReview,
     this.workloadId,
   });
+
   factory UpdateLensReviewOutput.fromJson(Map<String, dynamic> json) {
     return UpdateLensReviewOutput(
       lensReview: json['LensReview'] != null
@@ -3025,6 +3065,7 @@ class UpdateShareInvitationOutput {
   UpdateShareInvitationOutput({
     this.shareInvitation,
   });
+
   factory UpdateShareInvitationOutput.fromJson(Map<String, dynamic> json) {
     return UpdateShareInvitationOutput(
       shareInvitation: json['ShareInvitation'] != null
@@ -3049,6 +3090,7 @@ class UpdateWorkloadOutput {
   UpdateWorkloadOutput({
     this.workload,
   });
+
   factory UpdateWorkloadOutput.fromJson(Map<String, dynamic> json) {
     return UpdateWorkloadOutput(
       workload: json['Workload'] != null
@@ -3074,6 +3116,7 @@ class UpdateWorkloadShareOutput {
     this.workloadId,
     this.workloadShare,
   });
+
   factory UpdateWorkloadShareOutput.fromJson(Map<String, dynamic> json) {
     return UpdateWorkloadShareOutput(
       workloadId: json['WorkloadId'] as String?,
@@ -3102,6 +3145,7 @@ class VersionDifferences {
   VersionDifferences({
     this.pillarDifferences,
   });
+
   factory VersionDifferences.fromJson(Map<String, dynamic> json) {
     return VersionDifferences(
       pillarDifferences: (json['PillarDifferences'] as List?)
@@ -3181,6 +3225,7 @@ class Workload {
     this.workloadId,
     this.workloadName,
   });
+
   factory Workload.fromJson(Map<String, dynamic> json) {
     return Workload(
       accountIds: (json['AccountIds'] as List?)
@@ -3378,6 +3423,7 @@ class WorkloadShare {
     this.workloadId,
     this.workloadName,
   });
+
   factory WorkloadShare.fromJson(Map<String, dynamic> json) {
     return WorkloadShare(
       permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
@@ -3423,6 +3469,7 @@ class WorkloadShareSummary {
     this.sharedWith,
     this.status,
   });
+
   factory WorkloadShareSummary.fromJson(Map<String, dynamic> json) {
     return WorkloadShareSummary(
       permissionType: (json['PermissionType'] as String?)?.toPermissionType(),
@@ -3467,6 +3514,7 @@ class WorkloadSummary {
     this.workloadId,
     this.workloadName,
   });
+
   factory WorkloadSummary.fromJson(Map<String, dynamic> json) {
     return WorkloadSummary(
       improvementStatus:

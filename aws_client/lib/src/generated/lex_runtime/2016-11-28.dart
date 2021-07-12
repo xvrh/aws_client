@@ -888,6 +888,7 @@ class ActiveContext {
     required this.parameters,
     required this.timeToLive,
   });
+
   factory ActiveContext.fromJson(Map<String, dynamic> json) {
     return ActiveContext(
       name: json['name'] as String,
@@ -926,6 +927,7 @@ class ActiveContextTimeToLive {
     this.timeToLiveInSeconds,
     this.turnsToLive,
   });
+
   factory ActiveContextTimeToLive.fromJson(Map<String, dynamic> json) {
     return ActiveContextTimeToLive(
       timeToLiveInSeconds: json['timeToLiveInSeconds'] as int?,
@@ -959,6 +961,7 @@ class Button {
     required this.text,
     required this.value,
   });
+
   factory Button.fromJson(Map<String, dynamic> json) {
     return Button(
       text: json['text'] as String,
@@ -1051,6 +1054,7 @@ class DeleteSessionResponse {
     this.sessionId,
     this.userId,
   });
+
   factory DeleteSessionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSessionResponse(
       botAlias: json['botAlias'] as String?,
@@ -1168,6 +1172,7 @@ class DialogAction {
     this.slotToElicit,
     this.slots,
   });
+
   factory DialogAction.fromJson(Map<String, dynamic> json) {
     return DialogAction(
       type: (json['type'] as String).toDialogActionType(),
@@ -1352,6 +1357,7 @@ class GenericAttachment {
     this.subTitle,
     this.title,
   });
+
   factory GenericAttachment.fromJson(Map<String, dynamic> json) {
     return GenericAttachment(
       attachmentLinkUrl: json['attachmentLinkUrl'] as String?,
@@ -1417,6 +1423,7 @@ class GetSessionResponse {
     this.sessionAttributes,
     this.sessionId,
   });
+
   factory GetSessionResponse.fromJson(Map<String, dynamic> json) {
     return GetSessionResponse(
       activeContexts: (json['activeContexts'] as List?)
@@ -1464,6 +1471,7 @@ class IntentConfidence {
   IntentConfidence({
     this.score,
   });
+
   factory IntentConfidence.fromJson(Map<String, dynamic> json) {
     return IntentConfidence(
       score: json['score'] as double?,
@@ -1575,6 +1583,7 @@ class IntentSummary {
     this.slotToElicit,
     this.slots,
   });
+
   factory IntentSummary.fromJson(Map<String, dynamic> json) {
     return IntentSummary(
       dialogActionType:
@@ -1899,6 +1908,7 @@ class PostContentResponse {
     this.slotToElicit,
     this.slots,
   });
+
   factory PostContentResponse.fromJson(Map<String, dynamic> json) {
     return PostContentResponse(
       activeContexts: json['x-amz-lex-active-contexts'] == null
@@ -2143,6 +2153,7 @@ class PostTextResponse {
     this.slotToElicit,
     this.slots,
   });
+
   factory PostTextResponse.fromJson(Map<String, dynamic> json) {
     return PostTextResponse(
       activeContexts: (json['activeContexts'] as List?)
@@ -2232,6 +2243,7 @@ class PredictedIntent {
     this.nluIntentConfidence,
     this.slots,
   });
+
   factory PredictedIntent.fromJson(Map<String, dynamic> json) {
     return PredictedIntent(
       intentName: json['intentName'] as String?,
@@ -2375,6 +2387,7 @@ class PutSessionResponse {
     this.slotToElicit,
     this.slots,
   });
+
   factory PutSessionResponse.fromJson(Map<String, dynamic> json) {
     return PutSessionResponse(
       activeContexts: json['x-amz-lex-active-contexts'] == null
@@ -2438,6 +2451,7 @@ class ResponseCard {
     this.genericAttachments,
     this.version,
   });
+
   factory ResponseCard.fromJson(Map<String, dynamic> json) {
     return ResponseCard(
       contentType: (json['contentType'] as String?)?.toContentType(),
@@ -2477,6 +2491,7 @@ class SentimentResponse {
     this.sentimentLabel,
     this.sentimentScore,
   });
+
   factory SentimentResponse.fromJson(Map<String, dynamic> json) {
     return SentimentResponse(
       sentimentLabel: json['sentimentLabel'] as String?,

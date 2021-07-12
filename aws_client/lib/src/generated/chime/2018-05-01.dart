@@ -8709,6 +8709,7 @@ class Account {
     this.signinDelegateGroups,
     this.supportedLicenses,
   });
+
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
       accountId: json['AccountId'] as String,
@@ -8774,6 +8775,7 @@ class AccountSettings {
     this.disableRemoteControl,
     this.enableDialOut,
   });
+
   factory AccountSettings.fromJson(Map<String, dynamic> json) {
     return AccountSettings(
       disableRemoteControl: json['DisableRemoteControl'] as bool?,
@@ -8843,6 +8845,7 @@ class AlexaForBusinessMetadata {
     this.alexaForBusinessRoomArn,
     this.isAlexaForBusinessEnabled,
   });
+
   factory AlexaForBusinessMetadata.fromJson(Map<String, dynamic> json) {
     return AlexaForBusinessMetadata(
       alexaForBusinessRoomArn: json['AlexaForBusinessRoomArn'] as String?,
@@ -8889,6 +8892,7 @@ class AppInstance {
     this.metadata,
     this.name,
   });
+
   factory AppInstance.fromJson(Map<String, dynamic> json) {
     return AppInstance(
       appInstanceArn: json['AppInstanceArn'] as String?,
@@ -8934,6 +8938,7 @@ class AppInstanceAdmin {
     this.appInstanceArn,
     this.createdTimestamp,
   });
+
   factory AppInstanceAdmin.fromJson(Map<String, dynamic> json) {
     return AppInstanceAdmin(
       admin: json['Admin'] != null
@@ -8965,6 +8970,7 @@ class AppInstanceAdminSummary {
   AppInstanceAdminSummary({
     this.admin,
   });
+
   factory AppInstanceAdminSummary.fromJson(Map<String, dynamic> json) {
     return AppInstanceAdminSummary(
       admin: json['Admin'] != null
@@ -9017,6 +9023,7 @@ class AppInstanceRetentionSettings {
   AppInstanceRetentionSettings({
     this.channelRetentionSettings,
   });
+
   factory AppInstanceRetentionSettings.fromJson(Map<String, dynamic> json) {
     return AppInstanceRetentionSettings(
       channelRetentionSettings: json['ChannelRetentionSettings'] != null
@@ -9047,6 +9054,7 @@ class AppInstanceStreamingConfiguration {
     required this.appInstanceDataType,
     required this.resourceArn,
   });
+
   factory AppInstanceStreamingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return AppInstanceStreamingConfiguration(
@@ -9082,6 +9090,7 @@ class AppInstanceSummary {
     this.metadata,
     this.name,
   });
+
   factory AppInstanceSummary.fromJson(Map<String, dynamic> json) {
     return AppInstanceSummary(
       appInstanceArn: json['AppInstanceArn'] as String?,
@@ -9126,6 +9135,7 @@ class AppInstanceUser {
     this.metadata,
     this.name,
   });
+
   factory AppInstanceUser.fromJson(Map<String, dynamic> json) {
     return AppInstanceUser(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
@@ -9166,6 +9176,7 @@ class AppInstanceUserMembershipSummary {
     this.readMarkerTimestamp,
     this.type,
   });
+
   factory AppInstanceUserMembershipSummary.fromJson(Map<String, dynamic> json) {
     return AppInstanceUserMembershipSummary(
       readMarkerTimestamp: timeStampFromJson(json['ReadMarkerTimestamp']),
@@ -9200,6 +9211,7 @@ class AppInstanceUserSummary {
     this.metadata,
     this.name,
   });
+
   factory AppInstanceUserSummary.fromJson(Map<String, dynamic> json) {
     return AppInstanceUserSummary(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
@@ -9222,6 +9234,7 @@ class AppInstanceUserSummary {
 
 class AssociatePhoneNumberWithUserResponse {
   AssociatePhoneNumberWithUserResponse();
+
   factory AssociatePhoneNumberWithUserResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociatePhoneNumberWithUserResponse();
@@ -9241,6 +9254,7 @@ class AssociatePhoneNumbersWithVoiceConnectorGroupResponse {
   AssociatePhoneNumbersWithVoiceConnectorGroupResponse({
     this.phoneNumberErrors,
   });
+
   factory AssociatePhoneNumbersWithVoiceConnectorGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociatePhoneNumbersWithVoiceConnectorGroupResponse(
@@ -9268,6 +9282,7 @@ class AssociatePhoneNumbersWithVoiceConnectorResponse {
   AssociatePhoneNumbersWithVoiceConnectorResponse({
     this.phoneNumberErrors,
   });
+
   factory AssociatePhoneNumbersWithVoiceConnectorResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociatePhoneNumbersWithVoiceConnectorResponse(
@@ -9288,6 +9303,7 @@ class AssociatePhoneNumbersWithVoiceConnectorResponse {
 
 class AssociateSigninDelegateGroupsWithAccountResponse {
   AssociateSigninDelegateGroupsWithAccountResponse();
+
   factory AssociateSigninDelegateGroupsWithAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateSigninDelegateGroupsWithAccountResponse();
@@ -9324,6 +9340,7 @@ class Attendee {
     this.externalUserId,
     this.joinToken,
   });
+
   factory Attendee.fromJson(Map<String, dynamic> json) {
     return Attendee(
       attendeeId: json['AttendeeId'] as String?,
@@ -9363,6 +9380,7 @@ class BatchChannelMemberships {
     this.members,
     this.type,
   });
+
   factory BatchChannelMemberships.fromJson(Map<String, dynamic> json) {
     return BatchChannelMemberships(
       channelArn: json['ChannelArn'] as String?,
@@ -9403,6 +9421,7 @@ class BatchCreateAttendeeResponse {
     this.attendees,
     this.errors,
   });
+
   factory BatchCreateAttendeeResponse.fromJson(Map<String, dynamic> json) {
     return BatchCreateAttendeeResponse(
       attendees: (json['Attendees'] as List?)
@@ -9442,6 +9461,7 @@ class BatchCreateChannelMembershipError {
     this.errorMessage,
     this.memberArn,
   });
+
   factory BatchCreateChannelMembershipError.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateChannelMembershipError(
@@ -9476,6 +9496,7 @@ class BatchCreateChannelMembershipResponse {
     this.batchChannelMemberships,
     this.errors,
   });
+
   factory BatchCreateChannelMembershipResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateChannelMembershipResponse(
@@ -9510,6 +9531,7 @@ class BatchCreateRoomMembershipResponse {
   BatchCreateRoomMembershipResponse({
     this.errors,
   });
+
   factory BatchCreateRoomMembershipResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchCreateRoomMembershipResponse(
@@ -9537,6 +9559,7 @@ class BatchDeletePhoneNumberResponse {
   BatchDeletePhoneNumberResponse({
     this.phoneNumberErrors,
   });
+
   factory BatchDeletePhoneNumberResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeletePhoneNumberResponse(
       phoneNumberErrors: (json['PhoneNumberErrors'] as List?)
@@ -9563,6 +9586,7 @@ class BatchSuspendUserResponse {
   BatchSuspendUserResponse({
     this.userErrors,
   });
+
   factory BatchSuspendUserResponse.fromJson(Map<String, dynamic> json) {
     return BatchSuspendUserResponse(
       userErrors: (json['UserErrors'] as List?)
@@ -9589,6 +9613,7 @@ class BatchUnsuspendUserResponse {
   BatchUnsuspendUserResponse({
     this.userErrors,
   });
+
   factory BatchUnsuspendUserResponse.fromJson(Map<String, dynamic> json) {
     return BatchUnsuspendUserResponse(
       userErrors: (json['UserErrors'] as List?)
@@ -9615,6 +9640,7 @@ class BatchUpdatePhoneNumberResponse {
   BatchUpdatePhoneNumberResponse({
     this.phoneNumberErrors,
   });
+
   factory BatchUpdatePhoneNumberResponse.fromJson(Map<String, dynamic> json) {
     return BatchUpdatePhoneNumberResponse(
       phoneNumberErrors: (json['PhoneNumberErrors'] as List?)
@@ -9641,6 +9667,7 @@ class BatchUpdateUserResponse {
   BatchUpdateUserResponse({
     this.userErrors,
   });
+
   factory BatchUpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return BatchUpdateUserResponse(
       userErrors: (json['UserErrors'] as List?)
@@ -9700,6 +9727,7 @@ class Bot {
     this.updatedTimestamp,
     this.userId,
   });
+
   factory Bot.fromJson(Map<String, dynamic> json) {
     return Bot(
       botEmail: json['BotEmail'] as String?,
@@ -9773,6 +9801,7 @@ class BusinessCallingSettings {
   BusinessCallingSettings({
     this.cdrBucket,
   });
+
   factory BusinessCallingSettings.fromJson(Map<String, dynamic> json) {
     return BusinessCallingSettings(
       cdrBucket: json['CdrBucket'] as String?,
@@ -9893,6 +9922,7 @@ class Channel {
     this.name,
     this.privacy,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       channelArn: json['ChannelArn'] as String?,
@@ -9956,6 +9986,7 @@ class ChannelBan {
     this.createdTimestamp,
     this.member,
   });
+
   factory ChannelBan.fromJson(Map<String, dynamic> json) {
     return ChannelBan(
       channelArn: json['ChannelArn'] as String?,
@@ -9992,6 +10023,7 @@ class ChannelBanSummary {
   ChannelBanSummary({
     this.member,
   });
+
   factory ChannelBanSummary.fromJson(Map<String, dynamic> json) {
     return ChannelBanSummary(
       member: json['Member'] != null
@@ -10036,6 +10068,7 @@ class ChannelMembership {
     this.member,
     this.type,
   });
+
   factory ChannelMembership.fromJson(Map<String, dynamic> json) {
     return ChannelMembership(
       channelArn: json['ChannelArn'] as String?,
@@ -10082,6 +10115,7 @@ class ChannelMembershipForAppInstanceUserSummary {
     this.appInstanceUserMembershipSummary,
     this.channelSummary,
   });
+
   factory ChannelMembershipForAppInstanceUserSummary.fromJson(
       Map<String, dynamic> json) {
     return ChannelMembershipForAppInstanceUserSummary(
@@ -10118,6 +10152,7 @@ class ChannelMembershipSummary {
   ChannelMembershipSummary({
     this.member,
   });
+
   factory ChannelMembershipSummary.fromJson(Map<String, dynamic> json) {
     return ChannelMembershipSummary(
       member: json['Member'] != null
@@ -10210,6 +10245,7 @@ class ChannelMessage {
     this.sender,
     this.type,
   });
+
   factory ChannelMessage.fromJson(Map<String, dynamic> json) {
     return ChannelMessage(
       channelArn: json['ChannelArn'] as String?,
@@ -10328,6 +10364,7 @@ class ChannelMessageSummary {
     this.sender,
     this.type,
   });
+
   factory ChannelMessageSummary.fromJson(Map<String, dynamic> json) {
     return ChannelMessageSummary(
       content: json['Content'] as String?,
@@ -10434,6 +10471,7 @@ class ChannelModeratedByAppInstanceUserSummary {
   ChannelModeratedByAppInstanceUserSummary({
     this.channelSummary,
   });
+
   factory ChannelModeratedByAppInstanceUserSummary.fromJson(
       Map<String, dynamic> json) {
     return ChannelModeratedByAppInstanceUserSummary(
@@ -10472,6 +10510,7 @@ class ChannelModerator {
     this.createdTimestamp,
     this.moderator,
   });
+
   factory ChannelModerator.fromJson(Map<String, dynamic> json) {
     return ChannelModerator(
       channelArn: json['ChannelArn'] as String?,
@@ -10508,6 +10547,7 @@ class ChannelModeratorSummary {
   ChannelModeratorSummary({
     this.moderator,
   });
+
   factory ChannelModeratorSummary.fromJson(Map<String, dynamic> json) {
     return ChannelModeratorSummary(
       moderator: json['Moderator'] != null
@@ -10560,6 +10600,7 @@ class ChannelRetentionSettings {
   ChannelRetentionSettings({
     this.retentionDays,
   });
+
   factory ChannelRetentionSettings.fromJson(Map<String, dynamic> json) {
     return ChannelRetentionSettings(
       retentionDays: json['RetentionDays'] as int?,
@@ -10602,6 +10643,7 @@ class ChannelSummary {
     this.name,
     this.privacy,
   });
+
   factory ChannelSummary.fromJson(Map<String, dynamic> json) {
     return ChannelSummary(
       channelArn: json['ChannelArn'] as String?,
@@ -10641,6 +10683,7 @@ class ConversationRetentionSettings {
   ConversationRetentionSettings({
     this.retentionDays,
   });
+
   factory ConversationRetentionSettings.fromJson(Map<String, dynamic> json) {
     return ConversationRetentionSettings(
       retentionDays: json['RetentionDays'] as int?,
@@ -10662,6 +10705,7 @@ class CreateAccountResponse {
   CreateAccountResponse({
     this.account,
   });
+
   factory CreateAccountResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccountResponse(
       account: json['Account'] != null
@@ -10689,6 +10733,7 @@ class CreateAppInstanceAdminResponse {
     this.appInstanceAdmin,
     this.appInstanceArn,
   });
+
   factory CreateAppInstanceAdminResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppInstanceAdminResponse(
       appInstanceAdmin: json['AppInstanceAdmin'] != null
@@ -10715,6 +10760,7 @@ class CreateAppInstanceResponse {
   CreateAppInstanceResponse({
     this.appInstanceArn,
   });
+
   factory CreateAppInstanceResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppInstanceResponse(
       appInstanceArn: json['AppInstanceArn'] as String?,
@@ -10736,6 +10782,7 @@ class CreateAppInstanceUserResponse {
   CreateAppInstanceUserResponse({
     this.appInstanceUserArn,
   });
+
   factory CreateAppInstanceUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
@@ -10769,6 +10816,7 @@ class CreateAttendeeError {
     this.errorMessage,
     this.externalUserId,
   });
+
   factory CreateAttendeeError.fromJson(Map<String, dynamic> json) {
     return CreateAttendeeError(
       errorCode: json['ErrorCode'] as String?,
@@ -10803,6 +10851,7 @@ class CreateAttendeeRequestItem {
     required this.externalUserId,
     this.tags,
   });
+
   factory CreateAttendeeRequestItem.fromJson(Map<String, dynamic> json) {
     return CreateAttendeeRequestItem(
       externalUserId: json['ExternalUserId'] as String,
@@ -10830,6 +10879,7 @@ class CreateAttendeeResponse {
   CreateAttendeeResponse({
     this.attendee,
   });
+
   factory CreateAttendeeResponse.fromJson(Map<String, dynamic> json) {
     return CreateAttendeeResponse(
       attendee: json['Attendee'] != null
@@ -10853,6 +10903,7 @@ class CreateBotResponse {
   CreateBotResponse({
     this.bot,
   });
+
   factory CreateBotResponse.fromJson(Map<String, dynamic> json) {
     return CreateBotResponse(
       bot: json['Bot'] != null
@@ -10881,6 +10932,7 @@ class CreateChannelBanResponse {
     this.channelArn,
     this.member,
   });
+
   factory CreateChannelBanResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelBanResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -10911,6 +10963,7 @@ class CreateChannelMembershipResponse {
     this.channelArn,
     this.member,
   });
+
   factory CreateChannelMembershipResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelMembershipResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -10941,6 +10994,7 @@ class CreateChannelModeratorResponse {
     this.channelArn,
     this.channelModerator,
   });
+
   factory CreateChannelModeratorResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelModeratorResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -10967,6 +11021,7 @@ class CreateChannelResponse {
   CreateChannelResponse({
     this.channelArn,
   });
+
   factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -10989,6 +11044,7 @@ class CreateMediaCapturePipelineResponse {
   CreateMediaCapturePipelineResponse({
     this.mediaCapturePipeline,
   });
+
   factory CreateMediaCapturePipelineResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateMediaCapturePipelineResponse(
@@ -11015,6 +11071,7 @@ class CreateMeetingDialOutResponse {
   CreateMeetingDialOutResponse({
     this.transactionId,
   });
+
   factory CreateMeetingDialOutResponse.fromJson(Map<String, dynamic> json) {
     return CreateMeetingDialOutResponse(
       transactionId: json['TransactionId'] as String?,
@@ -11037,6 +11094,7 @@ class CreateMeetingResponse {
   CreateMeetingResponse({
     this.meeting,
   });
+
   factory CreateMeetingResponse.fromJson(Map<String, dynamic> json) {
     return CreateMeetingResponse(
       meeting: json['Meeting'] != null
@@ -11067,6 +11125,7 @@ class CreateMeetingWithAttendeesResponse {
     this.errors,
     this.meeting,
   });
+
   factory CreateMeetingWithAttendeesResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateMeetingWithAttendeesResponse(
@@ -11103,6 +11162,7 @@ class CreatePhoneNumberOrderResponse {
   CreatePhoneNumberOrderResponse({
     this.phoneNumberOrder,
   });
+
   factory CreatePhoneNumberOrderResponse.fromJson(Map<String, dynamic> json) {
     return CreatePhoneNumberOrderResponse(
       phoneNumberOrder: json['PhoneNumberOrder'] != null
@@ -11127,6 +11187,7 @@ class CreateProxySessionResponse {
   CreateProxySessionResponse({
     this.proxySession,
   });
+
   factory CreateProxySessionResponse.fromJson(Map<String, dynamic> json) {
     return CreateProxySessionResponse(
       proxySession: json['ProxySession'] != null
@@ -11150,6 +11211,7 @@ class CreateRoomMembershipResponse {
   CreateRoomMembershipResponse({
     this.roomMembership,
   });
+
   factory CreateRoomMembershipResponse.fromJson(Map<String, dynamic> json) {
     return CreateRoomMembershipResponse(
       roomMembership: json['RoomMembership'] != null
@@ -11174,6 +11236,7 @@ class CreateRoomResponse {
   CreateRoomResponse({
     this.room,
   });
+
   factory CreateRoomResponse.fromJson(Map<String, dynamic> json) {
     return CreateRoomResponse(
       room: json['Room'] != null
@@ -11197,6 +11260,7 @@ class CreateSipMediaApplicationCallResponse {
   CreateSipMediaApplicationCallResponse({
     this.sipMediaApplicationCall,
   });
+
   factory CreateSipMediaApplicationCallResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateSipMediaApplicationCallResponse(
@@ -11223,6 +11287,7 @@ class CreateSipMediaApplicationResponse {
   CreateSipMediaApplicationResponse({
     this.sipMediaApplication,
   });
+
   factory CreateSipMediaApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateSipMediaApplicationResponse(
@@ -11250,6 +11315,7 @@ class CreateSipRuleResponse {
   CreateSipRuleResponse({
     this.sipRule,
   });
+
   factory CreateSipRuleResponse.fromJson(Map<String, dynamic> json) {
     return CreateSipRuleResponse(
       sipRule: json['SipRule'] != null
@@ -11272,6 +11338,7 @@ class CreateUserResponse {
   CreateUserResponse({
     this.user,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       user: json['User'] != null
@@ -11295,6 +11362,7 @@ class CreateVoiceConnectorGroupResponse {
   CreateVoiceConnectorGroupResponse({
     this.voiceConnectorGroup,
   });
+
   factory CreateVoiceConnectorGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateVoiceConnectorGroupResponse(
@@ -11321,6 +11389,7 @@ class CreateVoiceConnectorResponse {
   CreateVoiceConnectorResponse({
     this.voiceConnector,
   });
+
   factory CreateVoiceConnectorResponse.fromJson(Map<String, dynamic> json) {
     return CreateVoiceConnectorResponse(
       voiceConnector: json['VoiceConnector'] != null
@@ -11353,6 +11422,7 @@ class Credential {
     this.password,
     this.username,
   });
+
   factory Credential.fromJson(Map<String, dynamic> json) {
     return Credential(
       password: json['Password'] as String?,
@@ -11389,6 +11459,7 @@ class DNISEmergencyCallingConfiguration {
     required this.emergencyPhoneNumber,
     this.testPhoneNumber,
   });
+
   factory DNISEmergencyCallingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DNISEmergencyCallingConfiguration(
@@ -11412,6 +11483,7 @@ class DNISEmergencyCallingConfiguration {
 
 class DeleteAccountResponse {
   DeleteAccountResponse();
+
   factory DeleteAccountResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccountResponse();
   }
@@ -11430,6 +11502,7 @@ class DescribeAppInstanceAdminResponse {
   DescribeAppInstanceAdminResponse({
     this.appInstanceAdmin,
   });
+
   factory DescribeAppInstanceAdminResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAppInstanceAdminResponse(
       appInstanceAdmin: json['AppInstanceAdmin'] != null
@@ -11455,6 +11528,7 @@ class DescribeAppInstanceResponse {
   DescribeAppInstanceResponse({
     this.appInstance,
   });
+
   factory DescribeAppInstanceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAppInstanceResponse(
       appInstance: json['AppInstance'] != null
@@ -11478,6 +11552,7 @@ class DescribeAppInstanceUserResponse {
   DescribeAppInstanceUserResponse({
     this.appInstanceUser,
   });
+
   factory DescribeAppInstanceUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAppInstanceUserResponse(
       appInstanceUser: json['AppInstanceUser'] != null
@@ -11502,6 +11577,7 @@ class DescribeChannelBanResponse {
   DescribeChannelBanResponse({
     this.channelBan,
   });
+
   factory DescribeChannelBanResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelBanResponse(
       channelBan: json['ChannelBan'] != null
@@ -11525,6 +11601,7 @@ class DescribeChannelMembershipForAppInstanceUserResponse {
   DescribeChannelMembershipForAppInstanceUserResponse({
     this.channelMembership,
   });
+
   factory DescribeChannelMembershipForAppInstanceUserResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeChannelMembershipForAppInstanceUserResponse(
@@ -11550,6 +11627,7 @@ class DescribeChannelMembershipResponse {
   DescribeChannelMembershipResponse({
     this.channelMembership,
   });
+
   factory DescribeChannelMembershipResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeChannelMembershipResponse(
@@ -11575,6 +11653,7 @@ class DescribeChannelModeratedByAppInstanceUserResponse {
   DescribeChannelModeratedByAppInstanceUserResponse({
     this.channel,
   });
+
   factory DescribeChannelModeratedByAppInstanceUserResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeChannelModeratedByAppInstanceUserResponse(
@@ -11600,6 +11679,7 @@ class DescribeChannelModeratorResponse {
   DescribeChannelModeratorResponse({
     this.channelModerator,
   });
+
   factory DescribeChannelModeratorResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelModeratorResponse(
       channelModerator: json['ChannelModerator'] != null
@@ -11624,6 +11704,7 @@ class DescribeChannelResponse {
   DescribeChannelResponse({
     this.channel,
   });
+
   factory DescribeChannelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelResponse(
       channel: json['Channel'] != null
@@ -11642,6 +11723,7 @@ class DescribeChannelResponse {
 
 class DisassociatePhoneNumberFromUserResponse {
   DisassociatePhoneNumberFromUserResponse();
+
   factory DisassociatePhoneNumberFromUserResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociatePhoneNumberFromUserResponse();
@@ -11661,6 +11743,7 @@ class DisassociatePhoneNumbersFromVoiceConnectorGroupResponse {
   DisassociatePhoneNumbersFromVoiceConnectorGroupResponse({
     this.phoneNumberErrors,
   });
+
   factory DisassociatePhoneNumbersFromVoiceConnectorGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociatePhoneNumbersFromVoiceConnectorGroupResponse(
@@ -11688,6 +11771,7 @@ class DisassociatePhoneNumbersFromVoiceConnectorResponse {
   DisassociatePhoneNumbersFromVoiceConnectorResponse({
     this.phoneNumberErrors,
   });
+
   factory DisassociatePhoneNumbersFromVoiceConnectorResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociatePhoneNumbersFromVoiceConnectorResponse(
@@ -11708,6 +11792,7 @@ class DisassociatePhoneNumbersFromVoiceConnectorResponse {
 
 class DisassociateSigninDelegateGroupsFromAccountResponse {
   DisassociateSigninDelegateGroupsFromAccountResponse();
+
   factory DisassociateSigninDelegateGroupsFromAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateSigninDelegateGroupsFromAccountResponse();
@@ -11761,6 +11846,7 @@ class EmergencyCallingConfiguration {
   EmergencyCallingConfiguration({
     this.dnis,
   });
+
   factory EmergencyCallingConfiguration.fromJson(Map<String, dynamic> json) {
     return EmergencyCallingConfiguration(
       dnis: (json['DNIS'] as List?)
@@ -11889,6 +11975,7 @@ class EventsConfiguration {
     this.lambdaFunctionArn,
     this.outboundEventsHTTPSEndpoint,
   });
+
   factory EventsConfiguration.fromJson(Map<String, dynamic> json) {
     return EventsConfiguration(
       botId: json['BotId'] as String?,
@@ -11951,6 +12038,7 @@ class GeoMatchParams {
     required this.areaCode,
     required this.country,
   });
+
   factory GeoMatchParams.fromJson(Map<String, dynamic> json) {
     return GeoMatchParams(
       areaCode: json['AreaCode'] as String,
@@ -11975,6 +12063,7 @@ class GetAccountResponse {
   GetAccountResponse({
     this.account,
   });
+
   factory GetAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountResponse(
       account: json['Account'] != null
@@ -11998,6 +12087,7 @@ class GetAccountSettingsResponse {
   GetAccountSettingsResponse({
     this.accountSettings,
   });
+
   factory GetAccountSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountSettingsResponse(
       accountSettings: json['AccountSettings'] != null
@@ -12027,6 +12117,7 @@ class GetAppInstanceRetentionSettingsResponse {
     this.appInstanceRetentionSettings,
     this.initiateDeletionTimestamp,
   });
+
   factory GetAppInstanceRetentionSettingsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAppInstanceRetentionSettingsResponse(
@@ -12060,6 +12151,7 @@ class GetAppInstanceStreamingConfigurationsResponse {
   GetAppInstanceStreamingConfigurationsResponse({
     this.appInstanceStreamingConfigurations,
   });
+
   factory GetAppInstanceStreamingConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAppInstanceStreamingConfigurationsResponse(
@@ -12090,6 +12182,7 @@ class GetAttendeeResponse {
   GetAttendeeResponse({
     this.attendee,
   });
+
   factory GetAttendeeResponse.fromJson(Map<String, dynamic> json) {
     return GetAttendeeResponse(
       attendee: json['Attendee'] != null
@@ -12113,6 +12206,7 @@ class GetBotResponse {
   GetBotResponse({
     this.bot,
   });
+
   factory GetBotResponse.fromJson(Map<String, dynamic> json) {
     return GetBotResponse(
       bot: json['Bot'] != null
@@ -12136,6 +12230,7 @@ class GetChannelMessageResponse {
   GetChannelMessageResponse({
     this.channelMessage,
   });
+
   factory GetChannelMessageResponse.fromJson(Map<String, dynamic> json) {
     return GetChannelMessageResponse(
       channelMessage: json['ChannelMessage'] != null
@@ -12160,6 +12255,7 @@ class GetEventsConfigurationResponse {
   GetEventsConfigurationResponse({
     this.eventsConfiguration,
   });
+
   factory GetEventsConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetEventsConfigurationResponse(
       eventsConfiguration: json['EventsConfiguration'] != null
@@ -12189,6 +12285,7 @@ class GetGlobalSettingsResponse {
     this.businessCalling,
     this.voiceConnector,
   });
+
   factory GetGlobalSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetGlobalSettingsResponse(
       businessCalling: json['BusinessCalling'] != null
@@ -12219,6 +12316,7 @@ class GetMediaCapturePipelineResponse {
   GetMediaCapturePipelineResponse({
     this.mediaCapturePipeline,
   });
+
   factory GetMediaCapturePipelineResponse.fromJson(Map<String, dynamic> json) {
     return GetMediaCapturePipelineResponse(
       mediaCapturePipeline: json['MediaCapturePipeline'] != null
@@ -12244,6 +12342,7 @@ class GetMeetingResponse {
   GetMeetingResponse({
     this.meeting,
   });
+
   factory GetMeetingResponse.fromJson(Map<String, dynamic> json) {
     return GetMeetingResponse(
       meeting: json['Meeting'] != null
@@ -12267,6 +12366,7 @@ class GetMessagingSessionEndpointResponse {
   GetMessagingSessionEndpointResponse({
     this.endpoint,
   });
+
   factory GetMessagingSessionEndpointResponse.fromJson(
       Map<String, dynamic> json) {
     return GetMessagingSessionEndpointResponse(
@@ -12292,6 +12392,7 @@ class GetPhoneNumberOrderResponse {
   GetPhoneNumberOrderResponse({
     this.phoneNumberOrder,
   });
+
   factory GetPhoneNumberOrderResponse.fromJson(Map<String, dynamic> json) {
     return GetPhoneNumberOrderResponse(
       phoneNumberOrder: json['PhoneNumberOrder'] != null
@@ -12316,6 +12417,7 @@ class GetPhoneNumberResponse {
   GetPhoneNumberResponse({
     this.phoneNumber,
   });
+
   factory GetPhoneNumberResponse.fromJson(Map<String, dynamic> json) {
     return GetPhoneNumberResponse(
       phoneNumber: json['PhoneNumber'] != null
@@ -12343,6 +12445,7 @@ class GetPhoneNumberSettingsResponse {
     this.callingName,
     this.callingNameUpdatedTimestamp,
   });
+
   factory GetPhoneNumberSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetPhoneNumberSettingsResponse(
       callingName: json['CallingName'] as String?,
@@ -12370,6 +12473,7 @@ class GetProxySessionResponse {
   GetProxySessionResponse({
     this.proxySession,
   });
+
   factory GetProxySessionResponse.fromJson(Map<String, dynamic> json) {
     return GetProxySessionResponse(
       proxySession: json['ProxySession'] != null
@@ -12398,6 +12502,7 @@ class GetRetentionSettingsResponse {
     this.initiateDeletionTimestamp,
     this.retentionSettings,
   });
+
   factory GetRetentionSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetRetentionSettingsResponse(
       initiateDeletionTimestamp:
@@ -12427,6 +12532,7 @@ class GetRoomResponse {
   GetRoomResponse({
     this.room,
   });
+
   factory GetRoomResponse.fromJson(Map<String, dynamic> json) {
     return GetRoomResponse(
       room: json['Room'] != null
@@ -12451,6 +12557,7 @@ class GetSipMediaApplicationLoggingConfigurationResponse {
   GetSipMediaApplicationLoggingConfigurationResponse({
     this.sipMediaApplicationLoggingConfiguration,
   });
+
   factory GetSipMediaApplicationLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSipMediaApplicationLoggingConfigurationResponse(
@@ -12481,6 +12588,7 @@ class GetSipMediaApplicationResponse {
   GetSipMediaApplicationResponse({
     this.sipMediaApplication,
   });
+
   factory GetSipMediaApplicationResponse.fromJson(Map<String, dynamic> json) {
     return GetSipMediaApplicationResponse(
       sipMediaApplication: json['SipMediaApplication'] != null
@@ -12506,6 +12614,7 @@ class GetSipRuleResponse {
   GetSipRuleResponse({
     this.sipRule,
   });
+
   factory GetSipRuleResponse.fromJson(Map<String, dynamic> json) {
     return GetSipRuleResponse(
       sipRule: json['SipRule'] != null
@@ -12529,6 +12638,7 @@ class GetUserResponse {
   GetUserResponse({
     this.user,
   });
+
   factory GetUserResponse.fromJson(Map<String, dynamic> json) {
     return GetUserResponse(
       user: json['User'] != null
@@ -12552,6 +12662,7 @@ class GetUserSettingsResponse {
   GetUserSettingsResponse({
     this.userSettings,
   });
+
   factory GetUserSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetUserSettingsResponse(
       userSettings: json['UserSettings'] != null
@@ -12575,6 +12686,7 @@ class GetVoiceConnectorEmergencyCallingConfigurationResponse {
   GetVoiceConnectorEmergencyCallingConfigurationResponse({
     this.emergencyCallingConfiguration,
   });
+
   factory GetVoiceConnectorEmergencyCallingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorEmergencyCallingConfigurationResponse(
@@ -12602,6 +12714,7 @@ class GetVoiceConnectorGroupResponse {
   GetVoiceConnectorGroupResponse({
     this.voiceConnectorGroup,
   });
+
   factory GetVoiceConnectorGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetVoiceConnectorGroupResponse(
       voiceConnectorGroup: json['VoiceConnectorGroup'] != null
@@ -12627,6 +12740,7 @@ class GetVoiceConnectorLoggingConfigurationResponse {
   GetVoiceConnectorLoggingConfigurationResponse({
     this.loggingConfiguration,
   });
+
   factory GetVoiceConnectorLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorLoggingConfigurationResponse(
@@ -12653,6 +12767,7 @@ class GetVoiceConnectorOriginationResponse {
   GetVoiceConnectorOriginationResponse({
     this.origination,
   });
+
   factory GetVoiceConnectorOriginationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorOriginationResponse(
@@ -12677,6 +12792,7 @@ class GetVoiceConnectorProxyResponse {
   GetVoiceConnectorProxyResponse({
     this.proxy,
   });
+
   factory GetVoiceConnectorProxyResponse.fromJson(Map<String, dynamic> json) {
     return GetVoiceConnectorProxyResponse(
       proxy: json['Proxy'] != null
@@ -12700,6 +12816,7 @@ class GetVoiceConnectorResponse {
   GetVoiceConnectorResponse({
     this.voiceConnector,
   });
+
   factory GetVoiceConnectorResponse.fromJson(Map<String, dynamic> json) {
     return GetVoiceConnectorResponse(
       voiceConnector: json['VoiceConnector'] != null
@@ -12724,6 +12841,7 @@ class GetVoiceConnectorStreamingConfigurationResponse {
   GetVoiceConnectorStreamingConfigurationResponse({
     this.streamingConfiguration,
   });
+
   factory GetVoiceConnectorStreamingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorStreamingConfigurationResponse(
@@ -12750,6 +12868,7 @@ class GetVoiceConnectorTerminationHealthResponse {
   GetVoiceConnectorTerminationHealthResponse({
     this.terminationHealth,
   });
+
   factory GetVoiceConnectorTerminationHealthResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorTerminationHealthResponse(
@@ -12775,6 +12894,7 @@ class GetVoiceConnectorTerminationResponse {
   GetVoiceConnectorTerminationResponse({
     this.termination,
   });
+
   factory GetVoiceConnectorTerminationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetVoiceConnectorTerminationResponse(
@@ -12804,6 +12924,7 @@ class Identity {
     this.arn,
     this.name,
   });
+
   factory Identity.fromJson(Map<String, dynamic> json) {
     return Identity(
       arn: json['Arn'] as String?,
@@ -12842,6 +12963,7 @@ class Invite {
     this.inviteId,
     this.status,
   });
+
   factory Invite.fromJson(Map<String, dynamic> json) {
     return Invite(
       emailAddress: json['EmailAddress'] as String?,
@@ -12905,6 +13027,7 @@ class InviteUsersResponse {
   InviteUsersResponse({
     this.invites,
   });
+
   factory InviteUsersResponse.fromJson(Map<String, dynamic> json) {
     return InviteUsersResponse(
       invites: (json['Invites'] as List?)
@@ -12971,6 +13094,7 @@ class ListAccountsResponse {
     this.accounts,
     this.nextToken,
   });
+
   factory ListAccountsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountsResponse(
       accounts: (json['Accounts'] as List?)
@@ -13007,6 +13131,7 @@ class ListAppInstanceAdminsResponse {
     this.appInstanceArn,
     this.nextToken,
   });
+
   factory ListAppInstanceAdminsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppInstanceAdminsResponse(
       appInstanceAdmins: (json['AppInstanceAdmins'] as List?)
@@ -13047,6 +13172,7 @@ class ListAppInstanceUsersResponse {
     this.appInstanceUsers,
     this.nextToken,
   });
+
   factory ListAppInstanceUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListAppInstanceUsersResponse(
       appInstanceArn: json['AppInstanceArn'] as String?,
@@ -13083,6 +13209,7 @@ class ListAppInstancesResponse {
     this.appInstances,
     this.nextToken,
   });
+
   factory ListAppInstancesResponse.fromJson(Map<String, dynamic> json) {
     return ListAppInstancesResponse(
       appInstances: (json['AppInstances'] as List?)
@@ -13110,6 +13237,7 @@ class ListAttendeeTagsResponse {
   ListAttendeeTagsResponse({
     this.tags,
   });
+
   factory ListAttendeeTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListAttendeeTagsResponse(
       tags: (json['Tags'] as List?)
@@ -13138,6 +13266,7 @@ class ListAttendeesResponse {
     this.attendees,
     this.nextToken,
   });
+
   factory ListAttendeesResponse.fromJson(Map<String, dynamic> json) {
     return ListAttendeesResponse(
       attendees: (json['Attendees'] as List?)
@@ -13169,6 +13298,7 @@ class ListBotsResponse {
     this.bots,
     this.nextToken,
   });
+
   factory ListBotsResponse.fromJson(Map<String, dynamic> json) {
     return ListBotsResponse(
       bots: (json['Bots'] as List?)
@@ -13205,6 +13335,7 @@ class ListChannelBansResponse {
     this.channelBans,
     this.nextToken,
   });
+
   factory ListChannelBansResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelBansResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -13241,6 +13372,7 @@ class ListChannelMembershipsForAppInstanceUserResponse {
     this.channelMemberships,
     this.nextToken,
   });
+
   factory ListChannelMembershipsForAppInstanceUserResponse.fromJson(
       Map<String, dynamic> json) {
     return ListChannelMembershipsForAppInstanceUserResponse(
@@ -13279,6 +13411,7 @@ class ListChannelMembershipsResponse {
     this.channelMemberships,
     this.nextToken,
   });
+
   factory ListChannelMembershipsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelMembershipsResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -13319,6 +13452,7 @@ class ListChannelMessagesResponse {
     this.channelMessages,
     this.nextToken,
   });
+
   factory ListChannelMessagesResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelMessagesResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -13358,6 +13492,7 @@ class ListChannelModeratorsResponse {
     this.channelModerators,
     this.nextToken,
   });
+
   factory ListChannelModeratorsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelModeratorsResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -13394,6 +13529,7 @@ class ListChannelsModeratedByAppInstanceUserResponse {
     this.channels,
     this.nextToken,
   });
+
   factory ListChannelsModeratedByAppInstanceUserResponse.fromJson(
       Map<String, dynamic> json) {
     return ListChannelsModeratedByAppInstanceUserResponse(
@@ -13428,6 +13564,7 @@ class ListChannelsResponse {
     this.channels,
     this.nextToken,
   });
+
   factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelsResponse(
       channels: (json['Channels'] as List?)
@@ -13459,6 +13596,7 @@ class ListMediaCapturePipelinesResponse {
     this.mediaCapturePipelines,
     this.nextToken,
   });
+
   factory ListMediaCapturePipelinesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListMediaCapturePipelinesResponse(
@@ -13488,6 +13626,7 @@ class ListMeetingTagsResponse {
   ListMeetingTagsResponse({
     this.tags,
   });
+
   factory ListMeetingTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListMeetingTagsResponse(
       tags: (json['Tags'] as List?)
@@ -13516,6 +13655,7 @@ class ListMeetingsResponse {
     this.meetings,
     this.nextToken,
   });
+
   factory ListMeetingsResponse.fromJson(Map<String, dynamic> json) {
     return ListMeetingsResponse(
       meetings: (json['Meetings'] as List?)
@@ -13547,6 +13687,7 @@ class ListPhoneNumberOrdersResponse {
     this.nextToken,
     this.phoneNumberOrders,
   });
+
   factory ListPhoneNumberOrdersResponse.fromJson(Map<String, dynamic> json) {
     return ListPhoneNumberOrdersResponse(
       nextToken: json['NextToken'] as String?,
@@ -13578,6 +13719,7 @@ class ListPhoneNumbersResponse {
     this.nextToken,
     this.phoneNumbers,
   });
+
   factory ListPhoneNumbersResponse.fromJson(Map<String, dynamic> json) {
     return ListPhoneNumbersResponse(
       nextToken: json['NextToken'] as String?,
@@ -13609,6 +13751,7 @@ class ListProxySessionsResponse {
     this.nextToken,
     this.proxySessions,
   });
+
   factory ListProxySessionsResponse.fromJson(Map<String, dynamic> json) {
     return ListProxySessionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13640,6 +13783,7 @@ class ListRoomMembershipsResponse {
     this.nextToken,
     this.roomMemberships,
   });
+
   factory ListRoomMembershipsResponse.fromJson(Map<String, dynamic> json) {
     return ListRoomMembershipsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13671,6 +13815,7 @@ class ListRoomsResponse {
     this.nextToken,
     this.rooms,
   });
+
   factory ListRoomsResponse.fromJson(Map<String, dynamic> json) {
     return ListRoomsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13702,6 +13847,7 @@ class ListSipMediaApplicationsResponse {
     this.nextToken,
     this.sipMediaApplications,
   });
+
   factory ListSipMediaApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListSipMediaApplicationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13734,6 +13880,7 @@ class ListSipRulesResponse {
     this.nextToken,
     this.sipRules,
   });
+
   factory ListSipRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListSipRulesResponse(
       nextToken: json['NextToken'] as String?,
@@ -13761,6 +13908,7 @@ class ListSupportedPhoneNumberCountriesResponse {
   ListSupportedPhoneNumberCountriesResponse({
     this.phoneNumberCountries,
   });
+
   factory ListSupportedPhoneNumberCountriesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListSupportedPhoneNumberCountriesResponse(
@@ -13787,6 +13935,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -13815,6 +13964,7 @@ class ListUsersResponse {
     this.nextToken,
     this.users,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       nextToken: json['NextToken'] as String?,
@@ -13846,6 +13996,7 @@ class ListVoiceConnectorGroupsResponse {
     this.nextToken,
     this.voiceConnectorGroups,
   });
+
   factory ListVoiceConnectorGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListVoiceConnectorGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13874,6 +14025,7 @@ class ListVoiceConnectorTerminationCredentialsResponse {
   ListVoiceConnectorTerminationCredentialsResponse({
     this.usernames,
   });
+
   factory ListVoiceConnectorTerminationCredentialsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListVoiceConnectorTerminationCredentialsResponse(
@@ -13903,6 +14055,7 @@ class ListVoiceConnectorsResponse {
     this.nextToken,
     this.voiceConnectors,
   });
+
   factory ListVoiceConnectorsResponse.fromJson(Map<String, dynamic> json) {
     return ListVoiceConnectorsResponse(
       nextToken: json['NextToken'] as String?,
@@ -13933,6 +14086,7 @@ class LoggingConfiguration {
   LoggingConfiguration({
     this.enableSIPLogs,
   });
+
   factory LoggingConfiguration.fromJson(Map<String, dynamic> json) {
     return LoggingConfiguration(
       enableSIPLogs: json['EnableSIPLogs'] as bool?,
@@ -13949,6 +14103,7 @@ class LoggingConfiguration {
 
 class LogoutUserResponse {
   LogoutUserResponse();
+
   factory LogoutUserResponse.fromJson(Map<String, dynamic> _) {
     return LogoutUserResponse();
   }
@@ -13997,6 +14152,7 @@ class MediaCapturePipeline {
     this.status,
     this.updatedTimestamp,
   });
+
   factory MediaCapturePipeline.fromJson(Map<String, dynamic> json) {
     return MediaCapturePipeline(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -14160,6 +14316,7 @@ class MediaPlacement {
     this.signalingUrl,
     this.turnControlUrl,
   });
+
   factory MediaPlacement.fromJson(Map<String, dynamic> json) {
     return MediaPlacement(
       audioFallbackUrl: json['AudioFallbackUrl'] as String?,
@@ -14223,6 +14380,7 @@ class Meeting {
     this.mediaRegion,
     this.meetingId,
   });
+
   factory Meeting.fromJson(Map<String, dynamic> json) {
     return Meeting(
       externalMeetingId: json['ExternalMeetingId'] as String?,
@@ -14264,6 +14422,7 @@ class MeetingNotificationConfiguration {
     this.snsTopicArn,
     this.sqsQueueArn,
   });
+
   factory MeetingNotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return MeetingNotificationConfiguration(
       snsTopicArn: json['SnsTopicArn'] as String?,
@@ -14305,6 +14464,7 @@ class Member {
     this.memberId,
     this.memberType,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['AccountId'] as String?,
@@ -14347,6 +14507,7 @@ class MemberError {
     this.errorMessage,
     this.memberId,
   });
+
   factory MemberError.fromJson(Map<String, dynamic> json) {
     return MemberError(
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
@@ -14412,6 +14573,7 @@ class MembershipItem {
     this.memberId,
     this.role,
   });
+
   factory MembershipItem.fromJson(Map<String, dynamic> json) {
     return MembershipItem(
       memberId: json['MemberId'] as String?,
@@ -14437,6 +14599,7 @@ class MessagingSessionEndpoint {
   MessagingSessionEndpoint({
     this.url,
   });
+
   factory MessagingSessionEndpoint.fromJson(Map<String, dynamic> json) {
     return MessagingSessionEndpoint(
       url: json['Url'] as String?,
@@ -14524,6 +14687,7 @@ class OrderedPhoneNumber {
     this.e164PhoneNumber,
     this.status,
   });
+
   factory OrderedPhoneNumber.fromJson(Map<String, dynamic> json) {
     return OrderedPhoneNumber(
       e164PhoneNumber: json['E164PhoneNumber'] as String?,
@@ -14589,6 +14753,7 @@ class Origination {
     this.disabled,
     this.routes,
   });
+
   factory Origination.fromJson(Map<String, dynamic> json) {
     return Origination(
       disabled: json['Disabled'] as bool?,
@@ -14638,6 +14803,7 @@ class OriginationRoute {
     this.protocol,
     this.weight,
   });
+
   factory OriginationRoute.fromJson(Map<String, dynamic> json) {
     return OriginationRoute(
       host: json['Host'] as String?,
@@ -14705,6 +14871,7 @@ class Participant {
     this.phoneNumber,
     this.proxyPhoneNumber,
   });
+
   factory Participant.fromJson(Map<String, dynamic> json) {
     return Participant(
       phoneNumber: json['PhoneNumber'] as String?,
@@ -14779,6 +14946,7 @@ class PhoneNumber {
     this.type,
     this.updatedTimestamp,
   });
+
   factory PhoneNumber.fromJson(Map<String, dynamic> json) {
     return PhoneNumber(
       associations: (json['Associations'] as List?)
@@ -14860,6 +15028,7 @@ class PhoneNumberAssociation {
     this.name,
     this.value,
   });
+
   factory PhoneNumberAssociation.fromJson(Map<String, dynamic> json) {
     return PhoneNumberAssociation(
       associatedTimestamp: timeStampFromJson(json['AssociatedTimestamp']),
@@ -14953,6 +15122,7 @@ class PhoneNumberCapabilities {
     this.outboundMMS,
     this.outboundSMS,
   });
+
   factory PhoneNumberCapabilities.fromJson(Map<String, dynamic> json) {
     return PhoneNumberCapabilities(
       inboundCall: json['InboundCall'] as bool?,
@@ -14994,6 +15164,7 @@ class PhoneNumberCountry {
     this.countryCode,
     this.supportedPhoneNumberTypes,
   });
+
   factory PhoneNumberCountry.fromJson(Map<String, dynamic> json) {
     return PhoneNumberCountry(
       countryCode: json['CountryCode'] as String?,
@@ -15034,6 +15205,7 @@ class PhoneNumberError {
     this.errorMessage,
     this.phoneNumberId,
   });
+
   factory PhoneNumberError.fromJson(Map<String, dynamic> json) {
     return PhoneNumberError(
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
@@ -15083,6 +15255,7 @@ class PhoneNumberOrder {
     this.status,
     this.updatedTimestamp,
   });
+
   factory PhoneNumberOrder.fromJson(Map<String, dynamic> json) {
     return PhoneNumberOrder(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -15296,6 +15469,7 @@ class Proxy {
     this.fallBackPhoneNumber,
     this.phoneNumberCountries,
   });
+
   factory Proxy.fromJson(Map<String, dynamic> json) {
     return Proxy(
       defaultSessionExpiryMinutes: json['DefaultSessionExpiryMinutes'] as int?,
@@ -15383,6 +15557,7 @@ class ProxySession {
     this.updatedTimestamp,
     this.voiceConnectorId,
   });
+
   factory ProxySession.fromJson(Map<String, dynamic> json) {
     return ProxySession(
       capabilities: (json['Capabilities'] as List?)
@@ -15492,6 +15667,7 @@ class PutAppInstanceRetentionSettingsResponse {
     this.appInstanceRetentionSettings,
     this.initiateDeletionTimestamp,
   });
+
   factory PutAppInstanceRetentionSettingsResponse.fromJson(
       Map<String, dynamic> json) {
     return PutAppInstanceRetentionSettingsResponse(
@@ -15525,6 +15701,7 @@ class PutAppInstanceStreamingConfigurationsResponse {
   PutAppInstanceStreamingConfigurationsResponse({
     this.appInstanceStreamingConfigurations,
   });
+
   factory PutAppInstanceStreamingConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return PutAppInstanceStreamingConfigurationsResponse(
@@ -15554,6 +15731,7 @@ class PutEventsConfigurationResponse {
   PutEventsConfigurationResponse({
     this.eventsConfiguration,
   });
+
   factory PutEventsConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return PutEventsConfigurationResponse(
       eventsConfiguration: json['EventsConfiguration'] != null
@@ -15584,6 +15762,7 @@ class PutRetentionSettingsResponse {
     this.initiateDeletionTimestamp,
     this.retentionSettings,
   });
+
   factory PutRetentionSettingsResponse.fromJson(Map<String, dynamic> json) {
     return PutRetentionSettingsResponse(
       initiateDeletionTimestamp:
@@ -15613,6 +15792,7 @@ class PutSipMediaApplicationLoggingConfigurationResponse {
   PutSipMediaApplicationLoggingConfigurationResponse({
     this.sipMediaApplicationLoggingConfiguration,
   });
+
   factory PutSipMediaApplicationLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutSipMediaApplicationLoggingConfigurationResponse(
@@ -15643,6 +15823,7 @@ class PutVoiceConnectorEmergencyCallingConfigurationResponse {
   PutVoiceConnectorEmergencyCallingConfigurationResponse({
     this.emergencyCallingConfiguration,
   });
+
   factory PutVoiceConnectorEmergencyCallingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutVoiceConnectorEmergencyCallingConfigurationResponse(
@@ -15670,6 +15851,7 @@ class PutVoiceConnectorLoggingConfigurationResponse {
   PutVoiceConnectorLoggingConfigurationResponse({
     this.loggingConfiguration,
   });
+
   factory PutVoiceConnectorLoggingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutVoiceConnectorLoggingConfigurationResponse(
@@ -15696,6 +15878,7 @@ class PutVoiceConnectorOriginationResponse {
   PutVoiceConnectorOriginationResponse({
     this.origination,
   });
+
   factory PutVoiceConnectorOriginationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutVoiceConnectorOriginationResponse(
@@ -15720,6 +15903,7 @@ class PutVoiceConnectorProxyResponse {
   PutVoiceConnectorProxyResponse({
     this.proxy,
   });
+
   factory PutVoiceConnectorProxyResponse.fromJson(Map<String, dynamic> json) {
     return PutVoiceConnectorProxyResponse(
       proxy: json['Proxy'] != null
@@ -15743,6 +15927,7 @@ class PutVoiceConnectorStreamingConfigurationResponse {
   PutVoiceConnectorStreamingConfigurationResponse({
     this.streamingConfiguration,
   });
+
   factory PutVoiceConnectorStreamingConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutVoiceConnectorStreamingConfigurationResponse(
@@ -15769,6 +15954,7 @@ class PutVoiceConnectorTerminationResponse {
   PutVoiceConnectorTerminationResponse({
     this.termination,
   });
+
   factory PutVoiceConnectorTerminationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutVoiceConnectorTerminationResponse(
@@ -15797,6 +15983,7 @@ class RedactChannelMessageResponse {
     this.channelArn,
     this.messageId,
   });
+
   factory RedactChannelMessageResponse.fromJson(Map<String, dynamic> json) {
     return RedactChannelMessageResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -15816,6 +16003,7 @@ class RedactChannelMessageResponse {
 
 class RedactConversationMessageResponse {
   RedactConversationMessageResponse();
+
   factory RedactConversationMessageResponse.fromJson(Map<String, dynamic> _) {
     return RedactConversationMessageResponse();
   }
@@ -15827,6 +16015,7 @@ class RedactConversationMessageResponse {
 
 class RedactRoomMessageResponse {
   RedactRoomMessageResponse();
+
   factory RedactRoomMessageResponse.fromJson(Map<String, dynamic> _) {
     return RedactRoomMessageResponse();
   }
@@ -15842,6 +16031,7 @@ class RegenerateSecurityTokenResponse {
   RegenerateSecurityTokenResponse({
     this.bot,
   });
+
   factory RegenerateSecurityTokenResponse.fromJson(Map<String, dynamic> json) {
     return RegenerateSecurityTokenResponse(
       bot: json['Bot'] != null
@@ -15898,6 +16088,7 @@ class ResetPersonalPINResponse {
   ResetPersonalPINResponse({
     this.user,
   });
+
   factory ResetPersonalPINResponse.fromJson(Map<String, dynamic> json) {
     return ResetPersonalPINResponse(
       user: json['User'] != null
@@ -15921,6 +16112,7 @@ class RestorePhoneNumberResponse {
   RestorePhoneNumberResponse({
     this.phoneNumber,
   });
+
   factory RestorePhoneNumberResponse.fromJson(Map<String, dynamic> json) {
     return RestorePhoneNumberResponse(
       phoneNumber: json['PhoneNumber'] != null
@@ -15951,6 +16143,7 @@ class RetentionSettings {
     this.conversationRetentionSettings,
     this.roomRetentionSettings,
   });
+
   factory RetentionSettings.fromJson(Map<String, dynamic> json) {
     return RetentionSettings(
       conversationRetentionSettings:
@@ -16005,6 +16198,7 @@ class Room {
     this.roomId,
     this.updatedTimestamp,
   });
+
   factory Room.fromJson(Map<String, dynamic> json) {
     return Room(
       accountId: json['AccountId'] as String?,
@@ -16058,6 +16252,7 @@ class RoomMembership {
     this.roomId,
     this.updatedTimestamp,
   });
+
   factory RoomMembership.fromJson(Map<String, dynamic> json) {
     return RoomMembership(
       invitedBy: json['InvitedBy'] as String?,
@@ -16124,6 +16319,7 @@ class RoomRetentionSettings {
   RoomRetentionSettings({
     this.retentionDays,
   });
+
   factory RoomRetentionSettings.fromJson(Map<String, dynamic> json) {
     return RoomRetentionSettings(
       retentionDays: json['RetentionDays'] as int?,
@@ -16149,6 +16345,7 @@ class SearchAvailablePhoneNumbersResponse {
     this.e164PhoneNumbers,
     this.nextToken,
   });
+
   factory SearchAvailablePhoneNumbersResponse.fromJson(
       Map<String, dynamic> json) {
     return SearchAvailablePhoneNumbersResponse(
@@ -16181,6 +16378,7 @@ class SendChannelMessageResponse {
     this.channelArn,
     this.messageId,
   });
+
   factory SendChannelMessageResponse.fromJson(Map<String, dynamic> json) {
     return SendChannelMessageResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -16207,6 +16405,7 @@ class SigninDelegateGroup {
   SigninDelegateGroup({
     this.groupName,
   });
+
   factory SigninDelegateGroup.fromJson(Map<String, dynamic> json) {
     return SigninDelegateGroup(
       groupName: json['GroupName'] as String?,
@@ -16251,6 +16450,7 @@ class SipMediaApplication {
     this.sipMediaApplicationId,
     this.updatedTimestamp,
   });
+
   factory SipMediaApplication.fromJson(Map<String, dynamic> json) {
     return SipMediaApplication(
       awsRegion: json['AwsRegion'] as String?,
@@ -16295,6 +16495,7 @@ class SipMediaApplicationCall {
   SipMediaApplicationCall({
     this.transactionId,
   });
+
   factory SipMediaApplicationCall.fromJson(Map<String, dynamic> json) {
     return SipMediaApplicationCall(
       transactionId: json['TransactionId'] as String?,
@@ -16318,6 +16519,7 @@ class SipMediaApplicationEndpoint {
   SipMediaApplicationEndpoint({
     this.lambdaArn,
   });
+
   factory SipMediaApplicationEndpoint.fromJson(Map<String, dynamic> json) {
     return SipMediaApplicationEndpoint(
       lambdaArn: json['LambdaArn'] as String?,
@@ -16340,6 +16542,7 @@ class SipMediaApplicationLoggingConfiguration {
   SipMediaApplicationLoggingConfiguration({
     this.enableSipMediaApplicationMessageLogs,
   });
+
   factory SipMediaApplicationLoggingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SipMediaApplicationLoggingConfiguration(
@@ -16405,6 +16608,7 @@ class SipRule {
     this.triggerValue,
     this.updatedTimestamp,
   });
+
   factory SipRule.fromJson(Map<String, dynamic> json) {
     return SipRule(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -16464,6 +16668,7 @@ class SipRuleTargetApplication {
     this.priority,
     this.sipMediaApplicationId,
   });
+
   factory SipRuleTargetApplication.fromJson(Map<String, dynamic> json) {
     return SipRuleTargetApplication(
       awsRegion: json['AwsRegion'] as String?,
@@ -16559,6 +16764,7 @@ class StreamingConfiguration {
     this.disabled,
     this.streamingNotificationTargets,
   });
+
   factory StreamingConfiguration.fromJson(Map<String, dynamic> json) {
     return StreamingConfiguration(
       dataRetentionInHours: json['DataRetentionInHours'] as int,
@@ -16593,6 +16799,7 @@ class StreamingNotificationTarget {
   StreamingNotificationTarget({
     required this.notificationTarget,
   });
+
   factory StreamingNotificationTarget.fromJson(Map<String, dynamic> json) {
     return StreamingNotificationTarget(
       notificationTarget:
@@ -16620,6 +16827,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -16654,6 +16862,7 @@ class TelephonySettings {
     required this.outboundCalling,
     required this.sms,
   });
+
   factory TelephonySettings.fromJson(Map<String, dynamic> json) {
     return TelephonySettings(
       inboundCalling: json['InboundCalling'] as bool,
@@ -16701,6 +16910,7 @@ class Termination {
     this.defaultPhoneNumber,
     this.disabled,
   });
+
   factory Termination.fromJson(Map<String, dynamic> json) {
     return Termination(
       callingRegions: (json['CallingRegions'] as List?)
@@ -16747,6 +16957,7 @@ class TerminationHealth {
     this.source,
     this.timestamp,
   });
+
   factory TerminationHealth.fromJson(Map<String, dynamic> json) {
     return TerminationHealth(
       source: json['Source'] as String?,
@@ -16771,6 +16982,7 @@ class UpdateAccountResponse {
   UpdateAccountResponse({
     this.account,
   });
+
   factory UpdateAccountResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAccountResponse(
       account: json['Account'] != null
@@ -16789,6 +17001,7 @@ class UpdateAccountResponse {
 
 class UpdateAccountSettingsResponse {
   UpdateAccountSettingsResponse();
+
   factory UpdateAccountSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAccountSettingsResponse();
   }
@@ -16805,6 +17018,7 @@ class UpdateAppInstanceResponse {
   UpdateAppInstanceResponse({
     this.appInstanceArn,
   });
+
   factory UpdateAppInstanceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAppInstanceResponse(
       appInstanceArn: json['AppInstanceArn'] as String?,
@@ -16826,6 +17040,7 @@ class UpdateAppInstanceUserResponse {
   UpdateAppInstanceUserResponse({
     this.appInstanceUserArn,
   });
+
   factory UpdateAppInstanceUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
@@ -16847,6 +17062,7 @@ class UpdateBotResponse {
   UpdateBotResponse({
     this.bot,
   });
+
   factory UpdateBotResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBotResponse(
       bot: json['Bot'] != null
@@ -16874,6 +17090,7 @@ class UpdateChannelMessageResponse {
     this.channelArn,
     this.messageId,
   });
+
   factory UpdateChannelMessageResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelMessageResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -16898,6 +17115,7 @@ class UpdateChannelReadMarkerResponse {
   UpdateChannelReadMarkerResponse({
     this.channelArn,
   });
+
   factory UpdateChannelReadMarkerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelReadMarkerResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -16919,6 +17137,7 @@ class UpdateChannelResponse {
   UpdateChannelResponse({
     this.channelArn,
   });
+
   factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
@@ -16950,6 +17169,7 @@ class UpdatePhoneNumberRequestItem {
     this.callingName,
     this.productType,
   });
+
   factory UpdatePhoneNumberRequestItem.fromJson(Map<String, dynamic> json) {
     return UpdatePhoneNumberRequestItem(
       phoneNumberId: json['PhoneNumberId'] as String,
@@ -16977,6 +17197,7 @@ class UpdatePhoneNumberResponse {
   UpdatePhoneNumberResponse({
     this.phoneNumber,
   });
+
   factory UpdatePhoneNumberResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePhoneNumberResponse(
       phoneNumber: json['PhoneNumber'] != null
@@ -17000,6 +17221,7 @@ class UpdateProxySessionResponse {
   UpdateProxySessionResponse({
     this.proxySession,
   });
+
   factory UpdateProxySessionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateProxySessionResponse(
       proxySession: json['ProxySession'] != null
@@ -17023,6 +17245,7 @@ class UpdateRoomMembershipResponse {
   UpdateRoomMembershipResponse({
     this.roomMembership,
   });
+
   factory UpdateRoomMembershipResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRoomMembershipResponse(
       roomMembership: json['RoomMembership'] != null
@@ -17047,6 +17270,7 @@ class UpdateRoomResponse {
   UpdateRoomResponse({
     this.room,
   });
+
   factory UpdateRoomResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRoomResponse(
       room: json['Room'] != null
@@ -17069,6 +17293,7 @@ class UpdateSipMediaApplicationCallResponse {
   UpdateSipMediaApplicationCallResponse({
     this.sipMediaApplicationCall,
   });
+
   factory UpdateSipMediaApplicationCallResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateSipMediaApplicationCallResponse(
@@ -17095,6 +17320,7 @@ class UpdateSipMediaApplicationResponse {
   UpdateSipMediaApplicationResponse({
     this.sipMediaApplication,
   });
+
   factory UpdateSipMediaApplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateSipMediaApplicationResponse(
@@ -17121,6 +17347,7 @@ class UpdateSipRuleResponse {
   UpdateSipRuleResponse({
     this.sipRule,
   });
+
   factory UpdateSipRuleResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSipRuleResponse(
       sipRule: json['SipRule'] != null
@@ -17158,6 +17385,7 @@ class UpdateUserRequestItem {
     this.licenseType,
     this.userType,
   });
+
   factory UpdateUserRequestItem.fromJson(Map<String, dynamic> json) {
     return UpdateUserRequestItem(
       userId: json['UserId'] as String,
@@ -17192,6 +17420,7 @@ class UpdateUserResponse {
   UpdateUserResponse({
     this.user,
   });
+
   factory UpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserResponse(
       user: json['User'] != null
@@ -17215,6 +17444,7 @@ class UpdateVoiceConnectorGroupResponse {
   UpdateVoiceConnectorGroupResponse({
     this.voiceConnectorGroup,
   });
+
   factory UpdateVoiceConnectorGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateVoiceConnectorGroupResponse(
@@ -17241,6 +17471,7 @@ class UpdateVoiceConnectorResponse {
   UpdateVoiceConnectorResponse({
     this.voiceConnector,
   });
+
   factory UpdateVoiceConnectorResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVoiceConnectorResponse(
       voiceConnector: json['VoiceConnector'] != null
@@ -17315,6 +17546,7 @@ class User {
     this.userRegistrationStatus,
     this.userType,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['UserId'] as String,
@@ -17393,6 +17625,7 @@ class UserError {
     this.errorMessage,
     this.userId,
   });
+
   factory UserError.fromJson(Map<String, dynamic> json) {
     return UserError(
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
@@ -17422,6 +17655,7 @@ class UserSettings {
   UserSettings({
     required this.telephony,
   });
+
   factory UserSettings.fromJson(Map<String, dynamic> json) {
     return UserSettings(
       telephony:
@@ -17500,6 +17734,7 @@ class VoiceConnector {
     this.updatedTimestamp,
     this.voiceConnectorId,
   });
+
   factory VoiceConnector.fromJson(Map<String, dynamic> json) {
     return VoiceConnector(
       awsRegion: (json['AwsRegion'] as String?)?.toVoiceConnectorAwsRegion(),
@@ -17591,6 +17826,7 @@ class VoiceConnectorGroup {
     this.voiceConnectorGroupId,
     this.voiceConnectorItems,
   });
+
   factory VoiceConnectorGroup.fromJson(Map<String, dynamic> json) {
     return VoiceConnectorGroup(
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
@@ -17641,6 +17877,7 @@ class VoiceConnectorItem {
     required this.priority,
     required this.voiceConnectorId,
   });
+
   factory VoiceConnectorItem.fromJson(Map<String, dynamic> json) {
     return VoiceConnectorItem(
       priority: json['Priority'] as int,
@@ -17667,6 +17904,7 @@ class VoiceConnectorSettings {
   VoiceConnectorSettings({
     this.cdrBucket,
   });
+
   factory VoiceConnectorSettings.fromJson(Map<String, dynamic> json) {
     return VoiceConnectorSettings(
       cdrBucket: json['CdrBucket'] as String?,

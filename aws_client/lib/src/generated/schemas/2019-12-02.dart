@@ -1245,6 +1245,7 @@ class CreateDiscovererResponse {
     this.state,
     this.tags,
   });
+
   factory CreateDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return CreateDiscovererResponse(
       description: json['Description'] as String?,
@@ -1294,6 +1295,7 @@ class CreateRegistryResponse {
     this.registryName,
     this.tags,
   });
+
   factory CreateRegistryResponse.fromJson(Map<String, dynamic> json) {
     return CreateRegistryResponse(
       description: json['Description'] as String?,
@@ -1351,6 +1353,7 @@ class CreateSchemaResponse {
     this.type,
     this.versionCreatedDate,
   });
+
   factory CreateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return CreateSchemaResponse(
       description: json['Description'] as String?,
@@ -1407,6 +1410,7 @@ class DescribeCodeBindingResponse {
     this.schemaVersion,
     this.status,
   });
+
   factory DescribeCodeBindingResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCodeBindingResponse(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -1457,6 +1461,7 @@ class DescribeDiscovererResponse {
     this.state,
     this.tags,
   });
+
   factory DescribeDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDiscovererResponse(
       description: json['Description'] as String?,
@@ -1506,6 +1511,7 @@ class DescribeRegistryResponse {
     this.registryName,
     this.tags,
   });
+
   factory DescribeRegistryResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRegistryResponse(
       description: json['Description'] as String?,
@@ -1569,6 +1575,7 @@ class DescribeSchemaResponse {
     this.type,
     this.versionCreatedDate,
   });
+
   factory DescribeSchemaResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSchemaResponse(
       content: json['Content'] as String?,
@@ -1660,6 +1667,7 @@ class DiscovererSummary {
     this.state,
     this.tags,
   });
+
   factory DiscovererSummary.fromJson(Map<String, dynamic> json) {
     return DiscovererSummary(
       discovererArn: json['DiscovererArn'] as String?,
@@ -1701,6 +1709,7 @@ class ExportSchemaResponse {
     this.schemaVersion,
     this.type,
   });
+
   factory ExportSchemaResponse.fromJson(Map<String, dynamic> json) {
     return ExportSchemaResponse(
       content: json['Content'] as String?,
@@ -1733,6 +1742,7 @@ class GetCodeBindingSourceResponse {
   GetCodeBindingSourceResponse({
     this.body,
   });
+
   factory GetCodeBindingSourceResponse.fromJson(Map<String, dynamic> json) {
     return GetCodeBindingSourceResponse(
       body: _s.decodeNullableUint8List(json['Body'] as String?),
@@ -1754,6 +1764,7 @@ class GetDiscoveredSchemaResponse {
   GetDiscoveredSchemaResponse({
     this.content,
   });
+
   factory GetDiscoveredSchemaResponse.fromJson(Map<String, dynamic> json) {
     return GetDiscoveredSchemaResponse(
       content: json['Content'] as String?,
@@ -1779,6 +1790,7 @@ class GetResourcePolicyResponse {
     this.policy,
     this.revisionId,
   });
+
   factory GetResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcePolicyResponse(
       policy:
@@ -1810,6 +1822,7 @@ class ListDiscoverersResponse {
     this.discoverers,
     this.nextToken,
   });
+
   factory ListDiscoverersResponse.fromJson(Map<String, dynamic> json) {
     return ListDiscoverersResponse(
       discoverers: (json['Discoverers'] as List?)
@@ -1843,6 +1856,7 @@ class ListRegistriesResponse {
     this.nextToken,
     this.registries,
   });
+
   factory ListRegistriesResponse.fromJson(Map<String, dynamic> json) {
     return ListRegistriesResponse(
       nextToken: json['NextToken'] as String?,
@@ -1876,6 +1890,7 @@ class ListSchemaVersionsResponse {
     this.nextToken,
     this.schemaVersions,
   });
+
   factory ListSchemaVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemaVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1909,6 +1924,7 @@ class ListSchemasResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory ListSchemasResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemasResponse(
       nextToken: json['NextToken'] as String?,
@@ -1935,6 +1951,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -1969,6 +1986,7 @@ class PutCodeBindingResponse {
     this.schemaVersion,
     this.status,
   });
+
   factory PutCodeBindingResponse.fromJson(Map<String, dynamic> json) {
     return PutCodeBindingResponse(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -2003,6 +2021,7 @@ class PutResourcePolicyResponse {
     this.policy,
     this.revisionId,
   });
+
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutResourcePolicyResponse(
       policy:
@@ -2036,6 +2055,7 @@ class RegistrySummary {
     this.registryName,
     this.tags,
   });
+
   factory RegistrySummary.fromJson(Map<String, dynamic> json) {
     return RegistrySummary(
       registryArn: json['RegistryArn'] as String?,
@@ -2081,6 +2101,7 @@ class SchemaSummary {
     this.tags,
     this.versionCount,
   });
+
   factory SchemaSummary.fromJson(Map<String, dynamic> json) {
     return SchemaSummary(
       lastModified: timeStampFromJson(json['LastModified']),
@@ -2127,6 +2148,7 @@ class SchemaVersionSummary {
     this.schemaVersion,
     this.type,
   });
+
   factory SchemaVersionSummary.fromJson(Map<String, dynamic> json) {
     return SchemaVersionSummary(
       schemaArn: json['SchemaArn'] as String?,
@@ -2169,6 +2191,7 @@ class SearchSchemaSummary {
     this.schemaName,
     this.schemaVersions,
   });
+
   factory SearchSchemaSummary.fromJson(Map<String, dynamic> json) {
     return SearchSchemaSummary(
       registryName: json['RegistryName'] as String?,
@@ -2211,6 +2234,7 @@ class SearchSchemaVersionSummary {
     this.schemaVersion,
     this.type,
   });
+
   factory SearchSchemaVersionSummary.fromJson(Map<String, dynamic> json) {
     return SearchSchemaVersionSummary(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -2244,6 +2268,7 @@ class SearchSchemasResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory SearchSchemasResponse.fromJson(Map<String, dynamic> json) {
     return SearchSchemasResponse(
       nextToken: json['NextToken'] as String?,
@@ -2275,6 +2300,7 @@ class StartDiscovererResponse {
     this.discovererId,
     this.state,
   });
+
   factory StartDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return StartDiscovererResponse(
       discovererId: json['DiscovererId'] as String?,
@@ -2303,6 +2329,7 @@ class StopDiscovererResponse {
     this.discovererId,
     this.state,
   });
+
   factory StopDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return StopDiscovererResponse(
       discovererId: json['DiscovererId'] as String?,
@@ -2375,6 +2402,7 @@ class UpdateDiscovererResponse {
     this.state,
     this.tags,
   });
+
   factory UpdateDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDiscovererResponse(
       description: json['Description'] as String?,
@@ -2424,6 +2452,7 @@ class UpdateRegistryResponse {
     this.registryName,
     this.tags,
   });
+
   factory UpdateRegistryResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRegistryResponse(
       description: json['Description'] as String?,
@@ -2481,6 +2510,7 @@ class UpdateSchemaResponse {
     this.type,
     this.versionCreatedDate,
   });
+
   factory UpdateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSchemaResponse(
       description: json['Description'] as String?,

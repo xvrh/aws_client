@@ -2831,6 +2831,7 @@ class AdditionalInstanceConfiguration {
     this.systemsManagerAgent,
     this.userDataOverride,
   });
+
   factory AdditionalInstanceConfiguration.fromJson(Map<String, dynamic> json) {
     return AdditionalInstanceConfiguration(
       systemsManagerAgent: json['systemsManagerAgent'] != null
@@ -2879,6 +2880,7 @@ class Ami {
     this.region,
     this.state,
   });
+
   factory Ami.fromJson(Map<String, dynamic> json) {
     return Ami(
       accountId: json['accountId'] as String?,
@@ -2940,6 +2942,7 @@ class AmiDistributionConfiguration {
     this.name,
     this.targetAccountIds,
   });
+
   factory AmiDistributionConfiguration.fromJson(Map<String, dynamic> json) {
     return AmiDistributionConfiguration(
       amiTags: (json['amiTags'] as Map<String, dynamic>?)
@@ -2992,6 +2995,7 @@ class CancelImageCreationResponse {
     this.imageBuildVersionArn,
     this.requestId,
   });
+
   factory CancelImageCreationResponse.fromJson(Map<String, dynamic> json) {
     return CancelImageCreationResponse(
       clientToken: json['clientToken'] as String?,
@@ -3081,6 +3085,7 @@ class Component {
     this.type,
     this.version,
   });
+
   factory Component.fromJson(Map<String, dynamic> json) {
     return Component(
       arn: json['arn'] as String?,
@@ -3159,6 +3164,7 @@ class ComponentConfiguration {
     required this.componentArn,
     this.parameters,
   });
+
   factory ComponentConfiguration.fromJson(Map<String, dynamic> json) {
     return ComponentConfiguration(
       componentArn: json['componentArn'] as String,
@@ -3214,6 +3220,7 @@ class ComponentParameter {
     required this.name,
     required this.value,
   });
+
   factory ComponentParameter.fromJson(Map<String, dynamic> json) {
     return ComponentParameter(
       name: json['name'] as String,
@@ -3256,6 +3263,7 @@ class ComponentParameterDetail {
     this.defaultValue,
     this.description,
   });
+
   factory ComponentParameterDetail.fromJson(Map<String, dynamic> json) {
     return ComponentParameterDetail(
       name: json['name'] as String,
@@ -3333,6 +3341,7 @@ class ComponentSummary {
     this.type,
     this.version,
   });
+
   factory ComponentSummary.fromJson(Map<String, dynamic> json) {
     return ComponentSummary(
       arn: json['arn'] as String?,
@@ -3453,6 +3462,7 @@ class ComponentVersion {
     this.type,
     this.version,
   });
+
   factory ComponentVersion.fromJson(Map<String, dynamic> json) {
     return ComponentVersion(
       arn: json['arn'] as String?,
@@ -3508,6 +3518,7 @@ class Container {
     this.imageUris,
     this.region,
   });
+
   factory Container.fromJson(Map<String, dynamic> json) {
     return Container(
       imageUris: (json['imageUris'] as List?)
@@ -3545,6 +3556,7 @@ class ContainerDistributionConfiguration {
     this.containerTags,
     this.description,
   });
+
   factory ContainerDistributionConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ContainerDistributionConfiguration(
@@ -3649,6 +3661,7 @@ class ContainerRecipe {
     this.version,
     this.workingDirectory,
   });
+
   factory ContainerRecipe.fromJson(Map<String, dynamic> json) {
     return ContainerRecipe(
       arn: json['arn'] as String?,
@@ -3760,6 +3773,7 @@ class ContainerRecipeSummary {
     this.platform,
     this.tags,
   });
+
   factory ContainerRecipeSummary.fromJson(Map<String, dynamic> json) {
     return ContainerRecipeSummary(
       arn: json['arn'] as String?,
@@ -3858,6 +3872,7 @@ class CreateComponentResponse {
     this.componentBuildVersionArn,
     this.requestId,
   });
+
   factory CreateComponentResponse.fromJson(Map<String, dynamic> json) {
     return CreateComponentResponse(
       clientToken: json['clientToken'] as String?,
@@ -3895,6 +3910,7 @@ class CreateContainerRecipeResponse {
     this.containerRecipeArn,
     this.requestId,
   });
+
   factory CreateContainerRecipeResponse.fromJson(Map<String, dynamic> json) {
     return CreateContainerRecipeResponse(
       clientToken: json['clientToken'] as String?,
@@ -3931,6 +3947,7 @@ class CreateDistributionConfigurationResponse {
     this.distributionConfigurationArn,
     this.requestId,
   });
+
   factory CreateDistributionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateDistributionConfigurationResponse(
@@ -3970,6 +3987,7 @@ class CreateImagePipelineResponse {
     this.imagePipelineArn,
     this.requestId,
   });
+
   factory CreateImagePipelineResponse.fromJson(Map<String, dynamic> json) {
     return CreateImagePipelineResponse(
       clientToken: json['clientToken'] as String?,
@@ -4006,6 +4024,7 @@ class CreateImageRecipeResponse {
     this.imageRecipeArn,
     this.requestId,
   });
+
   factory CreateImageRecipeResponse.fromJson(Map<String, dynamic> json) {
     return CreateImageRecipeResponse(
       clientToken: json['clientToken'] as String?,
@@ -4042,6 +4061,7 @@ class CreateImageResponse {
     this.imageBuildVersionArn,
     this.requestId,
   });
+
   factory CreateImageResponse.fromJson(Map<String, dynamic> json) {
     return CreateImageResponse(
       clientToken: json['clientToken'] as String?,
@@ -4079,6 +4099,7 @@ class CreateInfrastructureConfigurationResponse {
     this.infrastructureConfigurationArn,
     this.requestId,
   });
+
   factory CreateInfrastructureConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateInfrastructureConfigurationResponse(
@@ -4114,6 +4135,7 @@ class DeleteComponentResponse {
     this.componentBuildVersionArn,
     this.requestId,
   });
+
   factory DeleteComponentResponse.fromJson(Map<String, dynamic> json) {
     return DeleteComponentResponse(
       componentBuildVersionArn: json['componentBuildVersionArn'] as String?,
@@ -4143,6 +4165,7 @@ class DeleteContainerRecipeResponse {
     this.containerRecipeArn,
     this.requestId,
   });
+
   factory DeleteContainerRecipeResponse.fromJson(Map<String, dynamic> json) {
     return DeleteContainerRecipeResponse(
       containerRecipeArn: json['containerRecipeArn'] as String?,
@@ -4172,6 +4195,7 @@ class DeleteDistributionConfigurationResponse {
     this.distributionConfigurationArn,
     this.requestId,
   });
+
   factory DeleteDistributionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteDistributionConfigurationResponse(
@@ -4203,6 +4227,7 @@ class DeleteImagePipelineResponse {
     this.imagePipelineArn,
     this.requestId,
   });
+
   factory DeleteImagePipelineResponse.fromJson(Map<String, dynamic> json) {
     return DeleteImagePipelineResponse(
       imagePipelineArn: json['imagePipelineArn'] as String?,
@@ -4231,6 +4256,7 @@ class DeleteImageRecipeResponse {
     this.imageRecipeArn,
     this.requestId,
   });
+
   factory DeleteImageRecipeResponse.fromJson(Map<String, dynamic> json) {
     return DeleteImageRecipeResponse(
       imageRecipeArn: json['imageRecipeArn'] as String?,
@@ -4259,6 +4285,7 @@ class DeleteImageResponse {
     this.imageBuildVersionArn,
     this.requestId,
   });
+
   factory DeleteImageResponse.fromJson(Map<String, dynamic> json) {
     return DeleteImageResponse(
       imageBuildVersionArn: json['imageBuildVersionArn'] as String?,
@@ -4289,6 +4316,7 @@ class DeleteInfrastructureConfigurationResponse {
     this.infrastructureConfigurationArn,
     this.requestId,
   });
+
   factory DeleteInfrastructureConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteInfrastructureConfigurationResponse(
@@ -4336,6 +4364,7 @@ class Distribution {
     this.launchTemplateConfigurations,
     this.licenseConfigurationArns,
   });
+
   factory Distribution.fromJson(Map<String, dynamic> json) {
     return Distribution(
       region: json['region'] as String,
@@ -4421,6 +4450,7 @@ class DistributionConfiguration {
     this.name,
     this.tags,
   });
+
   factory DistributionConfiguration.fromJson(Map<String, dynamic> json) {
     return DistributionConfiguration(
       timeoutMinutes: json['timeoutMinutes'] as int,
@@ -4492,6 +4522,7 @@ class DistributionConfigurationSummary {
     this.regions,
     this.tags,
   });
+
   factory DistributionConfigurationSummary.fromJson(Map<String, dynamic> json) {
     return DistributionConfigurationSummary(
       arn: json['arn'] as String?,
@@ -4560,6 +4591,7 @@ class EbsInstanceBlockDeviceSpecification {
     this.volumeSize,
     this.volumeType,
   });
+
   factory EbsInstanceBlockDeviceSpecification.fromJson(
       Map<String, dynamic> json) {
     return EbsInstanceBlockDeviceSpecification(
@@ -4661,6 +4693,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['name'] as String?,
@@ -4692,6 +4725,7 @@ class GetComponentPolicyResponse {
     this.policy,
     this.requestId,
   });
+
   factory GetComponentPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetComponentPolicyResponse(
       policy: json['policy'] as String?,
@@ -4720,6 +4754,7 @@ class GetComponentResponse {
     this.component,
     this.requestId,
   });
+
   factory GetComponentResponse.fromJson(Map<String, dynamic> json) {
     return GetComponentResponse(
       component: json['component'] != null
@@ -4750,6 +4785,7 @@ class GetContainerRecipePolicyResponse {
     this.policy,
     this.requestId,
   });
+
   factory GetContainerRecipePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetContainerRecipePolicyResponse(
       policy: json['policy'] as String?,
@@ -4778,6 +4814,7 @@ class GetContainerRecipeResponse {
     this.containerRecipe,
     this.requestId,
   });
+
   factory GetContainerRecipeResponse.fromJson(Map<String, dynamic> json) {
     return GetContainerRecipeResponse(
       containerRecipe: json['containerRecipe'] != null
@@ -4809,6 +4846,7 @@ class GetDistributionConfigurationResponse {
     this.distributionConfiguration,
     this.requestId,
   });
+
   factory GetDistributionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetDistributionConfigurationResponse(
@@ -4842,6 +4880,7 @@ class GetImagePipelineResponse {
     this.imagePipeline,
     this.requestId,
   });
+
   factory GetImagePipelineResponse.fromJson(Map<String, dynamic> json) {
     return GetImagePipelineResponse(
       imagePipeline: json['imagePipeline'] != null
@@ -4873,6 +4912,7 @@ class GetImagePolicyResponse {
     this.policy,
     this.requestId,
   });
+
   factory GetImagePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetImagePolicyResponse(
       policy: json['policy'] as String?,
@@ -4901,6 +4941,7 @@ class GetImageRecipePolicyResponse {
     this.policy,
     this.requestId,
   });
+
   factory GetImageRecipePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetImageRecipePolicyResponse(
       policy: json['policy'] as String?,
@@ -4929,6 +4970,7 @@ class GetImageRecipeResponse {
     this.imageRecipe,
     this.requestId,
   });
+
   factory GetImageRecipeResponse.fromJson(Map<String, dynamic> json) {
     return GetImageRecipeResponse(
       imageRecipe: json['imageRecipe'] != null
@@ -4959,6 +5001,7 @@ class GetImageResponse {
     this.image,
     this.requestId,
   });
+
   factory GetImageResponse.fromJson(Map<String, dynamic> json) {
     return GetImageResponse(
       image: json['image'] != null
@@ -4990,6 +5033,7 @@ class GetInfrastructureConfigurationResponse {
     this.infrastructureConfiguration,
     this.requestId,
   });
+
   factory GetInfrastructureConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetInfrastructureConfigurationResponse(
@@ -5093,6 +5137,7 @@ class Image {
     this.type,
     this.version,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       arn: json['arn'] as String?,
@@ -5196,6 +5241,7 @@ class ImagePackage {
     this.packageName,
     this.packageVersion,
   });
+
   factory ImagePackage.fromJson(Map<String, dynamic> json) {
     return ImagePackage(
       packageName: json['packageName'] as String?,
@@ -5292,6 +5338,7 @@ class ImagePipeline {
     this.status,
     this.tags,
   });
+
   factory ImagePipeline.fromJson(Map<String, dynamic> json) {
     return ImagePipeline(
       arn: json['arn'] as String?,
@@ -5431,6 +5478,7 @@ class ImageRecipe {
     this.version,
     this.workingDirectory,
   });
+
   factory ImageRecipe.fromJson(Map<String, dynamic> json) {
     return ImageRecipe(
       additionalInstanceConfiguration:
@@ -5533,6 +5581,7 @@ class ImageRecipeSummary {
     this.platform,
     this.tags,
   });
+
   factory ImageRecipeSummary.fromJson(Map<String, dynamic> json) {
     return ImageRecipeSummary(
       arn: json['arn'] as String?,
@@ -5578,6 +5627,7 @@ class ImageState {
     this.reason,
     this.status,
   });
+
   factory ImageState.fromJson(Map<String, dynamic> json) {
     return ImageState(
       reason: json['reason'] as String?,
@@ -5717,6 +5767,7 @@ class ImageSummary {
     this.type,
     this.version,
   });
+
   factory ImageSummary.fromJson(Map<String, dynamic> json) {
     return ImageSummary(
       arn: json['arn'] as String?,
@@ -5779,6 +5830,7 @@ class ImageTestsConfiguration {
     this.imageTestsEnabled,
     this.timeoutMinutes,
   });
+
   factory ImageTestsConfiguration.fromJson(Map<String, dynamic> json) {
     return ImageTestsConfiguration(
       imageTestsEnabled: json['imageTestsEnabled'] as bool?,
@@ -5861,6 +5913,7 @@ class ImageVersion {
     this.type,
     this.version,
   });
+
   factory ImageVersion.fromJson(Map<String, dynamic> json) {
     return ImageVersion(
       arn: json['arn'] as String?,
@@ -5911,6 +5964,7 @@ class ImportComponentResponse {
     this.componentBuildVersionArn,
     this.requestId,
   });
+
   factory ImportComponentResponse.fromJson(Map<String, dynamic> json) {
     return ImportComponentResponse(
       clientToken: json['clientToken'] as String?,
@@ -5998,6 +6052,7 @@ class InfrastructureConfiguration {
     this.tags,
     this.terminateInstanceOnFailure,
   });
+
   factory InfrastructureConfiguration.fromJson(Map<String, dynamic> json) {
     return InfrastructureConfiguration(
       arn: json['arn'] as String?,
@@ -6106,6 +6161,7 @@ class InfrastructureConfigurationSummary {
     this.resourceTags,
     this.tags,
   });
+
   factory InfrastructureConfigurationSummary.fromJson(
       Map<String, dynamic> json) {
     return InfrastructureConfigurationSummary(
@@ -6171,6 +6227,7 @@ class InstanceBlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
   factory InstanceBlockDeviceMapping.fromJson(Map<String, dynamic> json) {
     return InstanceBlockDeviceMapping(
       deviceName: json['deviceName'] as String?,
@@ -6213,6 +6270,7 @@ class InstanceConfiguration {
     this.blockDeviceMappings,
     this.image,
   });
+
   factory InstanceConfiguration.fromJson(Map<String, dynamic> json) {
     return InstanceConfiguration(
       blockDeviceMappings: (json['blockDeviceMappings'] as List?)
@@ -6255,6 +6313,7 @@ class LaunchPermissionConfiguration {
     this.userGroups,
     this.userIds,
   });
+
   factory LaunchPermissionConfiguration.fromJson(Map<String, dynamic> json) {
     return LaunchPermissionConfiguration(
       userGroups: (json['userGroups'] as List?)
@@ -6295,6 +6354,7 @@ class LaunchTemplateConfiguration {
     this.accountId,
     this.setDefaultVersion,
   });
+
   factory LaunchTemplateConfiguration.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateConfiguration(
       launchTemplateId: json['launchTemplateId'] as String,
@@ -6332,6 +6392,7 @@ class ListComponentBuildVersionsResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListComponentBuildVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListComponentBuildVersionsResponse(
@@ -6374,6 +6435,7 @@ class ListComponentsResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListComponentsResponse.fromJson(Map<String, dynamic> json) {
     return ListComponentsResponse(
       componentVersionList: (json['componentVersionList'] as List?)
@@ -6416,6 +6478,7 @@ class ListContainerRecipesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListContainerRecipesResponse.fromJson(Map<String, dynamic> json) {
     return ListContainerRecipesResponse(
       containerRecipeSummaryList: (json['containerRecipeSummaryList'] as List?)
@@ -6459,6 +6522,7 @@ class ListDistributionConfigurationsResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListDistributionConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionConfigurationsResponse(
@@ -6505,6 +6569,7 @@ class ListImageBuildVersionsResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImageBuildVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListImageBuildVersionsResponse(
       imageSummaryList: (json['imageSummaryList'] as List?)
@@ -6544,6 +6609,7 @@ class ListImagePackagesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImagePackagesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagePackagesResponse(
       imagePackageList: (json['imagePackageList'] as List?)
@@ -6584,6 +6650,7 @@ class ListImagePipelineImagesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImagePipelineImagesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagePipelineImagesResponse(
       imageSummaryList: (json['imageSummaryList'] as List?)
@@ -6624,6 +6691,7 @@ class ListImagePipelinesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImagePipelinesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagePipelinesResponse(
       imagePipelineList: (json['imagePipelineList'] as List?)
@@ -6664,6 +6732,7 @@ class ListImageRecipesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImageRecipesResponse.fromJson(Map<String, dynamic> json) {
     return ListImageRecipesResponse(
       imageRecipeSummaryList: (json['imageRecipeSummaryList'] as List?)
@@ -6705,6 +6774,7 @@ class ListImagesResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListImagesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagesResponse(
       imageVersionList: (json['imageVersionList'] as List?)
@@ -6746,6 +6816,7 @@ class ListInfrastructureConfigurationsResponse {
     this.nextToken,
     this.requestId,
   });
+
   factory ListInfrastructureConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListInfrastructureConfigurationsResponse(
@@ -6782,6 +6853,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -6805,6 +6877,7 @@ class Logging {
   Logging({
     this.s3Logs,
   });
+
   factory Logging.fromJson(Map<String, dynamic> json) {
     return Logging(
       s3Logs: json['s3Logs'] != null
@@ -6834,6 +6907,7 @@ class OutputResources {
     this.amis,
     this.containers,
   });
+
   factory OutputResources.fromJson(Map<String, dynamic> json) {
     return OutputResources(
       amis: (json['amis'] as List?)
@@ -6989,6 +7063,7 @@ class PutComponentPolicyResponse {
     this.componentArn,
     this.requestId,
   });
+
   factory PutComponentPolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutComponentPolicyResponse(
       componentArn: json['componentArn'] as String?,
@@ -7018,6 +7093,7 @@ class PutContainerRecipePolicyResponse {
     this.containerRecipeArn,
     this.requestId,
   });
+
   factory PutContainerRecipePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutContainerRecipePolicyResponse(
       containerRecipeArn: json['containerRecipeArn'] as String?,
@@ -7046,6 +7122,7 @@ class PutImagePolicyResponse {
     this.imageArn,
     this.requestId,
   });
+
   factory PutImagePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutImagePolicyResponse(
       imageArn: json['imageArn'] as String?,
@@ -7075,6 +7152,7 @@ class PutImageRecipePolicyResponse {
     this.imageRecipeArn,
     this.requestId,
   });
+
   factory PutImageRecipePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutImageRecipePolicyResponse(
       imageRecipeArn: json['imageRecipeArn'] as String?,
@@ -7104,6 +7182,7 @@ class S3Logs {
     this.s3BucketName,
     this.s3KeyPrefix,
   });
+
   factory S3Logs.fromJson(Map<String, dynamic> json) {
     return S3Logs(
       s3BucketName: json['s3BucketName'] as String?,
@@ -7156,6 +7235,7 @@ class Schedule {
     this.scheduleExpression,
     this.timezone,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       pipelineExecutionStartCondition:
@@ -7197,6 +7277,7 @@ class StartImagePipelineExecutionResponse {
     this.imageBuildVersionArn,
     this.requestId,
   });
+
   factory StartImagePipelineExecutionResponse.fromJson(
       Map<String, dynamic> json) {
     return StartImagePipelineExecutionResponse(
@@ -7230,6 +7311,7 @@ class SystemsManagerAgent {
   SystemsManagerAgent({
     this.uninstallAfterBuild,
   });
+
   factory SystemsManagerAgent.fromJson(Map<String, dynamic> json) {
     return SystemsManagerAgent(
       uninstallAfterBuild: json['uninstallAfterBuild'] as bool?,
@@ -7247,6 +7329,7 @@ class SystemsManagerAgent {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -7269,6 +7352,7 @@ class TargetContainerRepository {
     required this.repositoryName,
     required this.service,
   });
+
   factory TargetContainerRepository.fromJson(Map<String, dynamic> json) {
     return TargetContainerRepository(
       repositoryName: json['repositoryName'] as String,
@@ -7288,6 +7372,7 @@ class TargetContainerRepository {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -7313,6 +7398,7 @@ class UpdateDistributionConfigurationResponse {
     this.distributionConfigurationArn,
     this.requestId,
   });
+
   factory UpdateDistributionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDistributionConfigurationResponse(
@@ -7352,6 +7438,7 @@ class UpdateImagePipelineResponse {
     this.imagePipelineArn,
     this.requestId,
   });
+
   factory UpdateImagePipelineResponse.fromJson(Map<String, dynamic> json) {
     return UpdateImagePipelineResponse(
       clientToken: json['clientToken'] as String?,
@@ -7388,6 +7475,7 @@ class UpdateInfrastructureConfigurationResponse {
     this.infrastructureConfigurationArn,
     this.requestId,
   });
+
   factory UpdateInfrastructureConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateInfrastructureConfigurationResponse(

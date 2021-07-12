@@ -3454,6 +3454,7 @@ class ActionCondition {
   ActionCondition({
     required this.action,
   });
+
   factory ActionCondition.fromJson(Map<String, dynamic> json) {
     return ActionCondition(
       action: (json['Action'] as String).toActionValue(),
@@ -3510,6 +3511,7 @@ extension on String {
 /// in the <a>FieldToMatch</a> specification.
 class All {
   All();
+
   factory All.fromJson(Map<String, dynamic> _) {
     return All();
   }
@@ -3525,6 +3527,7 @@ class All {
 /// in the <a>FieldToMatch</a> specification.
 class AllQueryArguments {
   AllQueryArguments();
+
   factory AllQueryArguments.fromJson(Map<String, dynamic> _) {
     return AllQueryArguments();
   }
@@ -3552,6 +3555,7 @@ class AllowAction {
   AllowAction({
     this.customRequestHandling,
   });
+
   factory AllowAction.fromJson(Map<String, dynamic> json) {
     return AllowAction(
       customRequestHandling: json['CustomRequestHandling'] != null
@@ -3581,6 +3585,7 @@ class AndStatement {
   AndStatement({
     required this.statements,
   });
+
   factory AndStatement.fromJson(Map<String, dynamic> json) {
     return AndStatement(
       statements: (json['Statements'] as List)
@@ -3600,6 +3605,7 @@ class AndStatement {
 
 class AssociateWebACLResponse {
   AssociateWebACLResponse();
+
   factory AssociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return AssociateWebACLResponse();
   }
@@ -3627,6 +3633,7 @@ class BlockAction {
   BlockAction({
     this.customResponse,
   });
+
   factory BlockAction.fromJson(Map<String, dynamic> json) {
     return BlockAction(
       customResponse: json['CustomResponse'] != null
@@ -3650,6 +3657,7 @@ class BlockAction {
 /// in the <a>FieldToMatch</a> specification.
 class Body {
   Body();
+
   factory Body.fromJson(Map<String, dynamic> _) {
     return Body();
   }
@@ -3801,6 +3809,7 @@ class ByteMatchStatement {
     required this.searchString,
     required this.textTransformations,
   });
+
   factory ByteMatchStatement.fromJson(Map<String, dynamic> json) {
     return ByteMatchStatement(
       fieldToMatch:
@@ -3836,6 +3845,7 @@ class CheckCapacityResponse {
   CheckCapacityResponse({
     this.capacity,
   });
+
   factory CheckCapacityResponse.fromJson(Map<String, dynamic> json) {
     return CheckCapacityResponse(
       capacity: json['Capacity'] as int?,
@@ -3910,6 +3920,7 @@ class Condition {
     this.actionCondition,
     this.labelNameCondition,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       actionCondition: json['ActionCondition'] != null
@@ -3951,6 +3962,7 @@ class CountAction {
   CountAction({
     this.customRequestHandling,
   });
+
   factory CountAction.fromJson(Map<String, dynamic> json) {
     return CountAction(
       customRequestHandling: json['CustomRequestHandling'] != null
@@ -5242,6 +5254,7 @@ class CreateIPSetResponse {
   CreateIPSetResponse({
     this.summary,
   });
+
   factory CreateIPSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateIPSetResponse(
       summary: json['Summary'] != null
@@ -5269,6 +5282,7 @@ class CreateRegexPatternSetResponse {
   CreateRegexPatternSetResponse({
     this.summary,
   });
+
   factory CreateRegexPatternSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateRegexPatternSetResponse(
       summary: json['Summary'] != null
@@ -5297,6 +5311,7 @@ class CreateRuleGroupResponse {
   CreateRuleGroupResponse({
     this.summary,
   });
+
   factory CreateRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateRuleGroupResponse(
       summary: json['Summary'] != null
@@ -5323,6 +5338,7 @@ class CreateWebACLResponse {
   CreateWebACLResponse({
     this.summary,
   });
+
   factory CreateWebACLResponse.fromJson(Map<String, dynamic> json) {
     return CreateWebACLResponse(
       summary: json['Summary'] != null
@@ -5358,6 +5374,7 @@ class CustomHTTPHeader {
     required this.name,
     required this.value,
   });
+
   factory CustomHTTPHeader.fromJson(Map<String, dynamic> json) {
     return CustomHTTPHeader(
       name: json['Name'] as String,
@@ -5399,6 +5416,7 @@ class CustomRequestHandling {
   CustomRequestHandling({
     required this.insertHeaders,
   });
+
   factory CustomRequestHandling.fromJson(Map<String, dynamic> json) {
     return CustomRequestHandling(
       insertHeaders: (json['InsertHeaders'] as List)
@@ -5460,6 +5478,7 @@ class CustomResponse {
     this.customResponseBodyKey,
     this.responseHeaders,
   });
+
   factory CustomResponse.fromJson(Map<String, dynamic> json) {
     return CustomResponse(
       responseCode: json['ResponseCode'] as int,
@@ -5509,6 +5528,7 @@ class CustomResponseBody {
     required this.content,
     required this.contentType,
   });
+
   factory CustomResponseBody.fromJson(Map<String, dynamic> json) {
     return CustomResponseBody(
       content: json['Content'] as String,
@@ -5540,6 +5560,7 @@ class DefaultAction {
     this.allow,
     this.block,
   });
+
   factory DefaultAction.fromJson(Map<String, dynamic> json) {
     return DefaultAction(
       allow: json['Allow'] != null
@@ -5575,6 +5596,7 @@ class DeleteFirewallManagerRuleGroupsResponse {
   DeleteFirewallManagerRuleGroupsResponse({
     this.nextWebACLLockToken,
   });
+
   factory DeleteFirewallManagerRuleGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteFirewallManagerRuleGroupsResponse(
@@ -5593,6 +5615,7 @@ class DeleteFirewallManagerRuleGroupsResponse {
 
 class DeleteIPSetResponse {
   DeleteIPSetResponse();
+
   factory DeleteIPSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIPSetResponse();
   }
@@ -5604,6 +5627,7 @@ class DeleteIPSetResponse {
 
 class DeleteLoggingConfigurationResponse {
   DeleteLoggingConfigurationResponse();
+
   factory DeleteLoggingConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLoggingConfigurationResponse();
   }
@@ -5615,6 +5639,7 @@ class DeleteLoggingConfigurationResponse {
 
 class DeletePermissionPolicyResponse {
   DeletePermissionPolicyResponse();
+
   factory DeletePermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeletePermissionPolicyResponse();
   }
@@ -5626,6 +5651,7 @@ class DeletePermissionPolicyResponse {
 
 class DeleteRegexPatternSetResponse {
   DeleteRegexPatternSetResponse();
+
   factory DeleteRegexPatternSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRegexPatternSetResponse();
   }
@@ -5637,6 +5663,7 @@ class DeleteRegexPatternSetResponse {
 
 class DeleteRuleGroupResponse {
   DeleteRuleGroupResponse();
+
   factory DeleteRuleGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRuleGroupResponse();
   }
@@ -5648,6 +5675,7 @@ class DeleteRuleGroupResponse {
 
 class DeleteWebACLResponse {
   DeleteWebACLResponse();
+
   factory DeleteWebACLResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWebACLResponse();
   }
@@ -5709,6 +5737,7 @@ class DescribeManagedRuleGroupResponse {
     this.labelNamespace,
     this.rules,
   });
+
   factory DescribeManagedRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeManagedRuleGroupResponse(
       availableLabels: (json['AvailableLabels'] as List?)
@@ -5746,6 +5775,7 @@ class DescribeManagedRuleGroupResponse {
 
 class DisassociateWebACLResponse {
   DisassociateWebACLResponse();
+
   factory DisassociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateWebACLResponse();
   }
@@ -5766,6 +5796,7 @@ class ExcludedRule {
   ExcludedRule({
     required this.name,
   });
+
   factory ExcludedRule.fromJson(Map<String, dynamic> json) {
     return ExcludedRule(
       name: json['Name'] as String,
@@ -5889,6 +5920,7 @@ class FieldToMatch {
     this.singleQueryArgument,
     this.uriPath,
   });
+
   factory FieldToMatch.fromJson(Map<String, dynamic> json) {
     return FieldToMatch(
       allQueryArguments: json['AllQueryArguments'] != null
@@ -5961,6 +5993,7 @@ class Filter {
     required this.conditions,
     required this.requirement,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       behavior: (json['Behavior'] as String).toFilterBehavior(),
@@ -6090,6 +6123,7 @@ class FirewallManagerRuleGroup {
     required this.priority,
     required this.visibilityConfig,
   });
+
   factory FirewallManagerRuleGroup.fromJson(Map<String, dynamic> json) {
     return FirewallManagerRuleGroup(
       firewallManagerStatement: FirewallManagerStatement.fromJson(
@@ -6145,6 +6179,7 @@ class FirewallManagerStatement {
     this.managedRuleGroupStatement,
     this.ruleGroupReferenceStatement,
   });
+
   factory FirewallManagerStatement.fromJson(Map<String, dynamic> json) {
     return FirewallManagerStatement(
       managedRuleGroupStatement: json['ManagedRuleGroupStatement'] != null
@@ -6216,6 +6251,7 @@ class ForwardedIPConfig {
     required this.fallbackBehavior,
     required this.headerName,
   });
+
   factory ForwardedIPConfig.fromJson(Map<String, dynamic> json) {
     return ForwardedIPConfig(
       fallbackBehavior:
@@ -6288,6 +6324,7 @@ class GeoMatchStatement {
     this.countryCodes,
     this.forwardedIPConfig,
   });
+
   factory GeoMatchStatement.fromJson(Map<String, dynamic> json) {
     return GeoMatchStatement(
       countryCodes: (json['CountryCodes'] as List?)
@@ -6330,6 +6367,7 @@ class GetIPSetResponse {
     this.iPSet,
     this.lockToken,
   });
+
   factory GetIPSetResponse.fromJson(Map<String, dynamic> json) {
     return GetIPSetResponse(
       iPSet: json['IPSet'] != null
@@ -6356,6 +6394,7 @@ class GetLoggingConfigurationResponse {
   GetLoggingConfigurationResponse({
     this.loggingConfiguration,
   });
+
   factory GetLoggingConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetLoggingConfigurationResponse(
       loggingConfiguration: json['LoggingConfiguration'] != null
@@ -6381,6 +6420,7 @@ class GetPermissionPolicyResponse {
   GetPermissionPolicyResponse({
     this.policy,
   });
+
   factory GetPermissionPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPermissionPolicyResponse(
       policy: json['Policy'] as String?,
@@ -6406,6 +6446,7 @@ class GetRateBasedStatementManagedKeysResponse {
     this.managedKeysIPV4,
     this.managedKeysIPV6,
   });
+
   factory GetRateBasedStatementManagedKeysResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRateBasedStatementManagedKeysResponse(
@@ -6448,6 +6489,7 @@ class GetRegexPatternSetResponse {
     this.lockToken,
     this.regexPatternSet,
   });
+
   factory GetRegexPatternSetResponse.fromJson(Map<String, dynamic> json) {
     return GetRegexPatternSetResponse(
       lockToken: json['LockToken'] as String?,
@@ -6486,6 +6528,7 @@ class GetRuleGroupResponse {
     this.lockToken,
     this.ruleGroup,
   });
+
   factory GetRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetRuleGroupResponse(
       lockToken: json['LockToken'] as String?,
@@ -6529,6 +6572,7 @@ class GetSampledRequestsResponse {
     this.sampledRequests,
     this.timeWindow,
   });
+
   factory GetSampledRequestsResponse.fromJson(Map<String, dynamic> json) {
     return GetSampledRequestsResponse(
       populationSize: json['PopulationSize'] as int?,
@@ -6562,6 +6606,7 @@ class GetWebACLForResourceResponse {
   GetWebACLForResourceResponse({
     this.webACL,
   });
+
   factory GetWebACLForResourceResponse.fromJson(Map<String, dynamic> json) {
     return GetWebACLForResourceResponse(
       webACL: json['WebACL'] != null
@@ -6597,6 +6642,7 @@ class GetWebACLResponse {
     this.lockToken,
     this.webACL,
   });
+
   factory GetWebACLResponse.fromJson(Map<String, dynamic> json) {
     return GetWebACLResponse(
       lockToken: json['LockToken'] as String?,
@@ -6631,6 +6677,7 @@ class HTTPHeader {
     this.name,
     this.value,
   });
+
   factory HTTPHeader.fromJson(Map<String, dynamic> json) {
     return HTTPHeader(
       name: json['Name'] as String?,
@@ -6697,6 +6744,7 @@ class HTTPRequest {
     this.method,
     this.uri,
   });
+
   factory HTTPRequest.fromJson(Map<String, dynamic> json) {
     return HTTPRequest(
       clientIP: json['ClientIP'] as String?,
@@ -6826,6 +6874,7 @@ class IPSet {
     required this.name,
     this.description,
   });
+
   factory IPSet.fromJson(Map<String, dynamic> json) {
     return IPSet(
       arn: json['ARN'] as String,
@@ -6928,6 +6977,7 @@ class IPSetForwardedIPConfig {
     required this.headerName,
     required this.position,
   });
+
   factory IPSetForwardedIPConfig.fromJson(Map<String, dynamic> json) {
     return IPSetForwardedIPConfig(
       fallbackBehavior:
@@ -6977,6 +7027,7 @@ class IPSetReferenceStatement {
     required this.arn,
     this.iPSetForwardedIPConfig,
   });
+
   factory IPSetReferenceStatement.fromJson(Map<String, dynamic> json) {
     return IPSetReferenceStatement(
       arn: json['ARN'] as String,
@@ -7035,6 +7086,7 @@ class IPSetSummary {
     this.lockToken,
     this.name,
   });
+
   factory IPSetSummary.fromJson(Map<String, dynamic> json) {
     return IPSetSummary(
       arn: json['ARN'] as String?,
@@ -7121,6 +7173,7 @@ class JsonBody {
     required this.matchScope,
     this.invalidFallbackBehavior,
   });
+
   factory JsonBody.fromJson(Map<String, dynamic> json) {
     return JsonBody(
       matchPattern: JsonMatchPattern.fromJson(
@@ -7177,6 +7230,7 @@ class JsonMatchPattern {
     this.all,
     this.includedPaths,
   });
+
   factory JsonMatchPattern.fromJson(Map<String, dynamic> json) {
     return JsonMatchPattern(
       all: json['All'] != null
@@ -7242,6 +7296,7 @@ class Label {
   Label({
     required this.name,
   });
+
   factory Label.fromJson(Map<String, dynamic> json) {
     return Label(
       name: json['Name'] as String,
@@ -7325,6 +7380,7 @@ class LabelMatchStatement {
     required this.key,
     required this.scope,
   });
+
   factory LabelMatchStatement.fromJson(Map<String, dynamic> json) {
     return LabelMatchStatement(
       key: json['Key'] as String,
@@ -7353,6 +7409,7 @@ class LabelNameCondition {
   LabelNameCondition({
     required this.labelName,
   });
+
   factory LabelNameCondition.fromJson(Map<String, dynamic> json) {
     return LabelNameCondition(
       labelName: json['LabelName'] as String,
@@ -7388,6 +7445,7 @@ class LabelSummary {
   LabelSummary({
     this.name,
   });
+
   factory LabelSummary.fromJson(Map<String, dynamic> json) {
     return LabelSummary(
       name: json['Name'] as String?,
@@ -7417,6 +7475,7 @@ class ListAvailableManagedRuleGroupsResponse {
     this.managedRuleGroups,
     this.nextMarker,
   });
+
   factory ListAvailableManagedRuleGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAvailableManagedRuleGroupsResponse(
@@ -7455,6 +7514,7 @@ class ListIPSetsResponse {
     this.iPSets,
     this.nextMarker,
   });
+
   factory ListIPSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListIPSetsResponse(
       iPSets: (json['IPSets'] as List?)
@@ -7490,6 +7550,7 @@ class ListLoggingConfigurationsResponse {
     this.loggingConfigurations,
     this.nextMarker,
   });
+
   factory ListLoggingConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListLoggingConfigurationsResponse(
@@ -7527,6 +7588,7 @@ class ListRegexPatternSetsResponse {
     this.nextMarker,
     this.regexPatternSets,
   });
+
   factory ListRegexPatternSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListRegexPatternSetsResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -7555,6 +7617,7 @@ class ListResourcesForWebACLResponse {
   ListResourcesForWebACLResponse({
     this.resourceArns,
   });
+
   factory ListResourcesForWebACLResponse.fromJson(Map<String, dynamic> json) {
     return ListResourcesForWebACLResponse(
       resourceArns: (json['ResourceArns'] as List?)
@@ -7587,6 +7650,7 @@ class ListRuleGroupsResponse {
     this.nextMarker,
     this.ruleGroups,
   });
+
   factory ListRuleGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListRuleGroupsResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -7622,6 +7686,7 @@ class ListTagsForResourceResponse {
     this.nextMarker,
     this.tagInfoForResource,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -7657,6 +7722,7 @@ class ListWebACLsResponse {
     this.nextMarker,
     this.webACLs,
   });
+
   factory ListWebACLsResponse.fromJson(Map<String, dynamic> json) {
     return ListWebACLsResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -7717,6 +7783,7 @@ class LoggingConfiguration {
     this.managedByFirewallManager,
     this.redactedFields,
   });
+
   factory LoggingConfiguration.fromJson(Map<String, dynamic> json) {
     return LoggingConfiguration(
       logDestinationConfigs: (json['LogDestinationConfigs'] as List)
@@ -7770,6 +7837,7 @@ class LoggingFilter {
     required this.defaultBehavior,
     required this.filters,
   });
+
   factory LoggingFilter.fromJson(Map<String, dynamic> json) {
     return LoggingFilter(
       defaultBehavior: (json['DefaultBehavior'] as String).toFilterBehavior(),
@@ -7825,6 +7893,7 @@ class ManagedRuleGroupStatement {
     this.excludedRules,
     this.scopeDownStatement,
   });
+
   factory ManagedRuleGroupStatement.fromJson(Map<String, dynamic> json) {
     return ManagedRuleGroupStatement(
       name: json['Name'] as String,
@@ -7879,6 +7948,7 @@ class ManagedRuleGroupSummary {
     this.name,
     this.vendorName,
   });
+
   factory ManagedRuleGroupSummary.fromJson(Map<String, dynamic> json) {
     return ManagedRuleGroupSummary(
       description: json['Description'] as String?,
@@ -7906,6 +7976,7 @@ class ManagedRuleGroupSummary {
 /// in the <a>FieldToMatch</a> specification.
 class Method {
   Method();
+
   factory Method.fromJson(Map<String, dynamic> _) {
     return Method();
   }
@@ -7923,6 +7994,7 @@ class Method {
 /// for <a>RuleAction</a> and web ACL <a>DefaultAction</a>.
 class NoneAction {
   NoneAction();
+
   factory NoneAction.fromJson(Map<String, dynamic> _) {
     return NoneAction();
   }
@@ -7942,6 +8014,7 @@ class NotStatement {
   NotStatement({
     required this.statement,
   });
+
   factory NotStatement.fromJson(Map<String, dynamic> json) {
     return NotStatement(
       statement: Statement.fromJson(json['Statement'] as Map<String, dynamic>),
@@ -7967,6 +8040,7 @@ class OrStatement {
   OrStatement({
     required this.statements,
   });
+
   factory OrStatement.fromJson(Map<String, dynamic> json) {
     return OrStatement(
       statements: (json['Statements'] as List)
@@ -8016,6 +8090,7 @@ class OverrideAction {
     this.count,
     this.none,
   });
+
   factory OverrideAction.fromJson(Map<String, dynamic> json) {
     return OverrideAction(
       count: json['Count'] != null
@@ -8087,6 +8162,7 @@ class PutLoggingConfigurationResponse {
   PutLoggingConfigurationResponse({
     this.loggingConfiguration,
   });
+
   factory PutLoggingConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return PutLoggingConfigurationResponse(
       loggingConfiguration: json['LoggingConfiguration'] != null
@@ -8107,6 +8183,7 @@ class PutLoggingConfigurationResponse {
 
 class PutPermissionPolicyResponse {
   PutPermissionPolicyResponse();
+
   factory PutPermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutPermissionPolicyResponse();
   }
@@ -8123,6 +8200,7 @@ class PutPermissionPolicyResponse {
 /// in the <a>FieldToMatch</a> specification.
 class QueryString {
   QueryString();
+
   factory QueryString.fromJson(Map<String, dynamic> _) {
     return QueryString();
   }
@@ -8212,6 +8290,7 @@ class RateBasedStatement {
     this.forwardedIPConfig,
     this.scopeDownStatement,
   });
+
   factory RateBasedStatement.fromJson(Map<String, dynamic> json) {
     return RateBasedStatement(
       aggregateKeyType: (json['AggregateKeyType'] as String)
@@ -8282,6 +8361,7 @@ class RateBasedStatementManagedKeysIPSet {
     this.addresses,
     this.iPAddressVersion,
   });
+
   factory RateBasedStatementManagedKeysIPSet.fromJson(
       Map<String, dynamic> json) {
     return RateBasedStatementManagedKeysIPSet(
@@ -8313,6 +8393,7 @@ class Regex {
   Regex({
     this.regexString,
   });
+
   factory Regex.fromJson(Map<String, dynamic> json) {
     return Regex(
       regexString: json['RegexString'] as String?,
@@ -8357,6 +8438,7 @@ class RegexPatternSet {
     this.name,
     this.regularExpressionList,
   });
+
   factory RegexPatternSet.fromJson(Map<String, dynamic> json) {
     return RegexPatternSet(
       arn: json['ARN'] as String?,
@@ -8420,6 +8502,7 @@ class RegexPatternSetReferenceStatement {
     required this.fieldToMatch,
     required this.textTransformations,
   });
+
   factory RegexPatternSetReferenceStatement.fromJson(
       Map<String, dynamic> json) {
     return RegexPatternSetReferenceStatement(
@@ -8483,6 +8566,7 @@ class RegexPatternSetSummary {
     this.lockToken,
     this.name,
   });
+
   factory RegexPatternSetSummary.fromJson(Map<String, dynamic> json) {
     return RegexPatternSetSummary(
       arn: json['ARN'] as String?,
@@ -8687,6 +8771,7 @@ class Rule {
     this.overrideAction,
     this.ruleLabels,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       name: json['Name'] as String,
@@ -8746,6 +8831,7 @@ class RuleAction {
     this.block,
     this.count,
   });
+
   factory RuleAction.fromJson(Map<String, dynamic> json) {
     return RuleAction(
       allow: json['Allow'] != null
@@ -8883,6 +8969,7 @@ class RuleGroup {
     this.labelNamespace,
     this.rules,
   });
+
   factory RuleGroup.fromJson(Map<String, dynamic> json) {
     return RuleGroup(
       arn: json['ARN'] as String,
@@ -8960,6 +9047,7 @@ class RuleGroupReferenceStatement {
     required this.arn,
     this.excludedRules,
   });
+
   factory RuleGroupReferenceStatement.fromJson(Map<String, dynamic> json) {
     return RuleGroupReferenceStatement(
       arn: json['ARN'] as String,
@@ -9018,6 +9106,7 @@ class RuleGroupSummary {
     this.lockToken,
     this.name,
   });
+
   factory RuleGroupSummary.fromJson(Map<String, dynamic> json) {
     return RuleGroupSummary(
       arn: json['ARN'] as String?,
@@ -9062,6 +9151,7 @@ class RuleSummary {
     this.action,
     this.name,
   });
+
   factory RuleSummary.fromJson(Map<String, dynamic> json) {
     return RuleSummary(
       action: json['Action'] != null
@@ -9138,6 +9228,7 @@ class SampledHTTPRequest {
     this.ruleNameWithinRuleGroup,
     this.timestamp,
   });
+
   factory SampledHTTPRequest.fromJson(Map<String, dynamic> json) {
     return SampledHTTPRequest(
       request: HTTPRequest.fromJson(json['Request'] as Map<String, dynamic>),
@@ -9222,6 +9313,7 @@ class SingleHeader {
   SingleHeader({
     required this.name,
   });
+
   factory SingleHeader.fromJson(Map<String, dynamic> json) {
     return SingleHeader(
       name: json['Name'] as String,
@@ -9246,6 +9338,7 @@ class SingleQueryArgument {
   SingleQueryArgument({
     required this.name,
   });
+
   factory SingleQueryArgument.fromJson(Map<String, dynamic> json) {
     return SingleQueryArgument(
       name: json['Name'] as String,
@@ -9299,6 +9392,7 @@ class SizeConstraintStatement {
     required this.size,
     required this.textTransformations,
   });
+
   factory SizeConstraintStatement.fromJson(Map<String, dynamic> json) {
     return SizeConstraintStatement(
       comparisonOperator:
@@ -9351,6 +9445,7 @@ class SqliMatchStatement {
     required this.fieldToMatch,
     required this.textTransformations,
   });
+
   factory SqliMatchStatement.fromJson(Map<String, dynamic> json) {
     return SqliMatchStatement(
       fieldToMatch:
@@ -9541,6 +9636,7 @@ class Statement {
     this.sqliMatchStatement,
     this.xssMatchStatement,
   });
+
   factory Statement.fromJson(Map<String, dynamic> json) {
     return Statement(
       andStatement: json['AndStatement'] != null
@@ -9669,6 +9765,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -9709,6 +9806,7 @@ class TagInfoForResource {
     this.resourceARN,
     this.tagList,
   });
+
   factory TagInfoForResource.fromJson(Map<String, dynamic> json) {
     return TagInfoForResource(
       resourceARN: json['ResourceARN'] as String?,
@@ -9731,6 +9829,7 @@ class TagInfoForResource {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -9903,6 +10002,7 @@ class TextTransformation {
     required this.priority,
     required this.type,
   });
+
   factory TextTransformation.fromJson(Map<String, dynamic> json) {
     return TextTransformation(
       priority: json['Priority'] as int,
@@ -10081,6 +10181,7 @@ class TimeWindow {
     required this.endTime,
     required this.startTime,
   });
+
   factory TimeWindow.fromJson(Map<String, dynamic> json) {
     return TimeWindow(
       endTime: nonNullableTimeStampFromJson(json['EndTime'] as Object),
@@ -10100,6 +10201,7 @@ class TimeWindow {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -10118,6 +10220,7 @@ class UpdateIPSetResponse {
   UpdateIPSetResponse({
     this.nextLockToken,
   });
+
   factory UpdateIPSetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateIPSetResponse(
       nextLockToken: json['NextLockToken'] as String?,
@@ -10141,6 +10244,7 @@ class UpdateRegexPatternSetResponse {
   UpdateRegexPatternSetResponse({
     this.nextLockToken,
   });
+
   factory UpdateRegexPatternSetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRegexPatternSetResponse(
       nextLockToken: json['NextLockToken'] as String?,
@@ -10164,6 +10268,7 @@ class UpdateRuleGroupResponse {
   UpdateRuleGroupResponse({
     this.nextLockToken,
   });
+
   factory UpdateRuleGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRuleGroupResponse(
       nextLockToken: json['NextLockToken'] as String?,
@@ -10187,6 +10292,7 @@ class UpdateWebACLResponse {
   UpdateWebACLResponse({
     this.nextLockToken,
   });
+
   factory UpdateWebACLResponse.fromJson(Map<String, dynamic> json) {
     return UpdateWebACLResponse(
       nextLockToken: json['NextLockToken'] as String?,
@@ -10209,6 +10315,7 @@ class UpdateWebACLResponse {
 /// in the <a>FieldToMatch</a> specification.
 class UriPath {
   UriPath();
+
   factory UriPath.fromJson(Map<String, dynamic> _) {
     return UriPath();
   }
@@ -10243,6 +10350,7 @@ class VisibilityConfig {
     required this.metricName,
     required this.sampledRequestsEnabled,
   });
+
   factory VisibilityConfig.fromJson(Map<String, dynamic> json) {
     return VisibilityConfig(
       cloudWatchMetricsEnabled: json['CloudWatchMetricsEnabled'] as bool,
@@ -10395,6 +10503,7 @@ class WebACL {
     this.preProcessFirewallManagerRuleGroups,
     this.rules,
   });
+
   factory WebACL.fromJson(Map<String, dynamic> json) {
     return WebACL(
       arn: json['ARN'] as String,
@@ -10508,6 +10617,7 @@ class WebACLSummary {
     this.lockToken,
     this.name,
   });
+
   factory WebACLSummary.fromJson(Map<String, dynamic> json) {
     return WebACLSummary(
       arn: json['ARN'] as String?,
@@ -10558,6 +10668,7 @@ class XssMatchStatement {
     required this.fieldToMatch,
     required this.textTransformations,
   });
+
   factory XssMatchStatement.fromJson(Map<String, dynamic> json) {
     return XssMatchStatement(
       fieldToMatch:

@@ -2307,6 +2307,7 @@ class BatchResultErrorEntry {
     required this.senderFault,
     this.message,
   });
+
   factory BatchResultErrorEntry.fromJson(Map<String, dynamic> json) {
     return BatchResultErrorEntry(
       code: json['Code'] as String,
@@ -2374,6 +2375,7 @@ class ChangeMessageVisibilityBatchRequestEntry {
     required this.receiptHandle,
     this.visibilityTimeout,
   });
+
   factory ChangeMessageVisibilityBatchRequestEntry.fromJson(
       Map<String, dynamic> json) {
     return ChangeMessageVisibilityBatchRequestEntry(
@@ -2411,6 +2413,7 @@ class ChangeMessageVisibilityBatchResult {
     required this.failed,
     required this.successful,
   });
+
   factory ChangeMessageVisibilityBatchResult.fromJson(
       Map<String, dynamic> json) {
     return ChangeMessageVisibilityBatchResult(
@@ -2458,6 +2461,7 @@ class ChangeMessageVisibilityBatchResultEntry {
   ChangeMessageVisibilityBatchResultEntry({
     required this.id,
   });
+
   factory ChangeMessageVisibilityBatchResultEntry.fromJson(
       Map<String, dynamic> json) {
     return ChangeMessageVisibilityBatchResultEntry(
@@ -2487,6 +2491,7 @@ class CreateQueueResult {
   CreateQueueResult({
     this.queueUrl,
   });
+
   factory CreateQueueResult.fromJson(Map<String, dynamic> json) {
     return CreateQueueResult(
       queueUrl: json['QueueUrl'] as String?,
@@ -2526,6 +2531,7 @@ class DeleteMessageBatchRequestEntry {
     required this.id,
     required this.receiptHandle,
   });
+
   factory DeleteMessageBatchRequestEntry.fromJson(Map<String, dynamic> json) {
     return DeleteMessageBatchRequestEntry(
       id: json['Id'] as String,
@@ -2558,6 +2564,7 @@ class DeleteMessageBatchResult {
     required this.failed,
     required this.successful,
   });
+
   factory DeleteMessageBatchResult.fromJson(Map<String, dynamic> json) {
     return DeleteMessageBatchResult(
       failed: (json['Failed'] as List)
@@ -2604,6 +2611,7 @@ class DeleteMessageBatchResultEntry {
   DeleteMessageBatchResultEntry({
     required this.id,
   });
+
   factory DeleteMessageBatchResultEntry.fromJson(Map<String, dynamic> json) {
     return DeleteMessageBatchResultEntry(
       id: json['Id'] as String,
@@ -2632,6 +2640,7 @@ class GetQueueAttributesResult {
   GetQueueAttributesResult({
     this.attributes,
   });
+
   factory GetQueueAttributesResult.fromJson(Map<String, dynamic> json) {
     return GetQueueAttributesResult(
       attributes: (json['Attribute'] as Map<String, dynamic>?)
@@ -2671,6 +2680,7 @@ class GetQueueUrlResult {
   GetQueueUrlResult({
     this.queueUrl,
   });
+
   factory GetQueueUrlResult.fromJson(Map<String, dynamic> json) {
     return GetQueueUrlResult(
       queueUrl: json['QueueUrl'] as String?,
@@ -2706,6 +2716,7 @@ class ListDeadLetterSourceQueuesResult {
     required this.queueUrls,
     this.nextToken,
   });
+
   factory ListDeadLetterSourceQueuesResult.fromJson(Map<String, dynamic> json) {
     return ListDeadLetterSourceQueuesResult(
       queueUrls: (json['queueUrls'] as List)
@@ -2740,6 +2751,7 @@ class ListQueueTagsResult {
   ListQueueTagsResult({
     this.tags,
   });
+
   factory ListQueueTagsResult.fromJson(Map<String, dynamic> json) {
     return ListQueueTagsResult(
       tags: (json['Tag'] as Map<String, dynamic>?)
@@ -2783,6 +2795,7 @@ class ListQueuesResult {
     this.nextToken,
     this.queueUrls,
   });
+
   factory ListQueuesResult.fromJson(Map<String, dynamic> json) {
     return ListQueuesResult(
       nextToken: json['NextToken'] as String?,
@@ -2881,6 +2894,7 @@ class Message {
     this.messageId,
     this.receiptHandle,
   });
+
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       attributes: (json['Attribute'] as Map<String, dynamic>?)?.map(
@@ -2988,6 +3002,7 @@ class MessageAttributeValue {
     this.stringListValues,
     this.stringValue,
   });
+
   factory MessageAttributeValue.fromJson(Map<String, dynamic> json) {
     return MessageAttributeValue(
       dataType: json['DataType'] as String,
@@ -3154,6 +3169,7 @@ class MessageSystemAttributeValue {
     this.stringListValues,
     this.stringValue,
   });
+
   factory MessageSystemAttributeValue.fromJson(Map<String, dynamic> json) {
     return MessageSystemAttributeValue(
       dataType: json['DataType'] as String,
@@ -3313,6 +3329,7 @@ class ReceiveMessageResult {
   ReceiveMessageResult({
     this.messages,
   });
+
   factory ReceiveMessageResult.fromJson(Map<String, dynamic> json) {
     return ReceiveMessageResult(
       messages: (json['Messages'] as List?)
@@ -3498,6 +3515,7 @@ class SendMessageBatchRequestEntry {
     this.messageGroupId,
     this.messageSystemAttributes,
   });
+
   factory SendMessageBatchRequestEntry.fromJson(Map<String, dynamic> json) {
     return SendMessageBatchRequestEntry(
       id: json['Id'] as String,
@@ -3553,6 +3571,7 @@ class SendMessageBatchResult {
     required this.failed,
     required this.successful,
   });
+
   factory SendMessageBatchResult.fromJson(Map<String, dynamic> json) {
     return SendMessageBatchResult(
       failed: (json['Failed'] as List)
@@ -3636,6 +3655,7 @@ class SendMessageBatchResultEntry {
     this.mD5OfMessageSystemAttributes,
     this.sequenceNumber,
   });
+
   factory SendMessageBatchResultEntry.fromJson(Map<String, dynamic> json) {
     return SendMessageBatchResultEntry(
       id: json['Id'] as String,
@@ -3724,6 +3744,7 @@ class SendMessageResult {
     this.messageId,
     this.sequenceNumber,
   });
+
   factory SendMessageResult.fromJson(Map<String, dynamic> json) {
     return SendMessageResult(
       mD5OfMessageAttributes: json['MD5OfMessageAttributes'] as String?,

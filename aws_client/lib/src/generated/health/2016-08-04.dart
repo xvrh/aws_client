@@ -1017,6 +1017,7 @@ class AffectedEntity {
     this.statusCode,
     this.tags,
   });
+
   factory AffectedEntity.fromJson(Map<String, dynamic> json) {
     return AffectedEntity(
       awsAccountId: json['awsAccountId'] as String?,
@@ -1077,6 +1078,7 @@ class DateTimeRange {
     this.from,
     this.to,
   });
+
   factory DateTimeRange.fromJson(Map<String, dynamic> json) {
     return DateTimeRange(
       from: timeStampFromJson(json['from']),
@@ -1133,6 +1135,7 @@ class DescribeAffectedAccountsForOrganizationResponse {
     this.eventScopeCode,
     this.nextToken,
   });
+
   factory DescribeAffectedAccountsForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAffectedAccountsForOrganizationResponse(
@@ -1181,6 +1184,7 @@ class DescribeAffectedEntitiesForOrganizationResponse {
     this.failedSet,
     this.nextToken,
   });
+
   factory DescribeAffectedEntitiesForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAffectedEntitiesForOrganizationResponse(
@@ -1224,6 +1228,7 @@ class DescribeAffectedEntitiesResponse {
     this.entities,
     this.nextToken,
   });
+
   factory DescribeAffectedEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAffectedEntitiesResponse(
       entities: (json['entities'] as List?)
@@ -1251,6 +1256,7 @@ class DescribeEntityAggregatesResponse {
   DescribeEntityAggregatesResponse({
     this.entityAggregates,
   });
+
   factory DescribeEntityAggregatesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEntityAggregatesResponse(
       entityAggregates: (json['entityAggregates'] as List?)
@@ -1284,6 +1290,7 @@ class DescribeEventAggregatesResponse {
     this.eventAggregates,
     this.nextToken,
   });
+
   factory DescribeEventAggregatesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventAggregatesResponse(
       eventAggregates: (json['eventAggregates'] as List?)
@@ -1315,6 +1322,7 @@ class DescribeEventDetailsForOrganizationResponse {
     this.failedSet,
     this.successfulSet,
   });
+
   factory DescribeEventDetailsForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEventDetailsForOrganizationResponse(
@@ -1352,6 +1360,7 @@ class DescribeEventDetailsResponse {
     this.failedSet,
     this.successfulSet,
   });
+
   factory DescribeEventDetailsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventDetailsResponse(
       failedSet: (json['failedSet'] as List?)
@@ -1395,6 +1404,7 @@ class DescribeEventTypesResponse {
     this.eventTypes,
     this.nextToken,
   });
+
   factory DescribeEventTypesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventTypesResponse(
       eventTypes: (json['eventTypes'] as List?)
@@ -1430,6 +1440,7 @@ class DescribeEventsForOrganizationResponse {
     this.events,
     this.nextToken,
   });
+
   factory DescribeEventsForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEventsForOrganizationResponse(
@@ -1466,6 +1477,7 @@ class DescribeEventsResponse {
     this.events,
     this.nextToken,
   });
+
   factory DescribeEventsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventsResponse(
       events: (json['events'] as List?)
@@ -1496,6 +1508,7 @@ class DescribeHealthServiceStatusForOrganizationResponse {
   DescribeHealthServiceStatusForOrganizationResponse({
     this.healthServiceAccessStatusForOrganization,
   });
+
   factory DescribeHealthServiceStatusForOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeHealthServiceStatusForOrganizationResponse(
@@ -1536,6 +1549,7 @@ class EntityAggregate {
     this.count,
     this.eventArn,
   });
+
   factory EntityAggregate.fromJson(Map<String, dynamic> json) {
     return EntityAggregate(
       count: json['count'] as int?,
@@ -1589,6 +1603,7 @@ class EntityFilter {
     this.statusCodes,
     this.tags,
   });
+
   factory EntityFilter.fromJson(Map<String, dynamic> json) {
     return EntityFilter(
       eventArns: (json['eventArns'] as List)
@@ -1737,6 +1752,7 @@ class Event {
     this.startTime,
     this.statusCode,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       arn: json['arn'] as String?,
@@ -1806,6 +1822,7 @@ class EventAccountFilter {
     required this.eventArn,
     this.awsAccountId,
   });
+
   factory EventAccountFilter.fromJson(Map<String, dynamic> json) {
     return EventAccountFilter(
       eventArn: json['eventArn'] as String,
@@ -1837,6 +1854,7 @@ class EventAggregate {
     this.aggregateValue,
     this.count,
   });
+
   factory EventAggregate.fromJson(Map<String, dynamic> json) {
     return EventAggregate(
       aggregateValue: json['aggregateValue'] as String?,
@@ -1865,6 +1883,7 @@ class EventDescription {
   EventDescription({
     this.latestDescription,
   });
+
   factory EventDescription.fromJson(Map<String, dynamic> json) {
     return EventDescription(
       latestDescription: json['latestDescription'] as String?,
@@ -1901,6 +1920,7 @@ class EventDetails {
     this.eventDescription,
     this.eventMetadata,
   });
+
   factory EventDetails.fromJson(Map<String, dynamic> json) {
     return EventDetails(
       event: json['event'] != null
@@ -1951,6 +1971,7 @@ class EventDetailsErrorItem {
     this.errorName,
     this.eventArn,
   });
+
   factory EventDetailsErrorItem.fromJson(Map<String, dynamic> json) {
     return EventDetailsErrorItem(
       errorMessage: json['errorMessage'] as String?,
@@ -2040,6 +2061,7 @@ class EventFilter {
     this.startTimes,
     this.tags,
   });
+
   factory EventFilter.fromJson(Map<String, dynamic> json) {
     return EventFilter(
       availabilityZones: (json['availabilityZones'] as List?)
@@ -2168,6 +2190,7 @@ class EventType {
     this.code,
     this.service,
   });
+
   factory EventType.fromJson(Map<String, dynamic> json) {
     return EventType(
       category: (json['category'] as String?)?.toEventTypeCategory(),
@@ -2208,6 +2231,7 @@ class EventTypeFilter {
     this.eventTypeCodes,
     this.services,
   });
+
   factory EventTypeFilter.fromJson(Map<String, dynamic> json) {
     return EventTypeFilter(
       eventTypeCategories: (json['eventTypeCategories'] as List?)
@@ -2269,6 +2293,7 @@ class OrganizationAffectedEntitiesErrorItem {
     this.errorName,
     this.eventArn,
   });
+
   factory OrganizationAffectedEntitiesErrorItem.fromJson(
       Map<String, dynamic> json) {
     return OrganizationAffectedEntitiesErrorItem(
@@ -2368,6 +2393,7 @@ class OrganizationEvent {
     this.startTime,
     this.statusCode,
   });
+
   factory OrganizationEvent.fromJson(Map<String, dynamic> json) {
     return OrganizationEvent(
       arn: json['arn'] as String?,
@@ -2434,6 +2460,7 @@ class OrganizationEventDetails {
     this.eventDescription,
     this.eventMetadata,
   });
+
   factory OrganizationEventDetails.fromJson(Map<String, dynamic> json) {
     return OrganizationEventDetails(
       awsAccountId: json['awsAccountId'] as String?,
@@ -2513,6 +2540,7 @@ class OrganizationEventDetailsErrorItem {
     this.errorName,
     this.eventArn,
   });
+
   factory OrganizationEventDetailsErrorItem.fromJson(
       Map<String, dynamic> json) {
     return OrganizationEventDetailsErrorItem(
@@ -2585,6 +2613,7 @@ class OrganizationEventFilter {
     this.services,
     this.startTime,
   });
+
   factory OrganizationEventFilter.fromJson(Map<String, dynamic> json) {
     return OrganizationEventFilter(
       awsAccountIds: (json['awsAccountIds'] as List?)

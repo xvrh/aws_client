@@ -64,6 +64,7 @@ class OutputShape {
     this.num,
     this.str,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       num: json['Num'] as int?,

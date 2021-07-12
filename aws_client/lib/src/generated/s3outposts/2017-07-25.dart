@@ -247,6 +247,7 @@ class CreateEndpointResult {
   CreateEndpointResult({
     this.endpointArn,
   });
+
   factory CreateEndpointResult.fromJson(Map<String, dynamic> json) {
     return CreateEndpointResult(
       endpointArn: json['EndpointArn'] as String?,
@@ -292,6 +293,7 @@ class Endpoint {
     this.outpostsId,
     this.status,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       cidrBlock: json['CidrBlock'] as String?,
@@ -364,6 +366,7 @@ class ListEndpointsResult {
     this.endpoints,
     this.nextToken,
   });
+
   factory ListEndpointsResult.fromJson(Map<String, dynamic> json) {
     return ListEndpointsResult(
       endpoints: (json['Endpoints'] as List?)
@@ -392,6 +395,7 @@ class NetworkInterface {
   NetworkInterface({
     this.networkInterfaceId,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       networkInterfaceId: json['NetworkInterfaceId'] as String?,

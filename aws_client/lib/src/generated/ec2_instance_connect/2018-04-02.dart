@@ -215,6 +215,7 @@ class SendSSHPublicKeyResponse {
     this.requestId,
     this.success,
   });
+
   factory SendSSHPublicKeyResponse.fromJson(Map<String, dynamic> json) {
     return SendSSHPublicKeyResponse(
       requestId: json['RequestId'] as String?,
@@ -244,6 +245,7 @@ class SendSerialConsoleSSHPublicKeyResponse {
     this.requestId,
     this.success,
   });
+
   factory SendSerialConsoleSSHPublicKeyResponse.fromJson(
       Map<String, dynamic> json) {
     return SendSerialConsoleSSHPublicKeyResponse(

@@ -2879,6 +2879,7 @@ class BotAliasMetadata {
     this.lastUpdatedDate,
     this.name,
   });
+
   factory BotAliasMetadata.fromJson(Map<String, dynamic> json) {
     return BotAliasMetadata(
       botName: json['botName'] as String?,
@@ -2981,6 +2982,7 @@ class BotChannelAssociation {
     this.status,
     this.type,
   });
+
   factory BotChannelAssociation.fromJson(Map<String, dynamic> json) {
     return BotChannelAssociation(
       botAlias: json['botAlias'] as String?,
@@ -3050,6 +3052,7 @@ class BotMetadata {
     this.status,
     this.version,
   });
+
   factory BotMetadata.fromJson(Map<String, dynamic> json) {
     return BotMetadata(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -3095,6 +3098,7 @@ class BuiltinIntentMetadata {
     this.signature,
     this.supportedLocales,
   });
+
   factory BuiltinIntentMetadata.fromJson(Map<String, dynamic> json) {
     return BuiltinIntentMetadata(
       signature: json['signature'] as String?,
@@ -3124,6 +3128,7 @@ class BuiltinIntentSlot {
   BuiltinIntentSlot({
     this.name,
   });
+
   factory BuiltinIntentSlot.fromJson(Map<String, dynamic> json) {
     return BuiltinIntentSlot(
       name: json['name'] as String?,
@@ -3153,6 +3158,7 @@ class BuiltinSlotTypeMetadata {
     this.signature,
     this.supportedLocales,
   });
+
   factory BuiltinSlotTypeMetadata.fromJson(Map<String, dynamic> json) {
     return BuiltinSlotTypeMetadata(
       signature: json['signature'] as String?,
@@ -3259,6 +3265,7 @@ class CodeHook {
     required this.messageVersion,
     required this.uri,
   });
+
   factory CodeHook.fromJson(Map<String, dynamic> json) {
     return CodeHook(
       messageVersion: json['messageVersion'] as String,
@@ -3327,6 +3334,7 @@ class ConversationLogsRequest {
     required this.iamRoleArn,
     required this.logSettings,
   });
+
   factory ConversationLogsRequest.fromJson(Map<String, dynamic> json) {
     return ConversationLogsRequest(
       iamRoleArn: json['iamRoleArn'] as String,
@@ -3360,6 +3368,7 @@ class ConversationLogsResponse {
     this.iamRoleArn,
     this.logSettings,
   });
+
   factory ConversationLogsResponse.fromJson(Map<String, dynamic> json) {
     return ConversationLogsResponse(
       iamRoleArn: json['iamRoleArn'] as String?,
@@ -3490,6 +3499,7 @@ class CreateBotVersionResponse {
     this.version,
     this.voiceId,
   });
+
   factory CreateBotVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateBotVersionResponse(
       abortStatement: json['abortStatement'] != null
@@ -3648,6 +3658,7 @@ class CreateIntentVersionResponse {
     this.slots,
     this.version,
   });
+
   factory CreateIntentVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateIntentVersionResponse(
       checksum: json['checksum'] as String?,
@@ -3795,6 +3806,7 @@ class CreateSlotTypeVersionResponse {
     this.valueSelectionStrategy,
     this.version,
   });
+
   factory CreateSlotTypeVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateSlotTypeVersionResponse(
       checksum: json['checksum'] as String?,
@@ -3904,6 +3916,7 @@ class EnumerationValue {
     required this.value,
     this.synonyms,
   });
+
   factory EnumerationValue.fromJson(Map<String, dynamic> json) {
     return EnumerationValue(
       value: json['value'] as String,
@@ -4001,6 +4014,7 @@ class FollowUpPrompt {
     required this.prompt,
     required this.rejectionStatement,
   });
+
   factory FollowUpPrompt.fromJson(Map<String, dynamic> json) {
     return FollowUpPrompt(
       prompt: Prompt.fromJson(json['prompt'] as Map<String, dynamic>),
@@ -4054,6 +4068,7 @@ class FulfillmentActivity {
     required this.type,
     this.codeHook,
   });
+
   factory FulfillmentActivity.fromJson(Map<String, dynamic> json) {
     return FulfillmentActivity(
       type: (json['type'] as String).toFulfillmentActivityType(),
@@ -4138,6 +4153,7 @@ class GetBotAliasResponse {
     this.lastUpdatedDate,
     this.name,
   });
+
   factory GetBotAliasResponse.fromJson(Map<String, dynamic> json) {
     return GetBotAliasResponse(
       botName: json['botName'] as String?,
@@ -4192,6 +4208,7 @@ class GetBotAliasesResponse {
     this.botAliases,
     this.nextToken,
   });
+
   factory GetBotAliasesResponse.fromJson(Map<String, dynamic> json) {
     return GetBotAliasesResponse(
       botAliases: (json['BotAliases'] as List?)
@@ -4268,6 +4285,7 @@ class GetBotChannelAssociationResponse {
     this.status,
     this.type,
   });
+
   factory GetBotChannelAssociationResponse.fromJson(Map<String, dynamic> json) {
     return GetBotChannelAssociationResponse(
       botAlias: json['botAlias'] as String?,
@@ -4322,6 +4340,7 @@ class GetBotChannelAssociationsResponse {
     this.botChannelAssociations,
     this.nextToken,
   });
+
   factory GetBotChannelAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetBotChannelAssociationsResponse(
@@ -4478,6 +4497,7 @@ class GetBotResponse {
     this.version,
     this.voiceId,
   });
+
   factory GetBotResponse.fromJson(Map<String, dynamic> json) {
     return GetBotResponse(
       abortStatement: json['abortStatement'] != null
@@ -4571,6 +4591,7 @@ class GetBotVersionsResponse {
     this.bots,
     this.nextToken,
   });
+
   factory GetBotVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetBotVersionsResponse(
       bots: (json['bots'] as List?)
@@ -4603,6 +4624,7 @@ class GetBotsResponse {
     this.bots,
     this.nextToken,
   });
+
   factory GetBotsResponse.fromJson(Map<String, dynamic> json) {
     return GetBotsResponse(
       bots: (json['bots'] as List?)
@@ -4639,6 +4661,7 @@ class GetBuiltinIntentResponse {
     this.slots,
     this.supportedLocales,
   });
+
   factory GetBuiltinIntentResponse.fromJson(Map<String, dynamic> json) {
     return GetBuiltinIntentResponse(
       signature: json['signature'] as String?,
@@ -4681,6 +4704,7 @@ class GetBuiltinIntentsResponse {
     this.intents,
     this.nextToken,
   });
+
   factory GetBuiltinIntentsResponse.fromJson(Map<String, dynamic> json) {
     return GetBuiltinIntentsResponse(
       intents: (json['intents'] as List?)
@@ -4714,6 +4738,7 @@ class GetBuiltinSlotTypesResponse {
     this.nextToken,
     this.slotTypes,
   });
+
   factory GetBuiltinSlotTypesResponse.fromJson(Map<String, dynamic> json) {
     return GetBuiltinSlotTypesResponse(
       nextToken: json['nextToken'] as String?,
@@ -4782,6 +4807,7 @@ class GetExportResponse {
     this.url,
     this.version,
   });
+
   factory GetExportResponse.fromJson(Map<String, dynamic> json) {
     return GetExportResponse(
       exportStatus: (json['exportStatus'] as String?)?.toExportStatus(),
@@ -4847,6 +4873,7 @@ class GetImportResponse {
     this.name,
     this.resourceType,
   });
+
   factory GetImportResponse.fromJson(Map<String, dynamic> json) {
     return GetImportResponse(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -4970,6 +4997,7 @@ class GetIntentResponse {
     this.slots,
     this.version,
   });
+
   factory GetIntentResponse.fromJson(Map<String, dynamic> json) {
     return GetIntentResponse(
       checksum: json['checksum'] as String?,
@@ -5086,6 +5114,7 @@ class GetIntentVersionsResponse {
     this.intents,
     this.nextToken,
   });
+
   factory GetIntentVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetIntentVersionsResponse(
       intents: (json['intents'] as List?)
@@ -5119,6 +5148,7 @@ class GetIntentsResponse {
     this.intents,
     this.nextToken,
   });
+
   factory GetIntentsResponse.fromJson(Map<String, dynamic> json) {
     return GetIntentsResponse(
       intents: (json['intents'] as List?)
@@ -5185,6 +5215,7 @@ class GetSlotTypeResponse {
     this.valueSelectionStrategy,
     this.version,
   });
+
   factory GetSlotTypeResponse.fromJson(Map<String, dynamic> json) {
     return GetSlotTypeResponse(
       checksum: json['checksum'] as String?,
@@ -5252,6 +5283,7 @@ class GetSlotTypeVersionsResponse {
     this.nextToken,
     this.slotTypes,
   });
+
   factory GetSlotTypeVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetSlotTypeVersionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -5285,6 +5317,7 @@ class GetSlotTypesResponse {
     this.nextToken,
     this.slotTypes,
   });
+
   factory GetSlotTypesResponse.fromJson(Map<String, dynamic> json) {
     return GetSlotTypesResponse(
       nextToken: json['nextToken'] as String?,
@@ -5320,6 +5353,7 @@ class GetUtterancesViewResponse {
     this.botName,
     this.utterances,
   });
+
   factory GetUtterancesViewResponse.fromJson(Map<String, dynamic> json) {
     return GetUtterancesViewResponse(
       botName: json['botName'] as String?,
@@ -5382,6 +5416,7 @@ class InputContext {
   InputContext({
     required this.name,
   });
+
   factory InputContext.fromJson(Map<String, dynamic> json) {
     return InputContext(
       name: json['name'] as String,
@@ -5408,6 +5443,7 @@ class Intent {
     required this.intentName,
     required this.intentVersion,
   });
+
   factory Intent.fromJson(Map<String, dynamic> json) {
     return Intent(
       intentName: json['intentName'] as String,
@@ -5450,6 +5486,7 @@ class IntentMetadata {
     this.name,
     this.version,
   });
+
   factory IntentMetadata.fromJson(Map<String, dynamic> json) {
     return IntentMetadata(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -5511,6 +5548,7 @@ class KendraConfiguration {
     required this.role,
     this.queryFilterString,
   });
+
   factory KendraConfiguration.fromJson(Map<String, dynamic> json) {
     return KendraConfiguration(
       kendraIndex: json['kendraIndex'] as String,
@@ -5538,6 +5576,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -5654,6 +5693,7 @@ class LogSettingsRequest {
     required this.resourceArn,
     this.kmsKeyArn,
   });
+
   factory LogSettingsRequest.fromJson(Map<String, dynamic> json) {
     return LogSettingsRequest(
       destination: (json['destination'] as String).toDestination(),
@@ -5705,6 +5745,7 @@ class LogSettingsResponse {
     this.resourceArn,
     this.resourcePrefix,
   });
+
   factory LogSettingsResponse.fromJson(Map<String, dynamic> json) {
     return LogSettingsResponse(
       destination: (json['destination'] as String?)?.toDestination(),
@@ -5805,6 +5846,7 @@ class Message {
     required this.contentType,
     this.groupNumber,
   });
+
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       content: json['content'] as String,
@@ -5874,6 +5916,7 @@ class OutputContext {
     required this.timeToLiveInSeconds,
     required this.turnsToLive,
   });
+
   factory OutputContext.fromJson(Map<String, dynamic> json) {
     return OutputContext(
       name: json['name'] as String,
@@ -5947,6 +5990,7 @@ class Prompt {
     required this.messages,
     this.responseCard,
   });
+
   factory Prompt.fromJson(Map<String, dynamic> json) {
     return Prompt(
       maxAttempts: json['maxAttempts'] as int,
@@ -6011,6 +6055,7 @@ class PutBotAliasResponse {
     this.name,
     this.tags,
   });
+
   factory PutBotAliasResponse.fromJson(Map<String, dynamic> json) {
     return PutBotAliasResponse(
       botName: json['botName'] as String?,
@@ -6204,6 +6249,7 @@ class PutBotResponse {
     this.version,
     this.voiceId,
   });
+
   factory PutBotResponse.fromJson(Map<String, dynamic> json) {
     return PutBotResponse(
       abortStatement: json['abortStatement'] != null
@@ -6388,6 +6434,7 @@ class PutIntentResponse {
     this.slots,
     this.version,
   });
+
   factory PutIntentResponse.fromJson(Map<String, dynamic> json) {
     return PutIntentResponse(
       checksum: json['checksum'] as String?,
@@ -6545,6 +6592,7 @@ class PutSlotTypeResponse {
     this.valueSelectionStrategy,
     this.version,
   });
+
   factory PutSlotTypeResponse.fromJson(Map<String, dynamic> json) {
     return PutSlotTypeResponse(
       checksum: json['checksum'] as String?,
@@ -6699,6 +6747,7 @@ class Slot {
     this.slotTypeVersion,
     this.valueElicitationPrompt,
   });
+
   factory Slot.fromJson(Map<String, dynamic> json) {
     return Slot(
       name: json['name'] as String,
@@ -6805,6 +6854,7 @@ class SlotDefaultValue {
   SlotDefaultValue({
     required this.defaultValue,
   });
+
   factory SlotDefaultValue.fromJson(Map<String, dynamic> json) {
     return SlotDefaultValue(
       defaultValue: json['defaultValue'] as String,
@@ -6835,6 +6885,7 @@ class SlotDefaultValueSpec {
   SlotDefaultValueSpec({
     required this.defaultValueList,
   });
+
   factory SlotDefaultValueSpec.fromJson(Map<String, dynamic> json) {
     return SlotDefaultValueSpec(
       defaultValueList: (json['defaultValueList'] as List)
@@ -6860,6 +6911,7 @@ class SlotTypeConfiguration {
   SlotTypeConfiguration({
     this.regexConfiguration,
   });
+
   factory SlotTypeConfiguration.fromJson(Map<String, dynamic> json) {
     return SlotTypeConfiguration(
       regexConfiguration: json['regexConfiguration'] != null
@@ -6902,6 +6954,7 @@ class SlotTypeMetadata {
     this.name,
     this.version,
   });
+
   factory SlotTypeMetadata.fromJson(Map<String, dynamic> json) {
     return SlotTypeMetadata(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -6965,6 +7018,7 @@ class SlotTypeRegexConfiguration {
   SlotTypeRegexConfiguration({
     required this.pattern,
   });
+
   factory SlotTypeRegexConfiguration.fromJson(Map<String, dynamic> json) {
     return SlotTypeRegexConfiguration(
       pattern: json['pattern'] as String,
@@ -7039,6 +7093,7 @@ class StartImportResponse {
     this.resourceType,
     this.tags,
   });
+
   factory StartImportResponse.fromJson(Map<String, dynamic> json) {
     return StartImportResponse(
       createdDate: timeStampFromJson(json['createdDate']),
@@ -7091,6 +7146,7 @@ class Statement {
     required this.messages,
     this.responseCard,
   });
+
   factory Statement.fromJson(Map<String, dynamic> json) {
     return Statement(
       messages: (json['messages'] as List)
@@ -7197,6 +7253,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -7216,6 +7273,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -7227,6 +7285,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -7261,6 +7320,7 @@ class UtteranceData {
     this.lastUtteredDate,
     this.utteranceString,
   });
+
   factory UtteranceData.fromJson(Map<String, dynamic> json) {
     return UtteranceData(
       count: json['count'] as int?,
@@ -7304,6 +7364,7 @@ class UtteranceList {
     this.botVersion,
     this.utterances,
   });
+
   factory UtteranceList.fromJson(Map<String, dynamic> json) {
     return UtteranceList(
       botVersion: json['botVersion'] as String?,

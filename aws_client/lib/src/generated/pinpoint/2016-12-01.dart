@@ -4630,6 +4630,7 @@ class ADMChannelRequest {
     required this.clientSecret,
     this.enabled,
   });
+
   factory ADMChannelRequest.fromJson(Map<String, dynamic> json) {
     return ADMChannelRequest(
       clientId: json['ClientId'] as String,
@@ -4697,6 +4698,7 @@ class ADMChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory ADMChannelResponse.fromJson(Map<String, dynamic> json) {
     return ADMChannelResponse(
       platform: json['Platform'] as String,
@@ -4843,6 +4845,7 @@ class ADMMessage {
     this.title,
     this.url,
   });
+
   factory ADMMessage.fromJson(Map<String, dynamic> json) {
     return ADMMessage(
       action: (json['Action'] as String?)?.toAction(),
@@ -4948,6 +4951,7 @@ class APNSChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   factory APNSChannelRequest.fromJson(Map<String, dynamic> json) {
     return APNSChannelRequest(
       bundleId: json['BundleId'] as String?,
@@ -5043,6 +5047,7 @@ class APNSChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory APNSChannelResponse.fromJson(Map<String, dynamic> json) {
     return APNSChannelResponse(
       platform: json['Platform'] as String,
@@ -5302,6 +5307,7 @@ class APNSMessage {
     this.title,
     this.url,
   });
+
   factory APNSMessage.fromJson(Map<String, dynamic> json) {
     return APNSMessage(
       aPNSPushType: json['APNSPushType'] as String?,
@@ -5434,6 +5440,7 @@ class APNSPushNotificationTemplate {
     this.title,
     this.url,
   });
+
   factory APNSPushNotificationTemplate.fromJson(Map<String, dynamic> json) {
     return APNSPushNotificationTemplate(
       action: (json['Action'] as String?)?.toAction(),
@@ -5511,6 +5518,7 @@ class APNSSandboxChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   factory APNSSandboxChannelRequest.fromJson(Map<String, dynamic> json) {
     return APNSSandboxChannelRequest(
       bundleId: json['BundleId'] as String?,
@@ -5607,6 +5615,7 @@ class APNSSandboxChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory APNSSandboxChannelResponse.fromJson(Map<String, dynamic> json) {
     return APNSSandboxChannelResponse(
       platform: json['Platform'] as String,
@@ -5699,6 +5708,7 @@ class APNSVoipChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   factory APNSVoipChannelRequest.fromJson(Map<String, dynamic> json) {
     return APNSVoipChannelRequest(
       bundleId: json['BundleId'] as String?,
@@ -5795,6 +5805,7 @@ class APNSVoipChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory APNSVoipChannelResponse.fromJson(Map<String, dynamic> json) {
     return APNSVoipChannelResponse(
       platform: json['Platform'] as String,
@@ -5891,6 +5902,7 @@ class APNSVoipSandboxChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   factory APNSVoipSandboxChannelRequest.fromJson(Map<String, dynamic> json) {
     return APNSVoipSandboxChannelRequest(
       bundleId: json['BundleId'] as String?,
@@ -5988,6 +6000,7 @@ class APNSVoipSandboxChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory APNSVoipSandboxChannelResponse.fromJson(Map<String, dynamic> json) {
     return APNSVoipSandboxChannelResponse(
       platform: json['Platform'] as String,
@@ -6084,6 +6097,7 @@ class ActivitiesResponse {
     required this.item,
     this.nextToken,
   });
+
   factory ActivitiesResponse.fromJson(Map<String, dynamic> json) {
     return ActivitiesResponse(
       item: (json['Item'] as List)
@@ -6161,6 +6175,7 @@ class Activity {
     this.sms,
     this.wait,
   });
+
   factory Activity.fromJson(Map<String, dynamic> json) {
     return Activity(
       custom: json['CUSTOM'] != null
@@ -6288,6 +6303,7 @@ class ActivityResponse {
     this.totalEndpointCount,
     this.treatmentId,
   });
+
   factory ActivityResponse.fromJson(Map<String, dynamic> json) {
     return ActivityResponse(
       applicationId: json['ApplicationId'] as String,
@@ -6380,6 +6396,7 @@ class AddressConfiguration {
     this.substitutions,
     this.titleOverride,
   });
+
   factory AddressConfiguration.fromJson(Map<String, dynamic> json) {
     return AddressConfiguration(
       bodyOverride: json['BodyOverride'] as String?,
@@ -6484,6 +6501,7 @@ class AndroidPushNotificationTemplate {
     this.title,
     this.url,
   });
+
   factory AndroidPushNotificationTemplate.fromJson(Map<String, dynamic> json) {
     return AndroidPushNotificationTemplate(
       action: (json['Action'] as String?)?.toAction(),
@@ -6563,6 +6581,7 @@ class ApplicationDateRangeKpiResponse {
     required this.startTime,
     this.nextToken,
   });
+
   factory ApplicationDateRangeKpiResponse.fromJson(Map<String, dynamic> json) {
     return ApplicationDateRangeKpiResponse(
       applicationId: json['ApplicationId'] as String,
@@ -6617,6 +6636,7 @@ class ApplicationResponse {
     required this.name,
     this.tags,
   });
+
   factory ApplicationResponse.fromJson(Map<String, dynamic> json) {
     return ApplicationResponse(
       arn: json['Arn'] as String,
@@ -6691,6 +6711,7 @@ class ApplicationSettingsResource {
     this.limits,
     this.quietTime,
   });
+
   factory ApplicationSettingsResource.fromJson(Map<String, dynamic> json) {
     return ApplicationSettingsResource(
       applicationId: json['ApplicationId'] as String,
@@ -6736,6 +6757,7 @@ class ApplicationsResponse {
     this.item,
     this.nextToken,
   });
+
   factory ApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ApplicationsResponse(
       item: (json['Item'] as List?)
@@ -6786,6 +6808,7 @@ class AttributeDimension {
     required this.values,
     this.attributeType,
   });
+
   factory AttributeDimension.fromJson(Map<String, dynamic> json) {
     return AttributeDimension(
       values: (json['Values'] as List)
@@ -6891,6 +6914,7 @@ class AttributesResource {
     required this.attributeType,
     this.attributes,
   });
+
   factory AttributesResource.fromJson(Map<String, dynamic> json) {
     return AttributesResource(
       applicationId: json['ApplicationId'] as String,
@@ -6933,6 +6957,7 @@ class BaiduChannelRequest {
     required this.secretKey,
     this.enabled,
   });
+
   factory BaiduChannelRequest.fromJson(Map<String, dynamic> json) {
     return BaiduChannelRequest(
       apiKey: json['ApiKey'] as String,
@@ -7005,6 +7030,7 @@ class BaiduChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory BaiduChannelResponse.fromJson(Map<String, dynamic> json) {
     return BaiduChannelResponse(
       credential: json['Credential'] as String,
@@ -7143,6 +7169,7 @@ class BaiduMessage {
     this.title,
     this.url,
   });
+
   factory BaiduMessage.fromJson(Map<String, dynamic> json) {
     return BaiduMessage(
       action: (json['Action'] as String?)?.toAction(),
@@ -7210,6 +7237,7 @@ class BaseKpiResult {
   BaseKpiResult({
     required this.rows,
   });
+
   factory BaseKpiResult.fromJson(Map<String, dynamic> json) {
     return BaseKpiResult(
       rows: (json['Rows'] as List)
@@ -7237,6 +7265,7 @@ class CampaignCustomMessage {
   CampaignCustomMessage({
     this.data,
   });
+
   factory CampaignCustomMessage.fromJson(Map<String, dynamic> json) {
     return CampaignCustomMessage(
       data: json['Data'] as String?,
@@ -7296,6 +7325,7 @@ class CampaignDateRangeKpiResponse {
     required this.startTime,
     this.nextToken,
   });
+
   factory CampaignDateRangeKpiResponse.fromJson(Map<String, dynamic> json) {
     return CampaignDateRangeKpiResponse(
       applicationId: json['ApplicationId'] as String,
@@ -7353,6 +7383,7 @@ class CampaignEmailMessage {
     this.htmlBody,
     this.title,
   });
+
   factory CampaignEmailMessage.fromJson(Map<String, dynamic> json) {
     return CampaignEmailMessage(
       body: json['Body'] as String?,
@@ -7391,6 +7422,7 @@ class CampaignEventFilter {
     required this.dimensions,
     required this.filterType,
   });
+
   factory CampaignEventFilter.fromJson(Map<String, dynamic> json) {
     return CampaignEventFilter(
       dimensions:
@@ -7443,6 +7475,7 @@ class CampaignHook {
     this.mode,
     this.webUrl,
   });
+
   factory CampaignHook.fromJson(Map<String, dynamic> json) {
     return CampaignHook(
       lambdaFunctionName: json['LambdaFunctionName'] as String?,
@@ -7495,6 +7528,7 @@ class CampaignLimits {
     this.messagesPerSecond,
     this.total,
   });
+
   factory CampaignLimits.fromJson(Map<String, dynamic> json) {
     return CampaignLimits(
       daily: json['Daily'] as int?,
@@ -7630,6 +7664,7 @@ class CampaignResponse {
     this.version,
     this.tags,
   });
+
   factory CampaignResponse.fromJson(Map<String, dynamic> json) {
     return CampaignResponse(
       applicationId: json['ApplicationId'] as String,
@@ -7780,6 +7815,7 @@ class CampaignSmsMessage {
     this.senderId,
     this.templateId,
   });
+
   factory CampaignSmsMessage.fromJson(Map<String, dynamic> json) {
     return CampaignSmsMessage(
       body: json['Body'] as String?,
@@ -7823,6 +7859,7 @@ class CampaignState {
   CampaignState({
     this.campaignStatus,
   });
+
   factory CampaignState.fromJson(Map<String, dynamic> json) {
     return CampaignState(
       campaignStatus: (json['CampaignStatus'] as String?)?.toCampaignStatus(),
@@ -7905,6 +7942,7 @@ class CampaignsResponse {
     required this.item,
     this.nextToken,
   });
+
   factory CampaignsResponse.fromJson(Map<String, dynamic> json) {
     return CampaignsResponse(
       item: (json['Item'] as List)
@@ -7967,6 +8005,7 @@ class ChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory ChannelResponse.fromJson(Map<String, dynamic> json) {
     return ChannelResponse(
       applicationId: json['ApplicationId'] as String?,
@@ -8094,6 +8133,7 @@ class ChannelsResponse {
   ChannelsResponse({
     required this.channels,
   });
+
   factory ChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ChannelsResponse(
       channels: (json['Channels'] as Map<String, dynamic>).map((k, e) =>
@@ -8124,6 +8164,7 @@ class Condition {
     this.conditions,
     this.operator,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       conditions: (json['Conditions'] as List?)
@@ -8179,6 +8220,7 @@ class ConditionalSplitActivity {
     this.falseActivity,
     this.trueActivity,
   });
+
   factory ConditionalSplitActivity.fromJson(Map<String, dynamic> json) {
     return ConditionalSplitActivity(
       condition: json['Condition'] != null
@@ -8213,6 +8255,7 @@ class CreateAppResponse {
   CreateAppResponse({
     required this.applicationResponse,
   });
+
   factory CreateAppResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppResponse(
       applicationResponse: ApplicationResponse.fromJson(
@@ -8244,6 +8287,7 @@ class CreateApplicationRequest {
     required this.name,
     this.tags,
   });
+
   factory CreateApplicationRequest.fromJson(Map<String, dynamic> json) {
     return CreateApplicationRequest(
       name: json['Name'] as String,
@@ -8268,6 +8312,7 @@ class CreateCampaignResponse {
   CreateCampaignResponse({
     required this.campaignResponse,
   });
+
   factory CreateCampaignResponse.fromJson(Map<String, dynamic> json) {
     return CreateCampaignResponse(
       campaignResponse: CampaignResponse.fromJson(
@@ -8289,6 +8334,7 @@ class CreateEmailTemplateResponse {
   CreateEmailTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
   factory CreateEmailTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateEmailTemplateResponse(
       createTemplateMessageBody: CreateTemplateMessageBody.fromJson(
@@ -8310,6 +8356,7 @@ class CreateExportJobResponse {
   CreateExportJobResponse({
     required this.exportJobResponse,
   });
+
   factory CreateExportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateExportJobResponse(
       exportJobResponse: ExportJobResponse.fromJson(
@@ -8331,6 +8378,7 @@ class CreateImportJobResponse {
   CreateImportJobResponse({
     required this.importJobResponse,
   });
+
   factory CreateImportJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateImportJobResponse(
       importJobResponse: ImportJobResponse.fromJson(
@@ -8352,6 +8400,7 @@ class CreateJourneyResponse {
   CreateJourneyResponse({
     required this.journeyResponse,
   });
+
   factory CreateJourneyResponse.fromJson(Map<String, dynamic> json) {
     return CreateJourneyResponse(
       journeyResponse: JourneyResponse.fromJson(
@@ -8373,6 +8422,7 @@ class CreatePushTemplateResponse {
   CreatePushTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
   factory CreatePushTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreatePushTemplateResponse(
       createTemplateMessageBody: CreateTemplateMessageBody.fromJson(
@@ -8503,6 +8553,7 @@ class CreateRecommenderConfiguration {
     this.recommendationsDisplayName,
     this.recommendationsPerMessage,
   });
+
   factory CreateRecommenderConfiguration.fromJson(Map<String, dynamic> json) {
     return CreateRecommenderConfiguration(
       recommendationProviderRoleArn:
@@ -8555,6 +8606,7 @@ class CreateRecommenderConfigurationResponse {
   CreateRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
   factory CreateRecommenderConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateRecommenderConfigurationResponse(
@@ -8579,6 +8631,7 @@ class CreateSegmentResponse {
   CreateSegmentResponse({
     required this.segmentResponse,
   });
+
   factory CreateSegmentResponse.fromJson(Map<String, dynamic> json) {
     return CreateSegmentResponse(
       segmentResponse: SegmentResponse.fromJson(
@@ -8600,6 +8653,7 @@ class CreateSmsTemplateResponse {
   CreateSmsTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
   factory CreateSmsTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateSmsTemplateResponse(
       createTemplateMessageBody: CreateTemplateMessageBody.fromJson(
@@ -8632,6 +8686,7 @@ class CreateTemplateMessageBody {
     this.message,
     this.requestID,
   });
+
   factory CreateTemplateMessageBody.fromJson(Map<String, dynamic> json) {
     return CreateTemplateMessageBody(
       arn: json['Arn'] as String?,
@@ -8658,6 +8713,7 @@ class CreateVoiceTemplateResponse {
   CreateVoiceTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
   factory CreateVoiceTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateVoiceTemplateResponse(
       createTemplateMessageBody: CreateTemplateMessageBody.fromJson(
@@ -8702,6 +8758,7 @@ class CustomDeliveryConfiguration {
     required this.deliveryUri,
     this.endpointTypes,
   });
+
   factory CustomDeliveryConfiguration.fromJson(Map<String, dynamic> json) {
     return CustomDeliveryConfiguration(
       deliveryUri: json['DeliveryUri'] as String,
@@ -8780,6 +8837,7 @@ class CustomMessageActivity {
     this.templateName,
     this.templateVersion,
   });
+
   factory CustomMessageActivity.fromJson(Map<String, dynamic> json) {
     return CustomMessageActivity(
       deliveryUri: json['DeliveryUri'] as String?,
@@ -8829,6 +8887,7 @@ class DefaultMessage {
     this.body,
     this.substitutions,
   });
+
   factory DefaultMessage.fromJson(Map<String, dynamic> json) {
     return DefaultMessage(
       body: json['Body'] as String?,
@@ -8907,6 +8966,7 @@ class DefaultPushNotificationMessage {
     this.title,
     this.url,
   });
+
   factory DefaultPushNotificationMessage.fromJson(Map<String, dynamic> json) {
     return DefaultPushNotificationMessage(
       action: (json['Action'] as String?)?.toAction(),
@@ -8997,6 +9057,7 @@ class DefaultPushNotificationTemplate {
     this.title,
     this.url,
   });
+
   factory DefaultPushNotificationTemplate.fromJson(Map<String, dynamic> json) {
     return DefaultPushNotificationTemplate(
       action: (json['Action'] as String?)?.toAction(),
@@ -9029,6 +9090,7 @@ class DeleteAdmChannelResponse {
   DeleteAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
   factory DeleteAdmChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAdmChannelResponse(
       aDMChannelResponse: ADMChannelResponse.fromJson(
@@ -9050,6 +9112,7 @@ class DeleteApnsChannelResponse {
   DeleteApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
   factory DeleteApnsChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteApnsChannelResponse(
       aPNSChannelResponse: APNSChannelResponse.fromJson(
@@ -9071,6 +9134,7 @@ class DeleteApnsSandboxChannelResponse {
   DeleteApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
   factory DeleteApnsSandboxChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteApnsSandboxChannelResponse(
       aPNSSandboxChannelResponse: APNSSandboxChannelResponse.fromJson(
@@ -9092,6 +9156,7 @@ class DeleteApnsVoipChannelResponse {
   DeleteApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
   factory DeleteApnsVoipChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteApnsVoipChannelResponse(
       aPNSVoipChannelResponse: APNSVoipChannelResponse.fromJson(
@@ -9113,6 +9178,7 @@ class DeleteApnsVoipSandboxChannelResponse {
   DeleteApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
   factory DeleteApnsVoipSandboxChannelResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteApnsVoipSandboxChannelResponse(
@@ -9135,6 +9201,7 @@ class DeleteAppResponse {
   DeleteAppResponse({
     required this.applicationResponse,
   });
+
   factory DeleteAppResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAppResponse(
       applicationResponse: ApplicationResponse.fromJson(
@@ -9156,6 +9223,7 @@ class DeleteBaiduChannelResponse {
   DeleteBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
   factory DeleteBaiduChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBaiduChannelResponse(
       baiduChannelResponse: BaiduChannelResponse.fromJson(
@@ -9177,6 +9245,7 @@ class DeleteCampaignResponse {
   DeleteCampaignResponse({
     required this.campaignResponse,
   });
+
   factory DeleteCampaignResponse.fromJson(Map<String, dynamic> json) {
     return DeleteCampaignResponse(
       campaignResponse: CampaignResponse.fromJson(
@@ -9198,6 +9267,7 @@ class DeleteEmailChannelResponse {
   DeleteEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
   factory DeleteEmailChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEmailChannelResponse(
       emailChannelResponse: EmailChannelResponse.fromJson(
@@ -9219,6 +9289,7 @@ class DeleteEmailTemplateResponse {
   DeleteEmailTemplateResponse({
     required this.messageBody,
   });
+
   factory DeleteEmailTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEmailTemplateResponse(
       messageBody:
@@ -9240,6 +9311,7 @@ class DeleteEndpointResponse {
   DeleteEndpointResponse({
     required this.endpointResponse,
   });
+
   factory DeleteEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEndpointResponse(
       endpointResponse: EndpointResponse.fromJson(
@@ -9261,6 +9333,7 @@ class DeleteEventStreamResponse {
   DeleteEventStreamResponse({
     required this.eventStream,
   });
+
   factory DeleteEventStreamResponse.fromJson(Map<String, dynamic> json) {
     return DeleteEventStreamResponse(
       eventStream:
@@ -9282,6 +9355,7 @@ class DeleteGcmChannelResponse {
   DeleteGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
   factory DeleteGcmChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGcmChannelResponse(
       gCMChannelResponse: GCMChannelResponse.fromJson(
@@ -9303,6 +9377,7 @@ class DeleteJourneyResponse {
   DeleteJourneyResponse({
     required this.journeyResponse,
   });
+
   factory DeleteJourneyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteJourneyResponse(
       journeyResponse: JourneyResponse.fromJson(
@@ -9324,6 +9399,7 @@ class DeletePushTemplateResponse {
   DeletePushTemplateResponse({
     required this.messageBody,
   });
+
   factory DeletePushTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DeletePushTemplateResponse(
       messageBody:
@@ -9345,6 +9421,7 @@ class DeleteRecommenderConfigurationResponse {
   DeleteRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
   factory DeleteRecommenderConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteRecommenderConfigurationResponse(
@@ -9369,6 +9446,7 @@ class DeleteSegmentResponse {
   DeleteSegmentResponse({
     required this.segmentResponse,
   });
+
   factory DeleteSegmentResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSegmentResponse(
       segmentResponse: SegmentResponse.fromJson(
@@ -9390,6 +9468,7 @@ class DeleteSmsChannelResponse {
   DeleteSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
   factory DeleteSmsChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSmsChannelResponse(
       sMSChannelResponse: SMSChannelResponse.fromJson(
@@ -9411,6 +9490,7 @@ class DeleteSmsTemplateResponse {
   DeleteSmsTemplateResponse({
     required this.messageBody,
   });
+
   factory DeleteSmsTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSmsTemplateResponse(
       messageBody:
@@ -9432,6 +9512,7 @@ class DeleteUserEndpointsResponse {
   DeleteUserEndpointsResponse({
     required this.endpointsResponse,
   });
+
   factory DeleteUserEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteUserEndpointsResponse(
       endpointsResponse: EndpointsResponse.fromJson(
@@ -9453,6 +9534,7 @@ class DeleteVoiceChannelResponse {
   DeleteVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
   factory DeleteVoiceChannelResponse.fromJson(Map<String, dynamic> json) {
     return DeleteVoiceChannelResponse(
       voiceChannelResponse: VoiceChannelResponse.fromJson(
@@ -9474,6 +9556,7 @@ class DeleteVoiceTemplateResponse {
   DeleteVoiceTemplateResponse({
     required this.messageBody,
   });
+
   factory DeleteVoiceTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DeleteVoiceTemplateResponse(
       messageBody:
@@ -9623,6 +9706,7 @@ class DirectMessageConfiguration {
     this.sMSMessage,
     this.voiceMessage,
   });
+
   factory DirectMessageConfiguration.fromJson(Map<String, dynamic> json) {
     return DirectMessageConfiguration(
       aDMMessage: json['ADMMessage'] != null
@@ -9753,6 +9837,7 @@ class EmailChannelRequest {
     this.enabled,
     this.roleArn,
   });
+
   factory EmailChannelRequest.fromJson(Map<String, dynamic> json) {
     return EmailChannelRequest(
       fromAddress: json['FromAddress'] as String,
@@ -9855,6 +9940,7 @@ class EmailChannelResponse {
     this.roleArn,
     this.version,
   });
+
   factory EmailChannelResponse.fromJson(Map<String, dynamic> json) {
     return EmailChannelResponse(
       platform: json['Platform'] as String,
@@ -9948,6 +10034,7 @@ class EmailMessage {
     this.simpleEmail,
     this.substitutions,
   });
+
   factory EmailMessage.fromJson(Map<String, dynamic> json) {
     return EmailMessage(
       body: json['Body'] as String?,
@@ -10025,6 +10112,7 @@ class EmailMessageActivity {
     this.templateName,
     this.templateVersion,
   });
+
   factory EmailMessageActivity.fromJson(Map<String, dynamic> json) {
     return EmailMessageActivity(
       messageConfig: json['MessageConfig'] != null
@@ -10102,6 +10190,7 @@ class EmailTemplateRequest {
     this.textPart,
     this.tags,
   });
+
   factory EmailTemplateRequest.fromJson(Map<String, dynamic> json) {
     return EmailTemplateRequest(
       defaultSubstitutions: json['DefaultSubstitutions'] as String?,
@@ -10206,6 +10295,7 @@ class EmailTemplateResponse {
     this.version,
     this.tags,
   });
+
   factory EmailTemplateResponse.fromJson(Map<String, dynamic> json) {
     return EmailTemplateResponse(
       creationDate: json['CreationDate'] as String,
@@ -10345,6 +10435,7 @@ class EndpointBatchItem {
     this.requestId,
     this.user,
   });
+
   factory EndpointBatchItem.fromJson(Map<String, dynamic> json) {
     return EndpointBatchItem(
       address: json['Address'] as String?,
@@ -10413,6 +10504,7 @@ class EndpointBatchRequest {
   EndpointBatchRequest({
     required this.item,
   });
+
   factory EndpointBatchRequest.fromJson(Map<String, dynamic> json) {
     return EndpointBatchRequest(
       item: (json['Item'] as List)
@@ -10470,6 +10562,7 @@ class EndpointDemographic {
     this.platformVersion,
     this.timezone,
   });
+
   factory EndpointDemographic.fromJson(Map<String, dynamic> json) {
     return EndpointDemographic(
       appVersion: json['AppVersion'] as String?,
@@ -10520,6 +10613,7 @@ class EndpointItemResponse {
     this.message,
     this.statusCode,
   });
+
   factory EndpointItemResponse.fromJson(Map<String, dynamic> json) {
     return EndpointItemResponse(
       message: json['Message'] as String?,
@@ -10569,6 +10663,7 @@ class EndpointLocation {
     this.postalCode,
     this.region,
   });
+
   factory EndpointLocation.fromJson(Map<String, dynamic> json) {
     return EndpointLocation(
       city: json['City'] as String?,
@@ -10662,6 +10757,7 @@ class EndpointMessageResult {
     this.statusMessage,
     this.updatedToken,
   });
+
   factory EndpointMessageResult.fromJson(Map<String, dynamic> json) {
     return EndpointMessageResult(
       deliveryStatus: (json['DeliveryStatus'] as String).toDeliveryStatus(),
@@ -10771,6 +10867,7 @@ class EndpointRequest {
     this.requestId,
     this.user,
   });
+
   factory EndpointRequest.fromJson(Map<String, dynamic> json) {
     return EndpointRequest(
       address: json['Address'] as String?,
@@ -10921,6 +11018,7 @@ class EndpointResponse {
     this.requestId,
     this.user,
   });
+
   factory EndpointResponse.fromJson(Map<String, dynamic> json) {
     return EndpointResponse(
       address: json['Address'] as String?,
@@ -11022,6 +11120,7 @@ class EndpointSendConfiguration {
     this.substitutions,
     this.titleOverride,
   });
+
   factory EndpointSendConfiguration.fromJson(Map<String, dynamic> json) {
     return EndpointSendConfiguration(
       bodyOverride: json['BodyOverride'] as String?,
@@ -11075,6 +11174,7 @@ class EndpointUser {
     this.userAttributes,
     this.userId,
   });
+
   factory EndpointUser.fromJson(Map<String, dynamic> json) {
     return EndpointUser(
       userAttributes: (json['UserAttributes'] as Map<String, dynamic>?)?.map(
@@ -11104,6 +11204,7 @@ class EndpointsResponse {
   EndpointsResponse({
     required this.item,
   });
+
   factory EndpointsResponse.fromJson(Map<String, dynamic> json) {
     return EndpointsResponse(
       item: (json['Item'] as List)
@@ -11165,6 +11266,7 @@ class Event {
     this.sdkName,
     this.session,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       eventType: json['EventType'] as String,
@@ -11224,6 +11326,7 @@ class EventCondition {
     this.dimensions,
     this.messageActivity,
   });
+
   factory EventCondition.fromJson(Map<String, dynamic> json) {
     return EventCondition(
       dimensions: json['Dimensions'] != null
@@ -11270,6 +11373,7 @@ class EventDimensions {
     this.eventType,
     this.metrics,
   });
+
   factory EventDimensions.fromJson(Map<String, dynamic> json) {
     return EventDimensions(
       attributes: (json['Attributes'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -11312,6 +11416,7 @@ class EventFilter {
     required this.dimensions,
     required this.filterType,
   });
+
   factory EventFilter.fromJson(Map<String, dynamic> json) {
     return EventFilter(
       dimensions:
@@ -11345,6 +11450,7 @@ class EventItemResponse {
     this.message,
     this.statusCode,
   });
+
   factory EventItemResponse.fromJson(Map<String, dynamic> json) {
     return EventItemResponse(
       message: json['Message'] as String?,
@@ -11371,6 +11477,7 @@ class EventStartCondition {
     this.eventFilter,
     this.segmentId,
   });
+
   factory EventStartCondition.fromJson(Map<String, dynamic> json) {
     return EventStartCondition(
       eventFilter: json['EventFilter'] != null
@@ -11433,6 +11540,7 @@ class EventStream {
     this.lastModifiedDate,
     this.lastUpdatedBy,
   });
+
   factory EventStream.fromJson(Map<String, dynamic> json) {
     return EventStream(
       applicationId: json['ApplicationId'] as String,
@@ -11474,6 +11582,7 @@ class EventsBatch {
     required this.endpoint,
     required this.events,
   });
+
   factory EventsBatch.fromJson(Map<String, dynamic> json) {
     return EventsBatch(
       endpoint:
@@ -11502,6 +11611,7 @@ class EventsRequest {
   EventsRequest({
     required this.batchItem,
   });
+
   factory EventsRequest.fromJson(Map<String, dynamic> json) {
     return EventsRequest(
       batchItem: (json['BatchItem'] as Map<String, dynamic>).map((k, e) =>
@@ -11530,6 +11640,7 @@ class EventsResponse {
   EventsResponse({
     this.results,
   });
+
   factory EventsResponse.fromJson(Map<String, dynamic> json) {
     return EventsResponse(
       results: (json['Results'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -11575,6 +11686,7 @@ class ExportJobRequest {
     this.segmentId,
     this.segmentVersion,
   });
+
   factory ExportJobRequest.fromJson(Map<String, dynamic> json) {
     return ExportJobRequest(
       roleArn: json['RoleArn'] as String,
@@ -11629,6 +11741,7 @@ class ExportJobResource {
     this.segmentId,
     this.segmentVersion,
   });
+
   factory ExportJobResource.fromJson(Map<String, dynamic> json) {
     return ExportJobResource(
       roleArn: json['RoleArn'] as String,
@@ -11721,6 +11834,7 @@ class ExportJobResponse {
     this.totalPieces,
     this.totalProcessed,
   });
+
   factory ExportJobResponse.fromJson(Map<String, dynamic> json) {
     return ExportJobResponse(
       applicationId: json['ApplicationId'] as String,
@@ -11792,6 +11906,7 @@ class ExportJobsResponse {
     required this.item,
     this.nextToken,
   });
+
   factory ExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ExportJobsResponse(
       item: (json['Item'] as List)
@@ -11932,6 +12047,7 @@ class GCMChannelRequest {
     required this.apiKey,
     this.enabled,
   });
+
   factory GCMChannelRequest.fromJson(Map<String, dynamic> json) {
     return GCMChannelRequest(
       apiKey: json['ApiKey'] as String,
@@ -12003,6 +12119,7 @@ class GCMChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory GCMChannelResponse.fromJson(Map<String, dynamic> json) {
     return GCMChannelResponse(
       credential: json['Credential'] as String,
@@ -12180,6 +12297,7 @@ class GCMMessage {
     this.title,
     this.url,
   });
+
   factory GCMMessage.fromJson(Map<String, dynamic> json) {
     return GCMMessage(
       action: (json['Action'] as String?)?.toAction(),
@@ -12258,6 +12376,7 @@ class GPSCoordinates {
     required this.latitude,
     required this.longitude,
   });
+
   factory GPSCoordinates.fromJson(Map<String, dynamic> json) {
     return GPSCoordinates(
       latitude: json['Latitude'] as double,
@@ -12288,6 +12407,7 @@ class GPSPointDimension {
     required this.coordinates,
     this.rangeInKilometers,
   });
+
   factory GPSPointDimension.fromJson(Map<String, dynamic> json) {
     return GPSPointDimension(
       coordinates:
@@ -12312,6 +12432,7 @@ class GetAdmChannelResponse {
   GetAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
   factory GetAdmChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetAdmChannelResponse(
       aDMChannelResponse: ADMChannelResponse.fromJson(
@@ -12333,6 +12454,7 @@ class GetApnsChannelResponse {
   GetApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
   factory GetApnsChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetApnsChannelResponse(
       aPNSChannelResponse: APNSChannelResponse.fromJson(
@@ -12354,6 +12476,7 @@ class GetApnsSandboxChannelResponse {
   GetApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
   factory GetApnsSandboxChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetApnsSandboxChannelResponse(
       aPNSSandboxChannelResponse: APNSSandboxChannelResponse.fromJson(
@@ -12375,6 +12498,7 @@ class GetApnsVoipChannelResponse {
   GetApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
   factory GetApnsVoipChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetApnsVoipChannelResponse(
       aPNSVoipChannelResponse: APNSVoipChannelResponse.fromJson(
@@ -12396,6 +12520,7 @@ class GetApnsVoipSandboxChannelResponse {
   GetApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
   factory GetApnsVoipSandboxChannelResponse.fromJson(
       Map<String, dynamic> json) {
     return GetApnsVoipSandboxChannelResponse(
@@ -12418,6 +12543,7 @@ class GetAppResponse {
   GetAppResponse({
     required this.applicationResponse,
   });
+
   factory GetAppResponse.fromJson(Map<String, dynamic> json) {
     return GetAppResponse(
       applicationResponse: ApplicationResponse.fromJson(
@@ -12439,6 +12565,7 @@ class GetApplicationDateRangeKpiResponse {
   GetApplicationDateRangeKpiResponse({
     required this.applicationDateRangeKpiResponse,
   });
+
   factory GetApplicationDateRangeKpiResponse.fromJson(
       Map<String, dynamic> json) {
     return GetApplicationDateRangeKpiResponse(
@@ -12462,6 +12589,7 @@ class GetApplicationSettingsResponse {
   GetApplicationSettingsResponse({
     required this.applicationSettingsResource,
   });
+
   factory GetApplicationSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetApplicationSettingsResponse(
       applicationSettingsResource: ApplicationSettingsResource.fromJson(
@@ -12483,6 +12611,7 @@ class GetAppsResponse {
   GetAppsResponse({
     required this.applicationsResponse,
   });
+
   factory GetAppsResponse.fromJson(Map<String, dynamic> json) {
     return GetAppsResponse(
       applicationsResponse: ApplicationsResponse.fromJson(
@@ -12504,6 +12633,7 @@ class GetBaiduChannelResponse {
   GetBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
   factory GetBaiduChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetBaiduChannelResponse(
       baiduChannelResponse: BaiduChannelResponse.fromJson(
@@ -12525,6 +12655,7 @@ class GetCampaignActivitiesResponse {
   GetCampaignActivitiesResponse({
     required this.activitiesResponse,
   });
+
   factory GetCampaignActivitiesResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignActivitiesResponse(
       activitiesResponse: ActivitiesResponse.fromJson(
@@ -12546,6 +12677,7 @@ class GetCampaignDateRangeKpiResponse {
   GetCampaignDateRangeKpiResponse({
     required this.campaignDateRangeKpiResponse,
   });
+
   factory GetCampaignDateRangeKpiResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignDateRangeKpiResponse(
       campaignDateRangeKpiResponse: CampaignDateRangeKpiResponse.fromJson(
@@ -12567,6 +12699,7 @@ class GetCampaignResponse {
   GetCampaignResponse({
     required this.campaignResponse,
   });
+
   factory GetCampaignResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignResponse(
       campaignResponse: CampaignResponse.fromJson(
@@ -12588,6 +12721,7 @@ class GetCampaignVersionResponse {
   GetCampaignVersionResponse({
     required this.campaignResponse,
   });
+
   factory GetCampaignVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignVersionResponse(
       campaignResponse: CampaignResponse.fromJson(
@@ -12609,6 +12743,7 @@ class GetCampaignVersionsResponse {
   GetCampaignVersionsResponse({
     required this.campaignsResponse,
   });
+
   factory GetCampaignVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignVersionsResponse(
       campaignsResponse: CampaignsResponse.fromJson(
@@ -12630,6 +12765,7 @@ class GetCampaignsResponse {
   GetCampaignsResponse({
     required this.campaignsResponse,
   });
+
   factory GetCampaignsResponse.fromJson(Map<String, dynamic> json) {
     return GetCampaignsResponse(
       campaignsResponse: CampaignsResponse.fromJson(
@@ -12651,6 +12787,7 @@ class GetChannelsResponse {
   GetChannelsResponse({
     required this.channelsResponse,
   });
+
   factory GetChannelsResponse.fromJson(Map<String, dynamic> json) {
     return GetChannelsResponse(
       channelsResponse: ChannelsResponse.fromJson(
@@ -12672,6 +12809,7 @@ class GetEmailChannelResponse {
   GetEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
   factory GetEmailChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetEmailChannelResponse(
       emailChannelResponse: EmailChannelResponse.fromJson(
@@ -12693,6 +12831,7 @@ class GetEmailTemplateResponse {
   GetEmailTemplateResponse({
     required this.emailTemplateResponse,
   });
+
   factory GetEmailTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetEmailTemplateResponse(
       emailTemplateResponse: EmailTemplateResponse.fromJson(
@@ -12714,6 +12853,7 @@ class GetEndpointResponse {
   GetEndpointResponse({
     required this.endpointResponse,
   });
+
   factory GetEndpointResponse.fromJson(Map<String, dynamic> json) {
     return GetEndpointResponse(
       endpointResponse: EndpointResponse.fromJson(
@@ -12735,6 +12875,7 @@ class GetEventStreamResponse {
   GetEventStreamResponse({
     required this.eventStream,
   });
+
   factory GetEventStreamResponse.fromJson(Map<String, dynamic> json) {
     return GetEventStreamResponse(
       eventStream:
@@ -12756,6 +12897,7 @@ class GetExportJobResponse {
   GetExportJobResponse({
     required this.exportJobResponse,
   });
+
   factory GetExportJobResponse.fromJson(Map<String, dynamic> json) {
     return GetExportJobResponse(
       exportJobResponse: ExportJobResponse.fromJson(
@@ -12777,6 +12919,7 @@ class GetExportJobsResponse {
   GetExportJobsResponse({
     required this.exportJobsResponse,
   });
+
   factory GetExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetExportJobsResponse(
       exportJobsResponse: ExportJobsResponse.fromJson(
@@ -12798,6 +12941,7 @@ class GetGcmChannelResponse {
   GetGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
   factory GetGcmChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetGcmChannelResponse(
       gCMChannelResponse: GCMChannelResponse.fromJson(
@@ -12819,6 +12963,7 @@ class GetImportJobResponse {
   GetImportJobResponse({
     required this.importJobResponse,
   });
+
   factory GetImportJobResponse.fromJson(Map<String, dynamic> json) {
     return GetImportJobResponse(
       importJobResponse: ImportJobResponse.fromJson(
@@ -12840,6 +12985,7 @@ class GetImportJobsResponse {
   GetImportJobsResponse({
     required this.importJobsResponse,
   });
+
   factory GetImportJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetImportJobsResponse(
       importJobsResponse: ImportJobsResponse.fromJson(
@@ -12861,6 +13007,7 @@ class GetJourneyDateRangeKpiResponse {
   GetJourneyDateRangeKpiResponse({
     required this.journeyDateRangeKpiResponse,
   });
+
   factory GetJourneyDateRangeKpiResponse.fromJson(Map<String, dynamic> json) {
     return GetJourneyDateRangeKpiResponse(
       journeyDateRangeKpiResponse: JourneyDateRangeKpiResponse.fromJson(
@@ -12883,6 +13030,7 @@ class GetJourneyExecutionActivityMetricsResponse {
   GetJourneyExecutionActivityMetricsResponse({
     required this.journeyExecutionActivityMetricsResponse,
   });
+
   factory GetJourneyExecutionActivityMetricsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetJourneyExecutionActivityMetricsResponse(
@@ -12909,6 +13057,7 @@ class GetJourneyExecutionMetricsResponse {
   GetJourneyExecutionMetricsResponse({
     required this.journeyExecutionMetricsResponse,
   });
+
   factory GetJourneyExecutionMetricsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetJourneyExecutionMetricsResponse(
@@ -12932,6 +13081,7 @@ class GetJourneyResponse {
   GetJourneyResponse({
     required this.journeyResponse,
   });
+
   factory GetJourneyResponse.fromJson(Map<String, dynamic> json) {
     return GetJourneyResponse(
       journeyResponse: JourneyResponse.fromJson(
@@ -12953,6 +13103,7 @@ class GetPushTemplateResponse {
   GetPushTemplateResponse({
     required this.pushNotificationTemplateResponse,
   });
+
   factory GetPushTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetPushTemplateResponse(
       pushNotificationTemplateResponse:
@@ -12976,6 +13127,7 @@ class GetRecommenderConfigurationResponse {
   GetRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
   factory GetRecommenderConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRecommenderConfigurationResponse(
@@ -13001,6 +13153,7 @@ class GetRecommenderConfigurationsResponse {
   GetRecommenderConfigurationsResponse({
     required this.listRecommenderConfigurationsResponse,
   });
+
   factory GetRecommenderConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetRecommenderConfigurationsResponse(
@@ -13027,6 +13180,7 @@ class GetSegmentExportJobsResponse {
   GetSegmentExportJobsResponse({
     required this.exportJobsResponse,
   });
+
   factory GetSegmentExportJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentExportJobsResponse(
       exportJobsResponse: ExportJobsResponse.fromJson(
@@ -13048,6 +13202,7 @@ class GetSegmentImportJobsResponse {
   GetSegmentImportJobsResponse({
     required this.importJobsResponse,
   });
+
   factory GetSegmentImportJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentImportJobsResponse(
       importJobsResponse: ImportJobsResponse.fromJson(
@@ -13069,6 +13224,7 @@ class GetSegmentResponse {
   GetSegmentResponse({
     required this.segmentResponse,
   });
+
   factory GetSegmentResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentResponse(
       segmentResponse: SegmentResponse.fromJson(
@@ -13090,6 +13246,7 @@ class GetSegmentVersionResponse {
   GetSegmentVersionResponse({
     required this.segmentResponse,
   });
+
   factory GetSegmentVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentVersionResponse(
       segmentResponse: SegmentResponse.fromJson(
@@ -13111,6 +13268,7 @@ class GetSegmentVersionsResponse {
   GetSegmentVersionsResponse({
     required this.segmentsResponse,
   });
+
   factory GetSegmentVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentVersionsResponse(
       segmentsResponse: SegmentsResponse.fromJson(
@@ -13132,6 +13290,7 @@ class GetSegmentsResponse {
   GetSegmentsResponse({
     required this.segmentsResponse,
   });
+
   factory GetSegmentsResponse.fromJson(Map<String, dynamic> json) {
     return GetSegmentsResponse(
       segmentsResponse: SegmentsResponse.fromJson(
@@ -13153,6 +13312,7 @@ class GetSmsChannelResponse {
   GetSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
   factory GetSmsChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetSmsChannelResponse(
       sMSChannelResponse: SMSChannelResponse.fromJson(
@@ -13174,6 +13334,7 @@ class GetSmsTemplateResponse {
   GetSmsTemplateResponse({
     required this.sMSTemplateResponse,
   });
+
   factory GetSmsTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetSmsTemplateResponse(
       sMSTemplateResponse: SMSTemplateResponse.fromJson(
@@ -13195,6 +13356,7 @@ class GetUserEndpointsResponse {
   GetUserEndpointsResponse({
     required this.endpointsResponse,
   });
+
   factory GetUserEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return GetUserEndpointsResponse(
       endpointsResponse: EndpointsResponse.fromJson(
@@ -13216,6 +13378,7 @@ class GetVoiceChannelResponse {
   GetVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
   factory GetVoiceChannelResponse.fromJson(Map<String, dynamic> json) {
     return GetVoiceChannelResponse(
       voiceChannelResponse: VoiceChannelResponse.fromJson(
@@ -13237,6 +13400,7 @@ class GetVoiceTemplateResponse {
   GetVoiceTemplateResponse({
     required this.voiceTemplateResponse,
   });
+
   factory GetVoiceTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetVoiceTemplateResponse(
       voiceTemplateResponse: VoiceTemplateResponse.fromJson(
@@ -13271,6 +13435,7 @@ class HoldoutActivity {
     required this.percentage,
     this.nextActivity,
   });
+
   factory HoldoutActivity.fromJson(Map<String, dynamic> json) {
     return HoldoutActivity(
       percentage: json['Percentage'] as int,
@@ -13348,6 +13513,7 @@ class ImportJobRequest {
     this.segmentId,
     this.segmentName,
   });
+
   factory ImportJobRequest.fromJson(Map<String, dynamic> json) {
     return ImportJobRequest(
       format: (json['Format'] as String).toFormat(),
@@ -13447,6 +13613,7 @@ class ImportJobResource {
     this.segmentId,
     this.segmentName,
   });
+
   factory ImportJobResource.fromJson(Map<String, dynamic> json) {
     return ImportJobResource(
       format: (json['Format'] as String).toFormat(),
@@ -13551,6 +13718,7 @@ class ImportJobResponse {
     this.totalPieces,
     this.totalProcessed,
   });
+
   factory ImportJobResponse.fromJson(Map<String, dynamic> json) {
     return ImportJobResponse(
       applicationId: json['ApplicationId'] as String,
@@ -13622,6 +13790,7 @@ class ImportJobsResponse {
     required this.item,
     this.nextToken,
   });
+
   factory ImportJobsResponse.fromJson(Map<String, dynamic> json) {
     return ImportJobsResponse(
       item: (json['Item'] as List)
@@ -13690,6 +13859,7 @@ class ItemResponse {
     this.endpointItemResponse,
     this.eventsItemResponse,
   });
+
   factory ItemResponse.fromJson(Map<String, dynamic> json) {
     return ItemResponse(
       endpointItemResponse: json['EndpointItemResponse'] != null
@@ -13786,6 +13956,7 @@ class JourneyCustomMessage {
   JourneyCustomMessage({
     this.data,
   });
+
   factory JourneyCustomMessage.fromJson(Map<String, dynamic> json) {
     return JourneyCustomMessage(
       data: json['Data'] as String?,
@@ -13845,6 +14016,7 @@ class JourneyDateRangeKpiResponse {
     required this.startTime,
     this.nextToken,
   });
+
   factory JourneyDateRangeKpiResponse.fromJson(Map<String, dynamic> json) {
     return JourneyDateRangeKpiResponse(
       applicationId: json['ApplicationId'] as String,
@@ -13889,6 +14061,7 @@ class JourneyEmailMessage {
   JourneyEmailMessage({
     this.fromAddress,
   });
+
   factory JourneyEmailMessage.fromJson(Map<String, dynamic> json) {
     return JourneyEmailMessage(
       fromAddress: json['FromAddress'] as String?,
@@ -13968,6 +14141,7 @@ class JourneyExecutionActivityMetricsResponse {
     required this.lastEvaluatedTime,
     required this.metrics,
   });
+
   factory JourneyExecutionActivityMetricsResponse.fromJson(
       Map<String, dynamic> json) {
     return JourneyExecutionActivityMetricsResponse(
@@ -14025,6 +14199,7 @@ class JourneyExecutionMetricsResponse {
     required this.lastEvaluatedTime,
     required this.metrics,
   });
+
   factory JourneyExecutionMetricsResponse.fromJson(Map<String, dynamic> json) {
     return JourneyExecutionMetricsResponse(
       applicationId: json['ApplicationId'] as String,
@@ -14074,6 +14249,7 @@ class JourneyLimits {
     this.endpointReentryInterval,
     this.messagesPerSecond,
   });
+
   factory JourneyLimits.fromJson(Map<String, dynamic> json) {
     return JourneyLimits(
       dailyCap: json['DailyCap'] as int?,
@@ -14115,6 +14291,7 @@ class JourneyPushMessage {
   JourneyPushMessage({
     this.timeToLive,
   });
+
   factory JourneyPushMessage.fromJson(Map<String, dynamic> json) {
     return JourneyPushMessage(
       timeToLive: json['TimeToLive'] as String?,
@@ -14257,6 +14434,7 @@ class JourneyResponse {
     this.waitForQuietTime,
     this.tags,
   });
+
   factory JourneyResponse.fromJson(Map<String, dynamic> json) {
     return JourneyResponse(
       applicationId: json['ApplicationId'] as String,
@@ -14369,6 +14547,7 @@ class JourneySMSMessage {
     this.senderId,
     this.templateId,
   });
+
   factory JourneySMSMessage.fromJson(Map<String, dynamic> json) {
     return JourneySMSMessage(
       entityId: json['EntityId'] as String?,
@@ -14419,6 +14598,7 @@ class JourneySchedule {
     this.startTime,
     this.timezone,
   });
+
   factory JourneySchedule.fromJson(Map<String, dynamic> json) {
     return JourneySchedule(
       endTime: timeStampFromJson(json['EndTime']),
@@ -14465,6 +14645,7 @@ class JourneyStateRequest {
   JourneyStateRequest({
     this.state,
   });
+
   factory JourneyStateRequest.fromJson(Map<String, dynamic> json) {
     return JourneyStateRequest(
       state: (json['State'] as String?)?.toState(),
@@ -14494,6 +14675,7 @@ class JourneysResponse {
     required this.item,
     this.nextToken,
   });
+
   factory JourneysResponse.fromJson(Map<String, dynamic> json) {
     return JourneysResponse(
       item: (json['Item'] as List)
@@ -14520,6 +14702,7 @@ class ListJourneysResponse {
   ListJourneysResponse({
     required this.journeysResponse,
   });
+
   factory ListJourneysResponse.fromJson(Map<String, dynamic> json) {
     return ListJourneysResponse(
       journeysResponse: JourneysResponse.fromJson(
@@ -14550,6 +14733,7 @@ class ListRecommenderConfigurationsResponse {
     required this.item,
     this.nextToken,
   });
+
   factory ListRecommenderConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListRecommenderConfigurationsResponse(
@@ -14578,6 +14762,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     required this.tagsModel,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tagsModel: TagsModel.fromJson(json['TagsModel'] as Map<String, dynamic>),
@@ -14598,6 +14783,7 @@ class ListTemplateVersionsResponse {
   ListTemplateVersionsResponse({
     required this.templateVersionsResponse,
   });
+
   factory ListTemplateVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListTemplateVersionsResponse(
       templateVersionsResponse: TemplateVersionsResponse.fromJson(
@@ -14619,6 +14805,7 @@ class ListTemplatesResponse {
   ListTemplatesResponse({
     required this.templatesResponse,
   });
+
   factory ListTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return ListTemplatesResponse(
       templatesResponse: TemplatesResponse.fromJson(
@@ -14721,6 +14908,7 @@ class Message {
     this.title,
     this.url,
   });
+
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       action: (json['Action'] as String?)?.toAction(),
@@ -14780,6 +14968,7 @@ class MessageBody {
     this.message,
     this.requestID,
   });
+
   factory MessageBody.fromJson(Map<String, dynamic> json) {
     return MessageBody(
       message: json['Message'] as String?,
@@ -14846,6 +15035,7 @@ class MessageConfiguration {
     this.gCMMessage,
     this.sMSMessage,
   });
+
   factory MessageConfiguration.fromJson(Map<String, dynamic> json) {
     return MessageConfiguration(
       aDMMessage: json['ADMMessage'] != null
@@ -14946,6 +15136,7 @@ class MessageRequest {
     this.templateConfiguration,
     this.traceId,
   });
+
   factory MessageRequest.fromJson(Map<String, dynamic> json) {
     return MessageRequest(
       messageConfiguration: DirectMessageConfiguration.fromJson(
@@ -15010,6 +15201,7 @@ class MessageResponse {
     this.requestId,
     this.result,
   });
+
   factory MessageResponse.fromJson(Map<String, dynamic> json) {
     return MessageResponse(
       applicationId: json['ApplicationId'] as String,
@@ -15096,6 +15288,7 @@ class MessageResult {
     this.statusMessage,
     this.updatedToken,
   });
+
   factory MessageResult.fromJson(Map<String, dynamic> json) {
     return MessageResult(
       deliveryStatus: (json['DeliveryStatus'] as String).toDeliveryStatus(),
@@ -15166,6 +15359,7 @@ class MetricDimension {
     required this.comparisonOperator,
     required this.value,
   });
+
   factory MetricDimension.fromJson(Map<String, dynamic> json) {
     return MetricDimension(
       comparisonOperator: json['ComparisonOperator'] as String,
@@ -15224,6 +15418,7 @@ class MultiConditionalBranch {
     this.condition,
     this.nextActivity,
   });
+
   factory MultiConditionalBranch.fromJson(Map<String, dynamic> json) {
     return MultiConditionalBranch(
       condition: json['Condition'] != null
@@ -15274,6 +15469,7 @@ class MultiConditionalSplitActivity {
     this.defaultActivity,
     this.evaluationWaitTime,
   });
+
   factory MultiConditionalSplitActivity.fromJson(Map<String, dynamic> json) {
     return MultiConditionalSplitActivity(
       branches: (json['Branches'] as List?)
@@ -15316,6 +15512,7 @@ class NumberValidateRequest {
     this.isoCountryCode,
     this.phoneNumber,
   });
+
   factory NumberValidateRequest.fromJson(Map<String, dynamic> json) {
     return NumberValidateRequest(
       isoCountryCode: json['IsoCountryCode'] as String?,
@@ -15406,6 +15603,7 @@ class NumberValidateResponse {
     this.timezone,
     this.zipCode,
   });
+
   factory NumberValidateResponse.fromJson(Map<String, dynamic> json) {
     return NumberValidateResponse(
       carrier: json['Carrier'] as String?,
@@ -15498,6 +15696,7 @@ class PhoneNumberValidateResponse {
   PhoneNumberValidateResponse({
     required this.numberValidateResponse,
   });
+
   factory PhoneNumberValidateResponse.fromJson(Map<String, dynamic> json) {
     return PhoneNumberValidateResponse(
       numberValidateResponse: NumberValidateResponse.fromJson(
@@ -15580,6 +15779,7 @@ class PublicEndpoint {
     this.requestId,
     this.user,
   });
+
   factory PublicEndpoint.fromJson(Map<String, dynamic> json) {
     return PublicEndpoint(
       address: json['Address'] as String?,
@@ -15669,6 +15869,7 @@ class PushMessageActivity {
     this.templateName,
     this.templateVersion,
   });
+
   factory PushMessageActivity.fromJson(Map<String, dynamic> json) {
     return PushMessageActivity(
       messageConfig: json['MessageConfig'] != null
@@ -15756,6 +15957,7 @@ class PushNotificationTemplateRequest {
     this.templateDescription,
     this.tags,
   });
+
   factory PushNotificationTemplateRequest.fromJson(Map<String, dynamic> json) {
     return PushNotificationTemplateRequest(
       adm: json['ADM'] != null
@@ -15896,6 +16098,7 @@ class PushNotificationTemplateResponse {
     this.version,
     this.tags,
   });
+
   factory PushNotificationTemplateResponse.fromJson(Map<String, dynamic> json) {
     return PushNotificationTemplateResponse(
       creationDate: json['CreationDate'] as String,
@@ -15976,6 +16179,7 @@ class PutEventStreamResponse {
   PutEventStreamResponse({
     required this.eventStream,
   });
+
   factory PutEventStreamResponse.fromJson(Map<String, dynamic> json) {
     return PutEventStreamResponse(
       eventStream:
@@ -15997,6 +16201,7 @@ class PutEventsResponse {
   PutEventsResponse({
     required this.eventsResponse,
   });
+
   factory PutEventsResponse.fromJson(Map<String, dynamic> json) {
     return PutEventsResponse(
       eventsResponse: EventsResponse.fromJson(
@@ -16031,6 +16236,7 @@ class QuietTime {
     this.end,
     this.start,
   });
+
   factory QuietTime.fromJson(Map<String, dynamic> json) {
     return QuietTime(
       end: json['End'] as String?,
@@ -16059,6 +16265,7 @@ class RandomSplitActivity {
   RandomSplitActivity({
     this.branches,
   });
+
   factory RandomSplitActivity.fromJson(Map<String, dynamic> json) {
     return RandomSplitActivity(
       branches: (json['Branches'] as List?)
@@ -16094,6 +16301,7 @@ class RandomSplitEntry {
     this.nextActivity,
     this.percentage,
   });
+
   factory RandomSplitEntry.fromJson(Map<String, dynamic> json) {
     return RandomSplitEntry(
       nextActivity: json['NextActivity'] as String?,
@@ -16121,6 +16329,7 @@ class RawEmail {
   RawEmail({
     this.data,
   });
+
   factory RawEmail.fromJson(Map<String, dynamic> json) {
     return RawEmail(
       data: _s.decodeNullableUint8List(json['Data'] as String?),
@@ -16152,6 +16361,7 @@ class RecencyDimension {
     required this.duration,
     required this.recencyType,
   });
+
   factory RecencyDimension.fromJson(Map<String, dynamic> json) {
     return RecencyDimension(
       duration: (json['Duration'] as String).toDuration(),
@@ -16296,6 +16506,7 @@ class RecommenderConfigurationResponse {
     this.recommendationsDisplayName,
     this.recommendationsPerMessage,
   });
+
   factory RecommenderConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return RecommenderConfigurationResponse(
       creationDate: json['CreationDate'] as String,
@@ -16357,6 +16568,7 @@ class RemoveAttributesResponse {
   RemoveAttributesResponse({
     required this.attributesResource,
   });
+
   factory RemoveAttributesResponse.fromJson(Map<String, dynamic> json) {
     return RemoveAttributesResponse(
       attributesResource: AttributesResource.fromJson(
@@ -16388,6 +16600,7 @@ class ResultRow {
     required this.groupedBys,
     required this.values,
   });
+
   factory ResultRow.fromJson(Map<String, dynamic> json) {
     return ResultRow(
       groupedBys: (json['GroupedBys'] as List)
@@ -16432,6 +16645,7 @@ class ResultRowValue {
     required this.type,
     required this.value,
   });
+
   factory ResultRowValue.fromJson(Map<String, dynamic> json) {
     return ResultRowValue(
       key: json['Key'] as String,
@@ -16470,6 +16684,7 @@ class SMSChannelRequest {
     this.senderId,
     this.shortCode,
   });
+
   factory SMSChannelRequest.fromJson(Map<String, dynamic> json) {
     return SMSChannelRequest(
       enabled: json['Enabled'] as bool?,
@@ -16558,6 +16773,7 @@ class SMSChannelResponse {
     this.transactionalMessagesPerSecond,
     this.version,
   });
+
   factory SMSChannelResponse.fromJson(Map<String, dynamic> json) {
     return SMSChannelResponse(
       platform: json['Platform'] as String,
@@ -16667,6 +16883,7 @@ class SMSMessage {
     this.substitutions,
     this.templateId,
   });
+
   factory SMSMessage.fromJson(Map<String, dynamic> json) {
     return SMSMessage(
       body: json['Body'] as String?,
@@ -16742,6 +16959,7 @@ class SMSMessageActivity {
     this.templateName,
     this.templateVersion,
   });
+
   factory SMSMessageActivity.fromJson(Map<String, dynamic> json) {
     return SMSMessageActivity(
       messageConfig: json['MessageConfig'] != null
@@ -16805,6 +17023,7 @@ class SMSTemplateRequest {
     this.templateDescription,
     this.tags,
   });
+
   factory SMSTemplateRequest.fromJson(Map<String, dynamic> json) {
     return SMSTemplateRequest(
       body: json['Body'] as String?,
@@ -16893,6 +17112,7 @@ class SMSTemplateResponse {
     this.version,
     this.tags,
   });
+
   factory SMSTemplateResponse.fromJson(Map<String, dynamic> json) {
     return SMSTemplateResponse(
       creationDate: json['CreationDate'] as String,
@@ -17003,6 +17223,7 @@ class Schedule {
     this.quietTime,
     this.timezone,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       startTime: json['StartTime'] as String,
@@ -17050,6 +17271,7 @@ class SegmentBehaviors {
   SegmentBehaviors({
     this.recency,
   });
+
   factory SegmentBehaviors.fromJson(Map<String, dynamic> json) {
     return SegmentBehaviors(
       recency: json['Recency'] != null
@@ -17074,6 +17296,7 @@ class SegmentCondition {
   SegmentCondition({
     required this.segmentId,
   });
+
   factory SegmentCondition.fromJson(Map<String, dynamic> json) {
     return SegmentCondition(
       segmentId: json['SegmentId'] as String,
@@ -17118,6 +17341,7 @@ class SegmentDemographics {
     this.model,
     this.platform,
   });
+
   factory SegmentDemographics.fromJson(Map<String, dynamic> json) {
     return SegmentDemographics(
       appVersion: json['AppVersion'] != null
@@ -17189,6 +17413,7 @@ class SegmentDimensions {
     this.metrics,
     this.userAttributes,
   });
+
   factory SegmentDimensions.fromJson(Map<String, dynamic> json) {
     return SegmentDimensions(
       attributes: (json['Attributes'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -17262,6 +17487,7 @@ class SegmentGroup {
     this.sourceType,
     this.type,
   });
+
   factory SegmentGroup.fromJson(Map<String, dynamic> json) {
     return SegmentGroup(
       dimensions: (json['Dimensions'] as List?)
@@ -17308,6 +17534,7 @@ class SegmentGroupList {
     this.groups,
     this.include,
   });
+
   factory SegmentGroupList.fromJson(Map<String, dynamic> json) {
     return SegmentGroupList(
       groups: (json['Groups'] as List?)
@@ -17368,6 +17595,7 @@ class SegmentImportResource {
     required this.size,
     this.channelCounts,
   });
+
   factory SegmentImportResource.fromJson(Map<String, dynamic> json) {
     return SegmentImportResource(
       externalId: json['ExternalId'] as String,
@@ -17410,6 +17638,7 @@ class SegmentLocation {
     this.country,
     this.gPSPoint,
   });
+
   factory SegmentLocation.fromJson(Map<String, dynamic> json) {
     return SegmentLocation(
       country: json['Country'] != null
@@ -17443,6 +17672,7 @@ class SegmentReference {
     required this.id,
     this.version,
   });
+
   factory SegmentReference.fromJson(Map<String, dynamic> json) {
     return SegmentReference(
       id: json['Id'] as String,
@@ -17531,6 +17761,7 @@ class SegmentResponse {
     this.version,
     this.tags,
   });
+
   factory SegmentResponse.fromJson(Map<String, dynamic> json) {
     return SegmentResponse(
       applicationId: json['ApplicationId'] as String,
@@ -17632,6 +17863,7 @@ class SegmentsResponse {
     required this.item,
     this.nextToken,
   });
+
   factory SegmentsResponse.fromJson(Map<String, dynamic> json) {
     return SegmentsResponse(
       item: (json['Item'] as List)
@@ -17658,6 +17890,7 @@ class SendMessagesResponse {
   SendMessagesResponse({
     required this.messageResponse,
   });
+
   factory SendMessagesResponse.fromJson(Map<String, dynamic> json) {
     return SendMessagesResponse(
       messageResponse: MessageResponse.fromJson(
@@ -17708,6 +17941,7 @@ class SendUsersMessageRequest {
     this.templateConfiguration,
     this.traceId,
   });
+
   factory SendUsersMessageRequest.fromJson(Map<String, dynamic> json) {
     return SendUsersMessageRequest(
       messageConfiguration: DirectMessageConfiguration.fromJson(
@@ -17760,6 +17994,7 @@ class SendUsersMessageResponse {
     this.requestId,
     this.result,
   });
+
   factory SendUsersMessageResponse.fromJson(Map<String, dynamic> json) {
     return SendUsersMessageResponse(
       applicationId: json['ApplicationId'] as String,
@@ -17789,6 +18024,7 @@ class SendUsersMessagesResponse {
   SendUsersMessagesResponse({
     required this.sendUsersMessageResponse,
   });
+
   factory SendUsersMessagesResponse.fromJson(Map<String, dynamic> json) {
     return SendUsersMessagesResponse(
       sendUsersMessageResponse: SendUsersMessageResponse.fromJson(
@@ -17824,6 +18060,7 @@ class Session {
     this.duration,
     this.stopTimestamp,
   });
+
   factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
       id: json['Id'] as String,
@@ -17863,6 +18100,7 @@ class SetDimension {
     required this.values,
     this.dimensionType,
   });
+
   factory SetDimension.fromJson(Map<String, dynamic> json) {
     return SetDimension(
       values: (json['Values'] as List)
@@ -17899,6 +18137,7 @@ class SimpleCondition {
     this.segmentCondition,
     this.segmentDimensions,
   });
+
   factory SimpleCondition.fromJson(Map<String, dynamic> json) {
     return SimpleCondition(
       eventCondition: json['EventCondition'] != null
@@ -17949,6 +18188,7 @@ class SimpleEmail {
     this.subject,
     this.textPart,
   });
+
   factory SimpleEmail.fromJson(Map<String, dynamic> json) {
     return SimpleEmail(
       htmlPart: json['HtmlPart'] != null
@@ -17988,6 +18228,7 @@ class SimpleEmailPart {
     this.charset,
     this.data,
   });
+
   factory SimpleEmailPart.fromJson(Map<String, dynamic> json) {
     return SimpleEmailPart(
       charset: json['Charset'] as String?,
@@ -18054,6 +18295,7 @@ class StartCondition {
     this.eventStartCondition,
     this.segmentStartCondition,
   });
+
   factory StartCondition.fromJson(Map<String, dynamic> json) {
     return StartCondition(
       description: json['Description'] as String?,
@@ -18145,6 +18387,7 @@ class TagsModel {
   TagsModel({
     required this.tags,
   });
+
   factory TagsModel.fromJson(Map<String, dynamic> json) {
     return TagsModel(
       tags: (json['tags'] as Map<String, dynamic>)
@@ -18185,6 +18428,7 @@ class Template {
     this.name,
     this.version,
   });
+
   factory Template.fromJson(Map<String, dynamic> json) {
     return Template(
       name: json['Name'] as String?,
@@ -18218,6 +18462,7 @@ class TemplateActiveVersionRequest {
   TemplateActiveVersionRequest({
     this.version,
   });
+
   factory TemplateActiveVersionRequest.fromJson(Map<String, dynamic> json) {
     return TemplateActiveVersionRequest(
       version: json['Version'] as String?,
@@ -18254,6 +18499,7 @@ class TemplateConfiguration {
     this.sMSTemplate,
     this.voiceTemplate,
   });
+
   factory TemplateConfiguration.fromJson(Map<String, dynamic> json) {
     return TemplateConfiguration(
       emailTemplate: json['EmailTemplate'] != null
@@ -18345,6 +18591,7 @@ class TemplateResponse {
     this.version,
     this.tags,
   });
+
   factory TemplateResponse.fromJson(Map<String, dynamic> json) {
     return TemplateResponse(
       creationDate: json['CreationDate'] as String,
@@ -18464,6 +18711,7 @@ class TemplateVersionResponse {
     this.templateDescription,
     this.version,
   });
+
   factory TemplateVersionResponse.fromJson(Map<String, dynamic> json) {
     return TemplateVersionResponse(
       creationDate: json['CreationDate'] as String,
@@ -18521,6 +18769,7 @@ class TemplateVersionsResponse {
     this.nextToken,
     this.requestID,
   });
+
   factory TemplateVersionsResponse.fromJson(Map<String, dynamic> json) {
     return TemplateVersionsResponse(
       item: (json['Item'] as List)
@@ -18564,6 +18813,7 @@ class TemplatesResponse {
     required this.item,
     this.nextToken,
   });
+
   factory TemplatesResponse.fromJson(Map<String, dynamic> json) {
     return TemplatesResponse(
       item: (json['Item'] as List)
@@ -18628,6 +18878,7 @@ class TreatmentResource {
     this.treatmentDescription,
     this.treatmentName,
   });
+
   factory TreatmentResource.fromJson(Map<String, dynamic> json) {
     return TreatmentResource(
       id: json['Id'] as String,
@@ -18722,6 +18973,7 @@ class UpdateAdmChannelResponse {
   UpdateAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
   factory UpdateAdmChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAdmChannelResponse(
       aDMChannelResponse: ADMChannelResponse.fromJson(
@@ -18743,6 +18995,7 @@ class UpdateApnsChannelResponse {
   UpdateApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
   factory UpdateApnsChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApnsChannelResponse(
       aPNSChannelResponse: APNSChannelResponse.fromJson(
@@ -18764,6 +19017,7 @@ class UpdateApnsSandboxChannelResponse {
   UpdateApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
   factory UpdateApnsSandboxChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApnsSandboxChannelResponse(
       aPNSSandboxChannelResponse: APNSSandboxChannelResponse.fromJson(
@@ -18785,6 +19039,7 @@ class UpdateApnsVoipChannelResponse {
   UpdateApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
   factory UpdateApnsVoipChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApnsVoipChannelResponse(
       aPNSVoipChannelResponse: APNSVoipChannelResponse.fromJson(
@@ -18806,6 +19061,7 @@ class UpdateApnsVoipSandboxChannelResponse {
   UpdateApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
   factory UpdateApnsVoipSandboxChannelResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateApnsVoipSandboxChannelResponse(
@@ -18828,6 +19084,7 @@ class UpdateApplicationSettingsResponse {
   UpdateApplicationSettingsResponse({
     required this.applicationSettingsResource,
   });
+
   factory UpdateApplicationSettingsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateApplicationSettingsResponse(
@@ -18856,6 +19113,7 @@ class UpdateAttributesRequest {
   UpdateAttributesRequest({
     this.blacklist,
   });
+
   factory UpdateAttributesRequest.fromJson(Map<String, dynamic> json) {
     return UpdateAttributesRequest(
       blacklist: (json['Blacklist'] as List?)
@@ -18879,6 +19137,7 @@ class UpdateBaiduChannelResponse {
   UpdateBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
   factory UpdateBaiduChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBaiduChannelResponse(
       baiduChannelResponse: BaiduChannelResponse.fromJson(
@@ -18900,6 +19159,7 @@ class UpdateCampaignResponse {
   UpdateCampaignResponse({
     required this.campaignResponse,
   });
+
   factory UpdateCampaignResponse.fromJson(Map<String, dynamic> json) {
     return UpdateCampaignResponse(
       campaignResponse: CampaignResponse.fromJson(
@@ -18921,6 +19181,7 @@ class UpdateEmailChannelResponse {
   UpdateEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
   factory UpdateEmailChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEmailChannelResponse(
       emailChannelResponse: EmailChannelResponse.fromJson(
@@ -18942,6 +19203,7 @@ class UpdateEmailTemplateResponse {
   UpdateEmailTemplateResponse({
     required this.messageBody,
   });
+
   factory UpdateEmailTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEmailTemplateResponse(
       messageBody:
@@ -18963,6 +19225,7 @@ class UpdateEndpointResponse {
   UpdateEndpointResponse({
     required this.messageBody,
   });
+
   factory UpdateEndpointResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEndpointResponse(
       messageBody:
@@ -18984,6 +19247,7 @@ class UpdateEndpointsBatchResponse {
   UpdateEndpointsBatchResponse({
     required this.messageBody,
   });
+
   factory UpdateEndpointsBatchResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEndpointsBatchResponse(
       messageBody:
@@ -19005,6 +19269,7 @@ class UpdateGcmChannelResponse {
   UpdateGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
   factory UpdateGcmChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateGcmChannelResponse(
       gCMChannelResponse: GCMChannelResponse.fromJson(
@@ -19026,6 +19291,7 @@ class UpdateJourneyResponse {
   UpdateJourneyResponse({
     required this.journeyResponse,
   });
+
   factory UpdateJourneyResponse.fromJson(Map<String, dynamic> json) {
     return UpdateJourneyResponse(
       journeyResponse: JourneyResponse.fromJson(
@@ -19047,6 +19313,7 @@ class UpdateJourneyStateResponse {
   UpdateJourneyStateResponse({
     required this.journeyResponse,
   });
+
   factory UpdateJourneyStateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateJourneyStateResponse(
       journeyResponse: JourneyResponse.fromJson(
@@ -19068,6 +19335,7 @@ class UpdatePushTemplateResponse {
   UpdatePushTemplateResponse({
     required this.messageBody,
   });
+
   factory UpdatePushTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePushTemplateResponse(
       messageBody:
@@ -19198,6 +19466,7 @@ class UpdateRecommenderConfiguration {
     this.recommendationsDisplayName,
     this.recommendationsPerMessage,
   });
+
   factory UpdateRecommenderConfiguration.fromJson(Map<String, dynamic> json) {
     return UpdateRecommenderConfiguration(
       recommendationProviderRoleArn:
@@ -19250,6 +19519,7 @@ class UpdateRecommenderConfigurationResponse {
   UpdateRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
   factory UpdateRecommenderConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateRecommenderConfigurationResponse(
@@ -19274,6 +19544,7 @@ class UpdateSegmentResponse {
   UpdateSegmentResponse({
     required this.segmentResponse,
   });
+
   factory UpdateSegmentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSegmentResponse(
       segmentResponse: SegmentResponse.fromJson(
@@ -19295,6 +19566,7 @@ class UpdateSmsChannelResponse {
   UpdateSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
   factory UpdateSmsChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSmsChannelResponse(
       sMSChannelResponse: SMSChannelResponse.fromJson(
@@ -19316,6 +19588,7 @@ class UpdateSmsTemplateResponse {
   UpdateSmsTemplateResponse({
     required this.messageBody,
   });
+
   factory UpdateSmsTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSmsTemplateResponse(
       messageBody:
@@ -19337,6 +19610,7 @@ class UpdateTemplateActiveVersionResponse {
   UpdateTemplateActiveVersionResponse({
     required this.messageBody,
   });
+
   factory UpdateTemplateActiveVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateTemplateActiveVersionResponse(
@@ -19359,6 +19633,7 @@ class UpdateVoiceChannelResponse {
   UpdateVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
   factory UpdateVoiceChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVoiceChannelResponse(
       voiceChannelResponse: VoiceChannelResponse.fromJson(
@@ -19380,6 +19655,7 @@ class UpdateVoiceTemplateResponse {
   UpdateVoiceTemplateResponse({
     required this.messageBody,
   });
+
   factory UpdateVoiceTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVoiceTemplateResponse(
       messageBody:
@@ -19403,6 +19679,7 @@ class VoiceChannelRequest {
   VoiceChannelRequest({
     this.enabled,
   });
+
   factory VoiceChannelRequest.fromJson(Map<String, dynamic> json) {
     return VoiceChannelRequest(
       enabled: json['Enabled'] as bool?,
@@ -19465,6 +19742,7 @@ class VoiceChannelResponse {
     this.lastModifiedDate,
     this.version,
   });
+
   factory VoiceChannelResponse.fromJson(Map<String, dynamic> json) {
     return VoiceChannelResponse(
       platform: json['Platform'] as String,
@@ -19542,6 +19820,7 @@ class VoiceMessage {
     this.substitutions,
     this.voiceId,
   });
+
   factory VoiceMessage.fromJson(Map<String, dynamic> json) {
     return VoiceMessage(
       body: json['Body'] as String?,
@@ -19614,6 +19893,7 @@ class VoiceTemplateRequest {
     this.voiceId,
     this.tags,
   });
+
   factory VoiceTemplateRequest.fromJson(Map<String, dynamic> json) {
     return VoiceTemplateRequest(
       body: json['Body'] as String?,
@@ -19715,6 +19995,7 @@ class VoiceTemplateResponse {
     this.voiceId,
     this.tags,
   });
+
   factory VoiceTemplateResponse.fromJson(Map<String, dynamic> json) {
     return VoiceTemplateResponse(
       creationDate: json['CreationDate'] as String,
@@ -19781,6 +20062,7 @@ class WaitActivity {
     this.nextActivity,
     this.waitTime,
   });
+
   factory WaitActivity.fromJson(Map<String, dynamic> json) {
     return WaitActivity(
       nextActivity: json['NextActivity'] as String?,
@@ -19818,6 +20100,7 @@ class WaitTime {
     this.waitFor,
     this.waitUntil,
   });
+
   factory WaitTime.fromJson(Map<String, dynamic> json) {
     return WaitTime(
       waitFor: json['WaitFor'] as String?,
@@ -19898,6 +20181,7 @@ class WriteApplicationSettingsRequest {
     this.limits,
     this.quietTime,
   });
+
   factory WriteApplicationSettingsRequest.fromJson(Map<String, dynamic> json) {
     return WriteApplicationSettingsRequest(
       campaignHook: json['CampaignHook'] != null
@@ -20011,6 +20295,7 @@ class WriteCampaignRequest {
     this.treatmentName,
     this.tags,
   });
+
   factory WriteCampaignRequest.fromJson(Map<String, dynamic> json) {
     return WriteCampaignRequest(
       additionalTreatments: (json['AdditionalTreatments'] as List?)
@@ -20120,6 +20405,7 @@ class WriteEventStream {
     required this.destinationStreamArn,
     required this.roleArn,
   });
+
   factory WriteEventStream.fromJson(Map<String, dynamic> json) {
     return WriteEventStream(
       destinationStreamArn: json['DestinationStreamArn'] as String,
@@ -20245,6 +20531,7 @@ class WriteJourneyRequest {
     this.state,
     this.waitForQuietTime,
   });
+
   factory WriteJourneyRequest.fromJson(Map<String, dynamic> json) {
     return WriteJourneyRequest(
       name: json['Name'] as String,
@@ -20335,6 +20622,7 @@ class WriteSegmentRequest {
     this.segmentGroups,
     this.tags,
   });
+
   factory WriteSegmentRequest.fromJson(Map<String, dynamic> json) {
     return WriteSegmentRequest(
       dimensions: json['Dimensions'] != null
@@ -20401,6 +20689,7 @@ class WriteTreatmentResource {
     this.treatmentDescription,
     this.treatmentName,
   });
+
   factory WriteTreatmentResource.fromJson(Map<String, dynamic> json) {
     return WriteTreatmentResource(
       sizePercent: json['SizePercent'] as int,

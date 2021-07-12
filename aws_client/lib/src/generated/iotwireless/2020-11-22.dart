@@ -2451,6 +2451,7 @@ class AbpV1_0_x {
     this.devAddr,
     this.sessionKeys,
   });
+
   factory AbpV1_0_x.fromJson(Map<String, dynamic> json) {
     return AbpV1_0_x(
       devAddr: json['DevAddr'] as String?,
@@ -2483,6 +2484,7 @@ class AbpV1_1 {
     this.devAddr,
     this.sessionKeys,
   });
+
   factory AbpV1_1.fromJson(Map<String, dynamic> json) {
     return AbpV1_1(
       devAddr: json['DevAddr'] as String?,
@@ -2514,6 +2516,7 @@ class AssociateAwsAccountWithPartnerAccountResponse {
     this.arn,
     this.sidewalk,
   });
+
   factory AssociateAwsAccountWithPartnerAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateAwsAccountWithPartnerAccountResponse(
@@ -2537,6 +2540,7 @@ class AssociateAwsAccountWithPartnerAccountResponse {
 
 class AssociateWirelessDeviceWithThingResponse {
   AssociateWirelessDeviceWithThingResponse();
+
   factory AssociateWirelessDeviceWithThingResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateWirelessDeviceWithThingResponse();
@@ -2554,6 +2558,7 @@ class AssociateWirelessGatewayWithCertificateResponse {
   AssociateWirelessGatewayWithCertificateResponse({
     this.iotCertificateId,
   });
+
   factory AssociateWirelessGatewayWithCertificateResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateWirelessGatewayWithCertificateResponse(
@@ -2571,6 +2576,7 @@ class AssociateWirelessGatewayWithCertificateResponse {
 
 class AssociateWirelessGatewayWithThingResponse {
   AssociateWirelessGatewayWithThingResponse();
+
   factory AssociateWirelessGatewayWithThingResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateWirelessGatewayWithThingResponse();
@@ -2627,6 +2633,7 @@ class CertificateList {
     required this.signingAlg,
     required this.value,
   });
+
   factory CertificateList.fromJson(Map<String, dynamic> json) {
     return CertificateList(
       signingAlg: (json['SigningAlg'] as String).toSigningAlg(),
@@ -2683,6 +2690,7 @@ class CreateDestinationResponse {
     this.arn,
     this.name,
   });
+
   factory CreateDestinationResponse.fromJson(Map<String, dynamic> json) {
     return CreateDestinationResponse(
       arn: json['Arn'] as String?,
@@ -2711,6 +2719,7 @@ class CreateDeviceProfileResponse {
     this.arn,
     this.id,
   });
+
   factory CreateDeviceProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateDeviceProfileResponse(
       arn: json['Arn'] as String?,
@@ -2739,6 +2748,7 @@ class CreateServiceProfileResponse {
     this.arn,
     this.id,
   });
+
   factory CreateServiceProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateServiceProfileResponse(
       arn: json['Arn'] as String?,
@@ -2767,6 +2777,7 @@ class CreateWirelessDeviceResponse {
     this.arn,
     this.id,
   });
+
   factory CreateWirelessDeviceResponse.fromJson(Map<String, dynamic> json) {
     return CreateWirelessDeviceResponse(
       arn: json['Arn'] as String?,
@@ -2795,6 +2806,7 @@ class CreateWirelessGatewayResponse {
     this.arn,
     this.id,
   });
+
   factory CreateWirelessGatewayResponse.fromJson(Map<String, dynamic> json) {
     return CreateWirelessGatewayResponse(
       arn: json['Arn'] as String?,
@@ -2823,6 +2835,7 @@ class CreateWirelessGatewayTaskDefinitionResponse {
     this.arn,
     this.id,
   });
+
   factory CreateWirelessGatewayTaskDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateWirelessGatewayTaskDefinitionResponse(
@@ -2852,6 +2865,7 @@ class CreateWirelessGatewayTaskResponse {
     this.status,
     this.wirelessGatewayTaskDefinitionId,
   });
+
   factory CreateWirelessGatewayTaskResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateWirelessGatewayTaskResponse(
@@ -2875,6 +2889,7 @@ class CreateWirelessGatewayTaskResponse {
 
 class DeleteDestinationResponse {
   DeleteDestinationResponse();
+
   factory DeleteDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDestinationResponse();
   }
@@ -2886,6 +2901,7 @@ class DeleteDestinationResponse {
 
 class DeleteDeviceProfileResponse {
   DeleteDeviceProfileResponse();
+
   factory DeleteDeviceProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDeviceProfileResponse();
   }
@@ -2897,6 +2913,7 @@ class DeleteDeviceProfileResponse {
 
 class DeleteServiceProfileResponse {
   DeleteServiceProfileResponse();
+
   factory DeleteServiceProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServiceProfileResponse();
   }
@@ -2908,6 +2925,7 @@ class DeleteServiceProfileResponse {
 
 class DeleteWirelessDeviceResponse {
   DeleteWirelessDeviceResponse();
+
   factory DeleteWirelessDeviceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessDeviceResponse();
   }
@@ -2919,6 +2937,7 @@ class DeleteWirelessDeviceResponse {
 
 class DeleteWirelessGatewayResponse {
   DeleteWirelessGatewayResponse();
+
   factory DeleteWirelessGatewayResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessGatewayResponse();
   }
@@ -2930,6 +2949,7 @@ class DeleteWirelessGatewayResponse {
 
 class DeleteWirelessGatewayTaskDefinitionResponse {
   DeleteWirelessGatewayTaskDefinitionResponse();
+
   factory DeleteWirelessGatewayTaskDefinitionResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteWirelessGatewayTaskDefinitionResponse();
@@ -2942,6 +2962,7 @@ class DeleteWirelessGatewayTaskDefinitionResponse {
 
 class DeleteWirelessGatewayTaskResponse {
   DeleteWirelessGatewayTaskResponse();
+
   factory DeleteWirelessGatewayTaskResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWirelessGatewayTaskResponse();
   }
@@ -2979,6 +3000,7 @@ class Destinations {
     this.name,
     this.roleArn,
   });
+
   factory Destinations.fromJson(Map<String, dynamic> json) {
     return Destinations(
       arn: json['Arn'] as String?,
@@ -3024,6 +3046,7 @@ class DeviceProfile {
     this.id,
     this.name,
   });
+
   factory DeviceProfile.fromJson(Map<String, dynamic> json) {
     return DeviceProfile(
       arn: json['Arn'] as String?,
@@ -3085,6 +3108,7 @@ extension on String {
 
 class DisassociateAwsAccountFromPartnerAccountResponse {
   DisassociateAwsAccountFromPartnerAccountResponse();
+
   factory DisassociateAwsAccountFromPartnerAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateAwsAccountFromPartnerAccountResponse();
@@ -3097,6 +3121,7 @@ class DisassociateAwsAccountFromPartnerAccountResponse {
 
 class DisassociateWirelessDeviceFromThingResponse {
   DisassociateWirelessDeviceFromThingResponse();
+
   factory DisassociateWirelessDeviceFromThingResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWirelessDeviceFromThingResponse();
@@ -3109,6 +3134,7 @@ class DisassociateWirelessDeviceFromThingResponse {
 
 class DisassociateWirelessGatewayFromCertificateResponse {
   DisassociateWirelessGatewayFromCertificateResponse();
+
   factory DisassociateWirelessGatewayFromCertificateResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWirelessGatewayFromCertificateResponse();
@@ -3121,6 +3147,7 @@ class DisassociateWirelessGatewayFromCertificateResponse {
 
 class DisassociateWirelessGatewayFromThingResponse {
   DisassociateWirelessGatewayFromThingResponse();
+
   factory DisassociateWirelessGatewayFromThingResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWirelessGatewayFromThingResponse();
@@ -3230,6 +3257,7 @@ class GetDestinationResponse {
     this.name,
     this.roleArn,
   });
+
   factory GetDestinationResponse.fromJson(Map<String, dynamic> json) {
     return GetDestinationResponse(
       arn: json['Arn'] as String?,
@@ -3278,6 +3306,7 @@ class GetDeviceProfileResponse {
     this.loRaWAN,
     this.name,
   });
+
   factory GetDeviceProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetDeviceProfileResponse(
       arn: json['Arn'] as String?,
@@ -3314,6 +3343,7 @@ class GetLogLevelsByResourceTypesResponse {
     this.wirelessDeviceLogOptions,
     this.wirelessGatewayLogOptions,
   });
+
   factory GetLogLevelsByResourceTypesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetLogLevelsByResourceTypesResponse(
@@ -3356,6 +3386,7 @@ class GetPartnerAccountResponse {
     this.accountLinked,
     this.sidewalk,
   });
+
   factory GetPartnerAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetPartnerAccountResponse(
       accountLinked: json['AccountLinked'] as bool?,
@@ -3382,6 +3413,7 @@ class GetResourceLogLevelResponse {
   GetResourceLogLevelResponse({
     this.logLevel,
   });
+
   factory GetResourceLogLevelResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceLogLevelResponse(
       logLevel: (json['LogLevel'] as String?)?.toLogLevel(),
@@ -3411,6 +3443,7 @@ class GetServiceEndpointResponse {
     this.serviceEndpoint,
     this.serviceType,
   });
+
   factory GetServiceEndpointResponse.fromJson(Map<String, dynamic> json) {
     return GetServiceEndpointResponse(
       serverTrust: json['ServerTrust'] as String?,
@@ -3451,6 +3484,7 @@ class GetServiceProfileResponse {
     this.loRaWAN,
     this.name,
   });
+
   factory GetServiceProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetServiceProfileResponse(
       arn: json['Arn'] as String?,
@@ -3521,6 +3555,7 @@ class GetWirelessDeviceResponse {
     this.thingName,
     this.type,
   });
+
   factory GetWirelessDeviceResponse.fromJson(Map<String, dynamic> json) {
     return GetWirelessDeviceResponse(
       arn: json['Arn'] as String?,
@@ -3585,6 +3620,7 @@ class GetWirelessDeviceStatisticsResponse {
     this.sidewalk,
     this.wirelessDeviceId,
   });
+
   factory GetWirelessDeviceStatisticsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessDeviceStatisticsResponse(
@@ -3628,6 +3664,7 @@ class GetWirelessGatewayCertificateResponse {
     this.iotCertificateId,
     this.loRaWANNetworkServerCertificateId,
   });
+
   factory GetWirelessGatewayCertificateResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayCertificateResponse(
@@ -3656,6 +3693,7 @@ class GetWirelessGatewayFirmwareInformationResponse {
   GetWirelessGatewayFirmwareInformationResponse({
     this.loRaWAN,
   });
+
   factory GetWirelessGatewayFirmwareInformationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayFirmwareInformationResponse(
@@ -3706,6 +3744,7 @@ class GetWirelessGatewayResponse {
     this.thingArn,
     this.thingName,
   });
+
   factory GetWirelessGatewayResponse.fromJson(Map<String, dynamic> json) {
     return GetWirelessGatewayResponse(
       arn: json['Arn'] as String?,
@@ -3755,6 +3794,7 @@ class GetWirelessGatewayStatisticsResponse {
     this.lastUplinkReceivedAt,
     this.wirelessGatewayId,
   });
+
   factory GetWirelessGatewayStatisticsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayStatisticsResponse(
@@ -3800,6 +3840,7 @@ class GetWirelessGatewayTaskDefinitionResponse {
     this.name,
     this.update,
   });
+
   factory GetWirelessGatewayTaskDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return GetWirelessGatewayTaskDefinitionResponse(
@@ -3850,6 +3891,7 @@ class GetWirelessGatewayTaskResponse {
     this.wirelessGatewayId,
     this.wirelessGatewayTaskDefinitionId,
   });
+
   factory GetWirelessGatewayTaskResponse.fromJson(Map<String, dynamic> json) {
     return GetWirelessGatewayTaskResponse(
       lastUplinkReceivedAt: json['LastUplinkReceivedAt'] as String?,
@@ -3892,6 +3934,7 @@ class ListDestinationsResponse {
     this.destinationList,
     this.nextToken,
   });
+
   factory ListDestinationsResponse.fromJson(Map<String, dynamic> json) {
     return ListDestinationsResponse(
       destinationList: (json['DestinationList'] as List?)
@@ -3924,6 +3967,7 @@ class ListDeviceProfilesResponse {
     this.deviceProfileList,
     this.nextToken,
   });
+
   factory ListDeviceProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListDeviceProfilesResponse(
       deviceProfileList: (json['DeviceProfileList'] as List?)
@@ -3956,6 +4000,7 @@ class ListPartnerAccountsResponse {
     this.nextToken,
     this.sidewalk,
   });
+
   factory ListPartnerAccountsResponse.fromJson(Map<String, dynamic> json) {
     return ListPartnerAccountsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3989,6 +4034,7 @@ class ListServiceProfilesResponse {
     this.nextToken,
     this.serviceProfileList,
   });
+
   factory ListServiceProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListServiceProfilesResponse(
       nextToken: json['NextToken'] as String?,
@@ -4017,6 +4063,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -4046,6 +4093,7 @@ class ListWirelessDevicesResponse {
     this.nextToken,
     this.wirelessDeviceList,
   });
+
   factory ListWirelessDevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListWirelessDevicesResponse(
       nextToken: json['NextToken'] as String?,
@@ -4079,6 +4127,7 @@ class ListWirelessGatewayTaskDefinitionsResponse {
     this.nextToken,
     this.taskDefinitions,
   });
+
   factory ListWirelessGatewayTaskDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListWirelessGatewayTaskDefinitionsResponse(
@@ -4113,6 +4162,7 @@ class ListWirelessGatewaysResponse {
     this.nextToken,
     this.wirelessGatewayList,
   });
+
   factory ListWirelessGatewaysResponse.fromJson(Map<String, dynamic> json) {
     return ListWirelessGatewaysResponse(
       nextToken: json['NextToken'] as String?,
@@ -4167,6 +4217,7 @@ class LoRaWANDevice {
     this.otaaV1_1,
     this.serviceProfileId,
   });
+
   factory LoRaWANDevice.fromJson(Map<String, dynamic> json) {
     return LoRaWANDevice(
       abpV1_0X: json['AbpV1_0_x'] != null
@@ -4235,6 +4286,7 @@ class LoRaWANDeviceMetadata {
     this.gateways,
     this.timestamp,
   });
+
   factory LoRaWANDeviceMetadata.fromJson(Map<String, dynamic> json) {
     return LoRaWANDeviceMetadata(
       dataRate: json['DataRate'] as int?,
@@ -4349,6 +4401,7 @@ class LoRaWANDeviceProfile {
     this.supportsClassC,
     this.supportsJoin,
   });
+
   factory LoRaWANDeviceProfile.fromJson(Map<String, dynamic> json) {
     return LoRaWANDeviceProfile(
       classBTimeout: json['ClassBTimeout'] as int?,
@@ -4439,6 +4492,7 @@ class LoRaWANGateway {
     this.rfRegion,
     this.subBands,
   });
+
   factory LoRaWANGateway.fromJson(Map<String, dynamic> json) {
     return LoRaWANGateway(
       gatewayEui: json['GatewayEui'] as String?,
@@ -4483,6 +4537,7 @@ class LoRaWANGatewayCurrentVersion {
   LoRaWANGatewayCurrentVersion({
     this.currentVersion,
   });
+
   factory LoRaWANGatewayCurrentVersion.fromJson(Map<String, dynamic> json) {
     return LoRaWANGatewayCurrentVersion(
       currentVersion: json['CurrentVersion'] != null
@@ -4516,6 +4571,7 @@ class LoRaWANGatewayMetadata {
     this.rssi,
     this.snr,
   });
+
   factory LoRaWANGatewayMetadata.fromJson(Map<String, dynamic> json) {
     return LoRaWANGatewayMetadata(
       gatewayEui: json['GatewayEui'] as String?,
@@ -4552,6 +4608,7 @@ class LoRaWANGatewayVersion {
     this.packageVersion,
     this.station,
   });
+
   factory LoRaWANGatewayVersion.fromJson(Map<String, dynamic> json) {
     return LoRaWANGatewayVersion(
       model: json['Model'] as String?,
@@ -4652,6 +4709,7 @@ class LoRaWANGetServiceProfileInfo {
     this.ulRate,
     this.ulRatePolicy,
   });
+
   factory LoRaWANGetServiceProfileInfo.fromJson(Map<String, dynamic> json) {
     return LoRaWANGetServiceProfileInfo(
       addGwMetadata: json['AddGwMetadata'] as bool?,
@@ -4730,6 +4788,7 @@ class LoRaWANListDevice {
   LoRaWANListDevice({
     this.devEui,
   });
+
   factory LoRaWANListDevice.fromJson(Map<String, dynamic> json) {
     return LoRaWANListDevice(
       devEui: json['DevEui'] as String?,
@@ -4752,6 +4811,7 @@ class LoRaWANSendDataToDevice {
   LoRaWANSendDataToDevice({
     this.fPort,
   });
+
   factory LoRaWANSendDataToDevice.fromJson(Map<String, dynamic> json) {
     return LoRaWANSendDataToDevice(
       fPort: json['FPort'] as int?,
@@ -4774,6 +4834,7 @@ class LoRaWANServiceProfile {
   LoRaWANServiceProfile({
     this.addGwMetadata,
   });
+
   factory LoRaWANServiceProfile.fromJson(Map<String, dynamic> json) {
     return LoRaWANServiceProfile(
       addGwMetadata: json['AddGwMetadata'] as bool?,
@@ -4800,6 +4861,7 @@ class LoRaWANUpdateDevice {
     this.deviceProfileId,
     this.serviceProfileId,
   });
+
   factory LoRaWANUpdateDevice.fromJson(Map<String, dynamic> json) {
     return LoRaWANUpdateDevice(
       deviceProfileId: json['DeviceProfileId'] as String?,
@@ -4837,6 +4899,7 @@ class LoRaWANUpdateGatewayTaskCreate {
     this.updateSignature,
     this.updateVersion,
   });
+
   factory LoRaWANUpdateGatewayTaskCreate.fromJson(Map<String, dynamic> json) {
     return LoRaWANUpdateGatewayTaskCreate(
       currentVersion: json['CurrentVersion'] != null
@@ -4878,6 +4941,7 @@ class LoRaWANUpdateGatewayTaskEntry {
     this.currentVersion,
     this.updateVersion,
   });
+
   factory LoRaWANUpdateGatewayTaskEntry.fromJson(Map<String, dynamic> json) {
     return LoRaWANUpdateGatewayTaskEntry(
       currentVersion: json['CurrentVersion'] != null
@@ -4986,6 +5050,7 @@ class OtaaV1_0_x {
     this.appEui,
     this.appKey,
   });
+
   factory OtaaV1_0_x.fromJson(Map<String, dynamic> json) {
     return OtaaV1_0_x(
       appEui: json['AppEui'] as String?,
@@ -5019,6 +5084,7 @@ class OtaaV1_1 {
     this.joinEui,
     this.nwkKey,
   });
+
   factory OtaaV1_1.fromJson(Map<String, dynamic> json) {
     return OtaaV1_1(
       appKey: json['AppKey'] as String?,
@@ -5064,6 +5130,7 @@ extension on String {
 
 class PutResourceLogLevelResponse {
   PutResourceLogLevelResponse();
+
   factory PutResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
     return PutResourceLogLevelResponse();
   }
@@ -5075,6 +5142,7 @@ class PutResourceLogLevelResponse {
 
 class ResetAllResourceLogLevelsResponse {
   ResetAllResourceLogLevelsResponse();
+
   factory ResetAllResourceLogLevelsResponse.fromJson(Map<String, dynamic> _) {
     return ResetAllResourceLogLevelsResponse();
   }
@@ -5086,6 +5154,7 @@ class ResetAllResourceLogLevelsResponse {
 
 class ResetResourceLogLevelResponse {
   ResetResourceLogLevelResponse();
+
   factory ResetResourceLogLevelResponse.fromJson(Map<String, dynamic> _) {
     return ResetResourceLogLevelResponse();
   }
@@ -5102,6 +5171,7 @@ class SendDataToWirelessDeviceResponse {
   SendDataToWirelessDeviceResponse({
     this.messageId,
   });
+
   factory SendDataToWirelessDeviceResponse.fromJson(Map<String, dynamic> json) {
     return SendDataToWirelessDeviceResponse(
       messageId: json['MessageId'] as String?,
@@ -5132,6 +5202,7 @@ class ServiceProfile {
     this.id,
     this.name,
   });
+
   factory ServiceProfile.fromJson(Map<String, dynamic> json) {
     return ServiceProfile(
       arn: json['Arn'] as String?,
@@ -5164,6 +5235,7 @@ class SessionKeysAbpV1_0_x {
     this.appSKey,
     this.nwkSKey,
   });
+
   factory SessionKeysAbpV1_0_x.fromJson(Map<String, dynamic> json) {
     return SessionKeysAbpV1_0_x(
       appSKey: json['AppSKey'] as String?,
@@ -5201,6 +5273,7 @@ class SessionKeysAbpV1_1 {
     this.nwkSEncKey,
     this.sNwkSIntKey,
   });
+
   factory SessionKeysAbpV1_1.fromJson(Map<String, dynamic> json) {
     return SessionKeysAbpV1_1(
       appSKey: json['AppSKey'] as String?,
@@ -5236,6 +5309,7 @@ class SidewalkAccountInfo {
     this.amazonId,
     this.appServerPrivateKey,
   });
+
   factory SidewalkAccountInfo.fromJson(Map<String, dynamic> json) {
     return SidewalkAccountInfo(
       amazonId: json['AmazonId'] as String?,
@@ -5270,6 +5344,7 @@ class SidewalkAccountInfoWithFingerprint {
     this.arn,
     this.fingerprint,
   });
+
   factory SidewalkAccountInfoWithFingerprint.fromJson(
       Map<String, dynamic> json) {
     return SidewalkAccountInfoWithFingerprint(
@@ -5307,6 +5382,7 @@ class SidewalkDevice {
     this.sidewalkId,
     this.sidewalkManufacturingSn,
   });
+
   factory SidewalkDevice.fromJson(Map<String, dynamic> json) {
     return SidewalkDevice(
       deviceCertificates: (json['DeviceCertificates'] as List?)
@@ -5351,6 +5427,7 @@ class SidewalkDeviceMetadata {
     this.event,
     this.rssi,
   });
+
   factory SidewalkDeviceMetadata.fromJson(Map<String, dynamic> json) {
     return SidewalkDeviceMetadata(
       batteryLevel: (json['BatteryLevel'] as String?)?.toBatteryLevel(),
@@ -5394,6 +5471,7 @@ class SidewalkListDevice {
     this.sidewalkId,
     this.sidewalkManufacturingSn,
   });
+
   factory SidewalkListDevice.fromJson(Map<String, dynamic> json) {
     return SidewalkListDevice(
       amazonId: json['AmazonId'] as String?,
@@ -5432,6 +5510,7 @@ class SidewalkSendDataToDevice {
     this.messageType,
     this.seq,
   });
+
   factory SidewalkSendDataToDevice.fromJson(Map<String, dynamic> json) {
     return SidewalkSendDataToDevice(
       messageType: (json['MessageType'] as String?)?.toMessageType(),
@@ -5457,6 +5536,7 @@ class SidewalkUpdateAccount {
   SidewalkUpdateAccount({
     this.appServerPrivateKey,
   });
+
   factory SidewalkUpdateAccount.fromJson(Map<String, dynamic> json) {
     return SidewalkUpdateAccount(
       appServerPrivateKey: json['AppServerPrivateKey'] as String?,
@@ -5513,6 +5593,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5532,6 +5613,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5548,6 +5630,7 @@ class TestWirelessDeviceResponse {
   TestWirelessDeviceResponse({
     this.result,
   });
+
   factory TestWirelessDeviceResponse.fromJson(Map<String, dynamic> json) {
     return TestWirelessDeviceResponse(
       result: json['Result'] as String?,
@@ -5564,6 +5647,7 @@ class TestWirelessDeviceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5575,6 +5659,7 @@ class UntagResourceResponse {
 
 class UpdateDestinationResponse {
   UpdateDestinationResponse();
+
   factory UpdateDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDestinationResponse();
   }
@@ -5586,6 +5671,7 @@ class UpdateDestinationResponse {
 
 class UpdateLogLevelsByResourceTypesResponse {
   UpdateLogLevelsByResourceTypesResponse();
+
   factory UpdateLogLevelsByResourceTypesResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateLogLevelsByResourceTypesResponse();
@@ -5598,6 +5684,7 @@ class UpdateLogLevelsByResourceTypesResponse {
 
 class UpdatePartnerAccountResponse {
   UpdatePartnerAccountResponse();
+
   factory UpdatePartnerAccountResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePartnerAccountResponse();
   }
@@ -5609,6 +5696,7 @@ class UpdatePartnerAccountResponse {
 
 class UpdateWirelessDeviceResponse {
   UpdateWirelessDeviceResponse();
+
   factory UpdateWirelessDeviceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateWirelessDeviceResponse();
   }
@@ -5620,6 +5708,7 @@ class UpdateWirelessDeviceResponse {
 
 class UpdateWirelessGatewayResponse {
   UpdateWirelessGatewayResponse();
+
   factory UpdateWirelessGatewayResponse.fromJson(Map<String, dynamic> _) {
     return UpdateWirelessGatewayResponse();
   }
@@ -5645,6 +5734,7 @@ class UpdateWirelessGatewayTaskCreate {
     this.updateDataRole,
     this.updateDataSource,
   });
+
   factory UpdateWirelessGatewayTaskCreate.fromJson(Map<String, dynamic> json) {
     return UpdateWirelessGatewayTaskCreate(
       loRaWAN: json['LoRaWAN'] != null
@@ -5684,6 +5774,7 @@ class UpdateWirelessGatewayTaskEntry {
     this.id,
     this.loRaWAN,
   });
+
   factory UpdateWirelessGatewayTaskEntry.fromJson(Map<String, dynamic> json) {
     return UpdateWirelessGatewayTaskEntry(
       arn: json['Arn'] as String?,
@@ -5765,6 +5856,7 @@ class WirelessDeviceEventLogOption {
     required this.event,
     required this.logLevel,
   });
+
   factory WirelessDeviceEventLogOption.fromJson(Map<String, dynamic> json) {
     return WirelessDeviceEventLogOption(
       event: (json['Event'] as String).toWirelessDeviceEvent(),
@@ -5829,6 +5921,7 @@ class WirelessDeviceLogOption {
     required this.type,
     this.events,
   });
+
   factory WirelessDeviceLogOption.fromJson(Map<String, dynamic> json) {
     return WirelessDeviceLogOption(
       logLevel: (json['LogLevel'] as String).toLogLevel(),
@@ -5889,6 +5982,7 @@ class WirelessDeviceStatistics {
     this.sidewalk,
     this.type,
   });
+
   factory WirelessDeviceStatistics.fromJson(Map<String, dynamic> json) {
     return WirelessDeviceStatistics(
       arn: json['Arn'] as String?,
@@ -5999,6 +6093,7 @@ class WirelessGatewayEventLogOption {
     required this.event,
     required this.logLevel,
   });
+
   factory WirelessGatewayEventLogOption.fromJson(Map<String, dynamic> json) {
     return WirelessGatewayEventLogOption(
       event: (json['Event'] as String).toWirelessGatewayEvent(),
@@ -6061,6 +6156,7 @@ class WirelessGatewayLogOption {
     required this.type,
     this.events,
   });
+
   factory WirelessGatewayLogOption.fromJson(Map<String, dynamic> json) {
     return WirelessGatewayLogOption(
       logLevel: (json['LogLevel'] as String).toLogLevel(),
@@ -6141,6 +6237,7 @@ class WirelessGatewayStatistics {
     this.loRaWAN,
     this.name,
   });
+
   factory WirelessGatewayStatistics.fromJson(Map<String, dynamic> json) {
     return WirelessGatewayStatistics(
       arn: json['Arn'] as String?,
@@ -6281,6 +6378,7 @@ class WirelessMetadata {
     this.loRaWAN,
     this.sidewalk,
   });
+
   factory WirelessMetadata.fromJson(Map<String, dynamic> json) {
     return WirelessMetadata(
       loRaWAN: json['LoRaWAN'] != null

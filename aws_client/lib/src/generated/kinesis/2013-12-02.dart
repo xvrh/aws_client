@@ -2415,6 +2415,7 @@ class ChildShard {
     required this.parentShards,
     required this.shardId,
   });
+
   factory ChildShard.fromJson(Map<String, dynamic> json) {
     return ChildShard(
       hashKeyRange:
@@ -2468,6 +2469,7 @@ class Consumer {
     required this.consumerName,
     required this.consumerStatus,
   });
+
   factory Consumer.fromJson(Map<String, dynamic> json) {
     return Consumer(
       consumerARN: json['ConsumerARN'] as String,
@@ -2526,6 +2528,7 @@ class ConsumerDescription {
     required this.consumerStatus,
     required this.streamARN,
   });
+
   factory ConsumerDescription.fromJson(Map<String, dynamic> json) {
     return ConsumerDescription(
       consumerARN: json['ConsumerARN'] as String,
@@ -2598,6 +2601,7 @@ class DescribeLimitsOutput {
     required this.openShardCount,
     required this.shardLimit,
   });
+
   factory DescribeLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeLimitsOutput(
       openShardCount: json['OpenShardCount'] as int,
@@ -2622,6 +2626,7 @@ class DescribeStreamConsumerOutput {
   DescribeStreamConsumerOutput({
     required this.consumerDescription,
   });
+
   factory DescribeStreamConsumerOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStreamConsumerOutput(
       consumerDescription: ConsumerDescription.fromJson(
@@ -2647,6 +2652,7 @@ class DescribeStreamOutput {
   DescribeStreamOutput({
     required this.streamDescription,
   });
+
   factory DescribeStreamOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStreamOutput(
       streamDescription: StreamDescription.fromJson(
@@ -2669,6 +2675,7 @@ class DescribeStreamSummaryOutput {
   DescribeStreamSummaryOutput({
     required this.streamDescriptionSummary,
   });
+
   factory DescribeStreamSummaryOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStreamSummaryOutput(
       streamDescriptionSummary: StreamDescriptionSummary.fromJson(
@@ -2754,6 +2761,7 @@ class EnhancedMetrics {
   EnhancedMetrics({
     this.shardLevelMetrics,
   });
+
   factory EnhancedMetrics.fromJson(Map<String, dynamic> json) {
     return EnhancedMetrics(
       shardLevelMetrics: (json['ShardLevelMetrics'] as List?)
@@ -2791,6 +2799,7 @@ class EnhancedMonitoringOutput {
     this.desiredShardLevelMetrics,
     this.streamName,
   });
+
   factory EnhancedMonitoringOutput.fromJson(Map<String, dynamic> json) {
     return EnhancedMonitoringOutput(
       currentShardLevelMetrics: (json['CurrentShardLevelMetrics'] as List?)
@@ -2844,6 +2853,7 @@ class GetRecordsOutput {
     this.millisBehindLatest,
     this.nextShardIterator,
   });
+
   factory GetRecordsOutput.fromJson(Map<String, dynamic> json) {
     return GetRecordsOutput(
       records: (json['Records'] as List)
@@ -2883,6 +2893,7 @@ class GetShardIteratorOutput {
   GetShardIteratorOutput({
     this.shardIterator,
   });
+
   factory GetShardIteratorOutput.fromJson(Map<String, dynamic> json) {
     return GetShardIteratorOutput(
       shardIterator: json['ShardIterator'] as String?,
@@ -2910,6 +2921,7 @@ class HashKeyRange {
     required this.endingHashKey,
     required this.startingHashKey,
   });
+
   factory HashKeyRange.fromJson(Map<String, dynamic> json) {
     return HashKeyRange(
       endingHashKey: json['EndingHashKey'] as String,
@@ -2955,6 +2967,7 @@ class ListShardsOutput {
     this.nextToken,
     this.shards,
   });
+
   factory ListShardsOutput.fromJson(Map<String, dynamic> json) {
     return ListShardsOutput(
       nextToken: json['NextToken'] as String?,
@@ -3002,6 +3015,7 @@ class ListStreamConsumersOutput {
     this.consumers,
     this.nextToken,
   });
+
   factory ListStreamConsumersOutput.fromJson(Map<String, dynamic> json) {
     return ListStreamConsumersOutput(
       consumers: (json['Consumers'] as List?)
@@ -3035,6 +3049,7 @@ class ListStreamsOutput {
     required this.hasMoreStreams,
     required this.streamNames,
   });
+
   factory ListStreamsOutput.fromJson(Map<String, dynamic> json) {
     return ListStreamsOutput(
       hasMoreStreams: json['HasMoreStreams'] as bool,
@@ -3071,6 +3086,7 @@ class ListTagsForStreamOutput {
     required this.hasMoreTags,
     required this.tags,
   });
+
   factory ListTagsForStreamOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForStreamOutput(
       hasMoreTags: json['HasMoreTags'] as bool,
@@ -3179,6 +3195,7 @@ class PutRecordOutput {
     required this.shardId,
     this.encryptionType,
   });
+
   factory PutRecordOutput.fromJson(Map<String, dynamic> json) {
     return PutRecordOutput(
       sequenceNumber: json['SequenceNumber'] as String,
@@ -3232,6 +3249,7 @@ class PutRecordsOutput {
     this.encryptionType,
     this.failedRecordCount,
   });
+
   factory PutRecordsOutput.fromJson(Map<String, dynamic> json) {
     return PutRecordsOutput(
       records: (json['Records'] as List)
@@ -3282,6 +3300,7 @@ class PutRecordsRequestEntry {
     required this.partitionKey,
     this.explicitHashKey,
   });
+
   factory PutRecordsRequestEntry.fromJson(Map<String, dynamic> json) {
     return PutRecordsRequestEntry(
       data: _s.decodeUint8List(json['Data']! as String),
@@ -3332,6 +3351,7 @@ class PutRecordsResultEntry {
     this.sequenceNumber,
     this.shardId,
   });
+
   factory PutRecordsResultEntry.fromJson(Map<String, dynamic> json) {
     return PutRecordsResultEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -3395,6 +3415,7 @@ class Record {
     this.approximateArrivalTimestamp,
     this.encryptionType,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       data: _s.decodeUint8List(json['Data']! as String),
@@ -3433,6 +3454,7 @@ class RegisterStreamConsumerOutput {
   RegisterStreamConsumerOutput({
     required this.consumer,
   });
+
   factory RegisterStreamConsumerOutput.fromJson(Map<String, dynamic> json) {
     return RegisterStreamConsumerOutput(
       consumer: Consumer.fromJson(json['Consumer'] as Map<String, dynamic>),
@@ -3483,6 +3505,7 @@ class SequenceNumberRange {
     required this.startingSequenceNumber,
     this.endingSequenceNumber,
   });
+
   factory SequenceNumberRange.fromJson(Map<String, dynamic> json) {
     return SequenceNumberRange(
       startingSequenceNumber: json['StartingSequenceNumber'] as String,
@@ -3526,6 +3549,7 @@ class Shard {
     this.adjacentParentShardId,
     this.parentShardId,
   });
+
   factory Shard.fromJson(Map<String, dynamic> json) {
     return Shard(
       hashKeyRange:
@@ -3565,6 +3589,7 @@ class ShardFilter {
     this.shardId,
     this.timestamp,
   });
+
   factory ShardFilter.fromJson(Map<String, dynamic> json) {
     return ShardFilter(
       type: (json['Type'] as String).toShardFilterType(),
@@ -3782,6 +3807,7 @@ class StreamDescription {
     this.encryptionType,
     this.keyId,
   });
+
   factory StreamDescription.fromJson(Map<String, dynamic> json) {
     return StreamDescription(
       enhancedMonitoring: (json['EnhancedMonitoring'] as List)
@@ -3932,6 +3958,7 @@ class StreamDescriptionSummary {
     this.encryptionType,
     this.keyId,
   });
+
   factory StreamDescriptionSummary.fromJson(Map<String, dynamic> json) {
     return StreamDescriptionSummary(
       enhancedMonitoring: (json['EnhancedMonitoring'] as List)
@@ -4030,6 +4057,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -4062,6 +4090,7 @@ class UpdateShardCountOutput {
     this.streamName,
     this.targetShardCount,
   });
+
   factory UpdateShardCountOutput.fromJson(Map<String, dynamic> json) {
     return UpdateShardCountOutput(
       currentShardCount: json['CurrentShardCount'] as int?,

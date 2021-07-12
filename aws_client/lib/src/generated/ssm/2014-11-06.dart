@@ -10346,6 +10346,7 @@ class AccountSharingInfo {
     this.accountId,
     this.sharedDocumentVersion,
   });
+
   factory AccountSharingInfo.fromJson(Map<String, dynamic> json) {
     return AccountSharingInfo(
       accountId: json['AccountId'] as String?,
@@ -10414,6 +10415,7 @@ class Activation {
     this.registrationsCount,
     this.tags,
   });
+
   factory Activation.fromJson(Map<String, dynamic> json) {
     return Activation(
       activationId: json['ActivationId'] as String?,
@@ -10462,6 +10464,7 @@ class Activation {
 
 class AddTagsToResourceResult {
   AddTagsToResourceResult();
+
   factory AddTagsToResourceResult.fromJson(Map<String, dynamic> _) {
     return AddTagsToResourceResult();
   }
@@ -10478,6 +10481,7 @@ class AssociateOpsItemRelatedItemResponse {
   AssociateOpsItemRelatedItemResponse({
     this.associationId,
   });
+
   factory AssociateOpsItemRelatedItemResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateOpsItemRelatedItemResponse(
@@ -10539,6 +10543,7 @@ class Association {
     this.scheduleExpression,
     this.targets,
   });
+
   factory Association.fromJson(Map<String, dynamic> json) {
     return Association(
       associationId: json['AssociationId'] as String?,
@@ -10774,6 +10779,7 @@ class AssociationDescription {
     this.targetLocations,
     this.targets,
   });
+
   factory AssociationDescription.fromJson(Map<String, dynamic> json) {
     return AssociationDescription(
       applyOnlyAtCronInterval: json['ApplyOnlyAtCronInterval'] as bool?,
@@ -10926,6 +10932,7 @@ class AssociationExecution {
     this.resourceCountByStatus,
     this.status,
   });
+
   factory AssociationExecution.fromJson(Map<String, dynamic> json) {
     return AssociationExecution(
       associationId: json['AssociationId'] as String?,
@@ -10979,6 +10986,7 @@ class AssociationExecutionFilter {
     required this.type,
     required this.value,
   });
+
   factory AssociationExecutionFilter.fromJson(Map<String, dynamic> json) {
     return AssociationExecutionFilter(
       key: (json['Key'] as String).toAssociationExecutionFilterKey(),
@@ -11072,6 +11080,7 @@ class AssociationExecutionTarget {
     this.resourceType,
     this.status,
   });
+
   factory AssociationExecutionTarget.fromJson(Map<String, dynamic> json) {
     return AssociationExecutionTarget(
       associationId: json['AssociationId'] as String?,
@@ -11125,6 +11134,7 @@ class AssociationExecutionTargetsFilter {
     required this.key,
     required this.value,
   });
+
   factory AssociationExecutionTargetsFilter.fromJson(
       Map<String, dynamic> json) {
     return AssociationExecutionTargetsFilter(
@@ -11193,6 +11203,7 @@ class AssociationFilter {
     required this.key,
     required this.value,
   });
+
   factory AssociationFilter.fromJson(Map<String, dynamic> json) {
     return AssociationFilter(
       key: (json['key'] as String).toAssociationFilterKey(),
@@ -11319,6 +11330,7 @@ class AssociationOverview {
     this.detailedStatus,
     this.status,
   });
+
   factory AssociationOverview.fromJson(Map<String, dynamic> json) {
     return AssociationOverview(
       associationStatusAggregatedCount:
@@ -11363,6 +11375,7 @@ class AssociationStatus {
     required this.name,
     this.additionalInfo,
   });
+
   factory AssociationStatus.fromJson(Map<String, dynamic> json) {
     return AssociationStatus(
       date: nonNullableTimeStampFromJson(json['Date'] as Object),
@@ -11567,6 +11580,7 @@ class AssociationVersionInfo {
     this.targetLocations,
     this.targets,
   });
+
   factory AssociationVersionInfo.fromJson(Map<String, dynamic> json) {
     return AssociationVersionInfo(
       applyOnlyAtCronInterval: json['ApplyOnlyAtCronInterval'] as bool?,
@@ -11671,6 +11685,7 @@ class AttachmentContent {
     this.size,
     this.url,
   });
+
   factory AttachmentContent.fromJson(Map<String, dynamic> json) {
     return AttachmentContent(
       hash: json['Hash'] as String?,
@@ -11728,6 +11743,7 @@ class AttachmentInformation {
   AttachmentInformation({
     this.name,
   });
+
   factory AttachmentInformation.fromJson(Map<String, dynamic> json) {
     return AttachmentInformation(
       name: json['Name'] as String?,
@@ -11794,6 +11810,7 @@ class AttachmentsSource {
     this.name,
     this.values,
   });
+
   factory AttachmentsSource.fromJson(Map<String, dynamic> json) {
     return AttachmentsSource(
       key: (json['Key'] as String?)?.toAttachmentsSourceKey(),
@@ -11995,6 +12012,7 @@ class AutomationExecution {
     this.targetParameterName,
     this.targets,
   });
+
   factory AutomationExecution.fromJson(Map<String, dynamic> json) {
     return AutomationExecution(
       associationId: json['AssociationId'] as String?,
@@ -12151,6 +12169,7 @@ class AutomationExecutionFilter {
     required this.key,
     required this.values,
   });
+
   factory AutomationExecutionFilter.fromJson(Map<String, dynamic> json) {
     return AutomationExecutionFilter(
       key: (json['Key'] as String).toAutomationExecutionFilterKey(),
@@ -12378,6 +12397,7 @@ class AutomationExecutionMetadata {
     this.targetParameterName,
     this.targets,
   });
+
   factory AutomationExecutionMetadata.fromJson(Map<String, dynamic> json) {
     return AutomationExecutionMetadata(
       associationId: json['AssociationId'] as String?,
@@ -12716,6 +12736,7 @@ class BaselineOverride {
     this.rejectedPatchesAction,
     this.sources,
   });
+
   factory BaselineOverride.fromJson(Map<String, dynamic> json) {
     return BaselineOverride(
       approvalRules: json['ApprovalRules'] != null
@@ -12811,6 +12832,7 @@ extension on String {
 /// that a request can be canceled.
 class CancelCommandResult {
   CancelCommandResult();
+
   factory CancelCommandResult.fromJson(Map<String, dynamic> _) {
     return CancelCommandResult();
   }
@@ -12827,6 +12849,7 @@ class CancelMaintenanceWindowExecutionResult {
   CancelMaintenanceWindowExecutionResult({
     this.windowExecutionId,
   });
+
   factory CancelMaintenanceWindowExecutionResult.fromJson(
       Map<String, dynamic> json) {
     return CancelMaintenanceWindowExecutionResult(
@@ -12857,6 +12880,7 @@ class CloudWatchOutputConfig {
     this.cloudWatchLogGroupName,
     this.cloudWatchOutputEnabled,
   });
+
   factory CloudWatchOutputConfig.fromJson(Map<String, dynamic> json) {
     return CloudWatchOutputConfig(
       cloudWatchLogGroupName: json['CloudWatchLogGroupName'] as String?,
@@ -13048,6 +13072,7 @@ class Command {
     this.targets,
     this.timeoutSeconds,
   });
+
   factory Command.fromJson(Map<String, dynamic> json) {
     return Command(
       cloudWatchOutputConfig: json['CloudWatchOutputConfig'] != null
@@ -13224,6 +13249,7 @@ class CommandFilter {
     required this.key,
     required this.value,
   });
+
   factory CommandFilter.fromJson(Map<String, dynamic> json) {
     return CommandFilter(
       key: (json['key'] as String).toCommandFilterKey(),
@@ -13424,6 +13450,7 @@ class CommandInvocation {
     this.statusDetails,
     this.traceOutput,
   });
+
   factory CommandInvocation.fromJson(Map<String, dynamic> json) {
     return CommandInvocation(
       cloudWatchOutputConfig: json['CloudWatchOutputConfig'] != null
@@ -13689,6 +13716,7 @@ class CommandPlugin {
     this.status,
     this.statusDetails,
   });
+
   factory CommandPlugin.fromJson(Map<String, dynamic> json) {
     return CommandPlugin(
       name: json['Name'] as String?,
@@ -13862,6 +13890,7 @@ class ComplianceExecutionSummary {
     this.executionId,
     this.executionType,
   });
+
   factory ComplianceExecutionSummary.fromJson(Map<String, dynamic> json) {
     return ComplianceExecutionSummary(
       executionTime:
@@ -13936,6 +13965,7 @@ class ComplianceItem {
     this.status,
     this.title,
   });
+
   factory ComplianceItem.fromJson(Map<String, dynamic> json) {
     return ComplianceItem(
       complianceType: json['ComplianceType'] as String?,
@@ -14007,6 +14037,7 @@ class ComplianceItemEntry {
     this.id,
     this.title,
   });
+
   factory ComplianceItemEntry.fromJson(Map<String, dynamic> json) {
     return ComplianceItemEntry(
       severity: (json['Severity'] as String).toComplianceSeverity(),
@@ -14170,6 +14201,7 @@ class ComplianceStringFilter {
     this.type,
     this.values,
   });
+
   factory ComplianceStringFilter.fromJson(Map<String, dynamic> json) {
     return ComplianceStringFilter(
       key: json['Key'] as String?,
@@ -14210,6 +14242,7 @@ class ComplianceSummaryItem {
     this.compliantSummary,
     this.nonCompliantSummary,
   });
+
   factory ComplianceSummaryItem.fromJson(Map<String, dynamic> json) {
     return ComplianceSummaryItem(
       complianceType: json['ComplianceType'] as String?,
@@ -14278,6 +14311,7 @@ class CompliantSummary {
     this.compliantCount,
     this.severitySummary,
   });
+
   factory CompliantSummary.fromJson(Map<String, dynamic> json) {
     return CompliantSummary(
       compliantCount: json['CompliantCount'] as int?,
@@ -14339,6 +14373,7 @@ class CreateActivationResult {
     this.activationCode,
     this.activationId,
   });
+
   factory CreateActivationResult.fromJson(Map<String, dynamic> json) {
     return CreateActivationResult(
       activationCode: json['ActivationCode'] as String?,
@@ -14486,6 +14521,7 @@ class CreateAssociationBatchRequestEntry {
     this.targetLocations,
     this.targets,
   });
+
   factory CreateAssociationBatchRequestEntry.fromJson(
       Map<String, dynamic> json) {
     return CreateAssociationBatchRequestEntry(
@@ -14577,6 +14613,7 @@ class CreateAssociationBatchResult {
     this.failed,
     this.successful,
   });
+
   factory CreateAssociationBatchResult.fromJson(Map<String, dynamic> json) {
     return CreateAssociationBatchResult(
       failed: (json['Failed'] as List?)
@@ -14609,6 +14646,7 @@ class CreateAssociationResult {
   CreateAssociationResult({
     this.associationDescription,
   });
+
   factory CreateAssociationResult.fromJson(Map<String, dynamic> json) {
     return CreateAssociationResult(
       associationDescription: json['AssociationDescription'] != null
@@ -14634,6 +14672,7 @@ class CreateDocumentResult {
   CreateDocumentResult({
     this.documentDescription,
   });
+
   factory CreateDocumentResult.fromJson(Map<String, dynamic> json) {
     return CreateDocumentResult(
       documentDescription: json['DocumentDescription'] != null
@@ -14659,6 +14698,7 @@ class CreateMaintenanceWindowResult {
   CreateMaintenanceWindowResult({
     this.windowId,
   });
+
   factory CreateMaintenanceWindowResult.fromJson(Map<String, dynamic> json) {
     return CreateMaintenanceWindowResult(
       windowId: json['WindowId'] as String?,
@@ -14680,6 +14720,7 @@ class CreateOpsItemResponse {
   CreateOpsItemResponse({
     this.opsItemId,
   });
+
   factory CreateOpsItemResponse.fromJson(Map<String, dynamic> json) {
     return CreateOpsItemResponse(
       opsItemId: json['OpsItemId'] as String?,
@@ -14702,6 +14743,7 @@ class CreateOpsMetadataResult {
   CreateOpsMetadataResult({
     this.opsMetadataArn,
   });
+
   factory CreateOpsMetadataResult.fromJson(Map<String, dynamic> json) {
     return CreateOpsMetadataResult(
       opsMetadataArn: json['OpsMetadataArn'] as String?,
@@ -14723,6 +14765,7 @@ class CreatePatchBaselineResult {
   CreatePatchBaselineResult({
     this.baselineId,
   });
+
   factory CreatePatchBaselineResult.fromJson(Map<String, dynamic> json) {
     return CreatePatchBaselineResult(
       baselineId: json['BaselineId'] as String?,
@@ -14739,6 +14782,7 @@ class CreatePatchBaselineResult {
 
 class CreateResourceDataSyncResult {
   CreateResourceDataSyncResult();
+
   factory CreateResourceDataSyncResult.fromJson(Map<String, dynamic> _) {
     return CreateResourceDataSyncResult();
   }
@@ -14750,6 +14794,7 @@ class CreateResourceDataSyncResult {
 
 class DeleteActivationResult {
   DeleteActivationResult();
+
   factory DeleteActivationResult.fromJson(Map<String, dynamic> _) {
     return DeleteActivationResult();
   }
@@ -14761,6 +14806,7 @@ class DeleteActivationResult {
 
 class DeleteAssociationResult {
   DeleteAssociationResult();
+
   factory DeleteAssociationResult.fromJson(Map<String, dynamic> _) {
     return DeleteAssociationResult();
   }
@@ -14772,6 +14818,7 @@ class DeleteAssociationResult {
 
 class DeleteDocumentResult {
   DeleteDocumentResult();
+
   factory DeleteDocumentResult.fromJson(Map<String, dynamic> _) {
     return DeleteDocumentResult();
   }
@@ -14802,6 +14849,7 @@ class DeleteInventoryResult {
     this.deletionSummary,
     this.typeName,
   });
+
   factory DeleteInventoryResult.fromJson(Map<String, dynamic> json) {
     return DeleteInventoryResult(
       deletionId: json['DeletionId'] as String?,
@@ -14832,6 +14880,7 @@ class DeleteMaintenanceWindowResult {
   DeleteMaintenanceWindowResult({
     this.windowId,
   });
+
   factory DeleteMaintenanceWindowResult.fromJson(Map<String, dynamic> json) {
     return DeleteMaintenanceWindowResult(
       windowId: json['WindowId'] as String?,
@@ -14848,6 +14897,7 @@ class DeleteMaintenanceWindowResult {
 
 class DeleteOpsMetadataResult {
   DeleteOpsMetadataResult();
+
   factory DeleteOpsMetadataResult.fromJson(Map<String, dynamic> _) {
     return DeleteOpsMetadataResult();
   }
@@ -14859,6 +14909,7 @@ class DeleteOpsMetadataResult {
 
 class DeleteParameterResult {
   DeleteParameterResult();
+
   factory DeleteParameterResult.fromJson(Map<String, dynamic> _) {
     return DeleteParameterResult();
   }
@@ -14880,6 +14931,7 @@ class DeleteParametersResult {
     this.deletedParameters,
     this.invalidParameters,
   });
+
   factory DeleteParametersResult.fromJson(Map<String, dynamic> json) {
     return DeleteParametersResult(
       deletedParameters: (json['DeletedParameters'] as List?)
@@ -14910,6 +14962,7 @@ class DeletePatchBaselineResult {
   DeletePatchBaselineResult({
     this.baselineId,
   });
+
   factory DeletePatchBaselineResult.fromJson(Map<String, dynamic> json) {
     return DeletePatchBaselineResult(
       baselineId: json['BaselineId'] as String?,
@@ -14926,6 +14979,7 @@ class DeletePatchBaselineResult {
 
 class DeleteResourceDataSyncResult {
   DeleteResourceDataSyncResult();
+
   factory DeleteResourceDataSyncResult.fromJson(Map<String, dynamic> _) {
     return DeleteResourceDataSyncResult();
   }
@@ -14937,6 +14991,7 @@ class DeleteResourceDataSyncResult {
 
 class DeregisterManagedInstanceResult {
   DeregisterManagedInstanceResult();
+
   factory DeregisterManagedInstanceResult.fromJson(Map<String, dynamic> _) {
     return DeregisterManagedInstanceResult();
   }
@@ -14957,6 +15012,7 @@ class DeregisterPatchBaselineForPatchGroupResult {
     this.baselineId,
     this.patchGroup,
   });
+
   factory DeregisterPatchBaselineForPatchGroupResult.fromJson(
       Map<String, dynamic> json) {
     return DeregisterPatchBaselineForPatchGroupResult(
@@ -14986,6 +15042,7 @@ class DeregisterTargetFromMaintenanceWindowResult {
     this.windowId,
     this.windowTargetId,
   });
+
   factory DeregisterTargetFromMaintenanceWindowResult.fromJson(
       Map<String, dynamic> json) {
     return DeregisterTargetFromMaintenanceWindowResult(
@@ -15015,6 +15072,7 @@ class DeregisterTaskFromMaintenanceWindowResult {
     this.windowId,
     this.windowTaskId,
   });
+
   factory DeregisterTaskFromMaintenanceWindowResult.fromJson(
       Map<String, dynamic> json) {
     return DeregisterTaskFromMaintenanceWindowResult(
@@ -15045,6 +15103,7 @@ class DescribeActivationsFilter {
     this.filterKey,
     this.filterValues,
   });
+
   factory DescribeActivationsFilter.fromJson(Map<String, dynamic> json) {
     return DescribeActivationsFilter(
       filterKey:
@@ -15111,6 +15170,7 @@ class DescribeActivationsResult {
     this.activationList,
     this.nextToken,
   });
+
   factory DescribeActivationsResult.fromJson(Map<String, dynamic> json) {
     return DescribeActivationsResult(
       activationList: (json['ActivationList'] as List?)
@@ -15143,6 +15203,7 @@ class DescribeAssociationExecutionTargetsResult {
     this.associationExecutionTargets,
     this.nextToken,
   });
+
   factory DescribeAssociationExecutionTargetsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeAssociationExecutionTargetsResult(
@@ -15179,6 +15240,7 @@ class DescribeAssociationExecutionsResult {
     this.associationExecutions,
     this.nextToken,
   });
+
   factory DescribeAssociationExecutionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeAssociationExecutionsResult(
@@ -15208,6 +15270,7 @@ class DescribeAssociationResult {
   DescribeAssociationResult({
     this.associationDescription,
   });
+
   factory DescribeAssociationResult.fromJson(Map<String, dynamic> json) {
     return DescribeAssociationResult(
       associationDescription: json['AssociationDescription'] != null
@@ -15239,6 +15302,7 @@ class DescribeAutomationExecutionsResult {
     this.automationExecutionMetadataList,
     this.nextToken,
   });
+
   factory DescribeAutomationExecutionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeAutomationExecutionsResult(
@@ -15277,6 +15341,7 @@ class DescribeAutomationStepExecutionsResult {
     this.nextToken,
     this.stepExecutions,
   });
+
   factory DescribeAutomationStepExecutionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeAutomationStepExecutionsResult(
@@ -15310,6 +15375,7 @@ class DescribeAvailablePatchesResult {
     this.nextToken,
     this.patches,
   });
+
   factory DescribeAvailablePatchesResult.fromJson(Map<String, dynamic> json) {
     return DescribeAvailablePatchesResult(
       nextToken: json['NextToken'] as String?,
@@ -15348,6 +15414,7 @@ class DescribeDocumentPermissionResponse {
     this.accountSharingInfoList,
     this.nextToken,
   });
+
   factory DescribeDocumentPermissionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDocumentPermissionResponse(
@@ -15383,6 +15450,7 @@ class DescribeDocumentResult {
   DescribeDocumentResult({
     this.document,
   });
+
   factory DescribeDocumentResult.fromJson(Map<String, dynamic> json) {
     return DescribeDocumentResult(
       document: json['Document'] != null
@@ -15412,6 +15480,7 @@ class DescribeEffectiveInstanceAssociationsResult {
     this.associations,
     this.nextToken,
   });
+
   factory DescribeEffectiveInstanceAssociationsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEffectiveInstanceAssociationsResult(
@@ -15445,6 +15514,7 @@ class DescribeEffectivePatchesForPatchBaselineResult {
     this.effectivePatches,
     this.nextToken,
   });
+
   factory DescribeEffectivePatchesForPatchBaselineResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEffectivePatchesForPatchBaselineResult(
@@ -15478,6 +15548,7 @@ class DescribeInstanceAssociationsStatusResult {
     this.instanceAssociationStatusInfos,
     this.nextToken,
   });
+
   factory DescribeInstanceAssociationsStatusResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstanceAssociationsStatusResult(
@@ -15514,6 +15585,7 @@ class DescribeInstanceInformationResult {
     this.instanceInformationList,
     this.nextToken,
   });
+
   factory DescribeInstanceInformationResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstanceInformationResult(
@@ -15548,6 +15620,7 @@ class DescribeInstancePatchStatesForPatchGroupResult {
     this.instancePatchStates,
     this.nextToken,
   });
+
   factory DescribeInstancePatchStatesForPatchGroupResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstancePatchStatesForPatchGroupResult(
@@ -15582,6 +15655,7 @@ class DescribeInstancePatchStatesResult {
     this.instancePatchStates,
     this.nextToken,
   });
+
   factory DescribeInstancePatchStatesResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeInstancePatchStatesResult(
@@ -15630,6 +15704,7 @@ class DescribeInstancePatchesResult {
     this.nextToken,
     this.patches,
   });
+
   factory DescribeInstancePatchesResult.fromJson(Map<String, dynamic> json) {
     return DescribeInstancePatchesResult(
       nextToken: json['NextToken'] as String?,
@@ -15662,6 +15737,7 @@ class DescribeInventoryDeletionsResult {
     this.inventoryDeletions,
     this.nextToken,
   });
+
   factory DescribeInventoryDeletionsResult.fromJson(Map<String, dynamic> json) {
     return DescribeInventoryDeletionsResult(
       inventoryDeletions: (json['InventoryDeletions'] as List?)
@@ -15696,6 +15772,7 @@ class DescribeMaintenanceWindowExecutionTaskInvocationsResult {
     this.nextToken,
     this.windowExecutionTaskInvocationIdentities,
   });
+
   factory DescribeMaintenanceWindowExecutionTaskInvocationsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowExecutionTaskInvocationsResult(
@@ -15736,6 +15813,7 @@ class DescribeMaintenanceWindowExecutionTasksResult {
     this.nextToken,
     this.windowExecutionTaskIdentities,
   });
+
   factory DescribeMaintenanceWindowExecutionTasksResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowExecutionTasksResult(
@@ -15772,6 +15850,7 @@ class DescribeMaintenanceWindowExecutionsResult {
     this.nextToken,
     this.windowExecutions,
   });
+
   factory DescribeMaintenanceWindowExecutionsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowExecutionsResult(
@@ -15807,6 +15886,7 @@ class DescribeMaintenanceWindowScheduleResult {
     this.nextToken,
     this.scheduledWindowExecutions,
   });
+
   factory DescribeMaintenanceWindowScheduleResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowScheduleResult(
@@ -15842,6 +15922,7 @@ class DescribeMaintenanceWindowTargetsResult {
     this.nextToken,
     this.targets,
   });
+
   factory DescribeMaintenanceWindowTargetsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowTargetsResult(
@@ -15876,6 +15957,7 @@ class DescribeMaintenanceWindowTasksResult {
     this.nextToken,
     this.tasks,
   });
+
   factory DescribeMaintenanceWindowTasksResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowTasksResult(
@@ -15910,6 +15992,7 @@ class DescribeMaintenanceWindowsForTargetResult {
     this.nextToken,
     this.windowIdentities,
   });
+
   factory DescribeMaintenanceWindowsForTargetResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeMaintenanceWindowsForTargetResult(
@@ -15944,6 +16027,7 @@ class DescribeMaintenanceWindowsResult {
     this.nextToken,
     this.windowIdentities,
   });
+
   factory DescribeMaintenanceWindowsResult.fromJson(Map<String, dynamic> json) {
     return DescribeMaintenanceWindowsResult(
       nextToken: json['NextToken'] as String?,
@@ -15977,6 +16061,7 @@ class DescribeOpsItemsResponse {
     this.nextToken,
     this.opsItemSummaries,
   });
+
   factory DescribeOpsItemsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeOpsItemsResponse(
       nextToken: json['NextToken'] as String?,
@@ -16008,6 +16093,7 @@ class DescribeParametersResult {
     this.nextToken,
     this.parameters,
   });
+
   factory DescribeParametersResult.fromJson(Map<String, dynamic> json) {
     return DescribeParametersResult(
       nextToken: json['NextToken'] as String?,
@@ -16040,6 +16126,7 @@ class DescribePatchBaselinesResult {
     this.baselineIdentities,
     this.nextToken,
   });
+
   factory DescribePatchBaselinesResult.fromJson(Map<String, dynamic> json) {
     return DescribePatchBaselinesResult(
       baselineIdentities: (json['BaselineIdentities'] as List?)
@@ -16133,6 +16220,7 @@ class DescribePatchGroupStateResult {
     this.instancesWithSecurityNonCompliantPatches,
     this.instancesWithUnreportedNotApplicablePatches,
   });
+
   factory DescribePatchGroupStateResult.fromJson(Map<String, dynamic> json) {
     return DescribePatchGroupStateResult(
       instances: json['Instances'] as int?,
@@ -16232,6 +16320,7 @@ class DescribePatchGroupsResult {
     this.mappings,
     this.nextToken,
   });
+
   factory DescribePatchGroupsResult.fromJson(Map<String, dynamic> json) {
     return DescribePatchGroupsResult(
       mappings: (json['Mappings'] as List?)
@@ -16265,6 +16354,7 @@ class DescribePatchPropertiesResult {
     this.nextToken,
     this.properties,
   });
+
   factory DescribePatchPropertiesResult.fromJson(Map<String, dynamic> json) {
     return DescribePatchPropertiesResult(
       nextToken: json['NextToken'] as String?,
@@ -16298,6 +16388,7 @@ class DescribeSessionsResponse {
     this.nextToken,
     this.sessions,
   });
+
   factory DescribeSessionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSessionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -16320,6 +16411,7 @@ class DescribeSessionsResponse {
 
 class DisassociateOpsItemRelatedItemResponse {
   DisassociateOpsItemRelatedItemResponse();
+
   factory DisassociateOpsItemRelatedItemResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateOpsItemRelatedItemResponse();
@@ -16346,6 +16438,7 @@ class DocumentDefaultVersionDescription {
     this.defaultVersionName,
     this.name,
   });
+
   factory DocumentDefaultVersionDescription.fromJson(
       Map<String, dynamic> json) {
     return DocumentDefaultVersionDescription(
@@ -16503,6 +16596,7 @@ class DocumentDescription {
     this.targetType,
     this.versionName,
   });
+
   factory DocumentDescription.fromJson(Map<String, dynamic> json) {
     return DocumentDescription(
       approvedVersion: json['ApprovedVersion'] as String?,
@@ -16631,6 +16725,7 @@ class DocumentFilter {
     required this.key,
     required this.value,
   });
+
   factory DocumentFilter.fromJson(Map<String, dynamic> json) {
     return DocumentFilter(
       key: (json['key'] as String).toDocumentFilterKey(),
@@ -16822,6 +16917,7 @@ class DocumentIdentifier {
     this.targetType,
     this.versionName,
   });
+
   factory DocumentIdentifier.fromJson(Map<String, dynamic> json) {
     return DocumentIdentifier(
       author: json['Author'] as String?,
@@ -16991,6 +17087,7 @@ class DocumentKeyValuesFilter {
     this.key,
     this.values,
   });
+
   factory DocumentKeyValuesFilter.fromJson(Map<String, dynamic> json) {
     return DocumentKeyValuesFilter(
       key: json['Key'] as String?,
@@ -17042,6 +17139,7 @@ class DocumentMetadataResponseInfo {
   DocumentMetadataResponseInfo({
     this.reviewerResponse,
   });
+
   factory DocumentMetadataResponseInfo.fromJson(Map<String, dynamic> json) {
     return DocumentMetadataResponseInfo(
       reviewerResponse: (json['ReviewerResponse'] as List?)
@@ -17083,6 +17181,7 @@ class DocumentParameter {
     this.name,
     this.type,
   });
+
   factory DocumentParameter.fromJson(Map<String, dynamic> json) {
     return DocumentParameter(
       defaultValue: json['DefaultValue'] as String?,
@@ -17170,6 +17269,7 @@ class DocumentRequires {
     required this.name,
     this.version,
   });
+
   factory DocumentRequires.fromJson(Map<String, dynamic> json) {
     return DocumentRequires(
       name: json['Name'] as String,
@@ -17239,6 +17339,7 @@ class DocumentReviewCommentSource {
     this.content,
     this.type,
   });
+
   factory DocumentReviewCommentSource.fromJson(Map<String, dynamic> json) {
     return DocumentReviewCommentSource(
       content: json['Content'] as String?,
@@ -17312,6 +17413,7 @@ class DocumentReviewerResponseSource {
     this.reviewer,
     this.updatedTime,
   });
+
   factory DocumentReviewerResponseSource.fromJson(Map<String, dynamic> json) {
     return DocumentReviewerResponseSource(
       comment: (json['Comment'] as List?)
@@ -17355,6 +17457,7 @@ class DocumentReviews {
     required this.action,
     this.comment,
   });
+
   factory DocumentReviews.fromJson(Map<String, dynamic> json) {
     return DocumentReviews(
       action: (json['Action'] as String).toDocumentReviewAction(),
@@ -17551,6 +17654,7 @@ class DocumentVersionInfo {
     this.statusInformation,
     this.versionName,
   });
+
   factory DocumentVersionInfo.fromJson(Map<String, dynamic> json) {
     return DocumentVersionInfo(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -17613,6 +17717,7 @@ class EffectivePatch {
     this.patch,
     this.patchStatus,
   });
+
   factory EffectivePatch.fromJson(Map<String, dynamic> json) {
     return EffectivePatch(
       patch: json['Patch'] != null
@@ -17678,6 +17783,7 @@ class FailedCreateAssociation {
     this.fault,
     this.message,
   });
+
   factory FailedCreateAssociation.fromJson(Map<String, dynamic> json) {
     return FailedCreateAssociation(
       entry: json['Entry'] != null
@@ -17720,6 +17826,7 @@ class FailureDetails {
     this.failureStage,
     this.failureType,
   });
+
   factory FailureDetails.fromJson(Map<String, dynamic> json) {
     return FailureDetails(
       details: (json['Details'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -17782,6 +17889,7 @@ class GetAutomationExecutionResult {
   GetAutomationExecutionResult({
     this.automationExecution,
   });
+
   factory GetAutomationExecutionResult.fromJson(Map<String, dynamic> json) {
     return GetAutomationExecutionResult(
       automationExecution: json['AutomationExecution'] != null
@@ -17823,6 +17931,7 @@ class GetCalendarStateResponse {
     this.nextTransitionTime,
     this.state,
   });
+
   factory GetCalendarStateResponse.fromJson(Map<String, dynamic> json) {
     return GetCalendarStateResponse(
       atTime: json['AtTime'] as String?,
@@ -18004,6 +18113,7 @@ class GetCommandInvocationResult {
     this.status,
     this.statusDetails,
   });
+
   factory GetCommandInvocationResult.fromJson(Map<String, dynamic> json) {
     return GetCommandInvocationResult(
       cloudWatchOutputConfig: json['CloudWatchOutputConfig'] != null
@@ -18087,6 +18197,7 @@ class GetConnectionStatusResponse {
     this.status,
     this.target,
   });
+
   factory GetConnectionStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetConnectionStatusResponse(
       status: (json['Status'] as String?)?.toConnectionStatus(),
@@ -18115,6 +18226,7 @@ class GetDefaultPatchBaselineResult {
     this.baselineId,
     this.operatingSystem,
   });
+
   factory GetDefaultPatchBaselineResult.fromJson(Map<String, dynamic> json) {
     return GetDefaultPatchBaselineResult(
       baselineId: json['BaselineId'] as String?,
@@ -18153,6 +18265,7 @@ class GetDeployablePatchSnapshotForInstanceResult {
     this.snapshotDownloadUrl,
     this.snapshotId,
   });
+
   factory GetDeployablePatchSnapshotForInstanceResult.fromJson(
       Map<String, dynamic> json) {
     return GetDeployablePatchSnapshotForInstanceResult(
@@ -18253,6 +18366,7 @@ class GetDocumentResult {
     this.statusInformation,
     this.versionName,
   });
+
   factory GetDocumentResult.fromJson(Map<String, dynamic> json) {
     return GetDocumentResult(
       attachmentsContent: (json['AttachmentsContent'] as List?)
@@ -18321,6 +18435,7 @@ class GetInventoryResult {
     this.entities,
     this.nextToken,
   });
+
   factory GetInventoryResult.fromJson(Map<String, dynamic> json) {
     return GetInventoryResult(
       entities: (json['Entities'] as List?)
@@ -18353,6 +18468,7 @@ class GetInventorySchemaResult {
     this.nextToken,
     this.schemas,
   });
+
   factory GetInventorySchemaResult.fromJson(Map<String, dynamic> json) {
     return GetInventorySchemaResult(
       nextToken: json['NextToken'] as String?,
@@ -18400,6 +18516,7 @@ class GetMaintenanceWindowExecutionResult {
     this.taskIds,
     this.windowExecutionId,
   });
+
   factory GetMaintenanceWindowExecutionResult.fromJson(
       Map<String, dynamic> json) {
     return GetMaintenanceWindowExecutionResult(
@@ -18487,6 +18604,7 @@ class GetMaintenanceWindowExecutionTaskInvocationResult {
     this.windowExecutionId,
     this.windowTargetId,
   });
+
   factory GetMaintenanceWindowExecutionTaskInvocationResult.fromJson(
       Map<String, dynamic> json) {
     return GetMaintenanceWindowExecutionTaskInvocationResult(
@@ -18606,6 +18724,7 @@ class GetMaintenanceWindowExecutionTaskResult {
     this.type,
     this.windowExecutionId,
   });
+
   factory GetMaintenanceWindowExecutionTaskResult.fromJson(
       Map<String, dynamic> json) {
     return GetMaintenanceWindowExecutionTaskResult(
@@ -18739,6 +18858,7 @@ class GetMaintenanceWindowResult {
     this.startDate,
     this.windowId,
   });
+
   factory GetMaintenanceWindowResult.fromJson(Map<String, dynamic> json) {
     return GetMaintenanceWindowResult(
       allowUnassociatedTargets: json['AllowUnassociatedTargets'] as bool?,
@@ -18890,6 +19010,7 @@ class GetMaintenanceWindowTaskResult {
     this.windowId,
     this.windowTaskId,
   });
+
   factory GetMaintenanceWindowTaskResult.fromJson(Map<String, dynamic> json) {
     return GetMaintenanceWindowTaskResult(
       description: json['Description'] as String?,
@@ -18963,6 +19084,7 @@ class GetOpsItemResponse {
   GetOpsItemResponse({
     this.opsItem,
   });
+
   factory GetOpsItemResponse.fromJson(Map<String, dynamic> json) {
     return GetOpsItemResponse(
       opsItem: json['OpsItem'] != null
@@ -18995,6 +19117,7 @@ class GetOpsMetadataResult {
     this.nextToken,
     this.resourceId,
   });
+
   factory GetOpsMetadataResult.fromJson(Map<String, dynamic> json) {
     return GetOpsMetadataResult(
       metadata: (json['Metadata'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -19028,6 +19151,7 @@ class GetOpsSummaryResult {
     this.entities,
     this.nextToken,
   });
+
   factory GetOpsSummaryResult.fromJson(Map<String, dynamic> json) {
     return GetOpsSummaryResult(
       entities: (json['Entities'] as List?)
@@ -19060,6 +19184,7 @@ class GetParameterHistoryResult {
     this.nextToken,
     this.parameters,
   });
+
   factory GetParameterHistoryResult.fromJson(Map<String, dynamic> json) {
     return GetParameterHistoryResult(
       nextToken: json['NextToken'] as String?,
@@ -19087,6 +19212,7 @@ class GetParameterResult {
   GetParameterResult({
     this.parameter,
   });
+
   factory GetParameterResult.fromJson(Map<String, dynamic> json) {
     return GetParameterResult(
       parameter: json['Parameter'] != null
@@ -19115,6 +19241,7 @@ class GetParametersByPathResult {
     this.nextToken,
     this.parameters,
   });
+
   factory GetParametersByPathResult.fromJson(Map<String, dynamic> json) {
     return GetParametersByPathResult(
       nextToken: json['NextToken'] as String?,
@@ -19147,6 +19274,7 @@ class GetParametersResult {
     this.invalidParameters,
     this.parameters,
   });
+
   factory GetParametersResult.fromJson(Map<String, dynamic> json) {
     return GetParametersResult(
       invalidParameters: (json['InvalidParameters'] as List?)
@@ -19186,6 +19314,7 @@ class GetPatchBaselineForPatchGroupResult {
     this.operatingSystem,
     this.patchGroup,
   });
+
   factory GetPatchBaselineForPatchGroupResult.fromJson(
       Map<String, dynamic> json) {
     return GetPatchBaselineForPatchGroupResult(
@@ -19278,6 +19407,7 @@ class GetPatchBaselineResult {
     this.rejectedPatchesAction,
     this.sources,
   });
+
   factory GetPatchBaselineResult.fromJson(Map<String, dynamic> json) {
     return GetPatchBaselineResult(
       approvalRules: json['ApprovalRules'] != null
@@ -19371,6 +19501,7 @@ class GetServiceSettingResult {
   GetServiceSettingResult({
     this.serviceSetting,
   });
+
   factory GetServiceSettingResult.fromJson(Map<String, dynamic> json) {
     return GetServiceSettingResult(
       serviceSetting: json['ServiceSetting'] != null
@@ -19400,6 +19531,7 @@ class InstanceAggregatedAssociationOverview {
     this.detailedStatus,
     this.instanceAssociationStatusAggregatedCount,
   });
+
   factory InstanceAggregatedAssociationOverview.fromJson(
       Map<String, dynamic> json) {
     return InstanceAggregatedAssociationOverview(
@@ -19444,6 +19576,7 @@ class InstanceAssociation {
     this.content,
     this.instanceId,
   });
+
   factory InstanceAssociation.fromJson(Map<String, dynamic> json) {
     return InstanceAssociation(
       associationId: json['AssociationId'] as String?,
@@ -19480,6 +19613,7 @@ class InstanceAssociationOutputLocation {
   InstanceAssociationOutputLocation({
     this.s3Location,
   });
+
   factory InstanceAssociationOutputLocation.fromJson(
       Map<String, dynamic> json) {
     return InstanceAssociationOutputLocation(
@@ -19506,6 +19640,7 @@ class InstanceAssociationOutputUrl {
   InstanceAssociationOutputUrl({
     this.s3OutputUrl,
   });
+
   factory InstanceAssociationOutputUrl.fromJson(Map<String, dynamic> json) {
     return InstanceAssociationOutputUrl(
       s3OutputUrl: json['S3OutputUrl'] != null
@@ -19574,6 +19709,7 @@ class InstanceAssociationStatusInfo {
     this.outputUrl,
     this.status,
   });
+
   factory InstanceAssociationStatusInfo.fromJson(Map<String, dynamic> json) {
     return InstanceAssociationStatusInfo(
       associationId: json['AssociationId'] as String?,
@@ -19738,6 +19874,7 @@ class InstanceInformation {
     this.registrationDate,
     this.resourceType,
   });
+
   factory InstanceInformation.fromJson(Map<String, dynamic> json) {
     return InstanceInformation(
       activationId: json['ActivationId'] as String?,
@@ -19838,6 +19975,7 @@ class InstanceInformationFilter {
     required this.key,
     required this.valueSet,
   });
+
   factory InstanceInformationFilter.fromJson(Map<String, dynamic> json) {
     return InstanceInformationFilter(
       key: (json['key'] as String).toInstanceInformationFilterKey(),
@@ -19937,6 +20075,7 @@ class InstanceInformationStringFilter {
     required this.key,
     required this.values,
   });
+
   factory InstanceInformationStringFilter.fromJson(Map<String, dynamic> json) {
     return InstanceInformationStringFilter(
       key: json['Key'] as String,
@@ -20112,6 +20251,7 @@ class InstancePatchState {
     this.snapshotId,
     this.unreportedNotApplicableCount,
   });
+
   factory InstancePatchState.fromJson(Map<String, dynamic> json) {
     return InstancePatchState(
       baselineId: json['BaselineId'] as String,
@@ -20223,6 +20363,7 @@ class InstancePatchStateFilter {
     required this.type,
     required this.values,
   });
+
   factory InstancePatchStateFilter.fromJson(Map<String, dynamic> json) {
     return InstancePatchStateFilter(
       key: json['Key'] as String,
@@ -20303,6 +20444,7 @@ class InventoryAggregator {
     this.expression,
     this.groups,
   });
+
   factory InventoryAggregator.fromJson(Map<String, dynamic> json) {
     return InventoryAggregator(
       aggregators: (json['Aggregators'] as List?)
@@ -20421,6 +20563,7 @@ class InventoryDeletionStatusItem {
     this.lastStatusUpdateTime,
     this.typeName,
   });
+
   factory InventoryDeletionStatusItem.fromJson(Map<String, dynamic> json) {
     return InventoryDeletionStatusItem(
       deletionId: json['DeletionId'] as String?,
@@ -20475,6 +20618,7 @@ class InventoryDeletionSummary {
     this.summaryItems,
     this.totalCount,
   });
+
   factory InventoryDeletionSummary.fromJson(Map<String, dynamic> json) {
     return InventoryDeletionSummary(
       remainingCount: json['RemainingCount'] as int?,
@@ -20516,6 +20660,7 @@ class InventoryDeletionSummaryItem {
     this.remainingCount,
     this.version,
   });
+
   factory InventoryDeletionSummaryItem.fromJson(Map<String, dynamic> json) {
     return InventoryDeletionSummaryItem(
       count: json['Count'] as int?,
@@ -20560,6 +20705,7 @@ class InventoryFilter {
     required this.values,
     this.type,
   });
+
   factory InventoryFilter.fromJson(Map<String, dynamic> json) {
     return InventoryFilter(
       key: json['Key'] as String,
@@ -20600,6 +20746,7 @@ class InventoryGroup {
     required this.filters,
     required this.name,
   });
+
   factory InventoryGroup.fromJson(Map<String, dynamic> json) {
     return InventoryGroup(
       filters: (json['Filters'] as List)
@@ -20658,6 +20805,7 @@ class InventoryItem {
     this.contentHash,
     this.context,
   });
+
   factory InventoryItem.fromJson(Map<String, dynamic> json) {
     return InventoryItem(
       captureTime: json['CaptureTime'] as String,
@@ -20705,6 +20853,7 @@ class InventoryItemAttribute {
     required this.dataType,
     required this.name,
   });
+
   factory InventoryItemAttribute.fromJson(Map<String, dynamic> json) {
     return InventoryItemAttribute(
       dataType: (json['DataType'] as String).toInventoryAttributeDataType(),
@@ -20748,6 +20897,7 @@ class InventoryItemSchema {
     this.displayName,
     this.version,
   });
+
   factory InventoryItemSchema.fromJson(Map<String, dynamic> json) {
     return InventoryItemSchema(
       attributes: (json['Attributes'] as List)
@@ -20837,6 +20987,7 @@ class InventoryResultEntity {
     this.data,
     this.id,
   });
+
   factory InventoryResultEntity.fromJson(Map<String, dynamic> json) {
     return InventoryResultEntity(
       data: (json['Data'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -20883,6 +21034,7 @@ class InventoryResultItem {
     this.captureTime,
     this.contentHash,
   });
+
   factory InventoryResultItem.fromJson(Map<String, dynamic> json) {
     return InventoryResultItem(
       content: (json['Content'] as List)
@@ -20955,6 +21107,7 @@ class LabelParameterVersionResult {
     this.invalidLabels,
     this.parameterVersion,
   });
+
   factory LabelParameterVersionResult.fromJson(Map<String, dynamic> json) {
     return LabelParameterVersionResult(
       invalidLabels: (json['InvalidLabels'] as List?)
@@ -21021,6 +21174,7 @@ class ListAssociationVersionsResult {
     this.associationVersions,
     this.nextToken,
   });
+
   factory ListAssociationVersionsResult.fromJson(Map<String, dynamic> json) {
     return ListAssociationVersionsResult(
       associationVersions: (json['AssociationVersions'] as List?)
@@ -21055,6 +21209,7 @@ class ListAssociationsResult {
     this.associations,
     this.nextToken,
   });
+
   factory ListAssociationsResult.fromJson(Map<String, dynamic> json) {
     return ListAssociationsResult(
       associations: (json['Associations'] as List?)
@@ -21087,6 +21242,7 @@ class ListCommandInvocationsResult {
     this.commandInvocations,
     this.nextToken,
   });
+
   factory ListCommandInvocationsResult.fromJson(Map<String, dynamic> json) {
     return ListCommandInvocationsResult(
       commandInvocations: (json['CommandInvocations'] as List?)
@@ -21119,6 +21275,7 @@ class ListCommandsResult {
     this.commands,
     this.nextToken,
   });
+
   factory ListCommandsResult.fromJson(Map<String, dynamic> json) {
     return ListCommandsResult(
       commands: (json['Commands'] as List?)
@@ -21151,6 +21308,7 @@ class ListComplianceItemsResult {
     this.complianceItems,
     this.nextToken,
   });
+
   factory ListComplianceItemsResult.fromJson(Map<String, dynamic> json) {
     return ListComplianceItemsResult(
       complianceItems: (json['ComplianceItems'] as List?)
@@ -21186,6 +21344,7 @@ class ListComplianceSummariesResult {
     this.complianceSummaryItems,
     this.nextToken,
   });
+
   factory ListComplianceSummariesResult.fromJson(Map<String, dynamic> json) {
     return ListComplianceSummariesResult(
       complianceSummaryItems: (json['ComplianceSummaryItems'] as List?)
@@ -21233,6 +21392,7 @@ class ListDocumentMetadataHistoryResponse {
     this.name,
     this.nextToken,
   });
+
   factory ListDocumentMetadataHistoryResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDocumentMetadataHistoryResponse(
@@ -21275,6 +21435,7 @@ class ListDocumentVersionsResult {
     this.documentVersions,
     this.nextToken,
   });
+
   factory ListDocumentVersionsResult.fromJson(Map<String, dynamic> json) {
     return ListDocumentVersionsResult(
       documentVersions: (json['DocumentVersions'] as List?)
@@ -21307,6 +21468,7 @@ class ListDocumentsResult {
     this.documentIdentifiers,
     this.nextToken,
   });
+
   factory ListDocumentsResult.fromJson(Map<String, dynamic> json) {
     return ListDocumentsResult(
       documentIdentifiers: (json['DocumentIdentifiers'] as List?)
@@ -21356,6 +21518,7 @@ class ListInventoryEntriesResult {
     this.schemaVersion,
     this.typeName,
   });
+
   factory ListInventoryEntriesResult.fromJson(Map<String, dynamic> json) {
     return ListInventoryEntriesResult(
       captureTime: json['CaptureTime'] as String?,
@@ -21401,6 +21564,7 @@ class ListOpsItemEventsResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory ListOpsItemEventsResponse.fromJson(Map<String, dynamic> json) {
     return ListOpsItemEventsResponse(
       nextToken: json['NextToken'] as String?,
@@ -21433,6 +21597,7 @@ class ListOpsItemRelatedItemsResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory ListOpsItemRelatedItemsResponse.fromJson(Map<String, dynamic> json) {
     return ListOpsItemRelatedItemsResponse(
       nextToken: json['NextToken'] as String?,
@@ -21466,6 +21631,7 @@ class ListOpsMetadataResult {
     this.nextToken,
     this.opsMetadataList,
   });
+
   factory ListOpsMetadataResult.fromJson(Map<String, dynamic> json) {
     return ListOpsMetadataResult(
       nextToken: json['NextToken'] as String?,
@@ -21501,6 +21667,7 @@ class ListResourceComplianceSummariesResult {
     this.nextToken,
     this.resourceComplianceSummaryItems,
   });
+
   factory ListResourceComplianceSummariesResult.fromJson(
       Map<String, dynamic> json) {
     return ListResourceComplianceSummariesResult(
@@ -21537,6 +21704,7 @@ class ListResourceDataSyncResult {
     this.nextToken,
     this.resourceDataSyncItems,
   });
+
   factory ListResourceDataSyncResult.fromJson(Map<String, dynamic> json) {
     return ListResourceDataSyncResult(
       nextToken: json['NextToken'] as String?,
@@ -21565,6 +21733,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     this.tagList,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tagList: (json['TagList'] as List?)
@@ -21606,6 +21775,7 @@ class LoggingInfo {
     required this.s3Region,
     this.s3KeyPrefix,
   });
+
   factory LoggingInfo.fromJson(Map<String, dynamic> json) {
     return LoggingInfo(
       s3BucketName: json['S3BucketName'] as String,
@@ -21660,6 +21830,7 @@ class MaintenanceWindowAutomationParameters {
     this.documentVersion,
     this.parameters,
   });
+
   factory MaintenanceWindowAutomationParameters.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowAutomationParameters(
@@ -21708,6 +21879,7 @@ class MaintenanceWindowExecution {
     this.windowExecutionId,
     this.windowId,
   });
+
   factory MaintenanceWindowExecution.fromJson(Map<String, dynamic> json) {
     return MaintenanceWindowExecution(
       endTime: timeStampFromJson(json['EndTime']),
@@ -21834,6 +22006,7 @@ class MaintenanceWindowExecutionTaskIdentity {
     this.taskType,
     this.windowExecutionId,
   });
+
   factory MaintenanceWindowExecutionTaskIdentity.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowExecutionTaskIdentity(
@@ -21929,6 +22102,7 @@ class MaintenanceWindowExecutionTaskInvocationIdentity {
     this.windowExecutionId,
     this.windowTargetId,
   });
+
   factory MaintenanceWindowExecutionTaskInvocationIdentity.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowExecutionTaskInvocationIdentity(
@@ -21989,6 +22163,7 @@ class MaintenanceWindowFilter {
     this.key,
     this.values,
   });
+
   factory MaintenanceWindowFilter.fromJson(Map<String, dynamic> json) {
     return MaintenanceWindowFilter(
       key: json['Key'] as String?,
@@ -22068,6 +22243,7 @@ class MaintenanceWindowIdentity {
     this.startDate,
     this.windowId,
   });
+
   factory MaintenanceWindowIdentity.fromJson(Map<String, dynamic> json) {
     return MaintenanceWindowIdentity(
       cutoff: json['Cutoff'] as int?,
@@ -22127,6 +22303,7 @@ class MaintenanceWindowIdentityForTarget {
     this.name,
     this.windowId,
   });
+
   factory MaintenanceWindowIdentityForTarget.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowIdentityForTarget(
@@ -22188,6 +22365,7 @@ class MaintenanceWindowLambdaParameters {
     this.payload,
     this.qualifier,
   });
+
   factory MaintenanceWindowLambdaParameters.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowLambdaParameters(
@@ -22321,6 +22499,7 @@ class MaintenanceWindowRunCommandParameters {
     this.serviceRoleArn,
     this.timeoutSeconds,
   });
+
   factory MaintenanceWindowRunCommandParameters.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowRunCommandParameters(
@@ -22411,6 +22590,7 @@ class MaintenanceWindowStepFunctionsParameters {
     this.input,
     this.name,
   });
+
   factory MaintenanceWindowStepFunctionsParameters.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowStepFunctionsParameters(
@@ -22470,6 +22650,7 @@ class MaintenanceWindowTarget {
     this.windowId,
     this.windowTargetId,
   });
+
   factory MaintenanceWindowTarget.fromJson(Map<String, dynamic> json) {
     return MaintenanceWindowTarget(
       description: json['Description'] as String?,
@@ -22588,6 +22769,7 @@ class MaintenanceWindowTask {
     this.windowId,
     this.windowTaskId,
   });
+
   factory MaintenanceWindowTask.fromJson(Map<String, dynamic> json) {
     return MaintenanceWindowTask(
       description: json['Description'] as String?,
@@ -22667,6 +22849,7 @@ class MaintenanceWindowTaskInvocationParameters {
     this.runCommand,
     this.stepFunctions,
   });
+
   factory MaintenanceWindowTaskInvocationParameters.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowTaskInvocationParameters(
@@ -22712,6 +22895,7 @@ class MaintenanceWindowTaskParameterValueExpression {
   MaintenanceWindowTaskParameterValueExpression({
     this.values,
   });
+
   factory MaintenanceWindowTaskParameterValueExpression.fromJson(
       Map<String, dynamic> json) {
     return MaintenanceWindowTaskParameterValueExpression(
@@ -22776,6 +22960,7 @@ class MetadataValue {
   MetadataValue({
     this.value,
   });
+
   factory MetadataValue.fromJson(Map<String, dynamic> json) {
     return MetadataValue(
       value: json['Value'] as String?,
@@ -22792,6 +22977,7 @@ class MetadataValue {
 
 class ModifyDocumentPermissionResponse {
   ModifyDocumentPermissionResponse();
+
   factory ModifyDocumentPermissionResponse.fromJson(Map<String, dynamic> _) {
     return ModifyDocumentPermissionResponse();
   }
@@ -22814,6 +23000,7 @@ class NonCompliantSummary {
     this.nonCompliantCount,
     this.severitySummary,
   });
+
   factory NonCompliantSummary.fromJson(Map<String, dynamic> json) {
     return NonCompliantSummary(
       nonCompliantCount: json['NonCompliantCount'] as int?,
@@ -22859,6 +23046,7 @@ class NotificationConfig {
     this.notificationEvents,
     this.notificationType,
   });
+
   factory NotificationConfig.fromJson(Map<String, dynamic> json) {
     return NotificationConfig(
       notificationArn: json['NotificationArn'] as String?,
@@ -23060,6 +23248,7 @@ class OpsAggregator {
     this.typeName,
     this.values,
   });
+
   factory OpsAggregator.fromJson(Map<String, dynamic> json) {
     return OpsAggregator(
       aggregatorType: json['AggregatorType'] as String?,
@@ -23108,6 +23297,7 @@ class OpsEntity {
     this.data,
     this.id,
   });
+
   factory OpsEntity.fromJson(Map<String, dynamic> json) {
     return OpsEntity(
       data: (json['Data'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -23138,6 +23328,7 @@ class OpsEntityItem {
     this.captureTime,
     this.content,
   });
+
   factory OpsEntityItem.fromJson(Map<String, dynamic> json) {
     return OpsEntityItem(
       captureTime: json['CaptureTime'] as String?,
@@ -23175,6 +23366,7 @@ class OpsFilter {
     required this.values,
     this.type,
   });
+
   factory OpsFilter.fromJson(Map<String, dynamic> json) {
     return OpsFilter(
       key: json['Key'] as String,
@@ -23377,6 +23569,7 @@ class OpsItem {
     this.title,
     this.version,
   });
+
   factory OpsItem.fromJson(Map<String, dynamic> json) {
     return OpsItem(
       actualEndTime: timeStampFromJson(json['ActualEndTime']),
@@ -23506,6 +23699,7 @@ class OpsItemDataValue {
     this.type,
     this.value,
   });
+
   factory OpsItemDataValue.fromJson(Map<String, dynamic> json) {
     return OpsItemDataValue(
       type: (json['Type'] as String?)?.toOpsItemDataType(),
@@ -23543,6 +23737,7 @@ class OpsItemEventFilter {
     required this.operator,
     required this.values,
   });
+
   factory OpsItemEventFilter.fromJson(Map<String, dynamic> json) {
     return OpsItemEventFilter(
       key: (json['Key'] as String).toOpsItemEventFilterKey(),
@@ -23645,6 +23840,7 @@ class OpsItemEventSummary {
     this.opsItemId,
     this.source,
   });
+
   factory OpsItemEventSummary.fromJson(Map<String, dynamic> json) {
     return OpsItemEventSummary(
       createdBy: json['CreatedBy'] != null
@@ -23695,6 +23891,7 @@ class OpsItemFilter {
     required this.operator,
     required this.values,
   });
+
   factory OpsItemFilter.fromJson(Map<String, dynamic> json) {
     return OpsItemFilter(
       key: (json['Key'] as String).toOpsItemFilterKey(),
@@ -23913,6 +24110,7 @@ class OpsItemIdentity {
   OpsItemIdentity({
     this.arn,
   });
+
   factory OpsItemIdentity.fromJson(Map<String, dynamic> json) {
     return OpsItemIdentity(
       arn: json['Arn'] as String?,
@@ -23936,6 +24134,7 @@ class OpsItemNotification {
   OpsItemNotification({
     this.arn,
   });
+
   factory OpsItemNotification.fromJson(Map<String, dynamic> json) {
     return OpsItemNotification(
       arn: json['Arn'] as String?,
@@ -23986,6 +24185,7 @@ class OpsItemRelatedItemSummary {
     this.resourceType,
     this.resourceUri,
   });
+
   factory OpsItemRelatedItemSummary.fromJson(Map<String, dynamic> json) {
     return OpsItemRelatedItemSummary(
       associationId: json['AssociationId'] as String?,
@@ -24049,6 +24249,7 @@ class OpsItemRelatedItemsFilter {
     required this.operator,
     required this.values,
   });
+
   factory OpsItemRelatedItemsFilter.fromJson(Map<String, dynamic> json) {
     return OpsItemRelatedItemsFilter(
       key: (json['Key'] as String).toOpsItemRelatedItemsFilterKey(),
@@ -24320,6 +24521,7 @@ class OpsItemSummary {
     this.status,
     this.title,
   });
+
   factory OpsItemSummary.fromJson(Map<String, dynamic> json) {
     return OpsItemSummary(
       actualEndTime: timeStampFromJson(json['ActualEndTime']),
@@ -24413,6 +24615,7 @@ class OpsMetadata {
     this.opsMetadataArn,
     this.resourceId,
   });
+
   factory OpsMetadata.fromJson(Map<String, dynamic> json) {
     return OpsMetadata(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -24453,6 +24656,7 @@ class OpsMetadataFilter {
     required this.key,
     required this.values,
   });
+
   factory OpsMetadataFilter.fromJson(Map<String, dynamic> json) {
     return OpsMetadataFilter(
       key: json['Key'] as String,
@@ -24482,6 +24686,7 @@ class OpsResultAttribute {
   OpsResultAttribute({
     required this.typeName,
   });
+
   factory OpsResultAttribute.fromJson(Map<String, dynamic> json) {
     return OpsResultAttribute(
       typeName: json['TypeName'] as String,
@@ -24510,6 +24715,7 @@ class OutputSource {
     this.outputSourceId,
     this.outputSourceType,
   });
+
   factory OutputSource.fromJson(Map<String, dynamic> json) {
     return OutputSource(
       outputSourceId: json['OutputSourceId'] as String?,
@@ -24576,6 +24782,7 @@ class Parameter {
     this.value,
     this.version,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       arn: json['ARN'] as String?,
@@ -24678,6 +24885,7 @@ class ParameterHistory {
     this.value,
     this.version,
   });
+
   factory ParameterHistory.fromJson(Map<String, dynamic> json) {
     return ParameterHistory(
       allowedPattern: json['AllowedPattern'] as String?,
@@ -24755,6 +24963,7 @@ class ParameterInlinePolicy {
     this.policyText,
     this.policyType,
   });
+
   factory ParameterInlinePolicy.fromJson(Map<String, dynamic> json) {
     return ParameterInlinePolicy(
       policyStatus: json['PolicyStatus'] as String?,
@@ -24828,6 +25037,7 @@ class ParameterMetadata {
     this.type,
     this.version,
   });
+
   factory ParameterMetadata.fromJson(Map<String, dynamic> json) {
     return ParameterMetadata(
       allowedPattern: json['AllowedPattern'] as String?,
@@ -24920,6 +25130,7 @@ class ParameterStringFilter {
     this.option,
     this.values,
   });
+
   factory ParameterStringFilter.fromJson(Map<String, dynamic> json) {
     return ParameterStringFilter(
       key: json['Key'] as String,
@@ -25021,6 +25232,7 @@ class ParametersFilter {
     required this.key,
     required this.values,
   });
+
   factory ParametersFilter.fromJson(Map<String, dynamic> json) {
     return ParametersFilter(
       key: (json['Key'] as String).toParametersFilterKey(),
@@ -25196,6 +25408,7 @@ class Patch {
     this.vendor,
     this.version,
   });
+
   factory Patch.fromJson(Map<String, dynamic> json) {
     return Patch(
       advisoryIds: (json['AdvisoryIds'] as List?)
@@ -25340,6 +25553,7 @@ class PatchBaselineIdentity {
     this.defaultBaseline,
     this.operatingSystem,
   });
+
   factory PatchBaselineIdentity.fromJson(Map<String, dynamic> json) {
     return PatchBaselineIdentity(
       baselineDescription: json['BaselineDescription'] as String?,
@@ -25408,6 +25622,7 @@ class PatchComplianceData {
     required this.title,
     this.cVEIds,
   });
+
   factory PatchComplianceData.fromJson(Map<String, dynamic> json) {
     return PatchComplianceData(
       classification: json['Classification'] as String,
@@ -25613,6 +25828,7 @@ class PatchFilter {
     required this.key,
     required this.values,
   });
+
   factory PatchFilter.fromJson(Map<String, dynamic> json) {
     return PatchFilter(
       key: (json['Key'] as String).toPatchFilterKey(),
@@ -25641,6 +25857,7 @@ class PatchFilterGroup {
   PatchFilterGroup({
     required this.patchFilters,
   });
+
   factory PatchFilterGroup.fromJson(Map<String, dynamic> json) {
     return PatchFilterGroup(
       patchFilters: (json['PatchFilters'] as List)
@@ -25784,6 +26001,7 @@ class PatchGroupPatchBaselineMapping {
     this.baselineIdentity,
     this.patchGroup,
   });
+
   factory PatchGroupPatchBaselineMapping.fromJson(Map<String, dynamic> json) {
     return PatchGroupPatchBaselineMapping(
       baselineIdentity: json['BaselineIdentity'] != null
@@ -25844,6 +26062,7 @@ class PatchOrchestratorFilter {
     this.key,
     this.values,
   });
+
   factory PatchOrchestratorFilter.fromJson(Map<String, dynamic> json) {
     return PatchOrchestratorFilter(
       key: json['Key'] as String?,
@@ -25946,6 +26165,7 @@ class PatchRule {
     this.complianceLevel,
     this.enableNonSecurity,
   });
+
   factory PatchRule.fromJson(Map<String, dynamic> json) {
     return PatchRule(
       patchFilterGroup: PatchFilterGroup.fromJson(
@@ -25982,6 +26202,7 @@ class PatchRuleGroup {
   PatchRuleGroup({
     required this.patchRules,
   });
+
   factory PatchRuleGroup.fromJson(Map<String, dynamic> json) {
     return PatchRuleGroup(
       patchRules: (json['PatchRules'] as List)
@@ -26060,6 +26281,7 @@ class PatchSource {
     required this.name,
     required this.products,
   });
+
   factory PatchSource.fromJson(Map<String, dynamic> json) {
     return PatchSource(
       configuration: json['Configuration'] as String,
@@ -26101,6 +26323,7 @@ class PatchStatus {
     this.complianceLevel,
     this.deploymentStatus,
   });
+
   factory PatchStatus.fromJson(Map<String, dynamic> json) {
     return PatchStatus(
       approvalDate: timeStampFromJson(json['ApprovalDate']),
@@ -26216,6 +26439,7 @@ class ProgressCounters {
     this.timedOutSteps,
     this.totalSteps,
   });
+
   factory ProgressCounters.fromJson(Map<String, dynamic> json) {
     return ProgressCounters(
       cancelledSteps: json['CancelledSteps'] as int?,
@@ -26244,6 +26468,7 @@ class ProgressCounters {
 
 class PutComplianceItemsResult {
   PutComplianceItemsResult();
+
   factory PutComplianceItemsResult.fromJson(Map<String, dynamic> _) {
     return PutComplianceItemsResult();
   }
@@ -26260,6 +26485,7 @@ class PutInventoryResult {
   PutInventoryResult({
     this.message,
   });
+
   factory PutInventoryResult.fromJson(Map<String, dynamic> json) {
     return PutInventoryResult(
       message: json['Message'] as String?,
@@ -26290,6 +26516,7 @@ class PutParameterResult {
     this.tier,
     this.version,
   });
+
   factory PutParameterResult.fromJson(Map<String, dynamic> json) {
     return PutParameterResult(
       tier: (json['Tier'] as String?)?.toParameterTier(),
@@ -26342,6 +26569,7 @@ class RegisterDefaultPatchBaselineResult {
   RegisterDefaultPatchBaselineResult({
     this.baselineId,
   });
+
   factory RegisterDefaultPatchBaselineResult.fromJson(
       Map<String, dynamic> json) {
     return RegisterDefaultPatchBaselineResult(
@@ -26368,6 +26596,7 @@ class RegisterPatchBaselineForPatchGroupResult {
     this.baselineId,
     this.patchGroup,
   });
+
   factory RegisterPatchBaselineForPatchGroupResult.fromJson(
       Map<String, dynamic> json) {
     return RegisterPatchBaselineForPatchGroupResult(
@@ -26393,6 +26622,7 @@ class RegisterTargetWithMaintenanceWindowResult {
   RegisterTargetWithMaintenanceWindowResult({
     this.windowTargetId,
   });
+
   factory RegisterTargetWithMaintenanceWindowResult.fromJson(
       Map<String, dynamic> json) {
     return RegisterTargetWithMaintenanceWindowResult(
@@ -26415,6 +26645,7 @@ class RegisterTaskWithMaintenanceWindowResult {
   RegisterTaskWithMaintenanceWindowResult({
     this.windowTaskId,
   });
+
   factory RegisterTaskWithMaintenanceWindowResult.fromJson(
       Map<String, dynamic> json) {
     return RegisterTaskWithMaintenanceWindowResult(
@@ -26440,6 +26671,7 @@ class RelatedOpsItem {
   RelatedOpsItem({
     required this.opsItemId,
   });
+
   factory RelatedOpsItem.fromJson(Map<String, dynamic> json) {
     return RelatedOpsItem(
       opsItemId: json['OpsItemId'] as String,
@@ -26456,6 +26688,7 @@ class RelatedOpsItem {
 
 class RemoveTagsFromResourceResult {
   RemoveTagsFromResourceResult();
+
   factory RemoveTagsFromResourceResult.fromJson(Map<String, dynamic> _) {
     return RemoveTagsFromResourceResult();
   }
@@ -26474,6 +26707,7 @@ class ResetServiceSettingResult {
   ResetServiceSettingResult({
     this.serviceSetting,
   });
+
   factory ResetServiceSettingResult.fromJson(Map<String, dynamic> json) {
     return ResetServiceSettingResult(
       serviceSetting: json['ServiceSetting'] != null
@@ -26504,6 +26738,7 @@ class ResolvedTargets {
     this.parameterValues,
     this.truncated,
   });
+
   factory ResolvedTargets.fromJson(Map<String, dynamic> json) {
     return ResolvedTargets(
       parameterValues: (json['ParameterValues'] as List?)
@@ -26561,6 +26796,7 @@ class ResourceComplianceSummaryItem {
     this.resourceType,
     this.status,
   });
+
   factory ResourceComplianceSummaryItem.fromJson(Map<String, dynamic> json) {
     return ResourceComplianceSummaryItem(
       complianceType: json['ComplianceType'] as String?,
@@ -26625,6 +26861,7 @@ class ResourceDataSyncAwsOrganizationsSource {
     required this.organizationSourceType,
     this.organizationalUnits,
   });
+
   factory ResourceDataSyncAwsOrganizationsSource.fromJson(
       Map<String, dynamic> json) {
     return ResourceDataSyncAwsOrganizationsSource(
@@ -26659,6 +26896,7 @@ class ResourceDataSyncDestinationDataSharing {
   ResourceDataSyncDestinationDataSharing({
     this.destinationDataSharingType,
   });
+
   factory ResourceDataSyncDestinationDataSharing.fromJson(
       Map<String, dynamic> json) {
     return ResourceDataSyncDestinationDataSharing(
@@ -26725,6 +26963,7 @@ class ResourceDataSyncItem {
     this.syncSource,
     this.syncType,
   });
+
   factory ResourceDataSyncItem.fromJson(Map<String, dynamic> json) {
     return ResourceDataSyncItem(
       lastStatus:
@@ -26786,6 +27025,7 @@ class ResourceDataSyncOrganizationalUnit {
   ResourceDataSyncOrganizationalUnit({
     this.organizationalUnitId,
   });
+
   factory ResourceDataSyncOrganizationalUnit.fromJson(
       Map<String, dynamic> json) {
     return ResourceDataSyncOrganizationalUnit(
@@ -26833,6 +27073,7 @@ class ResourceDataSyncS3Destination {
     this.destinationDataSharing,
     this.prefix,
   });
+
   factory ResourceDataSyncS3Destination.fromJson(Map<String, dynamic> json) {
     return ResourceDataSyncS3Destination(
       bucketName: json['BucketName'] as String,
@@ -26924,6 +27165,7 @@ class ResourceDataSyncSource {
     this.enableAllOpsDataSources,
     this.includeFutureRegions,
   });
+
   factory ResourceDataSyncSource.fromJson(Map<String, dynamic> json) {
     return ResourceDataSyncSource(
       sourceRegions: (json['SourceRegions'] as List)
@@ -27024,6 +27266,7 @@ class ResourceDataSyncSourceWithState {
     this.sourceType,
     this.state,
   });
+
   factory ResourceDataSyncSourceWithState.fromJson(Map<String, dynamic> json) {
     return ResourceDataSyncSourceWithState(
       awsOrganizationsSource: json['AwsOrganizationsSource'] != null
@@ -27157,6 +27400,7 @@ class ResultAttribute {
   ResultAttribute({
     required this.typeName,
   });
+
   factory ResultAttribute.fromJson(Map<String, dynamic> json) {
     return ResultAttribute(
       typeName: json['TypeName'] as String,
@@ -27199,6 +27443,7 @@ class ResumeSessionResponse {
     this.streamUrl,
     this.tokenValue,
   });
+
   factory ResumeSessionResponse.fromJson(Map<String, dynamic> json) {
     return ResumeSessionResponse(
       sessionId: json['SessionId'] as String?,
@@ -27235,6 +27480,7 @@ class ReviewInformation {
     this.reviewer,
     this.status,
   });
+
   factory ReviewInformation.fromJson(Map<String, dynamic> json) {
     return ReviewInformation(
       reviewedTime: timeStampFromJson(json['ReviewedTime']),
@@ -27346,6 +27592,7 @@ class Runbook {
     this.targetParameterName,
     this.targets,
   });
+
   factory Runbook.fromJson(Map<String, dynamic> json) {
     return Runbook(
       documentName: json['DocumentName'] as String,
@@ -27408,6 +27655,7 @@ class S3OutputLocation {
     this.outputS3KeyPrefix,
     this.outputS3Region,
   });
+
   factory S3OutputLocation.fromJson(Map<String, dynamic> json) {
     return S3OutputLocation(
       outputS3BucketName: json['OutputS3BucketName'] as String?,
@@ -27436,6 +27684,7 @@ class S3OutputUrl {
   S3OutputUrl({
     this.outputUrl,
   });
+
   factory S3OutputUrl.fromJson(Map<String, dynamic> json) {
     return S3OutputUrl(
       outputUrl: json['OutputUrl'] as String?,
@@ -27467,6 +27716,7 @@ class ScheduledWindowExecution {
     this.name,
     this.windowId,
   });
+
   factory ScheduledWindowExecution.fromJson(Map<String, dynamic> json) {
     return ScheduledWindowExecution(
       executionTime: json['ExecutionTime'] as String?,
@@ -27489,6 +27739,7 @@ class ScheduledWindowExecution {
 
 class SendAutomationSignalResult {
   SendAutomationSignalResult();
+
   factory SendAutomationSignalResult.fromJson(Map<String, dynamic> _) {
     return SendAutomationSignalResult();
   }
@@ -27506,6 +27757,7 @@ class SendCommandResult {
   SendCommandResult({
     this.command,
   });
+
   factory SendCommandResult.fromJson(Map<String, dynamic> json) {
     return SendCommandResult(
       command: json['Command'] != null
@@ -27583,6 +27835,7 @@ class ServiceSetting {
     this.settingValue,
     this.status,
   });
+
   factory ServiceSetting.fromJson(Map<String, dynamic> json) {
     return ServiceSetting(
       arn: json['ARN'] as String?,
@@ -27656,6 +27909,7 @@ class Session {
     this.status,
     this.target,
   });
+
   factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
       details: json['Details'] as String?,
@@ -27756,6 +28010,7 @@ class SessionFilter {
     required this.key,
     required this.value,
   });
+
   factory SessionFilter.fromJson(Map<String, dynamic> json) {
     return SessionFilter(
       key: (json['key'] as String).toSessionFilterKey(),
@@ -27833,6 +28088,7 @@ class SessionManagerOutputUrl {
     this.cloudWatchOutputUrl,
     this.s3OutputUrl,
   });
+
   factory SessionManagerOutputUrl.fromJson(Map<String, dynamic> json) {
     return SessionManagerOutputUrl(
       cloudWatchOutputUrl: json['CloudWatchOutputUrl'] as String?,
@@ -27968,6 +28224,7 @@ class SeveritySummary {
     this.mediumCount,
     this.unspecifiedCount,
   });
+
   factory SeveritySummary.fromJson(Map<String, dynamic> json) {
     return SeveritySummary(
       criticalCount: json['CriticalCount'] as int?,
@@ -28042,6 +28299,7 @@ extension on String {
 
 class StartAssociationsOnceResult {
   StartAssociationsOnceResult();
+
   factory StartAssociationsOnceResult.fromJson(Map<String, dynamic> _) {
     return StartAssociationsOnceResult();
   }
@@ -28058,6 +28316,7 @@ class StartAutomationExecutionResult {
   StartAutomationExecutionResult({
     this.automationExecutionId,
   });
+
   factory StartAutomationExecutionResult.fromJson(Map<String, dynamic> json) {
     return StartAutomationExecutionResult(
       automationExecutionId: json['AutomationExecutionId'] as String?,
@@ -28081,6 +28340,7 @@ class StartChangeRequestExecutionResult {
   StartChangeRequestExecutionResult({
     this.automationExecutionId,
   });
+
   factory StartChangeRequestExecutionResult.fromJson(
       Map<String, dynamic> json) {
     return StartChangeRequestExecutionResult(
@@ -28125,6 +28385,7 @@ class StartSessionResponse {
     this.streamUrl,
     this.tokenValue,
   });
+
   factory StartSessionResponse.fromJson(Map<String, dynamic> json) {
     return StartSessionResponse(
       sessionId: json['SessionId'] as String?,
@@ -28248,6 +28509,7 @@ class StepExecution {
     this.timeoutSeconds,
     this.validNextSteps,
   });
+
   factory StepExecution.fromJson(Map<String, dynamic> json) {
     return StepExecution(
       action: json['Action'] as String?,
@@ -28362,6 +28624,7 @@ class StepExecutionFilter {
     required this.key,
     required this.values,
   });
+
   factory StepExecutionFilter.fromJson(Map<String, dynamic> json) {
     return StepExecutionFilter(
       key: (json['Key'] as String).toStepExecutionFilterKey(),
@@ -28432,6 +28695,7 @@ extension on String {
 
 class StopAutomationExecutionResult {
   StopAutomationExecutionResult();
+
   factory StopAutomationExecutionResult.fromJson(Map<String, dynamic> _) {
     return StopAutomationExecutionResult();
   }
@@ -28485,6 +28749,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -28603,6 +28868,7 @@ class Target {
     this.key,
     this.values,
   });
+
   factory Target.fromJson(Map<String, dynamic> json) {
     return Target(
       key: json['Key'] as String?,
@@ -28652,6 +28918,7 @@ class TargetLocation {
     this.targetLocationMaxConcurrency,
     this.targetLocationMaxErrors,
   });
+
   factory TargetLocation.fromJson(Map<String, dynamic> json) {
     return TargetLocation(
       accounts: (json['Accounts'] as List?)
@@ -28694,6 +28961,7 @@ class TerminateSessionResponse {
   TerminateSessionResponse({
     this.sessionId,
   });
+
   factory TerminateSessionResponse.fromJson(Map<String, dynamic> json) {
     return TerminateSessionResponse(
       sessionId: json['SessionId'] as String?,
@@ -28719,6 +28987,7 @@ class UnlabelParameterVersionResult {
     this.invalidLabels,
     this.removedLabels,
   });
+
   factory UnlabelParameterVersionResult.fromJson(Map<String, dynamic> json) {
     return UnlabelParameterVersionResult(
       invalidLabels: (json['InvalidLabels'] as List?)
@@ -28749,6 +29018,7 @@ class UpdateAssociationResult {
   UpdateAssociationResult({
     this.associationDescription,
   });
+
   factory UpdateAssociationResult.fromJson(Map<String, dynamic> json) {
     return UpdateAssociationResult(
       associationDescription: json['AssociationDescription'] != null
@@ -28774,6 +29044,7 @@ class UpdateAssociationStatusResult {
   UpdateAssociationStatusResult({
     this.associationDescription,
   });
+
   factory UpdateAssociationStatusResult.fromJson(Map<String, dynamic> json) {
     return UpdateAssociationStatusResult(
       associationDescription: json['AssociationDescription'] != null
@@ -28800,6 +29071,7 @@ class UpdateDocumentDefaultVersionResult {
   UpdateDocumentDefaultVersionResult({
     this.description,
   });
+
   factory UpdateDocumentDefaultVersionResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateDocumentDefaultVersionResult(
@@ -28820,6 +29092,7 @@ class UpdateDocumentDefaultVersionResult {
 
 class UpdateDocumentMetadataResponse {
   UpdateDocumentMetadataResponse();
+
   factory UpdateDocumentMetadataResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDocumentMetadataResponse();
   }
@@ -28836,6 +29109,7 @@ class UpdateDocumentResult {
   UpdateDocumentResult({
     this.documentDescription,
   });
+
   factory UpdateDocumentResult.fromJson(Map<String, dynamic> json) {
     return UpdateDocumentResult(
       documentDescription: json['DocumentDescription'] != null
@@ -28917,6 +29191,7 @@ class UpdateMaintenanceWindowResult {
     this.startDate,
     this.windowId,
   });
+
   factory UpdateMaintenanceWindowResult.fromJson(Map<String, dynamic> json) {
     return UpdateMaintenanceWindowResult(
       allowUnassociatedTargets: json['AllowUnassociatedTargets'] as bool?,
@@ -28992,6 +29267,7 @@ class UpdateMaintenanceWindowTargetResult {
     this.windowId,
     this.windowTargetId,
   });
+
   factory UpdateMaintenanceWindowTargetResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateMaintenanceWindowTargetResult(
@@ -29098,6 +29374,7 @@ class UpdateMaintenanceWindowTaskResult {
     this.windowId,
     this.windowTaskId,
   });
+
   factory UpdateMaintenanceWindowTaskResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateMaintenanceWindowTaskResult(
@@ -29164,6 +29441,7 @@ class UpdateMaintenanceWindowTaskResult {
 
 class UpdateManagedInstanceRoleResult {
   UpdateManagedInstanceRoleResult();
+
   factory UpdateManagedInstanceRoleResult.fromJson(Map<String, dynamic> _) {
     return UpdateManagedInstanceRoleResult();
   }
@@ -29175,6 +29453,7 @@ class UpdateManagedInstanceRoleResult {
 
 class UpdateOpsItemResponse {
   UpdateOpsItemResponse();
+
   factory UpdateOpsItemResponse.fromJson(Map<String, dynamic> _) {
     return UpdateOpsItemResponse();
   }
@@ -29191,6 +29470,7 @@ class UpdateOpsMetadataResult {
   UpdateOpsMetadataResult({
     this.opsMetadataArn,
   });
+
   factory UpdateOpsMetadataResult.fromJson(Map<String, dynamic> json) {
     return UpdateOpsMetadataResult(
       opsMetadataArn: json['OpsMetadataArn'] as String?,
@@ -29271,6 +29551,7 @@ class UpdatePatchBaselineResult {
     this.rejectedPatchesAction,
     this.sources,
   });
+
   factory UpdatePatchBaselineResult.fromJson(Map<String, dynamic> json) {
     return UpdatePatchBaselineResult(
       approvalRules: json['ApprovalRules'] != null
@@ -29352,6 +29633,7 @@ class UpdatePatchBaselineResult {
 
 class UpdateResourceDataSyncResult {
   UpdateResourceDataSyncResult();
+
   factory UpdateResourceDataSyncResult.fromJson(Map<String, dynamic> _) {
     return UpdateResourceDataSyncResult();
   }
@@ -29364,6 +29646,7 @@ class UpdateResourceDataSyncResult {
 /// The result body of the UpdateServiceSetting API action.
 class UpdateServiceSettingResult {
   UpdateServiceSettingResult();
+
   factory UpdateServiceSettingResult.fromJson(Map<String, dynamic> _) {
     return UpdateServiceSettingResult();
   }

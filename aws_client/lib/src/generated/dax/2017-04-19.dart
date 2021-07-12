@@ -1322,6 +1322,7 @@ class Cluster {
     this.subnetGroup,
     this.totalNodes,
   });
+
   factory Cluster.fromJson(Map<String, dynamic> json) {
     return Cluster(
       activeNodes: json['ActiveNodes'] as int?,
@@ -1451,6 +1452,7 @@ class CreateClusterResponse {
   CreateClusterResponse({
     this.cluster,
   });
+
   factory CreateClusterResponse.fromJson(Map<String, dynamic> json) {
     return CreateClusterResponse(
       cluster: json['Cluster'] != null
@@ -1474,6 +1476,7 @@ class CreateParameterGroupResponse {
   CreateParameterGroupResponse({
     this.parameterGroup,
   });
+
   factory CreateParameterGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateParameterGroupResponse(
       parameterGroup: json['ParameterGroup'] != null
@@ -1498,6 +1501,7 @@ class CreateSubnetGroupResponse {
   CreateSubnetGroupResponse({
     this.subnetGroup,
   });
+
   factory CreateSubnetGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateSubnetGroupResponse(
       subnetGroup: json['SubnetGroup'] != null
@@ -1522,6 +1526,7 @@ class DecreaseReplicationFactorResponse {
   DecreaseReplicationFactorResponse({
     this.cluster,
   });
+
   factory DecreaseReplicationFactorResponse.fromJson(
       Map<String, dynamic> json) {
     return DecreaseReplicationFactorResponse(
@@ -1546,6 +1551,7 @@ class DeleteClusterResponse {
   DeleteClusterResponse({
     this.cluster,
   });
+
   factory DeleteClusterResponse.fromJson(Map<String, dynamic> json) {
     return DeleteClusterResponse(
       cluster: json['Cluster'] != null
@@ -1570,6 +1576,7 @@ class DeleteParameterGroupResponse {
   DeleteParameterGroupResponse({
     this.deletionMessage,
   });
+
   factory DeleteParameterGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteParameterGroupResponse(
       deletionMessage: json['DeletionMessage'] as String?,
@@ -1592,6 +1599,7 @@ class DeleteSubnetGroupResponse {
   DeleteSubnetGroupResponse({
     this.deletionMessage,
   });
+
   factory DeleteSubnetGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSubnetGroupResponse(
       deletionMessage: json['DeletionMessage'] as String?,
@@ -1618,6 +1626,7 @@ class DescribeClustersResponse {
     this.clusters,
     this.nextToken,
   });
+
   factory DescribeClustersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeClustersResponse(
       clusters: (json['Clusters'] as List?)
@@ -1649,6 +1658,7 @@ class DescribeDefaultParametersResponse {
     this.nextToken,
     this.parameters,
   });
+
   factory DescribeDefaultParametersResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDefaultParametersResponse(
@@ -1681,6 +1691,7 @@ class DescribeEventsResponse {
     this.events,
     this.nextToken,
   });
+
   factory DescribeEventsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventsResponse(
       events: (json['Events'] as List?)
@@ -1713,6 +1724,7 @@ class DescribeParameterGroupsResponse {
     this.nextToken,
     this.parameterGroups,
   });
+
   factory DescribeParameterGroupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeParameterGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1745,6 +1757,7 @@ class DescribeParametersResponse {
     this.nextToken,
     this.parameters,
   });
+
   factory DescribeParametersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeParametersResponse(
       nextToken: json['NextToken'] as String?,
@@ -1777,6 +1790,7 @@ class DescribeSubnetGroupsResponse {
     this.nextToken,
     this.subnetGroups,
   });
+
   factory DescribeSubnetGroupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSubnetGroupsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1815,6 +1829,7 @@ class Endpoint {
     this.port,
     this.url,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String?,
@@ -1859,6 +1874,7 @@ class Event {
     this.sourceName,
     this.sourceType,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       date: timeStampFromJson(json['Date']),
@@ -1889,6 +1905,7 @@ class IncreaseReplicationFactorResponse {
   IncreaseReplicationFactorResponse({
     this.cluster,
   });
+
   factory IncreaseReplicationFactorResponse.fromJson(
       Map<String, dynamic> json) {
     return IncreaseReplicationFactorResponse(
@@ -1952,6 +1969,7 @@ class ListTagsResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2004,6 +2022,7 @@ class Node {
     this.nodeStatus,
     this.parameterGroupStatus,
   });
+
   factory Node.fromJson(Map<String, dynamic> json) {
     return Node(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -2049,6 +2068,7 @@ class NodeTypeSpecificValue {
     this.nodeType,
     this.value,
   });
+
   factory NodeTypeSpecificValue.fromJson(Map<String, dynamic> json) {
     return NodeTypeSpecificValue(
       nodeType: json['NodeType'] as String?,
@@ -2082,6 +2102,7 @@ class NotificationConfiguration {
     this.topicArn,
     this.topicStatus,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       topicArn: json['TopicArn'] as String?,
@@ -2147,6 +2168,7 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       allowedValues: json['AllowedValues'] as String?,
@@ -2205,6 +2227,7 @@ class ParameterGroup {
     this.description,
     this.parameterGroupName,
   });
+
   factory ParameterGroup.fromJson(Map<String, dynamic> json) {
     return ParameterGroup(
       description: json['Description'] as String?,
@@ -2238,6 +2261,7 @@ class ParameterGroupStatus {
     this.parameterApplyStatus,
     this.parameterGroupName,
   });
+
   factory ParameterGroupStatus.fromJson(Map<String, dynamic> json) {
     return ParameterGroupStatus(
       nodeIdsToReboot: (json['NodeIdsToReboot'] as List?)
@@ -2274,6 +2298,7 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+
   factory ParameterNameValue.fromJson(Map<String, dynamic> json) {
     return ParameterNameValue(
       parameterName: json['ParameterName'] as String?,
@@ -2326,6 +2351,7 @@ class RebootNodeResponse {
   RebootNodeResponse({
     this.cluster,
   });
+
   factory RebootNodeResponse.fromJson(Map<String, dynamic> json) {
     return RebootNodeResponse(
       cluster: json['Cluster'] != null
@@ -2366,6 +2392,7 @@ class SSEDescription {
   SSEDescription({
     this.status,
   });
+
   factory SSEDescription.fromJson(Map<String, dynamic> json) {
     return SSEDescription(
       status: (json['Status'] as String?)?.toSSEStatus(),
@@ -2389,6 +2416,7 @@ class SSESpecification {
   SSESpecification({
     required this.enabled,
   });
+
   factory SSESpecification.fromJson(Map<String, dynamic> json) {
     return SSESpecification(
       enabled: json['Enabled'] as bool,
@@ -2453,6 +2481,7 @@ class SecurityGroupMembership {
     this.securityGroupIdentifier,
     this.status,
   });
+
   factory SecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return SecurityGroupMembership(
       securityGroupIdentifier: json['SecurityGroupIdentifier'] as String?,
@@ -2518,6 +2547,7 @@ class Subnet {
     this.subnetAvailabilityZone,
     this.subnetIdentifier,
   });
+
   factory Subnet.fromJson(Map<String, dynamic> json) {
     return Subnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] as String?,
@@ -2565,6 +2595,7 @@ class SubnetGroup {
     this.subnets,
     this.vpcId,
   });
+
   factory SubnetGroup.fromJson(Map<String, dynamic> json) {
     return SubnetGroup(
       description: json['Description'] as String?,
@@ -2613,6 +2644,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -2637,6 +2669,7 @@ class TagResourceResponse {
   TagResourceResponse({
     this.tags,
   });
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> json) {
     return TagResourceResponse(
       tags: (json['Tags'] as List?)
@@ -2661,6 +2694,7 @@ class UntagResourceResponse {
   UntagResourceResponse({
     this.tags,
   });
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> json) {
     return UntagResourceResponse(
       tags: (json['Tags'] as List?)
@@ -2685,6 +2719,7 @@ class UpdateClusterResponse {
   UpdateClusterResponse({
     this.cluster,
   });
+
   factory UpdateClusterResponse.fromJson(Map<String, dynamic> json) {
     return UpdateClusterResponse(
       cluster: json['Cluster'] != null
@@ -2708,6 +2743,7 @@ class UpdateParameterGroupResponse {
   UpdateParameterGroupResponse({
     this.parameterGroup,
   });
+
   factory UpdateParameterGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateParameterGroupResponse(
       parameterGroup: json['ParameterGroup'] != null
@@ -2732,6 +2768,7 @@ class UpdateSubnetGroupResponse {
   UpdateSubnetGroupResponse({
     this.subnetGroup,
   });
+
   factory UpdateSubnetGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSubnetGroupResponse(
       subnetGroup: json['SubnetGroup'] != null

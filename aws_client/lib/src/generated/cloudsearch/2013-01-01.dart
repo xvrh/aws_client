@@ -1231,6 +1231,7 @@ class AccessPoliciesStatus {
     required this.options,
     required this.status,
   });
+
   factory AccessPoliciesStatus.fromJson(Map<String, dynamic> json) {
     return AccessPoliciesStatus(
       options: json['Options'] as String,
@@ -1344,6 +1345,7 @@ class AnalysisOptions {
     this.stopwords,
     this.synonyms,
   });
+
   factory AnalysisOptions.fromJson(Map<String, dynamic> json) {
     return AnalysisOptions(
       algorithmicStemming:
@@ -1403,6 +1405,7 @@ class AnalysisScheme {
     required this.analysisSchemeName,
     this.analysisOptions,
   });
+
   factory AnalysisScheme.fromJson(Map<String, dynamic> json) {
     return AnalysisScheme(
       analysisSchemeLanguage:
@@ -1643,6 +1646,7 @@ class AnalysisSchemeStatus {
     required this.options,
     required this.status,
   });
+
   factory AnalysisSchemeStatus.fromJson(Map<String, dynamic> json) {
     return AnalysisSchemeStatus(
       options: AnalysisScheme.fromJson(json['Options'] as Map<String, dynamic>),
@@ -1677,6 +1681,7 @@ class AvailabilityOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory AvailabilityOptionsStatus.fromJson(Map<String, dynamic> json) {
     return AvailabilityOptionsStatus(
       options: json['Options'] as bool,
@@ -1709,6 +1714,7 @@ class BuildSuggestersResponse {
   BuildSuggestersResponse({
     this.fieldNames,
   });
+
   factory BuildSuggestersResponse.fromJson(Map<String, dynamic> json) {
     return BuildSuggestersResponse(
       fieldNames: (json['FieldNames'] as List?)
@@ -1742,6 +1748,7 @@ class CreateDomainResponse {
   CreateDomainResponse({
     this.domainStatus,
   });
+
   factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
     return CreateDomainResponse(
       domainStatus: json['DomainStatus'] != null
@@ -1792,6 +1799,7 @@ class DateArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+
   factory DateArrayOptions.fromJson(Map<String, dynamic> json) {
     return DateArrayOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -1857,6 +1865,7 @@ class DateOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory DateOptions.fromJson(Map<String, dynamic> json) {
     return DateOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -1905,6 +1914,7 @@ class DefineAnalysisSchemeResponse {
   DefineAnalysisSchemeResponse({
     required this.analysisScheme,
   });
+
   factory DefineAnalysisSchemeResponse.fromJson(Map<String, dynamic> json) {
     return DefineAnalysisSchemeResponse(
       analysisScheme: AnalysisSchemeStatus.fromJson(
@@ -1935,6 +1945,7 @@ class DefineExpressionResponse {
   DefineExpressionResponse({
     required this.expression,
   });
+
   factory DefineExpressionResponse.fromJson(Map<String, dynamic> json) {
     return DefineExpressionResponse(
       expression:
@@ -1965,6 +1976,7 @@ class DefineIndexFieldResponse {
   DefineIndexFieldResponse({
     required this.indexField,
   });
+
   factory DefineIndexFieldResponse.fromJson(Map<String, dynamic> json) {
     return DefineIndexFieldResponse(
       indexField:
@@ -1995,6 +2007,7 @@ class DefineSuggesterResponse {
   DefineSuggesterResponse({
     required this.suggester,
   });
+
   factory DefineSuggesterResponse.fromJson(Map<String, dynamic> json) {
     return DefineSuggesterResponse(
       suggester:
@@ -2026,6 +2039,7 @@ class DeleteAnalysisSchemeResponse {
   DeleteAnalysisSchemeResponse({
     required this.analysisScheme,
   });
+
   factory DeleteAnalysisSchemeResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAnalysisSchemeResponse(
       analysisScheme: AnalysisSchemeStatus.fromJson(
@@ -2057,6 +2071,7 @@ class DeleteDomainResponse {
   DeleteDomainResponse({
     this.domainStatus,
   });
+
   factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDomainResponse(
       domainStatus: json['DomainStatus'] != null
@@ -2090,6 +2105,7 @@ class DeleteExpressionResponse {
   DeleteExpressionResponse({
     required this.expression,
   });
+
   factory DeleteExpressionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteExpressionResponse(
       expression:
@@ -2120,6 +2136,7 @@ class DeleteIndexFieldResponse {
   DeleteIndexFieldResponse({
     required this.indexField,
   });
+
   factory DeleteIndexFieldResponse.fromJson(Map<String, dynamic> json) {
     return DeleteIndexFieldResponse(
       indexField:
@@ -2151,6 +2168,7 @@ class DeleteSuggesterResponse {
   DeleteSuggesterResponse({
     required this.suggester,
   });
+
   factory DeleteSuggesterResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSuggesterResponse(
       suggester:
@@ -2182,6 +2200,7 @@ class DescribeAnalysisSchemesResponse {
   DescribeAnalysisSchemesResponse({
     required this.analysisSchemes,
   });
+
   factory DescribeAnalysisSchemesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAnalysisSchemesResponse(
       analysisSchemes: (json['AnalysisSchemes'] as List)
@@ -2220,6 +2239,7 @@ class DescribeAvailabilityOptionsResponse {
   DescribeAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+
   factory DescribeAvailabilityOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAvailabilityOptionsResponse(
@@ -2256,6 +2276,7 @@ class DescribeDomainEndpointOptionsResponse {
   DescribeDomainEndpointOptionsResponse({
     this.domainEndpointOptions,
   });
+
   factory DescribeDomainEndpointOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDomainEndpointOptionsResponse(
@@ -2291,6 +2312,7 @@ class DescribeDomainsResponse {
   DescribeDomainsResponse({
     required this.domainStatusList,
   });
+
   factory DescribeDomainsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDomainsResponse(
       domainStatusList: (json['DomainStatusList'] as List)
@@ -2327,6 +2349,7 @@ class DescribeExpressionsResponse {
   DescribeExpressionsResponse({
     required this.expressions,
   });
+
   factory DescribeExpressionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeExpressionsResponse(
       expressions: (json['Expressions'] as List)
@@ -2363,6 +2386,7 @@ class DescribeIndexFieldsResponse {
   DescribeIndexFieldsResponse({
     required this.indexFields,
   });
+
   factory DescribeIndexFieldsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIndexFieldsResponse(
       indexFields: (json['IndexFields'] as List)
@@ -2398,6 +2422,7 @@ class DescribeScalingParametersResponse {
   DescribeScalingParametersResponse({
     required this.scalingParameters,
   });
+
   factory DescribeScalingParametersResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeScalingParametersResponse(
@@ -2429,6 +2454,7 @@ class DescribeServiceAccessPoliciesResponse {
   DescribeServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+
   factory DescribeServiceAccessPoliciesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeServiceAccessPoliciesResponse(
@@ -2460,6 +2486,7 @@ class DescribeSuggestersResponse {
   DescribeSuggestersResponse({
     required this.suggesters,
   });
+
   factory DescribeSuggestersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSuggestersResponse(
       suggesters: (json['Suggesters'] as List)
@@ -2514,6 +2541,7 @@ class DocumentSuggesterOptions {
     this.fuzzyMatching,
     this.sortExpression,
   });
+
   factory DocumentSuggesterOptions.fromJson(Map<String, dynamic> json) {
     return DocumentSuggesterOptions(
       sourceField: json['SourceField'] as String,
@@ -2557,6 +2585,7 @@ class DomainEndpointOptions {
     this.enforceHTTPS,
     this.tLSSecurityPolicy,
   });
+
   factory DomainEndpointOptions.fromJson(Map<String, dynamic> json) {
     return DomainEndpointOptions(
       enforceHTTPS: json['EnforceHTTPS'] as bool?,
@@ -2597,6 +2626,7 @@ class DomainEndpointOptionsStatus {
     required this.options,
     required this.status,
   });
+
   factory DomainEndpointOptionsStatus.fromJson(Map<String, dynamic> json) {
     return DomainEndpointOptionsStatus(
       options: DomainEndpointOptions.fromJson(
@@ -2682,6 +2712,7 @@ class DomainStatus {
     this.searchPartitionCount,
     this.searchService,
   });
+
   factory DomainStatus.fromJson(Map<String, dynamic> json) {
     return DomainStatus(
       domainId: json['DomainId'] as String,
@@ -2791,6 +2822,7 @@ class DoubleArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+
   factory DoubleArrayOptions.fromJson(Map<String, dynamic> json) {
     return DoubleArrayOptions(
       defaultValue: json['DefaultValue'] as double?,
@@ -2859,6 +2891,7 @@ class DoubleOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory DoubleOptions.fromJson(Map<String, dynamic> json) {
     return DoubleOptions(
       defaultValue: json['DefaultValue'] as double?,
@@ -2910,6 +2943,7 @@ class Expression {
     required this.expressionName,
     required this.expressionValue,
   });
+
   factory Expression.fromJson(Map<String, dynamic> json) {
     return Expression(
       expressionName: json['ExpressionName'] as String,
@@ -2945,6 +2979,7 @@ class ExpressionStatus {
     required this.options,
     required this.status,
   });
+
   factory ExpressionStatus.fromJson(Map<String, dynamic> json) {
     return ExpressionStatus(
       options: Expression.fromJson(json['Options'] as Map<String, dynamic>),
@@ -2978,6 +3013,7 @@ class IndexDocumentsResponse {
   IndexDocumentsResponse({
     this.fieldNames,
   });
+
   factory IndexDocumentsResponse.fromJson(Map<String, dynamic> json) {
     return IndexDocumentsResponse(
       fieldNames: (json['FieldNames'] as List?)
@@ -3050,6 +3086,7 @@ class IndexField {
     this.textArrayOptions,
     this.textOptions,
   });
+
   factory IndexField.fromJson(Map<String, dynamic> json) {
     return IndexField(
       indexFieldName: json['IndexFieldName'] as String,
@@ -3181,6 +3218,7 @@ class IndexFieldStatus {
     required this.options,
     required this.status,
   });
+
   factory IndexFieldStatus.fromJson(Map<String, dynamic> json) {
     return IndexFieldStatus(
       options: IndexField.fromJson(json['Options'] as Map<String, dynamic>),
@@ -3309,6 +3347,7 @@ class IntArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+
   factory IntArrayOptions.fromJson(Map<String, dynamic> json) {
     return IntArrayOptions(
       defaultValue: json['DefaultValue'] as int?,
@@ -3377,6 +3416,7 @@ class IntOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory IntOptions.fromJson(Map<String, dynamic> json) {
     return IntOptions(
       defaultValue: json['DefaultValue'] as int?,
@@ -3446,6 +3486,7 @@ class LatLonOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory LatLonOptions.fromJson(Map<String, dynamic> json) {
     return LatLonOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -3494,6 +3535,7 @@ class Limits {
     required this.maximumPartitionCount,
     required this.maximumReplicationCount,
   });
+
   factory Limits.fromJson(Map<String, dynamic> json) {
     return Limits(
       maximumPartitionCount: json['MaximumPartitionCount'] as int,
@@ -3529,6 +3571,7 @@ class ListDomainNamesResponse {
   ListDomainNamesResponse({
     this.domainNames,
   });
+
   factory ListDomainNamesResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainNamesResponse(
       domainNames: (json['DomainNames'] as Map<String, dynamic>?)
@@ -3584,6 +3627,7 @@ class LiteralArrayOptions {
     this.searchEnabled,
     this.sourceFields,
   });
+
   factory LiteralArrayOptions.fromJson(Map<String, dynamic> json) {
     return LiteralArrayOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -3648,6 +3692,7 @@ class LiteralOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory LiteralOptions.fromJson(Map<String, dynamic> json) {
     return LiteralOptions(
       defaultValue: json['DefaultValue'] as String?,
@@ -3775,6 +3820,7 @@ class OptionStatus {
     this.pendingDeletion,
     this.updateVersion,
   });
+
   factory OptionStatus.fromJson(Map<String, dynamic> json) {
     return OptionStatus(
       creationDate:
@@ -3936,6 +3982,7 @@ class ScalingParameters {
     this.desiredPartitionCount,
     this.desiredReplicationCount,
   });
+
   factory ScalingParameters.fromJson(Map<String, dynamic> json) {
     return ScalingParameters(
       desiredInstanceType:
@@ -3981,6 +4028,7 @@ class ScalingParametersStatus {
     required this.options,
     required this.status,
   });
+
   factory ScalingParametersStatus.fromJson(Map<String, dynamic> json) {
     return ScalingParametersStatus(
       options:
@@ -4013,6 +4061,7 @@ class ServiceEndpoint {
   ServiceEndpoint({
     this.endpoint,
   });
+
   factory ServiceEndpoint.fromJson(Map<String, dynamic> json) {
     return ServiceEndpoint(
       endpoint: json['Endpoint'] as String?,
@@ -4045,6 +4094,7 @@ class Suggester {
     required this.documentSuggesterOptions,
     required this.suggesterName,
   });
+
   factory Suggester.fromJson(Map<String, dynamic> json) {
     return Suggester(
       documentSuggesterOptions: DocumentSuggesterOptions.fromJson(
@@ -4113,6 +4163,7 @@ class SuggesterStatus {
     required this.options,
     required this.status,
   });
+
   factory SuggesterStatus.fromJson(Map<String, dynamic> json) {
     return SuggesterStatus(
       options: Suggester.fromJson(json['Options'] as Map<String, dynamic>),
@@ -4193,6 +4244,7 @@ class TextArrayOptions {
     this.returnEnabled,
     this.sourceFields,
   });
+
   factory TextArrayOptions.fromJson(Map<String, dynamic> json) {
     return TextArrayOptions(
       analysisScheme: json['AnalysisScheme'] as String?,
@@ -4257,6 +4309,7 @@ class TextOptions {
     this.sortEnabled,
     this.sourceField,
   });
+
   factory TextOptions.fromJson(Map<String, dynamic> json) {
     return TextOptions(
       analysisScheme: json['AnalysisScheme'] as String?,
@@ -4307,6 +4360,7 @@ class UpdateAvailabilityOptionsResponse {
   UpdateAvailabilityOptionsResponse({
     this.availabilityOptions,
   });
+
   factory UpdateAvailabilityOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAvailabilityOptionsResponse(
@@ -4343,6 +4397,7 @@ class UpdateDomainEndpointOptionsResponse {
   UpdateDomainEndpointOptionsResponse({
     this.domainEndpointOptions,
   });
+
   factory UpdateDomainEndpointOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDomainEndpointOptionsResponse(
@@ -4378,6 +4433,7 @@ class UpdateScalingParametersResponse {
   UpdateScalingParametersResponse({
     required this.scalingParameters,
   });
+
   factory UpdateScalingParametersResponse.fromJson(Map<String, dynamic> json) {
     return UpdateScalingParametersResponse(
       scalingParameters: ScalingParametersStatus.fromJson(
@@ -4409,6 +4465,7 @@ class UpdateServiceAccessPoliciesResponse {
   UpdateServiceAccessPoliciesResponse({
     required this.accessPolicies,
   });
+
   factory UpdateServiceAccessPoliciesResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateServiceAccessPoliciesResponse(

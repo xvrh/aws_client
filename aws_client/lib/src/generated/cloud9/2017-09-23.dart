@@ -810,6 +810,7 @@ class CreateEnvironmentEC2Result {
   CreateEnvironmentEC2Result({
     this.environmentId,
   });
+
   factory CreateEnvironmentEC2Result.fromJson(Map<String, dynamic> json) {
     return CreateEnvironmentEC2Result(
       environmentId: json['environmentId'] as String?,
@@ -831,6 +832,7 @@ class CreateEnvironmentMembershipResult {
   CreateEnvironmentMembershipResult({
     required this.membership,
   });
+
   factory CreateEnvironmentMembershipResult.fromJson(
       Map<String, dynamic> json) {
     return CreateEnvironmentMembershipResult(
@@ -849,6 +851,7 @@ class CreateEnvironmentMembershipResult {
 
 class DeleteEnvironmentMembershipResult {
   DeleteEnvironmentMembershipResult();
+
   factory DeleteEnvironmentMembershipResult.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentMembershipResult();
   }
@@ -860,6 +863,7 @@ class DeleteEnvironmentMembershipResult {
 
 class DeleteEnvironmentResult {
   DeleteEnvironmentResult();
+
   factory DeleteEnvironmentResult.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentResult();
   }
@@ -883,6 +887,7 @@ class DescribeEnvironmentMembershipsResult {
     this.memberships,
     this.nextToken,
   });
+
   factory DescribeEnvironmentMembershipsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEnvironmentMembershipsResult(
@@ -939,6 +944,7 @@ class DescribeEnvironmentStatusResult {
     required this.message,
     required this.status,
   });
+
   factory DescribeEnvironmentStatusResult.fromJson(Map<String, dynamic> json) {
     return DescribeEnvironmentStatusResult(
       message: json['message'] as String,
@@ -963,6 +969,7 @@ class DescribeEnvironmentsResult {
   DescribeEnvironmentsResult({
     this.environments,
   });
+
   factory DescribeEnvironmentsResult.fromJson(Map<String, dynamic> json) {
     return DescribeEnvironmentsResult(
       environments: (json['environments'] as List?)
@@ -1065,6 +1072,7 @@ class Environment {
     this.managedCredentialsStatus,
     this.name,
   });
+
   factory Environment.fromJson(Map<String, dynamic> json) {
     return Environment(
       arn: json['arn'] as String,
@@ -1144,6 +1152,7 @@ class EnvironmentLifecycle {
     this.reason,
     this.status,
   });
+
   factory EnvironmentLifecycle.fromJson(Map<String, dynamic> json) {
     return EnvironmentLifecycle(
       failureResource: json['failureResource'] as String?,
@@ -1247,6 +1256,7 @@ class EnvironmentMember {
     required this.userId,
     this.lastAccess,
   });
+
   factory EnvironmentMember.fromJson(Map<String, dynamic> json) {
     return EnvironmentMember(
       environmentId: json['environmentId'] as String,
@@ -1368,6 +1378,7 @@ class ListEnvironmentsResult {
     this.environmentIds,
     this.nextToken,
   });
+
   factory ListEnvironmentsResult.fromJson(Map<String, dynamic> json) {
     return ListEnvironmentsResult(
       environmentIds: (json['environmentIds'] as List?)
@@ -1395,6 +1406,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -1563,6 +1575,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -1582,6 +1595,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1593,6 +1607,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1609,6 +1624,7 @@ class UpdateEnvironmentMembershipResult {
   UpdateEnvironmentMembershipResult({
     this.membership,
   });
+
   factory UpdateEnvironmentMembershipResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateEnvironmentMembershipResult(
@@ -1629,6 +1645,7 @@ class UpdateEnvironmentMembershipResult {
 
 class UpdateEnvironmentResult {
   UpdateEnvironmentResult();
+
   factory UpdateEnvironmentResult.fromJson(Map<String, dynamic> _) {
     return UpdateEnvironmentResult();
   }

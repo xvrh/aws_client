@@ -1432,6 +1432,7 @@ class AacSettings {
     this.specification,
     this.vbrQuality,
   });
+
   factory AacSettings.fromJson(Map<String, dynamic> json) {
     return AacSettings(
       audioDescriptionBroadcasterMix:
@@ -1932,6 +1933,7 @@ class Ac3Settings {
     this.metadataControl,
     this.sampleRate,
   });
+
   factory Ac3Settings.fromJson(Map<String, dynamic> json) {
     return Ac3Settings(
       bitrate: json['bitrate'] as int?,
@@ -2033,6 +2035,7 @@ class AccelerationSettings {
   AccelerationSettings({
     required this.mode,
   });
+
   factory AccelerationSettings.fromJson(Map<String, dynamic> json) {
     return AccelerationSettings(
       mode: (json['mode'] as String).toAccelerationMode(),
@@ -2155,6 +2158,7 @@ class AiffSettings {
     this.channels,
     this.sampleRate,
   });
+
   factory AiffSettings.fromJson(Map<String, dynamic> json) {
     return AiffSettings(
       bitDepth: json['bitDepth'] as int?,
@@ -2265,6 +2269,7 @@ class AncillarySourceSettings {
     this.sourceAncillaryChannelNumber,
     this.terminateCaptions,
   });
+
   factory AncillarySourceSettings.fromJson(Map<String, dynamic> json) {
     return AncillarySourceSettings(
       convert608To708:
@@ -2354,6 +2359,7 @@ extension on String {
 
 class AssociateCertificateResponse {
   AssociateCertificateResponse();
+
   factory AssociateCertificateResponse.fromJson(Map<String, dynamic> _) {
     return AssociateCertificateResponse();
   }
@@ -2476,6 +2482,7 @@ class AudioChannelTaggingSettings {
   AudioChannelTaggingSettings({
     this.channelTag,
   });
+
   factory AudioChannelTaggingSettings.fromJson(Map<String, dynamic> json) {
     return AudioChannelTaggingSettings(
       channelTag: (json['channelTag'] as String?)?.toAudioChannelTag(),
@@ -2648,6 +2655,7 @@ class AudioCodecSettings {
     this.vorbisSettings,
     this.wavSettings,
   });
+
   factory AudioCodecSettings.fromJson(Map<String, dynamic> json) {
     return AudioCodecSettings(
       aacSettings: json['aacSettings'] != null
@@ -2847,6 +2855,7 @@ class AudioDescription {
     this.remixSettings,
     this.streamName,
   });
+
   factory AudioDescription.fromJson(Map<String, dynamic> json) {
     return AudioDescription(
       audioChannelTaggingSettings: json['audioChannelTaggingSettings'] != null
@@ -3129,6 +3138,7 @@ class AudioNormalizationSettings {
     this.peakCalculation,
     this.targetLkfs,
   });
+
   factory AudioNormalizationSettings.fromJson(Map<String, dynamic> json) {
     return AudioNormalizationSettings(
       algorithm:
@@ -3242,6 +3252,7 @@ class AudioSelector {
     this.selectorType,
     this.tracks,
   });
+
   factory AudioSelector.fromJson(Map<String, dynamic> json) {
     return AudioSelector(
       customLanguageCode: json['customLanguageCode'] as String?,
@@ -3315,6 +3326,7 @@ class AudioSelectorGroup {
   AudioSelectorGroup({
     this.audioSelectorNames,
   });
+
   factory AudioSelectorGroup.fromJson(Map<String, dynamic> json) {
     return AudioSelectorGroup(
       audioSelectorNames: (json['audioSelectorNames'] as List?)
@@ -3436,6 +3448,7 @@ class AutomatedAbrSettings {
     this.maxRenditions,
     this.minAbrBitrate,
   });
+
   factory AutomatedAbrSettings.fromJson(Map<String, dynamic> json) {
     return AutomatedAbrSettings(
       maxAbrBitrate: json['maxAbrBitrate'] as int?,
@@ -3468,6 +3481,7 @@ class AutomatedEncodingSettings {
   AutomatedEncodingSettings({
     this.abrSettings,
   });
+
   factory AutomatedEncodingSettings.fromJson(Map<String, dynamic> json) {
     return AutomatedEncodingSettings(
       abrSettings: json['abrSettings'] != null
@@ -3652,6 +3666,7 @@ class Av1QvbrSettings {
     this.qvbrQualityLevel,
     this.qvbrQualityLevelFineTune,
   });
+
   factory Av1QvbrSettings.fromJson(Map<String, dynamic> json) {
     return Av1QvbrSettings(
       qvbrQualityLevel: json['qvbrQualityLevel'] as int?,
@@ -3808,6 +3823,7 @@ class Av1Settings {
     this.slices,
     this.spatialAdaptiveQuantization,
   });
+
   factory Av1Settings.fromJson(Map<String, dynamic> json) {
     return Av1Settings(
       adaptiveQuantization: (json['adaptiveQuantization'] as String?)
@@ -3931,6 +3947,7 @@ class AvailBlanking {
   AvailBlanking({
     this.availBlankingImage,
   });
+
   factory AvailBlanking.fromJson(Map<String, dynamic> json) {
     return AvailBlanking(
       availBlankingImage: json['availBlankingImage'] as String?,
@@ -4295,6 +4312,7 @@ class AvcIntraSettings {
     this.slowPal,
     this.telecine,
   });
+
   factory AvcIntraSettings.fromJson(Map<String, dynamic> json) {
     return AvcIntraSettings(
       avcIntraClass: (json['avcIntraClass'] as String?)?.toAvcIntraClass(),
@@ -4470,6 +4488,7 @@ class AvcIntraUhdSettings {
   AvcIntraUhdSettings({
     this.qualityTuningLevel,
   });
+
   factory AvcIntraUhdSettings.fromJson(Map<String, dynamic> json) {
     return AvcIntraUhdSettings(
       qualityTuningLevel: (json['qualityTuningLevel'] as String?)
@@ -4654,6 +4673,7 @@ class BurninDestinationSettings {
     this.xPosition,
     this.yPosition,
   });
+
   factory BurninDestinationSettings.fromJson(Map<String, dynamic> json) {
     return BurninDestinationSettings(
       alignment: (json['alignment'] as String?)?.toBurninSubtitleAlignment(),
@@ -4967,6 +4987,7 @@ extension on String {
 
 class CancelJobResponse {
   CancelJobResponse();
+
   factory CancelJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelJobResponse();
   }
@@ -5026,6 +5047,7 @@ class CaptionDescription {
     this.languageCode,
     this.languageDescription,
   });
+
   factory CaptionDescription.fromJson(Map<String, dynamic> json) {
     return CaptionDescription(
       captionSelectorName: json['captionSelectorName'] as String?,
@@ -5100,6 +5122,7 @@ class CaptionDescriptionPreset {
     this.languageCode,
     this.languageDescription,
   });
+
   factory CaptionDescriptionPreset.fromJson(Map<String, dynamic> json) {
     return CaptionDescriptionPreset(
       customLanguageCode: json['customLanguageCode'] as String?,
@@ -5222,6 +5245,7 @@ class CaptionDestinationSettings {
     this.ttmlDestinationSettings,
     this.webvttDestinationSettings,
   });
+
   factory CaptionDestinationSettings.fromJson(Map<String, dynamic> json) {
     return CaptionDestinationSettings(
       burninDestinationSettings: json['burninDestinationSettings'] != null
@@ -5418,6 +5442,7 @@ class CaptionSelector {
     this.languageCode,
     this.sourceSettings,
   });
+
   factory CaptionSelector.fromJson(Map<String, dynamic> json) {
     return CaptionSelector(
       customLanguageCode: json['customLanguageCode'] as String?,
@@ -5463,6 +5488,7 @@ class CaptionSourceFramerate {
     this.framerateDenominator,
     this.framerateNumerator,
   });
+
   factory CaptionSourceFramerate.fromJson(Map<String, dynamic> json) {
     return CaptionSourceFramerate(
       framerateDenominator: json['framerateDenominator'] as int?,
@@ -5535,6 +5561,7 @@ class CaptionSourceSettings {
     this.trackSourceSettings,
     this.webvttHlsSourceSettings,
   });
+
   factory CaptionSourceSettings.fromJson(Map<String, dynamic> json) {
     return CaptionSourceSettings(
       ancillarySourceSettings: json['ancillarySourceSettings'] != null
@@ -5708,6 +5735,7 @@ class ChannelMapping {
   ChannelMapping({
     this.outputChannels,
   });
+
   factory ChannelMapping.fromJson(Map<String, dynamic> json) {
     return ChannelMapping(
       outputChannels: (json['outputChannels'] as List?)
@@ -5748,6 +5776,7 @@ class CmafAdditionalManifest {
     this.manifestNameModifier,
     this.selectedOutputs,
   });
+
   factory CmafAdditionalManifest.fromJson(Map<String, dynamic> json) {
     return CmafAdditionalManifest(
       manifestNameModifier: json['manifestNameModifier'] as String?,
@@ -5868,6 +5897,7 @@ class CmafEncryptionSettings {
     this.staticKeyProvider,
     this.type,
   });
+
   factory CmafEncryptionSettings.fromJson(Map<String, dynamic> json) {
     return CmafEncryptionSettings(
       constantInitializationVector:
@@ -6124,6 +6154,7 @@ class CmafGroupSettings {
     this.writeHlsManifest,
     this.writeSegmentTimelineInRepresentation,
   });
+
   factory CmafGroupSettings.fromJson(Map<String, dynamic> json) {
     return CmafGroupSettings(
       additionalManifests: (json['additionalManifests'] as List?)
@@ -7013,6 +7044,7 @@ class CmfcSettings {
     this.scte35Esam,
     this.scte35Source,
   });
+
   factory CmfcSettings.fromJson(Map<String, dynamic> json) {
     return CmfcSettings(
       audioDuration: (json['audioDuration'] as String?)?.toCmfcAudioDuration(),
@@ -7111,6 +7143,7 @@ class ColorCorrector {
     this.sampleRangeConversion,
     this.saturation,
   });
+
   factory ColorCorrector.fromJson(Map<String, dynamic> json) {
     return ColorCorrector(
       brightness: json['brightness'] as int?,
@@ -7399,6 +7432,7 @@ class ContainerSettings {
     this.mpdSettings,
     this.mxfSettings,
   });
+
   factory ContainerSettings.fromJson(Map<String, dynamic> json) {
     return ContainerSettings(
       cmfcSettings: json['cmfcSettings'] != null
@@ -7537,6 +7571,7 @@ class CreateJobResponse {
   CreateJobResponse({
     this.job,
   });
+
   factory CreateJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateJobResponse(
       job: json['job'] != null
@@ -7561,6 +7596,7 @@ class CreateJobTemplateResponse {
   CreateJobTemplateResponse({
     this.jobTemplate,
   });
+
   factory CreateJobTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateJobTemplateResponse(
       jobTemplate: json['jobTemplate'] != null
@@ -7585,6 +7621,7 @@ class CreatePresetResponse {
   CreatePresetResponse({
     this.preset,
   });
+
   factory CreatePresetResponse.fromJson(Map<String, dynamic> json) {
     return CreatePresetResponse(
       preset: json['preset'] != null
@@ -7612,6 +7649,7 @@ class CreateQueueResponse {
   CreateQueueResponse({
     this.queue,
   });
+
   factory CreateQueueResponse.fromJson(Map<String, dynamic> json) {
     return CreateQueueResponse(
       queue: json['queue'] != null
@@ -7648,6 +7686,7 @@ class DashAdditionalManifest {
     this.manifestNameModifier,
     this.selectedOutputs,
   });
+
   factory DashAdditionalManifest.fromJson(Map<String, dynamic> json) {
     return DashAdditionalManifest(
       manifestNameModifier: json['manifestNameModifier'] as String?,
@@ -7690,6 +7729,7 @@ class DashIsoEncryptionSettings {
     this.playbackDeviceCompatibility,
     this.spekeKeyProvider,
   });
+
   factory DashIsoEncryptionSettings.fromJson(Map<String, dynamic> json) {
     return DashIsoEncryptionSettings(
       playbackDeviceCompatibility:
@@ -7899,6 +7939,7 @@ class DashIsoGroupSettings {
     this.segmentLength,
     this.writeSegmentTimelineInRepresentation,
   });
+
   factory DashIsoGroupSettings.fromJson(Map<String, dynamic> json) {
     return DashIsoGroupSettings(
       additionalManifests: (json['additionalManifests'] as List?)
@@ -8345,6 +8386,7 @@ class Deinterlacer {
     this.control,
     this.mode,
   });
+
   factory Deinterlacer.fromJson(Map<String, dynamic> json) {
     return Deinterlacer(
       algorithm: (json['algorithm'] as String?)?.toDeinterlaceAlgorithm(),
@@ -8440,6 +8482,7 @@ extension on String {
 
 class DeleteJobTemplateResponse {
   DeleteJobTemplateResponse();
+
   factory DeleteJobTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobTemplateResponse();
   }
@@ -8451,6 +8494,7 @@ class DeleteJobTemplateResponse {
 
 class DeletePresetResponse {
   DeletePresetResponse();
+
   factory DeletePresetResponse.fromJson(Map<String, dynamic> _) {
     return DeletePresetResponse();
   }
@@ -8462,6 +8506,7 @@ class DeletePresetResponse {
 
 class DeleteQueueResponse {
   DeleteQueueResponse();
+
   factory DeleteQueueResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQueueResponse();
   }
@@ -8514,6 +8559,7 @@ class DescribeEndpointsResponse {
     this.endpoints,
     this.nextToken,
   });
+
   factory DescribeEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointsResponse(
       endpoints: (json['endpoints'] as List?)
@@ -8543,6 +8589,7 @@ class DestinationSettings {
   DestinationSettings({
     this.s3Settings,
   });
+
   factory DestinationSettings.fromJson(Map<String, dynamic> json) {
     return DestinationSettings(
       s3Settings: json['s3Settings'] != null
@@ -8562,6 +8609,7 @@ class DestinationSettings {
 
 class DisassociateCertificateResponse {
   DisassociateCertificateResponse();
+
   factory DisassociateCertificateResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateCertificateResponse();
   }
@@ -8593,6 +8641,7 @@ class DolbyVision {
     this.l6Mode,
     this.profile,
   });
+
   factory DolbyVision.fromJson(Map<String, dynamic> json) {
     return DolbyVision(
       l6Metadata: json['l6Metadata'] != null
@@ -8631,6 +8680,7 @@ class DolbyVisionLevel6Metadata {
     this.maxCll,
     this.maxFall,
   });
+
   factory DolbyVisionLevel6Metadata.fromJson(Map<String, dynamic> json) {
     return DolbyVisionLevel6Metadata(
       maxCll: json['maxCll'] as int?,
@@ -8763,6 +8813,7 @@ class DvbNitSettings {
     this.networkName,
     this.nitInterval,
   });
+
   factory DvbNitSettings.fromJson(Map<String, dynamic> json) {
     return DvbNitSettings(
       networkId: json['networkId'] as int?,
@@ -8815,6 +8866,7 @@ class DvbSdtSettings {
     this.serviceName,
     this.serviceProviderName,
   });
+
   factory DvbSdtSettings.fromJson(Map<String, dynamic> json) {
     return DvbSdtSettings(
       outputSdt: (json['outputSdt'] as String?)?.toOutputSdt(),
@@ -9029,6 +9081,7 @@ class DvbSubDestinationSettings {
     this.xPosition,
     this.yPosition,
   });
+
   factory DvbSubDestinationSettings.fromJson(Map<String, dynamic> json) {
     return DvbSubDestinationSettings(
       alignment: (json['alignment'] as String?)?.toDvbSubtitleAlignment(),
@@ -9123,6 +9176,7 @@ class DvbSubSourceSettings {
   DvbSubSourceSettings({
     this.pid,
   });
+
   factory DvbSubSourceSettings.fromJson(Map<String, dynamic> json) {
     return DvbSubSourceSettings(
       pid: json['pid'] as int?,
@@ -9425,6 +9479,7 @@ class DvbTdtSettings {
   DvbTdtSettings({
     this.tdtInterval,
   });
+
   factory DvbTdtSettings.fromJson(Map<String, dynamic> json) {
     return DvbTdtSettings(
       tdtInterval: json['tdtInterval'] as int?,
@@ -9977,6 +10032,7 @@ class Eac3AtmosSettings {
     this.stereoDownmix,
     this.surroundExMode,
   });
+
   factory Eac3AtmosSettings.fromJson(Map<String, dynamic> json) {
     return Eac3AtmosSettings(
       bitrate: json['bitrate'] as int?,
@@ -10691,6 +10747,7 @@ class Eac3Settings {
     this.surroundExMode,
     this.surroundMode,
   });
+
   factory Eac3Settings.fromJson(Map<String, dynamic> json) {
     return Eac3Settings(
       attenuationControl:
@@ -10955,6 +11012,7 @@ class EmbeddedDestinationSettings {
     this.destination608ChannelNumber,
     this.destination708ServiceNumber,
   });
+
   factory EmbeddedDestinationSettings.fromJson(Map<String, dynamic> json) {
     return EmbeddedDestinationSettings(
       destination608ChannelNumber: json['destination608ChannelNumber'] as int?,
@@ -11002,6 +11060,7 @@ class EmbeddedSourceSettings {
     this.source608TrackNumber,
     this.terminateCaptions,
   });
+
   factory EmbeddedSourceSettings.fromJson(Map<String, dynamic> json) {
     return EmbeddedSourceSettings(
       convert608To708:
@@ -11069,6 +11128,7 @@ class Endpoint {
   Endpoint({
     this.url,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       url: json['url'] as String?,
@@ -11095,6 +11155,7 @@ class EsamManifestConfirmConditionNotification {
   EsamManifestConfirmConditionNotification({
     this.mccXml,
   });
+
   factory EsamManifestConfirmConditionNotification.fromJson(
       Map<String, dynamic> json) {
     return EsamManifestConfirmConditionNotification(
@@ -11136,6 +11197,7 @@ class EsamSettings {
     this.responseSignalPreroll,
     this.signalProcessingNotification,
   });
+
   factory EsamSettings.fromJson(Map<String, dynamic> json) {
     return EsamSettings(
       manifestConfirmConditionNotification:
@@ -11185,6 +11247,7 @@ class EsamSignalProcessingNotification {
   EsamSignalProcessingNotification({
     this.sccXml,
   });
+
   factory EsamSignalProcessingNotification.fromJson(Map<String, dynamic> json) {
     return EsamSignalProcessingNotification(
       sccXml: json['sccXml'] as String?,
@@ -11240,6 +11303,7 @@ class F4vSettings {
   F4vSettings({
     this.moovPlacement,
   });
+
   factory F4vSettings.fromJson(Map<String, dynamic> json) {
     return F4vSettings(
       moovPlacement: (json['moovPlacement'] as String?)?.toF4vMoovPlacement(),
@@ -11275,6 +11339,7 @@ class FileGroupSettings {
     this.destination,
     this.destinationSettings,
   });
+
   factory FileGroupSettings.fromJson(Map<String, dynamic> json) {
     return FileGroupSettings(
       destination: json['destination'] as String?,
@@ -11364,6 +11429,7 @@ class FileSourceSettings {
     this.sourceFile,
     this.timeDelta,
   });
+
   factory FileSourceSettings.fromJson(Map<String, dynamic> json) {
     return FileSourceSettings(
       convert608To708:
@@ -11458,6 +11524,7 @@ class FrameCaptureSettings {
     this.maxCaptures,
     this.quality,
   });
+
   factory FrameCaptureSettings.fromJson(Map<String, dynamic> json) {
     return FrameCaptureSettings(
       framerateDenominator: json['framerateDenominator'] as int?,
@@ -11491,6 +11558,7 @@ class GetJobResponse {
   GetJobResponse({
     this.job,
   });
+
   factory GetJobResponse.fromJson(Map<String, dynamic> json) {
     return GetJobResponse(
       job: json['job'] != null
@@ -11515,6 +11583,7 @@ class GetJobTemplateResponse {
   GetJobTemplateResponse({
     this.jobTemplate,
   });
+
   factory GetJobTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetJobTemplateResponse(
       jobTemplate: json['jobTemplate'] != null
@@ -11539,6 +11608,7 @@ class GetPresetResponse {
   GetPresetResponse({
     this.preset,
   });
+
   factory GetPresetResponse.fromJson(Map<String, dynamic> json) {
     return GetPresetResponse(
       preset: json['preset'] != null
@@ -11566,6 +11636,7 @@ class GetQueueResponse {
   GetQueueResponse({
     this.queue,
   });
+
   factory GetQueueResponse.fromJson(Map<String, dynamic> json) {
     return GetQueueResponse(
       queue: json['queue'] != null
@@ -12248,6 +12319,7 @@ class H264QvbrSettings {
     this.qvbrQualityLevel,
     this.qvbrQualityLevelFineTune,
   });
+
   factory H264QvbrSettings.fromJson(Map<String, dynamic> json) {
     return H264QvbrSettings(
       maxAverageBitrate: json['maxAverageBitrate'] as int?,
@@ -12779,6 +12851,7 @@ class H264Settings {
     this.temporalAdaptiveQuantization,
     this.unregisteredSeiTimecode,
   });
+
   factory H264Settings.fromJson(Map<String, dynamic> json) {
     return H264Settings(
       adaptiveQuantization: (json['adaptiveQuantization'] as String?)
@@ -13802,6 +13875,7 @@ class H265QvbrSettings {
     this.qvbrQualityLevel,
     this.qvbrQualityLevelFineTune,
   });
+
   factory H265QvbrSettings.fromJson(Map<String, dynamic> json) {
     return H265QvbrSettings(
       maxAverageBitrate: json['maxAverageBitrate'] as int?,
@@ -14317,6 +14391,7 @@ class H265Settings {
     this.unregisteredSeiTimecode,
     this.writeMp4PackagingType,
   });
+
   factory H265Settings.fromJson(Map<String, dynamic> json) {
     return H265Settings(
       adaptiveQuantization: (json['adaptiveQuantization'] as String?)
@@ -14875,6 +14950,7 @@ class Hdr10Metadata {
     this.whitePointX,
     this.whitePointY,
   });
+
   factory Hdr10Metadata.fromJson(Map<String, dynamic> json) {
     return Hdr10Metadata(
       bluePrimaryX: json['bluePrimaryX'] as int?,
@@ -14940,6 +15016,7 @@ class Hdr10Plus {
     this.masteringMonitorNits,
     this.targetMonitorNits,
   });
+
   factory Hdr10Plus.fromJson(Map<String, dynamic> json) {
     return Hdr10Plus(
       masteringMonitorNits: json['masteringMonitorNits'] as int?,
@@ -15009,6 +15086,7 @@ class HlsAdditionalManifest {
     this.manifestNameModifier,
     this.selectedOutputs,
   });
+
   factory HlsAdditionalManifest.fromJson(Map<String, dynamic> json) {
     return HlsAdditionalManifest(
       manifestNameModifier: json['manifestNameModifier'] as String?,
@@ -15166,6 +15244,7 @@ class HlsCaptionLanguageMapping {
     this.languageCode,
     this.languageDescription,
   });
+
   factory HlsCaptionLanguageMapping.fromJson(Map<String, dynamic> json) {
     return HlsCaptionLanguageMapping(
       captionChannel: json['captionChannel'] as int?,
@@ -15404,6 +15483,7 @@ class HlsEncryptionSettings {
     this.staticKeyProvider,
     this.type,
   });
+
   factory HlsEncryptionSettings.fromJson(Map<String, dynamic> json) {
     return HlsEncryptionSettings(
       constantInitializationVector:
@@ -15670,6 +15750,7 @@ class HlsGroupSettings {
     this.timedMetadataId3Period,
     this.timestampDeltaMilliseconds,
   });
+
   factory HlsGroupSettings.fromJson(Map<String, dynamic> json) {
     return HlsGroupSettings(
       adMarkers: (json['adMarkers'] as List?)
@@ -16132,6 +16213,7 @@ class HlsRenditionGroupSettings {
     this.renditionLanguageCode,
     this.renditionName,
   });
+
   factory HlsRenditionGroupSettings.fromJson(Map<String, dynamic> json) {
     return HlsRenditionGroupSettings(
       renditionGroupId: json['renditionGroupId'] as String?,
@@ -16248,6 +16330,7 @@ class HlsSettings {
     this.iFrameOnlyManifest,
     this.segmentModifier,
   });
+
   factory HlsSettings.fromJson(Map<String, dynamic> json) {
     return HlsSettings(
       audioGroupId: json['audioGroupId'] as String?,
@@ -16416,6 +16499,7 @@ class HopDestination {
     this.queue,
     this.waitMinutes,
   });
+
   factory HopDestination.fromJson(Map<String, dynamic> json) {
     return HopDestination(
       priority: json['priority'] as int?,
@@ -16451,6 +16535,7 @@ class Id3Insertion {
     this.id3,
     this.timecode,
   });
+
   factory Id3Insertion.fromJson(Map<String, dynamic> json) {
     return Id3Insertion(
       id3: json['id3'] as String?,
@@ -16481,6 +16566,7 @@ class ImageInserter {
   ImageInserter({
     this.insertableImages,
   });
+
   factory ImageInserter.fromJson(Map<String, dynamic> json) {
     return ImageInserter(
       insertableImages: (json['insertableImages'] as List?)
@@ -16515,6 +16601,7 @@ class ImscDestinationSettings {
   ImscDestinationSettings({
     this.stylePassthrough,
   });
+
   factory ImscDestinationSettings.fromJson(Map<String, dynamic> json) {
     return ImscDestinationSettings(
       stylePassthrough:
@@ -16730,6 +16817,7 @@ class Input {
     this.timecodeStart,
     this.videoSelector,
   });
+
   factory Input.fromJson(Map<String, dynamic> json) {
     return Input(
       audioSelectorGroups:
@@ -16861,6 +16949,7 @@ class InputClipping {
     this.endTimecode,
     this.startTimecode,
   });
+
   factory InputClipping.fromJson(Map<String, dynamic> json) {
     return InputClipping(
       endTimecode: json['endTimecode'] as String?,
@@ -16942,6 +17031,7 @@ class InputDecryptionSettings {
     this.initializationVector,
     this.kmsKeyRegion,
   });
+
   factory InputDecryptionSettings.fromJson(Map<String, dynamic> json) {
     return InputDecryptionSettings(
       decryptionMode: (json['decryptionMode'] as String?)?.toDecryptionMode(),
@@ -17337,6 +17427,7 @@ class InputTemplate {
     this.timecodeStart,
     this.videoSelector,
   });
+
   factory InputTemplate.fromJson(Map<String, dynamic> json) {
     return InputTemplate(
       audioSelectorGroups:
@@ -17537,6 +17628,7 @@ class InsertableImage {
     this.startTime,
     this.width,
   });
+
   factory InsertableImage.fromJson(Map<String, dynamic> json) {
     return InsertableImage(
       duration: json['duration'] as int?,
@@ -17726,6 +17818,7 @@ class Job {
     this.timing,
     this.userMetadata,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       role: json['role'] as String,
@@ -17853,6 +17946,7 @@ class JobMessages {
     this.info,
     this.warning,
   });
+
   factory JobMessages.fromJson(Map<String, dynamic> json) {
     return JobMessages(
       info: (json['info'] as List?)
@@ -17997,6 +18091,7 @@ class JobSettings {
     this.timecodeConfig,
     this.timedMetadataInsertion,
   });
+
   factory JobSettings.fromJson(Map<String, dynamic> json) {
     return JobSettings(
       adAvailOffset: json['adAvailOffset'] as int?,
@@ -18184,6 +18279,7 @@ class JobTemplate {
     this.statusUpdateInterval,
     this.type,
   });
+
   factory JobTemplate.fromJson(Map<String, dynamic> json) {
     return JobTemplate(
       name: json['name'] as String,
@@ -18368,6 +18464,7 @@ class JobTemplateSettings {
     this.timecodeConfig,
     this.timedMetadataInsertion,
   });
+
   factory JobTemplateSettings.fromJson(Map<String, dynamic> json) {
     return JobTemplateSettings(
       adAvailOffset: json['adAvailOffset'] as int?,
@@ -18530,6 +18627,7 @@ class KantarWatermarkSettings {
     this.metadata7,
     this.metadata8,
   });
+
   factory KantarWatermarkSettings.fromJson(Map<String, dynamic> json) {
     return KantarWatermarkSettings(
       channelName: json['channelName'] as String?,
@@ -19567,6 +19665,7 @@ class ListJobTemplatesResponse {
     this.jobTemplates,
     this.nextToken,
   });
+
   factory ListJobTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return ListJobTemplatesResponse(
       jobTemplates: (json['jobTemplates'] as List?)
@@ -19598,6 +19697,7 @@ class ListJobsResponse {
     this.jobs,
     this.nextToken,
   });
+
   factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobsResponse(
       jobs: (json['jobs'] as List?)
@@ -19629,6 +19729,7 @@ class ListPresetsResponse {
     this.nextToken,
     this.presets,
   });
+
   factory ListPresetsResponse.fromJson(Map<String, dynamic> json) {
     return ListPresetsResponse(
       nextToken: json['nextToken'] as String?,
@@ -19660,6 +19761,7 @@ class ListQueuesResponse {
     this.nextToken,
     this.queues,
   });
+
   factory ListQueuesResponse.fromJson(Map<String, dynamic> json) {
     return ListQueuesResponse(
       nextToken: json['nextToken'] as String?,
@@ -19688,6 +19790,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.resourceTags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       resourceTags: json['resourceTags'] != null
@@ -20038,6 +20141,7 @@ class M2tsScte35Esam {
   M2tsScte35Esam({
     this.scte35EsamPid,
   });
+
   factory M2tsScte35Esam.fromJson(Map<String, dynamic> json) {
     return M2tsScte35Esam(
       scte35EsamPid: json['scte35EsamPid'] as int?,
@@ -20439,6 +20543,7 @@ class M2tsSettings {
     this.transportStreamId,
     this.videoPid,
   });
+
   factory M2tsSettings.fromJson(Map<String, dynamic> json) {
     return M2tsSettings(
       audioBufferModel:
@@ -20841,6 +20946,7 @@ class M3u8Settings {
     this.transportStreamId,
     this.videoPid,
   });
+
   factory M3u8Settings.fromJson(Map<String, dynamic> json) {
     return M3u8Settings(
       audioDuration: (json['audioDuration'] as String?)?.toM3u8AudioDuration(),
@@ -20973,6 +21079,7 @@ class MotionImageInserter {
     this.playback,
     this.startTime,
   });
+
   factory MotionImageInserter.fromJson(Map<String, dynamic> json) {
     return MotionImageInserter(
       framerate: json['framerate'] != null
@@ -21026,6 +21133,7 @@ class MotionImageInsertionFramerate {
     this.framerateDenominator,
     this.framerateNumerator,
   });
+
   factory MotionImageInsertionFramerate.fromJson(Map<String, dynamic> json) {
     return MotionImageInsertionFramerate(
       framerateDenominator: json['framerateDenominator'] as int?,
@@ -21089,6 +21197,7 @@ class MotionImageInsertionOffset {
     this.imageX,
     this.imageY,
   });
+
   factory MotionImageInsertionOffset.fromJson(Map<String, dynamic> json) {
     return MotionImageInsertionOffset(
       imageX: json['imageX'] as int?,
@@ -21329,6 +21438,7 @@ class MovSettings {
     this.paddingControl,
     this.reference,
   });
+
   factory MovSettings.fromJson(Map<String, dynamic> json) {
     return MovSettings(
       clapAtom: (json['clapAtom'] as String?)?.toMovClapAtom(),
@@ -21377,6 +21487,7 @@ class Mp2Settings {
     this.channels,
     this.sampleRate,
   });
+
   factory Mp2Settings.fromJson(Map<String, dynamic> json) {
     return Mp2Settings(
       bitrate: json['bitrate'] as int?,
@@ -21457,6 +21568,7 @@ class Mp3Settings {
     this.sampleRate,
     this.vbrQuality,
   });
+
   factory Mp3Settings.fromJson(Map<String, dynamic> json) {
     return Mp3Settings(
       bitrate: json['bitrate'] as int?,
@@ -21632,6 +21744,7 @@ class Mp4Settings {
     this.moovPlacement,
     this.mp4MajorBrand,
   });
+
   factory Mp4Settings.fromJson(Map<String, dynamic> json) {
     return Mp4Settings(
       audioDuration: (json['audioDuration'] as String?)?.toCmfcAudioDuration(),
@@ -21891,6 +22004,7 @@ class MpdSettings {
     this.scte35Esam,
     this.scte35Source,
   });
+
   factory MpdSettings.fromJson(Map<String, dynamic> json) {
     return MpdSettings(
       accessibilityCaptionHints: (json['accessibilityCaptionHints'] as String?)
@@ -22748,6 +22862,7 @@ class Mpeg2Settings {
     this.telecine,
     this.temporalAdaptiveQuantization,
   });
+
   factory Mpeg2Settings.fromJson(Map<String, dynamic> json) {
     return Mpeg2Settings(
       adaptiveQuantization: (json['adaptiveQuantization'] as String?)
@@ -23099,6 +23214,7 @@ class MsSmoothAdditionalManifest {
     this.manifestNameModifier,
     this.selectedOutputs,
   });
+
   factory MsSmoothAdditionalManifest.fromJson(Map<String, dynamic> json) {
     return MsSmoothAdditionalManifest(
       manifestNameModifier: json['manifestNameModifier'] as String?,
@@ -23162,6 +23278,7 @@ class MsSmoothEncryptionSettings {
   MsSmoothEncryptionSettings({
     this.spekeKeyProvider,
   });
+
   factory MsSmoothEncryptionSettings.fromJson(Map<String, dynamic> json) {
     return MsSmoothEncryptionSettings(
       spekeKeyProvider: json['spekeKeyProvider'] != null
@@ -23229,6 +23346,7 @@ class MsSmoothGroupSettings {
     this.fragmentLength,
     this.manifestEncoding,
   });
+
   factory MsSmoothGroupSettings.fromJson(Map<String, dynamic> json) {
     return MsSmoothGroupSettings(
       additionalManifests: (json['additionalManifests'] as List?)
@@ -23418,6 +23536,7 @@ class MxfSettings {
     this.profile,
     this.xavcProfileSettings,
   });
+
   factory MxfSettings.fromJson(Map<String, dynamic> json) {
     return MxfSettings(
       afdSignaling: (json['afdSignaling'] as String?)?.toMxfAfdSignaling(),
@@ -23501,6 +23620,7 @@ class MxfXavcProfileSettings {
     this.durationMode,
     this.maxAncDataSize,
   });
+
   factory MxfXavcProfileSettings.fromJson(Map<String, dynamic> json) {
     return MxfXavcProfileSettings(
       durationMode: (json['durationMode'] as String?)?.toMxfXavcDurationMode(),
@@ -23558,6 +23678,7 @@ class NexGuardFileMarkerSettings {
     this.preset,
     this.strength,
   });
+
   factory NexGuardFileMarkerSettings.fromJson(Map<String, dynamic> json) {
     return NexGuardFileMarkerSettings(
       license: json['license'] as String?,
@@ -23641,6 +23762,7 @@ class NielsenConfiguration {
     this.breakoutCode,
     this.distributorId,
   });
+
   factory NielsenConfiguration.fromJson(Map<String, dynamic> json) {
     return NielsenConfiguration(
       breakoutCode: json['breakoutCode'] as int?,
@@ -23751,6 +23873,7 @@ class NielsenNonLinearWatermarkSettings {
     this.ticServerUrl,
     this.uniqueTicPerAudioTrack,
   });
+
   factory NielsenNonLinearWatermarkSettings.fromJson(
       Map<String, dynamic> json) {
     return NielsenNonLinearWatermarkSettings(
@@ -23940,6 +24063,7 @@ class NoiseReducer {
     this.spatialFilterSettings,
     this.temporalFilterSettings,
   });
+
   factory NoiseReducer.fromJson(Map<String, dynamic> json) {
     return NoiseReducer(
       filter: (json['filter'] as String?)?.toNoiseReducerFilter(),
@@ -24048,6 +24172,7 @@ class NoiseReducerFilterSettings {
   NoiseReducerFilterSettings({
     this.strength,
   });
+
   factory NoiseReducerFilterSettings.fromJson(Map<String, dynamic> json) {
     return NoiseReducerFilterSettings(
       strength: json['strength'] as int?,
@@ -24081,6 +24206,7 @@ class NoiseReducerSpatialFilterSettings {
     this.speed,
     this.strength,
   });
+
   factory NoiseReducerSpatialFilterSettings.fromJson(
       Map<String, dynamic> json) {
     return NoiseReducerSpatialFilterSettings(
@@ -24136,6 +24262,7 @@ class NoiseReducerTemporalFilterSettings {
     this.speed,
     this.strength,
   });
+
   factory NoiseReducerTemporalFilterSettings.fromJson(
       Map<String, dynamic> json) {
     return NoiseReducerTemporalFilterSettings(
@@ -24184,6 +24311,7 @@ class OpusSettings {
     this.channels,
     this.sampleRate,
   });
+
   factory OpusSettings.fromJson(Map<String, dynamic> json) {
     return OpusSettings(
       bitrate: json['bitrate'] as int?,
@@ -24292,6 +24420,7 @@ class Output {
     this.preset,
     this.videoDescription,
   });
+
   factory Output.fromJson(Map<String, dynamic> json) {
     return Output(
       audioDescriptions: (json['audioDescriptions'] as List?)
@@ -24358,6 +24487,7 @@ class OutputChannelMapping {
     this.inputChannels,
     this.inputChannelsFineTune,
   });
+
   factory OutputChannelMapping.fromJson(Map<String, dynamic> json) {
     return OutputChannelMapping(
       inputChannels: (json['inputChannels'] as List?)
@@ -24394,6 +24524,7 @@ class OutputDetail {
     this.durationInMs,
     this.videoDetails,
   });
+
   factory OutputDetail.fromJson(Map<String, dynamic> json) {
     return OutputDetail(
       durationInMs: json['durationInMs'] as int?,
@@ -24442,6 +24573,7 @@ class OutputGroup {
     this.outputGroupSettings,
     this.outputs,
   });
+
   factory OutputGroup.fromJson(Map<String, dynamic> json) {
     return OutputGroup(
       automatedEncodingSettings: json['automatedEncodingSettings'] != null
@@ -24487,6 +24619,7 @@ class OutputGroupDetail {
   OutputGroupDetail({
     this.outputDetails,
   });
+
   factory OutputGroupDetail.fromJson(Map<String, dynamic> json) {
     return OutputGroupDetail(
       outputDetails: (json['outputDetails'] as List?)
@@ -24554,6 +24687,7 @@ class OutputGroupSettings {
     this.msSmoothGroupSettings,
     this.type,
   });
+
   factory OutputGroupSettings.fromJson(Map<String, dynamic> json) {
     return OutputGroupSettings(
       cmafGroupSettings: json['cmafGroupSettings'] != null
@@ -24698,6 +24832,7 @@ class OutputSettings {
   OutputSettings({
     this.hlsSettings,
   });
+
   factory OutputSettings.fromJson(Map<String, dynamic> json) {
     return OutputSettings(
       hlsSettings: json['hlsSettings'] != null
@@ -24726,6 +24861,7 @@ class PartnerWatermarking {
   PartnerWatermarking({
     this.nexguardFileMarkerSettings,
   });
+
   factory PartnerWatermarking.fromJson(Map<String, dynamic> json) {
     return PartnerWatermarking(
       nexguardFileMarkerSettings: json['nexguardFileMarkerSettings'] != null
@@ -24783,6 +24919,7 @@ class Preset {
     this.lastUpdated,
     this.type,
   });
+
   factory Preset.fromJson(Map<String, dynamic> json) {
     return Preset(
       name: json['name'] as String,
@@ -24880,6 +25017,7 @@ class PresetSettings {
     this.containerSettings,
     this.videoDescription,
   });
+
   factory PresetSettings.fromJson(Map<String, dynamic> json) {
     return PresetSettings(
       audioDescriptions: (json['audioDescriptions'] as List?)
@@ -25416,6 +25554,7 @@ class ProresSettings {
     this.slowPal,
     this.telecine,
   });
+
   factory ProresSettings.fromJson(Map<String, dynamic> json) {
     return ProresSettings(
       chromaSampling:
@@ -25608,6 +25747,7 @@ class Queue {
     this.submittedJobsCount,
     this.type,
   });
+
   factory Queue.fromJson(Map<String, dynamic> json) {
     return Queue(
       name: json['name'] as String,
@@ -25736,6 +25876,7 @@ class QueueTransition {
     this.sourceQueue,
     this.timestamp,
   });
+
   factory QueueTransition.fromJson(Map<String, dynamic> json) {
     return QueueTransition(
       destinationQueue: json['destinationQueue'] as String?,
@@ -25778,6 +25919,7 @@ class Rectangle {
     this.x,
     this.y,
   });
+
   factory Rectangle.fromJson(Map<String, dynamic> json) {
     return Rectangle(
       height: json['height'] as int?,
@@ -25839,6 +25981,7 @@ class RemixSettings {
     this.channelsIn,
     this.channelsOut,
   });
+
   factory RemixSettings.fromJson(Map<String, dynamic> json) {
     return RemixSettings(
       channelMapping: json['channelMapping'] != null
@@ -25932,6 +26075,7 @@ class ReservationPlan {
     this.reservedSlots,
     this.status,
   });
+
   factory ReservationPlan.fromJson(Map<String, dynamic> json) {
     return ReservationPlan(
       commitment: (json['commitment'] as String?)?.toCommitment(),
@@ -25988,6 +26132,7 @@ class ReservationPlanSettings {
     required this.renewalType,
     required this.reservedSlots,
   });
+
   factory ReservationPlanSettings.fromJson(Map<String, dynamic> json) {
     return ReservationPlanSettings(
       commitment: (json['commitment'] as String).toCommitment(),
@@ -26051,6 +26196,7 @@ class ResourceTags {
     this.arn,
     this.tags,
   });
+
   factory ResourceTags.fromJson(Map<String, dynamic> json) {
     return ResourceTags(
       arn: json['arn'] as String?,
@@ -26120,6 +26266,7 @@ class S3DestinationAccessControl {
   S3DestinationAccessControl({
     this.cannedAcl,
   });
+
   factory S3DestinationAccessControl.fromJson(Map<String, dynamic> json) {
     return S3DestinationAccessControl(
       cannedAcl: (json['cannedAcl'] as String?)?.toS3ObjectCannedAcl(),
@@ -26149,6 +26296,7 @@ class S3DestinationSettings {
     this.accessControl,
     this.encryption,
   });
+
   factory S3DestinationSettings.fromJson(Map<String, dynamic> json) {
     return S3DestinationSettings(
       accessControl: json['accessControl'] != null
@@ -26201,6 +26349,7 @@ class S3EncryptionSettings {
     this.encryptionType,
     this.kmsKeyArn,
   });
+
   factory S3EncryptionSettings.fromJson(Map<String, dynamic> json) {
     return S3EncryptionSettings(
       encryptionType:
@@ -26437,6 +26586,7 @@ class SccDestinationSettings {
   SccDestinationSettings({
     this.framerate,
   });
+
   factory SccDestinationSettings.fromJson(Map<String, dynamic> json) {
     return SccDestinationSettings(
       framerate: (json['framerate'] as String?)?.toSccDestinationFramerate(),
@@ -26514,6 +26664,7 @@ class SpekeKeyProvider {
     this.systemIds,
     this.url,
   });
+
   factory SpekeKeyProvider.fromJson(Map<String, dynamic> json) {
     return SpekeKeyProvider(
       certificateArn: json['certificateArn'] as String?,
@@ -26577,6 +26728,7 @@ class SpekeKeyProviderCmaf {
     this.resourceId,
     this.url,
   });
+
   factory SpekeKeyProviderCmaf.fromJson(Map<String, dynamic> json) {
     return SpekeKeyProviderCmaf(
       certificateArn: json['certificateArn'] as String?,
@@ -26621,6 +26773,7 @@ class SrtDestinationSettings {
   SrtDestinationSettings({
     this.stylePassthrough,
   });
+
   factory SrtDestinationSettings.fromJson(Map<String, dynamic> json) {
     return SrtDestinationSettings(
       stylePassthrough:
@@ -26693,6 +26846,7 @@ class StaticKeyProvider {
     this.staticKeyValue,
     this.url,
   });
+
   factory StaticKeyProvider.fromJson(Map<String, dynamic> json) {
     return StaticKeyProvider(
       keyFormat: json['keyFormat'] as String?,
@@ -26816,6 +26970,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -26848,6 +27003,7 @@ class TeletextDestinationSettings {
     this.pageNumber,
     this.pageTypes,
   });
+
   factory TeletextDestinationSettings.fromJson(Map<String, dynamic> json) {
     return TeletextDestinationSettings(
       pageNumber: json['pageNumber'] as String?,
@@ -26923,6 +27079,7 @@ class TeletextSourceSettings {
   TeletextSourceSettings({
     this.pageNumber,
   });
+
   factory TeletextSourceSettings.fromJson(Map<String, dynamic> json) {
     return TeletextSourceSettings(
       pageNumber: json['pageNumber'] as String?,
@@ -26961,6 +27118,7 @@ class TimecodeBurnin {
     this.position,
     this.prefix,
   });
+
   factory TimecodeBurnin.fromJson(Map<String, dynamic> json) {
     return TimecodeBurnin(
       fontSize: json['fontSize'] as int?,
@@ -27098,6 +27256,7 @@ class TimecodeConfig {
     this.start,
     this.timestampOffset,
   });
+
   factory TimecodeConfig.fromJson(Map<String, dynamic> json) {
     return TimecodeConfig(
       anchor: json['anchor'] as String?,
@@ -27206,6 +27365,7 @@ class TimedMetadataInsertion {
   TimedMetadataInsertion({
     this.id3Insertions,
   });
+
   factory TimedMetadataInsertion.fromJson(Map<String, dynamic> json) {
     return TimedMetadataInsertion(
       id3Insertions: (json['id3Insertions'] as List?)
@@ -27240,6 +27400,7 @@ class Timing {
     this.startTime,
     this.submitTime,
   });
+
   factory Timing.fromJson(Map<String, dynamic> json) {
     return Timing(
       finishTime: timeStampFromJson(json['finishTime']),
@@ -27277,6 +27438,7 @@ class TrackSourceSettings {
   TrackSourceSettings({
     this.trackNumber,
   });
+
   factory TrackSourceSettings.fromJson(Map<String, dynamic> json) {
     return TrackSourceSettings(
       trackNumber: json['trackNumber'] as int?,
@@ -27306,6 +27468,7 @@ class TtmlDestinationSettings {
   TtmlDestinationSettings({
     this.stylePassthrough,
   });
+
   factory TtmlDestinationSettings.fromJson(Map<String, dynamic> json) {
     return TtmlDestinationSettings(
       stylePassthrough:
@@ -27382,6 +27545,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -27399,6 +27563,7 @@ class UpdateJobTemplateResponse {
   UpdateJobTemplateResponse({
     this.jobTemplate,
   });
+
   factory UpdateJobTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateJobTemplateResponse(
       jobTemplate: json['jobTemplate'] != null
@@ -27423,6 +27588,7 @@ class UpdatePresetResponse {
   UpdatePresetResponse({
     this.preset,
   });
+
   factory UpdatePresetResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePresetResponse(
       preset: json['preset'] != null
@@ -27450,6 +27616,7 @@ class UpdateQueueResponse {
   UpdateQueueResponse({
     this.queue,
   });
+
   factory UpdateQueueResponse.fromJson(Map<String, dynamic> json) {
     return UpdateQueueResponse(
       queue: json['queue'] != null
@@ -27768,6 +27935,7 @@ class Vc3Settings {
     this.telecine,
     this.vc3Class,
   });
+
   factory Vc3Settings.fromJson(Map<String, dynamic> json) {
     return Vc3Settings(
       framerateControl:
@@ -28031,6 +28199,7 @@ class VideoCodecSettings {
     this.vp9Settings,
     this.xavcSettings,
   });
+
   factory VideoCodecSettings.fromJson(Map<String, dynamic> json) {
     return VideoCodecSettings(
       av1Settings: json['av1Settings'] != null
@@ -28231,6 +28400,7 @@ class VideoDescription {
     this.videoPreprocessors,
     this.width,
   });
+
   factory VideoDescription.fromJson(Map<String, dynamic> json) {
     return VideoDescription(
       afdSignaling: (json['afdSignaling'] as String?)?.toAfdSignaling(),
@@ -28314,6 +28484,7 @@ class VideoDetail {
     this.heightInPx,
     this.widthInPx,
   });
+
   factory VideoDetail.fromJson(Map<String, dynamic> json) {
     return VideoDetail(
       heightInPx: json['heightInPx'] as int?,
@@ -28380,6 +28551,7 @@ class VideoPreprocessor {
     this.partnerWatermarking,
     this.timecodeBurnin,
   });
+
   factory VideoPreprocessor.fromJson(Map<String, dynamic> json) {
     return VideoPreprocessor(
       colorCorrector: json['colorCorrector'] != null
@@ -28528,6 +28700,7 @@ class VideoSelector {
     this.rotate,
     this.sampleRange,
   });
+
   factory VideoSelector.fromJson(Map<String, dynamic> json) {
     return VideoSelector(
       alphaBehavior: (json['alphaBehavior'] as String?)?.toAlphaBehavior(),
@@ -28631,6 +28804,7 @@ class VorbisSettings {
     this.sampleRate,
     this.vbrQuality,
   });
+
   factory VorbisSettings.fromJson(Map<String, dynamic> json) {
     return VorbisSettings(
       channels: json['channels'] as int?,
@@ -28942,6 +29116,7 @@ class Vp8Settings {
     this.qualityTuningLevel,
     this.rateControlMode,
   });
+
   factory Vp8Settings.fromJson(Map<String, dynamic> json) {
     return Vp8Settings(
       bitrate: json['bitrate'] as int?,
@@ -29287,6 +29462,7 @@ class Vp9Settings {
     this.qualityTuningLevel,
     this.rateControlMode,
   });
+
   factory Vp9Settings.fromJson(Map<String, dynamic> json) {
     return Vp9Settings(
       bitrate: json['bitrate'] as int?,
@@ -29448,6 +29624,7 @@ class WavSettings {
     this.format,
     this.sampleRate,
   });
+
   factory WavSettings.fromJson(Map<String, dynamic> json) {
     return WavSettings(
       bitDepth: json['bitDepth'] as int?,
@@ -29481,6 +29658,7 @@ class WebvttDestinationSettings {
   WebvttDestinationSettings({
     this.stylePassthrough,
   });
+
   factory WebvttDestinationSettings.fromJson(Map<String, dynamic> json) {
     return WebvttDestinationSettings(
       stylePassthrough:
@@ -29521,6 +29699,7 @@ class WebvttHlsSourceSettings {
     this.renditionLanguageCode,
     this.renditionName,
   });
+
   factory WebvttHlsSourceSettings.fromJson(Map<String, dynamic> json) {
     return WebvttHlsSourceSettings(
       renditionGroupId: json['renditionGroupId'] as String?,
@@ -29622,6 +29801,7 @@ class Xavc4kIntraCbgProfileSettings {
   Xavc4kIntraCbgProfileSettings({
     this.xavcClass,
   });
+
   factory Xavc4kIntraCbgProfileSettings.fromJson(Map<String, dynamic> json) {
     return Xavc4kIntraCbgProfileSettings(
       xavcClass: (json['xavcClass'] as String?)?.toXavc4kIntraCbgProfileClass(),
@@ -29684,6 +29864,7 @@ class Xavc4kIntraVbrProfileSettings {
   Xavc4kIntraVbrProfileSettings({
     this.xavcClass,
   });
+
   factory Xavc4kIntraVbrProfileSettings.fromJson(Map<String, dynamic> json) {
     return Xavc4kIntraVbrProfileSettings(
       xavcClass: (json['xavcClass'] as String?)?.toXavc4kIntraVbrProfileClass(),
@@ -29871,6 +30052,7 @@ class Xavc4kProfileSettings {
     this.qualityTuningLevel,
     this.slices,
   });
+
   factory Xavc4kProfileSettings.fromJson(Map<String, dynamic> json) {
     return Xavc4kProfileSettings(
       bitrateClass:
@@ -30223,6 +30405,7 @@ class XavcHdIntraCbgProfileSettings {
   XavcHdIntraCbgProfileSettings({
     this.xavcClass,
   });
+
   factory XavcHdIntraCbgProfileSettings.fromJson(Map<String, dynamic> json) {
     return XavcHdIntraCbgProfileSettings(
       xavcClass: (json['xavcClass'] as String?)?.toXavcHdIntraCbgProfileClass(),
@@ -30396,6 +30579,7 @@ class XavcHdProfileSettings {
     this.slices,
     this.telecine,
   });
+
   factory XavcHdProfileSettings.fromJson(Map<String, dynamic> json) {
     return XavcHdProfileSettings(
       bitrateClass:
@@ -30752,6 +30936,7 @@ class XavcSettings {
     this.xavcHdIntraCbgProfileSettings,
     this.xavcHdProfileSettings,
   });
+
   factory XavcSettings.fromJson(Map<String, dynamic> json) {
     return XavcSettings(
       adaptiveQuantization: (json['adaptiveQuantization'] as String?)

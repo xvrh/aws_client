@@ -254,6 +254,7 @@ class CreateTokenResponse {
     this.refreshToken,
     this.tokenType,
   });
+
   factory CreateTokenResponse.fromJson(Map<String, dynamic> json) {
     return CreateTokenResponse(
       accessToken: json['accessToken'] as String?,
@@ -311,6 +312,7 @@ class RegisterClientResponse {
     this.clientSecretExpiresAt,
     this.tokenEndpoint,
   });
+
   factory RegisterClientResponse.fromJson(Map<String, dynamic> json) {
     return RegisterClientResponse(
       authorizationEndpoint: json['authorizationEndpoint'] as String?,
@@ -376,6 +378,7 @@ class StartDeviceAuthorizationResponse {
     this.verificationUri,
     this.verificationUriComplete,
   });
+
   factory StartDeviceAuthorizationResponse.fromJson(Map<String, dynamic> json) {
     return StartDeviceAuthorizationResponse(
       deviceCode: json['deviceCode'] as String?,

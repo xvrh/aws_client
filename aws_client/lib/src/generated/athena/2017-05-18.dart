@@ -1930,6 +1930,7 @@ class BatchGetNamedQueryOutput {
     this.namedQueries,
     this.unprocessedNamedQueryIds,
   });
+
   factory BatchGetNamedQueryOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetNamedQueryOutput(
       namedQueries: (json['NamedQueries'] as List?)
@@ -1966,6 +1967,7 @@ class BatchGetQueryExecutionOutput {
     this.queryExecutions,
     this.unprocessedQueryExecutionIds,
   });
+
   factory BatchGetQueryExecutionOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetQueryExecutionOutput(
       queryExecutions: (json['QueryExecutions'] as List?)
@@ -2008,6 +2010,7 @@ class Column {
     this.comment,
     this.type,
   });
+
   factory Column.fromJson(Map<String, dynamic> json) {
     return Column(
       name: json['Name'] as String,
@@ -2074,6 +2077,7 @@ class ColumnInfo {
     this.schemaName,
     this.tableName,
   });
+
   factory ColumnInfo.fromJson(Map<String, dynamic> json) {
     return ColumnInfo(
       name: json['Name'] as String,
@@ -2150,6 +2154,7 @@ extension on String {
 
 class CreateDataCatalogOutput {
   CreateDataCatalogOutput();
+
   factory CreateDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return CreateDataCatalogOutput();
   }
@@ -2166,6 +2171,7 @@ class CreateNamedQueryOutput {
   CreateNamedQueryOutput({
     this.namedQueryId,
   });
+
   factory CreateNamedQueryOutput.fromJson(Map<String, dynamic> json) {
     return CreateNamedQueryOutput(
       namedQueryId: json['NamedQueryId'] as String?,
@@ -2182,6 +2188,7 @@ class CreateNamedQueryOutput {
 
 class CreatePreparedStatementOutput {
   CreatePreparedStatementOutput();
+
   factory CreatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return CreatePreparedStatementOutput();
   }
@@ -2193,6 +2200,7 @@ class CreatePreparedStatementOutput {
 
 class CreateWorkGroupOutput {
   CreateWorkGroupOutput();
+
   factory CreateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return CreateWorkGroupOutput();
   }
@@ -2260,6 +2268,7 @@ class DataCatalog {
     this.description,
     this.parameters,
   });
+
   factory DataCatalog.fromJson(Map<String, dynamic> json) {
     return DataCatalog(
       name: json['Name'] as String,
@@ -2297,6 +2306,7 @@ class DataCatalogSummary {
     this.catalogName,
     this.type,
   });
+
   factory DataCatalogSummary.fromJson(Map<String, dynamic> json) {
     return DataCatalogSummary(
       catalogName: json['CatalogName'] as String?,
@@ -2363,6 +2373,7 @@ class Database {
     this.description,
     this.parameters,
   });
+
   factory Database.fromJson(Map<String, dynamic> json) {
     return Database(
       name: json['Name'] as String,
@@ -2392,6 +2403,7 @@ class Datum {
   Datum({
     this.varCharValue,
   });
+
   factory Datum.fromJson(Map<String, dynamic> json) {
     return Datum(
       varCharValue: json['VarCharValue'] as String?,
@@ -2408,6 +2420,7 @@ class Datum {
 
 class DeleteDataCatalogOutput {
   DeleteDataCatalogOutput();
+
   factory DeleteDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return DeleteDataCatalogOutput();
   }
@@ -2419,6 +2432,7 @@ class DeleteDataCatalogOutput {
 
 class DeleteNamedQueryOutput {
   DeleteNamedQueryOutput();
+
   factory DeleteNamedQueryOutput.fromJson(Map<String, dynamic> _) {
     return DeleteNamedQueryOutput();
   }
@@ -2430,6 +2444,7 @@ class DeleteNamedQueryOutput {
 
 class DeletePreparedStatementOutput {
   DeletePreparedStatementOutput();
+
   factory DeletePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return DeletePreparedStatementOutput();
   }
@@ -2441,6 +2456,7 @@ class DeletePreparedStatementOutput {
 
 class DeleteWorkGroupOutput {
   DeleteWorkGroupOutput();
+
   factory DeleteWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWorkGroupOutput();
   }
@@ -2473,6 +2489,7 @@ class EncryptionConfiguration {
     required this.encryptionOption,
     this.kmsKey,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       encryptionOption:
@@ -2544,6 +2561,7 @@ class EngineVersion {
     this.effectiveEngineVersion,
     this.selectedEngineVersion,
   });
+
   factory EngineVersion.fromJson(Map<String, dynamic> json) {
     return EngineVersion(
       effectiveEngineVersion: json['EffectiveEngineVersion'] as String?,
@@ -2570,6 +2588,7 @@ class GetDataCatalogOutput {
   GetDataCatalogOutput({
     this.dataCatalog,
   });
+
   factory GetDataCatalogOutput.fromJson(Map<String, dynamic> json) {
     return GetDataCatalogOutput(
       dataCatalog: json['DataCatalog'] != null
@@ -2593,6 +2612,7 @@ class GetDatabaseOutput {
   GetDatabaseOutput({
     this.database,
   });
+
   factory GetDatabaseOutput.fromJson(Map<String, dynamic> json) {
     return GetDatabaseOutput(
       database: json['Database'] != null
@@ -2616,6 +2636,7 @@ class GetNamedQueryOutput {
   GetNamedQueryOutput({
     this.namedQuery,
   });
+
   factory GetNamedQueryOutput.fromJson(Map<String, dynamic> json) {
     return GetNamedQueryOutput(
       namedQuery: json['NamedQuery'] != null
@@ -2639,6 +2660,7 @@ class GetPreparedStatementOutput {
   GetPreparedStatementOutput({
     this.preparedStatement,
   });
+
   factory GetPreparedStatementOutput.fromJson(Map<String, dynamic> json) {
     return GetPreparedStatementOutput(
       preparedStatement: json['PreparedStatement'] != null
@@ -2663,6 +2685,7 @@ class GetQueryExecutionOutput {
   GetQueryExecutionOutput({
     this.queryExecution,
   });
+
   factory GetQueryExecutionOutput.fromJson(Map<String, dynamic> json) {
     return GetQueryExecutionOutput(
       queryExecution: json['QueryExecution'] != null
@@ -2698,6 +2721,7 @@ class GetQueryResultsOutput {
     this.resultSet,
     this.updateCount,
   });
+
   factory GetQueryResultsOutput.fromJson(Map<String, dynamic> json) {
     return GetQueryResultsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2727,6 +2751,7 @@ class GetTableMetadataOutput {
   GetTableMetadataOutput({
     this.tableMetadata,
   });
+
   factory GetTableMetadataOutput.fromJson(Map<String, dynamic> json) {
     return GetTableMetadataOutput(
       tableMetadata: json['TableMetadata'] != null
@@ -2751,6 +2776,7 @@ class GetWorkGroupOutput {
   GetWorkGroupOutput({
     this.workGroup,
   });
+
   factory GetWorkGroupOutput.fromJson(Map<String, dynamic> json) {
     return GetWorkGroupOutput(
       workGroup: json['WorkGroup'] != null
@@ -2781,6 +2807,7 @@ class ListDataCatalogsOutput {
     this.dataCatalogsSummary,
     this.nextToken,
   });
+
   factory ListDataCatalogsOutput.fromJson(Map<String, dynamic> json) {
     return ListDataCatalogsOutput(
       dataCatalogsSummary: (json['DataCatalogsSummary'] as List?)
@@ -2816,6 +2843,7 @@ class ListDatabasesOutput {
     this.databaseList,
     this.nextToken,
   });
+
   factory ListDatabasesOutput.fromJson(Map<String, dynamic> json) {
     return ListDatabasesOutput(
       databaseList: (json['DatabaseList'] as List?)
@@ -2850,6 +2878,7 @@ class ListEngineVersionsOutput {
     this.engineVersions,
     this.nextToken,
   });
+
   factory ListEngineVersionsOutput.fromJson(Map<String, dynamic> json) {
     return ListEngineVersionsOutput(
       engineVersions: (json['EngineVersions'] as List?)
@@ -2884,6 +2913,7 @@ class ListNamedQueriesOutput {
     this.namedQueryIds,
     this.nextToken,
   });
+
   factory ListNamedQueriesOutput.fromJson(Map<String, dynamic> json) {
     return ListNamedQueriesOutput(
       namedQueryIds: (json['NamedQueryIds'] as List?)
@@ -2918,6 +2948,7 @@ class ListPreparedStatementsOutput {
     this.nextToken,
     this.preparedStatements,
   });
+
   factory ListPreparedStatementsOutput.fromJson(Map<String, dynamic> json) {
     return ListPreparedStatementsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2950,6 +2981,7 @@ class ListQueryExecutionsOutput {
     this.nextToken,
     this.queryExecutionIds,
   });
+
   factory ListQueryExecutionsOutput.fromJson(Map<String, dynamic> json) {
     return ListQueryExecutionsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2984,6 +3016,7 @@ class ListTableMetadataOutput {
     this.nextToken,
     this.tableMetadataList,
   });
+
   factory ListTableMetadataOutput.fromJson(Map<String, dynamic> json) {
     return ListTableMetadataOutput(
       nextToken: json['NextToken'] as String?,
@@ -3015,6 +3048,7 @@ class ListTagsForResourceOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       nextToken: json['NextToken'] as String?,
@@ -3050,6 +3084,7 @@ class ListWorkGroupsOutput {
     this.nextToken,
     this.workGroups,
   });
+
   factory ListWorkGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListWorkGroupsOutput(
       nextToken: json['NextToken'] as String?,
@@ -3099,6 +3134,7 @@ class NamedQuery {
     this.namedQueryId,
     this.workGroup,
   });
+
   factory NamedQuery.fromJson(Map<String, dynamic> json) {
     return NamedQuery(
       database: json['Database'] as String,
@@ -3152,6 +3188,7 @@ class PreparedStatement {
     this.statementName,
     this.workGroupName,
   });
+
   factory PreparedStatement.fromJson(Map<String, dynamic> json) {
     return PreparedStatement(
       description: json['Description'] as String?,
@@ -3191,6 +3228,7 @@ class PreparedStatementSummary {
     this.lastModifiedTime,
     this.statementName,
   });
+
   factory PreparedStatementSummary.fromJson(Map<String, dynamic> json) {
     return PreparedStatementSummary(
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -3260,6 +3298,7 @@ class QueryExecution {
     this.status,
     this.workGroup,
   });
+
   factory QueryExecution.fromJson(Map<String, dynamic> json) {
     return QueryExecution(
       engineVersion: json['EngineVersion'] != null
@@ -3327,6 +3366,7 @@ class QueryExecutionContext {
     this.catalog,
     this.database,
   });
+
   factory QueryExecutionContext.fromJson(Map<String, dynamic> json) {
     return QueryExecutionContext(
       catalog: json['Catalog'] as String?,
@@ -3434,6 +3474,7 @@ class QueryExecutionStatistics {
     this.serviceProcessingTimeInMillis,
     this.totalExecutionTimeInMillis,
   });
+
   factory QueryExecutionStatistics.fromJson(Map<String, dynamic> json) {
     return QueryExecutionStatistics(
       dataManifestLocation: json['DataManifestLocation'] as String?,
@@ -3505,6 +3546,7 @@ class QueryExecutionStatus {
     this.stateChangeReason,
     this.submissionDateTime,
   });
+
   factory QueryExecutionStatus.fromJson(Map<String, dynamic> json) {
     return QueryExecutionStatus(
       completionDateTime: timeStampFromJson(json['CompletionDateTime']),
@@ -3562,6 +3604,7 @@ class ResultConfiguration {
     this.encryptionConfiguration,
     this.outputLocation,
   });
+
   factory ResultConfiguration.fromJson(Map<String, dynamic> json) {
     return ResultConfiguration(
       encryptionConfiguration: json['EncryptionConfiguration'] != null
@@ -3628,6 +3671,7 @@ class ResultConfigurationUpdates {
     this.removeEncryptionConfiguration,
     this.removeOutputLocation,
   });
+
   factory ResultConfigurationUpdates.fromJson(Map<String, dynamic> json) {
     return ResultConfigurationUpdates(
       encryptionConfiguration: json['EncryptionConfiguration'] != null
@@ -3673,6 +3717,7 @@ class ResultSet {
     this.resultSetMetadata,
     this.rows,
   });
+
   factory ResultSet.fromJson(Map<String, dynamic> json) {
     return ResultSet(
       resultSetMetadata: json['ResultSetMetadata'] != null
@@ -3706,6 +3751,7 @@ class ResultSetMetadata {
   ResultSetMetadata({
     this.columnInfo,
   });
+
   factory ResultSetMetadata.fromJson(Map<String, dynamic> json) {
     return ResultSetMetadata(
       columnInfo: (json['ColumnInfo'] as List?)
@@ -3731,6 +3777,7 @@ class Row {
   Row({
     this.data,
   });
+
   factory Row.fromJson(Map<String, dynamic> json) {
     return Row(
       data: (json['Data'] as List?)
@@ -3755,6 +3802,7 @@ class StartQueryExecutionOutput {
   StartQueryExecutionOutput({
     this.queryExecutionId,
   });
+
   factory StartQueryExecutionOutput.fromJson(Map<String, dynamic> json) {
     return StartQueryExecutionOutput(
       queryExecutionId: json['QueryExecutionId'] as String?,
@@ -3804,6 +3852,7 @@ extension on String {
 
 class StopQueryExecutionOutput {
   StopQueryExecutionOutput();
+
   factory StopQueryExecutionOutput.fromJson(Map<String, dynamic> _) {
     return StopQueryExecutionOutput();
   }
@@ -3845,6 +3894,7 @@ class TableMetadata {
     this.partitionKeys,
     this.tableType,
   });
+
   factory TableMetadata.fromJson(Map<String, dynamic> json) {
     return TableMetadata(
       name: json['Name'] as String,
@@ -3914,6 +3964,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -3933,6 +3984,7 @@ class Tag {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -3960,6 +4012,7 @@ class UnprocessedNamedQueryId {
     this.errorMessage,
     this.namedQueryId,
   });
+
   factory UnprocessedNamedQueryId.fromJson(Map<String, dynamic> json) {
     return UnprocessedNamedQueryId(
       errorCode: json['ErrorCode'] as String?,
@@ -3998,6 +4051,7 @@ class UnprocessedQueryExecutionId {
     this.errorMessage,
     this.queryExecutionId,
   });
+
   factory UnprocessedQueryExecutionId.fromJson(Map<String, dynamic> json) {
     return UnprocessedQueryExecutionId(
       errorCode: json['ErrorCode'] as String?,
@@ -4020,6 +4074,7 @@ class UnprocessedQueryExecutionId {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -4031,6 +4086,7 @@ class UntagResourceOutput {
 
 class UpdateDataCatalogOutput {
   UpdateDataCatalogOutput();
+
   factory UpdateDataCatalogOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDataCatalogOutput();
   }
@@ -4042,6 +4098,7 @@ class UpdateDataCatalogOutput {
 
 class UpdatePreparedStatementOutput {
   UpdatePreparedStatementOutput();
+
   factory UpdatePreparedStatementOutput.fromJson(Map<String, dynamic> _) {
     return UpdatePreparedStatementOutput();
   }
@@ -4053,6 +4110,7 @@ class UpdatePreparedStatementOutput {
 
 class UpdateWorkGroupOutput {
   UpdateWorkGroupOutput();
+
   factory UpdateWorkGroupOutput.fromJson(Map<String, dynamic> _) {
     return UpdateWorkGroupOutput();
   }
@@ -4102,6 +4160,7 @@ class WorkGroup {
     this.description,
     this.state,
   });
+
   factory WorkGroup.fromJson(Map<String, dynamic> json) {
     return WorkGroup(
       name: json['Name'] as String,
@@ -4191,6 +4250,7 @@ class WorkGroupConfiguration {
     this.requesterPaysEnabled,
     this.resultConfiguration,
   });
+
   factory WorkGroupConfiguration.fromJson(Map<String, dynamic> json) {
     return WorkGroupConfiguration(
       bytesScannedCutoffPerQuery: json['BytesScannedCutoffPerQuery'] as int?,
@@ -4292,6 +4352,7 @@ class WorkGroupConfigurationUpdates {
     this.requesterPaysEnabled,
     this.resultConfigurationUpdates,
   });
+
   factory WorkGroupConfigurationUpdates.fromJson(Map<String, dynamic> json) {
     return WorkGroupConfigurationUpdates(
       bytesScannedCutoffPerQuery: json['BytesScannedCutoffPerQuery'] as int?,
@@ -4396,6 +4457,7 @@ class WorkGroupSummary {
     this.name,
     this.state,
   });
+
   factory WorkGroupSummary.fromJson(Map<String, dynamic> json) {
     return WorkGroupSummary(
       creationTime: timeStampFromJson(json['CreationTime']),

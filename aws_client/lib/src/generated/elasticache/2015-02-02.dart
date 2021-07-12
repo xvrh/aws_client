@@ -5782,6 +5782,7 @@ class AllowedNodeTypeModificationsMessage {
     this.scaleDownModifications,
     this.scaleUpModifications,
   });
+
   factory AllowedNodeTypeModificationsMessage.fromJson(
       Map<String, dynamic> json) {
     return AllowedNodeTypeModificationsMessage(
@@ -5892,6 +5893,7 @@ class Authentication {
     this.passwordCount,
     this.type,
   });
+
   factory Authentication.fromJson(Map<String, dynamic> json) {
     return Authentication(
       passwordCount: json['PasswordCount'] as int?,
@@ -5950,6 +5952,7 @@ class AuthorizeCacheSecurityGroupIngressResult {
   AuthorizeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
   });
+
   factory AuthorizeCacheSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return AuthorizeCacheSecurityGroupIngressResult(
@@ -6022,6 +6025,7 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       name: json['Name'] as String?,
@@ -6372,6 +6376,7 @@ class CacheCluster {
     this.snapshotWindow,
     this.transitEncryptionEnabled,
   });
+
   factory CacheCluster.fromJson(Map<String, dynamic> json) {
     return CacheCluster(
       arn: json['ARN'] as String?,
@@ -6607,6 +6612,7 @@ class CacheClusterMessage {
     this.cacheClusters,
     this.marker,
   });
+
   factory CacheClusterMessage.fromJson(Map<String, dynamic> json) {
     return CacheClusterMessage(
       cacheClusters: (json['CacheClusters'] as List?)
@@ -6668,6 +6674,7 @@ class CacheEngineVersion {
     this.engine,
     this.engineVersion,
   });
+
   factory CacheEngineVersion.fromJson(Map<String, dynamic> json) {
     return CacheEngineVersion(
       cacheEngineDescription: json['CacheEngineDescription'] as String?,
@@ -6724,6 +6731,7 @@ class CacheEngineVersionMessage {
     this.cacheEngineVersions,
     this.marker,
   });
+
   factory CacheEngineVersionMessage.fromJson(Map<String, dynamic> json) {
     return CacheEngineVersionMessage(
       cacheEngineVersions: (json['CacheEngineVersions'] as List?)
@@ -6923,6 +6931,7 @@ class CacheNode {
     this.parameterGroupStatus,
     this.sourceCacheNodeId,
   });
+
   factory CacheNode.fromJson(Map<String, dynamic> json) {
     return CacheNode(
       cacheNodeCreateTime: timeStampFromJson(json['CacheNodeCreateTime']),
@@ -7031,6 +7040,7 @@ class CacheNodeTypeSpecificParameter {
     this.parameterName,
     this.source,
   });
+
   factory CacheNodeTypeSpecificParameter.fromJson(Map<String, dynamic> json) {
     return CacheNodeTypeSpecificParameter(
       allowedValues: json['AllowedValues'] as String?,
@@ -7108,6 +7118,7 @@ class CacheNodeTypeSpecificValue {
     this.cacheNodeType,
     this.value,
   });
+
   factory CacheNodeTypeSpecificValue.fromJson(Map<String, dynamic> json) {
     return CacheNodeTypeSpecificValue(
       cacheNodeType: json['CacheNodeType'] as String?,
@@ -7169,6 +7180,7 @@ class CacheNodeUpdateStatus {
     this.nodeUpdateStatus,
     this.nodeUpdateStatusModifiedDate,
   });
+
   factory CacheNodeUpdateStatus.fromJson(Map<String, dynamic> json) {
     return CacheNodeUpdateStatus(
       cacheNodeId: json['CacheNodeId'] as String?,
@@ -7266,6 +7278,7 @@ class CacheParameterGroup {
     this.description,
     this.isGlobal,
   });
+
   factory CacheParameterGroup.fromJson(Map<String, dynamic> json) {
     return CacheParameterGroup(
       arn: json['ARN'] as String?,
@@ -7323,6 +7336,7 @@ class CacheParameterGroupDetails {
     this.marker,
     this.parameters,
   });
+
   factory CacheParameterGroupDetails.fromJson(Map<String, dynamic> json) {
     return CacheParameterGroupDetails(
       cacheNodeTypeSpecificParameters:
@@ -7386,6 +7400,7 @@ class CacheParameterGroupNameMessage {
   CacheParameterGroupNameMessage({
     this.cacheParameterGroupName,
   });
+
   factory CacheParameterGroupNameMessage.fromJson(Map<String, dynamic> json) {
     return CacheParameterGroupNameMessage(
       cacheParameterGroupName: json['CacheParameterGroupName'] as String?,
@@ -7425,6 +7440,7 @@ class CacheParameterGroupStatus {
     this.cacheParameterGroupName,
     this.parameterApplyStatus,
   });
+
   factory CacheParameterGroupStatus.fromJson(Map<String, dynamic> json) {
     return CacheParameterGroupStatus(
       cacheNodeIdsToReboot: (json['CacheNodeIdsToReboot'] as List?)
@@ -7477,6 +7493,7 @@ class CacheParameterGroupsMessage {
     this.cacheParameterGroups,
     this.marker,
   });
+
   factory CacheParameterGroupsMessage.fromJson(Map<String, dynamic> json) {
     return CacheParameterGroupsMessage(
       cacheParameterGroups: (json['CacheParameterGroups'] as List?)
@@ -7547,6 +7564,7 @@ class CacheSecurityGroup {
     this.eC2SecurityGroups,
     this.ownerId,
   });
+
   factory CacheSecurityGroup.fromJson(Map<String, dynamic> json) {
     return CacheSecurityGroup(
       arn: json['ARN'] as String?,
@@ -7606,6 +7624,7 @@ class CacheSecurityGroupMembership {
     this.cacheSecurityGroupName,
     this.status,
   });
+
   factory CacheSecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return CacheSecurityGroupMembership(
       cacheSecurityGroupName: json['CacheSecurityGroupName'] as String?,
@@ -7646,6 +7665,7 @@ class CacheSecurityGroupMessage {
     this.cacheSecurityGroups,
     this.marker,
   });
+
   factory CacheSecurityGroupMessage.fromJson(Map<String, dynamic> json) {
     return CacheSecurityGroupMessage(
       cacheSecurityGroups: (json['CacheSecurityGroups'] as List?)
@@ -7712,6 +7732,7 @@ class CacheSubnetGroup {
     this.subnets,
     this.vpcId,
   });
+
   factory CacheSubnetGroup.fromJson(Map<String, dynamic> json) {
     return CacheSubnetGroup(
       arn: json['ARN'] as String?,
@@ -7770,6 +7791,7 @@ class CacheSubnetGroupMessage {
     this.cacheSubnetGroups,
     this.marker,
   });
+
   factory CacheSubnetGroupMessage.fromJson(Map<String, dynamic> json) {
     return CacheSubnetGroupMessage(
       cacheSubnetGroups: (json['CacheSubnetGroups'] as List?)
@@ -7837,6 +7859,7 @@ class CloudWatchLogsDestinationDetails {
   CloudWatchLogsDestinationDetails({
     this.logGroup,
   });
+
   factory CloudWatchLogsDestinationDetails.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsDestinationDetails(
       logGroup: json['LogGroup'] as String?,
@@ -7863,6 +7886,7 @@ class CompleteMigrationResponse {
   CompleteMigrationResponse({
     this.replicationGroup,
   });
+
   factory CompleteMigrationResponse.fromJson(Map<String, dynamic> json) {
     return CompleteMigrationResponse(
       replicationGroup: json['ReplicationGroup'] != null
@@ -7942,6 +7966,7 @@ class ConfigureShard {
     this.preferredAvailabilityZones,
     this.preferredOutpostArns,
   });
+
   factory ConfigureShard.fromJson(Map<String, dynamic> json) {
     return ConfigureShard(
       newReplicaCount: json['NewReplicaCount'] as int,
@@ -7979,6 +8004,7 @@ class CopySnapshotResult {
   CopySnapshotResult({
     this.snapshot,
   });
+
   factory CopySnapshotResult.fromJson(Map<String, dynamic> json) {
     return CopySnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -8008,6 +8034,7 @@ class CreateCacheClusterResult {
   CreateCacheClusterResult({
     this.cacheCluster,
   });
+
   factory CreateCacheClusterResult.fromJson(Map<String, dynamic> json) {
     return CreateCacheClusterResult(
       cacheCluster: json['CacheCluster'] != null
@@ -8038,6 +8065,7 @@ class CreateCacheParameterGroupResult {
   CreateCacheParameterGroupResult({
     this.cacheParameterGroup,
   });
+
   factory CreateCacheParameterGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateCacheParameterGroupResult(
       cacheParameterGroup: json['CacheParameterGroup'] != null
@@ -8070,6 +8098,7 @@ class CreateCacheSecurityGroupResult {
   CreateCacheSecurityGroupResult({
     this.cacheSecurityGroup,
   });
+
   factory CreateCacheSecurityGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateCacheSecurityGroupResult(
       cacheSecurityGroup: json['CacheSecurityGroup'] != null
@@ -8101,6 +8130,7 @@ class CreateCacheSubnetGroupResult {
   CreateCacheSubnetGroupResult({
     this.cacheSubnetGroup,
   });
+
   factory CreateCacheSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateCacheSubnetGroupResult(
       cacheSubnetGroup: json['CacheSubnetGroup'] != null
@@ -8132,6 +8162,7 @@ class CreateGlobalReplicationGroupResult {
   CreateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory CreateGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return CreateGlobalReplicationGroupResult(
@@ -8165,6 +8196,7 @@ class CreateReplicationGroupResult {
   CreateReplicationGroupResult({
     this.replicationGroup,
   });
+
   factory CreateReplicationGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateReplicationGroupResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -8196,6 +8228,7 @@ class CreateSnapshotResult {
   CreateSnapshotResult({
     this.snapshot,
   });
+
   factory CreateSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -8231,6 +8264,7 @@ class CustomerNodeEndpoint {
     this.address,
     this.port,
   });
+
   factory CustomerNodeEndpoint.fromJson(Map<String, dynamic> json) {
     return CustomerNodeEndpoint(
       address: json['Address'] as String?,
@@ -8254,6 +8288,7 @@ class DecreaseNodeGroupsInGlobalReplicationGroupResult {
   DecreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory DecreaseNodeGroupsInGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return DecreaseNodeGroupsInGlobalReplicationGroupResult(
@@ -8288,6 +8323,7 @@ class DecreaseReplicaCountResult {
   DecreaseReplicaCountResult({
     this.replicationGroup,
   });
+
   factory DecreaseReplicaCountResult.fromJson(Map<String, dynamic> json) {
     return DecreaseReplicaCountResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -8319,6 +8355,7 @@ class DeleteCacheClusterResult {
   DeleteCacheClusterResult({
     this.cacheCluster,
   });
+
   factory DeleteCacheClusterResult.fromJson(Map<String, dynamic> json) {
     return DeleteCacheClusterResult(
       cacheCluster: json['CacheCluster'] != null
@@ -8349,6 +8386,7 @@ class DeleteGlobalReplicationGroupResult {
   DeleteGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory DeleteGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteGlobalReplicationGroupResult(
@@ -8382,6 +8420,7 @@ class DeleteReplicationGroupResult {
   DeleteReplicationGroupResult({
     this.replicationGroup,
   });
+
   factory DeleteReplicationGroupResult.fromJson(Map<String, dynamic> json) {
     return DeleteReplicationGroupResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -8413,6 +8452,7 @@ class DeleteSnapshotResult {
   DeleteSnapshotResult({
     this.snapshot,
   });
+
   factory DeleteSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteSnapshotResult(
       snapshot: json['Snapshot'] != null
@@ -8442,6 +8482,7 @@ class DescribeEngineDefaultParametersResult {
   DescribeEngineDefaultParametersResult({
     this.engineDefaults,
   });
+
   factory DescribeEngineDefaultParametersResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeEngineDefaultParametersResult(
@@ -8482,6 +8523,7 @@ class DescribeGlobalReplicationGroupsResult {
     this.globalReplicationGroups,
     this.marker,
   });
+
   factory DescribeGlobalReplicationGroupsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeGlobalReplicationGroupsResult(
@@ -8533,6 +8575,7 @@ class DescribeSnapshotsListMessage {
     this.marker,
     this.snapshots,
   });
+
   factory DescribeSnapshotsListMessage.fromJson(Map<String, dynamic> json) {
     return DescribeSnapshotsListMessage(
       marker: json['Marker'] as String?,
@@ -8577,6 +8620,7 @@ class DescribeUserGroupsResult {
     this.marker,
     this.userGroups,
   });
+
   factory DescribeUserGroupsResult.fromJson(Map<String, dynamic> json) {
     return DescribeUserGroupsResult(
       marker: json['Marker'] as String?,
@@ -8621,6 +8665,7 @@ class DescribeUsersResult {
     this.marker,
     this.users,
   });
+
   factory DescribeUsersResult.fromJson(Map<String, dynamic> json) {
     return DescribeUsersResult(
       marker: json['Marker'] as String?,
@@ -8662,6 +8707,7 @@ class DestinationDetails {
     this.cloudWatchLogsDetails,
     this.kinesisFirehoseDetails,
   });
+
   factory DestinationDetails.fromJson(Map<String, dynamic> json) {
     return DestinationDetails(
       cloudWatchLogsDetails: json['CloudWatchLogsDetails'] != null
@@ -8732,6 +8778,7 @@ class DisassociateGlobalReplicationGroupResult {
   DisassociateGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory DisassociateGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return DisassociateGlobalReplicationGroupResult(
@@ -8775,6 +8822,7 @@ class EC2SecurityGroup {
     this.eC2SecurityGroupOwnerId,
     this.status,
   });
+
   factory EC2SecurityGroup.fromJson(Map<String, dynamic> json) {
     return EC2SecurityGroup(
       eC2SecurityGroupName: json['EC2SecurityGroupName'] as String?,
@@ -8820,6 +8868,7 @@ class Endpoint {
     this.address,
     this.port,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       address: json['Address'] as String?,
@@ -8872,6 +8921,7 @@ class EngineDefaults {
     this.marker,
     this.parameters,
   });
+
   factory EngineDefaults.fromJson(Map<String, dynamic> json) {
     return EngineDefaults(
       cacheNodeTypeSpecificParameters:
@@ -8949,6 +8999,7 @@ class Event {
     this.sourceIdentifier,
     this.sourceType,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       date: timeStampFromJson(json['Date']),
@@ -8994,6 +9045,7 @@ class EventsMessage {
     this.events,
     this.marker,
   });
+
   factory EventsMessage.fromJson(Map<String, dynamic> json) {
     return EventsMessage(
       events: (json['Events'] as List?)
@@ -9028,6 +9080,7 @@ class FailoverGlobalReplicationGroupResult {
   FailoverGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory FailoverGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return FailoverGlobalReplicationGroupResult(
@@ -9067,6 +9120,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String,
@@ -9099,6 +9153,7 @@ class GlobalNodeGroup {
     this.globalNodeGroupId,
     this.slots,
   });
+
   factory GlobalNodeGroup.fromJson(Map<String, dynamic> json) {
     return GlobalNodeGroup(
       globalNodeGroupId: json['GlobalNodeGroupId'] as String?,
@@ -9208,6 +9263,7 @@ class GlobalReplicationGroup {
     this.status,
     this.transitEncryptionEnabled,
   });
+
   factory GlobalReplicationGroup.fromJson(Map<String, dynamic> json) {
     return GlobalReplicationGroup(
       arn: json['ARN'] as String?,
@@ -9314,6 +9370,7 @@ class GlobalReplicationGroupInfo {
     this.globalReplicationGroupId,
     this.globalReplicationGroupMemberRole,
   });
+
   factory GlobalReplicationGroupInfo.fromJson(Map<String, dynamic> json) {
     return GlobalReplicationGroupInfo(
       globalReplicationGroupId: json['GlobalReplicationGroupId'] as String?,
@@ -9369,6 +9426,7 @@ class GlobalReplicationGroupMember {
     this.role,
     this.status,
   });
+
   factory GlobalReplicationGroupMember.fromJson(Map<String, dynamic> json) {
     return GlobalReplicationGroupMember(
       automaticFailover:
@@ -9417,6 +9475,7 @@ class IncreaseNodeGroupsInGlobalReplicationGroupResult {
   IncreaseNodeGroupsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory IncreaseNodeGroupsInGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return IncreaseNodeGroupsInGlobalReplicationGroupResult(
@@ -9451,6 +9510,7 @@ class IncreaseReplicaCountResult {
   IncreaseReplicaCountResult({
     this.replicationGroup,
   });
+
   factory IncreaseReplicaCountResult.fromJson(Map<String, dynamic> json) {
     return IncreaseReplicaCountResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -9484,6 +9544,7 @@ class KinesisFirehoseDestinationDetails {
   KinesisFirehoseDestinationDetails({
     this.deliveryStream,
   });
+
   factory KinesisFirehoseDestinationDetails.fromJson(
       Map<String, dynamic> json) {
     return KinesisFirehoseDestinationDetails(
@@ -9537,6 +9598,7 @@ class LogDeliveryConfiguration {
     this.message,
     this.status,
   });
+
   factory LogDeliveryConfiguration.fromJson(Map<String, dynamic> json) {
     return LogDeliveryConfiguration(
       destinationDetails: json['DestinationDetails'] != null
@@ -9613,6 +9675,7 @@ class LogDeliveryConfigurationRequest {
     this.logFormat,
     this.logType,
   });
+
   factory LogDeliveryConfigurationRequest.fromJson(Map<String, dynamic> json) {
     return LogDeliveryConfigurationRequest(
       destinationDetails: json['DestinationDetails'] != null
@@ -9744,6 +9807,7 @@ class ModifyCacheClusterResult {
   ModifyCacheClusterResult({
     this.cacheCluster,
   });
+
   factory ModifyCacheClusterResult.fromJson(Map<String, dynamic> json) {
     return ModifyCacheClusterResult(
       cacheCluster: json['CacheCluster'] != null
@@ -9774,6 +9838,7 @@ class ModifyCacheSubnetGroupResult {
   ModifyCacheSubnetGroupResult({
     this.cacheSubnetGroup,
   });
+
   factory ModifyCacheSubnetGroupResult.fromJson(Map<String, dynamic> json) {
     return ModifyCacheSubnetGroupResult(
       cacheSubnetGroup: json['CacheSubnetGroup'] != null
@@ -9805,6 +9870,7 @@ class ModifyGlobalReplicationGroupResult {
   ModifyGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory ModifyGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return ModifyGlobalReplicationGroupResult(
@@ -9838,6 +9904,7 @@ class ModifyReplicationGroupResult {
   ModifyReplicationGroupResult({
     this.replicationGroup,
   });
+
   factory ModifyReplicationGroupResult.fromJson(Map<String, dynamic> json) {
     return ModifyReplicationGroupResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -9869,6 +9936,7 @@ class ModifyReplicationGroupShardConfigurationResult {
   ModifyReplicationGroupShardConfigurationResult({
     this.replicationGroup,
   });
+
   factory ModifyReplicationGroupShardConfigurationResult.fromJson(
       Map<String, dynamic> json) {
     return ModifyReplicationGroupShardConfigurationResult(
@@ -9960,6 +10028,7 @@ class NodeGroup {
     this.slots,
     this.status,
   });
+
   factory NodeGroup.fromJson(Map<String, dynamic> json) {
     return NodeGroup(
       nodeGroupId: json['NodeGroupId'] as String?,
@@ -10059,6 +10128,7 @@ class NodeGroupConfiguration {
     this.replicaOutpostArns,
     this.slots,
   });
+
   factory NodeGroupConfiguration.fromJson(Map<String, dynamic> json) {
     return NodeGroupConfiguration(
       nodeGroupId: json['NodeGroupId'] as String?,
@@ -10150,6 +10220,7 @@ class NodeGroupMember {
     this.preferredOutpostArn,
     this.readEndpoint,
   });
+
   factory NodeGroupMember.fromJson(Map<String, dynamic> json) {
     return NodeGroupMember(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -10239,6 +10310,7 @@ class NodeGroupMemberUpdateStatus {
     this.nodeUpdateStatus,
     this.nodeUpdateStatusModifiedDate,
   });
+
   factory NodeGroupMemberUpdateStatus.fromJson(Map<String, dynamic> json) {
     return NodeGroupMemberUpdateStatus(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -10322,6 +10394,7 @@ class NodeGroupUpdateStatus {
     this.nodeGroupId,
     this.nodeGroupMemberUpdateStatus,
   });
+
   factory NodeGroupUpdateStatus.fromJson(Map<String, dynamic> json) {
     return NodeGroupUpdateStatus(
       nodeGroupId: json['NodeGroupId'] as String?,
@@ -10390,6 +10463,7 @@ class NodeSnapshot {
     this.nodeGroupId,
     this.snapshotCreateTime,
   });
+
   factory NodeSnapshot.fromJson(Map<String, dynamic> json) {
     return NodeSnapshot(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -10534,6 +10608,7 @@ class NotificationConfiguration {
     this.topicArn,
     this.topicStatus,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       topicArn: json['TopicArn'] as String?,
@@ -10634,6 +10709,7 @@ class Parameter {
     this.parameterValue,
     this.source,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       allowedValues: json['AllowedValues'] as String?,
@@ -10700,6 +10776,7 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+
   factory ParameterNameValue.fromJson(Map<String, dynamic> json) {
     return ParameterNameValue(
       parameterName: json['ParameterName'] as String?,
@@ -10768,6 +10845,7 @@ class PendingLogDeliveryConfiguration {
     this.logFormat,
     this.logType,
   });
+
   factory PendingLogDeliveryConfiguration.fromJson(Map<String, dynamic> json) {
     return PendingLogDeliveryConfiguration(
       destinationDetails: json['DestinationDetails'] != null
@@ -10841,6 +10919,7 @@ class PendingModifiedValues {
     this.logDeliveryConfigurations,
     this.numCacheNodes,
   });
+
   factory PendingModifiedValues.fromJson(Map<String, dynamic> json) {
     return PendingModifiedValues(
       authTokenStatus:
@@ -10921,6 +11000,7 @@ class ProcessedUpdateAction {
     this.serviceUpdateName,
     this.updateActionStatus,
   });
+
   factory ProcessedUpdateAction.fromJson(Map<String, dynamic> json) {
     return ProcessedUpdateAction(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -10963,6 +11043,7 @@ class PurchaseReservedCacheNodesOfferingResult {
   PurchaseReservedCacheNodesOfferingResult({
     this.reservedCacheNode,
   });
+
   factory PurchaseReservedCacheNodesOfferingResult.fromJson(
       Map<String, dynamic> json) {
     return PurchaseReservedCacheNodesOfferingResult(
@@ -10995,6 +11076,7 @@ class RebalanceSlotsInGlobalReplicationGroupResult {
   RebalanceSlotsInGlobalReplicationGroupResult({
     this.globalReplicationGroup,
   });
+
   factory RebalanceSlotsInGlobalReplicationGroupResult.fromJson(
       Map<String, dynamic> json) {
     return RebalanceSlotsInGlobalReplicationGroupResult(
@@ -11029,6 +11111,7 @@ class RebootCacheClusterResult {
   RebootCacheClusterResult({
     this.cacheCluster,
   });
+
   factory RebootCacheClusterResult.fromJson(Map<String, dynamic> json) {
     return RebootCacheClusterResult(
       cacheCluster: json['CacheCluster'] != null
@@ -11066,6 +11149,7 @@ class RecurringCharge {
     this.recurringChargeAmount,
     this.recurringChargeFrequency,
   });
+
   factory RecurringCharge.fromJson(Map<String, dynamic> json) {
     return RecurringCharge(
       recurringChargeAmount: json['RecurringChargeAmount'] as double?,
@@ -11111,6 +11195,7 @@ class RegionalConfiguration {
     required this.replicationGroupRegion,
     required this.reshardingConfiguration,
   });
+
   factory RegionalConfiguration.fromJson(Map<String, dynamic> json) {
     return RegionalConfiguration(
       replicationGroupId: json['ReplicationGroupId'] as String,
@@ -11294,6 +11379,7 @@ class ReplicationGroup {
     this.transitEncryptionEnabled,
     this.userGroupIds,
   });
+
   factory ReplicationGroup.fromJson(Map<String, dynamic> json) {
     return ReplicationGroup(
       arn: json['ARN'] as String?,
@@ -11486,6 +11572,7 @@ class ReplicationGroupMessage {
     this.marker,
     this.replicationGroups,
   });
+
   factory ReplicationGroupMessage.fromJson(Map<String, dynamic> json) {
     return ReplicationGroupMessage(
       marker: json['Marker'] as String?,
@@ -11548,6 +11635,7 @@ class ReplicationGroupPendingModifiedValues {
     this.resharding,
     this.userGroups,
   });
+
   factory ReplicationGroupPendingModifiedValues.fromJson(
       Map<String, dynamic> json) {
     return ReplicationGroupPendingModifiedValues(
@@ -11800,6 +11888,7 @@ class ReservedCacheNode {
     this.state,
     this.usagePrice,
   });
+
   factory ReservedCacheNode.fromJson(Map<String, dynamic> json) {
     return ReservedCacheNode(
       cacheNodeCount: json['CacheNodeCount'] as int?,
@@ -11894,6 +11983,7 @@ class ReservedCacheNodeMessage {
     this.marker,
     this.reservedCacheNodes,
   });
+
   factory ReservedCacheNodeMessage.fromJson(Map<String, dynamic> json) {
     return ReservedCacheNodeMessage(
       marker: json['Marker'] as String?,
@@ -12085,6 +12175,7 @@ class ReservedCacheNodesOffering {
     this.reservedCacheNodesOfferingId,
     this.usagePrice,
   });
+
   factory ReservedCacheNodesOffering.fromJson(Map<String, dynamic> json) {
     return ReservedCacheNodesOffering(
       cacheNodeType: json['CacheNodeType'] as String?,
@@ -12157,6 +12248,7 @@ class ReservedCacheNodesOfferingMessage {
     this.marker,
     this.reservedCacheNodesOfferings,
   });
+
   factory ReservedCacheNodesOfferingMessage.fromJson(
       Map<String, dynamic> json) {
     return ReservedCacheNodesOfferingMessage(
@@ -12207,6 +12299,7 @@ class ReshardingConfiguration {
     this.nodeGroupId,
     this.preferredAvailabilityZones,
   });
+
   factory ReshardingConfiguration.fromJson(Map<String, dynamic> json) {
     return ReshardingConfiguration(
       nodeGroupId: json['NodeGroupId'] as String?,
@@ -12236,6 +12329,7 @@ class ReshardingStatus {
   ReshardingStatus({
     this.slotMigration,
   });
+
   factory ReshardingStatus.fromJson(Map<String, dynamic> json) {
     return ReshardingStatus(
       slotMigration: json['SlotMigration'] != null
@@ -12267,6 +12361,7 @@ class RevokeCacheSecurityGroupIngressResult {
   RevokeCacheSecurityGroupIngressResult({
     this.cacheSecurityGroup,
   });
+
   factory RevokeCacheSecurityGroupIngressResult.fromJson(
       Map<String, dynamic> json) {
     return RevokeCacheSecurityGroupIngressResult(
@@ -12307,6 +12402,7 @@ class SecurityGroupMembership {
     this.securityGroupId,
     this.status,
   });
+
   factory SecurityGroupMembership.fromJson(Map<String, dynamic> json) {
     return SecurityGroupMembership(
       securityGroupId: json['SecurityGroupId'] as String?,
@@ -12389,6 +12485,7 @@ class ServiceUpdate {
     this.serviceUpdateStatus,
     this.serviceUpdateType,
   });
+
   factory ServiceUpdate.fromJson(Map<String, dynamic> json) {
     return ServiceUpdate(
       autoUpdateAfterRecommendedApplyByDate:
@@ -12593,6 +12690,7 @@ class ServiceUpdatesMessage {
     this.marker,
     this.serviceUpdates,
   });
+
   factory ServiceUpdatesMessage.fromJson(Map<String, dynamic> json) {
     return ServiceUpdatesMessage(
       marker: json['Marker'] as String?,
@@ -12665,6 +12763,7 @@ class SlotMigration {
   SlotMigration({
     this.progressPercentage,
   });
+
   factory SlotMigration.fromJson(Map<String, dynamic> json) {
     return SlotMigration(
       progressPercentage: json['ProgressPercentage'] as double?,
@@ -12976,6 +13075,7 @@ class Snapshot {
     this.topicArn,
     this.vpcId,
   });
+
   factory Snapshot.fromJson(Map<String, dynamic> json) {
     return Snapshot(
       arn: json['ARN'] as String?,
@@ -13189,6 +13289,7 @@ class StartMigrationResponse {
   StartMigrationResponse({
     this.replicationGroup,
   });
+
   factory StartMigrationResponse.fromJson(Map<String, dynamic> json) {
     return StartMigrationResponse(
       replicationGroup: json['ReplicationGroup'] != null
@@ -13232,6 +13333,7 @@ class Subnet {
     this.subnetIdentifier,
     this.subnetOutpost,
   });
+
   factory Subnet.fromJson(Map<String, dynamic> json) {
     return Subnet(
       subnetAvailabilityZone: json['SubnetAvailabilityZone'] != null
@@ -13279,6 +13381,7 @@ class SubnetOutpost {
   SubnetOutpost({
     this.subnetOutpostArn,
   });
+
   factory SubnetOutpost.fromJson(Map<String, dynamic> json) {
     return SubnetOutpost(
       subnetOutpostArn: json['SubnetOutpostArn'] as String?,
@@ -13316,6 +13419,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -13350,6 +13454,7 @@ class TagListMessage {
   TagListMessage({
     this.tagList,
   });
+
   factory TagListMessage.fromJson(Map<String, dynamic> json) {
     return TagListMessage(
       tagList: (json['TagList'] as List?)
@@ -13380,6 +13485,7 @@ class TestFailoverResult {
   TestFailoverResult({
     this.replicationGroup,
   });
+
   factory TestFailoverResult.fromJson(Map<String, dynamic> json) {
     return TestFailoverResult(
       replicationGroup: json['ReplicationGroup'] != null
@@ -13418,6 +13524,7 @@ class TimeRangeFilter {
     this.endTime,
     this.startTime,
   });
+
   factory TimeRangeFilter.fromJson(Map<String, dynamic> json) {
     return TimeRangeFilter(
       endTime: timeStampFromJson(json['EndTime']),
@@ -13460,6 +13567,7 @@ class UnprocessedUpdateAction {
     this.replicationGroupId,
     this.serviceUpdateName,
   });
+
   factory UnprocessedUpdateAction.fromJson(Map<String, dynamic> json) {
     return UnprocessedUpdateAction(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -13575,6 +13683,7 @@ class UpdateAction {
     this.updateActionStatus,
     this.updateActionStatusModifiedDate,
   });
+
   factory UpdateAction.fromJson(Map<String, dynamic> json) {
     return UpdateAction(
       cacheClusterId: json['CacheClusterId'] as String?,
@@ -13723,6 +13832,7 @@ class UpdateActionResultsMessage {
     this.processedUpdateActions,
     this.unprocessedUpdateActions,
   });
+
   factory UpdateActionResultsMessage.fromJson(Map<String, dynamic> json) {
     return UpdateActionResultsMessage(
       processedUpdateActions: (json['ProcessedUpdateActions'] as List?)
@@ -13843,6 +13953,7 @@ class UpdateActionsMessage {
     this.marker,
     this.updateActions,
   });
+
   factory UpdateActionsMessage.fromJson(Map<String, dynamic> json) {
     return UpdateActionsMessage(
       marker: json['Marker'] as String?,
@@ -13909,6 +14020,7 @@ class User {
     this.userId,
     this.userName,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       arn: json['ARN'] as String?,
@@ -13999,6 +14111,7 @@ class UserGroup {
     this.userGroupId,
     this.userIds,
   });
+
   factory UserGroup.fromJson(Map<String, dynamic> json) {
     return UserGroup(
       arn: json['ARN'] as String?,
@@ -14070,6 +14183,7 @@ class UserGroupPendingChanges {
     this.userIdsToAdd,
     this.userIdsToRemove,
   });
+
   factory UserGroupPendingChanges.fromJson(Map<String, dynamic> json) {
     return UserGroupPendingChanges(
       userIdsToAdd: (json['UserIdsToAdd'] as List?)
@@ -14116,6 +14230,7 @@ class UserGroupsUpdateStatus {
     this.userGroupIdsToAdd,
     this.userGroupIdsToRemove,
   });
+
   factory UserGroupsUpdateStatus.fromJson(Map<String, dynamic> json) {
     return UserGroupsUpdateStatus(
       userGroupIdsToAdd: (json['UserGroupIdsToAdd'] as List?)

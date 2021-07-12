@@ -269,6 +269,7 @@ class AttributeValue {
   AttributeValue({
     this.value,
   });
+
   factory AttributeValue.fromJson(Map<String, dynamic> json) {
     return AttributeValue(
       value: json['Value'] as String?,
@@ -298,6 +299,7 @@ class DescribeServicesResponse {
     this.nextToken,
     this.services,
   });
+
   factory DescribeServicesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeServicesResponse(
       formatVersion: json['FormatVersion'] as String?,
@@ -354,6 +356,7 @@ class Filter {
     required this.type,
     required this.value,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       field: json['Field'] as String,
@@ -410,6 +413,7 @@ class GetAttributeValuesResponse {
     this.attributeValues,
     this.nextToken,
   });
+
   factory GetAttributeValuesResponse.fromJson(Map<String, dynamic> json) {
     return GetAttributeValuesResponse(
       attributeValues: (json['AttributeValues'] as List?)
@@ -446,6 +450,7 @@ class GetProductsResponse {
     this.nextToken,
     this.priceList,
   });
+
   factory GetProductsResponse.fromJson(Map<String, dynamic> json) {
     return GetProductsResponse(
       formatVersion: json['FormatVersion'] as String?,
@@ -484,6 +489,7 @@ class Service {
     this.attributeNames,
     this.serviceCode,
   });
+
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       attributeNames: (json['AttributeNames'] as List?)

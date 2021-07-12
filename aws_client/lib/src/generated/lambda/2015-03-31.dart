@@ -4647,6 +4647,7 @@ class AccountLimit {
     this.totalCodeSize,
     this.unreservedConcurrentExecutions,
   });
+
   factory AccountLimit.fromJson(Map<String, dynamic> json) {
     return AccountLimit(
       codeSizeUnzipped: json['CodeSizeUnzipped'] as int?,
@@ -4689,6 +4690,7 @@ class AccountUsage {
     this.functionCount,
     this.totalCodeSize,
   });
+
   factory AccountUsage.fromJson(Map<String, dynamic> json) {
     return AccountUsage(
       functionCount: json['FunctionCount'] as int?,
@@ -4717,6 +4719,7 @@ class AddLayerVersionPermissionResponse {
     this.revisionId,
     this.statement,
   });
+
   factory AddLayerVersionPermissionResponse.fromJson(
       Map<String, dynamic> json) {
     return AddLayerVersionPermissionResponse(
@@ -4742,6 +4745,7 @@ class AddPermissionResponse {
   AddPermissionResponse({
     this.statement,
   });
+
   factory AddPermissionResponse.fromJson(Map<String, dynamic> json) {
     return AddPermissionResponse(
       statement: json['Statement'] as String?,
@@ -4787,6 +4791,7 @@ class AliasConfiguration {
     this.revisionId,
     this.routingConfig,
   });
+
   factory AliasConfiguration.fromJson(Map<String, dynamic> json) {
     return AliasConfiguration(
       aliasArn: json['AliasArn'] as String?,
@@ -4829,6 +4834,7 @@ class AliasRoutingConfiguration {
   AliasRoutingConfiguration({
     this.additionalVersionWeights,
   });
+
   factory AliasRoutingConfiguration.fromJson(Map<String, dynamic> json) {
     return AliasRoutingConfiguration(
       additionalVersionWeights:
@@ -4855,6 +4861,7 @@ class AllowedPublishers {
   AllowedPublishers({
     required this.signingProfileVersionArns,
   });
+
   factory AllowedPublishers.fromJson(Map<String, dynamic> json) {
     return AllowedPublishers(
       signingProfileVersionArns: (json['SigningProfileVersionArns'] as List)
@@ -4904,6 +4911,7 @@ class CodeSigningConfig {
     required this.lastModified,
     this.description,
   });
+
   factory CodeSigningConfig.fromJson(Map<String, dynamic> json) {
     return CodeSigningConfig(
       allowedPublishers: AllowedPublishers.fromJson(
@@ -4951,6 +4959,7 @@ class CodeSigningPolicies {
   CodeSigningPolicies({
     this.untrustedArtifactOnDeployment,
   });
+
   factory CodeSigningPolicies.fromJson(Map<String, dynamic> json) {
     return CodeSigningPolicies(
       untrustedArtifactOnDeployment:
@@ -5007,6 +5016,7 @@ class Concurrency {
   Concurrency({
     this.reservedConcurrentExecutions,
   });
+
   factory Concurrency.fromJson(Map<String, dynamic> json) {
     return Concurrency(
       reservedConcurrentExecutions:
@@ -5030,6 +5040,7 @@ class CreateCodeSigningConfigResponse {
   CreateCodeSigningConfigResponse({
     required this.codeSigningConfig,
   });
+
   factory CreateCodeSigningConfigResponse.fromJson(Map<String, dynamic> json) {
     return CreateCodeSigningConfigResponse(
       codeSigningConfig: CodeSigningConfig.fromJson(
@@ -5055,6 +5066,7 @@ class DeadLetterConfig {
   DeadLetterConfig({
     this.targetArn,
   });
+
   factory DeadLetterConfig.fromJson(Map<String, dynamic> json) {
     return DeadLetterConfig(
       targetArn: json['TargetArn'] as String?,
@@ -5071,6 +5083,7 @@ class DeadLetterConfig {
 
 class DeleteCodeSigningConfigResponse {
   DeleteCodeSigningConfigResponse();
+
   factory DeleteCodeSigningConfigResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCodeSigningConfigResponse();
   }
@@ -5093,6 +5106,7 @@ class DestinationConfig {
     this.onFailure,
     this.onSuccess,
   });
+
   factory DestinationConfig.fromJson(Map<String, dynamic> json) {
     return DestinationConfig(
       onFailure: json['OnFailure'] != null
@@ -5150,6 +5164,7 @@ class Environment {
   Environment({
     this.variables,
   });
+
   factory Environment.fromJson(Map<String, dynamic> json) {
     return Environment(
       variables: (json['Variables'] as Map<String, dynamic>?)
@@ -5177,6 +5192,7 @@ class EnvironmentError {
     this.errorCode,
     this.message,
   });
+
   factory EnvironmentError.fromJson(Map<String, dynamic> json) {
     return EnvironmentError(
       errorCode: json['ErrorCode'] as String?,
@@ -5208,6 +5224,7 @@ class EnvironmentResponse {
     this.error,
     this.variables,
   });
+
   factory EnvironmentResponse.fromJson(Map<String, dynamic> json) {
     return EnvironmentResponse(
       error: json['Error'] != null
@@ -5341,6 +5358,7 @@ class EventSourceMappingConfiguration {
     this.tumblingWindowInSeconds,
     this.uuid,
   });
+
   factory EventSourceMappingConfiguration.fromJson(Map<String, dynamic> json) {
     return EventSourceMappingConfiguration(
       batchSize: json['BatchSize'] as int?,
@@ -5505,6 +5523,7 @@ class FileSystemConfig {
     required this.arn,
     required this.localMountPath,
   });
+
   factory FileSystemConfig.fromJson(Map<String, dynamic> json) {
     return FileSystemConfig(
       arn: json['Arn'] as String,
@@ -5552,6 +5571,7 @@ class FunctionCode {
     this.s3ObjectVersion,
     this.zipFile,
   });
+
   factory FunctionCode.fromJson(Map<String, dynamic> json) {
     return FunctionCode(
       imageUri: json['ImageUri'] as String?,
@@ -5598,6 +5618,7 @@ class FunctionCodeLocation {
     this.repositoryType,
     this.resolvedImageUri,
   });
+
   factory FunctionCodeLocation.fromJson(Map<String, dynamic> json) {
     return FunctionCodeLocation(
       imageUri: json['ImageUri'] as String?,
@@ -5763,6 +5784,7 @@ class FunctionConfiguration {
     this.version,
     this.vpcConfig,
   });
+
   factory FunctionConfiguration.fromJson(Map<String, dynamic> json) {
     return FunctionConfiguration(
       codeSha256: json['CodeSha256'] as String?,
@@ -5937,6 +5959,7 @@ class FunctionEventInvokeConfig {
     this.maximumEventAgeInSeconds,
     this.maximumRetryAttempts,
   });
+
   factory FunctionEventInvokeConfig.fromJson(Map<String, dynamic> json) {
     return FunctionEventInvokeConfig(
       destinationConfig: json['DestinationConfig'] != null
@@ -6026,6 +6049,7 @@ class GetAccountSettingsResponse {
     this.accountLimit,
     this.accountUsage,
   });
+
   factory GetAccountSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountSettingsResponse(
       accountLimit: json['AccountLimit'] != null
@@ -6054,6 +6078,7 @@ class GetCodeSigningConfigResponse {
   GetCodeSigningConfigResponse({
     required this.codeSigningConfig,
   });
+
   factory GetCodeSigningConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetCodeSigningConfigResponse(
       codeSigningConfig: CodeSigningConfig.fromJson(
@@ -6096,6 +6121,7 @@ class GetFunctionCodeSigningConfigResponse {
     required this.codeSigningConfigArn,
     required this.functionName,
   });
+
   factory GetFunctionCodeSigningConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return GetFunctionCodeSigningConfigResponse(
@@ -6121,6 +6147,7 @@ class GetFunctionConcurrencyResponse {
   GetFunctionConcurrencyResponse({
     this.reservedConcurrentExecutions,
   });
+
   factory GetFunctionConcurrencyResponse.fromJson(Map<String, dynamic> json) {
     return GetFunctionConcurrencyResponse(
       reservedConcurrentExecutions:
@@ -6159,6 +6186,7 @@ class GetFunctionResponse {
     this.configuration,
     this.tags,
   });
+
   factory GetFunctionResponse.fromJson(Map<String, dynamic> json) {
     return GetFunctionResponse(
       code: json['Code'] != null
@@ -6201,6 +6229,7 @@ class GetLayerVersionPolicyResponse {
     this.policy,
     this.revisionId,
   });
+
   factory GetLayerVersionPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetLayerVersionPolicyResponse(
       policy: json['Policy'] as String?,
@@ -6255,6 +6284,7 @@ class GetLayerVersionResponse {
     this.licenseInfo,
     this.version,
   });
+
   factory GetLayerVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetLayerVersionResponse(
       compatibleRuntimes: (json['CompatibleRuntimes'] as List?)
@@ -6309,6 +6339,7 @@ class GetPolicyResponse {
     this.policy,
     this.revisionId,
   });
+
   factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyResponse(
       policy: json['Policy'] as String?,
@@ -6356,6 +6387,7 @@ class GetProvisionedConcurrencyConfigResponse {
     this.status,
     this.statusReason,
   });
+
   factory GetProvisionedConcurrencyConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return GetProvisionedConcurrencyConfigResponse(
@@ -6418,6 +6450,7 @@ class ImageConfig {
     this.entryPoint,
     this.workingDirectory,
   });
+
   factory ImageConfig.fromJson(Map<String, dynamic> json) {
     return ImageConfig(
       command: (json['Command'] as List?)
@@ -6456,6 +6489,7 @@ class ImageConfigError {
     this.errorCode,
     this.message,
   });
+
   factory ImageConfigError.fromJson(Map<String, dynamic> json) {
     return ImageConfigError(
       errorCode: json['ErrorCode'] as String?,
@@ -6485,6 +6519,7 @@ class ImageConfigResponse {
     this.error,
     this.imageConfig,
   });
+
   factory ImageConfigResponse.fromJson(Map<String, dynamic> json) {
     return ImageConfigResponse(
       error: json['Error'] != null
@@ -6534,6 +6569,7 @@ class InvocationResponse {
     this.payload,
     this.statusCode,
   });
+
   factory InvocationResponse.fromJson(Map<String, dynamic> json) {
     return InvocationResponse(
       executedVersion: json['X-Amz-Executed-Version'] as String?,
@@ -6599,6 +6635,7 @@ class InvokeAsyncResponse {
   InvokeAsyncResponse({
     this.status,
   });
+
   factory InvokeAsyncResponse.fromJson(Map<String, dynamic> json) {
     return InvokeAsyncResponse(
       status: json['Status'] as int?,
@@ -6734,6 +6771,7 @@ class Layer {
     this.signingJobArn,
     this.signingProfileVersionArn,
   });
+
   factory Layer.fromJson(Map<String, dynamic> json) {
     return Layer(
       arn: json['Arn'] as String?,
@@ -6782,6 +6820,7 @@ class LayerVersionContentInput {
     this.s3ObjectVersion,
     this.zipFile,
   });
+
   factory LayerVersionContentInput.fromJson(Map<String, dynamic> json) {
     return LayerVersionContentInput(
       s3Bucket: json['S3Bucket'] as String?,
@@ -6831,6 +6870,7 @@ class LayerVersionContentOutput {
     this.signingJobArn,
     this.signingProfileVersionArn,
   });
+
   factory LayerVersionContentOutput.fromJson(Map<String, dynamic> json) {
     return LayerVersionContentOutput(
       codeSha256: json['CodeSha256'] as String?,
@@ -6889,6 +6929,7 @@ class LayerVersionsListItem {
     this.licenseInfo,
     this.version,
   });
+
   factory LayerVersionsListItem.fromJson(Map<String, dynamic> json) {
     return LayerVersionsListItem(
       compatibleRuntimes: (json['CompatibleRuntimes'] as List?)
@@ -6941,6 +6982,7 @@ class LayersListItem {
     this.layerArn,
     this.layerName,
   });
+
   factory LayersListItem.fromJson(Map<String, dynamic> json) {
     return LayersListItem(
       latestMatchingVersion: json['LatestMatchingVersion'] != null
@@ -6976,6 +7018,7 @@ class ListAliasesResponse {
     this.aliases,
     this.nextMarker,
   });
+
   factory ListAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListAliasesResponse(
       aliases: (json['Aliases'] as List?)
@@ -7007,6 +7050,7 @@ class ListCodeSigningConfigsResponse {
     this.codeSigningConfigs,
     this.nextMarker,
   });
+
   factory ListCodeSigningConfigsResponse.fromJson(Map<String, dynamic> json) {
     return ListCodeSigningConfigsResponse(
       codeSigningConfigs: (json['CodeSigningConfigs'] as List?)
@@ -7039,6 +7083,7 @@ class ListEventSourceMappingsResponse {
     this.eventSourceMappings,
     this.nextMarker,
   });
+
   factory ListEventSourceMappingsResponse.fromJson(Map<String, dynamic> json) {
     return ListEventSourceMappingsResponse(
       eventSourceMappings: (json['EventSourceMappings'] as List?)
@@ -7072,6 +7117,7 @@ class ListFunctionEventInvokeConfigsResponse {
     this.functionEventInvokeConfigs,
     this.nextMarker,
   });
+
   factory ListFunctionEventInvokeConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListFunctionEventInvokeConfigsResponse(
@@ -7106,6 +7152,7 @@ class ListFunctionsByCodeSigningConfigResponse {
     this.functionArns,
     this.nextMarker,
   });
+
   factory ListFunctionsByCodeSigningConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return ListFunctionsByCodeSigningConfigResponse(
@@ -7139,6 +7186,7 @@ class ListFunctionsResponse {
     this.functions,
     this.nextMarker,
   });
+
   factory ListFunctionsResponse.fromJson(Map<String, dynamic> json) {
     return ListFunctionsResponse(
       functions: (json['Functions'] as List?)
@@ -7170,6 +7218,7 @@ class ListLayerVersionsResponse {
     this.layerVersions,
     this.nextMarker,
   });
+
   factory ListLayerVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListLayerVersionsResponse(
       layerVersions: (json['LayerVersions'] as List?)
@@ -7201,6 +7250,7 @@ class ListLayersResponse {
     this.layers,
     this.nextMarker,
   });
+
   factory ListLayersResponse.fromJson(Map<String, dynamic> json) {
     return ListLayersResponse(
       layers: (json['Layers'] as List?)
@@ -7233,6 +7283,7 @@ class ListProvisionedConcurrencyConfigsResponse {
     this.nextMarker,
     this.provisionedConcurrencyConfigs,
   });
+
   factory ListProvisionedConcurrencyConfigsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListProvisionedConcurrencyConfigsResponse(
@@ -7264,6 +7315,7 @@ class ListTagsResponse {
   ListTagsResponse({
     this.tags,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -7290,6 +7342,7 @@ class ListVersionsByFunctionResponse {
     this.nextMarker,
     this.versions,
   });
+
   factory ListVersionsByFunctionResponse.fromJson(Map<String, dynamic> json) {
     return ListVersionsByFunctionResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -7346,6 +7399,7 @@ class OnFailure {
   OnFailure({
     this.destination,
   });
+
   factory OnFailure.fromJson(Map<String, dynamic> json) {
     return OnFailure(
       destination: json['Destination'] as String?,
@@ -7368,6 +7422,7 @@ class OnSuccess {
   OnSuccess({
     this.destination,
   });
+
   factory OnSuccess.fromJson(Map<String, dynamic> json) {
     return OnSuccess(
       destination: json['Destination'] as String?,
@@ -7446,6 +7501,7 @@ class ProvisionedConcurrencyConfigListItem {
     this.status,
     this.statusReason,
   });
+
   factory ProvisionedConcurrencyConfigListItem.fromJson(
       Map<String, dynamic> json) {
     return ProvisionedConcurrencyConfigListItem(
@@ -7562,6 +7618,7 @@ class PublishLayerVersionResponse {
     this.licenseInfo,
     this.version,
   });
+
   factory PublishLayerVersionResponse.fromJson(Map<String, dynamic> json) {
     return PublishLayerVersionResponse(
       compatibleRuntimes: (json['CompatibleRuntimes'] as List?)
@@ -7632,6 +7689,7 @@ class PutFunctionCodeSigningConfigResponse {
     required this.codeSigningConfigArn,
     required this.functionName,
   });
+
   factory PutFunctionCodeSigningConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return PutFunctionCodeSigningConfigResponse(
@@ -7680,6 +7738,7 @@ class PutProvisionedConcurrencyConfigResponse {
     this.status,
     this.statusReason,
   });
+
   factory PutProvisionedConcurrencyConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return PutProvisionedConcurrencyConfigResponse(
@@ -7870,6 +7929,7 @@ class SelfManagedEventSource {
   SelfManagedEventSource({
     this.endpoints,
   });
+
   factory SelfManagedEventSource.fromJson(Map<String, dynamic> json) {
     return SelfManagedEventSource(
       endpoints: (json['Endpoints'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -7933,6 +7993,7 @@ class SourceAccessConfiguration {
     this.type,
     this.uri,
   });
+
   factory SourceAccessConfiguration.fromJson(Map<String, dynamic> json) {
     return SourceAccessConfiguration(
       type: (json['Type'] as String?)?.toSourceAccessType(),
@@ -8130,6 +8191,7 @@ class TracingConfig {
   TracingConfig({
     this.mode,
   });
+
   factory TracingConfig.fromJson(Map<String, dynamic> json) {
     return TracingConfig(
       mode: (json['Mode'] as String?)?.toTracingMode(),
@@ -8152,6 +8214,7 @@ class TracingConfigResponse {
   TracingConfigResponse({
     this.mode,
   });
+
   factory TracingConfigResponse.fromJson(Map<String, dynamic> json) {
     return TracingConfigResponse(
       mode: (json['Mode'] as String?)?.toTracingMode(),
@@ -8201,6 +8264,7 @@ class UpdateCodeSigningConfigResponse {
   UpdateCodeSigningConfigResponse({
     required this.codeSigningConfig,
   });
+
   factory UpdateCodeSigningConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateCodeSigningConfigResponse(
       codeSigningConfig: CodeSigningConfig.fromJson(
@@ -8231,6 +8295,7 @@ class VpcConfig {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   factory VpcConfig.fromJson(Map<String, dynamic> json) {
     return VpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -8270,6 +8335,7 @@ class VpcConfigResponse {
     this.subnetIds,
     this.vpcId,
   });
+
   factory VpcConfigResponse.fromJson(Map<String, dynamic> json) {
     return VpcConfigResponse(
       securityGroupIds: (json['SecurityGroupIds'] as List?)

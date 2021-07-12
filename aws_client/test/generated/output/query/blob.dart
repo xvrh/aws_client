@@ -62,6 +62,7 @@ class OutputShape {
   OutputShape({
     this.blob,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),

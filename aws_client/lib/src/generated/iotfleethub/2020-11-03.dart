@@ -488,6 +488,7 @@ class ApplicationSummary {
     this.applicationLastUpdateDate,
     this.applicationState,
   });
+
   factory ApplicationSummary.fromJson(Map<String, dynamic> json) {
     return ApplicationSummary(
       applicationId: json['applicationId'] as String,
@@ -536,6 +537,7 @@ class CreateApplicationResponse {
     required this.applicationArn,
     required this.applicationId,
   });
+
   factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApplicationResponse(
       applicationArn: json['applicationArn'] as String,
@@ -555,6 +557,7 @@ class CreateApplicationResponse {
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
+
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
   }
@@ -618,6 +621,7 @@ class DescribeApplicationResponse {
     this.ssoClientId,
     this.tags,
   });
+
   factory DescribeApplicationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeApplicationResponse(
       applicationArn: json['applicationArn'] as String,
@@ -680,6 +684,7 @@ class ListApplicationsResponse {
     this.applicationSummaries,
     this.nextToken,
   });
+
   factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationsResponse(
       applicationSummaries: (json['applicationSummaries'] as List?)
@@ -708,6 +713,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -725,6 +731,7 @@ class ListTagsForResourceResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -736,6 +743,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -747,6 +755,7 @@ class UntagResourceResponse {
 
 class UpdateApplicationResponse {
   UpdateApplicationResponse();
+
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateApplicationResponse();
   }

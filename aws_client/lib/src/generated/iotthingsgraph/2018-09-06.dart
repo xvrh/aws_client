@@ -1843,6 +1843,7 @@ class IoTThingsGraph {
 
 class AssociateEntityToThingResponse {
   AssociateEntityToThingResponse();
+
   factory AssociateEntityToThingResponse.fromJson(Map<String, dynamic> _) {
     return AssociateEntityToThingResponse();
   }
@@ -1859,6 +1860,7 @@ class CreateFlowTemplateResponse {
   CreateFlowTemplateResponse({
     this.summary,
   });
+
   factory CreateFlowTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateFlowTemplateResponse(
       summary: json['summary'] != null
@@ -1883,6 +1885,7 @@ class CreateSystemInstanceResponse {
   CreateSystemInstanceResponse({
     this.summary,
   });
+
   factory CreateSystemInstanceResponse.fromJson(Map<String, dynamic> json) {
     return CreateSystemInstanceResponse(
       summary: json['summary'] != null
@@ -1907,6 +1910,7 @@ class CreateSystemTemplateResponse {
   CreateSystemTemplateResponse({
     this.summary,
   });
+
   factory CreateSystemTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateSystemTemplateResponse(
       summary: json['summary'] != null
@@ -1937,6 +1941,7 @@ class DefinitionDocument {
     required this.language,
     required this.text,
   });
+
   factory DefinitionDocument.fromJson(Map<String, dynamic> json) {
     return DefinitionDocument(
       language: (json['language'] as String).toDefinitionLanguage(),
@@ -1979,6 +1984,7 @@ extension on String {
 
 class DeleteFlowTemplateResponse {
   DeleteFlowTemplateResponse();
+
   factory DeleteFlowTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowTemplateResponse();
   }
@@ -1999,6 +2005,7 @@ class DeleteNamespaceResponse {
     this.namespaceArn,
     this.namespaceName,
   });
+
   factory DeleteNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteNamespaceResponse(
       namespaceArn: json['namespaceArn'] as String?,
@@ -2018,6 +2025,7 @@ class DeleteNamespaceResponse {
 
 class DeleteSystemInstanceResponse {
   DeleteSystemInstanceResponse();
+
   factory DeleteSystemInstanceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSystemInstanceResponse();
   }
@@ -2029,6 +2037,7 @@ class DeleteSystemInstanceResponse {
 
 class DeleteSystemTemplateResponse {
   DeleteSystemTemplateResponse();
+
   factory DeleteSystemTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSystemTemplateResponse();
   }
@@ -2051,6 +2060,7 @@ class DependencyRevision {
     this.id,
     this.revisionNumber,
   });
+
   factory DependencyRevision.fromJson(Map<String, dynamic> json) {
     return DependencyRevision(
       id: json['id'] as String?,
@@ -2080,6 +2090,7 @@ class DeploySystemInstanceResponse {
     required this.summary,
     this.greengrassDeploymentId,
   });
+
   factory DeploySystemInstanceResponse.fromJson(Map<String, dynamic> json) {
     return DeploySystemInstanceResponse(
       summary: SystemInstanceSummary.fromJson(
@@ -2129,6 +2140,7 @@ extension on String {
 
 class DeprecateFlowTemplateResponse {
   DeprecateFlowTemplateResponse();
+
   factory DeprecateFlowTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeprecateFlowTemplateResponse();
   }
@@ -2140,6 +2152,7 @@ class DeprecateFlowTemplateResponse {
 
 class DeprecateSystemTemplateResponse {
   DeprecateSystemTemplateResponse();
+
   factory DeprecateSystemTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeprecateSystemTemplateResponse();
   }
@@ -2173,6 +2186,7 @@ class DescribeNamespaceResponse {
     this.trackingNamespaceName,
     this.trackingNamespaceVersion,
   });
+
   factory DescribeNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeNamespaceResponse(
       namespaceArn: json['namespaceArn'] as String?,
@@ -2203,6 +2217,7 @@ class DescribeNamespaceResponse {
 
 class DissociateEntityFromThingResponse {
   DissociateEntityFromThingResponse();
+
   factory DissociateEntityFromThingResponse.fromJson(Map<String, dynamic> _) {
     return DissociateEntityFromThingResponse();
   }
@@ -2236,6 +2251,7 @@ class EntityDescription {
     this.id,
     this.type,
   });
+
   factory EntityDescription.fromJson(Map<String, dynamic> json) {
     return EntityDescription(
       arn: json['arn'] as String?,
@@ -2285,6 +2301,7 @@ class EntityFilter {
     this.name,
     this.value,
   });
+
   factory EntityFilter.fromJson(Map<String, dynamic> json) {
     return EntityFilter(
       name: (json['name'] as String?)?.toEntityFilterName(),
@@ -2534,6 +2551,7 @@ class FlowExecutionMessage {
     this.payload,
     this.timestamp,
   });
+
   factory FlowExecutionMessage.fromJson(Map<String, dynamic> json) {
     return FlowExecutionMessage(
       eventType: (json['eventType'] as String?)?.toFlowExecutionEventType(),
@@ -2623,6 +2641,7 @@ class FlowExecutionSummary {
     this.systemInstanceId,
     this.updatedAt,
   });
+
   factory FlowExecutionSummary.fromJson(Map<String, dynamic> json) {
     return FlowExecutionSummary(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -2669,6 +2688,7 @@ class FlowTemplateDescription {
     this.summary,
     this.validatedNamespaceVersion,
   });
+
   factory FlowTemplateDescription.fromJson(Map<String, dynamic> json) {
     return FlowTemplateDescription(
       definition: json['definition'] != null
@@ -2709,6 +2729,7 @@ class FlowTemplateFilter {
     required this.name,
     required this.value,
   });
+
   factory FlowTemplateFilter.fromJson(Map<String, dynamic> json) {
     return FlowTemplateFilter(
       name: (json['name'] as String).toFlowTemplateFilterName(),
@@ -2772,6 +2793,7 @@ class FlowTemplateSummary {
     this.id,
     this.revisionNumber,
   });
+
   factory FlowTemplateSummary.fromJson(Map<String, dynamic> json) {
     return FlowTemplateSummary(
       arn: json['arn'] as String?,
@@ -2802,6 +2824,7 @@ class GetEntitiesResponse {
   GetEntitiesResponse({
     this.descriptions,
   });
+
   factory GetEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return GetEntitiesResponse(
       descriptions: (json['descriptions'] as List?)
@@ -2826,6 +2849,7 @@ class GetFlowTemplateResponse {
   GetFlowTemplateResponse({
     this.description,
   });
+
   factory GetFlowTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetFlowTemplateResponse(
       description: json['description'] != null
@@ -2855,6 +2879,7 @@ class GetFlowTemplateRevisionsResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory GetFlowTemplateRevisionsResponse.fromJson(Map<String, dynamic> json) {
     return GetFlowTemplateRevisionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -2898,6 +2923,7 @@ class GetNamespaceDeletionStatusResponse {
     this.namespaceName,
     this.status,
   });
+
   factory GetNamespaceDeletionStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return GetNamespaceDeletionStatusResponse(
@@ -2933,6 +2959,7 @@ class GetSystemInstanceResponse {
   GetSystemInstanceResponse({
     this.description,
   });
+
   factory GetSystemInstanceResponse.fromJson(Map<String, dynamic> json) {
     return GetSystemInstanceResponse(
       description: json['description'] != null
@@ -2957,6 +2984,7 @@ class GetSystemTemplateResponse {
   GetSystemTemplateResponse({
     this.description,
   });
+
   factory GetSystemTemplateResponse.fromJson(Map<String, dynamic> json) {
     return GetSystemTemplateResponse(
       description: json['description'] != null
@@ -2987,6 +3015,7 @@ class GetSystemTemplateRevisionsResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory GetSystemTemplateRevisionsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSystemTemplateRevisionsResponse(
@@ -3041,6 +3070,7 @@ class GetUploadStatusResponse {
     this.namespaceName,
     this.namespaceVersion,
   });
+
   factory GetUploadStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetUploadStatusResponse(
       createdDate: nonNullableTimeStampFromJson(json['createdDate'] as Object),
@@ -3089,6 +3119,7 @@ class ListFlowExecutionMessagesResponse {
     this.messages,
     this.nextToken,
   });
+
   factory ListFlowExecutionMessagesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListFlowExecutionMessagesResponse(
@@ -3121,6 +3152,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['nextToken'] as String?,
@@ -3154,6 +3186,7 @@ class MetricsConfiguration {
     this.cloudMetricEnabled,
     this.metricRuleRoleArn,
   });
+
   factory MetricsConfiguration.fromJson(Map<String, dynamic> json) {
     return MetricsConfiguration(
       cloudMetricEnabled: json['cloudMetricEnabled'] as bool?,
@@ -3240,6 +3273,7 @@ class SearchEntitiesResponse {
     this.descriptions,
     this.nextToken,
   });
+
   factory SearchEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return SearchEntitiesResponse(
       descriptions: (json['descriptions'] as List?)
@@ -3273,6 +3307,7 @@ class SearchFlowExecutionsResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory SearchFlowExecutionsResponse.fromJson(Map<String, dynamic> json) {
     return SearchFlowExecutionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -3306,6 +3341,7 @@ class SearchFlowTemplatesResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory SearchFlowTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return SearchFlowTemplatesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3339,6 +3375,7 @@ class SearchSystemInstancesResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory SearchSystemInstancesResponse.fromJson(Map<String, dynamic> json) {
     return SearchSystemInstancesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3372,6 +3409,7 @@ class SearchSystemTemplatesResponse {
     this.nextToken,
     this.summaries,
   });
+
   factory SearchSystemTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return SearchSystemTemplatesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3404,6 +3442,7 @@ class SearchThingsResponse {
     this.nextToken,
     this.things,
   });
+
   factory SearchThingsResponse.fromJson(Map<String, dynamic> json) {
     return SearchThingsResponse(
       nextToken: json['nextToken'] as String?,
@@ -3519,6 +3558,7 @@ class SystemInstanceDescription {
     this.validatedDependencyRevisions,
     this.validatedNamespaceVersion,
   });
+
   factory SystemInstanceDescription.fromJson(Map<String, dynamic> json) {
     return SystemInstanceDescription(
       definition: json['definition'] != null
@@ -3583,6 +3623,7 @@ class SystemInstanceFilter {
     this.name,
     this.value,
   });
+
   factory SystemInstanceFilter.fromJson(Map<String, dynamic> json) {
     return SystemInstanceFilter(
       name: (json['name'] as String?)?.toSystemInstanceFilterName(),
@@ -3676,6 +3717,7 @@ class SystemInstanceSummary {
     this.target,
     this.updatedAt,
   });
+
   factory SystemInstanceSummary.fromJson(Map<String, dynamic> json) {
     return SystemInstanceSummary(
       arn: json['arn'] as String?,
@@ -3734,6 +3776,7 @@ class SystemTemplateDescription {
     this.summary,
     this.validatedNamespaceVersion,
   });
+
   factory SystemTemplateDescription.fromJson(Map<String, dynamic> json) {
     return SystemTemplateDescription(
       definition: json['definition'] != null
@@ -3774,6 +3817,7 @@ class SystemTemplateFilter {
     required this.name,
     required this.value,
   });
+
   factory SystemTemplateFilter.fromJson(Map<String, dynamic> json) {
     return SystemTemplateFilter(
       name: (json['name'] as String).toSystemTemplateFilterName(),
@@ -3837,6 +3881,7 @@ class SystemTemplateSummary {
     this.id,
     this.revisionNumber,
   });
+
   factory SystemTemplateSummary.fromJson(Map<String, dynamic> json) {
     return SystemTemplateSummary(
       arn: json['arn'] as String?,
@@ -3875,6 +3920,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -3894,6 +3940,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3915,6 +3962,7 @@ class Thing {
     this.thingArn,
     this.thingName,
   });
+
   factory Thing.fromJson(Map<String, dynamic> json) {
     return Thing(
       thingArn: json['thingArn'] as String?,
@@ -3940,6 +3988,7 @@ class UndeploySystemInstanceResponse {
   UndeploySystemInstanceResponse({
     this.summary,
   });
+
   factory UndeploySystemInstanceResponse.fromJson(Map<String, dynamic> json) {
     return UndeploySystemInstanceResponse(
       summary: json['summary'] != null
@@ -3959,6 +4008,7 @@ class UndeploySystemInstanceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3975,6 +4025,7 @@ class UpdateFlowTemplateResponse {
   UpdateFlowTemplateResponse({
     this.summary,
   });
+
   factory UpdateFlowTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowTemplateResponse(
       summary: json['summary'] != null
@@ -3999,6 +4050,7 @@ class UpdateSystemTemplateResponse {
   UpdateSystemTemplateResponse({
     this.summary,
   });
+
   factory UpdateSystemTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSystemTemplateResponse(
       summary: json['summary'] != null
@@ -4024,6 +4076,7 @@ class UploadEntityDefinitionsResponse {
   UploadEntityDefinitionsResponse({
     required this.uploadId,
   });
+
   factory UploadEntityDefinitionsResponse.fromJson(Map<String, dynamic> json) {
     return UploadEntityDefinitionsResponse(
       uploadId: json['uploadId'] as String,

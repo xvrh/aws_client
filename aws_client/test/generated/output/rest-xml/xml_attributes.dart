@@ -53,6 +53,7 @@ class OutputShape {
   OutputShape({
     this.listItems,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       listItems: (json['ItemsList'] as List?)
@@ -83,6 +84,7 @@ class ItemShape {
   ItemShape({
     this.itemDetail,
   });
+
   factory ItemShape.fromJson(Map<String, dynamic> json) {
     return ItemShape(
       itemDetail: json['ItemDetail'] != null
@@ -115,6 +117,7 @@ class ItemDetailShape {
     required this.type,
     this.id,
   });
+
   factory ItemDetailShape.fromJson(Map<String, dynamic> json) {
     return ItemDetailShape(
       type: (json['xsi:type'] as String).toItemType(),

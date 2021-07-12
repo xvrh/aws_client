@@ -5110,6 +5110,7 @@ class AccountAggregationSource {
     this.allAwsRegions,
     this.awsRegions,
   });
+
   factory AccountAggregationSource.fromJson(Map<String, dynamic> json) {
     return AccountAggregationSource(
       accountIds: (json['AccountIds'] as List)
@@ -5161,6 +5162,7 @@ class AggregateComplianceByConfigRule {
     this.compliance,
     this.configRuleName,
   });
+
   factory AggregateComplianceByConfigRule.fromJson(Map<String, dynamic> json) {
     return AggregateComplianceByConfigRule(
       accountId: json['AccountId'] as String?,
@@ -5216,6 +5218,7 @@ class AggregateComplianceByConformancePack {
     this.compliance,
     this.conformancePackName,
   });
+
   factory AggregateComplianceByConformancePack.fromJson(
       Map<String, dynamic> json) {
     return AggregateComplianceByConformancePack(
@@ -5257,6 +5260,7 @@ class AggregateComplianceCount {
     this.complianceSummary,
     this.groupName,
   });
+
   factory AggregateComplianceCount.fromJson(Map<String, dynamic> json) {
     return AggregateComplianceCount(
       complianceSummary: json['ComplianceSummary'] != null
@@ -5310,6 +5314,7 @@ class AggregateConformancePackCompliance {
     this.nonCompliantRuleCount,
     this.totalRuleCount,
   });
+
   factory AggregateConformancePackCompliance.fromJson(
       Map<String, dynamic> json) {
     return AggregateConformancePackCompliance(
@@ -5348,6 +5353,7 @@ class AggregateConformancePackComplianceCount {
     this.compliantConformancePackCount,
     this.nonCompliantConformancePackCount,
   });
+
   factory AggregateConformancePackComplianceCount.fromJson(
       Map<String, dynamic> json) {
     return AggregateConformancePackComplianceCount(
@@ -5392,6 +5398,7 @@ class AggregateConformancePackComplianceFilters {
     this.complianceType,
     this.conformancePackName,
   });
+
   factory AggregateConformancePackComplianceFilters.fromJson(
       Map<String, dynamic> json) {
     return AggregateConformancePackComplianceFilters(
@@ -5430,6 +5437,7 @@ class AggregateConformancePackComplianceSummary {
     this.complianceSummary,
     this.groupName,
   });
+
   factory AggregateConformancePackComplianceSummary.fromJson(
       Map<String, dynamic> json) {
     return AggregateConformancePackComplianceSummary(
@@ -5463,6 +5471,7 @@ class AggregateConformancePackComplianceSummaryFilters {
     this.accountId,
     this.awsRegion,
   });
+
   factory AggregateConformancePackComplianceSummaryFilters.fromJson(
       Map<String, dynamic> json) {
     return AggregateConformancePackComplianceSummaryFilters(
@@ -5551,6 +5560,7 @@ class AggregateEvaluationResult {
     this.evaluationResultIdentifier,
     this.resultRecordedTime,
   });
+
   factory AggregateEvaluationResult.fromJson(Map<String, dynamic> json) {
     return AggregateEvaluationResult(
       accountId: json['AccountId'] as String?,
@@ -5615,6 +5625,7 @@ class AggregateResourceIdentifier {
     required this.sourceRegion,
     this.resourceName,
   });
+
   factory AggregateResourceIdentifier.fromJson(Map<String, dynamic> json) {
     return AggregateResourceIdentifier(
       resourceId: json['ResourceId'] as String,
@@ -5687,6 +5698,7 @@ class AggregatedSourceStatus {
     this.sourceId,
     this.sourceType,
   });
+
   factory AggregatedSourceStatus.fromJson(Map<String, dynamic> json) {
     return AggregatedSourceStatus(
       awsRegion: json['AwsRegion'] as String?,
@@ -5804,6 +5816,7 @@ class AggregationAuthorization {
     this.authorizedAwsRegion,
     this.creationTime,
   });
+
   factory AggregationAuthorization.fromJson(Map<String, dynamic> json) {
     return AggregationAuthorization(
       aggregationAuthorizationArn:
@@ -5918,6 +5931,7 @@ class BaseConfigurationItem {
     this.supplementaryConfiguration,
     this.version,
   });
+
   factory BaseConfigurationItem.fromJson(Map<String, dynamic> json) {
     return BaseConfigurationItem(
       accountId: json['accountId'] as String?,
@@ -5993,6 +6007,7 @@ class BatchGetAggregateResourceConfigResponse {
     this.baseConfigurationItems,
     this.unprocessedResourceIdentifiers,
   });
+
   factory BatchGetAggregateResourceConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchGetAggregateResourceConfigResponse(
@@ -6036,6 +6051,7 @@ class BatchGetResourceConfigResponse {
     this.baseConfigurationItems,
     this.unprocessedResourceKeys,
   });
+
   factory BatchGetResourceConfigResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetResourceConfigResponse(
       baseConfigurationItems: (json['baseConfigurationItems'] as List?)
@@ -6118,6 +6134,7 @@ class Compliance {
     this.complianceContributorCount,
     this.complianceType,
   });
+
   factory Compliance.fromJson(Map<String, dynamic> json) {
     return Compliance(
       complianceContributorCount: json['ComplianceContributorCount'] != null
@@ -6153,6 +6170,7 @@ class ComplianceByConfigRule {
     this.compliance,
     this.configRuleName,
   });
+
   factory ComplianceByConfigRule.fromJson(Map<String, dynamic> json) {
     return ComplianceByConfigRule(
       compliance: json['Compliance'] != null
@@ -6192,6 +6210,7 @@ class ComplianceByResource {
     this.resourceId,
     this.resourceType,
   });
+
   factory ComplianceByResource.fromJson(Map<String, dynamic> json) {
     return ComplianceByResource(
       compliance: json['Compliance'] != null
@@ -6228,6 +6247,7 @@ class ComplianceContributorCount {
     this.capExceeded,
     this.cappedCount,
   });
+
   factory ComplianceContributorCount.fromJson(Map<String, dynamic> json) {
     return ComplianceContributorCount(
       capExceeded: json['CapExceeded'] as bool?,
@@ -6264,6 +6284,7 @@ class ComplianceSummary {
     this.compliantResourceCount,
     this.nonCompliantResourceCount,
   });
+
   factory ComplianceSummary.fromJson(Map<String, dynamic> json) {
     return ComplianceSummary(
       complianceSummaryTimestamp:
@@ -6309,6 +6330,7 @@ class ComplianceSummaryByResourceType {
     this.complianceSummary,
     this.resourceType,
   });
+
   factory ComplianceSummaryByResourceType.fromJson(Map<String, dynamic> json) {
     return ComplianceSummaryByResourceType(
       complianceSummary: json['ComplianceSummary'] != null
@@ -6397,6 +6419,7 @@ class ConfigExportDeliveryInfo {
     this.lastSuccessfulTime,
     this.nextDeliveryTime,
   });
+
   factory ConfigExportDeliveryInfo.fromJson(Map<String, dynamic> json) {
     return ConfigExportDeliveryInfo(
       lastAttemptTime: timeStampFromJson(json['lastAttemptTime']),
@@ -6533,6 +6556,7 @@ class ConfigRule {
     this.maximumExecutionFrequency,
     this.scope,
   });
+
   factory ConfigRule.fromJson(Map<String, dynamic> json) {
     return ConfigRule(
       source: Source.fromJson(json['Source'] as Map<String, dynamic>),
@@ -6605,6 +6629,7 @@ class ConfigRuleComplianceFilters {
     this.complianceType,
     this.configRuleName,
   });
+
   factory ConfigRuleComplianceFilters.fromJson(Map<String, dynamic> json) {
     return ConfigRuleComplianceFilters(
       accountId: json['AccountId'] as String?,
@@ -6640,6 +6665,7 @@ class ConfigRuleComplianceSummaryFilters {
     this.accountId,
     this.awsRegion,
   });
+
   factory ConfigRuleComplianceSummaryFilters.fromJson(
       Map<String, dynamic> json) {
     return ConfigRuleComplianceSummaryFilters(
@@ -6760,6 +6786,7 @@ class ConfigRuleEvaluationStatus {
     this.lastSuccessfulEvaluationTime,
     this.lastSuccessfulInvocationTime,
   });
+
   factory ConfigRuleEvaluationStatus.fromJson(Map<String, dynamic> json) {
     return ConfigRuleEvaluationStatus(
       configRuleArn: json['ConfigRuleArn'] as String?,
@@ -6916,6 +6943,7 @@ class ConfigSnapshotDeliveryProperties {
   ConfigSnapshotDeliveryProperties({
     this.deliveryFrequency,
   });
+
   factory ConfigSnapshotDeliveryProperties.fromJson(Map<String, dynamic> json) {
     return ConfigSnapshotDeliveryProperties(
       deliveryFrequency:
@@ -6958,6 +6986,7 @@ class ConfigStreamDeliveryInfo {
     this.lastStatus,
     this.lastStatusChangeTime,
   });
+
   factory ConfigStreamDeliveryInfo.fromJson(Map<String, dynamic> json) {
     return ConfigStreamDeliveryInfo(
       lastErrorCode: json['lastErrorCode'] as String?,
@@ -7015,6 +7044,7 @@ class ConfigurationAggregator {
     this.lastUpdatedTime,
     this.organizationAggregationSource,
   });
+
   factory ConfigurationAggregator.fromJson(Map<String, dynamic> json) {
     return ConfigurationAggregator(
       accountAggregationSources: (json['AccountAggregationSources'] as List?)
@@ -7181,6 +7211,7 @@ class ConfigurationItem {
     this.tags,
     this.version,
   });
+
   factory ConfigurationItem.fromJson(Map<String, dynamic> json) {
     return ConfigurationItem(
       accountId: json['accountId'] as String?,
@@ -7328,6 +7359,7 @@ class ConfigurationRecorder {
     this.recordingGroup,
     this.roleARN,
   });
+
   factory ConfigurationRecorder.fromJson(Map<String, dynamic> json) {
     return ConfigurationRecorder(
       name: json['name'] as String?,
@@ -7387,6 +7419,7 @@ class ConfigurationRecorderStatus {
     this.name,
     this.recording,
   });
+
   factory ConfigurationRecorderStatus.fromJson(Map<String, dynamic> json) {
     return ConfigurationRecorderStatus(
       lastErrorCode: json['lastErrorCode'] as String?,
@@ -7440,6 +7473,7 @@ class ConformancePackComplianceFilters {
     this.complianceType,
     this.configRuleNames,
   });
+
   factory ConformancePackComplianceFilters.fromJson(Map<String, dynamic> json) {
     return ConformancePackComplianceFilters(
       complianceType: (json['ComplianceType'] as String?)
@@ -7475,6 +7509,7 @@ class ConformancePackComplianceSummary {
     required this.conformancePackComplianceStatus,
     required this.conformancePackName,
   });
+
   factory ConformancePackComplianceSummary.fromJson(Map<String, dynamic> json) {
     return ConformancePackComplianceSummary(
       conformancePackComplianceStatus:
@@ -7573,6 +7608,7 @@ class ConformancePackDetail {
     this.deliveryS3KeyPrefix,
     this.lastUpdateRequestedTime,
   });
+
   factory ConformancePackDetail.fromJson(Map<String, dynamic> json) {
     return ConformancePackDetail(
       conformancePackArn: json['ConformancePackArn'] as String,
@@ -7646,6 +7682,7 @@ class ConformancePackEvaluationFilters {
     this.resourceIds,
     this.resourceType,
   });
+
   factory ConformancePackEvaluationFilters.fromJson(Map<String, dynamic> json) {
     return ConformancePackEvaluationFilters(
       complianceType: (json['ComplianceType'] as String?)
@@ -7702,6 +7739,7 @@ class ConformancePackEvaluationResult {
     required this.resultRecordedTime,
     this.annotation,
   });
+
   factory ConformancePackEvaluationResult.fromJson(Map<String, dynamic> json) {
     return ConformancePackEvaluationResult(
       complianceType:
@@ -7746,6 +7784,7 @@ class ConformancePackInputParameter {
     required this.parameterName,
     required this.parameterValue,
   });
+
   factory ConformancePackInputParameter.fromJson(Map<String, dynamic> json) {
     return ConformancePackInputParameter(
       parameterName: json['ParameterName'] as String,
@@ -7786,6 +7825,7 @@ class ConformancePackRuleCompliance {
     this.configRuleName,
     this.controls,
   });
+
   factory ConformancePackRuleCompliance.fromJson(Map<String, dynamic> json) {
     return ConformancePackRuleCompliance(
       complianceType: (json['ComplianceType'] as String?)
@@ -7911,6 +7951,7 @@ class ConformancePackStatusDetail {
     this.conformancePackStatusReason,
     this.lastUpdateCompletedTime,
   });
+
   factory ConformancePackStatusDetail.fromJson(Map<String, dynamic> json) {
     return ConformancePackStatusDetail(
       conformancePackArn: json['ConformancePackArn'] as String,
@@ -7956,6 +7997,7 @@ class ConformancePackStatusDetail {
 /// Config rule.
 class DeleteEvaluationResultsResponse {
   DeleteEvaluationResultsResponse();
+
   factory DeleteEvaluationResultsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEvaluationResultsResponse();
   }
@@ -7967,6 +8009,7 @@ class DeleteEvaluationResultsResponse {
 
 class DeleteRemediationConfigurationResponse {
   DeleteRemediationConfigurationResponse();
+
   factory DeleteRemediationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteRemediationConfigurationResponse();
@@ -7985,6 +8028,7 @@ class DeleteRemediationExceptionsResponse {
   DeleteRemediationExceptionsResponse({
     this.failedBatches,
   });
+
   factory DeleteRemediationExceptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteRemediationExceptionsResponse(
@@ -8006,6 +8050,7 @@ class DeleteRemediationExceptionsResponse {
 
 class DeleteStoredQueryResponse {
   DeleteStoredQueryResponse();
+
   factory DeleteStoredQueryResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStoredQueryResponse();
   }
@@ -8023,6 +8068,7 @@ class DeliverConfigSnapshotResponse {
   DeliverConfigSnapshotResponse({
     this.configSnapshotId,
   });
+
   factory DeliverConfigSnapshotResponse.fromJson(Map<String, dynamic> json) {
     return DeliverConfigSnapshotResponse(
       configSnapshotId: json['configSnapshotId'] as String?,
@@ -8086,6 +8132,7 @@ class DeliveryChannel {
     this.s3KmsKeyArn,
     this.snsTopicARN,
   });
+
   factory DeliveryChannel.fromJson(Map<String, dynamic> json) {
     return DeliveryChannel(
       configSnapshotDeliveryProperties:
@@ -8147,6 +8194,7 @@ class DeliveryChannelStatus {
     this.configStreamDeliveryInfo,
     this.name,
   });
+
   factory DeliveryChannelStatus.fromJson(Map<String, dynamic> json) {
     return DeliveryChannelStatus(
       configHistoryDeliveryInfo: json['configHistoryDeliveryInfo'] != null
@@ -8227,6 +8275,7 @@ class DescribeAggregateComplianceByConfigRulesResponse {
     this.aggregateComplianceByConfigRules,
     this.nextToken,
   });
+
   factory DescribeAggregateComplianceByConfigRulesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAggregateComplianceByConfigRulesResponse(
@@ -8265,6 +8314,7 @@ class DescribeAggregateComplianceByConformancePacksResponse {
     this.aggregateComplianceByConformancePacks,
     this.nextToken,
   });
+
   factory DescribeAggregateComplianceByConformancePacksResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAggregateComplianceByConformancePacksResponse(
@@ -8304,6 +8354,7 @@ class DescribeAggregationAuthorizationsResponse {
     this.aggregationAuthorizations,
     this.nextToken,
   });
+
   factory DescribeAggregationAuthorizationsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAggregationAuthorizationsResponse(
@@ -8340,6 +8391,7 @@ class DescribeComplianceByConfigRuleResponse {
     this.complianceByConfigRules,
     this.nextToken,
   });
+
   factory DescribeComplianceByConfigRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeComplianceByConfigRuleResponse(
@@ -8377,6 +8429,7 @@ class DescribeComplianceByResourceResponse {
     this.complianceByResources,
     this.nextToken,
   });
+
   factory DescribeComplianceByResourceResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeComplianceByResourceResponse(
@@ -8412,6 +8465,7 @@ class DescribeConfigRuleEvaluationStatusResponse {
     this.configRulesEvaluationStatus,
     this.nextToken,
   });
+
   factory DescribeConfigRuleEvaluationStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigRuleEvaluationStatusResponse(
@@ -8449,6 +8503,7 @@ class DescribeConfigRulesResponse {
     this.configRules,
     this.nextToken,
   });
+
   factory DescribeConfigRulesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConfigRulesResponse(
       configRules: (json['ConfigRules'] as List?)
@@ -8481,6 +8536,7 @@ class DescribeConfigurationAggregatorSourcesStatusResponse {
     this.aggregatedSourceStatusList,
     this.nextToken,
   });
+
   factory DescribeConfigurationAggregatorSourcesStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationAggregatorSourcesStatusResponse(
@@ -8516,6 +8572,7 @@ class DescribeConfigurationAggregatorsResponse {
     this.configurationAggregators,
     this.nextToken,
   });
+
   factory DescribeConfigurationAggregatorsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationAggregatorsResponse(
@@ -8548,6 +8605,7 @@ class DescribeConfigurationRecorderStatusResponse {
   DescribeConfigurationRecorderStatusResponse({
     this.configurationRecordersStatus,
   });
+
   factory DescribeConfigurationRecorderStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationRecorderStatusResponse(
@@ -8578,6 +8636,7 @@ class DescribeConfigurationRecordersResponse {
   DescribeConfigurationRecordersResponse({
     this.configurationRecorders,
   });
+
   factory DescribeConfigurationRecordersResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationRecordersResponse(
@@ -8613,6 +8672,7 @@ class DescribeConformancePackComplianceResponse {
     required this.conformancePackRuleComplianceList,
     this.nextToken,
   });
+
   factory DescribeConformancePackComplianceResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConformancePackComplianceResponse(
@@ -8652,6 +8712,7 @@ class DescribeConformancePackStatusResponse {
     this.conformancePackStatusDetails,
     this.nextToken,
   });
+
   factory DescribeConformancePackStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConformancePackStatusResponse(
@@ -8688,6 +8749,7 @@ class DescribeConformancePacksResponse {
     this.conformancePackDetails,
     this.nextToken,
   });
+
   factory DescribeConformancePacksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConformancePacksResponse(
       conformancePackDetails: (json['ConformancePackDetails'] as List?)
@@ -8717,6 +8779,7 @@ class DescribeDeliveryChannelStatusResponse {
   DescribeDeliveryChannelStatusResponse({
     this.deliveryChannelsStatus,
   });
+
   factory DescribeDeliveryChannelStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDeliveryChannelStatusResponse(
@@ -8744,6 +8807,7 @@ class DescribeDeliveryChannelsResponse {
   DescribeDeliveryChannelsResponse({
     this.deliveryChannels,
   });
+
   factory DescribeDeliveryChannelsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDeliveryChannelsResponse(
       deliveryChannels: (json['DeliveryChannels'] as List?)
@@ -8773,6 +8837,7 @@ class DescribeOrganizationConfigRuleStatusesResponse {
     this.nextToken,
     this.organizationConfigRuleStatuses,
   });
+
   factory DescribeOrganizationConfigRuleStatusesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConfigRuleStatusesResponse(
@@ -8809,6 +8874,7 @@ class DescribeOrganizationConfigRulesResponse {
     this.nextToken,
     this.organizationConfigRules,
   });
+
   factory DescribeOrganizationConfigRulesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConfigRulesResponse(
@@ -8845,6 +8911,7 @@ class DescribeOrganizationConformancePackStatusesResponse {
     this.nextToken,
     this.organizationConformancePackStatuses,
   });
+
   factory DescribeOrganizationConformancePackStatusesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConformancePackStatusesResponse(
@@ -8883,6 +8950,7 @@ class DescribeOrganizationConformancePacksResponse {
     this.nextToken,
     this.organizationConformancePacks,
   });
+
   factory DescribeOrganizationConformancePacksResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConformancePacksResponse(
@@ -8919,6 +8987,7 @@ class DescribePendingAggregationRequestsResponse {
     this.nextToken,
     this.pendingAggregationRequests,
   });
+
   factory DescribePendingAggregationRequestsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePendingAggregationRequestsResponse(
@@ -8949,6 +9018,7 @@ class DescribeRemediationConfigurationsResponse {
   DescribeRemediationConfigurationsResponse({
     this.remediationConfigurations,
   });
+
   factory DescribeRemediationConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRemediationConfigurationsResponse(
@@ -8981,6 +9051,7 @@ class DescribeRemediationExceptionsResponse {
     this.nextToken,
     this.remediationExceptions,
   });
+
   factory DescribeRemediationExceptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRemediationExceptionsResponse(
@@ -9015,6 +9086,7 @@ class DescribeRemediationExecutionStatusResponse {
     this.nextToken,
     this.remediationExecutionStatuses,
   });
+
   factory DescribeRemediationExecutionStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRemediationExecutionStatusResponse(
@@ -9051,6 +9123,7 @@ class DescribeRetentionConfigurationsResponse {
     this.nextToken,
     this.retentionConfigurations,
   });
+
   factory DescribeRetentionConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRetentionConfigurationsResponse(
@@ -9115,6 +9188,7 @@ class Evaluation {
     required this.orderingTimestamp,
     this.annotation,
   });
+
   factory Evaluation.fromJson(Map<String, dynamic> json) {
     return Evaluation(
       complianceResourceId: json['ComplianceResourceId'] as String,
@@ -9182,6 +9256,7 @@ class EvaluationResult {
     this.resultRecordedTime,
     this.resultToken,
   });
+
   factory EvaluationResult.fromJson(Map<String, dynamic> json) {
     return EvaluationResult(
       annotation: json['Annotation'] as String?,
@@ -9233,6 +9308,7 @@ class EvaluationResultIdentifier {
     this.evaluationResultQualifier,
     this.orderingTimestamp,
   });
+
   factory EvaluationResultIdentifier.fromJson(Map<String, dynamic> json) {
     return EvaluationResultIdentifier(
       evaluationResultQualifier: json['EvaluationResultQualifier'] != null
@@ -9272,6 +9348,7 @@ class EvaluationResultQualifier {
     this.resourceId,
     this.resourceType,
   });
+
   factory EvaluationResultQualifier.fromJson(Map<String, dynamic> json) {
     return EvaluationResultQualifier(
       configRuleName: json['ConfigRuleName'] as String?,
@@ -9323,6 +9400,7 @@ class ExecutionControls {
   ExecutionControls({
     this.ssmControls,
   });
+
   factory ExecutionControls.fromJson(Map<String, dynamic> json) {
     return ExecutionControls(
       ssmControls: json['SsmControls'] != null
@@ -9368,6 +9446,7 @@ class ExternalEvaluation {
     required this.orderingTimestamp,
     this.annotation,
   });
+
   factory ExternalEvaluation.fromJson(Map<String, dynamic> json) {
     return ExternalEvaluation(
       complianceResourceId: json['ComplianceResourceId'] as String,
@@ -9409,6 +9488,7 @@ class FailedDeleteRemediationExceptionsBatch {
     this.failedItems,
     this.failureMessage,
   });
+
   factory FailedDeleteRemediationExceptionsBatch.fromJson(
       Map<String, dynamic> json) {
     return FailedDeleteRemediationExceptionsBatch(
@@ -9443,6 +9523,7 @@ class FailedRemediationBatch {
     this.failedItems,
     this.failureMessage,
   });
+
   factory FailedRemediationBatch.fromJson(Map<String, dynamic> json) {
     return FailedRemediationBatch(
       failedItems: (json['FailedItems'] as List?)
@@ -9476,6 +9557,7 @@ class FailedRemediationExceptionBatch {
     this.failedItems,
     this.failureMessage,
   });
+
   factory FailedRemediationExceptionBatch.fromJson(Map<String, dynamic> json) {
     return FailedRemediationExceptionBatch(
       failedItems: (json['FailedItems'] as List?)
@@ -9504,6 +9586,7 @@ class FieldInfo {
   FieldInfo({
     this.name,
   });
+
   factory FieldInfo.fromJson(Map<String, dynamic> json) {
     return FieldInfo(
       name: json['Name'] as String?,
@@ -9530,6 +9613,7 @@ class GetAggregateComplianceDetailsByConfigRuleResponse {
     this.aggregateEvaluationResults,
     this.nextToken,
   });
+
   factory GetAggregateComplianceDetailsByConfigRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAggregateComplianceDetailsByConfigRuleResponse(
@@ -9569,6 +9653,7 @@ class GetAggregateConfigRuleComplianceSummaryResponse {
     this.groupByKey,
     this.nextToken,
   });
+
   factory GetAggregateConfigRuleComplianceSummaryResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAggregateConfigRuleComplianceSummaryResponse(
@@ -9613,6 +9698,7 @@ class GetAggregateConformancePackComplianceSummaryResponse {
     this.groupByKey,
     this.nextToken,
   });
+
   factory GetAggregateConformancePackComplianceSummaryResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAggregateConformancePackComplianceSummaryResponse(
@@ -9664,6 +9750,7 @@ class GetAggregateDiscoveredResourceCountsResponse {
     this.groupedResourceCounts,
     this.nextToken,
   });
+
   factory GetAggregateDiscoveredResourceCountsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAggregateDiscoveredResourceCountsResponse(
@@ -9699,6 +9786,7 @@ class GetAggregateResourceConfigResponse {
   GetAggregateResourceConfigResponse({
     this.configurationItem,
   });
+
   factory GetAggregateResourceConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAggregateResourceConfigResponse(
@@ -9731,6 +9819,7 @@ class GetComplianceDetailsByConfigRuleResponse {
     this.evaluationResults,
     this.nextToken,
   });
+
   factory GetComplianceDetailsByConfigRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return GetComplianceDetailsByConfigRuleResponse(
@@ -9765,6 +9854,7 @@ class GetComplianceDetailsByResourceResponse {
     this.evaluationResults,
     this.nextToken,
   });
+
   factory GetComplianceDetailsByResourceResponse.fromJson(
       Map<String, dynamic> json) {
     return GetComplianceDetailsByResourceResponse(
@@ -9795,6 +9885,7 @@ class GetComplianceSummaryByConfigRuleResponse {
   GetComplianceSummaryByConfigRuleResponse({
     this.complianceSummary,
   });
+
   factory GetComplianceSummaryByConfigRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return GetComplianceSummaryByConfigRuleResponse(
@@ -9825,6 +9916,7 @@ class GetComplianceSummaryByResourceTypeResponse {
   GetComplianceSummaryByResourceTypeResponse({
     this.complianceSummariesByResourceType,
   });
+
   factory GetComplianceSummaryByResourceTypeResponse.fromJson(
       Map<String, dynamic> json) {
     return GetComplianceSummaryByResourceTypeResponse(
@@ -9864,6 +9956,7 @@ class GetConformancePackComplianceDetailsResponse {
     this.conformancePackRuleEvaluationResults,
     this.nextToken,
   });
+
   factory GetConformancePackComplianceDetailsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetConformancePackComplianceDetailsResponse(
@@ -9906,6 +9999,7 @@ class GetConformancePackComplianceSummaryResponse {
     this.conformancePackComplianceSummaryList,
     this.nextToken,
   });
+
   factory GetConformancePackComplianceSummaryResponse.fromJson(
       Map<String, dynamic> json) {
     return GetConformancePackComplianceSummaryResponse(
@@ -9966,6 +10060,7 @@ class GetDiscoveredResourceCountsResponse {
     this.resourceCounts,
     this.totalDiscoveredResources,
   });
+
   factory GetDiscoveredResourceCountsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetDiscoveredResourceCountsResponse(
@@ -10003,6 +10098,7 @@ class GetOrganizationConfigRuleDetailedStatusResponse {
     this.nextToken,
     this.organizationConfigRuleDetailedStatus,
   });
+
   factory GetOrganizationConfigRuleDetailedStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return GetOrganizationConfigRuleDetailedStatusResponse(
@@ -10041,6 +10137,7 @@ class GetOrganizationConformancePackDetailedStatusResponse {
     this.nextToken,
     this.organizationConformancePackDetailedStatuses,
   });
+
   factory GetOrganizationConformancePackDetailedStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return GetOrganizationConformancePackDetailedStatusResponse(
@@ -10080,6 +10177,7 @@ class GetResourceConfigHistoryResponse {
     this.configurationItems,
     this.nextToken,
   });
+
   factory GetResourceConfigHistoryResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceConfigHistoryResponse(
       configurationItems: (json['configurationItems'] as List?)
@@ -10107,6 +10205,7 @@ class GetStoredQueryResponse {
   GetStoredQueryResponse({
     this.storedQuery,
   });
+
   factory GetStoredQueryResponse.fromJson(Map<String, dynamic> json) {
     return GetStoredQueryResponse(
       storedQuery: json['StoredQuery'] != null
@@ -10137,6 +10236,7 @@ class GroupedResourceCount {
     required this.groupName,
     required this.resourceCount,
   });
+
   factory GroupedResourceCount.fromJson(Map<String, dynamic> json) {
     return GroupedResourceCount(
       groupName: json['GroupName'] as String,
@@ -10166,6 +10266,7 @@ class ListAggregateDiscoveredResourcesResponse {
     this.nextToken,
     this.resourceIdentifiers,
   });
+
   factory ListAggregateDiscoveredResourcesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAggregateDiscoveredResourcesResponse(
@@ -10204,6 +10305,7 @@ class ListDiscoveredResourcesResponse {
     this.nextToken,
     this.resourceIdentifiers,
   });
+
   factory ListDiscoveredResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListDiscoveredResourcesResponse(
       nextToken: json['nextToken'] as String?,
@@ -10241,6 +10343,7 @@ class ListStoredQueriesResponse {
     this.nextToken,
     this.storedQueryMetadata,
   });
+
   factory ListStoredQueriesResponse.fromJson(Map<String, dynamic> json) {
     return ListStoredQueriesResponse(
       nextToken: json['NextToken'] as String?,
@@ -10274,6 +10377,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -10480,6 +10584,7 @@ class MemberAccountStatus {
     this.errorMessage,
     this.lastUpdateTime,
   });
+
   factory MemberAccountStatus.fromJson(Map<String, dynamic> json) {
     return MemberAccountStatus(
       accountId: json['AccountId'] as String,
@@ -10567,6 +10672,7 @@ class OrganizationAggregationSource {
     this.allAwsRegions,
     this.awsRegions,
   });
+
   factory OrganizationAggregationSource.fromJson(Map<String, dynamic> json) {
     return OrganizationAggregationSource(
       roleArn: json['RoleArn'] as String,
@@ -10619,6 +10725,7 @@ class OrganizationConfigRule {
     this.organizationCustomRuleMetadata,
     this.organizationManagedRuleMetadata,
   });
+
   factory OrganizationConfigRule.fromJson(Map<String, dynamic> json) {
     return OrganizationConfigRule(
       organizationConfigRuleArn: json['OrganizationConfigRuleArn'] as String,
@@ -10739,6 +10846,7 @@ class OrganizationConfigRuleStatus {
     this.errorMessage,
     this.lastUpdateTime,
   });
+
   factory OrganizationConfigRuleStatus.fromJson(Map<String, dynamic> json) {
     return OrganizationConfigRuleStatus(
       organizationConfigRuleName: json['OrganizationConfigRuleName'] as String,
@@ -10845,6 +10953,7 @@ class OrganizationConformancePack {
     this.deliveryS3KeyPrefix,
     this.excludedAccounts,
   });
+
   factory OrganizationConformancePack.fromJson(Map<String, dynamic> json) {
     return OrganizationConformancePack(
       lastUpdateTime:
@@ -10972,6 +11081,7 @@ class OrganizationConformancePackDetailedStatus {
     this.errorMessage,
     this.lastUpdateTime,
   });
+
   factory OrganizationConformancePackDetailedStatus.fromJson(
       Map<String, dynamic> json) {
     return OrganizationConformancePackDetailedStatus(
@@ -11078,6 +11188,7 @@ class OrganizationConformancePackStatus {
     this.errorMessage,
     this.lastUpdateTime,
   });
+
   factory OrganizationConformancePackStatus.fromJson(
       Map<String, dynamic> json) {
     return OrganizationConformancePackStatus(
@@ -11182,6 +11293,7 @@ class OrganizationCustomRuleMetadata {
     this.tagKeyScope,
     this.tagValueScope,
   });
+
   factory OrganizationCustomRuleMetadata.fromJson(Map<String, dynamic> json) {
     return OrganizationCustomRuleMetadata(
       lambdaFunctionArn: json['LambdaFunctionArn'] as String,
@@ -11283,6 +11395,7 @@ class OrganizationManagedRuleMetadata {
     this.tagKeyScope,
     this.tagValueScope,
   });
+
   factory OrganizationManagedRuleMetadata.fromJson(Map<String, dynamic> json) {
     return OrganizationManagedRuleMetadata(
       ruleIdentifier: json['RuleIdentifier'] as String,
@@ -11448,6 +11561,7 @@ class OrganizationResourceDetailedStatusFilters {
     this.accountId,
     this.status,
   });
+
   factory OrganizationResourceDetailedStatusFilters.fromJson(
       Map<String, dynamic> json) {
     return OrganizationResourceDetailedStatusFilters(
@@ -11634,6 +11748,7 @@ class PendingAggregationRequest {
     this.requesterAccountId,
     this.requesterAwsRegion,
   });
+
   factory PendingAggregationRequest.fromJson(Map<String, dynamic> json) {
     return PendingAggregationRequest(
       requesterAccountId: json['RequesterAccountId'] as String?,
@@ -11658,6 +11773,7 @@ class PutAggregationAuthorizationResponse {
   PutAggregationAuthorizationResponse({
     this.aggregationAuthorization,
   });
+
   factory PutAggregationAuthorizationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutAggregationAuthorizationResponse(
@@ -11684,6 +11800,7 @@ class PutConfigurationAggregatorResponse {
   PutConfigurationAggregatorResponse({
     this.configurationAggregator,
   });
+
   factory PutConfigurationAggregatorResponse.fromJson(
       Map<String, dynamic> json) {
     return PutConfigurationAggregatorResponse(
@@ -11710,6 +11827,7 @@ class PutConformancePackResponse {
   PutConformancePackResponse({
     this.conformancePackArn,
   });
+
   factory PutConformancePackResponse.fromJson(Map<String, dynamic> json) {
     return PutConformancePackResponse(
       conformancePackArn: json['ConformancePackArn'] as String?,
@@ -11732,6 +11850,7 @@ class PutEvaluationsResponse {
   PutEvaluationsResponse({
     this.failedEvaluations,
   });
+
   factory PutEvaluationsResponse.fromJson(Map<String, dynamic> json) {
     return PutEvaluationsResponse(
       failedEvaluations: (json['FailedEvaluations'] as List?)
@@ -11751,6 +11870,7 @@ class PutEvaluationsResponse {
 
 class PutExternalEvaluationResponse {
   PutExternalEvaluationResponse();
+
   factory PutExternalEvaluationResponse.fromJson(Map<String, dynamic> _) {
     return PutExternalEvaluationResponse();
   }
@@ -11767,6 +11887,7 @@ class PutOrganizationConfigRuleResponse {
   PutOrganizationConfigRuleResponse({
     this.organizationConfigRuleArn,
   });
+
   factory PutOrganizationConfigRuleResponse.fromJson(
       Map<String, dynamic> json) {
     return PutOrganizationConfigRuleResponse(
@@ -11790,6 +11911,7 @@ class PutOrganizationConformancePackResponse {
   PutOrganizationConformancePackResponse({
     this.organizationConformancePackArn,
   });
+
   factory PutOrganizationConformancePackResponse.fromJson(
       Map<String, dynamic> json) {
     return PutOrganizationConformancePackResponse(
@@ -11814,6 +11936,7 @@ class PutRemediationConfigurationsResponse {
   PutRemediationConfigurationsResponse({
     this.failedBatches,
   });
+
   factory PutRemediationConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return PutRemediationConfigurationsResponse(
@@ -11841,6 +11964,7 @@ class PutRemediationExceptionsResponse {
   PutRemediationExceptionsResponse({
     this.failedBatches,
   });
+
   factory PutRemediationExceptionsResponse.fromJson(Map<String, dynamic> json) {
     return PutRemediationExceptionsResponse(
       failedBatches: (json['FailedBatches'] as List?)
@@ -11866,6 +11990,7 @@ class PutRetentionConfigurationResponse {
   PutRetentionConfigurationResponse({
     this.retentionConfiguration,
   });
+
   factory PutRetentionConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutRetentionConfigurationResponse(
@@ -11893,6 +12018,7 @@ class PutStoredQueryResponse {
   PutStoredQueryResponse({
     this.queryArn,
   });
+
   factory PutStoredQueryResponse.fromJson(Map<String, dynamic> json) {
     return PutStoredQueryResponse(
       queryArn: json['QueryArn'] as String?,
@@ -11915,6 +12041,7 @@ class QueryInfo {
   QueryInfo({
     this.selectFields,
   });
+
   factory QueryInfo.fromJson(Map<String, dynamic> json) {
     return QueryInfo(
       selectFields: (json['SelectFields'] as List?)
@@ -12050,6 +12177,7 @@ class RecordingGroup {
     this.includeGlobalResourceTypes,
     this.resourceTypes,
   });
+
   factory RecordingGroup.fromJson(Map<String, dynamic> json) {
     return RecordingGroup(
       allSupported: json['allSupported'] as bool?,
@@ -12095,6 +12223,7 @@ class Relationship {
     this.resourceName,
     this.resourceType,
   });
+
   factory Relationship.fromJson(Map<String, dynamic> json) {
     return Relationship(
       relationshipName: json['relationshipName'] as String?,
@@ -12188,6 +12317,7 @@ class RemediationConfiguration {
     this.retryAttemptSeconds,
     this.targetVersion,
   });
+
   factory RemediationConfiguration.fromJson(Map<String, dynamic> json) {
     return RemediationConfiguration(
       configRuleName: json['ConfigRuleName'] as String,
@@ -12268,6 +12398,7 @@ class RemediationException {
     this.expirationTime,
     this.message,
   });
+
   factory RemediationException.fromJson(Map<String, dynamic> json) {
     return RemediationException(
       configRuleName: json['ConfigRuleName'] as String,
@@ -12308,6 +12439,7 @@ class RemediationExceptionResourceKey {
     this.resourceId,
     this.resourceType,
   });
+
   factory RemediationExceptionResourceKey.fromJson(Map<String, dynamic> json) {
     return RemediationExceptionResourceKey(
       resourceId: json['ResourceId'] as String?,
@@ -12386,6 +12518,7 @@ class RemediationExecutionStatus {
     this.state,
     this.stepDetails,
   });
+
   factory RemediationExecutionStatus.fromJson(Map<String, dynamic> json) {
     return RemediationExecutionStatus(
       invocationTime: timeStampFromJson(json['InvocationTime']),
@@ -12444,6 +12577,7 @@ class RemediationExecutionStep {
     this.state,
     this.stopTime,
   });
+
   factory RemediationExecutionStep.fromJson(Map<String, dynamic> json) {
     return RemediationExecutionStep(
       errorMessage: json['ErrorMessage'] as String?,
@@ -12516,6 +12650,7 @@ class RemediationParameterValue {
     this.resourceValue,
     this.staticValue,
   });
+
   factory RemediationParameterValue.fromJson(Map<String, dynamic> json) {
     return RemediationParameterValue(
       resourceValue: json['ResourceValue'] != null
@@ -12573,6 +12708,7 @@ class ResourceCount {
     this.count,
     this.resourceType,
   });
+
   factory ResourceCount.fromJson(Map<String, dynamic> json) {
     return ResourceCount(
       count: json['count'] as int?,
@@ -12606,6 +12742,7 @@ class ResourceCountFilters {
     this.region,
     this.resourceType,
   });
+
   factory ResourceCountFilters.fromJson(Map<String, dynamic> json) {
     return ResourceCountFilters(
       accountId: json['AccountId'] as String?,
@@ -12680,6 +12817,7 @@ class ResourceFilters {
     this.resourceId,
     this.resourceName,
   });
+
   factory ResourceFilters.fromJson(Map<String, dynamic> json) {
     return ResourceFilters(
       accountId: json['AccountId'] as String?,
@@ -12725,6 +12863,7 @@ class ResourceIdentifier {
     this.resourceName,
     this.resourceType,
   });
+
   factory ResourceIdentifier.fromJson(Map<String, dynamic> json) {
     return ResourceIdentifier(
       resourceDeletionTime: timeStampFromJson(json['resourceDeletionTime']),
@@ -12762,6 +12901,7 @@ class ResourceKey {
     required this.resourceId,
     required this.resourceType,
   });
+
   factory ResourceKey.fromJson(Map<String, dynamic> json) {
     return ResourceKey(
       resourceId: json['resourceId'] as String,
@@ -13290,6 +13430,7 @@ class ResourceValue {
   ResourceValue({
     required this.value,
   });
+
   factory ResourceValue.fromJson(Map<String, dynamic> json) {
     return ResourceValue(
       value: (json['Value'] as String).toResourceValueType(),
@@ -13344,6 +13485,7 @@ class RetentionConfiguration {
     required this.name,
     required this.retentionPeriodInDays,
   });
+
   factory RetentionConfiguration.fromJson(Map<String, dynamic> json) {
     return RetentionConfiguration(
       name: json['Name'] as String,
@@ -13394,6 +13536,7 @@ class Scope {
     this.tagKey,
     this.tagValue,
   });
+
   factory Scope.fromJson(Map<String, dynamic> json) {
     return Scope(
       complianceResourceId: json['ComplianceResourceId'] as String?,
@@ -13436,6 +13579,7 @@ class SelectAggregateResourceConfigResponse {
     this.queryInfo,
     this.results,
   });
+
   factory SelectAggregateResourceConfigResponse.fromJson(
       Map<String, dynamic> json) {
     return SelectAggregateResourceConfigResponse(
@@ -13478,6 +13622,7 @@ class SelectResourceConfigResponse {
     this.queryInfo,
     this.results,
   });
+
   factory SelectResourceConfigResponse.fromJson(Map<String, dynamic> json) {
     return SelectResourceConfigResponse(
       nextToken: json['NextToken'] as String?,
@@ -13529,6 +13674,7 @@ class Source {
     required this.sourceIdentifier,
     this.sourceDetails,
   });
+
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       owner: (json['Owner'] as String).toOwner(),
@@ -13613,6 +13759,7 @@ class SourceDetail {
     this.maximumExecutionFrequency,
     this.messageType,
   });
+
   factory SourceDetail.fromJson(Map<String, dynamic> json) {
     return SourceDetail(
       eventSource: (json['EventSource'] as String?)?.toEventSource(),
@@ -13654,6 +13801,7 @@ class SsmControls {
     this.concurrentExecutionRatePercentage,
     this.errorPercentage,
   });
+
   factory SsmControls.fromJson(Map<String, dynamic> json) {
     return SsmControls(
       concurrentExecutionRatePercentage:
@@ -13677,6 +13825,7 @@ class SsmControls {
 /// The output when you start the evaluation for the specified AWS Config rule.
 class StartConfigRulesEvaluationResponse {
   StartConfigRulesEvaluationResponse();
+
   factory StartConfigRulesEvaluationResponse.fromJson(Map<String, dynamic> _) {
     return StartConfigRulesEvaluationResponse();
   }
@@ -13698,6 +13847,7 @@ class StartRemediationExecutionResponse {
     this.failedItems,
     this.failureMessage,
   });
+
   factory StartRemediationExecutionResponse.fromJson(
       Map<String, dynamic> json) {
     return StartRemediationExecutionResponse(
@@ -13727,6 +13877,7 @@ class StaticValue {
   StaticValue({
     required this.values,
   });
+
   factory StaticValue.fromJson(Map<String, dynamic> json) {
     return StaticValue(
       values: (json['Values'] as List)
@@ -13805,6 +13956,7 @@ class StatusDetailFilters {
     this.accountId,
     this.memberAccountRuleStatus,
   });
+
   factory StatusDetailFilters.fromJson(Map<String, dynamic> json) {
     return StatusDetailFilters(
       accountId: json['AccountId'] as String?,
@@ -13854,6 +14006,7 @@ class StoredQuery {
     this.queryArn,
     this.queryId,
   });
+
   factory StoredQuery.fromJson(Map<String, dynamic> json) {
     return StoredQuery(
       queryName: json['QueryName'] as String,
@@ -13901,6 +14054,7 @@ class StoredQueryMetadata {
     required this.queryName,
     this.description,
   });
+
   factory StoredQueryMetadata.fromJson(Map<String, dynamic> json) {
     return StoredQueryMetadata(
       queryArn: json['QueryArn'] as String,
@@ -13942,6 +14096,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,

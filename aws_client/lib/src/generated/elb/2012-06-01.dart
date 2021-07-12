@@ -1416,6 +1416,7 @@ class AccessLog {
     this.s3BucketName,
     this.s3BucketPrefix,
   });
+
   factory AccessLog.fromJson(Map<String, dynamic> json) {
     return AccessLog(
       enabled: json['Enabled'] as bool,
@@ -1456,6 +1457,7 @@ class AddAvailabilityZonesOutput {
   AddAvailabilityZonesOutput({
     this.availabilityZones,
   });
+
   factory AddAvailabilityZonesOutput.fromJson(Map<String, dynamic> json) {
     return AddAvailabilityZonesOutput(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -1484,6 +1486,7 @@ class AddAvailabilityZonesOutput {
 /// Contains the output of AddTags.
 class AddTagsOutput {
   AddTagsOutput();
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
   }
@@ -1523,6 +1526,7 @@ class AdditionalAttribute {
     this.key,
     this.value,
   });
+
   factory AdditionalAttribute.fromJson(Map<String, dynamic> json) {
     return AdditionalAttribute(
       key: json['Key'] as String?,
@@ -1560,6 +1564,7 @@ class AppCookieStickinessPolicy {
     this.cookieName,
     this.policyName,
   });
+
   factory AppCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
     return AppCookieStickinessPolicy(
       cookieName: json['CookieName'] as String?,
@@ -1592,6 +1597,7 @@ class ApplySecurityGroupsToLoadBalancerOutput {
   ApplySecurityGroupsToLoadBalancerOutput({
     this.securityGroups,
   });
+
   factory ApplySecurityGroupsToLoadBalancerOutput.fromJson(
       Map<String, dynamic> json) {
     return ApplySecurityGroupsToLoadBalancerOutput(
@@ -1626,6 +1632,7 @@ class AttachLoadBalancerToSubnetsOutput {
   AttachLoadBalancerToSubnetsOutput({
     this.subnets,
   });
+
   factory AttachLoadBalancerToSubnetsOutput.fromJson(
       Map<String, dynamic> json) {
     return AttachLoadBalancerToSubnetsOutput(
@@ -1664,6 +1671,7 @@ class BackendServerDescription {
     this.instancePort,
     this.policyNames,
   });
+
   factory BackendServerDescription.fromJson(Map<String, dynamic> json) {
     return BackendServerDescription(
       instancePort: json['InstancePort'] as int?,
@@ -1701,6 +1709,7 @@ class ConfigureHealthCheckOutput {
   ConfigureHealthCheckOutput({
     this.healthCheck,
   });
+
   factory ConfigureHealthCheckOutput.fromJson(Map<String, dynamic> json) {
     return ConfigureHealthCheckOutput(
       healthCheck: json['HealthCheck'] != null
@@ -1738,6 +1747,7 @@ class ConnectionDraining {
     required this.enabled,
     this.timeout,
   });
+
   factory ConnectionDraining.fromJson(Map<String, dynamic> json) {
     return ConnectionDraining(
       enabled: json['Enabled'] as bool,
@@ -1771,6 +1781,7 @@ class ConnectionSettings {
   ConnectionSettings({
     required this.idleTimeout,
   });
+
   factory ConnectionSettings.fromJson(Map<String, dynamic> json) {
     return ConnectionSettings(
       idleTimeout: json['IdleTimeout'] as int,
@@ -1799,6 +1810,7 @@ class CreateAccessPointOutput {
   CreateAccessPointOutput({
     this.dNSName,
   });
+
   factory CreateAccessPointOutput.fromJson(Map<String, dynamic> json) {
     return CreateAccessPointOutput(
       dNSName: json['DNSName'] as String?,
@@ -1822,6 +1834,7 @@ class CreateAccessPointOutput {
 /// Contains the output for CreateAppCookieStickinessPolicy.
 class CreateAppCookieStickinessPolicyOutput {
   CreateAppCookieStickinessPolicyOutput();
+
   factory CreateAppCookieStickinessPolicyOutput.fromJson(
       Map<String, dynamic> _) {
     return CreateAppCookieStickinessPolicyOutput();
@@ -1841,6 +1854,7 @@ class CreateAppCookieStickinessPolicyOutput {
 /// Contains the output for CreateLBCookieStickinessPolicy.
 class CreateLBCookieStickinessPolicyOutput {
   CreateLBCookieStickinessPolicyOutput();
+
   factory CreateLBCookieStickinessPolicyOutput.fromJson(
       Map<String, dynamic> _) {
     return CreateLBCookieStickinessPolicyOutput();
@@ -1860,6 +1874,7 @@ class CreateLBCookieStickinessPolicyOutput {
 /// Contains the parameters for CreateLoadBalancerListener.
 class CreateLoadBalancerListenerOutput {
   CreateLoadBalancerListenerOutput();
+
   factory CreateLoadBalancerListenerOutput.fromJson(Map<String, dynamic> _) {
     return CreateLoadBalancerListenerOutput();
   }
@@ -1878,6 +1893,7 @@ class CreateLoadBalancerListenerOutput {
 /// Contains the output of CreateLoadBalancerPolicy.
 class CreateLoadBalancerPolicyOutput {
   CreateLoadBalancerPolicyOutput();
+
   factory CreateLoadBalancerPolicyOutput.fromJson(Map<String, dynamic> _) {
     return CreateLoadBalancerPolicyOutput();
   }
@@ -1902,6 +1918,7 @@ class CrossZoneLoadBalancing {
   CrossZoneLoadBalancing({
     required this.enabled,
   });
+
   factory CrossZoneLoadBalancing.fromJson(Map<String, dynamic> json) {
     return CrossZoneLoadBalancing(
       enabled: json['Enabled'] as bool,
@@ -1925,6 +1942,7 @@ class CrossZoneLoadBalancing {
 /// Contains the output of DeleteLoadBalancer.
 class DeleteAccessPointOutput {
   DeleteAccessPointOutput();
+
   factory DeleteAccessPointOutput.fromJson(Map<String, dynamic> _) {
     return DeleteAccessPointOutput();
   }
@@ -1943,6 +1961,7 @@ class DeleteAccessPointOutput {
 /// Contains the output of DeleteLoadBalancerListeners.
 class DeleteLoadBalancerListenerOutput {
   DeleteLoadBalancerListenerOutput();
+
   factory DeleteLoadBalancerListenerOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLoadBalancerListenerOutput();
   }
@@ -1961,6 +1980,7 @@ class DeleteLoadBalancerListenerOutput {
 /// Contains the output of DeleteLoadBalancerPolicy.
 class DeleteLoadBalancerPolicyOutput {
   DeleteLoadBalancerPolicyOutput();
+
   factory DeleteLoadBalancerPolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLoadBalancerPolicyOutput();
   }
@@ -1984,6 +2004,7 @@ class DeregisterEndPointsOutput {
   DeregisterEndPointsOutput({
     this.instances,
   });
+
   factory DeregisterEndPointsOutput.fromJson(Map<String, dynamic> json) {
     return DeregisterEndPointsOutput(
       instances: (json['Instances'] as List?)
@@ -2021,6 +2042,7 @@ class DescribeAccessPointsOutput {
     this.loadBalancerDescriptions,
     this.nextMarker,
   });
+
   factory DescribeAccessPointsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAccessPointsOutput(
       loadBalancerDescriptions: (json['LoadBalancerDescriptions'] as List?)
@@ -2067,6 +2089,7 @@ class DescribeAccountLimitsOutput {
     this.limits,
     this.nextMarker,
   });
+
   factory DescribeAccountLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAccountLimitsOutput(
       limits: (json['Limits'] as List?)
@@ -2103,6 +2126,7 @@ class DescribeEndPointStateOutput {
   DescribeEndPointStateOutput({
     this.instanceStates,
   });
+
   factory DescribeEndPointStateOutput.fromJson(Map<String, dynamic> json) {
     return DescribeEndPointStateOutput(
       instanceStates: (json['InstanceStates'] as List?)
@@ -2138,6 +2162,7 @@ class DescribeLoadBalancerAttributesOutput {
   DescribeLoadBalancerAttributesOutput({
     this.loadBalancerAttributes,
   });
+
   factory DescribeLoadBalancerAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBalancerAttributesOutput(
@@ -2173,6 +2198,7 @@ class DescribeLoadBalancerPoliciesOutput {
   DescribeLoadBalancerPoliciesOutput({
     this.policyDescriptions,
   });
+
   factory DescribeLoadBalancerPoliciesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBalancerPoliciesOutput(
@@ -2209,6 +2235,7 @@ class DescribeLoadBalancerPolicyTypesOutput {
   DescribeLoadBalancerPolicyTypesOutput({
     this.policyTypeDescriptions,
   });
+
   factory DescribeLoadBalancerPolicyTypesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBalancerPolicyTypesOutput(
@@ -2247,6 +2274,7 @@ class DescribeTagsOutput {
   DescribeTagsOutput({
     this.tagDescriptions,
   });
+
   factory DescribeTagsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTagsOutput(
       tagDescriptions: (json['TagDescriptions'] as List?)
@@ -2282,6 +2310,7 @@ class DetachLoadBalancerFromSubnetsOutput {
   DetachLoadBalancerFromSubnetsOutput({
     this.subnets,
   });
+
   factory DetachLoadBalancerFromSubnetsOutput.fromJson(
       Map<String, dynamic> json) {
     return DetachLoadBalancerFromSubnetsOutput(
@@ -2355,6 +2384,7 @@ class HealthCheck {
     required this.timeout,
     required this.unhealthyThreshold,
   });
+
   factory HealthCheck.fromJson(Map<String, dynamic> json) {
     return HealthCheck(
       healthyThreshold: json['HealthyThreshold'] as int,
@@ -2399,6 +2429,7 @@ class Instance {
   Instance({
     this.instanceId,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       instanceId: json['InstanceId'] as String?,
@@ -2488,6 +2519,7 @@ class InstanceState {
     this.reasonCode,
     this.state,
   });
+
   factory InstanceState.fromJson(Map<String, dynamic> json) {
     return InstanceState(
       description: json['Description'] as String?,
@@ -2535,6 +2567,7 @@ class LBCookieStickinessPolicy {
     this.cookieExpirationPeriod,
     this.policyName,
   });
+
   factory LBCookieStickinessPolicy.fromJson(Map<String, dynamic> json) {
     return LBCookieStickinessPolicy(
       cookieExpirationPeriod: json['CookieExpirationPeriod'] as int?,
@@ -2586,6 +2619,7 @@ class Limit {
     this.max,
     this.name,
   });
+
   factory Limit.fromJson(Map<String, dynamic> json) {
     return Limit(
       max: json['Max'] as String?,
@@ -2656,6 +2690,7 @@ class Listener {
     this.instanceProtocol,
     this.sSLCertificateId,
   });
+
   factory Listener.fromJson(Map<String, dynamic> json) {
     return Listener(
       instancePort: json['InstancePort'] as int,
@@ -2704,6 +2739,7 @@ class ListenerDescription {
     this.listener,
     this.policyNames,
   });
+
   factory ListenerDescription.fromJson(Map<String, dynamic> json) {
     return ListenerDescription(
       listener: json['Listener'] != null
@@ -2783,6 +2819,7 @@ class LoadBalancerAttributes {
     this.connectionSettings,
     this.crossZoneLoadBalancing,
   });
+
   factory LoadBalancerAttributes.fromJson(Map<String, dynamic> json) {
     return LoadBalancerAttributes(
       accessLog: json['AccessLog'] != null
@@ -2930,6 +2967,7 @@ class LoadBalancerDescription {
     this.subnets,
     this.vPCId,
   });
+
   factory LoadBalancerDescription.fromJson(Map<String, dynamic> json) {
     return LoadBalancerDescription(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -3077,6 +3115,7 @@ class ModifyLoadBalancerAttributesOutput {
     this.loadBalancerAttributes,
     this.loadBalancerName,
   });
+
   factory ModifyLoadBalancerAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return ModifyLoadBalancerAttributesOutput(
@@ -3125,6 +3164,7 @@ class Policies {
     this.lBCookieStickinessPolicies,
     this.otherPolicies,
   });
+
   factory Policies.fromJson(Map<String, dynamic> json) {
     return Policies(
       appCookieStickinessPolicies:
@@ -3191,6 +3231,7 @@ class PolicyAttribute {
     this.attributeName,
     this.attributeValue,
   });
+
   factory PolicyAttribute.fromJson(Map<String, dynamic> json) {
     return PolicyAttribute(
       attributeName: json['AttributeName'] as String?,
@@ -3220,6 +3261,7 @@ class PolicyAttributeDescription {
     this.attributeName,
     this.attributeValue,
   });
+
   factory PolicyAttributeDescription.fromJson(Map<String, dynamic> json) {
     return PolicyAttributeDescription(
       attributeName: json['AttributeName'] as String?,
@@ -3286,6 +3328,7 @@ class PolicyAttributeTypeDescription {
     this.defaultValue,
     this.description,
   });
+
   factory PolicyAttributeTypeDescription.fromJson(Map<String, dynamic> json) {
     return PolicyAttributeTypeDescription(
       attributeName: json['AttributeName'] as String?,
@@ -3338,6 +3381,7 @@ class PolicyDescription {
     this.policyName,
     this.policyTypeName,
   });
+
   factory PolicyDescription.fromJson(Map<String, dynamic> json) {
     return PolicyDescription(
       policyAttributeDescriptions: (json['PolicyAttributeDescriptions']
@@ -3394,6 +3438,7 @@ class PolicyTypeDescription {
     this.policyAttributeTypeDescriptions,
     this.policyTypeName,
   });
+
   factory PolicyTypeDescription.fromJson(Map<String, dynamic> json) {
     return PolicyTypeDescription(
       description: json['Description'] as String?,
@@ -3442,6 +3487,7 @@ class RegisterEndPointsOutput {
   RegisterEndPointsOutput({
     this.instances,
   });
+
   factory RegisterEndPointsOutput.fromJson(Map<String, dynamic> json) {
     return RegisterEndPointsOutput(
       instances: (json['Instances'] as List?)
@@ -3474,6 +3520,7 @@ class RemoveAvailabilityZonesOutput {
   RemoveAvailabilityZonesOutput({
     this.availabilityZones,
   });
+
   factory RemoveAvailabilityZonesOutput.fromJson(Map<String, dynamic> json) {
     return RemoveAvailabilityZonesOutput(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -3502,6 +3549,7 @@ class RemoveAvailabilityZonesOutput {
 /// Contains the output of RemoveTags.
 class RemoveTagsOutput {
   RemoveTagsOutput();
+
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
   }
@@ -3520,6 +3568,7 @@ class RemoveTagsOutput {
 /// Contains the output of SetLoadBalancerListenerSSLCertificate.
 class SetLoadBalancerListenerSSLCertificateOutput {
   SetLoadBalancerListenerSSLCertificateOutput();
+
   factory SetLoadBalancerListenerSSLCertificateOutput.fromJson(
       Map<String, dynamic> _) {
     return SetLoadBalancerListenerSSLCertificateOutput();
@@ -3539,6 +3588,7 @@ class SetLoadBalancerListenerSSLCertificateOutput {
 /// Contains the output of SetLoadBalancerPoliciesForBackendServer.
 class SetLoadBalancerPoliciesForBackendServerOutput {
   SetLoadBalancerPoliciesForBackendServerOutput();
+
   factory SetLoadBalancerPoliciesForBackendServerOutput.fromJson(
       Map<String, dynamic> _) {
     return SetLoadBalancerPoliciesForBackendServerOutput();
@@ -3558,6 +3608,7 @@ class SetLoadBalancerPoliciesForBackendServerOutput {
 /// Contains the output of SetLoadBalancePoliciesOfListener.
 class SetLoadBalancerPoliciesOfListenerOutput {
   SetLoadBalancerPoliciesOfListenerOutput();
+
   factory SetLoadBalancerPoliciesOfListenerOutput.fromJson(
       Map<String, dynamic> _) {
     return SetLoadBalancerPoliciesOfListenerOutput();
@@ -3586,6 +3637,7 @@ class SourceSecurityGroup {
     this.groupName,
     this.ownerAlias,
   });
+
   factory SourceSecurityGroup.fromJson(Map<String, dynamic> json) {
     return SourceSecurityGroup(
       groupName: json['GroupName'] as String?,
@@ -3622,6 +3674,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -3658,6 +3711,7 @@ class TagDescription {
     this.loadBalancerName,
     this.tags,
   });
+
   factory TagDescription.fromJson(Map<String, dynamic> json) {
     return TagDescription(
       loadBalancerName: json['LoadBalancerName'] as String?,
@@ -3694,6 +3748,7 @@ class TagKeyOnly {
   TagKeyOnly({
     this.key,
   });
+
   factory TagKeyOnly.fromJson(Map<String, dynamic> json) {
     return TagKeyOnly(
       key: json['Key'] as String?,

@@ -232,6 +232,7 @@ class GetMediaOutput {
     this.contentType,
     this.payload,
   });
+
   factory GetMediaOutput.fromJson(Map<String, dynamic> json) {
     return GetMediaOutput(
       contentType: json['Content-Type'] as String?,
@@ -319,6 +320,7 @@ class StartSelector {
     this.continuationToken,
     this.startTimestamp,
   });
+
   factory StartSelector.fromJson(Map<String, dynamic> json) {
     return StartSelector(
       startSelectorType:

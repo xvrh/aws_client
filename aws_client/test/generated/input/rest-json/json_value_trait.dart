@@ -112,6 +112,7 @@ class BodyStructure {
     this.bodyField,
     this.bodyListField,
   });
+
   factory BodyStructure.fromJson(Map<String, dynamic> json) {
     return BodyStructure(
       bodyField: json['BodyField'] == null

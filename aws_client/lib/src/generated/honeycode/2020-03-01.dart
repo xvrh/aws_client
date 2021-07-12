@@ -1127,6 +1127,7 @@ class BatchCreateTableRowsResult {
     required this.workbookCursor,
     this.failedBatchItems,
   });
+
   factory BatchCreateTableRowsResult.fromJson(Map<String, dynamic> json) {
     return BatchCreateTableRowsResult(
       createdRows: (json['createdRows'] as Map<String, dynamic>)
@@ -1164,6 +1165,7 @@ class BatchDeleteTableRowsResult {
     required this.workbookCursor,
     this.failedBatchItems,
   });
+
   factory BatchDeleteTableRowsResult.fromJson(Map<String, dynamic> json) {
     return BatchDeleteTableRowsResult(
       workbookCursor: json['workbookCursor'] as int,
@@ -1199,6 +1201,7 @@ class BatchUpdateTableRowsResult {
     required this.workbookCursor,
     this.failedBatchItems,
   });
+
   factory BatchUpdateTableRowsResult.fromJson(Map<String, dynamic> json) {
     return BatchUpdateTableRowsResult(
       workbookCursor: json['workbookCursor'] as int,
@@ -1240,6 +1243,7 @@ class BatchUpsertTableRowsResult {
     required this.workbookCursor,
     this.failedBatchItems,
   });
+
   factory BatchUpsertTableRowsResult.fromJson(Map<String, dynamic> json) {
     return BatchUpsertTableRowsResult(
       rows: (json['rows'] as Map<String, dynamic>).map((k, e) =>
@@ -1337,6 +1341,7 @@ class Cell {
     this.formula,
     this.rawValue,
   });
+
   factory Cell.fromJson(Map<String, dynamic> json) {
     return Cell(
       format: (json['format'] as String?)?.toFormat(),
@@ -1370,6 +1375,7 @@ class CellInput {
   CellInput({
     this.fact,
   });
+
   factory CellInput.fromJson(Map<String, dynamic> json) {
     return CellInput(
       fact: json['fact'] as String?,
@@ -1396,6 +1402,7 @@ class ColumnMetadata {
     required this.format,
     required this.name,
   });
+
   factory ColumnMetadata.fromJson(Map<String, dynamic> json) {
     return ColumnMetadata(
       format: (json['format'] as String).toFormat(),
@@ -1432,6 +1439,7 @@ class CreateRowData {
     required this.batchItemId,
     required this.cellsToCreate,
   });
+
   factory CreateRowData.fromJson(Map<String, dynamic> json) {
     return CreateRowData(
       batchItemId: json['batchItemId'] as String,
@@ -1468,6 +1476,7 @@ class DataItem {
     this.overrideFormat,
     this.rawValue,
   });
+
   factory DataItem.fromJson(Map<String, dynamic> json) {
     return DataItem(
       formattedValue: json['formattedValue'] as String?,
@@ -1511,6 +1520,7 @@ class DelimitedTextImportOptions {
     this.hasHeaderRow,
     this.ignoreEmptyRows,
   });
+
   factory DelimitedTextImportOptions.fromJson(Map<String, dynamic> json) {
     return DelimitedTextImportOptions(
       delimiter: json['delimiter'] as String,
@@ -1551,6 +1561,7 @@ class DescribeTableDataImportJobResult {
     required this.jobStatus,
     required this.message,
   });
+
   factory DescribeTableDataImportJobResult.fromJson(Map<String, dynamic> json) {
     return DescribeTableDataImportJobResult(
       jobMetadata: TableDataImportJobMetadata.fromJson(
@@ -1581,6 +1592,7 @@ class DestinationOptions {
   DestinationOptions({
     this.columnMap,
   });
+
   factory DestinationOptions.fromJson(Map<String, dynamic> json) {
     return DestinationOptions(
       columnMap: (json['columnMap'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -1612,6 +1624,7 @@ class FailedBatchItem {
     required this.errorMessage,
     required this.id,
   });
+
   factory FailedBatchItem.fromJson(Map<String, dynamic> json) {
     return FailedBatchItem(
       errorMessage: json['errorMessage'] as String,
@@ -1649,6 +1662,7 @@ class Filter {
     required this.formula,
     this.contextRowId,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       formula: json['formula'] as String,
@@ -1758,6 +1772,7 @@ class GetScreenDataResult {
     required this.workbookCursor,
     this.nextToken,
   });
+
   factory GetScreenDataResult.fromJson(Map<String, dynamic> json) {
     return GetScreenDataResult(
       results: (json['results'] as Map<String, dynamic>).map(
@@ -1836,6 +1851,7 @@ class ImportDataSource {
   ImportDataSource({
     required this.dataSourceConfig,
   });
+
   factory ImportDataSource.fromJson(Map<String, dynamic> json) {
     return ImportDataSource(
       dataSourceConfig: ImportDataSourceConfig.fromJson(
@@ -1860,6 +1876,7 @@ class ImportDataSourceConfig {
   ImportDataSourceConfig({
     this.dataSourceUrl,
   });
+
   factory ImportDataSourceConfig.fromJson(Map<String, dynamic> json) {
     return ImportDataSourceConfig(
       dataSourceUrl: json['dataSourceUrl'] as String?,
@@ -1886,6 +1903,7 @@ class ImportJobSubmitter {
     this.email,
     this.userArn,
   });
+
   factory ImportJobSubmitter.fromJson(Map<String, dynamic> json) {
     return ImportJobSubmitter(
       email: json['email'] as String?,
@@ -1917,6 +1935,7 @@ class ImportOptions {
     this.delimitedTextOptions,
     this.destinationOptions,
   });
+
   factory ImportOptions.fromJson(Map<String, dynamic> json) {
     return ImportOptions(
       delimitedTextOptions: json['delimitedTextOptions'] != null
@@ -1971,6 +1990,7 @@ class InvokeScreenAutomationResult {
   InvokeScreenAutomationResult({
     required this.workbookCursor,
   });
+
   factory InvokeScreenAutomationResult.fromJson(Map<String, dynamic> json) {
     return InvokeScreenAutomationResult(
       workbookCursor: json['workbookCursor'] as int,
@@ -2004,6 +2024,7 @@ class ListTableColumnsResult {
     this.nextToken,
     this.workbookCursor,
   });
+
   factory ListTableColumnsResult.fromJson(Map<String, dynamic> json) {
     return ListTableColumnsResult(
       tableColumns: (json['tableColumns'] as List)
@@ -2056,6 +2077,7 @@ class ListTableRowsResult {
     this.nextToken,
     this.rowIdsNotFound,
   });
+
   factory ListTableRowsResult.fromJson(Map<String, dynamic> json) {
     return ListTableRowsResult(
       columnIds: (json['columnIds'] as List)
@@ -2110,6 +2132,7 @@ class ListTablesResult {
     this.nextToken,
     this.workbookCursor,
   });
+
   factory ListTablesResult.fromJson(Map<String, dynamic> json) {
     return ListTablesResult(
       tables: (json['tables'] as List)
@@ -2156,6 +2179,7 @@ class QueryTableRowsResult {
     required this.workbookCursor,
     this.nextToken,
   });
+
   factory QueryTableRowsResult.fromJson(Map<String, dynamic> json) {
     return QueryTableRowsResult(
       columnIds: (json['columnIds'] as List)
@@ -2197,6 +2221,7 @@ class ResultRow {
     required this.dataItems,
     this.rowId,
   });
+
   factory ResultRow.fromJson(Map<String, dynamic> json) {
     return ResultRow(
       dataItems: (json['dataItems'] as List)
@@ -2244,6 +2269,7 @@ class ResultSet {
     required this.headers,
     required this.rows,
   });
+
   factory ResultSet.fromJson(Map<String, dynamic> json) {
     return ResultSet(
       headers: (json['headers'] as List)
@@ -2276,6 +2302,7 @@ class SourceDataColumnProperties {
   SourceDataColumnProperties({
     this.columnIndex,
   });
+
   factory SourceDataColumnProperties.fromJson(Map<String, dynamic> json) {
     return SourceDataColumnProperties(
       columnIndex: json['columnIndex'] as int?,
@@ -2303,6 +2330,7 @@ class StartTableDataImportJobResult {
     required this.jobId,
     required this.jobStatus,
   });
+
   factory StartTableDataImportJobResult.fromJson(Map<String, dynamic> json) {
     return StartTableDataImportJobResult(
       jobId: json['jobId'] as String,
@@ -2332,6 +2360,7 @@ class Table {
     this.tableId,
     this.tableName,
   });
+
   factory Table.fromJson(Map<String, dynamic> json) {
     return Table(
       tableId: json['tableId'] as String?,
@@ -2366,6 +2395,7 @@ class TableColumn {
     this.tableColumnId,
     this.tableColumnName,
   });
+
   factory TableColumn.fromJson(Map<String, dynamic> json) {
     return TableColumn(
       format: (json['format'] as String?)?.toFormat(),
@@ -2406,6 +2436,7 @@ class TableDataImportJobMetadata {
     required this.submitTime,
     required this.submitter,
   });
+
   factory TableDataImportJobMetadata.fromJson(Map<String, dynamic> json) {
     return TableDataImportJobMetadata(
       dataSource:
@@ -2483,6 +2514,7 @@ class TableRow {
     required this.cells,
     required this.rowId,
   });
+
   factory TableRow.fromJson(Map<String, dynamic> json) {
     return TableRow(
       cells: (json['cells'] as List)
@@ -2518,6 +2550,7 @@ class UpdateRowData {
     required this.cellsToUpdate,
     required this.rowId,
   });
+
   factory UpdateRowData.fromJson(Map<String, dynamic> json) {
     return UpdateRowData(
       cellsToUpdate: (json['cellsToUpdate'] as Map<String, dynamic>).map(
@@ -2596,6 +2629,7 @@ class UpsertRowData {
     required this.cellsToUpdate,
     required this.filter,
   });
+
   factory UpsertRowData.fromJson(Map<String, dynamic> json) {
     return UpsertRowData(
       batchItemId: json['batchItemId'] as String,
@@ -2633,6 +2667,7 @@ class UpsertRowsResult {
     required this.rowIds,
     required this.upsertAction,
   });
+
   factory UpsertRowsResult.fromJson(Map<String, dynamic> json) {
     return UpsertRowsResult(
       rowIds: (json['rowIds'] as List)
@@ -2662,6 +2697,7 @@ class VariableValue {
   VariableValue({
     required this.rawValue,
   });
+
   factory VariableValue.fromJson(Map<String, dynamic> json) {
     return VariableValue(
       rawValue: json['rawValue'] as String,

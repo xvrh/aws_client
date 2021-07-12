@@ -2196,6 +2196,7 @@ class ASN1Subject {
     this.surname,
     this.title,
   });
+
   factory ASN1Subject.fromJson(Map<String, dynamic> json) {
     return ASN1Subject(
       commonName: json['CommonName'] as String?,
@@ -2265,6 +2266,7 @@ class AccessDescription {
     required this.accessLocation,
     required this.accessMethod,
   });
+
   factory AccessDescription.fromJson(Map<String, dynamic> json) {
     return AccessDescription(
       accessLocation:
@@ -2302,6 +2304,7 @@ class AccessMethod {
     this.accessMethodType,
     this.customObjectIdentifier,
   });
+
   factory AccessMethod.fromJson(Map<String, dynamic> json) {
     return AccessMethod(
       accessMethodType:
@@ -2406,6 +2409,7 @@ class ApiPassthrough {
     this.extensions,
     this.subject,
   });
+
   factory ApiPassthrough.fromJson(Map<String, dynamic> json) {
     return ApiPassthrough(
       extensions: json['Extensions'] != null
@@ -2574,6 +2578,7 @@ class CertificateAuthority {
     this.status,
     this.type,
   });
+
   factory CertificateAuthority.fromJson(Map<String, dynamic> json) {
     return CertificateAuthority(
       arn: json['Arn'] as String?,
@@ -2677,6 +2682,7 @@ class CertificateAuthorityConfiguration {
     required this.subject,
     this.csrExtensions,
   });
+
   factory CertificateAuthorityConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CertificateAuthorityConfiguration(
@@ -2797,6 +2803,7 @@ class CreateCertificateAuthorityAuditReportResponse {
     this.auditReportId,
     this.s3Key,
   });
+
   factory CreateCertificateAuthorityAuditReportResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCertificateAuthorityAuditReportResponse(
@@ -2826,6 +2833,7 @@ class CreateCertificateAuthorityResponse {
   CreateCertificateAuthorityResponse({
     this.certificateAuthorityArn,
   });
+
   factory CreateCertificateAuthorityResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCertificateAuthorityResponse(
@@ -2986,6 +2994,7 @@ class CrlConfiguration {
     this.s3BucketName,
     this.s3ObjectAcl,
   });
+
   factory CrlConfiguration.fromJson(Map<String, dynamic> json) {
     return CrlConfiguration(
       enabled: json['Enabled'] as bool,
@@ -3029,6 +3038,7 @@ class CsrExtensions {
     this.keyUsage,
     this.subjectInformationAccess,
   });
+
   factory CsrExtensions.fromJson(Map<String, dynamic> json) {
     return CsrExtensions(
       keyUsage: json['KeyUsage'] != null
@@ -3072,6 +3082,7 @@ class DescribeCertificateAuthorityAuditReportResponse {
     this.s3BucketName,
     this.s3Key,
   });
+
   factory DescribeCertificateAuthorityAuditReportResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCertificateAuthorityAuditReportResponse(
@@ -3107,6 +3118,7 @@ class DescribeCertificateAuthorityResponse {
   DescribeCertificateAuthorityResponse({
     this.certificateAuthority,
   });
+
   factory DescribeCertificateAuthorityResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCertificateAuthorityResponse(
@@ -3140,6 +3152,7 @@ class EdiPartyName {
     required this.partyName,
     this.nameAssigner,
   });
+
   factory EdiPartyName.fromJson(Map<String, dynamic> json) {
     return EdiPartyName(
       partyName: json['PartyName'] as String,
@@ -3172,6 +3185,7 @@ class ExtendedKeyUsage {
     this.extendedKeyUsageObjectIdentifier,
     this.extendedKeyUsageType,
   });
+
   factory ExtendedKeyUsage.fromJson(Map<String, dynamic> json) {
     return ExtendedKeyUsage(
       extendedKeyUsageObjectIdentifier:
@@ -3287,6 +3301,7 @@ class Extensions {
     this.keyUsage,
     this.subjectAlternativeNames,
   });
+
   factory Extensions.fromJson(Map<String, dynamic> json) {
     return Extensions(
       certificatePolicies: (json['CertificatePolicies'] as List?)
@@ -3395,6 +3410,7 @@ class GeneralName {
     this.rfc822Name,
     this.uniformResourceIdentifier,
   });
+
   factory GeneralName.fromJson(Map<String, dynamic> json) {
     return GeneralName(
       directoryName: json['DirectoryName'] != null
@@ -3451,6 +3467,7 @@ class GetCertificateAuthorityCertificateResponse {
     this.certificate,
     this.certificateChain,
   });
+
   factory GetCertificateAuthorityCertificateResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCertificateAuthorityCertificateResponse(
@@ -3477,6 +3494,7 @@ class GetCertificateAuthorityCsrResponse {
   GetCertificateAuthorityCsrResponse({
     this.csr,
   });
+
   factory GetCertificateAuthorityCsrResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCertificateAuthorityCsrResponse(
@@ -3505,6 +3523,7 @@ class GetCertificateResponse {
     this.certificate,
     this.certificateChain,
   });
+
   factory GetCertificateResponse.fromJson(Map<String, dynamic> json) {
     return GetCertificateResponse(
       certificate: json['Certificate'] as String?,
@@ -3529,6 +3548,7 @@ class GetPolicyResponse {
   GetPolicyResponse({
     this.policy,
   });
+
   factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyResponse(
       policy: json['Policy'] as String?,
@@ -3554,6 +3574,7 @@ class IssueCertificateResponse {
   IssueCertificateResponse({
     this.certificateArn,
   });
+
   factory IssueCertificateResponse.fromJson(Map<String, dynamic> json) {
     return IssueCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
@@ -3675,6 +3696,7 @@ class KeyUsage {
     this.keyEncipherment,
     this.nonRepudiation,
   });
+
   factory KeyUsage.fromJson(Map<String, dynamic> json) {
     return KeyUsage(
       cRLSign: json['CRLSign'] as bool?,
@@ -3725,6 +3747,7 @@ class ListCertificateAuthoritiesResponse {
     this.certificateAuthorities,
     this.nextToken,
   });
+
   factory ListCertificateAuthoritiesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCertificateAuthoritiesResponse(
@@ -3761,6 +3784,7 @@ class ListPermissionsResponse {
     this.nextToken,
     this.permissions,
   });
+
   factory ListPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return ListPermissionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3793,6 +3817,7 @@ class ListTagsResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3829,6 +3854,7 @@ class OtherName {
     required this.typeId,
     required this.value,
   });
+
   factory OtherName.fromJson(Map<String, dynamic> json) {
     return OtherName(
       typeId: json['TypeId'] as String,
@@ -3886,6 +3912,7 @@ class Permission {
     this.principal,
     this.sourceAccount,
   });
+
   factory Permission.fromJson(Map<String, dynamic> json) {
     return Permission(
       actions: (json['Actions'] as List?)
@@ -3935,6 +3962,7 @@ class PolicyInformation {
     required this.certPolicyId,
     this.policyQualifiers,
   });
+
   factory PolicyInformation.fromJson(Map<String, dynamic> json) {
     return PolicyInformation(
       certPolicyId: json['CertPolicyId'] as String,
@@ -3993,6 +4021,7 @@ class PolicyQualifierInfo {
     required this.policyQualifierId,
     required this.qualifier,
   });
+
   factory PolicyQualifierInfo.fromJson(Map<String, dynamic> json) {
     return PolicyQualifierInfo(
       policyQualifierId:
@@ -4023,6 +4052,7 @@ class Qualifier {
   Qualifier({
     required this.cpsUri,
   });
+
   factory Qualifier.fromJson(Map<String, dynamic> json) {
     return Qualifier(
       cpsUri: json['CpsUri'] as String,
@@ -4081,6 +4111,7 @@ class RevocationConfiguration {
   RevocationConfiguration({
     this.crlConfiguration,
   });
+
   factory RevocationConfiguration.fromJson(Map<String, dynamic> json) {
     return RevocationConfiguration(
       crlConfiguration: json['CrlConfiguration'] != null
@@ -4250,6 +4281,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -4339,6 +4371,7 @@ class Validity {
     required this.type,
     required this.value,
   });
+
   factory Validity.fromJson(Map<String, dynamic> json) {
     return Validity(
       type: (json['Type'] as String).toValidityPeriodType(),

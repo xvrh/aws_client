@@ -1278,6 +1278,7 @@ class AcknowledgeFlow {
   AcknowledgeFlow({
     required this.enabled,
   });
+
   factory AcknowledgeFlow.fromJson(Map<String, dynamic> json) {
     return AcknowledgeFlow(
       enabled: json['enabled'] as bool,
@@ -1370,6 +1371,7 @@ class Action {
     this.sns,
     this.sqs,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       clearTimer: json['clearTimer'] != null
@@ -1476,6 +1478,7 @@ class AlarmAction {
     this.sns,
     this.sqs,
   });
+
   factory AlarmAction.fromJson(Map<String, dynamic> json) {
     return AlarmAction(
       dynamoDB: json['dynamoDB'] != null
@@ -1548,6 +1551,7 @@ class AlarmCapabilities {
     this.acknowledgeFlow,
     this.initializationConfiguration,
   });
+
   factory AlarmCapabilities.fromJson(Map<String, dynamic> json) {
     return AlarmCapabilities(
       acknowledgeFlow: json['acknowledgeFlow'] != null
@@ -1581,6 +1585,7 @@ class AlarmEventActions {
   AlarmEventActions({
     this.alarmActions,
   });
+
   factory AlarmEventActions.fromJson(Map<String, dynamic> json) {
     return AlarmEventActions(
       alarmActions: (json['alarmActions'] as List?)
@@ -1614,6 +1619,7 @@ class AlarmModelSummary {
     this.alarmModelName,
     this.creationTime,
   });
+
   factory AlarmModelSummary.fromJson(Map<String, dynamic> json) {
     return AlarmModelSummary(
       alarmModelDescription: json['alarmModelDescription'] as String?,
@@ -1736,6 +1742,7 @@ class AlarmModelVersionSummary {
     this.status,
     this.statusMessage,
   });
+
   factory AlarmModelVersionSummary.fromJson(Map<String, dynamic> json) {
     return AlarmModelVersionSummary(
       alarmModelArn: json['alarmModelArn'] as String?,
@@ -1782,6 +1789,7 @@ class AlarmNotification {
   AlarmNotification({
     this.notificationActions,
   });
+
   factory AlarmNotification.fromJson(Map<String, dynamic> json) {
     return AlarmNotification(
       notificationActions: (json['notificationActions'] as List?)
@@ -1809,6 +1817,7 @@ class AlarmRule {
   AlarmRule({
     this.simpleRule,
   });
+
   factory AlarmRule.fromJson(Map<String, dynamic> json) {
     return AlarmRule(
       simpleRule: json['simpleRule'] != null
@@ -1903,6 +1912,7 @@ class AnalysisResult {
     this.message,
     this.type,
   });
+
   factory AnalysisResult.fromJson(Map<String, dynamic> json) {
     return AnalysisResult(
       level: (json['level'] as String?)?.toAnalysisResultLevel(),
@@ -1973,6 +1983,7 @@ class AnalysisResultLocation {
   AnalysisResultLocation({
     this.path,
   });
+
   factory AnalysisResultLocation.fromJson(Map<String, dynamic> json) {
     return AnalysisResultLocation(
       path: json['path'] as String?,
@@ -2069,6 +2080,7 @@ class AssetPropertyTimestamp {
     required this.timeInSeconds,
     this.offsetInNanos,
   });
+
   factory AssetPropertyTimestamp.fromJson(Map<String, dynamic> json) {
     return AssetPropertyTimestamp(
       timeInSeconds: json['timeInSeconds'] as String,
@@ -2126,6 +2138,7 @@ class AssetPropertyValue {
     this.timestamp,
     this.value,
   });
+
   factory AssetPropertyValue.fromJson(Map<String, dynamic> json) {
     return AssetPropertyValue(
       quality: json['quality'] as String?,
@@ -2218,6 +2231,7 @@ class AssetPropertyVariant {
     this.integerValue,
     this.stringValue,
   });
+
   factory AssetPropertyVariant.fromJson(Map<String, dynamic> json) {
     return AssetPropertyVariant(
       booleanValue: json['booleanValue'] as String?,
@@ -2260,6 +2274,7 @@ class Attribute {
   Attribute({
     required this.jsonPath,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       jsonPath: json['jsonPath'] as String,
@@ -2282,6 +2297,7 @@ class ClearTimerAction {
   ClearTimerAction({
     required this.timerName,
   });
+
   factory ClearTimerAction.fromJson(Map<String, dynamic> json) {
     return ClearTimerAction(
       timerName: json['timerName'] as String,
@@ -2390,6 +2406,7 @@ class CreateAlarmModelResponse {
     this.lastUpdateTime,
     this.status,
   });
+
   factory CreateAlarmModelResponse.fromJson(Map<String, dynamic> json) {
     return CreateAlarmModelResponse(
       alarmModelArn: json['alarmModelArn'] as String?,
@@ -2425,6 +2442,7 @@ class CreateDetectorModelResponse {
   CreateDetectorModelResponse({
     this.detectorModelConfiguration,
   });
+
   factory CreateDetectorModelResponse.fromJson(Map<String, dynamic> json) {
     return CreateDetectorModelResponse(
       detectorModelConfiguration: json['detectorModelConfiguration'] != null
@@ -2450,6 +2468,7 @@ class CreateInputResponse {
   CreateInputResponse({
     this.inputConfiguration,
   });
+
   factory CreateInputResponse.fromJson(Map<String, dynamic> json) {
     return CreateInputResponse(
       inputConfiguration: json['inputConfiguration'] != null
@@ -2469,6 +2488,7 @@ class CreateInputResponse {
 
 class DeleteAlarmModelResponse {
   DeleteAlarmModelResponse();
+
   factory DeleteAlarmModelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAlarmModelResponse();
   }
@@ -2480,6 +2500,7 @@ class DeleteAlarmModelResponse {
 
 class DeleteDetectorModelResponse {
   DeleteDetectorModelResponse();
+
   factory DeleteDetectorModelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorModelResponse();
   }
@@ -2491,6 +2512,7 @@ class DeleteDetectorModelResponse {
 
 class DeleteInputResponse {
   DeleteInputResponse();
+
   factory DeleteInputResponse.fromJson(Map<String, dynamic> _) {
     return DeleteInputResponse();
   }
@@ -2592,6 +2614,7 @@ class DescribeAlarmModelResponse {
     this.status,
     this.statusMessage,
   });
+
   factory DescribeAlarmModelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAlarmModelResponse(
       alarmCapabilities: json['alarmCapabilities'] != null
@@ -2685,6 +2708,7 @@ class DescribeDetectorModelAnalysisResponse {
   DescribeDetectorModelAnalysisResponse({
     this.status,
   });
+
   factory DescribeDetectorModelAnalysisResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDetectorModelAnalysisResponse(
@@ -2707,6 +2731,7 @@ class DescribeDetectorModelResponse {
   DescribeDetectorModelResponse({
     this.detectorModel,
   });
+
   factory DescribeDetectorModelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDetectorModelResponse(
       detectorModel: json['detectorModel'] != null
@@ -2731,6 +2756,7 @@ class DescribeInputResponse {
   DescribeInputResponse({
     this.input,
   });
+
   factory DescribeInputResponse.fromJson(Map<String, dynamic> json) {
     return DescribeInputResponse(
       input: json['input'] != null
@@ -2754,6 +2780,7 @@ class DescribeLoggingOptionsResponse {
   DescribeLoggingOptionsResponse({
     this.loggingOptions,
   });
+
   factory DescribeLoggingOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLoggingOptionsResponse(
       loggingOptions: json['loggingOptions'] != null
@@ -2785,6 +2812,7 @@ class DetectorDebugOption {
     required this.detectorModelName,
     this.keyValue,
   });
+
   factory DetectorDebugOption.fromJson(Map<String, dynamic> json) {
     return DetectorDebugOption(
       detectorModelName: json['detectorModelName'] as String,
@@ -2814,6 +2842,7 @@ class DetectorModel {
     this.detectorModelConfiguration,
     this.detectorModelDefinition,
   });
+
   factory DetectorModel.fromJson(Map<String, dynamic> json) {
     return DetectorModel(
       detectorModelConfiguration: json['detectorModelConfiguration'] != null
@@ -2893,6 +2922,7 @@ class DetectorModelConfiguration {
     this.roleArn,
     this.status,
   });
+
   factory DetectorModelConfiguration.fromJson(Map<String, dynamic> json) {
     return DetectorModelConfiguration(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -2952,6 +2982,7 @@ class DetectorModelDefinition {
     required this.initialStateName,
     required this.states,
   });
+
   factory DetectorModelDefinition.fromJson(Map<String, dynamic> json) {
     return DetectorModelDefinition(
       initialStateName: json['initialStateName'] as String,
@@ -2988,6 +3019,7 @@ class DetectorModelSummary {
     this.detectorModelDescription,
     this.detectorModelName,
   });
+
   factory DetectorModelSummary.fromJson(Map<String, dynamic> json) {
     return DetectorModelSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -3101,6 +3133,7 @@ class DetectorModelVersionSummary {
     this.roleArn,
     this.status,
   });
+
   factory DetectorModelVersionSummary.fromJson(Map<String, dynamic> json) {
     return DetectorModelVersionSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -3290,6 +3323,7 @@ class DynamoDBAction {
     this.rangeKeyType,
     this.rangeKeyValue,
   });
+
   factory DynamoDBAction.fromJson(Map<String, dynamic> json) {
     return DynamoDBAction(
       hashKeyField: json['hashKeyField'] as String,
@@ -3396,6 +3430,7 @@ class DynamoDBv2Action {
     required this.tableName,
     this.payload,
   });
+
   factory DynamoDBv2Action.fromJson(Map<String, dynamic> json) {
     return DynamoDBv2Action(
       tableName: json['tableName'] as String,
@@ -3442,6 +3477,7 @@ class EmailConfiguration {
     required this.recipients,
     this.content,
   });
+
   factory EmailConfiguration.fromJson(Map<String, dynamic> json) {
     return EmailConfiguration(
       from: json['from'] as String,
@@ -3477,6 +3513,7 @@ class EmailContent {
     this.additionalMessage,
     this.subject,
   });
+
   factory EmailContent.fromJson(Map<String, dynamic> json) {
     return EmailContent(
       additionalMessage: json['additionalMessage'] as String?,
@@ -3507,6 +3544,7 @@ class EmailRecipients {
   EmailRecipients({
     this.to,
   });
+
   factory EmailRecipients.fromJson(Map<String, dynamic> json) {
     return EmailRecipients(
       to: (json['to'] as List?)
@@ -3572,6 +3610,7 @@ class Event {
     this.actions,
     this.condition,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       eventName: json['eventName'] as String,
@@ -3616,6 +3655,7 @@ class FirehoseAction {
     this.payload,
     this.separator,
   });
+
   factory FirehoseAction.fromJson(Map<String, dynamic> json) {
     return FirehoseAction(
       deliveryStreamName: json['deliveryStreamName'] as String,
@@ -3650,6 +3690,7 @@ class GetDetectorModelAnalysisResultsResponse {
     this.analysisResults,
     this.nextToken,
   });
+
   factory GetDetectorModelAnalysisResultsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetDetectorModelAnalysisResultsResponse(
@@ -3682,6 +3723,7 @@ class InitializationConfiguration {
   InitializationConfiguration({
     required this.disabledOnInitialization,
   });
+
   factory InitializationConfiguration.fromJson(Map<String, dynamic> json) {
     return InitializationConfiguration(
       disabledOnInitialization: json['disabledOnInitialization'] as bool,
@@ -3708,6 +3750,7 @@ class Input {
     this.inputConfiguration,
     this.inputDefinition,
   });
+
   factory Input.fromJson(Map<String, dynamic> json) {
     return Input(
       inputConfiguration: json['inputConfiguration'] != null
@@ -3759,6 +3802,7 @@ class InputConfiguration {
     required this.status,
     this.inputDescription,
   });
+
   factory InputConfiguration.fromJson(Map<String, dynamic> json) {
     return InputConfiguration(
       creationTime:
@@ -3803,6 +3847,7 @@ class InputDefinition {
   InputDefinition({
     required this.attributes,
   });
+
   factory InputDefinition.fromJson(Map<String, dynamic> json) {
     return InputDefinition(
       attributes: (json['attributes'] as List)
@@ -3832,6 +3877,7 @@ class InputIdentifier {
     this.iotEventsInputIdentifier,
     this.iotSiteWiseInputIdentifier,
   });
+
   factory InputIdentifier.fromJson(Map<String, dynamic> json) {
     return InputIdentifier(
       iotEventsInputIdentifier: json['iotEventsInputIdentifier'] != null
@@ -3923,6 +3969,7 @@ class InputSummary {
     this.lastUpdateTime,
     this.status,
   });
+
   factory InputSummary.fromJson(Map<String, dynamic> json) {
     return InputSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -3968,6 +4015,7 @@ class IotEventsAction {
     required this.inputName,
     this.payload,
   });
+
   factory IotEventsAction.fromJson(Map<String, dynamic> json) {
     return IotEventsAction(
       inputName: json['inputName'] as String,
@@ -3995,6 +4043,7 @@ class IotEventsInputIdentifier {
   IotEventsInputIdentifier({
     required this.inputName,
   });
+
   factory IotEventsInputIdentifier.fromJson(Map<String, dynamic> json) {
     return IotEventsInputIdentifier(
       inputName: json['inputName'] as String,
@@ -4074,6 +4123,7 @@ class IotSiteWiseAction {
     this.propertyId,
     this.propertyValue,
   });
+
   factory IotSiteWiseAction.fromJson(Map<String, dynamic> json) {
     return IotSiteWiseAction(
       assetId: json['assetId'] as String?,
@@ -4116,6 +4166,7 @@ class IotSiteWiseAssetModelPropertyIdentifier {
     required this.assetModelId,
     required this.propertyId,
   });
+
   factory IotSiteWiseAssetModelPropertyIdentifier.fromJson(
       Map<String, dynamic> json) {
     return IotSiteWiseAssetModelPropertyIdentifier(
@@ -4143,6 +4194,7 @@ class IotSiteWiseInputIdentifier {
   IotSiteWiseInputIdentifier({
     this.iotSiteWiseAssetModelPropertyIdentifier,
   });
+
   factory IotSiteWiseInputIdentifier.fromJson(Map<String, dynamic> json) {
     return IotSiteWiseInputIdentifier(
       iotSiteWiseAssetModelPropertyIdentifier:
@@ -4182,6 +4234,7 @@ class IotTopicPublishAction {
     required this.mqttTopic,
     this.payload,
   });
+
   factory IotTopicPublishAction.fromJson(Map<String, dynamic> json) {
     return IotTopicPublishAction(
       mqttTopic: json['mqttTopic'] as String,
@@ -4215,6 +4268,7 @@ class LambdaAction {
     required this.functionArn,
     this.payload,
   });
+
   factory LambdaAction.fromJson(Map<String, dynamic> json) {
     return LambdaAction(
       functionArn: json['functionArn'] as String,
@@ -4246,6 +4300,7 @@ class ListAlarmModelVersionsResponse {
     this.alarmModelVersionSummaries,
     this.nextToken,
   });
+
   factory ListAlarmModelVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListAlarmModelVersionsResponse(
       alarmModelVersionSummaries: (json['alarmModelVersionSummaries'] as List?)
@@ -4280,6 +4335,7 @@ class ListAlarmModelsResponse {
     this.alarmModelSummaries,
     this.nextToken,
   });
+
   factory ListAlarmModelsResponse.fromJson(Map<String, dynamic> json) {
     return ListAlarmModelsResponse(
       alarmModelSummaries: (json['alarmModelSummaries'] as List?)
@@ -4313,6 +4369,7 @@ class ListDetectorModelVersionsResponse {
     this.detectorModelVersionSummaries,
     this.nextToken,
   });
+
   factory ListDetectorModelVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDetectorModelVersionsResponse(
@@ -4349,6 +4406,7 @@ class ListDetectorModelsResponse {
     this.detectorModelSummaries,
     this.nextToken,
   });
+
   factory ListDetectorModelsResponse.fromJson(Map<String, dynamic> json) {
     return ListDetectorModelsResponse(
       detectorModelSummaries: (json['detectorModelSummaries'] as List?)
@@ -4382,6 +4440,7 @@ class ListInputRoutingsResponse {
     this.nextToken,
     this.routedResources,
   });
+
   factory ListInputRoutingsResponse.fromJson(Map<String, dynamic> json) {
     return ListInputRoutingsResponse(
       nextToken: json['nextToken'] as String?,
@@ -4414,6 +4473,7 @@ class ListInputsResponse {
     this.inputSummaries,
     this.nextToken,
   });
+
   factory ListInputsResponse.fromJson(Map<String, dynamic> json) {
     return ListInputsResponse(
       inputSummaries: (json['inputSummaries'] as List?)
@@ -4441,6 +4501,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -4513,6 +4574,7 @@ class LoggingOptions {
     required this.roleArn,
     this.detectorDebugOptions,
   });
+
   factory LoggingOptions.fromJson(Map<String, dynamic> json) {
     return LoggingOptions(
       enabled: json['enabled'] as bool,
@@ -4560,6 +4622,7 @@ class NotificationAction {
     this.emailConfigurations,
     this.smsConfigurations,
   });
+
   factory NotificationAction.fromJson(Map<String, dynamic> json) {
     return NotificationAction(
       action: NotificationTargetActions.fromJson(
@@ -4598,6 +4661,7 @@ class NotificationTargetActions {
   NotificationTargetActions({
     this.lambdaAction,
   });
+
   factory NotificationTargetActions.fromJson(Map<String, dynamic> json) {
     return NotificationTargetActions(
       lambdaAction: json['lambdaAction'] != null
@@ -4624,6 +4688,7 @@ class OnEnterLifecycle {
   OnEnterLifecycle({
     this.events,
   });
+
   factory OnEnterLifecycle.fromJson(Map<String, dynamic> json) {
     return OnEnterLifecycle(
       events: (json['events'] as List?)
@@ -4651,6 +4716,7 @@ class OnExitLifecycle {
   OnExitLifecycle({
     this.events,
   });
+
   factory OnExitLifecycle.fromJson(Map<String, dynamic> json) {
     return OnExitLifecycle(
       events: (json['events'] as List?)
@@ -4683,6 +4749,7 @@ class OnInputLifecycle {
     this.events,
     this.transitionEvents,
   });
+
   factory OnInputLifecycle.fromJson(Map<String, dynamic> json) {
     return OnInputLifecycle(
       events: (json['events'] as List?)
@@ -4730,6 +4797,7 @@ class Payload {
     required this.contentExpression,
     required this.type,
   });
+
   factory Payload.fromJson(Map<String, dynamic> json) {
     return Payload(
       contentExpression: json['contentExpression'] as String,
@@ -4783,6 +4851,7 @@ class RecipientDetail {
   RecipientDetail({
     this.ssoIdentity,
   });
+
   factory RecipientDetail.fromJson(Map<String, dynamic> json) {
     return RecipientDetail(
       ssoIdentity: json['ssoIdentity'] != null
@@ -4809,6 +4878,7 @@ class ResetTimerAction {
   ResetTimerAction({
     required this.timerName,
   });
+
   factory ResetTimerAction.fromJson(Map<String, dynamic> json) {
     return ResetTimerAction(
       timerName: json['timerName'] as String,
@@ -4837,6 +4907,7 @@ class RoutedResource {
     this.arn,
     this.name,
   });
+
   factory RoutedResource.fromJson(Map<String, dynamic> json) {
     return RoutedResource(
       arn: json['arn'] as String?,
@@ -4875,6 +4946,7 @@ class SMSConfiguration {
     this.additionalMessage,
     this.senderId,
   });
+
   factory SMSConfiguration.fromJson(Map<String, dynamic> json) {
     return SMSConfiguration(
       recipients: (json['recipients'] as List)
@@ -4911,6 +4983,7 @@ class SNSTopicPublishAction {
     required this.targetArn,
     this.payload,
   });
+
   factory SNSTopicPublishAction.fromJson(Map<String, dynamic> json) {
     return SNSTopicPublishAction(
       targetArn: json['targetArn'] as String,
@@ -4945,6 +5018,7 @@ class SSOIdentity {
     required this.identityStoreId,
     this.userId,
   });
+
   factory SSOIdentity.fromJson(Map<String, dynamic> json) {
     return SSOIdentity(
       identityStoreId: json['identityStoreId'] as String,
@@ -4985,6 +5059,7 @@ class SetTimerAction {
     this.durationExpression,
     this.seconds,
   });
+
   factory SetTimerAction.fromJson(Map<String, dynamic> json) {
     return SetTimerAction(
       timerName: json['timerName'] as String,
@@ -5017,6 +5092,7 @@ class SetVariableAction {
     required this.value,
     required this.variableName,
   });
+
   factory SetVariableAction.fromJson(Map<String, dynamic> json) {
     return SetVariableAction(
       value: json['value'] as String,
@@ -5053,6 +5129,7 @@ class SimpleRule {
     required this.inputProperty,
     required this.threshold,
   });
+
   factory SimpleRule.fromJson(Map<String, dynamic> json) {
     return SimpleRule(
       comparisonOperator:
@@ -5093,6 +5170,7 @@ class SqsAction {
     this.payload,
     this.useBase64,
   });
+
   factory SqsAction.fromJson(Map<String, dynamic> json) {
     return SqsAction(
       queueUrl: json['queueUrl'] as String,
@@ -5122,6 +5200,7 @@ class StartDetectorModelAnalysisResponse {
   StartDetectorModelAnalysisResponse({
     this.analysisId,
   });
+
   factory StartDetectorModelAnalysisResponse.fromJson(
       Map<String, dynamic> json) {
     return StartDetectorModelAnalysisResponse(
@@ -5160,6 +5239,7 @@ class State {
     this.onExit,
     this.onInput,
   });
+
   factory State.fromJson(Map<String, dynamic> json) {
     return State(
       stateName: json['stateName'] as String,
@@ -5201,6 +5281,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -5220,6 +5301,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5251,6 +5333,7 @@ class TransitionEvent {
     required this.nextState,
     this.actions,
   });
+
   factory TransitionEvent.fromJson(Map<String, dynamic> json) {
     return TransitionEvent(
       condition: json['condition'] as String,
@@ -5279,6 +5362,7 @@ class TransitionEvent {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5334,6 +5418,7 @@ class UpdateAlarmModelResponse {
     this.lastUpdateTime,
     this.status,
   });
+
   factory UpdateAlarmModelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAlarmModelResponse(
       alarmModelArn: json['alarmModelArn'] as String?,
@@ -5369,6 +5454,7 @@ class UpdateDetectorModelResponse {
   UpdateDetectorModelResponse({
     this.detectorModelConfiguration,
   });
+
   factory UpdateDetectorModelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDetectorModelResponse(
       detectorModelConfiguration: json['detectorModelConfiguration'] != null
@@ -5394,6 +5480,7 @@ class UpdateInputResponse {
   UpdateInputResponse({
     this.inputConfiguration,
   });
+
   factory UpdateInputResponse.fromJson(Map<String, dynamic> json) {
     return UpdateInputResponse(
       inputConfiguration: json['inputConfiguration'] != null

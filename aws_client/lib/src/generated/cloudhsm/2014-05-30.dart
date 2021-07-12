@@ -1163,6 +1163,7 @@ class AddTagsToResourceResponse {
   AddTagsToResourceResponse({
     required this.status,
   });
+
   factory AddTagsToResourceResponse.fromJson(Map<String, dynamic> json) {
     return AddTagsToResourceResponse(
       status: json['Status'] as String,
@@ -1246,6 +1247,7 @@ class CreateHapgResponse {
   CreateHapgResponse({
     this.hapgArn,
   });
+
   factory CreateHapgResponse.fromJson(Map<String, dynamic> json) {
     return CreateHapgResponse(
       hapgArn: json['HapgArn'] as String?,
@@ -1268,6 +1270,7 @@ class CreateHsmResponse {
   CreateHsmResponse({
     this.hsmArn,
   });
+
   factory CreateHsmResponse.fromJson(Map<String, dynamic> json) {
     return CreateHsmResponse(
       hsmArn: json['HsmArn'] as String?,
@@ -1290,6 +1293,7 @@ class CreateLunaClientResponse {
   CreateLunaClientResponse({
     this.clientArn,
   });
+
   factory CreateLunaClientResponse.fromJson(Map<String, dynamic> json) {
     return CreateLunaClientResponse(
       clientArn: json['ClientArn'] as String?,
@@ -1312,6 +1316,7 @@ class DeleteHapgResponse {
   DeleteHapgResponse({
     required this.status,
   });
+
   factory DeleteHapgResponse.fromJson(Map<String, dynamic> json) {
     return DeleteHapgResponse(
       status: json['Status'] as String,
@@ -1334,6 +1339,7 @@ class DeleteHsmResponse {
   DeleteHsmResponse({
     required this.status,
   });
+
   factory DeleteHsmResponse.fromJson(Map<String, dynamic> json) {
     return DeleteHsmResponse(
       status: json['Status'] as String,
@@ -1355,6 +1361,7 @@ class DeleteLunaClientResponse {
   DeleteLunaClientResponse({
     required this.status,
   });
+
   factory DeleteLunaClientResponse.fromJson(Map<String, dynamic> json) {
     return DeleteLunaClientResponse(
       status: json['Status'] as String,
@@ -1410,6 +1417,7 @@ class DescribeHapgResponse {
     this.partitionSerialList,
     this.state,
   });
+
   factory DescribeHapgResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHapgResponse(
       hapgArn: json['HapgArn'] as String?,
@@ -1551,6 +1559,7 @@ class DescribeHsmResponse {
     this.vendorName,
     this.vpcId,
   });
+
   factory DescribeHsmResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHsmResponse(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -1656,6 +1665,7 @@ class DescribeLunaClientResponse {
     this.label,
     this.lastModifiedTimestamp,
   });
+
   factory DescribeLunaClientResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLunaClientResponse(
       certificate: json['Certificate'] as String?,
@@ -1699,6 +1709,7 @@ class GetConfigResponse {
     this.configFile,
     this.configType,
   });
+
   factory GetConfigResponse.fromJson(Map<String, dynamic> json) {
     return GetConfigResponse(
       configCred: json['ConfigCred'] as String?,
@@ -1779,6 +1790,7 @@ class ListAvailableZonesResponse {
   ListAvailableZonesResponse({
     this.aZList,
   });
+
   factory ListAvailableZonesResponse.fromJson(Map<String, dynamic> json) {
     return ListAvailableZonesResponse(
       aZList: (json['AZList'] as List?)
@@ -1808,6 +1820,7 @@ class ListHapgsResponse {
     required this.hapgList,
     this.nextToken,
   });
+
   factory ListHapgsResponse.fromJson(Map<String, dynamic> json) {
     return ListHapgsResponse(
       hapgList: (json['HapgList'] as List)
@@ -1841,6 +1854,7 @@ class ListHsmsResponse {
     this.hsmList,
     this.nextToken,
   });
+
   factory ListHsmsResponse.fromJson(Map<String, dynamic> json) {
     return ListHsmsResponse(
       hsmList: (json['HsmList'] as List?)
@@ -1873,6 +1887,7 @@ class ListLunaClientsResponse {
     required this.clientList,
     this.nextToken,
   });
+
   factory ListLunaClientsResponse.fromJson(Map<String, dynamic> json) {
     return ListLunaClientsResponse(
       clientList: (json['ClientList'] as List)
@@ -1900,6 +1915,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     required this.tagList,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tagList: (json['TagList'] as List)
@@ -1924,6 +1940,7 @@ class ModifyHapgResponse {
   ModifyHapgResponse({
     this.hapgArn,
   });
+
   factory ModifyHapgResponse.fromJson(Map<String, dynamic> json) {
     return ModifyHapgResponse(
       hapgArn: json['HapgArn'] as String?,
@@ -1946,6 +1963,7 @@ class ModifyHsmResponse {
   ModifyHsmResponse({
     this.hsmArn,
   });
+
   factory ModifyHsmResponse.fromJson(Map<String, dynamic> json) {
     return ModifyHsmResponse(
       hsmArn: json['HsmArn'] as String?,
@@ -1967,6 +1985,7 @@ class ModifyLunaClientResponse {
   ModifyLunaClientResponse({
     this.clientArn,
   });
+
   factory ModifyLunaClientResponse.fromJson(Map<String, dynamic> json) {
     return ModifyLunaClientResponse(
       clientArn: json['ClientArn'] as String?,
@@ -1988,6 +2007,7 @@ class RemoveTagsFromResourceResponse {
   RemoveTagsFromResourceResponse({
     required this.status,
   });
+
   factory RemoveTagsFromResourceResponse.fromJson(Map<String, dynamic> json) {
     return RemoveTagsFromResourceResponse(
       status: json['Status'] as String,
@@ -2048,6 +2068,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,

@@ -1561,6 +1561,7 @@ class ApprovalThresholdPolicy {
     this.thresholdComparator,
     this.thresholdPercentage,
   });
+
   factory ApprovalThresholdPolicy.fromJson(Map<String, dynamic> json) {
     return ApprovalThresholdPolicy(
       proposalDurationInHours: json['ProposalDurationInHours'] as int?,
@@ -1592,6 +1593,7 @@ class CreateMemberOutput {
   CreateMemberOutput({
     this.memberId,
   });
+
   factory CreateMemberOutput.fromJson(Map<String, dynamic> json) {
     return CreateMemberOutput(
       memberId: json['MemberId'] as String?,
@@ -1617,6 +1619,7 @@ class CreateNetworkOutput {
     this.memberId,
     this.networkId,
   });
+
   factory CreateNetworkOutput.fromJson(Map<String, dynamic> json) {
     return CreateNetworkOutput(
       memberId: json['MemberId'] as String?,
@@ -1641,6 +1644,7 @@ class CreateNodeOutput {
   CreateNodeOutput({
     this.nodeId,
   });
+
   factory CreateNodeOutput.fromJson(Map<String, dynamic> json) {
     return CreateNodeOutput(
       nodeId: json['NodeId'] as String?,
@@ -1662,6 +1666,7 @@ class CreateProposalOutput {
   CreateProposalOutput({
     this.proposalId,
   });
+
   factory CreateProposalOutput.fromJson(Map<String, dynamic> json) {
     return CreateProposalOutput(
       proposalId: json['ProposalId'] as String?,
@@ -1678,6 +1683,7 @@ class CreateProposalOutput {
 
 class DeleteMemberOutput {
   DeleteMemberOutput();
+
   factory DeleteMemberOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMemberOutput();
   }
@@ -1689,6 +1695,7 @@ class DeleteMemberOutput {
 
 class DeleteNodeOutput {
   DeleteNodeOutput();
+
   factory DeleteNodeOutput.fromJson(Map<String, dynamic> _) {
     return DeleteNodeOutput();
   }
@@ -1761,6 +1768,7 @@ class GetMemberOutput {
   GetMemberOutput({
     this.member,
   });
+
   factory GetMemberOutput.fromJson(Map<String, dynamic> json) {
     return GetMemberOutput(
       member: json['Member'] != null
@@ -1784,6 +1792,7 @@ class GetNetworkOutput {
   GetNetworkOutput({
     this.network,
   });
+
   factory GetNetworkOutput.fromJson(Map<String, dynamic> json) {
     return GetNetworkOutput(
       network: json['Network'] != null
@@ -1807,6 +1816,7 @@ class GetNodeOutput {
   GetNodeOutput({
     this.node,
   });
+
   factory GetNodeOutput.fromJson(Map<String, dynamic> json) {
     return GetNodeOutput(
       node: json['Node'] != null
@@ -1830,6 +1840,7 @@ class GetProposalOutput {
   GetProposalOutput({
     this.proposal,
   });
+
   factory GetProposalOutput.fromJson(Map<String, dynamic> json) {
     return GetProposalOutput(
       proposal: json['Proposal'] != null
@@ -1903,6 +1914,7 @@ class Invitation {
     this.networkSummary,
     this.status,
   });
+
   factory Invitation.fromJson(Map<String, dynamic> json) {
     return Invitation(
       arn: json['Arn'] as String?,
@@ -1991,6 +2003,7 @@ class InviteAction {
   InviteAction({
     required this.principal,
   });
+
   factory InviteAction.fromJson(Map<String, dynamic> json) {
     return InviteAction(
       principal: json['Principal'] as String,
@@ -2016,6 +2029,7 @@ class ListInvitationsOutput {
     this.invitations,
     this.nextToken,
   });
+
   factory ListInvitationsOutput.fromJson(Map<String, dynamic> json) {
     return ListInvitationsOutput(
       invitations: (json['Invitations'] as List?)
@@ -2048,6 +2062,7 @@ class ListMembersOutput {
     this.members,
     this.nextToken,
   });
+
   factory ListMembersOutput.fromJson(Map<String, dynamic> json) {
     return ListMembersOutput(
       members: (json['Members'] as List?)
@@ -2080,6 +2095,7 @@ class ListNetworksOutput {
     this.networks,
     this.nextToken,
   });
+
   factory ListNetworksOutput.fromJson(Map<String, dynamic> json) {
     return ListNetworksOutput(
       networks: (json['Networks'] as List?)
@@ -2112,6 +2128,7 @@ class ListNodesOutput {
     this.nextToken,
     this.nodes,
   });
+
   factory ListNodesOutput.fromJson(Map<String, dynamic> json) {
     return ListNodesOutput(
       nextToken: json['NextToken'] as String?,
@@ -2143,6 +2160,7 @@ class ListProposalVotesOutput {
     this.nextToken,
     this.proposalVotes,
   });
+
   factory ListProposalVotesOutput.fromJson(Map<String, dynamic> json) {
     return ListProposalVotesOutput(
       nextToken: json['NextToken'] as String?,
@@ -2174,6 +2192,7 @@ class ListProposalsOutput {
     this.nextToken,
     this.proposals,
   });
+
   factory ListProposalsOutput.fromJson(Map<String, dynamic> json) {
     return ListProposalsOutput(
       nextToken: json['NextToken'] as String?,
@@ -2201,6 +2220,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2224,6 +2244,7 @@ class LogConfiguration {
   LogConfiguration({
     this.enabled,
   });
+
   factory LogConfiguration.fromJson(Map<String, dynamic> json) {
     return LogConfiguration(
       enabled: json['Enabled'] as bool?,
@@ -2246,6 +2267,7 @@ class LogConfigurations {
   LogConfigurations({
     this.cloudwatch,
   });
+
   factory LogConfigurations.fromJson(Map<String, dynamic> json) {
     return LogConfigurations(
       cloudwatch: json['Cloudwatch'] != null
@@ -2366,6 +2388,7 @@ class Member {
     this.status,
     this.tags,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       arn: json['Arn'] as String?,
@@ -2482,6 +2505,7 @@ class MemberConfiguration {
     this.logPublishingConfiguration,
     this.tags,
   });
+
   factory MemberConfiguration.fromJson(Map<String, dynamic> json) {
     return MemberConfiguration(
       frameworkConfiguration: MemberFrameworkConfiguration.fromJson(
@@ -2530,6 +2554,7 @@ class MemberFabricAttributes {
     this.adminUsername,
     this.caEndpoint,
   });
+
   factory MemberFabricAttributes.fromJson(Map<String, dynamic> json) {
     return MemberFabricAttributes(
       adminUsername: json['AdminUsername'] as String?,
@@ -2565,6 +2590,7 @@ class MemberFabricConfiguration {
     required this.adminPassword,
     required this.adminUsername,
   });
+
   factory MemberFabricConfiguration.fromJson(Map<String, dynamic> json) {
     return MemberFabricConfiguration(
       adminPassword: json['AdminPassword'] as String,
@@ -2593,6 +2619,7 @@ class MemberFabricLogPublishingConfiguration {
   MemberFabricLogPublishingConfiguration({
     this.caLogs,
   });
+
   factory MemberFabricLogPublishingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return MemberFabricLogPublishingConfiguration(
@@ -2620,6 +2647,7 @@ class MemberFrameworkAttributes {
   MemberFrameworkAttributes({
     this.fabric,
   });
+
   factory MemberFrameworkAttributes.fromJson(Map<String, dynamic> json) {
     return MemberFrameworkAttributes(
       fabric: json['Fabric'] != null
@@ -2647,6 +2675,7 @@ class MemberFrameworkConfiguration {
   MemberFrameworkConfiguration({
     this.fabric,
   });
+
   factory MemberFrameworkConfiguration.fromJson(Map<String, dynamic> json) {
     return MemberFrameworkConfiguration(
       fabric: json['Fabric'] != null
@@ -2674,6 +2703,7 @@ class MemberLogPublishingConfiguration {
   MemberLogPublishingConfiguration({
     this.fabric,
   });
+
   factory MemberLogPublishingConfiguration.fromJson(Map<String, dynamic> json) {
     return MemberLogPublishingConfiguration(
       fabric: json['Fabric'] != null
@@ -2824,6 +2854,7 @@ class MemberSummary {
     this.name,
     this.status,
   });
+
   factory MemberSummary.fromJson(Map<String, dynamic> json) {
     return MemberSummary(
       arn: json['Arn'] as String?,
@@ -2921,6 +2952,7 @@ class Network {
     this.votingPolicy,
     this.vpcEndpointServiceName,
   });
+
   factory Network.fromJson(Map<String, dynamic> json) {
     return Network(
       arn: json['Arn'] as String?,
@@ -2997,6 +3029,7 @@ class NetworkEthereumAttributes {
   NetworkEthereumAttributes({
     this.chainId,
   });
+
   factory NetworkEthereumAttributes.fromJson(Map<String, dynamic> json) {
     return NetworkEthereumAttributes(
       chainId: json['ChainId'] as String?,
@@ -3026,6 +3059,7 @@ class NetworkFabricAttributes {
     this.edition,
     this.orderingServiceEndpoint,
   });
+
   factory NetworkFabricAttributes.fromJson(Map<String, dynamic> json) {
     return NetworkFabricAttributes(
       edition: (json['Edition'] as String?)?.toEdition(),
@@ -3055,6 +3089,7 @@ class NetworkFabricConfiguration {
   NetworkFabricConfiguration({
     required this.edition,
   });
+
   factory NetworkFabricConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkFabricConfiguration(
       edition: (json['Edition'] as String).toEdition(),
@@ -3084,6 +3119,7 @@ class NetworkFrameworkAttributes {
     this.ethereum,
     this.fabric,
   });
+
   factory NetworkFrameworkAttributes.fromJson(Map<String, dynamic> json) {
     return NetworkFrameworkAttributes(
       ethereum: json['Ethereum'] != null
@@ -3117,6 +3153,7 @@ class NetworkFrameworkConfiguration {
   NetworkFrameworkConfiguration({
     this.fabric,
   });
+
   factory NetworkFrameworkConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkFrameworkConfiguration(
       fabric: json['Fabric'] != null
@@ -3216,6 +3253,7 @@ class NetworkSummary {
     this.name,
     this.status,
   });
+
   factory NetworkSummary.fromJson(Map<String, dynamic> json) {
     return NetworkSummary(
       arn: json['Arn'] as String?,
@@ -3375,6 +3413,7 @@ class Node {
     this.status,
     this.tags,
   });
+
   factory Node.fromJson(Map<String, dynamic> json) {
     return Node(
       arn: json['Arn'] as String?,
@@ -3460,6 +3499,7 @@ class NodeConfiguration {
     this.logPublishingConfiguration,
     this.stateDB,
   });
+
   factory NodeConfiguration.fromJson(Map<String, dynamic> json) {
     return NodeConfiguration(
       instanceType: json['InstanceType'] as String,
@@ -3509,6 +3549,7 @@ class NodeEthereumAttributes {
     this.httpEndpoint,
     this.webSocketEndpoint,
   });
+
   factory NodeEthereumAttributes.fromJson(Map<String, dynamic> json) {
     return NodeEthereumAttributes(
       httpEndpoint: json['HttpEndpoint'] as String?,
@@ -3541,6 +3582,7 @@ class NodeFabricAttributes {
     this.peerEndpoint,
     this.peerEventEndpoint,
   });
+
   factory NodeFabricAttributes.fromJson(Map<String, dynamic> json) {
     return NodeFabricAttributes(
       peerEndpoint: json['PeerEndpoint'] as String?,
@@ -3578,6 +3620,7 @@ class NodeFabricLogPublishingConfiguration {
     this.chaincodeLogs,
     this.peerLogs,
   });
+
   factory NodeFabricLogPublishingConfiguration.fromJson(
       Map<String, dynamic> json) {
     return NodeFabricLogPublishingConfiguration(
@@ -3616,6 +3659,7 @@ class NodeFrameworkAttributes {
     this.ethereum,
     this.fabric,
   });
+
   factory NodeFrameworkAttributes.fromJson(Map<String, dynamic> json) {
     return NodeFrameworkAttributes(
       ethereum: json['Ethereum'] != null
@@ -3650,6 +3694,7 @@ class NodeLogPublishingConfiguration {
   NodeLogPublishingConfiguration({
     this.fabric,
   });
+
   factory NodeLogPublishingConfiguration.fromJson(Map<String, dynamic> json) {
     return NodeLogPublishingConfiguration(
       fabric: json['Fabric'] != null
@@ -3761,6 +3806,7 @@ class NodeSummary {
     this.instanceType,
     this.status,
   });
+
   factory NodeSummary.fromJson(Map<String, dynamic> json) {
     return NodeSummary(
       arn: json['Arn'] as String?,
@@ -3902,6 +3948,7 @@ class Proposal {
     this.tags,
     this.yesVoteCount,
   });
+
   factory Proposal.fromJson(Map<String, dynamic> json) {
     return Proposal(
       actions: json['Actions'] != null
@@ -3978,6 +4025,7 @@ class ProposalActions {
     this.invitations,
     this.removals,
   });
+
   factory ProposalActions.fromJson(Map<String, dynamic> json) {
     return ProposalActions(
       invitations: (json['Invitations'] as List?)
@@ -4119,6 +4167,7 @@ class ProposalSummary {
     this.proposedByMemberName,
     this.status,
   });
+
   factory ProposalSummary.fromJson(Map<String, dynamic> json) {
     return ProposalSummary(
       arn: json['Arn'] as String?,
@@ -4158,6 +4207,7 @@ class ProposalSummary {
 
 class RejectInvitationOutput {
   RejectInvitationOutput();
+
   factory RejectInvitationOutput.fromJson(Map<String, dynamic> _) {
     return RejectInvitationOutput();
   }
@@ -4179,6 +4229,7 @@ class RemoveAction {
   RemoveAction({
     required this.memberId,
   });
+
   factory RemoveAction.fromJson(Map<String, dynamic> json) {
     return RemoveAction(
       memberId: json['MemberId'] as String,
@@ -4223,6 +4274,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4262,6 +4314,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4273,6 +4326,7 @@ class UntagResourceResponse {
 
 class UpdateMemberOutput {
   UpdateMemberOutput();
+
   factory UpdateMemberOutput.fromJson(Map<String, dynamic> _) {
     return UpdateMemberOutput();
   }
@@ -4284,6 +4338,7 @@ class UpdateMemberOutput {
 
 class UpdateNodeOutput {
   UpdateNodeOutput();
+
   factory UpdateNodeOutput.fromJson(Map<String, dynamic> _) {
     return UpdateNodeOutput();
   }
@@ -4295,6 +4350,7 @@ class UpdateNodeOutput {
 
 class VoteOnProposalOutput {
   VoteOnProposalOutput();
+
   factory VoteOnProposalOutput.fromJson(Map<String, dynamic> _) {
     return VoteOnProposalOutput();
   }
@@ -4322,6 +4378,7 @@ class VoteSummary {
     this.memberName,
     this.vote,
   });
+
   factory VoteSummary.fromJson(Map<String, dynamic> json) {
     return VoteSummary(
       memberId: json['MemberId'] as String?,
@@ -4383,6 +4440,7 @@ class VotingPolicy {
   VotingPolicy({
     this.approvalThresholdPolicy,
   });
+
   factory VotingPolicy.fromJson(Map<String, dynamic> json) {
     return VotingPolicy(
       approvalThresholdPolicy: json['ApprovalThresholdPolicy'] != null

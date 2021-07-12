@@ -1646,6 +1646,7 @@ class AddAttributesActivity {
     required this.name,
     this.next,
   });
+
   factory AddAttributesActivity.fromJson(Map<String, dynamic> json) {
     return AddAttributesActivity(
       attributes: (json['attributes'] as Map<String, dynamic>)
@@ -1684,6 +1685,7 @@ class BatchPutMessageErrorEntry {
     this.errorMessage,
     this.messageId,
   });
+
   factory BatchPutMessageErrorEntry.fromJson(Map<String, dynamic> json) {
     return BatchPutMessageErrorEntry(
       errorCode: json['errorCode'] as String?,
@@ -1711,6 +1713,7 @@ class BatchPutMessageResponse {
   BatchPutMessageResponse({
     this.batchPutMessageErrorEntries,
   });
+
   factory BatchPutMessageResponse.fromJson(Map<String, dynamic> json) {
     return BatchPutMessageResponse(
       batchPutMessageErrorEntries:
@@ -1733,6 +1736,7 @@ class BatchPutMessageResponse {
 
 class CancelPipelineReprocessingResponse {
   CancelPipelineReprocessingResponse();
+
   factory CancelPipelineReprocessingResponse.fromJson(Map<String, dynamic> _) {
     return CancelPipelineReprocessingResponse();
   }
@@ -1789,6 +1793,7 @@ class Channel {
     this.status,
     this.storage,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       arn: json['arn'] as String?,
@@ -1848,6 +1853,7 @@ class ChannelActivity {
     required this.name,
     this.next,
   });
+
   factory ChannelActivity.fromJson(Map<String, dynamic> json) {
     return ChannelActivity(
       channelName: json['channelName'] as String,
@@ -1882,6 +1888,7 @@ class ChannelMessages {
   ChannelMessages({
     this.s3Paths,
   });
+
   factory ChannelMessages.fromJson(Map<String, dynamic> json) {
     return ChannelMessages(
       s3Paths: (json['s3Paths'] as List?)
@@ -1907,6 +1914,7 @@ class ChannelStatistics {
   ChannelStatistics({
     this.size,
   });
+
   factory ChannelStatistics.fromJson(Map<String, dynamic> json) {
     return ChannelStatistics(
       size: json['size'] != null
@@ -1976,6 +1984,7 @@ class ChannelStorage {
     this.customerManagedS3,
     this.serviceManagedS3,
   });
+
   factory ChannelStorage.fromJson(Map<String, dynamic> json) {
     return ChannelStorage(
       customerManagedS3: json['customerManagedS3'] != null
@@ -2011,6 +2020,7 @@ class ChannelStorageSummary {
     this.customerManagedS3,
     this.serviceManagedS3,
   });
+
   factory ChannelStorageSummary.fromJson(Map<String, dynamic> json) {
     return ChannelStorageSummary(
       customerManagedS3: json['customerManagedS3'] != null
@@ -2069,6 +2079,7 @@ class ChannelSummary {
     this.lastUpdateTime,
     this.status,
   });
+
   factory ChannelSummary.fromJson(Map<String, dynamic> json) {
     return ChannelSummary(
       channelName: json['channelName'] as String?,
@@ -2119,6 +2130,7 @@ class Column {
     required this.name,
     required this.type,
   });
+
   factory Column.fromJson(Map<String, dynamic> json) {
     return Column(
       name: json['name'] as String,
@@ -2195,6 +2207,7 @@ class ContainerDatasetAction {
     required this.resourceConfiguration,
     this.variables,
   });
+
   factory ContainerDatasetAction.fromJson(Map<String, dynamic> json) {
     return ContainerDatasetAction(
       executionRoleArn: json['executionRoleArn'] as String,
@@ -2237,6 +2250,7 @@ class CreateChannelResponse {
     this.channelName,
     this.retentionPeriod,
   });
+
   factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelResponse(
       channelArn: json['channelArn'] as String?,
@@ -2267,6 +2281,7 @@ class CreateDatasetContentResponse {
   CreateDatasetContentResponse({
     this.versionId,
   });
+
   factory CreateDatasetContentResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetContentResponse(
       versionId: json['versionId'] as String?,
@@ -2296,6 +2311,7 @@ class CreateDatasetResponse {
     this.datasetName,
     this.retentionPeriod,
   });
+
   factory CreateDatasetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatasetResponse(
       datasetArn: json['datasetArn'] as String?,
@@ -2334,6 +2350,7 @@ class CreateDatastoreResponse {
     this.datastoreName,
     this.retentionPeriod,
   });
+
   factory CreateDatastoreResponse.fromJson(Map<String, dynamic> json) {
     return CreateDatastoreResponse(
       datastoreArn: json['datastoreArn'] as String?,
@@ -2368,6 +2385,7 @@ class CreatePipelineResponse {
     this.pipelineArn,
     this.pipelineName,
   });
+
   factory CreatePipelineResponse.fromJson(Map<String, dynamic> json) {
     return CreatePipelineResponse(
       pipelineArn: json['pipelineArn'] as String?,
@@ -2408,6 +2426,7 @@ class CustomerManagedChannelS3Storage {
     required this.roleArn,
     this.keyPrefix,
   });
+
   factory CustomerManagedChannelS3Storage.fromJson(Map<String, dynamic> json) {
     return CustomerManagedChannelS3Storage(
       bucket: json['bucket'] as String,
@@ -2448,6 +2467,7 @@ class CustomerManagedChannelS3StorageSummary {
     this.keyPrefix,
     this.roleArn,
   });
+
   factory CustomerManagedChannelS3StorageSummary.fromJson(
       Map<String, dynamic> json) {
     return CustomerManagedChannelS3StorageSummary(
@@ -2492,6 +2512,7 @@ class CustomerManagedDatastoreS3Storage {
     required this.roleArn,
     this.keyPrefix,
   });
+
   factory CustomerManagedDatastoreS3Storage.fromJson(
       Map<String, dynamic> json) {
     return CustomerManagedDatastoreS3Storage(
@@ -2533,6 +2554,7 @@ class CustomerManagedDatastoreS3StorageSummary {
     this.keyPrefix,
     this.roleArn,
   });
+
   factory CustomerManagedDatastoreS3StorageSummary.fromJson(
       Map<String, dynamic> json) {
     return CustomerManagedDatastoreS3StorageSummary(
@@ -2615,6 +2637,7 @@ class Dataset {
     this.triggers,
     this.versioningConfiguration,
   });
+
   factory Dataset.fromJson(Map<String, dynamic> json) {
     return Dataset(
       actions: (json['actions'] as List?)
@@ -2703,6 +2726,7 @@ class DatasetAction {
     this.containerAction,
     this.queryAction,
   });
+
   factory DatasetAction.fromJson(Map<String, dynamic> json) {
     return DatasetAction(
       actionName: json['actionName'] as String?,
@@ -2743,6 +2767,7 @@ class DatasetActionSummary {
     this.actionName,
     this.actionType,
   });
+
   factory DatasetActionSummary.fromJson(Map<String, dynamic> json) {
     return DatasetActionSummary(
       actionName: json['actionName'] as String?,
@@ -2801,6 +2826,7 @@ class DatasetContentDeliveryDestination {
     this.iotEventsDestinationConfiguration,
     this.s3DestinationConfiguration,
   });
+
   factory DatasetContentDeliveryDestination.fromJson(
       Map<String, dynamic> json) {
     return DatasetContentDeliveryDestination(
@@ -2843,6 +2869,7 @@ class DatasetContentDeliveryRule {
     required this.destination,
     this.entryName,
   });
+
   factory DatasetContentDeliveryRule.fromJson(Map<String, dynamic> json) {
     return DatasetContentDeliveryRule(
       destination: DatasetContentDeliveryDestination.fromJson(
@@ -2907,6 +2934,7 @@ class DatasetContentStatus {
     this.reason,
     this.state,
   });
+
   factory DatasetContentStatus.fromJson(Map<String, dynamic> json) {
     return DatasetContentStatus(
       reason: json['reason'] as String?,
@@ -2948,6 +2976,7 @@ class DatasetContentSummary {
     this.status,
     this.version,
   });
+
   factory DatasetContentSummary.fromJson(Map<String, dynamic> json) {
     return DatasetContentSummary(
       completionTime: timeStampFromJson(json['completionTime']),
@@ -2990,6 +3019,7 @@ class DatasetContentVersionValue {
   DatasetContentVersionValue({
     required this.datasetName,
   });
+
   factory DatasetContentVersionValue.fromJson(Map<String, dynamic> json) {
     return DatasetContentVersionValue(
       datasetName: json['datasetName'] as String,
@@ -3016,6 +3046,7 @@ class DatasetEntry {
     this.dataURI,
     this.entryName,
   });
+
   factory DatasetEntry.fromJson(Map<String, dynamic> json) {
     return DatasetEntry(
       dataURI: json['dataURI'] as String?,
@@ -3097,6 +3128,7 @@ class DatasetSummary {
     this.status,
     this.triggers,
   });
+
   factory DatasetSummary.fromJson(Map<String, dynamic> json) {
     return DatasetSummary(
       actions: (json['actions'] as List?)
@@ -3148,6 +3180,7 @@ class DatasetTrigger {
     this.dataset,
     this.schedule,
   });
+
   factory DatasetTrigger.fromJson(Map<String, dynamic> json) {
     return DatasetTrigger(
       dataset: json['dataset'] != null
@@ -3238,6 +3271,7 @@ class Datastore {
     this.status,
     this.storage,
   });
+
   factory Datastore.fromJson(Map<String, dynamic> json) {
     return Datastore(
       arn: json['arn'] as String?,
@@ -3307,6 +3341,7 @@ class DatastoreActivity {
     required this.datastoreName,
     required this.name,
   });
+
   factory DatastoreActivity.fromJson(Map<String, dynamic> json) {
     return DatastoreActivity(
       datastoreName: json['datastoreName'] as String,
@@ -3336,6 +3371,7 @@ class DatastorePartition {
     this.attributePartition,
     this.timestampPartition,
   });
+
   factory DatastorePartition.fromJson(Map<String, dynamic> json) {
     return DatastorePartition(
       attributePartition: json['attributePartition'] != null
@@ -3367,6 +3403,7 @@ class DatastorePartitions {
   DatastorePartitions({
     this.partitions,
   });
+
   factory DatastorePartitions.fromJson(Map<String, dynamic> json) {
     return DatastorePartitions(
       partitions: (json['partitions'] as List?)
@@ -3392,6 +3429,7 @@ class DatastoreStatistics {
   DatastoreStatistics({
     this.size,
   });
+
   factory DatastoreStatistics.fromJson(Map<String, dynamic> json) {
     return DatastoreStatistics(
       size: json['size'] != null
@@ -3461,6 +3499,7 @@ class DatastoreStorage {
     this.customerManagedS3,
     this.serviceManagedS3,
   });
+
   factory DatastoreStorage.fromJson(Map<String, dynamic> json) {
     return DatastoreStorage(
       customerManagedS3: json['customerManagedS3'] != null
@@ -3496,6 +3535,7 @@ class DatastoreStorageSummary {
     this.customerManagedS3,
     this.serviceManagedS3,
   });
+
   factory DatastoreStorageSummary.fromJson(Map<String, dynamic> json) {
     return DatastoreStorageSummary(
       customerManagedS3: json['customerManagedS3'] != null
@@ -3562,6 +3602,7 @@ class DatastoreSummary {
     this.lastUpdateTime,
     this.status,
   });
+
   factory DatastoreSummary.fromJson(Map<String, dynamic> json) {
     return DatastoreSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -3629,6 +3670,7 @@ class DeltaTime {
     required this.offsetSeconds,
     required this.timeExpression,
   });
+
   factory DeltaTime.fromJson(Map<String, dynamic> json) {
     return DeltaTime(
       offsetSeconds: json['offsetSeconds'] as int,
@@ -3672,6 +3714,7 @@ class DeltaTimeSessionWindowConfiguration {
   DeltaTimeSessionWindowConfiguration({
     required this.timeoutInMinutes,
   });
+
   factory DeltaTimeSessionWindowConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DeltaTimeSessionWindowConfiguration(
@@ -3699,6 +3742,7 @@ class DescribeChannelResponse {
     this.channel,
     this.statistics,
   });
+
   factory DescribeChannelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelResponse(
       channel: json['channel'] != null
@@ -3728,6 +3772,7 @@ class DescribeDatasetResponse {
   DescribeDatasetResponse({
     this.dataset,
   });
+
   factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetResponse(
       dataset: json['dataset'] != null
@@ -3757,6 +3802,7 @@ class DescribeDatastoreResponse {
     this.datastore,
     this.statistics,
   });
+
   factory DescribeDatastoreResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatastoreResponse(
       datastore: json['datastore'] != null
@@ -3786,6 +3832,7 @@ class DescribeLoggingOptionsResponse {
   DescribeLoggingOptionsResponse({
     this.loggingOptions,
   });
+
   factory DescribeLoggingOptionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLoggingOptionsResponse(
       loggingOptions: json['loggingOptions'] != null
@@ -3810,6 +3857,7 @@ class DescribePipelineResponse {
   DescribePipelineResponse({
     this.pipeline,
   });
+
   factory DescribePipelineResponse.fromJson(Map<String, dynamic> json) {
     return DescribePipelineResponse(
       pipeline: json['pipeline'] != null
@@ -3851,6 +3899,7 @@ class DeviceRegistryEnrichActivity {
     required this.thingName,
     this.next,
   });
+
   factory DeviceRegistryEnrichActivity.fromJson(Map<String, dynamic> json) {
     return DeviceRegistryEnrichActivity(
       attribute: json['attribute'] as String,
@@ -3902,6 +3951,7 @@ class DeviceShadowEnrichActivity {
     required this.thingName,
     this.next,
   });
+
   factory DeviceShadowEnrichActivity.fromJson(Map<String, dynamic> json) {
     return DeviceShadowEnrichActivity(
       attribute: json['attribute'] as String,
@@ -3940,6 +3990,7 @@ class EstimatedResourceSize {
     this.estimatedOn,
     this.estimatedSizeInBytes,
   });
+
   factory EstimatedResourceSize.fromJson(Map<String, dynamic> json) {
     return EstimatedResourceSize(
       estimatedOn: timeStampFromJson(json['estimatedOn']),
@@ -3976,6 +4027,7 @@ class FileFormatConfiguration {
     this.jsonConfiguration,
     this.parquetConfiguration,
   });
+
   factory FileFormatConfiguration.fromJson(Map<String, dynamic> json) {
     return FileFormatConfiguration(
       jsonConfiguration: json['jsonConfiguration'] != null
@@ -4045,6 +4097,7 @@ class FilterActivity {
     required this.name,
     this.next,
   });
+
   factory FilterActivity.fromJson(Map<String, dynamic> json) {
     return FilterActivity(
       filter: json['filter'] as String,
@@ -4080,6 +4133,7 @@ class GetDatasetContentResponse {
     this.status,
     this.timestamp,
   });
+
   factory GetDatasetContentResponse.fromJson(Map<String, dynamic> json) {
     return GetDatasetContentResponse(
       entries: (json['entries'] as List?)
@@ -4122,6 +4176,7 @@ class GlueConfiguration {
     required this.databaseName,
     required this.tableName,
   });
+
   factory GlueConfiguration.fromJson(Map<String, dynamic> json) {
     return GlueConfiguration(
       databaseName: json['databaseName'] as String,
@@ -4154,6 +4209,7 @@ class IotEventsDestinationConfiguration {
     required this.inputName,
     required this.roleArn,
   });
+
   factory IotEventsDestinationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return IotEventsDestinationConfiguration(
@@ -4175,6 +4231,7 @@ class IotEventsDestinationConfiguration {
 /// Contains the configuration information of the JSON format.
 class JsonConfiguration {
   JsonConfiguration();
+
   factory JsonConfiguration.fromJson(Map<String, dynamic> _) {
     return JsonConfiguration();
   }
@@ -4207,6 +4264,7 @@ class LambdaActivity {
     required this.name,
     this.next,
   });
+
   factory LambdaActivity.fromJson(Map<String, dynamic> json) {
     return LambdaActivity(
       batchSize: json['batchSize'] as int,
@@ -4243,6 +4301,7 @@ class LateDataRule {
     required this.ruleConfiguration,
     this.ruleName,
   });
+
   factory LateDataRule.fromJson(Map<String, dynamic> json) {
     return LateDataRule(
       ruleConfiguration: LateDataRuleConfiguration.fromJson(
@@ -4270,6 +4329,7 @@ class LateDataRuleConfiguration {
   LateDataRuleConfiguration({
     this.deltaTimeSessionWindowConfiguration,
   });
+
   factory LateDataRuleConfiguration.fromJson(Map<String, dynamic> json) {
     return LateDataRuleConfiguration(
       deltaTimeSessionWindowConfiguration:
@@ -4304,6 +4364,7 @@ class ListChannelsResponse {
     this.channelSummaries,
     this.nextToken,
   });
+
   factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelsResponse(
       channelSummaries: (json['channelSummaries'] as List?)
@@ -4336,6 +4397,7 @@ class ListDatasetContentsResponse {
     this.datasetContentSummaries,
     this.nextToken,
   });
+
   factory ListDatasetContentsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetContentsResponse(
       datasetContentSummaries: (json['datasetContentSummaries'] as List?)
@@ -4369,6 +4431,7 @@ class ListDatasetsResponse {
     this.datasetSummaries,
     this.nextToken,
   });
+
   factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetsResponse(
       datasetSummaries: (json['datasetSummaries'] as List?)
@@ -4401,6 +4464,7 @@ class ListDatastoresResponse {
     this.datastoreSummaries,
     this.nextToken,
   });
+
   factory ListDatastoresResponse.fromJson(Map<String, dynamic> json) {
     return ListDatastoresResponse(
       datastoreSummaries: (json['datastoreSummaries'] as List?)
@@ -4433,6 +4497,7 @@ class ListPipelinesResponse {
     this.nextToken,
     this.pipelineSummaries,
   });
+
   factory ListPipelinesResponse.fromJson(Map<String, dynamic> json) {
     return ListPipelinesResponse(
       nextToken: json['nextToken'] as String?,
@@ -4460,6 +4525,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -4517,6 +4583,7 @@ class LoggingOptions {
     required this.level,
     required this.roleArn,
   });
+
   factory LoggingOptions.fromJson(Map<String, dynamic> json) {
     return LoggingOptions(
       enabled: json['enabled'] as bool,
@@ -4559,6 +4626,7 @@ class MathActivity {
     required this.name,
     this.next,
   });
+
   factory MathActivity.fromJson(Map<String, dynamic> json) {
     return MathActivity(
       attribute: json['attribute'] as String,
@@ -4597,6 +4665,7 @@ class Message {
     required this.messageId,
     required this.payload,
   });
+
   factory Message.fromJson(Map<String, dynamic> json) {
     return Message(
       messageId: json['messageId'] as String,
@@ -4623,6 +4692,7 @@ class OutputFileUriValue {
   OutputFileUriValue({
     required this.fileName,
   });
+
   factory OutputFileUriValue.fromJson(Map<String, dynamic> json) {
     return OutputFileUriValue(
       fileName: json['fileName'] as String,
@@ -4645,6 +4715,7 @@ class ParquetConfiguration {
   ParquetConfiguration({
     this.schemaDefinition,
   });
+
   factory ParquetConfiguration.fromJson(Map<String, dynamic> json) {
     return ParquetConfiguration(
       schemaDefinition: json['schemaDefinition'] != null
@@ -4670,6 +4741,7 @@ class Partition {
   Partition({
     required this.attributeName,
   });
+
   factory Partition.fromJson(Map<String, dynamic> json) {
     return Partition(
       attributeName: json['attributeName'] as String,
@@ -4712,6 +4784,7 @@ class Pipeline {
     this.name,
     this.reprocessingSummaries,
   });
+
   factory Pipeline.fromJson(Map<String, dynamic> json) {
     return Pipeline(
       activities: (json['activities'] as List?)
@@ -4796,6 +4869,7 @@ class PipelineActivity {
     this.removeAttributes,
     this.selectAttributes,
   });
+
   factory PipelineActivity.fromJson(Map<String, dynamic> json) {
     return PipelineActivity(
       addAttributes: json['addAttributes'] != null
@@ -4884,6 +4958,7 @@ class PipelineSummary {
     this.pipelineName,
     this.reprocessingSummaries,
   });
+
   factory PipelineSummary.fromJson(Map<String, dynamic> json) {
     return PipelineSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -4923,6 +4998,7 @@ class QueryFilter {
   QueryFilter({
     this.deltaTime,
   });
+
   factory QueryFilter.fromJson(Map<String, dynamic> json) {
     return QueryFilter(
       deltaTime: json['deltaTime'] != null
@@ -4955,6 +5031,7 @@ class RemoveAttributesActivity {
     required this.name,
     this.next,
   });
+
   factory RemoveAttributesActivity.fromJson(Map<String, dynamic> json) {
     return RemoveAttributesActivity(
       attributes: (json['attributes'] as List)
@@ -5033,6 +5110,7 @@ class ReprocessingSummary {
     this.id,
     this.status,
   });
+
   factory ReprocessingSummary.fromJson(Map<String, dynamic> json) {
     return ReprocessingSummary(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -5070,6 +5148,7 @@ class ResourceConfiguration {
     required this.computeType,
     required this.volumeSizeInGB,
   });
+
   factory ResourceConfiguration.fromJson(Map<String, dynamic> json) {
     return ResourceConfiguration(
       computeType: (json['computeType'] as String).toComputeType(),
@@ -5100,6 +5179,7 @@ class RetentionPeriod {
     this.numberOfDays,
     this.unlimited,
   });
+
   factory RetentionPeriod.fromJson(Map<String, dynamic> json) {
     return RetentionPeriod(
       numberOfDays: json['numberOfDays'] as int?,
@@ -5130,6 +5210,7 @@ class RunPipelineActivityResponse {
     this.logResult,
     this.payloads,
   });
+
   factory RunPipelineActivityResponse.fromJson(Map<String, dynamic> json) {
     return RunPipelineActivityResponse(
       logResult: json['logResult'] as String?,
@@ -5200,6 +5281,7 @@ class S3DestinationConfiguration {
     required this.roleArn,
     this.glueConfiguration,
   });
+
   factory S3DestinationConfiguration.fromJson(Map<String, dynamic> json) {
     return S3DestinationConfiguration(
       bucket: json['bucket'] as String,
@@ -5234,6 +5316,7 @@ class SampleChannelDataResponse {
   SampleChannelDataResponse({
     this.payloads,
   });
+
   factory SampleChannelDataResponse.fromJson(Map<String, dynamic> json) {
     return SampleChannelDataResponse(
       payloads: (json['payloads'] as List?)
@@ -5262,6 +5345,7 @@ class Schedule {
   Schedule({
     this.expression,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       expression: json['expression'] as String?,
@@ -5287,6 +5371,7 @@ class SchemaDefinition {
   SchemaDefinition({
     this.columns,
   });
+
   factory SchemaDefinition.fromJson(Map<String, dynamic> json) {
     return SchemaDefinition(
       columns: (json['columns'] as List?)
@@ -5321,6 +5406,7 @@ class SelectAttributesActivity {
     required this.name,
     this.next,
   });
+
   factory SelectAttributesActivity.fromJson(Map<String, dynamic> json) {
     return SelectAttributesActivity(
       attributes: (json['attributes'] as List)
@@ -5349,6 +5435,7 @@ class SelectAttributesActivity {
 /// storage after the channel is created.
 class ServiceManagedChannelS3Storage {
   ServiceManagedChannelS3Storage();
+
   factory ServiceManagedChannelS3Storage.fromJson(Map<String, dynamic> _) {
     return ServiceManagedChannelS3Storage();
   }
@@ -5361,6 +5448,7 @@ class ServiceManagedChannelS3Storage {
 /// Used to store channel data in an S3 bucket managed by AWS IoT Analytics.
 class ServiceManagedChannelS3StorageSummary {
   ServiceManagedChannelS3StorageSummary();
+
   factory ServiceManagedChannelS3StorageSummary.fromJson(
       Map<String, dynamic> _) {
     return ServiceManagedChannelS3StorageSummary();
@@ -5376,6 +5464,7 @@ class ServiceManagedChannelS3StorageSummary {
 /// customer-managed S3 storage after the data store is created.
 class ServiceManagedDatastoreS3Storage {
   ServiceManagedDatastoreS3Storage();
+
   factory ServiceManagedDatastoreS3Storage.fromJson(Map<String, dynamic> _) {
     return ServiceManagedDatastoreS3Storage();
   }
@@ -5388,6 +5477,7 @@ class ServiceManagedDatastoreS3Storage {
 /// Used to store data store data in an S3 bucket managed by AWS IoT Analytics.
 class ServiceManagedDatastoreS3StorageSummary {
   ServiceManagedDatastoreS3StorageSummary();
+
   factory ServiceManagedDatastoreS3StorageSummary.fromJson(
       Map<String, dynamic> _) {
     return ServiceManagedDatastoreS3StorageSummary();
@@ -5410,6 +5500,7 @@ class SqlQueryDatasetAction {
     required this.sqlQuery,
     this.filters,
   });
+
   factory SqlQueryDatasetAction.fromJson(Map<String, dynamic> json) {
     return SqlQueryDatasetAction(
       sqlQuery: json['sqlQuery'] as String,
@@ -5437,6 +5528,7 @@ class StartPipelineReprocessingResponse {
   StartPipelineReprocessingResponse({
     this.reprocessingId,
   });
+
   factory StartPipelineReprocessingResponse.fromJson(
       Map<String, dynamic> json) {
     return StartPipelineReprocessingResponse(
@@ -5464,6 +5556,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -5483,6 +5576,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5504,6 +5598,7 @@ class TimestampPartition {
     required this.attributeName,
     this.timestampFormat,
   });
+
   factory TimestampPartition.fromJson(Map<String, dynamic> json) {
     return TimestampPartition(
       attributeName: json['attributeName'] as String,
@@ -5531,6 +5626,7 @@ class TriggeringDataset {
   TriggeringDataset({
     required this.name,
   });
+
   factory TriggeringDataset.fromJson(Map<String, dynamic> json) {
     return TriggeringDataset(
       name: json['name'] as String,
@@ -5547,6 +5643,7 @@ class TriggeringDataset {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5584,6 +5681,7 @@ class Variable {
     this.outputFileUriValue,
     this.stringValue,
   });
+
   factory Variable.fromJson(Map<String, dynamic> json) {
     return Variable(
       name: json['name'] as String,
@@ -5630,6 +5728,7 @@ class VersioningConfiguration {
     this.maxVersions,
     this.unlimited,
   });
+
   factory VersioningConfiguration.fromJson(Map<String, dynamic> json) {
     return VersioningConfiguration(
       maxVersions: json['maxVersions'] as int?,

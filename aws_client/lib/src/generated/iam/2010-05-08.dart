@@ -12663,6 +12663,7 @@ class AccessDetail {
     this.region,
     this.totalAuthenticatedEntities,
   });
+
   factory AccessDetail.fromJson(Map<String, dynamic> json) {
     return AccessDetail(
       serviceName: json['ServiceName'] as String,
@@ -12741,6 +12742,7 @@ class AccessKey {
     required this.userName,
     this.createDate,
   });
+
   factory AccessKey.fromJson(Map<String, dynamic> json) {
     return AccessKey(
       accessKeyId: json['AccessKeyId'] as String,
@@ -12844,6 +12846,7 @@ class AccessKeyLastUsed {
     required this.region,
     required this.serviceName,
   });
+
   factory AccessKeyLastUsed.fromJson(Map<String, dynamic> json) {
     return AccessKeyLastUsed(
       lastUsedDate:
@@ -12898,6 +12901,7 @@ class AccessKeyMetadata {
     this.status,
     this.userName,
   });
+
   factory AccessKeyMetadata.fromJson(Map<String, dynamic> json) {
     return AccessKeyMetadata(
       accessKeyId: json['AccessKeyId'] as String?,
@@ -12952,6 +12956,7 @@ class AttachedPermissionsBoundary {
     this.permissionsBoundaryArn,
     this.permissionsBoundaryType,
   });
+
   factory AttachedPermissionsBoundary.fromJson(Map<String, dynamic> json) {
     return AttachedPermissionsBoundary(
       permissionsBoundaryArn: json['PermissionsBoundaryArn'] as String?,
@@ -13003,6 +13008,7 @@ class AttachedPolicy {
     this.policyArn,
     this.policyName,
   });
+
   factory AttachedPolicy.fromJson(Map<String, dynamic> json) {
     return AttachedPolicy(
       policyArn: json['PolicyArn'] as String?,
@@ -13053,6 +13059,7 @@ class ContextEntry {
     this.contextKeyType,
     this.contextKeyValues,
   });
+
   factory ContextEntry.fromJson(Map<String, dynamic> json) {
     return ContextEntry(
       contextKeyName: json['ContextKeyName'] as String?,
@@ -13163,6 +13170,7 @@ class CreateAccessKeyResponse {
   CreateAccessKeyResponse({
     required this.accessKey,
   });
+
   factory CreateAccessKeyResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccessKeyResponse(
       accessKey: AccessKey.fromJson(json['AccessKey'] as Map<String, dynamic>),
@@ -13191,6 +13199,7 @@ class CreateGroupResponse {
   CreateGroupResponse({
     required this.group,
   });
+
   factory CreateGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateGroupResponse(
       group: Group.fromJson(json['Group'] as Map<String, dynamic>),
@@ -13219,6 +13228,7 @@ class CreateInstanceProfileResponse {
   CreateInstanceProfileResponse({
     required this.instanceProfile,
   });
+
   factory CreateInstanceProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateInstanceProfileResponse(
       instanceProfile: InstanceProfile.fromJson(
@@ -13249,6 +13259,7 @@ class CreateLoginProfileResponse {
   CreateLoginProfileResponse({
     required this.loginProfile,
   });
+
   factory CreateLoginProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateLoginProfileResponse(
       loginProfile:
@@ -13289,6 +13300,7 @@ class CreateOpenIDConnectProviderResponse {
     this.openIDConnectProviderArn,
     this.tags,
   });
+
   factory CreateOpenIDConnectProviderResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateOpenIDConnectProviderResponse(
@@ -13328,6 +13340,7 @@ class CreatePolicyResponse {
   CreatePolicyResponse({
     this.policy,
   });
+
   factory CreatePolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreatePolicyResponse(
       policy: json['Policy'] != null
@@ -13358,6 +13371,7 @@ class CreatePolicyVersionResponse {
   CreatePolicyVersionResponse({
     this.policyVersion,
   });
+
   factory CreatePolicyVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreatePolicyVersionResponse(
       policyVersion: json['PolicyVersion'] != null
@@ -13391,6 +13405,7 @@ class CreateRoleResponse {
   CreateRoleResponse({
     required this.role,
   });
+
   factory CreateRoleResponse.fromJson(Map<String, dynamic> json) {
     return CreateRoleResponse(
       role: Role.fromJson(json['Role'] as Map<String, dynamic>),
@@ -13427,6 +13442,7 @@ class CreateSAMLProviderResponse {
     this.sAMLProviderArn,
     this.tags,
   });
+
   factory CreateSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
     return CreateSAMLProviderResponse(
       sAMLProviderArn: json['SAMLProviderArn'] as String?,
@@ -13462,6 +13478,7 @@ class CreateServiceLinkedRoleResponse {
   CreateServiceLinkedRoleResponse({
     this.role,
   });
+
   factory CreateServiceLinkedRoleResponse.fromJson(Map<String, dynamic> json) {
     return CreateServiceLinkedRoleResponse(
       role: json['Role'] != null
@@ -13497,6 +13514,7 @@ class CreateServiceSpecificCredentialResponse {
   CreateServiceSpecificCredentialResponse({
     this.serviceSpecificCredential,
   });
+
   factory CreateServiceSpecificCredentialResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateServiceSpecificCredentialResponse(
@@ -13532,6 +13550,7 @@ class CreateUserResponse {
   CreateUserResponse({
     this.user,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       user: json['User'] != null
@@ -13562,6 +13581,7 @@ class CreateVirtualMFADeviceResponse {
   CreateVirtualMFADeviceResponse({
     required this.virtualMFADevice,
   });
+
   factory CreateVirtualMFADeviceResponse.fromJson(Map<String, dynamic> json) {
     return CreateVirtualMFADeviceResponse(
       virtualMFADevice: VirtualMFADevice.fromJson(
@@ -13593,6 +13613,7 @@ class DeleteServiceLinkedRoleResponse {
   DeleteServiceLinkedRoleResponse({
     required this.deletionTaskId,
   });
+
   factory DeleteServiceLinkedRoleResponse.fromJson(Map<String, dynamic> json) {
     return DeleteServiceLinkedRoleResponse(
       deletionTaskId: json['DeletionTaskId'] as String,
@@ -13634,6 +13655,7 @@ class DeletionTaskFailureReasonType {
     this.reason,
     this.roleUsageList,
   });
+
   factory DeletionTaskFailureReasonType.fromJson(Map<String, dynamic> json) {
     return DeletionTaskFailureReasonType(
       reason: json['Reason'] as String?,
@@ -13729,6 +13751,7 @@ class EntityDetails {
     required this.entityInfo,
     this.lastAuthenticated,
   });
+
   factory EntityDetails.fromJson(Map<String, dynamic> json) {
     return EntityDetails(
       entityInfo:
@@ -13783,6 +13806,7 @@ class EntityInfo {
     required this.type,
     this.path,
   });
+
   factory EntityInfo.fromJson(Map<String, dynamic> json) {
     return EntityInfo(
       arn: json['Arn'] as String,
@@ -13878,6 +13902,7 @@ class ErrorDetails {
     required this.code,
     required this.message,
   });
+
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
       code: json['Code'] as String,
@@ -13980,6 +14005,7 @@ class EvaluationResult {
     this.permissionsBoundaryDecisionDetail,
     this.resourceSpecificResults,
   });
+
   factory EvaluationResult.fromJson(Map<String, dynamic> json) {
     return EvaluationResult(
       evalActionName: json['EvalActionName'] as String,
@@ -14100,6 +14126,7 @@ class GenerateCredentialReportResponse {
     this.description,
     this.state,
   });
+
   factory GenerateCredentialReportResponse.fromJson(Map<String, dynamic> json) {
     return GenerateCredentialReportResponse(
       description: json['Description'] as String?,
@@ -14132,6 +14159,7 @@ class GenerateOrganizationsAccessReportResponse {
   GenerateOrganizationsAccessReportResponse({
     this.jobId,
   });
+
   factory GenerateOrganizationsAccessReportResponse.fromJson(
       Map<String, dynamic> json) {
     return GenerateOrganizationsAccessReportResponse(
@@ -14167,6 +14195,7 @@ class GenerateServiceLastAccessedDetailsResponse {
   GenerateServiceLastAccessedDetailsResponse({
     this.jobId,
   });
+
   factory GenerateServiceLastAccessedDetailsResponse.fromJson(
       Map<String, dynamic> json) {
     return GenerateServiceLastAccessedDetailsResponse(
@@ -14204,6 +14233,7 @@ class GetAccessKeyLastUsedResponse {
     this.accessKeyLastUsed,
     this.userName,
   });
+
   factory GetAccessKeyLastUsedResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessKeyLastUsedResponse(
       accessKeyLastUsed: json['AccessKeyLastUsed'] != null
@@ -14270,6 +14300,7 @@ class GetAccountAuthorizationDetailsResponse {
     this.roleDetailList,
     this.userDetailList,
   });
+
   factory GetAccountAuthorizationDetailsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetAccountAuthorizationDetailsResponse(
@@ -14347,6 +14378,7 @@ class GetAccountPasswordPolicyResponse {
   GetAccountPasswordPolicyResponse({
     required this.passwordPolicy,
   });
+
   factory GetAccountPasswordPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountPasswordPolicyResponse(
       passwordPolicy: PasswordPolicy.fromJson(
@@ -14378,6 +14410,7 @@ class GetAccountSummaryResponse {
   GetAccountSummaryResponse({
     this.summaryMap,
   });
+
   factory GetAccountSummaryResponse.fromJson(Map<String, dynamic> json) {
     return GetAccountSummaryResponse(
       summaryMap: (json['SummaryMap'] as Map<String, dynamic>?)
@@ -14418,6 +14451,7 @@ class GetContextKeysForPolicyResponse {
   GetContextKeysForPolicyResponse({
     this.contextKeyNames,
   });
+
   factory GetContextKeysForPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetContextKeysForPolicyResponse(
       contextKeyNames: (json['ContextKeyNames'] as List?)
@@ -14460,6 +14494,7 @@ class GetCredentialReportResponse {
     this.generatedTime,
     this.reportFormat,
   });
+
   factory GetCredentialReportResponse.fromJson(Map<String, dynamic> json) {
     return GetCredentialReportResponse(
       content: _s.decodeNullableUint8List(json['Content'] as String?),
@@ -14510,6 +14545,7 @@ class GetGroupPolicyResponse {
     required this.policyDocument,
     required this.policyName,
   });
+
   factory GetGroupPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetGroupPolicyResponse(
       groupName: json['GroupName'] as String,
@@ -14566,6 +14602,7 @@ class GetGroupResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory GetGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetGroupResponse(
       group: Group.fromJson(json['Group'] as Map<String, dynamic>),
@@ -14613,6 +14650,7 @@ class GetInstanceProfileResponse {
   GetInstanceProfileResponse({
     required this.instanceProfile,
   });
+
   factory GetInstanceProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetInstanceProfileResponse(
       instanceProfile: InstanceProfile.fromJson(
@@ -14644,6 +14682,7 @@ class GetLoginProfileResponse {
   GetLoginProfileResponse({
     required this.loginProfile,
   });
+
   factory GetLoginProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetLoginProfileResponse(
       loginProfile:
@@ -14701,6 +14740,7 @@ class GetOpenIDConnectProviderResponse {
     this.thumbprintList,
     this.url,
   });
+
   factory GetOpenIDConnectProviderResponse.fromJson(Map<String, dynamic> json) {
     return GetOpenIDConnectProviderResponse(
       clientIDList: (json['ClientIDList'] as List?)
@@ -14804,6 +14844,7 @@ class GetOrganizationsAccessReportResponse {
     this.numberOfServicesAccessible,
     this.numberOfServicesNotAccessed,
   });
+
   factory GetOrganizationsAccessReportResponse.fromJson(
       Map<String, dynamic> json) {
     return GetOrganizationsAccessReportResponse(
@@ -14882,6 +14923,7 @@ class GetPolicyResponse {
   GetPolicyResponse({
     this.policy,
   });
+
   factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyResponse(
       policy: json['Policy'] != null
@@ -14912,6 +14954,7 @@ class GetPolicyVersionResponse {
   GetPolicyVersionResponse({
     this.policyVersion,
   });
+
   factory GetPolicyVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyVersionResponse(
       policyVersion: json['PolicyVersion'] != null
@@ -14957,6 +15000,7 @@ class GetRolePolicyResponse {
     required this.policyName,
     required this.roleName,
   });
+
   factory GetRolePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetRolePolicyResponse(
       policyDocument: json['PolicyDocument'] as String,
@@ -14993,6 +15037,7 @@ class GetRoleResponse {
   GetRoleResponse({
     required this.role,
   });
+
   factory GetRoleResponse.fromJson(Map<String, dynamic> json) {
     return GetRoleResponse(
       role: Role.fromJson(json['Role'] as Map<String, dynamic>),
@@ -15038,6 +15083,7 @@ class GetSAMLProviderResponse {
     this.tags,
     this.validUntil,
   });
+
   factory GetSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
     return GetSAMLProviderResponse(
       createDate: timeStampFromJson(json['CreateDate']),
@@ -15084,6 +15130,7 @@ class GetSSHPublicKeyResponse {
   GetSSHPublicKeyResponse({
     this.sSHPublicKey,
   });
+
   factory GetSSHPublicKeyResponse.fromJson(Map<String, dynamic> json) {
     return GetSSHPublicKeyResponse(
       sSHPublicKey: json['SSHPublicKey'] != null
@@ -15116,6 +15163,7 @@ class GetServerCertificateResponse {
   GetServerCertificateResponse({
     required this.serverCertificate,
   });
+
   factory GetServerCertificateResponse.fromJson(Map<String, dynamic> json) {
     return GetServerCertificateResponse(
       serverCertificate: ServerCertificate.fromJson(
@@ -15189,6 +15237,7 @@ class GetServiceLastAccessedDetailsResponse {
     this.jobType,
     this.marker,
   });
+
   factory GetServiceLastAccessedDetailsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetServiceLastAccessedDetailsResponse(
@@ -15300,6 +15349,7 @@ class GetServiceLastAccessedDetailsWithEntitiesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory GetServiceLastAccessedDetailsWithEntitiesResponse.fromJson(
       Map<String, dynamic> json) {
     return GetServiceLastAccessedDetailsWithEntitiesResponse(
@@ -15370,6 +15420,7 @@ class GetServiceLinkedRoleDeletionStatusResponse {
     required this.status,
     this.reason,
   });
+
   factory GetServiceLinkedRoleDeletionStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return GetServiceLinkedRoleDeletionStatusResponse(
@@ -15422,6 +15473,7 @@ class GetUserPolicyResponse {
     required this.policyName,
     required this.userName,
   });
+
   factory GetUserPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetUserPolicyResponse(
       policyDocument: json['PolicyDocument'] as String,
@@ -15479,6 +15531,7 @@ class GetUserResponse {
   GetUserResponse({
     required this.user,
   });
+
   factory GetUserResponse.fromJson(Map<String, dynamic> json) {
     return GetUserResponse(
       user: User.fromJson(json['User'] as Map<String, dynamic>),
@@ -15546,6 +15599,7 @@ class Group {
     required this.groupName,
     required this.path,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       arn: json['Arn'] as String,
@@ -15623,6 +15677,7 @@ class GroupDetail {
     this.groupPolicyList,
     this.path,
   });
+
   factory GroupDetail.fromJson(Map<String, dynamic> json) {
     return GroupDetail(
       arn: json['Arn'] as String?,
@@ -15743,6 +15798,7 @@ class InstanceProfile {
     required this.roles,
     this.tags,
   });
+
   factory InstanceProfile.fromJson(Map<String, dynamic> json) {
     return InstanceProfile(
       arn: json['Arn'] as String,
@@ -15823,6 +15879,7 @@ class ListAccessKeysResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListAccessKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListAccessKeysResponse(
       accessKeyMetadata: (json['AccessKeyMetadata'] as List)
@@ -15883,6 +15940,7 @@ class ListAccountAliasesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListAccountAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountAliasesResponse(
       accountAliases: (json['AccountAliases'] as List)
@@ -15940,6 +15998,7 @@ class ListAttachedGroupPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListAttachedGroupPoliciesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAttachedGroupPoliciesResponse(
@@ -16001,6 +16060,7 @@ class ListAttachedRolePoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListAttachedRolePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListAttachedRolePoliciesResponse(
       attachedPolicies: (json['AttachedPolicies'] as List?)
@@ -16061,6 +16121,7 @@ class ListAttachedUserPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListAttachedUserPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListAttachedUserPoliciesResponse(
       attachedPolicies: (json['AttachedPolicies'] as List?)
@@ -16128,6 +16189,7 @@ class ListEntitiesForPolicyResponse {
     this.policyRoles,
     this.policyUsers,
   });
+
   factory ListEntitiesForPolicyResponse.fromJson(Map<String, dynamic> json) {
     return ListEntitiesForPolicyResponse(
       isTruncated: json['IsTruncated'] as bool?,
@@ -16211,6 +16273,7 @@ class ListGroupPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListGroupPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupPoliciesResponse(
       policyNames: (json['PolicyNames'] as List)
@@ -16267,6 +16330,7 @@ class ListGroupsForUserResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListGroupsForUserResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsForUserResponse(
       groups: (json['Groups'] as List)
@@ -16326,6 +16390,7 @@ class ListGroupsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsResponse(
       groups: (json['Groups'] as List)
@@ -16386,6 +16451,7 @@ class ListInstanceProfileTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListInstanceProfileTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListInstanceProfileTagsResponse(
       tags: (json['Tags'] as List)
@@ -16446,6 +16512,7 @@ class ListInstanceProfilesForRoleResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListInstanceProfilesForRoleResponse.fromJson(
       Map<String, dynamic> json) {
     return ListInstanceProfilesForRoleResponse(
@@ -16506,6 +16573,7 @@ class ListInstanceProfilesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListInstanceProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListInstanceProfilesResponse(
       instanceProfiles: (json['InstanceProfiles'] as List)
@@ -16566,6 +16634,7 @@ class ListMFADeviceTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListMFADeviceTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListMFADeviceTagsResponse(
       tags: (json['Tags'] as List)
@@ -16625,6 +16694,7 @@ class ListMFADevicesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListMFADevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListMFADevicesResponse(
       mFADevices: (json['MFADevices'] as List)
@@ -16686,6 +16756,7 @@ class ListOpenIDConnectProviderTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListOpenIDConnectProviderTagsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOpenIDConnectProviderTagsResponse(
@@ -16731,6 +16802,7 @@ class ListOpenIDConnectProvidersResponse {
   ListOpenIDConnectProvidersResponse({
     this.openIDConnectProviderList,
   });
+
   factory ListOpenIDConnectProvidersResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOpenIDConnectProvidersResponse(
@@ -16790,6 +16862,7 @@ class ListPoliciesGrantingServiceAccessEntry {
     this.policies,
     this.serviceNamespace,
   });
+
   factory ListPoliciesGrantingServiceAccessEntry.fromJson(
       Map<String, dynamic> json) {
     return ListPoliciesGrantingServiceAccessEntry(
@@ -16846,6 +16919,7 @@ class ListPoliciesGrantingServiceAccessResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListPoliciesGrantingServiceAccessResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPoliciesGrantingServiceAccessResponse(
@@ -16909,6 +16983,7 @@ class ListPoliciesResponse {
     this.marker,
     this.policies,
   });
+
   factory ListPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListPoliciesResponse(
       isTruncated: json['IsTruncated'] as bool?,
@@ -16966,6 +17041,7 @@ class ListPolicyTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListPolicyTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListPolicyTagsResponse(
       tags: (json['Tags'] as List)
@@ -17029,6 +17105,7 @@ class ListPolicyVersionsResponse {
     this.marker,
     this.versions,
   });
+
   factory ListPolicyVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListPolicyVersionsResponse(
       isTruncated: json['IsTruncated'] as bool?,
@@ -17087,6 +17164,7 @@ class ListRolePoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListRolePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListRolePoliciesResponse(
       policyNames: (json['PolicyNames'] as List)
@@ -17144,6 +17222,7 @@ class ListRoleTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListRoleTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListRoleTagsResponse(
       tags: (json['Tags'] as List)
@@ -17203,6 +17282,7 @@ class ListRolesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListRolesResponse.fromJson(Map<String, dynamic> json) {
     return ListRolesResponse(
       roles: (json['Roles'] as List)
@@ -17264,6 +17344,7 @@ class ListSAMLProviderTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListSAMLProviderTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListSAMLProviderTagsResponse(
       tags: (json['Tags'] as List)
@@ -17308,6 +17389,7 @@ class ListSAMLProvidersResponse {
   ListSAMLProvidersResponse({
     this.sAMLProviderList,
   });
+
   factory ListSAMLProvidersResponse.fromJson(Map<String, dynamic> json) {
     return ListSAMLProvidersResponse(
       sAMLProviderList: (json['SAMLProviderList'] as List?)
@@ -17359,6 +17441,7 @@ class ListSSHPublicKeysResponse {
     this.marker,
     this.sSHPublicKeys,
   });
+
   factory ListSSHPublicKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListSSHPublicKeysResponse(
       isTruncated: json['IsTruncated'] as bool?,
@@ -17419,6 +17502,7 @@ class ListServerCertificateTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListServerCertificateTagsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListServerCertificateTagsResponse(
@@ -17479,6 +17563,7 @@ class ListServerCertificatesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListServerCertificatesResponse.fromJson(Map<String, dynamic> json) {
     return ListServerCertificatesResponse(
       serverCertificateMetadataList:
@@ -17524,6 +17609,7 @@ class ListServiceSpecificCredentialsResponse {
   ListServiceSpecificCredentialsResponse({
     this.serviceSpecificCredentials,
   });
+
   factory ListServiceSpecificCredentialsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListServiceSpecificCredentialsResponse(
@@ -17580,6 +17666,7 @@ class ListSigningCertificatesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListSigningCertificatesResponse.fromJson(Map<String, dynamic> json) {
     return ListSigningCertificatesResponse(
       certificates: (json['Certificates'] as List)
@@ -17639,6 +17726,7 @@ class ListUserPoliciesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListUserPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListUserPoliciesResponse(
       policyNames: (json['PolicyNames'] as List)
@@ -17696,6 +17784,7 @@ class ListUserTagsResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListUserTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserTagsResponse(
       tags: (json['Tags'] as List)
@@ -17755,6 +17844,7 @@ class ListUsersResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       users: (json['Users'] as List)
@@ -17815,6 +17905,7 @@ class ListVirtualMFADevicesResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory ListVirtualMFADevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListVirtualMFADevicesResponse(
       virtualMFADevices: (json['VirtualMFADevices'] as List)
@@ -17871,6 +17962,7 @@ class LoginProfile {
     required this.userName,
     this.passwordResetRequired,
   });
+
   factory LoginProfile.fromJson(Map<String, dynamic> json) {
     return LoginProfile(
       createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
@@ -17921,6 +18013,7 @@ class MFADevice {
     required this.serialNumber,
     required this.userName,
   });
+
   factory MFADevice.fromJson(Map<String, dynamic> json) {
     return MFADevice(
       enableDate: nonNullableTimeStampFromJson(json['EnableDate'] as Object),
@@ -18035,6 +18128,7 @@ class ManagedPolicyDetail {
     this.policyVersionList,
     this.updateDate,
   });
+
   factory ManagedPolicyDetail.fromJson(Map<String, dynamic> json) {
     return ManagedPolicyDetail(
       arn: json['Arn'] as String?,
@@ -18116,6 +18210,7 @@ class OpenIDConnectProviderListEntry {
   OpenIDConnectProviderListEntry({
     this.arn,
   });
+
   factory OpenIDConnectProviderListEntry.fromJson(Map<String, dynamic> json) {
     return OpenIDConnectProviderListEntry(
       arn: json['Arn'] as String?,
@@ -18146,6 +18241,7 @@ class OrganizationsDecisionDetail {
   OrganizationsDecisionDetail({
     this.allowedByOrganizations,
   });
+
   factory OrganizationsDecisionDetail.fromJson(Map<String, dynamic> json) {
     return OrganizationsDecisionDetail(
       allowedByOrganizations: json['AllowedByOrganizations'] as bool?,
@@ -18225,6 +18321,7 @@ class PasswordPolicy {
     this.requireSymbols,
     this.requireUppercaseCharacters,
   });
+
   factory PasswordPolicy.fromJson(Map<String, dynamic> json) {
     return PasswordPolicy(
       allowUsersToChangePassword: json['AllowUsersToChangePassword'] as bool?,
@@ -18332,6 +18429,7 @@ class PermissionsBoundaryDecisionDetail {
   PermissionsBoundaryDecisionDetail({
     this.allowedByPermissionsBoundary,
   });
+
   factory PermissionsBoundaryDecisionDetail.fromJson(
       Map<String, dynamic> json) {
     return PermissionsBoundaryDecisionDetail(
@@ -18442,6 +18540,7 @@ class Policy {
     this.tags,
     this.updateDate,
   });
+
   factory Policy.fromJson(Map<String, dynamic> json) {
     return Policy(
       arn: json['Arn'] as String?,
@@ -18528,6 +18627,7 @@ class PolicyDetail {
     this.policyDocument,
     this.policyName,
   });
+
   factory PolicyDetail.fromJson(Map<String, dynamic> json) {
     return PolicyDetail(
       policyDocument: json['PolicyDocument'] as String?,
@@ -18625,6 +18725,7 @@ class PolicyGrantingServiceAccess {
     this.entityType,
     this.policyArn,
   });
+
   factory PolicyGrantingServiceAccess.fromJson(Map<String, dynamic> json) {
     return PolicyGrantingServiceAccess(
       policyName: json['PolicyName'] as String,
@@ -18685,6 +18786,7 @@ class PolicyGroup {
     this.groupId,
     this.groupName,
   });
+
   factory PolicyGroup.fromJson(Map<String, dynamic> json) {
     return PolicyGroup(
       groupId: json['GroupId'] as String?,
@@ -18731,6 +18833,7 @@ class PolicyRole {
     this.roleId,
     this.roleName,
   });
+
   factory PolicyRole.fromJson(Map<String, dynamic> json) {
     return PolicyRole(
       roleId: json['RoleId'] as String?,
@@ -18864,6 +18967,7 @@ class PolicyUser {
     this.userId,
     this.userName,
   });
+
   factory PolicyUser.fromJson(Map<String, dynamic> json) {
     return PolicyUser(
       userId: json['UserId'] as String?,
@@ -18934,6 +19038,7 @@ class PolicyVersion {
     this.isDefaultVersion,
     this.versionId,
   });
+
   factory PolicyVersion.fromJson(Map<String, dynamic> json) {
     return PolicyVersion(
       createDate: timeStampFromJson(json['CreateDate']),
@@ -18982,6 +19087,7 @@ class Position {
     this.column,
     this.line,
   });
+
   factory Position.fromJson(Map<String, dynamic> json) {
     return Position(
       column: json['Column'] as int?,
@@ -19074,6 +19180,7 @@ class ResetServiceSpecificCredentialResponse {
   ResetServiceSpecificCredentialResponse({
     this.serviceSpecificCredential,
   });
+
   factory ResetServiceSpecificCredentialResponse.fromJson(
       Map<String, dynamic> json) {
     return ResetServiceSpecificCredentialResponse(
@@ -19150,6 +19257,7 @@ class ResourceSpecificResult {
     this.missingContextValues,
     this.permissionsBoundaryDecisionDetail,
   });
+
   factory ResourceSpecificResult.fromJson(Map<String, dynamic> json) {
     return ResourceSpecificResult(
       evalResourceDecision: (json['EvalResourceDecision'] as String)
@@ -19304,6 +19412,7 @@ class Role {
     this.roleLastUsed,
     this.tags,
   });
+
   factory Role.fromJson(Map<String, dynamic> json) {
     return Role(
       arn: json['Arn'] as String,
@@ -19457,6 +19566,7 @@ class RoleDetail {
     this.rolePolicyList,
     this.tags,
   });
+
   factory RoleDetail.fromJson(Map<String, dynamic> json) {
     return RoleDetail(
       arn: json['Arn'] as String?,
@@ -19589,6 +19699,7 @@ class RoleLastUsed {
     this.lastUsedDate,
     this.region,
   });
+
   factory RoleLastUsed.fromJson(Map<String, dynamic> json) {
     return RoleLastUsed(
       lastUsedDate: timeStampFromJson(json['LastUsedDate']),
@@ -19630,6 +19741,7 @@ class RoleUsageType {
     this.region,
     this.resources,
   });
+
   factory RoleUsageType.fromJson(Map<String, dynamic> json) {
     return RoleUsageType(
       region: json['Region'] as String?,
@@ -19675,6 +19787,7 @@ class SAMLProviderListEntry {
     this.createDate,
     this.validUntil,
   });
+
   factory SAMLProviderListEntry.fromJson(Map<String, dynamic> json) {
     return SAMLProviderListEntry(
       arn: json['Arn'] as String?,
@@ -19737,6 +19850,7 @@ class SSHPublicKey {
     required this.userName,
     this.uploadDate,
   });
+
   factory SSHPublicKey.fromJson(Map<String, dynamic> json) {
     return SSHPublicKey(
       fingerprint: json['Fingerprint'] as String,
@@ -19804,6 +19918,7 @@ class SSHPublicKeyMetadata {
     required this.uploadDate,
     required this.userName,
   });
+
   factory SSHPublicKeyMetadata.fromJson(Map<String, dynamic> json) {
     return SSHPublicKeyMetadata(
       sSHPublicKeyId: json['SSHPublicKeyId'] as String,
@@ -19863,6 +19978,7 @@ class ServerCertificate {
     this.certificateChain,
     this.tags,
   });
+
   factory ServerCertificate.fromJson(Map<String, dynamic> json) {
     return ServerCertificate(
       certificateBody: json['CertificateBody'] as String,
@@ -19941,6 +20057,7 @@ class ServerCertificateMetadata {
     this.expiration,
     this.uploadDate,
   });
+
   factory ServerCertificateMetadata.fromJson(Map<String, dynamic> json) {
     return ServerCertificateMetadata(
       arn: json['Arn'] as String,
@@ -20065,6 +20182,7 @@ class ServiceLastAccessed {
     this.totalAuthenticatedEntities,
     this.trackedActionsLastAccessed,
   });
+
   factory ServiceLastAccessed.fromJson(Map<String, dynamic> json) {
     return ServiceLastAccessed(
       serviceName: json['ServiceName'] as String,
@@ -20164,6 +20282,7 @@ class ServiceSpecificCredential {
     required this.status,
     required this.userName,
   });
+
   factory ServiceSpecificCredential.fromJson(Map<String, dynamic> json) {
     return ServiceSpecificCredential(
       createDate: nonNullableTimeStampFromJson(json['CreateDate'] as Object),
@@ -20241,6 +20360,7 @@ class ServiceSpecificCredentialMetadata {
     required this.status,
     required this.userName,
   });
+
   factory ServiceSpecificCredentialMetadata.fromJson(
       Map<String, dynamic> json) {
     return ServiceSpecificCredentialMetadata(
@@ -20313,6 +20433,7 @@ class SigningCertificate {
     required this.userName,
     this.uploadDate,
   });
+
   factory SigningCertificate.fromJson(Map<String, dynamic> json) {
     return SigningCertificate(
       certificateBody: json['CertificateBody'] as String,
@@ -20374,6 +20495,7 @@ class SimulatePolicyResponse {
     this.isTruncated,
     this.marker,
   });
+
   factory SimulatePolicyResponse.fromJson(Map<String, dynamic> json) {
     return SimulatePolicyResponse(
       evaluationResults: (json['EvaluationResults'] as List?)
@@ -20434,6 +20556,7 @@ class Statement {
     this.sourcePolicyType,
     this.startPosition,
   });
+
   factory Statement.fromJson(Map<String, dynamic> json) {
     return Statement(
       endPosition: json['EndPosition'] != null
@@ -20506,6 +20629,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -20568,6 +20692,7 @@ class TrackedActionLastAccessed {
     this.lastAccessedRegion,
     this.lastAccessedTime,
   });
+
   factory TrackedActionLastAccessed.fromJson(Map<String, dynamic> json) {
     return TrackedActionLastAccessed(
       actionName: json['ActionName'] as String?,
@@ -20608,6 +20733,7 @@ class UpdateRoleDescriptionResponse {
   UpdateRoleDescriptionResponse({
     this.role,
   });
+
   factory UpdateRoleDescriptionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRoleDescriptionResponse(
       role: json['Role'] != null
@@ -20632,6 +20758,7 @@ class UpdateRoleDescriptionResponse {
 
 class UpdateRoleResponse {
   UpdateRoleResponse();
+
   factory UpdateRoleResponse.fromJson(Map<String, dynamic> _) {
     return UpdateRoleResponse();
   }
@@ -20655,6 +20782,7 @@ class UpdateSAMLProviderResponse {
   UpdateSAMLProviderResponse({
     this.sAMLProviderArn,
   });
+
   factory UpdateSAMLProviderResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSAMLProviderResponse(
       sAMLProviderArn: json['SAMLProviderArn'] as String?,
@@ -20683,6 +20811,7 @@ class UploadSSHPublicKeyResponse {
   UploadSSHPublicKeyResponse({
     this.sSHPublicKey,
   });
+
   factory UploadSSHPublicKeyResponse.fromJson(Map<String, dynamic> json) {
     return UploadSSHPublicKeyResponse(
       sSHPublicKey: json['SSHPublicKey'] != null
@@ -20725,6 +20854,7 @@ class UploadServerCertificateResponse {
     this.serverCertificateMetadata,
     this.tags,
   });
+
   factory UploadServerCertificateResponse.fromJson(Map<String, dynamic> json) {
     return UploadServerCertificateResponse(
       serverCertificateMetadata: json['ServerCertificateMetadata'] != null
@@ -20768,6 +20898,7 @@ class UploadSigningCertificateResponse {
   UploadSigningCertificateResponse({
     required this.certificate,
   });
+
   factory UploadSigningCertificateResponse.fromJson(Map<String, dynamic> json) {
     return UploadSigningCertificateResponse(
       certificate: SigningCertificate.fromJson(
@@ -20880,6 +21011,7 @@ class User {
     this.permissionsBoundary,
     this.tags,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       arn: json['Arn'] as String,
@@ -20999,6 +21131,7 @@ class UserDetail {
     this.userName,
     this.userPolicyList,
   });
+
   factory UserDetail.fromJson(Map<String, dynamic> json) {
     return UserDetail(
       arn: json['Arn'] as String?,
@@ -21124,6 +21257,7 @@ class VirtualMFADevice {
     this.tags,
     this.user,
   });
+
   factory VirtualMFADevice.fromJson(Map<String, dynamic> json) {
     return VirtualMFADevice(
       serialNumber: json['SerialNumber'] as String,

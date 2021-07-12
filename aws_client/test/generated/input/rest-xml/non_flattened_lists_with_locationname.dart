@@ -60,6 +60,7 @@ class InputShape {
   InputShape({
     this.listParam,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       listParam: (json['AlternateName'] as List?)

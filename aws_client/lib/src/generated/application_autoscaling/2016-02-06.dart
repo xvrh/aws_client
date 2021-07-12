@@ -2673,6 +2673,7 @@ class Alarm {
     required this.alarmARN,
     required this.alarmName,
   });
+
   factory Alarm.fromJson(Map<String, dynamic> json) {
     return Alarm(
       alarmARN: json['AlarmARN'] as String,
@@ -2745,6 +2746,7 @@ class CustomizedMetricSpecification {
     this.dimensions,
     this.unit,
   });
+
   factory CustomizedMetricSpecification.fromJson(Map<String, dynamic> json) {
     return CustomizedMetricSpecification(
       metricName: json['MetricName'] as String,
@@ -2776,6 +2778,7 @@ class CustomizedMetricSpecification {
 
 class DeleteScalingPolicyResponse {
   DeleteScalingPolicyResponse();
+
   factory DeleteScalingPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScalingPolicyResponse();
   }
@@ -2787,6 +2790,7 @@ class DeleteScalingPolicyResponse {
 
 class DeleteScheduledActionResponse {
   DeleteScheduledActionResponse();
+
   factory DeleteScheduledActionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScheduledActionResponse();
   }
@@ -2798,6 +2802,7 @@ class DeleteScheduledActionResponse {
 
 class DeregisterScalableTargetResponse {
   DeregisterScalableTargetResponse();
+
   factory DeregisterScalableTargetResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterScalableTargetResponse();
   }
@@ -2819,6 +2824,7 @@ class DescribeScalableTargetsResponse {
     this.nextToken,
     this.scalableTargets,
   });
+
   factory DescribeScalableTargetsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeScalableTargetsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2851,6 +2857,7 @@ class DescribeScalingActivitiesResponse {
     this.nextToken,
     this.scalingActivities,
   });
+
   factory DescribeScalingActivitiesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeScalingActivitiesResponse(
@@ -2884,6 +2891,7 @@ class DescribeScalingPoliciesResponse {
     this.nextToken,
     this.scalingPolicies,
   });
+
   factory DescribeScalingPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeScalingPoliciesResponse(
       nextToken: json['NextToken'] as String?,
@@ -2916,6 +2924,7 @@ class DescribeScheduledActionsResponse {
     this.nextToken,
     this.scheduledActions,
   });
+
   factory DescribeScheduledActionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeScheduledActionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2981,6 +2990,7 @@ class MetricDimension {
     required this.name,
     required this.value,
   });
+
   factory MetricDimension.fromJson(Map<String, dynamic> json) {
     return MetricDimension(
       name: json['Name'] as String,
@@ -3222,6 +3232,7 @@ class PredefinedMetricSpecification {
     required this.predefinedMetricType,
     this.resourceLabel,
   });
+
   factory PredefinedMetricSpecification.fromJson(Map<String, dynamic> json) {
     return PredefinedMetricSpecification(
       predefinedMetricType:
@@ -3251,6 +3262,7 @@ class PutScalingPolicyResponse {
     required this.policyARN,
     this.alarms,
   });
+
   factory PutScalingPolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutScalingPolicyResponse(
       policyARN: json['PolicyARN'] as String,
@@ -3273,6 +3285,7 @@ class PutScalingPolicyResponse {
 
 class PutScheduledActionResponse {
   PutScheduledActionResponse();
+
   factory PutScheduledActionResponse.fromJson(Map<String, dynamic> _) {
     return PutScheduledActionResponse();
   }
@@ -3284,6 +3297,7 @@ class PutScheduledActionResponse {
 
 class RegisterScalableTargetResponse {
   RegisterScalableTargetResponse();
+
   factory RegisterScalableTargetResponse.fromJson(Map<String, dynamic> _) {
     return RegisterScalableTargetResponse();
   }
@@ -3587,6 +3601,7 @@ class ScalableTarget {
     required this.serviceNamespace,
     this.suspendedState,
   });
+
   factory ScalableTarget.fromJson(Map<String, dynamic> json) {
     return ScalableTarget(
       creationTime:
@@ -3655,6 +3670,7 @@ class ScalableTargetAction {
     this.maxCapacity,
     this.minCapacity,
   });
+
   factory ScalableTargetAction.fromJson(Map<String, dynamic> json) {
     return ScalableTargetAction(
       maxCapacity: json['MaxCapacity'] as int?,
@@ -3873,6 +3889,7 @@ class ScalingActivity {
     this.endTime,
     this.statusMessage,
   });
+
   factory ScalingActivity.fromJson(Map<String, dynamic> json) {
     return ScalingActivity(
       activityId: json['ActivityId'] as String,
@@ -4170,6 +4187,7 @@ class ScalingPolicy {
     this.stepScalingPolicyConfiguration,
     this.targetTrackingScalingPolicyConfiguration,
   });
+
   factory ScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ScalingPolicy(
       creationTime:
@@ -4466,6 +4484,7 @@ class ScheduledAction {
     this.startTime,
     this.timezone,
   });
+
   factory ScheduledAction.fromJson(Map<String, dynamic> json) {
     return ScheduledAction(
       creationTime:
@@ -4665,6 +4684,7 @@ class StepAdjustment {
     this.metricIntervalLowerBound,
     this.metricIntervalUpperBound,
   });
+
   factory StepAdjustment.fromJson(Map<String, dynamic> json) {
     return StepAdjustment(
       scalingAdjustment: json['ScalingAdjustment'] as int,
@@ -4802,6 +4822,7 @@ class StepScalingPolicyConfiguration {
     this.minAdjustmentMagnitude,
     this.stepAdjustments,
   });
+
   factory StepScalingPolicyConfiguration.fromJson(Map<String, dynamic> json) {
     return StepScalingPolicyConfiguration(
       adjustmentType: (json['AdjustmentType'] as String?)?.toAdjustmentType(),
@@ -4859,6 +4880,7 @@ class SuspendedState {
     this.dynamicScalingOutSuspended,
     this.scheduledScalingSuspended,
   });
+
   factory SuspendedState.fromJson(Map<String, dynamic> json) {
     return SuspendedState(
       dynamicScalingInSuspended: json['DynamicScalingInSuspended'] as bool?,
@@ -5039,6 +5061,7 @@ class TargetTrackingScalingPolicyConfiguration {
     this.scaleInCooldown,
     this.scaleOutCooldown,
   });
+
   factory TargetTrackingScalingPolicyConfiguration.fromJson(
       Map<String, dynamic> json) {
     return TargetTrackingScalingPolicyConfiguration(

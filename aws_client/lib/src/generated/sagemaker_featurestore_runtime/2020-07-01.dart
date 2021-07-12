@@ -292,6 +292,7 @@ class BatchGetRecordError {
     required this.featureGroupName,
     required this.recordIdentifierValueAsString,
   });
+
   factory BatchGetRecordError.fromJson(Map<String, dynamic> json) {
     return BatchGetRecordError(
       errorCode: json['ErrorCode'] as String,
@@ -335,6 +336,7 @@ class BatchGetRecordIdentifier {
     required this.recordIdentifiersValueAsString,
     this.featureNames,
   });
+
   factory BatchGetRecordIdentifier.fromJson(Map<String, dynamic> json) {
     return BatchGetRecordIdentifier(
       featureGroupName: json['FeatureGroupName'] as String,
@@ -378,6 +380,7 @@ class BatchGetRecordResponse {
     required this.records,
     required this.unprocessedIdentifiers,
   });
+
   factory BatchGetRecordResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetRecordResponse(
       errors: (json['Errors'] as List)
@@ -426,6 +429,7 @@ class BatchGetRecordResultDetail {
     required this.record,
     required this.recordIdentifierValueAsString,
   });
+
   factory BatchGetRecordResultDetail.fromJson(Map<String, dynamic> json) {
     return BatchGetRecordResultDetail(
       featureGroupName: json['FeatureGroupName'] as String,
@@ -464,6 +468,7 @@ class FeatureValue {
     required this.featureName,
     required this.valueAsString,
   });
+
   factory FeatureValue.fromJson(Map<String, dynamic> json) {
     return FeatureValue(
       featureName: json['FeatureName'] as String,
@@ -488,6 +493,7 @@ class GetRecordResponse {
   GetRecordResponse({
     this.record,
   });
+
   factory GetRecordResponse.fromJson(Map<String, dynamic> json) {
     return GetRecordResponse(
       record: (json['Record'] as List?)

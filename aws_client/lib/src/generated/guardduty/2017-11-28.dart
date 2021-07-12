@@ -2868,6 +2868,7 @@ class GuardDuty {
 
 class AcceptInvitationResponse {
   AcceptInvitationResponse();
+
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
   }
@@ -2891,6 +2892,7 @@ class AccessControlList {
     this.allowsPublicReadAccess,
     this.allowsPublicWriteAccess,
   });
+
   factory AccessControlList.fromJson(Map<String, dynamic> json) {
     return AccessControlList(
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
@@ -2930,6 +2932,7 @@ class AccessKeyDetails {
     this.userName,
     this.userType,
   });
+
   factory AccessKeyDetails.fromJson(Map<String, dynamic> json) {
     return AccessKeyDetails(
       accessKeyId: json['accessKeyId'] as String?,
@@ -2965,6 +2968,7 @@ class AccountDetail {
     required this.accountId,
     required this.email,
   });
+
   factory AccountDetail.fromJson(Map<String, dynamic> json) {
     return AccountDetail(
       accountId: json['accountId'] as String,
@@ -2991,6 +2995,7 @@ class AccountLevelPermissions {
   AccountLevelPermissions({
     this.blockPublicAccess,
   });
+
   factory AccountLevelPermissions.fromJson(Map<String, dynamic> json) {
     return AccountLevelPermissions(
       blockPublicAccess: json['blockPublicAccess'] != null
@@ -3032,6 +3037,7 @@ class Action {
     this.networkConnectionAction,
     this.portProbeAction,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       actionType: json['actionType'] as String?,
@@ -3084,6 +3090,7 @@ class AdminAccount {
     this.adminAccountId,
     this.adminStatus,
   });
+
   factory AdminAccount.fromJson(Map<String, dynamic> json) {
     return AdminAccount(
       adminAccountId: json['adminAccountId'] as String?,
@@ -3131,6 +3138,7 @@ extension on String {
 
 class ArchiveFindingsResponse {
   ArchiveFindingsResponse();
+
   factory ArchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return ArchiveFindingsResponse();
   }
@@ -3168,6 +3176,7 @@ class AwsApiCallAction {
     this.remoteIpDetails,
     this.serviceName,
   });
+
   factory AwsApiCallAction.fromJson(Map<String, dynamic> json) {
     return AwsApiCallAction(
       api: json['api'] as String?,
@@ -3228,6 +3237,7 @@ class BlockPublicAccess {
     this.ignorePublicAcls,
     this.restrictPublicBuckets,
   });
+
   factory BlockPublicAccess.fromJson(Map<String, dynamic> json) {
     return BlockPublicAccess(
       blockPublicAcls: json['blockPublicAcls'] as bool?,
@@ -3270,6 +3280,7 @@ class BucketLevelPermissions {
     this.blockPublicAccess,
     this.bucketPolicy,
   });
+
   factory BucketLevelPermissions.fromJson(Map<String, dynamic> json) {
     return BucketLevelPermissions(
       accessControlList: json['accessControlList'] != null
@@ -3312,6 +3323,7 @@ class BucketPolicy {
     this.allowsPublicReadAccess,
     this.allowsPublicWriteAccess,
   });
+
   factory BucketPolicy.fromJson(Map<String, dynamic> json) {
     return BucketPolicy(
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
@@ -3339,6 +3351,7 @@ class City {
   City({
     this.cityName,
   });
+
   factory City.fromJson(Map<String, dynamic> json) {
     return City(
       cityName: json['cityName'] as String?,
@@ -3362,6 +3375,7 @@ class CloudTrailConfigurationResult {
   CloudTrailConfigurationResult({
     required this.status,
   });
+
   factory CloudTrailConfigurationResult.fromJson(Map<String, dynamic> json) {
     return CloudTrailConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
@@ -3440,6 +3454,7 @@ class Condition {
     this.neq,
     this.notEquals,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       eq: (json['eq'] as List?)
@@ -3512,6 +3527,7 @@ class Country {
     this.countryCode,
     this.countryName,
   });
+
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
       countryCode: json['countryCode'] as String?,
@@ -3536,6 +3552,7 @@ class CreateDetectorResponse {
   CreateDetectorResponse({
     this.detectorId,
   });
+
   factory CreateDetectorResponse.fromJson(Map<String, dynamic> json) {
     return CreateDetectorResponse(
       detectorId: json['detectorId'] as String?,
@@ -3557,6 +3574,7 @@ class CreateFilterResponse {
   CreateFilterResponse({
     required this.name,
   });
+
   factory CreateFilterResponse.fromJson(Map<String, dynamic> json) {
     return CreateFilterResponse(
       name: json['name'] as String,
@@ -3578,6 +3596,7 @@ class CreateIPSetResponse {
   CreateIPSetResponse({
     required this.ipSetId,
   });
+
   factory CreateIPSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateIPSetResponse(
       ipSetId: json['ipSetId'] as String,
@@ -3601,6 +3620,7 @@ class CreateMembersResponse {
   CreateMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory CreateMembersResponse.fromJson(Map<String, dynamic> json) {
     return CreateMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -3625,6 +3645,7 @@ class CreatePublishingDestinationResponse {
   CreatePublishingDestinationResponse({
     required this.destinationId,
   });
+
   factory CreatePublishingDestinationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreatePublishingDestinationResponse(
@@ -3642,6 +3663,7 @@ class CreatePublishingDestinationResponse {
 
 class CreateSampleFindingsResponse {
   CreateSampleFindingsResponse();
+
   factory CreateSampleFindingsResponse.fromJson(Map<String, dynamic> _) {
     return CreateSampleFindingsResponse();
   }
@@ -3658,6 +3680,7 @@ class CreateThreatIntelSetResponse {
   CreateThreatIntelSetResponse({
     required this.threatIntelSetId,
   });
+
   factory CreateThreatIntelSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateThreatIntelSetResponse(
       threatIntelSetId: json['threatIntelSetId'] as String,
@@ -3680,6 +3703,7 @@ class DNSLogsConfigurationResult {
   DNSLogsConfigurationResult({
     required this.status,
   });
+
   factory DNSLogsConfigurationResult.fromJson(Map<String, dynamic> json) {
     return DNSLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
@@ -3740,6 +3764,7 @@ class DataSourceConfigurations {
   DataSourceConfigurations({
     this.s3Logs,
   });
+
   factory DataSourceConfigurations.fromJson(Map<String, dynamic> json) {
     return DataSourceConfigurations(
       s3Logs: json['s3Logs'] != null
@@ -3780,6 +3805,7 @@ class DataSourceConfigurationsResult {
     required this.flowLogs,
     required this.s3Logs,
   });
+
   factory DataSourceConfigurationsResult.fromJson(Map<String, dynamic> json) {
     return DataSourceConfigurationsResult(
       cloudTrail: CloudTrailConfigurationResult.fromJson(
@@ -3843,6 +3869,7 @@ class DeclineInvitationsResponse {
   DeclineInvitationsResponse({
     required this.unprocessedAccounts,
   });
+
   factory DeclineInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeclineInvitationsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -3876,6 +3903,7 @@ class DefaultServerSideEncryption {
     this.encryptionType,
     this.kmsMasterKeyArn,
   });
+
   factory DefaultServerSideEncryption.fromJson(Map<String, dynamic> json) {
     return DefaultServerSideEncryption(
       encryptionType: json['encryptionType'] as String?,
@@ -3895,6 +3923,7 @@ class DefaultServerSideEncryption {
 
 class DeleteDetectorResponse {
   DeleteDetectorResponse();
+
   factory DeleteDetectorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorResponse();
   }
@@ -3906,6 +3935,7 @@ class DeleteDetectorResponse {
 
 class DeleteFilterResponse {
   DeleteFilterResponse();
+
   factory DeleteFilterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFilterResponse();
   }
@@ -3917,6 +3947,7 @@ class DeleteFilterResponse {
 
 class DeleteIPSetResponse {
   DeleteIPSetResponse();
+
   factory DeleteIPSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIPSetResponse();
   }
@@ -3934,6 +3965,7 @@ class DeleteInvitationsResponse {
   DeleteInvitationsResponse({
     required this.unprocessedAccounts,
   });
+
   factory DeleteInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteInvitationsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -3958,6 +3990,7 @@ class DeleteMembersResponse {
   DeleteMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory DeleteMembersResponse.fromJson(Map<String, dynamic> json) {
     return DeleteMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -3977,6 +4010,7 @@ class DeleteMembersResponse {
 
 class DeletePublishingDestinationResponse {
   DeletePublishingDestinationResponse();
+
   factory DeletePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeletePublishingDestinationResponse();
   }
@@ -3988,6 +4022,7 @@ class DeletePublishingDestinationResponse {
 
 class DeleteThreatIntelSetResponse {
   DeleteThreatIntelSetResponse();
+
   factory DeleteThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThreatIntelSetResponse();
   }
@@ -4014,6 +4049,7 @@ class DescribeOrganizationConfigurationResponse {
     required this.memberAccountLimitReached,
     this.dataSources,
   });
+
   factory DescribeOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConfigurationResponse(
@@ -4065,6 +4101,7 @@ class DescribePublishingDestinationResponse {
     required this.publishingFailureStartTimestamp,
     required this.status,
   });
+
   factory DescribePublishingDestinationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePublishingDestinationResponse(
@@ -4113,6 +4150,7 @@ class Destination {
     required this.destinationType,
     required this.status,
   });
+
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(
       destinationId: json['destinationId'] as String,
@@ -4147,6 +4185,7 @@ class DestinationProperties {
     this.destinationArn,
     this.kmsKeyArn,
   });
+
   factory DestinationProperties.fromJson(Map<String, dynamic> json) {
     return DestinationProperties(
       destinationArn: json['destinationArn'] as String?,
@@ -4217,6 +4256,7 @@ extension on String {
 
 class DisableOrganizationAdminAccountResponse {
   DisableOrganizationAdminAccountResponse();
+
   factory DisableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
@@ -4229,6 +4269,7 @@ class DisableOrganizationAdminAccountResponse {
 
 class DisassociateFromMasterAccountResponse {
   DisassociateFromMasterAccountResponse();
+
   factory DisassociateFromMasterAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
@@ -4247,6 +4288,7 @@ class DisassociateMembersResponse {
   DisassociateMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory DisassociateMembersResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -4272,6 +4314,7 @@ class DnsRequestAction {
   DnsRequestAction({
     this.domain,
   });
+
   factory DnsRequestAction.fromJson(Map<String, dynamic> json) {
     return DnsRequestAction(
       domain: json['domain'] as String?,
@@ -4294,6 +4337,7 @@ class DomainDetails {
   DomainDetails({
     this.domain,
   });
+
   factory DomainDetails.fromJson(Map<String, dynamic> json) {
     return DomainDetails(
       domain: json['domain'] as String?,
@@ -4310,6 +4354,7 @@ class DomainDetails {
 
 class EnableOrganizationAdminAccountResponse {
   EnableOrganizationAdminAccountResponse();
+
   factory EnableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
@@ -4328,6 +4373,7 @@ class Evidence {
   Evidence({
     this.threatIntelligenceDetails,
   });
+
   factory Evidence.fromJson(Map<String, dynamic> json) {
     return Evidence(
       threatIntelligenceDetails: (json['threatIntelligenceDetails'] as List?)
@@ -4464,6 +4510,7 @@ class Finding {
     this.service,
     this.title,
   });
+
   factory Finding.fromJson(Map<String, dynamic> json) {
     return Finding(
       accountId: json['accountId'] as String,
@@ -4531,6 +4578,7 @@ class FindingCriteria {
   FindingCriteria({
     this.criterion,
   });
+
   factory FindingCriteria.fromJson(Map<String, dynamic> json) {
     return FindingCriteria(
       criterion: (json['criterion'] as Map<String, dynamic>?)?.map(
@@ -4610,6 +4658,7 @@ class FindingStatistics {
   FindingStatistics({
     this.countBySeverity,
   });
+
   factory FindingStatistics.fromJson(Map<String, dynamic> json) {
     return FindingStatistics(
       countBySeverity: (json['countBySeverity'] as Map<String, dynamic>?)
@@ -4633,6 +4682,7 @@ class FlowLogsConfigurationResult {
   FlowLogsConfigurationResult({
     required this.status,
   });
+
   factory FlowLogsConfigurationResult.fromJson(Map<String, dynamic> json) {
     return FlowLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
@@ -4659,6 +4709,7 @@ class GeoLocation {
     this.lat,
     this.lon,
   });
+
   factory GeoLocation.fromJson(Map<String, dynamic> json) {
     return GeoLocation(
       lat: json['lat'] as double?,
@@ -4707,6 +4758,7 @@ class GetDetectorResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory GetDetectorResponse.fromJson(Map<String, dynamic> json) {
     return GetDetectorResponse(
       serviceRole: json['serviceRole'] as String,
@@ -4775,6 +4827,7 @@ class GetFilterResponse {
     this.rank,
     this.tags,
   });
+
   factory GetFilterResponse.fromJson(Map<String, dynamic> json) {
     return GetFilterResponse(
       action: (json['action'] as String).toFilterAction(),
@@ -4813,6 +4866,7 @@ class GetFindingsResponse {
   GetFindingsResponse({
     required this.findings,
   });
+
   factory GetFindingsResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingsResponse(
       findings: (json['findings'] as List)
@@ -4837,6 +4891,7 @@ class GetFindingsStatisticsResponse {
   GetFindingsStatisticsResponse({
     required this.findingStatistics,
   });
+
   factory GetFindingsStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingsStatisticsResponse(
       findingStatistics: FindingStatistics.fromJson(
@@ -4876,6 +4931,7 @@ class GetIPSetResponse {
     required this.status,
     this.tags,
   });
+
   factory GetIPSetResponse.fromJson(Map<String, dynamic> json) {
     return GetIPSetResponse(
       format: (json['format'] as String).toIpSetFormat(),
@@ -4910,6 +4966,7 @@ class GetInvitationsCountResponse {
   GetInvitationsCountResponse({
     this.invitationsCount,
   });
+
   factory GetInvitationsCountResponse.fromJson(Map<String, dynamic> json) {
     return GetInvitationsCountResponse(
       invitationsCount: json['invitationsCount'] as int?,
@@ -4931,6 +4988,7 @@ class GetMasterAccountResponse {
   GetMasterAccountResponse({
     required this.master,
   });
+
   factory GetMasterAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetMasterAccountResponse(
       master: Master.fromJson(json['master'] as Map<String, dynamic>),
@@ -4958,6 +5016,7 @@ class GetMemberDetectorsResponse {
     required this.memberDataSourceConfigurations,
     required this.unprocessedAccounts,
   });
+
   factory GetMemberDetectorsResponse.fromJson(Map<String, dynamic> json) {
     return GetMemberDetectorsResponse(
       memberDataSourceConfigurations: (json['members'] as List)
@@ -4994,6 +5053,7 @@ class GetMembersResponse {
     required this.members,
     required this.unprocessedAccounts,
   });
+
   factory GetMembersResponse.fromJson(Map<String, dynamic> json) {
     return GetMembersResponse(
       members: (json['members'] as List)
@@ -5043,6 +5103,7 @@ class GetThreatIntelSetResponse {
     required this.status,
     this.tags,
   });
+
   factory GetThreatIntelSetResponse.fromJson(Map<String, dynamic> json) {
     return GetThreatIntelSetResponse(
       format: (json['format'] as String).toThreatIntelSetFormat(),
@@ -5083,6 +5144,7 @@ class GetUsageStatisticsResponse {
     this.nextToken,
     this.usageStatistics,
   });
+
   factory GetUsageStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageStatisticsResponse(
       nextToken: json['nextToken'] as String?,
@@ -5115,6 +5177,7 @@ class IamInstanceProfile {
     this.arn,
     this.id,
   });
+
   factory IamInstanceProfile.fromJson(Map<String, dynamic> json) {
     return IamInstanceProfile(
       arn: json['arn'] as String?,
@@ -5189,6 +5252,7 @@ class InstanceDetails {
     this.productCodes,
     this.tags,
   });
+
   factory InstanceDetails.fromJson(Map<String, dynamic> json) {
     return InstanceDetails(
       availabilityZone: json['availabilityZone'] as String?,
@@ -5272,6 +5336,7 @@ class Invitation {
     this.invitedAt,
     this.relationshipStatus,
   });
+
   factory Invitation.fromJson(Map<String, dynamic> json) {
     return Invitation(
       accountId: json['accountId'] as String?,
@@ -5303,6 +5368,7 @@ class InviteMembersResponse {
   InviteMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory InviteMembersResponse.fromJson(Map<String, dynamic> json) {
     return InviteMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -5433,6 +5499,7 @@ class ListDetectorsResponse {
     required this.detectorIds,
     this.nextToken,
   });
+
   factory ListDetectorsResponse.fromJson(Map<String, dynamic> json) {
     return ListDetectorsResponse(
       detectorIds: (json['detectorIds'] as List)
@@ -5465,6 +5532,7 @@ class ListFiltersResponse {
     required this.filterNames,
     this.nextToken,
   });
+
   factory ListFiltersResponse.fromJson(Map<String, dynamic> json) {
     return ListFiltersResponse(
       filterNames: (json['filterNames'] as List)
@@ -5497,6 +5565,7 @@ class ListFindingsResponse {
     required this.findingIds,
     this.nextToken,
   });
+
   factory ListFindingsResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingsResponse(
       findingIds: (json['findingIds'] as List)
@@ -5529,6 +5598,7 @@ class ListIPSetsResponse {
     required this.ipSetIds,
     this.nextToken,
   });
+
   factory ListIPSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListIPSetsResponse(
       ipSetIds: (json['ipSetIds'] as List)
@@ -5561,6 +5631,7 @@ class ListInvitationsResponse {
     this.invitations,
     this.nextToken,
   });
+
   factory ListInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return ListInvitationsResponse(
       invitations: (json['invitations'] as List?)
@@ -5593,6 +5664,7 @@ class ListMembersResponse {
     this.members,
     this.nextToken,
   });
+
   factory ListMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListMembersResponse(
       members: (json['members'] as List?)
@@ -5625,6 +5697,7 @@ class ListOrganizationAdminAccountsResponse {
     this.adminAccounts,
     this.nextToken,
   });
+
   factory ListOrganizationAdminAccountsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOrganizationAdminAccountsResponse(
@@ -5661,6 +5734,7 @@ class ListPublishingDestinationsResponse {
     required this.destinations,
     this.nextToken,
   });
+
   factory ListPublishingDestinationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPublishingDestinationsResponse(
@@ -5689,6 +5763,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -5716,6 +5791,7 @@ class ListThreatIntelSetsResponse {
     required this.threatIntelSetIds,
     this.nextToken,
   });
+
   factory ListThreatIntelSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListThreatIntelSetsResponse(
       threatIntelSetIds: (json['threatIntelSetIds'] as List)
@@ -5744,6 +5820,7 @@ class LocalIpDetails {
   LocalIpDetails({
     this.ipAddressV4,
   });
+
   factory LocalIpDetails.fromJson(Map<String, dynamic> json) {
     return LocalIpDetails(
       ipAddressV4: json['ipAddressV4'] as String?,
@@ -5770,6 +5847,7 @@ class LocalPortDetails {
     this.port,
     this.portName,
   });
+
   factory LocalPortDetails.fromJson(Map<String, dynamic> json) {
     return LocalPortDetails(
       port: json['port'] as int?,
@@ -5808,6 +5886,7 @@ class Master {
     this.invitedAt,
     this.relationshipStatus,
   });
+
   factory Master.fromJson(Map<String, dynamic> json) {
     return Master(
       accountId: json['accountId'] as String?,
@@ -5863,6 +5942,7 @@ class Member {
     this.detectorId,
     this.invitedAt,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['accountId'] as String,
@@ -5907,6 +5987,7 @@ class MemberDataSourceConfiguration {
     required this.accountId,
     required this.dataSources,
   });
+
   factory MemberDataSourceConfiguration.fromJson(Map<String, dynamic> json) {
     return MemberDataSourceConfiguration(
       accountId: json['accountId'] as String,
@@ -5958,6 +6039,7 @@ class NetworkConnectionAction {
     this.remoteIpDetails,
     this.remotePortDetails,
   });
+
   factory NetworkConnectionAction.fromJson(Map<String, dynamic> json) {
     return NetworkConnectionAction(
       blocked: json['blocked'] as bool?,
@@ -6048,6 +6130,7 @@ class NetworkInterface {
     this.subnetId,
     this.vpcId,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       ipv6Addresses: (json['ipv6Addresses'] as List?)
@@ -6148,6 +6231,7 @@ class Organization {
     this.isp,
     this.org,
   });
+
   factory Organization.fromJson(Map<String, dynamic> json) {
     return Organization(
       asn: json['asn'] as String?,
@@ -6181,6 +6265,7 @@ class OrganizationDataSourceConfigurations {
   OrganizationDataSourceConfigurations({
     this.s3Logs,
   });
+
   factory OrganizationDataSourceConfigurations.fromJson(
       Map<String, dynamic> json) {
     return OrganizationDataSourceConfigurations(
@@ -6208,6 +6293,7 @@ class OrganizationDataSourceConfigurationsResult {
   OrganizationDataSourceConfigurationsResult({
     required this.s3Logs,
   });
+
   factory OrganizationDataSourceConfigurationsResult.fromJson(
       Map<String, dynamic> json) {
     return OrganizationDataSourceConfigurationsResult(
@@ -6234,6 +6320,7 @@ class OrganizationS3LogsConfiguration {
   OrganizationS3LogsConfiguration({
     required this.autoEnable,
   });
+
   factory OrganizationS3LogsConfiguration.fromJson(Map<String, dynamic> json) {
     return OrganizationS3LogsConfiguration(
       autoEnable: json['autoEnable'] as bool,
@@ -6258,6 +6345,7 @@ class OrganizationS3LogsConfigurationResult {
   OrganizationS3LogsConfigurationResult({
     required this.autoEnable,
   });
+
   factory OrganizationS3LogsConfigurationResult.fromJson(
       Map<String, dynamic> json) {
     return OrganizationS3LogsConfigurationResult(
@@ -6284,6 +6372,7 @@ class Owner {
   Owner({
     this.id,
   });
+
   factory Owner.fromJson(Map<String, dynamic> json) {
     return Owner(
       id: json['id'] as String?,
@@ -6310,6 +6399,7 @@ class PermissionConfiguration {
     this.accountLevelPermissions,
     this.bucketLevelPermissions,
   });
+
   factory PermissionConfiguration.fromJson(Map<String, dynamic> json) {
     return PermissionConfiguration(
       accountLevelPermissions: json['accountLevelPermissions'] != null
@@ -6348,6 +6438,7 @@ class PortProbeAction {
     this.blocked,
     this.portProbeDetails,
   });
+
   factory PortProbeAction.fromJson(Map<String, dynamic> json) {
     return PortProbeAction(
       blocked: json['blocked'] as bool?,
@@ -6384,6 +6475,7 @@ class PortProbeDetail {
     this.localPortDetails,
     this.remoteIpDetails,
   });
+
   factory PortProbeDetail.fromJson(Map<String, dynamic> json) {
     return PortProbeDetail(
       localIpDetails: json['localIpDetails'] != null
@@ -6425,6 +6517,7 @@ class PrivateIpAddressDetails {
     this.privateDnsName,
     this.privateIpAddress,
   });
+
   factory PrivateIpAddressDetails.fromJson(Map<String, dynamic> json) {
     return PrivateIpAddressDetails(
       privateDnsName: json['privateDnsName'] as String?,
@@ -6454,6 +6547,7 @@ class ProductCode {
     this.code,
     this.productType,
   });
+
   factory ProductCode.fromJson(Map<String, dynamic> json) {
     return ProductCode(
       code: json['code'] as String?,
@@ -6484,6 +6578,7 @@ class PublicAccess {
     this.effectivePermission,
     this.permissionConfiguration,
   });
+
   factory PublicAccess.fromJson(Map<String, dynamic> json) {
     return PublicAccess(
       effectivePermission: json['effectivePermission'] as String?,
@@ -6568,6 +6663,7 @@ class RemoteIpDetails {
     this.ipAddressV4,
     this.organization,
   });
+
   factory RemoteIpDetails.fromJson(Map<String, dynamic> json) {
     return RemoteIpDetails(
       city: json['city'] != null
@@ -6614,6 +6710,7 @@ class RemotePortDetails {
     this.port,
     this.portName,
   });
+
   factory RemotePortDetails.fromJson(Map<String, dynamic> json) {
     return RemotePortDetails(
       port: json['port'] as int?,
@@ -6654,6 +6751,7 @@ class Resource {
     this.resourceType,
     this.s3BucketDetails,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       accessKeyDetails: json['accessKeyDetails'] != null
@@ -6722,6 +6820,7 @@ class S3BucketDetail {
     this.tags,
     this.type,
   });
+
   factory S3BucketDetail.fromJson(Map<String, dynamic> json) {
     return S3BucketDetail(
       arn: json['arn'] as String?,
@@ -6776,6 +6875,7 @@ class S3LogsConfiguration {
   S3LogsConfiguration({
     required this.enable,
   });
+
   factory S3LogsConfiguration.fromJson(Map<String, dynamic> json) {
     return S3LogsConfiguration(
       enable: json['enable'] as bool,
@@ -6799,6 +6899,7 @@ class S3LogsConfigurationResult {
   S3LogsConfigurationResult({
     required this.status,
   });
+
   factory S3LogsConfigurationResult.fromJson(Map<String, dynamic> json) {
     return S3LogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
@@ -6826,6 +6927,7 @@ class SecurityGroup {
     this.groupId,
     this.groupName,
   });
+
   factory SecurityGroup.fromJson(Map<String, dynamic> json) {
     return SecurityGroup(
       groupId: json['groupId'] as String?,
@@ -6889,6 +6991,7 @@ class Service {
     this.serviceName,
     this.userFeedback,
   });
+
   factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       action: json['action'] != null
@@ -6947,6 +7050,7 @@ class SortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory SortCriteria.fromJson(Map<String, dynamic> json) {
     return SortCriteria(
       attributeName: json['attributeName'] as String?,
@@ -6972,6 +7076,7 @@ class StartMonitoringMembersResponse {
   StartMonitoringMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory StartMonitoringMembersResponse.fromJson(Map<String, dynamic> json) {
     return StartMonitoringMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -6998,6 +7103,7 @@ class StopMonitoringMembersResponse {
   StopMonitoringMembersResponse({
     required this.unprocessedAccounts,
   });
+
   factory StopMonitoringMembersResponse.fromJson(Map<String, dynamic> json) {
     return StopMonitoringMembersResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -7027,6 +7133,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String?,
@@ -7046,6 +7153,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -7170,6 +7278,7 @@ class ThreatIntelligenceDetail {
     this.threatListName,
     this.threatNames,
   });
+
   factory ThreatIntelligenceDetail.fromJson(Map<String, dynamic> json) {
     return ThreatIntelligenceDetail(
       threatListName: json['threatListName'] as String?,
@@ -7203,6 +7312,7 @@ class Total {
     this.amount,
     this.unit,
   });
+
   factory Total.fromJson(Map<String, dynamic> json) {
     return Total(
       amount: json['amount'] as String?,
@@ -7222,6 +7332,7 @@ class Total {
 
 class UnarchiveFindingsResponse {
   UnarchiveFindingsResponse();
+
   factory UnarchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return UnarchiveFindingsResponse();
   }
@@ -7243,6 +7354,7 @@ class UnprocessedAccount {
     required this.accountId,
     required this.result,
   });
+
   factory UnprocessedAccount.fromJson(Map<String, dynamic> json) {
     return UnprocessedAccount(
       accountId: json['accountId'] as String,
@@ -7262,6 +7374,7 @@ class UnprocessedAccount {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -7273,6 +7386,7 @@ class UntagResourceResponse {
 
 class UpdateDetectorResponse {
   UpdateDetectorResponse();
+
   factory UpdateDetectorResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorResponse();
   }
@@ -7289,6 +7403,7 @@ class UpdateFilterResponse {
   UpdateFilterResponse({
     required this.name,
   });
+
   factory UpdateFilterResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFilterResponse(
       name: json['name'] as String,
@@ -7305,6 +7420,7 @@ class UpdateFilterResponse {
 
 class UpdateFindingsFeedbackResponse {
   UpdateFindingsFeedbackResponse();
+
   factory UpdateFindingsFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFindingsFeedbackResponse();
   }
@@ -7316,6 +7432,7 @@ class UpdateFindingsFeedbackResponse {
 
 class UpdateIPSetResponse {
   UpdateIPSetResponse();
+
   factory UpdateIPSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateIPSetResponse();
   }
@@ -7333,6 +7450,7 @@ class UpdateMemberDetectorsResponse {
   UpdateMemberDetectorsResponse({
     required this.unprocessedAccounts,
   });
+
   factory UpdateMemberDetectorsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateMemberDetectorsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List)
@@ -7352,6 +7470,7 @@ class UpdateMemberDetectorsResponse {
 
 class UpdateOrganizationConfigurationResponse {
   UpdateOrganizationConfigurationResponse();
+
   factory UpdateOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
@@ -7364,6 +7483,7 @@ class UpdateOrganizationConfigurationResponse {
 
 class UpdatePublishingDestinationResponse {
   UpdatePublishingDestinationResponse();
+
   factory UpdatePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePublishingDestinationResponse();
   }
@@ -7375,6 +7495,7 @@ class UpdatePublishingDestinationResponse {
 
 class UpdateThreatIntelSetResponse {
   UpdateThreatIntelSetResponse();
+
   factory UpdateThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateThreatIntelSetResponse();
   }
@@ -7396,6 +7517,7 @@ class UsageAccountResult {
     this.accountId,
     this.total,
   });
+
   factory UsageAccountResult.fromJson(Map<String, dynamic> json) {
     return UsageAccountResult(
       accountId: json['accountId'] as String?,
@@ -7432,6 +7554,7 @@ class UsageCriteria {
     this.accountIds,
     this.resources,
   });
+
   factory UsageCriteria.fromJson(Map<String, dynamic> json) {
     return UsageCriteria(
       dataSources: (json['dataSources'] as List)
@@ -7473,6 +7596,7 @@ class UsageDataSourceResult {
     this.dataSource,
     this.total,
   });
+
   factory UsageDataSourceResult.fromJson(Map<String, dynamic> json) {
     return UsageDataSourceResult(
       dataSource: (json['dataSource'] as String?)?.toDataSource(),
@@ -7504,6 +7628,7 @@ class UsageResourceResult {
     this.resource,
     this.total,
   });
+
   factory UsageResourceResult.fromJson(Map<String, dynamic> json) {
     return UsageResourceResult(
       resource: json['resource'] as String?,
@@ -7583,6 +7708,7 @@ class UsageStatistics {
     this.sumByResource,
     this.topResources,
   });
+
   factory UsageStatistics.fromJson(Map<String, dynamic> json) {
     return UsageStatistics(
       sumByAccount: (json['sumByAccount'] as List?)

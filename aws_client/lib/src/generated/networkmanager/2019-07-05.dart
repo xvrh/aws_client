@@ -1696,6 +1696,7 @@ class AWSLocation {
     this.subnetArn,
     this.zone,
   });
+
   factory AWSLocation.fromJson(Map<String, dynamic> json) {
     return AWSLocation(
       subnetArn: json['SubnetArn'] as String?,
@@ -1720,6 +1721,7 @@ class AssociateCustomerGatewayResponse {
   AssociateCustomerGatewayResponse({
     this.customerGatewayAssociation,
   });
+
   factory AssociateCustomerGatewayResponse.fromJson(Map<String, dynamic> json) {
     return AssociateCustomerGatewayResponse(
       customerGatewayAssociation: json['CustomerGatewayAssociation'] != null
@@ -1745,6 +1747,7 @@ class AssociateLinkResponse {
   AssociateLinkResponse({
     this.linkAssociation,
   });
+
   factory AssociateLinkResponse.fromJson(Map<String, dynamic> json) {
     return AssociateLinkResponse(
       linkAssociation: json['LinkAssociation'] != null
@@ -1770,6 +1773,7 @@ class AssociateTransitGatewayConnectPeerResponse {
   AssociateTransitGatewayConnectPeerResponse({
     this.transitGatewayConnectPeerAssociation,
   });
+
   factory AssociateTransitGatewayConnectPeerResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateTransitGatewayConnectPeerResponse(
@@ -1805,6 +1809,7 @@ class Bandwidth {
     this.downloadSpeed,
     this.uploadSpeed,
   });
+
   factory Bandwidth.fromJson(Map<String, dynamic> json) {
     return Bandwidth(
       downloadSpeed: json['DownloadSpeed'] as int?,
@@ -1870,6 +1875,7 @@ class Connection {
     this.state,
     this.tags,
   });
+
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       connectedDeviceId: json['ConnectedDeviceId'] as String?,
@@ -1962,6 +1968,7 @@ class CreateConnectionResponse {
   CreateConnectionResponse({
     this.connection,
   });
+
   factory CreateConnectionResponse.fromJson(Map<String, dynamic> json) {
     return CreateConnectionResponse(
       connection: json['Connection'] != null
@@ -1985,6 +1992,7 @@ class CreateDeviceResponse {
   CreateDeviceResponse({
     this.device,
   });
+
   factory CreateDeviceResponse.fromJson(Map<String, dynamic> json) {
     return CreateDeviceResponse(
       device: json['Device'] != null
@@ -2008,6 +2016,7 @@ class CreateGlobalNetworkResponse {
   CreateGlobalNetworkResponse({
     this.globalNetwork,
   });
+
   factory CreateGlobalNetworkResponse.fromJson(Map<String, dynamic> json) {
     return CreateGlobalNetworkResponse(
       globalNetwork: json['GlobalNetwork'] != null
@@ -2032,6 +2041,7 @@ class CreateLinkResponse {
   CreateLinkResponse({
     this.link,
   });
+
   factory CreateLinkResponse.fromJson(Map<String, dynamic> json) {
     return CreateLinkResponse(
       link: json['Link'] != null
@@ -2055,6 +2065,7 @@ class CreateSiteResponse {
   CreateSiteResponse({
     this.site,
   });
+
   factory CreateSiteResponse.fromJson(Map<String, dynamic> json) {
     return CreateSiteResponse(
       site: json['Site'] != null
@@ -2095,6 +2106,7 @@ class CustomerGatewayAssociation {
     this.linkId,
     this.state,
   });
+
   factory CustomerGatewayAssociation.fromJson(Map<String, dynamic> json) {
     return CustomerGatewayAssociation(
       customerGatewayArn: json['CustomerGatewayArn'] as String?,
@@ -2167,6 +2179,7 @@ class DeleteConnectionResponse {
   DeleteConnectionResponse({
     this.connection,
   });
+
   factory DeleteConnectionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteConnectionResponse(
       connection: json['Connection'] != null
@@ -2190,6 +2203,7 @@ class DeleteDeviceResponse {
   DeleteDeviceResponse({
     this.device,
   });
+
   factory DeleteDeviceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDeviceResponse(
       device: json['Device'] != null
@@ -2213,6 +2227,7 @@ class DeleteGlobalNetworkResponse {
   DeleteGlobalNetworkResponse({
     this.globalNetwork,
   });
+
   factory DeleteGlobalNetworkResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGlobalNetworkResponse(
       globalNetwork: json['GlobalNetwork'] != null
@@ -2237,6 +2252,7 @@ class DeleteLinkResponse {
   DeleteLinkResponse({
     this.link,
   });
+
   factory DeleteLinkResponse.fromJson(Map<String, dynamic> json) {
     return DeleteLinkResponse(
       link: json['Link'] != null
@@ -2260,6 +2276,7 @@ class DeleteSiteResponse {
   DeleteSiteResponse({
     this.site,
   });
+
   factory DeleteSiteResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSiteResponse(
       site: json['Site'] != null
@@ -2283,6 +2300,7 @@ class DeregisterTransitGatewayResponse {
   DeregisterTransitGatewayResponse({
     this.transitGatewayRegistration,
   });
+
   factory DeregisterTransitGatewayResponse.fromJson(Map<String, dynamic> json) {
     return DeregisterTransitGatewayResponse(
       transitGatewayRegistration: json['TransitGatewayRegistration'] != null
@@ -2312,6 +2330,7 @@ class DescribeGlobalNetworksResponse {
     this.globalNetworks,
     this.nextToken,
   });
+
   factory DescribeGlobalNetworksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGlobalNetworksResponse(
       globalNetworks: (json['GlobalNetworks'] as List?)
@@ -2392,6 +2411,7 @@ class Device {
     this.type,
     this.vendor,
   });
+
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
       awsLocation: json['AWSLocation'] != null
@@ -2497,6 +2517,7 @@ class DisassociateCustomerGatewayResponse {
   DisassociateCustomerGatewayResponse({
     this.customerGatewayAssociation,
   });
+
   factory DisassociateCustomerGatewayResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateCustomerGatewayResponse(
@@ -2523,6 +2544,7 @@ class DisassociateLinkResponse {
   DisassociateLinkResponse({
     this.linkAssociation,
   });
+
   factory DisassociateLinkResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateLinkResponse(
       linkAssociation: json['LinkAssociation'] != null
@@ -2548,6 +2570,7 @@ class DisassociateTransitGatewayConnectPeerResponse {
   DisassociateTransitGatewayConnectPeerResponse({
     this.transitGatewayConnectPeerAssociation,
   });
+
   factory DisassociateTransitGatewayConnectPeerResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateTransitGatewayConnectPeerResponse(
@@ -2582,6 +2605,7 @@ class GetConnectionsResponse {
     this.connections,
     this.nextToken,
   });
+
   factory GetConnectionsResponse.fromJson(Map<String, dynamic> json) {
     return GetConnectionsResponse(
       connections: (json['Connections'] as List?)
@@ -2613,6 +2637,7 @@ class GetCustomerGatewayAssociationsResponse {
     this.customerGatewayAssociations,
     this.nextToken,
   });
+
   factory GetCustomerGatewayAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCustomerGatewayAssociationsResponse(
@@ -2648,6 +2673,7 @@ class GetDevicesResponse {
     this.devices,
     this.nextToken,
   });
+
   factory GetDevicesResponse.fromJson(Map<String, dynamic> json) {
     return GetDevicesResponse(
       devices: (json['Devices'] as List?)
@@ -2679,6 +2705,7 @@ class GetLinkAssociationsResponse {
     this.linkAssociations,
     this.nextToken,
   });
+
   factory GetLinkAssociationsResponse.fromJson(Map<String, dynamic> json) {
     return GetLinkAssociationsResponse(
       linkAssociations: (json['LinkAssociations'] as List?)
@@ -2710,6 +2737,7 @@ class GetLinksResponse {
     this.links,
     this.nextToken,
   });
+
   factory GetLinksResponse.fromJson(Map<String, dynamic> json) {
     return GetLinksResponse(
       links: (json['Links'] as List?)
@@ -2741,6 +2769,7 @@ class GetSitesResponse {
     this.nextToken,
     this.sites,
   });
+
   factory GetSitesResponse.fromJson(Map<String, dynamic> json) {
     return GetSitesResponse(
       nextToken: json['NextToken'] as String?,
@@ -2773,6 +2802,7 @@ class GetTransitGatewayConnectPeerAssociationsResponse {
     this.nextToken,
     this.transitGatewayConnectPeerAssociations,
   });
+
   factory GetTransitGatewayConnectPeerAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetTransitGatewayConnectPeerAssociationsResponse(
@@ -2810,6 +2840,7 @@ class GetTransitGatewayRegistrationsResponse {
     this.nextToken,
     this.transitGatewayRegistrations,
   });
+
   factory GetTransitGatewayRegistrationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetTransitGatewayRegistrationsResponse(
@@ -2862,6 +2893,7 @@ class GlobalNetwork {
     this.state,
     this.tags,
   });
+
   factory GlobalNetwork.fromJson(Map<String, dynamic> json) {
     return GlobalNetwork(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -2980,6 +3012,7 @@ class Link {
     this.tags,
     this.type,
   });
+
   factory Link.fromJson(Map<String, dynamic> json) {
     return Link(
       bandwidth: json['Bandwidth'] != null
@@ -3049,6 +3082,7 @@ class LinkAssociation {
     this.linkAssociationState,
     this.linkId,
   });
+
   factory LinkAssociation.fromJson(Map<String, dynamic> json) {
     return LinkAssociation(
       deviceId: json['DeviceId'] as String?,
@@ -3157,6 +3191,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tagList,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tagList: (json['TagList'] as List?)
@@ -3190,6 +3225,7 @@ class Location {
     this.latitude,
     this.longitude,
   });
+
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       address: json['Address'] as String?,
@@ -3217,6 +3253,7 @@ class RegisterTransitGatewayResponse {
   RegisterTransitGatewayResponse({
     this.transitGatewayRegistration,
   });
+
   factory RegisterTransitGatewayResponse.fromJson(Map<String, dynamic> json) {
     return RegisterTransitGatewayResponse(
       transitGatewayRegistration: json['TransitGatewayRegistration'] != null
@@ -3271,6 +3308,7 @@ class Site {
     this.state,
     this.tags,
   });
+
   factory Site.fromJson(Map<String, dynamic> json) {
     return Site(
       createdAt: timeStampFromJson(json['CreatedAt']),
@@ -3365,6 +3403,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -3384,6 +3423,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3417,6 +3457,7 @@ class TransitGatewayConnectPeerAssociation {
     this.state,
     this.transitGatewayConnectPeerArn,
   });
+
   factory TransitGatewayConnectPeerAssociation.fromJson(
       Map<String, dynamic> json) {
     return TransitGatewayConnectPeerAssociation(
@@ -3503,6 +3544,7 @@ class TransitGatewayRegistration {
     this.state,
     this.transitGatewayArn,
   });
+
   factory TransitGatewayRegistration.fromJson(Map<String, dynamic> json) {
     return TransitGatewayRegistration(
       globalNetworkId: json['GlobalNetworkId'] as String?,
@@ -3582,6 +3624,7 @@ class TransitGatewayRegistrationStateReason {
     this.code,
     this.message,
   });
+
   factory TransitGatewayRegistrationStateReason.fromJson(
       Map<String, dynamic> json) {
     return TransitGatewayRegistrationStateReason(
@@ -3602,6 +3645,7 @@ class TransitGatewayRegistrationStateReason {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3618,6 +3662,7 @@ class UpdateConnectionResponse {
   UpdateConnectionResponse({
     this.connection,
   });
+
   factory UpdateConnectionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConnectionResponse(
       connection: json['Connection'] != null
@@ -3641,6 +3686,7 @@ class UpdateDeviceResponse {
   UpdateDeviceResponse({
     this.device,
   });
+
   factory UpdateDeviceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDeviceResponse(
       device: json['Device'] != null
@@ -3664,6 +3710,7 @@ class UpdateGlobalNetworkResponse {
   UpdateGlobalNetworkResponse({
     this.globalNetwork,
   });
+
   factory UpdateGlobalNetworkResponse.fromJson(Map<String, dynamic> json) {
     return UpdateGlobalNetworkResponse(
       globalNetwork: json['GlobalNetwork'] != null
@@ -3688,6 +3735,7 @@ class UpdateLinkResponse {
   UpdateLinkResponse({
     this.link,
   });
+
   factory UpdateLinkResponse.fromJson(Map<String, dynamic> json) {
     return UpdateLinkResponse(
       link: json['Link'] != null
@@ -3711,6 +3759,7 @@ class UpdateSiteResponse {
   UpdateSiteResponse({
     this.site,
   });
+
   factory UpdateSiteResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSiteResponse(
       site: json['Site'] != null

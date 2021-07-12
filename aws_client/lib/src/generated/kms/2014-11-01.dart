@@ -7313,6 +7313,7 @@ class AliasListEntry {
     this.lastUpdatedDate,
     this.targetKeyId,
   });
+
   factory AliasListEntry.fromJson(Map<String, dynamic> json) {
     return AliasListEntry(
       aliasArn: json['AliasArn'] as String?,
@@ -7350,6 +7351,7 @@ class CancelKeyDeletionResponse {
   CancelKeyDeletionResponse({
     this.keyId,
   });
+
   factory CancelKeyDeletionResponse.fromJson(Map<String, dynamic> json) {
     return CancelKeyDeletionResponse(
       keyId: json['KeyId'] as String?,
@@ -7366,6 +7368,7 @@ class CancelKeyDeletionResponse {
 
 class ConnectCustomKeyStoreResponse {
   ConnectCustomKeyStoreResponse();
+
   factory ConnectCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return ConnectCustomKeyStoreResponse();
   }
@@ -7488,6 +7491,7 @@ class CreateCustomKeyStoreResponse {
   CreateCustomKeyStoreResponse({
     this.customKeyStoreId,
   });
+
   factory CreateCustomKeyStoreResponse.fromJson(Map<String, dynamic> json) {
     return CreateCustomKeyStoreResponse(
       customKeyStoreId: json['CustomKeyStoreId'] as String?,
@@ -7522,6 +7526,7 @@ class CreateGrantResponse {
     this.grantId,
     this.grantToken,
   });
+
   factory CreateGrantResponse.fromJson(Map<String, dynamic> json) {
     return CreateGrantResponse(
       grantId: json['GrantId'] as String?,
@@ -7546,6 +7551,7 @@ class CreateKeyResponse {
   CreateKeyResponse({
     this.keyMetadata,
   });
+
   factory CreateKeyResponse.fromJson(Map<String, dynamic> json) {
     return CreateKeyResponse(
       keyMetadata: json['KeyMetadata'] != null
@@ -7692,6 +7698,7 @@ class CustomKeyStoresListEntry {
     this.customKeyStoreName,
     this.trustAnchorCertificate,
   });
+
   factory CustomKeyStoresListEntry.fromJson(Map<String, dynamic> json) {
     return CustomKeyStoresListEntry(
       cloudHsmClusterId: json['CloudHsmClusterId'] as String?,
@@ -7886,6 +7893,7 @@ class DecryptResponse {
     this.keyId,
     this.plaintext,
   });
+
   factory DecryptResponse.fromJson(Map<String, dynamic> json) {
     return DecryptResponse(
       encryptionAlgorithm:
@@ -7910,6 +7918,7 @@ class DecryptResponse {
 
 class DeleteCustomKeyStoreResponse {
   DeleteCustomKeyStoreResponse();
+
   factory DeleteCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomKeyStoreResponse();
   }
@@ -7939,6 +7948,7 @@ class DescribeCustomKeyStoresResponse {
     this.nextMarker,
     this.truncated,
   });
+
   factory DescribeCustomKeyStoresResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCustomKeyStoresResponse(
       customKeyStores: (json['CustomKeyStores'] as List?)
@@ -7970,6 +7980,7 @@ class DescribeKeyResponse {
   DescribeKeyResponse({
     this.keyMetadata,
   });
+
   factory DescribeKeyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeKeyResponse(
       keyMetadata: json['KeyMetadata'] != null
@@ -7988,6 +7999,7 @@ class DescribeKeyResponse {
 
 class DisconnectCustomKeyStoreResponse {
   DisconnectCustomKeyStoreResponse();
+
   factory DisconnectCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return DisconnectCustomKeyStoreResponse();
   }
@@ -8015,6 +8027,7 @@ class EncryptResponse {
     this.encryptionAlgorithm,
     this.keyId,
   });
+
   factory EncryptResponse.fromJson(Map<String, dynamic> json) {
     return EncryptResponse(
       ciphertextBlob:
@@ -8127,6 +8140,7 @@ class GenerateDataKeyPairResponse {
     this.privateKeyPlaintext,
     this.publicKey,
   });
+
   factory GenerateDataKeyPairResponse.fromJson(Map<String, dynamic> json) {
     return GenerateDataKeyPairResponse(
       keyId: json['KeyId'] as String?,
@@ -8179,6 +8193,7 @@ class GenerateDataKeyPairWithoutPlaintextResponse {
     this.privateKeyCiphertextBlob,
     this.publicKey,
   });
+
   factory GenerateDataKeyPairWithoutPlaintextResponse.fromJson(
       Map<String, dynamic> json) {
     return GenerateDataKeyPairWithoutPlaintextResponse(
@@ -8226,6 +8241,7 @@ class GenerateDataKeyResponse {
     this.keyId,
     this.plaintext,
   });
+
   factory GenerateDataKeyResponse.fromJson(Map<String, dynamic> json) {
     return GenerateDataKeyResponse(
       ciphertextBlob:
@@ -8262,6 +8278,7 @@ class GenerateDataKeyWithoutPlaintextResponse {
     this.ciphertextBlob,
     this.keyId,
   });
+
   factory GenerateDataKeyWithoutPlaintextResponse.fromJson(
       Map<String, dynamic> json) {
     return GenerateDataKeyWithoutPlaintextResponse(
@@ -8290,6 +8307,7 @@ class GenerateRandomResponse {
   GenerateRandomResponse({
     this.plaintext,
   });
+
   factory GenerateRandomResponse.fromJson(Map<String, dynamic> json) {
     return GenerateRandomResponse(
       plaintext: _s.decodeNullableUint8List(json['Plaintext'] as String?),
@@ -8311,6 +8329,7 @@ class GetKeyPolicyResponse {
   GetKeyPolicyResponse({
     this.policy,
   });
+
   factory GetKeyPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetKeyPolicyResponse(
       policy: json['Policy'] as String?,
@@ -8332,6 +8351,7 @@ class GetKeyRotationStatusResponse {
   GetKeyRotationStatusResponse({
     this.keyRotationEnabled,
   });
+
   factory GetKeyRotationStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetKeyRotationStatusResponse(
       keyRotationEnabled: json['KeyRotationEnabled'] as bool?,
@@ -8373,6 +8393,7 @@ class GetParametersForImportResponse {
     this.parametersValidTo,
     this.publicKey,
   });
+
   factory GetParametersForImportResponse.fromJson(Map<String, dynamic> json) {
     return GetParametersForImportResponse(
       importToken: _s.decodeNullableUint8List(json['ImportToken'] as String?),
@@ -8448,6 +8469,7 @@ class GetPublicKeyResponse {
     this.publicKey,
     this.signingAlgorithms,
   });
+
   factory GetPublicKeyResponse.fromJson(Map<String, dynamic> json) {
     return GetPublicKeyResponse(
       customerMasterKeySpec:
@@ -8540,6 +8562,7 @@ class GrantConstraints {
     this.encryptionContextEquals,
     this.encryptionContextSubset,
   });
+
   factory GrantConstraints.fromJson(Map<String, dynamic> json) {
     return GrantConstraints(
       encryptionContextEquals:
@@ -8614,6 +8637,7 @@ class GrantListEntry {
     this.operations,
     this.retiringPrincipal,
   });
+
   factory GrantListEntry.fromJson(Map<String, dynamic> json) {
     return GrantListEntry(
       constraints: json['Constraints'] != null
@@ -8750,6 +8774,7 @@ extension on String {
 
 class ImportKeyMaterialResponse {
   ImportKeyMaterialResponse();
+
   factory ImportKeyMaterialResponse.fromJson(Map<String, dynamic> _) {
     return ImportKeyMaterialResponse();
   }
@@ -8771,6 +8796,7 @@ class KeyListEntry {
     this.keyArn,
     this.keyId,
   });
+
   factory KeyListEntry.fromJson(Map<String, dynamic> json) {
     return KeyListEntry(
       keyArn: json['KeyArn'] as String?,
@@ -8997,6 +9023,7 @@ class KeyMetadata {
     this.signingAlgorithms,
     this.validTo,
   });
+
   factory KeyMetadata.fromJson(Map<String, dynamic> json) {
     return KeyMetadata(
       keyId: json['KeyId'] as String,
@@ -9196,6 +9223,7 @@ class ListAliasesResponse {
     this.nextMarker,
     this.truncated,
   });
+
   factory ListAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListAliasesResponse(
       aliases: (json['Aliases'] as List?)
@@ -9239,6 +9267,7 @@ class ListGrantsResponse {
     this.nextMarker,
     this.truncated,
   });
+
   factory ListGrantsResponse.fromJson(Map<String, dynamic> json) {
     return ListGrantsResponse(
       grants: (json['Grants'] as List?)
@@ -9282,6 +9311,7 @@ class ListKeyPoliciesResponse {
     this.policyNames,
     this.truncated,
   });
+
   factory ListKeyPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListKeyPoliciesResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -9325,6 +9355,7 @@ class ListKeysResponse {
     this.nextMarker,
     this.truncated,
   });
+
   factory ListKeysResponse.fromJson(Map<String, dynamic> json) {
     return ListKeysResponse(
       keys: (json['Keys'] as List?)
@@ -9377,6 +9408,7 @@ class ListResourceTagsResponse {
     this.tags,
     this.truncated,
   });
+
   factory ListResourceTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceTagsResponse(
       nextMarker: json['NextMarker'] as String?,
@@ -9451,6 +9483,7 @@ class MultiRegionConfiguration {
     this.primaryKey,
     this.replicaKeys,
   });
+
   factory MultiRegionConfiguration.fromJson(Map<String, dynamic> json) {
     return MultiRegionConfiguration(
       multiRegionKeyType:
@@ -9490,6 +9523,7 @@ class MultiRegionKey {
     this.arn,
     this.region,
   });
+
   factory MultiRegionKey.fromJson(Map<String, dynamic> json) {
     return MultiRegionKey(
       arn: json['Arn'] as String?,
@@ -9595,6 +9629,7 @@ class ReEncryptResponse {
     this.sourceEncryptionAlgorithm,
     this.sourceKeyId,
   });
+
   factory ReEncryptResponse.fromJson(Map<String, dynamic> json) {
     return ReEncryptResponse(
       ciphertextBlob:
@@ -9652,6 +9687,7 @@ class ReplicateKeyResponse {
     this.replicaPolicy,
     this.replicaTags,
   });
+
   factory ReplicateKeyResponse.fromJson(Map<String, dynamic> json) {
     return ReplicateKeyResponse(
       replicaKeyMetadata: json['ReplicaKeyMetadata'] != null
@@ -9712,6 +9748,7 @@ class ScheduleKeyDeletionResponse {
     this.keyState,
     this.pendingWindowInDays,
   });
+
   factory ScheduleKeyDeletionResponse.fromJson(Map<String, dynamic> json) {
     return ScheduleKeyDeletionResponse(
       deletionDate: timeStampFromJson(json['DeletionDate']),
@@ -9772,6 +9809,7 @@ class SignResponse {
     this.signature,
     this.signingAlgorithm,
   });
+
   factory SignResponse.fromJson(Map<String, dynamic> json) {
     return SignResponse(
       keyId: json['KeyId'] as String?,
@@ -9876,6 +9914,7 @@ class Tag {
     required this.tagKey,
     required this.tagValue,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       tagKey: json['TagKey'] as String,
@@ -9895,6 +9934,7 @@ class Tag {
 
 class UpdateCustomKeyStoreResponse {
   UpdateCustomKeyStoreResponse();
+
   factory UpdateCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCustomKeyStoreResponse();
   }
@@ -9926,6 +9966,7 @@ class VerifyResponse {
     this.signatureValid,
     this.signingAlgorithm,
   });
+
   factory VerifyResponse.fromJson(Map<String, dynamic> json) {
     return VerifyResponse(
       keyId: json['KeyId'] as String?,

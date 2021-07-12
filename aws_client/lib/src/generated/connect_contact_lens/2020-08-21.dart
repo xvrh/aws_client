@@ -132,6 +132,7 @@ class Categories {
     required this.matchedCategories,
     required this.matchedDetails,
   });
+
   factory Categories.fromJson(Map<String, dynamic> json) {
     return Categories(
       matchedCategories: (json['MatchedCategories'] as List)
@@ -162,6 +163,7 @@ class CategoryDetails {
   CategoryDetails({
     required this.pointsOfInterest,
   });
+
   factory CategoryDetails.fromJson(Map<String, dynamic> json) {
     return CategoryDetails(
       pointsOfInterest: (json['PointsOfInterest'] as List)
@@ -192,6 +194,7 @@ class CharacterOffsets {
     required this.beginOffsetChar,
     required this.endOffsetChar,
   });
+
   factory CharacterOffsets.fromJson(Map<String, dynamic> json) {
     return CharacterOffsets(
       beginOffsetChar: json['BeginOffsetChar'] as int,
@@ -218,6 +221,7 @@ class IssueDetected {
   IssueDetected({
     required this.characterOffsets,
   });
+
   factory IssueDetected.fromJson(Map<String, dynamic> json) {
     return IssueDetected(
       characterOffsets: CharacterOffsets.fromJson(
@@ -260,6 +264,7 @@ class ListRealtimeContactAnalysisSegmentsResponse {
     required this.segments,
     this.nextToken,
   });
+
   factory ListRealtimeContactAnalysisSegmentsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListRealtimeContactAnalysisSegmentsResponse(
@@ -294,6 +299,7 @@ class PointOfInterest {
     required this.beginOffsetMillis,
     required this.endOffsetMillis,
   });
+
   factory PointOfInterest.fromJson(Map<String, dynamic> json) {
     return PointOfInterest(
       beginOffsetMillis: json['BeginOffsetMillis'] as int,
@@ -323,6 +329,7 @@ class RealtimeContactAnalysisSegment {
     this.categories,
     this.transcript,
   });
+
   factory RealtimeContactAnalysisSegment.fromJson(Map<String, dynamic> json) {
     return RealtimeContactAnalysisSegment(
       categories: json['Categories'] != null
@@ -413,6 +420,7 @@ class Transcript {
     required this.sentiment,
     this.issuesDetected,
   });
+
   factory Transcript.fromJson(Map<String, dynamic> json) {
     return Transcript(
       beginOffsetMillis: json['BeginOffsetMillis'] as int,

@@ -717,6 +717,7 @@ class Account {
     required this.accountId,
     required this.emailAddress,
   });
+
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
       accountId: json['AccountId'] as String,
@@ -741,6 +742,7 @@ class CreateGraphResponse {
   CreateGraphResponse({
     this.graphArn,
   });
+
   factory CreateGraphResponse.fromJson(Map<String, dynamic> json) {
     return CreateGraphResponse(
       graphArn: json['GraphArn'] as String?,
@@ -771,6 +773,7 @@ class CreateMembersResponse {
     this.members,
     this.unprocessedAccounts,
   });
+
   factory CreateMembersResponse.fromJson(Map<String, dynamic> json) {
     return CreateMembersResponse(
       members: (json['Members'] as List?)
@@ -809,6 +812,7 @@ class DeleteMembersResponse {
     this.accountIds,
     this.unprocessedAccounts,
   });
+
   factory DeleteMembersResponse.fromJson(Map<String, dynamic> json) {
     return DeleteMembersResponse(
       accountIds: (json['AccountIds'] as List?)
@@ -849,6 +853,7 @@ class GetMembersResponse {
     this.memberDetails,
     this.unprocessedAccounts,
   });
+
   factory GetMembersResponse.fromJson(Map<String, dynamic> json) {
     return GetMembersResponse(
       memberDetails: (json['MemberDetails'] as List?)
@@ -886,6 +891,7 @@ class Graph {
     this.arn,
     this.createdTime,
   });
+
   factory Graph.fromJson(Map<String, dynamic> json) {
     return Graph(
       arn: json['Arn'] as String?,
@@ -915,6 +921,7 @@ class ListGraphsResponse {
     this.graphList,
     this.nextToken,
   });
+
   factory ListGraphsResponse.fromJson(Map<String, dynamic> json) {
     return ListGraphsResponse(
       graphList: (json['GraphList'] as List?)
@@ -948,6 +955,7 @@ class ListInvitationsResponse {
     this.invitations,
     this.nextToken,
   });
+
   factory ListInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return ListInvitationsResponse(
       invitations: (json['Invitations'] as List?)
@@ -985,6 +993,7 @@ class ListMembersResponse {
     this.memberDetails,
     this.nextToken,
   });
+
   factory ListMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListMembersResponse(
       memberDetails: (json['MemberDetails'] as List?)
@@ -1013,6 +1022,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1144,6 +1154,7 @@ class MemberDetail {
     this.volumeUsageInBytes,
     this.volumeUsageUpdatedTime,
   });
+
   factory MemberDetail.fromJson(Map<String, dynamic> json) {
     return MemberDetail(
       accountId: json['AccountId'] as String?,
@@ -1274,6 +1285,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1296,6 +1308,7 @@ class UnprocessedAccount {
     this.accountId,
     this.reason,
   });
+
   factory UnprocessedAccount.fromJson(Map<String, dynamic> json) {
     return UnprocessedAccount(
       accountId: json['AccountId'] as String?,
@@ -1315,6 +1328,7 @@ class UnprocessedAccount {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

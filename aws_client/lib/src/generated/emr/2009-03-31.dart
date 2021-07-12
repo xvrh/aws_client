@@ -2838,6 +2838,7 @@ class AddInstanceFleetOutput {
     this.clusterId,
     this.instanceFleetId,
   });
+
   factory AddInstanceFleetOutput.fromJson(Map<String, dynamic> json) {
     return AddInstanceFleetOutput(
       clusterArn: json['ClusterArn'] as String?,
@@ -2874,6 +2875,7 @@ class AddInstanceGroupsOutput {
     this.instanceGroupIds,
     this.jobFlowId,
   });
+
   factory AddInstanceGroupsOutput.fromJson(Map<String, dynamic> json) {
     return AddInstanceGroupsOutput(
       clusterArn: json['ClusterArn'] as String?,
@@ -2905,6 +2907,7 @@ class AddJobFlowStepsOutput {
   AddJobFlowStepsOutput({
     this.stepIds,
   });
+
   factory AddJobFlowStepsOutput.fromJson(Map<String, dynamic> json) {
     return AddJobFlowStepsOutput(
       stepIds: (json['StepIds'] as List?)
@@ -2925,6 +2928,7 @@ class AddJobFlowStepsOutput {
 /// This output indicates the result of adding tags to a resource.
 class AddTagsOutput {
   AddTagsOutput();
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
   }
@@ -3000,6 +3004,7 @@ class Application {
     this.name,
     this.version,
   });
+
   factory Application.fromJson(Map<String, dynamic> json) {
     return Application(
       additionalInfo: (json['AdditionalInfo'] as Map<String, dynamic>?)
@@ -3072,6 +3077,7 @@ class AutoScalingPolicy {
     required this.constraints,
     required this.rules,
   });
+
   factory AutoScalingPolicy.fromJson(Map<String, dynamic> json) {
     return AutoScalingPolicy(
       constraints: ScalingConstraints.fromJson(
@@ -3114,6 +3120,7 @@ class AutoScalingPolicyDescription {
     this.rules,
     this.status,
   });
+
   factory AutoScalingPolicyDescription.fromJson(Map<String, dynamic> json) {
     return AutoScalingPolicyDescription(
       constraints: json['Constraints'] != null
@@ -3208,6 +3215,7 @@ class AutoScalingPolicyStateChangeReason {
     this.code,
     this.message,
   });
+
   factory AutoScalingPolicyStateChangeReason.fromJson(
       Map<String, dynamic> json) {
     return AutoScalingPolicyStateChangeReason(
@@ -3274,6 +3282,7 @@ class AutoScalingPolicyStatus {
     this.state,
     this.stateChangeReason,
   });
+
   factory AutoScalingPolicyStatus.fromJson(Map<String, dynamic> json) {
     return AutoScalingPolicyStatus(
       state: (json['State'] as String?)?.toAutoScalingPolicyState(),
@@ -3325,6 +3334,7 @@ class BlockPublicAccessConfiguration {
     required this.blockPublicSecurityGroupRules,
     this.permittedPublicSecurityGroupRuleRanges,
   });
+
   factory BlockPublicAccessConfiguration.fromJson(Map<String, dynamic> json) {
     return BlockPublicAccessConfiguration(
       blockPublicSecurityGroupRules:
@@ -3366,6 +3376,7 @@ class BlockPublicAccessConfigurationMetadata {
     required this.createdByArn,
     required this.creationDateTime,
   });
+
   factory BlockPublicAccessConfigurationMetadata.fromJson(
       Map<String, dynamic> json) {
     return BlockPublicAccessConfigurationMetadata(
@@ -3397,6 +3408,7 @@ class BootstrapActionConfig {
     required this.name,
     required this.scriptBootstrapAction,
   });
+
   factory BootstrapActionConfig.fromJson(Map<String, dynamic> json) {
     return BootstrapActionConfig(
       name: json['Name'] as String,
@@ -3423,6 +3435,7 @@ class BootstrapActionDetail {
   BootstrapActionDetail({
     this.bootstrapActionConfig,
   });
+
   factory BootstrapActionDetail.fromJson(Map<String, dynamic> json) {
     return BootstrapActionDetail(
       bootstrapActionConfig: json['BootstrapActionConfig'] != null
@@ -3458,6 +3471,7 @@ class CancelStepsInfo {
     this.status,
     this.stepId,
   });
+
   factory CancelStepsInfo.fromJson(Map<String, dynamic> json) {
     return CancelStepsInfo(
       reason: json['Reason'] as String?,
@@ -3487,6 +3501,7 @@ class CancelStepsOutput {
   CancelStepsOutput({
     this.cancelStepsInfoList,
   });
+
   factory CancelStepsOutput.fromJson(Map<String, dynamic> json) {
     return CancelStepsOutput(
       cancelStepsInfoList: (json['CancelStepsInfoList'] as List?)
@@ -3585,6 +3600,7 @@ class CloudWatchAlarmDefinition {
     this.statistic,
     this.unit,
   });
+
   factory CloudWatchAlarmDefinition.fromJson(Map<String, dynamic> json) {
     return CloudWatchAlarmDefinition(
       comparisonOperator:
@@ -3810,6 +3826,7 @@ class Cluster {
     this.terminationProtected,
     this.visibleToAllUsers,
   });
+
   factory Cluster.fromJson(Map<String, dynamic> json) {
     return Cluster(
       applications: (json['Applications'] as List?)
@@ -4010,6 +4027,7 @@ class ClusterStateChangeReason {
     this.code,
     this.message,
   });
+
   factory ClusterStateChangeReason.fromJson(Map<String, dynamic> json) {
     return ClusterStateChangeReason(
       code: (json['Code'] as String?)?.toClusterStateChangeReasonCode(),
@@ -4102,6 +4120,7 @@ class ClusterStatus {
     this.stateChangeReason,
     this.timeline,
   });
+
   factory ClusterStatus.fromJson(Map<String, dynamic> json) {
     return ClusterStatus(
       state: (json['State'] as String?)?.toClusterState(),
@@ -4160,6 +4179,7 @@ class ClusterSummary {
     this.outpostArn,
     this.status,
   });
+
   factory ClusterSummary.fromJson(Map<String, dynamic> json) {
     return ClusterSummary(
       clusterArn: json['ClusterArn'] as String?,
@@ -4208,6 +4228,7 @@ class ClusterTimeline {
     this.endDateTime,
     this.readyDateTime,
   });
+
   factory ClusterTimeline.fromJson(Map<String, dynamic> json) {
     return ClusterTimeline(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -4246,6 +4267,7 @@ class Command {
     this.name,
     this.scriptPath,
   });
+
   factory Command.fromJson(Map<String, dynamic> json) {
     return Command(
       args: (json['Args'] as List?)
@@ -4350,6 +4372,7 @@ class ComputeLimits {
     this.maximumCoreCapacityUnits,
     this.maximumOnDemandCapacityUnits,
   });
+
   factory ComputeLimits.fromJson(Map<String, dynamic> json) {
     return ComputeLimits(
       maximumCapacityUnits: json['MaximumCapacityUnits'] as int,
@@ -4438,6 +4461,7 @@ class Configuration {
     this.configurations,
     this.properties,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       classification: json['Classification'] as String?,
@@ -4473,6 +4497,7 @@ class CreateSecurityConfigurationOutput {
     required this.creationDateTime,
     required this.name,
   });
+
   factory CreateSecurityConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateSecurityConfigurationOutput(
@@ -4503,6 +4528,7 @@ class CreateStudioOutput {
     this.studioId,
     this.url,
   });
+
   factory CreateStudioOutput.fromJson(Map<String, dynamic> json) {
     return CreateStudioOutput(
       studioId: json['StudioId'] as String?,
@@ -4522,6 +4548,7 @@ class CreateStudioOutput {
 
 class DeleteSecurityConfigurationOutput {
   DeleteSecurityConfigurationOutput();
+
   factory DeleteSecurityConfigurationOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSecurityConfigurationOutput();
   }
@@ -4539,6 +4566,7 @@ class DescribeClusterOutput {
   DescribeClusterOutput({
     this.cluster,
   });
+
   factory DescribeClusterOutput.fromJson(Map<String, dynamic> json) {
     return DescribeClusterOutput(
       cluster: json['Cluster'] != null
@@ -4563,6 +4591,7 @@ class DescribeJobFlowsOutput {
   DescribeJobFlowsOutput({
     this.jobFlows,
   });
+
   factory DescribeJobFlowsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeJobFlowsOutput(
       jobFlows: (json['JobFlows'] as List?)
@@ -4587,6 +4616,7 @@ class DescribeNotebookExecutionOutput {
   DescribeNotebookExecutionOutput({
     this.notebookExecution,
   });
+
   factory DescribeNotebookExecutionOutput.fromJson(Map<String, dynamic> json) {
     return DescribeNotebookExecutionOutput(
       notebookExecution: json['NotebookExecution'] != null
@@ -4619,6 +4649,7 @@ class DescribeSecurityConfigurationOutput {
     this.name,
     this.securityConfiguration,
   });
+
   factory DescribeSecurityConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeSecurityConfigurationOutput(
@@ -4650,6 +4681,7 @@ class DescribeStepOutput {
   DescribeStepOutput({
     this.step,
   });
+
   factory DescribeStepOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStepOutput(
       step: json['Step'] != null
@@ -4673,6 +4705,7 @@ class DescribeStudioOutput {
   DescribeStudioOutput({
     this.studio,
   });
+
   factory DescribeStudioOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStudioOutput(
       studio: json['Studio'] != null
@@ -4704,6 +4737,7 @@ class EbsBlockDevice {
     this.device,
     this.volumeSpecification,
   });
+
   factory EbsBlockDevice.fromJson(Map<String, dynamic> json) {
     return EbsBlockDevice(
       device: json['Device'] as String?,
@@ -4741,6 +4775,7 @@ class EbsBlockDeviceConfig {
     required this.volumeSpecification,
     this.volumesPerInstance,
   });
+
   factory EbsBlockDeviceConfig.fromJson(Map<String, dynamic> json) {
     return EbsBlockDeviceConfig(
       volumeSpecification: VolumeSpecification.fromJson(
@@ -4771,6 +4806,7 @@ class EbsConfiguration {
     this.ebsBlockDeviceConfigs,
     this.ebsOptimized,
   });
+
   factory EbsConfiguration.fromJson(Map<String, dynamic> json) {
     return EbsConfiguration(
       ebsBlockDeviceConfigs: (json['EbsBlockDeviceConfigs'] as List?)
@@ -4804,6 +4840,7 @@ class EbsVolume {
     this.device,
     this.volumeId,
   });
+
   factory EbsVolume.fromJson(Map<String, dynamic> json) {
     return EbsVolume(
       device: json['Device'] as String?,
@@ -4895,6 +4932,7 @@ class Ec2InstanceAttributes {
     this.requestedEc2SubnetIds,
     this.serviceAccessSecurityGroup,
   });
+
   factory Ec2InstanceAttributes.fromJson(Map<String, dynamic> json) {
     return Ec2InstanceAttributes(
       additionalMasterSecurityGroups:
@@ -4988,6 +5026,7 @@ class ExecutionEngineConfig {
     this.masterInstanceSecurityGroupId,
     this.type,
   });
+
   factory ExecutionEngineConfig.fromJson(Map<String, dynamic> json) {
     return ExecutionEngineConfig(
       id: json['Id'] as String,
@@ -5055,6 +5094,7 @@ class FailureDetails {
     this.message,
     this.reason,
   });
+
   factory FailureDetails.fromJson(Map<String, dynamic> json) {
     return FailureDetails(
       logFile: json['LogFile'] as String?,
@@ -5107,6 +5147,7 @@ class GetBlockPublicAccessConfigurationOutput {
     required this.blockPublicAccessConfiguration,
     required this.blockPublicAccessConfigurationMetadata,
   });
+
   factory GetBlockPublicAccessConfigurationOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBlockPublicAccessConfigurationOutput(
@@ -5139,6 +5180,7 @@ class GetManagedScalingPolicyOutput {
   GetManagedScalingPolicyOutput({
     this.managedScalingPolicy,
   });
+
   factory GetManagedScalingPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetManagedScalingPolicyOutput(
       managedScalingPolicy: json['ManagedScalingPolicy'] != null
@@ -5165,6 +5207,7 @@ class GetStudioSessionMappingOutput {
   GetStudioSessionMappingOutput({
     this.sessionMapping,
   });
+
   factory GetStudioSessionMappingOutput.fromJson(Map<String, dynamic> json) {
     return GetStudioSessionMappingOutput(
       sessionMapping: json['SessionMapping'] != null
@@ -5207,6 +5250,7 @@ class HadoopJarStepConfig {
     this.mainClass,
     this.properties,
   });
+
   factory HadoopJarStepConfig.fromJson(Map<String, dynamic> json) {
     return HadoopJarStepConfig(
       jar: json['Jar'] as String,
@@ -5261,6 +5305,7 @@ class HadoopStepConfig {
     this.mainClass,
     this.properties,
   });
+
   factory HadoopStepConfig.fromJson(Map<String, dynamic> json) {
     return HadoopStepConfig(
       args: (json['Args'] as List?)
@@ -5370,6 +5415,7 @@ class Instance {
     this.publicIpAddress,
     this.status,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       ebsVolumes: (json['EbsVolumes'] as List?)
@@ -5549,6 +5595,7 @@ class InstanceFleet {
     this.targetOnDemandCapacity,
     this.targetSpotCapacity,
   });
+
   factory InstanceFleet.fromJson(Map<String, dynamic> json) {
     return InstanceFleet(
       id: json['Id'] as String?,
@@ -5676,6 +5723,7 @@ class InstanceFleetConfig {
     this.targetOnDemandCapacity,
     this.targetSpotCapacity,
   });
+
   factory InstanceFleetConfig.fromJson(Map<String, dynamic> json) {
     return InstanceFleetConfig(
       instanceFleetType:
@@ -5737,6 +5785,7 @@ class InstanceFleetModifyConfig {
     this.targetOnDemandCapacity,
     this.targetSpotCapacity,
   });
+
   factory InstanceFleetModifyConfig.fromJson(Map<String, dynamic> json) {
     return InstanceFleetModifyConfig(
       instanceFleetId: json['InstanceFleetId'] as String,
@@ -5785,6 +5834,7 @@ class InstanceFleetProvisioningSpecifications {
     this.onDemandSpecification,
     this.spotSpecification,
   });
+
   factory InstanceFleetProvisioningSpecifications.fromJson(
       Map<String, dynamic> json) {
     return InstanceFleetProvisioningSpecifications(
@@ -5879,6 +5929,7 @@ class InstanceFleetStateChangeReason {
     this.code,
     this.message,
   });
+
   factory InstanceFleetStateChangeReason.fromJson(Map<String, dynamic> json) {
     return InstanceFleetStateChangeReason(
       code: (json['Code'] as String?)?.toInstanceFleetStateChangeReasonCode(),
@@ -5987,6 +6038,7 @@ class InstanceFleetStatus {
     this.stateChangeReason,
     this.timeline,
   });
+
   factory InstanceFleetStatus.fromJson(Map<String, dynamic> json) {
     return InstanceFleetStatus(
       state: (json['State'] as String?)?.toInstanceFleetState(),
@@ -6034,6 +6086,7 @@ class InstanceFleetTimeline {
     this.endDateTime,
     this.readyDateTime,
   });
+
   factory InstanceFleetTimeline.fromJson(Map<String, dynamic> json) {
     return InstanceFleetTimeline(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -6179,6 +6232,7 @@ class InstanceGroup {
     this.shrinkPolicy,
     this.status,
   });
+
   factory InstanceGroup.fromJson(Map<String, dynamic> json) {
     return InstanceGroup(
       autoScalingPolicy: json['AutoScalingPolicy'] != null
@@ -6322,6 +6376,7 @@ class InstanceGroupConfig {
     this.market,
     this.name,
   });
+
   factory InstanceGroupConfig.fromJson(Map<String, dynamic> json) {
     return InstanceGroupConfig(
       instanceCount: json['InstanceCount'] as int,
@@ -6433,6 +6488,7 @@ class InstanceGroupDetail {
     this.readyDateTime,
     this.startDateTime,
   });
+
   factory InstanceGroupDetail.fromJson(Map<String, dynamic> json) {
     return InstanceGroupDetail(
       creationDateTime:
@@ -6515,6 +6571,7 @@ class InstanceGroupModifyConfig {
     this.instanceCount,
     this.shrinkPolicy,
   });
+
   factory InstanceGroupModifyConfig.fromJson(Map<String, dynamic> json) {
     return InstanceGroupModifyConfig(
       instanceGroupId: json['InstanceGroupId'] as String,
@@ -6635,6 +6692,7 @@ class InstanceGroupStateChangeReason {
     this.code,
     this.message,
   });
+
   factory InstanceGroupStateChangeReason.fromJson(Map<String, dynamic> json) {
     return InstanceGroupStateChangeReason(
       code: (json['Code'] as String?)?.toInstanceGroupStateChangeReasonCode(),
@@ -6707,6 +6765,7 @@ class InstanceGroupStatus {
     this.stateChangeReason,
     this.timeline,
   });
+
   factory InstanceGroupStatus.fromJson(Map<String, dynamic> json) {
     return InstanceGroupStatus(
       state: (json['State'] as String?)?.toInstanceGroupState(),
@@ -6749,6 +6808,7 @@ class InstanceGroupTimeline {
     this.endDateTime,
     this.readyDateTime,
   });
+
   factory InstanceGroupTimeline.fromJson(Map<String, dynamic> json) {
     return InstanceGroupTimeline(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -6823,6 +6883,7 @@ class InstanceResizePolicy {
     this.instancesToProtect,
     this.instancesToTerminate,
   });
+
   factory InstanceResizePolicy.fromJson(Map<String, dynamic> json) {
     return InstanceResizePolicy(
       instanceTerminationTimeout: json['InstanceTerminationTimeout'] as int?,
@@ -6939,6 +7000,7 @@ class InstanceStateChangeReason {
     this.code,
     this.message,
   });
+
   factory InstanceStateChangeReason.fromJson(Map<String, dynamic> json) {
     return InstanceStateChangeReason(
       code: (json['Code'] as String?)?.toInstanceStateChangeReasonCode(),
@@ -7015,6 +7077,7 @@ class InstanceStatus {
     this.stateChangeReason,
     this.timeline,
   });
+
   factory InstanceStatus.fromJson(Map<String, dynamic> json) {
     return InstanceStatus(
       state: (json['State'] as String?)?.toInstanceState(),
@@ -7056,6 +7119,7 @@ class InstanceTimeline {
     this.endDateTime,
     this.readyDateTime,
   });
+
   factory InstanceTimeline.fromJson(Map<String, dynamic> json) {
     return InstanceTimeline(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -7127,6 +7191,7 @@ class InstanceTypeConfig {
     this.ebsConfiguration,
     this.weightedCapacity,
   });
+
   factory InstanceTypeConfig.fromJson(Map<String, dynamic> json) {
     return InstanceTypeConfig(
       instanceType: json['InstanceType'] as String,
@@ -7212,6 +7277,7 @@ class InstanceTypeSpecification {
     this.instanceType,
     this.weightedCapacity,
   });
+
   factory InstanceTypeSpecification.fromJson(Map<String, dynamic> json) {
     return InstanceTypeSpecification(
       bidPrice: json['BidPrice'] as String?,
@@ -7350,6 +7416,7 @@ class JobFlowDetail {
     this.supportedProducts,
     this.visibleToAllUsers,
   });
+
   factory JobFlowDetail.fromJson(Map<String, dynamic> json) {
     return JobFlowDetail(
       executionStatusDetail: JobFlowExecutionStatusDetail.fromJson(
@@ -7508,6 +7575,7 @@ class JobFlowExecutionStatusDetail {
     this.readyDateTime,
     this.startDateTime,
   });
+
   factory JobFlowExecutionStatusDetail.fromJson(Map<String, dynamic> json) {
     return JobFlowExecutionStatusDetail(
       creationDateTime:
@@ -7644,6 +7712,7 @@ class JobFlowInstancesConfig {
     this.slaveInstanceType,
     this.terminationProtected,
   });
+
   factory JobFlowInstancesConfig.fromJson(Map<String, dynamic> json) {
     return JobFlowInstancesConfig(
       additionalMasterSecurityGroups:
@@ -7805,6 +7874,7 @@ class JobFlowInstancesDetail {
     this.placement,
     this.terminationProtected,
   });
+
   factory JobFlowInstancesDetail.fromJson(Map<String, dynamic> json) {
     return JobFlowInstancesDetail(
       instanceCount: json['InstanceCount'] as int,
@@ -7897,6 +7967,7 @@ class KerberosAttributes {
     this.aDDomainJoinUser,
     this.crossRealmTrustPrincipalPassword,
   });
+
   factory KerberosAttributes.fromJson(Map<String, dynamic> json) {
     return KerberosAttributes(
       kdcAdminPassword: json['KdcAdminPassword'] as String,
@@ -7939,6 +8010,7 @@ class KeyValue {
     this.key,
     this.value,
   });
+
   factory KeyValue.fromJson(Map<String, dynamic> json) {
     return KeyValue(
       key: json['Key'] as String?,
@@ -7968,6 +8040,7 @@ class ListBootstrapActionsOutput {
     this.bootstrapActions,
     this.marker,
   });
+
   factory ListBootstrapActionsOutput.fromJson(Map<String, dynamic> json) {
     return ListBootstrapActionsOutput(
       bootstrapActions: (json['BootstrapActions'] as List?)
@@ -8001,6 +8074,7 @@ class ListClustersOutput {
     this.clusters,
     this.marker,
   });
+
   factory ListClustersOutput.fromJson(Map<String, dynamic> json) {
     return ListClustersOutput(
       clusters: (json['Clusters'] as List?)
@@ -8032,6 +8106,7 @@ class ListInstanceFleetsOutput {
     this.instanceFleets,
     this.marker,
   });
+
   factory ListInstanceFleetsOutput.fromJson(Map<String, dynamic> json) {
     return ListInstanceFleetsOutput(
       instanceFleets: (json['InstanceFleets'] as List?)
@@ -8064,6 +8139,7 @@ class ListInstanceGroupsOutput {
     this.instanceGroups,
     this.marker,
   });
+
   factory ListInstanceGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListInstanceGroupsOutput(
       instanceGroups: (json['InstanceGroups'] as List?)
@@ -8096,6 +8172,7 @@ class ListInstancesOutput {
     this.instances,
     this.marker,
   });
+
   factory ListInstancesOutput.fromJson(Map<String, dynamic> json) {
     return ListInstancesOutput(
       instances: (json['Instances'] as List?)
@@ -8128,6 +8205,7 @@ class ListNotebookExecutionsOutput {
     this.marker,
     this.notebookExecutions,
   });
+
   factory ListNotebookExecutionsOutput.fromJson(Map<String, dynamic> json) {
     return ListNotebookExecutionsOutput(
       marker: json['Marker'] as String?,
@@ -8162,6 +8240,7 @@ class ListSecurityConfigurationsOutput {
     this.marker,
     this.securityConfigurations,
   });
+
   factory ListSecurityConfigurationsOutput.fromJson(Map<String, dynamic> json) {
     return ListSecurityConfigurationsOutput(
       marker: json['Marker'] as String?,
@@ -8197,6 +8276,7 @@ class ListStepsOutput {
     this.marker,
     this.steps,
   });
+
   factory ListStepsOutput.fromJson(Map<String, dynamic> json) {
     return ListStepsOutput(
       marker: json['Marker'] as String?,
@@ -8230,6 +8310,7 @@ class ListStudioSessionMappingsOutput {
     this.marker,
     this.sessionMappings,
   });
+
   factory ListStudioSessionMappingsOutput.fromJson(Map<String, dynamic> json) {
     return ListStudioSessionMappingsOutput(
       marker: json['Marker'] as String?,
@@ -8261,6 +8342,7 @@ class ListStudiosOutput {
     this.marker,
     this.studios,
   });
+
   factory ListStudiosOutput.fromJson(Map<String, dynamic> json) {
     return ListStudiosOutput(
       marker: json['Marker'] as String?,
@@ -8295,6 +8377,7 @@ class ManagedScalingPolicy {
   ManagedScalingPolicy({
     this.computeLimits,
   });
+
   factory ManagedScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ManagedScalingPolicy(
       computeLimits: json['ComputeLimits'] != null
@@ -8357,6 +8440,7 @@ class MetricDimension {
     this.key,
     this.value,
   });
+
   factory MetricDimension.fromJson(Map<String, dynamic> json) {
     return MetricDimension(
       key: json['Key'] as String?,
@@ -8381,6 +8465,7 @@ class ModifyClusterOutput {
   ModifyClusterOutput({
     this.stepConcurrencyLevel,
   });
+
   factory ModifyClusterOutput.fromJson(Map<String, dynamic> json) {
     return ModifyClusterOutput(
       stepConcurrencyLevel: json['StepConcurrencyLevel'] as int?,
@@ -8505,6 +8590,7 @@ class NotebookExecution {
     this.status,
     this.tags,
   });
+
   factory NotebookExecution.fromJson(Map<String, dynamic> json) {
     return NotebookExecution(
       arn: json['Arn'] as String?,
@@ -8706,6 +8792,7 @@ class NotebookExecutionSummary {
     this.startTime,
     this.status,
   });
+
   factory NotebookExecutionSummary.fromJson(Map<String, dynamic> json) {
     return NotebookExecutionSummary(
       editorId: json['EditorId'] as String?,
@@ -8780,6 +8867,7 @@ class OnDemandCapacityReservationOptions {
     this.capacityReservationResourceGroupArn,
     this.usageStrategy,
   });
+
   factory OnDemandCapacityReservationOptions.fromJson(
       Map<String, dynamic> json) {
     return OnDemandCapacityReservationOptions(
@@ -8913,6 +9001,7 @@ class OnDemandProvisioningSpecification {
     required this.allocationStrategy,
     this.capacityReservationOptions,
   });
+
   factory OnDemandProvisioningSpecification.fromJson(
       Map<String, dynamic> json) {
     return OnDemandProvisioningSpecification(
@@ -8959,6 +9048,7 @@ class PlacementGroupConfig {
     required this.instanceRole,
     this.placementStrategy,
   });
+
   factory PlacementGroupConfig.fromJson(Map<String, dynamic> json) {
     return PlacementGroupConfig(
       instanceRole: (json['InstanceRole'] as String).toInstanceRoleType(),
@@ -9038,6 +9128,7 @@ class PlacementType {
     this.availabilityZone,
     this.availabilityZones,
   });
+
   factory PlacementType.fromJson(Map<String, dynamic> json) {
     return PlacementType(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -9072,6 +9163,7 @@ class PortRange {
     required this.minRange,
     this.maxRange,
   });
+
   factory PortRange.fromJson(Map<String, dynamic> json) {
     return PortRange(
       minRange: json['MinRange'] as int,
@@ -9110,6 +9202,7 @@ class PutAutoScalingPolicyOutput {
     this.clusterId,
     this.instanceGroupId,
   });
+
   factory PutAutoScalingPolicyOutput.fromJson(Map<String, dynamic> json) {
     return PutAutoScalingPolicyOutput(
       autoScalingPolicy: json['AutoScalingPolicy'] != null
@@ -9138,6 +9231,7 @@ class PutAutoScalingPolicyOutput {
 
 class PutBlockPublicAccessConfigurationOutput {
   PutBlockPublicAccessConfigurationOutput();
+
   factory PutBlockPublicAccessConfigurationOutput.fromJson(
       Map<String, dynamic> _) {
     return PutBlockPublicAccessConfigurationOutput();
@@ -9150,6 +9244,7 @@ class PutBlockPublicAccessConfigurationOutput {
 
 class PutManagedScalingPolicyOutput {
   PutManagedScalingPolicyOutput();
+
   factory PutManagedScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutManagedScalingPolicyOutput();
   }
@@ -9161,6 +9256,7 @@ class PutManagedScalingPolicyOutput {
 
 class RemoveAutoScalingPolicyOutput {
   RemoveAutoScalingPolicyOutput();
+
   factory RemoveAutoScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return RemoveAutoScalingPolicyOutput();
   }
@@ -9172,6 +9268,7 @@ class RemoveAutoScalingPolicyOutput {
 
 class RemoveManagedScalingPolicyOutput {
   RemoveManagedScalingPolicyOutput();
+
   factory RemoveManagedScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return RemoveManagedScalingPolicyOutput();
   }
@@ -9184,6 +9281,7 @@ class RemoveManagedScalingPolicyOutput {
 /// This output indicates the result of removing tags from a resource.
 class RemoveTagsOutput {
   RemoveTagsOutput();
+
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
   }
@@ -9233,6 +9331,7 @@ class RunJobFlowOutput {
     this.clusterArn,
     this.jobFlowId,
   });
+
   factory RunJobFlowOutput.fromJson(Map<String, dynamic> json) {
     return RunJobFlowOutput(
       clusterArn: json['ClusterArn'] as String?,
@@ -9293,6 +9392,7 @@ class ScalingAction {
     required this.simpleScalingPolicyConfiguration,
     this.market,
   });
+
   factory ScalingAction.fromJson(Map<String, dynamic> json) {
     return ScalingAction(
       simpleScalingPolicyConfiguration:
@@ -9331,6 +9431,7 @@ class ScalingConstraints {
     required this.maxCapacity,
     required this.minCapacity,
   });
+
   factory ScalingConstraints.fromJson(Map<String, dynamic> json) {
     return ScalingConstraints(
       maxCapacity: json['MaxCapacity'] as int,
@@ -9373,6 +9474,7 @@ class ScalingRule {
     required this.trigger,
     this.description,
   });
+
   factory ScalingRule.fromJson(Map<String, dynamic> json) {
     return ScalingRule(
       action: ScalingAction.fromJson(json['Action'] as Map<String, dynamic>),
@@ -9406,6 +9508,7 @@ class ScalingTrigger {
   ScalingTrigger({
     required this.cloudWatchAlarmDefinition,
   });
+
   factory ScalingTrigger.fromJson(Map<String, dynamic> json) {
     return ScalingTrigger(
       cloudWatchAlarmDefinition: CloudWatchAlarmDefinition.fromJson(
@@ -9434,6 +9537,7 @@ class ScriptBootstrapActionConfig {
     required this.path,
     this.args,
   });
+
   factory ScriptBootstrapActionConfig.fromJson(Map<String, dynamic> json) {
     return ScriptBootstrapActionConfig(
       path: json['Path'] as String,
@@ -9466,6 +9570,7 @@ class SecurityConfigurationSummary {
     this.creationDateTime,
     this.name,
   });
+
   factory SecurityConfigurationSummary.fromJson(Map<String, dynamic> json) {
     return SecurityConfigurationSummary(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -9523,6 +9628,7 @@ class SessionMappingDetail {
     this.sessionPolicyArn,
     this.studioId,
   });
+
   factory SessionMappingDetail.fromJson(Map<String, dynamic> json) {
     return SessionMappingDetail(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -9593,6 +9699,7 @@ class SessionMappingSummary {
     this.sessionPolicyArn,
     this.studioId,
   });
+
   factory SessionMappingSummary.fromJson(Map<String, dynamic> json) {
     return SessionMappingSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -9638,6 +9745,7 @@ class ShrinkPolicy {
     this.decommissionTimeout,
     this.instanceResizePolicy,
   });
+
   factory ShrinkPolicy.fromJson(Map<String, dynamic> json) {
     return ShrinkPolicy(
       decommissionTimeout: json['DecommissionTimeout'] as int?,
@@ -9700,6 +9808,7 @@ class SimpleScalingPolicyConfiguration {
     this.adjustmentType,
     this.coolDown,
   });
+
   factory SimpleScalingPolicyConfiguration.fromJson(Map<String, dynamic> json) {
     return SimpleScalingPolicyConfiguration(
       scalingAdjustment: json['ScalingAdjustment'] as int,
@@ -9790,6 +9899,7 @@ class SpotProvisioningSpecification {
     this.allocationStrategy,
     this.blockDurationMinutes,
   });
+
   factory SpotProvisioningSpecification.fromJson(Map<String, dynamic> json) {
     return SpotProvisioningSpecification(
       timeoutAction:
@@ -9852,6 +9962,7 @@ class StartNotebookExecutionOutput {
   StartNotebookExecutionOutput({
     this.notebookExecutionId,
   });
+
   factory StartNotebookExecutionOutput.fromJson(Map<String, dynamic> json) {
     return StartNotebookExecutionOutput(
       notebookExecutionId: json['NotebookExecutionId'] as String?,
@@ -9937,6 +10048,7 @@ class Step {
     this.name,
     this.status,
   });
+
   factory Step.fromJson(Map<String, dynamic> json) {
     return Step(
       actionOnFailure:
@@ -10015,6 +10127,7 @@ class StepConfig {
     required this.name,
     this.actionOnFailure,
   });
+
   factory StepConfig.fromJson(Map<String, dynamic> json) {
     return StepConfig(
       hadoopJarStep: HadoopJarStepConfig.fromJson(
@@ -10049,6 +10162,7 @@ class StepDetail {
     required this.executionStatusDetail,
     required this.stepConfig,
   });
+
   factory StepDetail.fromJson(Map<String, dynamic> json) {
     return StepDetail(
       executionStatusDetail: StepExecutionStatusDetail.fromJson(
@@ -10145,6 +10259,7 @@ class StepExecutionStatusDetail {
     this.lastStateChangeReason,
     this.startDateTime,
   });
+
   factory StepExecutionStatusDetail.fromJson(Map<String, dynamic> json) {
     return StepExecutionStatusDetail(
       creationDateTime:
@@ -10240,6 +10355,7 @@ class StepStateChangeReason {
     this.code,
     this.message,
   });
+
   factory StepStateChangeReason.fromJson(Map<String, dynamic> json) {
     return StepStateChangeReason(
       code: (json['Code'] as String?)?.toStepStateChangeReasonCode(),
@@ -10301,6 +10417,7 @@ class StepStatus {
     this.stateChangeReason,
     this.timeline,
   });
+
   factory StepStatus.fromJson(Map<String, dynamic> json) {
     return StepStatus(
       failureDetails: json['FailureDetails'] != null
@@ -10359,6 +10476,7 @@ class StepSummary {
     this.name,
     this.status,
   });
+
   factory StepSummary.fromJson(Map<String, dynamic> json) {
     return StepSummary(
       actionOnFailure:
@@ -10406,6 +10524,7 @@ class StepTimeline {
     this.endDateTime,
     this.startDateTime,
   });
+
   factory StepTimeline.fromJson(Map<String, dynamic> json) {
     return StepTimeline(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -10500,6 +10619,7 @@ class Studio {
     this.vpcId,
     this.workspaceSecurityGroupId,
   });
+
   factory Studio.fromJson(Map<String, dynamic> json) {
     return Studio(
       authMode: (json['AuthMode'] as String?)?.toAuthMode(),
@@ -10596,6 +10716,7 @@ class StudioSummary {
     this.url,
     this.vpcId,
   });
+
   factory StudioSummary.fromJson(Map<String, dynamic> json) {
     return StudioSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -10640,6 +10761,7 @@ class SupportedProductConfig {
     this.args,
     this.name,
   });
+
   factory SupportedProductConfig.fromJson(Map<String, dynamic> json) {
     return SupportedProductConfig(
       args: (json['Args'] as List?)
@@ -10683,6 +10805,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -10872,6 +10995,7 @@ class VolumeSpecification {
     required this.volumeType,
     this.iops,
   });
+
   factory VolumeSpecification.fromJson(Map<String, dynamic> json) {
     return VolumeSpecification(
       sizeInGB: json['SizeInGB'] as int,

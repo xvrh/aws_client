@@ -16145,6 +16145,7 @@ class ActionSource {
     this.sourceId,
     this.sourceType,
   });
+
   factory ActionSource.fromJson(Map<String, dynamic> json) {
     return ActionSource(
       sourceUri: json['SourceUri'] as String,
@@ -16248,6 +16249,7 @@ class ActionSummary {
     this.source,
     this.status,
   });
+
   factory ActionSummary.fromJson(Map<String, dynamic> json) {
     return ActionSummary(
       actionArn: json['ActionArn'] as String?,
@@ -16295,6 +16297,7 @@ class AddAssociationResponse {
     this.destinationArn,
     this.sourceArn,
   });
+
   factory AddAssociationResponse.fromJson(Map<String, dynamic> json) {
     return AddAssociationResponse(
       destinationArn: json['DestinationArn'] as String?,
@@ -16319,6 +16322,7 @@ class AddTagsOutput {
   AddTagsOutput({
     this.tags,
   });
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> json) {
     return AddTagsOutput(
       tags: (json['Tags'] as List?)
@@ -16348,6 +16352,7 @@ class AgentVersion {
     required this.agentCount,
     required this.version,
   });
+
   factory AgentVersion.fromJson(Map<String, dynamic> json) {
     return AgentVersion(
       agentCount: json['AgentCount'] as int,
@@ -16373,6 +16378,7 @@ class Alarm {
   Alarm({
     this.alarmName,
   });
+
   factory Alarm.fromJson(Map<String, dynamic> json) {
     return Alarm(
       alarmName: json['AlarmName'] as String?,
@@ -16507,6 +16513,7 @@ class AlgorithmSpecification {
     this.metricDefinitions,
     this.trainingImage,
   });
+
   factory AlgorithmSpecification.fromJson(Map<String, dynamic> json) {
     return AlgorithmSpecification(
       trainingInputMode:
@@ -16595,6 +16602,7 @@ class AlgorithmStatusDetails {
     this.imageScanStatuses,
     this.validationStatuses,
   });
+
   factory AlgorithmStatusDetails.fromJson(Map<String, dynamic> json) {
     return AlgorithmStatusDetails(
       imageScanStatuses: (json['ImageScanStatuses'] as List?)
@@ -16634,6 +16642,7 @@ class AlgorithmStatusItem {
     required this.status,
     this.failureReason,
   });
+
   factory AlgorithmStatusItem.fromJson(Map<String, dynamic> json) {
     return AlgorithmStatusItem(
       name: json['Name'] as String,
@@ -16678,6 +16687,7 @@ class AlgorithmSummary {
     required this.creationTime,
     this.algorithmDescription,
   });
+
   factory AlgorithmSummary.fromJson(Map<String, dynamic> json) {
     return AlgorithmSummary(
       algorithmArn: json['AlgorithmArn'] as String,
@@ -16729,6 +16739,7 @@ class AlgorithmValidationProfile {
     required this.trainingJobDefinition,
     this.transformJobDefinition,
   });
+
   factory AlgorithmValidationProfile.fromJson(Map<String, dynamic> json) {
     return AlgorithmValidationProfile(
       profileName: json['ProfileName'] as String,
@@ -16769,6 +16780,7 @@ class AlgorithmValidationSpecification {
     required this.validationProfiles,
     required this.validationRole,
   });
+
   factory AlgorithmValidationSpecification.fromJson(Map<String, dynamic> json) {
     return AlgorithmValidationSpecification(
       validationProfiles: (json['ValidationProfiles'] as List)
@@ -17750,6 +17762,7 @@ class AnnotationConsolidationConfig {
   AnnotationConsolidationConfig({
     required this.annotationConsolidationLambdaArn,
   });
+
   factory AnnotationConsolidationConfig.fromJson(Map<String, dynamic> json) {
     return AnnotationConsolidationConfig(
       annotationConsolidationLambdaArn:
@@ -17794,6 +17807,7 @@ class AppDetails {
     this.status,
     this.userProfileName,
   });
+
   factory AppDetails.fromJson(Map<String, dynamic> json) {
     return AppDetails(
       appName: json['AppName'] as String?,
@@ -17848,6 +17862,7 @@ class AppImageConfigDetails {
     this.kernelGatewayImageConfig,
     this.lastModifiedTime,
   });
+
   factory AppImageConfigDetails.fromJson(Map<String, dynamic> json) {
     return AppImageConfigDetails(
       appImageConfigArn: json['AppImageConfigArn'] as String?,
@@ -18158,6 +18173,7 @@ class AppSpecification {
     this.containerArguments,
     this.containerEntrypoint,
   });
+
   factory AppSpecification.fromJson(Map<String, dynamic> json) {
     return AppSpecification(
       imageUri: json['ImageUri'] as String,
@@ -18273,6 +18289,7 @@ class ArtifactSource {
     required this.sourceUri,
     this.sourceTypes,
   });
+
   factory ArtifactSource.fromJson(Map<String, dynamic> json) {
     return ArtifactSource(
       sourceUri: json['SourceUri'] as String,
@@ -18343,6 +18360,7 @@ class ArtifactSourceType {
     required this.sourceIdType,
     required this.value,
   });
+
   factory ArtifactSourceType.fromJson(Map<String, dynamic> json) {
     return ArtifactSourceType(
       sourceIdType: (json['SourceIdType'] as String).toArtifactSourceIdType(),
@@ -18389,6 +18407,7 @@ class ArtifactSummary {
     this.lastModifiedTime,
     this.source,
   });
+
   factory ArtifactSummary.fromJson(Map<String, dynamic> json) {
     return ArtifactSummary(
       artifactArn: json['ArtifactArn'] as String?,
@@ -18461,6 +18480,7 @@ class AssociateTrialComponentResponse {
     this.trialArn,
     this.trialComponentArn,
   });
+
   factory AssociateTrialComponentResponse.fromJson(Map<String, dynamic> json) {
     return AssociateTrialComponentResponse(
       trialArn: json['TrialArn'] as String?,
@@ -18556,6 +18576,7 @@ class AssociationSummary {
     this.sourceName,
     this.sourceType,
   });
+
   factory AssociationSummary.fromJson(Map<String, dynamic> json) {
     return AssociationSummary(
       associationType:
@@ -18625,6 +18646,7 @@ class AthenaDatasetDefinition {
     this.outputCompression,
     this.workGroup,
   });
+
   factory AthenaDatasetDefinition.fromJson(Map<String, dynamic> json) {
     return AthenaDatasetDefinition(
       catalog: json['Catalog'] as String,
@@ -18815,6 +18837,7 @@ class AutoMLCandidate {
     this.finalAutoMLJobObjectiveMetric,
     this.inferenceContainers,
   });
+
   factory AutoMLCandidate.fromJson(Map<String, dynamic> json) {
     return AutoMLCandidate(
       candidateName: json['CandidateName'] as String,
@@ -18894,6 +18917,7 @@ class AutoMLCandidateStep {
     required this.candidateStepName,
     required this.candidateStepType,
   });
+
   factory AutoMLCandidateStep.fromJson(Map<String, dynamic> json) {
     return AutoMLCandidateStep(
       candidateStepArn: json['CandidateStepArn'] as String,
@@ -18934,6 +18958,7 @@ class AutoMLChannel {
     required this.targetAttributeName,
     this.compressionType,
   });
+
   factory AutoMLChannel.fromJson(Map<String, dynamic> json) {
     return AutoMLChannel(
       dataSource:
@@ -18974,6 +18999,7 @@ class AutoMLContainerDefinition {
     required this.modelDataUrl,
     this.environment,
   });
+
   factory AutoMLContainerDefinition.fromJson(Map<String, dynamic> json) {
     return AutoMLContainerDefinition(
       image: json['Image'] as String,
@@ -19006,6 +19032,7 @@ class AutoMLDataSource {
   AutoMLDataSource({
     required this.s3DataSource,
   });
+
   factory AutoMLDataSource.fromJson(Map<String, dynamic> json) {
     return AutoMLDataSource(
       s3DataSource: AutoMLS3DataSource.fromJson(
@@ -19033,6 +19060,7 @@ class AutoMLJobArtifacts {
     this.candidateDefinitionNotebookLocation,
     this.dataExplorationNotebookLocation,
   });
+
   factory AutoMLJobArtifacts.fromJson(Map<String, dynamic> json) {
     return AutoMLJobArtifacts(
       candidateDefinitionNotebookLocation:
@@ -19075,6 +19103,7 @@ class AutoMLJobCompletionCriteria {
     this.maxCandidates,
     this.maxRuntimePerTrainingJobInSeconds,
   });
+
   factory AutoMLJobCompletionCriteria.fromJson(Map<String, dynamic> json) {
     return AutoMLJobCompletionCriteria(
       maxAutoMLJobRuntimeInSeconds:
@@ -19113,6 +19142,7 @@ class AutoMLJobConfig {
     this.completionCriteria,
     this.securityConfig,
   });
+
   factory AutoMLJobConfig.fromJson(Map<String, dynamic> json) {
     return AutoMLJobConfig(
       completionCriteria: json['CompletionCriteria'] != null
@@ -19225,6 +19255,7 @@ class AutoMLJobObjective {
   AutoMLJobObjective({
     required this.metricName,
   });
+
   factory AutoMLJobObjective.fromJson(Map<String, dynamic> json) {
     return AutoMLJobObjective(
       metricName: (json['MetricName'] as String).toAutoMLMetricEnum(),
@@ -19443,6 +19474,7 @@ class AutoMLJobSummary {
     this.failureReason,
     this.partialFailureReasons,
   });
+
   factory AutoMLJobSummary.fromJson(Map<String, dynamic> json) {
     return AutoMLJobSummary(
       autoMLJobArn: json['AutoMLJobArn'] as String,
@@ -19544,6 +19576,7 @@ class AutoMLOutputDataConfig {
     required this.s3OutputPath,
     this.kmsKeyId,
   });
+
   factory AutoMLOutputDataConfig.fromJson(Map<String, dynamic> json) {
     return AutoMLOutputDataConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -19569,6 +19602,7 @@ class AutoMLPartialFailureReason {
   AutoMLPartialFailureReason({
     this.partialFailureMessage,
   });
+
   factory AutoMLPartialFailureReason.fromJson(Map<String, dynamic> json) {
     return AutoMLPartialFailureReason(
       partialFailureMessage: json['PartialFailureMessage'] as String?,
@@ -19596,6 +19630,7 @@ class AutoMLS3DataSource {
     required this.s3DataType,
     required this.s3Uri,
   });
+
   factory AutoMLS3DataSource.fromJson(Map<String, dynamic> json) {
     return AutoMLS3DataSource(
       s3DataType: (json['S3DataType'] as String).toAutoMLS3DataType(),
@@ -19657,6 +19692,7 @@ class AutoMLSecurityConfig {
     this.volumeKmsKeyId,
     this.vpcConfig,
   });
+
   factory AutoMLSecurityConfig.fromJson(Map<String, dynamic> json) {
     return AutoMLSecurityConfig(
       enableInterContainerTrafficEncryption:
@@ -19752,6 +19788,7 @@ class AutoRollbackConfig {
   AutoRollbackConfig({
     this.alarms,
   });
+
   factory AutoRollbackConfig.fromJson(Map<String, dynamic> json) {
     return AutoRollbackConfig(
       alarms: (json['Alarms'] as List?)
@@ -19837,6 +19874,7 @@ class Bias {
   Bias({
     this.report,
   });
+
   factory Bias.fromJson(Map<String, dynamic> json) {
     return Bias(
       report: json['Report'] != null
@@ -19869,6 +19907,7 @@ class BlueGreenUpdatePolicy {
     this.maximumExecutionTimeoutInSeconds,
     this.terminationWaitInSeconds,
   });
+
   factory BlueGreenUpdatePolicy.fromJson(Map<String, dynamic> json) {
     return BlueGreenUpdatePolicy(
       trafficRoutingConfiguration: TrafficRoutingConfig.fromJson(
@@ -19930,6 +19969,7 @@ class CacheHitResult {
   CacheHitResult({
     this.sourcePipelineExecutionArn,
   });
+
   factory CacheHitResult.fromJson(Map<String, dynamic> json) {
     return CacheHitResult(
       sourcePipelineExecutionArn: json['SourcePipelineExecutionArn'] as String?,
@@ -19962,6 +20002,7 @@ class CallbackStepMetadata {
     this.outputParameters,
     this.sqsQueueUrl,
   });
+
   factory CallbackStepMetadata.fromJson(Map<String, dynamic> json) {
     return CallbackStepMetadata(
       callbackToken: json['CallbackToken'] as String?,
@@ -19994,6 +20035,7 @@ class CandidateArtifactLocations {
   CandidateArtifactLocations({
     required this.explainability,
   });
+
   factory CandidateArtifactLocations.fromJson(Map<String, dynamic> json) {
     return CandidateArtifactLocations(
       explainability: json['Explainability'] as String,
@@ -20016,6 +20058,7 @@ class CandidateProperties {
   CandidateProperties({
     this.candidateArtifactLocations,
   });
+
   factory CandidateProperties.fromJson(Map<String, dynamic> json) {
     return CandidateProperties(
       candidateArtifactLocations: json['CandidateArtifactLocations'] != null
@@ -20155,6 +20198,7 @@ class CapacitySize {
     required this.type,
     required this.value,
   });
+
   factory CapacitySize.fromJson(Map<String, dynamic> json) {
     return CapacitySize(
       type: (json['Type'] as String).toCapacitySizeType(),
@@ -20212,6 +20256,7 @@ class CaptureContentTypeHeader {
     this.csvContentTypes,
     this.jsonContentTypes,
   });
+
   factory CaptureContentTypeHeader.fromJson(Map<String, dynamic> json) {
     return CaptureContentTypeHeader(
       csvContentTypes: (json['CsvContentTypes'] as List?)
@@ -20271,6 +20316,7 @@ class CaptureOption {
   CaptureOption({
     required this.captureMode,
   });
+
   factory CaptureOption.fromJson(Map<String, dynamic> json) {
     return CaptureOption(
       captureMode: (json['CaptureMode'] as String).toCaptureMode(),
@@ -20325,6 +20371,7 @@ class CategoricalParameterRange {
     required this.name,
     required this.values,
   });
+
   factory CategoricalParameterRange.fromJson(Map<String, dynamic> json) {
     return CategoricalParameterRange(
       name: json['Name'] as String,
@@ -20353,6 +20400,7 @@ class CategoricalParameterRangeSpecification {
   CategoricalParameterRangeSpecification({
     required this.values,
   });
+
   factory CategoricalParameterRangeSpecification.fromJson(
       Map<String, dynamic> json) {
     return CategoricalParameterRangeSpecification(
@@ -20440,6 +20488,7 @@ class Channel {
     this.recordWrapperType,
     this.shuffleConfig,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       channelName: json['ChannelName'] as String,
@@ -20514,6 +20563,7 @@ class ChannelSpecification {
     this.isRequired,
     this.supportedCompressionTypes,
   });
+
   factory ChannelSpecification.fromJson(Map<String, dynamic> json) {
     return ChannelSpecification(
       name: json['Name'] as String,
@@ -20570,6 +20620,7 @@ class CheckpointConfig {
     required this.s3Uri,
     this.localPath,
   });
+
   factory CheckpointConfig.fromJson(Map<String, dynamic> json) {
     return CheckpointConfig(
       s3Uri: json['S3Uri'] as String,
@@ -20674,6 +20725,7 @@ class CodeRepositorySummary {
     required this.lastModifiedTime,
     this.gitConfig,
   });
+
   factory CodeRepositorySummary.fromJson(Map<String, dynamic> json) {
     return CodeRepositorySummary(
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
@@ -20724,6 +20776,7 @@ class CognitoConfig {
     required this.clientId,
     required this.userPool,
   });
+
   factory CognitoConfig.fromJson(Map<String, dynamic> json) {
     return CognitoConfig(
       clientId: json['ClientId'] as String,
@@ -20760,6 +20813,7 @@ class CognitoMemberDefinition {
     required this.userGroup,
     required this.userPool,
   });
+
   factory CognitoMemberDefinition.fromJson(Map<String, dynamic> json) {
     return CognitoMemberDefinition(
       clientId: json['ClientId'] as String,
@@ -20796,6 +20850,7 @@ class CollectionConfiguration {
     this.collectionName,
     this.collectionParameters,
   });
+
   factory CollectionConfiguration.fromJson(Map<String, dynamic> json) {
     return CollectionConfiguration(
       collectionName: json['CollectionName'] as String?,
@@ -20916,6 +20971,7 @@ class CompilationJobSummary {
     this.compilationTargetPlatformOs,
     this.lastModifiedTime,
   });
+
   factory CompilationJobSummary.fromJson(Map<String, dynamic> json) {
     return CompilationJobSummary(
       compilationJobArn: json['CompilationJobArn'] as String,
@@ -21043,6 +21099,7 @@ class ConditionStepMetadata {
   ConditionStepMetadata({
     this.outcome,
   });
+
   factory ConditionStepMetadata.fromJson(Map<String, dynamic> json) {
     return ConditionStepMetadata(
       outcome: (json['Outcome'] as String?)?.toConditionOutcome(),
@@ -21148,6 +21205,7 @@ class ContainerDefinition {
     this.modelPackageName,
     this.multiModelConfig,
   });
+
   factory ContainerDefinition.fromJson(Map<String, dynamic> json) {
     return ContainerDefinition(
       containerHostname: json['ContainerHostname'] as String?,
@@ -21261,6 +21319,7 @@ class ContextSource {
     this.sourceId,
     this.sourceType,
   });
+
   factory ContextSource.fromJson(Map<String, dynamic> json) {
     return ContextSource(
       sourceUri: json['SourceUri'] as String,
@@ -21310,6 +21369,7 @@ class ContextSummary {
     this.lastModifiedTime,
     this.source,
   });
+
   factory ContextSummary.fromJson(Map<String, dynamic> json) {
     return ContextSummary(
       contextArn: json['ContextArn'] as String?,
@@ -21387,6 +21447,7 @@ class ContinuousParameterRange {
     required this.name,
     this.scalingType,
   });
+
   factory ContinuousParameterRange.fromJson(Map<String, dynamic> json) {
     return ContinuousParameterRange(
       maxValue: json['MaxValue'] as String,
@@ -21423,6 +21484,7 @@ class ContinuousParameterRangeSpecification {
     required this.maxValue,
     required this.minValue,
   });
+
   factory ContinuousParameterRangeSpecification.fromJson(
       Map<String, dynamic> json) {
     return ContinuousParameterRangeSpecification(
@@ -21448,6 +21510,7 @@ class CreateActionResponse {
   CreateActionResponse({
     this.actionArn,
   });
+
   factory CreateActionResponse.fromJson(Map<String, dynamic> json) {
     return CreateActionResponse(
       actionArn: json['ActionArn'] as String?,
@@ -21469,6 +21532,7 @@ class CreateAlgorithmOutput {
   CreateAlgorithmOutput({
     required this.algorithmArn,
   });
+
   factory CreateAlgorithmOutput.fromJson(Map<String, dynamic> json) {
     return CreateAlgorithmOutput(
       algorithmArn: json['AlgorithmArn'] as String,
@@ -21490,6 +21554,7 @@ class CreateAppImageConfigResponse {
   CreateAppImageConfigResponse({
     this.appImageConfigArn,
   });
+
   factory CreateAppImageConfigResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppImageConfigResponse(
       appImageConfigArn: json['AppImageConfigArn'] as String?,
@@ -21511,6 +21576,7 @@ class CreateAppResponse {
   CreateAppResponse({
     this.appArn,
   });
+
   factory CreateAppResponse.fromJson(Map<String, dynamic> json) {
     return CreateAppResponse(
       appArn: json['AppArn'] as String?,
@@ -21532,6 +21598,7 @@ class CreateArtifactResponse {
   CreateArtifactResponse({
     this.artifactArn,
   });
+
   factory CreateArtifactResponse.fromJson(Map<String, dynamic> json) {
     return CreateArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
@@ -21553,6 +21620,7 @@ class CreateAutoMLJobResponse {
   CreateAutoMLJobResponse({
     required this.autoMLJobArn,
   });
+
   factory CreateAutoMLJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateAutoMLJobResponse(
       autoMLJobArn: json['AutoMLJobArn'] as String,
@@ -21574,6 +21642,7 @@ class CreateCodeRepositoryOutput {
   CreateCodeRepositoryOutput({
     required this.codeRepositoryArn,
   });
+
   factory CreateCodeRepositoryOutput.fromJson(Map<String, dynamic> json) {
     return CreateCodeRepositoryOutput(
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
@@ -21603,6 +21672,7 @@ class CreateCompilationJobResponse {
   CreateCompilationJobResponse({
     required this.compilationJobArn,
   });
+
   factory CreateCompilationJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateCompilationJobResponse(
       compilationJobArn: json['CompilationJobArn'] as String,
@@ -21624,6 +21694,7 @@ class CreateContextResponse {
   CreateContextResponse({
     this.contextArn,
   });
+
   factory CreateContextResponse.fromJson(Map<String, dynamic> json) {
     return CreateContextResponse(
       contextArn: json['ContextArn'] as String?,
@@ -21645,6 +21716,7 @@ class CreateDataQualityJobDefinitionResponse {
   CreateDataQualityJobDefinitionResponse({
     required this.jobDefinitionArn,
   });
+
   factory CreateDataQualityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateDataQualityJobDefinitionResponse(
@@ -21671,6 +21743,7 @@ class CreateDomainResponse {
     this.domainArn,
     this.url,
   });
+
   factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
     return CreateDomainResponse(
       domainArn: json['DomainArn'] as String?,
@@ -21695,6 +21768,7 @@ class CreateEndpointConfigOutput {
   CreateEndpointConfigOutput({
     required this.endpointConfigArn,
   });
+
   factory CreateEndpointConfigOutput.fromJson(Map<String, dynamic> json) {
     return CreateEndpointConfigOutput(
       endpointConfigArn: json['EndpointConfigArn'] as String,
@@ -21716,6 +21790,7 @@ class CreateEndpointOutput {
   CreateEndpointOutput({
     required this.endpointArn,
   });
+
   factory CreateEndpointOutput.fromJson(Map<String, dynamic> json) {
     return CreateEndpointOutput(
       endpointArn: json['EndpointArn'] as String,
@@ -21737,6 +21812,7 @@ class CreateExperimentResponse {
   CreateExperimentResponse({
     this.experimentArn,
   });
+
   factory CreateExperimentResponse.fromJson(Map<String, dynamic> json) {
     return CreateExperimentResponse(
       experimentArn: json['ExperimentArn'] as String?,
@@ -21759,6 +21835,7 @@ class CreateFeatureGroupResponse {
   CreateFeatureGroupResponse({
     required this.featureGroupArn,
   });
+
   factory CreateFeatureGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateFeatureGroupResponse(
       featureGroupArn: json['FeatureGroupArn'] as String,
@@ -21780,6 +21857,7 @@ class CreateFlowDefinitionResponse {
   CreateFlowDefinitionResponse({
     required this.flowDefinitionArn,
   });
+
   factory CreateFlowDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return CreateFlowDefinitionResponse(
       flowDefinitionArn: json['FlowDefinitionArn'] as String,
@@ -21802,6 +21880,7 @@ class CreateHumanTaskUiResponse {
   CreateHumanTaskUiResponse({
     required this.humanTaskUiArn,
   });
+
   factory CreateHumanTaskUiResponse.fromJson(Map<String, dynamic> json) {
     return CreateHumanTaskUiResponse(
       humanTaskUiArn: json['HumanTaskUiArn'] as String,
@@ -21824,6 +21903,7 @@ class CreateHyperParameterTuningJobResponse {
   CreateHyperParameterTuningJobResponse({
     required this.hyperParameterTuningJobArn,
   });
+
   factory CreateHyperParameterTuningJobResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateHyperParameterTuningJobResponse(
@@ -21846,6 +21926,7 @@ class CreateImageResponse {
   CreateImageResponse({
     this.imageArn,
   });
+
   factory CreateImageResponse.fromJson(Map<String, dynamic> json) {
     return CreateImageResponse(
       imageArn: json['ImageArn'] as String?,
@@ -21867,6 +21948,7 @@ class CreateImageVersionResponse {
   CreateImageVersionResponse({
     this.imageVersionArn,
   });
+
   factory CreateImageVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateImageVersionResponse(
       imageVersionArn: json['ImageVersionArn'] as String?,
@@ -21889,6 +21971,7 @@ class CreateLabelingJobResponse {
   CreateLabelingJobResponse({
     required this.labelingJobArn,
   });
+
   factory CreateLabelingJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateLabelingJobResponse(
       labelingJobArn: json['LabelingJobArn'] as String,
@@ -21910,6 +21993,7 @@ class CreateModelBiasJobDefinitionResponse {
   CreateModelBiasJobDefinitionResponse({
     required this.jobDefinitionArn,
   });
+
   factory CreateModelBiasJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateModelBiasJobDefinitionResponse(
@@ -21932,6 +22016,7 @@ class CreateModelExplainabilityJobDefinitionResponse {
   CreateModelExplainabilityJobDefinitionResponse({
     required this.jobDefinitionArn,
   });
+
   factory CreateModelExplainabilityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateModelExplainabilityJobDefinitionResponse(
@@ -21954,6 +22039,7 @@ class CreateModelOutput {
   CreateModelOutput({
     required this.modelArn,
   });
+
   factory CreateModelOutput.fromJson(Map<String, dynamic> json) {
     return CreateModelOutput(
       modelArn: json['ModelArn'] as String,
@@ -21975,6 +22061,7 @@ class CreateModelPackageGroupOutput {
   CreateModelPackageGroupOutput({
     required this.modelPackageGroupArn,
   });
+
   factory CreateModelPackageGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateModelPackageGroupOutput(
       modelPackageGroupArn: json['ModelPackageGroupArn'] as String,
@@ -21996,6 +22083,7 @@ class CreateModelPackageOutput {
   CreateModelPackageOutput({
     required this.modelPackageArn,
   });
+
   factory CreateModelPackageOutput.fromJson(Map<String, dynamic> json) {
     return CreateModelPackageOutput(
       modelPackageArn: json['ModelPackageArn'] as String,
@@ -22017,6 +22105,7 @@ class CreateModelQualityJobDefinitionResponse {
   CreateModelQualityJobDefinitionResponse({
     required this.jobDefinitionArn,
   });
+
   factory CreateModelQualityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateModelQualityJobDefinitionResponse(
@@ -22039,6 +22128,7 @@ class CreateMonitoringScheduleResponse {
   CreateMonitoringScheduleResponse({
     required this.monitoringScheduleArn,
   });
+
   factory CreateMonitoringScheduleResponse.fromJson(Map<String, dynamic> json) {
     return CreateMonitoringScheduleResponse(
       monitoringScheduleArn: json['MonitoringScheduleArn'] as String,
@@ -22060,6 +22150,7 @@ class CreateNotebookInstanceLifecycleConfigOutput {
   CreateNotebookInstanceLifecycleConfigOutput({
     this.notebookInstanceLifecycleConfigArn,
   });
+
   factory CreateNotebookInstanceLifecycleConfigOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateNotebookInstanceLifecycleConfigOutput(
@@ -22086,6 +22177,7 @@ class CreateNotebookInstanceOutput {
   CreateNotebookInstanceOutput({
     this.notebookInstanceArn,
   });
+
   factory CreateNotebookInstanceOutput.fromJson(Map<String, dynamic> json) {
     return CreateNotebookInstanceOutput(
       notebookInstanceArn: json['NotebookInstanceArn'] as String?,
@@ -22108,6 +22200,7 @@ class CreatePipelineResponse {
   CreatePipelineResponse({
     this.pipelineArn,
   });
+
   factory CreatePipelineResponse.fromJson(Map<String, dynamic> json) {
     return CreatePipelineResponse(
       pipelineArn: json['PipelineArn'] as String?,
@@ -22129,6 +22222,7 @@ class CreatePresignedDomainUrlResponse {
   CreatePresignedDomainUrlResponse({
     this.authorizedUrl,
   });
+
   factory CreatePresignedDomainUrlResponse.fromJson(Map<String, dynamic> json) {
     return CreatePresignedDomainUrlResponse(
       authorizedUrl: json['AuthorizedUrl'] as String?,
@@ -22150,6 +22244,7 @@ class CreatePresignedNotebookInstanceUrlOutput {
   CreatePresignedNotebookInstanceUrlOutput({
     this.authorizedUrl,
   });
+
   factory CreatePresignedNotebookInstanceUrlOutput.fromJson(
       Map<String, dynamic> json) {
     return CreatePresignedNotebookInstanceUrlOutput(
@@ -22172,6 +22267,7 @@ class CreateProcessingJobResponse {
   CreateProcessingJobResponse({
     required this.processingJobArn,
   });
+
   factory CreateProcessingJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateProcessingJobResponse(
       processingJobArn: json['ProcessingJobArn'] as String,
@@ -22197,6 +22293,7 @@ class CreateProjectOutput {
     required this.projectArn,
     required this.projectId,
   });
+
   factory CreateProjectOutput.fromJson(Map<String, dynamic> json) {
     return CreateProjectOutput(
       projectArn: json['ProjectArn'] as String,
@@ -22221,6 +22318,7 @@ class CreateTrainingJobResponse {
   CreateTrainingJobResponse({
     required this.trainingJobArn,
   });
+
   factory CreateTrainingJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrainingJobResponse(
       trainingJobArn: json['TrainingJobArn'] as String,
@@ -22242,6 +22340,7 @@ class CreateTransformJobResponse {
   CreateTransformJobResponse({
     required this.transformJobArn,
   });
+
   factory CreateTransformJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateTransformJobResponse(
       transformJobArn: json['TransformJobArn'] as String,
@@ -22263,6 +22362,7 @@ class CreateTrialComponentResponse {
   CreateTrialComponentResponse({
     this.trialComponentArn,
   });
+
   factory CreateTrialComponentResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrialComponentResponse(
       trialComponentArn: json['TrialComponentArn'] as String?,
@@ -22284,6 +22384,7 @@ class CreateTrialResponse {
   CreateTrialResponse({
     this.trialArn,
   });
+
   factory CreateTrialResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrialResponse(
       trialArn: json['TrialArn'] as String?,
@@ -22305,6 +22406,7 @@ class CreateUserProfileResponse {
   CreateUserProfileResponse({
     this.userProfileArn,
   });
+
   factory CreateUserProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserProfileResponse(
       userProfileArn: json['UserProfileArn'] as String?,
@@ -22326,6 +22428,7 @@ class CreateWorkforceResponse {
   CreateWorkforceResponse({
     required this.workforceArn,
   });
+
   factory CreateWorkforceResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorkforceResponse(
       workforceArn: json['WorkforceArn'] as String,
@@ -22348,6 +22451,7 @@ class CreateWorkteamResponse {
   CreateWorkteamResponse({
     this.workteamArn,
   });
+
   factory CreateWorkteamResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorkteamResponse(
       workteamArn: json['WorkteamArn'] as String?,
@@ -22380,6 +22484,7 @@ class CustomImage {
     required this.imageName,
     this.imageVersionNumber,
   });
+
   factory CustomImage.fromJson(Map<String, dynamic> json) {
     return CustomImage(
       appImageConfigName: json['AppImageConfigName'] as String,
@@ -22428,6 +22533,7 @@ class DataCaptureConfig {
     this.enableCapture,
     this.kmsKeyId,
   });
+
   factory DataCaptureConfig.fromJson(Map<String, dynamic> json) {
     return DataCaptureConfig(
       captureOptions: (json['CaptureOptions'] as List)
@@ -22488,6 +22594,7 @@ class DataCaptureConfigSummary {
     required this.enableCapture,
     required this.kmsKeyId,
   });
+
   factory DataCaptureConfigSummary.fromJson(Map<String, dynamic> json) {
     return DataCaptureConfigSummary(
       captureStatus: (json['CaptureStatus'] as String).toCaptureStatus(),
@@ -22531,6 +22638,7 @@ class DataCatalogConfig {
     required this.database,
     required this.tableName,
   });
+
   factory DataCatalogConfig.fromJson(Map<String, dynamic> json) {
     return DataCatalogConfig(
       catalog: json['Catalog'] as String,
@@ -22644,6 +22752,7 @@ class DataProcessing {
     this.joinSource,
     this.outputFilter,
   });
+
   factory DataProcessing.fromJson(Map<String, dynamic> json) {
     return DataProcessing(
       inputFilter: json['InputFilter'] as String?,
@@ -22697,6 +22806,7 @@ class DataQualityAppSpecification {
     this.postAnalyticsProcessorSourceUri,
     this.recordPreprocessorSourceUri,
   });
+
   factory DataQualityAppSpecification.fromJson(Map<String, dynamic> json) {
     return DataQualityAppSpecification(
       imageUri: json['ImageUri'] as String,
@@ -22754,6 +22864,7 @@ class DataQualityBaselineConfig {
     this.constraintsResource,
     this.statisticsResource,
   });
+
   factory DataQualityBaselineConfig.fromJson(Map<String, dynamic> json) {
     return DataQualityBaselineConfig(
       baseliningJobName: json['BaseliningJobName'] as String?,
@@ -22789,6 +22900,7 @@ class DataQualityJobInput {
   DataQualityJobInput({
     required this.endpointInput,
   });
+
   factory DataQualityJobInput.fromJson(Map<String, dynamic> json) {
     return DataQualityJobInput(
       endpointInput:
@@ -22816,6 +22928,7 @@ class DataSource {
     this.fileSystemDataSource,
     this.s3DataSource,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       fileSystemDataSource: json['FileSystemDataSource'] != null
@@ -22871,6 +22984,7 @@ class DatasetDefinition {
     this.localPath,
     this.redshiftDatasetDefinition,
   });
+
   factory DatasetDefinition.fromJson(Map<String, dynamic> json) {
     return DatasetDefinition(
       athenaDatasetDefinition: json['AthenaDatasetDefinition'] != null
@@ -22938,6 +23052,7 @@ class DebugHookConfig {
     this.hookParameters,
     this.localPath,
   });
+
   factory DebugHookConfig.fromJson(Map<String, dynamic> json) {
     return DebugHookConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -23008,6 +23123,7 @@ class DebugRuleConfiguration {
     this.s3OutputPath,
     this.volumeSizeInGB,
   });
+
   factory DebugRuleConfiguration.fromJson(Map<String, dynamic> json) {
     return DebugRuleConfiguration(
       ruleConfigurationName: json['RuleConfigurationName'] as String,
@@ -23066,6 +23182,7 @@ class DebugRuleEvaluationStatus {
     this.ruleEvaluationStatus,
     this.statusDetails,
   });
+
   factory DebugRuleEvaluationStatus.fromJson(Map<String, dynamic> json) {
     return DebugRuleEvaluationStatus(
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -23104,6 +23221,7 @@ class DeleteActionResponse {
   DeleteActionResponse({
     this.actionArn,
   });
+
   factory DeleteActionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteActionResponse(
       actionArn: json['ActionArn'] as String?,
@@ -23125,6 +23243,7 @@ class DeleteArtifactResponse {
   DeleteArtifactResponse({
     this.artifactArn,
   });
+
   factory DeleteArtifactResponse.fromJson(Map<String, dynamic> json) {
     return DeleteArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
@@ -23150,6 +23269,7 @@ class DeleteAssociationResponse {
     this.destinationArn,
     this.sourceArn,
   });
+
   factory DeleteAssociationResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAssociationResponse(
       destinationArn: json['DestinationArn'] as String?,
@@ -23174,6 +23294,7 @@ class DeleteContextResponse {
   DeleteContextResponse({
     this.contextArn,
   });
+
   factory DeleteContextResponse.fromJson(Map<String, dynamic> json) {
     return DeleteContextResponse(
       contextArn: json['ContextArn'] as String?,
@@ -23195,6 +23316,7 @@ class DeleteExperimentResponse {
   DeleteExperimentResponse({
     this.experimentArn,
   });
+
   factory DeleteExperimentResponse.fromJson(Map<String, dynamic> json) {
     return DeleteExperimentResponse(
       experimentArn: json['ExperimentArn'] as String?,
@@ -23211,6 +23333,7 @@ class DeleteExperimentResponse {
 
 class DeleteFlowDefinitionResponse {
   DeleteFlowDefinitionResponse();
+
   factory DeleteFlowDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowDefinitionResponse();
   }
@@ -23222,6 +23345,7 @@ class DeleteFlowDefinitionResponse {
 
 class DeleteHumanTaskUiResponse {
   DeleteHumanTaskUiResponse();
+
   factory DeleteHumanTaskUiResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHumanTaskUiResponse();
   }
@@ -23233,6 +23357,7 @@ class DeleteHumanTaskUiResponse {
 
 class DeleteImageResponse {
   DeleteImageResponse();
+
   factory DeleteImageResponse.fromJson(Map<String, dynamic> _) {
     return DeleteImageResponse();
   }
@@ -23244,6 +23369,7 @@ class DeleteImageResponse {
 
 class DeleteImageVersionResponse {
   DeleteImageVersionResponse();
+
   factory DeleteImageVersionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteImageVersionResponse();
   }
@@ -23260,6 +23386,7 @@ class DeletePipelineResponse {
   DeletePipelineResponse({
     this.pipelineArn,
   });
+
   factory DeletePipelineResponse.fromJson(Map<String, dynamic> json) {
     return DeletePipelineResponse(
       pipelineArn: json['PipelineArn'] as String?,
@@ -23276,6 +23403,7 @@ class DeletePipelineResponse {
 
 class DeleteTagsOutput {
   DeleteTagsOutput();
+
   factory DeleteTagsOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTagsOutput();
   }
@@ -23292,6 +23420,7 @@ class DeleteTrialComponentResponse {
   DeleteTrialComponentResponse({
     this.trialComponentArn,
   });
+
   factory DeleteTrialComponentResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTrialComponentResponse(
       trialComponentArn: json['TrialComponentArn'] as String?,
@@ -23313,6 +23442,7 @@ class DeleteTrialResponse {
   DeleteTrialResponse({
     this.trialArn,
   });
+
   factory DeleteTrialResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTrialResponse(
       trialArn: json['TrialArn'] as String?,
@@ -23329,6 +23459,7 @@ class DeleteTrialResponse {
 
 class DeleteWorkforceResponse {
   DeleteWorkforceResponse();
+
   factory DeleteWorkforceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorkforceResponse();
   }
@@ -23346,6 +23477,7 @@ class DeleteWorkteamResponse {
   DeleteWorkteamResponse({
     required this.success,
   });
+
   factory DeleteWorkteamResponse.fromJson(Map<String, dynamic> json) {
     return DeleteWorkteamResponse(
       success: json['Success'] as bool,
@@ -23388,6 +23520,7 @@ class DeployedImage {
     this.resolvedImage,
     this.specifiedImage,
   });
+
   factory DeployedImage.fromJson(Map<String, dynamic> json) {
     return DeployedImage(
       resolutionTime: timeStampFromJson(json['ResolutionTime']),
@@ -23421,6 +23554,7 @@ class DeploymentConfig {
     required this.blueGreenUpdatePolicy,
     this.autoRollbackConfiguration,
   });
+
   factory DeploymentConfig.fromJson(Map<String, dynamic> json) {
     return DeploymentConfig(
       blueGreenUpdatePolicy: BlueGreenUpdatePolicy.fromJson(
@@ -23488,6 +23622,7 @@ class DescribeActionResponse {
     this.source,
     this.status,
   });
+
   factory DescribeActionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeActionResponse(
       actionArn: json['ActionArn'] as String?,
@@ -23596,6 +23731,7 @@ class DescribeAlgorithmOutput {
     this.productId,
     this.validationSpecification,
   });
+
   factory DescribeAlgorithmOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAlgorithmOutput(
       algorithmArn: json['AlgorithmArn'] as String,
@@ -23676,6 +23812,7 @@ class DescribeAppImageConfigResponse {
     this.kernelGatewayImageConfig,
     this.lastModifiedTime,
   });
+
   factory DescribeAppImageConfigResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAppImageConfigResponse(
       appImageConfigArn: json['AppImageConfigArn'] as String?,
@@ -23756,6 +23893,7 @@ class DescribeAppResponse {
     this.status,
     this.userProfileName,
   });
+
   factory DescribeAppResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAppResponse(
       appArn: json['AppArn'] as String?,
@@ -23846,6 +23984,7 @@ class DescribeArtifactResponse {
     this.properties,
     this.source,
   });
+
   factory DescribeArtifactResponse.fromJson(Map<String, dynamic> json) {
     return DescribeArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
@@ -23994,6 +24133,7 @@ class DescribeAutoMLJobResponse {
     this.problemType,
     this.resolvedAttributes,
   });
+
   factory DescribeAutoMLJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAutoMLJobResponse(
       autoMLJobArn: json['AutoMLJobArn'] as String,
@@ -24130,6 +24270,7 @@ class DescribeCodeRepositoryOutput {
     required this.lastModifiedTime,
     this.gitConfig,
   });
+
   factory DescribeCodeRepositoryOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCodeRepositoryOutput(
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
@@ -24250,6 +24391,7 @@ class DescribeCompilationJobResponse {
     this.modelDigests,
     this.vpcConfig,
   });
+
   factory DescribeCompilationJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCompilationJobResponse(
       compilationJobArn: json['CompilationJobArn'] as String,
@@ -24361,6 +24503,7 @@ class DescribeContextResponse {
     this.properties,
     this.source,
   });
+
   factory DescribeContextResponse.fromJson(Map<String, dynamic> json) {
     return DescribeContextResponse(
       contextArn: json['ContextArn'] as String?,
@@ -24456,6 +24599,7 @@ class DescribeDataQualityJobDefinitionResponse {
     this.networkConfig,
     this.stoppingCondition,
   });
+
   factory DescribeDataQualityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDataQualityJobDefinitionResponse(
@@ -24553,6 +24697,7 @@ class DescribeDeviceFleetResponse {
     this.iotRoleAlias,
     this.roleArn,
   });
+
   factory DescribeDeviceFleetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDeviceFleetResponse(
       creationTime:
@@ -24636,6 +24781,7 @@ class DescribeDeviceResponse {
     this.models,
     this.nextToken,
   });
+
   factory DescribeDeviceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDeviceResponse(
       deviceFleetName: json['DeviceFleetName'] as String,
@@ -24768,6 +24914,7 @@ class DescribeDomainResponse {
     this.url,
     this.vpcId,
   });
+
   factory DescribeDomainResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDomainResponse(
       appNetworkAccessType:
@@ -24912,6 +25059,7 @@ class DescribeEdgePackagingJobResponse {
     this.resourceKey,
     this.roleArn,
   });
+
   factory DescribeEdgePackagingJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEdgePackagingJobResponse(
       edgePackagingJobArn: json['EdgePackagingJobArn'] as String,
@@ -25007,6 +25155,7 @@ class DescribeEndpointConfigOutput {
     this.dataCaptureConfig,
     this.kmsKeyId,
   });
+
   factory DescribeEndpointConfigOutput.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointConfigOutput(
       creationTime:
@@ -25128,6 +25277,7 @@ class DescribeEndpointOutput {
     this.lastDeploymentConfig,
     this.productionVariants,
   });
+
   factory DescribeEndpointOutput.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointOutput(
       creationTime:
@@ -25222,6 +25372,7 @@ class DescribeExperimentResponse {
     this.lastModifiedTime,
     this.source,
   });
+
   factory DescribeExperimentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeExperimentResponse(
       createdBy: json['CreatedBy'] != null
@@ -25355,6 +25506,7 @@ class DescribeFeatureGroupResponse {
     this.onlineStoreConfig,
     this.roleArn,
   });
+
   factory DescribeFeatureGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFeatureGroupResponse(
       creationTime:
@@ -25471,6 +25623,7 @@ class DescribeFlowDefinitionResponse {
     this.humanLoopActivationConfig,
     this.humanLoopRequestSource,
   });
+
   factory DescribeFlowDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFlowDefinitionResponse(
       creationTime:
@@ -25547,6 +25700,7 @@ class DescribeHumanTaskUiResponse {
     required this.uiTemplate,
     this.humanTaskUiStatus,
   });
+
   factory DescribeHumanTaskUiResponse.fromJson(Map<String, dynamic> json) {
     return DescribeHumanTaskUiResponse(
       creationTime:
@@ -25655,6 +25809,7 @@ class DescribeHyperParameterTuningJobResponse {
     this.trainingJobDefinitions,
     this.warmStartConfig,
   });
+
   factory DescribeHyperParameterTuningJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeHyperParameterTuningJobResponse(
@@ -25783,6 +25938,7 @@ class DescribeImageResponse {
     this.lastModifiedTime,
     this.roleArn,
   });
+
   factory DescribeImageResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImageResponse(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -25863,6 +26019,7 @@ class DescribeImageVersionResponse {
     this.lastModifiedTime,
     this.version,
   });
+
   factory DescribeImageVersionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImageVersionResponse(
       baseImage: json['BaseImage'] as String?,
@@ -26034,6 +26191,7 @@ class DescribeLabelingJobResponse {
     this.stoppingConditions,
     this.tags,
   });
+
   factory DescribeLabelingJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLabelingJobResponse(
       creationTime:
@@ -26164,6 +26322,7 @@ class DescribeModelBiasJobDefinitionResponse {
     this.networkConfig,
     this.stoppingCondition,
   });
+
   factory DescribeModelBiasJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeModelBiasJobDefinitionResponse(
@@ -26269,6 +26428,7 @@ class DescribeModelExplainabilityJobDefinitionResponse {
     this.networkConfig,
     this.stoppingCondition,
   });
+
   factory DescribeModelExplainabilityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeModelExplainabilityJobDefinitionResponse(
@@ -26384,6 +26544,7 @@ class DescribeModelOutput {
     this.primaryContainer,
     this.vpcConfig,
   });
+
   factory DescribeModelOutput.fromJson(Map<String, dynamic> json) {
     return DescribeModelOutput(
       creationTime:
@@ -26462,6 +26623,7 @@ class DescribeModelPackageGroupOutput {
     required this.modelPackageGroupStatus,
     this.modelPackageGroupDescription,
   });
+
   factory DescribeModelPackageGroupOutput.fromJson(Map<String, dynamic> json) {
     return DescribeModelPackageGroupOutput(
       createdBy:
@@ -26573,6 +26735,7 @@ class DescribeModelPackageOutput {
     this.sourceAlgorithmSpecification,
     this.validationSpecification,
   });
+
   factory DescribeModelPackageOutput.fromJson(Map<String, dynamic> json) {
     return DescribeModelPackageOutput(
       creationTime:
@@ -26716,6 +26879,7 @@ class DescribeModelQualityJobDefinitionResponse {
     this.networkConfig,
     this.stoppingCondition,
   });
+
   factory DescribeModelQualityJobDefinitionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeModelQualityJobDefinitionResponse(
@@ -26840,6 +27004,7 @@ class DescribeMonitoringScheduleResponse {
     this.lastMonitoringExecutionSummary,
     this.monitoringType,
   });
+
   factory DescribeMonitoringScheduleResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeMonitoringScheduleResponse(
@@ -26919,6 +27084,7 @@ class DescribeNotebookInstanceLifecycleConfigOutput {
     this.onCreate,
     this.onStart,
   });
+
   factory DescribeNotebookInstanceLifecycleConfigOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeNotebookInstanceLifecycleConfigOutput(
@@ -27093,6 +27259,7 @@ class DescribeNotebookInstanceOutput {
     this.url,
     this.volumeSizeInGB,
   });
+
   factory DescribeNotebookInstanceOutput.fromJson(Map<String, dynamic> json) {
     return DescribeNotebookInstanceOutput(
       acceleratorTypes: (json['AcceleratorTypes'] as List?)
@@ -27199,6 +27366,7 @@ class DescribePipelineDefinitionForExecutionResponse {
     this.creationTime,
     this.pipelineDefinition,
   });
+
   factory DescribePipelineDefinitionForExecutionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePipelineDefinitionForExecutionResponse(
@@ -27260,6 +27428,7 @@ class DescribePipelineExecutionResponse {
     this.pipelineExecutionStatus,
     this.pipelineExperimentConfig,
   });
+
   factory DescribePipelineExecutionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePipelineExecutionResponse(
@@ -27370,6 +27539,7 @@ class DescribePipelineResponse {
     this.pipelineStatus,
     this.roleArn,
   });
+
   factory DescribePipelineResponse.fromJson(Map<String, dynamic> json) {
     return DescribePipelineResponse(
       createdBy: json['CreatedBy'] != null
@@ -27519,6 +27689,7 @@ class DescribeProcessingJobResponse {
     this.stoppingCondition,
     this.trainingJobArn,
   });
+
   factory DescribeProcessingJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProcessingJobResponse(
       appSpecification: AppSpecification.fromJson(
@@ -27659,6 +27830,7 @@ class DescribeProjectOutput {
     this.projectDescription,
     this.serviceCatalogProvisionedProductDetails,
   });
+
   factory DescribeProjectOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProjectOutput(
       creationTime:
@@ -27720,6 +27892,7 @@ class DescribeSubscribedWorkteamResponse {
   DescribeSubscribedWorkteamResponse({
     required this.subscribedWorkteam,
   });
+
   factory DescribeSubscribedWorkteamResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSubscribedWorkteamResponse(
@@ -28038,6 +28211,7 @@ class DescribeTrainingJobResponse {
     this.tuningJobArn,
     this.vpcConfig,
   });
+
   factory DescribeTrainingJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTrainingJobResponse(
       algorithmSpecification: AlgorithmSpecification.fromJson(
@@ -28348,6 +28522,7 @@ class DescribeTransformJobResponse {
     this.transformOutput,
     this.transformStartTime,
   });
+
   factory DescribeTransformJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTransformJobResponse(
       creationTime:
@@ -28517,6 +28692,7 @@ class DescribeTrialComponentResponse {
     this.trialComponentArn,
     this.trialComponentName,
   });
+
   factory DescribeTrialComponentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTrialComponentResponse(
       createdBy: json['CreatedBy'] != null
@@ -28645,6 +28821,7 @@ class DescribeTrialResponse {
     this.trialArn,
     this.trialName,
   });
+
   factory DescribeTrialResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTrialResponse(
       createdBy: json['CreatedBy'] != null
@@ -28744,6 +28921,7 @@ class DescribeUserProfileResponse {
     this.userProfileName,
     this.userSettings,
   });
+
   factory DescribeUserProfileResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserProfileResponse(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -28808,6 +28986,7 @@ class DescribeWorkforceResponse {
   DescribeWorkforceResponse({
     required this.workforce,
   });
+
   factory DescribeWorkforceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorkforceResponse(
       workforce: Workforce.fromJson(json['Workforce'] as Map<String, dynamic>),
@@ -28830,6 +29009,7 @@ class DescribeWorkteamResponse {
   DescribeWorkteamResponse({
     required this.workteam,
   });
+
   factory DescribeWorkteamResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorkteamResponse(
       workteam: Workteam.fromJson(json['Workteam'] as Map<String, dynamic>),
@@ -28860,6 +29040,7 @@ class DesiredWeightAndCapacity {
     this.desiredInstanceCount,
     this.desiredWeight,
   });
+
   factory DesiredWeightAndCapacity.fromJson(Map<String, dynamic> json) {
     return DesiredWeightAndCapacity(
       variantName: json['VariantName'] as String,
@@ -28973,6 +29154,7 @@ class Device {
     this.description,
     this.iotThingName,
   });
+
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
       deviceName: json['DeviceName'] as String,
@@ -29013,6 +29195,7 @@ class DeviceFleetSummary {
     this.creationTime,
     this.lastModifiedTime,
   });
+
   factory DeviceFleetSummary.fromJson(Map<String, dynamic> json) {
     return DeviceFleetSummary(
       deviceFleetArn: json['DeviceFleetArn'] as String,
@@ -29050,6 +29233,7 @@ class DeviceStats {
     required this.connectedDeviceCount,
     required this.registeredDeviceCount,
   });
+
   factory DeviceStats.fromJson(Map<String, dynamic> json) {
     return DeviceStats(
       connectedDeviceCount: json['ConnectedDeviceCount'] as int,
@@ -29104,6 +29288,7 @@ class DeviceSummary {
     this.models,
     this.registrationTime,
   });
+
   factory DeviceSummary.fromJson(Map<String, dynamic> json) {
     return DeviceSummary(
       deviceArn: json['DeviceArn'] as String,
@@ -29174,6 +29359,7 @@ extension on String {
 
 class DisableSagemakerServicecatalogPortfolioOutput {
   DisableSagemakerServicecatalogPortfolioOutput();
+
   factory DisableSagemakerServicecatalogPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return DisableSagemakerServicecatalogPortfolioOutput();
@@ -29195,6 +29381,7 @@ class DisassociateTrialComponentResponse {
     this.trialArn,
     this.trialComponentArn,
   });
+
   factory DisassociateTrialComponentResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateTrialComponentResponse(
@@ -29245,6 +29432,7 @@ class DomainDetails {
     this.status,
     this.url,
   });
+
   factory DomainDetails.fromJson(Map<String, dynamic> json) {
     return DomainDetails(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -29352,6 +29540,7 @@ class EdgeModel {
     this.latestInference,
     this.latestSampleTime,
   });
+
   factory EdgeModel.fromJson(Map<String, dynamic> json) {
     return EdgeModel(
       modelName: json['ModelName'] as String,
@@ -29407,6 +29596,7 @@ class EdgeModelStat {
     required this.offlineDeviceCount,
     required this.samplingDeviceCount,
   });
+
   factory EdgeModelStat.fromJson(Map<String, dynamic> json) {
     return EdgeModelStat(
       activeDeviceCount: json['ActiveDeviceCount'] as int,
@@ -29448,6 +29638,7 @@ class EdgeModelSummary {
     required this.modelName,
     required this.modelVersion,
   });
+
   factory EdgeModelSummary.fromJson(Map<String, dynamic> json) {
     return EdgeModelSummary(
       modelName: json['ModelName'] as String,
@@ -29524,6 +29715,7 @@ class EdgeOutputConfig {
     this.presetDeploymentConfig,
     this.presetDeploymentType,
   });
+
   factory EdgeOutputConfig.fromJson(Map<String, dynamic> json) {
     return EdgeOutputConfig(
       s3OutputLocation: json['S3OutputLocation'] as String,
@@ -29634,6 +29826,7 @@ class EdgePackagingJobSummary {
     this.modelName,
     this.modelVersion,
   });
+
   factory EdgePackagingJobSummary.fromJson(Map<String, dynamic> json) {
     return EdgePackagingJobSummary(
       edgePackagingJobArn: json['EdgePackagingJobArn'] as String,
@@ -29693,6 +29886,7 @@ class EdgePresetDeploymentOutput {
     this.status,
     this.statusMessage,
   });
+
   factory EdgePresetDeploymentOutput.fromJson(Map<String, dynamic> json) {
     return EdgePresetDeploymentOutput(
       type: (json['Type'] as String).toEdgePresetDeploymentType(),
@@ -29769,6 +29963,7 @@ extension on String {
 
 class EnableSagemakerServicecatalogPortfolioOutput {
   EnableSagemakerServicecatalogPortfolioOutput();
+
   factory EnableSagemakerServicecatalogPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return EnableSagemakerServicecatalogPortfolioOutput();
@@ -29833,6 +30028,7 @@ class Endpoint {
     this.productionVariants,
     this.tags,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       creationTime:
@@ -29937,6 +30133,7 @@ class EndpointConfigSummary {
     required this.endpointConfigArn,
     required this.endpointConfigName,
   });
+
   factory EndpointConfigSummary.fromJson(Map<String, dynamic> json) {
     return EndpointConfigSummary(
       creationTime:
@@ -30016,6 +30213,7 @@ class EndpointInput {
     this.s3InputMode,
     this.startTimeOffset,
   });
+
   factory EndpointInput.fromJson(Map<String, dynamic> json) {
     return EndpointInput(
       endpointName: json['EndpointName'] as String,
@@ -30221,6 +30419,7 @@ class EndpointSummary {
     required this.endpointStatus,
     required this.lastModifiedTime,
   });
+
   factory EndpointSummary.fromJson(Map<String, dynamic> json) {
     return EndpointSummary(
       creationTime:
@@ -30343,6 +30542,7 @@ class Experiment {
     this.source,
     this.tags,
   });
+
   factory Experiment.fromJson(Map<String, dynamic> json) {
     return Experiment(
       createdBy: json['CreatedBy'] != null
@@ -30426,6 +30626,7 @@ class ExperimentConfig {
     this.trialComponentDisplayName,
     this.trialName,
   });
+
   factory ExperimentConfig.fromJson(Map<String, dynamic> json) {
     return ExperimentConfig(
       experimentName: json['ExperimentName'] as String?,
@@ -30459,6 +30660,7 @@ class ExperimentSource {
     required this.sourceArn,
     this.sourceType,
   });
+
   factory ExperimentSource.fromJson(Map<String, dynamic> json) {
     return ExperimentSource(
       sourceArn: json['SourceArn'] as String,
@@ -30505,6 +30707,7 @@ class ExperimentSummary {
     this.experimentSource,
     this.lastModifiedTime,
   });
+
   factory ExperimentSummary.fromJson(Map<String, dynamic> json) {
     return ExperimentSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -30547,6 +30750,7 @@ class Explainability {
   Explainability({
     this.report,
   });
+
   factory Explainability.fromJson(Map<String, dynamic> json) {
     return Explainability(
       report: json['Report'] != null
@@ -30580,6 +30784,7 @@ class FeatureDefinition {
     this.featureName,
     this.featureType,
   });
+
   factory FeatureDefinition.fromJson(Map<String, dynamic> json) {
     return FeatureDefinition(
       featureName: json['FeatureName'] as String?,
@@ -30678,6 +30883,7 @@ class FeatureGroup {
     this.roleArn,
     this.tags,
   });
+
   factory FeatureGroup.fromJson(Map<String, dynamic> json) {
     return FeatureGroup(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -30891,6 +31097,7 @@ class FeatureGroupSummary {
     this.featureGroupStatus,
     this.offlineStoreStatus,
   });
+
   factory FeatureGroupSummary.fromJson(Map<String, dynamic> json) {
     return FeatureGroupSummary(
       creationTime:
@@ -31005,6 +31212,7 @@ class FileSystemConfig {
     this.defaultUid,
     this.mountPath,
   });
+
   factory FileSystemConfig.fromJson(Map<String, dynamic> json) {
     return FileSystemConfig(
       defaultGid: json['DefaultGid'] as int?,
@@ -31047,6 +31255,7 @@ class FileSystemDataSource {
     required this.fileSystemId,
     required this.fileSystemType,
   });
+
   factory FileSystemDataSource.fromJson(Map<String, dynamic> json) {
     return FileSystemDataSource(
       directoryPath: json['DirectoryPath'] as String,
@@ -31239,6 +31448,7 @@ class Filter {
     this.operator,
     this.value,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String,
@@ -31276,6 +31486,7 @@ class FinalAutoMLJobObjectiveMetric {
     required this.value,
     this.type,
   });
+
   factory FinalAutoMLJobObjectiveMetric.fromJson(Map<String, dynamic> json) {
     return FinalAutoMLJobObjectiveMetric(
       metricName: (json['MetricName'] as String).toAutoMLMetricEnum(),
@@ -31316,6 +31527,7 @@ class FinalHyperParameterTuningJobObjectiveMetric {
     required this.value,
     this.type,
   });
+
   factory FinalHyperParameterTuningJobObjectiveMetric.fromJson(
       Map<String, dynamic> json) {
     return FinalHyperParameterTuningJobObjectiveMetric(
@@ -31354,6 +31566,7 @@ class FlowDefinitionOutputConfig {
     required this.s3OutputPath,
     this.kmsKeyId,
   });
+
   factory FlowDefinitionOutputConfig.fromJson(Map<String, dynamic> json) {
     return FlowDefinitionOutputConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -31434,6 +31647,7 @@ class FlowDefinitionSummary {
     required this.flowDefinitionStatus,
     this.failureReason,
   });
+
   factory FlowDefinitionSummary.fromJson(Map<String, dynamic> json) {
     return FlowDefinitionSummary(
       creationTime:
@@ -31560,6 +31774,7 @@ class GetDeviceFleetReportResponse {
     this.outputConfig,
     this.reportGenerated,
   });
+
   factory GetDeviceFleetReportResponse.fromJson(Map<String, dynamic> json) {
     return GetDeviceFleetReportResponse(
       deviceFleetArn: json['DeviceFleetArn'] as String,
@@ -31614,6 +31829,7 @@ class GetModelPackageGroupPolicyOutput {
   GetModelPackageGroupPolicyOutput({
     required this.resourcePolicy,
   });
+
   factory GetModelPackageGroupPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetModelPackageGroupPolicyOutput(
       resourcePolicy: json['ResourcePolicy'] as String,
@@ -31635,6 +31851,7 @@ class GetSagemakerServicecatalogPortfolioStatusOutput {
   GetSagemakerServicecatalogPortfolioStatusOutput({
     this.status,
   });
+
   factory GetSagemakerServicecatalogPortfolioStatusOutput.fromJson(
       Map<String, dynamic> json) {
     return GetSagemakerServicecatalogPortfolioStatusOutput(
@@ -31658,6 +31875,7 @@ class GetSearchSuggestionsResponse {
   GetSearchSuggestionsResponse({
     this.propertyNameSuggestions,
   });
+
   factory GetSearchSuggestionsResponse.fromJson(Map<String, dynamic> json) {
     return GetSearchSuggestionsResponse(
       propertyNameSuggestions: (json['PropertyNameSuggestions'] as List?)
@@ -31699,6 +31917,7 @@ class GitConfig {
     this.branch,
     this.secretArn,
   });
+
   factory GitConfig.fromJson(Map<String, dynamic> json) {
     return GitConfig(
       repositoryUrl: json['RepositoryUrl'] as String,
@@ -31733,6 +31952,7 @@ class GitConfigForUpdate {
   GitConfigForUpdate({
     this.secretArn,
   });
+
   factory GitConfigForUpdate.fromJson(Map<String, dynamic> json) {
     return GitConfigForUpdate(
       secretArn: json['SecretArn'] as String?,
@@ -31762,6 +31982,7 @@ class HumanLoopActivationConditionsConfig {
   HumanLoopActivationConditionsConfig({
     required this.humanLoopActivationConditions,
   });
+
   factory HumanLoopActivationConditionsConfig.fromJson(
       Map<String, dynamic> json) {
     return HumanLoopActivationConditionsConfig(
@@ -31790,6 +32011,7 @@ class HumanLoopActivationConfig {
   HumanLoopActivationConfig({
     required this.humanLoopActivationConditionsConfig,
   });
+
   factory HumanLoopActivationConfig.fromJson(Map<String, dynamic> json) {
     return HumanLoopActivationConfig(
       humanLoopActivationConditionsConfig:
@@ -31868,6 +32090,7 @@ class HumanLoopConfig {
     this.taskKeywords,
     this.taskTimeLimitInSeconds,
   });
+
   factory HumanLoopConfig.fromJson(Map<String, dynamic> json) {
     return HumanLoopConfig(
       humanTaskUiArn: json['HumanTaskUiArn'] as String,
@@ -31927,6 +32150,7 @@ class HumanLoopRequestSource {
   HumanLoopRequestSource({
     required this.awsManagedHumanLoopRequestSource,
   });
+
   factory HumanLoopRequestSource.fromJson(Map<String, dynamic> json) {
     return HumanLoopRequestSource(
       awsManagedHumanLoopRequestSource:
@@ -32995,6 +33219,7 @@ class HumanTaskConfig {
     this.taskAvailabilityLifetimeInSeconds,
     this.taskKeywords,
   });
+
   factory HumanTaskConfig.fromJson(Map<String, dynamic> json) {
     return HumanTaskConfig(
       annotationConsolidationConfig: AnnotationConsolidationConfig.fromJson(
@@ -33100,6 +33325,7 @@ class HumanTaskUiSummary {
     required this.humanTaskUiArn,
     required this.humanTaskUiName,
   });
+
   factory HumanTaskUiSummary.fromJson(Map<String, dynamic> json) {
     return HumanTaskUiSummary(
       creationTime:
@@ -33166,6 +33392,7 @@ class HyperParameterAlgorithmSpecification {
     this.metricDefinitions,
     this.trainingImage,
   });
+
   factory HyperParameterAlgorithmSpecification.fromJson(
       Map<String, dynamic> json) {
     return HyperParameterAlgorithmSpecification(
@@ -33268,6 +33495,7 @@ class HyperParameterSpecification {
     this.isTunable,
     this.range,
   });
+
   factory HyperParameterSpecification.fromJson(Map<String, dynamic> json) {
     return HyperParameterSpecification(
       name: json['Name'] as String,
@@ -33397,6 +33625,7 @@ class HyperParameterTrainingJobDefinition {
     this.tuningObjective,
     this.vpcConfig,
   });
+
   factory HyperParameterTrainingJobDefinition.fromJson(
       Map<String, dynamic> json) {
     return HyperParameterTrainingJobDefinition(
@@ -33567,6 +33796,7 @@ class HyperParameterTrainingJobSummary {
     this.trainingStartTime,
     this.tuningJobName,
   });
+
   factory HyperParameterTrainingJobSummary.fromJson(Map<String, dynamic> json) {
     return HyperParameterTrainingJobSummary(
       creationTime:
@@ -33679,6 +33909,7 @@ class HyperParameterTuningJobConfig {
     this.trainingJobEarlyStoppingType,
     this.tuningJobCompletionCriteria,
   });
+
   factory HyperParameterTuningJobConfig.fromJson(Map<String, dynamic> json) {
     return HyperParameterTuningJobConfig(
       resourceLimits: ResourceLimits.fromJson(
@@ -33743,6 +33974,7 @@ class HyperParameterTuningJobObjective {
     required this.metricName,
     required this.type,
   });
+
   factory HyperParameterTuningJobObjective.fromJson(Map<String, dynamic> json) {
     return HyperParameterTuningJobObjective(
       metricName: json['MetricName'] as String,
@@ -33950,6 +34182,7 @@ class HyperParameterTuningJobSummary {
     this.lastModifiedTime,
     this.resourceLimits,
   });
+
   factory HyperParameterTuningJobSummary.fromJson(Map<String, dynamic> json) {
     return HyperParameterTuningJobSummary(
       creationTime:
@@ -34061,6 +34294,7 @@ class HyperParameterTuningJobWarmStartConfig {
     required this.parentHyperParameterTuningJobs,
     required this.warmStartType,
   });
+
   factory HyperParameterTuningJobWarmStartConfig.fromJson(
       Map<String, dynamic> json) {
     return HyperParameterTuningJobWarmStartConfig(
@@ -34154,6 +34388,7 @@ class Image {
     this.displayName,
     this.failureReason,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       creationTime:
@@ -34218,6 +34453,7 @@ class ImageConfig {
     required this.repositoryAccessMode,
     this.repositoryAuthConfig,
   });
+
   factory ImageConfig.fromJson(Map<String, dynamic> json) {
     return ImageConfig(
       repositoryAccessMode:
@@ -34387,6 +34623,7 @@ class ImageVersion {
     required this.version,
     this.failureReason,
   });
+
   factory ImageVersion.fromJson(Map<String, dynamic> json) {
     return ImageVersion(
       creationTime:
@@ -34544,6 +34781,7 @@ class InferenceExecutionConfig {
   InferenceExecutionConfig({
     required this.mode,
   });
+
   factory InferenceExecutionConfig.fromJson(Map<String, dynamic> json) {
     return InferenceExecutionConfig(
       mode: (json['Mode'] as String).toInferenceExecutionMode(),
@@ -34620,6 +34858,7 @@ class InferenceSpecification {
     this.supportedRealtimeInferenceInstanceTypes,
     this.supportedTransformInstanceTypes,
   });
+
   factory InferenceSpecification.fromJson(Map<String, dynamic> json) {
     return InferenceSpecification(
       containers: (json['Containers'] as List)
@@ -34980,6 +35219,7 @@ class InputConfig {
     required this.s3Uri,
     this.frameworkVersion,
   });
+
   factory InputConfig.fromJson(Map<String, dynamic> json) {
     return InputConfig(
       dataInputConfig: json['DataInputConfig'] as String,
@@ -35276,6 +35516,7 @@ class IntegerParameterRange {
     required this.name,
     this.scalingType,
   });
+
   factory IntegerParameterRange.fromJson(Map<String, dynamic> json) {
     return IntegerParameterRange(
       maxValue: json['MaxValue'] as String,
@@ -35312,6 +35553,7 @@ class IntegerParameterRangeSpecification {
     required this.maxValue,
     required this.minValue,
   });
+
   factory IntegerParameterRangeSpecification.fromJson(
       Map<String, dynamic> json) {
     return IntegerParameterRangeSpecification(
@@ -35367,6 +35609,7 @@ class JupyterServerAppSettings {
   JupyterServerAppSettings({
     this.defaultResourceSpec,
   });
+
   factory JupyterServerAppSettings.fromJson(Map<String, dynamic> json) {
     return JupyterServerAppSettings(
       defaultResourceSpec: json['DefaultResourceSpec'] != null
@@ -35399,6 +35642,7 @@ class KernelGatewayAppSettings {
     this.customImages,
     this.defaultResourceSpec,
   });
+
   factory KernelGatewayAppSettings.fromJson(Map<String, dynamic> json) {
     return KernelGatewayAppSettings(
       customImages: (json['CustomImages'] as List?)
@@ -35437,6 +35681,7 @@ class KernelGatewayImageConfig {
     required this.kernelSpecs,
     this.fileSystemConfig,
   });
+
   factory KernelGatewayImageConfig.fromJson(Map<String, dynamic> json) {
     return KernelGatewayImageConfig(
       kernelSpecs: (json['KernelSpecs'] as List)
@@ -35472,6 +35717,7 @@ class KernelSpec {
     required this.name,
     this.displayName,
   });
+
   factory KernelSpec.fromJson(Map<String, dynamic> json) {
     return KernelSpec(
       name: json['Name'] as String,
@@ -35513,6 +35759,7 @@ class LabelCounters {
     this.totalLabeled,
     this.unlabeled,
   });
+
   factory LabelCounters.fromJson(Map<String, dynamic> json) {
     return LabelCounters(
       failedNonRetryableError: json['FailedNonRetryableError'] as int?,
@@ -35556,6 +35803,7 @@ class LabelCountersForWorkteam {
     this.pendingHuman,
     this.total,
   });
+
   factory LabelCountersForWorkteam.fromJson(Map<String, dynamic> json) {
     return LabelCountersForWorkteam(
       humanLabeled: json['HumanLabeled'] as int?,
@@ -35621,6 +35869,7 @@ class LabelingJobAlgorithmsConfig {
     this.initialActiveLearningModelArn,
     this.labelingJobResourceConfig,
   });
+
   factory LabelingJobAlgorithmsConfig.fromJson(Map<String, dynamic> json) {
     return LabelingJobAlgorithmsConfig(
       labelingJobAlgorithmSpecificationArn:
@@ -35661,6 +35910,7 @@ class LabelingJobDataAttributes {
   LabelingJobDataAttributes({
     this.contentClassifiers,
   });
+
   factory LabelingJobDataAttributes.fromJson(Map<String, dynamic> json) {
     return LabelingJobDataAttributes(
       contentClassifiers: (json['ContentClassifiers'] as List?)
@@ -35707,6 +35957,7 @@ class LabelingJobDataSource {
     this.s3DataSource,
     this.snsDataSource,
   });
+
   factory LabelingJobDataSource.fromJson(Map<String, dynamic> json) {
     return LabelingJobDataSource(
       s3DataSource: json['S3DataSource'] != null
@@ -35760,6 +36011,7 @@ class LabelingJobForWorkteamSummary {
     this.labelingJobName,
     this.numberOfHumanWorkersPerDataObject,
   });
+
   factory LabelingJobForWorkteamSummary.fromJson(Map<String, dynamic> json) {
     return LabelingJobForWorkteamSummary(
       creationTime:
@@ -35808,6 +36060,7 @@ class LabelingJobInputConfig {
     required this.dataSource,
     this.dataAttributes,
   });
+
   factory LabelingJobInputConfig.fromJson(Map<String, dynamic> json) {
     return LabelingJobInputConfig(
       dataSource: LabelingJobDataSource.fromJson(
@@ -35842,6 +36095,7 @@ class LabelingJobOutput {
     required this.outputDatasetS3Uri,
     this.finalActiveLearningModelArn,
   });
+
   factory LabelingJobOutput.fromJson(Map<String, dynamic> json) {
     return LabelingJobOutput(
       outputDatasetS3Uri: json['OutputDatasetS3Uri'] as String,
@@ -35906,6 +36160,7 @@ class LabelingJobOutputConfig {
     this.kmsKeyId,
     this.snsTopicArn,
   });
+
   factory LabelingJobOutputConfig.fromJson(Map<String, dynamic> json) {
     return LabelingJobOutputConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -35962,6 +36217,7 @@ class LabelingJobResourceConfig {
   LabelingJobResourceConfig({
     this.volumeKmsKeyId,
   });
+
   factory LabelingJobResourceConfig.fromJson(Map<String, dynamic> json) {
     return LabelingJobResourceConfig(
       volumeKmsKeyId: json['VolumeKmsKeyId'] as String?,
@@ -36005,6 +36261,7 @@ class LabelingJobS3DataSource {
   LabelingJobS3DataSource({
     required this.manifestS3Uri,
   });
+
   factory LabelingJobS3DataSource.fromJson(Map<String, dynamic> json) {
     return LabelingJobS3DataSource(
       manifestS3Uri: json['ManifestS3Uri'] as String,
@@ -36029,6 +36286,7 @@ class LabelingJobSnsDataSource {
   LabelingJobSnsDataSource({
     required this.snsTopicArn,
   });
+
   factory LabelingJobSnsDataSource.fromJson(Map<String, dynamic> json) {
     return LabelingJobSnsDataSource(
       snsTopicArn: json['SnsTopicArn'] as String,
@@ -36108,6 +36366,7 @@ class LabelingJobStoppingConditions {
     this.maxHumanLabeledObjectCount,
     this.maxPercentageOfInputDatasetLabeled,
   });
+
   factory LabelingJobStoppingConditions.fromJson(Map<String, dynamic> json) {
     return LabelingJobStoppingConditions(
       maxHumanLabeledObjectCount: json['MaxHumanLabeledObjectCount'] as int?,
@@ -36189,6 +36448,7 @@ class LabelingJobSummary {
     this.inputConfig,
     this.labelingJobOutput,
   });
+
   factory LabelingJobSummary.fromJson(Map<String, dynamic> json) {
     return LabelingJobSummary(
       creationTime:
@@ -36260,6 +36520,7 @@ class ListActionsResponse {
     this.actionSummaries,
     this.nextToken,
   });
+
   factory ListActionsResponse.fromJson(Map<String, dynamic> json) {
     return ListActionsResponse(
       actionSummaries: (json['ActionSummaries'] as List?)
@@ -36293,6 +36554,7 @@ class ListAlgorithmsOutput {
     required this.algorithmSummaryList,
     this.nextToken,
   });
+
   factory ListAlgorithmsOutput.fromJson(Map<String, dynamic> json) {
     return ListAlgorithmsOutput(
       algorithmSummaryList: (json['AlgorithmSummaryList'] as List)
@@ -36324,6 +36586,7 @@ class ListAppImageConfigsResponse {
     this.appImageConfigs,
     this.nextToken,
   });
+
   factory ListAppImageConfigsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppImageConfigsResponse(
       appImageConfigs: (json['AppImageConfigs'] as List?)
@@ -36356,6 +36619,7 @@ class ListAppsResponse {
     this.apps,
     this.nextToken,
   });
+
   factory ListAppsResponse.fromJson(Map<String, dynamic> json) {
     return ListAppsResponse(
       apps: (json['Apps'] as List?)
@@ -36387,6 +36651,7 @@ class ListArtifactsResponse {
     this.artifactSummaries,
     this.nextToken,
   });
+
   factory ListArtifactsResponse.fromJson(Map<String, dynamic> json) {
     return ListArtifactsResponse(
       artifactSummaries: (json['ArtifactSummaries'] as List?)
@@ -36418,6 +36683,7 @@ class ListAssociationsResponse {
     this.associationSummaries,
     this.nextToken,
   });
+
   factory ListAssociationsResponse.fromJson(Map<String, dynamic> json) {
     return ListAssociationsResponse(
       associationSummaries: (json['AssociationSummaries'] as List?)
@@ -36451,6 +36717,7 @@ class ListAutoMLJobsResponse {
     required this.autoMLJobSummaries,
     this.nextToken,
   });
+
   factory ListAutoMLJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListAutoMLJobsResponse(
       autoMLJobSummaries: (json['AutoMLJobSummaries'] as List)
@@ -36483,6 +36750,7 @@ class ListCandidatesForAutoMLJobResponse {
     required this.candidates,
     this.nextToken,
   });
+
   factory ListCandidatesForAutoMLJobResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCandidatesForAutoMLJobResponse(
@@ -36538,6 +36806,7 @@ class ListCodeRepositoriesOutput {
     required this.codeRepositorySummaryList,
     this.nextToken,
   });
+
   factory ListCodeRepositoriesOutput.fromJson(Map<String, dynamic> json) {
     return ListCodeRepositoriesOutput(
       codeRepositorySummaryList: (json['CodeRepositorySummaryList'] as List)
@@ -36572,6 +36841,7 @@ class ListCompilationJobsResponse {
     required this.compilationJobSummaries,
     this.nextToken,
   });
+
   factory ListCompilationJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListCompilationJobsResponse(
       compilationJobSummaries: (json['CompilationJobSummaries'] as List)
@@ -36636,6 +36906,7 @@ class ListContextsResponse {
     this.contextSummaries,
     this.nextToken,
   });
+
   factory ListContextsResponse.fromJson(Map<String, dynamic> json) {
     return ListContextsResponse(
       contextSummaries: (json['ContextSummaries'] as List?)
@@ -36670,6 +36941,7 @@ class ListDataQualityJobDefinitionsResponse {
     required this.jobDefinitionSummaries,
     this.nextToken,
   });
+
   factory ListDataQualityJobDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListDataQualityJobDefinitionsResponse(
@@ -36704,6 +36976,7 @@ class ListDeviceFleetsResponse {
     required this.deviceFleetSummaries,
     this.nextToken,
   });
+
   factory ListDeviceFleetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDeviceFleetsResponse(
       deviceFleetSummaries: (json['DeviceFleetSummaries'] as List)
@@ -36769,6 +37042,7 @@ class ListDevicesResponse {
     required this.deviceSummaries,
     this.nextToken,
   });
+
   factory ListDevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListDevicesResponse(
       deviceSummaries: (json['DeviceSummaries'] as List)
@@ -36801,6 +37075,7 @@ class ListDomainsResponse {
     this.domains,
     this.nextToken,
   });
+
   factory ListDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainsResponse(
       domains: (json['Domains'] as List?)
@@ -36832,6 +37107,7 @@ class ListEdgePackagingJobsResponse {
     required this.edgePackagingJobSummaries,
     this.nextToken,
   });
+
   factory ListEdgePackagingJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListEdgePackagingJobsResponse(
       edgePackagingJobSummaries: (json['EdgePackagingJobSummaries'] as List)
@@ -36909,6 +37185,7 @@ class ListEndpointConfigsOutput {
     required this.endpointConfigs,
     this.nextToken,
   });
+
   factory ListEndpointConfigsOutput.fromJson(Map<String, dynamic> json) {
     return ListEndpointConfigsOutput(
       endpointConfigs: (json['EndpointConfigs'] as List)
@@ -36941,6 +37218,7 @@ class ListEndpointsOutput {
     required this.endpoints,
     this.nextToken,
   });
+
   factory ListEndpointsOutput.fromJson(Map<String, dynamic> json) {
     return ListEndpointsOutput(
       endpoints: (json['Endpoints'] as List)
@@ -36972,6 +37250,7 @@ class ListExperimentsResponse {
     this.experimentSummaries,
     this.nextToken,
   });
+
   factory ListExperimentsResponse.fromJson(Map<String, dynamic> json) {
     return ListExperimentsResponse(
       experimentSummaries: (json['ExperimentSummaries'] as List?)
@@ -37004,6 +37283,7 @@ class ListFeatureGroupsResponse {
     required this.featureGroupSummaries,
     required this.nextToken,
   });
+
   factory ListFeatureGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListFeatureGroupsResponse(
       featureGroupSummaries: (json['FeatureGroupSummaries'] as List)
@@ -37035,6 +37315,7 @@ class ListFlowDefinitionsResponse {
     required this.flowDefinitionSummaries,
     this.nextToken,
   });
+
   factory ListFlowDefinitionsResponse.fromJson(Map<String, dynamic> json) {
     return ListFlowDefinitionsResponse(
       flowDefinitionSummaries: (json['FlowDefinitionSummaries'] as List)
@@ -37066,6 +37347,7 @@ class ListHumanTaskUisResponse {
     required this.humanTaskUiSummaries,
     this.nextToken,
   });
+
   factory ListHumanTaskUisResponse.fromJson(Map<String, dynamic> json) {
     return ListHumanTaskUisResponse(
       humanTaskUiSummaries: (json['HumanTaskUiSummaries'] as List)
@@ -37101,6 +37383,7 @@ class ListHyperParameterTuningJobsResponse {
     required this.hyperParameterTuningJobSummaries,
     this.nextToken,
   });
+
   factory ListHyperParameterTuningJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListHyperParameterTuningJobsResponse(
@@ -37136,6 +37419,7 @@ class ListImageVersionsResponse {
     this.imageVersions,
     this.nextToken,
   });
+
   factory ListImageVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListImageVersionsResponse(
       imageVersions: (json['ImageVersions'] as List?)
@@ -37167,6 +37451,7 @@ class ListImagesResponse {
     this.images,
     this.nextToken,
   });
+
   factory ListImagesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagesResponse(
       images: (json['Images'] as List?)
@@ -37200,6 +37485,7 @@ class ListLabelingJobsForWorkteamResponse {
     required this.labelingJobSummaryList,
     this.nextToken,
   });
+
   factory ListLabelingJobsForWorkteamResponse.fromJson(
       Map<String, dynamic> json) {
     return ListLabelingJobsForWorkteamResponse(
@@ -37260,6 +37546,7 @@ class ListLabelingJobsResponse {
     this.labelingJobSummaryList,
     this.nextToken,
   });
+
   factory ListLabelingJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListLabelingJobsResponse(
       labelingJobSummaryList: (json['LabelingJobSummaryList'] as List?)
@@ -37293,6 +37580,7 @@ class ListModelBiasJobDefinitionsResponse {
     required this.jobDefinitionSummaries,
     this.nextToken,
   });
+
   factory ListModelBiasJobDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListModelBiasJobDefinitionsResponse(
@@ -37328,6 +37616,7 @@ class ListModelExplainabilityJobDefinitionsResponse {
     required this.jobDefinitionSummaries,
     this.nextToken,
   });
+
   factory ListModelExplainabilityJobDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListModelExplainabilityJobDefinitionsResponse(
@@ -37362,6 +37651,7 @@ class ListModelPackageGroupsOutput {
     required this.modelPackageGroupSummaryList,
     this.nextToken,
   });
+
   factory ListModelPackageGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListModelPackageGroupsOutput(
       modelPackageGroupSummaryList:
@@ -37397,6 +37687,7 @@ class ListModelPackagesOutput {
     required this.modelPackageSummaryList,
     this.nextToken,
   });
+
   factory ListModelPackagesOutput.fromJson(Map<String, dynamic> json) {
     return ListModelPackagesOutput(
       modelPackageSummaryList: (json['ModelPackageSummaryList'] as List)
@@ -37430,6 +37721,7 @@ class ListModelQualityJobDefinitionsResponse {
     required this.jobDefinitionSummaries,
     this.nextToken,
   });
+
   factory ListModelQualityJobDefinitionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListModelQualityJobDefinitionsResponse(
@@ -37464,6 +37756,7 @@ class ListModelsOutput {
     required this.models,
     this.nextToken,
   });
+
   factory ListModelsOutput.fromJson(Map<String, dynamic> json) {
     return ListModelsOutput(
       models: (json['Models'] as List)
@@ -37496,6 +37789,7 @@ class ListMonitoringExecutionsResponse {
     required this.monitoringExecutionSummaries,
     this.nextToken,
   });
+
   factory ListMonitoringExecutionsResponse.fromJson(Map<String, dynamic> json) {
     return ListMonitoringExecutionsResponse(
       monitoringExecutionSummaries: (json['MonitoringExecutionSummaries']
@@ -37530,6 +37824,7 @@ class ListMonitoringSchedulesResponse {
     required this.monitoringScheduleSummaries,
     this.nextToken,
   });
+
   factory ListMonitoringSchedulesResponse.fromJson(Map<String, dynamic> json) {
     return ListMonitoringSchedulesResponse(
       monitoringScheduleSummaries: (json['MonitoringScheduleSummaries'] as List)
@@ -37565,6 +37860,7 @@ class ListNotebookInstanceLifecycleConfigsOutput {
     this.nextToken,
     this.notebookInstanceLifecycleConfigs,
   });
+
   factory ListNotebookInstanceLifecycleConfigsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListNotebookInstanceLifecycleConfigsOutput(
@@ -37604,6 +37900,7 @@ class ListNotebookInstancesOutput {
     this.nextToken,
     this.notebookInstances,
   });
+
   factory ListNotebookInstancesOutput.fromJson(Map<String, dynamic> json) {
     return ListNotebookInstancesOutput(
       nextToken: json['NextToken'] as String?,
@@ -37642,6 +37939,7 @@ class ListPipelineExecutionStepsResponse {
     this.nextToken,
     this.pipelineExecutionSteps,
   });
+
   factory ListPipelineExecutionStepsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPipelineExecutionStepsResponse(
@@ -37680,6 +37978,7 @@ class ListPipelineExecutionsResponse {
     this.nextToken,
     this.pipelineExecutionSummaries,
   });
+
   factory ListPipelineExecutionsResponse.fromJson(Map<String, dynamic> json) {
     return ListPipelineExecutionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -37716,6 +38015,7 @@ class ListPipelineParametersForExecutionResponse {
     this.nextToken,
     this.pipelineParameters,
   });
+
   factory ListPipelineParametersForExecutionResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPipelineParametersForExecutionResponse(
@@ -37754,6 +38054,7 @@ class ListPipelinesResponse {
     this.nextToken,
     this.pipelineSummaries,
   });
+
   factory ListPipelinesResponse.fromJson(Map<String, dynamic> json) {
     return ListPipelinesResponse(
       nextToken: json['NextToken'] as String?,
@@ -37787,6 +38088,7 @@ class ListProcessingJobsResponse {
     required this.processingJobSummaries,
     this.nextToken,
   });
+
   factory ListProcessingJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListProcessingJobsResponse(
       processingJobSummaries: (json['ProcessingJobSummaries'] as List)
@@ -37820,6 +38122,7 @@ class ListProjectsOutput {
     required this.projectSummaryList,
     this.nextToken,
   });
+
   factory ListProjectsOutput.fromJson(Map<String, dynamic> json) {
     return ListProjectsOutput(
       projectSummaryList: (json['ProjectSummaryList'] as List)
@@ -37852,6 +38155,7 @@ class ListSubscribedWorkteamsResponse {
     required this.subscribedWorkteams,
     this.nextToken,
   });
+
   factory ListSubscribedWorkteamsResponse.fromJson(Map<String, dynamic> json) {
     return ListSubscribedWorkteamsResponse(
       subscribedWorkteams: (json['SubscribedWorkteams'] as List)
@@ -37885,6 +38189,7 @@ class ListTagsOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsOutput(
       nextToken: json['NextToken'] as String?,
@@ -37921,6 +38226,7 @@ class ListTrainingJobsForHyperParameterTuningJobResponse {
     required this.trainingJobSummaries,
     this.nextToken,
   });
+
   factory ListTrainingJobsForHyperParameterTuningJobResponse.fromJson(
       Map<String, dynamic> json) {
     return ListTrainingJobsForHyperParameterTuningJobResponse(
@@ -37956,6 +38262,7 @@ class ListTrainingJobsResponse {
     required this.trainingJobSummaries,
     this.nextToken,
   });
+
   factory ListTrainingJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListTrainingJobsResponse(
       trainingJobSummaries: (json['TrainingJobSummaries'] as List)
@@ -37988,6 +38295,7 @@ class ListTransformJobsResponse {
     required this.transformJobSummaries,
     this.nextToken,
   });
+
   factory ListTransformJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListTransformJobsResponse(
       transformJobSummaries: (json['TransformJobSummaries'] as List)
@@ -38019,6 +38327,7 @@ class ListTrialComponentsResponse {
     this.nextToken,
     this.trialComponentSummaries,
   });
+
   factory ListTrialComponentsResponse.fromJson(Map<String, dynamic> json) {
     return ListTrialComponentsResponse(
       nextToken: json['NextToken'] as String?,
@@ -38051,6 +38360,7 @@ class ListTrialsResponse {
     this.nextToken,
     this.trialSummaries,
   });
+
   factory ListTrialsResponse.fromJson(Map<String, dynamic> json) {
     return ListTrialsResponse(
       nextToken: json['NextToken'] as String?,
@@ -38083,6 +38393,7 @@ class ListUserProfilesResponse {
     this.nextToken,
     this.userProfiles,
   });
+
   factory ListUserProfilesResponse.fromJson(Map<String, dynamic> json) {
     return ListUserProfilesResponse(
       nextToken: json['NextToken'] as String?,
@@ -38114,6 +38425,7 @@ class ListWorkforcesResponse {
     required this.workforces,
     this.nextToken,
   });
+
   factory ListWorkforcesResponse.fromJson(Map<String, dynamic> json) {
     return ListWorkforcesResponse(
       workforces: (json['Workforces'] as List)
@@ -38174,6 +38486,7 @@ class ListWorkteamsResponse {
     required this.workteams,
     this.nextToken,
   });
+
   factory ListWorkteamsResponse.fromJson(Map<String, dynamic> json) {
     return ListWorkteamsResponse(
       workteams: (json['Workteams'] as List)
@@ -38239,6 +38552,7 @@ class MemberDefinition {
     this.cognitoMemberDefinition,
     this.oidcMemberDefinition,
   });
+
   factory MemberDefinition.fromJson(Map<String, dynamic> json) {
     return MemberDefinition(
       cognitoMemberDefinition: json['CognitoMemberDefinition'] != null
@@ -38284,6 +38598,7 @@ class MetadataProperties {
     this.projectId,
     this.repository,
   });
+
   factory MetadataProperties.fromJson(Map<String, dynamic> json) {
     return MetadataProperties(
       commitId: json['CommitId'] as String?,
@@ -38324,6 +38639,7 @@ class MetricData {
     this.timestamp,
     this.value,
   });
+
   factory MetricData.fromJson(Map<String, dynamic> json) {
     return MetricData(
       metricName: json['MetricName'] as String?,
@@ -38363,6 +38679,7 @@ class MetricDefinition {
     required this.name,
     required this.regex,
   });
+
   factory MetricDefinition.fromJson(Map<String, dynamic> json) {
     return MetricDefinition(
       name: json['Name'] as String,
@@ -38396,6 +38713,7 @@ class MetricsSource {
     required this.s3Uri,
     this.contentDigest,
   });
+
   factory MetricsSource.fromJson(Map<String, dynamic> json) {
     return MetricsSource(
       contentType: json['ContentType'] as String,
@@ -38463,6 +38781,7 @@ class ModelArtifacts {
   ModelArtifacts({
     required this.s3ModelArtifacts,
   });
+
   factory ModelArtifacts.fromJson(Map<String, dynamic> json) {
     return ModelArtifacts(
       s3ModelArtifacts: json['S3ModelArtifacts'] as String,
@@ -38496,6 +38815,7 @@ class ModelBiasAppSpecification {
     required this.imageUri,
     this.environment,
   });
+
   factory ModelBiasAppSpecification.fromJson(Map<String, dynamic> json) {
     return ModelBiasAppSpecification(
       configUri: json['ConfigUri'] as String,
@@ -38527,6 +38847,7 @@ class ModelBiasBaselineConfig {
     this.baseliningJobName,
     this.constraintsResource,
   });
+
   factory ModelBiasBaselineConfig.fromJson(Map<String, dynamic> json) {
     return ModelBiasBaselineConfig(
       baseliningJobName: json['BaseliningJobName'] as String?,
@@ -38559,6 +38880,7 @@ class ModelBiasJobInput {
     required this.endpointInput,
     required this.groundTruthS3Input,
   });
+
   factory ModelBiasJobInput.fromJson(Map<String, dynamic> json) {
     return ModelBiasJobInput(
       endpointInput:
@@ -38619,6 +38941,7 @@ class ModelClientConfig {
     this.invocationsMaxRetries,
     this.invocationsTimeoutInSeconds,
   });
+
   factory ModelClientConfig.fromJson(Map<String, dynamic> json) {
     return ModelClientConfig(
       invocationsMaxRetries: json['InvocationsMaxRetries'] as int?,
@@ -38650,6 +38973,7 @@ class ModelDataQuality {
     this.constraints,
     this.statistics,
   });
+
   factory ModelDataQuality.fromJson(Map<String, dynamic> json) {
     return ModelDataQuality(
       constraints: json['Constraints'] != null
@@ -38696,6 +39020,7 @@ class ModelDeployConfig {
     this.autoGenerateEndpointName,
     this.endpointName,
   });
+
   factory ModelDeployConfig.fromJson(Map<String, dynamic> json) {
     return ModelDeployConfig(
       autoGenerateEndpointName: json['AutoGenerateEndpointName'] as bool?,
@@ -38725,6 +39050,7 @@ class ModelDeployResult {
   ModelDeployResult({
     this.endpointName,
   });
+
   factory ModelDeployResult.fromJson(Map<String, dynamic> json) {
     return ModelDeployResult(
       endpointName: json['EndpointName'] as String?,
@@ -38747,6 +39073,7 @@ class ModelDigests {
   ModelDigests({
     this.artifactDigest,
   });
+
   factory ModelDigests.fromJson(Map<String, dynamic> json) {
     return ModelDigests(
       artifactDigest: json['ArtifactDigest'] as String?,
@@ -38781,6 +39108,7 @@ class ModelExplainabilityAppSpecification {
     required this.imageUri,
     this.environment,
   });
+
   factory ModelExplainabilityAppSpecification.fromJson(
       Map<String, dynamic> json) {
     return ModelExplainabilityAppSpecification(
@@ -38813,6 +39141,7 @@ class ModelExplainabilityBaselineConfig {
     this.baseliningJobName,
     this.constraintsResource,
   });
+
   factory ModelExplainabilityBaselineConfig.fromJson(
       Map<String, dynamic> json) {
     return ModelExplainabilityBaselineConfig(
@@ -38842,6 +39171,7 @@ class ModelExplainabilityJobInput {
   ModelExplainabilityJobInput({
     required this.endpointInput,
   });
+
   factory ModelExplainabilityJobInput.fromJson(Map<String, dynamic> json) {
     return ModelExplainabilityJobInput(
       endpointInput:
@@ -38877,6 +39207,7 @@ class ModelMetrics {
     this.modelDataQuality,
     this.modelQuality,
   });
+
   factory ModelMetrics.fromJson(Map<String, dynamic> json) {
     return ModelMetrics(
       bias: json['Bias'] != null
@@ -39021,6 +39352,7 @@ class ModelPackage {
     this.tags,
     this.validationSpecification,
   });
+
   factory ModelPackage.fromJson(Map<String, dynamic> json) {
     return ModelPackage(
       approvalDescription: json['ApprovalDescription'] as String?,
@@ -39178,6 +39510,7 @@ class ModelPackageContainerDefinition {
     this.modelDataUrl,
     this.productId,
   });
+
   factory ModelPackageContainerDefinition.fromJson(Map<String, dynamic> json) {
     return ModelPackageContainerDefinition(
       image: json['Image'] as String,
@@ -39265,6 +39598,7 @@ class ModelPackageGroup {
     this.modelPackageGroupStatus,
     this.tags,
   });
+
   factory ModelPackageGroup.fromJson(Map<String, dynamic> json) {
     return ModelPackageGroup(
       createdBy: json['CreatedBy'] != null
@@ -39409,6 +39743,7 @@ class ModelPackageGroupSummary {
     required this.modelPackageGroupStatus,
     this.modelPackageGroupDescription,
   });
+
   factory ModelPackageGroupSummary.fromJson(Map<String, dynamic> json) {
     return ModelPackageGroupSummary(
       creationTime:
@@ -39522,6 +39857,7 @@ class ModelPackageStatusDetails {
     required this.validationStatuses,
     this.imageScanStatuses,
   });
+
   factory ModelPackageStatusDetails.fromJson(Map<String, dynamic> json) {
     return ModelPackageStatusDetails(
       validationStatuses: (json['ValidationStatuses'] as List)
@@ -39564,6 +39900,7 @@ class ModelPackageStatusItem {
     required this.status,
     this.failureReason,
   });
+
   factory ModelPackageStatusItem.fromJson(Map<String, dynamic> json) {
     return ModelPackageStatusItem(
       name: json['Name'] as String,
@@ -39634,6 +39971,7 @@ class ModelPackageSummary {
     this.modelPackageGroupName,
     this.modelPackageVersion,
   });
+
   factory ModelPackageSummary.fromJson(Map<String, dynamic> json) {
     return ModelPackageSummary(
       creationTime:
@@ -39726,6 +40064,7 @@ class ModelPackageValidationProfile {
     required this.profileName,
     required this.transformJobDefinition,
   });
+
   factory ModelPackageValidationProfile.fromJson(Map<String, dynamic> json) {
     return ModelPackageValidationProfile(
       profileName: json['ProfileName'] as String,
@@ -39759,6 +40098,7 @@ class ModelPackageValidationSpecification {
     required this.validationProfiles,
     required this.validationRole,
   });
+
   factory ModelPackageValidationSpecification.fromJson(
       Map<String, dynamic> json) {
     return ModelPackageValidationSpecification(
@@ -39793,6 +40133,7 @@ class ModelQuality {
     this.constraints,
     this.statistics,
   });
+
   factory ModelQuality.fromJson(Map<String, dynamic> json) {
     return ModelQuality(
       constraints: json['Constraints'] != null
@@ -39852,6 +40193,7 @@ class ModelQualityAppSpecification {
     this.problemType,
     this.recordPreprocessorSourceUri,
   });
+
   factory ModelQualityAppSpecification.fromJson(Map<String, dynamic> json) {
     return ModelQualityAppSpecification(
       imageUri: json['ImageUri'] as String,
@@ -39909,6 +40251,7 @@ class ModelQualityBaselineConfig {
     this.baseliningJobName,
     this.constraintsResource,
   });
+
   factory ModelQualityBaselineConfig.fromJson(Map<String, dynamic> json) {
     return ModelQualityBaselineConfig(
       baseliningJobName: json['BaseliningJobName'] as String?,
@@ -39942,6 +40285,7 @@ class ModelQualityJobInput {
     required this.endpointInput,
     required this.groundTruthS3Input,
   });
+
   factory ModelQualityJobInput.fromJson(Map<String, dynamic> json) {
     return ModelQualityJobInput(
       endpointInput:
@@ -39997,6 +40341,7 @@ class ModelStepMetadata {
   ModelStepMetadata({
     this.arn,
   });
+
   factory ModelStepMetadata.fromJson(Map<String, dynamic> json) {
     return ModelStepMetadata(
       arn: json['Arn'] as String?,
@@ -40027,6 +40372,7 @@ class ModelSummary {
     required this.modelArn,
     required this.modelName,
   });
+
   factory ModelSummary.fromJson(Map<String, dynamic> json) {
     return ModelSummary(
       creationTime:
@@ -40076,6 +40422,7 @@ class MonitoringAppSpecification {
     this.postAnalyticsProcessorSourceUri,
     this.recordPreprocessorSourceUri,
   });
+
   factory MonitoringAppSpecification.fromJson(Map<String, dynamic> json) {
     return MonitoringAppSpecification(
       imageUri: json['ImageUri'] as String,
@@ -40134,6 +40481,7 @@ class MonitoringBaselineConfig {
     this.constraintsResource,
     this.statisticsResource,
   });
+
   factory MonitoringBaselineConfig.fromJson(Map<String, dynamic> json) {
     return MonitoringBaselineConfig(
       baseliningJobName: json['BaseliningJobName'] as String?,
@@ -40186,6 +40534,7 @@ class MonitoringClusterConfig {
     required this.volumeSizeInGB,
     this.volumeKmsKeyId,
   });
+
   factory MonitoringClusterConfig.fromJson(Map<String, dynamic> json) {
     return MonitoringClusterConfig(
       instanceCount: json['InstanceCount'] as int,
@@ -40217,6 +40566,7 @@ class MonitoringConstraintsResource {
   MonitoringConstraintsResource({
     this.s3Uri,
   });
+
   factory MonitoringConstraintsResource.fromJson(Map<String, dynamic> json) {
     return MonitoringConstraintsResource(
       s3Uri: json['S3Uri'] as String?,
@@ -40308,6 +40658,7 @@ class MonitoringExecutionSummary {
     this.monitoringType,
     this.processingJobArn,
   });
+
   factory MonitoringExecutionSummary.fromJson(Map<String, dynamic> json) {
     return MonitoringExecutionSummary(
       creationTime:
@@ -40363,6 +40714,7 @@ class MonitoringGroundTruthS3Input {
   MonitoringGroundTruthS3Input({
     this.s3Uri,
   });
+
   factory MonitoringGroundTruthS3Input.fromJson(Map<String, dynamic> json) {
     return MonitoringGroundTruthS3Input(
       s3Uri: json['S3Uri'] as String?,
@@ -40385,6 +40737,7 @@ class MonitoringInput {
   MonitoringInput({
     required this.endpointInput,
   });
+
   factory MonitoringInput.fromJson(Map<String, dynamic> json) {
     return MonitoringInput(
       endpointInput:
@@ -40446,6 +40799,7 @@ class MonitoringJobDefinition {
     this.networkConfig,
     this.stoppingCondition,
   });
+
   factory MonitoringJobDefinition.fromJson(Map<String, dynamic> json) {
     return MonitoringJobDefinition(
       monitoringAppSpecification: MonitoringAppSpecification.fromJson(
@@ -40549,6 +40903,7 @@ class MonitoringJobDefinitionSummary {
     required this.monitoringJobDefinitionArn,
     required this.monitoringJobDefinitionName,
   });
+
   factory MonitoringJobDefinitionSummary.fromJson(Map<String, dynamic> json) {
     return MonitoringJobDefinitionSummary(
       creationTime:
@@ -40592,6 +40947,7 @@ class MonitoringNetworkConfig {
     this.enableNetworkIsolation,
     this.vpcConfig,
   });
+
   factory MonitoringNetworkConfig.fromJson(Map<String, dynamic> json) {
     return MonitoringNetworkConfig(
       enableInterContainerTrafficEncryption:
@@ -40628,6 +40984,7 @@ class MonitoringOutput {
   MonitoringOutput({
     required this.s3Output,
   });
+
   factory MonitoringOutput.fromJson(Map<String, dynamic> json) {
     return MonitoringOutput(
       s3Output:
@@ -40658,6 +41015,7 @@ class MonitoringOutputConfig {
     required this.monitoringOutputs,
     this.kmsKeyId,
   });
+
   factory MonitoringOutputConfig.fromJson(Map<String, dynamic> json) {
     return MonitoringOutputConfig(
       monitoringOutputs: (json['MonitoringOutputs'] as List)
@@ -40719,6 +41077,7 @@ class MonitoringResources {
   MonitoringResources({
     required this.clusterConfig,
   });
+
   factory MonitoringResources.fromJson(Map<String, dynamic> json) {
     return MonitoringResources(
       clusterConfig: MonitoringClusterConfig.fromJson(
@@ -40755,6 +41114,7 @@ class MonitoringS3Output {
     required this.s3Uri,
     this.s3UploadMode,
   });
+
   factory MonitoringS3Output.fromJson(Map<String, dynamic> json) {
     return MonitoringS3Output(
       localPath: json['LocalPath'] as String,
@@ -40843,6 +41203,7 @@ class MonitoringSchedule {
     this.monitoringType,
     this.tags,
   });
+
   factory MonitoringSchedule.fromJson(Map<String, dynamic> json) {
     return MonitoringSchedule(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -40925,6 +41286,7 @@ class MonitoringScheduleConfig {
     this.monitoringType,
     this.scheduleConfig,
   });
+
   factory MonitoringScheduleConfig.fromJson(Map<String, dynamic> json) {
     return MonitoringScheduleConfig(
       monitoringJobDefinition: json['MonitoringJobDefinition'] != null
@@ -41026,6 +41388,7 @@ class MonitoringScheduleSummary {
     this.monitoringJobDefinitionName,
     this.monitoringType,
   });
+
   factory MonitoringScheduleSummary.fromJson(Map<String, dynamic> json) {
     return MonitoringScheduleSummary(
       creationTime:
@@ -41074,6 +41437,7 @@ class MonitoringStatisticsResource {
   MonitoringStatisticsResource({
     this.s3Uri,
   });
+
   factory MonitoringStatisticsResource.fromJson(Map<String, dynamic> json) {
     return MonitoringStatisticsResource(
       s3Uri: json['S3Uri'] as String?,
@@ -41103,6 +41467,7 @@ class MonitoringStoppingCondition {
   MonitoringStoppingCondition({
     required this.maxRuntimeInSeconds,
   });
+
   factory MonitoringStoppingCondition.fromJson(Map<String, dynamic> json) {
     return MonitoringStoppingCondition(
       maxRuntimeInSeconds: json['MaxRuntimeInSeconds'] as int,
@@ -41169,6 +41534,7 @@ class MultiModelConfig {
   MultiModelConfig({
     this.modelCacheSetting,
   });
+
   factory MultiModelConfig.fromJson(Map<String, dynamic> json) {
     return MultiModelConfig(
       modelCacheSetting:
@@ -41205,6 +41571,7 @@ class NeoVpcConfig {
     required this.securityGroupIds,
     required this.subnets,
   });
+
   factory NeoVpcConfig.fromJson(Map<String, dynamic> json) {
     return NeoVpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List)
@@ -41262,6 +41629,7 @@ class NestedFilters {
     required this.filters,
     required this.nestedPropertyName,
   });
+
   factory NestedFilters.fromJson(Map<String, dynamic> json) {
     return NestedFilters(
       filters: (json['Filters'] as List)
@@ -41303,6 +41671,7 @@ class NetworkConfig {
     this.enableNetworkIsolation,
     this.vpcConfig,
   });
+
   factory NetworkConfig.fromJson(Map<String, dynamic> json) {
     return NetworkConfig(
       enableInterContainerTrafficEncryption:
@@ -41464,6 +41833,7 @@ class NotebookInstanceLifecycleConfigSummary {
     this.creationTime,
     this.lastModifiedTime,
   });
+
   factory NotebookInstanceLifecycleConfigSummary.fromJson(
       Map<String, dynamic> json) {
     return NotebookInstanceLifecycleConfigSummary(
@@ -41521,6 +41891,7 @@ class NotebookInstanceLifecycleHook {
   NotebookInstanceLifecycleHook({
     this.content,
   });
+
   factory NotebookInstanceLifecycleHook.fromJson(Map<String, dynamic> json) {
     return NotebookInstanceLifecycleHook(
       content: json['Content'] as String?,
@@ -41715,6 +42086,7 @@ class NotebookInstanceSummary {
     this.notebookInstanceStatus,
     this.url,
   });
+
   factory NotebookInstanceSummary.fromJson(Map<String, dynamic> json) {
     return NotebookInstanceSummary(
       notebookInstanceArn: json['NotebookInstanceArn'] as String,
@@ -41806,6 +42178,7 @@ class NotificationConfiguration {
   NotificationConfiguration({
     this.notificationTopicArn,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       notificationTopicArn: json['NotificationTopicArn'] as String?,
@@ -41878,6 +42251,7 @@ class ObjectiveStatusCounters {
     this.pending,
     this.succeeded,
   });
+
   factory ObjectiveStatusCounters.fromJson(Map<String, dynamic> json) {
     return ObjectiveStatusCounters(
       failed: json['Failed'] as int?,
@@ -41923,6 +42297,7 @@ class OfflineStoreConfig {
     this.dataCatalogConfig,
     this.disableGlueTableCreation,
   });
+
   factory OfflineStoreConfig.fromJson(Map<String, dynamic> json) {
     return OfflineStoreConfig(
       s3StorageConfig: S3StorageConfig.fromJson(
@@ -41960,6 +42335,7 @@ class OfflineStoreStatus {
     required this.status,
     this.blockedReason,
   });
+
   factory OfflineStoreStatus.fromJson(Map<String, dynamic> json) {
     return OfflineStoreStatus(
       status: (json['Status'] as String).toOfflineStoreStatusValue(),
@@ -42049,6 +42425,7 @@ class OidcConfig {
     required this.tokenEndpoint,
     required this.userInfoEndpoint,
   });
+
   factory OidcConfig.fromJson(Map<String, dynamic> json) {
     return OidcConfig(
       authorizationEndpoint: json['AuthorizationEndpoint'] as String,
@@ -42119,6 +42496,7 @@ class OidcConfigForResponse {
     this.tokenEndpoint,
     this.userInfoEndpoint,
   });
+
   factory OidcConfigForResponse.fromJson(Map<String, dynamic> json) {
     return OidcConfigForResponse(
       authorizationEndpoint: json['AuthorizationEndpoint'] as String?,
@@ -42165,6 +42543,7 @@ class OidcMemberDefinition {
   OidcMemberDefinition({
     required this.groups,
   });
+
   factory OidcMemberDefinition.fromJson(Map<String, dynamic> json) {
     return OidcMemberDefinition(
       groups: (json['Groups'] as List)
@@ -42203,6 +42582,7 @@ class OnlineStoreConfig {
     this.enableOnlineStore,
     this.securityConfig,
   });
+
   factory OnlineStoreConfig.fromJson(Map<String, dynamic> json) {
     return OnlineStoreConfig(
       enableOnlineStore: json['EnableOnlineStore'] as bool?,
@@ -42282,6 +42662,7 @@ class OnlineStoreSecurityConfig {
   OnlineStoreSecurityConfig({
     this.kmsKeyId,
   });
+
   factory OnlineStoreSecurityConfig.fromJson(Map<String, dynamic> json) {
     return OnlineStoreSecurityConfig(
       kmsKeyId: json['KmsKeyId'] as String?,
@@ -42632,6 +43013,7 @@ class OutputConfig {
     this.targetDevice,
     this.targetPlatform,
   });
+
   factory OutputConfig.fromJson(Map<String, dynamic> json) {
     return OutputConfig(
       s3OutputLocation: json['S3OutputLocation'] as String,
@@ -42721,6 +43103,7 @@ class OutputDataConfig {
     required this.s3OutputPath,
     this.kmsKeyId,
   });
+
   factory OutputDataConfig.fromJson(Map<String, dynamic> json) {
     return OutputDataConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -42750,6 +43133,7 @@ class OutputParameter {
     required this.name,
     required this.value,
   });
+
   factory OutputParameter.fromJson(Map<String, dynamic> json) {
     return OutputParameter(
       name: json['Name'] as String,
@@ -42780,6 +43164,7 @@ class Parameter {
     required this.name,
     required this.value,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       name: json['Name'] as String,
@@ -42819,6 +43204,7 @@ class ParameterRange {
     this.continuousParameterRangeSpecification,
     this.integerParameterRangeSpecification,
   });
+
   factory ParameterRange.fromJson(Map<String, dynamic> json) {
     return ParameterRange(
       categoricalParameterRangeSpecification:
@@ -42892,6 +43278,7 @@ class ParameterRanges {
     this.continuousParameterRanges,
     this.integerParameterRanges,
   });
+
   factory ParameterRanges.fromJson(Map<String, dynamic> json) {
     return ParameterRanges(
       categoricalParameterRanges: (json['CategoricalParameterRanges'] as List?)
@@ -42978,6 +43365,7 @@ class Parent {
     this.experimentName,
     this.trialName,
   });
+
   factory Parent.fromJson(Map<String, dynamic> json) {
     return Parent(
       experimentName: json['ExperimentName'] as String?,
@@ -43005,6 +43393,7 @@ class ParentHyperParameterTuningJob {
   ParentHyperParameterTuningJob({
     this.hyperParameterTuningJobName,
   });
+
   factory ParentHyperParameterTuningJob.fromJson(Map<String, dynamic> json) {
     return ParentHyperParameterTuningJob(
       hyperParameterTuningJobName:
@@ -43070,6 +43459,7 @@ class Pipeline {
     this.roleArn,
     this.tags,
   });
+
   factory Pipeline.fromJson(Map<String, dynamic> json) {
     return Pipeline(
       createdBy: json['CreatedBy'] != null
@@ -43175,6 +43565,7 @@ class PipelineExecution {
     this.pipelineExperimentConfig,
     this.pipelineParameters,
   });
+
   factory PipelineExecution.fromJson(Map<String, dynamic> json) {
     return PipelineExecution(
       createdBy: json['CreatedBy'] != null
@@ -43318,6 +43709,7 @@ class PipelineExecutionStep {
     this.stepName,
     this.stepStatus,
   });
+
   factory PipelineExecutionStep.fromJson(Map<String, dynamic> json) {
     return PipelineExecutionStep(
       cacheHitResult: json['CacheHitResult'] != null
@@ -43395,6 +43787,7 @@ class PipelineExecutionStepMetadata {
     this.transformJob,
     this.tuningJob,
   });
+
   factory PipelineExecutionStepMetadata.fromJson(Map<String, dynamic> json) {
     return PipelineExecutionStepMetadata(
       callback: json['Callback'] != null
@@ -43477,6 +43870,7 @@ class PipelineExecutionSummary {
     this.pipelineExecutionStatus,
     this.startTime,
   });
+
   factory PipelineExecutionSummary.fromJson(Map<String, dynamic> json) {
     return PipelineExecutionSummary(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
@@ -43522,6 +43916,7 @@ class PipelineExperimentConfig {
     this.experimentName,
     this.trialName,
   });
+
   factory PipelineExperimentConfig.fromJson(Map<String, dynamic> json) {
     return PipelineExperimentConfig(
       experimentName: json['ExperimentName'] as String?,
@@ -43598,6 +43993,7 @@ class PipelineSummary {
     this.pipelineName,
     this.roleArn,
   });
+
   factory PipelineSummary.fromJson(Map<String, dynamic> json) {
     return PipelineSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -43722,6 +44118,7 @@ class ProcessingClusterConfig {
     required this.volumeSizeInGB,
     this.volumeKmsKeyId,
   });
+
   factory ProcessingClusterConfig.fromJson(Map<String, dynamic> json) {
     return ProcessingClusterConfig(
       instanceCount: json['InstanceCount'] as int,
@@ -43755,6 +44152,7 @@ class ProcessingFeatureStoreOutput {
   ProcessingFeatureStoreOutput({
     required this.featureGroupName,
   });
+
   factory ProcessingFeatureStoreOutput.fromJson(Map<String, dynamic> json) {
     return ProcessingFeatureStoreOutput(
       featureGroupName: json['FeatureGroupName'] as String,
@@ -43793,6 +44191,7 @@ class ProcessingInput {
     this.datasetDefinition,
     this.s3Input,
   });
+
   factory ProcessingInput.fromJson(Map<String, dynamic> json) {
     return ProcessingInput(
       inputName: json['InputName'] as String,
@@ -44150,6 +44549,7 @@ class ProcessingJob {
     this.tags,
     this.trainingJobArn,
   });
+
   factory ProcessingJob.fromJson(Map<String, dynamic> json) {
     return ProcessingJob(
       appSpecification: json['AppSpecification'] != null
@@ -44312,6 +44712,7 @@ class ProcessingJobStepMetadata {
   ProcessingJobStepMetadata({
     this.arn,
   });
+
   factory ProcessingJobStepMetadata.fromJson(Map<String, dynamic> json) {
     return ProcessingJobStepMetadata(
       arn: json['Arn'] as String?,
@@ -44364,6 +44765,7 @@ class ProcessingJobSummary {
     this.lastModifiedTime,
     this.processingEndTime,
   });
+
   factory ProcessingJobSummary.fromJson(Map<String, dynamic> json) {
     return ProcessingJobSummary(
       creationTime:
@@ -44429,6 +44831,7 @@ class ProcessingOutput {
     this.featureStoreOutput,
     this.s3Output,
   });
+
   factory ProcessingOutput.fromJson(Map<String, dynamic> json) {
     return ProcessingOutput(
       outputName: json['OutputName'] as String,
@@ -44475,6 +44878,7 @@ class ProcessingOutputConfig {
     required this.outputs,
     this.kmsKeyId,
   });
+
   factory ProcessingOutputConfig.fromJson(Map<String, dynamic> json) {
     return ProcessingOutputConfig(
       outputs: (json['Outputs'] as List)
@@ -44506,6 +44910,7 @@ class ProcessingResources {
   ProcessingResources({
     required this.clusterConfig,
   });
+
   factory ProcessingResources.fromJson(Map<String, dynamic> json) {
     return ProcessingResources(
       clusterConfig: ProcessingClusterConfig.fromJson(
@@ -44658,6 +45063,7 @@ class ProcessingS3Input {
     this.s3DataDistributionType,
     this.s3InputMode,
   });
+
   factory ProcessingS3Input.fromJson(Map<String, dynamic> json) {
     return ProcessingS3Input(
       s3DataType: (json['S3DataType'] as String).toProcessingS3DataType(),
@@ -44741,6 +45147,7 @@ class ProcessingS3Output {
     required this.s3UploadMode,
     required this.s3Uri,
   });
+
   factory ProcessingS3Output.fromJson(Map<String, dynamic> json) {
     return ProcessingS3Output(
       localPath: json['LocalPath'] as String,
@@ -44799,6 +45206,7 @@ class ProcessingStoppingCondition {
   ProcessingStoppingCondition({
     required this.maxRuntimeInSeconds,
   });
+
   factory ProcessingStoppingCondition.fromJson(Map<String, dynamic> json) {
     return ProcessingStoppingCondition(
       maxRuntimeInSeconds: json['MaxRuntimeInSeconds'] as int,
@@ -44857,6 +45265,7 @@ class ProductionVariant {
     this.coreDumpConfig,
     this.initialVariantWeight,
   });
+
   factory ProductionVariant.fromJson(Map<String, dynamic> json) {
     return ProductionVariant(
       initialInstanceCount: json['InitialInstanceCount'] as int,
@@ -45002,6 +45411,7 @@ class ProductionVariantCoreDumpConfig {
     required this.destinationS3Uri,
     this.kmsKeyId,
   });
+
   factory ProductionVariantCoreDumpConfig.fromJson(Map<String, dynamic> json) {
     return ProductionVariantCoreDumpConfig(
       destinationS3Uri: json['DestinationS3Uri'] as String,
@@ -45402,6 +45812,7 @@ class ProductionVariantSummary {
     this.desiredInstanceCount,
     this.desiredWeight,
   });
+
   factory ProductionVariantSummary.fromJson(Map<String, dynamic> json) {
     return ProductionVariantSummary(
       variantName: json['VariantName'] as String,
@@ -45464,6 +45875,7 @@ class ProfilerConfig {
     this.profilingIntervalInMilliseconds,
     this.profilingParameters,
   });
+
   factory ProfilerConfig.fromJson(Map<String, dynamic> json) {
     return ProfilerConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -45522,6 +45934,7 @@ class ProfilerConfigForUpdate {
     this.profilingParameters,
     this.s3OutputPath,
   });
+
   factory ProfilerConfigForUpdate.fromJson(Map<String, dynamic> json) {
     return ProfilerConfigForUpdate(
       disableProfiler: json['DisableProfiler'] as bool?,
@@ -45587,6 +46000,7 @@ class ProfilerRuleConfiguration {
     this.s3OutputPath,
     this.volumeSizeInGB,
   });
+
   factory ProfilerRuleConfiguration.fromJson(Map<String, dynamic> json) {
     return ProfilerRuleConfiguration(
       ruleConfigurationName: json['RuleConfigurationName'] as String,
@@ -45645,6 +46059,7 @@ class ProfilerRuleEvaluationStatus {
     this.ruleEvaluationStatus,
     this.statusDetails,
   });
+
   factory ProfilerRuleEvaluationStatus.fromJson(Map<String, dynamic> json) {
     return ProfilerRuleEvaluationStatus(
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
@@ -45841,6 +46256,7 @@ class ProjectSummary {
     required this.projectStatus,
     this.projectDescription,
   });
+
   factory ProjectSummary.fromJson(Map<String, dynamic> json) {
     return ProjectSummary(
       creationTime:
@@ -45880,6 +46296,7 @@ class PropertyNameQuery {
   PropertyNameQuery({
     required this.propertyNameHint,
   });
+
   factory PropertyNameQuery.fromJson(Map<String, dynamic> json) {
     return PropertyNameQuery(
       propertyNameHint: json['PropertyNameHint'] as String,
@@ -45904,6 +46321,7 @@ class PropertyNameSuggestion {
   PropertyNameSuggestion({
     this.propertyName,
   });
+
   factory PropertyNameSuggestion.fromJson(Map<String, dynamic> json) {
     return PropertyNameSuggestion(
       propertyName: json['PropertyName'] as String?,
@@ -45933,6 +46351,7 @@ class ProvisioningParameter {
     this.key,
     this.value,
   });
+
   factory ProvisioningParameter.fromJson(Map<String, dynamic> json) {
     return ProvisioningParameter(
       key: json['Key'] as String?,
@@ -46268,6 +46687,7 @@ class PublicWorkforceTaskPrice {
   PublicWorkforceTaskPrice({
     this.amountInUsd,
   });
+
   factory PublicWorkforceTaskPrice.fromJson(Map<String, dynamic> json) {
     return PublicWorkforceTaskPrice(
       amountInUsd: json['AmountInUsd'] != null
@@ -46291,6 +46711,7 @@ class PutModelPackageGroupPolicyOutput {
   PutModelPackageGroupPolicyOutput({
     required this.modelPackageGroupArn,
   });
+
   factory PutModelPackageGroupPolicyOutput.fromJson(Map<String, dynamic> json) {
     return PutModelPackageGroupPolicyOutput(
       modelPackageGroupArn: json['ModelPackageGroupArn'] as String,
@@ -46364,6 +46785,7 @@ class RedshiftDatasetDefinition {
     this.kmsKeyId,
     this.outputCompression,
   });
+
   factory RedshiftDatasetDefinition.fromJson(Map<String, dynamic> json) {
     return RedshiftDatasetDefinition(
       clusterId: json['ClusterId'] as String,
@@ -46485,6 +46907,7 @@ class RegisterModelStepMetadata {
   RegisterModelStepMetadata({
     this.arn,
   });
+
   factory RegisterModelStepMetadata.fromJson(Map<String, dynamic> json) {
     return RegisterModelStepMetadata(
       arn: json['Arn'] as String?,
@@ -46512,6 +46935,7 @@ class RenderUiTemplateResponse {
     required this.errors,
     required this.renderedContent,
   });
+
   factory RenderUiTemplateResponse.fromJson(Map<String, dynamic> json) {
     return RenderUiTemplateResponse(
       errors: (json['Errors'] as List)
@@ -46544,6 +46968,7 @@ class RenderableTask {
   RenderableTask({
     required this.input,
   });
+
   factory RenderableTask.fromJson(Map<String, dynamic> json) {
     return RenderableTask(
       input: json['Input'] as String,
@@ -46570,6 +46995,7 @@ class RenderingError {
     required this.code,
     required this.message,
   });
+
   factory RenderingError.fromJson(Map<String, dynamic> json) {
     return RenderingError(
       code: json['Code'] as String,
@@ -46634,6 +47060,7 @@ class RepositoryAuthConfig {
   RepositoryAuthConfig({
     required this.repositoryCredentialsProviderArn,
   });
+
   factory RepositoryAuthConfig.fromJson(Map<String, dynamic> json) {
     return RepositoryAuthConfig(
       repositoryCredentialsProviderArn:
@@ -46663,6 +47090,7 @@ class ResolvedAttributes {
     this.completionCriteria,
     this.problemType,
   });
+
   factory ResolvedAttributes.fromJson(Map<String, dynamic> json) {
     return ResolvedAttributes(
       autoMLJobObjective: json['AutoMLJobObjective'] != null
@@ -46764,6 +47192,7 @@ class ResourceConfig {
     required this.volumeSizeInGB,
     this.volumeKmsKeyId,
   });
+
   factory ResourceConfig.fromJson(Map<String, dynamic> json) {
     return ResourceConfig(
       instanceCount: json['InstanceCount'] as int,
@@ -46802,6 +47231,7 @@ class ResourceLimits {
     required this.maxNumberOfTrainingJobs,
     required this.maxParallelTrainingJobs,
   });
+
   factory ResourceLimits.fromJson(Map<String, dynamic> json) {
     return ResourceLimits(
       maxNumberOfTrainingJobs: json['MaxNumberOfTrainingJobs'] as int,
@@ -46836,6 +47266,7 @@ class ResourceSpec {
     this.sageMakerImageArn,
     this.sageMakerImageVersionArn,
   });
+
   factory ResourceSpec.fromJson(Map<String, dynamic> json) {
     return ResourceSpec(
       instanceType: (json['InstanceType'] as String?)?.toAppInstanceType(),
@@ -46937,6 +47368,7 @@ class RetentionPolicy {
   RetentionPolicy({
     this.homeEfsFileSystem,
   });
+
   factory RetentionPolicy.fromJson(Map<String, dynamic> json) {
     return RetentionPolicy(
       homeEfsFileSystem:
@@ -46995,6 +47427,7 @@ class RetryStrategy {
   RetryStrategy({
     required this.maximumRetryAttempts,
   });
+
   factory RetryStrategy.fromJson(Map<String, dynamic> json) {
     return RetryStrategy(
       maximumRetryAttempts: json['MaximumRetryAttempts'] as int,
@@ -47214,6 +47647,7 @@ class S3DataSource {
     this.attributeNames,
     this.s3DataDistributionType,
   });
+
   factory S3DataSource.fromJson(Map<String, dynamic> json) {
     return S3DataSource(
       s3DataType: (json['S3DataType'] as String).toS3DataType(),
@@ -47307,6 +47741,7 @@ class S3StorageConfig {
     this.kmsKeyId,
     this.resolvedOutputS3Uri,
   });
+
   factory S3StorageConfig.fromJson(Map<String, dynamic> json) {
     return S3StorageConfig(
       s3Uri: json['S3Uri'] as String,
@@ -47414,6 +47849,7 @@ class ScheduleConfig {
   ScheduleConfig({
     required this.scheduleExpression,
   });
+
   factory ScheduleConfig.fromJson(Map<String, dynamic> json) {
     return ScheduleConfig(
       scheduleExpression: json['ScheduleExpression'] as String,
@@ -47517,6 +47953,7 @@ class SearchExpression {
     this.operator,
     this.subExpressions,
   });
+
   factory SearchExpression.fromJson(Map<String, dynamic> json) {
     return SearchExpression(
       filters: (json['Filters'] as List?)
@@ -47582,6 +48019,7 @@ class SearchRecord {
     this.trial,
     this.trialComponent,
   });
+
   factory SearchRecord.fromJson(Map<String, dynamic> json) {
     return SearchRecord(
       endpoint: json['Endpoint'] != null
@@ -47659,6 +48097,7 @@ class SearchResponse {
     this.nextToken,
     this.results,
   });
+
   factory SearchResponse.fromJson(Map<String, dynamic> json) {
     return SearchResponse(
       nextToken: json['NextToken'] as String?,
@@ -47945,6 +48384,7 @@ class SecondaryStatusTransition {
     this.endTime,
     this.statusMessage,
   });
+
   factory SecondaryStatusTransition.fromJson(Map<String, dynamic> json) {
     return SecondaryStatusTransition(
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
@@ -47975,6 +48415,7 @@ class SendPipelineExecutionStepFailureResponse {
   SendPipelineExecutionStepFailureResponse({
     this.pipelineExecutionArn,
   });
+
   factory SendPipelineExecutionStepFailureResponse.fromJson(
       Map<String, dynamic> json) {
     return SendPipelineExecutionStepFailureResponse(
@@ -47998,6 +48439,7 @@ class SendPipelineExecutionStepSuccessResponse {
   SendPipelineExecutionStepSuccessResponse({
     this.pipelineExecutionArn,
   });
+
   factory SendPipelineExecutionStepSuccessResponse.fromJson(
       Map<String, dynamic> json) {
     return SendPipelineExecutionStepSuccessResponse(
@@ -48058,6 +48500,7 @@ class ServiceCatalogProvisionedProductDetails {
     this.provisionedProductId,
     this.provisionedProductStatusMessage,
   });
+
   factory ServiceCatalogProvisionedProductDetails.fromJson(
       Map<String, dynamic> json) {
     return ServiceCatalogProvisionedProductDetails(
@@ -48104,6 +48547,7 @@ class ServiceCatalogProvisioningDetails {
     this.pathId,
     this.provisioningParameters,
   });
+
   factory ServiceCatalogProvisioningDetails.fromJson(
       Map<String, dynamic> json) {
     return ServiceCatalogProvisioningDetails(
@@ -48157,6 +48601,7 @@ class SharingSettings {
     this.s3KmsKeyId,
     this.s3OutputPath,
   });
+
   factory SharingSettings.fromJson(Map<String, dynamic> json) {
     return SharingSettings(
       notebookOutputOption:
@@ -48202,6 +48647,7 @@ class ShuffleConfig {
   ShuffleConfig({
     required this.seed,
   });
+
   factory ShuffleConfig.fromJson(Map<String, dynamic> json) {
     return ShuffleConfig(
       seed: json['Seed'] as int,
@@ -48563,6 +49009,7 @@ class SourceAlgorithm {
     required this.algorithmName,
     this.modelDataUrl,
   });
+
   factory SourceAlgorithm.fromJson(Map<String, dynamic> json) {
     return SourceAlgorithm(
       algorithmName: json['AlgorithmName'] as String,
@@ -48588,6 +49035,7 @@ class SourceAlgorithmSpecification {
   SourceAlgorithmSpecification({
     required this.sourceAlgorithms,
   });
+
   factory SourceAlgorithmSpecification.fromJson(Map<String, dynamic> json) {
     return SourceAlgorithmSpecification(
       sourceAlgorithms: (json['SourceAlgorithms'] as List)
@@ -48626,6 +49074,7 @@ class SourceIpConfig {
   SourceIpConfig({
     required this.cidrs,
   });
+
   factory SourceIpConfig.fromJson(Map<String, dynamic> json) {
     return SourceIpConfig(
       cidrs: (json['Cidrs'] as List)
@@ -48688,6 +49137,7 @@ class StartPipelineExecutionResponse {
   StartPipelineExecutionResponse({
     this.pipelineExecutionArn,
   });
+
   factory StartPipelineExecutionResponse.fromJson(Map<String, dynamic> json) {
     return StartPipelineExecutionResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
@@ -48758,6 +49208,7 @@ class StopPipelineExecutionResponse {
   StopPipelineExecutionResponse({
     this.pipelineExecutionArn,
   });
+
   factory StopPipelineExecutionResponse.fromJson(Map<String, dynamic> json) {
     return StopPipelineExecutionResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
@@ -48823,6 +49274,7 @@ class StoppingCondition {
     this.maxRuntimeInSeconds,
     this.maxWaitTimeInSeconds,
   });
+
   factory StoppingCondition.fromJson(Map<String, dynamic> json) {
     return StoppingCondition(
       maxRuntimeInSeconds: json['MaxRuntimeInSeconds'] as int?,
@@ -48866,6 +49318,7 @@ class SubscribedWorkteam {
     this.marketplaceTitle,
     this.sellerName,
   });
+
   factory SubscribedWorkteam.fromJson(Map<String, dynamic> json) {
     return SubscribedWorkteam(
       workteamArn: json['WorkteamArn'] as String,
@@ -48903,6 +49356,7 @@ class SuggestionQuery {
   SuggestionQuery({
     this.propertyNameQuery,
   });
+
   factory SuggestionQuery.fromJson(Map<String, dynamic> json) {
     return SuggestionQuery(
       propertyNameQuery: json['PropertyNameQuery'] != null
@@ -48947,6 +49401,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -49194,6 +49649,7 @@ class TargetPlatform {
     required this.os,
     this.accelerator,
   });
+
   factory TargetPlatform.fromJson(Map<String, dynamic> json) {
     return TargetPlatform(
       arch: (json['Arch'] as String).toTargetPlatformArch(),
@@ -49328,6 +49784,7 @@ class TensorBoardAppSettings {
   TensorBoardAppSettings({
     this.defaultResourceSpec,
   });
+
   factory TensorBoardAppSettings.fromJson(Map<String, dynamic> json) {
     return TensorBoardAppSettings(
       defaultResourceSpec: json['DefaultResourceSpec'] != null
@@ -49359,6 +49816,7 @@ class TensorBoardOutputConfig {
     required this.s3OutputPath,
     this.localPath,
   });
+
   factory TensorBoardOutputConfig.fromJson(Map<String, dynamic> json) {
     return TensorBoardOutputConfig(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -49392,6 +49850,7 @@ class TrafficRoutingConfig {
     required this.waitIntervalInSeconds,
     this.canarySize,
   });
+
   factory TrafficRoutingConfig.fromJson(Map<String, dynamic> json) {
     return TrafficRoutingConfig(
       type: (json['Type'] as String).toTrafficRoutingConfigType(),
@@ -49957,6 +50416,7 @@ class TrainingJob {
     this.tuningJobArn,
     this.vpcConfig,
   });
+
   factory TrainingJob.fromJson(Map<String, dynamic> json) {
     return TrainingJob(
       algorithmSpecification: json['AlgorithmSpecification'] != null
@@ -50202,6 +50662,7 @@ class TrainingJobDefinition {
     required this.trainingInputMode,
     this.hyperParameters,
   });
+
   factory TrainingJobDefinition.fromJson(Map<String, dynamic> json) {
     return TrainingJobDefinition(
       inputDataConfig: (json['InputDataConfig'] as List)
@@ -50379,6 +50840,7 @@ class TrainingJobStatusCounters {
     this.retryableError,
     this.stopped,
   });
+
   factory TrainingJobStatusCounters.fromJson(Map<String, dynamic> json) {
     return TrainingJobStatusCounters(
       completed: json['Completed'] as int?,
@@ -50414,6 +50876,7 @@ class TrainingJobStepMetadata {
   TrainingJobStepMetadata({
     this.arn,
   });
+
   factory TrainingJobStepMetadata.fromJson(Map<String, dynamic> json) {
     return TrainingJobStepMetadata(
       arn: json['Arn'] as String?,
@@ -50458,6 +50921,7 @@ class TrainingJobSummary {
     this.lastModifiedTime,
     this.trainingEndTime,
   });
+
   factory TrainingJobSummary.fromJson(Map<String, dynamic> json) {
     return TrainingJobSummary(
       creationTime:
@@ -50536,6 +51000,7 @@ class TrainingSpecification {
     this.supportsDistributedTraining,
     this.trainingImageDigest,
   });
+
   factory TrainingSpecification.fromJson(Map<String, dynamic> json) {
     return TrainingSpecification(
       supportedTrainingInstanceTypes:
@@ -50605,6 +51070,7 @@ class TransformDataSource {
   TransformDataSource({
     required this.s3DataSource,
   });
+
   factory TransformDataSource.fromJson(Map<String, dynamic> json) {
     return TransformDataSource(
       s3DataSource: TransformS3DataSource.fromJson(
@@ -50685,6 +51151,7 @@ class TransformInput {
     this.contentType,
     this.splitType,
   });
+
   factory TransformInput.fromJson(Map<String, dynamic> json) {
     return TransformInput(
       dataSource: TransformDataSource.fromJson(
@@ -51012,6 +51479,7 @@ class TransformJob {
     this.transformResources,
     this.transformStartTime,
   });
+
   factory TransformJob.fromJson(Map<String, dynamic> json) {
     return TransformJob(
       autoMLJobArn: json['AutoMLJobArn'] as String?,
@@ -51156,6 +51624,7 @@ class TransformJobDefinition {
     this.maxConcurrentTransforms,
     this.maxPayloadInMB,
   });
+
   factory TransformJobDefinition.fromJson(Map<String, dynamic> json) {
     return TransformJobDefinition(
       transformInput: TransformInput.fromJson(
@@ -51245,6 +51714,7 @@ class TransformJobStepMetadata {
   TransformJobStepMetadata({
     this.arn,
   });
+
   factory TransformJobStepMetadata.fromJson(Map<String, dynamic> json) {
     return TransformJobStepMetadata(
       arn: json['Arn'] as String?,
@@ -51296,6 +51766,7 @@ class TransformJobSummary {
     this.lastModifiedTime,
     this.transformEndTime,
   });
+
   factory TransformJobSummary.fromJson(Map<String, dynamic> json) {
     return TransformJobSummary(
       creationTime:
@@ -51404,6 +51875,7 @@ class TransformOutput {
     this.assembleWith,
     this.kmsKeyId,
   });
+
   factory TransformOutput.fromJson(Map<String, dynamic> json) {
     return TransformOutput(
       s3OutputPath: json['S3OutputPath'] as String,
@@ -51482,6 +51954,7 @@ class TransformResources {
     required this.instanceType,
     this.volumeKmsKeyId,
   });
+
   factory TransformResources.fromJson(Map<String, dynamic> json) {
     return TransformResources(
       instanceCount: json['InstanceCount'] as int,
@@ -51566,6 +52039,7 @@ class TransformS3DataSource {
     required this.s3DataType,
     required this.s3Uri,
   });
+
   factory TransformS3DataSource.fromJson(Map<String, dynamic> json) {
     return TransformS3DataSource(
       s3DataType: (json['S3DataType'] as String).toS3DataType(),
@@ -51631,6 +52105,7 @@ class Trial {
     this.trialComponentSummaries,
     this.trialName,
   });
+
   factory Trial.fromJson(Map<String, dynamic> json) {
     return Trial(
       createdBy: json['CreatedBy'] != null
@@ -51774,6 +52249,7 @@ class TrialComponent {
     this.trialComponentArn,
     this.trialComponentName,
   });
+
   factory TrialComponent.fromJson(Map<String, dynamic> json) {
     return TrialComponent(
       createdBy: json['CreatedBy'] != null
@@ -51901,6 +52377,7 @@ class TrialComponentArtifact {
     required this.value,
     this.mediaType,
   });
+
   factory TrialComponentArtifact.fromJson(Map<String, dynamic> json) {
     return TrialComponentArtifact(
       value: json['Value'] as String,
@@ -51958,6 +52435,7 @@ class TrialComponentMetricSummary {
     this.stdDev,
     this.timeStamp,
   });
+
   factory TrialComponentMetricSummary.fromJson(Map<String, dynamic> json) {
     return TrialComponentMetricSummary(
       avg: json['Avg'] as double?,
@@ -52013,6 +52491,7 @@ class TrialComponentParameterValue {
     this.numberValue,
     this.stringValue,
   });
+
   factory TrialComponentParameterValue.fromJson(Map<String, dynamic> json) {
     return TrialComponentParameterValue(
       numberValue: json['NumberValue'] as double?,
@@ -52094,6 +52573,7 @@ class TrialComponentSimpleSummary {
     this.trialComponentName,
     this.trialComponentSource,
   });
+
   factory TrialComponentSimpleSummary.fromJson(Map<String, dynamic> json) {
     return TrialComponentSimpleSummary(
       createdBy: json['CreatedBy'] != null
@@ -52140,6 +52620,7 @@ class TrialComponentSource {
     required this.sourceArn,
     this.sourceType,
   });
+
   factory TrialComponentSource.fromJson(Map<String, dynamic> json) {
     return TrialComponentSource(
       sourceArn: json['SourceArn'] as String,
@@ -52178,6 +52659,7 @@ class TrialComponentSourceDetail {
     this.trainingJob,
     this.transformJob,
   });
+
   factory TrialComponentSourceDetail.fromJson(Map<String, dynamic> json) {
     return TrialComponentSourceDetail(
       processingJob: json['ProcessingJob'] != null
@@ -52220,6 +52702,7 @@ class TrialComponentStatus {
     this.message,
     this.primaryStatus,
   });
+
   factory TrialComponentStatus.fromJson(Map<String, dynamic> json) {
     return TrialComponentStatus(
       message: json['Message'] as String?,
@@ -52299,6 +52782,7 @@ class TrialComponentSummary {
     this.trialComponentName,
     this.trialComponentSource,
   });
+
   factory TrialComponentSummary.fromJson(Map<String, dynamic> json) {
     return TrialComponentSummary(
       createdBy: json['CreatedBy'] != null
@@ -52368,6 +52852,7 @@ class TrialSource {
     required this.sourceArn,
     this.sourceType,
   });
+
   factory TrialSource.fromJson(Map<String, dynamic> json) {
     return TrialSource(
       sourceArn: json['SourceArn'] as String,
@@ -52414,6 +52899,7 @@ class TrialSummary {
     this.trialName,
     this.trialSource,
   });
+
   factory TrialSummary.fromJson(Map<String, dynamic> json) {
     return TrialSummary(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -52455,6 +52941,7 @@ class TuningJobCompletionCriteria {
   TuningJobCompletionCriteria({
     required this.targetObjectiveMetricValue,
   });
+
   factory TuningJobCompletionCriteria.fromJson(Map<String, dynamic> json) {
     return TuningJobCompletionCriteria(
       targetObjectiveMetricValue: json['TargetObjectiveMetricValue'] as double,
@@ -52478,6 +52965,7 @@ class TuningJobStepMetaData {
   TuningJobStepMetaData({
     this.arn,
   });
+
   factory TuningJobStepMetaData.fromJson(Map<String, dynamic> json) {
     return TuningJobStepMetaData(
       arn: json['Arn'] as String?,
@@ -52508,6 +52996,7 @@ class USD {
     this.dollars,
     this.tenthFractionsOfACent,
   });
+
   factory USD.fromJson(Map<String, dynamic> json) {
     return USD(
       cents: json['Cents'] as int?,
@@ -52598,6 +53087,7 @@ class UiConfig {
     this.humanTaskUiArn,
     this.uiTemplateS3Uri,
   });
+
   factory UiConfig.fromJson(Map<String, dynamic> json) {
     return UiConfig(
       humanTaskUiArn: json['HumanTaskUiArn'] as String?,
@@ -52623,6 +53113,7 @@ class UiTemplate {
   UiTemplate({
     required this.content,
   });
+
   factory UiTemplate.fromJson(Map<String, dynamic> json) {
     return UiTemplate(
       content: json['Content'] as String,
@@ -52649,6 +53140,7 @@ class UiTemplateInfo {
     this.contentSha256,
     this.url,
   });
+
   factory UiTemplateInfo.fromJson(Map<String, dynamic> json) {
     return UiTemplateInfo(
       contentSha256: json['ContentSha256'] as String?,
@@ -52673,6 +53165,7 @@ class UpdateActionResponse {
   UpdateActionResponse({
     this.actionArn,
   });
+
   factory UpdateActionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateActionResponse(
       actionArn: json['ActionArn'] as String?,
@@ -52694,6 +53187,7 @@ class UpdateAppImageConfigResponse {
   UpdateAppImageConfigResponse({
     this.appImageConfigArn,
   });
+
   factory UpdateAppImageConfigResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAppImageConfigResponse(
       appImageConfigArn: json['AppImageConfigArn'] as String?,
@@ -52715,6 +53209,7 @@ class UpdateArtifactResponse {
   UpdateArtifactResponse({
     this.artifactArn,
   });
+
   factory UpdateArtifactResponse.fromJson(Map<String, dynamic> json) {
     return UpdateArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
@@ -52736,6 +53231,7 @@ class UpdateCodeRepositoryOutput {
   UpdateCodeRepositoryOutput({
     required this.codeRepositoryArn,
   });
+
   factory UpdateCodeRepositoryOutput.fromJson(Map<String, dynamic> json) {
     return UpdateCodeRepositoryOutput(
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
@@ -52757,6 +53253,7 @@ class UpdateContextResponse {
   UpdateContextResponse({
     this.contextArn,
   });
+
   factory UpdateContextResponse.fromJson(Map<String, dynamic> json) {
     return UpdateContextResponse(
       contextArn: json['ContextArn'] as String?,
@@ -52778,6 +53275,7 @@ class UpdateDomainResponse {
   UpdateDomainResponse({
     this.domainArn,
   });
+
   factory UpdateDomainResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDomainResponse(
       domainArn: json['DomainArn'] as String?,
@@ -52799,6 +53297,7 @@ class UpdateEndpointOutput {
   UpdateEndpointOutput({
     required this.endpointArn,
   });
+
   factory UpdateEndpointOutput.fromJson(Map<String, dynamic> json) {
     return UpdateEndpointOutput(
       endpointArn: json['EndpointArn'] as String,
@@ -52820,6 +53319,7 @@ class UpdateEndpointWeightsAndCapacitiesOutput {
   UpdateEndpointWeightsAndCapacitiesOutput({
     required this.endpointArn,
   });
+
   factory UpdateEndpointWeightsAndCapacitiesOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateEndpointWeightsAndCapacitiesOutput(
@@ -52842,6 +53342,7 @@ class UpdateExperimentResponse {
   UpdateExperimentResponse({
     this.experimentArn,
   });
+
   factory UpdateExperimentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateExperimentResponse(
       experimentArn: json['ExperimentArn'] as String?,
@@ -52863,6 +53364,7 @@ class UpdateImageResponse {
   UpdateImageResponse({
     this.imageArn,
   });
+
   factory UpdateImageResponse.fromJson(Map<String, dynamic> json) {
     return UpdateImageResponse(
       imageArn: json['ImageArn'] as String?,
@@ -52884,6 +53386,7 @@ class UpdateModelPackageOutput {
   UpdateModelPackageOutput({
     required this.modelPackageArn,
   });
+
   factory UpdateModelPackageOutput.fromJson(Map<String, dynamic> json) {
     return UpdateModelPackageOutput(
       modelPackageArn: json['ModelPackageArn'] as String,
@@ -52905,6 +53408,7 @@ class UpdateMonitoringScheduleResponse {
   UpdateMonitoringScheduleResponse({
     required this.monitoringScheduleArn,
   });
+
   factory UpdateMonitoringScheduleResponse.fromJson(Map<String, dynamic> json) {
     return UpdateMonitoringScheduleResponse(
       monitoringScheduleArn: json['MonitoringScheduleArn'] as String,
@@ -52921,6 +53425,7 @@ class UpdateMonitoringScheduleResponse {
 
 class UpdateNotebookInstanceLifecycleConfigOutput {
   UpdateNotebookInstanceLifecycleConfigOutput();
+
   factory UpdateNotebookInstanceLifecycleConfigOutput.fromJson(
       Map<String, dynamic> _) {
     return UpdateNotebookInstanceLifecycleConfigOutput();
@@ -52933,6 +53438,7 @@ class UpdateNotebookInstanceLifecycleConfigOutput {
 
 class UpdateNotebookInstanceOutput {
   UpdateNotebookInstanceOutput();
+
   factory UpdateNotebookInstanceOutput.fromJson(Map<String, dynamic> _) {
     return UpdateNotebookInstanceOutput();
   }
@@ -52949,6 +53455,7 @@ class UpdatePipelineExecutionResponse {
   UpdatePipelineExecutionResponse({
     this.pipelineExecutionArn,
   });
+
   factory UpdatePipelineExecutionResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePipelineExecutionResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
@@ -52971,6 +53478,7 @@ class UpdatePipelineResponse {
   UpdatePipelineResponse({
     this.pipelineArn,
   });
+
   factory UpdatePipelineResponse.fromJson(Map<String, dynamic> json) {
     return UpdatePipelineResponse(
       pipelineArn: json['PipelineArn'] as String?,
@@ -52992,6 +53500,7 @@ class UpdateTrainingJobResponse {
   UpdateTrainingJobResponse({
     required this.trainingJobArn,
   });
+
   factory UpdateTrainingJobResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTrainingJobResponse(
       trainingJobArn: json['TrainingJobArn'] as String,
@@ -53013,6 +53522,7 @@ class UpdateTrialComponentResponse {
   UpdateTrialComponentResponse({
     this.trialComponentArn,
   });
+
   factory UpdateTrialComponentResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTrialComponentResponse(
       trialComponentArn: json['TrialComponentArn'] as String?,
@@ -53034,6 +53544,7 @@ class UpdateTrialResponse {
   UpdateTrialResponse({
     this.trialArn,
   });
+
   factory UpdateTrialResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTrialResponse(
       trialArn: json['TrialArn'] as String?,
@@ -53055,6 +53566,7 @@ class UpdateUserProfileResponse {
   UpdateUserProfileResponse({
     this.userProfileArn,
   });
+
   factory UpdateUserProfileResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserProfileResponse(
       userProfileArn: json['UserProfileArn'] as String?,
@@ -53081,6 +53593,7 @@ class UpdateWorkforceResponse {
   UpdateWorkforceResponse({
     required this.workforce,
   });
+
   factory UpdateWorkforceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateWorkforceResponse(
       workforce: Workforce.fromJson(json['Workforce'] as Map<String, dynamic>),
@@ -53102,6 +53615,7 @@ class UpdateWorkteamResponse {
   UpdateWorkteamResponse({
     required this.workteam,
   });
+
   factory UpdateWorkteamResponse.fromJson(Map<String, dynamic> json) {
     return UpdateWorkteamResponse(
       workteam: Workteam.fromJson(json['Workteam'] as Map<String, dynamic>),
@@ -53133,6 +53647,7 @@ class UserContext {
     this.userProfileArn,
     this.userProfileName,
   });
+
   factory UserContext.fromJson(Map<String, dynamic> json) {
     return UserContext(
       domainId: json['DomainId'] as String?,
@@ -53177,6 +53692,7 @@ class UserProfileDetails {
     this.status,
     this.userProfileName,
   });
+
   factory UserProfileDetails.fromJson(Map<String, dynamic> json) {
     return UserProfileDetails(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -53333,6 +53849,7 @@ class UserSettings {
     this.sharingSettings,
     this.tensorBoardAppSettings,
   });
+
   factory UserSettings.fromJson(Map<String, dynamic> json) {
     return UserSettings(
       executionRole: json['ExecutionRole'] as String?,
@@ -53410,6 +53927,7 @@ class VariantProperty {
   VariantProperty({
     required this.variantPropertyType,
   });
+
   factory VariantProperty.fromJson(Map<String, dynamic> json) {
     return VariantProperty(
       variantPropertyType:
@@ -53481,6 +53999,7 @@ class VpcConfig {
     required this.securityGroupIds,
     required this.subnets,
   });
+
   factory VpcConfig.fromJson(Map<String, dynamic> json) {
     return VpcConfig(
       securityGroupIds: (json['SecurityGroupIds'] as List)
@@ -53555,6 +54074,7 @@ class Workforce {
     this.sourceIpConfig,
     this.subDomain,
   });
+
   factory Workforce.fromJson(Map<String, dynamic> json) {
     return Workforce(
       workforceArn: json['WorkforceArn'] as String,
@@ -53652,6 +54172,7 @@ class Workteam {
     this.subDomain,
     this.workforceArn,
   });
+
   factory Workteam.fromJson(Map<String, dynamic> json) {
     return Workteam(
       description: json['Description'] as String,

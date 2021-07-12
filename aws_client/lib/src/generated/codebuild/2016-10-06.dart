@@ -3374,6 +3374,7 @@ class BatchDeleteBuildsOutput {
     this.buildsDeleted,
     this.buildsNotDeleted,
   });
+
   factory BatchDeleteBuildsOutput.fromJson(Map<String, dynamic> json) {
     return BatchDeleteBuildsOutput(
       buildsDeleted: (json['buildsDeleted'] as List?)
@@ -3410,6 +3411,7 @@ class BatchGetBuildBatchesOutput {
     this.buildBatches,
     this.buildBatchesNotFound,
   });
+
   factory BatchGetBuildBatchesOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetBuildBatchesOutput(
       buildBatches: (json['buildBatches'] as List?)
@@ -3445,6 +3447,7 @@ class BatchGetBuildsOutput {
     this.builds,
     this.buildsNotFound,
   });
+
   factory BatchGetBuildsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetBuildsOutput(
       builds: (json['builds'] as List?)
@@ -3479,6 +3482,7 @@ class BatchGetProjectsOutput {
     this.projects,
     this.projectsNotFound,
   });
+
   factory BatchGetProjectsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetProjectsOutput(
       projects: (json['projects'] as List?)
@@ -3514,6 +3518,7 @@ class BatchGetReportGroupsOutput {
     this.reportGroups,
     this.reportGroupsNotFound,
   });
+
   factory BatchGetReportGroupsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetReportGroupsOutput(
       reportGroups: (json['reportGroups'] as List?)
@@ -3551,6 +3556,7 @@ class BatchGetReportsOutput {
     this.reports,
     this.reportsNotFound,
   });
+
   factory BatchGetReportsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetReportsOutput(
       reports: (json['reports'] as List?)
@@ -3590,6 +3596,7 @@ class BatchRestrictions {
     this.computeTypesAllowed,
     this.maximumBuildsAllowed,
   });
+
   factory BatchRestrictions.fromJson(Map<String, dynamic> json) {
     return BatchRestrictions(
       computeTypesAllowed: (json['computeTypesAllowed'] as List?)
@@ -3849,6 +3856,7 @@ class Build {
     this.timeoutInMinutes,
     this.vpcConfig,
   });
+
   factory Build.fromJson(Map<String, dynamic> json) {
     return Build(
       arn: json['arn'] as String?,
@@ -4048,6 +4056,7 @@ class BuildArtifacts {
     this.overrideArtifactName,
     this.sha256sum,
   });
+
   factory BuildArtifacts.fromJson(Map<String, dynamic> json) {
     return BuildArtifacts(
       artifactIdentifier: json['artifactIdentifier'] as String?,
@@ -4269,6 +4278,7 @@ class BuildBatch {
     this.startTime,
     this.vpcConfig,
   });
+
   factory BuildBatch.fromJson(Map<String, dynamic> json) {
     return BuildBatch(
       arn: json['arn'] as String?,
@@ -4421,6 +4431,7 @@ class BuildBatchFilter {
   BuildBatchFilter({
     this.status,
   });
+
   factory BuildBatchFilter.fromJson(Map<String, dynamic> json) {
     return BuildBatchFilter(
       status: (json['status'] as String?)?.toStatusType(),
@@ -4496,6 +4507,7 @@ class BuildBatchPhase {
     this.phaseType,
     this.startTime,
   });
+
   factory BuildBatchPhase.fromJson(Map<String, dynamic> json) {
     return BuildBatchPhase(
       contexts: (json['contexts'] as List?)
@@ -4610,6 +4622,7 @@ class BuildGroup {
     this.ignoreFailure,
     this.priorBuildSummaryList,
   });
+
   factory BuildGroup.fromJson(Map<String, dynamic> json) {
     return BuildGroup(
       currentBuildSummary: json['currentBuildSummary'] != null
@@ -4660,6 +4673,7 @@ class BuildNotDeleted {
     this.id,
     this.statusCode,
   });
+
   factory BuildNotDeleted.fromJson(Map<String, dynamic> json) {
     return BuildNotDeleted(
       id: json['id'] as String?,
@@ -4766,6 +4780,7 @@ class BuildPhase {
     this.phaseType,
     this.startTime,
   });
+
   factory BuildPhase.fromJson(Map<String, dynamic> json) {
     return BuildPhase(
       contexts: (json['contexts'] as List?)
@@ -4908,6 +4923,7 @@ class BuildStatusConfig {
     this.context,
     this.targetUrl,
   });
+
   factory BuildStatusConfig.fromJson(Map<String, dynamic> json) {
     return BuildStatusConfig(
       context: json['context'] as String?,
@@ -4964,6 +4980,7 @@ class BuildSummary {
     this.requestedOn,
     this.secondaryArtifacts,
   });
+
   factory BuildSummary.fromJson(Map<String, dynamic> json) {
     return BuildSummary(
       arn: json['arn'] as String?,
@@ -5094,6 +5111,7 @@ class CloudWatchLogsConfig {
     this.groupName,
     this.streamName,
   });
+
   factory CloudWatchLogsConfig.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsConfig(
       status: (json['status'] as String).toLogsConfigStatusType(),
@@ -5165,6 +5183,7 @@ class CodeCoverage {
     this.linesMissed,
     this.reportARN,
   });
+
   factory CodeCoverage.fromJson(Map<String, dynamic> json) {
     return CodeCoverage(
       branchCoveragePercentage: json['branchCoveragePercentage'] as double?,
@@ -5243,6 +5262,7 @@ class CodeCoverageReportSummary {
     this.linesCovered,
     this.linesMissed,
   });
+
   factory CodeCoverageReportSummary.fromJson(Map<String, dynamic> json) {
     return CodeCoverageReportSummary(
       branchCoveragePercentage: json['branchCoveragePercentage'] as double?,
@@ -5319,6 +5339,7 @@ class CreateProjectOutput {
   CreateProjectOutput({
     this.project,
   });
+
   factory CreateProjectOutput.fromJson(Map<String, dynamic> json) {
     return CreateProjectOutput(
       project: json['project'] != null
@@ -5342,6 +5363,7 @@ class CreateReportGroupOutput {
   CreateReportGroupOutput({
     this.reportGroup,
   });
+
   factory CreateReportGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateReportGroupOutput(
       reportGroup: json['reportGroup'] != null
@@ -5366,6 +5388,7 @@ class CreateWebhookOutput {
   CreateWebhookOutput({
     this.webhook,
   });
+
   factory CreateWebhookOutput.fromJson(Map<String, dynamic> json) {
     return CreateWebhookOutput(
       webhook: json['webhook'] != null
@@ -5422,6 +5445,7 @@ class DebugSession {
     this.sessionEnabled,
     this.sessionTarget,
   });
+
   factory DebugSession.fromJson(Map<String, dynamic> json) {
     return DebugSession(
       sessionEnabled: json['sessionEnabled'] as bool?,
@@ -5456,6 +5480,7 @@ class DeleteBuildBatchOutput {
     this.buildsNotDeleted,
     this.statusCode,
   });
+
   factory DeleteBuildBatchOutput.fromJson(Map<String, dynamic> json) {
     return DeleteBuildBatchOutput(
       buildsDeleted: (json['buildsDeleted'] as List?)
@@ -5484,6 +5509,7 @@ class DeleteBuildBatchOutput {
 
 class DeleteProjectOutput {
   DeleteProjectOutput();
+
   factory DeleteProjectOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProjectOutput();
   }
@@ -5495,6 +5521,7 @@ class DeleteProjectOutput {
 
 class DeleteReportGroupOutput {
   DeleteReportGroupOutput();
+
   factory DeleteReportGroupOutput.fromJson(Map<String, dynamic> _) {
     return DeleteReportGroupOutput();
   }
@@ -5506,6 +5533,7 @@ class DeleteReportGroupOutput {
 
 class DeleteReportOutput {
   DeleteReportOutput();
+
   factory DeleteReportOutput.fromJson(Map<String, dynamic> _) {
     return DeleteReportOutput();
   }
@@ -5517,6 +5545,7 @@ class DeleteReportOutput {
 
 class DeleteResourcePolicyOutput {
   DeleteResourcePolicyOutput();
+
   factory DeleteResourcePolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyOutput();
   }
@@ -5533,6 +5562,7 @@ class DeleteSourceCredentialsOutput {
   DeleteSourceCredentialsOutput({
     this.arn,
   });
+
   factory DeleteSourceCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return DeleteSourceCredentialsOutput(
       arn: json['arn'] as String?,
@@ -5549,6 +5579,7 @@ class DeleteSourceCredentialsOutput {
 
 class DeleteWebhookOutput {
   DeleteWebhookOutput();
+
   factory DeleteWebhookOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWebhookOutput();
   }
@@ -5571,6 +5602,7 @@ class DescribeCodeCoveragesOutput {
     this.codeCoverages,
     this.nextToken,
   });
+
   factory DescribeCodeCoveragesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCodeCoveragesOutput(
       codeCoverages: (json['codeCoverages'] as List?)
@@ -5608,6 +5640,7 @@ class DescribeTestCasesOutput {
     this.nextToken,
     this.testCases,
   });
+
   factory DescribeTestCasesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTestCasesOutput(
       nextToken: json['nextToken'] as String?,
@@ -5644,6 +5677,7 @@ class EnvironmentImage {
     this.name,
     this.versions,
   });
+
   factory EnvironmentImage.fromJson(Map<String, dynamic> json) {
     return EnvironmentImage(
       description: json['description'] as String?,
@@ -5681,6 +5715,7 @@ class EnvironmentLanguage {
     this.images,
     this.language,
   });
+
   factory EnvironmentLanguage.fromJson(Map<String, dynamic> json) {
     return EnvironmentLanguage(
       images: (json['images'] as List?)
@@ -5715,6 +5750,7 @@ class EnvironmentPlatform {
     this.languages,
     this.platform,
   });
+
   factory EnvironmentPlatform.fromJson(Map<String, dynamic> json) {
     return EnvironmentPlatform(
       languages: (json['languages'] as List?)
@@ -5824,6 +5860,7 @@ class EnvironmentVariable {
     required this.value,
     this.type,
   });
+
   factory EnvironmentVariable.fromJson(Map<String, dynamic> json) {
     return EnvironmentVariable(
       name: json['name'] as String,
@@ -5902,6 +5939,7 @@ class ExportedEnvironmentVariable {
     this.name,
     this.value,
   });
+
   factory ExportedEnvironmentVariable.fromJson(Map<String, dynamic> json) {
     return ExportedEnvironmentVariable(
       name: json['name'] as String?,
@@ -5953,6 +5991,7 @@ class GetReportGroupTrendOutput {
     this.rawData,
     this.stats,
   });
+
   factory GetReportGroupTrendOutput.fromJson(Map<String, dynamic> json) {
     return GetReportGroupTrendOutput(
       rawData: (json['rawData'] as List?)
@@ -5983,6 +6022,7 @@ class GetResourcePolicyOutput {
   GetResourcePolicyOutput({
     this.policy,
   });
+
   factory GetResourcePolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetResourcePolicyOutput(
       policy: json['policy'] as String?,
@@ -6006,6 +6046,7 @@ class GitSubmodulesConfig {
   GitSubmodulesConfig({
     required this.fetchSubmodules,
   });
+
   factory GitSubmodulesConfig.fromJson(Map<String, dynamic> json) {
     return GitSubmodulesConfig(
       fetchSubmodules: json['fetchSubmodules'] as bool,
@@ -6055,6 +6096,7 @@ class ImportSourceCredentialsOutput {
   ImportSourceCredentialsOutput({
     this.arn,
   });
+
   factory ImportSourceCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return ImportSourceCredentialsOutput(
       arn: json['arn'] as String?,
@@ -6071,6 +6113,7 @@ class ImportSourceCredentialsOutput {
 
 class InvalidateProjectCacheOutput {
   InvalidateProjectCacheOutput();
+
   factory InvalidateProjectCacheOutput.fromJson(Map<String, dynamic> _) {
     return InvalidateProjectCacheOutput();
   }
@@ -6161,6 +6204,7 @@ class ListBuildBatchesForProjectOutput {
     this.ids,
     this.nextToken,
   });
+
   factory ListBuildBatchesForProjectOutput.fromJson(Map<String, dynamic> json) {
     return ListBuildBatchesForProjectOutput(
       ids: (json['ids'] as List?)
@@ -6194,6 +6238,7 @@ class ListBuildBatchesOutput {
     this.ids,
     this.nextToken,
   });
+
   factory ListBuildBatchesOutput.fromJson(Map<String, dynamic> json) {
     return ListBuildBatchesOutput(
       ids: (json['ids'] as List?)
@@ -6229,6 +6274,7 @@ class ListBuildsForProjectOutput {
     this.ids,
     this.nextToken,
   });
+
   factory ListBuildsForProjectOutput.fromJson(Map<String, dynamic> json) {
     return ListBuildsForProjectOutput(
       ids: (json['ids'] as List?)
@@ -6263,6 +6309,7 @@ class ListBuildsOutput {
     this.ids,
     this.nextToken,
   });
+
   factory ListBuildsOutput.fromJson(Map<String, dynamic> json) {
     return ListBuildsOutput(
       ids: (json['ids'] as List?)
@@ -6291,6 +6338,7 @@ class ListCuratedEnvironmentImagesOutput {
   ListCuratedEnvironmentImagesOutput({
     this.platforms,
   });
+
   factory ListCuratedEnvironmentImagesOutput.fromJson(
       Map<String, dynamic> json) {
     return ListCuratedEnvironmentImagesOutput(
@@ -6324,6 +6372,7 @@ class ListProjectsOutput {
     this.nextToken,
     this.projects,
   });
+
   factory ListProjectsOutput.fromJson(Map<String, dynamic> json) {
     return ListProjectsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6362,6 +6411,7 @@ class ListReportGroupsOutput {
     this.nextToken,
     this.reportGroups,
   });
+
   factory ListReportGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListReportGroupsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6399,6 +6449,7 @@ class ListReportsForReportGroupOutput {
     this.nextToken,
     this.reports,
   });
+
   factory ListReportsForReportGroupOutput.fromJson(Map<String, dynamic> json) {
     return ListReportsForReportGroupOutput(
       nextToken: json['nextToken'] as String?,
@@ -6437,6 +6488,7 @@ class ListReportsOutput {
     this.nextToken,
     this.reports,
   });
+
   factory ListReportsOutput.fromJson(Map<String, dynamic> json) {
     return ListReportsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6475,6 +6527,7 @@ class ListSharedProjectsOutput {
     this.nextToken,
     this.projects,
   });
+
   factory ListSharedProjectsOutput.fromJson(Map<String, dynamic> json) {
     return ListSharedProjectsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6513,6 +6566,7 @@ class ListSharedReportGroupsOutput {
     this.nextToken,
     this.reportGroups,
   });
+
   factory ListSharedReportGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListSharedReportGroupsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6542,6 +6596,7 @@ class ListSourceCredentialsOutput {
   ListSourceCredentialsOutput({
     this.sourceCredentialsInfos,
   });
+
   factory ListSourceCredentialsOutput.fromJson(Map<String, dynamic> json) {
     return ListSourceCredentialsOutput(
       sourceCredentialsInfos: (json['sourceCredentialsInfos'] as List?)
@@ -6575,6 +6630,7 @@ class LogsConfig {
     this.cloudWatchLogs,
     this.s3Logs,
   });
+
   factory LogsConfig.fromJson(Map<String, dynamic> json) {
     return LogsConfig(
       cloudWatchLogs: json['cloudWatchLogs'] != null
@@ -6669,6 +6725,7 @@ class LogsLocation {
     this.s3LogsArn,
     this.streamName,
   });
+
   factory LogsLocation.fromJson(Map<String, dynamic> json) {
     return LogsLocation(
       cloudWatchLogs: json['cloudWatchLogs'] != null
@@ -6721,6 +6778,7 @@ class NetworkInterface {
     this.networkInterfaceId,
     this.subnetId,
   });
+
   factory NetworkInterface.fromJson(Map<String, dynamic> json) {
     return NetworkInterface(
       networkInterfaceId: json['networkInterfaceId'] as String?,
@@ -6752,6 +6810,7 @@ class PhaseContext {
     this.message,
     this.statusCode,
   });
+
   factory PhaseContext.fromJson(Map<String, dynamic> json) {
     return PhaseContext(
       message: json['message'] as String?,
@@ -6975,6 +7034,7 @@ class Project {
     this.vpcConfig,
     this.webhook,
   });
+
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       arn: json['arn'] as String?,
@@ -7299,6 +7359,7 @@ class ProjectArtifacts {
     this.packaging,
     this.path,
   });
+
   factory ProjectArtifacts.fromJson(Map<String, dynamic> json) {
     return ProjectArtifacts(
       type: (json['type'] as String).toArtifactsType(),
@@ -7352,6 +7413,7 @@ class ProjectBadge {
     this.badgeEnabled,
     this.badgeRequestUrl,
   });
+
   factory ProjectBadge.fromJson(Map<String, dynamic> json) {
     return ProjectBadge(
       badgeEnabled: json['badgeEnabled'] as bool?,
@@ -7392,6 +7454,7 @@ class ProjectBuildBatchConfig {
     this.serviceRole,
     this.timeoutInMins,
   });
+
   factory ProjectBuildBatchConfig.fromJson(Map<String, dynamic> json) {
     return ProjectBuildBatchConfig(
       combineArtifacts: json['combineArtifacts'] as bool?,
@@ -7503,6 +7566,7 @@ class ProjectCache {
     this.location,
     this.modes,
   });
+
   factory ProjectCache.fromJson(Map<String, dynamic> json) {
     return ProjectCache(
       type: (json['type'] as String).toCacheType(),
@@ -7703,6 +7767,7 @@ class ProjectEnvironment {
     this.privilegedMode,
     this.registryCredential,
   });
+
   factory ProjectEnvironment.fromJson(Map<String, dynamic> json) {
     return ProjectEnvironment(
       computeType: (json['computeType'] as String).toComputeType(),
@@ -7797,6 +7862,7 @@ class ProjectFileSystemLocation {
     this.mountPoint,
     this.type,
   });
+
   factory ProjectFileSystemLocation.fromJson(Map<String, dynamic> json) {
     return ProjectFileSystemLocation(
       identifier: json['identifier'] as String?,
@@ -8022,6 +8088,7 @@ class ProjectSource {
     this.reportBuildStatus,
     this.sourceIdentifier,
   });
+
   factory ProjectSource.fromJson(Map<String, dynamic> json) {
     return ProjectSource(
       type: (json['type'] as String).toSourceType(),
@@ -8114,6 +8181,7 @@ class ProjectSourceVersion {
     required this.sourceIdentifier,
     required this.sourceVersion,
   });
+
   factory ProjectSourceVersion.fromJson(Map<String, dynamic> json) {
     return ProjectSourceVersion(
       sourceIdentifier: json['sourceIdentifier'] as String,
@@ -8139,6 +8207,7 @@ class PutResourcePolicyOutput {
   PutResourcePolicyOutput({
     this.resourceArn,
   });
+
   factory PutResourcePolicyOutput.fromJson(Map<String, dynamic> json) {
     return PutResourcePolicyOutput(
       resourceArn: json['resourceArn'] as String?,
@@ -8185,6 +8254,7 @@ class RegistryCredential {
     required this.credential,
     required this.credentialProvider,
   });
+
   factory RegistryCredential.fromJson(Map<String, dynamic> json) {
     return RegistryCredential(
       credential: json['credential'] as String,
@@ -8269,6 +8339,7 @@ class Report {
     this.truncated,
     this.type,
   });
+
   factory Report.fromJson(Map<String, dynamic> json) {
     return Report(
       arn: json['arn'] as String?,
@@ -8376,6 +8447,7 @@ class ReportExportConfig {
     this.exportConfigType,
     this.s3Destination,
   });
+
   factory ReportExportConfig.fromJson(Map<String, dynamic> json) {
     return ReportExportConfig(
       exportConfigType:
@@ -8435,6 +8507,7 @@ class ReportFilter {
   ReportFilter({
     this.status,
   });
+
   factory ReportFilter.fromJson(Map<String, dynamic> json) {
     return ReportFilter(
       status: (json['status'] as String?)?.toReportStatusType(),
@@ -8505,6 +8578,7 @@ class ReportGroup {
     this.tags,
     this.type,
   });
+
   factory ReportGroup.fromJson(Map<String, dynamic> json) {
     return ReportGroup(
       arn: json['arn'] as String?,
@@ -8688,6 +8762,7 @@ class ReportGroupTrendStats {
     this.max,
     this.min,
   });
+
   factory ReportGroupTrendStats.fromJson(Map<String, dynamic> json) {
     return ReportGroupTrendStats(
       average: json['average'] as String?,
@@ -8819,6 +8894,7 @@ class ReportWithRawData {
     this.data,
     this.reportArn,
   });
+
   factory ReportWithRawData.fromJson(Map<String, dynamic> json) {
     return ReportWithRawData(
       data: json['data'] as String?,
@@ -8853,6 +8929,7 @@ class ResolvedArtifact {
     this.location,
     this.type,
   });
+
   factory ResolvedArtifact.fromJson(Map<String, dynamic> json) {
     return ResolvedArtifact(
       identifier: json['identifier'] as String?,
@@ -8879,6 +8956,7 @@ class RetryBuildBatchOutput {
   RetryBuildBatchOutput({
     this.buildBatch,
   });
+
   factory RetryBuildBatchOutput.fromJson(Map<String, dynamic> json) {
     return RetryBuildBatchOutput(
       buildBatch: json['buildBatch'] != null
@@ -8929,6 +9007,7 @@ class RetryBuildOutput {
   RetryBuildOutput({
     this.build,
   });
+
   factory RetryBuildOutput.fromJson(Map<String, dynamic> json) {
     return RetryBuildOutput(
       build: json['build'] != null
@@ -8975,6 +9054,7 @@ class S3LogsConfig {
     this.encryptionDisabled,
     this.location,
   });
+
   factory S3LogsConfig.fromJson(Map<String, dynamic> json) {
     return S3LogsConfig(
       status: (json['status'] as String).toLogsConfigStatusType(),
@@ -9036,6 +9116,7 @@ class S3ReportExportConfig {
     this.packaging,
     this.path,
   });
+
   factory S3ReportExportConfig.fromJson(Map<String, dynamic> json) {
     return S3ReportExportConfig(
       bucket: json['bucket'] as String?,
@@ -9174,6 +9255,7 @@ class SourceAuth {
     required this.type,
     this.resource,
   });
+
   factory SourceAuth.fromJson(Map<String, dynamic> json) {
     return SourceAuth(
       type: (json['type'] as String).toSourceAuthType(),
@@ -9233,6 +9315,7 @@ class SourceCredentialsInfo {
     this.authType,
     this.serverType,
   });
+
   factory SourceCredentialsInfo.fromJson(Map<String, dynamic> json) {
     return SourceCredentialsInfo(
       arn: json['arn'] as String?,
@@ -9314,6 +9397,7 @@ class StartBuildBatchOutput {
   StartBuildBatchOutput({
     this.buildBatch,
   });
+
   factory StartBuildBatchOutput.fromJson(Map<String, dynamic> json) {
     return StartBuildBatchOutput(
       buildBatch: json['buildBatch'] != null
@@ -9337,6 +9421,7 @@ class StartBuildOutput {
   StartBuildOutput({
     this.build,
   });
+
   factory StartBuildOutput.fromJson(Map<String, dynamic> json) {
     return StartBuildOutput(
       build: json['build'] != null
@@ -9407,6 +9492,7 @@ class StopBuildBatchOutput {
   StopBuildBatchOutput({
     this.buildBatch,
   });
+
   factory StopBuildBatchOutput.fromJson(Map<String, dynamic> json) {
     return StopBuildBatchOutput(
       buildBatch: json['buildBatch'] != null
@@ -9430,6 +9516,7 @@ class StopBuildOutput {
   StopBuildOutput({
     this.build,
   });
+
   factory StopBuildOutput.fromJson(Map<String, dynamic> json) {
     return StopBuildOutput(
       build: json['build'] != null
@@ -9461,6 +9548,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String?,
@@ -9521,6 +9609,7 @@ class TestCase {
     this.status,
     this.testRawDataPath,
   });
+
   factory TestCase.fromJson(Map<String, dynamic> json) {
     return TestCase(
       durationInNanoSeconds: json['durationInNanoSeconds'] as int?,
@@ -9592,6 +9681,7 @@ class TestCaseFilter {
     this.keyword,
     this.status,
   });
+
   factory TestCaseFilter.fromJson(Map<String, dynamic> json) {
     return TestCaseFilter(
       keyword: json['keyword'] as String?,
@@ -9628,6 +9718,7 @@ class TestReportSummary {
     required this.statusCounts,
     required this.total,
   });
+
   factory TestReportSummary.fromJson(Map<String, dynamic> json) {
     return TestReportSummary(
       durationInNanoSeconds: json['durationInNanoSeconds'] as int,
@@ -9656,6 +9747,7 @@ class UpdateProjectOutput {
   UpdateProjectOutput({
     this.project,
   });
+
   factory UpdateProjectOutput.fromJson(Map<String, dynamic> json) {
     return UpdateProjectOutput(
       project: json['project'] != null
@@ -9679,6 +9771,7 @@ class UpdateReportGroupOutput {
   UpdateReportGroupOutput({
     this.reportGroup,
   });
+
   factory UpdateReportGroupOutput.fromJson(Map<String, dynamic> json) {
     return UpdateReportGroupOutput(
       reportGroup: json['reportGroup'] != null
@@ -9703,6 +9796,7 @@ class UpdateWebhookOutput {
   UpdateWebhookOutput({
     this.webhook,
   });
+
   factory UpdateWebhookOutput.fromJson(Map<String, dynamic> json) {
     return UpdateWebhookOutput(
       webhook: json['webhook'] != null
@@ -9735,6 +9829,7 @@ class VpcConfig {
     this.subnets,
     this.vpcId,
   });
+
   factory VpcConfig.fromJson(Map<String, dynamic> json) {
     return VpcConfig(
       securityGroupIds: (json['securityGroupIds'] as List?)
@@ -9811,6 +9906,7 @@ class Webhook {
     this.secret,
     this.url,
   });
+
   factory Webhook.fromJson(Map<String, dynamic> json) {
     return Webhook(
       branchFilter: json['branchFilter'] as String?,
@@ -9952,6 +10048,7 @@ class WebhookFilter {
     required this.type,
     this.excludeMatchedPattern,
   });
+
   factory WebhookFilter.fromJson(Map<String, dynamic> json) {
     return WebhookFilter(
       pattern: json['pattern'] as String,

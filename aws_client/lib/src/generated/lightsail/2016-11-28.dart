@@ -9116,6 +9116,7 @@ class AddOn {
     this.snapshotTimeOfDay,
     this.status,
   });
+
   factory AddOn.fromJson(Map<String, dynamic> json) {
     return AddOn(
       name: json['name'] as String?,
@@ -9159,6 +9160,7 @@ class AddOnRequest {
     required this.addOnType,
     this.autoSnapshotAddOnRequest,
   });
+
   factory AddOnRequest.fromJson(Map<String, dynamic> json) {
     return AddOnRequest(
       addOnType: (json['addOnType'] as String).toAddOnType(),
@@ -9367,6 +9369,7 @@ class Alarm {
     this.treatMissingData,
     this.unit,
   });
+
   factory Alarm.fromJson(Map<String, dynamic> json) {
     return Alarm(
       arn: json['arn'] as String?,
@@ -9500,6 +9503,7 @@ class AllocateStaticIpResult {
   AllocateStaticIpResult({
     this.operations,
   });
+
   factory AllocateStaticIpResult.fromJson(Map<String, dynamic> json) {
     return AllocateStaticIpResult(
       operations: (json['operations'] as List?)
@@ -9526,6 +9530,7 @@ class AttachCertificateToDistributionResult {
   AttachCertificateToDistributionResult({
     this.operation,
   });
+
   factory AttachCertificateToDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return AttachCertificateToDistributionResult(
@@ -9552,6 +9557,7 @@ class AttachDiskResult {
   AttachDiskResult({
     this.operations,
   });
+
   factory AttachDiskResult.fromJson(Map<String, dynamic> json) {
     return AttachDiskResult(
       operations: (json['operations'] as List?)
@@ -9578,6 +9584,7 @@ class AttachInstancesToLoadBalancerResult {
   AttachInstancesToLoadBalancerResult({
     this.operations,
   });
+
   factory AttachInstancesToLoadBalancerResult.fromJson(
       Map<String, dynamic> json) {
     return AttachInstancesToLoadBalancerResult(
@@ -9608,6 +9615,7 @@ class AttachLoadBalancerTlsCertificateResult {
   AttachLoadBalancerTlsCertificateResult({
     this.operations,
   });
+
   factory AttachLoadBalancerTlsCertificateResult.fromJson(
       Map<String, dynamic> json) {
     return AttachLoadBalancerTlsCertificateResult(
@@ -9635,6 +9643,7 @@ class AttachStaticIpResult {
   AttachStaticIpResult({
     this.operations,
   });
+
   factory AttachStaticIpResult.fromJson(Map<String, dynamic> json) {
     return AttachStaticIpResult(
       operations: (json['operations'] as List?)
@@ -9665,6 +9674,7 @@ class AttachedDisk {
     this.path,
     this.sizeInGb,
   });
+
   factory AttachedDisk.fromJson(Map<String, dynamic> json) {
     return AttachedDisk(
       path: json['path'] as String?,
@@ -9742,6 +9752,7 @@ class AutoSnapshotAddOnRequest {
   AutoSnapshotAddOnRequest({
     this.snapshotTimeOfDay,
   });
+
   factory AutoSnapshotAddOnRequest.fromJson(Map<String, dynamic> json) {
     return AutoSnapshotAddOnRequest(
       snapshotTimeOfDay: json['snapshotTimeOfDay'] as String?,
@@ -9777,6 +9788,7 @@ class AutoSnapshotDetails {
     this.fromAttachedDisks,
     this.status,
   });
+
   factory AutoSnapshotDetails.fromJson(Map<String, dynamic> json) {
     return AutoSnapshotDetails(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -9854,6 +9866,7 @@ class AvailabilityZone {
     this.state,
     this.zoneName,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       state: json['state'] as String?,
@@ -9961,6 +9974,7 @@ class Blueprint {
     this.version,
     this.versionCode,
   });
+
   factory Blueprint.fromJson(Map<String, dynamic> json) {
     return Blueprint(
       blueprintId: json['blueprintId'] as String?,
@@ -10093,6 +10107,7 @@ class Bundle {
     this.supportedPlatforms,
     this.transferPerMonthInGb,
   });
+
   factory Bundle.fromJson(Map<String, dynamic> json) {
     return Bundle(
       bundleId: json['bundleId'] as String?,
@@ -10172,6 +10187,7 @@ class CacheBehavior {
   CacheBehavior({
     this.behavior,
   });
+
   factory CacheBehavior.fromJson(Map<String, dynamic> json) {
     return CacheBehavior(
       behavior: (json['behavior'] as String?)?.toBehaviorEnum(),
@@ -10263,6 +10279,7 @@ class CacheBehaviorPerPath {
     this.behavior,
     this.path,
   });
+
   factory CacheBehaviorPerPath.fromJson(Map<String, dynamic> json) {
     return CacheBehaviorPerPath(
       behavior: (json['behavior'] as String?)?.toBehaviorEnum(),
@@ -10379,6 +10396,7 @@ class CacheSettings {
     this.maximumTTL,
     this.minimumTTL,
   });
+
   factory CacheSettings.fromJson(Map<String, dynamic> json) {
     return CacheSettings(
       allowedHTTPMethods: json['allowedHTTPMethods'] as String?,
@@ -10586,6 +10604,7 @@ class Certificate {
     this.supportCode,
     this.tags,
   });
+
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       arn: json['arn'] as String?,
@@ -10756,6 +10775,7 @@ class CertificateSummary {
     this.domainName,
     this.tags,
   });
+
   factory CertificateSummary.fromJson(Map<String, dynamic> json) {
     return CertificateSummary(
       certificateArn: json['certificateArn'] as String?,
@@ -10797,6 +10817,7 @@ class CloseInstancePublicPortsResult {
   CloseInstancePublicPortsResult({
     this.operation,
   });
+
   factory CloseInstancePublicPortsResult.fromJson(Map<String, dynamic> json) {
     return CloseInstancePublicPortsResult(
       operation: json['operation'] != null
@@ -10858,6 +10879,7 @@ class CloudFormationStackRecord {
     this.sourceInfo,
     this.state,
   });
+
   factory CloudFormationStackRecord.fromJson(Map<String, dynamic> json) {
     return CloudFormationStackRecord(
       arn: json['arn'] as String?,
@@ -10919,6 +10941,7 @@ class CloudFormationStackRecordSourceInfo {
     this.name,
     this.resourceType,
   });
+
   factory CloudFormationStackRecordSourceInfo.fromJson(
       Map<String, dynamic> json) {
     return CloudFormationStackRecordSourceInfo(
@@ -11065,6 +11088,7 @@ class ContactMethod {
     this.status,
     this.supportCode,
   });
+
   factory ContactMethod.fromJson(Map<String, dynamic> json) {
     return ContactMethod(
       arn: json['arn'] as String?,
@@ -11217,6 +11241,7 @@ class Container {
     this.image,
     this.ports,
   });
+
   factory Container.fromJson(Map<String, dynamic> json) {
     return Container(
       command: (json['command'] as List?)
@@ -11262,6 +11287,7 @@ class ContainerImage {
     this.digest,
     this.image,
   });
+
   factory ContainerImage.fromJson(Map<String, dynamic> json) {
     return ContainerImage(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -11436,6 +11462,7 @@ class ContainerService {
     this.tags,
     this.url,
   });
+
   factory ContainerService.fromJson(Map<String, dynamic> json) {
     return ContainerService(
       arn: json['arn'] as String?,
@@ -11569,6 +11596,7 @@ class ContainerServiceDeployment {
     this.state,
     this.version,
   });
+
   factory ContainerServiceDeployment.fromJson(Map<String, dynamic> json) {
     return ContainerServiceDeployment(
       containers: (json['containers'] as Map<String, dynamic>?)?.map(
@@ -11616,6 +11644,7 @@ class ContainerServiceDeploymentRequest {
     this.containers,
     this.publicEndpoint,
   });
+
   factory ContainerServiceDeploymentRequest.fromJson(
       Map<String, dynamic> json) {
     return ContainerServiceDeploymentRequest(
@@ -11695,6 +11724,7 @@ class ContainerServiceEndpoint {
     this.containerPort,
     this.healthCheck,
   });
+
   factory ContainerServiceEndpoint.fromJson(Map<String, dynamic> json) {
     return ContainerServiceEndpoint(
       containerName: json['containerName'] as String?,
@@ -11757,6 +11787,7 @@ class ContainerServiceHealthCheckConfig {
     this.timeoutSeconds,
     this.unhealthyThreshold,
   });
+
   factory ContainerServiceHealthCheckConfig.fromJson(
       Map<String, dynamic> json) {
     return ContainerServiceHealthCheckConfig(
@@ -11800,6 +11831,7 @@ class ContainerServiceLogEvent {
     this.createdAt,
     this.message,
   });
+
   factory ContainerServiceLogEvent.fromJson(Map<String, dynamic> json) {
     return ContainerServiceLogEvent(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -11878,6 +11910,7 @@ class ContainerServicePower {
     this.price,
     this.ramSizeInGb,
   });
+
   factory ContainerServicePower.fromJson(Map<String, dynamic> json) {
     return ContainerServicePower(
       cpuCount: json['cpuCount'] as double?,
@@ -12022,6 +12055,7 @@ class ContainerServiceRegistryLogin {
     this.registry,
     this.username,
   });
+
   factory ContainerServiceRegistryLogin.fromJson(Map<String, dynamic> json) {
     return ContainerServiceRegistryLogin(
       expiresAt: timeStampFromJson(json['expiresAt']),
@@ -12168,6 +12202,7 @@ class ContainerServiceStateDetail {
     this.code,
     this.message,
   });
+
   factory ContainerServiceStateDetail.fromJson(Map<String, dynamic> json) {
     return ContainerServiceStateDetail(
       code: (json['code'] as String?)?.toContainerServiceStateDetailCode(),
@@ -12256,6 +12291,7 @@ class ContainerServicesListResult {
   ContainerServicesListResult({
     this.containerServices,
   });
+
   factory ContainerServicesListResult.fromJson(Map<String, dynamic> json) {
     return ContainerServicesListResult(
       containerServices: (json['containerServices'] as List?)
@@ -12292,6 +12328,7 @@ class CookieObject {
     this.cookiesAllowList,
     this.option,
   });
+
   factory CookieObject.fromJson(Map<String, dynamic> json) {
     return CookieObject(
       cookiesAllowList: (json['cookiesAllowList'] as List?)
@@ -12321,6 +12358,7 @@ class CopySnapshotResult {
   CopySnapshotResult({
     this.operations,
   });
+
   factory CopySnapshotResult.fromJson(Map<String, dynamic> json) {
     return CopySnapshotResult(
       operations: (json['operations'] as List?)
@@ -12351,6 +12389,7 @@ class CreateCertificateResult {
     this.certificate,
     this.operations,
   });
+
   factory CreateCertificateResult.fromJson(Map<String, dynamic> json) {
     return CreateCertificateResult(
       certificate: json['certificate'] != null
@@ -12383,6 +12422,7 @@ class CreateCloudFormationStackResult {
   CreateCloudFormationStackResult({
     this.operations,
   });
+
   factory CreateCloudFormationStackResult.fromJson(Map<String, dynamic> json) {
     return CreateCloudFormationStackResult(
       operations: (json['operations'] as List?)
@@ -12409,6 +12449,7 @@ class CreateContactMethodResult {
   CreateContactMethodResult({
     this.operations,
   });
+
   factory CreateContactMethodResult.fromJson(Map<String, dynamic> json) {
     return CreateContactMethodResult(
       operations: (json['operations'] as List?)
@@ -12433,6 +12474,7 @@ class CreateContainerServiceDeploymentResult {
   CreateContainerServiceDeploymentResult({
     this.containerService,
   });
+
   factory CreateContainerServiceDeploymentResult.fromJson(
       Map<String, dynamic> json) {
     return CreateContainerServiceDeploymentResult(
@@ -12459,6 +12501,7 @@ class CreateContainerServiceRegistryLoginResult {
   CreateContainerServiceRegistryLoginResult({
     this.registryLogin,
   });
+
   factory CreateContainerServiceRegistryLoginResult.fromJson(
       Map<String, dynamic> json) {
     return CreateContainerServiceRegistryLoginResult(
@@ -12484,6 +12527,7 @@ class CreateContainerServiceResult {
   CreateContainerServiceResult({
     this.containerService,
   });
+
   factory CreateContainerServiceResult.fromJson(Map<String, dynamic> json) {
     return CreateContainerServiceResult(
       containerService: json['containerService'] != null
@@ -12510,6 +12554,7 @@ class CreateDiskFromSnapshotResult {
   CreateDiskFromSnapshotResult({
     this.operations,
   });
+
   factory CreateDiskFromSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateDiskFromSnapshotResult(
       operations: (json['operations'] as List?)
@@ -12536,6 +12581,7 @@ class CreateDiskResult {
   CreateDiskResult({
     this.operations,
   });
+
   factory CreateDiskResult.fromJson(Map<String, dynamic> json) {
     return CreateDiskResult(
       operations: (json['operations'] as List?)
@@ -12562,6 +12608,7 @@ class CreateDiskSnapshotResult {
   CreateDiskSnapshotResult({
     this.operations,
   });
+
   factory CreateDiskSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateDiskSnapshotResult(
       operations: (json['operations'] as List?)
@@ -12592,6 +12639,7 @@ class CreateDistributionResult {
     this.distribution,
     this.operation,
   });
+
   factory CreateDistributionResult.fromJson(Map<String, dynamic> json) {
     return CreateDistributionResult(
       distribution: json['distribution'] != null
@@ -12623,6 +12671,7 @@ class CreateDomainEntryResult {
   CreateDomainEntryResult({
     this.operation,
   });
+
   factory CreateDomainEntryResult.fromJson(Map<String, dynamic> json) {
     return CreateDomainEntryResult(
       operation: json['operation'] != null
@@ -12648,6 +12697,7 @@ class CreateDomainResult {
   CreateDomainResult({
     this.operation,
   });
+
   factory CreateDomainResult.fromJson(Map<String, dynamic> json) {
     return CreateDomainResult(
       operation: json['operation'] != null
@@ -12673,6 +12723,7 @@ class CreateInstanceSnapshotResult {
   CreateInstanceSnapshotResult({
     this.operations,
   });
+
   factory CreateInstanceSnapshotResult.fromJson(Map<String, dynamic> json) {
     return CreateInstanceSnapshotResult(
       operations: (json['operations'] as List?)
@@ -12699,6 +12750,7 @@ class CreateInstancesFromSnapshotResult {
   CreateInstancesFromSnapshotResult({
     this.operations,
   });
+
   factory CreateInstancesFromSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return CreateInstancesFromSnapshotResult(
@@ -12726,6 +12778,7 @@ class CreateInstancesResult {
   CreateInstancesResult({
     this.operations,
   });
+
   factory CreateInstancesResult.fromJson(Map<String, dynamic> json) {
     return CreateInstancesResult(
       operations: (json['operations'] as List?)
@@ -12765,6 +12818,7 @@ class CreateKeyPairResult {
     this.privateKeyBase64,
     this.publicKeyBase64,
   });
+
   factory CreateKeyPairResult.fromJson(Map<String, dynamic> json) {
     return CreateKeyPairResult(
       keyPair: json['keyPair'] != null
@@ -12801,6 +12855,7 @@ class CreateLoadBalancerResult {
   CreateLoadBalancerResult({
     this.operations,
   });
+
   factory CreateLoadBalancerResult.fromJson(Map<String, dynamic> json) {
     return CreateLoadBalancerResult(
       operations: (json['operations'] as List?)
@@ -12827,6 +12882,7 @@ class CreateLoadBalancerTlsCertificateResult {
   CreateLoadBalancerTlsCertificateResult({
     this.operations,
   });
+
   factory CreateLoadBalancerTlsCertificateResult.fromJson(
       Map<String, dynamic> json) {
     return CreateLoadBalancerTlsCertificateResult(
@@ -12854,6 +12910,7 @@ class CreateRelationalDatabaseFromSnapshotResult {
   CreateRelationalDatabaseFromSnapshotResult({
     this.operations,
   });
+
   factory CreateRelationalDatabaseFromSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return CreateRelationalDatabaseFromSnapshotResult(
@@ -12881,6 +12938,7 @@ class CreateRelationalDatabaseResult {
   CreateRelationalDatabaseResult({
     this.operations,
   });
+
   factory CreateRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return CreateRelationalDatabaseResult(
       operations: (json['operations'] as List?)
@@ -12907,6 +12965,7 @@ class CreateRelationalDatabaseSnapshotResult {
   CreateRelationalDatabaseSnapshotResult({
     this.operations,
   });
+
   factory CreateRelationalDatabaseSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return CreateRelationalDatabaseSnapshotResult(
@@ -12934,6 +12993,7 @@ class DeleteAlarmResult {
   DeleteAlarmResult({
     this.operations,
   });
+
   factory DeleteAlarmResult.fromJson(Map<String, dynamic> json) {
     return DeleteAlarmResult(
       operations: (json['operations'] as List?)
@@ -12960,6 +13020,7 @@ class DeleteAutoSnapshotResult {
   DeleteAutoSnapshotResult({
     this.operations,
   });
+
   factory DeleteAutoSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteAutoSnapshotResult(
       operations: (json['operations'] as List?)
@@ -12986,6 +13047,7 @@ class DeleteCertificateResult {
   DeleteCertificateResult({
     this.operations,
   });
+
   factory DeleteCertificateResult.fromJson(Map<String, dynamic> json) {
     return DeleteCertificateResult(
       operations: (json['operations'] as List?)
@@ -13012,6 +13074,7 @@ class DeleteContactMethodResult {
   DeleteContactMethodResult({
     this.operations,
   });
+
   factory DeleteContactMethodResult.fromJson(Map<String, dynamic> json) {
     return DeleteContactMethodResult(
       operations: (json['operations'] as List?)
@@ -13031,6 +13094,7 @@ class DeleteContactMethodResult {
 
 class DeleteContainerImageResult {
   DeleteContainerImageResult();
+
   factory DeleteContainerImageResult.fromJson(Map<String, dynamic> _) {
     return DeleteContainerImageResult();
   }
@@ -13042,6 +13106,7 @@ class DeleteContainerImageResult {
 
 class DeleteContainerServiceResult {
   DeleteContainerServiceResult();
+
   factory DeleteContainerServiceResult.fromJson(Map<String, dynamic> _) {
     return DeleteContainerServiceResult();
   }
@@ -13060,6 +13125,7 @@ class DeleteDiskResult {
   DeleteDiskResult({
     this.operations,
   });
+
   factory DeleteDiskResult.fromJson(Map<String, dynamic> json) {
     return DeleteDiskResult(
       operations: (json['operations'] as List?)
@@ -13086,6 +13152,7 @@ class DeleteDiskSnapshotResult {
   DeleteDiskSnapshotResult({
     this.operations,
   });
+
   factory DeleteDiskSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteDiskSnapshotResult(
       operations: (json['operations'] as List?)
@@ -13112,6 +13179,7 @@ class DeleteDistributionResult {
   DeleteDistributionResult({
     this.operation,
   });
+
   factory DeleteDistributionResult.fromJson(Map<String, dynamic> json) {
     return DeleteDistributionResult(
       operation: json['operation'] != null
@@ -13137,6 +13205,7 @@ class DeleteDomainEntryResult {
   DeleteDomainEntryResult({
     this.operation,
   });
+
   factory DeleteDomainEntryResult.fromJson(Map<String, dynamic> json) {
     return DeleteDomainEntryResult(
       operation: json['operation'] != null
@@ -13162,6 +13231,7 @@ class DeleteDomainResult {
   DeleteDomainResult({
     this.operation,
   });
+
   factory DeleteDomainResult.fromJson(Map<String, dynamic> json) {
     return DeleteDomainResult(
       operation: json['operation'] != null
@@ -13187,6 +13257,7 @@ class DeleteInstanceResult {
   DeleteInstanceResult({
     this.operations,
   });
+
   factory DeleteInstanceResult.fromJson(Map<String, dynamic> json) {
     return DeleteInstanceResult(
       operations: (json['operations'] as List?)
@@ -13213,6 +13284,7 @@ class DeleteInstanceSnapshotResult {
   DeleteInstanceSnapshotResult({
     this.operations,
   });
+
   factory DeleteInstanceSnapshotResult.fromJson(Map<String, dynamic> json) {
     return DeleteInstanceSnapshotResult(
       operations: (json['operations'] as List?)
@@ -13239,6 +13311,7 @@ class DeleteKeyPairResult {
   DeleteKeyPairResult({
     this.operation,
   });
+
   factory DeleteKeyPairResult.fromJson(Map<String, dynamic> json) {
     return DeleteKeyPairResult(
       operation: json['operation'] != null
@@ -13264,6 +13337,7 @@ class DeleteKnownHostKeysResult {
   DeleteKnownHostKeysResult({
     this.operations,
   });
+
   factory DeleteKnownHostKeysResult.fromJson(Map<String, dynamic> json) {
     return DeleteKnownHostKeysResult(
       operations: (json['operations'] as List?)
@@ -13290,6 +13364,7 @@ class DeleteLoadBalancerResult {
   DeleteLoadBalancerResult({
     this.operations,
   });
+
   factory DeleteLoadBalancerResult.fromJson(Map<String, dynamic> json) {
     return DeleteLoadBalancerResult(
       operations: (json['operations'] as List?)
@@ -13316,6 +13391,7 @@ class DeleteLoadBalancerTlsCertificateResult {
   DeleteLoadBalancerTlsCertificateResult({
     this.operations,
   });
+
   factory DeleteLoadBalancerTlsCertificateResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteLoadBalancerTlsCertificateResult(
@@ -13343,6 +13419,7 @@ class DeleteRelationalDatabaseResult {
   DeleteRelationalDatabaseResult({
     this.operations,
   });
+
   factory DeleteRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return DeleteRelationalDatabaseResult(
       operations: (json['operations'] as List?)
@@ -13369,6 +13446,7 @@ class DeleteRelationalDatabaseSnapshotResult {
   DeleteRelationalDatabaseSnapshotResult({
     this.operations,
   });
+
   factory DeleteRelationalDatabaseSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteRelationalDatabaseSnapshotResult(
@@ -13399,6 +13477,7 @@ class DestinationInfo {
     this.id,
     this.service,
   });
+
   factory DestinationInfo.fromJson(Map<String, dynamic> json) {
     return DestinationInfo(
       id: json['id'] as String?,
@@ -13425,6 +13504,7 @@ class DetachCertificateFromDistributionResult {
   DetachCertificateFromDistributionResult({
     this.operation,
   });
+
   factory DetachCertificateFromDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return DetachCertificateFromDistributionResult(
@@ -13451,6 +13531,7 @@ class DetachDiskResult {
   DetachDiskResult({
     this.operations,
   });
+
   factory DetachDiskResult.fromJson(Map<String, dynamic> json) {
     return DetachDiskResult(
       operations: (json['operations'] as List?)
@@ -13477,6 +13558,7 @@ class DetachInstancesFromLoadBalancerResult {
   DetachInstancesFromLoadBalancerResult({
     this.operations,
   });
+
   factory DetachInstancesFromLoadBalancerResult.fromJson(
       Map<String, dynamic> json) {
     return DetachInstancesFromLoadBalancerResult(
@@ -13504,6 +13586,7 @@ class DetachStaticIpResult {
   DetachStaticIpResult({
     this.operations,
   });
+
   factory DetachStaticIpResult.fromJson(Map<String, dynamic> json) {
     return DetachStaticIpResult(
       operations: (json['operations'] as List?)
@@ -13530,6 +13613,7 @@ class DisableAddOnResult {
   DisableAddOnResult({
     this.operations,
   });
+
   factory DisableAddOnResult.fromJson(Map<String, dynamic> json) {
     return DisableAddOnResult(
       operations: (json['operations'] as List?)
@@ -13635,6 +13719,7 @@ class Disk {
     this.supportCode,
     this.tags,
   });
+
   factory Disk.fromJson(Map<String, dynamic> json) {
     return Disk(
       addOns: (json['addOns'] as List?)
@@ -13726,6 +13811,7 @@ class DiskInfo {
     this.path,
     this.sizeInGb,
   });
+
   factory DiskInfo.fromJson(Map<String, dynamic> json) {
     return DiskInfo(
       isSystemDisk: json['isSystemDisk'] as bool?,
@@ -13762,6 +13848,7 @@ class DiskMap {
     this.newDiskName,
     this.originalDiskPath,
   });
+
   factory DiskMap.fromJson(Map<String, dynamic> json) {
     return DiskMap(
       newDiskName: json['newDiskName'] as String?,
@@ -13852,6 +13939,7 @@ class DiskSnapshot {
     this.supportCode,
     this.tags,
   });
+
   factory DiskSnapshot.fromJson(Map<String, dynamic> json) {
     return DiskSnapshot(
       arn: json['arn'] as String?,
@@ -13921,6 +14009,7 @@ class DiskSnapshotInfo {
   DiskSnapshotInfo({
     this.sizeInGb,
   });
+
   factory DiskSnapshotInfo.fromJson(Map<String, dynamic> json) {
     return DiskSnapshotInfo(
       sizeInGb: json['sizeInGb'] as int?,
@@ -14041,6 +14130,7 @@ class DistributionBundle {
     this.price,
     this.transferPerMonthInGb,
   });
+
   factory DistributionBundle.fromJson(Map<String, dynamic> json) {
     return DistributionBundle(
       bundleId: json['bundleId'] as String?,
@@ -14159,6 +14249,7 @@ class Domain {
     this.supportCode,
     this.tags,
   });
+
   factory Domain.fromJson(Map<String, dynamic> json) {
     return Domain(
       arn: json['arn'] as String?,
@@ -14279,6 +14370,7 @@ class DomainEntry {
     this.target,
     this.type,
   });
+
   factory DomainEntry.fromJson(Map<String, dynamic> json) {
     return DomainEntry(
       id: json['id'] as String?,
@@ -14324,6 +14416,7 @@ class DomainValidationRecord {
     this.domainName,
     this.resourceRecord,
   });
+
   factory DomainValidationRecord.fromJson(Map<String, dynamic> json) {
     return DomainValidationRecord(
       domainName: json['domainName'] as String?,
@@ -14355,6 +14448,7 @@ class DownloadDefaultKeyPairResult {
     this.privateKeyBase64,
     this.publicKeyBase64,
   });
+
   factory DownloadDefaultKeyPairResult.fromJson(Map<String, dynamic> json) {
     return DownloadDefaultKeyPairResult(
       privateKeyBase64: json['privateKeyBase64'] as String?,
@@ -14381,6 +14475,7 @@ class EnableAddOnResult {
   EnableAddOnResult({
     this.operations,
   });
+
   factory EnableAddOnResult.fromJson(Map<String, dynamic> json) {
     return EnableAddOnResult(
       operations: (json['operations'] as List?)
@@ -14415,6 +14510,7 @@ class EndpointRequest {
     required this.containerPort,
     this.healthCheck,
   });
+
   factory EndpointRequest.fromJson(Map<String, dynamic> json) {
     return EndpointRequest(
       containerName: json['containerName'] as String,
@@ -14475,6 +14571,7 @@ class ExportSnapshotRecord {
     this.sourceInfo,
     this.state,
   });
+
   factory ExportSnapshotRecord.fromJson(Map<String, dynamic> json) {
     return ExportSnapshotRecord(
       arn: json['arn'] as String?,
@@ -14555,6 +14652,7 @@ class ExportSnapshotRecordSourceInfo {
     this.name,
     this.resourceType,
   });
+
   factory ExportSnapshotRecordSourceInfo.fromJson(Map<String, dynamic> json) {
     return ExportSnapshotRecordSourceInfo(
       arn: json['arn'] as String?,
@@ -14636,6 +14734,7 @@ class ExportSnapshotResult {
   ExportSnapshotResult({
     this.operations,
   });
+
   factory ExportSnapshotResult.fromJson(Map<String, dynamic> json) {
     return ExportSnapshotResult(
       operations: (json['operations'] as List?)
@@ -14703,6 +14802,7 @@ class GetActiveNamesResult {
     this.activeNames,
     this.nextPageToken,
   });
+
   factory GetActiveNamesResult.fromJson(Map<String, dynamic> json) {
     return GetActiveNamesResult(
       activeNames: (json['activeNames'] as List?)
@@ -14740,6 +14840,7 @@ class GetAlarmsResult {
     this.alarms,
     this.nextPageToken,
   });
+
   factory GetAlarmsResult.fromJson(Map<String, dynamic> json) {
     return GetAlarmsResult(
       alarms: (json['alarms'] as List?)
@@ -14776,6 +14877,7 @@ class GetAutoSnapshotsResult {
     this.resourceName,
     this.resourceType,
   });
+
   factory GetAutoSnapshotsResult.fromJson(Map<String, dynamic> json) {
     return GetAutoSnapshotsResult(
       autoSnapshots: (json['autoSnapshots'] as List?)
@@ -14817,6 +14919,7 @@ class GetBlueprintsResult {
     this.blueprints,
     this.nextPageToken,
   });
+
   factory GetBlueprintsResult.fromJson(Map<String, dynamic> json) {
     return GetBlueprintsResult(
       blueprints: (json['blueprints'] as List?)
@@ -14855,6 +14958,7 @@ class GetBundlesResult {
     this.bundles,
     this.nextPageToken,
   });
+
   factory GetBundlesResult.fromJson(Map<String, dynamic> json) {
     return GetBundlesResult(
       bundles: (json['bundles'] as List?)
@@ -14882,6 +14986,7 @@ class GetCertificatesResult {
   GetCertificatesResult({
     this.certificates,
   });
+
   factory GetCertificatesResult.fromJson(Map<String, dynamic> json) {
     return GetCertificatesResult(
       certificates: (json['certificates'] as List?)
@@ -14916,6 +15021,7 @@ class GetCloudFormationStackRecordsResult {
     this.cloudFormationStackRecords,
     this.nextPageToken,
   });
+
   factory GetCloudFormationStackRecordsResult.fromJson(
       Map<String, dynamic> json) {
     return GetCloudFormationStackRecordsResult(
@@ -14946,6 +15052,7 @@ class GetContactMethodsResult {
   GetContactMethodsResult({
     this.contactMethods,
   });
+
   factory GetContactMethodsResult.fromJson(Map<String, dynamic> json) {
     return GetContactMethodsResult(
       contactMethods: (json['contactMethods'] as List?)
@@ -14971,6 +15078,7 @@ class GetContainerAPIMetadataResult {
   GetContainerAPIMetadataResult({
     this.metadata,
   });
+
   factory GetContainerAPIMetadataResult.fromJson(Map<String, dynamic> json) {
     return GetContainerAPIMetadataResult(
       metadata: (json['metadata'] as List?)
@@ -14997,6 +15105,7 @@ class GetContainerImagesResult {
   GetContainerImagesResult({
     this.containerImages,
   });
+
   factory GetContainerImagesResult.fromJson(Map<String, dynamic> json) {
     return GetContainerImagesResult(
       containerImages: (json['containerImages'] as List?)
@@ -15031,6 +15140,7 @@ class GetContainerLogResult {
     this.logEvents,
     this.nextPageToken,
   });
+
   factory GetContainerLogResult.fromJson(Map<String, dynamic> json) {
     return GetContainerLogResult(
       logEvents: (json['logEvents'] as List?)
@@ -15059,6 +15169,7 @@ class GetContainerServiceDeploymentsResult {
   GetContainerServiceDeploymentsResult({
     this.deployments,
   });
+
   factory GetContainerServiceDeploymentsResult.fromJson(
       Map<String, dynamic> json) {
     return GetContainerServiceDeploymentsResult(
@@ -15089,6 +15200,7 @@ class GetContainerServiceMetricDataResult {
     this.metricData,
     this.metricName,
   });
+
   factory GetContainerServiceMetricDataResult.fromJson(
       Map<String, dynamic> json) {
     return GetContainerServiceMetricDataResult(
@@ -15119,6 +15231,7 @@ class GetContainerServicePowersResult {
   GetContainerServicePowersResult({
     this.powers,
   });
+
   factory GetContainerServicePowersResult.fromJson(Map<String, dynamic> json) {
     return GetContainerServicePowersResult(
       powers: (json['powers'] as List?)
@@ -15143,6 +15256,7 @@ class GetDiskResult {
   GetDiskResult({
     this.disk,
   });
+
   factory GetDiskResult.fromJson(Map<String, dynamic> json) {
     return GetDiskResult(
       disk: json['disk'] != null
@@ -15166,6 +15280,7 @@ class GetDiskSnapshotResult {
   GetDiskSnapshotResult({
     this.diskSnapshot,
   });
+
   factory GetDiskSnapshotResult.fromJson(Map<String, dynamic> json) {
     return GetDiskSnapshotResult(
       diskSnapshot: json['diskSnapshot'] != null
@@ -15200,6 +15315,7 @@ class GetDiskSnapshotsResult {
     this.diskSnapshots,
     this.nextPageToken,
   });
+
   factory GetDiskSnapshotsResult.fromJson(Map<String, dynamic> json) {
     return GetDiskSnapshotsResult(
       diskSnapshots: (json['diskSnapshots'] as List?)
@@ -15237,6 +15353,7 @@ class GetDisksResult {
     this.disks,
     this.nextPageToken,
   });
+
   factory GetDisksResult.fromJson(Map<String, dynamic> json) {
     return GetDisksResult(
       disks: (json['disks'] as List?)
@@ -15264,6 +15381,7 @@ class GetDistributionBundlesResult {
   GetDistributionBundlesResult({
     this.bundles,
   });
+
   factory GetDistributionBundlesResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionBundlesResult(
       bundles: (json['bundles'] as List?)
@@ -15293,6 +15411,7 @@ class GetDistributionLatestCacheResetResult {
     this.createTime,
     this.status,
   });
+
   factory GetDistributionLatestCacheResetResult.fromJson(
       Map<String, dynamic> json) {
     return GetDistributionLatestCacheResetResult(
@@ -15322,6 +15441,7 @@ class GetDistributionMetricDataResult {
     this.metricData,
     this.metricName,
   });
+
   factory GetDistributionMetricDataResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionMetricDataResult(
       metricData: (json['metricData'] as List?)
@@ -15359,6 +15479,7 @@ class GetDistributionsResult {
     this.distributions,
     this.nextPageToken,
   });
+
   factory GetDistributionsResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionsResult(
       distributions: (json['distributions'] as List?)
@@ -15387,6 +15508,7 @@ class GetDomainResult {
   GetDomainResult({
     this.domain,
   });
+
   factory GetDomainResult.fromJson(Map<String, dynamic> json) {
     return GetDomainResult(
       domain: json['domain'] != null
@@ -15421,6 +15543,7 @@ class GetDomainsResult {
     this.domains,
     this.nextPageToken,
   });
+
   factory GetDomainsResult.fromJson(Map<String, dynamic> json) {
     return GetDomainsResult(
       domains: (json['domains'] as List?)
@@ -15458,6 +15581,7 @@ class GetExportSnapshotRecordsResult {
     this.exportSnapshotRecords,
     this.nextPageToken,
   });
+
   factory GetExportSnapshotRecordsResult.fromJson(Map<String, dynamic> json) {
     return GetExportSnapshotRecordsResult(
       exportSnapshotRecords: (json['exportSnapshotRecords'] as List?)
@@ -15487,6 +15611,7 @@ class GetInstanceAccessDetailsResult {
   GetInstanceAccessDetailsResult({
     this.accessDetails,
   });
+
   factory GetInstanceAccessDetailsResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceAccessDetailsResult(
       accessDetails: json['accessDetails'] != null
@@ -15515,6 +15640,7 @@ class GetInstanceMetricDataResult {
     this.metricData,
     this.metricName,
   });
+
   factory GetInstanceMetricDataResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceMetricDataResult(
       metricData: (json['metricData'] as List?)
@@ -15543,6 +15669,7 @@ class GetInstancePortStatesResult {
   GetInstancePortStatesResult({
     this.portStates,
   });
+
   factory GetInstancePortStatesResult.fromJson(Map<String, dynamic> json) {
     return GetInstancePortStatesResult(
       portStates: (json['portStates'] as List?)
@@ -15568,6 +15695,7 @@ class GetInstanceResult {
   GetInstanceResult({
     this.instance,
   });
+
   factory GetInstanceResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceResult(
       instance: json['instance'] != null
@@ -15592,6 +15720,7 @@ class GetInstanceSnapshotResult {
   GetInstanceSnapshotResult({
     this.instanceSnapshot,
   });
+
   factory GetInstanceSnapshotResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceSnapshotResult(
       instanceSnapshot: json['instanceSnapshot'] != null
@@ -15627,6 +15756,7 @@ class GetInstanceSnapshotsResult {
     this.instanceSnapshots,
     this.nextPageToken,
   });
+
   factory GetInstanceSnapshotsResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceSnapshotsResult(
       instanceSnapshots: (json['instanceSnapshots'] as List?)
@@ -15654,6 +15784,7 @@ class GetInstanceStateResult {
   GetInstanceStateResult({
     this.state,
   });
+
   factory GetInstanceStateResult.fromJson(Map<String, dynamic> json) {
     return GetInstanceStateResult(
       state: json['state'] != null
@@ -15687,6 +15818,7 @@ class GetInstancesResult {
     this.instances,
     this.nextPageToken,
   });
+
   factory GetInstancesResult.fromJson(Map<String, dynamic> json) {
     return GetInstancesResult(
       instances: (json['instances'] as List?)
@@ -15714,6 +15846,7 @@ class GetKeyPairResult {
   GetKeyPairResult({
     this.keyPair,
   });
+
   factory GetKeyPairResult.fromJson(Map<String, dynamic> json) {
     return GetKeyPairResult(
       keyPair: json['keyPair'] != null
@@ -15747,6 +15880,7 @@ class GetKeyPairsResult {
     this.keyPairs,
     this.nextPageToken,
   });
+
   factory GetKeyPairsResult.fromJson(Map<String, dynamic> json) {
     return GetKeyPairsResult(
       keyPairs: (json['keyPairs'] as List?)
@@ -15778,6 +15912,7 @@ class GetLoadBalancerMetricDataResult {
     this.metricData,
     this.metricName,
   });
+
   factory GetLoadBalancerMetricDataResult.fromJson(Map<String, dynamic> json) {
     return GetLoadBalancerMetricDataResult(
       metricData: (json['metricData'] as List?)
@@ -15805,6 +15940,7 @@ class GetLoadBalancerResult {
   GetLoadBalancerResult({
     this.loadBalancer,
   });
+
   factory GetLoadBalancerResult.fromJson(Map<String, dynamic> json) {
     return GetLoadBalancerResult(
       loadBalancer: json['loadBalancer'] != null
@@ -15829,6 +15965,7 @@ class GetLoadBalancerTlsCertificatesResult {
   GetLoadBalancerTlsCertificatesResult({
     this.tlsCertificates,
   });
+
   factory GetLoadBalancerTlsCertificatesResult.fromJson(
       Map<String, dynamic> json) {
     return GetLoadBalancerTlsCertificatesResult(
@@ -15865,6 +16002,7 @@ class GetLoadBalancersResult {
     this.loadBalancers,
     this.nextPageToken,
   });
+
   factory GetLoadBalancersResult.fromJson(Map<String, dynamic> json) {
     return GetLoadBalancersResult(
       loadBalancers: (json['loadBalancers'] as List?)
@@ -15894,6 +16032,7 @@ class GetOperationResult {
   GetOperationResult({
     this.operation,
   });
+
   factory GetOperationResult.fromJson(Map<String, dynamic> json) {
     return GetOperationResult(
       operation: json['operation'] != null
@@ -15938,6 +16077,7 @@ class GetOperationsForResourceResult {
     this.nextPageToken,
     this.operations,
   });
+
   factory GetOperationsForResourceResult.fromJson(Map<String, dynamic> json) {
     return GetOperationsForResourceResult(
       nextPageCount: json['nextPageCount'] as String?,
@@ -15980,6 +16120,7 @@ class GetOperationsResult {
     this.nextPageToken,
     this.operations,
   });
+
   factory GetOperationsResult.fromJson(Map<String, dynamic> json) {
     return GetOperationsResult(
       nextPageToken: json['nextPageToken'] as String?,
@@ -16008,6 +16149,7 @@ class GetRegionsResult {
   GetRegionsResult({
     this.regions,
   });
+
   factory GetRegionsResult.fromJson(Map<String, dynamic> json) {
     return GetRegionsResult(
       regions: (json['regions'] as List?)
@@ -16043,6 +16185,7 @@ class GetRelationalDatabaseBlueprintsResult {
     this.blueprints,
     this.nextPageToken,
   });
+
   factory GetRelationalDatabaseBlueprintsResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseBlueprintsResult(
@@ -16083,6 +16226,7 @@ class GetRelationalDatabaseBundlesResult {
     this.bundles,
     this.nextPageToken,
   });
+
   factory GetRelationalDatabaseBundlesResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseBundlesResult(
@@ -16123,6 +16267,7 @@ class GetRelationalDatabaseEventsResult {
     this.nextPageToken,
     this.relationalDatabaseEvents,
   });
+
   factory GetRelationalDatabaseEventsResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseEventsResult(
@@ -16164,6 +16309,7 @@ class GetRelationalDatabaseLogEventsResult {
     this.nextForwardToken,
     this.resourceLogEvents,
   });
+
   factory GetRelationalDatabaseLogEventsResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseLogEventsResult(
@@ -16196,6 +16342,7 @@ class GetRelationalDatabaseLogStreamsResult {
   GetRelationalDatabaseLogStreamsResult({
     this.logStreams,
   });
+
   factory GetRelationalDatabaseLogStreamsResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseLogStreamsResult(
@@ -16226,6 +16373,7 @@ class GetRelationalDatabaseMasterUserPasswordResult {
     this.createdAt,
     this.masterUserPassword,
   });
+
   factory GetRelationalDatabaseMasterUserPasswordResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseMasterUserPasswordResult(
@@ -16255,6 +16403,7 @@ class GetRelationalDatabaseMetricDataResult {
     this.metricData,
     this.metricName,
   });
+
   factory GetRelationalDatabaseMetricDataResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseMetricDataResult(
@@ -16295,6 +16444,7 @@ class GetRelationalDatabaseParametersResult {
     this.nextPageToken,
     this.parameters,
   });
+
   factory GetRelationalDatabaseParametersResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseParametersResult(
@@ -16324,6 +16474,7 @@ class GetRelationalDatabaseResult {
   GetRelationalDatabaseResult({
     this.relationalDatabase,
   });
+
   factory GetRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return GetRelationalDatabaseResult(
       relationalDatabase: json['relationalDatabase'] != null
@@ -16348,6 +16499,7 @@ class GetRelationalDatabaseSnapshotResult {
   GetRelationalDatabaseSnapshotResult({
     this.relationalDatabaseSnapshot,
   });
+
   factory GetRelationalDatabaseSnapshotResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseSnapshotResult(
@@ -16385,6 +16537,7 @@ class GetRelationalDatabaseSnapshotsResult {
     this.nextPageToken,
     this.relationalDatabaseSnapshots,
   });
+
   factory GetRelationalDatabaseSnapshotsResult.fromJson(
       Map<String, dynamic> json) {
     return GetRelationalDatabaseSnapshotsResult(
@@ -16426,6 +16579,7 @@ class GetRelationalDatabasesResult {
     this.nextPageToken,
     this.relationalDatabases,
   });
+
   factory GetRelationalDatabasesResult.fromJson(Map<String, dynamic> json) {
     return GetRelationalDatabasesResult(
       nextPageToken: json['nextPageToken'] as String?,
@@ -16455,6 +16609,7 @@ class GetStaticIpResult {
   GetStaticIpResult({
     this.staticIp,
   });
+
   factory GetStaticIpResult.fromJson(Map<String, dynamic> json) {
     return GetStaticIpResult(
       staticIp: json['staticIp'] != null
@@ -16489,6 +16644,7 @@ class GetStaticIpsResult {
     this.nextPageToken,
     this.staticIps,
   });
+
   factory GetStaticIpsResult.fromJson(Map<String, dynamic> json) {
     return GetStaticIpsResult(
       nextPageToken: json['nextPageToken'] as String?,
@@ -16640,6 +16796,7 @@ class HeaderObject {
     this.headersAllowList,
     this.option,
   });
+
   factory HeaderObject.fromJson(Map<String, dynamic> json) {
     return HeaderObject(
       headersAllowList: (json['headersAllowList'] as List?)
@@ -16727,6 +16884,7 @@ class HostKeyAttributes {
     this.publicKey,
     this.witnessedAt,
   });
+
   factory HostKeyAttributes.fromJson(Map<String, dynamic> json) {
     return HostKeyAttributes(
       algorithm: json['algorithm'] as String?,
@@ -16770,6 +16928,7 @@ class ImportKeyPairResult {
   ImportKeyPairResult({
     this.operation,
   });
+
   factory ImportKeyPairResult.fromJson(Map<String, dynamic> json) {
     return ImportKeyPairResult(
       operation: json['operation'] != null
@@ -16808,6 +16967,7 @@ class InputOrigin {
     this.protocolPolicy,
     this.regionName,
   });
+
   factory InputOrigin.fromJson(Map<String, dynamic> json) {
     return InputOrigin(
       name: json['name'] as String?,
@@ -16931,6 +17091,7 @@ class Instance {
     this.tags,
     this.username,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       addOns: (json['addOns'] as List?)
@@ -17088,6 +17249,7 @@ class InstanceAccessDetails {
     this.protocol,
     this.username,
   });
+
   factory InstanceAccessDetails.fromJson(Map<String, dynamic> json) {
     return InstanceAccessDetails(
       certKey: json['certKey'] as String?,
@@ -17233,6 +17395,7 @@ class InstanceEntry {
     required this.sourceName,
     this.userData,
   });
+
   factory InstanceEntry.fromJson(Map<String, dynamic> json) {
     return InstanceEntry(
       availabilityZone: json['availabilityZone'] as String,
@@ -17275,6 +17438,7 @@ class InstanceHardware {
     this.disks,
     this.ramSizeInGb,
   });
+
   factory InstanceHardware.fromJson(Map<String, dynamic> json) {
     return InstanceHardware(
       cpuCount: json['cpuCount'] as int?,
@@ -17508,6 +17672,7 @@ class InstanceHealthSummary {
     this.instanceHealthReason,
     this.instanceName,
   });
+
   factory InstanceHealthSummary.fromJson(Map<String, dynamic> json) {
     return InstanceHealthSummary(
       instanceHealth:
@@ -17602,6 +17767,7 @@ class InstanceNetworking {
     this.monthlyTransfer,
     this.ports,
   });
+
   factory InstanceNetworking.fromJson(Map<String, dynamic> json) {
     return InstanceNetworking(
       monthlyTransfer: json['monthlyTransfer'] != null
@@ -17807,6 +17973,7 @@ class InstancePortInfo {
     this.protocol,
     this.toPort,
   });
+
   factory InstancePortInfo.fromJson(Map<String, dynamic> json) {
     return InstancePortInfo(
       accessDirection:
@@ -18000,6 +18167,7 @@ class InstancePortState {
     this.state,
     this.toPort,
   });
+
   factory InstancePortState.fromJson(Map<String, dynamic> json) {
     return InstancePortState(
       cidrListAliases: (json['cidrListAliases'] as List?)
@@ -18127,6 +18295,7 @@ class InstanceSnapshot {
     this.supportCode,
     this.tags,
   });
+
   factory InstanceSnapshot.fromJson(Map<String, dynamic> json) {
     return InstanceSnapshot(
       arn: json['arn'] as String?,
@@ -18213,6 +18382,7 @@ class InstanceSnapshotInfo {
     this.fromBundleId,
     this.fromDiskInfo,
   });
+
   factory InstanceSnapshotInfo.fromJson(Map<String, dynamic> json) {
     return InstanceSnapshotInfo(
       fromBlueprintId: json['fromBlueprintId'] as String?,
@@ -18282,6 +18452,7 @@ class InstanceState {
     this.code,
     this.name,
   });
+
   factory InstanceState.fromJson(Map<String, dynamic> json) {
     return InstanceState(
       code: json['code'] as int?,
@@ -18335,6 +18506,7 @@ class IsVpcPeeredResult {
   IsVpcPeeredResult({
     this.isPeered,
   });
+
   factory IsVpcPeeredResult.fromJson(Map<String, dynamic> json) {
     return IsVpcPeeredResult(
       isPeered: json['isPeered'] as bool?,
@@ -18392,6 +18564,7 @@ class KeyPair {
     this.supportCode,
     this.tags,
   });
+
   factory KeyPair.fromJson(Map<String, dynamic> json) {
     return KeyPair(
       arn: json['arn'] as String?,
@@ -18539,6 +18712,7 @@ class LightsailDistribution {
     this.supportCode,
     this.tags,
   });
+
   factory LightsailDistribution.fromJson(Map<String, dynamic> json) {
     return LightsailDistribution(
       ableToUpdateBundle: json['ableToUpdateBundle'] as bool?,
@@ -18726,6 +18900,7 @@ class LoadBalancer {
     this.tags,
     this.tlsCertificateSummaries,
   });
+
   factory LoadBalancer.fromJson(Map<String, dynamic> json) {
     return LoadBalancer(
       arn: json['arn'] as String?,
@@ -19205,6 +19380,7 @@ class LoadBalancerTlsCertificate {
     this.supportCode,
     this.tags,
   });
+
   factory LoadBalancerTlsCertificate.fromJson(Map<String, dynamic> json) {
     return LoadBalancerTlsCertificate(
       arn: json['arn'] as String?,
@@ -19359,6 +19535,7 @@ class LoadBalancerTlsCertificateDomainValidationOption {
     this.domainName,
     this.validationStatus,
   });
+
   factory LoadBalancerTlsCertificateDomainValidationOption.fromJson(
       Map<String, dynamic> json) {
     return LoadBalancerTlsCertificateDomainValidationOption(
@@ -19406,6 +19583,7 @@ class LoadBalancerTlsCertificateDomainValidationRecord {
     this.validationStatus,
     this.value,
   });
+
   factory LoadBalancerTlsCertificateDomainValidationRecord.fromJson(
       Map<String, dynamic> json) {
     return LoadBalancerTlsCertificateDomainValidationRecord(
@@ -19598,6 +19776,7 @@ class LoadBalancerTlsCertificateRenewalSummary {
     this.domainValidationOptions,
     this.renewalStatus,
   });
+
   factory LoadBalancerTlsCertificateRenewalSummary.fromJson(
       Map<String, dynamic> json) {
     return LoadBalancerTlsCertificateRenewalSummary(
@@ -19764,6 +19943,7 @@ class LoadBalancerTlsCertificateSummary {
     this.isAttached,
     this.name,
   });
+
   factory LoadBalancerTlsCertificateSummary.fromJson(
       Map<String, dynamic> json) {
     return LoadBalancerTlsCertificateSummary(
@@ -19794,6 +19974,7 @@ class LogEvent {
     this.createdAt,
     this.message,
   });
+
   factory LogEvent.fromJson(Map<String, dynamic> json) {
     return LogEvent(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -19843,6 +20024,7 @@ class MetricDatapoint {
     this.timestamp,
     this.unit,
   });
+
   factory MetricDatapoint.fromJson(Map<String, dynamic> json) {
     return MetricDatapoint(
       average: json['average'] as double?,
@@ -20238,6 +20420,7 @@ class MonitoredResourceInfo {
     this.name,
     this.resourceType,
   });
+
   factory MonitoredResourceInfo.fromJson(Map<String, dynamic> json) {
     return MonitoredResourceInfo(
       arn: json['arn'] as String?,
@@ -20267,6 +20450,7 @@ class MonthlyTransfer {
   MonthlyTransfer({
     this.gbPerMonthAllocated,
   });
+
   factory MonthlyTransfer.fromJson(Map<String, dynamic> json) {
     return MonthlyTransfer(
       gbPerMonthAllocated: json['gbPerMonthAllocated'] as int?,
@@ -20329,6 +20513,7 @@ class OpenInstancePublicPortsResult {
   OpenInstancePublicPortsResult({
     this.operation,
   });
+
   factory OpenInstancePublicPortsResult.fromJson(Map<String, dynamic> json) {
     return OpenInstancePublicPortsResult(
       operation: json['operation'] != null
@@ -20399,6 +20584,7 @@ class Operation {
     this.status,
     this.statusChangedAt,
   });
+
   factory Operation.fromJson(Map<String, dynamic> json) {
     return Operation(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -20896,6 +21082,7 @@ class Origin {
     this.regionName,
     this.resourceType,
   });
+
   factory Origin.fromJson(Map<String, dynamic> json) {
     return Origin(
       name: json['name'] as String?,
@@ -20982,6 +21169,7 @@ class PasswordData {
     this.ciphertext,
     this.keyPairName,
   });
+
   factory PasswordData.fromJson(Map<String, dynamic> json) {
     return PasswordData(
       ciphertext: json['ciphertext'] as String?,
@@ -21008,6 +21196,7 @@ class PeerVpcResult {
   PeerVpcResult({
     this.operation,
   });
+
   factory PeerVpcResult.fromJson(Map<String, dynamic> json) {
     return PeerVpcResult(
       operation: json['operation'] != null
@@ -21040,6 +21229,7 @@ class PendingMaintenanceAction {
     this.currentApplyDate,
     this.description,
   });
+
   factory PendingMaintenanceAction.fromJson(Map<String, dynamic> json) {
     return PendingMaintenanceAction(
       action: json['action'] as String?,
@@ -21077,6 +21267,7 @@ class PendingModifiedRelationalDatabaseValues {
     this.engineVersion,
     this.masterUserPassword,
   });
+
   factory PendingModifiedRelationalDatabaseValues.fromJson(
       Map<String, dynamic> json) {
     return PendingModifiedRelationalDatabaseValues(
@@ -21273,6 +21464,7 @@ class PortInfo {
     this.protocol,
     this.toPort,
   });
+
   factory PortInfo.fromJson(Map<String, dynamic> json) {
     return PortInfo(
       cidrListAliases: (json['cidrListAliases'] as List?)
@@ -21386,6 +21578,7 @@ class PutAlarmResult {
   PutAlarmResult({
     this.operations,
   });
+
   factory PutAlarmResult.fromJson(Map<String, dynamic> json) {
     return PutAlarmResult(
       operations: (json['operations'] as List?)
@@ -21412,6 +21605,7 @@ class PutInstancePublicPortsResult {
   PutInstancePublicPortsResult({
     this.operation,
   });
+
   factory PutInstancePublicPortsResult.fromJson(Map<String, dynamic> json) {
     return PutInstancePublicPortsResult(
       operation: json['operation'] != null
@@ -21452,6 +21646,7 @@ class QueryStringObject {
     this.option,
     this.queryStringsAllowList,
   });
+
   factory QueryStringObject.fromJson(Map<String, dynamic> json) {
     return QueryStringObject(
       option: json['option'] as bool?,
@@ -21482,6 +21677,7 @@ class RebootInstanceResult {
   RebootInstanceResult({
     this.operations,
   });
+
   factory RebootInstanceResult.fromJson(Map<String, dynamic> json) {
     return RebootInstanceResult(
       operations: (json['operations'] as List?)
@@ -21508,6 +21704,7 @@ class RebootRelationalDatabaseResult {
   RebootRelationalDatabaseResult({
     this.operations,
   });
+
   factory RebootRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return RebootRelationalDatabaseResult(
       operations: (json['operations'] as List?)
@@ -21589,6 +21786,7 @@ class Region {
     this.name,
     this.relationalDatabaseAvailabilityZones,
   });
+
   factory Region.fromJson(Map<String, dynamic> json) {
     return Region(
       availabilityZones: (json['availabilityZones'] as List?)
@@ -21722,6 +21920,7 @@ class RegisterContainerImageResult {
   RegisterContainerImageResult({
     this.containerImage,
   });
+
   factory RegisterContainerImageResult.fromJson(Map<String, dynamic> json) {
     return RegisterContainerImageResult(
       containerImage: json['containerImage'] != null
@@ -21866,6 +22065,7 @@ class RelationalDatabase {
     this.supportCode,
     this.tags,
   });
+
   factory RelationalDatabase.fromJson(Map<String, dynamic> json) {
     return RelationalDatabase(
       arn: json['arn'] as String?,
@@ -22017,6 +22217,7 @@ class RelationalDatabaseBlueprint {
     this.engineVersionDescription,
     this.isEngineDefault,
   });
+
   factory RelationalDatabaseBlueprint.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseBlueprint(
       blueprintId: json['blueprintId'] as String?,
@@ -22089,6 +22290,7 @@ class RelationalDatabaseBundle {
     this.ramSizeInGb,
     this.transferPerMonthInGb,
   });
+
   factory RelationalDatabaseBundle.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseBundle(
       bundleId: json['bundleId'] as String?,
@@ -22140,6 +22342,7 @@ class RelationalDatabaseEndpoint {
     this.address,
     this.port,
   });
+
   factory RelationalDatabaseEndpoint.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseEndpoint(
       address: json['address'] as String?,
@@ -22200,6 +22403,7 @@ class RelationalDatabaseEvent {
     this.message,
     this.resource,
   });
+
   factory RelationalDatabaseEvent.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseEvent(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -22242,6 +22446,7 @@ class RelationalDatabaseHardware {
     this.diskSizeInGb,
     this.ramSizeInGb,
   });
+
   factory RelationalDatabaseHardware.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseHardware(
       cpuCount: json['cpuCount'] as int?,
@@ -22348,6 +22553,7 @@ class RelationalDatabaseParameter {
     this.parameterName,
     this.parameterValue,
   });
+
   factory RelationalDatabaseParameter.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseParameter(
       allowedValues: json['allowedValues'] as String?,
@@ -22493,6 +22699,7 @@ class RelationalDatabaseSnapshot {
     this.supportCode,
     this.tags,
   });
+
   factory RelationalDatabaseSnapshot.fromJson(Map<String, dynamic> json) {
     return RelationalDatabaseSnapshot(
       arn: json['arn'] as String?,
@@ -22570,6 +22777,7 @@ class ReleaseStaticIpResult {
   ReleaseStaticIpResult({
     this.operations,
   });
+
   factory ReleaseStaticIpResult.fromJson(Map<String, dynamic> json) {
     return ReleaseStaticIpResult(
       operations: (json['operations'] as List?)
@@ -22675,6 +22883,7 @@ class RenewalSummary {
     this.renewalStatusReason,
     this.updatedAt,
   });
+
   factory RenewalSummary.fromJson(Map<String, dynamic> json) {
     return RenewalSummary(
       domainValidationRecords: (json['domainValidationRecords'] as List?)
@@ -22722,6 +22931,7 @@ class ResetDistributionCacheResult {
     this.operation,
     this.status,
   });
+
   factory ResetDistributionCacheResult.fromJson(Map<String, dynamic> json) {
     return ResetDistributionCacheResult(
       createTime: timeStampFromJson(json['createTime']),
@@ -22757,6 +22967,7 @@ class ResourceLocation {
     this.availabilityZone,
     this.regionName,
   });
+
   factory ResourceLocation.fromJson(Map<String, dynamic> json) {
     return ResourceLocation(
       availabilityZone: json['availabilityZone'] as String?,
@@ -22791,6 +23002,7 @@ class ResourceRecord {
     this.type,
     this.value,
   });
+
   factory ResourceRecord.fromJson(Map<String, dynamic> json) {
     return ResourceRecord(
       name: json['name'] as String?,
@@ -22933,6 +23145,7 @@ class SendContactMethodVerificationResult {
   SendContactMethodVerificationResult({
     this.operations,
   });
+
   factory SendContactMethodVerificationResult.fromJson(
       Map<String, dynamic> json) {
     return SendContactMethodVerificationResult(
@@ -22960,6 +23173,7 @@ class SetIpAddressTypeResult {
   SetIpAddressTypeResult({
     this.operations,
   });
+
   factory SetIpAddressTypeResult.fromJson(Map<String, dynamic> json) {
     return SetIpAddressTypeResult(
       operations: (json['operations'] as List?)
@@ -22986,6 +23200,7 @@ class StartInstanceResult {
   StartInstanceResult({
     this.operations,
   });
+
   factory StartInstanceResult.fromJson(Map<String, dynamic> json) {
     return StartInstanceResult(
       operations: (json['operations'] as List?)
@@ -23012,6 +23227,7 @@ class StartRelationalDatabaseResult {
   StartRelationalDatabaseResult({
     this.operations,
   });
+
   factory StartRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return StartRelationalDatabaseResult(
       operations: (json['operations'] as List?)
@@ -23074,6 +23290,7 @@ class StaticIp {
     this.resourceType,
     this.supportCode,
   });
+
   factory StaticIp.fromJson(Map<String, dynamic> json) {
     return StaticIp(
       arn: json['arn'] as String?,
@@ -23123,6 +23340,7 @@ class StopInstanceResult {
   StopInstanceResult({
     this.operations,
   });
+
   factory StopInstanceResult.fromJson(Map<String, dynamic> json) {
     return StopInstanceResult(
       operations: (json['operations'] as List?)
@@ -23149,6 +23367,7 @@ class StopRelationalDatabaseResult {
   StopRelationalDatabaseResult({
     this.operations,
   });
+
   factory StopRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return StopRelationalDatabaseResult(
       operations: (json['operations'] as List?)
@@ -23189,6 +23408,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String?,
@@ -23215,6 +23435,7 @@ class TagResourceResult {
   TagResourceResult({
     this.operations,
   });
+
   factory TagResourceResult.fromJson(Map<String, dynamic> json) {
     return TagResourceResult(
       operations: (json['operations'] as List?)
@@ -23241,6 +23462,7 @@ class TestAlarmResult {
   TestAlarmResult({
     this.operations,
   });
+
   factory TestAlarmResult.fromJson(Map<String, dynamic> json) {
     return TestAlarmResult(
       operations: (json['operations'] as List?)
@@ -23305,6 +23527,7 @@ class UnpeerVpcResult {
   UnpeerVpcResult({
     this.operation,
   });
+
   factory UnpeerVpcResult.fromJson(Map<String, dynamic> json) {
     return UnpeerVpcResult(
       operation: json['operation'] != null
@@ -23330,6 +23553,7 @@ class UntagResourceResult {
   UntagResourceResult({
     this.operations,
   });
+
   factory UntagResourceResult.fromJson(Map<String, dynamic> json) {
     return UntagResourceResult(
       operations: (json['operations'] as List?)
@@ -23354,6 +23578,7 @@ class UpdateContainerServiceResult {
   UpdateContainerServiceResult({
     this.containerService,
   });
+
   factory UpdateContainerServiceResult.fromJson(Map<String, dynamic> json) {
     return UpdateContainerServiceResult(
       containerService: json['containerService'] != null
@@ -23377,6 +23602,7 @@ class UpdateDistributionBundleResult {
   UpdateDistributionBundleResult({
     this.operation,
   });
+
   factory UpdateDistributionBundleResult.fromJson(Map<String, dynamic> json) {
     return UpdateDistributionBundleResult(
       operation: json['operation'] != null
@@ -23402,6 +23628,7 @@ class UpdateDistributionResult {
   UpdateDistributionResult({
     this.operation,
   });
+
   factory UpdateDistributionResult.fromJson(Map<String, dynamic> json) {
     return UpdateDistributionResult(
       operation: json['operation'] != null
@@ -23427,6 +23654,7 @@ class UpdateDomainEntryResult {
   UpdateDomainEntryResult({
     this.operations,
   });
+
   factory UpdateDomainEntryResult.fromJson(Map<String, dynamic> json) {
     return UpdateDomainEntryResult(
       operations: (json['operations'] as List?)
@@ -23453,6 +23681,7 @@ class UpdateLoadBalancerAttributeResult {
   UpdateLoadBalancerAttributeResult({
     this.operations,
   });
+
   factory UpdateLoadBalancerAttributeResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateLoadBalancerAttributeResult(
@@ -23480,6 +23709,7 @@ class UpdateRelationalDatabaseParametersResult {
   UpdateRelationalDatabaseParametersResult({
     this.operations,
   });
+
   factory UpdateRelationalDatabaseParametersResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateRelationalDatabaseParametersResult(
@@ -23507,6 +23737,7 @@ class UpdateRelationalDatabaseResult {
   UpdateRelationalDatabaseResult({
     this.operations,
   });
+
   factory UpdateRelationalDatabaseResult.fromJson(Map<String, dynamic> json) {
     return UpdateRelationalDatabaseResult(
       operations: (json['operations'] as List?)

@@ -346,6 +346,7 @@ class AccountActionRequiredException implements _s.AwsException {
   AccountActionRequiredException({
     this.message,
   });
+
   factory AccountActionRequiredException.fromJson(Map<String, dynamic> json) {
     return AccountActionRequiredException(
       message: json['message'] as String?,
@@ -368,6 +369,7 @@ class BadRequestException implements _s.AwsException {
   BadRequestException({
     this.message,
   });
+
   factory BadRequestException.fromJson(Map<String, dynamic> json) {
     return BadRequestException(
       message: json['message'] as String?,
@@ -399,6 +401,7 @@ class BundleDetails {
     this.title,
     this.version,
   });
+
   factory BundleDetails.fromJson(Map<String, dynamic> json) {
     return BundleDetails(
       availablePlatforms: (json['availablePlatforms'] as List?)
@@ -441,6 +444,7 @@ class CreateProjectResult {
   CreateProjectResult({
     this.details,
   });
+
   factory CreateProjectResult.fromJson(Map<String, dynamic> json) {
     return CreateProjectResult(
       details: json['details'] != null
@@ -470,6 +474,7 @@ class DeleteProjectResult {
     this.deletedResources,
     this.orphanedResources,
   });
+
   factory DeleteProjectResult.fromJson(Map<String, dynamic> json) {
     return DeleteProjectResult(
       deletedResources: (json['deletedResources'] as List?)
@@ -501,6 +506,7 @@ class DescribeBundleResult {
   DescribeBundleResult({
     this.details,
   });
+
   factory DescribeBundleResult.fromJson(Map<String, dynamic> json) {
     return DescribeBundleResult(
       details: json['details'] != null
@@ -524,6 +530,7 @@ class DescribeProjectResult {
   DescribeProjectResult({
     this.details,
   });
+
   factory DescribeProjectResult.fromJson(Map<String, dynamic> json) {
     return DescribeProjectResult(
       details: json['details'] != null
@@ -552,6 +559,7 @@ class ExportBundleResult {
   ExportBundleResult({
     this.downloadUrl,
   });
+
   factory ExportBundleResult.fromJson(Map<String, dynamic> json) {
     return ExportBundleResult(
       downloadUrl: json['downloadUrl'] as String?,
@@ -588,6 +596,7 @@ class ExportProjectResult {
     this.shareUrl,
     this.snapshotId,
   });
+
   factory ExportProjectResult.fromJson(Map<String, dynamic> json) {
     return ExportProjectResult(
       downloadUrl: json['downloadUrl'] as String?,
@@ -616,6 +625,7 @@ class InternalFailureException implements _s.AwsException {
   InternalFailureException({
     this.message,
   });
+
   factory InternalFailureException.fromJson(Map<String, dynamic> json) {
     return InternalFailureException(
       message: json['message'] as String?,
@@ -642,6 +652,7 @@ class LimitExceededException implements _s.AwsException {
     this.message,
     this.retryAfterSeconds,
   });
+
   factory LimitExceededException.fromJson(Map<String, dynamic> json) {
     return LimitExceededException(
       message: json['message'] as String?,
@@ -671,6 +682,7 @@ class ListBundlesResult {
     this.bundleList,
     this.nextToken,
   });
+
   factory ListBundlesResult.fromJson(Map<String, dynamic> json) {
     return ListBundlesResult(
       bundleList: (json['bundleList'] as List?)
@@ -700,6 +712,7 @@ class ListProjectsResult {
     this.nextToken,
     this.projects,
   });
+
   factory ListProjectsResult.fromJson(Map<String, dynamic> json) {
     return ListProjectsResult(
       nextToken: json['nextToken'] as String?,
@@ -727,6 +740,7 @@ class NotFoundException implements _s.AwsException {
   NotFoundException({
     this.message,
   });
+
   factory NotFoundException.fromJson(Map<String, dynamic> json) {
     return NotFoundException(
       message: json['message'] as String?,
@@ -821,6 +835,7 @@ class ProjectDetails {
     this.resources,
     this.state,
   });
+
   factory ProjectDetails.fromJson(Map<String, dynamic> json) {
     return ProjectDetails(
       consoleUrl: json['consoleUrl'] as String?,
@@ -906,6 +921,7 @@ class ProjectSummary {
     this.name,
     this.projectId,
   });
+
   factory ProjectSummary.fromJson(Map<String, dynamic> json) {
     return ProjectSummary(
       name: json['name'] as String?,
@@ -938,6 +954,7 @@ class Resource {
     this.name,
     this.type,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       arn: json['arn'] as String?,
@@ -975,6 +992,7 @@ class ServiceUnavailableException implements _s.AwsException {
     this.message,
     this.retryAfterSeconds,
   });
+
   factory ServiceUnavailableException.fromJson(Map<String, dynamic> json) {
     return ServiceUnavailableException(
       message: json['message'] as String?,
@@ -1001,6 +1019,7 @@ class TooManyRequestsException implements _s.AwsException {
     this.message,
     this.retryAfterSeconds,
   });
+
   factory TooManyRequestsException.fromJson(Map<String, dynamic> json) {
     return TooManyRequestsException(
       message: json['message'] as String?,
@@ -1024,6 +1043,7 @@ class UnauthorizedException implements _s.AwsException {
   UnauthorizedException({
     this.message,
   });
+
   factory UnauthorizedException.fromJson(Map<String, dynamic> json) {
     return UnauthorizedException(
       message: json['message'] as String?,
@@ -1046,6 +1066,7 @@ class UpdateProjectResult {
   UpdateProjectResult({
     this.details,
   });
+
   factory UpdateProjectResult.fromJson(Map<String, dynamic> json) {
     return UpdateProjectResult(
       details: json['details'] != null

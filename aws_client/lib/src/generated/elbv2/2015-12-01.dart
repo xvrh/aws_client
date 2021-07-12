@@ -2215,6 +2215,7 @@ class Action {
     this.redirectConfig,
     this.targetGroupArn,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       type: (json['Type'] as String).toActionTypeEnum(),
@@ -2341,6 +2342,7 @@ class AddListenerCertificatesOutput {
   AddListenerCertificatesOutput({
     this.certificates,
   });
+
   factory AddListenerCertificatesOutput.fromJson(Map<String, dynamic> json) {
     return AddListenerCertificatesOutput(
       certificates: (json['Certificates'] as List?)
@@ -2369,6 +2371,7 @@ class AddListenerCertificatesOutput {
 
 class AddTagsOutput {
   AddTagsOutput();
+
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
   }
@@ -2479,6 +2482,7 @@ class AuthenticateCognitoActionConfig {
     this.sessionCookieName,
     this.sessionTimeout,
   });
+
   factory AuthenticateCognitoActionConfig.fromJson(Map<String, dynamic> json) {
     return AuthenticateCognitoActionConfig(
       userPoolArn: json['UserPoolArn'] as String,
@@ -2662,6 +2666,7 @@ class AuthenticateOidcActionConfig {
     this.sessionTimeout,
     this.useExistingClientSecret,
   });
+
   factory AuthenticateOidcActionConfig.fromJson(Map<String, dynamic> json) {
     return AuthenticateOidcActionConfig(
       authorizationEndpoint: json['AuthorizationEndpoint'] as String,
@@ -2771,6 +2776,7 @@ class AvailabilityZone {
     this.subnetId,
     this.zoneName,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       loadBalancerAddresses: (json['LoadBalancerAddresses'] as List?)
@@ -2827,6 +2833,7 @@ class Certificate {
     this.certificateArn,
     this.isDefault,
   });
+
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       certificateArn: json['CertificateArn'] as String?,
@@ -2863,6 +2870,7 @@ class Cipher {
     this.name,
     this.priority,
   });
+
   factory Cipher.fromJson(Map<String, dynamic> json) {
     return Cipher(
       name: json['Name'] as String?,
@@ -2894,6 +2902,7 @@ class CreateListenerOutput {
   CreateListenerOutput({
     this.listeners,
   });
+
   factory CreateListenerOutput.fromJson(Map<String, dynamic> json) {
     return CreateListenerOutput(
       listeners: (json['Listeners'] as List?)
@@ -2925,6 +2934,7 @@ class CreateLoadBalancerOutput {
   CreateLoadBalancerOutput({
     this.loadBalancers,
   });
+
   factory CreateLoadBalancerOutput.fromJson(Map<String, dynamic> json) {
     return CreateLoadBalancerOutput(
       loadBalancers: (json['LoadBalancers'] as List?)
@@ -2959,6 +2969,7 @@ class CreateRuleOutput {
   CreateRuleOutput({
     this.rules,
   });
+
   factory CreateRuleOutput.fromJson(Map<String, dynamic> json) {
     return CreateRuleOutput(
       rules: (json['Rules'] as List?)
@@ -2990,6 +3001,7 @@ class CreateTargetGroupOutput {
   CreateTargetGroupOutput({
     this.targetGroups,
   });
+
   factory CreateTargetGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateTargetGroupOutput(
       targetGroups: (json['TargetGroups'] as List?)
@@ -3018,6 +3030,7 @@ class CreateTargetGroupOutput {
 
 class DeleteListenerOutput {
   DeleteListenerOutput();
+
   factory DeleteListenerOutput.fromJson(Map<String, dynamic> _) {
     return DeleteListenerOutput();
   }
@@ -3035,6 +3048,7 @@ class DeleteListenerOutput {
 
 class DeleteLoadBalancerOutput {
   DeleteLoadBalancerOutput();
+
   factory DeleteLoadBalancerOutput.fromJson(Map<String, dynamic> _) {
     return DeleteLoadBalancerOutput();
   }
@@ -3052,6 +3066,7 @@ class DeleteLoadBalancerOutput {
 
 class DeleteRuleOutput {
   DeleteRuleOutput();
+
   factory DeleteRuleOutput.fromJson(Map<String, dynamic> _) {
     return DeleteRuleOutput();
   }
@@ -3069,6 +3084,7 @@ class DeleteRuleOutput {
 
 class DeleteTargetGroupOutput {
   DeleteTargetGroupOutput();
+
   factory DeleteTargetGroupOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTargetGroupOutput();
   }
@@ -3086,6 +3102,7 @@ class DeleteTargetGroupOutput {
 
 class DeregisterTargetsOutput {
   DeregisterTargetsOutput();
+
   factory DeregisterTargetsOutput.fromJson(Map<String, dynamic> _) {
     return DeregisterTargetsOutput();
   }
@@ -3113,6 +3130,7 @@ class DescribeAccountLimitsOutput {
     this.limits,
     this.nextMarker,
   });
+
   factory DescribeAccountLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAccountLimitsOutput(
       limits: (json['Limits'] as List?)
@@ -3153,6 +3171,7 @@ class DescribeListenerCertificatesOutput {
     this.certificates,
     this.nextMarker,
   });
+
   factory DescribeListenerCertificatesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeListenerCertificatesOutput(
@@ -3196,6 +3215,7 @@ class DescribeListenersOutput {
     this.listeners,
     this.nextMarker,
   });
+
   factory DescribeListenersOutput.fromJson(Map<String, dynamic> json) {
     return DescribeListenersOutput(
       listeners: (json['Listeners'] as List?)
@@ -3231,6 +3251,7 @@ class DescribeLoadBalancerAttributesOutput {
   DescribeLoadBalancerAttributesOutput({
     this.attributes,
   });
+
   factory DescribeLoadBalancerAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBalancerAttributesOutput(
@@ -3270,6 +3291,7 @@ class DescribeLoadBalancersOutput {
     this.loadBalancers,
     this.nextMarker,
   });
+
   factory DescribeLoadBalancersOutput.fromJson(Map<String, dynamic> json) {
     return DescribeLoadBalancersOutput(
       loadBalancers: (json['LoadBalancers'] as List?)
@@ -3313,6 +3335,7 @@ class DescribeRulesOutput {
     this.nextMarker,
     this.rules,
   });
+
   factory DescribeRulesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRulesOutput(
       nextMarker: json['NextMarker'] as String?,
@@ -3353,6 +3376,7 @@ class DescribeSSLPoliciesOutput {
     this.nextMarker,
     this.sslPolicies,
   });
+
   factory DescribeSSLPoliciesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeSSLPoliciesOutput(
       nextMarker: json['NextMarker'] as String?,
@@ -3390,6 +3414,7 @@ class DescribeTagsOutput {
   DescribeTagsOutput({
     this.tagDescriptions,
   });
+
   factory DescribeTagsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTagsOutput(
       tagDescriptions: (json['TagDescriptions'] as List?)
@@ -3424,6 +3449,7 @@ class DescribeTargetGroupAttributesOutput {
   DescribeTargetGroupAttributesOutput({
     this.attributes,
   });
+
   factory DescribeTargetGroupAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeTargetGroupAttributesOutput(
@@ -3463,6 +3489,7 @@ class DescribeTargetGroupsOutput {
     this.nextMarker,
     this.targetGroups,
   });
+
   factory DescribeTargetGroupsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTargetGroupsOutput(
       nextMarker: json['NextMarker'] as String?,
@@ -3500,6 +3527,7 @@ class DescribeTargetHealthOutput {
   DescribeTargetHealthOutput({
     this.targetHealthDescriptions,
   });
+
   factory DescribeTargetHealthOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTargetHealthOutput(
       targetHealthDescriptions: (json['TargetHealthDescriptions'] as List?)
@@ -3549,6 +3577,7 @@ class FixedResponseActionConfig {
     this.contentType,
     this.messageBody,
   });
+
   factory FixedResponseActionConfig.fromJson(Map<String, dynamic> json) {
     return FixedResponseActionConfig(
       statusCode: json['StatusCode'] as String,
@@ -3590,6 +3619,7 @@ class ForwardActionConfig {
     this.targetGroupStickinessConfig,
     this.targetGroups,
   });
+
   factory ForwardActionConfig.fromJson(Map<String, dynamic> json) {
     return ForwardActionConfig(
       targetGroupStickinessConfig: json['TargetGroupStickinessConfig'] != null
@@ -3640,6 +3670,7 @@ class HostHeaderConditionConfig {
   HostHeaderConditionConfig({
     this.values,
   });
+
   factory HostHeaderConditionConfig.fromJson(Map<String, dynamic> json) {
     return HostHeaderConditionConfig(
       values: (json['Values'] as List?)
@@ -3695,6 +3726,7 @@ class HttpHeaderConditionConfig {
     this.httpHeaderName,
     this.values,
   });
+
   factory HttpHeaderConditionConfig.fromJson(Map<String, dynamic> json) {
     return HttpHeaderConditionConfig(
       httpHeaderName: json['HttpHeaderName'] as String?,
@@ -3745,6 +3777,7 @@ class HttpRequestMethodConditionConfig {
   HttpRequestMethodConditionConfig({
     this.values,
   });
+
   factory HttpRequestMethodConditionConfig.fromJson(Map<String, dynamic> json) {
     return HttpRequestMethodConditionConfig(
       values: (json['Values'] as List?)
@@ -3868,6 +3901,7 @@ class Limit {
     this.max,
     this.name,
   });
+
   factory Limit.fromJson(Map<String, dynamic> json) {
     return Limit(
       max: json['Max'] as String?,
@@ -3930,6 +3964,7 @@ class Listener {
     this.protocol,
     this.sslPolicy,
   });
+
   factory Listener.fromJson(Map<String, dynamic> json) {
     return Listener(
       alpnPolicy: (json['AlpnPolicy'] as List?)
@@ -4060,6 +4095,7 @@ class LoadBalancer {
     this.type,
     this.vpcId,
   });
+
   factory LoadBalancer.fromJson(Map<String, dynamic> json) {
     return LoadBalancer(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -4172,6 +4208,7 @@ class LoadBalancerAddress {
     this.ipAddress,
     this.privateIPv4Address,
   });
+
   factory LoadBalancerAddress.fromJson(Map<String, dynamic> json) {
     return LoadBalancerAddress(
       allocationId: json['AllocationId'] as String?,
@@ -4290,6 +4327,7 @@ class LoadBalancerAttribute {
     this.key,
     this.value,
   });
+
   factory LoadBalancerAttribute.fromJson(Map<String, dynamic> json) {
     return LoadBalancerAttribute(
       key: json['Key'] as String?,
@@ -4359,6 +4397,7 @@ class LoadBalancerState {
     this.code,
     this.reason,
   });
+
   factory LoadBalancerState.fromJson(Map<String, dynamic> json) {
     return LoadBalancerState(
       code: (json['Code'] as String?)?.toLoadBalancerStateEnum(),
@@ -4475,6 +4514,7 @@ class Matcher {
     this.grpcCode,
     this.httpCode,
   });
+
   factory Matcher.fromJson(Map<String, dynamic> json) {
     return Matcher(
       grpcCode: json['GrpcCode'] as String?,
@@ -4506,6 +4546,7 @@ class ModifyListenerOutput {
   ModifyListenerOutput({
     this.listeners,
   });
+
   factory ModifyListenerOutput.fromJson(Map<String, dynamic> json) {
     return ModifyListenerOutput(
       listeners: (json['Listeners'] as List?)
@@ -4537,6 +4578,7 @@ class ModifyLoadBalancerAttributesOutput {
   ModifyLoadBalancerAttributesOutput({
     this.attributes,
   });
+
   factory ModifyLoadBalancerAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return ModifyLoadBalancerAttributesOutput(
@@ -4571,6 +4613,7 @@ class ModifyRuleOutput {
   ModifyRuleOutput({
     this.rules,
   });
+
   factory ModifyRuleOutput.fromJson(Map<String, dynamic> json) {
     return ModifyRuleOutput(
       rules: (json['Rules'] as List?)
@@ -4602,6 +4645,7 @@ class ModifyTargetGroupAttributesOutput {
   ModifyTargetGroupAttributesOutput({
     this.attributes,
   });
+
   factory ModifyTargetGroupAttributesOutput.fromJson(
       Map<String, dynamic> json) {
     return ModifyTargetGroupAttributesOutput(
@@ -4636,6 +4680,7 @@ class ModifyTargetGroupOutput {
   ModifyTargetGroupOutput({
     this.targetGroups,
   });
+
   factory ModifyTargetGroupOutput.fromJson(Map<String, dynamic> json) {
     return ModifyTargetGroupOutput(
       targetGroups: (json['TargetGroups'] as List?)
@@ -4678,6 +4723,7 @@ class PathPatternConditionConfig {
   PathPatternConditionConfig({
     this.values,
   });
+
   factory PathPatternConditionConfig.fromJson(Map<String, dynamic> json) {
     return PathPatternConditionConfig(
       values: (json['Values'] as List?)
@@ -4778,6 +4824,7 @@ class QueryStringConditionConfig {
   QueryStringConditionConfig({
     this.values,
   });
+
   factory QueryStringConditionConfig.fromJson(Map<String, dynamic> json) {
     return QueryStringConditionConfig(
       values: (json['Values'] as List?)
@@ -4817,6 +4864,7 @@ class QueryStringKeyValuePair {
     this.key,
     this.value,
   });
+
   factory QueryStringKeyValuePair.fromJson(Map<String, dynamic> json) {
     return QueryStringKeyValuePair(
       key: json['Key'] as String?,
@@ -4903,6 +4951,7 @@ class RedirectActionConfig {
     this.protocol,
     this.query,
   });
+
   factory RedirectActionConfig.fromJson(Map<String, dynamic> json) {
     return RedirectActionConfig(
       statusCode:
@@ -4976,6 +5025,7 @@ extension on String {
 
 class RegisterTargetsOutput {
   RegisterTargetsOutput();
+
   factory RegisterTargetsOutput.fromJson(Map<String, dynamic> _) {
     return RegisterTargetsOutput();
   }
@@ -4993,6 +5043,7 @@ class RegisterTargetsOutput {
 
 class RemoveListenerCertificatesOutput {
   RemoveListenerCertificatesOutput();
+
   factory RemoveListenerCertificatesOutput.fromJson(Map<String, dynamic> _) {
     return RemoveListenerCertificatesOutput();
   }
@@ -5010,6 +5061,7 @@ class RemoveListenerCertificatesOutput {
 
 class RemoveTagsOutput {
   RemoveTagsOutput();
+
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
   }
@@ -5055,6 +5107,7 @@ class Rule {
     this.priority,
     this.ruleArn,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       actions: (json['Actions'] as List?)
@@ -5217,6 +5270,7 @@ class RuleCondition {
     this.sourceIpConfig,
     this.values,
   });
+
   factory RuleCondition.fromJson(Map<String, dynamic> json) {
     return RuleCondition(
       field: json['Field'] as String?,
@@ -5313,6 +5367,7 @@ class RulePriorityPair {
     this.priority,
     this.ruleArn,
   });
+
   factory RulePriorityPair.fromJson(Map<String, dynamic> json) {
     return RulePriorityPair(
       priority: json['Priority'] as int?,
@@ -5337,6 +5392,7 @@ class SetIpAddressTypeOutput {
   SetIpAddressTypeOutput({
     this.ipAddressType,
   });
+
   factory SetIpAddressTypeOutput.fromJson(Map<String, dynamic> json) {
     return SetIpAddressTypeOutput(
       ipAddressType: (json['IpAddressType'] as String?)?.toIpAddressType(),
@@ -5365,6 +5421,7 @@ class SetRulePrioritiesOutput {
   SetRulePrioritiesOutput({
     this.rules,
   });
+
   factory SetRulePrioritiesOutput.fromJson(Map<String, dynamic> json) {
     return SetRulePrioritiesOutput(
       rules: (json['Rules'] as List?)
@@ -5396,6 +5453,7 @@ class SetSecurityGroupsOutput {
   SetSecurityGroupsOutput({
     this.securityGroupIds,
   });
+
   factory SetSecurityGroupsOutput.fromJson(Map<String, dynamic> json) {
     return SetSecurityGroupsOutput(
       securityGroupIds: (json['SecurityGroupIds'] as List?)
@@ -5432,6 +5490,7 @@ class SetSubnetsOutput {
     this.availabilityZones,
     this.ipAddressType,
   });
+
   factory SetSubnetsOutput.fromJson(Map<String, dynamic> json) {
     return SetSubnetsOutput(
       availabilityZones: (json['AvailabilityZones'] as List?)
@@ -5483,6 +5542,7 @@ class SourceIpConditionConfig {
   SourceIpConditionConfig({
     this.values,
   });
+
   factory SourceIpConditionConfig.fromJson(Map<String, dynamic> json) {
     return SourceIpConditionConfig(
       values: (json['Values'] as List?)
@@ -5524,6 +5584,7 @@ class SslPolicy {
     this.name,
     this.sslProtocols,
   });
+
   factory SslPolicy.fromJson(Map<String, dynamic> json) {
     return SslPolicy(
       ciphers: (json['Ciphers'] as List?)
@@ -5583,6 +5644,7 @@ class SubnetMapping {
     this.privateIPv4Address,
     this.subnetId,
   });
+
   factory SubnetMapping.fromJson(Map<String, dynamic> json) {
     return SubnetMapping(
       allocationId: json['AllocationId'] as String?,
@@ -5618,6 +5680,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5654,6 +5717,7 @@ class TagDescription {
     this.resourceArn,
     this.tags,
   });
+
   factory TagDescription.fromJson(Map<String, dynamic> json) {
     return TagDescription(
       resourceArn: json['ResourceArn'] as String?,
@@ -5720,6 +5784,7 @@ class TargetDescription {
     this.availabilityZone,
     this.port,
   });
+
   factory TargetDescription.fromJson(Map<String, dynamic> json) {
     return TargetDescription(
       id: json['Id'] as String,
@@ -5832,6 +5897,7 @@ class TargetGroup {
     this.unhealthyThresholdCount,
     this.vpcId,
   });
+
   factory TargetGroup.fromJson(Map<String, dynamic> json) {
     return TargetGroup(
       healthCheckEnabled: json['HealthCheckEnabled'] as bool?,
@@ -6053,6 +6119,7 @@ class TargetGroupAttribute {
     this.key,
     this.value,
   });
+
   factory TargetGroupAttribute.fromJson(Map<String, dynamic> json) {
     return TargetGroupAttribute(
       key: json['Key'] as String?,
@@ -6090,6 +6157,7 @@ class TargetGroupStickinessConfig {
     this.durationSeconds,
     this.enabled,
   });
+
   factory TargetGroupStickinessConfig.fromJson(Map<String, dynamic> json) {
     return TargetGroupStickinessConfig(
       durationSeconds: json['DurationSeconds'] as int?,
@@ -6127,6 +6195,7 @@ class TargetGroupTuple {
     this.targetGroupArn,
     this.weight,
   });
+
   factory TargetGroupTuple.fromJson(Map<String, dynamic> json) {
     return TargetGroupTuple(
       targetGroupArn: json['TargetGroupArn'] as String?,
@@ -6252,6 +6321,7 @@ class TargetHealth {
     this.reason,
     this.state,
   });
+
   factory TargetHealth.fromJson(Map<String, dynamic> json) {
     return TargetHealth(
       description: json['Description'] as String?,
@@ -6297,6 +6367,7 @@ class TargetHealthDescription {
     this.target,
     this.targetHealth,
   });
+
   factory TargetHealthDescription.fromJson(Map<String, dynamic> json) {
     return TargetHealthDescription(
       healthCheckPort: json['HealthCheckPort'] as String?,

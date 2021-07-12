@@ -279,6 +279,7 @@ class CreateWorkspaceResponse {
     required this.status,
     required this.workspaceId,
   });
+
   factory CreateWorkspaceResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorkspaceResponse(
       arn: json['arn'] as String,
@@ -307,6 +308,7 @@ class DescribeWorkspaceResponse {
   DescribeWorkspaceResponse({
     required this.workspace,
   });
+
   factory DescribeWorkspaceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeWorkspaceResponse(
       workspace: WorkspaceDescription.fromJson(
@@ -335,6 +337,7 @@ class ListWorkspacesResponse {
     required this.workspaces,
     this.nextToken,
   });
+
   factory ListWorkspacesResponse.fromJson(Map<String, dynamic> json) {
     return ListWorkspacesResponse(
       workspaces: (json['workspaces'] as List)
@@ -383,6 +386,7 @@ class WorkspaceDescription {
     this.alias,
     this.prometheusEndpoint,
   });
+
   factory WorkspaceDescription.fromJson(Map<String, dynamic> json) {
     return WorkspaceDescription(
       arn: json['arn'] as String,
@@ -420,6 +424,7 @@ class WorkspaceStatus {
   WorkspaceStatus({
     required this.statusCode,
   });
+
   factory WorkspaceStatus.fromJson(Map<String, dynamic> json) {
     return WorkspaceStatus(
       statusCode: (json['statusCode'] as String).toWorkspaceStatusCode(),
@@ -502,6 +507,7 @@ class WorkspaceSummary {
     required this.workspaceId,
     this.alias,
   });
+
   factory WorkspaceSummary.fromJson(Map<String, dynamic> json) {
     return WorkspaceSummary(
       arn: json['arn'] as String,

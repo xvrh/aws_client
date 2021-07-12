@@ -1244,6 +1244,7 @@ class AcceptResourceShareInvitationResponse {
     this.clientToken,
     this.resourceShareInvitation,
   });
+
   factory AcceptResourceShareInvitationResponse.fromJson(
       Map<String, dynamic> json) {
     return AcceptResourceShareInvitationResponse(
@@ -1278,6 +1279,7 @@ class AssociateResourceSharePermissionResponse {
     this.clientToken,
     this.returnValue,
   });
+
   factory AssociateResourceSharePermissionResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateResourceSharePermissionResponse(
@@ -1308,6 +1310,7 @@ class AssociateResourceShareResponse {
     this.clientToken,
     this.resourceShareAssociations,
   });
+
   factory AssociateResourceShareResponse.fromJson(Map<String, dynamic> json) {
     return AssociateResourceShareResponse(
       clientToken: json['clientToken'] as String?,
@@ -1342,6 +1345,7 @@ class CreateResourceShareResponse {
     this.clientToken,
     this.resourceShare,
   });
+
   factory CreateResourceShareResponse.fromJson(Map<String, dynamic> json) {
     return CreateResourceShareResponse(
       clientToken: json['clientToken'] as String?,
@@ -1374,6 +1378,7 @@ class DeleteResourceShareResponse {
     this.clientToken,
     this.returnValue,
   });
+
   factory DeleteResourceShareResponse.fromJson(Map<String, dynamic> json) {
     return DeleteResourceShareResponse(
       clientToken: json['clientToken'] as String?,
@@ -1403,6 +1408,7 @@ class DisassociateResourceSharePermissionResponse {
     this.clientToken,
     this.returnValue,
   });
+
   factory DisassociateResourceSharePermissionResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateResourceSharePermissionResponse(
@@ -1433,6 +1439,7 @@ class DisassociateResourceShareResponse {
     this.clientToken,
     this.resourceShareAssociations,
   });
+
   factory DisassociateResourceShareResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateResourceShareResponse(
@@ -1463,6 +1470,7 @@ class EnableSharingWithAwsOrganizationResponse {
   EnableSharingWithAwsOrganizationResponse({
     this.returnValue,
   });
+
   factory EnableSharingWithAwsOrganizationResponse.fromJson(
       Map<String, dynamic> json) {
     return EnableSharingWithAwsOrganizationResponse(
@@ -1485,6 +1493,7 @@ class GetPermissionResponse {
   GetPermissionResponse({
     this.permission,
   });
+
   factory GetPermissionResponse.fromJson(Map<String, dynamic> json) {
     return GetPermissionResponse(
       permission: json['permission'] != null
@@ -1514,6 +1523,7 @@ class GetResourcePoliciesResponse {
     this.nextToken,
     this.policies,
   });
+
   factory GetResourcePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcePoliciesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1546,6 +1556,7 @@ class GetResourceShareAssociationsResponse {
     this.nextToken,
     this.resourceShareAssociations,
   });
+
   factory GetResourceShareAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResourceShareAssociationsResponse(
@@ -1581,6 +1592,7 @@ class GetResourceShareInvitationsResponse {
     this.nextToken,
     this.resourceShareInvitations,
   });
+
   factory GetResourceShareInvitationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetResourceShareInvitationsResponse(
@@ -1616,6 +1628,7 @@ class GetResourceSharesResponse {
     this.nextToken,
     this.resourceShares,
   });
+
   factory GetResourceSharesResponse.fromJson(Map<String, dynamic> json) {
     return GetResourceSharesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1648,6 +1661,7 @@ class ListPendingInvitationResourcesResponse {
     this.nextToken,
     this.resources,
   });
+
   factory ListPendingInvitationResourcesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPendingInvitationResourcesResponse(
@@ -1681,6 +1695,7 @@ class ListPermissionsResponse {
     this.nextToken,
     this.permissions,
   });
+
   factory ListPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return ListPermissionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -1714,6 +1729,7 @@ class ListPrincipalsResponse {
     this.nextToken,
     this.principals,
   });
+
   factory ListPrincipalsResponse.fromJson(Map<String, dynamic> json) {
     return ListPrincipalsResponse(
       nextToken: json['nextToken'] as String?,
@@ -1746,6 +1762,7 @@ class ListResourceSharePermissionsResponse {
     this.nextToken,
     this.permissions,
   });
+
   factory ListResourceSharePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResourceSharePermissionsResponse(
@@ -1780,6 +1797,7 @@ class ListResourceTypesResponse {
     this.nextToken,
     this.resourceTypes,
   });
+
   factory ListResourceTypesResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceTypesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1813,6 +1831,7 @@ class ListResourcesResponse {
     this.nextToken,
     this.resources,
   });
+
   factory ListResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListResourcesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1858,6 +1877,7 @@ class Principal {
     this.lastUpdatedTime,
     this.resourceShareArn,
   });
+
   factory Principal.fromJson(Map<String, dynamic> json) {
     return Principal(
       creationTime: timeStampFromJson(json['creationTime']),
@@ -1893,6 +1913,7 @@ class PromoteResourceShareCreatedFromPolicyResponse {
   PromoteResourceShareCreatedFromPolicyResponse({
     this.returnValue,
   });
+
   factory PromoteResourceShareCreatedFromPolicyResponse.fromJson(
       Map<String, dynamic> json) {
     return PromoteResourceShareCreatedFromPolicyResponse(
@@ -1920,6 +1941,7 @@ class RejectResourceShareInvitationResponse {
     this.clientToken,
     this.resourceShareInvitation,
   });
+
   factory RejectResourceShareInvitationResponse.fromJson(
       Map<String, dynamic> json) {
     return RejectResourceShareInvitationResponse(
@@ -1979,6 +2001,7 @@ class Resource {
     this.statusMessage,
     this.type,
   });
+
   factory Resource.fromJson(Map<String, dynamic> json) {
     return Resource(
       arn: json['arn'] as String?,
@@ -2108,6 +2131,7 @@ class ResourceShare {
     this.statusMessage,
     this.tags,
   });
+
   factory ResourceShare.fromJson(Map<String, dynamic> json) {
     return ResourceShare(
       allowExternalPrincipals: json['allowExternalPrincipals'] as bool?,
@@ -2198,6 +2222,7 @@ class ResourceShareAssociation {
     this.status,
     this.statusMessage,
   });
+
   factory ResourceShareAssociation.fromJson(Map<String, dynamic> json) {
     return ResourceShareAssociation(
       associatedEntity: json['associatedEntity'] as String?,
@@ -2388,6 +2413,7 @@ class ResourceShareInvitation {
     this.senderAccountId,
     this.status,
   });
+
   factory ResourceShareInvitation.fromJson(Map<String, dynamic> json) {
     return ResourceShareInvitation(
       invitationTimestamp: timeStampFromJson(json['invitationTimestamp']),
@@ -2516,6 +2542,7 @@ class ResourceSharePermissionDetail {
     this.resourceType,
     this.version,
   });
+
   factory ResourceSharePermissionDetail.fromJson(Map<String, dynamic> json) {
     return ResourceSharePermissionDetail(
       arn: json['arn'] as String?,
@@ -2599,6 +2626,7 @@ class ResourceSharePermissionSummary {
     this.status,
     this.version,
   });
+
   factory ResourceSharePermissionSummary.fromJson(Map<String, dynamic> json) {
     return ResourceSharePermissionSummary(
       arn: json['arn'] as String?,
@@ -2739,6 +2767,7 @@ class ServiceNameAndResourceType {
     this.resourceType,
     this.serviceName,
   });
+
   factory ServiceNameAndResourceType.fromJson(Map<String, dynamic> json) {
     return ServiceNameAndResourceType(
       resourceType: json['resourceType'] as String?,
@@ -2768,6 +2797,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String?,
@@ -2797,6 +2827,7 @@ class TagFilter {
     this.tagKey,
     this.tagValues,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       tagKey: json['tagKey'] as String?,
@@ -2819,6 +2850,7 @@ class TagFilter {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2830,6 +2862,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2851,6 +2884,7 @@ class UpdateResourceShareResponse {
     this.clientToken,
     this.resourceShare,
   });
+
   factory UpdateResourceShareResponse.fromJson(Map<String, dynamic> json) {
     return UpdateResourceShareResponse(
       clientToken: json['clientToken'] as String?,

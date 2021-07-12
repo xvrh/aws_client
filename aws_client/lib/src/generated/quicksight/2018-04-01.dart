@@ -7768,6 +7768,7 @@ class AccountCustomization {
   AccountCustomization({
     this.defaultTheme,
   });
+
   factory AccountCustomization.fromJson(Map<String, dynamic> json) {
     return AccountCustomization(
       defaultTheme: json['DefaultTheme'] as String?,
@@ -7805,6 +7806,7 @@ class AccountSettings {
     this.edition,
     this.notificationEmail,
   });
+
   factory AccountSettings.fromJson(Map<String, dynamic> json) {
     return AccountSettings(
       accountName: json['AccountName'] as String?,
@@ -7840,6 +7842,7 @@ class ActiveIAMPolicyAssignment {
     this.assignmentName,
     this.policyArn,
   });
+
   factory ActiveIAMPolicyAssignment.fromJson(Map<String, dynamic> json) {
     return ActiveIAMPolicyAssignment(
       assignmentName: json['AssignmentName'] as String?,
@@ -7865,6 +7868,7 @@ class AdHocFilteringOption {
   AdHocFilteringOption({
     this.availabilityStatus,
   });
+
   factory AdHocFilteringOption.fromJson(Map<String, dynamic> json) {
     return AdHocFilteringOption(
       availabilityStatus:
@@ -7889,6 +7893,7 @@ class AmazonElasticsearchParameters {
   AmazonElasticsearchParameters({
     required this.domain,
   });
+
   factory AmazonElasticsearchParameters.fromJson(Map<String, dynamic> json) {
     return AmazonElasticsearchParameters(
       domain: json['Domain'] as String,
@@ -7948,6 +7953,7 @@ class Analysis {
     this.status,
     this.themeArn,
   });
+
   factory Analysis.fromJson(Map<String, dynamic> json) {
     return Analysis(
       analysisId: json['AnalysisId'] as String?,
@@ -8011,6 +8017,7 @@ class AnalysisError {
     this.message,
     this.type,
   });
+
   factory AnalysisError.fromJson(Map<String, dynamic> json) {
     return AnalysisError(
       message: json['Message'] as String?,
@@ -8139,6 +8146,7 @@ class AnalysisSearchFilter {
     this.operator,
     this.value,
   });
+
   factory AnalysisSearchFilter.fromJson(Map<String, dynamic> json) {
     return AnalysisSearchFilter(
       name: (json['Name'] as String?)?.toAnalysisFilterAttribute(),
@@ -8167,6 +8175,7 @@ class AnalysisSourceEntity {
   AnalysisSourceEntity({
     this.sourceTemplate,
   });
+
   factory AnalysisSourceEntity.fromJson(Map<String, dynamic> json) {
     return AnalysisSourceEntity(
       sourceTemplate: json['SourceTemplate'] != null
@@ -8196,6 +8205,7 @@ class AnalysisSourceTemplate {
     required this.arn,
     required this.dataSetReferences,
   });
+
   factory AnalysisSourceTemplate.fromJson(Map<String, dynamic> json) {
     return AnalysisSourceTemplate(
       arn: json['Arn'] as String,
@@ -8244,6 +8254,7 @@ class AnalysisSummary {
     this.name,
     this.status,
   });
+
   factory AnalysisSummary.fromJson(Map<String, dynamic> json) {
     return AnalysisSummary(
       analysisId: json['AnalysisId'] as String?,
@@ -8315,6 +8326,7 @@ class AthenaParameters {
   AthenaParameters({
     this.workGroup,
   });
+
   factory AthenaParameters.fromJson(Map<String, dynamic> json) {
     return AthenaParameters(
       workGroup: json['WorkGroup'] as String?,
@@ -8345,6 +8357,7 @@ class AuroraParameters {
     required this.host,
     required this.port,
   });
+
   factory AuroraParameters.fromJson(Map<String, dynamic> json) {
     return AuroraParameters(
       database: json['Database'] as String,
@@ -8381,6 +8394,7 @@ class AuroraPostgreSqlParameters {
     required this.host,
     required this.port,
   });
+
   factory AuroraPostgreSqlParameters.fromJson(Map<String, dynamic> json) {
     return AuroraPostgreSqlParameters(
       database: json['Database'] as String,
@@ -8409,6 +8423,7 @@ class AwsIotAnalyticsParameters {
   AwsIotAnalyticsParameters({
     required this.dataSetName,
   });
+
   factory AwsIotAnalyticsParameters.fromJson(Map<String, dynamic> json) {
     return AwsIotAnalyticsParameters(
       dataSetName: json['DataSetName'] as String,
@@ -8431,6 +8446,7 @@ class BorderStyle {
   BorderStyle({
     this.show,
   });
+
   factory BorderStyle.fromJson(Map<String, dynamic> json) {
     return BorderStyle(
       show: json['Show'] as bool?,
@@ -8463,6 +8479,7 @@ class CalculatedColumn {
     required this.columnName,
     required this.expression,
   });
+
   factory CalculatedColumn.fromJson(Map<String, dynamic> json) {
     return CalculatedColumn(
       columnId: json['ColumnId'] as String,
@@ -8502,6 +8519,7 @@ class CancelIngestionResponse {
     this.requestId,
     this.status,
   });
+
   factory CancelIngestionResponse.fromJson(Map<String, dynamic> json) {
     return CancelIngestionResponse(
       arn: json['Arn'] as String?,
@@ -8541,6 +8559,7 @@ class CastColumnTypeOperation {
     required this.newColumnType,
     this.format,
   });
+
   factory CastColumnTypeOperation.fromJson(Map<String, dynamic> json) {
     return CastColumnTypeOperation(
       columnName: json['ColumnName'] as String,
@@ -8607,6 +8626,7 @@ class ColumnDescription {
   ColumnDescription({
     this.text,
   });
+
   factory ColumnDescription.fromJson(Map<String, dynamic> json) {
     return ColumnDescription(
       text: json['Text'] as String?,
@@ -8631,6 +8651,7 @@ class ColumnGroup {
   ColumnGroup({
     this.geoSpatialColumnGroup,
   });
+
   factory ColumnGroup.fromJson(Map<String, dynamic> json) {
     return ColumnGroup(
       geoSpatialColumnGroup: json['GeoSpatialColumnGroup'] != null
@@ -8658,6 +8679,7 @@ class ColumnGroupColumnSchema {
   ColumnGroupColumnSchema({
     this.name,
   });
+
   factory ColumnGroupColumnSchema.fromJson(Map<String, dynamic> json) {
     return ColumnGroupColumnSchema(
       name: json['Name'] as String?,
@@ -8684,6 +8706,7 @@ class ColumnGroupSchema {
     this.columnGroupColumnSchemaList,
     this.name,
   });
+
   factory ColumnGroupSchema.fromJson(Map<String, dynamic> json) {
     return ColumnGroupSchema(
       columnGroupColumnSchemaList:
@@ -8723,6 +8746,7 @@ class ColumnLevelPermissionRule {
     this.columnNames,
     this.principals,
   });
+
   factory ColumnLevelPermissionRule.fromJson(Map<String, dynamic> json) {
     return ColumnLevelPermissionRule(
       columnNames: (json['ColumnNames'] as List?)
@@ -8762,6 +8786,7 @@ class ColumnSchema {
     this.geographicRole,
     this.name,
   });
+
   factory ColumnSchema.fromJson(Map<String, dynamic> json) {
     return ColumnSchema(
       dataType: json['DataType'] as String?,
@@ -8796,6 +8821,7 @@ class ColumnTag {
     this.columnDescription,
     this.columnGeographicRole,
   });
+
   factory ColumnTag.fromJson(Map<String, dynamic> json) {
     return ColumnTag(
       columnDescription: json['ColumnDescription'] != null
@@ -8846,6 +8872,7 @@ class CreateAccountCustomizationResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateAccountCustomizationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateAccountCustomizationResponse(
@@ -8902,6 +8929,7 @@ class CreateAnalysisResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return CreateAnalysisResponse(
       analysisId: json['AnalysisId'] as String?,
@@ -8936,6 +8964,7 @@ class CreateColumnsOperation {
   CreateColumnsOperation({
     required this.columns,
   });
+
   factory CreateColumnsOperation.fromJson(Map<String, dynamic> json) {
     return CreateColumnsOperation(
       columns: (json['Columns'] as List)
@@ -8981,6 +9010,7 @@ class CreateDashboardResponse {
     this.status,
     this.versionArn,
   });
+
   factory CreateDashboardResponse.fromJson(Map<String, dynamic> json) {
     return CreateDashboardResponse(
       arn: json['Arn'] as String?,
@@ -9039,6 +9069,7 @@ class CreateDataSetResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateDataSetResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataSetResponse(
       arn: json['Arn'] as String?,
@@ -9091,6 +9122,7 @@ class CreateDataSourceResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return CreateDataSourceResponse(
       arn: json['Arn'] as String?,
@@ -9132,6 +9164,7 @@ class CreateFolderMembershipResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateFolderMembershipResponse.fromJson(Map<String, dynamic> json) {
     return CreateFolderMembershipResponse(
       folderMember: json['FolderMember'] != null
@@ -9174,6 +9207,7 @@ class CreateFolderResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateFolderResponse.fromJson(Map<String, dynamic> json) {
     return CreateFolderResponse(
       arn: json['Arn'] as String?,
@@ -9211,6 +9245,7 @@ class CreateGroupMembershipResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateGroupMembershipResponse.fromJson(Map<String, dynamic> json) {
     return CreateGroupMembershipResponse(
       groupMember: json['GroupMember'] != null
@@ -9248,6 +9283,7 @@ class CreateGroupResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateGroupResponse(
       group: json['Group'] != null
@@ -9316,6 +9352,7 @@ class CreateIAMPolicyAssignmentResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateIAMPolicyAssignmentResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateIAMPolicyAssignmentResponse(
@@ -9375,6 +9412,7 @@ class CreateIngestionResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateIngestionResponse.fromJson(Map<String, dynamic> json) {
     return CreateIngestionResponse(
       arn: json['Arn'] as String?,
@@ -9438,6 +9476,7 @@ class CreateNamespaceResponse {
     this.requestId,
     this.status,
   });
+
   factory CreateNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return CreateNamespaceResponse(
       arn: json['Arn'] as String?,
@@ -9484,6 +9523,7 @@ class CreateTemplateAliasResponse {
     this.status,
     this.templateAlias,
   });
+
   factory CreateTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return CreateTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -9534,6 +9574,7 @@ class CreateTemplateResponse {
     this.templateId,
     this.versionArn,
   });
+
   factory CreateTemplateResponse.fromJson(Map<String, dynamic> json) {
     return CreateTemplateResponse(
       arn: json['Arn'] as String?,
@@ -9577,6 +9618,7 @@ class CreateThemeAliasResponse {
     this.status,
     this.themeAlias,
   });
+
   factory CreateThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return CreateThemeAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -9625,6 +9667,7 @@ class CreateThemeResponse {
     this.themeId,
     this.versionArn,
   });
+
   factory CreateThemeResponse.fromJson(Map<String, dynamic> json) {
     return CreateThemeResponse(
       arn: json['Arn'] as String?,
@@ -9678,6 +9721,7 @@ class CredentialPair {
     required this.username,
     this.alternateDataSourceParameters,
   });
+
   factory CredentialPair.fromJson(Map<String, dynamic> json) {
     return CredentialPair(
       password: json['Password'] as String,
@@ -9723,6 +9767,7 @@ class CustomSql {
     required this.sqlQuery,
     this.columns,
   });
+
   factory CustomSql.fromJson(Map<String, dynamic> json) {
     return CustomSql(
       dataSourceArn: json['DataSourceArn'] as String,
@@ -9781,6 +9826,7 @@ class Dashboard {
     this.name,
     this.version,
   });
+
   factory Dashboard.fromJson(Map<String, dynamic> json) {
     return Dashboard(
       arn: json['Arn'] as String?,
@@ -9857,6 +9903,7 @@ class DashboardError {
     this.message,
     this.type,
   });
+
   factory DashboardError.fromJson(Map<String, dynamic> json) {
     return DashboardError(
       message: json['Message'] as String?,
@@ -9981,6 +10028,7 @@ class DashboardPublishOptions {
     this.exportToCSVOption,
     this.sheetControlsOption,
   });
+
   factory DashboardPublishOptions.fromJson(Map<String, dynamic> json) {
     return DashboardPublishOptions(
       adHocFilteringOption: json['AdHocFilteringOption'] != null
@@ -10032,6 +10080,7 @@ class DashboardSearchFilter {
     this.name,
     this.value,
   });
+
   factory DashboardSearchFilter.fromJson(Map<String, dynamic> json) {
     return DashboardSearchFilter(
       operator: (json['Operator'] as String).toFilterOperator(),
@@ -10060,6 +10109,7 @@ class DashboardSourceEntity {
   DashboardSourceEntity({
     this.sourceTemplate,
   });
+
   factory DashboardSourceEntity.fromJson(Map<String, dynamic> json) {
     return DashboardSourceEntity(
       sourceTemplate: json['SourceTemplate'] != null
@@ -10089,6 +10139,7 @@ class DashboardSourceTemplate {
     required this.arn,
     required this.dataSetReferences,
   });
+
   factory DashboardSourceTemplate.fromJson(Map<String, dynamic> json) {
     return DashboardSourceTemplate(
       arn: json['Arn'] as String,
@@ -10141,6 +10192,7 @@ class DashboardSummary {
     this.name,
     this.publishedVersionNumber,
   });
+
   factory DashboardSummary.fromJson(Map<String, dynamic> json) {
     return DashboardSummary(
       arn: json['Arn'] as String?,
@@ -10250,6 +10302,7 @@ class DashboardVersion {
     this.themeArn,
     this.versionNumber,
   });
+
   factory DashboardVersion.fromJson(Map<String, dynamic> json) {
     return DashboardVersion(
       arn: json['Arn'] as String?,
@@ -10328,6 +10381,7 @@ class DashboardVersionSummary {
     this.status,
     this.versionNumber,
   });
+
   factory DashboardVersionSummary.fromJson(Map<String, dynamic> json) {
     return DashboardVersionSummary(
       arn: json['Arn'] as String?,
@@ -10376,6 +10430,7 @@ class DataColorPalette {
     this.emptyFillColor,
     this.minMaxGradient,
   });
+
   factory DataColorPalette.fromJson(Map<String, dynamic> json) {
     return DataColorPalette(
       colors: (json['Colors'] as List?)
@@ -10468,6 +10523,7 @@ class DataSet {
     this.physicalTableMap,
     this.rowLevelPermissionDataSet,
   });
+
   factory DataSet.fromJson(Map<String, dynamic> json) {
     return DataSet(
       arn: json['Arn'] as String?,
@@ -10561,6 +10617,7 @@ class DataSetConfiguration {
     this.dataSetSchema,
     this.placeholder,
   });
+
   factory DataSetConfiguration.fromJson(Map<String, dynamic> json) {
     return DataSetConfiguration(
       columnGroupSchemaList: (json['ColumnGroupSchemaList'] as List?)
@@ -10628,6 +10685,7 @@ class DataSetReference {
     required this.dataSetArn,
     required this.dataSetPlaceholder,
   });
+
   factory DataSetReference.fromJson(Map<String, dynamic> json) {
     return DataSetReference(
       dataSetArn: json['DataSetArn'] as String,
@@ -10653,6 +10711,7 @@ class DataSetSchema {
   DataSetSchema({
     this.columnSchemaList,
   });
+
   factory DataSetSchema.fromJson(Map<String, dynamic> json) {
     return DataSetSchema(
       columnSchemaList: (json['ColumnSchemaList'] as List?)
@@ -10707,6 +10766,7 @@ class DataSetSummary {
     this.name,
     this.rowLevelPermissionDataSet,
   });
+
   factory DataSetSummary.fromJson(Map<String, dynamic> json) {
     return DataSetSummary(
       arn: json['Arn'] as String?,
@@ -10819,6 +10879,7 @@ class DataSource {
     this.type,
     this.vpcConnectionProperties,
   });
+
   factory DataSource.fromJson(Map<String, dynamic> json) {
     return DataSource(
       alternateDataSourceParameters: (json['AlternateDataSourceParameters']
@@ -10902,6 +10963,7 @@ class DataSourceCredentials {
     this.copySourceArn,
     this.credentialPair,
   });
+
   factory DataSourceCredentials.fromJson(Map<String, dynamic> json) {
     return DataSourceCredentials(
       copySourceArn: json['CopySourceArn'] as String?,
@@ -10934,6 +10996,7 @@ class DataSourceErrorInfo {
     this.message,
     this.type,
   });
+
   factory DataSourceErrorInfo.fromJson(Map<String, dynamic> json) {
     return DataSourceErrorInfo(
       message: json['Message'] as String?,
@@ -11095,6 +11158,7 @@ class DataSourceParameters {
     this.teradataParameters,
     this.twitterParameters,
   });
+
   factory DataSourceParameters.fromJson(Map<String, dynamic> json) {
     return DataSourceParameters(
       amazonElasticsearchParameters:
@@ -11378,6 +11442,7 @@ class DateTimeParameter {
     required this.name,
     required this.values,
   });
+
   factory DateTimeParameter.fromJson(Map<String, dynamic> json) {
     return DateTimeParameter(
       name: json['Name'] as String,
@@ -11410,6 +11475,7 @@ class DecimalParameter {
     required this.name,
     required this.values,
   });
+
   factory DecimalParameter.fromJson(Map<String, dynamic> json) {
     return DecimalParameter(
       name: json['Name'] as String,
@@ -11441,6 +11507,7 @@ class DeleteAccountCustomizationResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteAccountCustomizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteAccountCustomizationResponse(
@@ -11481,6 +11548,7 @@ class DeleteAnalysisResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAnalysisResponse(
       analysisId: json['AnalysisId'] as String?,
@@ -11526,6 +11594,7 @@ class DeleteDashboardResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteDashboardResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDashboardResponse(
       arn: json['Arn'] as String?,
@@ -11568,6 +11637,7 @@ class DeleteDataSetResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteDataSetResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDataSetResponse(
       arn: json['Arn'] as String?,
@@ -11610,6 +11680,7 @@ class DeleteDataSourceResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDataSourceResponse(
       arn: json['Arn'] as String?,
@@ -11644,6 +11715,7 @@ class DeleteFolderMembershipResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteFolderMembershipResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFolderMembershipResponse(
       requestId: json['RequestId'] as String?,
@@ -11681,6 +11753,7 @@ class DeleteFolderResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteFolderResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFolderResponse(
       arn: json['Arn'] as String?,
@@ -11714,6 +11787,7 @@ class DeleteGroupMembershipResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteGroupMembershipResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGroupMembershipResponse(
       requestId: json['RequestId'] as String?,
@@ -11741,6 +11815,7 @@ class DeleteGroupResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGroupResponse(
       requestId: json['RequestId'] as String?,
@@ -11772,6 +11847,7 @@ class DeleteIAMPolicyAssignmentResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteIAMPolicyAssignmentResponse.fromJson(
       Map<String, dynamic> json) {
     return DeleteIAMPolicyAssignmentResponse(
@@ -11803,6 +11879,7 @@ class DeleteNamespaceResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteNamespaceResponse(
       requestId: json['RequestId'] as String?,
@@ -11842,6 +11919,7 @@ class DeleteTemplateAliasResponse {
     this.status,
     this.templateId,
   });
+
   factory DeleteTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTemplateAliasResponse(
       aliasName: json['AliasName'] as String?,
@@ -11886,6 +11964,7 @@ class DeleteTemplateResponse {
     this.status,
     this.templateId,
   });
+
   factory DeleteTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTemplateResponse(
       arn: json['Arn'] as String?,
@@ -11932,6 +12011,7 @@ class DeleteThemeAliasResponse {
     this.status,
     this.themeId,
   });
+
   factory DeleteThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return DeleteThemeAliasResponse(
       aliasName: json['AliasName'] as String?,
@@ -11976,6 +12056,7 @@ class DeleteThemeResponse {
     this.status,
     this.themeId,
   });
+
   factory DeleteThemeResponse.fromJson(Map<String, dynamic> json) {
     return DeleteThemeResponse(
       arn: json['Arn'] as String?,
@@ -12009,6 +12090,7 @@ class DeleteUserByPrincipalIdResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteUserByPrincipalIdResponse.fromJson(Map<String, dynamic> json) {
     return DeleteUserByPrincipalIdResponse(
       requestId: json['RequestId'] as String?,
@@ -12036,6 +12118,7 @@ class DeleteUserResponse {
     this.requestId,
     this.status,
   });
+
   factory DeleteUserResponse.fromJson(Map<String, dynamic> json) {
     return DeleteUserResponse(
       requestId: json['RequestId'] as String?,
@@ -12080,6 +12163,7 @@ class DescribeAccountCustomizationResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeAccountCustomizationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountCustomizationResponse(
@@ -12135,6 +12219,7 @@ class DescribeAccountSettingsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeAccountSettingsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccountSettingsResponse(
       accountSettings: json['AccountSettings'] != null
@@ -12182,6 +12267,7 @@ class DescribeAnalysisPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeAnalysisPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAnalysisPermissionsResponse(
@@ -12227,6 +12313,7 @@ class DescribeAnalysisResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAnalysisResponse(
       analysis: json['Analysis'] != null
@@ -12271,6 +12358,7 @@ class DescribeDashboardPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDashboardPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDashboardPermissionsResponse(
@@ -12315,6 +12403,7 @@ class DescribeDashboardResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDashboardResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDashboardResponse(
       dashboard: json['Dashboard'] != null
@@ -12360,6 +12449,7 @@ class DescribeDataSetPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDataSetPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDataSetPermissionsResponse(
@@ -12404,6 +12494,7 @@ class DescribeDataSetResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDataSetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDataSetResponse(
       dataSet: json['DataSet'] != null
@@ -12449,6 +12540,7 @@ class DescribeDataSourcePermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDataSourcePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDataSourcePermissionsResponse(
@@ -12493,6 +12585,7 @@ class DescribeDataSourceResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDataSourceResponse(
       dataSource: json['DataSource'] != null
@@ -12537,6 +12630,7 @@ class DescribeFolderPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeFolderPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeFolderPermissionsResponse(
@@ -12589,6 +12683,7 @@ class DescribeFolderResolvedPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeFolderResolvedPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeFolderResolvedPermissionsResponse(
@@ -12633,6 +12728,7 @@ class DescribeFolderResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeFolderResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFolderResponse(
       folder: json['Folder'] != null
@@ -12669,6 +12765,7 @@ class DescribeGroupResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeGroupResponse(
       group: json['Group'] != null
@@ -12705,6 +12802,7 @@ class DescribeIAMPolicyAssignmentResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeIAMPolicyAssignmentResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeIAMPolicyAssignmentResponse(
@@ -12744,6 +12842,7 @@ class DescribeIngestionResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeIngestionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIngestionResponse(
       ingestion: json['Ingestion'] != null
@@ -12785,6 +12884,7 @@ class DescribeNamespaceResponse {
     this.requestId,
     this.status,
   });
+
   factory DescribeNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeNamespaceResponse(
       namespace: json['Namespace'] != null
@@ -12821,6 +12921,7 @@ class DescribeTemplateAliasResponse {
     this.status,
     this.templateAlias,
   });
+
   factory DescribeTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -12866,6 +12967,7 @@ class DescribeTemplatePermissionsResponse {
     this.templateArn,
     this.templateId,
   });
+
   factory DescribeTemplatePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeTemplatePermissionsResponse(
@@ -12910,6 +13012,7 @@ class DescribeTemplateResponse {
     this.status,
     this.template,
   });
+
   factory DescribeTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTemplateResponse(
       requestId: json['RequestId'] as String?,
@@ -12946,6 +13049,7 @@ class DescribeThemeAliasResponse {
     this.status,
     this.themeAlias,
   });
+
   factory DescribeThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThemeAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -12990,6 +13094,7 @@ class DescribeThemePermissionsResponse {
     this.themeArn,
     this.themeId,
   });
+
   factory DescribeThemePermissionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThemePermissionsResponse(
       permissions: (json['Permissions'] as List?)
@@ -13033,6 +13138,7 @@ class DescribeThemeResponse {
     this.status,
     this.theme,
   });
+
   factory DescribeThemeResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThemeResponse(
       requestId: json['RequestId'] as String?,
@@ -13069,6 +13175,7 @@ class DescribeUserResponse {
     this.status,
     this.user,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       requestId: json['RequestId'] as String?,
@@ -13163,6 +13270,7 @@ class ErrorInfo {
     this.message,
     this.type,
   });
+
   factory ErrorInfo.fromJson(Map<String, dynamic> json) {
     return ErrorInfo(
       message: json['Message'] as String?,
@@ -13188,6 +13296,7 @@ class ExportToCSVOption {
   ExportToCSVOption({
     this.availabilityStatus,
   });
+
   factory ExportToCSVOption.fromJson(Map<String, dynamic> json) {
     return ExportToCSVOption(
       availabilityStatus:
@@ -13217,6 +13326,7 @@ class FieldFolder {
     this.columns,
     this.description,
   });
+
   factory FieldFolder.fromJson(Map<String, dynamic> json) {
     return FieldFolder(
       columns: (json['columns'] as List?)
@@ -13294,6 +13404,7 @@ class FilterOperation {
   FilterOperation({
     required this.conditionExpression,
   });
+
   factory FilterOperation.fromJson(Map<String, dynamic> json) {
     return FilterOperation(
       conditionExpression: json['ConditionExpression'] as String,
@@ -13363,6 +13474,7 @@ class Folder {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory Folder.fromJson(Map<String, dynamic> json) {
     return Folder(
       arn: json['Arn'] as String?,
@@ -13434,6 +13546,7 @@ class FolderMember {
     this.memberId,
     this.memberType,
   });
+
   factory FolderMember.fromJson(Map<String, dynamic> json) {
     return FolderMember(
       memberId: json['MemberId'] as String?,
@@ -13472,6 +13585,7 @@ class FolderSearchFilter {
     this.operator,
     this.value,
   });
+
   factory FolderSearchFilter.fromJson(Map<String, dynamic> json) {
     return FolderSearchFilter(
       name: (json['Name'] as String?)?.toFolderFilterAttribute(),
@@ -13520,6 +13634,7 @@ class FolderSummary {
     this.lastUpdatedTime,
     this.name,
   });
+
   factory FolderSummary.fromJson(Map<String, dynamic> json) {
     return FolderSummary(
       arn: json['Arn'] as String?,
@@ -13589,6 +13704,7 @@ class GeoSpatialColumnGroup {
     required this.countryCode,
     required this.name,
   });
+
   factory GeoSpatialColumnGroup.fromJson(Map<String, dynamic> json) {
     return GeoSpatialColumnGroup(
       columns: (json['Columns'] as List)
@@ -13707,6 +13823,7 @@ class GetDashboardEmbedUrlResponse {
     this.requestId,
     this.status,
   });
+
   factory GetDashboardEmbedUrlResponse.fromJson(Map<String, dynamic> json) {
     return GetDashboardEmbedUrlResponse(
       embedUrl: json['EmbedUrl'] as String?,
@@ -13744,6 +13861,7 @@ class GetSessionEmbedUrlResponse {
     this.requestId,
     this.status,
   });
+
   factory GetSessionEmbedUrlResponse.fromJson(Map<String, dynamic> json) {
     return GetSessionEmbedUrlResponse(
       embedUrl: json['EmbedUrl'] as String?,
@@ -13784,6 +13902,7 @@ class Group {
     this.groupName,
     this.principalId,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       arn: json['Arn'] as String?,
@@ -13820,6 +13939,7 @@ class GroupMember {
     this.arn,
     this.memberName,
   });
+
   factory GroupMember.fromJson(Map<String, dynamic> json) {
     return GroupMember(
       arn: json['Arn'] as String?,
@@ -13846,6 +13966,7 @@ class GutterStyle {
   GutterStyle({
     this.show,
   });
+
   factory GutterStyle.fromJson(Map<String, dynamic> json) {
     return GutterStyle(
       show: json['Show'] as bool?,
@@ -13888,6 +14009,7 @@ class IAMPolicyAssignment {
     this.identities,
     this.policyArn,
   });
+
   factory IAMPolicyAssignment.fromJson(Map<String, dynamic> json) {
     return IAMPolicyAssignment(
       assignmentId: json['AssignmentId'] as String?,
@@ -13933,6 +14055,7 @@ class IAMPolicyAssignmentSummary {
     this.assignmentName,
     this.assignmentStatus,
   });
+
   factory IAMPolicyAssignmentSummary.fromJson(Map<String, dynamic> json) {
     return IAMPolicyAssignmentSummary(
       assignmentName: json['AssignmentName'] as String?,
@@ -14047,6 +14170,7 @@ class Ingestion {
     this.requestType,
     this.rowInfo,
   });
+
   factory Ingestion.fromJson(Map<String, dynamic> json) {
     return Ingestion(
       arn: json['Arn'] as String,
@@ -14444,6 +14568,7 @@ class InputColumn {
     required this.name,
     required this.type,
   });
+
   factory InputColumn.fromJson(Map<String, dynamic> json) {
     return InputColumn(
       name: json['Name'] as String,
@@ -14526,6 +14651,7 @@ class IntegerParameter {
     required this.name,
     required this.values,
   });
+
   factory IntegerParameter.fromJson(Map<String, dynamic> json) {
     return IntegerParameter(
       name: json['Name'] as String,
@@ -14552,6 +14678,7 @@ class JiraParameters {
   JiraParameters({
     required this.siteBaseUrl,
   });
+
   factory JiraParameters.fromJson(Map<String, dynamic> json) {
     return JiraParameters(
       siteBaseUrl: json['SiteBaseUrl'] as String,
@@ -14594,6 +14721,7 @@ class JoinInstruction {
     this.leftJoinKeyProperties,
     this.rightJoinKeyProperties,
   });
+
   factory JoinInstruction.fromJson(Map<String, dynamic> json) {
     return JoinInstruction(
       leftOperand: json['LeftOperand'] as String,
@@ -14641,6 +14769,7 @@ class JoinKeyProperties {
   JoinKeyProperties({
     this.uniqueKey,
   });
+
   factory JoinKeyProperties.fromJson(Map<String, dynamic> json) {
     return JoinKeyProperties(
       uniqueKey: json['UniqueKey'] as bool?,
@@ -14712,6 +14841,7 @@ class ListAnalysesResponse {
     this.requestId,
     this.status,
   });
+
   factory ListAnalysesResponse.fromJson(Map<String, dynamic> json) {
     return ListAnalysesResponse(
       analysisSummaryList: (json['AnalysisSummaryList'] as List?)
@@ -14757,6 +14887,7 @@ class ListDashboardVersionsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListDashboardVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListDashboardVersionsResponse(
       dashboardVersionSummaryList:
@@ -14805,6 +14936,7 @@ class ListDashboardsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListDashboardsResponse.fromJson(Map<String, dynamic> json) {
     return ListDashboardsResponse(
       dashboardSummaryList: (json['DashboardSummaryList'] as List?)
@@ -14850,6 +14982,7 @@ class ListDataSetsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListDataSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSetsResponse(
       dataSetSummaries: (json['DataSetSummaries'] as List?)
@@ -14894,6 +15027,7 @@ class ListDataSourcesResponse {
     this.requestId,
     this.status,
   });
+
   factory ListDataSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListDataSourcesResponse(
       dataSources: (json['DataSources'] as List?)
@@ -14939,6 +15073,7 @@ class ListFolderMembersResponse {
     this.requestId,
     this.status,
   });
+
   factory ListFolderMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListFolderMembersResponse(
       folderMemberList: (json['FolderMemberList'] as List?)
@@ -14984,6 +15119,7 @@ class ListFoldersResponse {
     this.requestId,
     this.status,
   });
+
   factory ListFoldersResponse.fromJson(Map<String, dynamic> json) {
     return ListFoldersResponse(
       folderSummaryList: (json['FolderSummaryList'] as List?)
@@ -15028,6 +15164,7 @@ class ListGroupMembershipsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListGroupMembershipsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupMembershipsResponse(
       groupMemberList: (json['GroupMemberList'] as List?)
@@ -15072,6 +15209,7 @@ class ListGroupsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListGroupsResponse(
       groupList: (json['GroupList'] as List?)
@@ -15116,6 +15254,7 @@ class ListIAMPolicyAssignmentsForUserResponse {
     this.requestId,
     this.status,
   });
+
   factory ListIAMPolicyAssignmentsForUserResponse.fromJson(
       Map<String, dynamic> json) {
     return ListIAMPolicyAssignmentsForUserResponse(
@@ -15162,6 +15301,7 @@ class ListIAMPolicyAssignmentsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListIAMPolicyAssignmentsResponse.fromJson(Map<String, dynamic> json) {
     return ListIAMPolicyAssignmentsResponse(
       iAMPolicyAssignments: (json['IAMPolicyAssignments'] as List?)
@@ -15208,6 +15348,7 @@ class ListIngestionsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListIngestionsResponse.fromJson(Map<String, dynamic> json) {
     return ListIngestionsResponse(
       ingestions: (json['Ingestions'] as List?)
@@ -15254,6 +15395,7 @@ class ListNamespacesResponse {
     this.requestId,
     this.status,
   });
+
   factory ListNamespacesResponse.fromJson(Map<String, dynamic> json) {
     return ListNamespacesResponse(
       namespaces: (json['Namespaces'] as List?)
@@ -15295,6 +15437,7 @@ class ListTagsForResourceResponse {
     this.status,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       requestId: json['RequestId'] as String?,
@@ -15336,6 +15479,7 @@ class ListTemplateAliasesResponse {
     this.status,
     this.templateAliasList,
   });
+
   factory ListTemplateAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListTemplateAliasesResponse(
       nextToken: json['NextToken'] as String?,
@@ -15380,6 +15524,7 @@ class ListTemplateVersionsResponse {
     this.status,
     this.templateVersionSummaryList,
   });
+
   factory ListTemplateVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListTemplateVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -15426,6 +15571,7 @@ class ListTemplatesResponse {
     this.status,
     this.templateSummaryList,
   });
+
   factory ListTemplatesResponse.fromJson(Map<String, dynamic> json) {
     return ListTemplatesResponse(
       nextToken: json['NextToken'] as String?,
@@ -15471,6 +15617,7 @@ class ListThemeAliasesResponse {
     this.status,
     this.themeAliasList,
   });
+
   factory ListThemeAliasesResponse.fromJson(Map<String, dynamic> json) {
     return ListThemeAliasesResponse(
       nextToken: json['NextToken'] as String?,
@@ -15515,6 +15662,7 @@ class ListThemeVersionsResponse {
     this.status,
     this.themeVersionSummaryList,
   });
+
   factory ListThemeVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListThemeVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -15560,6 +15708,7 @@ class ListThemesResponse {
     this.status,
     this.themeSummaryList,
   });
+
   factory ListThemesResponse.fromJson(Map<String, dynamic> json) {
     return ListThemesResponse(
       nextToken: json['NextToken'] as String?,
@@ -15604,6 +15753,7 @@ class ListUserGroupsResponse {
     this.requestId,
     this.status,
   });
+
   factory ListUserGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListUserGroupsResponse(
       groupList: (json['GroupList'] as List?)
@@ -15648,6 +15798,7 @@ class ListUsersResponse {
     this.status,
     this.userList,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       nextToken: json['NextToken'] as String?,
@@ -15693,6 +15844,7 @@ class LogicalTable {
     required this.source,
     this.dataTransforms,
   });
+
   factory LogicalTable.fromJson(Map<String, dynamic> json) {
     return LogicalTable(
       alias: json['Alias'] as String,
@@ -15731,6 +15883,7 @@ class LogicalTableSource {
     this.joinInstruction,
     this.physicalTableId,
   });
+
   factory LogicalTableSource.fromJson(Map<String, dynamic> json) {
     return LogicalTableSource(
       joinInstruction: json['JoinInstruction'] != null
@@ -15763,6 +15916,7 @@ class ManifestFileLocation {
     required this.bucket,
     required this.key,
   });
+
   factory ManifestFileLocation.fromJson(Map<String, dynamic> json) {
     return ManifestFileLocation(
       bucket: json['Bucket'] as String,
@@ -15788,6 +15942,7 @@ class MarginStyle {
   MarginStyle({
     this.show,
   });
+
   factory MarginStyle.fromJson(Map<String, dynamic> json) {
     return MarginStyle(
       show: json['Show'] as bool?,
@@ -15818,6 +15973,7 @@ class MariaDbParameters {
     required this.host,
     required this.port,
   });
+
   factory MariaDbParameters.fromJson(Map<String, dynamic> json) {
     return MariaDbParameters(
       database: json['Database'] as String,
@@ -15851,6 +16007,7 @@ class MemberIdArnPair {
     this.memberArn,
     this.memberId,
   });
+
   factory MemberIdArnPair.fromJson(Map<String, dynamic> json) {
     return MemberIdArnPair(
       memberArn: json['MemberArn'] as String?,
@@ -15917,6 +16074,7 @@ class MySqlParameters {
     required this.host,
     required this.port,
   });
+
   factory MySqlParameters.fromJson(Map<String, dynamic> json) {
     return MySqlParameters(
       database: json['Database'] as String,
@@ -15949,6 +16107,7 @@ class NamespaceError {
     this.message,
     this.type,
   });
+
   factory NamespaceError.fromJson(Map<String, dynamic> json) {
     return NamespaceError(
       message: json['Message'] as String?,
@@ -16022,6 +16181,7 @@ class NamespaceInfoV2 {
     this.name,
     this.namespaceError,
   });
+
   factory NamespaceInfoV2.fromJson(Map<String, dynamic> json) {
     return NamespaceInfoV2(
       arn: json['Arn'] as String?,
@@ -16113,6 +16273,7 @@ class OracleParameters {
     required this.host,
     required this.port,
   });
+
   factory OracleParameters.fromJson(Map<String, dynamic> json) {
     return OracleParameters(
       database: json['Database'] as String,
@@ -16149,6 +16310,7 @@ class OutputColumn {
     this.name,
     this.type,
   });
+
   factory OutputColumn.fromJson(Map<String, dynamic> json) {
     return OutputColumn(
       description: json['Description'] as String?,
@@ -16189,6 +16351,7 @@ class Parameters {
     this.integerParameters,
     this.stringParameters,
   });
+
   factory Parameters.fromJson(Map<String, dynamic> json) {
     return Parameters(
       dateTimeParameters: (json['DateTimeParameters'] as List?)
@@ -16242,6 +16405,7 @@ class PhysicalTable {
     this.relationalTable,
     this.s3Source,
   });
+
   factory PhysicalTable.fromJson(Map<String, dynamic> json) {
     return PhysicalTable(
       customSql: json['CustomSql'] != null
@@ -16285,6 +16449,7 @@ class PostgreSqlParameters {
     required this.host,
     required this.port,
   });
+
   factory PostgreSqlParameters.fromJson(Map<String, dynamic> json) {
     return PostgreSqlParameters(
       database: json['Database'] as String,
@@ -16321,6 +16486,7 @@ class PrestoParameters {
     required this.host,
     required this.port,
   });
+
   factory PrestoParameters.fromJson(Map<String, dynamic> json) {
     return PrestoParameters(
       catalog: json['Catalog'] as String,
@@ -16350,6 +16516,7 @@ class ProjectOperation {
   ProjectOperation({
     required this.projectedColumns,
   });
+
   factory ProjectOperation.fromJson(Map<String, dynamic> json) {
     return ProjectOperation(
       projectedColumns: (json['ProjectedColumns'] as List)
@@ -16380,6 +16547,7 @@ class QueueInfo {
     required this.queuedIngestion,
     required this.waitingOnIngestion,
   });
+
   factory QueueInfo.fromJson(Map<String, dynamic> json) {
     return QueueInfo(
       queuedIngestion: json['QueuedIngestion'] as String,
@@ -16409,6 +16577,7 @@ class RdsParameters {
     required this.database,
     required this.instanceId,
   });
+
   factory RdsParameters.fromJson(Map<String, dynamic> json) {
     return RdsParameters(
       database: json['Database'] as String,
@@ -16450,6 +16619,7 @@ class RedshiftParameters {
     this.host,
     this.port,
   });
+
   factory RedshiftParameters.fromJson(Map<String, dynamic> json) {
     return RedshiftParameters(
       database: json['Database'] as String,
@@ -16494,6 +16664,7 @@ class RegisterUserResponse {
     this.user,
     this.userInvitationUrl,
   });
+
   factory RegisterUserResponse.fromJson(Map<String, dynamic> json) {
     return RegisterUserResponse(
       requestId: json['RequestId'] as String?,
@@ -16542,6 +16713,7 @@ class RelationalTable {
     this.catalog,
     this.schema,
   });
+
   factory RelationalTable.fromJson(Map<String, dynamic> json) {
     return RelationalTable(
       dataSourceArn: json['DataSourceArn'] as String,
@@ -16583,6 +16755,7 @@ class RenameColumnOperation {
     required this.columnName,
     required this.newColumnName,
   });
+
   factory RenameColumnOperation.fromJson(Map<String, dynamic> json) {
     return RenameColumnOperation(
       columnName: json['ColumnName'] as String,
@@ -16629,6 +16802,7 @@ class ResourcePermission {
     required this.actions,
     required this.principal,
   });
+
   factory ResourcePermission.fromJson(Map<String, dynamic> json) {
     return ResourcePermission(
       actions: (json['Actions'] as List)
@@ -16721,6 +16895,7 @@ class RestoreAnalysisResponse {
     this.requestId,
     this.status,
   });
+
   factory RestoreAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return RestoreAnalysisResponse(
       analysisId: json['AnalysisId'] as String?,
@@ -16755,6 +16930,7 @@ class RowInfo {
     this.rowsDropped,
     this.rowsIngested,
   });
+
   factory RowInfo.fromJson(Map<String, dynamic> json) {
     return RowInfo(
       rowsDropped: json['RowsDropped'] as int?,
@@ -16809,6 +16985,7 @@ class RowLevelPermissionDataSet {
     this.formatVersion,
     this.namespace,
   });
+
   factory RowLevelPermissionDataSet.fromJson(Map<String, dynamic> json) {
     return RowLevelPermissionDataSet(
       arn: json['Arn'] as String,
@@ -16900,6 +17077,7 @@ class S3Parameters {
   S3Parameters({
     required this.manifestFileLocation,
   });
+
   factory S3Parameters.fromJson(Map<String, dynamic> json) {
     return S3Parameters(
       manifestFileLocation: ManifestFileLocation.fromJson(
@@ -16935,6 +17113,7 @@ class S3Source {
     required this.inputColumns,
     this.uploadSettings,
   });
+
   factory S3Source.fromJson(Map<String, dynamic> json) {
     return S3Source(
       dataSourceArn: json['DataSourceArn'] as String,
@@ -16980,6 +17159,7 @@ class SearchAnalysesResponse {
     this.requestId,
     this.status,
   });
+
   factory SearchAnalysesResponse.fromJson(Map<String, dynamic> json) {
     return SearchAnalysesResponse(
       analysisSummaryList: (json['AnalysisSummaryList'] as List?)
@@ -17026,6 +17206,7 @@ class SearchDashboardsResponse {
     this.requestId,
     this.status,
   });
+
   factory SearchDashboardsResponse.fromJson(Map<String, dynamic> json) {
     return SearchDashboardsResponse(
       dashboardSummaryList: (json['DashboardSummaryList'] as List?)
@@ -17072,6 +17253,7 @@ class SearchFoldersResponse {
     this.requestId,
     this.status,
   });
+
   factory SearchFoldersResponse.fromJson(Map<String, dynamic> json) {
     return SearchFoldersResponse(
       folderSummaryList: (json['FolderSummaryList'] as List?)
@@ -17105,6 +17287,7 @@ class ServiceNowParameters {
   ServiceNowParameters({
     required this.siteBaseUrl,
   });
+
   factory ServiceNowParameters.fromJson(Map<String, dynamic> json) {
     return ServiceNowParameters(
       siteBaseUrl: json['SiteBaseUrl'] as String,
@@ -17137,6 +17320,7 @@ class Sheet {
     this.name,
     this.sheetId,
   });
+
   factory Sheet.fromJson(Map<String, dynamic> json) {
     return Sheet(
       name: json['Name'] as String?,
@@ -17162,6 +17346,7 @@ class SheetControlsOption {
   SheetControlsOption({
     this.visibilityState,
   });
+
   factory SheetControlsOption.fromJson(Map<String, dynamic> json) {
     return SheetControlsOption(
       visibilityState:
@@ -17189,6 +17374,7 @@ class SheetStyle {
     this.tile,
     this.tileLayout,
   });
+
   factory SheetStyle.fromJson(Map<String, dynamic> json) {
     return SheetStyle(
       tile: json['Tile'] != null
@@ -17226,6 +17412,7 @@ class SnowflakeParameters {
     required this.host,
     required this.warehouse,
   });
+
   factory SnowflakeParameters.fromJson(Map<String, dynamic> json) {
     return SnowflakeParameters(
       database: json['Database'] as String,
@@ -17258,6 +17445,7 @@ class SparkParameters {
     required this.host,
     required this.port,
   });
+
   factory SparkParameters.fromJson(Map<String, dynamic> json) {
     return SparkParameters(
       host: json['Host'] as String,
@@ -17291,6 +17479,7 @@ class SqlServerParameters {
     required this.host,
     required this.port,
   });
+
   factory SqlServerParameters.fromJson(Map<String, dynamic> json) {
     return SqlServerParameters(
       database: json['Database'] as String,
@@ -17320,6 +17509,7 @@ class SslProperties {
   SslProperties({
     this.disableSsl,
   });
+
   factory SslProperties.fromJson(Map<String, dynamic> json) {
     return SslProperties(
       disableSsl: json['DisableSsl'] as bool?,
@@ -17346,6 +17536,7 @@ class StringParameter {
     required this.name,
     required this.values,
   });
+
   factory StringParameter.fromJson(Map<String, dynamic> json) {
     return StringParameter(
       name: json['Name'] as String,
@@ -17379,6 +17570,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -17411,6 +17603,7 @@ class TagColumnOperation {
     required this.columnName,
     required this.tags,
   });
+
   factory TagColumnOperation.fromJson(Map<String, dynamic> json) {
     return TagColumnOperation(
       columnName: json['ColumnName'] as String,
@@ -17442,6 +17635,7 @@ class TagResourceResponse {
     this.requestId,
     this.status,
   });
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> json) {
     return TagResourceResponse(
       requestId: json['RequestId'] as String?,
@@ -17495,6 +17689,7 @@ class Template {
     this.templateId,
     this.version,
   });
+
   factory Template.fromJson(Map<String, dynamic> json) {
     return Template(
       arn: json['Arn'] as String?,
@@ -17543,6 +17738,7 @@ class TemplateAlias {
     this.arn,
     this.templateVersionNumber,
   });
+
   factory TemplateAlias.fromJson(Map<String, dynamic> json) {
     return TemplateAlias(
       aliasName: json['AliasName'] as String?,
@@ -17576,6 +17772,7 @@ class TemplateError {
     this.message,
     this.type,
   });
+
   factory TemplateError.fromJson(Map<String, dynamic> json) {
     return TemplateError(
       message: json['Message'] as String?,
@@ -17644,6 +17841,7 @@ class TemplateSourceAnalysis {
     required this.arn,
     required this.dataSetReferences,
   });
+
   factory TemplateSourceAnalysis.fromJson(Map<String, dynamic> json) {
     return TemplateSourceAnalysis(
       arn: json['Arn'] as String,
@@ -17676,6 +17874,7 @@ class TemplateSourceEntity {
     this.sourceAnalysis,
     this.sourceTemplate,
   });
+
   factory TemplateSourceEntity.fromJson(Map<String, dynamic> json) {
     return TemplateSourceEntity(
       sourceAnalysis: json['SourceAnalysis'] != null
@@ -17707,6 +17906,7 @@ class TemplateSourceTemplate {
   TemplateSourceTemplate({
     required this.arn,
   });
+
   factory TemplateSourceTemplate.fromJson(Map<String, dynamic> json) {
     return TemplateSourceTemplate(
       arn: json['Arn'] as String,
@@ -17750,6 +17950,7 @@ class TemplateSummary {
     this.name,
     this.templateId,
   });
+
   factory TemplateSummary.fromJson(Map<String, dynamic> json) {
     return TemplateSummary(
       arn: json['Arn'] as String?,
@@ -17825,6 +18026,7 @@ class TemplateVersion {
     this.themeArn,
     this.versionNumber,
   });
+
   factory TemplateVersion.fromJson(Map<String, dynamic> json) {
     return TemplateVersion(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -17897,6 +18099,7 @@ class TemplateVersionSummary {
     this.status,
     this.versionNumber,
   });
+
   factory TemplateVersionSummary.fromJson(Map<String, dynamic> json) {
     return TemplateVersionSummary(
       arn: json['Arn'] as String?,
@@ -17939,6 +18142,7 @@ class TeradataParameters {
     required this.host,
     required this.port,
   });
+
   factory TeradataParameters.fromJson(Map<String, dynamic> json) {
     return TeradataParameters(
       database: json['Database'] as String,
@@ -18018,6 +18222,7 @@ class Theme {
     this.type,
     this.version,
   });
+
   factory Theme.fromJson(Map<String, dynamic> json) {
     return Theme(
       arn: json['Arn'] as String?,
@@ -18069,6 +18274,7 @@ class ThemeAlias {
     this.arn,
     this.themeVersionNumber,
   });
+
   factory ThemeAlias.fromJson(Map<String, dynamic> json) {
     return ThemeAlias(
       aliasName: json['AliasName'] as String?,
@@ -18107,6 +18313,7 @@ class ThemeConfiguration {
     this.sheet,
     this.uIColorPalette,
   });
+
   factory ThemeConfiguration.fromJson(Map<String, dynamic> json) {
     return ThemeConfiguration(
       dataColorPalette: json['DataColorPalette'] != null
@@ -18147,6 +18354,7 @@ class ThemeError {
     this.message,
     this.type,
   });
+
   factory ThemeError.fromJson(Map<String, dynamic> json) {
     return ThemeError(
       message: json['Message'] as String?,
@@ -18215,6 +18423,7 @@ class ThemeSummary {
     this.name,
     this.themeId,
   });
+
   factory ThemeSummary.fromJson(Map<String, dynamic> json) {
     return ThemeSummary(
       arn: json['Arn'] as String?,
@@ -18316,6 +18525,7 @@ class ThemeVersion {
     this.status,
     this.versionNumber,
   });
+
   factory ThemeVersion.fromJson(Map<String, dynamic> json) {
     return ThemeVersion(
       arn: json['Arn'] as String?,
@@ -18381,6 +18591,7 @@ class ThemeVersionSummary {
     this.status,
     this.versionNumber,
   });
+
   factory ThemeVersionSummary.fromJson(Map<String, dynamic> json) {
     return ThemeVersionSummary(
       arn: json['Arn'] as String?,
@@ -18419,6 +18630,7 @@ class TileLayoutStyle {
     this.gutter,
     this.margin,
   });
+
   factory TileLayoutStyle.fromJson(Map<String, dynamic> json) {
     return TileLayoutStyle(
       gutter: json['Gutter'] != null
@@ -18448,6 +18660,7 @@ class TileStyle {
   TileStyle({
     this.border,
   });
+
   factory TileStyle.fromJson(Map<String, dynamic> json) {
     return TileStyle(
       border: json['Border'] != null
@@ -18495,6 +18708,7 @@ class TransformOperation {
     this.renameColumnOperation,
     this.tagColumnOperation,
   });
+
   factory TransformOperation.fromJson(Map<String, dynamic> json) {
     return TransformOperation(
       castColumnTypeOperation: json['CastColumnTypeOperation'] != null
@@ -18557,6 +18771,7 @@ class TwitterParameters {
     required this.maxRows,
     required this.query,
   });
+
   factory TwitterParameters.fromJson(Map<String, dynamic> json) {
     return TwitterParameters(
       maxRows: json['MaxRows'] as int,
@@ -18660,6 +18875,7 @@ class UIColorPalette {
     this.warning,
     this.warningForeground,
   });
+
   factory UIColorPalette.fromJson(Map<String, dynamic> json) {
     return UIColorPalette(
       accent: json['Accent'] as String?,
@@ -18733,6 +18949,7 @@ class UntagResourceResponse {
     this.requestId,
     this.status,
   });
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> json) {
     return UntagResourceResponse(
       requestId: json['RequestId'] as String?,
@@ -18778,6 +18995,7 @@ class UpdateAccountCustomizationResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateAccountCustomizationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAccountCustomizationResponse(
@@ -18822,6 +19040,7 @@ class UpdateAccountSettingsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateAccountSettingsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAccountSettingsResponse(
       requestId: json['RequestId'] as String?,
@@ -18862,6 +19081,7 @@ class UpdateAnalysisPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateAnalysisPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAnalysisPermissionsResponse(
@@ -18914,6 +19134,7 @@ class UpdateAnalysisResponse {
     this.status,
     this.updateStatus,
   });
+
   factory UpdateAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAnalysisResponse(
       analysisId: json['AnalysisId'] as String?,
@@ -18962,6 +19183,7 @@ class UpdateDashboardPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateDashboardPermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDashboardPermissionsResponse(
@@ -19010,6 +19232,7 @@ class UpdateDashboardPublishedVersionResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateDashboardPublishedVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDashboardPublishedVersionResponse(
@@ -19060,6 +19283,7 @@ class UpdateDashboardResponse {
     this.status,
     this.versionArn,
   });
+
   factory UpdateDashboardResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDashboardResponse(
       arn: json['Arn'] as String?,
@@ -19109,6 +19333,7 @@ class UpdateDataSetPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateDataSetPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDataSetPermissionsResponse(
       dataSetArn: json['DataSetArn'] as String?,
@@ -19161,6 +19386,7 @@ class UpdateDataSetResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateDataSetResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDataSetResponse(
       arn: json['Arn'] as String?,
@@ -19209,6 +19435,7 @@ class UpdateDataSourcePermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateDataSourcePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDataSourcePermissionsResponse(
@@ -19256,6 +19483,7 @@ class UpdateDataSourceResponse {
     this.status,
     this.updateStatus,
   });
+
   factory UpdateDataSourceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDataSourceResponse(
       arn: json['Arn'] as String?,
@@ -19304,6 +19532,7 @@ class UpdateFolderPermissionsResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateFolderPermissionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFolderPermissionsResponse(
       arn: json['Arn'] as String?,
@@ -19352,6 +19581,7 @@ class UpdateFolderResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateFolderResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFolderResponse(
       arn: json['Arn'] as String?,
@@ -19389,6 +19619,7 @@ class UpdateGroupResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateGroupResponse(
       group: json['Group'] != null
@@ -19457,6 +19688,7 @@ class UpdateIAMPolicyAssignmentResponse {
     this.requestId,
     this.status,
   });
+
   factory UpdateIAMPolicyAssignmentResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateIAMPolicyAssignmentResponse(
@@ -19508,6 +19740,7 @@ class UpdateTemplateAliasResponse {
     this.status,
     this.templateAlias,
   });
+
   factory UpdateTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -19553,6 +19786,7 @@ class UpdateTemplatePermissionsResponse {
     this.templateArn,
     this.templateId,
   });
+
   factory UpdateTemplatePermissionsResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateTemplatePermissionsResponse(
@@ -19610,6 +19844,7 @@ class UpdateTemplateResponse {
     this.templateId,
     this.versionArn,
   });
+
   factory UpdateTemplateResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTemplateResponse(
       arn: json['Arn'] as String?,
@@ -19653,6 +19888,7 @@ class UpdateThemeAliasResponse {
     this.status,
     this.themeAlias,
   });
+
   factory UpdateThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return UpdateThemeAliasResponse(
       requestId: json['RequestId'] as String?,
@@ -19697,6 +19933,7 @@ class UpdateThemePermissionsResponse {
     this.themeArn,
     this.themeId,
   });
+
   factory UpdateThemePermissionsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateThemePermissionsResponse(
       permissions: (json['Permissions'] as List?)
@@ -19752,6 +19989,7 @@ class UpdateThemeResponse {
     this.themeId,
     this.versionArn,
   });
+
   factory UpdateThemeResponse.fromJson(Map<String, dynamic> json) {
     return UpdateThemeResponse(
       arn: json['Arn'] as String?,
@@ -19795,6 +20033,7 @@ class UpdateUserResponse {
     this.status,
     this.user,
   });
+
   factory UpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserResponse(
       requestId: json['RequestId'] as String?,
@@ -19840,6 +20079,7 @@ class UploadSettings {
     this.startFromRow,
     this.textQualifier,
   });
+
   factory UploadSettings.fromJson(Map<String, dynamic> json) {
     return UploadSettings(
       containsHeader: json['ContainsHeader'] as bool?,
@@ -19949,6 +20189,7 @@ class User {
     this.role,
     this.userName,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       active: json['Active'] as bool?,
@@ -20053,6 +20294,7 @@ class VpcConnectionProperties {
   VpcConnectionProperties({
     required this.vpcConnectionArn,
   });
+
   factory VpcConnectionProperties.fromJson(Map<String, dynamic> json) {
     return VpcConnectionProperties(
       vpcConnectionArn: json['VpcConnectionArn'] as String,

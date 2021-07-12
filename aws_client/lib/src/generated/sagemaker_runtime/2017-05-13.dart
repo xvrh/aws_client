@@ -274,6 +274,7 @@ class InvokeEndpointOutput {
     this.customAttributes,
     this.invokedProductionVariant,
   });
+
   factory InvokeEndpointOutput.fromJson(Map<String, dynamic> json) {
     return InvokeEndpointOutput(
       body: _s.decodeUint8List(json['Body']! as String),

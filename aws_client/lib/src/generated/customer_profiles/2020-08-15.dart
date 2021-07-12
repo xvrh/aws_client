@@ -2189,6 +2189,7 @@ class AddProfileKeyResponse {
     this.keyName,
     this.values,
   });
+
   factory AddProfileKeyResponse.fromJson(Map<String, dynamic> json) {
     return AddProfileKeyResponse(
       keyName: json['KeyName'] as String?,
@@ -2254,6 +2255,7 @@ class Address {
     this.province,
     this.state,
   });
+
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       address1: json['Address1'] as String?,
@@ -2319,6 +2321,7 @@ class ConnectorOperator {
     this.serviceNow,
     this.zendesk,
   });
+
   factory ConnectorOperator.fromJson(Map<String, dynamic> json) {
     return ConnectorOperator(
       marketo: (json['Marketo'] as String?)?.toMarketoConnectorOperator(),
@@ -2386,6 +2389,7 @@ class CreateDomainResponse {
     this.matching,
     this.tags,
   });
+
   factory CreateDomainResponse.fromJson(Map<String, dynamic> json) {
     return CreateDomainResponse(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -2433,6 +2437,7 @@ class CreateProfileResponse {
   CreateProfileResponse({
     required this.profileId,
   });
+
   factory CreateProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateProfileResponse(
       profileId: json['ProfileId'] as String,
@@ -2482,6 +2487,7 @@ class DeleteDomainResponse {
   DeleteDomainResponse({
     required this.message,
   });
+
   factory DeleteDomainResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDomainResponse(
       message: json['Message'] as String,
@@ -2503,6 +2509,7 @@ class DeleteIntegrationResponse {
   DeleteIntegrationResponse({
     required this.message,
   });
+
   factory DeleteIntegrationResponse.fromJson(Map<String, dynamic> json) {
     return DeleteIntegrationResponse(
       message: json['Message'] as String,
@@ -2524,6 +2531,7 @@ class DeleteProfileKeyResponse {
   DeleteProfileKeyResponse({
     this.message,
   });
+
   factory DeleteProfileKeyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProfileKeyResponse(
       message: json['Message'] as String?,
@@ -2545,6 +2553,7 @@ class DeleteProfileObjectResponse {
   DeleteProfileObjectResponse({
     this.message,
   });
+
   factory DeleteProfileObjectResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProfileObjectResponse(
       message: json['Message'] as String?,
@@ -2566,6 +2575,7 @@ class DeleteProfileObjectTypeResponse {
   DeleteProfileObjectTypeResponse({
     required this.message,
   });
+
   factory DeleteProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProfileObjectTypeResponse(
       message: json['Message'] as String,
@@ -2587,6 +2597,7 @@ class DeleteProfileResponse {
   DeleteProfileResponse({
     this.message,
   });
+
   factory DeleteProfileResponse.fromJson(Map<String, dynamic> json) {
     return DeleteProfileResponse(
       message: json['Message'] as String?,
@@ -2624,6 +2635,7 @@ class DomainStats {
     this.profileCount,
     this.totalSize,
   });
+
   factory DomainStats.fromJson(Map<String, dynamic> json) {
     return DomainStats(
       meteringProfileCount: json['MeteringProfileCount'] as int?,
@@ -2779,6 +2791,7 @@ class FieldSourceProfileIds {
     this.phoneNumber,
     this.shippingAddress,
   });
+
   factory FieldSourceProfileIds.fromJson(Map<String, dynamic> json) {
     return FieldSourceProfileIds(
       accountNumber: json['AccountNumber'] as String?,
@@ -2892,6 +2905,7 @@ class FlowDefinition {
     required this.triggerConfig,
     this.description,
   });
+
   factory FlowDefinition.fromJson(Map<String, dynamic> json) {
     return FlowDefinition(
       flowName: json['FlowName'] as String,
@@ -3002,6 +3016,7 @@ class GetDomainResponse {
     this.stats,
     this.tags,
   });
+
   factory GetDomainResponse.fromJson(Map<String, dynamic> json) {
     return GetDomainResponse(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -3075,6 +3090,7 @@ class GetIntegrationResponse {
     required this.uri,
     this.tags,
   });
+
   factory GetIntegrationResponse.fromJson(Map<String, dynamic> json) {
     return GetIntegrationResponse(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -3126,6 +3142,7 @@ class GetMatchesResponse {
     this.nextToken,
     this.potentialMatches,
   });
+
   factory GetMatchesResponse.fromJson(Map<String, dynamic> json) {
     return GetMatchesResponse(
       matchGenerationDate: timeStampFromJson(json['MatchGenerationDate']),
@@ -3206,6 +3223,7 @@ class GetProfileObjectTypeResponse {
     this.tags,
     this.templateId,
   });
+
   factory GetProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
     return GetProfileObjectTypeResponse(
       description: json['Description'] as String,
@@ -3291,6 +3309,7 @@ class GetProfileObjectTypeTemplateResponse {
     this.sourceObject,
     this.templateId,
   });
+
   factory GetProfileObjectTypeTemplateResponse.fromJson(
       Map<String, dynamic> json) {
     return GetProfileObjectTypeTemplateResponse(
@@ -3338,6 +3357,7 @@ class IncrementalPullConfig {
   IncrementalPullConfig({
     this.datetimeTypeFieldName,
   });
+
   factory IncrementalPullConfig.fromJson(Map<String, dynamic> json) {
     return IncrementalPullConfig(
       datetimeTypeFieldName: json['DatetimeTypeFieldName'] as String?,
@@ -3364,6 +3384,7 @@ class ListAccountIntegrationsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListAccountIntegrationsResponse.fromJson(Map<String, dynamic> json) {
     return ListAccountIntegrationsResponse(
       items: (json['Items'] as List?)
@@ -3404,6 +3425,7 @@ class ListDomainItem {
     required this.lastUpdatedAt,
     this.tags,
   });
+
   factory ListDomainItem.fromJson(Map<String, dynamic> json) {
     return ListDomainItem(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -3440,6 +3462,7 @@ class ListDomainsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainsResponse(
       items: (json['Items'] as List?)
@@ -3488,6 +3511,7 @@ class ListIntegrationItem {
     required this.uri,
     this.tags,
   });
+
   factory ListIntegrationItem.fromJson(Map<String, dynamic> json) {
     return ListIntegrationItem(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -3530,6 +3554,7 @@ class ListIntegrationsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListIntegrationsResponse.fromJson(Map<String, dynamic> json) {
     return ListIntegrationsResponse(
       items: (json['Items'] as List?)
@@ -3574,6 +3599,7 @@ class ListProfileObjectTypeItem {
     this.lastUpdatedAt,
     this.tags,
   });
+
   factory ListProfileObjectTypeItem.fromJson(Map<String, dynamic> json) {
     return ListProfileObjectTypeItem(
       description: json['Description'] as String,
@@ -3618,6 +3644,7 @@ class ListProfileObjectTypeTemplateItem {
     this.sourceObject,
     this.templateId,
   });
+
   factory ListProfileObjectTypeTemplateItem.fromJson(
       Map<String, dynamic> json) {
     return ListProfileObjectTypeTemplateItem(
@@ -3650,6 +3677,7 @@ class ListProfileObjectTypeTemplatesResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListProfileObjectTypeTemplatesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListProfileObjectTypeTemplatesResponse(
@@ -3683,6 +3711,7 @@ class ListProfileObjectTypesResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListProfileObjectTypesResponse.fromJson(Map<String, dynamic> json) {
     return ListProfileObjectTypesResponse(
       items: (json['Items'] as List?)
@@ -3721,6 +3750,7 @@ class ListProfileObjectsItem {
     this.objectTypeName,
     this.profileObjectUniqueKey,
   });
+
   factory ListProfileObjectsItem.fromJson(Map<String, dynamic> json) {
     return ListProfileObjectsItem(
       object: json['Object'] as String?,
@@ -3753,6 +3783,7 @@ class ListProfileObjectsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListProfileObjectsResponse.fromJson(Map<String, dynamic> json) {
     return ListProfileObjectsResponse(
       items: (json['Items'] as List?)
@@ -3781,6 +3812,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -3902,6 +3934,7 @@ class MarketoSourceProperties {
   MarketoSourceProperties({
     required this.object,
   });
+
   factory MarketoSourceProperties.fromJson(Map<String, dynamic> json) {
     return MarketoSourceProperties(
       object: json['Object'] as String,
@@ -3928,6 +3961,7 @@ class MatchItem {
     this.matchId,
     this.profileIds,
   });
+
   factory MatchItem.fromJson(Map<String, dynamic> json) {
     return MatchItem(
       matchId: json['MatchId'] as String?,
@@ -3956,6 +3990,7 @@ class MatchingRequest {
   MatchingRequest({
     required this.enabled,
   });
+
   factory MatchingRequest.fromJson(Map<String, dynamic> json) {
     return MatchingRequest(
       enabled: json['Enabled'] as bool,
@@ -3978,6 +4013,7 @@ class MatchingResponse {
   MatchingResponse({
     this.enabled,
   });
+
   factory MatchingResponse.fromJson(Map<String, dynamic> json) {
     return MatchingResponse(
       enabled: json['Enabled'] as bool?,
@@ -3999,6 +4035,7 @@ class MergeProfilesResponse {
   MergeProfilesResponse({
     this.message,
   });
+
   factory MergeProfilesResponse.fromJson(Map<String, dynamic> json) {
     return MergeProfilesResponse(
       message: json['Message'] as String?,
@@ -4032,6 +4069,7 @@ class ObjectTypeField {
     this.source,
     this.target,
   });
+
   factory ObjectTypeField.fromJson(Map<String, dynamic> json) {
     return ObjectTypeField(
       contentType: (json['ContentType'] as String?)?.toFieldContentType(),
@@ -4073,6 +4111,7 @@ class ObjectTypeKey {
     this.fieldNames,
     this.standardIdentifiers,
   });
+
   factory ObjectTypeKey.fromJson(Map<String, dynamic> json) {
     return ObjectTypeKey(
       fieldNames: (json['FieldNames'] as List?)
@@ -4314,6 +4353,7 @@ class Profile {
     this.profileId,
     this.shippingAddress,
   });
+
   factory Profile.fromJson(Map<String, dynamic> json) {
     return Profile(
       accountNumber: json['AccountNumber'] as String?,
@@ -4431,6 +4471,7 @@ class PutIntegrationResponse {
     required this.uri,
     this.tags,
   });
+
   factory PutIntegrationResponse.fromJson(Map<String, dynamic> json) {
     return PutIntegrationResponse(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -4469,6 +4510,7 @@ class PutProfileObjectResponse {
   PutProfileObjectResponse({
     this.profileObjectUniqueKey,
   });
+
   factory PutProfileObjectResponse.fromJson(Map<String, dynamic> json) {
     return PutProfileObjectResponse(
       profileObjectUniqueKey: json['ProfileObjectUniqueKey'] as String?,
@@ -4537,6 +4579,7 @@ class PutProfileObjectTypeResponse {
     this.tags,
     this.templateId,
   });
+
   factory PutProfileObjectTypeResponse.fromJson(Map<String, dynamic> json) {
     return PutProfileObjectTypeResponse(
       description: json['Description'] as String,
@@ -4722,6 +4765,7 @@ class S3SourceProperties {
     required this.bucketName,
     this.bucketPrefix,
   });
+
   factory S3SourceProperties.fromJson(Map<String, dynamic> json) {
     return S3SourceProperties(
       bucketName: json['BucketName'] as String,
@@ -4879,6 +4923,7 @@ class SalesforceSourceProperties {
     this.enableDynamicFieldUpdate,
     this.includeDeletedRecords,
   });
+
   factory SalesforceSourceProperties.fromJson(Map<String, dynamic> json) {
     return SalesforceSourceProperties(
       object: json['Object'] as String,
@@ -4939,6 +4984,7 @@ class ScheduledTriggerProperties {
     this.scheduleStartTime,
     this.timezone,
   });
+
   factory ScheduledTriggerProperties.fromJson(Map<String, dynamic> json) {
     return ScheduledTriggerProperties(
       scheduleExpression: json['ScheduleExpression'] as String,
@@ -4985,6 +5031,7 @@ class SearchProfilesResponse {
     this.items,
     this.nextToken,
   });
+
   factory SearchProfilesResponse.fromJson(Map<String, dynamic> json) {
     return SearchProfilesResponse(
       items: (json['Items'] as List?)
@@ -5136,6 +5183,7 @@ class ServiceNowSourceProperties {
   ServiceNowSourceProperties({
     required this.object,
   });
+
   factory ServiceNowSourceProperties.fromJson(Map<String, dynamic> json) {
     return ServiceNowSourceProperties(
       object: json['Object'] as String,
@@ -5177,6 +5225,7 @@ class SourceConnectorProperties {
     this.serviceNow,
     this.zendesk,
   });
+
   factory SourceConnectorProperties.fromJson(Map<String, dynamic> json) {
     return SourceConnectorProperties(
       marketo: json['Marketo'] != null
@@ -5285,6 +5334,7 @@ class SourceFlowConfig {
     this.connectorProfileName,
     this.incrementalPullConfig,
   });
+
   factory SourceFlowConfig.fromJson(Map<String, dynamic> json) {
     return SourceFlowConfig(
       connectorType: (json['ConnectorType'] as String).toSourceConnectorType(),
@@ -5359,6 +5409,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5395,6 +5446,7 @@ class Task {
     this.destinationField,
     this.taskProperties,
   });
+
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       sourceFields: (json['SourceFields'] as List)
@@ -5497,6 +5549,7 @@ class TriggerConfig {
     required this.triggerType,
     this.triggerProperties,
   });
+
   factory TriggerConfig.fromJson(Map<String, dynamic> json) {
     return TriggerConfig(
       triggerType: (json['TriggerType'] as String).toTriggerType(),
@@ -5527,6 +5580,7 @@ class TriggerProperties {
   TriggerProperties({
     this.scheduled,
   });
+
   factory TriggerProperties.fromJson(Map<String, dynamic> json) {
     return TriggerProperties(
       scheduled: json['Scheduled'] != null
@@ -5579,6 +5633,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5632,6 +5687,7 @@ class UpdateAddress {
     this.province,
     this.state,
   });
+
   factory UpdateAddress.fromJson(Map<String, dynamic> json) {
     return UpdateAddress(
       address1: json['Address1'] as String?,
@@ -5712,6 +5768,7 @@ class UpdateDomainResponse {
     this.matching,
     this.tags,
   });
+
   factory UpdateDomainResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDomainResponse(
       createdAt: nonNullableTimeStampFromJson(json['CreatedAt'] as Object),
@@ -5760,6 +5817,7 @@ class UpdateProfileResponse {
   UpdateProfileResponse({
     required this.profileId,
   });
+
   factory UpdateProfileResponse.fromJson(Map<String, dynamic> json) {
     return UpdateProfileResponse(
       profileId: json['ProfileId'] as String,
@@ -5870,6 +5928,7 @@ class ZendeskSourceProperties {
   ZendeskSourceProperties({
     required this.object,
   });
+
   factory ZendeskSourceProperties.fromJson(Map<String, dynamic> json) {
     return ZendeskSourceProperties(
       object: json['Object'] as String,

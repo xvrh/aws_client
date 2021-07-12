@@ -1063,6 +1063,7 @@ class AccessConfiguration {
     this.accessType,
     this.secretsManagerAccessTokenConfiguration,
   });
+
   factory AccessConfiguration.fromJson(Map<String, dynamic> json) {
     return AccessConfiguration(
       accessType: (json['AccessType'] as String?)?.toAccessType(),
@@ -1140,6 +1141,7 @@ class AdBreak {
     this.slate,
     this.spliceInsertMessage,
   });
+
   factory AdBreak.fromJson(Map<String, dynamic> json) {
     return AdBreak(
       messageType: (json['MessageType'] as String?)?.toMessageType(),
@@ -1183,6 +1185,7 @@ class AdMarkerPassthrough {
   AdMarkerPassthrough({
     this.enabled,
   });
+
   factory AdMarkerPassthrough.fromJson(Map<String, dynamic> json) {
     return AdMarkerPassthrough(
       enabled: json['Enabled'] as bool?,
@@ -1222,6 +1225,7 @@ class Alert {
     required this.relatedResourceArns,
     required this.resourceArn,
   });
+
   factory Alert.fromJson(Map<String, dynamic> json) {
     return Alert(
       alertCode: json['AlertCode'] as String,
@@ -1277,6 +1281,7 @@ class AvailSuppression {
     this.mode,
     this.value,
   });
+
   factory AvailSuppression.fromJson(Map<String, dynamic> json) {
     return AvailSuppression(
       mode: (json['Mode'] as String?)?.toMode(),
@@ -1309,6 +1314,7 @@ class Bumper {
     this.endUrl,
     this.startUrl,
   });
+
   factory Bumper.fromJson(Map<String, dynamic> json) {
     return Bumper(
       endUrl: json['EndUrl'] as String?,
@@ -1349,6 +1355,7 @@ class CdnConfiguration {
     this.adSegmentUrlPrefix,
     this.contentSegmentUrlPrefix,
   });
+
   factory CdnConfiguration.fromJson(Map<String, dynamic> json) {
     return CdnConfiguration(
       adSegmentUrlPrefix: json['AdSegmentUrlPrefix'] as String?,
@@ -1403,6 +1410,7 @@ class Channel {
     this.lastModifiedTime,
     this.tags,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       arn: json['Arn'] as String,
@@ -1507,6 +1515,7 @@ class CreateChannelResponse {
     this.playbackMode,
     this.tags,
   });
+
   factory CreateChannelResponse.fromJson(Map<String, dynamic> json) {
     return CreateChannelResponse(
       arn: json['Arn'] as String?,
@@ -1579,6 +1588,7 @@ class CreateProgramResponse {
     this.sourceLocationName,
     this.vodSourceName,
   });
+
   factory CreateProgramResponse.fromJson(Map<String, dynamic> json) {
     return CreateProgramResponse(
       adBreaks: (json['AdBreaks'] as List?)
@@ -1651,6 +1661,7 @@ class CreateSourceLocationResponse {
     this.sourceLocationName,
     this.tags,
   });
+
   factory CreateSourceLocationResponse.fromJson(Map<String, dynamic> json) {
     return CreateSourceLocationResponse(
       accessConfiguration: json['AccessConfiguration'] != null
@@ -1735,6 +1746,7 @@ class CreateVodSourceResponse {
     this.tags,
     this.vodSourceName,
   });
+
   factory CreateVodSourceResponse.fromJson(Map<String, dynamic> json) {
     return CreateVodSourceResponse(
       arn: json['Arn'] as String?,
@@ -1803,6 +1815,7 @@ class DashConfiguration {
     this.mpdLocation,
     this.originManifestType,
   });
+
   factory DashConfiguration.fromJson(Map<String, dynamic> json) {
     return DashConfiguration(
       manifestEndpointPrefix: json['ManifestEndpointPrefix'] as String?,
@@ -1849,6 +1862,7 @@ class DashConfigurationForPut {
     this.mpdLocation,
     this.originManifestType,
   });
+
   factory DashConfigurationForPut.fromJson(Map<String, dynamic> json) {
     return DashConfigurationForPut(
       mpdLocation: json['MpdLocation'] as String?,
@@ -1895,6 +1909,7 @@ class DashPlaylistSettings {
     this.minUpdatePeriodSeconds,
     this.suggestedPresentationDelaySeconds,
   });
+
   factory DashPlaylistSettings.fromJson(Map<String, dynamic> json) {
     return DashPlaylistSettings(
       manifestWindowSeconds: json['ManifestWindowSeconds'] as int?,
@@ -1939,6 +1954,7 @@ class DefaultSegmentDeliveryConfiguration {
   DefaultSegmentDeliveryConfiguration({
     this.baseUrl,
   });
+
   factory DefaultSegmentDeliveryConfiguration.fromJson(
       Map<String, dynamic> json) {
     return DefaultSegmentDeliveryConfiguration(
@@ -1956,6 +1972,7 @@ class DefaultSegmentDeliveryConfiguration {
 
 class DeleteChannelPolicyResponse {
   DeleteChannelPolicyResponse();
+
   factory DeleteChannelPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelPolicyResponse();
   }
@@ -1967,6 +1984,7 @@ class DeleteChannelPolicyResponse {
 
 class DeleteChannelResponse {
   DeleteChannelResponse();
+
   factory DeleteChannelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelResponse();
   }
@@ -1978,6 +1996,7 @@ class DeleteChannelResponse {
 
 class DeletePlaybackConfigurationResponse {
   DeletePlaybackConfigurationResponse();
+
   factory DeletePlaybackConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaybackConfigurationResponse();
   }
@@ -1989,6 +2008,7 @@ class DeletePlaybackConfigurationResponse {
 
 class DeleteProgramResponse {
   DeleteProgramResponse();
+
   factory DeleteProgramResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProgramResponse();
   }
@@ -2000,6 +2020,7 @@ class DeleteProgramResponse {
 
 class DeleteSourceLocationResponse {
   DeleteSourceLocationResponse();
+
   factory DeleteSourceLocationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSourceLocationResponse();
   }
@@ -2011,6 +2032,7 @@ class DeleteSourceLocationResponse {
 
 class DeleteVodSourceResponse {
   DeleteVodSourceResponse();
+
   factory DeleteVodSourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteVodSourceResponse();
   }
@@ -2055,6 +2077,7 @@ class DescribeChannelResponse {
     this.playbackMode,
     this.tags,
   });
+
   factory DescribeChannelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeChannelResponse(
       arn: json['Arn'] as String?,
@@ -2127,6 +2150,7 @@ class DescribeProgramResponse {
     this.sourceLocationName,
     this.vodSourceName,
   });
+
   factory DescribeProgramResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProgramResponse(
       adBreaks: (json['AdBreaks'] as List?)
@@ -2199,6 +2223,7 @@ class DescribeSourceLocationResponse {
     this.sourceLocationName,
     this.tags,
   });
+
   factory DescribeSourceLocationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSourceLocationResponse(
       accessConfiguration: json['AccessConfiguration'] != null
@@ -2283,6 +2308,7 @@ class DescribeVodSourceResponse {
     this.tags,
     this.vodSourceName,
   });
+
   factory DescribeVodSourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeVodSourceResponse(
       arn: json['Arn'] as String?,
@@ -2330,6 +2356,7 @@ class GetChannelPolicyResponse {
   GetChannelPolicyResponse({
     this.policy,
   });
+
   factory GetChannelPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetChannelPolicyResponse(
       policy: json['Policy'] as String?,
@@ -2356,6 +2383,7 @@ class GetChannelScheduleResponse {
     this.items,
     this.nextToken,
   });
+
   factory GetChannelScheduleResponse.fromJson(Map<String, dynamic> json) {
     return GetChannelScheduleResponse(
       items: (json['Items'] as List?)
@@ -2485,6 +2513,7 @@ class GetPlaybackConfigurationResponse {
     this.transcodeProfileName,
     this.videoContentSourceUrl,
   });
+
   factory GetPlaybackConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetPlaybackConfigurationResponse(
       adDecisionServerUrl: json['AdDecisionServerUrl'] as String?,
@@ -2600,6 +2629,7 @@ class HlsConfiguration {
   HlsConfiguration({
     this.manifestEndpointPrefix,
   });
+
   factory HlsConfiguration.fromJson(Map<String, dynamic> json) {
     return HlsConfiguration(
       manifestEndpointPrefix: json['ManifestEndpointPrefix'] as String?,
@@ -2624,6 +2654,7 @@ class HlsPlaylistSettings {
   HlsPlaylistSettings({
     this.manifestWindowSeconds,
   });
+
   factory HlsPlaylistSettings.fromJson(Map<String, dynamic> json) {
     return HlsPlaylistSettings(
       manifestWindowSeconds: json['ManifestWindowSeconds'] as int?,
@@ -2648,6 +2679,7 @@ class HttpConfiguration {
   HttpConfiguration({
     required this.baseUrl,
   });
+
   factory HttpConfiguration.fromJson(Map<String, dynamic> json) {
     return HttpConfiguration(
       baseUrl: json['BaseUrl'] as String,
@@ -2681,6 +2713,7 @@ class HttpPackageConfiguration {
     required this.sourceGroup,
     required this.type,
   });
+
   factory HttpPackageConfiguration.fromJson(Map<String, dynamic> json) {
     return HttpPackageConfiguration(
       path: json['Path'] as String,
@@ -2713,6 +2746,7 @@ class ListAlertsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListAlertsResponse.fromJson(Map<String, dynamic> json) {
     return ListAlertsResponse(
       items: (json['Items'] as List?)
@@ -2745,6 +2779,7 @@ class ListChannelsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListChannelsResponse.fromJson(Map<String, dynamic> json) {
     return ListChannelsResponse(
       items: (json['Items'] as List?)
@@ -2779,6 +2814,7 @@ class ListPlaybackConfigurationsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListPlaybackConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPlaybackConfigurationsResponse(
@@ -2812,6 +2848,7 @@ class ListSourceLocationsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListSourceLocationsResponse.fromJson(Map<String, dynamic> json) {
     return ListSourceLocationsResponse(
       items: (json['Items'] as List?)
@@ -2839,6 +2876,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2866,6 +2904,7 @@ class ListVodSourcesResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListVodSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListVodSourcesResponse(
       items: (json['Items'] as List?)
@@ -2904,6 +2943,7 @@ class LivePreRollConfiguration {
     this.adDecisionServerUrl,
     this.maxDurationSeconds,
   });
+
   factory LivePreRollConfiguration.fromJson(Map<String, dynamic> json) {
     return LivePreRollConfiguration(
       adDecisionServerUrl: json['AdDecisionServerUrl'] as String?,
@@ -2937,6 +2977,7 @@ class ManifestProcessingRules {
   ManifestProcessingRules({
     this.adMarkerPassthrough,
   });
+
   factory ManifestProcessingRules.fromJson(Map<String, dynamic> json) {
     return ManifestProcessingRules(
       adMarkerPassthrough: json['AdMarkerPassthrough'] != null
@@ -3147,6 +3188,7 @@ class PlaybackConfiguration {
     this.transcodeProfileName,
     this.videoContentSourceUrl,
   });
+
   factory PlaybackConfiguration.fromJson(Map<String, dynamic> json) {
     return PlaybackConfiguration(
       adDecisionServerUrl: json['AdDecisionServerUrl'] as String?,
@@ -3278,6 +3320,7 @@ extension on String {
 
 class PutChannelPolicyResponse {
   PutChannelPolicyResponse();
+
   factory PutChannelPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutChannelPolicyResponse();
   }
@@ -3396,6 +3439,7 @@ class PutPlaybackConfigurationResponse {
     this.transcodeProfileName,
     this.videoContentSourceUrl,
   });
+
   factory PutPlaybackConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return PutPlaybackConfigurationResponse(
       adDecisionServerUrl: json['AdDecisionServerUrl'] as String?,
@@ -3552,6 +3596,7 @@ class RequestOutputItem {
     this.dashPlaylistSettings,
     this.hlsPlaylistSettings,
   });
+
   factory RequestOutputItem.fromJson(Map<String, dynamic> json) {
     return RequestOutputItem(
       manifestName: json['ManifestName'] as String,
@@ -3609,6 +3654,7 @@ class ResponseOutputItem {
     this.dashPlaylistSettings,
     this.hlsPlaylistSettings,
   });
+
   factory ResponseOutputItem.fromJson(Map<String, dynamic> json) {
     return ResponseOutputItem(
       manifestName: json['ManifestName'] as String,
@@ -3664,6 +3710,7 @@ class ScheduleAdBreak {
     this.sourceLocationName,
     this.vodSourceName,
   });
+
   factory ScheduleAdBreak.fromJson(Map<String, dynamic> json) {
     return ScheduleAdBreak(
       approximateDurationSeconds: json['ApproximateDurationSeconds'] as int?,
@@ -3698,6 +3745,7 @@ class ScheduleConfiguration {
   ScheduleConfiguration({
     required this.transition,
   });
+
   factory ScheduleConfiguration.fromJson(Map<String, dynamic> json) {
     return ScheduleConfiguration(
       transition:
@@ -3749,6 +3797,7 @@ class ScheduleEntry {
     this.approximateStartTime,
     this.scheduleAdBreaks,
   });
+
   factory ScheduleEntry.fromJson(Map<String, dynamic> json) {
     return ScheduleEntry(
       arn: json['Arn'] as String,
@@ -3813,6 +3862,7 @@ class SecretsManagerAccessTokenConfiguration {
     this.secretArn,
     this.secretStringKey,
   });
+
   factory SecretsManagerAccessTokenConfiguration.fromJson(
       Map<String, dynamic> json) {
     return SecretsManagerAccessTokenConfiguration(
@@ -3847,6 +3897,7 @@ class SlateSource {
     this.sourceLocationName,
     this.vodSourceName,
   });
+
   factory SlateSource.fromJson(Map<String, dynamic> json) {
     return SlateSource(
       sourceLocationName: json['SourceLocationName'] as String?,
@@ -3901,6 +3952,7 @@ class SourceLocation {
     this.lastModifiedTime,
     this.tags,
   });
+
   factory SourceLocation.fromJson(Map<String, dynamic> json) {
     return SourceLocation(
       arn: json['Arn'] as String,
@@ -3979,6 +4031,7 @@ class SpliceInsertMessage {
     this.spliceEventId,
     this.uniqueProgramId,
   });
+
   factory SpliceInsertMessage.fromJson(Map<String, dynamic> json) {
     return SpliceInsertMessage(
       availNum: json['AvailNum'] as int?,
@@ -4004,6 +4057,7 @@ class SpliceInsertMessage {
 
 class StartChannelResponse {
   StartChannelResponse();
+
   factory StartChannelResponse.fromJson(Map<String, dynamic> _) {
     return StartChannelResponse();
   }
@@ -4015,6 +4069,7 @@ class StartChannelResponse {
 
 class StopChannelResponse {
   StopChannelResponse();
+
   factory StopChannelResponse.fromJson(Map<String, dynamic> _) {
     return StopChannelResponse();
   }
@@ -4043,6 +4098,7 @@ class Transition {
     required this.type,
     this.relativeProgram,
   });
+
   factory Transition.fromJson(Map<String, dynamic> json) {
     return Transition(
       relativePosition:
@@ -4127,6 +4183,7 @@ class UpdateChannelResponse {
     this.playbackMode,
     this.tags,
   });
+
   factory UpdateChannelResponse.fromJson(Map<String, dynamic> json) {
     return UpdateChannelResponse(
       arn: json['Arn'] as String?,
@@ -4204,6 +4261,7 @@ class UpdateSourceLocationResponse {
     this.sourceLocationName,
     this.tags,
   });
+
   factory UpdateSourceLocationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSourceLocationResponse(
       accessConfiguration: json['AccessConfiguration'] != null
@@ -4288,6 +4346,7 @@ class UpdateVodSourceResponse {
     this.tags,
     this.vodSourceName,
   });
+
   factory UpdateVodSourceResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVodSourceResponse(
       arn: json['Arn'] as String?,
@@ -4360,6 +4419,7 @@ class VodSource {
     this.lastModifiedTime,
     this.tags,
   });
+
   factory VodSource.fromJson(Map<String, dynamic> json) {
     return VodSource(
       arn: json['Arn'] as String,

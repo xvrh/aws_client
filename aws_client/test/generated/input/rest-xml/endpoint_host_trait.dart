@@ -66,6 +66,7 @@ class StaticInputShape {
   StaticInputShape({
     this.name,
   });
+
   factory StaticInputShape.fromJson(Map<String, dynamic> json) {
     return StaticInputShape(
       name: json['Name'] as String?,
@@ -101,6 +102,7 @@ class MemberRefInputShape {
   MemberRefInputShape({
     this.name,
   });
+
   factory MemberRefInputShape.fromJson(Map<String, dynamic> json) {
     return MemberRefInputShape(
       name: json['Name'] as String?,

@@ -1929,6 +1929,7 @@ class AcceptDomainTransferFromAnotherAwsAccountResponse {
   AcceptDomainTransferFromAnotherAwsAccountResponse({
     this.operationId,
   });
+
   factory AcceptDomainTransferFromAnotherAwsAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return AcceptDomainTransferFromAnotherAwsAccountResponse(
@@ -1975,6 +1976,7 @@ class BillingRecord {
     this.operation,
     this.price,
   });
+
   factory BillingRecord.fromJson(Map<String, dynamic> json) {
     return BillingRecord(
       billDate: timeStampFromJson(json['BillDate']),
@@ -2013,6 +2015,7 @@ class CancelDomainTransferToAnotherAwsAccountResponse {
   CancelDomainTransferToAnotherAwsAccountResponse({
     this.operationId,
   });
+
   factory CancelDomainTransferToAnotherAwsAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return CancelDomainTransferToAnotherAwsAccountResponse(
@@ -2064,6 +2067,7 @@ class CheckDomainAvailabilityResponse {
   CheckDomainAvailabilityResponse({
     required this.availability,
   });
+
   factory CheckDomainAvailabilityResponse.fromJson(Map<String, dynamic> json) {
     return CheckDomainAvailabilityResponse(
       availability: (json['Availability'] as String).toDomainAvailability(),
@@ -2087,6 +2091,7 @@ class CheckDomainTransferabilityResponse {
   CheckDomainTransferabilityResponse({
     required this.transferability,
   });
+
   factory CheckDomainTransferabilityResponse.fromJson(
       Map<String, dynamic> json) {
     return CheckDomainTransferabilityResponse(
@@ -2192,6 +2197,7 @@ class ContactDetail {
     this.state,
     this.zipCode,
   });
+
   factory ContactDetail.fromJson(Map<String, dynamic> json) {
     return ContactDetail(
       addressLine1: json['AddressLine1'] as String?,
@@ -3456,6 +3462,7 @@ extension on String {
 
 class DeleteTagsForDomainResponse {
   DeleteTagsForDomainResponse();
+
   factory DeleteTagsForDomainResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTagsForDomainResponse();
   }
@@ -3467,6 +3474,7 @@ class DeleteTagsForDomainResponse {
 
 class DisableDomainAutoRenewResponse {
   DisableDomainAutoRenewResponse();
+
   factory DisableDomainAutoRenewResponse.fromJson(Map<String, dynamic> _) {
     return DisableDomainAutoRenewResponse();
   }
@@ -3486,6 +3494,7 @@ class DisableDomainTransferLockResponse {
   DisableDomainTransferLockResponse({
     required this.operationId,
   });
+
   factory DisableDomainTransferLockResponse.fromJson(
       Map<String, dynamic> json) {
     return DisableDomainTransferLockResponse(
@@ -3600,6 +3609,7 @@ class DomainSuggestion {
     this.availability,
     this.domainName,
   });
+
   factory DomainSuggestion.fromJson(Map<String, dynamic> json) {
     return DomainSuggestion(
       availability: json['Availability'] as String?,
@@ -3639,6 +3649,7 @@ class DomainSummary {
     this.expiry,
     this.transferLock,
   });
+
   factory DomainSummary.fromJson(Map<String, dynamic> json) {
     return DomainSummary(
       domainName: json['DomainName'] as String,
@@ -3670,6 +3681,7 @@ class DomainTransferability {
   DomainTransferability({
     this.transferable,
   });
+
   factory DomainTransferability.fromJson(Map<String, dynamic> json) {
     return DomainTransferability(
       transferable: (json['Transferable'] as String?)?.toTransferable(),
@@ -3686,6 +3698,7 @@ class DomainTransferability {
 
 class EnableDomainAutoRenewResponse {
   EnableDomainAutoRenewResponse();
+
   factory EnableDomainAutoRenewResponse.fromJson(Map<String, dynamic> _) {
     return EnableDomainAutoRenewResponse();
   }
@@ -3704,6 +3717,7 @@ class EnableDomainTransferLockResponse {
   EnableDomainTransferLockResponse({
     required this.operationId,
   });
+
   factory EnableDomainTransferLockResponse.fromJson(Map<String, dynamic> json) {
     return EnableDomainTransferLockResponse(
       operationId: json['OperationId'] as String,
@@ -4253,6 +4267,7 @@ class ExtraParam {
     required this.name,
     required this.value,
   });
+
   factory ExtraParam.fromJson(Map<String, dynamic> json) {
     return ExtraParam(
       name: (json['Name'] as String).toExtraParamName(),
@@ -4451,6 +4466,7 @@ class GetContactReachabilityStatusResponse {
     this.domainName,
     this.status,
   });
+
   factory GetContactReachabilityStatusResponse.fromJson(
       Map<String, dynamic> json) {
     return GetContactReachabilityStatusResponse(
@@ -4599,6 +4615,7 @@ class GetDomainDetailResponse {
     this.updatedDate,
     this.whoIsServer,
   });
+
   factory GetDomainDetailResponse.fromJson(Map<String, dynamic> json) {
     return GetDomainDetailResponse(
       adminContact:
@@ -4693,6 +4710,7 @@ class GetDomainSuggestionsResponse {
   GetDomainSuggestionsResponse({
     this.suggestionsList,
   });
+
   factory GetDomainSuggestionsResponse.fromJson(Map<String, dynamic> json) {
     return GetDomainSuggestionsResponse(
       suggestionsList: (json['SuggestionsList'] as List?)
@@ -4738,6 +4756,7 @@ class GetOperationDetailResponse {
     this.submittedDate,
     this.type,
   });
+
   factory GetOperationDetailResponse.fromJson(Map<String, dynamic> json) {
     return GetOperationDetailResponse(
       domainName: json['DomainName'] as String?,
@@ -4782,6 +4801,7 @@ class ListDomainsResponse {
     required this.domains,
     this.nextPageMarker,
   });
+
   factory ListDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainsResponse(
       domains: (json['Domains'] as List)
@@ -4816,6 +4836,7 @@ class ListOperationsResponse {
     required this.operations,
     this.nextPageMarker,
   });
+
   factory ListOperationsResponse.fromJson(Map<String, dynamic> json) {
     return ListOperationsResponse(
       operations: (json['Operations'] as List)
@@ -4844,6 +4865,7 @@ class ListTagsForDomainResponse {
   ListTagsForDomainResponse({
     required this.tagList,
   });
+
   factory ListTagsForDomainResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForDomainResponse(
       tagList: (json['TagList'] as List)
@@ -4880,6 +4902,7 @@ class Nameserver {
     required this.name,
     this.glueIps,
   });
+
   factory Nameserver.fromJson(Map<String, dynamic> json) {
     return Nameserver(
       name: json['Name'] as String,
@@ -4963,6 +4986,7 @@ class OperationSummary {
     required this.submittedDate,
     required this.type,
   });
+
   factory OperationSummary.fromJson(Map<String, dynamic> json) {
     return OperationSummary(
       operationId: json['OperationId'] as String,
@@ -5138,6 +5162,7 @@ class RegisterDomainResponse {
   RegisterDomainResponse({
     required this.operationId,
   });
+
   factory RegisterDomainResponse.fromJson(Map<String, dynamic> json) {
     return RegisterDomainResponse(
       operationId: json['OperationId'] as String,
@@ -5164,6 +5189,7 @@ class RejectDomainTransferFromAnotherAwsAccountResponse {
   RejectDomainTransferFromAnotherAwsAccountResponse({
     this.operationId,
   });
+
   factory RejectDomainTransferFromAnotherAwsAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return RejectDomainTransferFromAnotherAwsAccountResponse(
@@ -5188,6 +5214,7 @@ class RenewDomainResponse {
   RenewDomainResponse({
     required this.operationId,
   });
+
   factory RenewDomainResponse.fromJson(Map<String, dynamic> json) {
     return RenewDomainResponse(
       operationId: json['OperationId'] as String,
@@ -5220,6 +5247,7 @@ class ResendContactReachabilityEmailResponse {
     this.emailAddress,
     this.isAlreadyVerified,
   });
+
   factory ResendContactReachabilityEmailResponse.fromJson(
       Map<String, dynamic> json) {
     return ResendContactReachabilityEmailResponse(
@@ -5249,6 +5277,7 @@ class RetrieveDomainAuthCodeResponse {
   RetrieveDomainAuthCodeResponse({
     required this.authCode,
   });
+
   factory RetrieveDomainAuthCodeResponse.fromJson(Map<String, dynamic> json) {
     return RetrieveDomainAuthCodeResponse(
       authCode: json['AuthCode'] as String,
@@ -5283,6 +5312,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -5310,6 +5340,7 @@ class TransferDomainResponse {
   TransferDomainResponse({
     required this.operationId,
   });
+
   factory TransferDomainResponse.fromJson(Map<String, dynamic> json) {
     return TransferDomainResponse(
       operationId: json['OperationId'] as String,
@@ -5344,6 +5375,7 @@ class TransferDomainToAnotherAwsAccountResponse {
     this.operationId,
     this.password,
   });
+
   factory TransferDomainToAnotherAwsAccountResponse.fromJson(
       Map<String, dynamic> json) {
     return TransferDomainToAnotherAwsAccountResponse(
@@ -5417,6 +5449,7 @@ class UpdateDomainContactPrivacyResponse {
   UpdateDomainContactPrivacyResponse({
     required this.operationId,
   });
+
   factory UpdateDomainContactPrivacyResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateDomainContactPrivacyResponse(
@@ -5442,6 +5475,7 @@ class UpdateDomainContactResponse {
   UpdateDomainContactResponse({
     required this.operationId,
   });
+
   factory UpdateDomainContactResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDomainContactResponse(
       operationId: json['OperationId'] as String,
@@ -5466,6 +5500,7 @@ class UpdateDomainNameserversResponse {
   UpdateDomainNameserversResponse({
     required this.operationId,
   });
+
   factory UpdateDomainNameserversResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDomainNameserversResponse(
       operationId: json['OperationId'] as String,
@@ -5482,6 +5517,7 @@ class UpdateDomainNameserversResponse {
 
 class UpdateTagsForDomainResponse {
   UpdateTagsForDomainResponse();
+
   factory UpdateTagsForDomainResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTagsForDomainResponse();
   }
@@ -5505,6 +5541,7 @@ class ViewBillingResponse {
     this.billingRecords,
     this.nextPageMarker,
   });
+
   factory ViewBillingResponse.fromJson(Map<String, dynamic> json) {
     return ViewBillingResponse(
       billingRecords: (json['BillingRecords'] as List?)

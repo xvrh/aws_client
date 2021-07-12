@@ -1985,6 +1985,7 @@ class ContentRedaction {
     required this.redactionOutput,
     required this.redactionType,
   });
+
   factory ContentRedaction.fromJson(Map<String, dynamic> json) {
     return ContentRedaction(
       redactionOutput: (json['RedactionOutput'] as String).toRedactionOutput(),
@@ -2028,6 +2029,7 @@ class CreateLanguageModelResponse {
     this.modelName,
     this.modelStatus,
   });
+
   factory CreateLanguageModelResponse.fromJson(Map<String, dynamic> json) {
     return CreateLanguageModelResponse(
       baseModelName: (json['BaseModelName'] as String?)?.toBaseModelName(),
@@ -2085,6 +2087,7 @@ class CreateMedicalVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory CreateMedicalVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return CreateMedicalVocabularyResponse(
       failureReason: json['FailureReason'] as String?,
@@ -2128,6 +2131,7 @@ class CreateVocabularyFilterResponse {
     this.lastModifiedTime,
     this.vocabularyFilterName,
   });
+
   factory CreateVocabularyFilterResponse.fromJson(Map<String, dynamic> json) {
     return CreateVocabularyFilterResponse(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -2177,6 +2181,7 @@ class CreateVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory CreateVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return CreateVocabularyResponse(
       failureReason: json['FailureReason'] as String?,
@@ -2212,6 +2217,7 @@ class DescribeLanguageModelResponse {
   DescribeLanguageModelResponse({
     this.languageModel,
   });
+
   factory DescribeLanguageModelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLanguageModelResponse(
       languageModel: json['LanguageModel'] != null
@@ -2236,6 +2242,7 @@ class GetMedicalTranscriptionJobResponse {
   GetMedicalTranscriptionJobResponse({
     this.medicalTranscriptionJob,
   });
+
   factory GetMedicalTranscriptionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return GetMedicalTranscriptionJobResponse(
@@ -2288,6 +2295,7 @@ class GetMedicalVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory GetMedicalVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return GetMedicalVocabularyResponse(
       downloadUri: json['DownloadUri'] as String?,
@@ -2326,6 +2334,7 @@ class GetTranscriptionJobResponse {
   GetTranscriptionJobResponse({
     this.transcriptionJob,
   });
+
   factory GetTranscriptionJobResponse.fromJson(Map<String, dynamic> json) {
     return GetTranscriptionJobResponse(
       transcriptionJob: json['TranscriptionJob'] != null
@@ -2363,6 +2372,7 @@ class GetVocabularyFilterResponse {
     this.lastModifiedTime,
     this.vocabularyFilterName,
   });
+
   factory GetVocabularyFilterResponse.fromJson(Map<String, dynamic> json) {
     return GetVocabularyFilterResponse(
       downloadUri: json['DownloadUri'] as String?,
@@ -2417,6 +2427,7 @@ class GetVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory GetVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return GetVocabularyResponse(
       downloadUri: json['DownloadUri'] as String?,
@@ -2469,6 +2480,7 @@ class InputDataConfig {
     required this.s3Uri,
     this.tuningDataS3Uri,
   });
+
   factory InputDataConfig.fromJson(Map<String, dynamic> json) {
     return InputDataConfig(
       dataAccessRoleArn: json['DataAccessRoleArn'] as String,
@@ -2516,6 +2528,7 @@ class JobExecutionSettings {
     this.allowDeferredExecution,
     this.dataAccessRoleArn,
   });
+
   factory JobExecutionSettings.fromJson(Map<String, dynamic> json) {
     return JobExecutionSettings(
       allowDeferredExecution: json['AllowDeferredExecution'] as bool?,
@@ -2777,6 +2790,7 @@ class LanguageModel {
     this.modelStatus,
     this.upgradeAvailability,
   });
+
   factory LanguageModel.fromJson(Map<String, dynamic> json) {
     return LanguageModel(
       baseModelName: (json['BaseModelName'] as String?)?.toBaseModelName(),
@@ -2835,6 +2849,7 @@ class ListLanguageModelsResponse {
     this.models,
     this.nextToken,
   });
+
   factory ListLanguageModelsResponse.fromJson(Map<String, dynamic> json) {
     return ListLanguageModelsResponse(
       models: (json['Models'] as List?)
@@ -2876,6 +2891,7 @@ class ListMedicalTranscriptionJobsResponse {
     this.nextToken,
     this.status,
   });
+
   factory ListMedicalTranscriptionJobsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListMedicalTranscriptionJobsResponse(
@@ -2926,6 +2942,7 @@ class ListMedicalVocabulariesResponse {
     this.status,
     this.vocabularies,
   });
+
   factory ListMedicalVocabulariesResponse.fromJson(Map<String, dynamic> json) {
     return ListMedicalVocabulariesResponse(
       nextToken: json['NextToken'] as String?,
@@ -2969,6 +2986,7 @@ class ListTranscriptionJobsResponse {
     this.status,
     this.transcriptionJobSummaries,
   });
+
   factory ListTranscriptionJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListTranscriptionJobsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3015,6 +3033,7 @@ class ListVocabulariesResponse {
     this.status,
     this.vocabularies,
   });
+
   factory ListVocabulariesResponse.fromJson(Map<String, dynamic> json) {
     return ListVocabulariesResponse(
       nextToken: json['NextToken'] as String?,
@@ -3059,6 +3078,7 @@ class ListVocabularyFiltersResponse {
     this.nextToken,
     this.vocabularyFilters,
   });
+
   factory ListVocabularyFiltersResponse.fromJson(Map<String, dynamic> json) {
     return ListVocabularyFiltersResponse(
       nextToken: json['NextToken'] as String?,
@@ -3094,6 +3114,7 @@ class Media {
   Media({
     this.mediaFileUri,
   });
+
   factory Media.fromJson(Map<String, dynamic> json) {
     return Media(
       mediaFileUri: json['MediaFileUri'] as String?,
@@ -3196,6 +3217,7 @@ class MedicalTranscript {
   MedicalTranscript({
     this.transcriptFileUri,
   });
+
   factory MedicalTranscript.fromJson(Map<String, dynamic> json) {
     return MedicalTranscript(
       transcriptFileUri: json['TranscriptFileUri'] as String?,
@@ -3344,6 +3366,7 @@ class MedicalTranscriptionJob {
     this.transcriptionJobStatus,
     this.type,
   });
+
   factory MedicalTranscriptionJob.fromJson(Map<String, dynamic> json) {
     return MedicalTranscriptionJob(
       completionTime: timeStampFromJson(json['CompletionTime']),
@@ -3473,6 +3496,7 @@ class MedicalTranscriptionJobSummary {
     this.transcriptionJobStatus,
     this.type,
   });
+
   factory MedicalTranscriptionJobSummary.fromJson(Map<String, dynamic> json) {
     return MedicalTranscriptionJobSummary(
       completionTime: timeStampFromJson(json['CompletionTime']),
@@ -3584,6 +3608,7 @@ class MedicalTranscriptionSetting {
     this.showSpeakerLabels,
     this.vocabularyName,
   });
+
   factory MedicalTranscriptionSetting.fromJson(Map<String, dynamic> json) {
     return MedicalTranscriptionSetting(
       channelIdentification: json['ChannelIdentification'] as bool?,
@@ -3623,6 +3648,7 @@ class ModelSettings {
   ModelSettings({
     this.languageModelName,
   });
+
   factory ModelSettings.fromJson(Map<String, dynamic> json) {
     return ModelSettings(
       languageModelName: json['LanguageModelName'] as String?,
@@ -3822,6 +3848,7 @@ class Settings {
     this.vocabularyFilterName,
     this.vocabularyName,
   });
+
   factory Settings.fromJson(Map<String, dynamic> json) {
     return Settings(
       channelIdentification: json['ChannelIdentification'] as bool?,
@@ -3891,6 +3918,7 @@ class StartMedicalTranscriptionJobResponse {
   StartMedicalTranscriptionJobResponse({
     this.medicalTranscriptionJob,
   });
+
   factory StartMedicalTranscriptionJobResponse.fromJson(
       Map<String, dynamic> json) {
     return StartMedicalTranscriptionJobResponse(
@@ -3917,6 +3945,7 @@ class StartTranscriptionJobResponse {
   StartTranscriptionJobResponse({
     this.transcriptionJob,
   });
+
   factory StartTranscriptionJobResponse.fromJson(Map<String, dynamic> json) {
     return StartTranscriptionJobResponse(
       transcriptionJob: json['TranscriptionJob'] != null
@@ -3958,6 +3987,7 @@ class Transcript {
     this.redactedTranscriptFileUri,
     this.transcriptFileUri,
   });
+
   factory Transcript.fromJson(Map<String, dynamic> json) {
     return Transcript(
       redactedTranscriptFileUri: json['RedactedTranscriptFileUri'] as String?,
@@ -4106,6 +4136,7 @@ class TranscriptionJob {
     this.transcriptionJobName,
     this.transcriptionJobStatus,
   });
+
   factory TranscriptionJob.fromJson(Map<String, dynamic> json) {
     return TranscriptionJob(
       completionTime: timeStampFromJson(json['CompletionTime']),
@@ -4302,6 +4333,7 @@ class TranscriptionJobSummary {
     this.transcriptionJobName,
     this.transcriptionJobStatus,
   });
+
   factory TranscriptionJobSummary.fromJson(Map<String, dynamic> json) {
     return TranscriptionJobSummary(
       completionTime: timeStampFromJson(json['CompletionTime']),
@@ -4414,6 +4446,7 @@ class UpdateMedicalVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory UpdateMedicalVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return UpdateMedicalVocabularyResponse(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -4454,6 +4487,7 @@ class UpdateVocabularyFilterResponse {
     this.lastModifiedTime,
     this.vocabularyFilterName,
   });
+
   factory UpdateVocabularyFilterResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVocabularyFilterResponse(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -4498,6 +4532,7 @@ class UpdateVocabularyResponse {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory UpdateVocabularyResponse.fromJson(Map<String, dynamic> json) {
     return UpdateVocabularyResponse(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -4540,6 +4575,7 @@ class VocabularyFilterInfo {
     this.lastModifiedTime,
     this.vocabularyFilterName,
   });
+
   factory VocabularyFilterInfo.fromJson(Map<String, dynamic> json) {
     return VocabularyFilterInfo(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
@@ -4616,6 +4652,7 @@ class VocabularyInfo {
     this.vocabularyName,
     this.vocabularyState,
   });
+
   factory VocabularyInfo.fromJson(Map<String, dynamic> json) {
     return VocabularyInfo(
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),

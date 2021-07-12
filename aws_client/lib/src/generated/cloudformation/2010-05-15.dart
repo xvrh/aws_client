@@ -6628,6 +6628,7 @@ class AccountGateResult {
     this.status,
     this.statusReason,
   });
+
   factory AccountGateResult.fromJson(Map<String, dynamic> json) {
     return AccountGateResult(
       status: (json['Status'] as String?)?.toAccountGateStatus(),
@@ -6718,6 +6719,7 @@ class AccountLimit {
     this.name,
     this.value,
   });
+
   factory AccountLimit.fromJson(Map<String, dynamic> json) {
     return AccountLimit(
       name: json['Name'] as String?,
@@ -6750,6 +6752,7 @@ class ActivateTypeOutput {
   ActivateTypeOutput({
     this.arn,
   });
+
   factory ActivateTypeOutput.fromJson(Map<String, dynamic> json) {
     return ActivateTypeOutput(
       arn: json['Arn'] as String?,
@@ -6791,6 +6794,7 @@ class AutoDeployment {
     this.enabled,
     this.retainStacksOnAccountRemoval,
   });
+
   factory AutoDeployment.fromJson(Map<String, dynamic> json) {
     return AutoDeployment(
       enabled: json['Enabled'] as bool?,
@@ -6833,6 +6837,7 @@ class BatchDescribeTypeConfigurationsError {
     this.errorMessage,
     this.typeConfigurationIdentifier,
   });
+
   factory BatchDescribeTypeConfigurationsError.fromJson(
       Map<String, dynamic> json) {
     return BatchDescribeTypeConfigurationsError(
@@ -6886,6 +6891,7 @@ class BatchDescribeTypeConfigurationsOutput {
     this.typeConfigurations,
     this.unprocessedTypeConfigurations,
   });
+
   factory BatchDescribeTypeConfigurationsOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchDescribeTypeConfigurationsOutput(
@@ -7055,6 +7061,7 @@ class Change {
     this.resourceChange,
     this.type,
   });
+
   factory Change.fromJson(Map<String, dynamic> json) {
     return Change(
       resourceChange: json['ResourceChange'] != null
@@ -7247,6 +7254,7 @@ class ChangeSetSummary {
     this.status,
     this.statusReason,
   });
+
   factory ChangeSetSummary.fromJson(Map<String, dynamic> json) {
     return ChangeSetSummary(
       changeSetId: json['ChangeSetId'] as String?,
@@ -7418,6 +7426,7 @@ extension on String {
 /// The output for a <a>ContinueUpdateRollback</a> action.
 class ContinueUpdateRollbackOutput {
   ContinueUpdateRollbackOutput();
+
   factory ContinueUpdateRollbackOutput.fromJson(Map<String, dynamic> _) {
     return ContinueUpdateRollbackOutput();
   }
@@ -7445,6 +7454,7 @@ class CreateChangeSetOutput {
     this.id,
     this.stackId,
   });
+
   factory CreateChangeSetOutput.fromJson(Map<String, dynamic> json) {
     return CreateChangeSetOutput(
       id: json['Id'] as String?,
@@ -7476,6 +7486,7 @@ class CreateStackInstancesOutput {
   CreateStackInstancesOutput({
     this.operationId,
   });
+
   factory CreateStackInstancesOutput.fromJson(Map<String, dynamic> json) {
     return CreateStackInstancesOutput(
       operationId: json['OperationId'] as String?,
@@ -7504,6 +7515,7 @@ class CreateStackOutput {
   CreateStackOutput({
     this.stackId,
   });
+
   factory CreateStackOutput.fromJson(Map<String, dynamic> json) {
     return CreateStackOutput(
       stackId: json['StackId'] as String?,
@@ -7531,6 +7543,7 @@ class CreateStackSetOutput {
   CreateStackSetOutput({
     this.stackSetId,
   });
+
   factory CreateStackSetOutput.fromJson(Map<String, dynamic> json) {
     return CreateStackSetOutput(
       stackSetId: json['StackSetId'] as String?,
@@ -7553,6 +7566,7 @@ class CreateStackSetOutput {
 
 class DeactivateTypeOutput {
   DeactivateTypeOutput();
+
   factory DeactivateTypeOutput.fromJson(Map<String, dynamic> _) {
     return DeactivateTypeOutput();
   }
@@ -7571,6 +7585,7 @@ class DeactivateTypeOutput {
 /// The output for the <a>DeleteChangeSet</a> action.
 class DeleteChangeSetOutput {
   DeleteChangeSetOutput();
+
   factory DeleteChangeSetOutput.fromJson(Map<String, dynamic> _) {
     return DeleteChangeSetOutput();
   }
@@ -7593,6 +7608,7 @@ class DeleteStackInstancesOutput {
   DeleteStackInstancesOutput({
     this.operationId,
   });
+
   factory DeleteStackInstancesOutput.fromJson(Map<String, dynamic> json) {
     return DeleteStackInstancesOutput(
       operationId: json['OperationId'] as String?,
@@ -7615,6 +7631,7 @@ class DeleteStackInstancesOutput {
 
 class DeleteStackSetOutput {
   DeleteStackSetOutput();
+
   factory DeleteStackSetOutput.fromJson(Map<String, dynamic> _) {
     return DeleteStackSetOutput();
   }
@@ -7655,6 +7672,7 @@ class DeploymentTargets {
     this.accountsUrl,
     this.organizationalUnitIds,
   });
+
   factory DeploymentTargets.fromJson(Map<String, dynamic> json) {
     return DeploymentTargets(
       accounts: (json['Accounts'] as List?)
@@ -7724,6 +7742,7 @@ extension on String {
 
 class DeregisterTypeOutput {
   DeregisterTypeOutput();
+
   factory DeregisterTypeOutput.fromJson(Map<String, dynamic> _) {
     return DeregisterTypeOutput();
   }
@@ -7753,6 +7772,7 @@ class DescribeAccountLimitsOutput {
     this.accountLimits,
     this.nextToken,
   });
+
   factory DescribeAccountLimitsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeAccountLimitsOutput(
       accountLimits: (json['AccountLimits'] as List?)
@@ -7885,6 +7905,7 @@ class DescribeChangeSetOutput {
     this.statusReason,
     this.tags,
   });
+
   factory DescribeChangeSetOutput.fromJson(Map<String, dynamic> json) {
     return DescribeChangeSetOutput(
       capabilities: (json['Capabilities'] as List?)
@@ -8035,6 +8056,7 @@ class DescribePublisherOutput {
     this.publisherProfile,
     this.publisherStatus,
   });
+
   factory DescribePublisherOutput.fromJson(Map<String, dynamic> json) {
     return DescribePublisherOutput(
       identityProvider:
@@ -8155,6 +8177,7 @@ class DescribeStackDriftDetectionStatusOutput {
     this.driftedStackResourceCount,
     this.stackDriftStatus,
   });
+
   factory DescribeStackDriftDetectionStatusOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeStackDriftDetectionStatusOutput(
@@ -8225,6 +8248,7 @@ class DescribeStackEventsOutput {
     this.nextToken,
     this.stackEvents,
   });
+
   factory DescribeStackEventsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackEventsOutput(
       nextToken: json['NextToken'] as String?,
@@ -8262,6 +8286,7 @@ class DescribeStackInstanceOutput {
   DescribeStackInstanceOutput({
     this.stackInstance,
   });
+
   factory DescribeStackInstanceOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackInstanceOutput(
       stackInstance: json['StackInstance'] != null
@@ -8313,6 +8338,7 @@ class DescribeStackResourceDriftsOutput {
     required this.stackResourceDrifts,
     this.nextToken,
   });
+
   factory DescribeStackResourceDriftsOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeStackResourceDriftsOutput(
@@ -8354,6 +8380,7 @@ class DescribeStackResourceOutput {
   DescribeStackResourceOutput({
     this.stackResourceDetail,
   });
+
   factory DescribeStackResourceOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackResourceOutput(
       stackResourceDetail: json['StackResourceDetail'] != null
@@ -8388,6 +8415,7 @@ class DescribeStackResourcesOutput {
   DescribeStackResourcesOutput({
     this.stackResources,
   });
+
   factory DescribeStackResourcesOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackResourcesOutput(
       stackResources: (json['StackResources'] as List?)
@@ -8422,6 +8450,7 @@ class DescribeStackSetOperationOutput {
   DescribeStackSetOperationOutput({
     this.stackSetOperation,
   });
+
   factory DescribeStackSetOperationOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackSetOperationOutput(
       stackSetOperation: json['StackSetOperation'] != null
@@ -8454,6 +8483,7 @@ class DescribeStackSetOutput {
   DescribeStackSetOutput({
     this.stackSet,
   });
+
   factory DescribeStackSetOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStackSetOutput(
       stackSet: json['StackSet'] != null
@@ -8490,6 +8520,7 @@ class DescribeStacksOutput {
     this.nextToken,
     this.stacks,
   });
+
   factory DescribeStacksOutput.fromJson(Map<String, dynamic> json) {
     return DescribeStacksOutput(
       nextToken: json['NextToken'] as String?,
@@ -8815,6 +8846,7 @@ class DescribeTypeOutput {
     this.typeTestsStatusDescription,
     this.visibility,
   });
+
   factory DescribeTypeOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTypeOutput(
       arn: json['Arn'] as String?,
@@ -8998,6 +9030,7 @@ class DescribeTypeRegistrationOutput {
     this.typeArn,
     this.typeVersionArn,
   });
+
   factory DescribeTypeRegistrationOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTypeRegistrationOutput(
       description: json['Description'] as String?,
@@ -9044,6 +9077,7 @@ class DetectStackDriftOutput {
   DetectStackDriftOutput({
     required this.stackDriftDetectionId,
   });
+
   factory DetectStackDriftOutput.fromJson(Map<String, dynamic> json) {
     return DetectStackDriftOutput(
       stackDriftDetectionId: json['StackDriftDetectionId'] as String,
@@ -9074,6 +9108,7 @@ class DetectStackResourceDriftOutput {
   DetectStackResourceDriftOutput({
     required this.stackResourceDrift,
   });
+
   factory DetectStackResourceDriftOutput.fromJson(Map<String, dynamic> json) {
     return DetectStackResourceDriftOutput(
       stackResourceDrift: StackResourceDrift.fromJson(
@@ -9106,6 +9141,7 @@ class DetectStackSetDriftOutput {
   DetectStackSetDriftOutput({
     this.operationId,
   });
+
   factory DetectStackSetDriftOutput.fromJson(Map<String, dynamic> json) {
     return DetectStackSetDriftOutput(
       operationId: json['OperationId'] as String?,
@@ -9168,6 +9204,7 @@ class EstimateTemplateCostOutput {
   EstimateTemplateCostOutput({
     this.url,
   });
+
   factory EstimateTemplateCostOutput.fromJson(Map<String, dynamic> json) {
     return EstimateTemplateCostOutput(
       url: json['Url'] as String?,
@@ -9219,6 +9256,7 @@ extension on String {
 /// The output for the <a>ExecuteChangeSet</a> action.
 class ExecuteChangeSetOutput {
   ExecuteChangeSetOutput();
+
   factory ExecuteChangeSetOutput.fromJson(Map<String, dynamic> _) {
     return ExecuteChangeSetOutput();
   }
@@ -9304,6 +9342,7 @@ class Export {
     this.name,
     this.value,
   });
+
   factory Export.fromJson(Map<String, dynamic> json) {
     return Export(
       exportingStackId: json['ExportingStackId'] as String?,
@@ -9343,6 +9382,7 @@ class GetStackPolicyOutput {
   GetStackPolicyOutput({
     this.stackPolicyBody,
   });
+
   factory GetStackPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetStackPolicyOutput(
       stackPolicyBody: json['StackPolicyBody'] as String?,
@@ -9384,6 +9424,7 @@ class GetTemplateOutput {
     this.stagesAvailable,
     this.templateBody,
   });
+
   factory GetTemplateOutput.fromJson(Map<String, dynamic> json) {
     return GetTemplateOutput(
       stagesAvailable: (json['StagesAvailable'] as List?)
@@ -9474,6 +9515,7 @@ class GetTemplateSummaryOutput {
     this.resourceTypes,
     this.version,
   });
+
   factory GetTemplateSummaryOutput.fromJson(Map<String, dynamic> json) {
     return GetTemplateSummaryOutput(
       capabilities: (json['Capabilities'] as List?)
@@ -9700,6 +9742,7 @@ class ListChangeSetsOutput {
     this.nextToken,
     this.summaries,
   });
+
   factory ListChangeSetsOutput.fromJson(Map<String, dynamic> json) {
     return ListChangeSetsOutput(
       nextToken: json['NextToken'] as String?,
@@ -9743,6 +9786,7 @@ class ListExportsOutput {
     this.exports,
     this.nextToken,
   });
+
   factory ListExportsOutput.fromJson(Map<String, dynamic> json) {
     return ListExportsOutput(
       exports: (json['Exports'] as List?)
@@ -9784,6 +9828,7 @@ class ListImportsOutput {
     this.imports,
     this.nextToken,
   });
+
   factory ListImportsOutput.fromJson(Map<String, dynamic> json) {
     return ListImportsOutput(
       imports: (json['Imports'] as List?)
@@ -9829,6 +9874,7 @@ class ListStackInstancesOutput {
     this.nextToken,
     this.summaries,
   });
+
   factory ListStackInstancesOutput.fromJson(Map<String, dynamic> json) {
     return ListStackInstancesOutput(
       nextToken: json['NextToken'] as String?,
@@ -9872,6 +9918,7 @@ class ListStackResourcesOutput {
     this.nextToken,
     this.stackResourceSummaries,
   });
+
   factory ListStackResourcesOutput.fromJson(Map<String, dynamic> json) {
     return ListStackResourcesOutput(
       nextToken: json['NextToken'] as String?,
@@ -9922,6 +9969,7 @@ class ListStackSetOperationResultsOutput {
     this.nextToken,
     this.summaries,
   });
+
   factory ListStackSetOperationResultsOutput.fromJson(
       Map<String, dynamic> json) {
     return ListStackSetOperationResultsOutput(
@@ -9970,6 +10018,7 @@ class ListStackSetOperationsOutput {
     this.nextToken,
     this.summaries,
   });
+
   factory ListStackSetOperationsOutput.fromJson(Map<String, dynamic> json) {
     return ListStackSetOperationsOutput(
       nextToken: json['NextToken'] as String?,
@@ -10017,6 +10066,7 @@ class ListStackSetsOutput {
     this.nextToken,
     this.summaries,
   });
+
   factory ListStackSetsOutput.fromJson(Map<String, dynamic> json) {
     return ListStackSetsOutput(
       nextToken: json['NextToken'] as String?,
@@ -10061,6 +10111,7 @@ class ListStacksOutput {
     this.nextToken,
     this.stackSummaries,
   });
+
   factory ListStacksOutput.fromJson(Map<String, dynamic> json) {
     return ListStacksOutput(
       nextToken: json['NextToken'] as String?,
@@ -10110,6 +10161,7 @@ class ListTypeRegistrationsOutput {
     this.nextToken,
     this.registrationTokenList,
   });
+
   factory ListTypeRegistrationsOutput.fromJson(Map<String, dynamic> json) {
     return ListTypeRegistrationsOutput(
       nextToken: json['NextToken'] as String?,
@@ -10156,6 +10208,7 @@ class ListTypeVersionsOutput {
     this.nextToken,
     this.typeVersionSummaries,
   });
+
   factory ListTypeVersionsOutput.fromJson(Map<String, dynamic> json) {
     return ListTypeVersionsOutput(
       nextToken: json['NextToken'] as String?,
@@ -10205,6 +10258,7 @@ class ListTypesOutput {
     this.nextToken,
     this.typeSummaries,
   });
+
   factory ListTypesOutput.fromJson(Map<String, dynamic> json) {
     return ListTypesOutput(
       nextToken: json['NextToken'] as String?,
@@ -10250,6 +10304,7 @@ class LoggingConfig {
     required this.logGroupName,
     required this.logRoleArn,
   });
+
   factory LoggingConfig.fromJson(Map<String, dynamic> json) {
     return LoggingConfig(
       logGroupName: json['LogGroupName'] as String,
@@ -10312,6 +10367,7 @@ class ModuleInfo {
     this.logicalIdHierarchy,
     this.typeHierarchy,
   });
+
   factory ModuleInfo.fromJson(Map<String, dynamic> json) {
     return ModuleInfo(
       logicalIdHierarchy: json['LogicalIdHierarchy'] as String?,
@@ -10427,6 +10483,7 @@ class Output {
     this.outputKey,
     this.outputValue,
   });
+
   factory Output.fromJson(Map<String, dynamic> json) {
     return Output(
       description: json['Description'] as String?,
@@ -10486,6 +10543,7 @@ class Parameter {
     this.resolvedValue,
     this.usePreviousValue,
   });
+
   factory Parameter.fromJson(Map<String, dynamic> json) {
     return Parameter(
       parameterKey: json['ParameterKey'] as String?,
@@ -10528,6 +10586,7 @@ class ParameterConstraints {
   ParameterConstraints({
     this.allowedValues,
   });
+
   factory ParameterConstraints.fromJson(Map<String, dynamic> json) {
     return ParameterConstraints(
       allowedValues: (json['AllowedValues'] as List?)
@@ -10582,6 +10641,7 @@ class ParameterDeclaration {
     this.parameterKey,
     this.parameterType,
   });
+
   factory ParameterDeclaration.fromJson(Map<String, dynamic> json) {
     return ParameterDeclaration(
       defaultValue: json['DefaultValue'] as String?,
@@ -10672,6 +10732,7 @@ class PhysicalResourceIdContextKeyValuePair {
     required this.key,
     required this.value,
   });
+
   factory PhysicalResourceIdContextKeyValuePair.fromJson(
       Map<String, dynamic> json) {
     return PhysicalResourceIdContextKeyValuePair(
@@ -10740,6 +10801,7 @@ class PropertyDifference {
     required this.expectedValue,
     required this.propertyPath,
   });
+
   factory PropertyDifference.fromJson(Map<String, dynamic> json) {
     return PropertyDifference(
       actualValue: json['ActualValue'] as String,
@@ -10814,6 +10876,7 @@ class PublishTypeOutput {
   PublishTypeOutput({
     this.publicTypeArn,
   });
+
   factory PublishTypeOutput.fromJson(Map<String, dynamic> json) {
     return PublishTypeOutput(
       publicTypeArn: json['PublicTypeArn'] as String?,
@@ -10864,6 +10927,7 @@ extension on String {
 
 class RecordHandlerProgressOutput {
   RecordHandlerProgressOutput();
+
   factory RecordHandlerProgressOutput.fromJson(Map<String, dynamic> _) {
     return RecordHandlerProgressOutput();
   }
@@ -10914,6 +10978,7 @@ class RegisterPublisherOutput {
   RegisterPublisherOutput({
     this.publisherId,
   });
+
   factory RegisterPublisherOutput.fromJson(Map<String, dynamic> json) {
     return RegisterPublisherOutput(
       publisherId: json['PublisherId'] as String?,
@@ -10945,6 +11010,7 @@ class RegisterTypeOutput {
   RegisterTypeOutput({
     this.registrationToken,
   });
+
   factory RegisterTypeOutput.fromJson(Map<String, dynamic> json) {
     return RegisterTypeOutput(
       registrationToken: json['RegistrationToken'] as String?,
@@ -11096,6 +11162,7 @@ class RequiredActivatedType {
     this.supportedMajorVersions,
     this.typeNameAlias,
   });
+
   factory RequiredActivatedType.fromJson(Map<String, dynamic> json) {
     return RequiredActivatedType(
       originalTypeName: json['OriginalTypeName'] as String?,
@@ -11283,6 +11350,7 @@ class ResourceChange {
     this.resourceType,
     this.scope,
   });
+
   factory ResourceChange.fromJson(Map<String, dynamic> json) {
     return ResourceChange(
       action: (json['Action'] as String?)?.toChangeAction(),
@@ -11431,6 +11499,7 @@ class ResourceChangeDetail {
     this.evaluation,
     this.target,
   });
+
   factory ResourceChangeDetail.fromJson(Map<String, dynamic> json) {
     return ResourceChangeDetail(
       causingEntity: json['CausingEntity'] as String?,
@@ -11492,6 +11561,7 @@ class ResourceIdentifierSummary {
     this.resourceIdentifiers,
     this.resourceType,
   });
+
   factory ResourceIdentifierSummary.fromJson(Map<String, dynamic> json) {
     return ResourceIdentifierSummary(
       logicalResourceIds: (json['LogicalResourceIds'] as List?)
@@ -11683,6 +11753,7 @@ class ResourceTargetDefinition {
     this.name,
     this.requiresRecreation,
   });
+
   factory ResourceTargetDefinition.fromJson(Map<String, dynamic> json) {
     return ResourceTargetDefinition(
       attribute: (json['Attribute'] as String?)?.toResourceAttribute(),
@@ -11738,6 +11809,7 @@ class ResourceToImport {
     required this.resourceIdentifier,
     required this.resourceType,
   });
+
   factory ResourceToImport.fromJson(Map<String, dynamic> json) {
     return ResourceToImport(
       logicalResourceId: json['LogicalResourceId'] as String,
@@ -11823,6 +11895,7 @@ class RollbackConfiguration {
     this.monitoringTimeInMinutes,
     this.rollbackTriggers,
   });
+
   factory RollbackConfiguration.fromJson(Map<String, dynamic> json) {
     return RollbackConfiguration(
       monitoringTimeInMinutes: json['MonitoringTimeInMinutes'] as int?,
@@ -11876,6 +11949,7 @@ class RollbackTrigger {
     required this.arn,
     required this.type,
   });
+
   factory RollbackTrigger.fromJson(Map<String, dynamic> json) {
     return RollbackTrigger(
       arn: json['Arn'] as String,
@@ -11911,6 +11985,7 @@ class SetTypeConfigurationOutput {
   SetTypeConfigurationOutput({
     this.configurationArn,
   });
+
   factory SetTypeConfigurationOutput.fromJson(Map<String, dynamic> json) {
     return SetTypeConfigurationOutput(
       configurationArn: json['ConfigurationArn'] as String?,
@@ -11933,6 +12008,7 @@ class SetTypeConfigurationOutput {
 
 class SetTypeDefaultVersionOutput {
   SetTypeDefaultVersionOutput();
+
   factory SetTypeDefaultVersionOutput.fromJson(Map<String, dynamic> _) {
     return SetTypeDefaultVersionOutput();
   }
@@ -12077,6 +12153,7 @@ class Stack {
     this.tags,
     this.timeoutInMinutes,
   });
+
   factory Stack.fromJson(Map<String, dynamic> json) {
     return Stack(
       creationTime:
@@ -12293,6 +12370,7 @@ class StackDriftInformation {
     required this.stackDriftStatus,
     this.lastCheckTimestamp,
   });
+
   factory StackDriftInformation.fromJson(Map<String, dynamic> json) {
     return StackDriftInformation(
       stackDriftStatus:
@@ -12358,6 +12436,7 @@ class StackDriftInformationSummary {
     required this.stackDriftStatus,
     this.lastCheckTimestamp,
   });
+
   factory StackDriftInformationSummary.fromJson(Map<String, dynamic> json) {
     return StackDriftInformationSummary(
       stackDriftStatus:
@@ -12491,6 +12570,7 @@ class StackEvent {
     this.resourceStatusReason,
     this.resourceType,
   });
+
   factory StackEvent.fromJson(Map<String, dynamic> json) {
     return StackEvent(
       eventId: json['EventId'] as String,
@@ -12667,6 +12747,7 @@ class StackInstance {
     this.status,
     this.statusReason,
   });
+
   factory StackInstance.fromJson(Map<String, dynamic> json) {
     return StackInstance(
       account: json['Account'] as String?,
@@ -12787,6 +12868,7 @@ class StackInstanceComprehensiveStatus {
   StackInstanceComprehensiveStatus({
     this.detailedStatus,
   });
+
   factory StackInstanceComprehensiveStatus.fromJson(Map<String, dynamic> json) {
     return StackInstanceComprehensiveStatus(
       detailedStatus:
@@ -12870,6 +12952,7 @@ class StackInstanceFilter {
     this.name,
     this.values,
   });
+
   factory StackInstanceFilter.fromJson(Map<String, dynamic> json) {
     return StackInstanceFilter(
       name: (json['Name'] as String?)?.toStackInstanceFilterName(),
@@ -13045,6 +13128,7 @@ class StackInstanceSummary {
     this.status,
     this.statusReason,
   });
+
   factory StackInstanceSummary.fromJson(Map<String, dynamic> json) {
     return StackInstanceSummary(
       account: json['Account'] as String?,
@@ -13170,6 +13254,7 @@ class StackResource {
     this.stackId,
     this.stackName,
   });
+
   factory StackResource.fromJson(Map<String, dynamic> json) {
     return StackResource(
       logicalResourceId: json['LogicalResourceId'] as String,
@@ -13306,6 +13391,7 @@ class StackResourceDetail {
     this.stackId,
     this.stackName,
   });
+
   factory StackResourceDetail.fromJson(Map<String, dynamic> json) {
     return StackResourceDetail(
       lastUpdatedTimestamp:
@@ -13486,6 +13572,7 @@ class StackResourceDrift {
     this.physicalResourceIdContext,
     this.propertyDifferences,
   });
+
   factory StackResourceDrift.fromJson(Map<String, dynamic> json) {
     return StackResourceDrift(
       logicalResourceId: json['LogicalResourceId'] as String,
@@ -13609,6 +13696,7 @@ class StackResourceDriftInformation {
     required this.stackResourceDriftStatus,
     this.lastCheckTimestamp,
   });
+
   factory StackResourceDriftInformation.fromJson(Map<String, dynamic> json) {
     return StackResourceDriftInformation(
       stackResourceDriftStatus: (json['StackResourceDriftStatus'] as String)
@@ -13682,6 +13770,7 @@ class StackResourceDriftInformationSummary {
     required this.stackResourceDriftStatus,
     this.lastCheckTimestamp,
   });
+
   factory StackResourceDriftInformationSummary.fromJson(
       Map<String, dynamic> json) {
     return StackResourceDriftInformationSummary(
@@ -13795,6 +13884,7 @@ class StackResourceSummary {
     this.physicalResourceId,
     this.resourceStatusReason,
   });
+
   factory StackResourceSummary.fromJson(Map<String, dynamic> json) {
     return StackResourceSummary(
       lastUpdatedTimestamp:
@@ -13969,6 +14059,7 @@ class StackSet {
     this.tags,
     this.templateBody,
   });
+
   factory StackSet.fromJson(Map<String, dynamic> json) {
     return StackSet(
       administrationRoleARN: json['AdministrationRoleARN'] as String?,
@@ -14199,6 +14290,7 @@ class StackSetDriftDetectionDetails {
     this.lastDriftCheckTimestamp,
     this.totalStackInstancesCount,
   });
+
   factory StackSetDriftDetectionDetails.fromJson(Map<String, dynamic> json) {
     return StackSetDriftDetectionDetails(
       driftDetectionStatus: (json['DriftDetectionStatus'] as String?)
@@ -14463,6 +14555,7 @@ class StackSetOperation {
     this.stackSetId,
     this.status,
   });
+
   factory StackSetOperation.fromJson(Map<String, dynamic> json) {
     return StackSetOperation(
       action: (json['Action'] as String?)?.toStackSetOperationAction(),
@@ -14670,6 +14763,7 @@ class StackSetOperationPreferences {
     this.regionConcurrencyType,
     this.regionOrder,
   });
+
   factory StackSetOperationPreferences.fromJson(Map<String, dynamic> json) {
     return StackSetOperationPreferences(
       failureToleranceCount: json['FailureToleranceCount'] as int?,
@@ -14830,6 +14924,7 @@ class StackSetOperationResultSummary {
     this.status,
     this.statusReason,
   });
+
   factory StackSetOperationResultSummary.fromJson(Map<String, dynamic> json) {
     return StackSetOperationResultSummary(
       account: json['Account'] as String?,
@@ -14995,6 +15090,7 @@ class StackSetOperationSummary {
     this.operationId,
     this.status,
   });
+
   factory StackSetOperationSummary.fromJson(Map<String, dynamic> json) {
     return StackSetOperationSummary(
       action: (json['Action'] as String?)?.toStackSetOperationAction(),
@@ -15145,6 +15241,7 @@ class StackSetSummary {
     this.stackSetName,
     this.status,
   });
+
   factory StackSetSummary.fromJson(Map<String, dynamic> json) {
     return StackSetSummary(
       autoDeployment: json['AutoDeployment'] != null
@@ -15398,6 +15495,7 @@ class StackSummary {
     this.stackStatusReason,
     this.templateDescription,
   });
+
   factory StackSummary.fromJson(Map<String, dynamic> json) {
     return StackSummary(
       creationTime:
@@ -15471,6 +15569,7 @@ class StackSummary {
 
 class StopStackSetOperationOutput {
   StopStackSetOperationOutput();
+
   factory StopStackSetOperationOutput.fromJson(Map<String, dynamic> _) {
     return StopStackSetOperationOutput();
   }
@@ -15502,6 +15601,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -15547,6 +15647,7 @@ class TemplateParameter {
     this.noEcho,
     this.parameterKey,
   });
+
   factory TemplateParameter.fromJson(Map<String, dynamic> json) {
     return TemplateParameter(
       defaultValue: json['DefaultValue'] as String?,
@@ -15614,6 +15715,7 @@ class TestTypeOutput {
   TestTypeOutput({
     this.typeVersionArn,
   });
+
   factory TestTypeOutput.fromJson(Map<String, dynamic> json) {
     return TestTypeOutput(
       typeVersionArn: json['TypeVersionArn'] as String?,
@@ -15717,6 +15819,7 @@ class TypeConfigurationDetails {
     this.typeArn,
     this.typeName,
   });
+
   factory TypeConfigurationDetails.fromJson(Map<String, dynamic> json) {
     return TypeConfigurationDetails(
       alias: json['Alias'] as String?,
@@ -15797,6 +15900,7 @@ class TypeConfigurationIdentifier {
     this.typeConfigurationArn,
     this.typeName,
   });
+
   factory TypeConfigurationIdentifier.fromJson(Map<String, dynamic> json) {
     return TypeConfigurationIdentifier(
       type: (json['Type'] as String?)?.toThirdPartyType(),
@@ -15884,6 +15988,7 @@ class TypeFilters {
     this.publisherId,
     this.typeNamePrefix,
   });
+
   factory TypeFilters.fromJson(Map<String, dynamic> json) {
     return TypeFilters(
       category: (json['Category'] as String?)?.toCategory(),
@@ -16028,6 +16133,7 @@ class TypeSummary {
     this.typeArn,
     this.typeName,
   });
+
   factory TypeSummary.fromJson(Map<String, dynamic> json) {
     return TypeSummary(
       defaultVersionId: json['DefaultVersionId'] as String?,
@@ -16197,6 +16303,7 @@ class TypeVersionSummary {
     this.typeName,
     this.versionId,
   });
+
   factory TypeVersionSummary.fromJson(Map<String, dynamic> json) {
     return TypeVersionSummary(
       arn: json['Arn'] as String?,
@@ -16254,6 +16361,7 @@ class UpdateStackInstancesOutput {
   UpdateStackInstancesOutput({
     this.operationId,
   });
+
   factory UpdateStackInstancesOutput.fromJson(Map<String, dynamic> json) {
     return UpdateStackInstancesOutput(
       operationId: json['OperationId'] as String?,
@@ -16282,6 +16390,7 @@ class UpdateStackOutput {
   UpdateStackOutput({
     this.stackId,
   });
+
   factory UpdateStackOutput.fromJson(Map<String, dynamic> json) {
     return UpdateStackOutput(
       stackId: json['StackId'] as String?,
@@ -16309,6 +16418,7 @@ class UpdateStackSetOutput {
   UpdateStackSetOutput({
     this.operationId,
   });
+
   factory UpdateStackSetOutput.fromJson(Map<String, dynamic> json) {
     return UpdateStackSetOutput(
       operationId: json['OperationId'] as String?,
@@ -16336,6 +16446,7 @@ class UpdateTerminationProtectionOutput {
   UpdateTerminationProtectionOutput({
     this.stackId,
   });
+
   factory UpdateTerminationProtectionOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateTerminationProtectionOutput(
@@ -16390,6 +16501,7 @@ class ValidateTemplateOutput {
     this.description,
     this.parameters,
   });
+
   factory ValidateTemplateOutput.fromJson(Map<String, dynamic> json) {
     return ValidateTemplateOutput(
       capabilities: (json['Capabilities'] as List?)

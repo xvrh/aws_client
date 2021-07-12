@@ -1030,6 +1030,7 @@ class BulkPublishResponse {
   BulkPublishResponse({
     this.identityPoolId,
   });
+
   factory BulkPublishResponse.fromJson(Map<String, dynamic> json) {
     return BulkPublishResponse(
       identityPoolId: json['IdentityPoolId'] as String?,
@@ -1105,6 +1106,7 @@ class CognitoStreams {
     this.streamName,
     this.streamingStatus,
   });
+
   factory CognitoStreams.fromJson(Map<String, dynamic> json) {
     return CognitoStreams(
       roleArn: json['RoleArn'] as String?,
@@ -1165,6 +1167,7 @@ class Dataset {
     this.lastModifiedDate,
     this.numRecords,
   });
+
   factory Dataset.fromJson(Map<String, dynamic> json) {
     return Dataset(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -1211,6 +1214,7 @@ class DeleteDatasetResponse {
   DeleteDatasetResponse({
     this.dataset,
   });
+
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DeleteDatasetResponse(
       dataset: json['Dataset'] != null
@@ -1239,6 +1243,7 @@ class DescribeDatasetResponse {
   DescribeDatasetResponse({
     this.dataset,
   });
+
   factory DescribeDatasetResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDatasetResponse(
       dataset: json['Dataset'] != null
@@ -1263,6 +1268,7 @@ class DescribeIdentityPoolUsageResponse {
   DescribeIdentityPoolUsageResponse({
     this.identityPoolUsage,
   });
+
   factory DescribeIdentityPoolUsageResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeIdentityPoolUsageResponse(
@@ -1289,6 +1295,7 @@ class DescribeIdentityUsageResponse {
   DescribeIdentityUsageResponse({
     this.identityUsage,
   });
+
   factory DescribeIdentityUsageResponse.fromJson(Map<String, dynamic> json) {
     return DescribeIdentityUsageResponse(
       identityUsage: json['IdentityUsage'] != null
@@ -1343,6 +1350,7 @@ class GetBulkPublishDetailsResponse {
     this.failureMessage,
     this.identityPoolId,
   });
+
   factory GetBulkPublishDetailsResponse.fromJson(Map<String, dynamic> json) {
     return GetBulkPublishDetailsResponse(
       bulkPublishCompleteTime:
@@ -1382,6 +1390,7 @@ class GetCognitoEventsResponse {
   GetCognitoEventsResponse({
     this.events,
   });
+
   factory GetCognitoEventsResponse.fromJson(Map<String, dynamic> json) {
     return GetCognitoEventsResponse(
       events: (json['Events'] as Map<String, dynamic>?)
@@ -1414,6 +1423,7 @@ class GetIdentityPoolConfigurationResponse {
     this.identityPoolId,
     this.pushSync,
   });
+
   factory GetIdentityPoolConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetIdentityPoolConfigurationResponse(
@@ -1462,6 +1472,7 @@ class IdentityPoolUsage {
     this.lastModifiedDate,
     this.syncSessionsCount,
   });
+
   factory IdentityPoolUsage.fromJson(Map<String, dynamic> json) {
     return IdentityPoolUsage(
       dataStorage: json['DataStorage'] as int?,
@@ -1514,6 +1525,7 @@ class IdentityUsage {
     this.identityPoolId,
     this.lastModifiedDate,
   });
+
   factory IdentityUsage.fromJson(Map<String, dynamic> json) {
     return IdentityUsage(
       dataStorage: json['DataStorage'] as int?,
@@ -1557,6 +1569,7 @@ class ListDatasetsResponse {
     this.datasets,
     this.nextToken,
   });
+
   factory ListDatasetsResponse.fromJson(Map<String, dynamic> json) {
     return ListDatasetsResponse(
       count: json['Count'] as int?,
@@ -1600,6 +1613,7 @@ class ListIdentityPoolUsageResponse {
     this.maxResults,
     this.nextToken,
   });
+
   factory ListIdentityPoolUsageResponse.fromJson(Map<String, dynamic> json) {
     return ListIdentityPoolUsageResponse(
       count: json['Count'] as int?,
@@ -1666,6 +1680,7 @@ class ListRecordsResponse {
     this.records,
     this.syncSessionToken,
   });
+
   factory ListRecordsResponse.fromJson(Map<String, dynamic> json) {
     return ListRecordsResponse(
       count: json['Count'] as int?,
@@ -1792,6 +1807,7 @@ class PushSync {
     this.applicationArns,
     this.roleArn,
   });
+
   factory PushSync.fromJson(Map<String, dynamic> json) {
     return PushSync(
       applicationArns: (json['ApplicationArns'] as List?)
@@ -1840,6 +1856,7 @@ class Record {
     this.syncCount,
     this.value,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       deviceLastModifiedDate: timeStampFromJson(json['DeviceLastModifiedDate']),
@@ -1895,6 +1912,7 @@ class RecordPatch {
     this.deviceLastModifiedDate,
     this.value,
   });
+
   factory RecordPatch.fromJson(Map<String, dynamic> json) {
     return RecordPatch(
       key: json['Key'] as String,
@@ -1930,6 +1948,7 @@ class RegisterDeviceResponse {
   RegisterDeviceResponse({
     this.deviceId,
   });
+
   factory RegisterDeviceResponse.fromJson(Map<String, dynamic> json) {
     return RegisterDeviceResponse(
       deviceId: json['DeviceId'] as String?,
@@ -1961,6 +1980,7 @@ class SetIdentityPoolConfigurationResponse {
     this.identityPoolId,
     this.pushSync,
   });
+
   factory SetIdentityPoolConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return SetIdentityPoolConfigurationResponse(
@@ -2018,6 +2038,7 @@ extension on String {
 /// Response to a SubscribeToDataset request.
 class SubscribeToDatasetResponse {
   SubscribeToDatasetResponse();
+
   factory SubscribeToDatasetResponse.fromJson(Map<String, dynamic> _) {
     return SubscribeToDatasetResponse();
   }
@@ -2030,6 +2051,7 @@ class SubscribeToDatasetResponse {
 /// Response to an UnsubscribeFromDataset request.
 class UnsubscribeFromDatasetResponse {
   UnsubscribeFromDatasetResponse();
+
   factory UnsubscribeFromDatasetResponse.fromJson(Map<String, dynamic> _) {
     return UnsubscribeFromDatasetResponse();
   }
@@ -2047,6 +2069,7 @@ class UpdateRecordsResponse {
   UpdateRecordsResponse({
     this.records,
   });
+
   factory UpdateRecordsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRecordsResponse(
       records: (json['Records'] as List?)

@@ -924,6 +924,7 @@ class CancelJobRunResponse {
     this.id,
     this.virtualClusterId,
   });
+
   factory CancelJobRunResponse.fromJson(Map<String, dynamic> json) {
     return CancelJobRunResponse(
       id: json['id'] as String?,
@@ -954,6 +955,7 @@ class CloudWatchMonitoringConfiguration {
     required this.logGroupName,
     this.logStreamNamePrefix,
   });
+
   factory CloudWatchMonitoringConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CloudWatchMonitoringConfiguration(
@@ -994,6 +996,7 @@ class Configuration {
     this.configurations,
     this.properties,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       classification: json['classification'] as String,
@@ -1031,6 +1034,7 @@ class ConfigurationOverrides {
     this.applicationConfiguration,
     this.monitoringConfiguration,
   });
+
   factory ConfigurationOverrides.fromJson(Map<String, dynamic> json) {
     return ConfigurationOverrides(
       applicationConfiguration: (json['applicationConfiguration'] as List?)
@@ -1065,6 +1069,7 @@ class ContainerInfo {
   ContainerInfo({
     this.eksInfo,
   });
+
   factory ContainerInfo.fromJson(Map<String, dynamic> json) {
     return ContainerInfo(
       eksInfo: json['eksInfo'] != null
@@ -1098,6 +1103,7 @@ class ContainerProvider {
     required this.type,
     this.info,
   });
+
   factory ContainerProvider.fromJson(Map<String, dynamic> json) {
     return ContainerProvider(
       id: json['id'] as String,
@@ -1162,6 +1168,7 @@ class CreateManagedEndpointResponse {
     this.name,
     this.virtualClusterId,
   });
+
   factory CreateManagedEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateManagedEndpointResponse(
       arn: json['arn'] as String?,
@@ -1200,6 +1207,7 @@ class CreateVirtualClusterResponse {
     this.id,
     this.name,
   });
+
   factory CreateVirtualClusterResponse.fromJson(Map<String, dynamic> json) {
     return CreateVirtualClusterResponse(
       arn: json['arn'] as String?,
@@ -1231,6 +1239,7 @@ class DeleteManagedEndpointResponse {
     this.id,
     this.virtualClusterId,
   });
+
   factory DeleteManagedEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DeleteManagedEndpointResponse(
       id: json['id'] as String?,
@@ -1255,6 +1264,7 @@ class DeleteVirtualClusterResponse {
   DeleteVirtualClusterResponse({
     this.id,
   });
+
   factory DeleteVirtualClusterResponse.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualClusterResponse(
       id: json['id'] as String?,
@@ -1276,6 +1286,7 @@ class DescribeJobRunResponse {
   DescribeJobRunResponse({
     this.jobRun,
   });
+
   factory DescribeJobRunResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJobRunResponse(
       jobRun: json['jobRun'] != null
@@ -1299,6 +1310,7 @@ class DescribeManagedEndpointResponse {
   DescribeManagedEndpointResponse({
     this.endpoint,
   });
+
   factory DescribeManagedEndpointResponse.fromJson(Map<String, dynamic> json) {
     return DescribeManagedEndpointResponse(
       endpoint: json['endpoint'] != null
@@ -1322,6 +1334,7 @@ class DescribeVirtualClusterResponse {
   DescribeVirtualClusterResponse({
     this.virtualCluster,
   });
+
   factory DescribeVirtualClusterResponse.fromJson(Map<String, dynamic> json) {
     return DescribeVirtualClusterResponse(
       virtualCluster: json['virtualCluster'] != null
@@ -1347,6 +1360,7 @@ class EksInfo {
   EksInfo({
     this.namespace,
   });
+
   factory EksInfo.fromJson(Map<String, dynamic> json) {
     return EksInfo(
       namespace: json['namespace'] as String?,
@@ -1426,6 +1440,7 @@ class Endpoint {
     this.type,
     this.virtualClusterId,
   });
+
   factory Endpoint.fromJson(Map<String, dynamic> json) {
     return Endpoint(
       arn: json['arn'] as String?,
@@ -1579,6 +1594,7 @@ class JobDriver {
   JobDriver({
     this.sparkSubmitJobDriver,
   });
+
   factory JobDriver.fromJson(Map<String, dynamic> json) {
     return JobDriver(
       sparkSubmitJobDriver: json['sparkSubmitJobDriver'] != null
@@ -1667,6 +1683,7 @@ class JobRun {
     this.tags,
     this.virtualClusterId,
   });
+
   factory JobRun.fromJson(Map<String, dynamic> json) {
     return JobRun(
       arn: json['arn'] as String?,
@@ -1797,6 +1814,7 @@ class ListJobRunsResponse {
     this.jobRuns,
     this.nextToken,
   });
+
   factory ListJobRunsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobRunsResponse(
       jobRuns: (json['jobRuns'] as List?)
@@ -1828,6 +1846,7 @@ class ListManagedEndpointsResponse {
     this.endpoints,
     this.nextToken,
   });
+
   factory ListManagedEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return ListManagedEndpointsResponse(
       endpoints: (json['endpoints'] as List?)
@@ -1855,6 +1874,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -1881,6 +1901,7 @@ class ListVirtualClustersResponse {
     this.nextToken,
     this.virtualClusters,
   });
+
   factory ListVirtualClustersResponse.fromJson(Map<String, dynamic> json) {
     return ListVirtualClustersResponse(
       nextToken: json['nextToken'] as String?,
@@ -1917,6 +1938,7 @@ class MonitoringConfiguration {
     this.persistentAppUI,
     this.s3MonitoringConfiguration,
   });
+
   factory MonitoringConfiguration.fromJson(Map<String, dynamic> json) {
     return MonitoringConfiguration(
       cloudWatchMonitoringConfiguration:
@@ -1986,6 +2008,7 @@ class S3MonitoringConfiguration {
   S3MonitoringConfiguration({
     required this.logUri,
   });
+
   factory S3MonitoringConfiguration.fromJson(Map<String, dynamic> json) {
     return S3MonitoringConfiguration(
       logUri: json['logUri'] as String,
@@ -2016,6 +2039,7 @@ class SparkSubmitJobDriver {
     this.entryPointArguments,
     this.sparkSubmitParameters,
   });
+
   factory SparkSubmitJobDriver.fromJson(Map<String, dynamic> json) {
     return SparkSubmitJobDriver(
       entryPoint: json['entryPoint'] as String,
@@ -2061,6 +2085,7 @@ class StartJobRunResponse {
     this.name,
     this.virtualClusterId,
   });
+
   factory StartJobRunResponse.fromJson(Map<String, dynamic> json) {
     return StartJobRunResponse(
       arn: json['arn'] as String?,
@@ -2086,6 +2111,7 @@ class StartJobRunResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2097,6 +2123,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2144,6 +2171,7 @@ class VirtualCluster {
     this.state,
     this.tags,
   });
+
   factory VirtualCluster.fromJson(Map<String, dynamic> json) {
     return VirtualCluster(
       arn: json['arn'] as String?,

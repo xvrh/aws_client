@@ -125,6 +125,7 @@ class GetRawMessageContentResponse {
   GetRawMessageContentResponse({
     required this.messageContent,
   });
+
   factory GetRawMessageContentResponse.fromJson(Map<String, dynamic> json) {
     return GetRawMessageContentResponse(
       messageContent: _s.decodeUint8List(json['messageContent']! as String),
@@ -141,6 +142,7 @@ class GetRawMessageContentResponse {
 
 class PutRawMessageContentResponse {
   PutRawMessageContentResponse();
+
   factory PutRawMessageContentResponse.fromJson(Map<String, dynamic> _) {
     return PutRawMessageContentResponse();
   }
@@ -192,6 +194,7 @@ class RawMessageContent {
   RawMessageContent({
     required this.s3Reference,
   });
+
   factory RawMessageContent.fromJson(Map<String, dynamic> json) {
     return RawMessageContent(
       s3Reference:
@@ -230,6 +233,7 @@ class S3Reference {
     required this.key,
     this.objectVersion,
   });
+
   factory S3Reference.fromJson(Map<String, dynamic> json) {
     return S3Reference(
       bucket: json['bucket'] as String,

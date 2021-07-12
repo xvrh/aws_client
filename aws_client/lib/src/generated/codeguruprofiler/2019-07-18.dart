@@ -1540,6 +1540,7 @@ class AddNotificationChannelsResponse {
   AddNotificationChannelsResponse({
     this.notificationConfiguration,
   });
+
   factory AddNotificationChannelsResponse.fromJson(Map<String, dynamic> json) {
     return AddNotificationChannelsResponse(
       notificationConfiguration: json['notificationConfiguration'] != null
@@ -1611,6 +1612,7 @@ class AgentConfiguration {
     required this.shouldProfile,
     this.agentParameters,
   });
+
   factory AgentConfiguration.fromJson(Map<String, dynamic> json) {
     return AgentConfiguration(
       periodInSeconds: json['periodInSeconds'] as int,
@@ -1647,6 +1649,7 @@ class AgentOrchestrationConfig {
   AgentOrchestrationConfig({
     required this.profilingEnabled,
   });
+
   factory AgentOrchestrationConfig.fromJson(Map<String, dynamic> json) {
     return AgentOrchestrationConfig(
       profilingEnabled: json['profilingEnabled'] as bool,
@@ -1742,6 +1745,7 @@ class AggregatedProfileTime {
     this.period,
     this.start,
   });
+
   factory AggregatedProfileTime.fromJson(Map<String, dynamic> json) {
     return AggregatedProfileTime(
       period: (json['period'] as String?)?.toAggregationPeriod(),
@@ -1812,6 +1816,7 @@ class Anomaly {
     required this.metric,
     required this.reason,
   });
+
   factory Anomaly.fromJson(Map<String, dynamic> json) {
     return Anomaly(
       instances: (json['instances'] as List)
@@ -1862,6 +1867,7 @@ class AnomalyInstance {
     this.endTime,
     this.userFeedback,
   });
+
   factory AnomalyInstance.fromJson(Map<String, dynamic> json) {
     return AnomalyInstance(
       id: json['id'] as String,
@@ -1941,6 +1947,7 @@ class BatchGetFrameMetricDataResponse {
     required this.startTime,
     required this.unprocessedEndTimes,
   });
+
   factory BatchGetFrameMetricDataResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetFrameMetricDataResponse(
       endTime: nonNullableTimeStampFromJson(json['endTime'] as Object),
@@ -2006,6 +2013,7 @@ class Channel {
     required this.uri,
     this.id,
   });
+
   factory Channel.fromJson(Map<String, dynamic> json) {
     return Channel(
       eventPublishers: (json['eventPublishers'] as List)
@@ -2068,6 +2076,7 @@ class ConfigureAgentResponse {
   ConfigureAgentResponse({
     required this.configuration,
   });
+
   factory ConfigureAgentResponse.fromJson(Map<String, dynamic> json) {
     return ConfigureAgentResponse(
       configuration: AgentConfiguration.fromJson(
@@ -2094,6 +2103,7 @@ class CreateProfilingGroupResponse {
   CreateProfilingGroupResponse({
     required this.profilingGroup,
   });
+
   factory CreateProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateProfilingGroupResponse(
       profilingGroup: ProfilingGroupDescription.fromJson(
@@ -2112,6 +2122,7 @@ class CreateProfilingGroupResponse {
 /// The structure representing the deleteProfilingGroupResponse.
 class DeleteProfilingGroupResponse {
   DeleteProfilingGroupResponse();
+
   factory DeleteProfilingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProfilingGroupResponse();
   }
@@ -2132,6 +2143,7 @@ class DescribeProfilingGroupResponse {
   DescribeProfilingGroupResponse({
     required this.profilingGroup,
   });
+
   factory DescribeProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProfilingGroupResponse(
       profilingGroup: ProfilingGroupDescription.fromJson(
@@ -2229,6 +2241,7 @@ class FindingsReportSummary {
     this.profilingGroupName,
     this.totalNumberOfFindings,
   });
+
   factory FindingsReportSummary.fromJson(Map<String, dynamic> json) {
     return FindingsReportSummary(
       id: json['id'] as String?,
@@ -2280,6 +2293,7 @@ class FrameMetric {
     required this.threadStates,
     required this.type,
   });
+
   factory FrameMetric.fromJson(Map<String, dynamic> json) {
     return FrameMetric(
       frameName: json['frameName'] as String,
@@ -2314,6 +2328,7 @@ class FrameMetricDatum {
     required this.frameMetric,
     required this.values,
   });
+
   factory FrameMetricDatum.fromJson(Map<String, dynamic> json) {
     return FrameMetricDatum(
       frameMetric:
@@ -2355,6 +2370,7 @@ class GetFindingsReportAccountSummaryResponse {
     required this.reportSummaries,
     this.nextToken,
   });
+
   factory GetFindingsReportAccountSummaryResponse.fromJson(
       Map<String, dynamic> json) {
     return GetFindingsReportAccountSummaryResponse(
@@ -2384,6 +2400,7 @@ class GetNotificationConfigurationResponse {
   GetNotificationConfigurationResponse({
     required this.notificationConfiguration,
   });
+
   factory GetNotificationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetNotificationConfigurationResponse(
@@ -2413,6 +2430,7 @@ class GetPolicyResponse {
     required this.policy,
     required this.revisionId,
   });
+
   factory GetPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetPolicyResponse(
       policy: json['policy'] as String,
@@ -2448,6 +2466,7 @@ class GetProfileResponse {
     required this.profile,
     this.contentEncoding,
   });
+
   factory GetProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetProfileResponse(
       contentType: json['Content-Type'] as String,
@@ -2494,6 +2513,7 @@ class GetRecommendationsResponse {
     required this.profilingGroupName,
     required this.recommendations,
   });
+
   factory GetRecommendationsResponse.fromJson(Map<String, dynamic> json) {
     return GetRecommendationsResponse(
       anomalies: (json['anomalies'] as List)
@@ -2544,6 +2564,7 @@ class ListFindingsReportsResponse {
     required this.findingsReportSummaries,
     this.nextToken,
   });
+
   factory ListFindingsReportsResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingsReportsResponse(
       findingsReportSummaries: (json['findingsReportSummaries'] as List)
@@ -2581,6 +2602,7 @@ class ListProfileTimesResponse {
     required this.profileTimes,
     this.nextToken,
   });
+
   factory ListProfileTimesResponse.fromJson(Map<String, dynamic> json) {
     return ListProfileTimesResponse(
       profileTimes: (json['profileTimes'] as List)
@@ -2631,6 +2653,7 @@ class ListProfilingGroupsResponse {
     this.nextToken,
     this.profilingGroups,
   });
+
   factory ListProfilingGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListProfilingGroupsResponse(
       profilingGroupNames: (json['profilingGroupNames'] as List)
@@ -2666,6 +2689,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2698,6 +2722,7 @@ class Match {
     this.targetFramesIndex,
     this.thresholdBreachValue,
   });
+
   factory Match.fromJson(Map<String, dynamic> json) {
     return Match(
       frameAddress: json['frameAddress'] as String?,
@@ -2805,6 +2830,7 @@ class Metric {
     required this.threadStates,
     required this.type,
   });
+
   factory Metric.fromJson(Map<String, dynamic> json) {
     return Metric(
       frameName: json['frameName'] as String,
@@ -2862,6 +2888,7 @@ class NotificationConfiguration {
   NotificationConfiguration({
     this.channels,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       channels: (json['channels'] as List?)
@@ -2944,6 +2971,7 @@ class Pattern {
     this.targetFrames,
     this.thresholdPercent,
   });
+
   factory Pattern.fromJson(Map<String, dynamic> json) {
     return Pattern(
       countersToAggregate: (json['countersToAggregate'] as List?)
@@ -2987,6 +3015,7 @@ class Pattern {
 /// The structure representing the postAgentProfileResponse.
 class PostAgentProfileResponse {
   PostAgentProfileResponse();
+
   factory PostAgentProfileResponse.fromJson(Map<String, dynamic> _) {
     return PostAgentProfileResponse();
   }
@@ -3006,6 +3035,7 @@ class ProfileTime {
   ProfileTime({
     this.start,
   });
+
   factory ProfileTime.fromJson(Map<String, dynamic> json) {
     return ProfileTime(
       start: timeStampFromJson(json['start']),
@@ -3073,6 +3103,7 @@ class ProfilingGroupDescription {
     this.tags,
     this.updatedAt,
   });
+
   factory ProfilingGroupDescription.fromJson(Map<String, dynamic> json) {
     return ProfilingGroupDescription(
       agentOrchestrationConfig: json['agentOrchestrationConfig'] != null
@@ -3142,6 +3173,7 @@ class ProfilingStatus {
     this.latestAgentProfileReportedAt,
     this.latestAggregatedProfile,
   });
+
   factory ProfilingStatus.fromJson(Map<String, dynamic> json) {
     return ProfilingStatus(
       latestAgentOrchestratedAt:
@@ -3186,6 +3218,7 @@ class PutPermissionResponse {
     required this.policy,
     required this.revisionId,
   });
+
   factory PutPermissionResponse.fromJson(Map<String, dynamic> json) {
     return PutPermissionResponse(
       policy: json['policy'] as String,
@@ -3236,6 +3269,7 @@ class Recommendation {
     required this.startTime,
     required this.topMatches,
   });
+
   factory Recommendation.fromJson(Map<String, dynamic> json) {
     return Recommendation(
       allMatchesCount: json['allMatchesCount'] as int,
@@ -3276,6 +3310,7 @@ class RemoveNotificationChannelResponse {
   RemoveNotificationChannelResponse({
     this.notificationConfiguration,
   });
+
   factory RemoveNotificationChannelResponse.fromJson(
       Map<String, dynamic> json) {
     return RemoveNotificationChannelResponse(
@@ -3311,6 +3346,7 @@ class RemovePermissionResponse {
     required this.policy,
     required this.revisionId,
   });
+
   factory RemovePermissionResponse.fromJson(Map<String, dynamic> json) {
     return RemovePermissionResponse(
       policy: json['policy'] as String,
@@ -3331,6 +3367,7 @@ class RemovePermissionResponse {
 /// The structure representing the SubmitFeedbackResponse.
 class SubmitFeedbackResponse {
   SubmitFeedbackResponse();
+
   factory SubmitFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return SubmitFeedbackResponse();
   }
@@ -3342,6 +3379,7 @@ class SubmitFeedbackResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3363,6 +3401,7 @@ class TimestampStructure {
   TimestampStructure({
     required this.value,
   });
+
   factory TimestampStructure.fromJson(Map<String, dynamic> json) {
     return TimestampStructure(
       value: nonNullableTimeStampFromJson(json['value'] as Object),
@@ -3379,6 +3418,7 @@ class TimestampStructure {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3399,6 +3439,7 @@ class UpdateProfilingGroupResponse {
   UpdateProfilingGroupResponse({
     required this.profilingGroup,
   });
+
   factory UpdateProfilingGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateProfilingGroupResponse(
       profilingGroup: ProfilingGroupDescription.fromJson(
@@ -3425,6 +3466,7 @@ class UserFeedback {
   UserFeedback({
     required this.type,
   });
+
   factory UserFeedback.fromJson(Map<String, dynamic> json) {
     return UserFeedback(
       type: (json['type'] as String).toFeedbackType(),

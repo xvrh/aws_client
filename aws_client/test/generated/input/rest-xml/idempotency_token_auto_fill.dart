@@ -68,6 +68,7 @@ class InputShape {
   InputShape({
     this.token,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       token: json['Token'] as String?,

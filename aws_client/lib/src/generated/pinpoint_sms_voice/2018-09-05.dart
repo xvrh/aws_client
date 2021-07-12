@@ -298,6 +298,7 @@ class CallInstructionsMessageType {
   CallInstructionsMessageType({
     this.text,
   });
+
   factory CallInstructionsMessageType.fromJson(Map<String, dynamic> json) {
     return CallInstructionsMessageType(
       text: json['Text'] as String?,
@@ -328,6 +329,7 @@ class CloudWatchLogsDestination {
     this.iamRoleArn,
     this.logGroupArn,
   });
+
   factory CloudWatchLogsDestination.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogsDestination(
       iamRoleArn: json['IamRoleArn'] as String?,
@@ -349,6 +351,7 @@ class CloudWatchLogsDestination {
 /// successfully.
 class CreateConfigurationSetEventDestinationResponse {
   CreateConfigurationSetEventDestinationResponse();
+
   factory CreateConfigurationSetEventDestinationResponse.fromJson(
       Map<String, dynamic> _) {
     return CreateConfigurationSetEventDestinationResponse();
@@ -363,6 +366,7 @@ class CreateConfigurationSetEventDestinationResponse {
 /// created.
 class CreateConfigurationSetResponse {
   CreateConfigurationSetResponse();
+
   factory CreateConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return CreateConfigurationSetResponse();
   }
@@ -376,6 +380,7 @@ class CreateConfigurationSetResponse {
 /// successfully.
 class DeleteConfigurationSetEventDestinationResponse {
   DeleteConfigurationSetEventDestinationResponse();
+
   factory DeleteConfigurationSetEventDestinationResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteConfigurationSetEventDestinationResponse();
@@ -390,6 +395,7 @@ class DeleteConfigurationSetEventDestinationResponse {
 /// successfully.
 class DeleteConfigurationSetResponse {
   DeleteConfigurationSetResponse();
+
   factory DeleteConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConfigurationSetResponse();
   }
@@ -422,6 +428,7 @@ class EventDestination {
     this.name,
     this.snsDestination,
   });
+
   factory EventDestination.fromJson(Map<String, dynamic> json) {
     return EventDestination(
       cloudWatchLogsDestination: json['CloudWatchLogsDestination'] != null
@@ -486,6 +493,7 @@ class EventDestinationDefinition {
     this.matchingEventTypes,
     this.snsDestination,
   });
+
   factory EventDestinationDefinition.fromJson(Map<String, dynamic> json) {
     return EventDestinationDefinition(
       cloudWatchLogsDestination: json['CloudWatchLogsDestination'] != null
@@ -589,6 +597,7 @@ class GetConfigurationSetEventDestinationsResponse {
   GetConfigurationSetEventDestinationsResponse({
     this.eventDestinations,
   });
+
   factory GetConfigurationSetEventDestinationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetConfigurationSetEventDestinationsResponse(
@@ -622,6 +631,7 @@ class KinesisFirehoseDestination {
     this.deliveryStreamArn,
     this.iamRoleArn,
   });
+
   factory KinesisFirehoseDestination.fromJson(Map<String, dynamic> json) {
     return KinesisFirehoseDestination(
       deliveryStreamArn: json['DeliveryStreamArn'] as String?,
@@ -654,6 +664,7 @@ class ListConfigurationSetsResponse {
     this.configurationSets,
     this.nextToken,
   });
+
   factory ListConfigurationSetsResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigurationSetsResponse(
       configurationSets: (json['ConfigurationSets'] as List?)
@@ -692,6 +703,7 @@ class PlainTextMessageType {
     this.text,
     this.voiceId,
   });
+
   factory PlainTextMessageType.fromJson(Map<String, dynamic> json) {
     return PlainTextMessageType(
       languageCode: json['LanguageCode'] as String?,
@@ -730,6 +742,7 @@ class SSMLMessageType {
     this.text,
     this.voiceId,
   });
+
   factory SSMLMessageType.fromJson(Map<String, dynamic> json) {
     return SSMLMessageType(
       languageCode: json['LanguageCode'] as String?,
@@ -759,6 +772,7 @@ class SendVoiceMessageResponse {
   SendVoiceMessageResponse({
     this.messageId,
   });
+
   factory SendVoiceMessageResponse.fromJson(Map<String, dynamic> json) {
     return SendVoiceMessageResponse(
       messageId: json['MessageId'] as String?,
@@ -783,6 +797,7 @@ class SnsDestination {
   SnsDestination({
     this.topicArn,
   });
+
   factory SnsDestination.fromJson(Map<String, dynamic> json) {
     return SnsDestination(
       topicArn: json['TopicArn'] as String?,
@@ -801,6 +816,7 @@ class SnsDestination {
 /// successfully.
 class UpdateConfigurationSetEventDestinationResponse {
   UpdateConfigurationSetEventDestinationResponse();
+
   factory UpdateConfigurationSetEventDestinationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateConfigurationSetEventDestinationResponse();
@@ -823,6 +839,7 @@ class VoiceMessageContent {
     this.plainTextMessage,
     this.sSMLMessage,
   });
+
   factory VoiceMessageContent.fromJson(Map<String, dynamic> json) {
     return VoiceMessageContent(
       callInstructionsMessage: json['CallInstructionsMessage'] != null

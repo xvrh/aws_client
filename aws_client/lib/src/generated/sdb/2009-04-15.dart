@@ -626,6 +626,7 @@ class Attribute {
     this.alternateNameEncoding,
     this.alternateValueEncoding,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       name: json['Name'] as String,
@@ -669,6 +670,7 @@ class AttributeDoesNotExist implements _s.AwsException {
   AttributeDoesNotExist({
     this.boxUsage,
   });
+
   factory AttributeDoesNotExist.fromJson(Map<String, dynamic> json) {
     return AttributeDoesNotExist(
       boxUsage: json['BoxUsage'] as double?,
@@ -701,6 +703,7 @@ class DeletableAttribute {
     required this.name,
     this.value,
   });
+
   factory DeletableAttribute.fromJson(Map<String, dynamic> json) {
     return DeletableAttribute(
       name: json['Name'] as String,
@@ -726,6 +729,7 @@ class DeletableItem {
     required this.name,
     this.attributes,
   });
+
   factory DeletableItem.fromJson(Map<String, dynamic> json) {
     return DeletableItem(
       name: json['ItemName'] as String,
@@ -777,6 +781,7 @@ class DomainMetadataResult {
     this.itemNamesSizeBytes,
     this.timestamp,
   });
+
   factory DomainMetadataResult.fromJson(Map<String, dynamic> json) {
     return DomainMetadataResult(
       attributeNameCount: json['AttributeNameCount'] as int?,
@@ -833,6 +838,7 @@ class DuplicateItemName implements _s.AwsException {
   DuplicateItemName({
     this.boxUsage,
   });
+
   factory DuplicateItemName.fromJson(Map<String, dynamic> json) {
     return DuplicateItemName(
       boxUsage: json['BoxUsage'] as double?,
@@ -860,6 +866,7 @@ class GetAttributesResult {
   GetAttributesResult({
     this.attributes,
   });
+
   factory GetAttributesResult.fromJson(Map<String, dynamic> json) {
     return GetAttributesResult(
       attributes: (json['Attributes'] as List?)
@@ -893,6 +900,7 @@ class InvalidNextToken implements _s.AwsException {
   InvalidNextToken({
     this.boxUsage,
   });
+
   factory InvalidNextToken.fromJson(Map<String, dynamic> json) {
     return InvalidNextToken(
       boxUsage: json['BoxUsage'] as double?,
@@ -920,6 +928,7 @@ class InvalidNumberPredicates implements _s.AwsException {
   InvalidNumberPredicates({
     this.boxUsage,
   });
+
   factory InvalidNumberPredicates.fromJson(Map<String, dynamic> json) {
     return InvalidNumberPredicates(
       boxUsage: json['BoxUsage'] as double?,
@@ -947,6 +956,7 @@ class InvalidNumberValueTests implements _s.AwsException {
   InvalidNumberValueTests({
     this.boxUsage,
   });
+
   factory InvalidNumberValueTests.fromJson(Map<String, dynamic> json) {
     return InvalidNumberValueTests(
       boxUsage: json['BoxUsage'] as double?,
@@ -974,6 +984,7 @@ class InvalidParameterValue implements _s.AwsException {
   InvalidParameterValue({
     this.boxUsage,
   });
+
   factory InvalidParameterValue.fromJson(Map<String, dynamic> json) {
     return InvalidParameterValue(
       boxUsage: json['BoxUsage'] as double?,
@@ -1001,6 +1012,7 @@ class InvalidQueryExpression implements _s.AwsException {
   InvalidQueryExpression({
     this.boxUsage,
   });
+
   factory InvalidQueryExpression.fromJson(Map<String, dynamic> json) {
     return InvalidQueryExpression(
       boxUsage: json['BoxUsage'] as double?,
@@ -1037,6 +1049,7 @@ class Item {
     required this.name,
     this.alternateNameEncoding,
   });
+
   factory Item.fromJson(Map<String, dynamic> json) {
     return Item(
       attributes: (json['Attributes'] as List)
@@ -1085,6 +1098,7 @@ class ListDomainsResult {
     this.domainNames,
     this.nextToken,
   });
+
   factory ListDomainsResult.fromJson(Map<String, dynamic> json) {
     return ListDomainsResult(
       domainNames: (json['DomainNames'] as List?)
@@ -1119,6 +1133,7 @@ class MissingParameter implements _s.AwsException {
   MissingParameter({
     this.boxUsage,
   });
+
   factory MissingParameter.fromJson(Map<String, dynamic> json) {
     return MissingParameter(
       boxUsage: json['BoxUsage'] as double?,
@@ -1146,6 +1161,7 @@ class NoSuchDomain implements _s.AwsException {
   NoSuchDomain({
     this.boxUsage,
   });
+
   factory NoSuchDomain.fromJson(Map<String, dynamic> json) {
     return NoSuchDomain(
       boxUsage: json['BoxUsage'] as double?,
@@ -1173,6 +1189,7 @@ class NumberDomainAttributesExceeded implements _s.AwsException {
   NumberDomainAttributesExceeded({
     this.boxUsage,
   });
+
   factory NumberDomainAttributesExceeded.fromJson(Map<String, dynamic> json) {
     return NumberDomainAttributesExceeded(
       boxUsage: json['BoxUsage'] as double?,
@@ -1200,6 +1217,7 @@ class NumberDomainBytesExceeded implements _s.AwsException {
   NumberDomainBytesExceeded({
     this.boxUsage,
   });
+
   factory NumberDomainBytesExceeded.fromJson(Map<String, dynamic> json) {
     return NumberDomainBytesExceeded(
       boxUsage: json['BoxUsage'] as double?,
@@ -1227,6 +1245,7 @@ class NumberDomainsExceeded implements _s.AwsException {
   NumberDomainsExceeded({
     this.boxUsage,
   });
+
   factory NumberDomainsExceeded.fromJson(Map<String, dynamic> json) {
     return NumberDomainsExceeded(
       boxUsage: json['BoxUsage'] as double?,
@@ -1254,6 +1273,7 @@ class NumberItemAttributesExceeded implements _s.AwsException {
   NumberItemAttributesExceeded({
     this.boxUsage,
   });
+
   factory NumberItemAttributesExceeded.fromJson(Map<String, dynamic> json) {
     return NumberItemAttributesExceeded(
       boxUsage: json['BoxUsage'] as double?,
@@ -1281,6 +1301,7 @@ class NumberSubmittedAttributesExceeded implements _s.AwsException {
   NumberSubmittedAttributesExceeded({
     this.boxUsage,
   });
+
   factory NumberSubmittedAttributesExceeded.fromJson(
       Map<String, dynamic> json) {
     return NumberSubmittedAttributesExceeded(
@@ -1309,6 +1330,7 @@ class NumberSubmittedItemsExceeded implements _s.AwsException {
   NumberSubmittedItemsExceeded({
     this.boxUsage,
   });
+
   factory NumberSubmittedItemsExceeded.fromJson(Map<String, dynamic> json) {
     return NumberSubmittedItemsExceeded(
       boxUsage: json['BoxUsage'] as double?,
@@ -1346,6 +1368,7 @@ class ReplaceableAttribute {
     required this.value,
     this.replace,
   });
+
   factory ReplaceableAttribute.fromJson(Map<String, dynamic> json) {
     return ReplaceableAttribute(
       name: json['Name'] as String,
@@ -1378,6 +1401,7 @@ class ReplaceableItem {
     required this.attributes,
     required this.name,
   });
+
   factory ReplaceableItem.fromJson(Map<String, dynamic> json) {
     return ReplaceableItem(
       attributes: (json['Attributes'] as List)
@@ -1406,6 +1430,7 @@ class RequestTimeout implements _s.AwsException {
   RequestTimeout({
     this.boxUsage,
   });
+
   factory RequestTimeout.fromJson(Map<String, dynamic> json) {
     return RequestTimeout(
       boxUsage: json['BoxUsage'] as double?,
@@ -1439,6 +1464,7 @@ class SelectResult {
     this.items,
     this.nextToken,
   });
+
   factory SelectResult.fromJson(Map<String, dynamic> json) {
     return SelectResult(
       items: (json['Items'] as List?)
@@ -1473,6 +1499,7 @@ class TooManyRequestedAttributes implements _s.AwsException {
   TooManyRequestedAttributes({
     this.boxUsage,
   });
+
   factory TooManyRequestedAttributes.fromJson(Map<String, dynamic> json) {
     return TooManyRequestedAttributes(
       boxUsage: json['BoxUsage'] as double?,
@@ -1517,6 +1544,7 @@ class UpdateCondition {
     this.name,
     this.value,
   });
+
   factory UpdateCondition.fromJson(Map<String, dynamic> json) {
     return UpdateCondition(
       exists: json['Exists'] as bool?,

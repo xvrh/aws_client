@@ -309,6 +309,7 @@ class IoTSecureTunneling {
 
 class CloseTunnelResponse {
   CloseTunnelResponse();
+
   factory CloseTunnelResponse.fromJson(Map<String, dynamic> _) {
     return CloseTunnelResponse();
   }
@@ -331,6 +332,7 @@ class ConnectionState {
     this.lastUpdatedAt,
     this.status,
   });
+
   factory ConnectionState.fromJson(Map<String, dynamic> json) {
     return ConnectionState(
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
@@ -384,6 +386,7 @@ class DescribeTunnelResponse {
   DescribeTunnelResponse({
     this.tunnel,
   });
+
   factory DescribeTunnelResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTunnelResponse(
       tunnel: json['tunnel'] != null
@@ -416,6 +419,7 @@ class DestinationConfig {
     required this.services,
     this.thingName,
   });
+
   factory DestinationConfig.fromJson(Map<String, dynamic> json) {
     return DestinationConfig(
       services: (json['services'] as List)
@@ -443,6 +447,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -471,6 +476,7 @@ class ListTunnelsResponse {
     this.nextToken,
     this.tunnelSummaries,
   });
+
   factory ListTunnelsResponse.fromJson(Map<String, dynamic> json) {
     return ListTunnelsResponse(
       nextToken: json['nextToken'] as String?,
@@ -513,6 +519,7 @@ class OpenTunnelResponse {
     this.tunnelArn,
     this.tunnelId,
   });
+
   factory OpenTunnelResponse.fromJson(Map<String, dynamic> json) {
     return OpenTunnelResponse(
       destinationAccessToken: json['destinationAccessToken'] as String?,
@@ -550,6 +557,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -569,6 +577,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -588,6 +597,7 @@ class TimeoutConfig {
   TimeoutConfig({
     this.maxLifetimeTimeoutMinutes,
   });
+
   factory TimeoutConfig.fromJson(Map<String, dynamic> json) {
     return TimeoutConfig(
       maxLifetimeTimeoutMinutes: json['maxLifetimeTimeoutMinutes'] as int?,
@@ -654,6 +664,7 @@ class Tunnel {
     this.tunnelArn,
     this.tunnelId,
   });
+
   factory Tunnel.fromJson(Map<String, dynamic> json) {
     return Tunnel(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -773,6 +784,7 @@ class TunnelSummary {
     this.tunnelArn,
     this.tunnelId,
   });
+
   factory TunnelSummary.fromJson(Map<String, dynamic> json) {
     return TunnelSummary(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -805,6 +817,7 @@ class TunnelSummary {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

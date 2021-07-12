@@ -2957,6 +2957,7 @@ class AccessLog {
   AccessLog({
     this.file,
   });
+
   factory AccessLog.fromJson(Map<String, dynamic> json) {
     return AccessLog(
       file: json['file'] != null
@@ -2991,6 +2992,7 @@ class AwsCloudMapInstanceAttribute {
     required this.key,
     required this.value,
   });
+
   factory AwsCloudMapInstanceAttribute.fromJson(Map<String, dynamic> json) {
     return AwsCloudMapInstanceAttribute(
       key: json['key'] as String,
@@ -3031,6 +3033,7 @@ class AwsCloudMapServiceDiscovery {
     required this.serviceName,
     this.attributes,
   });
+
   factory AwsCloudMapServiceDiscovery.fromJson(Map<String, dynamic> json) {
     return AwsCloudMapServiceDiscovery(
       namespaceName: json['namespaceName'] as String,
@@ -3064,6 +3067,7 @@ class Backend {
   Backend({
     this.virtualService,
   });
+
   factory Backend.fromJson(Map<String, dynamic> json) {
     return Backend(
       virtualService: json['virtualService'] != null
@@ -3089,6 +3093,7 @@ class BackendDefaults {
   BackendDefaults({
     this.clientPolicy,
   });
+
   factory BackendDefaults.fromJson(Map<String, dynamic> json) {
     return BackendDefaults(
       clientPolicy: json['clientPolicy'] != null
@@ -3114,6 +3119,7 @@ class ClientPolicy {
   ClientPolicy({
     this.tls,
   });
+
   factory ClientPolicy.fromJson(Map<String, dynamic> json) {
     return ClientPolicy(
       tls: json['tls'] != null
@@ -3152,6 +3158,7 @@ class ClientPolicyTls {
     this.enforce,
     this.ports,
   });
+
   factory ClientPolicyTls.fromJson(Map<String, dynamic> json) {
     return ClientPolicyTls(
       validation: TlsValidationContext.fromJson(
@@ -3199,6 +3206,7 @@ class ClientTlsCertificate {
     this.file,
     this.sds,
   });
+
   factory ClientTlsCertificate.fromJson(Map<String, dynamic> json) {
     return ClientTlsCertificate(
       file: json['file'] != null
@@ -3229,6 +3237,7 @@ class CreateGatewayRouteOutput {
   CreateGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
   factory CreateGatewayRouteOutput.fromJson(Map<String, dynamic> json) {
     return CreateGatewayRouteOutput(
       gatewayRoute: GatewayRouteData.fromJson(
@@ -3252,6 +3261,7 @@ class CreateMeshOutput {
   CreateMeshOutput({
     required this.mesh,
   });
+
   factory CreateMeshOutput.fromJson(Map<String, dynamic> json) {
     return CreateMeshOutput(
       mesh: MeshData.fromJson(json['mesh'] as Map<String, dynamic>),
@@ -3274,6 +3284,7 @@ class CreateRouteOutput {
   CreateRouteOutput({
     required this.route,
   });
+
   factory CreateRouteOutput.fromJson(Map<String, dynamic> json) {
     return CreateRouteOutput(
       route: RouteData.fromJson(json['route'] as Map<String, dynamic>),
@@ -3295,6 +3306,7 @@ class CreateVirtualGatewayOutput {
   CreateVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
   factory CreateVirtualGatewayOutput.fromJson(Map<String, dynamic> json) {
     return CreateVirtualGatewayOutput(
       virtualGateway: VirtualGatewayData.fromJson(
@@ -3318,6 +3330,7 @@ class CreateVirtualNodeOutput {
   CreateVirtualNodeOutput({
     required this.virtualNode,
   });
+
   factory CreateVirtualNodeOutput.fromJson(Map<String, dynamic> json) {
     return CreateVirtualNodeOutput(
       virtualNode:
@@ -3341,6 +3354,7 @@ class CreateVirtualRouterOutput {
   CreateVirtualRouterOutput({
     required this.virtualRouter,
   });
+
   factory CreateVirtualRouterOutput.fromJson(Map<String, dynamic> json) {
     return CreateVirtualRouterOutput(
       virtualRouter: VirtualRouterData.fromJson(
@@ -3364,6 +3378,7 @@ class CreateVirtualServiceOutput {
   CreateVirtualServiceOutput({
     required this.virtualService,
   });
+
   factory CreateVirtualServiceOutput.fromJson(Map<String, dynamic> json) {
     return CreateVirtualServiceOutput(
       virtualService: VirtualServiceData.fromJson(
@@ -3414,6 +3429,7 @@ class DeleteGatewayRouteOutput {
   DeleteGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
   factory DeleteGatewayRouteOutput.fromJson(Map<String, dynamic> json) {
     return DeleteGatewayRouteOutput(
       gatewayRoute: GatewayRouteData.fromJson(
@@ -3437,6 +3453,7 @@ class DeleteMeshOutput {
   DeleteMeshOutput({
     required this.mesh,
   });
+
   factory DeleteMeshOutput.fromJson(Map<String, dynamic> json) {
     return DeleteMeshOutput(
       mesh: MeshData.fromJson(json['mesh'] as Map<String, dynamic>),
@@ -3459,6 +3476,7 @@ class DeleteRouteOutput {
   DeleteRouteOutput({
     required this.route,
   });
+
   factory DeleteRouteOutput.fromJson(Map<String, dynamic> json) {
     return DeleteRouteOutput(
       route: RouteData.fromJson(json['route'] as Map<String, dynamic>),
@@ -3480,6 +3498,7 @@ class DeleteVirtualGatewayOutput {
   DeleteVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
   factory DeleteVirtualGatewayOutput.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualGatewayOutput(
       virtualGateway: VirtualGatewayData.fromJson(
@@ -3503,6 +3522,7 @@ class DeleteVirtualNodeOutput {
   DeleteVirtualNodeOutput({
     required this.virtualNode,
   });
+
   factory DeleteVirtualNodeOutput.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualNodeOutput(
       virtualNode:
@@ -3526,6 +3546,7 @@ class DeleteVirtualRouterOutput {
   DeleteVirtualRouterOutput({
     required this.virtualRouter,
   });
+
   factory DeleteVirtualRouterOutput.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualRouterOutput(
       virtualRouter: VirtualRouterData.fromJson(
@@ -3549,6 +3570,7 @@ class DeleteVirtualServiceOutput {
   DeleteVirtualServiceOutput({
     required this.virtualService,
   });
+
   factory DeleteVirtualServiceOutput.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualServiceOutput(
       virtualService: VirtualServiceData.fromJson(
@@ -3571,6 +3593,7 @@ class DescribeGatewayRouteOutput {
   DescribeGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
   factory DescribeGatewayRouteOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGatewayRouteOutput(
       gatewayRoute: GatewayRouteData.fromJson(
@@ -3594,6 +3617,7 @@ class DescribeMeshOutput {
   DescribeMeshOutput({
     required this.mesh,
   });
+
   factory DescribeMeshOutput.fromJson(Map<String, dynamic> json) {
     return DescribeMeshOutput(
       mesh: MeshData.fromJson(json['mesh'] as Map<String, dynamic>),
@@ -3616,6 +3640,7 @@ class DescribeRouteOutput {
   DescribeRouteOutput({
     required this.route,
   });
+
   factory DescribeRouteOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRouteOutput(
       route: RouteData.fromJson(json['route'] as Map<String, dynamic>),
@@ -3637,6 +3662,7 @@ class DescribeVirtualGatewayOutput {
   DescribeVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
   factory DescribeVirtualGatewayOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVirtualGatewayOutput(
       virtualGateway: VirtualGatewayData.fromJson(
@@ -3660,6 +3686,7 @@ class DescribeVirtualNodeOutput {
   DescribeVirtualNodeOutput({
     required this.virtualNode,
   });
+
   factory DescribeVirtualNodeOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVirtualNodeOutput(
       virtualNode:
@@ -3683,6 +3710,7 @@ class DescribeVirtualRouterOutput {
   DescribeVirtualRouterOutput({
     required this.virtualRouter,
   });
+
   factory DescribeVirtualRouterOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVirtualRouterOutput(
       virtualRouter: VirtualRouterData.fromJson(
@@ -3706,6 +3734,7 @@ class DescribeVirtualServiceOutput {
   DescribeVirtualServiceOutput({
     required this.virtualService,
   });
+
   factory DescribeVirtualServiceOutput.fromJson(Map<String, dynamic> json) {
     return DescribeVirtualServiceOutput(
       virtualService: VirtualServiceData.fromJson(
@@ -3762,6 +3791,7 @@ class DnsServiceDiscovery {
     required this.hostname,
     this.responseType,
   });
+
   factory DnsServiceDiscovery.fromJson(Map<String, dynamic> json) {
     return DnsServiceDiscovery(
       hostname: json['hostname'] as String,
@@ -3791,6 +3821,7 @@ class Duration {
     this.unit,
     this.value,
   });
+
   factory Duration.fromJson(Map<String, dynamic> json) {
     return Duration(
       unit: (json['unit'] as String?)?.toDurationUnit(),
@@ -3849,6 +3880,7 @@ class EgressFilter {
   EgressFilter({
     required this.type,
   });
+
   factory EgressFilter.fromJson(Map<String, dynamic> json) {
     return EgressFilter(
       type: (json['type'] as String).toEgressFilterType(),
@@ -3907,6 +3939,7 @@ class FileAccessLog {
   FileAccessLog({
     required this.path,
   });
+
   factory FileAccessLog.fromJson(Map<String, dynamic> json) {
     return FileAccessLog(
       path: json['path'] as String,
@@ -3947,6 +3980,7 @@ class GatewayRouteData {
     required this.status,
     required this.virtualGatewayName,
   });
+
   factory GatewayRouteData.fromJson(Map<String, dynamic> json) {
     return GatewayRouteData(
       gatewayRouteName: json['gatewayRouteName'] as String,
@@ -3990,6 +4024,7 @@ class GatewayRouteHostnameMatch {
     this.exact,
     this.suffix,
   });
+
   factory GatewayRouteHostnameMatch.fromJson(Map<String, dynamic> json) {
     return GatewayRouteHostnameMatch(
       exact: json['exact'] as String?,
@@ -4015,6 +4050,7 @@ class GatewayRouteHostnameRewrite {
   GatewayRouteHostnameRewrite({
     this.defaultTargetHostname,
   });
+
   factory GatewayRouteHostnameRewrite.fromJson(Map<String, dynamic> json) {
     return GatewayRouteHostnameRewrite(
       defaultTargetHostname: (json['defaultTargetHostname'] as String?)
@@ -4080,6 +4116,7 @@ class GatewayRouteRef {
     required this.version,
     required this.virtualGatewayName,
   });
+
   factory GatewayRouteRef.fromJson(Map<String, dynamic> json) {
     return GatewayRouteRef(
       arn: json['arn'] as String,
@@ -4140,6 +4177,7 @@ class GatewayRouteSpec {
     this.httpRoute,
     this.priority,
   });
+
   factory GatewayRouteSpec.fromJson(Map<String, dynamic> json) {
     return GatewayRouteSpec(
       grpcRoute: json['grpcRoute'] != null
@@ -4178,6 +4216,7 @@ class GatewayRouteStatus {
   GatewayRouteStatus({
     required this.status,
   });
+
   factory GatewayRouteStatus.fromJson(Map<String, dynamic> json) {
     return GatewayRouteStatus(
       status: (json['status'] as String).toGatewayRouteStatusCode(),
@@ -4233,6 +4272,7 @@ class GatewayRouteTarget {
   GatewayRouteTarget({
     required this.virtualService,
   });
+
   factory GatewayRouteTarget.fromJson(Map<String, dynamic> json) {
     return GatewayRouteTarget(
       virtualService: GatewayRouteVirtualService.fromJson(
@@ -4256,6 +4296,7 @@ class GatewayRouteVirtualService {
   GatewayRouteVirtualService({
     required this.virtualServiceName,
   });
+
   factory GatewayRouteVirtualService.fromJson(Map<String, dynamic> json) {
     return GatewayRouteVirtualService(
       virtualServiceName: json['virtualServiceName'] as String,
@@ -4282,6 +4323,7 @@ class GrpcGatewayRoute {
     required this.action,
     required this.match,
   });
+
   factory GrpcGatewayRoute.fromJson(Map<String, dynamic> json) {
     return GrpcGatewayRoute(
       action: GrpcGatewayRouteAction.fromJson(
@@ -4314,6 +4356,7 @@ class GrpcGatewayRouteAction {
     required this.target,
     this.rewrite,
   });
+
   factory GrpcGatewayRouteAction.fromJson(Map<String, dynamic> json) {
     return GrpcGatewayRouteAction(
       target:
@@ -4351,6 +4394,7 @@ class GrpcGatewayRouteMatch {
     this.metadata,
     this.serviceName,
   });
+
   factory GrpcGatewayRouteMatch.fromJson(Map<String, dynamic> json) {
     return GrpcGatewayRouteMatch(
       hostname: json['hostname'] != null
@@ -4395,6 +4439,7 @@ class GrpcGatewayRouteMetadata {
     this.invert,
     this.match,
   });
+
   factory GrpcGatewayRouteMetadata.fromJson(Map<String, dynamic> json) {
     return GrpcGatewayRouteMetadata(
       name: json['name'] as String,
@@ -4426,6 +4471,7 @@ class GrpcGatewayRouteRewrite {
   GrpcGatewayRouteRewrite({
     this.hostname,
   });
+
   factory GrpcGatewayRouteRewrite.fromJson(Map<String, dynamic> json) {
     return GrpcGatewayRouteRewrite(
       hostname: json['hostname'] != null
@@ -4465,6 +4511,7 @@ class GrpcMetadataMatchMethod {
     this.regex,
     this.suffix,
   });
+
   factory GrpcMetadataMatchMethod.fromJson(Map<String, dynamic> json) {
     return GrpcMetadataMatchMethod(
       exact: json['exact'] as String?,
@@ -4542,6 +4589,7 @@ class GrpcRetryPolicy {
     this.httpRetryEvents,
     this.tcpRetryEvents,
   });
+
   factory GrpcRetryPolicy.fromJson(Map<String, dynamic> json) {
     return GrpcRetryPolicy(
       maxRetries: json['maxRetries'] as int,
@@ -4643,6 +4691,7 @@ class GrpcRoute {
     this.retryPolicy,
     this.timeout,
   });
+
   factory GrpcRoute.fromJson(Map<String, dynamic> json) {
     return GrpcRoute(
       action: GrpcRouteAction.fromJson(json['action'] as Map<String, dynamic>),
@@ -4680,6 +4729,7 @@ class GrpcRouteAction {
   GrpcRouteAction({
     required this.weightedTargets,
   });
+
   factory GrpcRouteAction.fromJson(Map<String, dynamic> json) {
     return GrpcRouteAction(
       weightedTargets: (json['weightedTargets'] as List)
@@ -4714,6 +4764,7 @@ class GrpcRouteMatch {
     this.methodName,
     this.serviceName,
   });
+
   factory GrpcRouteMatch.fromJson(Map<String, dynamic> json) {
     return GrpcRouteMatch(
       metadata: (json['metadata'] as List?)
@@ -4754,6 +4805,7 @@ class GrpcRouteMetadata {
     this.invert,
     this.match,
   });
+
   factory GrpcRouteMetadata.fromJson(Map<String, dynamic> json) {
     return GrpcRouteMetadata(
       name: json['name'] as String,
@@ -4801,6 +4853,7 @@ class GrpcRouteMetadataMatchMethod {
     this.regex,
     this.suffix,
   });
+
   factory GrpcRouteMetadataMatchMethod.fromJson(Map<String, dynamic> json) {
     return GrpcRouteMetadataMatchMethod(
       exact: json['exact'] as String?,
@@ -4847,6 +4900,7 @@ class GrpcTimeout {
     this.idle,
     this.perRequest,
   });
+
   factory GrpcTimeout.fromJson(Map<String, dynamic> json) {
     return GrpcTimeout(
       idle: json['idle'] != null
@@ -4893,6 +4947,7 @@ class HeaderMatchMethod {
     this.regex,
     this.suffix,
   });
+
   factory HeaderMatchMethod.fromJson(Map<String, dynamic> json) {
     return HeaderMatchMethod(
       exact: json['exact'] as String?,
@@ -4963,6 +5018,7 @@ class HealthCheckPolicy {
     this.path,
     this.port,
   });
+
   factory HealthCheckPolicy.fromJson(Map<String, dynamic> json) {
     return HealthCheckPolicy(
       healthyThreshold: json['healthyThreshold'] as int,
@@ -5007,6 +5063,7 @@ class HttpGatewayRoute {
     required this.action,
     required this.match,
   });
+
   factory HttpGatewayRoute.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRoute(
       action: HttpGatewayRouteAction.fromJson(
@@ -5039,6 +5096,7 @@ class HttpGatewayRouteAction {
     required this.target,
     this.rewrite,
   });
+
   factory HttpGatewayRouteAction.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRouteAction(
       target:
@@ -5075,6 +5133,7 @@ class HttpGatewayRouteHeader {
     this.invert,
     this.match,
   });
+
   factory HttpGatewayRouteHeader.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRouteHeader(
       name: json['name'] as String,
@@ -5131,6 +5190,7 @@ class HttpGatewayRouteMatch {
     this.prefix,
     this.queryParameters,
   });
+
   factory HttpGatewayRouteMatch.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRouteMatch(
       headers: (json['headers'] as List?)
@@ -5180,6 +5240,7 @@ class HttpGatewayRoutePathRewrite {
   HttpGatewayRoutePathRewrite({
     this.exact,
   });
+
   factory HttpGatewayRoutePathRewrite.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRoutePathRewrite(
       exact: json['exact'] as String?,
@@ -5206,6 +5267,7 @@ class HttpGatewayRoutePrefixRewrite {
     this.defaultPrefix,
     this.value,
   });
+
   factory HttpGatewayRoutePrefixRewrite.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRoutePrefixRewrite(
       defaultPrefix:
@@ -5240,6 +5302,7 @@ class HttpGatewayRouteRewrite {
     this.path,
     this.prefix,
   });
+
   factory HttpGatewayRouteRewrite.fromJson(Map<String, dynamic> json) {
     return HttpGatewayRouteRewrite(
       hostname: json['hostname'] != null
@@ -5344,6 +5407,7 @@ class HttpPathMatch {
     this.exact,
     this.regex,
   });
+
   factory HttpPathMatch.fromJson(Map<String, dynamic> json) {
     return HttpPathMatch(
       exact: json['exact'] as String?,
@@ -5373,6 +5437,7 @@ class HttpQueryParameter {
     required this.name,
     this.match,
   });
+
   factory HttpQueryParameter.fromJson(Map<String, dynamic> json) {
     return HttpQueryParameter(
       name: json['name'] as String,
@@ -5437,6 +5502,7 @@ class HttpRetryPolicy {
     this.httpRetryEvents,
     this.tcpRetryEvents,
   });
+
   factory HttpRetryPolicy.fromJson(Map<String, dynamic> json) {
     return HttpRetryPolicy(
       maxRetries: json['maxRetries'] as int,
@@ -5488,6 +5554,7 @@ class HttpRoute {
     this.retryPolicy,
     this.timeout,
   });
+
   factory HttpRoute.fromJson(Map<String, dynamic> json) {
     return HttpRoute(
       action: HttpRouteAction.fromJson(json['action'] as Map<String, dynamic>),
@@ -5525,6 +5592,7 @@ class HttpRouteAction {
   HttpRouteAction({
     required this.weightedTargets,
   });
+
   factory HttpRouteAction.fromJson(Map<String, dynamic> json) {
     return HttpRouteAction(
       weightedTargets: (json['weightedTargets'] as List)
@@ -5559,6 +5627,7 @@ class HttpRouteHeader {
     this.invert,
     this.match,
   });
+
   factory HttpRouteHeader.fromJson(Map<String, dynamic> json) {
     return HttpRouteHeader(
       name: json['name'] as String,
@@ -5617,6 +5686,7 @@ class HttpRouteMatch {
     this.queryParameters,
     this.scheme,
   });
+
   factory HttpRouteMatch.fromJson(Map<String, dynamic> json) {
     return HttpRouteMatch(
       headers: (json['headers'] as List?)
@@ -5700,6 +5770,7 @@ class HttpTimeout {
     this.idle,
     this.perRequest,
   });
+
   factory HttpTimeout.fromJson(Map<String, dynamic> json) {
     return HttpTimeout(
       idle: json['idle'] != null
@@ -5737,6 +5808,7 @@ class ListGatewayRoutesOutput {
     required this.gatewayRoutes,
     this.nextToken,
   });
+
   factory ListGatewayRoutesOutput.fromJson(Map<String, dynamic> json) {
     return ListGatewayRoutesOutput(
       gatewayRoutes: (json['gatewayRoutes'] as List)
@@ -5773,6 +5845,7 @@ class ListMeshesOutput {
     required this.meshes,
     this.nextToken,
   });
+
   factory ListMeshesOutput.fromJson(Map<String, dynamic> json) {
     return ListMeshesOutput(
       meshes: (json['meshes'] as List)
@@ -5810,6 +5883,7 @@ class ListRoutesOutput {
     required this.routes,
     this.nextToken,
   });
+
   factory ListRoutesOutput.fromJson(Map<String, dynamic> json) {
     return ListRoutesOutput(
       routes: (json['routes'] as List)
@@ -5846,6 +5920,7 @@ class ListTagsForResourceOutput {
     required this.tags,
     this.nextToken,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['tags'] as List)
@@ -5881,6 +5956,7 @@ class ListVirtualGatewaysOutput {
     required this.virtualGateways,
     this.nextToken,
   });
+
   factory ListVirtualGatewaysOutput.fromJson(Map<String, dynamic> json) {
     return ListVirtualGatewaysOutput(
       virtualGateways: (json['virtualGateways'] as List)
@@ -5917,6 +5993,7 @@ class ListVirtualNodesOutput {
     required this.virtualNodes,
     this.nextToken,
   });
+
   factory ListVirtualNodesOutput.fromJson(Map<String, dynamic> json) {
     return ListVirtualNodesOutput(
       virtualNodes: (json['virtualNodes'] as List)
@@ -5953,6 +6030,7 @@ class ListVirtualRoutersOutput {
     required this.virtualRouters,
     this.nextToken,
   });
+
   factory ListVirtualRoutersOutput.fromJson(Map<String, dynamic> json) {
     return ListVirtualRoutersOutput(
       virtualRouters: (json['virtualRouters'] as List)
@@ -5989,6 +6067,7 @@ class ListVirtualServicesOutput {
     required this.virtualServices,
     this.nextToken,
   });
+
   factory ListVirtualServicesOutput.fromJson(Map<String, dynamic> json) {
     return ListVirtualServicesOutput(
       virtualServices: (json['virtualServices'] as List)
@@ -6038,6 +6117,7 @@ class Listener {
     this.timeout,
     this.tls,
   });
+
   factory Listener.fromJson(Map<String, dynamic> json) {
     return Listener(
       portMapping:
@@ -6101,6 +6181,7 @@ class ListenerTimeout {
     this.http2,
     this.tcp,
   });
+
   factory ListenerTimeout.fromJson(Map<String, dynamic> json) {
     return ListenerTimeout(
       grpc: json['grpc'] != null
@@ -6163,6 +6244,7 @@ class ListenerTls {
     required this.mode,
     this.validation,
   });
+
   factory ListenerTls.fromJson(Map<String, dynamic> json) {
     return ListenerTls(
       certificate: ListenerTlsCertificate.fromJson(
@@ -6199,6 +6281,7 @@ class ListenerTlsAcmCertificate {
   ListenerTlsAcmCertificate({
     required this.certificateArn,
   });
+
   factory ListenerTlsAcmCertificate.fromJson(Map<String, dynamic> json) {
     return ListenerTlsAcmCertificate(
       certificateArn: json['certificateArn'] as String,
@@ -6232,6 +6315,7 @@ class ListenerTlsCertificate {
     this.file,
     this.sds,
   });
+
   factory ListenerTlsCertificate.fromJson(Map<String, dynamic> json) {
     return ListenerTlsCertificate(
       acm: json['acm'] != null
@@ -6278,6 +6362,7 @@ class ListenerTlsFileCertificate {
     required this.certificateChain,
     required this.privateKey,
   });
+
   factory ListenerTlsFileCertificate.fromJson(Map<String, dynamic> json) {
     return ListenerTlsFileCertificate(
       certificateChain: json['certificateChain'] as String,
@@ -6342,6 +6427,7 @@ class ListenerTlsSdsCertificate {
   ListenerTlsSdsCertificate({
     required this.secretName,
   });
+
   factory ListenerTlsSdsCertificate.fromJson(Map<String, dynamic> json) {
     return ListenerTlsSdsCertificate(
       secretName: json['secretName'] as String,
@@ -6371,6 +6457,7 @@ class ListenerTlsValidationContext {
     required this.trust,
     this.subjectAlternativeNames,
   });
+
   factory ListenerTlsValidationContext.fromJson(Map<String, dynamic> json) {
     return ListenerTlsValidationContext(
       trust: ListenerTlsValidationContextTrust.fromJson(
@@ -6408,6 +6495,7 @@ class ListenerTlsValidationContextTrust {
     this.file,
     this.sds,
   });
+
   factory ListenerTlsValidationContextTrust.fromJson(
       Map<String, dynamic> json) {
     return ListenerTlsValidationContextTrust(
@@ -6440,6 +6528,7 @@ class Logging {
   Logging({
     this.accessLog,
   });
+
   factory Logging.fromJson(Map<String, dynamic> json) {
     return Logging(
       accessLog: json['accessLog'] != null
@@ -6471,6 +6560,7 @@ class MatchRange {
     required this.end,
     required this.start,
   });
+
   factory MatchRange.fromJson(Map<String, dynamic> json) {
     return MatchRange(
       end: json['end'] as int,
@@ -6508,6 +6598,7 @@ class MeshData {
     required this.spec,
     required this.status,
   });
+
   factory MeshData.fromJson(Map<String, dynamic> json) {
     return MeshData(
       meshName: json['meshName'] as String,
@@ -6573,6 +6664,7 @@ class MeshRef {
     required this.resourceOwner,
     required this.version,
   });
+
   factory MeshRef.fromJson(Map<String, dynamic> json) {
     return MeshRef(
       arn: json['arn'] as String,
@@ -6614,6 +6706,7 @@ class MeshSpec {
   MeshSpec({
     this.egressFilter,
   });
+
   factory MeshSpec.fromJson(Map<String, dynamic> json) {
     return MeshSpec(
       egressFilter: json['egressFilter'] != null
@@ -6638,6 +6731,7 @@ class MeshStatus {
   MeshStatus({
     this.status,
   });
+
   factory MeshStatus.fromJson(Map<String, dynamic> json) {
     return MeshStatus(
       status: (json['status'] as String?)?.toMeshStatusCode(),
@@ -6707,6 +6801,7 @@ class OutlierDetection {
     required this.maxEjectionPercent,
     required this.maxServerErrors,
   });
+
   factory OutlierDetection.fromJson(Map<String, dynamic> json) {
     return OutlierDetection(
       baseEjectionDuration: Duration.fromJson(
@@ -6743,6 +6838,7 @@ class PortMapping {
     required this.port,
     required this.protocol,
   });
+
   factory PortMapping.fromJson(Map<String, dynamic> json) {
     return PortMapping(
       port: json['port'] as int,
@@ -6806,6 +6902,7 @@ class QueryParameterMatch {
   QueryParameterMatch({
     this.exact,
   });
+
   factory QueryParameterMatch.fromJson(Map<String, dynamic> json) {
     return QueryParameterMatch(
       exact: json['exact'] as String?,
@@ -6861,6 +6958,7 @@ class ResourceMetadata {
     required this.uid,
     required this.version,
   });
+
   factory ResourceMetadata.fromJson(Map<String, dynamic> json) {
     return ResourceMetadata(
       arn: json['arn'] as String,
@@ -6922,6 +7020,7 @@ class RouteData {
     required this.status,
     required this.virtualRouterName,
   });
+
   factory RouteData.fromJson(Map<String, dynamic> json) {
     return RouteData(
       meshName: json['meshName'] as String,
@@ -7001,6 +7100,7 @@ class RouteRef {
     required this.version,
     required this.virtualRouterName,
   });
+
   factory RouteRef.fromJson(Map<String, dynamic> json) {
     return RouteRef(
       arn: json['arn'] as String,
@@ -7065,6 +7165,7 @@ class RouteSpec {
     this.priority,
     this.tcpRoute,
   });
+
   factory RouteSpec.fromJson(Map<String, dynamic> json) {
     return RouteSpec(
       grpcRoute: json['grpcRoute'] != null
@@ -7107,6 +7208,7 @@ class RouteStatus {
   RouteStatus({
     required this.status,
   });
+
   factory RouteStatus.fromJson(Map<String, dynamic> json) {
     return RouteStatus(
       status: (json['status'] as String).toRouteStatusCode(),
@@ -7167,6 +7269,7 @@ class ServiceDiscovery {
     this.awsCloudMap,
     this.dns,
   });
+
   factory ServiceDiscovery.fromJson(Map<String, dynamic> json) {
     return ServiceDiscovery(
       awsCloudMap: json['awsCloudMap'] != null
@@ -7198,6 +7301,7 @@ class SubjectAlternativeNameMatchers {
   SubjectAlternativeNameMatchers({
     required this.exact,
   });
+
   factory SubjectAlternativeNameMatchers.fromJson(Map<String, dynamic> json) {
     return SubjectAlternativeNameMatchers(
       exact: (json['exact'] as List)
@@ -7224,6 +7328,7 @@ class SubjectAlternativeNames {
   SubjectAlternativeNames({
     required this.match,
   });
+
   factory SubjectAlternativeNames.fromJson(Map<String, dynamic> json) {
     return SubjectAlternativeNames(
       match: SubjectAlternativeNameMatchers.fromJson(
@@ -7256,6 +7361,7 @@ class TagRef {
     required this.key,
     required this.value,
   });
+
   factory TagRef.fromJson(Map<String, dynamic> json) {
     return TagRef(
       key: json['key'] as String,
@@ -7276,6 +7382,7 @@ class TagRef {
 /// <zonbook></zonbook><xhtml></xhtml>
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -7320,6 +7427,7 @@ class TcpRoute {
     required this.action,
     this.timeout,
   });
+
   factory TcpRoute.fromJson(Map<String, dynamic> json) {
     return TcpRoute(
       action: TcpRouteAction.fromJson(json['action'] as Map<String, dynamic>),
@@ -7348,6 +7456,7 @@ class TcpRouteAction {
   TcpRouteAction({
     required this.weightedTargets,
   });
+
   factory TcpRouteAction.fromJson(Map<String, dynamic> json) {
     return TcpRouteAction(
       weightedTargets: (json['weightedTargets'] as List)
@@ -7374,6 +7483,7 @@ class TcpTimeout {
   TcpTimeout({
     this.idle,
   });
+
   factory TcpTimeout.fromJson(Map<String, dynamic> json) {
     return TcpTimeout(
       idle: json['idle'] != null
@@ -7405,6 +7515,7 @@ class TlsValidationContext {
     required this.trust,
     this.subjectAlternativeNames,
   });
+
   factory TlsValidationContext.fromJson(Map<String, dynamic> json) {
     return TlsValidationContext(
       trust: TlsValidationContextTrust.fromJson(
@@ -7436,6 +7547,7 @@ class TlsValidationContextAcmTrust {
   TlsValidationContextAcmTrust({
     required this.certificateAuthorityArns,
   });
+
   factory TlsValidationContextAcmTrust.fromJson(Map<String, dynamic> json) {
     return TlsValidationContextAcmTrust(
       certificateAuthorityArns: (json['certificateAuthorityArns'] as List)
@@ -7463,6 +7575,7 @@ class TlsValidationContextFileTrust {
   TlsValidationContextFileTrust({
     required this.certificateChain,
   });
+
   factory TlsValidationContextFileTrust.fromJson(Map<String, dynamic> json) {
     return TlsValidationContextFileTrust(
       certificateChain: json['certificateChain'] as String,
@@ -7491,6 +7604,7 @@ class TlsValidationContextSdsTrust {
   TlsValidationContextSdsTrust({
     required this.secretName,
   });
+
   factory TlsValidationContextSdsTrust.fromJson(Map<String, dynamic> json) {
     return TlsValidationContextSdsTrust(
       secretName: json['secretName'] as String,
@@ -7525,6 +7639,7 @@ class TlsValidationContextTrust {
     this.file,
     this.sds,
   });
+
   factory TlsValidationContextTrust.fromJson(Map<String, dynamic> json) {
     return TlsValidationContextTrust(
       acm: json['acm'] != null
@@ -7557,6 +7672,7 @@ class TlsValidationContextTrust {
 /// <zonbook></zonbook><xhtml></xhtml>
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -7573,6 +7689,7 @@ class UpdateGatewayRouteOutput {
   UpdateGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
   factory UpdateGatewayRouteOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGatewayRouteOutput(
       gatewayRoute: GatewayRouteData.fromJson(
@@ -7595,6 +7712,7 @@ class UpdateMeshOutput {
   UpdateMeshOutput({
     required this.mesh,
   });
+
   factory UpdateMeshOutput.fromJson(Map<String, dynamic> json) {
     return UpdateMeshOutput(
       mesh: MeshData.fromJson(json['mesh'] as Map<String, dynamic>),
@@ -7617,6 +7735,7 @@ class UpdateRouteOutput {
   UpdateRouteOutput({
     required this.route,
   });
+
   factory UpdateRouteOutput.fromJson(Map<String, dynamic> json) {
     return UpdateRouteOutput(
       route: RouteData.fromJson(json['route'] as Map<String, dynamic>),
@@ -7638,6 +7757,7 @@ class UpdateVirtualGatewayOutput {
   UpdateVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
   factory UpdateVirtualGatewayOutput.fromJson(Map<String, dynamic> json) {
     return UpdateVirtualGatewayOutput(
       virtualGateway: VirtualGatewayData.fromJson(
@@ -7661,6 +7781,7 @@ class UpdateVirtualNodeOutput {
   UpdateVirtualNodeOutput({
     required this.virtualNode,
   });
+
   factory UpdateVirtualNodeOutput.fromJson(Map<String, dynamic> json) {
     return UpdateVirtualNodeOutput(
       virtualNode:
@@ -7684,6 +7805,7 @@ class UpdateVirtualRouterOutput {
   UpdateVirtualRouterOutput({
     required this.virtualRouter,
   });
+
   factory UpdateVirtualRouterOutput.fromJson(Map<String, dynamic> json) {
     return UpdateVirtualRouterOutput(
       virtualRouter: VirtualRouterData.fromJson(
@@ -7707,6 +7829,7 @@ class UpdateVirtualServiceOutput {
   UpdateVirtualServiceOutput({
     required this.virtualService,
   });
+
   factory UpdateVirtualServiceOutput.fromJson(Map<String, dynamic> json) {
     return UpdateVirtualServiceOutput(
       virtualService: VirtualServiceData.fromJson(
@@ -7730,6 +7853,7 @@ class VirtualGatewayAccessLog {
   VirtualGatewayAccessLog({
     this.file,
   });
+
   factory VirtualGatewayAccessLog.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayAccessLog(
       file: json['file'] != null
@@ -7755,6 +7879,7 @@ class VirtualGatewayBackendDefaults {
   VirtualGatewayBackendDefaults({
     this.clientPolicy,
   });
+
   factory VirtualGatewayBackendDefaults.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayBackendDefaults(
       clientPolicy: json['clientPolicy'] != null
@@ -7781,6 +7906,7 @@ class VirtualGatewayClientPolicy {
   VirtualGatewayClientPolicy({
     this.tls,
   });
+
   factory VirtualGatewayClientPolicy.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayClientPolicy(
       tls: json['tls'] != null
@@ -7821,6 +7947,7 @@ class VirtualGatewayClientPolicyTls {
     this.enforce,
     this.ports,
   });
+
   factory VirtualGatewayClientPolicyTls.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayClientPolicyTls(
       validation: VirtualGatewayTlsValidationContext.fromJson(
@@ -7869,6 +7996,7 @@ class VirtualGatewayClientTlsCertificate {
     this.file,
     this.sds,
   });
+
   factory VirtualGatewayClientTlsCertificate.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayClientTlsCertificate(
@@ -7915,6 +8043,7 @@ class VirtualGatewayConnectionPool {
     this.http,
     this.http2,
   });
+
   factory VirtualGatewayConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayConnectionPool(
       grpc: json['grpc'] != null
@@ -7967,6 +8096,7 @@ class VirtualGatewayData {
     required this.status,
     required this.virtualGatewayName,
   });
+
   factory VirtualGatewayData.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayData(
       meshName: json['meshName'] as String,
@@ -8007,6 +8137,7 @@ class VirtualGatewayFileAccessLog {
   VirtualGatewayFileAccessLog({
     required this.path,
   });
+
   factory VirtualGatewayFileAccessLog.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayFileAccessLog(
       path: json['path'] as String,
@@ -8030,6 +8161,7 @@ class VirtualGatewayGrpcConnectionPool {
   VirtualGatewayGrpcConnectionPool({
     required this.maxRequests,
   });
+
   factory VirtualGatewayGrpcConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayGrpcConnectionPool(
       maxRequests: json['maxRequests'] as int,
@@ -8086,6 +8218,7 @@ class VirtualGatewayHealthCheckPolicy {
     this.path,
     this.port,
   });
+
   factory VirtualGatewayHealthCheckPolicy.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayHealthCheckPolicy(
       healthyThreshold: json['healthyThreshold'] as int,
@@ -8127,6 +8260,7 @@ class VirtualGatewayHttp2ConnectionPool {
   VirtualGatewayHttp2ConnectionPool({
     required this.maxRequests,
   });
+
   factory VirtualGatewayHttp2ConnectionPool.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayHttp2ConnectionPool(
@@ -8156,6 +8290,7 @@ class VirtualGatewayHttpConnectionPool {
     required this.maxConnections,
     this.maxPendingRequests,
   });
+
   factory VirtualGatewayHttpConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayHttpConnectionPool(
       maxConnections: json['maxConnections'] as int,
@@ -8194,6 +8329,7 @@ class VirtualGatewayListener {
     this.healthCheck,
     this.tls,
   });
+
   factory VirtualGatewayListener.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayListener(
       portMapping: VirtualGatewayPortMapping.fromJson(
@@ -8257,6 +8393,7 @@ class VirtualGatewayListenerTls {
     required this.mode,
     this.validation,
   });
+
   factory VirtualGatewayListenerTls.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayListenerTls(
       certificate: VirtualGatewayListenerTlsCertificate.fromJson(
@@ -8293,6 +8430,7 @@ class VirtualGatewayListenerTlsAcmCertificate {
   VirtualGatewayListenerTlsAcmCertificate({
     required this.certificateArn,
   });
+
   factory VirtualGatewayListenerTlsAcmCertificate.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsAcmCertificate(
@@ -8326,6 +8464,7 @@ class VirtualGatewayListenerTlsCertificate {
     this.file,
     this.sds,
   });
+
   factory VirtualGatewayListenerTlsCertificate.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsCertificate(
@@ -8373,6 +8512,7 @@ class VirtualGatewayListenerTlsFileCertificate {
     required this.certificateChain,
     required this.privateKey,
   });
+
   factory VirtualGatewayListenerTlsFileCertificate.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsFileCertificate(
@@ -8438,6 +8578,7 @@ class VirtualGatewayListenerTlsSdsCertificate {
   VirtualGatewayListenerTlsSdsCertificate({
     required this.secretName,
   });
+
   factory VirtualGatewayListenerTlsSdsCertificate.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsSdsCertificate(
@@ -8468,6 +8609,7 @@ class VirtualGatewayListenerTlsValidationContext {
     required this.trust,
     this.subjectAlternativeNames,
   });
+
   factory VirtualGatewayListenerTlsValidationContext.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsValidationContext(
@@ -8507,6 +8649,7 @@ class VirtualGatewayListenerTlsValidationContextTrust {
     this.file,
     this.sds,
   });
+
   factory VirtualGatewayListenerTlsValidationContextTrust.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayListenerTlsValidationContextTrust(
@@ -8539,6 +8682,7 @@ class VirtualGatewayLogging {
   VirtualGatewayLogging({
     this.accessLog,
   });
+
   factory VirtualGatewayLogging.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayLogging(
       accessLog: json['accessLog'] != null
@@ -8568,6 +8712,7 @@ class VirtualGatewayPortMapping {
     required this.port,
     required this.protocol,
   });
+
   factory VirtualGatewayPortMapping.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayPortMapping(
       port: json['port'] as int,
@@ -8663,6 +8808,7 @@ class VirtualGatewayRef {
     required this.version,
     required this.virtualGatewayName,
   });
+
   factory VirtualGatewayRef.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayRef(
       arn: json['arn'] as String,
@@ -8714,6 +8860,7 @@ class VirtualGatewaySpec {
     this.backendDefaults,
     this.logging,
   });
+
   factory VirtualGatewaySpec.fromJson(Map<String, dynamic> json) {
     return VirtualGatewaySpec(
       listeners: (json['listeners'] as List)
@@ -8752,6 +8899,7 @@ class VirtualGatewayStatus {
   VirtualGatewayStatus({
     required this.status,
   });
+
   factory VirtualGatewayStatus.fromJson(Map<String, dynamic> json) {
     return VirtualGatewayStatus(
       status: (json['status'] as String).toVirtualGatewayStatusCode(),
@@ -8814,6 +8962,7 @@ class VirtualGatewayTlsValidationContext {
     required this.trust,
     this.subjectAlternativeNames,
   });
+
   factory VirtualGatewayTlsValidationContext.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayTlsValidationContext(
@@ -8846,6 +8995,7 @@ class VirtualGatewayTlsValidationContextAcmTrust {
   VirtualGatewayTlsValidationContextAcmTrust({
     required this.certificateAuthorityArns,
   });
+
   factory VirtualGatewayTlsValidationContextAcmTrust.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayTlsValidationContextAcmTrust(
@@ -8874,6 +9024,7 @@ class VirtualGatewayTlsValidationContextFileTrust {
   VirtualGatewayTlsValidationContextFileTrust({
     required this.certificateChain,
   });
+
   factory VirtualGatewayTlsValidationContextFileTrust.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayTlsValidationContextFileTrust(
@@ -8904,6 +9055,7 @@ class VirtualGatewayTlsValidationContextSdsTrust {
   VirtualGatewayTlsValidationContextSdsTrust({
     required this.secretName,
   });
+
   factory VirtualGatewayTlsValidationContextSdsTrust.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayTlsValidationContextSdsTrust(
@@ -8939,6 +9091,7 @@ class VirtualGatewayTlsValidationContextTrust {
     this.file,
     this.sds,
   });
+
   factory VirtualGatewayTlsValidationContextTrust.fromJson(
       Map<String, dynamic> json) {
     return VirtualGatewayTlsValidationContextTrust(
@@ -8996,6 +9149,7 @@ class VirtualNodeConnectionPool {
     this.http2,
     this.tcp,
   });
+
   factory VirtualNodeConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualNodeConnectionPool(
       grpc: json['grpc'] != null
@@ -9055,6 +9209,7 @@ class VirtualNodeData {
     required this.status,
     required this.virtualNodeName,
   });
+
   factory VirtualNodeData.fromJson(Map<String, dynamic> json) {
     return VirtualNodeData(
       meshName: json['meshName'] as String,
@@ -9092,6 +9247,7 @@ class VirtualNodeGrpcConnectionPool {
   VirtualNodeGrpcConnectionPool({
     required this.maxRequests,
   });
+
   factory VirtualNodeGrpcConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualNodeGrpcConnectionPool(
       maxRequests: json['maxRequests'] as int,
@@ -9115,6 +9271,7 @@ class VirtualNodeHttp2ConnectionPool {
   VirtualNodeHttp2ConnectionPool({
     required this.maxRequests,
   });
+
   factory VirtualNodeHttp2ConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualNodeHttp2ConnectionPool(
       maxRequests: json['maxRequests'] as int,
@@ -9143,6 +9300,7 @@ class VirtualNodeHttpConnectionPool {
     required this.maxConnections,
     this.maxPendingRequests,
   });
+
   factory VirtualNodeHttpConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualNodeHttpConnectionPool(
       maxConnections: json['maxConnections'] as int,
@@ -9205,6 +9363,7 @@ class VirtualNodeRef {
     required this.version,
     required this.virtualNodeName,
   });
+
   factory VirtualNodeRef.fromJson(Map<String, dynamic> json) {
     return VirtualNodeRef(
       arn: json['arn'] as String,
@@ -9249,6 +9408,7 @@ class VirtualNodeServiceProvider {
   VirtualNodeServiceProvider({
     required this.virtualNodeName,
   });
+
   factory VirtualNodeServiceProvider.fromJson(Map<String, dynamic> json) {
     return VirtualNodeServiceProvider(
       virtualNodeName: json['virtualNodeName'] as String,
@@ -9291,6 +9451,7 @@ class VirtualNodeSpec {
     this.logging,
     this.serviceDiscovery,
   });
+
   factory VirtualNodeSpec.fromJson(Map<String, dynamic> json) {
     return VirtualNodeSpec(
       backendDefaults: json['backendDefaults'] != null
@@ -9339,6 +9500,7 @@ class VirtualNodeStatus {
   VirtualNodeStatus({
     required this.status,
   });
+
   factory VirtualNodeStatus.fromJson(Map<String, dynamic> json) {
     return VirtualNodeStatus(
       status: (json['status'] as String).toVirtualNodeStatusCode(),
@@ -9395,6 +9557,7 @@ class VirtualNodeTcpConnectionPool {
   VirtualNodeTcpConnectionPool({
     required this.maxConnections,
   });
+
   factory VirtualNodeTcpConnectionPool.fromJson(Map<String, dynamic> json) {
     return VirtualNodeTcpConnectionPool(
       maxConnections: json['maxConnections'] as int,
@@ -9433,6 +9596,7 @@ class VirtualRouterData {
     required this.status,
     required this.virtualRouterName,
   });
+
   factory VirtualRouterData.fromJson(Map<String, dynamic> json) {
     return VirtualRouterData(
       meshName: json['meshName'] as String,
@@ -9468,6 +9632,7 @@ class VirtualRouterListener {
   VirtualRouterListener({
     required this.portMapping,
   });
+
   factory VirtualRouterListener.fromJson(Map<String, dynamic> json) {
     return VirtualRouterListener(
       portMapping:
@@ -9528,6 +9693,7 @@ class VirtualRouterRef {
     required this.version,
     required this.virtualRouterName,
   });
+
   factory VirtualRouterRef.fromJson(Map<String, dynamic> json) {
     return VirtualRouterRef(
       arn: json['arn'] as String,
@@ -9572,6 +9738,7 @@ class VirtualRouterServiceProvider {
   VirtualRouterServiceProvider({
     required this.virtualRouterName,
   });
+
   factory VirtualRouterServiceProvider.fromJson(Map<String, dynamic> json) {
     return VirtualRouterServiceProvider(
       virtualRouterName: json['virtualRouterName'] as String,
@@ -9595,6 +9762,7 @@ class VirtualRouterSpec {
   VirtualRouterSpec({
     this.listeners,
   });
+
   factory VirtualRouterSpec.fromJson(Map<String, dynamic> json) {
     return VirtualRouterSpec(
       listeners: (json['listeners'] as List?)
@@ -9620,6 +9788,7 @@ class VirtualRouterStatus {
   VirtualRouterStatus({
     required this.status,
   });
+
   factory VirtualRouterStatus.fromJson(Map<String, dynamic> json) {
     return VirtualRouterStatus(
       status: (json['status'] as String).toVirtualRouterStatusCode(),
@@ -9679,6 +9848,7 @@ class VirtualServiceBackend {
     required this.virtualServiceName,
     this.clientPolicy,
   });
+
   factory VirtualServiceBackend.fromJson(Map<String, dynamic> json) {
     return VirtualServiceBackend(
       virtualServiceName: json['virtualServiceName'] as String,
@@ -9721,6 +9891,7 @@ class VirtualServiceData {
     required this.status,
     required this.virtualServiceName,
   });
+
   factory VirtualServiceData.fromJson(Map<String, dynamic> json) {
     return VirtualServiceData(
       meshName: json['meshName'] as String,
@@ -9761,6 +9932,7 @@ class VirtualServiceProvider {
     this.virtualNode,
     this.virtualRouter,
   });
+
   factory VirtualServiceProvider.fromJson(Map<String, dynamic> json) {
     return VirtualServiceProvider(
       virtualNode: json['virtualNode'] != null
@@ -9829,6 +10001,7 @@ class VirtualServiceRef {
     required this.version,
     required this.virtualServiceName,
   });
+
   factory VirtualServiceRef.fromJson(Map<String, dynamic> json) {
     return VirtualServiceRef(
       arn: json['arn'] as String,
@@ -9874,6 +10047,7 @@ class VirtualServiceSpec {
   VirtualServiceSpec({
     this.provider,
   });
+
   factory VirtualServiceSpec.fromJson(Map<String, dynamic> json) {
     return VirtualServiceSpec(
       provider: json['provider'] != null
@@ -9899,6 +10073,7 @@ class VirtualServiceStatus {
   VirtualServiceStatus({
     required this.status,
   });
+
   factory VirtualServiceStatus.fromJson(Map<String, dynamic> json) {
     return VirtualServiceStatus(
       status: (json['status'] as String).toVirtualServiceStatusCode(),
@@ -9962,6 +10137,7 @@ class WeightedTarget {
     required this.virtualNode,
     required this.weight,
   });
+
   factory WeightedTarget.fromJson(Map<String, dynamic> json) {
     return WeightedTarget(
       virtualNode: json['virtualNode'] as String,

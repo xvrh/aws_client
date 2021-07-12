@@ -522,6 +522,7 @@ class CreateFHIRDatastoreResponse {
     required this.datastoreId,
     required this.datastoreStatus,
   });
+
   factory CreateFHIRDatastoreResponse.fromJson(Map<String, dynamic> json) {
     return CreateFHIRDatastoreResponse(
       datastoreArn: json['DatastoreArn'] as String,
@@ -567,6 +568,7 @@ class DatastoreFilter {
     this.datastoreName,
     this.datastoreStatus,
   });
+
   factory DatastoreFilter.fromJson(Map<String, dynamic> json) {
     return DatastoreFilter(
       createdAfter: timeStampFromJson(json['CreatedAfter']),
@@ -633,6 +635,7 @@ class DatastoreProperties {
     this.datastoreName,
     this.preloadDataConfig,
   });
+
   factory DatastoreProperties.fromJson(Map<String, dynamic> json) {
     return DatastoreProperties(
       datastoreArn: json['DatastoreArn'] as String,
@@ -730,6 +733,7 @@ class DeleteFHIRDatastoreResponse {
     required this.datastoreId,
     required this.datastoreStatus,
   });
+
   factory DeleteFHIRDatastoreResponse.fromJson(Map<String, dynamic> json) {
     return DeleteFHIRDatastoreResponse(
       datastoreArn: json['DatastoreArn'] as String,
@@ -762,6 +766,7 @@ class DescribeFHIRDatastoreResponse {
   DescribeFHIRDatastoreResponse({
     required this.datastoreProperties,
   });
+
   factory DescribeFHIRDatastoreResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFHIRDatastoreResponse(
       datastoreProperties: DatastoreProperties.fromJson(
@@ -785,6 +790,7 @@ class DescribeFHIRExportJobResponse {
   DescribeFHIRExportJobResponse({
     required this.exportJobProperties,
   });
+
   factory DescribeFHIRExportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFHIRExportJobResponse(
       exportJobProperties: ExportJobProperties.fromJson(
@@ -808,6 +814,7 @@ class DescribeFHIRImportJobResponse {
   DescribeFHIRImportJobResponse({
     required this.importJobProperties,
   });
+
   factory DescribeFHIRImportJobResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFHIRImportJobResponse(
       importJobProperties: ImportJobProperties.fromJson(
@@ -867,6 +874,7 @@ class ExportJobProperties {
     this.jobName,
     this.message,
   });
+
   factory ExportJobProperties.fromJson(Map<String, dynamic> json) {
     return ExportJobProperties(
       datastoreId: json['DatastoreId'] as String,
@@ -974,6 +982,7 @@ class ImportJobProperties {
     this.jobName,
     this.message,
   });
+
   factory ImportJobProperties.fromJson(Map<String, dynamic> json) {
     return ImportJobProperties(
       datastoreId: json['DatastoreId'] as String,
@@ -1022,6 +1031,7 @@ class InputDataConfig {
   InputDataConfig({
     this.s3Uri,
   });
+
   factory InputDataConfig.fromJson(Map<String, dynamic> json) {
     return InputDataConfig(
       s3Uri: json['S3Uri'] as String?,
@@ -1085,6 +1095,7 @@ class ListFHIRDatastoresResponse {
     required this.datastorePropertiesList,
     this.nextToken,
   });
+
   factory ListFHIRDatastoresResponse.fromJson(Map<String, dynamic> json) {
     return ListFHIRDatastoresResponse(
       datastorePropertiesList: (json['DatastorePropertiesList'] as List)
@@ -1115,6 +1126,7 @@ class OutputDataConfig {
   OutputDataConfig({
     this.s3Uri,
   });
+
   factory OutputDataConfig.fromJson(Map<String, dynamic> json) {
     return OutputDataConfig(
       s3Uri: json['S3Uri'] as String?,
@@ -1138,6 +1150,7 @@ class PreloadDataConfig {
   PreloadDataConfig({
     required this.preloadDataType,
   });
+
   factory PreloadDataConfig.fromJson(Map<String, dynamic> json) {
     return PreloadDataConfig(
       preloadDataType: (json['PreloadDataType'] as String).toPreloadDataType(),
@@ -1192,6 +1205,7 @@ class StartFHIRExportJobResponse {
     required this.jobStatus,
     this.datastoreId,
   });
+
   factory StartFHIRExportJobResponse.fromJson(Map<String, dynamic> json) {
     return StartFHIRExportJobResponse(
       jobId: json['JobId'] as String,
@@ -1227,6 +1241,7 @@ class StartFHIRImportJobResponse {
     required this.jobStatus,
     this.datastoreId,
   });
+
   factory StartFHIRImportJobResponse.fromJson(Map<String, dynamic> json) {
     return StartFHIRImportJobResponse(
       jobId: json['JobId'] as String,

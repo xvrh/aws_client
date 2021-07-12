@@ -2732,6 +2732,7 @@ class AcceptGrantResponse {
     this.status,
     this.version,
   });
+
   factory AcceptGrantResponse.fromJson(Map<String, dynamic> json) {
     return AcceptGrantResponse(
       grantArn: json['GrantArn'] as String?,
@@ -2813,6 +2814,7 @@ class AutomatedDiscoveryInformation {
   AutomatedDiscoveryInformation({
     this.lastRunTime,
   });
+
   factory AutomatedDiscoveryInformation.fromJson(Map<String, dynamic> json) {
     return AutomatedDiscoveryInformation(
       lastRunTime: timeStampFromJson(json['LastRunTime']),
@@ -2839,6 +2841,7 @@ class BorrowConfiguration {
     required this.allowEarlyCheckIn,
     required this.maxTimeToLiveInMinutes,
   });
+
   factory BorrowConfiguration.fromJson(Map<String, dynamic> json) {
     return BorrowConfiguration(
       allowEarlyCheckIn: json['AllowEarlyCheckIn'] as bool,
@@ -2858,6 +2861,7 @@ class BorrowConfiguration {
 
 class CheckInLicenseResponse {
   CheckInLicenseResponse();
+
   factory CheckInLicenseResponse.fromJson(Map<String, dynamic> _) {
     return CheckInLicenseResponse();
   }
@@ -2902,6 +2906,7 @@ class CheckoutBorrowLicenseResponse {
     this.nodeId,
     this.signedToken,
   });
+
   factory CheckoutBorrowLicenseResponse.fromJson(Map<String, dynamic> json) {
     return CheckoutBorrowLicenseResponse(
       checkoutMetadata: (json['CheckoutMetadata'] as List?)
@@ -2976,6 +2981,7 @@ class CheckoutLicenseResponse {
     this.nodeId,
     this.signedToken,
   });
+
   factory CheckoutLicenseResponse.fromJson(Map<String, dynamic> json) {
     return CheckoutLicenseResponse(
       checkoutType: (json['CheckoutType'] as String?)?.toCheckoutType(),
@@ -3048,6 +3054,7 @@ class ConsumedLicenseSummary {
     this.consumedLicenses,
     this.resourceType,
   });
+
   factory ConsumedLicenseSummary.fromJson(Map<String, dynamic> json) {
     return ConsumedLicenseSummary(
       consumedLicenses: json['ConsumedLicenses'] as int?,
@@ -3081,6 +3088,7 @@ class ConsumptionConfiguration {
     this.provisionalConfiguration,
     this.renewType,
   });
+
   factory ConsumptionConfiguration.fromJson(Map<String, dynamic> json) {
     return ConsumptionConfiguration(
       borrowConfiguration: json['BorrowConfiguration'] != null
@@ -3124,6 +3132,7 @@ class CreateGrantResponse {
     this.status,
     this.version,
   });
+
   factory CreateGrantResponse.fromJson(Map<String, dynamic> json) {
     return CreateGrantResponse(
       grantArn: json['GrantArn'] as String?,
@@ -3159,6 +3168,7 @@ class CreateGrantVersionResponse {
     this.status,
     this.version,
   });
+
   factory CreateGrantVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateGrantVersionResponse(
       grantArn: json['GrantArn'] as String?,
@@ -3186,6 +3196,7 @@ class CreateLicenseConfigurationResponse {
   CreateLicenseConfigurationResponse({
     this.licenseConfigurationArn,
   });
+
   factory CreateLicenseConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateLicenseConfigurationResponse(
@@ -3209,6 +3220,7 @@ class CreateLicenseManagerReportGeneratorResponse {
   CreateLicenseManagerReportGeneratorResponse({
     this.licenseManagerReportGeneratorArn,
   });
+
   factory CreateLicenseManagerReportGeneratorResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateLicenseManagerReportGeneratorResponse(
@@ -3242,6 +3254,7 @@ class CreateLicenseResponse {
     this.status,
     this.version,
   });
+
   factory CreateLicenseResponse.fromJson(Map<String, dynamic> json) {
     return CreateLicenseResponse(
       licenseArn: json['LicenseArn'] as String?,
@@ -3277,6 +3290,7 @@ class CreateLicenseVersionResponse {
     this.status,
     this.version,
   });
+
   factory CreateLicenseVersionResponse.fromJson(Map<String, dynamic> json) {
     return CreateLicenseVersionResponse(
       licenseArn: json['LicenseArn'] as String?,
@@ -3312,6 +3326,7 @@ class CreateTokenResponse {
     this.tokenId,
     this.tokenType,
   });
+
   factory CreateTokenResponse.fromJson(Map<String, dynamic> json) {
     return CreateTokenResponse(
       token: json['Token'] as String?,
@@ -3344,6 +3359,7 @@ class DatetimeRange {
     required this.begin,
     this.end,
   });
+
   factory DatetimeRange.fromJson(Map<String, dynamic> json) {
     return DatetimeRange(
       begin: json['Begin'] as String,
@@ -3376,6 +3392,7 @@ class DeleteGrantResponse {
     this.status,
     this.version,
   });
+
   factory DeleteGrantResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGrantResponse(
       grantArn: json['GrantArn'] as String?,
@@ -3398,6 +3415,7 @@ class DeleteGrantResponse {
 
 class DeleteLicenseConfigurationResponse {
   DeleteLicenseConfigurationResponse();
+
   factory DeleteLicenseConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLicenseConfigurationResponse();
   }
@@ -3409,6 +3427,7 @@ class DeleteLicenseConfigurationResponse {
 
 class DeleteLicenseManagerReportGeneratorResponse {
   DeleteLicenseManagerReportGeneratorResponse();
+
   factory DeleteLicenseManagerReportGeneratorResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteLicenseManagerReportGeneratorResponse();
@@ -3430,6 +3449,7 @@ class DeleteLicenseResponse {
     this.deletionDate,
     this.status,
   });
+
   factory DeleteLicenseResponse.fromJson(Map<String, dynamic> json) {
     return DeleteLicenseResponse(
       deletionDate: json['DeletionDate'] as String?,
@@ -3449,6 +3469,7 @@ class DeleteLicenseResponse {
 
 class DeleteTokenResponse {
   DeleteTokenResponse();
+
   factory DeleteTokenResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTokenResponse();
   }
@@ -3509,6 +3530,7 @@ class Entitlement {
     this.overage,
     this.value,
   });
+
   factory Entitlement.fromJson(Map<String, dynamic> json) {
     return Entitlement(
       name: json['Name'] as String,
@@ -3554,6 +3576,7 @@ class EntitlementData {
     required this.unit,
     this.value,
   });
+
   factory EntitlementData.fromJson(Map<String, dynamic> json) {
     return EntitlementData(
       name: json['Name'] as String,
@@ -3900,6 +3923,7 @@ class EntitlementUsage {
     required this.unit,
     this.maxCount,
   });
+
   factory EntitlementUsage.fromJson(Map<String, dynamic> json) {
     return EntitlementUsage(
       consumedValue: json['ConsumedValue'] as String,
@@ -3934,6 +3958,7 @@ class ExtendLicenseConsumptionResponse {
     this.expiration,
     this.licenseConsumptionToken,
   });
+
   factory ExtendLicenseConsumptionResponse.fromJson(Map<String, dynamic> json) {
     return ExtendLicenseConsumptionResponse(
       expiration: json['Expiration'] as String?,
@@ -3966,6 +3991,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String?,
@@ -3993,6 +4019,7 @@ class GetAccessTokenResponse {
   GetAccessTokenResponse({
     this.accessToken,
   });
+
   factory GetAccessTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetAccessTokenResponse(
       accessToken: json['AccessToken'] as String?,
@@ -4014,6 +4041,7 @@ class GetGrantResponse {
   GetGrantResponse({
     this.grant,
   });
+
   factory GetGrantResponse.fromJson(Map<String, dynamic> json) {
     return GetGrantResponse(
       grant: json['Grant'] != null
@@ -4101,6 +4129,7 @@ class GetLicenseConfigurationResponse {
     this.status,
     this.tags,
   });
+
   factory GetLicenseConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetLicenseConfigurationResponse(
       automatedDiscoveryInformation:
@@ -4202,6 +4231,7 @@ class GetLicenseManagerReportGeneratorResponse {
   GetLicenseManagerReportGeneratorResponse({
     this.reportGenerator,
   });
+
   factory GetLicenseManagerReportGeneratorResponse.fromJson(
       Map<String, dynamic> json) {
     return GetLicenseManagerReportGeneratorResponse(
@@ -4227,6 +4257,7 @@ class GetLicenseResponse {
   GetLicenseResponse({
     this.license,
   });
+
   factory GetLicenseResponse.fromJson(Map<String, dynamic> json) {
     return GetLicenseResponse(
       license: json['License'] != null
@@ -4250,6 +4281,7 @@ class GetLicenseUsageResponse {
   GetLicenseUsageResponse({
     this.licenseUsage,
   });
+
   factory GetLicenseUsageResponse.fromJson(Map<String, dynamic> json) {
     return GetLicenseUsageResponse(
       licenseUsage: json['LicenseUsage'] != null
@@ -4292,6 +4324,7 @@ class GetServiceSettingsResponse {
     this.s3BucketArn,
     this.snsTopicArn,
   });
+
   factory GetServiceSettingsResponse.fromJson(Map<String, dynamic> json) {
     return GetServiceSettingsResponse(
       enableCrossAccountsDiscovery:
@@ -4370,6 +4403,7 @@ class Grant {
     required this.version,
     this.statusReason,
   });
+
   factory Grant.fromJson(Map<String, dynamic> json) {
     return Grant(
       grantArn: json['GrantArn'] as String,
@@ -4542,6 +4576,7 @@ class GrantedLicense {
     this.validity,
     this.version,
   });
+
   factory GrantedLicense.fromJson(Map<String, dynamic> json) {
     return GrantedLicense(
       beneficiary: json['Beneficiary'] as String?,
@@ -4631,6 +4666,7 @@ class InventoryFilter {
     required this.name,
     this.value,
   });
+
   factory InventoryFilter.fromJson(Map<String, dynamic> json) {
     return InventoryFilter(
       condition: (json['Condition'] as String).toInventoryFilterCondition(),
@@ -4703,6 +4739,7 @@ class Issuer {
     required this.name,
     this.signKey,
   });
+
   factory Issuer.fromJson(Map<String, dynamic> json) {
     return Issuer(
       name: json['Name'] as String,
@@ -4738,6 +4775,7 @@ class IssuerDetails {
     this.name,
     this.signKey,
   });
+
   factory IssuerDetails.fromJson(Map<String, dynamic> json) {
     return IssuerDetails(
       keyFingerprint: json['KeyFingerprint'] as String?,
@@ -4819,6 +4857,7 @@ class License {
     this.validity,
     this.version,
   });
+
   factory License.fromJson(Map<String, dynamic> json) {
     return License(
       beneficiary: json['Beneficiary'] as String?,
@@ -4959,6 +4998,7 @@ class LicenseConfiguration {
     this.productInformationList,
     this.status,
   });
+
   factory LicenseConfiguration.fromJson(Map<String, dynamic> json) {
     return LicenseConfiguration(
       automatedDiscoveryInformation:
@@ -5070,6 +5110,7 @@ class LicenseConfigurationAssociation {
     this.resourceOwnerId,
     this.resourceType,
   });
+
   factory LicenseConfigurationAssociation.fromJson(Map<String, dynamic> json) {
     return LicenseConfigurationAssociation(
       amiAssociationScope: json['AmiAssociationScope'] as String?,
@@ -5156,6 +5197,7 @@ class LicenseConfigurationUsage {
     this.resourceStatus,
     this.resourceType,
   });
+
   factory LicenseConfigurationUsage.fromJson(Map<String, dynamic> json) {
     return LicenseConfigurationUsage(
       associationTime: timeStampFromJson(json['AssociationTime']),
@@ -5288,6 +5330,7 @@ class LicenseOperationFailure {
     this.resourceOwnerId,
     this.resourceType,
   });
+
   factory LicenseOperationFailure.fromJson(Map<String, dynamic> json) {
     return LicenseOperationFailure(
       errorMessage: json['ErrorMessage'] as String?,
@@ -5339,6 +5382,7 @@ class LicenseSpecification {
     required this.licenseConfigurationArn,
     this.amiAssociationScope,
   });
+
   factory LicenseSpecification.fromJson(Map<String, dynamic> json) {
     return LicenseSpecification(
       licenseConfigurationArn: json['LicenseConfigurationArn'] as String,
@@ -5418,6 +5462,7 @@ class LicenseUsage {
   LicenseUsage({
     this.entitlementUsages,
   });
+
   factory LicenseUsage.fromJson(Map<String, dynamic> json) {
     return LicenseUsage(
       entitlementUsages: (json['EntitlementUsages'] as List?)
@@ -5446,6 +5491,7 @@ class ListAssociationsForLicenseConfigurationResponse {
     this.licenseConfigurationAssociations,
     this.nextToken,
   });
+
   factory ListAssociationsForLicenseConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAssociationsForLicenseConfigurationResponse(
@@ -5482,6 +5528,7 @@ class ListDistributedGrantsResponse {
     this.grants,
     this.nextToken,
   });
+
   factory ListDistributedGrantsResponse.fromJson(Map<String, dynamic> json) {
     return ListDistributedGrantsResponse(
       grants: (json['Grants'] as List?)
@@ -5513,6 +5560,7 @@ class ListFailuresForLicenseConfigurationOperationsResponse {
     this.licenseOperationFailureList,
     this.nextToken,
   });
+
   factory ListFailuresForLicenseConfigurationOperationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListFailuresForLicenseConfigurationOperationsResponse(
@@ -5548,6 +5596,7 @@ class ListLicenseConfigurationsResponse {
     this.licenseConfigurations,
     this.nextToken,
   });
+
   factory ListLicenseConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListLicenseConfigurationsResponse(
@@ -5582,6 +5631,7 @@ class ListLicenseManagerReportGeneratorsResponse {
     this.nextToken,
     this.reportGenerators,
   });
+
   factory ListLicenseManagerReportGeneratorsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListLicenseManagerReportGeneratorsResponse(
@@ -5614,6 +5664,7 @@ class ListLicenseSpecificationsForResourceResponse {
     this.licenseSpecifications,
     this.nextToken,
   });
+
   factory ListLicenseSpecificationsForResourceResponse.fromJson(
       Map<String, dynamic> json) {
     return ListLicenseSpecificationsForResourceResponse(
@@ -5647,6 +5698,7 @@ class ListLicenseVersionsResponse {
     this.licenses,
     this.nextToken,
   });
+
   factory ListLicenseVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListLicenseVersionsResponse(
       licenses: (json['Licenses'] as List?)
@@ -5678,6 +5730,7 @@ class ListLicensesResponse {
     this.licenses,
     this.nextToken,
   });
+
   factory ListLicensesResponse.fromJson(Map<String, dynamic> json) {
     return ListLicensesResponse(
       licenses: (json['Licenses'] as List?)
@@ -5709,6 +5762,7 @@ class ListReceivedGrantsResponse {
     this.grants,
     this.nextToken,
   });
+
   factory ListReceivedGrantsResponse.fromJson(Map<String, dynamic> json) {
     return ListReceivedGrantsResponse(
       grants: (json['Grants'] as List?)
@@ -5740,6 +5794,7 @@ class ListReceivedLicensesResponse {
     this.licenses,
     this.nextToken,
   });
+
   factory ListReceivedLicensesResponse.fromJson(Map<String, dynamic> json) {
     return ListReceivedLicensesResponse(
       licenses: (json['Licenses'] as List?)
@@ -5771,6 +5826,7 @@ class ListResourceInventoryResponse {
     this.nextToken,
     this.resourceInventoryList,
   });
+
   factory ListResourceInventoryResponse.fromJson(Map<String, dynamic> json) {
     return ListResourceInventoryResponse(
       nextToken: json['NextToken'] as String?,
@@ -5799,6 +5855,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -5827,6 +5884,7 @@ class ListTokensResponse {
     this.nextToken,
     this.tokens,
   });
+
   factory ListTokensResponse.fromJson(Map<String, dynamic> json) {
     return ListTokensResponse(
       nextToken: json['NextToken'] as String?,
@@ -5858,6 +5916,7 @@ class ListUsageForLicenseConfigurationResponse {
     this.licenseConfigurationUsageList,
     this.nextToken,
   });
+
   factory ListUsageForLicenseConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListUsageForLicenseConfigurationResponse(
@@ -5894,6 +5953,7 @@ class ManagedResourceSummary {
     this.associationCount,
     this.resourceType,
   });
+
   factory ManagedResourceSummary.fromJson(Map<String, dynamic> json) {
     return ManagedResourceSummary(
       associationCount: json['AssociationCount'] as int?,
@@ -5923,6 +5983,7 @@ class Metadata {
     this.name,
     this.value,
   });
+
   factory Metadata.fromJson(Map<String, dynamic> json) {
     return Metadata(
       name: json['Name'] as String?,
@@ -5948,6 +6009,7 @@ class OrganizationConfiguration {
   OrganizationConfiguration({
     required this.enableIntegration,
   });
+
   factory OrganizationConfiguration.fromJson(Map<String, dynamic> json) {
     return OrganizationConfiguration(
       enableIntegration: json['EnableIntegration'] as bool,
@@ -6046,6 +6108,7 @@ class ProductInformation {
     required this.productInformationFilterList,
     required this.resourceType,
   });
+
   factory ProductInformation.fromJson(Map<String, dynamic> json) {
     return ProductInformation(
       productInformationFilterList:
@@ -6084,6 +6147,7 @@ class ProductInformationFilter {
     required this.productInformationFilterName,
     this.productInformationFilterValue,
   });
+
   factory ProductInformationFilter.fromJson(Map<String, dynamic> json) {
     return ProductInformationFilter(
       productInformationFilterComparator:
@@ -6120,6 +6184,7 @@ class ProvisionalConfiguration {
   ProvisionalConfiguration({
     required this.maxTimeToLiveInMinutes,
   });
+
   factory ProvisionalConfiguration.fromJson(Map<String, dynamic> json) {
     return ProvisionalConfiguration(
       maxTimeToLiveInMinutes: json['MaxTimeToLiveInMinutes'] as int,
@@ -6148,6 +6213,7 @@ class ReceivedMetadata {
     this.receivedStatus,
     this.receivedStatusReason,
   });
+
   factory ReceivedMetadata.fromJson(Map<String, dynamic> json) {
     return ReceivedMetadata(
       allowedOperations: (json['AllowedOperations'] as List?)
@@ -6246,6 +6312,7 @@ class RejectGrantResponse {
     this.status,
     this.version,
   });
+
   factory RejectGrantResponse.fromJson(Map<String, dynamic> json) {
     return RejectGrantResponse(
       grantArn: json['GrantArn'] as String?,
@@ -6308,6 +6375,7 @@ class ReportContext {
   ReportContext({
     required this.licenseConfigurationArns,
   });
+
   factory ReportContext.fromJson(Map<String, dynamic> json) {
     return ReportContext(
       licenseConfigurationArns: (json['licenseConfigurationArns'] as List)
@@ -6339,6 +6407,7 @@ class ReportFrequency {
     this.period,
     this.value,
   });
+
   factory ReportFrequency.fromJson(Map<String, dynamic> json) {
     return ReportFrequency(
       period: (json['period'] as String?)?.toReportFrequencyType(),
@@ -6445,6 +6514,7 @@ class ReportGenerator {
     this.s3Location,
     this.tags,
   });
+
   factory ReportGenerator.fromJson(Map<String, dynamic> json) {
     return ReportGenerator(
       createTime: json['CreateTime'] as String?,
@@ -6573,6 +6643,7 @@ class ResourceInventory {
     this.resourceOwningAccountId,
     this.resourceType,
   });
+
   factory ResourceInventory.fromJson(Map<String, dynamic> json) {
     return ResourceInventory(
       platform: json['Platform'] as String?,
@@ -6658,6 +6729,7 @@ class S3Location {
     this.bucket,
     this.keyPrefix,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['bucket'] as String?,
@@ -6687,6 +6759,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -6706,6 +6779,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6748,6 +6822,7 @@ class TokenData {
     this.tokenProperties,
     this.tokenType,
   });
+
   factory TokenData.fromJson(Map<String, dynamic> json) {
     return TokenData(
       expirationTime: json['ExpirationTime'] as String?,
@@ -6811,6 +6886,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -6822,6 +6898,7 @@ class UntagResourceResponse {
 
 class UpdateLicenseConfigurationResponse {
   UpdateLicenseConfigurationResponse();
+
   factory UpdateLicenseConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLicenseConfigurationResponse();
   }
@@ -6833,6 +6910,7 @@ class UpdateLicenseConfigurationResponse {
 
 class UpdateLicenseManagerReportGeneratorResponse {
   UpdateLicenseManagerReportGeneratorResponse();
+
   factory UpdateLicenseManagerReportGeneratorResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateLicenseManagerReportGeneratorResponse();
@@ -6845,6 +6923,7 @@ class UpdateLicenseManagerReportGeneratorResponse {
 
 class UpdateLicenseSpecificationsForResourceResponse {
   UpdateLicenseSpecificationsForResourceResponse();
+
   factory UpdateLicenseSpecificationsForResourceResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateLicenseSpecificationsForResourceResponse();
@@ -6857,6 +6936,7 @@ class UpdateLicenseSpecificationsForResourceResponse {
 
 class UpdateServiceSettingsResponse {
   UpdateServiceSettingsResponse();
+
   factory UpdateServiceSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateServiceSettingsResponse();
   }

@@ -7434,6 +7434,7 @@ class ServiceCatalog {
 
 class AcceptPortfolioShareOutput {
   AcceptPortfolioShareOutput();
+
   factory AcceptPortfolioShareOutput.fromJson(Map<String, dynamic> _) {
     return AcceptPortfolioShareOutput();
   }
@@ -7469,6 +7470,7 @@ class AccessLevelFilter {
     this.key,
     this.value,
   });
+
   factory AccessLevelFilter.fromJson(Map<String, dynamic> json) {
     return AccessLevelFilter(
       key: (json['Key'] as String?)?.toAccessLevelFilterKey(),
@@ -7554,6 +7556,7 @@ extension on String {
 
 class AssociateBudgetWithResourceOutput {
   AssociateBudgetWithResourceOutput();
+
   factory AssociateBudgetWithResourceOutput.fromJson(Map<String, dynamic> _) {
     return AssociateBudgetWithResourceOutput();
   }
@@ -7565,6 +7568,7 @@ class AssociateBudgetWithResourceOutput {
 
 class AssociatePrincipalWithPortfolioOutput {
   AssociatePrincipalWithPortfolioOutput();
+
   factory AssociatePrincipalWithPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return AssociatePrincipalWithPortfolioOutput();
@@ -7577,6 +7581,7 @@ class AssociatePrincipalWithPortfolioOutput {
 
 class AssociateProductWithPortfolioOutput {
   AssociateProductWithPortfolioOutput();
+
   factory AssociateProductWithPortfolioOutput.fromJson(Map<String, dynamic> _) {
     return AssociateProductWithPortfolioOutput();
   }
@@ -7588,6 +7593,7 @@ class AssociateProductWithPortfolioOutput {
 
 class AssociateServiceActionWithProvisioningArtifactOutput {
   AssociateServiceActionWithProvisioningArtifactOutput();
+
   factory AssociateServiceActionWithProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> _) {
     return AssociateServiceActionWithProvisioningArtifactOutput();
@@ -7600,6 +7606,7 @@ class AssociateServiceActionWithProvisioningArtifactOutput {
 
 class AssociateTagOptionWithResourceOutput {
   AssociateTagOptionWithResourceOutput();
+
   factory AssociateTagOptionWithResourceOutput.fromJson(
       Map<String, dynamic> _) {
     return AssociateTagOptionWithResourceOutput();
@@ -7618,6 +7625,7 @@ class BatchAssociateServiceActionWithProvisioningArtifactOutput {
   BatchAssociateServiceActionWithProvisioningArtifactOutput({
     this.failedServiceActionAssociations,
   });
+
   factory BatchAssociateServiceActionWithProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchAssociateServiceActionWithProvisioningArtifactOutput(
@@ -7648,6 +7656,7 @@ class BatchDisassociateServiceActionFromProvisioningArtifactOutput {
   BatchDisassociateServiceActionFromProvisioningArtifactOutput({
     this.failedServiceActionAssociations,
   });
+
   factory BatchDisassociateServiceActionFromProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchDisassociateServiceActionFromProvisioningArtifactOutput(
@@ -7678,6 +7687,7 @@ class BudgetDetail {
   BudgetDetail({
     this.budgetName,
   });
+
   factory BudgetDetail.fromJson(Map<String, dynamic> json) {
     return BudgetDetail(
       budgetName: json['BudgetName'] as String?,
@@ -7733,6 +7743,7 @@ class CloudWatchDashboard {
   CloudWatchDashboard({
     this.name,
   });
+
   factory CloudWatchDashboard.fromJson(Map<String, dynamic> json) {
     return CloudWatchDashboard(
       name: json['Name'] as String?,
@@ -7794,6 +7805,7 @@ class ConstraintDetail {
     this.productId,
     this.type,
   });
+
   factory ConstraintDetail.fromJson(Map<String, dynamic> json) {
     return ConstraintDetail(
       constraintId: json['ConstraintId'] as String?,
@@ -7850,6 +7862,7 @@ class ConstraintSummary {
     this.description,
     this.type,
   });
+
   factory ConstraintSummary.fromJson(Map<String, dynamic> json) {
     return ConstraintSummary(
       description: json['Description'] as String?,
@@ -7897,6 +7910,7 @@ class CopyProductOutput {
   CopyProductOutput({
     this.copyProductToken,
   });
+
   factory CopyProductOutput.fromJson(Map<String, dynamic> json) {
     return CopyProductOutput(
       copyProductToken: json['CopyProductToken'] as String?,
@@ -7959,6 +7973,7 @@ class CreateConstraintOutput {
     this.constraintParameters,
     this.status,
   });
+
   factory CreateConstraintOutput.fromJson(Map<String, dynamic> json) {
     return CreateConstraintOutput(
       constraintDetail: json['ConstraintDetail'] != null
@@ -7994,6 +8009,7 @@ class CreatePortfolioOutput {
     this.portfolioDetail,
     this.tags,
   });
+
   factory CreatePortfolioOutput.fromJson(Map<String, dynamic> json) {
     return CreatePortfolioOutput(
       portfolioDetail: json['PortfolioDetail'] != null
@@ -8025,6 +8041,7 @@ class CreatePortfolioShareOutput {
   CreatePortfolioShareOutput({
     this.portfolioShareToken,
   });
+
   factory CreatePortfolioShareOutput.fromJson(Map<String, dynamic> json) {
     return CreatePortfolioShareOutput(
       portfolioShareToken: json['PortfolioShareToken'] as String?,
@@ -8055,6 +8072,7 @@ class CreateProductOutput {
     this.provisioningArtifactDetail,
     this.tags,
   });
+
   factory CreateProductOutput.fromJson(Map<String, dynamic> json) {
     return CreateProductOutput(
       productViewDetail: json['ProductViewDetail'] != null
@@ -8108,6 +8126,7 @@ class CreateProvisionedProductPlanOutput {
     this.provisionedProductName,
     this.provisioningArtifactId,
   });
+
   factory CreateProvisionedProductPlanOutput.fromJson(
       Map<String, dynamic> json) {
     return CreateProvisionedProductPlanOutput(
@@ -8165,6 +8184,7 @@ class CreateProvisioningArtifactOutput {
     this.provisioningArtifactDetail,
     this.status,
   });
+
   factory CreateProvisioningArtifactOutput.fromJson(Map<String, dynamic> json) {
     return CreateProvisioningArtifactOutput(
       info: (json['Info'] as Map<String, dynamic>?)
@@ -8197,6 +8217,7 @@ class CreateServiceActionOutput {
   CreateServiceActionOutput({
     this.serviceActionDetail,
   });
+
   factory CreateServiceActionOutput.fromJson(Map<String, dynamic> json) {
     return CreateServiceActionOutput(
       serviceActionDetail: json['ServiceActionDetail'] != null
@@ -8222,6 +8243,7 @@ class CreateTagOptionOutput {
   CreateTagOptionOutput({
     this.tagOptionDetail,
   });
+
   factory CreateTagOptionOutput.fromJson(Map<String, dynamic> json) {
     return CreateTagOptionOutput(
       tagOptionDetail: json['TagOptionDetail'] != null
@@ -8241,6 +8263,7 @@ class CreateTagOptionOutput {
 
 class DeleteConstraintOutput {
   DeleteConstraintOutput();
+
   factory DeleteConstraintOutput.fromJson(Map<String, dynamic> _) {
     return DeleteConstraintOutput();
   }
@@ -8252,6 +8275,7 @@ class DeleteConstraintOutput {
 
 class DeletePortfolioOutput {
   DeletePortfolioOutput();
+
   factory DeletePortfolioOutput.fromJson(Map<String, dynamic> _) {
     return DeletePortfolioOutput();
   }
@@ -8269,6 +8293,7 @@ class DeletePortfolioShareOutput {
   DeletePortfolioShareOutput({
     this.portfolioShareToken,
   });
+
   factory DeletePortfolioShareOutput.fromJson(Map<String, dynamic> json) {
     return DeletePortfolioShareOutput(
       portfolioShareToken: json['PortfolioShareToken'] as String?,
@@ -8286,6 +8311,7 @@ class DeletePortfolioShareOutput {
 
 class DeleteProductOutput {
   DeleteProductOutput();
+
   factory DeleteProductOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProductOutput();
   }
@@ -8297,6 +8323,7 @@ class DeleteProductOutput {
 
 class DeleteProvisionedProductPlanOutput {
   DeleteProvisionedProductPlanOutput();
+
   factory DeleteProvisionedProductPlanOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProvisionedProductPlanOutput();
   }
@@ -8308,6 +8335,7 @@ class DeleteProvisionedProductPlanOutput {
 
 class DeleteProvisioningArtifactOutput {
   DeleteProvisioningArtifactOutput();
+
   factory DeleteProvisioningArtifactOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProvisioningArtifactOutput();
   }
@@ -8319,6 +8347,7 @@ class DeleteProvisioningArtifactOutput {
 
 class DeleteServiceActionOutput {
   DeleteServiceActionOutput();
+
   factory DeleteServiceActionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteServiceActionOutput();
   }
@@ -8330,6 +8359,7 @@ class DeleteServiceActionOutput {
 
 class DeleteTagOptionOutput {
   DeleteTagOptionOutput();
+
   factory DeleteTagOptionOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTagOptionOutput();
   }
@@ -8354,6 +8384,7 @@ class DescribeConstraintOutput {
     this.constraintParameters,
     this.status,
   });
+
   factory DescribeConstraintOutput.fromJson(Map<String, dynamic> json) {
     return DescribeConstraintOutput(
       constraintDetail: json['ConstraintDetail'] != null
@@ -8393,6 +8424,7 @@ class DescribeCopyProductStatusOutput {
     this.statusDetail,
     this.targetProductId,
   });
+
   factory DescribeCopyProductStatusOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCopyProductStatusOutput(
       copyProductStatus:
@@ -8434,6 +8466,7 @@ class DescribePortfolioOutput {
     this.tagOptions,
     this.tags,
   });
+
   factory DescribePortfolioOutput.fromJson(Map<String, dynamic> json) {
     return DescribePortfolioOutput(
       budgets: (json['Budgets'] as List?)
@@ -8494,6 +8527,7 @@ class DescribePortfolioShareStatusOutput {
     this.shareDetails,
     this.status,
   });
+
   factory DescribePortfolioShareStatusOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribePortfolioShareStatusOutput(
@@ -8575,6 +8609,7 @@ class DescribePortfolioSharesOutput {
     this.nextPageToken,
     this.portfolioShareDetails,
   });
+
   factory DescribePortfolioSharesOutput.fromJson(Map<String, dynamic> json) {
     return DescribePortfolioSharesOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -8620,6 +8655,7 @@ class DescribeProductAsAdminOutput {
     this.tagOptions,
     this.tags,
   });
+
   factory DescribeProductAsAdminOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProductAsAdminOutput(
       budgets: (json['Budgets'] as List?)
@@ -8683,6 +8719,7 @@ class DescribeProductOutput {
     this.productViewSummary,
     this.provisioningArtifacts,
   });
+
   factory DescribeProductOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProductOutput(
       budgets: (json['Budgets'] as List?)
@@ -8730,6 +8767,7 @@ class DescribeProductViewOutput {
     this.productViewSummary,
     this.provisioningArtifacts,
   });
+
   factory DescribeProductViewOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProductViewOutput(
       productViewSummary: json['ProductViewSummary'] != null
@@ -8765,6 +8803,7 @@ class DescribeProvisionedProductOutput {
     this.cloudWatchDashboards,
     this.provisionedProductDetail,
   });
+
   factory DescribeProvisionedProductOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProvisionedProductOutput(
       cloudWatchDashboards: (json['CloudWatchDashboards'] as List?)
@@ -8807,6 +8846,7 @@ class DescribeProvisionedProductPlanOutput {
     this.provisionedProductPlanDetails,
     this.resourceChanges,
   });
+
   factory DescribeProvisionedProductPlanOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeProvisionedProductPlanOutput(
@@ -8851,6 +8891,7 @@ class DescribeProvisioningArtifactOutput {
     this.provisioningArtifactDetail,
     this.status,
   });
+
   factory DescribeProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeProvisioningArtifactOutput(
@@ -8907,6 +8948,7 @@ class DescribeProvisioningParametersOutput {
     this.tagOptions,
     this.usageInstructions,
   });
+
   factory DescribeProvisioningParametersOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeProvisioningParametersOutput(
@@ -8984,6 +9026,7 @@ class DescribeRecordOutput {
     this.recordDetail,
     this.recordOutputs,
   });
+
   factory DescribeRecordOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRecordOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9016,6 +9059,7 @@ class DescribeServiceActionExecutionParametersOutput {
   DescribeServiceActionExecutionParametersOutput({
     this.serviceActionParameters,
   });
+
   factory DescribeServiceActionExecutionParametersOutput.fromJson(
       Map<String, dynamic> json) {
     return DescribeServiceActionExecutionParametersOutput(
@@ -9042,6 +9086,7 @@ class DescribeServiceActionOutput {
   DescribeServiceActionOutput({
     this.serviceActionDetail,
   });
+
   factory DescribeServiceActionOutput.fromJson(Map<String, dynamic> json) {
     return DescribeServiceActionOutput(
       serviceActionDetail: json['ServiceActionDetail'] != null
@@ -9067,6 +9112,7 @@ class DescribeTagOptionOutput {
   DescribeTagOptionOutput({
     this.tagOptionDetail,
   });
+
   factory DescribeTagOptionOutput.fromJson(Map<String, dynamic> json) {
     return DescribeTagOptionOutput(
       tagOptionDetail: json['TagOptionDetail'] != null
@@ -9086,6 +9132,7 @@ class DescribeTagOptionOutput {
 
 class DisableAWSOrganizationsAccessOutput {
   DisableAWSOrganizationsAccessOutput();
+
   factory DisableAWSOrganizationsAccessOutput.fromJson(Map<String, dynamic> _) {
     return DisableAWSOrganizationsAccessOutput();
   }
@@ -9097,6 +9144,7 @@ class DisableAWSOrganizationsAccessOutput {
 
 class DisassociateBudgetFromResourceOutput {
   DisassociateBudgetFromResourceOutput();
+
   factory DisassociateBudgetFromResourceOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociateBudgetFromResourceOutput();
@@ -9109,6 +9157,7 @@ class DisassociateBudgetFromResourceOutput {
 
 class DisassociatePrincipalFromPortfolioOutput {
   DisassociatePrincipalFromPortfolioOutput();
+
   factory DisassociatePrincipalFromPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociatePrincipalFromPortfolioOutput();
@@ -9121,6 +9170,7 @@ class DisassociatePrincipalFromPortfolioOutput {
 
 class DisassociateProductFromPortfolioOutput {
   DisassociateProductFromPortfolioOutput();
+
   factory DisassociateProductFromPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociateProductFromPortfolioOutput();
@@ -9133,6 +9183,7 @@ class DisassociateProductFromPortfolioOutput {
 
 class DisassociateServiceActionFromProvisioningArtifactOutput {
   DisassociateServiceActionFromProvisioningArtifactOutput();
+
   factory DisassociateServiceActionFromProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociateServiceActionFromProvisioningArtifactOutput();
@@ -9145,6 +9196,7 @@ class DisassociateServiceActionFromProvisioningArtifactOutput {
 
 class DisassociateTagOptionFromResourceOutput {
   DisassociateTagOptionFromResourceOutput();
+
   factory DisassociateTagOptionFromResourceOutput.fromJson(
       Map<String, dynamic> _) {
     return DisassociateTagOptionFromResourceOutput();
@@ -9157,6 +9209,7 @@ class DisassociateTagOptionFromResourceOutput {
 
 class EnableAWSOrganizationsAccessOutput {
   EnableAWSOrganizationsAccessOutput();
+
   factory EnableAWSOrganizationsAccessOutput.fromJson(Map<String, dynamic> _) {
     return EnableAWSOrganizationsAccessOutput();
   }
@@ -9201,6 +9254,7 @@ class ExecuteProvisionedProductPlanOutput {
   ExecuteProvisionedProductPlanOutput({
     this.recordDetail,
   });
+
   factory ExecuteProvisionedProductPlanOutput.fromJson(
       Map<String, dynamic> json) {
     return ExecuteProvisionedProductPlanOutput(
@@ -9226,6 +9280,7 @@ class ExecuteProvisionedProductServiceActionOutput {
   ExecuteProvisionedProductServiceActionOutput({
     this.recordDetail,
   });
+
   factory ExecuteProvisionedProductServiceActionOutput.fromJson(
       Map<String, dynamic> json) {
     return ExecuteProvisionedProductServiceActionOutput(
@@ -9260,6 +9315,7 @@ class ExecutionParameter {
     this.name,
     this.type,
   });
+
   factory ExecutionParameter.fromJson(Map<String, dynamic> json) {
     return ExecutionParameter(
       defaultValues: (json['DefaultValues'] as List?)
@@ -9310,6 +9366,7 @@ class FailedServiceActionAssociation {
     this.provisioningArtifactId,
     this.serviceActionId,
   });
+
   factory FailedServiceActionAssociation.fromJson(Map<String, dynamic> json) {
     return FailedServiceActionAssociation(
       errorCode:
@@ -9345,6 +9402,7 @@ class GetAWSOrganizationsAccessStatusOutput {
   GetAWSOrganizationsAccessStatusOutput({
     this.accessStatus,
   });
+
   factory GetAWSOrganizationsAccessStatusOutput.fromJson(
       Map<String, dynamic> json) {
     return GetAWSOrganizationsAccessStatusOutput(
@@ -9374,6 +9432,7 @@ class GetProvisionedProductOutputsOutput {
     this.nextPageToken,
     this.outputs,
   });
+
   factory GetProvisionedProductOutputsOutput.fromJson(
       Map<String, dynamic> json) {
     return GetProvisionedProductOutputsOutput(
@@ -9401,6 +9460,7 @@ class ImportAsProvisionedProductOutput {
   ImportAsProvisionedProductOutput({
     this.recordDetail,
   });
+
   factory ImportAsProvisionedProductOutput.fromJson(Map<String, dynamic> json) {
     return ImportAsProvisionedProductOutput(
       recordDetail: json['RecordDetail'] != null
@@ -9429,6 +9489,7 @@ class LaunchPath {
     this.id,
     this.name,
   });
+
   factory LaunchPath.fromJson(Map<String, dynamic> json) {
     return LaunchPath(
       id: json['Id'] as String?,
@@ -9466,6 +9527,7 @@ class LaunchPathSummary {
     this.name,
     this.tags,
   });
+
   factory LaunchPathSummary.fromJson(Map<String, dynamic> json) {
     return LaunchPathSummary(
       constraintSummaries: (json['ConstraintSummaries'] as List?)
@@ -9508,6 +9570,7 @@ class ListAcceptedPortfolioSharesOutput {
     this.nextPageToken,
     this.portfolioDetails,
   });
+
   factory ListAcceptedPortfolioSharesOutput.fromJson(
       Map<String, dynamic> json) {
     return ListAcceptedPortfolioSharesOutput(
@@ -9541,6 +9604,7 @@ class ListBudgetsForResourceOutput {
     this.budgets,
     this.nextPageToken,
   });
+
   factory ListBudgetsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListBudgetsForResourceOutput(
       budgets: (json['Budgets'] as List?)
@@ -9573,6 +9637,7 @@ class ListConstraintsForPortfolioOutput {
     this.constraintDetails,
     this.nextPageToken,
   });
+
   factory ListConstraintsForPortfolioOutput.fromJson(
       Map<String, dynamic> json) {
     return ListConstraintsForPortfolioOutput(
@@ -9606,6 +9671,7 @@ class ListLaunchPathsOutput {
     this.launchPathSummaries,
     this.nextPageToken,
   });
+
   factory ListLaunchPathsOutput.fromJson(Map<String, dynamic> json) {
     return ListLaunchPathsOutput(
       launchPathSummaries: (json['LaunchPathSummaries'] as List?)
@@ -9639,6 +9705,7 @@ class ListOrganizationPortfolioAccessOutput {
     this.nextPageToken,
     this.organizationNodes,
   });
+
   factory ListOrganizationPortfolioAccessOutput.fromJson(
       Map<String, dynamic> json) {
     return ListOrganizationPortfolioAccessOutput(
@@ -9672,6 +9739,7 @@ class ListPortfolioAccessOutput {
     this.accountIds,
     this.nextPageToken,
   });
+
   factory ListPortfolioAccessOutput.fromJson(Map<String, dynamic> json) {
     return ListPortfolioAccessOutput(
       accountIds: (json['AccountIds'] as List?)
@@ -9704,6 +9772,7 @@ class ListPortfoliosForProductOutput {
     this.nextPageToken,
     this.portfolioDetails,
   });
+
   factory ListPortfoliosForProductOutput.fromJson(Map<String, dynamic> json) {
     return ListPortfoliosForProductOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9736,6 +9805,7 @@ class ListPortfoliosOutput {
     this.nextPageToken,
     this.portfolioDetails,
   });
+
   factory ListPortfoliosOutput.fromJson(Map<String, dynamic> json) {
     return ListPortfoliosOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9768,6 +9838,7 @@ class ListPrincipalsForPortfolioOutput {
     this.nextPageToken,
     this.principals,
   });
+
   factory ListPrincipalsForPortfolioOutput.fromJson(Map<String, dynamic> json) {
     return ListPrincipalsForPortfolioOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9800,6 +9871,7 @@ class ListProvisionedProductPlansOutput {
     this.nextPageToken,
     this.provisionedProductPlans,
   });
+
   factory ListProvisionedProductPlansOutput.fromJson(
       Map<String, dynamic> json) {
     return ListProvisionedProductPlansOutput(
@@ -9836,6 +9908,7 @@ class ListProvisioningArtifactsForServiceActionOutput {
     this.nextPageToken,
     this.provisioningArtifactViews,
   });
+
   factory ListProvisioningArtifactsForServiceActionOutput.fromJson(
       Map<String, dynamic> json) {
     return ListProvisioningArtifactsForServiceActionOutput(
@@ -9871,6 +9944,7 @@ class ListProvisioningArtifactsOutput {
     this.nextPageToken,
     this.provisioningArtifactDetails,
   });
+
   factory ListProvisioningArtifactsOutput.fromJson(Map<String, dynamic> json) {
     return ListProvisioningArtifactsOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9906,6 +9980,7 @@ class ListRecordHistoryOutput {
     this.nextPageToken,
     this.recordDetails,
   });
+
   factory ListRecordHistoryOutput.fromJson(Map<String, dynamic> json) {
     return ListRecordHistoryOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -9949,6 +10024,7 @@ class ListRecordHistorySearchFilter {
     this.key,
     this.value,
   });
+
   factory ListRecordHistorySearchFilter.fromJson(Map<String, dynamic> json) {
     return ListRecordHistorySearchFilter(
       key: json['Key'] as String?,
@@ -9978,6 +10054,7 @@ class ListResourcesForTagOptionOutput {
     this.pageToken,
     this.resourceDetails,
   });
+
   factory ListResourcesForTagOptionOutput.fromJson(Map<String, dynamic> json) {
     return ListResourcesForTagOptionOutput(
       pageToken: json['PageToken'] as String?,
@@ -10011,6 +10088,7 @@ class ListServiceActionsForProvisioningArtifactOutput {
     this.nextPageToken,
     this.serviceActionSummaries,
   });
+
   factory ListServiceActionsForProvisioningArtifactOutput.fromJson(
       Map<String, dynamic> json) {
     return ListServiceActionsForProvisioningArtifactOutput(
@@ -10046,6 +10124,7 @@ class ListServiceActionsOutput {
     this.nextPageToken,
     this.serviceActionSummaries,
   });
+
   factory ListServiceActionsOutput.fromJson(Map<String, dynamic> json) {
     return ListServiceActionsOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -10079,6 +10158,7 @@ class ListStackInstancesForProvisionedProductOutput {
     this.nextPageToken,
     this.stackInstances,
   });
+
   factory ListStackInstancesForProvisionedProductOutput.fromJson(
       Map<String, dynamic> json) {
     return ListStackInstancesForProvisionedProductOutput(
@@ -10116,6 +10196,7 @@ class ListTagOptionsFilters {
     this.key,
     this.value,
   });
+
   factory ListTagOptionsFilters.fromJson(Map<String, dynamic> json) {
     return ListTagOptionsFilters(
       active: json['Active'] as bool?,
@@ -10148,6 +10229,7 @@ class ListTagOptionsOutput {
     this.pageToken,
     this.tagOptionDetails,
   });
+
   factory ListTagOptionsOutput.fromJson(Map<String, dynamic> json) {
     return ListTagOptionsOutput(
       pageToken: json['PageToken'] as String?,
@@ -10180,6 +10262,7 @@ class OrganizationNode {
     this.type,
     this.value,
   });
+
   factory OrganizationNode.fromJson(Map<String, dynamic> json) {
     return OrganizationNode(
       type: (json['Type'] as String?)?.toOrganizationNodeType(),
@@ -10281,6 +10364,7 @@ class ParameterConstraints {
     this.minLength,
     this.minValue,
   });
+
   factory ParameterConstraints.fromJson(Map<String, dynamic> json) {
     return ParameterConstraints(
       allowedPattern: json['AllowedPattern'] as String?,
@@ -10345,6 +10429,7 @@ class PortfolioDetail {
     this.id,
     this.providerName,
   });
+
   factory PortfolioDetail.fromJson(Map<String, dynamic> json) {
     return PortfolioDetail(
       arn: json['ARN'] as String?,
@@ -10407,6 +10492,7 @@ class PortfolioShareDetail {
     this.shareTagOptions,
     this.type,
   });
+
   factory PortfolioShareDetail.fromJson(Map<String, dynamic> json) {
     return PortfolioShareDetail(
       accepted: json['Accepted'] as bool?,
@@ -10475,6 +10561,7 @@ class Principal {
     this.principalARN,
     this.principalType,
   });
+
   factory Principal.fromJson(Map<String, dynamic> json) {
     return Principal(
       principalARN: json['PrincipalARN'] as String?,
@@ -10579,6 +10666,7 @@ class ProductViewAggregationValue {
     this.approximateCount,
     this.value,
   });
+
   factory ProductViewAggregationValue.fromJson(Map<String, dynamic> json) {
     return ProductViewAggregationValue(
       approximateCount: json['ApproximateCount'] as int?,
@@ -10629,6 +10717,7 @@ class ProductViewDetail {
     this.productViewSummary,
     this.status,
   });
+
   factory ProductViewDetail.fromJson(Map<String, dynamic> json) {
     return ProductViewDetail(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -10782,6 +10871,7 @@ class ProductViewSummary {
     this.supportUrl,
     this.type,
   });
+
   factory ProductViewSummary.fromJson(Map<String, dynamic> json) {
     return ProductViewSummary(
       distributor: json['Distributor'] as String?,
@@ -10861,6 +10951,7 @@ class ProvisionProductOutput {
   ProvisionProductOutput({
     this.recordDetail,
   });
+
   factory ProvisionProductOutput.fromJson(Map<String, dynamic> json) {
     return ProvisionProductOutput(
       recordDetail: json['RecordDetail'] != null
@@ -11024,6 +11115,7 @@ class ProvisionedProductAttribute {
     this.userArn,
     this.userArnSession,
   });
+
   factory ProvisionedProductAttribute.fromJson(Map<String, dynamic> json) {
     return ProvisionedProductAttribute(
       arn: json['Arn'] as String?,
@@ -11229,6 +11321,7 @@ class ProvisionedProductDetail {
     this.statusMessage,
     this.type,
   });
+
   factory ProvisionedProductDetail.fromJson(Map<String, dynamic> json) {
     return ProvisionedProductDetail(
       arn: json['Arn'] as String?,
@@ -11356,6 +11449,7 @@ class ProvisionedProductPlanDetails {
     this.tags,
     this.updatedTime,
   });
+
   factory ProvisionedProductPlanDetails.fromJson(Map<String, dynamic> json) {
     return ProvisionedProductPlanDetails(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -11501,6 +11595,7 @@ class ProvisionedProductPlanSummary {
     this.provisionProductName,
     this.provisioningArtifactId,
   });
+
   factory ProvisionedProductPlanSummary.fromJson(Map<String, dynamic> json) {
     return ProvisionedProductPlanSummary(
       planId: json['PlanId'] as String?,
@@ -11648,6 +11743,7 @@ class ProvisioningArtifact {
     this.id,
     this.name,
   });
+
   factory ProvisioningArtifact.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifact(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -11720,6 +11816,7 @@ class ProvisioningArtifactDetail {
     this.name,
     this.type,
   });
+
   factory ProvisioningArtifactDetail.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactDetail(
       active: json['Active'] as bool?,
@@ -11792,6 +11889,7 @@ class ProvisioningArtifactOutput {
     this.description,
     this.key,
   });
+
   factory ProvisioningArtifactOutput.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactOutput(
       description: json['Description'] as String?,
@@ -11839,6 +11937,7 @@ class ProvisioningArtifactParameter {
     this.parameterKey,
     this.parameterType,
   });
+
   factory ProvisioningArtifactParameter.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactParameter(
       defaultValue: json['DefaultValue'] as String?,
@@ -11901,6 +12000,7 @@ class ProvisioningArtifactPreferences {
     this.stackSetAccounts,
     this.stackSetRegions,
   });
+
   factory ProvisioningArtifactPreferences.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactPreferences(
       stackSetAccounts: (json['StackSetAccounts'] as List?)
@@ -11978,6 +12078,7 @@ class ProvisioningArtifactProperties {
     this.name,
     this.type,
   });
+
   factory ProvisioningArtifactProperties.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactProperties(
       info: (json['Info'] as Map<String, dynamic>)
@@ -12056,6 +12157,7 @@ class ProvisioningArtifactSummary {
     this.name,
     this.provisioningArtifactMetadata,
   });
+
   factory ProvisioningArtifactSummary.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactSummary(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -12132,6 +12234,7 @@ class ProvisioningArtifactView {
     this.productViewSummary,
     this.provisioningArtifact,
   });
+
   factory ProvisioningArtifactView.fromJson(Map<String, dynamic> json) {
     return ProvisioningArtifactView(
       productViewSummary: json['ProductViewSummary'] != null
@@ -12168,6 +12271,7 @@ class ProvisioningParameter {
     this.key,
     this.value,
   });
+
   factory ProvisioningParameter.fromJson(Map<String, dynamic> json) {
     return ProvisioningParameter(
       key: json['Key'] as String?,
@@ -12298,6 +12402,7 @@ class ProvisioningPreferences {
     this.stackSetMaxConcurrencyPercentage,
     this.stackSetRegions,
   });
+
   factory ProvisioningPreferences.fromJson(Map<String, dynamic> json) {
     return ProvisioningPreferences(
       stackSetAccounts: (json['StackSetAccounts'] as List?)
@@ -12438,6 +12543,7 @@ class RecordDetail {
     this.status,
     this.updatedTime,
   });
+
   factory RecordDetail.fromJson(Map<String, dynamic> json) {
     return RecordDetail(
       createdTime: timeStampFromJson(json['CreatedTime']),
@@ -12513,6 +12619,7 @@ class RecordError {
     this.code,
     this.description,
   });
+
   factory RecordError.fromJson(Map<String, dynamic> json) {
     return RecordError(
       code: json['Code'] as String?,
@@ -12548,6 +12655,7 @@ class RecordOutput {
     this.outputKey,
     this.outputValue,
   });
+
   factory RecordOutput.fromJson(Map<String, dynamic> json) {
     return RecordOutput(
       description: json['Description'] as String?,
@@ -12623,6 +12731,7 @@ class RecordTag {
     this.key,
     this.value,
   });
+
   factory RecordTag.fromJson(Map<String, dynamic> json) {
     return RecordTag(
       key: json['Key'] as String?,
@@ -12642,6 +12751,7 @@ class RecordTag {
 
 class RejectPortfolioShareOutput {
   RejectPortfolioShareOutput();
+
   factory RejectPortfolioShareOutput.fromJson(Map<String, dynamic> _) {
     return RejectPortfolioShareOutput();
   }
@@ -12798,6 +12908,7 @@ class ResourceChange {
     this.resourceType,
     this.scope,
   });
+
   factory ResourceChange.fromJson(Map<String, dynamic> json) {
     return ResourceChange(
       action: (json['Action'] as String?)?.toChangeAction(),
@@ -12854,6 +12965,7 @@ class ResourceChangeDetail {
     this.evaluation,
     this.target,
   });
+
   factory ResourceChangeDetail.fromJson(Map<String, dynamic> json) {
     return ResourceChangeDetail(
       causingEntity: json['CausingEntity'] as String?,
@@ -12901,6 +13013,7 @@ class ResourceDetail {
     this.id,
     this.name,
   });
+
   factory ResourceDetail.fromJson(Map<String, dynamic> json) {
     return ResourceDetail(
       arn: json['ARN'] as String?,
@@ -12945,6 +13058,7 @@ class ResourceTargetDefinition {
     this.name,
     this.requiresRecreation,
   });
+
   factory ResourceTargetDefinition.fromJson(Map<String, dynamic> json) {
     return ResourceTargetDefinition(
       attribute: (json['Attribute'] as String?)?.toResourceAttribute(),
@@ -12979,6 +13093,7 @@ class ScanProvisionedProductsOutput {
     this.nextPageToken,
     this.provisionedProducts,
   });
+
   factory ScanProvisionedProductsOutput.fromJson(Map<String, dynamic> json) {
     return ScanProvisionedProductsOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -13013,6 +13128,7 @@ class SearchProductsAsAdminOutput {
     this.nextPageToken,
     this.productViewDetails,
   });
+
   factory SearchProductsAsAdminOutput.fromJson(Map<String, dynamic> json) {
     return SearchProductsAsAdminOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -13049,6 +13165,7 @@ class SearchProductsOutput {
     this.productViewAggregations,
     this.productViewSummaries,
   });
+
   factory SearchProductsOutput.fromJson(Map<String, dynamic> json) {
     return SearchProductsOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -13098,6 +13215,7 @@ class SearchProvisionedProductsOutput {
     this.provisionedProducts,
     this.totalResultsCount,
   });
+
   factory SearchProvisionedProductsOutput.fromJson(Map<String, dynamic> json) {
     return SearchProvisionedProductsOutput(
       nextPageToken: json['NextPageToken'] as String?,
@@ -13142,6 +13260,7 @@ class ServiceActionAssociation {
     required this.provisioningArtifactId,
     required this.serviceActionId,
   });
+
   factory ServiceActionAssociation.fromJson(Map<String, dynamic> json) {
     return ServiceActionAssociation(
       productId: json['ProductId'] as String,
@@ -13279,6 +13398,7 @@ class ServiceActionDetail {
     this.definition,
     this.serviceActionSummary,
   });
+
   factory ServiceActionDetail.fromJson(Map<String, dynamic> json) {
     return ServiceActionDetail(
       definition: (json['Definition'] as Map<String, dynamic>?)?.map(
@@ -13323,6 +13443,7 @@ class ServiceActionSummary {
     this.id,
     this.name,
   });
+
   factory ServiceActionSummary.fromJson(Map<String, dynamic> json) {
     return ServiceActionSummary(
       definitionType:
@@ -13359,6 +13480,7 @@ class ShareDetails {
     this.shareErrors,
     this.successfulShares,
   });
+
   factory ShareDetails.fromJson(Map<String, dynamic> json) {
     return ShareDetails(
       shareErrors: (json['ShareErrors'] as List?)
@@ -13398,6 +13520,7 @@ class ShareError {
     this.error,
     this.message,
   });
+
   factory ShareError.fromJson(Map<String, dynamic> json) {
     return ShareError(
       accounts: (json['Accounts'] as List?)
@@ -13537,6 +13660,7 @@ class StackInstance {
     this.region,
     this.stackInstanceStatus,
   });
+
   factory StackInstance.fromJson(Map<String, dynamic> json) {
     return StackInstance(
       account: json['Account'] as String?,
@@ -13671,6 +13795,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -13712,6 +13837,7 @@ class TagOptionDetail {
     this.owner,
     this.value,
   });
+
   factory TagOptionDetail.fromJson(Map<String, dynamic> json) {
     return TagOptionDetail(
       active: json['Active'] as bool?,
@@ -13750,6 +13876,7 @@ class TagOptionSummary {
     this.key,
     this.values,
   });
+
   factory TagOptionSummary.fromJson(Map<String, dynamic> json) {
     return TagOptionSummary(
       key: json['Key'] as String?,
@@ -13777,6 +13904,7 @@ class TerminateProvisionedProductOutput {
   TerminateProvisionedProductOutput({
     this.recordDetail,
   });
+
   factory TerminateProvisionedProductOutput.fromJson(
       Map<String, dynamic> json) {
     return TerminateProvisionedProductOutput(
@@ -13809,6 +13937,7 @@ class UpdateConstraintOutput {
     this.constraintParameters,
     this.status,
   });
+
   factory UpdateConstraintOutput.fromJson(Map<String, dynamic> json) {
     return UpdateConstraintOutput(
       constraintDetail: json['ConstraintDetail'] != null
@@ -13844,6 +13973,7 @@ class UpdatePortfolioOutput {
     this.portfolioDetail,
     this.tags,
   });
+
   factory UpdatePortfolioOutput.fromJson(Map<String, dynamic> json) {
     return UpdatePortfolioOutput(
       portfolioDetail: json['PortfolioDetail'] != null
@@ -13881,6 +14011,7 @@ class UpdatePortfolioShareOutput {
     this.portfolioShareToken,
     this.status,
   });
+
   factory UpdatePortfolioShareOutput.fromJson(Map<String, dynamic> json) {
     return UpdatePortfolioShareOutput(
       portfolioShareToken: json['PortfolioShareToken'] as String?,
@@ -13910,6 +14041,7 @@ class UpdateProductOutput {
     this.productViewDetail,
     this.tags,
   });
+
   factory UpdateProductOutput.fromJson(Map<String, dynamic> json) {
     return UpdateProductOutput(
       productViewDetail: json['ProductViewDetail'] != null
@@ -13940,6 +14072,7 @@ class UpdateProvisionedProductOutput {
   UpdateProvisionedProductOutput({
     this.recordDetail,
   });
+
   factory UpdateProvisionedProductOutput.fromJson(Map<String, dynamic> json) {
     return UpdateProvisionedProductOutput(
       recordDetail: json['RecordDetail'] != null
@@ -13975,6 +14108,7 @@ class UpdateProvisionedProductPropertiesOutput {
     this.recordId,
     this.status,
   });
+
   factory UpdateProvisionedProductPropertiesOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateProvisionedProductPropertiesOutput(
@@ -14019,6 +14153,7 @@ class UpdateProvisioningArtifactOutput {
     this.provisioningArtifactDetail,
     this.status,
   });
+
   factory UpdateProvisioningArtifactOutput.fromJson(Map<String, dynamic> json) {
     return UpdateProvisioningArtifactOutput(
       info: (json['Info'] as Map<String, dynamic>?)
@@ -14061,6 +14196,7 @@ class UpdateProvisioningParameter {
     this.usePreviousValue,
     this.value,
   });
+
   factory UpdateProvisioningParameter.fromJson(Map<String, dynamic> json) {
     return UpdateProvisioningParameter(
       key: json['Key'] as String?,
@@ -14202,6 +14338,7 @@ class UpdateProvisioningPreferences {
     this.stackSetOperationType,
     this.stackSetRegions,
   });
+
   factory UpdateProvisioningPreferences.fromJson(Map<String, dynamic> json) {
     return UpdateProvisioningPreferences(
       stackSetAccounts: (json['StackSetAccounts'] as List?)
@@ -14259,6 +14396,7 @@ class UpdateServiceActionOutput {
   UpdateServiceActionOutput({
     this.serviceActionDetail,
   });
+
   factory UpdateServiceActionOutput.fromJson(Map<String, dynamic> json) {
     return UpdateServiceActionOutput(
       serviceActionDetail: json['ServiceActionDetail'] != null
@@ -14284,6 +14422,7 @@ class UpdateTagOptionOutput {
   UpdateTagOptionOutput({
     this.tagOptionDetail,
   });
+
   factory UpdateTagOptionOutput.fromJson(Map<String, dynamic> json) {
     return UpdateTagOptionOutput(
       tagOptionDetail: json['TagOptionDetail'] != null
@@ -14313,6 +14452,7 @@ class UsageInstruction {
     this.type,
     this.value,
   });
+
   factory UsageInstruction.fromJson(Map<String, dynamic> json) {
     return UsageInstruction(
       type: json['Type'] as String?,

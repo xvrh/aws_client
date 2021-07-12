@@ -2809,6 +2809,7 @@ class Alarm {
   Alarm({
     this.name,
   });
+
   factory Alarm.fromJson(Map<String, dynamic> json) {
     return Alarm(
       name: json['name'] as String?,
@@ -2853,6 +2854,7 @@ class AlarmConfiguration {
     this.enabled,
     this.ignorePollAlarmFailure,
   });
+
   factory AlarmConfiguration.fromJson(Map<String, dynamic> json) {
     return AlarmConfiguration(
       alarms: (json['alarms'] as List?)
@@ -2905,6 +2907,7 @@ class AppSpecContent {
     this.content,
     this.sha256,
   });
+
   factory AppSpecContent.fromJson(Map<String, dynamic> json) {
     return AppSpecContent(
       content: json['content'] as String?,
@@ -2952,6 +2955,7 @@ class ApplicationInfo {
     this.gitHubAccountName,
     this.linkedToGitHub,
   });
+
   factory ApplicationInfo.fromJson(Map<String, dynamic> json) {
     return ApplicationInfo(
       applicationId: json['applicationId'] as String?,
@@ -3030,6 +3034,7 @@ class AutoRollbackConfiguration {
     this.enabled,
     this.events,
   });
+
   factory AutoRollbackConfiguration.fromJson(Map<String, dynamic> json) {
     return AutoRollbackConfiguration(
       enabled: json['enabled'] as bool?,
@@ -3095,6 +3100,7 @@ class AutoScalingGroup {
     this.hook,
     this.name,
   });
+
   factory AutoScalingGroup.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroup(
       hook: json['hook'] as String?,
@@ -3129,6 +3135,7 @@ class BatchGetApplicationRevisionsOutput {
     this.errorMessage,
     this.revisions,
   });
+
   factory BatchGetApplicationRevisionsOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchGetApplicationRevisionsOutput(
@@ -3161,6 +3168,7 @@ class BatchGetApplicationsOutput {
   BatchGetApplicationsOutput({
     this.applicationsInfo,
   });
+
   factory BatchGetApplicationsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetApplicationsOutput(
       applicationsInfo: (json['applicationsInfo'] as List?)
@@ -3190,6 +3198,7 @@ class BatchGetDeploymentGroupsOutput {
     this.deploymentGroupsInfo,
     this.errorMessage,
   });
+
   factory BatchGetDeploymentGroupsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetDeploymentGroupsOutput(
       deploymentGroupsInfo: (json['deploymentGroupsInfo'] as List?)
@@ -3224,6 +3233,7 @@ class BatchGetDeploymentInstancesOutput {
     this.errorMessage,
     this.instancesSummary,
   });
+
   factory BatchGetDeploymentInstancesOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchGetDeploymentInstancesOutput(
@@ -3272,6 +3282,7 @@ class BatchGetDeploymentTargetsOutput {
   BatchGetDeploymentTargetsOutput({
     this.deploymentTargets,
   });
+
   factory BatchGetDeploymentTargetsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetDeploymentTargetsOutput(
       deploymentTargets: (json['deploymentTargets'] as List?)
@@ -3297,6 +3308,7 @@ class BatchGetDeploymentsOutput {
   BatchGetDeploymentsOutput({
     this.deploymentsInfo,
   });
+
   factory BatchGetDeploymentsOutput.fromJson(Map<String, dynamic> json) {
     return BatchGetDeploymentsOutput(
       deploymentsInfo: (json['deploymentsInfo'] as List?)
@@ -3323,6 +3335,7 @@ class BatchGetOnPremisesInstancesOutput {
   BatchGetOnPremisesInstancesOutput({
     this.instanceInfos,
   });
+
   factory BatchGetOnPremisesInstancesOutput.fromJson(
       Map<String, dynamic> json) {
     return BatchGetOnPremisesInstancesOutput(
@@ -3361,6 +3374,7 @@ class BlueGreenDeploymentConfiguration {
     this.greenFleetProvisioningOption,
     this.terminateBlueInstancesOnDeploymentSuccess,
   });
+
   factory BlueGreenDeploymentConfiguration.fromJson(Map<String, dynamic> json) {
     return BlueGreenDeploymentConfiguration(
       deploymentReadyOption: json['deploymentReadyOption'] != null
@@ -3432,6 +3446,7 @@ class BlueInstanceTerminationOption {
     this.action,
     this.terminationWaitTimeInMinutes,
   });
+
   factory BlueInstanceTerminationOption.fromJson(Map<String, dynamic> json) {
     return BlueInstanceTerminationOption(
       action: (json['action'] as String?)?.toInstanceAction(),
@@ -3533,6 +3548,7 @@ class CloudFormationTarget {
     this.targetId,
     this.targetVersionWeight,
   });
+
   factory CloudFormationTarget.fromJson(Map<String, dynamic> json) {
     return CloudFormationTarget(
       deploymentId: json['deploymentId'] as String?,
@@ -3611,6 +3627,7 @@ class CreateApplicationOutput {
   CreateApplicationOutput({
     this.applicationId,
   });
+
   factory CreateApplicationOutput.fromJson(Map<String, dynamic> json) {
     return CreateApplicationOutput(
       applicationId: json['applicationId'] as String?,
@@ -3633,6 +3650,7 @@ class CreateDeploymentConfigOutput {
   CreateDeploymentConfigOutput({
     this.deploymentConfigId,
   });
+
   factory CreateDeploymentConfigOutput.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentConfigOutput(
       deploymentConfigId: json['deploymentConfigId'] as String?,
@@ -3655,6 +3673,7 @@ class CreateDeploymentGroupOutput {
   CreateDeploymentGroupOutput({
     this.deploymentGroupId,
   });
+
   factory CreateDeploymentGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentGroupOutput(
       deploymentGroupId: json['deploymentGroupId'] as String?,
@@ -3677,6 +3696,7 @@ class CreateDeploymentOutput {
   CreateDeploymentOutput({
     this.deploymentId,
   });
+
   factory CreateDeploymentOutput.fromJson(Map<String, dynamic> json) {
     return CreateDeploymentOutput(
       deploymentId: json['deploymentId'] as String?,
@@ -3704,6 +3724,7 @@ class DeleteDeploymentGroupOutput {
   DeleteDeploymentGroupOutput({
     this.hooksNotCleanedUp,
   });
+
   factory DeleteDeploymentGroupOutput.fromJson(Map<String, dynamic> json) {
     return DeleteDeploymentGroupOutput(
       hooksNotCleanedUp: (json['hooksNotCleanedUp'] as List?)
@@ -3729,6 +3750,7 @@ class DeleteGitHubAccountTokenOutput {
   DeleteGitHubAccountTokenOutput({
     this.tokenName,
   });
+
   factory DeleteGitHubAccountTokenOutput.fromJson(Map<String, dynamic> json) {
     return DeleteGitHubAccountTokenOutput(
       tokenName: json['tokenName'] as String?,
@@ -3745,6 +3767,7 @@ class DeleteGitHubAccountTokenOutput {
 
 class DeleteResourcesByExternalIdOutput {
   DeleteResourcesByExternalIdOutput();
+
   factory DeleteResourcesByExternalIdOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResourcesByExternalIdOutput();
   }
@@ -3784,6 +3807,7 @@ class DeploymentConfigInfo {
     this.minimumHealthyHosts,
     this.trafficRoutingConfig,
   });
+
   factory DeploymentConfigInfo.fromJson(Map<String, dynamic> json) {
     return DeploymentConfigInfo(
       computePlatform:
@@ -3996,6 +4020,7 @@ class DeploymentGroupInfo {
     this.targetRevision,
     this.triggerConfigurations,
   });
+
   factory DeploymentGroupInfo.fromJson(Map<String, dynamic> json) {
     return DeploymentGroupInfo(
       alarmConfiguration: json['alarmConfiguration'] != null
@@ -4328,6 +4353,7 @@ class DeploymentInfo {
     this.targetInstances,
     this.updateOutdatedInstancesOnly,
   });
+
   factory DeploymentInfo.fromJson(Map<String, dynamic> json) {
     return DeploymentInfo(
       additionalDeploymentStatusInfo:
@@ -4539,6 +4565,7 @@ class DeploymentOverview {
     this.skipped,
     this.succeeded,
   });
+
   factory DeploymentOverview.fromJson(Map<String, dynamic> json) {
     return DeploymentOverview(
       failed: json['Failed'] as int?,
@@ -4626,6 +4653,7 @@ class DeploymentReadyOption {
     this.actionOnTimeout,
     this.waitTimeInMinutes,
   });
+
   factory DeploymentReadyOption.fromJson(Map<String, dynamic> json) {
     return DeploymentReadyOption(
       actionOnTimeout:
@@ -4715,6 +4743,7 @@ class DeploymentStyle {
     this.deploymentOption,
     this.deploymentType,
   });
+
   factory DeploymentStyle.fromJson(Map<String, dynamic> json) {
     return DeploymentStyle(
       deploymentOption:
@@ -4761,6 +4790,7 @@ class DeploymentTarget {
     this.instanceTarget,
     this.lambdaTarget,
   });
+
   factory DeploymentTarget.fromJson(Map<String, dynamic> json) {
     return DeploymentTarget(
       cloudFormationTarget: json['cloudFormationTarget'] != null
@@ -4941,6 +4971,7 @@ class Diagnostics {
     this.message,
     this.scriptName,
   });
+
   factory Diagnostics.fromJson(Map<String, dynamic> json) {
     return Diagnostics(
       errorCode: (json['errorCode'] as String?)?.toLifecycleErrorCode(),
@@ -4992,6 +5023,7 @@ class EC2TagFilter {
     this.type,
     this.value,
   });
+
   factory EC2TagFilter.fromJson(Map<String, dynamic> json) {
     return EC2TagFilter(
       key: json['Key'] as String?,
@@ -5055,6 +5087,7 @@ class EC2TagSet {
   EC2TagSet({
     this.ec2TagSetList,
   });
+
   factory EC2TagSet.fromJson(Map<String, dynamic> json) {
     return EC2TagSet(
       ec2TagSetList: (json['ec2TagSetList'] as List?)
@@ -5088,6 +5121,7 @@ class ECSService {
     this.clusterName,
     this.serviceName,
   });
+
   factory ECSService.fromJson(Map<String, dynamic> json) {
     return ECSService(
       clusterName: json['clusterName'] as String?,
@@ -5140,6 +5174,7 @@ class ECSTarget {
     this.targetId,
     this.taskSetsInfo,
   });
+
   factory ECSTarget.fromJson(Map<String, dynamic> json) {
     return ECSTarget(
       deploymentId: json['deploymentId'] as String?,
@@ -5246,6 +5281,7 @@ class ECSTaskSet {
     this.taskSetLabel,
     this.trafficWeight,
   });
+
   factory ECSTaskSet.fromJson(Map<String, dynamic> json) {
     return ECSTaskSet(
       desiredCount: json['desiredCount'] as int?,
@@ -5299,6 +5335,7 @@ class ELBInfo {
   ELBInfo({
     this.name,
   });
+
   factory ELBInfo.fromJson(Map<String, dynamic> json) {
     return ELBInfo(
       name: json['name'] as String?,
@@ -5571,6 +5608,7 @@ class ErrorInformation {
     this.code,
     this.message,
   });
+
   factory ErrorInformation.fromJson(Map<String, dynamic> json) {
     return ErrorInformation(
       code: (json['code'] as String?)?.toErrorCode(),
@@ -5645,6 +5683,7 @@ class GenericRevisionInfo {
     this.lastUsedTime,
     this.registerTime,
   });
+
   factory GenericRevisionInfo.fromJson(Map<String, dynamic> json) {
     return GenericRevisionInfo(
       deploymentGroups: (json['deploymentGroups'] as List?)
@@ -5685,6 +5724,7 @@ class GetApplicationOutput {
   GetApplicationOutput({
     this.application,
   });
+
   factory GetApplicationOutput.fromJson(Map<String, dynamic> json) {
     return GetApplicationOutput(
       application: json['application'] != null
@@ -5718,6 +5758,7 @@ class GetApplicationRevisionOutput {
     this.revision,
     this.revisionInfo,
   });
+
   factory GetApplicationRevisionOutput.fromJson(Map<String, dynamic> json) {
     return GetApplicationRevisionOutput(
       applicationName: json['applicationName'] as String?,
@@ -5751,6 +5792,7 @@ class GetDeploymentConfigOutput {
   GetDeploymentConfigOutput({
     this.deploymentConfigInfo,
   });
+
   factory GetDeploymentConfigOutput.fromJson(Map<String, dynamic> json) {
     return GetDeploymentConfigOutput(
       deploymentConfigInfo: json['deploymentConfigInfo'] != null
@@ -5777,6 +5819,7 @@ class GetDeploymentGroupOutput {
   GetDeploymentGroupOutput({
     this.deploymentGroupInfo,
   });
+
   factory GetDeploymentGroupOutput.fromJson(Map<String, dynamic> json) {
     return GetDeploymentGroupOutput(
       deploymentGroupInfo: json['deploymentGroupInfo'] != null
@@ -5803,6 +5846,7 @@ class GetDeploymentInstanceOutput {
   GetDeploymentInstanceOutput({
     this.instanceSummary,
   });
+
   factory GetDeploymentInstanceOutput.fromJson(Map<String, dynamic> json) {
     return GetDeploymentInstanceOutput(
       instanceSummary: json['instanceSummary'] != null
@@ -5828,6 +5872,7 @@ class GetDeploymentOutput {
   GetDeploymentOutput({
     this.deploymentInfo,
   });
+
   factory GetDeploymentOutput.fromJson(Map<String, dynamic> json) {
     return GetDeploymentOutput(
       deploymentInfo: json['deploymentInfo'] != null
@@ -5856,6 +5901,7 @@ class GetDeploymentTargetOutput {
   GetDeploymentTargetOutput({
     this.deploymentTarget,
   });
+
   factory GetDeploymentTargetOutput.fromJson(Map<String, dynamic> json) {
     return GetDeploymentTargetOutput(
       deploymentTarget: json['deploymentTarget'] != null
@@ -5881,6 +5927,7 @@ class GetOnPremisesInstanceOutput {
   GetOnPremisesInstanceOutput({
     this.instanceInfo,
   });
+
   factory GetOnPremisesInstanceOutput.fromJson(Map<String, dynamic> json) {
     return GetOnPremisesInstanceOutput(
       instanceInfo: json['instanceInfo'] != null
@@ -5913,6 +5960,7 @@ class GitHubLocation {
     this.commitId,
     this.repository,
   });
+
   factory GitHubLocation.fromJson(Map<String, dynamic> json) {
     return GitHubLocation(
       commitId: json['commitId'] as String?,
@@ -5978,6 +6026,7 @@ class GreenFleetProvisioningOption {
   GreenFleetProvisioningOption({
     this.action,
   });
+
   factory GreenFleetProvisioningOption.fromJson(Map<String, dynamic> json) {
     return GreenFleetProvisioningOption(
       action: (json['action'] as String?)?.toGreenFleetProvisioningAction(),
@@ -6053,6 +6102,7 @@ class InstanceInfo {
     this.registerTime,
     this.tags,
   });
+
   factory InstanceInfo.fromJson(Map<String, dynamic> json) {
     return InstanceInfo(
       deregisterTime: timeStampFromJson(json['deregisterTime']),
@@ -6204,6 +6254,7 @@ class InstanceSummary {
     this.lifecycleEvents,
     this.status,
   });
+
   factory InstanceSummary.fromJson(Map<String, dynamic> json) {
     return InstanceSummary(
       deploymentId: json['deploymentId'] as String?,
@@ -6272,6 +6323,7 @@ class InstanceTarget {
     this.targetArn,
     this.targetId,
   });
+
   factory InstanceTarget.fromJson(Map<String, dynamic> json) {
     return InstanceTarget(
       deploymentId: json['deploymentId'] as String?,
@@ -6364,6 +6416,7 @@ class LambdaFunctionInfo {
     this.targetVersion,
     this.targetVersionWeight,
   });
+
   factory LambdaFunctionInfo.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionInfo(
       currentVersion: json['currentVersion'] as String?,
@@ -6427,6 +6480,7 @@ class LambdaTarget {
     this.targetArn,
     this.targetId,
   });
+
   factory LambdaTarget.fromJson(Map<String, dynamic> json) {
     return LambdaTarget(
       deploymentId: json['deploymentId'] as String?,
@@ -6489,6 +6543,7 @@ class LastDeploymentInfo {
     this.endTime,
     this.status,
   });
+
   factory LastDeploymentInfo.fromJson(Map<String, dynamic> json) {
     return LastDeploymentInfo(
       createTime: timeStampFromJson(json['createTime']),
@@ -6607,6 +6662,7 @@ class LifecycleEvent {
     this.startTime,
     this.status,
   });
+
   factory LifecycleEvent.fromJson(Map<String, dynamic> json) {
     return LifecycleEvent(
       diagnostics: json['diagnostics'] != null
@@ -6697,6 +6753,7 @@ class ListApplicationRevisionsOutput {
     this.nextToken,
     this.revisions,
   });
+
   factory ListApplicationRevisionsOutput.fromJson(Map<String, dynamic> json) {
     return ListApplicationRevisionsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6731,6 +6788,7 @@ class ListApplicationsOutput {
     this.applications,
     this.nextToken,
   });
+
   factory ListApplicationsOutput.fromJson(Map<String, dynamic> json) {
     return ListApplicationsOutput(
       applications: (json['applications'] as List?)
@@ -6766,6 +6824,7 @@ class ListDeploymentConfigsOutput {
     this.deploymentConfigsList,
     this.nextToken,
   });
+
   factory ListDeploymentConfigsOutput.fromJson(Map<String, dynamic> json) {
     return ListDeploymentConfigsOutput(
       deploymentConfigsList: (json['deploymentConfigsList'] as List?)
@@ -6805,6 +6864,7 @@ class ListDeploymentGroupsOutput {
     this.deploymentGroups,
     this.nextToken,
   });
+
   factory ListDeploymentGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListDeploymentGroupsOutput(
       applicationName: json['applicationName'] as String?,
@@ -6842,6 +6902,7 @@ class ListDeploymentInstancesOutput {
     this.instancesList,
     this.nextToken,
   });
+
   factory ListDeploymentInstancesOutput.fromJson(Map<String, dynamic> json) {
     return ListDeploymentInstancesOutput(
       instancesList: (json['instancesList'] as List?)
@@ -6875,6 +6936,7 @@ class ListDeploymentTargetsOutput {
     this.nextToken,
     this.targetIds,
   });
+
   factory ListDeploymentTargetsOutput.fromJson(Map<String, dynamic> json) {
     return ListDeploymentTargetsOutput(
       nextToken: json['nextToken'] as String?,
@@ -6909,6 +6971,7 @@ class ListDeploymentsOutput {
     this.deployments,
     this.nextToken,
   });
+
   factory ListDeploymentsOutput.fromJson(Map<String, dynamic> json) {
     return ListDeploymentsOutput(
       deployments: (json['deployments'] as List?)
@@ -6945,6 +7008,7 @@ class ListGitHubAccountTokenNamesOutput {
     this.nextToken,
     this.tokenNameList,
   });
+
   factory ListGitHubAccountTokenNamesOutput.fromJson(
       Map<String, dynamic> json) {
     return ListGitHubAccountTokenNamesOutput(
@@ -6980,6 +7044,7 @@ class ListOnPremisesInstancesOutput {
     this.instanceNames,
     this.nextToken,
   });
+
   factory ListOnPremisesInstancesOutput.fromJson(Map<String, dynamic> json) {
     return ListOnPremisesInstancesOutput(
       instanceNames: (json['instanceNames'] as List?)
@@ -7048,6 +7113,7 @@ class ListTagsForResourceOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       nextToken: json['NextToken'] as String?,
@@ -7096,6 +7162,7 @@ class LoadBalancerInfo {
     this.targetGroupInfoList,
     this.targetGroupPairInfoList,
   });
+
   factory LoadBalancerInfo.fromJson(Map<String, dynamic> json) {
     return LoadBalancerInfo(
       elbInfoList: (json['elbInfoList'] as List?)
@@ -7171,6 +7238,7 @@ class MinimumHealthyHosts {
     this.type,
     this.value,
   });
+
   factory MinimumHealthyHosts.fromJson(Map<String, dynamic> json) {
     return MinimumHealthyHosts(
       type: (json['type'] as String?)?.toMinimumHealthyHostsType(),
@@ -7226,6 +7294,7 @@ class OnPremisesTagSet {
   OnPremisesTagSet({
     this.onPremisesTagSetList,
   });
+
   factory OnPremisesTagSet.fromJson(Map<String, dynamic> json) {
     return OnPremisesTagSet(
       onPremisesTagSetList: (json['onPremisesTagSetList'] as List?)
@@ -7283,6 +7352,7 @@ class PutLifecycleEventHookExecutionStatusOutput {
   PutLifecycleEventHookExecutionStatusOutput({
     this.lifecycleEventHookExecutionId,
   });
+
   factory PutLifecycleEventHookExecutionStatusOutput.fromJson(
       Map<String, dynamic> json) {
     return PutLifecycleEventHookExecutionStatusOutput(
@@ -7317,6 +7387,7 @@ class RawString {
     this.content,
     this.sha256,
   });
+
   factory RawString.fromJson(Map<String, dynamic> json) {
     return RawString(
       content: json['content'] as String?,
@@ -7375,6 +7446,7 @@ class RelatedDeployments {
     this.autoUpdateOutdatedInstancesDeploymentIds,
     this.autoUpdateOutdatedInstancesRootDeploymentId,
   });
+
   factory RelatedDeployments.fromJson(Map<String, dynamic> json) {
     return RelatedDeployments(
       autoUpdateOutdatedInstancesDeploymentIds:
@@ -7416,6 +7488,7 @@ class RevisionInfo {
     this.genericRevisionInfo,
     this.revisionLocation,
   });
+
   factory RevisionInfo.fromJson(Map<String, dynamic> json) {
     return RevisionInfo(
       genericRevisionInfo: json['genericRevisionInfo'] != null
@@ -7485,6 +7558,7 @@ class RevisionLocation {
     this.s3Location,
     this.string,
   });
+
   factory RevisionLocation.fromJson(Map<String, dynamic> json) {
     return RevisionLocation(
       appSpecContent: json['appSpecContent'] != null
@@ -7578,6 +7652,7 @@ class RollbackInfo {
     this.rollbackMessage,
     this.rollbackTriggeringDeploymentId,
   });
+
   factory RollbackInfo.fromJson(Map<String, dynamic> json) {
     return RollbackInfo(
       rollbackDeploymentId: json['rollbackDeploymentId'] as String?,
@@ -7646,6 +7721,7 @@ class S3Location {
     this.key,
     this.version,
   });
+
   factory S3Location.fromJson(Map<String, dynamic> json) {
     return S3Location(
       bucket: json['bucket'] as String?,
@@ -7721,6 +7797,7 @@ class StopDeploymentOutput {
     this.status,
     this.statusMessage,
   });
+
   factory StopDeploymentOutput.fromJson(Map<String, dynamic> json) {
     return StopDeploymentOutput(
       status: (json['status'] as String?)?.toStopStatus(),
@@ -7778,6 +7855,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -7823,6 +7901,7 @@ class TagFilter {
     this.type,
     this.value,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       key: json['Key'] as String?,
@@ -7878,6 +7957,7 @@ extension on String {
 
 class TagResourceOutput {
   TagResourceOutput();
+
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
@@ -7930,6 +8010,7 @@ class TargetGroupInfo {
   TargetGroupInfo({
     this.name,
   });
+
   factory TargetGroupInfo.fromJson(Map<String, dynamic> json) {
     return TargetGroupInfo(
       name: json['name'] as String?,
@@ -7966,6 +8047,7 @@ class TargetGroupPairInfo {
     this.targetGroups,
     this.testTrafficRoute,
   });
+
   factory TargetGroupPairInfo.fromJson(Map<String, dynamic> json) {
     return TargetGroupPairInfo(
       prodTrafficRoute: json['prodTrafficRoute'] != null
@@ -8018,6 +8100,7 @@ class TargetInstances {
     this.ec2TagSet,
     this.tagFilters,
   });
+
   factory TargetInstances.fromJson(Map<String, dynamic> json) {
     return TargetInstances(
       autoScalingGroups: (json['autoScalingGroups'] as List?)
@@ -8144,6 +8227,7 @@ class TimeBasedCanary {
     this.canaryInterval,
     this.canaryPercentage,
   });
+
   factory TimeBasedCanary.fromJson(Map<String, dynamic> json) {
     return TimeBasedCanary(
       canaryInterval: json['canaryInterval'] as int?,
@@ -8178,6 +8262,7 @@ class TimeBasedLinear {
     this.linearInterval,
     this.linearPercentage,
   });
+
   factory TimeBasedLinear.fromJson(Map<String, dynamic> json) {
     return TimeBasedLinear(
       linearInterval: json['linearInterval'] as int?,
@@ -8213,6 +8298,7 @@ class TimeRange {
     this.end,
     this.start,
   });
+
   factory TimeRange.fromJson(Map<String, dynamic> json) {
     return TimeRange(
       end: timeStampFromJson(json['end']),
@@ -8241,6 +8327,7 @@ class TrafficRoute {
   TrafficRoute({
     this.listenerArns,
   });
+
   factory TrafficRoute.fromJson(Map<String, dynamic> json) {
     return TrafficRoute(
       listenerArns: (json['listenerArns'] as List?)
@@ -8283,6 +8370,7 @@ class TrafficRoutingConfig {
     this.timeBasedLinear,
     this.type,
   });
+
   factory TrafficRoutingConfig.fromJson(Map<String, dynamic> json) {
     return TrafficRoutingConfig(
       timeBasedCanary: json['timeBasedCanary'] != null
@@ -8360,6 +8448,7 @@ class TriggerConfig {
     this.triggerName,
     this.triggerTargetArn,
   });
+
   factory TriggerConfig.fromJson(Map<String, dynamic> json) {
     return TriggerConfig(
       triggerEvents: (json['triggerEvents'] as List?)
@@ -8454,6 +8543,7 @@ extension on String {
 
 class UntagResourceOutput {
   UntagResourceOutput();
+
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
@@ -8475,6 +8565,7 @@ class UpdateDeploymentGroupOutput {
   UpdateDeploymentGroupOutput({
     this.hooksNotCleanedUp,
   });
+
   factory UpdateDeploymentGroupOutput.fromJson(Map<String, dynamic> json) {
     return UpdateDeploymentGroupOutput(
       hooksNotCleanedUp: (json['hooksNotCleanedUp'] as List?)

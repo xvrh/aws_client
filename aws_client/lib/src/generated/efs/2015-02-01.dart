@@ -1928,6 +1928,7 @@ class AccessPointDescription {
     this.rootDirectory,
     this.tags,
   });
+
   factory AccessPointDescription.fromJson(Map<String, dynamic> json) {
     return AccessPointDescription(
       accessPointArn: json['AccessPointArn'] as String?,
@@ -2008,6 +2009,7 @@ class BackupPolicy {
   BackupPolicy({
     required this.status,
   });
+
   factory BackupPolicy.fromJson(Map<String, dynamic> json) {
     return BackupPolicy(
       status: (json['Status'] as String).toStatus(),
@@ -2030,6 +2032,7 @@ class BackupPolicyDescription {
   BackupPolicyDescription({
     this.backupPolicy,
   });
+
   factory BackupPolicyDescription.fromJson(Map<String, dynamic> json) {
     return BackupPolicyDescription(
       backupPolicy: json['BackupPolicy'] != null
@@ -2081,6 +2084,7 @@ class CreationInfo {
     required this.ownerUid,
     required this.permissions,
   });
+
   factory CreationInfo.fromJson(Map<String, dynamic> json) {
     return CreationInfo(
       ownerGid: json['OwnerGid'] as int,
@@ -2114,6 +2118,7 @@ class DescribeAccessPointsResponse {
     this.accessPoints,
     this.nextToken,
   });
+
   factory DescribeAccessPointsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccessPointsResponse(
       accessPoints: (json['AccessPoints'] as List?)
@@ -2143,6 +2148,7 @@ class DescribeAccountPreferencesResponse {
     this.nextToken,
     this.resourceIdPreference,
   });
+
   factory DescribeAccountPreferencesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAccountPreferencesResponse(
@@ -2182,6 +2188,7 @@ class DescribeFileSystemsResponse {
     this.marker,
     this.nextMarker,
   });
+
   factory DescribeFileSystemsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFileSystemsResponse(
       fileSystems: (json['FileSystems'] as List?)
@@ -2212,6 +2219,7 @@ class DescribeMountTargetSecurityGroupsResponse {
   DescribeMountTargetSecurityGroupsResponse({
     required this.securityGroups,
   });
+
   factory DescribeMountTargetSecurityGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeMountTargetSecurityGroupsResponse(
@@ -2250,6 +2258,7 @@ class DescribeMountTargetsResponse {
     this.mountTargets,
     this.nextMarker,
   });
+
   factory DescribeMountTargetsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeMountTargetsResponse(
       marker: json['Marker'] as String?,
@@ -2295,6 +2304,7 @@ class DescribeTagsResponse {
     this.marker,
     this.nextMarker,
   });
+
   factory DescribeTagsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTagsResponse(
       tags: (json['Tags'] as List)
@@ -2420,6 +2430,7 @@ class FileSystemDescription {
     this.provisionedThroughputInMibps,
     this.throughputMode,
   });
+
   factory FileSystemDescription.fromJson(Map<String, dynamic> json) {
     return FileSystemDescription(
       creationTime:
@@ -2502,6 +2513,7 @@ class FileSystemPolicyDescription {
     this.fileSystemId,
     this.policy,
   });
+
   factory FileSystemPolicyDescription.fromJson(Map<String, dynamic> json) {
     return FileSystemPolicyDescription(
       fileSystemId: json['FileSystemId'] as String?,
@@ -2550,6 +2562,7 @@ class FileSystemSize {
     this.valueInIA,
     this.valueInStandard,
   });
+
   factory FileSystemSize.fromJson(Map<String, dynamic> json) {
     return FileSystemSize(
       value: json['Value'] as int,
@@ -2629,6 +2642,7 @@ class LifecycleConfigurationDescription {
   LifecycleConfigurationDescription({
     this.lifecyclePolicies,
   });
+
   factory LifecycleConfigurationDescription.fromJson(
       Map<String, dynamic> json) {
     return LifecycleConfigurationDescription(
@@ -2658,6 +2672,7 @@ class LifecyclePolicy {
   LifecyclePolicy({
     this.transitionToIA,
   });
+
   factory LifecyclePolicy.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicy(
       transitionToIA:
@@ -2686,6 +2701,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -2757,6 +2773,7 @@ class MountTargetDescription {
     this.ownerId,
     this.vpcId,
   });
+
   factory MountTargetDescription.fromJson(Map<String, dynamic> json) {
     return MountTargetDescription(
       fileSystemId: json['FileSystemId'] as String,
@@ -2848,6 +2865,7 @@ class PosixUser {
     required this.uid,
     this.secondaryGids,
   });
+
   factory PosixUser.fromJson(Map<String, dynamic> json) {
     return PosixUser(
       gid: json['Gid'] as int,
@@ -2877,6 +2895,7 @@ class PutAccountPreferencesResponse {
   PutAccountPreferencesResponse({
     this.resourceIdPreference,
   });
+
   factory PutAccountPreferencesResponse.fromJson(Map<String, dynamic> json) {
     return PutAccountPreferencesResponse(
       resourceIdPreference: json['ResourceIdPreference'] != null
@@ -2932,6 +2951,7 @@ class ResourceIdPreference {
     this.resourceIdType,
     this.resources,
   });
+
   factory ResourceIdPreference.fromJson(Map<String, dynamic> json) {
     return ResourceIdPreference(
       resourceIdType: (json['ResourceIdType'] as String?)?.toResourceIdType(),
@@ -3012,6 +3032,7 @@ class RootDirectory {
     this.creationInfo,
     this.path,
   });
+
   factory RootDirectory.fromJson(Map<String, dynamic> json) {
     return RootDirectory(
       creationInfo: json['CreationInfo'] != null
@@ -3083,6 +3104,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,

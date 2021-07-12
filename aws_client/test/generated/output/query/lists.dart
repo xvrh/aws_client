@@ -62,6 +62,7 @@ class OutputShape {
   OutputShape({
     this.listMember,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       listMember: (json['ListMember'] as List?)

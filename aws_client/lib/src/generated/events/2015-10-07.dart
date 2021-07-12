@@ -3339,6 +3339,7 @@ class ApiDestination {
     this.lastModifiedTime,
     this.name,
   });
+
   factory ApiDestination.fromJson(Map<String, dynamic> json) {
     return ApiDestination(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
@@ -3501,6 +3502,7 @@ class Archive {
     this.state,
     this.stateReason,
   });
+
   factory Archive.fromJson(Map<String, dynamic> json) {
     return Archive(
       archiveName: json['ArchiveName'] as String?,
@@ -3638,6 +3640,7 @@ class AwsVpcConfiguration {
     this.assignPublicIp,
     this.securityGroups,
   });
+
   factory AwsVpcConfiguration.fromJson(Map<String, dynamic> json) {
     return AwsVpcConfiguration(
       subnets: (json['Subnets'] as List)
@@ -3676,6 +3679,7 @@ class BatchArrayProperties {
   BatchArrayProperties({
     this.size,
   });
+
   factory BatchArrayProperties.fromJson(Map<String, dynamic> json) {
     return BatchArrayProperties(
       size: json['Size'] as int?,
@@ -3718,6 +3722,7 @@ class BatchParameters {
     this.arrayProperties,
     this.retryStrategy,
   });
+
   factory BatchParameters.fromJson(Map<String, dynamic> json) {
     return BatchParameters(
       jobDefinition: json['JobDefinition'] as String,
@@ -3758,6 +3763,7 @@ class BatchRetryStrategy {
   BatchRetryStrategy({
     this.attempts,
   });
+
   factory BatchRetryStrategy.fromJson(Map<String, dynamic> json) {
     return BatchRetryStrategy(
       attempts: json['Attempts'] as int?,
@@ -3787,6 +3793,7 @@ class CancelReplayResponse {
     this.state,
     this.stateReason,
   });
+
   factory CancelReplayResponse.fromJson(Map<String, dynamic> json) {
     return CancelReplayResponse(
       replayArn: json['ReplayArn'] as String?,
@@ -3831,6 +3838,7 @@ class CapacityProviderStrategyItem {
     this.base,
     this.weight,
   });
+
   factory CapacityProviderStrategyItem.fromJson(Map<String, dynamic> json) {
     return CapacityProviderStrategyItem(
       capacityProvider: json['capacityProvider'] as String,
@@ -3878,6 +3886,7 @@ class Condition {
     required this.type,
     required this.value,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       key: json['Key'] as String,
@@ -3934,6 +3943,7 @@ class Connection {
     this.name,
     this.stateReason,
   });
+
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       authorizationType: (json['AuthorizationType'] as String?)
@@ -3985,6 +3995,7 @@ class ConnectionApiKeyAuthResponseParameters {
   ConnectionApiKeyAuthResponseParameters({
     this.apiKeyName,
   });
+
   factory ConnectionApiKeyAuthResponseParameters.fromJson(
       Map<String, dynamic> json) {
     return ConnectionApiKeyAuthResponseParameters(
@@ -4021,6 +4032,7 @@ class ConnectionAuthResponseParameters {
     this.invocationHttpParameters,
     this.oAuthParameters,
   });
+
   factory ConnectionAuthResponseParameters.fromJson(Map<String, dynamic> json) {
     return ConnectionAuthResponseParameters(
       apiKeyAuthParameters: json['ApiKeyAuthParameters'] != null
@@ -4101,6 +4113,7 @@ class ConnectionBasicAuthResponseParameters {
   ConnectionBasicAuthResponseParameters({
     this.username,
   });
+
   factory ConnectionBasicAuthResponseParameters.fromJson(
       Map<String, dynamic> json) {
     return ConnectionBasicAuthResponseParameters(
@@ -4134,6 +4147,7 @@ class ConnectionBodyParameter {
     this.key,
     this.value,
   });
+
   factory ConnectionBodyParameter.fromJson(Map<String, dynamic> json) {
     return ConnectionBodyParameter(
       isValueSecret: json['IsValueSecret'] as bool?,
@@ -4172,6 +4186,7 @@ class ConnectionHeaderParameter {
     this.key,
     this.value,
   });
+
   factory ConnectionHeaderParameter.fromJson(Map<String, dynamic> json) {
     return ConnectionHeaderParameter(
       isValueSecret: json['IsValueSecret'] as bool?,
@@ -4208,6 +4223,7 @@ class ConnectionHttpParameters {
     this.headerParameters,
     this.queryStringParameters,
   });
+
   factory ConnectionHttpParameters.fromJson(Map<String, dynamic> json) {
     return ConnectionHttpParameters(
       bodyParameters: (json['BodyParameters'] as List?)
@@ -4250,6 +4266,7 @@ class ConnectionOAuthClientResponseParameters {
   ConnectionOAuthClientResponseParameters({
     this.clientID,
   });
+
   factory ConnectionOAuthClientResponseParameters.fromJson(
       Map<String, dynamic> json) {
     return ConnectionOAuthClientResponseParameters(
@@ -4321,6 +4338,7 @@ class ConnectionOAuthResponseParameters {
     this.httpMethod,
     this.oAuthHttpParameters,
   });
+
   factory ConnectionOAuthResponseParameters.fromJson(
       Map<String, dynamic> json) {
     return ConnectionOAuthResponseParameters(
@@ -4372,6 +4390,7 @@ class ConnectionQueryStringParameter {
     this.key,
     this.value,
   });
+
   factory ConnectionQueryStringParameter.fromJson(Map<String, dynamic> json) {
     return ConnectionQueryStringParameter(
       isValueSecret: json['IsValueSecret'] as bool?,
@@ -4464,6 +4483,7 @@ class CreateApiDestinationResponse {
     this.creationTime,
     this.lastModifiedTime,
   });
+
   factory CreateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
@@ -4510,6 +4530,7 @@ class CreateArchiveResponse {
     this.state,
     this.stateReason,
   });
+
   factory CreateArchiveResponse.fromJson(Map<String, dynamic> json) {
     return CreateArchiveResponse(
       archiveArn: json['ArchiveArn'] as String?,
@@ -4546,6 +4567,7 @@ class CreateConnectionApiKeyAuthRequestParameters {
     required this.apiKeyName,
     required this.apiKeyValue,
   });
+
   factory CreateConnectionApiKeyAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return CreateConnectionApiKeyAuthRequestParameters(
@@ -4591,6 +4613,7 @@ class CreateConnectionAuthRequestParameters {
     this.invocationHttpParameters,
     this.oAuthParameters,
   });
+
   factory CreateConnectionAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return CreateConnectionAuthRequestParameters(
@@ -4642,6 +4665,7 @@ class CreateConnectionBasicAuthRequestParameters {
     required this.password,
     required this.username,
   });
+
   factory CreateConnectionBasicAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return CreateConnectionBasicAuthRequestParameters(
@@ -4673,6 +4697,7 @@ class CreateConnectionOAuthClientRequestParameters {
     required this.clientID,
     required this.clientSecret,
   });
+
   factory CreateConnectionOAuthClientRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return CreateConnectionOAuthClientRequestParameters(
@@ -4714,6 +4739,7 @@ class CreateConnectionOAuthRequestParameters {
     required this.httpMethod,
     this.oAuthHttpParameters,
   });
+
   factory CreateConnectionOAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return CreateConnectionOAuthRequestParameters(
@@ -4762,6 +4788,7 @@ class CreateConnectionResponse {
     this.creationTime,
     this.lastModifiedTime,
   });
+
   factory CreateConnectionResponse.fromJson(Map<String, dynamic> json) {
     return CreateConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
@@ -4795,6 +4822,7 @@ class CreateEventBusResponse {
   CreateEventBusResponse({
     this.eventBusArn,
   });
+
   factory CreateEventBusResponse.fromJson(Map<String, dynamic> json) {
     return CreateEventBusResponse(
       eventBusArn: json['EventBusArn'] as String?,
@@ -4816,6 +4844,7 @@ class CreatePartnerEventSourceResponse {
   CreatePartnerEventSourceResponse({
     this.eventSourceArn,
   });
+
   factory CreatePartnerEventSourceResponse.fromJson(Map<String, dynamic> json) {
     return CreatePartnerEventSourceResponse(
       eventSourceArn: json['EventSourceArn'] as String?,
@@ -4839,6 +4868,7 @@ class DeadLetterConfig {
   DeadLetterConfig({
     this.arn,
   });
+
   factory DeadLetterConfig.fromJson(Map<String, dynamic> json) {
     return DeadLetterConfig(
       arn: json['Arn'] as String?,
@@ -4876,6 +4906,7 @@ class DeauthorizeConnectionResponse {
     this.lastAuthorizedTime,
     this.lastModifiedTime,
   });
+
   factory DeauthorizeConnectionResponse.fromJson(Map<String, dynamic> json) {
     return DeauthorizeConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
@@ -4908,6 +4939,7 @@ class DeauthorizeConnectionResponse {
 
 class DeleteApiDestinationResponse {
   DeleteApiDestinationResponse();
+
   factory DeleteApiDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiDestinationResponse();
   }
@@ -4919,6 +4951,7 @@ class DeleteApiDestinationResponse {
 
 class DeleteArchiveResponse {
   DeleteArchiveResponse();
+
   factory DeleteArchiveResponse.fromJson(Map<String, dynamic> _) {
     return DeleteArchiveResponse();
   }
@@ -4953,6 +4986,7 @@ class DeleteConnectionResponse {
     this.lastAuthorizedTime,
     this.lastModifiedTime,
   });
+
   factory DeleteConnectionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,
@@ -5032,6 +5066,7 @@ class DescribeApiDestinationResponse {
     this.lastModifiedTime,
     this.name,
   });
+
   factory DescribeApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
@@ -5126,6 +5161,7 @@ class DescribeArchiveResponse {
     this.state,
     this.stateReason,
   });
+
   factory DescribeArchiveResponse.fromJson(Map<String, dynamic> json) {
     return DescribeArchiveResponse(
       archiveArn: json['ArchiveArn'] as String?,
@@ -5219,6 +5255,7 @@ class DescribeConnectionResponse {
     this.secretArn,
     this.stateReason,
   });
+
   factory DescribeConnectionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConnectionResponse(
       authParameters: json['AuthParameters'] != null
@@ -5288,6 +5325,7 @@ class DescribeEventBusResponse {
     this.name,
     this.policy,
   });
+
   factory DescribeEventBusResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventBusResponse(
       arn: json['Arn'] as String?,
@@ -5340,6 +5378,7 @@ class DescribeEventSourceResponse {
     this.name,
     this.state,
   });
+
   factory DescribeEventSourceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEventSourceResponse(
       arn: json['Arn'] as String?,
@@ -5382,6 +5421,7 @@ class DescribePartnerEventSourceResponse {
     this.arn,
     this.name,
   });
+
   factory DescribePartnerEventSourceResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribePartnerEventSourceResponse(
@@ -5452,6 +5492,7 @@ class DescribeReplayResponse {
     this.state,
     this.stateReason,
   });
+
   factory DescribeReplayResponse.fromJson(Map<String, dynamic> json) {
     return DescribeReplayResponse(
       description: json['Description'] as String?,
@@ -5558,6 +5599,7 @@ class DescribeRuleResponse {
     this.scheduleExpression,
     this.state,
   });
+
   factory DescribeRuleResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRuleResponse(
       arn: json['Arn'] as String?,
@@ -5706,6 +5748,7 @@ class EcsParameters {
     this.tags,
     this.taskCount,
   });
+
   factory EcsParameters.fromJson(Map<String, dynamic> json) {
     return EcsParameters(
       taskDefinitionArn: json['TaskDefinitionArn'] as String,
@@ -5802,6 +5845,7 @@ class EventBus {
     this.name,
     this.policy,
   });
+
   factory EventBus.fromJson(Map<String, dynamic> json) {
     return EventBus(
       arn: json['Arn'] as String?,
@@ -5857,6 +5901,7 @@ class EventSource {
     this.name,
     this.state,
   });
+
   factory EventSource.fromJson(Map<String, dynamic> json) {
     return EventSource(
       arn: json['Arn'] as String?,
@@ -5943,6 +5988,7 @@ class HttpParameters {
     this.pathParameterValues,
     this.queryStringParameters,
   });
+
   factory HttpParameters.fromJson(Map<String, dynamic> json) {
     return HttpParameters(
       headerParameters: (json['HeaderParameters'] as Map<String, dynamic>?)
@@ -6047,6 +6093,7 @@ class InputTransformer {
     required this.inputTemplate,
     this.inputPathsMap,
   });
+
   factory InputTransformer.fromJson(Map<String, dynamic> json) {
     return InputTransformer(
       inputTemplate: json['InputTemplate'] as String,
@@ -6081,6 +6128,7 @@ class KinesisParameters {
   KinesisParameters({
     required this.partitionKeyPath,
   });
+
   factory KinesisParameters.fromJson(Map<String, dynamic> json) {
     return KinesisParameters(
       partitionKeyPath: json['PartitionKeyPath'] as String,
@@ -6136,6 +6184,7 @@ class ListApiDestinationsResponse {
     this.apiDestinations,
     this.nextToken,
   });
+
   factory ListApiDestinationsResponse.fromJson(Map<String, dynamic> json) {
     return ListApiDestinationsResponse(
       apiDestinations: (json['ApiDestinations'] as List?)
@@ -6168,6 +6217,7 @@ class ListArchivesResponse {
     this.archives,
     this.nextToken,
   });
+
   factory ListArchivesResponse.fromJson(Map<String, dynamic> json) {
     return ListArchivesResponse(
       archives: (json['Archives'] as List?)
@@ -6200,6 +6250,7 @@ class ListConnectionsResponse {
     this.connections,
     this.nextToken,
   });
+
   factory ListConnectionsResponse.fromJson(Map<String, dynamic> json) {
     return ListConnectionsResponse(
       connections: (json['Connections'] as List?)
@@ -6232,6 +6283,7 @@ class ListEventBusesResponse {
     this.eventBuses,
     this.nextToken,
   });
+
   factory ListEventBusesResponse.fromJson(Map<String, dynamic> json) {
     return ListEventBusesResponse(
       eventBuses: (json['EventBuses'] as List?)
@@ -6264,6 +6316,7 @@ class ListEventSourcesResponse {
     this.eventSources,
     this.nextToken,
   });
+
   factory ListEventSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListEventSourcesResponse(
       eventSources: (json['EventSources'] as List?)
@@ -6296,6 +6349,7 @@ class ListPartnerEventSourceAccountsResponse {
     this.nextToken,
     this.partnerEventSourceAccounts,
   });
+
   factory ListPartnerEventSourceAccountsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListPartnerEventSourceAccountsResponse(
@@ -6331,6 +6385,7 @@ class ListPartnerEventSourcesResponse {
     this.nextToken,
     this.partnerEventSources,
   });
+
   factory ListPartnerEventSourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListPartnerEventSourcesResponse(
       nextToken: json['NextToken'] as String?,
@@ -6364,6 +6419,7 @@ class ListReplaysResponse {
     this.nextToken,
     this.replays,
   });
+
   factory ListReplaysResponse.fromJson(Map<String, dynamic> json) {
     return ListReplaysResponse(
       nextToken: json['NextToken'] as String?,
@@ -6396,6 +6452,7 @@ class ListRuleNamesByTargetResponse {
     this.nextToken,
     this.ruleNames,
   });
+
   factory ListRuleNamesByTargetResponse.fromJson(Map<String, dynamic> json) {
     return ListRuleNamesByTargetResponse(
       nextToken: json['NextToken'] as String?,
@@ -6428,6 +6485,7 @@ class ListRulesResponse {
     this.nextToken,
     this.rules,
   });
+
   factory ListRulesResponse.fromJson(Map<String, dynamic> json) {
     return ListRulesResponse(
       nextToken: json['NextToken'] as String?,
@@ -6455,6 +6513,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -6484,6 +6543,7 @@ class ListTargetsByRuleResponse {
     this.nextToken,
     this.targets,
   });
+
   factory ListTargetsByRuleResponse.fromJson(Map<String, dynamic> json) {
     return ListTargetsByRuleResponse(
       nextToken: json['NextToken'] as String?,
@@ -6514,6 +6574,7 @@ class NetworkConfiguration {
   NetworkConfiguration({
     this.awsvpcConfiguration,
   });
+
   factory NetworkConfiguration.fromJson(Map<String, dynamic> json) {
     return NetworkConfiguration(
       awsvpcConfiguration: json['awsvpcConfiguration'] != null
@@ -6546,6 +6607,7 @@ class PartnerEventSource {
     this.arn,
     this.name,
   });
+
   factory PartnerEventSource.fromJson(Map<String, dynamic> json) {
     return PartnerEventSource(
       arn: json['Arn'] as String?,
@@ -6588,6 +6650,7 @@ class PartnerEventSourceAccount {
     this.expirationTime,
     this.state,
   });
+
   factory PartnerEventSourceAccount.fromJson(Map<String, dynamic> json) {
     return PartnerEventSourceAccount(
       account: json['Account'] as String?,
@@ -6634,6 +6697,7 @@ class PlacementConstraint {
     this.expression,
     this.type,
   });
+
   factory PlacementConstraint.fromJson(Map<String, dynamic> json) {
     return PlacementConstraint(
       expression: json['expression'] as String?,
@@ -6706,6 +6770,7 @@ class PlacementStrategy {
     this.field,
     this.type,
   });
+
   factory PlacementStrategy.fromJson(Map<String, dynamic> json) {
     return PlacementStrategy(
       field: json['field'] as String?,
@@ -6822,6 +6887,7 @@ class PutEventsRequestEntry {
     this.time,
     this.traceHeader,
   });
+
   factory PutEventsRequestEntry.fromJson(Map<String, dynamic> json) {
     return PutEventsRequestEntry(
       detail: json['Detail'] as String?,
@@ -6871,6 +6937,7 @@ class PutEventsResponse {
     this.entries,
     this.failedEntryCount,
   });
+
   factory PutEventsResponse.fromJson(Map<String, dynamic> json) {
     return PutEventsResponse(
       entries: (json['Entries'] as List?)
@@ -6907,6 +6974,7 @@ class PutEventsResultEntry {
     this.errorMessage,
     this.eventId,
   });
+
   factory PutEventsResultEntry.fromJson(Map<String, dynamic> json) {
     return PutEventsResultEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -6953,6 +7021,7 @@ class PutPartnerEventsRequestEntry {
     this.source,
     this.time,
   });
+
   factory PutPartnerEventsRequestEntry.fromJson(Map<String, dynamic> json) {
     return PutPartnerEventsRequestEntry(
       detail: json['Detail'] as String?,
@@ -6995,6 +7064,7 @@ class PutPartnerEventsResponse {
     this.entries,
     this.failedEntryCount,
   });
+
   factory PutPartnerEventsResponse.fromJson(Map<String, dynamic> json) {
     return PutPartnerEventsResponse(
       entries: (json['Entries'] as List?)
@@ -7032,6 +7102,7 @@ class PutPartnerEventsResultEntry {
     this.errorMessage,
     this.eventId,
   });
+
   factory PutPartnerEventsResultEntry.fromJson(Map<String, dynamic> json) {
     return PutPartnerEventsResultEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -7059,6 +7130,7 @@ class PutRuleResponse {
   PutRuleResponse({
     this.ruleArn,
   });
+
   factory PutRuleResponse.fromJson(Map<String, dynamic> json) {
     return PutRuleResponse(
       ruleArn: json['RuleArn'] as String?,
@@ -7084,6 +7156,7 @@ class PutTargetsResponse {
     this.failedEntries,
     this.failedEntryCount,
   });
+
   factory PutTargetsResponse.fromJson(Map<String, dynamic> json) {
     return PutTargetsResponse(
       failedEntries: (json['FailedEntries'] as List?)
@@ -7122,6 +7195,7 @@ class PutTargetsResultEntry {
     this.errorMessage,
     this.targetId,
   });
+
   factory PutTargetsResultEntry.fromJson(Map<String, dynamic> json) {
     return PutTargetsResultEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -7177,6 +7251,7 @@ class RedshiftDataParameters {
     this.statementName,
     this.withEvent,
   });
+
   factory RedshiftDataParameters.fromJson(Map<String, dynamic> json) {
     return RedshiftDataParameters(
       database: json['Database'] as String,
@@ -7217,6 +7292,7 @@ class RemoveTargetsResponse {
     this.failedEntries,
     this.failedEntryCount,
   });
+
   factory RemoveTargetsResponse.fromJson(Map<String, dynamic> json) {
     return RemoveTargetsResponse(
       failedEntries: (json['FailedEntries'] as List?)
@@ -7256,6 +7332,7 @@ class RemoveTargetsResultEntry {
     this.errorMessage,
     this.targetId,
   });
+
   factory RemoveTargetsResultEntry.fromJson(Map<String, dynamic> json) {
     return RemoveTargetsResultEntry(
       errorCode: json['ErrorCode'] as String?,
@@ -7319,6 +7396,7 @@ class Replay {
     this.state,
     this.stateReason,
   });
+
   factory Replay.fromJson(Map<String, dynamic> json) {
     return Replay(
       eventEndTime: timeStampFromJson(json['EventEndTime']),
@@ -7376,6 +7454,7 @@ class ReplayDestination {
     required this.arn,
     this.filterArns,
   });
+
   factory ReplayDestination.fromJson(Map<String, dynamic> json) {
     return ReplayDestination(
       arn: json['Arn'] as String,
@@ -7459,6 +7538,7 @@ class RetryPolicy {
     this.maximumEventAgeInSeconds,
     this.maximumRetryAttempts,
   });
+
   factory RetryPolicy.fromJson(Map<String, dynamic> json) {
     return RetryPolicy(
       maximumEventAgeInSeconds: json['MaximumEventAgeInSeconds'] as int?,
@@ -7524,6 +7604,7 @@ class Rule {
     this.scheduleExpression,
     this.state,
   });
+
   factory Rule.fromJson(Map<String, dynamic> json) {
     return Rule(
       arn: json['Arn'] as String?,
@@ -7600,6 +7681,7 @@ class RunCommandParameters {
   RunCommandParameters({
     required this.runCommandTargets,
   });
+
   factory RunCommandParameters.fromJson(Map<String, dynamic> json) {
     return RunCommandParameters(
       runCommandTargets: (json['RunCommandTargets'] as List)
@@ -7633,6 +7715,7 @@ class RunCommandTarget {
     required this.key,
     required this.values,
   });
+
   factory RunCommandTarget.fromJson(Map<String, dynamic> json) {
     return RunCommandTarget(
       key: json['Key'] as String,
@@ -7667,6 +7750,7 @@ class SageMakerPipelineParameter {
     required this.name,
     required this.value,
   });
+
   factory SageMakerPipelineParameter.fromJson(Map<String, dynamic> json) {
     return SageMakerPipelineParameter(
       name: json['Name'] as String,
@@ -7694,6 +7778,7 @@ class SageMakerPipelineParameters {
   SageMakerPipelineParameters({
     this.pipelineParameterList,
   });
+
   factory SageMakerPipelineParameters.fromJson(Map<String, dynamic> json) {
     return SageMakerPipelineParameters(
       pipelineParameterList: (json['PipelineParameterList'] as List?)
@@ -7722,6 +7807,7 @@ class SqsParameters {
   SqsParameters({
     this.messageGroupId,
   });
+
   factory SqsParameters.fromJson(Map<String, dynamic> json) {
     return SqsParameters(
       messageGroupId: json['MessageGroupId'] as String?,
@@ -7755,6 +7841,7 @@ class StartReplayResponse {
     this.state,
     this.stateReason,
   });
+
   factory StartReplayResponse.fromJson(Map<String, dynamic> json) {
     return StartReplayResponse(
       replayArn: json['ReplayArn'] as String?,
@@ -7793,6 +7880,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -7812,6 +7900,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -7943,6 +8032,7 @@ class Target {
     this.sageMakerPipelineParameters,
     this.sqsParameters,
   });
+
   factory Target.fromJson(Map<String, dynamic> json) {
     return Target(
       arn: json['Arn'] as String,
@@ -8044,6 +8134,7 @@ class TestEventPatternResponse {
   TestEventPatternResponse({
     this.result,
   });
+
   factory TestEventPatternResponse.fromJson(Map<String, dynamic> json) {
     return TestEventPatternResponse(
       result: json['Result'] as bool?,
@@ -8060,6 +8151,7 @@ class TestEventPatternResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -8088,6 +8180,7 @@ class UpdateApiDestinationResponse {
     this.creationTime,
     this.lastModifiedTime,
   });
+
   factory UpdateApiDestinationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApiDestinationResponse(
       apiDestinationArn: json['ApiDestinationArn'] as String?,
@@ -8134,6 +8227,7 @@ class UpdateArchiveResponse {
     this.state,
     this.stateReason,
   });
+
   factory UpdateArchiveResponse.fromJson(Map<String, dynamic> json) {
     return UpdateArchiveResponse(
       archiveArn: json['ArchiveArn'] as String?,
@@ -8171,6 +8265,7 @@ class UpdateConnectionApiKeyAuthRequestParameters {
     this.apiKeyName,
     this.apiKeyValue,
   });
+
   factory UpdateConnectionApiKeyAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return UpdateConnectionApiKeyAuthRequestParameters(
@@ -8213,6 +8308,7 @@ class UpdateConnectionAuthRequestParameters {
     this.invocationHttpParameters,
     this.oAuthParameters,
   });
+
   factory UpdateConnectionAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return UpdateConnectionAuthRequestParameters(
@@ -8264,6 +8360,7 @@ class UpdateConnectionBasicAuthRequestParameters {
     this.password,
     this.username,
   });
+
   factory UpdateConnectionBasicAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return UpdateConnectionBasicAuthRequestParameters(
@@ -8295,6 +8392,7 @@ class UpdateConnectionOAuthClientRequestParameters {
     this.clientID,
     this.clientSecret,
   });
+
   factory UpdateConnectionOAuthClientRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return UpdateConnectionOAuthClientRequestParameters(
@@ -8336,6 +8434,7 @@ class UpdateConnectionOAuthRequestParameters {
     this.httpMethod,
     this.oAuthHttpParameters,
   });
+
   factory UpdateConnectionOAuthRequestParameters.fromJson(
       Map<String, dynamic> json) {
     return UpdateConnectionOAuthRequestParameters(
@@ -8392,6 +8491,7 @@ class UpdateConnectionResponse {
     this.lastAuthorizedTime,
     this.lastModifiedTime,
   });
+
   factory UpdateConnectionResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConnectionResponse(
       connectionArn: json['ConnectionArn'] as String?,

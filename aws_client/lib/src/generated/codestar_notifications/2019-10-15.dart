@@ -666,6 +666,7 @@ class CreateNotificationRuleResult {
   CreateNotificationRuleResult({
     this.arn,
   });
+
   factory CreateNotificationRuleResult.fromJson(Map<String, dynamic> json) {
     return CreateNotificationRuleResult(
       arn: json['Arn'] as String?,
@@ -687,6 +688,7 @@ class DeleteNotificationRuleResult {
   DeleteNotificationRuleResult({
     this.arn,
   });
+
   factory DeleteNotificationRuleResult.fromJson(Map<String, dynamic> json) {
     return DeleteNotificationRuleResult(
       arn: json['Arn'] as String?,
@@ -703,6 +705,7 @@ class DeleteNotificationRuleResult {
 
 class DeleteTargetResult {
   DeleteTargetResult();
+
   factory DeleteTargetResult.fromJson(Map<String, dynamic> _) {
     return DeleteTargetResult();
   }
@@ -766,6 +769,7 @@ class DescribeNotificationRuleResult {
     this.tags,
     this.targets,
   });
+
   factory DescribeNotificationRuleResult.fromJson(Map<String, dynamic> json) {
     return DescribeNotificationRuleResult(
       arn: json['Arn'] as String,
@@ -867,6 +871,7 @@ class EventTypeSummary {
     this.resourceType,
     this.serviceName,
   });
+
   factory EventTypeSummary.fromJson(Map<String, dynamic> json) {
     return EventTypeSummary(
       eventTypeId: json['EventTypeId'] as String?,
@@ -904,6 +909,7 @@ class ListEventTypesFilter {
     required this.name,
     required this.value,
   });
+
   factory ListEventTypesFilter.fromJson(Map<String, dynamic> json) {
     return ListEventTypesFilter(
       name: (json['Name'] as String).toListEventTypesFilterName(),
@@ -962,6 +968,7 @@ class ListEventTypesResult {
     this.eventTypes,
     this.nextToken,
   });
+
   factory ListEventTypesResult.fromJson(Map<String, dynamic> json) {
     return ListEventTypesResult(
       eventTypes: (json['EventTypes'] as List?)
@@ -999,6 +1006,7 @@ class ListNotificationRulesFilter {
     required this.name,
     required this.value,
   });
+
   factory ListNotificationRulesFilter.fromJson(Map<String, dynamic> json) {
     return ListNotificationRulesFilter(
       name: (json['Name'] as String).toListNotificationRulesFilterName(),
@@ -1068,6 +1076,7 @@ class ListNotificationRulesResult {
     this.nextToken,
     this.notificationRules,
   });
+
   factory ListNotificationRulesResult.fromJson(Map<String, dynamic> json) {
     return ListNotificationRulesResult(
       nextToken: json['NextToken'] as String?,
@@ -1096,6 +1105,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1129,6 +1139,7 @@ class ListTargetsFilter {
     required this.name,
     required this.value,
   });
+
   factory ListTargetsFilter.fromJson(Map<String, dynamic> json) {
     return ListTargetsFilter(
       name: (json['Name'] as String).toListTargetsFilterName(),
@@ -1191,6 +1202,7 @@ class ListTargetsResult {
     this.nextToken,
     this.targets,
   });
+
   factory ListTargetsResult.fromJson(Map<String, dynamic> json) {
     return ListTargetsResult(
       nextToken: json['NextToken'] as String?,
@@ -1251,6 +1263,7 @@ class NotificationRuleSummary {
     this.arn,
     this.id,
   });
+
   factory NotificationRuleSummary.fromJson(Map<String, dynamic> json) {
     return NotificationRuleSummary(
       arn: json['Arn'] as String?,
@@ -1276,6 +1289,7 @@ class SubscribeResult {
   SubscribeResult({
     this.arn,
   });
+
   factory SubscribeResult.fromJson(Map<String, dynamic> json) {
     return SubscribeResult(
       arn: json['Arn'] as String?,
@@ -1297,6 +1311,7 @@ class TagResourceResult {
   TagResourceResult({
     this.tags,
   });
+
   factory TagResourceResult.fromJson(Map<String, dynamic> json) {
     return TagResourceResult(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1324,6 +1339,7 @@ class Target {
     this.targetAddress,
     this.targetType,
   });
+
   factory Target.fromJson(Map<String, dynamic> json) {
     return Target(
       targetAddress: json['TargetAddress'] as String?,
@@ -1400,6 +1416,7 @@ class TargetSummary {
     this.targetStatus,
     this.targetType,
   });
+
   factory TargetSummary.fromJson(Map<String, dynamic> json) {
     return TargetSummary(
       targetAddress: json['TargetAddress'] as String?,
@@ -1428,6 +1445,7 @@ class UnsubscribeResult {
   UnsubscribeResult({
     required this.arn,
   });
+
   factory UnsubscribeResult.fromJson(Map<String, dynamic> json) {
     return UnsubscribeResult(
       arn: json['Arn'] as String,
@@ -1444,6 +1462,7 @@ class UnsubscribeResult {
 
 class UntagResourceResult {
   UntagResourceResult();
+
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
@@ -1455,6 +1474,7 @@ class UntagResourceResult {
 
 class UpdateNotificationRuleResult {
   UpdateNotificationRuleResult();
+
   factory UpdateNotificationRuleResult.fromJson(Map<String, dynamic> _) {
     return UpdateNotificationRuleResult();
   }

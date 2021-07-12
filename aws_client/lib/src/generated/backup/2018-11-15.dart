@@ -2193,6 +2193,7 @@ class AdvancedBackupSetting {
     this.backupOptions,
     this.resourceType,
   });
+
   factory AdvancedBackupSetting.fromJson(Map<String, dynamic> json) {
     return AdvancedBackupSetting(
       backupOptions: (json['BackupOptions'] as Map<String, dynamic>?)
@@ -2337,6 +2338,7 @@ class BackupJob {
     this.state,
     this.statusMessage,
   });
+
   factory BackupJob.fromJson(Map<String, dynamic> json) {
     return BackupJob(
       accountId: json['AccountId'] as String?,
@@ -2493,6 +2495,7 @@ class BackupPlan {
     required this.rules,
     this.advancedBackupSettings,
   });
+
   factory BackupPlan.fromJson(Map<String, dynamic> json) {
     return BackupPlan(
       backupPlanName: json['BackupPlanName'] as String,
@@ -2541,6 +2544,7 @@ class BackupPlanInput {
     required this.rules,
     this.advancedBackupSettings,
   });
+
   factory BackupPlanInput.fromJson(Map<String, dynamic> json) {
     return BackupPlanInput(
       backupPlanName: json['BackupPlanName'] as String,
@@ -2580,6 +2584,7 @@ class BackupPlanTemplatesListMember {
     this.backupPlanTemplateId,
     this.backupPlanTemplateName,
   });
+
   factory BackupPlanTemplatesListMember.fromJson(Map<String, dynamic> json) {
     return BackupPlanTemplatesListMember(
       backupPlanTemplateId: json['BackupPlanTemplateId'] as String?,
@@ -2652,6 +2657,7 @@ class BackupPlansListMember {
     this.lastExecutionDate,
     this.versionId,
   });
+
   factory BackupPlansListMember.fromJson(Map<String, dynamic> json) {
     return BackupPlansListMember(
       advancedBackupSettings: (json['AdvancedBackupSettings'] as List?)
@@ -2767,6 +2773,7 @@ class BackupRule {
     this.scheduleExpression,
     this.startWindowMinutes,
   });
+
   factory BackupRule.fromJson(Map<String, dynamic> json) {
     return BackupRule(
       ruleName: json['RuleName'] as String,
@@ -2875,6 +2882,7 @@ class BackupRuleInput {
     this.scheduleExpression,
     this.startWindowMinutes,
   });
+
   factory BackupRuleInput.fromJson(Map<String, dynamic> json) {
     return BackupRuleInput(
       ruleName: json['RuleName'] as String,
@@ -2947,6 +2955,7 @@ class BackupSelection {
     this.listOfTags,
     this.resources,
   });
+
   factory BackupSelection.fromJson(Map<String, dynamic> json) {
     return BackupSelection(
       iamRoleArn: json['IamRoleArn'] as String,
@@ -3010,6 +3019,7 @@ class BackupSelectionsListMember {
     this.selectionId,
     this.selectionName,
   });
+
   factory BackupSelectionsListMember.fromJson(Map<String, dynamic> json) {
     return BackupSelectionsListMember(
       backupPlanId: json['BackupPlanId'] as String?,
@@ -3172,6 +3182,7 @@ class BackupVaultListMember {
     this.encryptionKeyArn,
     this.numberOfRecoveryPoints,
   });
+
   factory BackupVaultListMember.fromJson(Map<String, dynamic> json) {
     return BackupVaultListMember(
       backupVaultArn: json['BackupVaultArn'] as String?,
@@ -3229,6 +3240,7 @@ class CalculatedLifecycle {
     this.deleteAt,
     this.moveToColdStorageAt,
   });
+
   factory CalculatedLifecycle.fromJson(Map<String, dynamic> json) {
     return CalculatedLifecycle(
       deleteAt: timeStampFromJson(json['DeleteAt']),
@@ -3270,6 +3282,7 @@ class Condition {
     required this.conditionType,
     required this.conditionValue,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       conditionKey: json['ConditionKey'] as String,
@@ -3325,6 +3338,7 @@ class CopyAction {
     required this.destinationBackupVaultArn,
     this.lifecycle,
   });
+
   factory CopyAction.fromJson(Map<String, dynamic> json) {
     return CopyAction(
       destinationBackupVaultArn: json['DestinationBackupVaultArn'] as String,
@@ -3423,6 +3437,7 @@ class CopyJob {
     this.state,
     this.statusMessage,
   });
+
   factory CopyJob.fromJson(Map<String, dynamic> json) {
     return CopyJob(
       accountId: json['AccountId'] as String?,
@@ -3557,6 +3572,7 @@ class CreateBackupPlanOutput {
     this.creationDate,
     this.versionId,
   });
+
   factory CreateBackupPlanOutput.fromJson(Map<String, dynamic> json) {
     return CreateBackupPlanOutput(
       advancedBackupSettings: (json['AdvancedBackupSettings'] as List?)
@@ -3607,6 +3623,7 @@ class CreateBackupSelectionOutput {
     this.creationDate,
     this.selectionId,
   });
+
   factory CreateBackupSelectionOutput.fromJson(Map<String, dynamic> json) {
     return CreateBackupSelectionOutput(
       backupPlanId: json['BackupPlanId'] as String?,
@@ -3651,6 +3668,7 @@ class CreateBackupVaultOutput {
     this.backupVaultName,
     this.creationDate,
   });
+
   factory CreateBackupVaultOutput.fromJson(Map<String, dynamic> json) {
     return CreateBackupVaultOutput(
       backupVaultArn: json['BackupVaultArn'] as String?,
@@ -3697,6 +3715,7 @@ class DeleteBackupPlanOutput {
     this.deletionDate,
     this.versionId,
   });
+
   factory DeleteBackupPlanOutput.fromJson(Map<String, dynamic> json) {
     return DeleteBackupPlanOutput(
       backupPlanArn: json['BackupPlanArn'] as String?,
@@ -3839,6 +3858,7 @@ class DescribeBackupJobOutput {
     this.state,
     this.statusMessage,
   });
+
   factory DescribeBackupJobOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBackupJobOutput(
       accountId: json['AccountId'] as String?,
@@ -3955,6 +3975,7 @@ class DescribeBackupVaultOutput {
     this.encryptionKeyArn,
     this.numberOfRecoveryPoints,
   });
+
   factory DescribeBackupVaultOutput.fromJson(Map<String, dynamic> json) {
     return DescribeBackupVaultOutput(
       backupVaultArn: json['BackupVaultArn'] as String?,
@@ -3993,6 +4014,7 @@ class DescribeCopyJobOutput {
   DescribeCopyJobOutput({
     this.copyJob,
   });
+
   factory DescribeCopyJobOutput.fromJson(Map<String, dynamic> json) {
     return DescribeCopyJobOutput(
       copyJob: json['CopyJob'] != null
@@ -4023,6 +4045,7 @@ class DescribeGlobalSettingsOutput {
     this.globalSettings,
     this.lastUpdateTime,
   });
+
   factory DescribeGlobalSettingsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeGlobalSettingsOutput(
       globalSettings: (json['GlobalSettings'] as Map<String, dynamic>?)
@@ -4062,6 +4085,7 @@ class DescribeProtectedResourceOutput {
     this.resourceArn,
     this.resourceType,
   });
+
   factory DescribeProtectedResourceOutput.fromJson(Map<String, dynamic> json) {
     return DescribeProtectedResourceOutput(
       lastBackupTime: timeStampFromJson(json['LastBackupTime']),
@@ -4202,6 +4226,7 @@ class DescribeRecoveryPointOutput {
     this.status,
     this.storageClass,
   });
+
   factory DescribeRecoveryPointOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRecoveryPointOutput(
       backupSizeInBytes: json['BackupSizeInBytes'] as int?,
@@ -4288,6 +4313,7 @@ class DescribeRegionSettingsOutput {
   DescribeRegionSettingsOutput({
     this.resourceTypeOptInPreference,
   });
+
   factory DescribeRegionSettingsOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRegionSettingsOutput(
       resourceTypeOptInPreference:
@@ -4373,6 +4399,7 @@ class DescribeRestoreJobOutput {
     this.status,
     this.statusMessage,
   });
+
   factory DescribeRestoreJobOutput.fromJson(Map<String, dynamic> json) {
     return DescribeRestoreJobOutput(
       accountId: json['AccountId'] as String?,
@@ -4438,6 +4465,7 @@ class ExportBackupPlanTemplateOutput {
   ExportBackupPlanTemplateOutput({
     this.backupPlanTemplateJson,
   });
+
   factory ExportBackupPlanTemplateOutput.fromJson(Map<String, dynamic> json) {
     return ExportBackupPlanTemplateOutput(
       backupPlanTemplateJson: json['BackupPlanTemplateJson'] as String?,
@@ -4461,6 +4489,7 @@ class GetBackupPlanFromJSONOutput {
   GetBackupPlanFromJSONOutput({
     this.backupPlan,
   });
+
   factory GetBackupPlanFromJSONOutput.fromJson(Map<String, dynamic> json) {
     return GetBackupPlanFromJSONOutput(
       backupPlan: json['BackupPlan'] != null
@@ -4485,6 +4514,7 @@ class GetBackupPlanFromTemplateOutput {
   GetBackupPlanFromTemplateOutput({
     this.backupPlanDocument,
   });
+
   factory GetBackupPlanFromTemplateOutput.fromJson(Map<String, dynamic> json) {
     return GetBackupPlanFromTemplateOutput(
       backupPlanDocument: json['BackupPlanDocument'] != null
@@ -4557,6 +4587,7 @@ class GetBackupPlanOutput {
     this.lastExecutionDate,
     this.versionId,
   });
+
   factory GetBackupPlanOutput.fromJson(Map<String, dynamic> json) {
     return GetBackupPlanOutput(
       advancedBackupSettings: (json['AdvancedBackupSettings'] as List?)
@@ -4633,6 +4664,7 @@ class GetBackupSelectionOutput {
     this.creatorRequestId,
     this.selectionId,
   });
+
   factory GetBackupSelectionOutput.fromJson(Map<String, dynamic> json) {
     return GetBackupSelectionOutput(
       backupPlanId: json['BackupPlanId'] as String?,
@@ -4683,6 +4715,7 @@ class GetBackupVaultAccessPolicyOutput {
     this.backupVaultName,
     this.policy,
   });
+
   factory GetBackupVaultAccessPolicyOutput.fromJson(Map<String, dynamic> json) {
     return GetBackupVaultAccessPolicyOutput(
       backupVaultArn: json['BackupVaultArn'] as String?,
@@ -4730,6 +4763,7 @@ class GetBackupVaultNotificationsOutput {
     this.backupVaultName,
     this.sNSTopicArn,
   });
+
   factory GetBackupVaultNotificationsOutput.fromJson(
       Map<String, dynamic> json) {
     return GetBackupVaultNotificationsOutput(
@@ -4777,6 +4811,7 @@ class GetRecoveryPointRestoreMetadataOutput {
     this.recoveryPointArn,
     this.restoreMetadata,
   });
+
   factory GetRecoveryPointRestoreMetadataOutput.fromJson(
       Map<String, dynamic> json) {
     return GetRecoveryPointRestoreMetadataOutput(
@@ -4830,6 +4865,7 @@ class GetSupportedResourceTypesOutput {
   GetSupportedResourceTypesOutput({
     this.resourceTypes,
   });
+
   factory GetSupportedResourceTypesOutput.fromJson(Map<String, dynamic> json) {
     return GetSupportedResourceTypesOutput(
       resourceTypes: (json['ResourceTypes'] as List?)
@@ -4871,6 +4907,7 @@ class Lifecycle {
     this.deleteAfterDays,
     this.moveToColdStorageAfterDays,
   });
+
   factory Lifecycle.fromJson(Map<String, dynamic> json) {
     return Lifecycle(
       deleteAfterDays: json['DeleteAfterDays'] as int?,
@@ -4904,6 +4941,7 @@ class ListBackupJobsOutput {
     this.backupJobs,
     this.nextToken,
   });
+
   factory ListBackupJobsOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupJobsOutput(
       backupJobs: (json['BackupJobs'] as List?)
@@ -4939,6 +4977,7 @@ class ListBackupPlanTemplatesOutput {
     this.backupPlanTemplatesList,
     this.nextToken,
   });
+
   factory ListBackupPlanTemplatesOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupPlanTemplatesOutput(
       backupPlanTemplatesList: (json['BackupPlanTemplatesList'] as List?)
@@ -4975,6 +5014,7 @@ class ListBackupPlanVersionsOutput {
     this.backupPlanVersionsList,
     this.nextToken,
   });
+
   factory ListBackupPlanVersionsOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupPlanVersionsOutput(
       backupPlanVersionsList: (json['BackupPlanVersionsList'] as List?)
@@ -5011,6 +5051,7 @@ class ListBackupPlansOutput {
     this.backupPlansList,
     this.nextToken,
   });
+
   factory ListBackupPlansOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupPlansOutput(
       backupPlansList: (json['BackupPlansList'] as List?)
@@ -5046,6 +5087,7 @@ class ListBackupSelectionsOutput {
     this.backupSelectionsList,
     this.nextToken,
   });
+
   factory ListBackupSelectionsOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupSelectionsOutput(
       backupSelectionsList: (json['BackupSelectionsList'] as List?)
@@ -5085,6 +5127,7 @@ class ListBackupVaultsOutput {
     this.backupVaultList,
     this.nextToken,
   });
+
   factory ListBackupVaultsOutput.fromJson(Map<String, dynamic> json) {
     return ListBackupVaultsOutput(
       backupVaultList: (json['BackupVaultList'] as List?)
@@ -5120,6 +5163,7 @@ class ListCopyJobsOutput {
     this.copyJobs,
     this.nextToken,
   });
+
   factory ListCopyJobsOutput.fromJson(Map<String, dynamic> json) {
     return ListCopyJobsOutput(
       copyJobs: (json['CopyJobs'] as List?)
@@ -5156,6 +5200,7 @@ class ListProtectedResourcesOutput {
     this.nextToken,
     this.results,
   });
+
   factory ListProtectedResourcesOutput.fromJson(Map<String, dynamic> json) {
     return ListProtectedResourcesOutput(
       nextToken: json['NextToken'] as String?,
@@ -5191,6 +5236,7 @@ class ListRecoveryPointsByBackupVaultOutput {
     this.nextToken,
     this.recoveryPoints,
   });
+
   factory ListRecoveryPointsByBackupVaultOutput.fromJson(
       Map<String, dynamic> json) {
     return ListRecoveryPointsByBackupVaultOutput(
@@ -5228,6 +5274,7 @@ class ListRecoveryPointsByResourceOutput {
     this.nextToken,
     this.recoveryPoints,
   });
+
   factory ListRecoveryPointsByResourceOutput.fromJson(
       Map<String, dynamic> json) {
     return ListRecoveryPointsByResourceOutput(
@@ -5265,6 +5312,7 @@ class ListRestoreJobsOutput {
     this.nextToken,
     this.restoreJobs,
   });
+
   factory ListRestoreJobsOutput.fromJson(Map<String, dynamic> json) {
     return ListRestoreJobsOutput(
       nextToken: json['NextToken'] as String?,
@@ -5300,6 +5348,7 @@ class ListTagsOutput {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsOutput(
       nextToken: json['NextToken'] as String?,
@@ -5340,6 +5389,7 @@ class ProtectedResource {
     this.resourceArn,
     this.resourceType,
   });
+
   factory ProtectedResource.fromJson(Map<String, dynamic> json) {
     return ProtectedResource(
       lastBackupTime: timeStampFromJson(json['LastBackupTime']),
@@ -5474,6 +5524,7 @@ class RecoveryPointByBackupVault {
     this.sourceBackupVaultArn,
     this.status,
   });
+
   factory RecoveryPointByBackupVault.fromJson(Map<String, dynamic> json) {
     return RecoveryPointByBackupVault(
       backupSizeInBytes: json['BackupSizeInBytes'] as int?,
@@ -5587,6 +5638,7 @@ class RecoveryPointByResource {
     this.recoveryPointArn,
     this.status,
   });
+
   factory RecoveryPointByResource.fromJson(Map<String, dynamic> json) {
     return RecoveryPointByResource(
       backupSizeBytes: json['BackupSizeBytes'] as int?,
@@ -5642,6 +5694,7 @@ class RecoveryPointCreator {
     this.backupPlanVersion,
     this.backupRuleId,
   });
+
   factory RecoveryPointCreator.fromJson(Map<String, dynamic> json) {
     return RecoveryPointCreator(
       backupPlanArn: json['BackupPlanArn'] as String?,
@@ -5818,6 +5871,7 @@ class RestoreJobsListMember {
     this.status,
     this.statusMessage,
   });
+
   factory RestoreJobsListMember.fromJson(Map<String, dynamic> json) {
     return RestoreJobsListMember(
       accountId: json['AccountId'] as String?,
@@ -5891,6 +5945,7 @@ class StartBackupJobOutput {
     this.creationDate,
     this.recoveryPointArn,
   });
+
   factory StartBackupJobOutput.fromJson(Map<String, dynamic> json) {
     return StartBackupJobOutput(
       backupJobId: json['BackupJobId'] as String?,
@@ -5926,6 +5981,7 @@ class StartCopyJobOutput {
     this.copyJobId,
     this.creationDate,
   });
+
   factory StartCopyJobOutput.fromJson(Map<String, dynamic> json) {
     return StartCopyJobOutput(
       copyJobId: json['CopyJobId'] as String?,
@@ -5951,6 +6007,7 @@ class StartRestoreJobOutput {
   StartRestoreJobOutput({
     this.restoreJobId,
   });
+
   factory StartRestoreJobOutput.fromJson(Map<String, dynamic> json) {
     return StartRestoreJobOutput(
       restoreJobId: json['RestoreJobId'] as String?,
@@ -6027,6 +6084,7 @@ class UpdateBackupPlanOutput {
     this.creationDate,
     this.versionId,
   });
+
   factory UpdateBackupPlanOutput.fromJson(Map<String, dynamic> json) {
     return UpdateBackupPlanOutput(
       advancedBackupSettings: (json['AdvancedBackupSettings'] as List?)
@@ -6091,6 +6149,7 @@ class UpdateRecoveryPointLifecycleOutput {
     this.lifecycle,
     this.recoveryPointArn,
   });
+
   factory UpdateRecoveryPointLifecycleOutput.fromJson(
       Map<String, dynamic> json) {
     return UpdateRecoveryPointLifecycleOutput(

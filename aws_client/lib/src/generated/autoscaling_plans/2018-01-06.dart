@@ -462,6 +462,7 @@ class ApplicationSource {
     this.cloudFormationStackARN,
     this.tagFilters,
   });
+
   factory ApplicationSource.fromJson(Map<String, dynamic> json) {
     return ApplicationSource(
       cloudFormationStackARN: json['CloudFormationStackARN'] as String?,
@@ -491,6 +492,7 @@ class CreateScalingPlanResponse {
   CreateScalingPlanResponse({
     required this.scalingPlanVersion,
   });
+
   factory CreateScalingPlanResponse.fromJson(Map<String, dynamic> json) {
     return CreateScalingPlanResponse(
       scalingPlanVersion: json['ScalingPlanVersion'] as int,
@@ -567,6 +569,7 @@ class CustomizedLoadMetricSpecification {
     this.dimensions,
     this.unit,
   });
+
   factory CustomizedLoadMetricSpecification.fromJson(
       Map<String, dynamic> json) {
     return CustomizedLoadMetricSpecification(
@@ -648,6 +651,7 @@ class CustomizedScalingMetricSpecification {
     this.dimensions,
     this.unit,
   });
+
   factory CustomizedScalingMetricSpecification.fromJson(
       Map<String, dynamic> json) {
     return CustomizedScalingMetricSpecification(
@@ -690,6 +694,7 @@ class Datapoint {
     this.timestamp,
     this.value,
   });
+
   factory Datapoint.fromJson(Map<String, dynamic> json) {
     return Datapoint(
       timestamp: timeStampFromJson(json['Timestamp']),
@@ -709,6 +714,7 @@ class Datapoint {
 
 class DeleteScalingPlanResponse {
   DeleteScalingPlanResponse();
+
   factory DeleteScalingPlanResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScalingPlanResponse();
   }
@@ -730,6 +736,7 @@ class DescribeScalingPlanResourcesResponse {
     this.nextToken,
     this.scalingPlanResources,
   });
+
   factory DescribeScalingPlanResourcesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeScalingPlanResourcesResponse(
@@ -764,6 +771,7 @@ class DescribeScalingPlansResponse {
     this.nextToken,
     this.scalingPlans,
   });
+
   factory DescribeScalingPlansResponse.fromJson(Map<String, dynamic> json) {
     return DescribeScalingPlansResponse(
       nextToken: json['NextToken'] as String?,
@@ -829,6 +837,7 @@ class GetScalingPlanResourceForecastDataResponse {
   GetScalingPlanResourceForecastDataResponse({
     required this.datapoints,
   });
+
   factory GetScalingPlanResourceForecastDataResponse.fromJson(
       Map<String, dynamic> json) {
     return GetScalingPlanResourceForecastDataResponse(
@@ -897,6 +906,7 @@ class MetricDimension {
     required this.name,
     required this.value,
   });
+
   factory MetricDimension.fromJson(Map<String, dynamic> json) {
     return MetricDimension(
       name: json['Name'] as String,
@@ -1027,6 +1037,7 @@ class PredefinedLoadMetricSpecification {
     required this.predefinedLoadMetricType,
     this.resourceLabel,
   });
+
   factory PredefinedLoadMetricSpecification.fromJson(
       Map<String, dynamic> json) {
     return PredefinedLoadMetricSpecification(
@@ -1089,6 +1100,7 @@ class PredefinedScalingMetricSpecification {
     required this.predefinedScalingMetricType,
     this.resourceLabel,
   });
+
   factory PredefinedScalingMetricSpecification.fromJson(
       Map<String, dynamic> json) {
     return PredefinedScalingMetricSpecification(
@@ -1460,6 +1472,7 @@ class ScalingInstruction {
     this.scalingPolicyUpdateBehavior,
     this.scheduledActionBufferTime,
   });
+
   factory ScalingInstruction.fromJson(Map<String, dynamic> json) {
     return ScalingInstruction(
       maxCapacity: json['MaxCapacity'] as int,
@@ -1698,6 +1711,7 @@ class ScalingPlan {
     this.statusMessage,
     this.statusStartTime,
   });
+
   factory ScalingPlan.fromJson(Map<String, dynamic> json) {
     return ScalingPlan(
       applicationSource: ApplicationSource.fromJson(
@@ -1860,6 +1874,7 @@ class ScalingPlanResource {
     this.scalingPolicies,
     this.scalingStatusMessage,
   });
+
   factory ScalingPlanResource.fromJson(Map<String, dynamic> json) {
     return ScalingPlanResource(
       resourceId: json['ResourceId'] as String,
@@ -1977,6 +1992,7 @@ class ScalingPolicy {
     required this.policyType,
     this.targetTrackingConfiguration,
   });
+
   factory ScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ScalingPolicy(
       policyName: json['PolicyName'] as String,
@@ -2117,6 +2133,7 @@ class TagFilter {
     this.key,
     this.values,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       key: json['Key'] as String?,
@@ -2201,6 +2218,7 @@ class TargetTrackingConfiguration {
     this.scaleInCooldown,
     this.scaleOutCooldown,
   });
+
   factory TargetTrackingConfiguration.fromJson(Map<String, dynamic> json) {
     return TargetTrackingConfiguration(
       targetValue: json['TargetValue'] as double,
@@ -2252,6 +2270,7 @@ class TargetTrackingConfiguration {
 
 class UpdateScalingPlanResponse {
   UpdateScalingPlanResponse();
+
   factory UpdateScalingPlanResponse.fromJson(Map<String, dynamic> _) {
     return UpdateScalingPlanResponse();
   }

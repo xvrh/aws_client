@@ -1094,6 +1094,7 @@ class AvailabilityZone {
   AvailabilityZone({
     this.name,
   });
+
   factory AvailabilityZone.fromJson(Map<String, dynamic> json) {
     return AvailabilityZone(
       name: json['name'] as String?,
@@ -1120,6 +1121,7 @@ class BrokerEngineType {
     this.engineType,
     this.engineVersions,
   });
+
   factory BrokerEngineType.fromJson(Map<String, dynamic> json) {
     return BrokerEngineType(
       engineType: (json['engineType'] as String?)?.toEngineType(),
@@ -1157,6 +1159,7 @@ class BrokerInstance {
     this.endpoints,
     this.ipAddress,
   });
+
   factory BrokerInstance.fromJson(Map<String, dynamic> json) {
     return BrokerInstance(
       consoleURL: json['consoleURL'] as String?,
@@ -1208,6 +1211,7 @@ class BrokerInstanceOption {
     this.supportedDeploymentModes,
     this.supportedEngineVersions,
   });
+
   factory BrokerInstanceOption.fromJson(Map<String, dynamic> json) {
     return BrokerInstanceOption(
       availabilityZones: (json['availabilityZones'] as List?)
@@ -1364,6 +1368,7 @@ class BrokerSummary {
     this.created,
     this.hostInstanceType,
   });
+
   factory BrokerSummary.fromJson(Map<String, dynamic> json) {
     return BrokerSummary(
       deploymentMode: (json['deploymentMode'] as String).toDeploymentMode(),
@@ -1484,6 +1489,7 @@ class Configuration {
     required this.name,
     this.tags,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       arn: json['arn'] as String,
@@ -1543,6 +1549,7 @@ class ConfigurationId {
     required this.id,
     this.revision,
   });
+
   factory ConfigurationId.fromJson(Map<String, dynamic> json) {
     return ConfigurationId(
       id: json['id'] as String,
@@ -1576,6 +1583,7 @@ class ConfigurationRevision {
     required this.revision,
     this.description,
   });
+
   factory ConfigurationRevision.fromJson(Map<String, dynamic> json) {
     return ConfigurationRevision(
       created: nonNullableTimeStampFromJson(json['created'] as Object),
@@ -1612,6 +1620,7 @@ class Configurations {
     this.history,
     this.pending,
   });
+
   factory Configurations.fromJson(Map<String, dynamic> json) {
     return Configurations(
       current: json['current'] != null
@@ -1650,6 +1659,7 @@ class CreateBrokerResponse {
     this.brokerArn,
     this.brokerId,
   });
+
   factory CreateBrokerResponse.fromJson(Map<String, dynamic> json) {
     return CreateBrokerResponse(
       brokerArn: json['brokerArn'] as String?,
@@ -1697,6 +1707,7 @@ class CreateConfigurationResponse {
     this.latestRevision,
     this.name,
   });
+
   factory CreateConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return CreateConfigurationResponse(
       arn: json['arn'] as String?,
@@ -1733,6 +1744,7 @@ class CreateConfigurationResponse {
 
 class CreateUserResponse {
   CreateUserResponse();
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> _) {
     return CreateUserResponse();
   }
@@ -1802,6 +1814,7 @@ class DeleteBrokerResponse {
   DeleteBrokerResponse({
     this.brokerId,
   });
+
   factory DeleteBrokerResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBrokerResponse(
       brokerId: json['brokerId'] as String?,
@@ -1818,6 +1831,7 @@ class DeleteBrokerResponse {
 
 class DeleteUserResponse {
   DeleteUserResponse();
+
   factory DeleteUserResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserResponse();
   }
@@ -1878,6 +1892,7 @@ class DescribeBrokerEngineTypesResponse {
     this.maxResults,
     this.nextToken,
   });
+
   factory DescribeBrokerEngineTypesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBrokerEngineTypesResponse(
@@ -1919,6 +1934,7 @@ class DescribeBrokerInstanceOptionsResponse {
     this.maxResults,
     this.nextToken,
   });
+
   factory DescribeBrokerInstanceOptionsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeBrokerInstanceOptionsResponse(
@@ -2082,6 +2098,7 @@ class DescribeBrokerResponse {
     this.tags,
     this.users,
   });
+
   factory DescribeBrokerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBrokerResponse(
       authenticationStrategy: (json['authenticationStrategy'] as String?)
@@ -2272,6 +2289,7 @@ class DescribeConfigurationResponse {
     this.name,
     this.tags,
   });
+
   factory DescribeConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConfigurationResponse(
       arn: json['arn'] as String?,
@@ -2338,6 +2356,7 @@ class DescribeConfigurationRevisionResponse {
     this.data,
     this.description,
   });
+
   factory DescribeConfigurationRevisionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationRevisionResponse(
@@ -2389,6 +2408,7 @@ class DescribeUserResponse {
     this.pending,
     this.username,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       brokerId: json['brokerId'] as String?,
@@ -2439,6 +2459,7 @@ class EncryptionOptions {
     required this.useAwsOwnedKey,
     this.kmsKeyId,
   });
+
   factory EncryptionOptions.fromJson(Map<String, dynamic> json) {
     return EncryptionOptions(
       useAwsOwnedKey: json['useAwsOwnedKey'] as bool,
@@ -2493,6 +2514,7 @@ class EngineVersion {
   EngineVersion({
     this.name,
   });
+
   factory EngineVersion.fromJson(Map<String, dynamic> json) {
     return EngineVersion(
       name: json['name'] as String?,
@@ -2589,6 +2611,7 @@ class LdapServerMetadataInput {
     this.userRoleName,
     this.userSearchSubtree,
   });
+
   factory LdapServerMetadataInput.fromJson(Map<String, dynamic> json) {
     return LdapServerMetadataInput(
       hosts: (json['hosts'] as List)
@@ -2708,6 +2731,7 @@ class LdapServerMetadataOutput {
     this.userRoleName,
     this.userSearchSubtree,
   });
+
   factory LdapServerMetadataOutput.fromJson(Map<String, dynamic> json) {
     return LdapServerMetadataOutput(
       hosts: (json['hosts'] as List)
@@ -2764,6 +2788,7 @@ class ListBrokersResponse {
     this.brokerSummaries,
     this.nextToken,
   });
+
   factory ListBrokersResponse.fromJson(Map<String, dynamic> json) {
     return ListBrokersResponse(
       brokerSummaries: (json['brokerSummaries'] as List?)
@@ -2805,6 +2830,7 @@ class ListConfigurationRevisionsResponse {
     this.nextToken,
     this.revisions,
   });
+
   factory ListConfigurationRevisionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListConfigurationRevisionsResponse(
@@ -2849,6 +2875,7 @@ class ListConfigurationsResponse {
     this.maxResults,
     this.nextToken,
   });
+
   factory ListConfigurationsResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigurationsResponse(
       configurations: (json['configurations'] as List?)
@@ -2879,6 +2906,7 @@ class ListTagsResponse {
   ListTagsResponse({
     this.tags,
   });
+
   factory ListTagsResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -2916,6 +2944,7 @@ class ListUsersResponse {
     this.nextToken,
     this.users,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       brokerId: json['brokerId'] as String?,
@@ -2955,6 +2984,7 @@ class Logs {
     this.audit,
     this.general,
   });
+
   factory Logs.fromJson(Map<String, dynamic> json) {
     return Logs(
       audit: json['audit'] as bool?,
@@ -2999,6 +3029,7 @@ class LogsSummary {
     this.auditLogGroup,
     this.pending,
   });
+
   factory LogsSummary.fromJson(Map<String, dynamic> json) {
     return LogsSummary(
       general: json['general'] as bool,
@@ -3040,6 +3071,7 @@ class PendingLogs {
     this.audit,
     this.general,
   });
+
   factory PendingLogs.fromJson(Map<String, dynamic> json) {
     return PendingLogs(
       audit: json['audit'] as bool?,
@@ -3059,6 +3091,7 @@ class PendingLogs {
 
 class RebootBrokerResponse {
   RebootBrokerResponse();
+
   factory RebootBrokerResponse.fromJson(Map<String, dynamic> _) {
     return RebootBrokerResponse();
   }
@@ -3086,6 +3119,7 @@ class SanitizationWarning {
     this.attributeName,
     this.elementName,
   });
+
   factory SanitizationWarning.fromJson(Map<String, dynamic> json) {
     return SanitizationWarning(
       reason: (json['reason'] as String).toSanitizationWarningReason(),
@@ -3194,6 +3228,7 @@ class UpdateBrokerResponse {
     this.maintenanceWindowStartTime,
     this.securityGroups,
   });
+
   factory UpdateBrokerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerResponse(
       authenticationStrategy: (json['authenticationStrategy'] as String?)
@@ -3283,6 +3318,7 @@ class UpdateConfigurationResponse {
     this.name,
     this.warnings,
   });
+
   factory UpdateConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConfigurationResponse(
       arn: json['arn'] as String?,
@@ -3320,6 +3356,7 @@ class UpdateConfigurationResponse {
 
 class UpdateUserResponse {
   UpdateUserResponse();
+
   factory UpdateUserResponse.fromJson(Map<String, dynamic> _) {
     return UpdateUserResponse();
   }
@@ -3366,6 +3403,7 @@ class User {
     this.consoleAccess,
     this.groups,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       password: json['password'] as String,
@@ -3411,6 +3449,7 @@ class UserPendingChanges {
     this.consoleAccess,
     this.groups,
   });
+
   factory UserPendingChanges.fromJson(Map<String, dynamic> json) {
     return UserPendingChanges(
       pendingChange: (json['pendingChange'] as String).toChangeType(),
@@ -3448,6 +3487,7 @@ class UserSummary {
     required this.username,
     this.pendingChange,
   });
+
   factory UserSummary.fromJson(Map<String, dynamic> json) {
     return UserSummary(
       username: json['username'] as String,
@@ -3483,6 +3523,7 @@ class WeeklyStartTime {
     required this.timeOfDay,
     this.timeZone,
   });
+
   factory WeeklyStartTime.fromJson(Map<String, dynamic> json) {
     return WeeklyStartTime(
       dayOfWeek: (json['dayOfWeek'] as String).toDayOfWeek(),

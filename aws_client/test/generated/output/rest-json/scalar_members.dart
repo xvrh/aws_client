@@ -87,6 +87,7 @@ class OutputShape {
     this.str,
     this.trueBool,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       char: json['Char'] as String?,

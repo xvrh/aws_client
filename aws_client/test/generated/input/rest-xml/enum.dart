@@ -114,6 +114,7 @@ class InputShape {
     this.listEnums,
     this.uRIListEnums,
   });
+
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       uRIFooEnum: (json['URIEnum'] as String).toEnumType(),

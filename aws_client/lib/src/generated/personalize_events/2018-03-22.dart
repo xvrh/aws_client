@@ -245,6 +245,7 @@ class Event {
     this.properties,
     this.recommendationId,
   });
+
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       eventType: json['eventType'] as String,
@@ -308,6 +309,7 @@ class Item {
     required this.itemId,
     this.properties,
   });
+
   factory Item.fromJson(Map<String, dynamic> json) {
     return Item(
       itemId: json['itemId'] as String,
@@ -351,6 +353,7 @@ class User {
     required this.userId,
     this.properties,
   });
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['userId'] as String,

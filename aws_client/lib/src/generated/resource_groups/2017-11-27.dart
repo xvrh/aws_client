@@ -1147,6 +1147,7 @@ class CreateGroupOutput {
     this.resourceQuery,
     this.tags,
   });
+
   factory CreateGroupOutput.fromJson(Map<String, dynamic> json) {
     return CreateGroupOutput(
       group: json['Group'] != null
@@ -1186,6 +1187,7 @@ class DeleteGroupOutput {
   DeleteGroupOutput({
     this.group,
   });
+
   factory DeleteGroupOutput.fromJson(Map<String, dynamic> json) {
     return DeleteGroupOutput(
       group: json['Group'] != null
@@ -1218,6 +1220,7 @@ class FailedResource {
     this.errorMessage,
     this.resourceArn,
   });
+
   factory FailedResource.fromJson(Map<String, dynamic> json) {
     return FailedResource(
       errorCode: json['ErrorCode'] as String?,
@@ -1248,6 +1251,7 @@ class GetGroupConfigurationOutput {
   GetGroupConfigurationOutput({
     this.groupConfiguration,
   });
+
   factory GetGroupConfigurationOutput.fromJson(Map<String, dynamic> json) {
     return GetGroupConfigurationOutput(
       groupConfiguration: json['GroupConfiguration'] != null
@@ -1272,6 +1276,7 @@ class GetGroupOutput {
   GetGroupOutput({
     this.group,
   });
+
   factory GetGroupOutput.fromJson(Map<String, dynamic> json) {
     return GetGroupOutput(
       group: json['Group'] != null
@@ -1298,6 +1303,7 @@ class GetGroupQueryOutput {
   GetGroupQueryOutput({
     this.groupQuery,
   });
+
   factory GetGroupQueryOutput.fromJson(Map<String, dynamic> json) {
     return GetGroupQueryOutput(
       groupQuery: json['GroupQuery'] != null
@@ -1325,6 +1331,7 @@ class GetTagsOutput {
     this.arn,
     this.tags,
   });
+
   factory GetTagsOutput.fromJson(Map<String, dynamic> json) {
     return GetTagsOutput(
       arn: json['Arn'] as String?,
@@ -1375,6 +1382,7 @@ class Group {
     required this.name,
     this.description,
   });
+
   factory Group.fromJson(Map<String, dynamic> json) {
     return Group(
       groupArn: json['GroupArn'] as String,
@@ -1424,6 +1432,7 @@ class GroupConfiguration {
     this.proposedConfiguration,
     this.status,
   });
+
   factory GroupConfiguration.fromJson(Map<String, dynamic> json) {
     return GroupConfiguration(
       configuration: (json['Configuration'] as List?)
@@ -1478,6 +1487,7 @@ class GroupConfigurationItem {
     required this.type,
     this.parameters,
   });
+
   factory GroupConfigurationItem.fromJson(Map<String, dynamic> json) {
     return GroupConfigurationItem(
       type: json['Type'] as String,
@@ -1520,6 +1530,7 @@ class GroupConfigurationParameter {
     required this.name,
     this.values,
   });
+
   factory GroupConfigurationParameter.fromJson(Map<String, dynamic> json) {
     return GroupConfigurationParameter(
       name: json['Name'] as String,
@@ -1587,6 +1598,7 @@ class GroupFilter {
     required this.name,
     required this.values,
   });
+
   factory GroupFilter.fromJson(Map<String, dynamic> json) {
     return GroupFilter(
       name: (json['Name'] as String).toGroupFilterName(),
@@ -1647,6 +1659,7 @@ class GroupIdentifier {
     this.groupArn,
     this.groupName,
   });
+
   factory GroupIdentifier.fromJson(Map<String, dynamic> json) {
     return GroupIdentifier(
       groupArn: json['GroupArn'] as String?,
@@ -1679,6 +1692,7 @@ class GroupQuery {
     required this.groupName,
     required this.resourceQuery,
   });
+
   factory GroupQuery.fromJson(Map<String, dynamic> json) {
     return GroupQuery(
       groupName: json['GroupName'] as String,
@@ -1719,6 +1733,7 @@ class GroupResourcesOutput {
     this.pending,
     this.succeeded,
   });
+
   factory GroupResourcesOutput.fromJson(Map<String, dynamic> json) {
     return GroupResourcesOutput(
       failed: (json['Failed'] as List?)
@@ -1766,6 +1781,7 @@ class ListGroupResourcesItem {
     this.identifier,
     this.status,
   });
+
   factory ListGroupResourcesItem.fromJson(Map<String, dynamic> json) {
     return ListGroupResourcesItem(
       identifier: json['Identifier'] != null
@@ -1819,6 +1835,7 @@ class ListGroupResourcesOutput {
     this.resourceIdentifiers,
     this.resources,
   });
+
   factory ListGroupResourcesOutput.fromJson(Map<String, dynamic> json) {
     return ListGroupResourcesOutput(
       nextToken: json['NextToken'] as String?,
@@ -1876,6 +1893,7 @@ class ListGroupsOutput {
     this.groups,
     this.nextToken,
   });
+
   factory ListGroupsOutput.fromJson(Map<String, dynamic> json) {
     return ListGroupsOutput(
       groupIdentifiers: (json['GroupIdentifiers'] as List?)
@@ -1912,6 +1930,7 @@ class PendingResource {
   PendingResource({
     this.resourceArn,
   });
+
   factory PendingResource.fromJson(Map<String, dynamic> json) {
     return PendingResource(
       resourceArn: json['ResourceArn'] as String?,
@@ -1928,6 +1947,7 @@ class PendingResource {
 
 class PutGroupConfigurationOutput {
   PutGroupConfigurationOutput();
+
   factory PutGroupConfigurationOutput.fromJson(Map<String, dynamic> _) {
     return PutGroupConfigurationOutput();
   }
@@ -1960,6 +1980,7 @@ class QueryError {
     this.errorCode,
     this.message,
   });
+
   factory QueryError.fromJson(Map<String, dynamic> json) {
     return QueryError(
       errorCode: (json['ErrorCode'] as String?)?.toQueryErrorCode(),
@@ -2047,6 +2068,7 @@ class ResourceFilter {
     required this.name,
     required this.values,
   });
+
   factory ResourceFilter.fromJson(Map<String, dynamic> json) {
     return ResourceFilter(
       name: (json['Name'] as String).toResourceFilterName(),
@@ -2102,6 +2124,7 @@ class ResourceIdentifier {
     this.resourceArn,
     this.resourceType,
   });
+
   factory ResourceIdentifier.fromJson(Map<String, dynamic> json) {
     return ResourceIdentifier(
       resourceArn: json['ResourceArn'] as String?,
@@ -2258,6 +2281,7 @@ class ResourceQuery {
     required this.query,
     required this.type,
   });
+
   factory ResourceQuery.fromJson(Map<String, dynamic> json) {
     return ResourceQuery(
       query: json['Query'] as String,
@@ -2286,6 +2310,7 @@ class ResourceStatus {
   ResourceStatus({
     this.name,
   });
+
   factory ResourceStatus.fromJson(Map<String, dynamic> json) {
     return ResourceStatus(
       name: (json['Name'] as String?)?.toResourceStatusValue(),
@@ -2347,6 +2372,7 @@ class SearchResourcesOutput {
     this.queryErrors,
     this.resourceIdentifiers,
   });
+
   factory SearchResourcesOutput.fromJson(Map<String, dynamic> json) {
     return SearchResourcesOutput(
       nextToken: json['NextToken'] as String?,
@@ -2385,6 +2411,7 @@ class TagOutput {
     this.arn,
     this.tags,
   });
+
   factory TagOutput.fromJson(Map<String, dynamic> json) {
     return TagOutput(
       arn: json['Arn'] as String?,
@@ -2424,6 +2451,7 @@ class UngroupResourcesOutput {
     this.pending,
     this.succeeded,
   });
+
   factory UngroupResourcesOutput.fromJson(Map<String, dynamic> json) {
     return UngroupResourcesOutput(
       failed: (json['Failed'] as List?)
@@ -2464,6 +2492,7 @@ class UntagOutput {
     this.arn,
     this.keys,
   });
+
   factory UntagOutput.fromJson(Map<String, dynamic> json) {
     return UntagOutput(
       arn: json['Arn'] as String?,
@@ -2491,6 +2520,7 @@ class UpdateGroupOutput {
   UpdateGroupOutput({
     this.group,
   });
+
   factory UpdateGroupOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGroupOutput(
       group: json['Group'] != null
@@ -2515,6 +2545,7 @@ class UpdateGroupQueryOutput {
   UpdateGroupQueryOutput({
     this.groupQuery,
   });
+
   factory UpdateGroupQueryOutput.fromJson(Map<String, dynamic> json) {
     return UpdateGroupQueryOutput(
       groupQuery: json['GroupQuery'] != null

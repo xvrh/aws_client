@@ -2367,6 +2367,7 @@ class AgentListEntry {
     this.name,
     this.status,
   });
+
   factory AgentListEntry.fromJson(Map<String, dynamic> json) {
     return AgentListEntry(
       agentArn: json['AgentArn'] as String?,
@@ -2445,6 +2446,7 @@ extension on String {
 
 class CancelTaskExecutionResponse {
   CancelTaskExecutionResponse();
+
   factory CancelTaskExecutionResponse.fromJson(Map<String, dynamic> _) {
     return CancelTaskExecutionResponse();
   }
@@ -2463,6 +2465,7 @@ class CreateAgentResponse {
   CreateAgentResponse({
     this.agentArn,
   });
+
   factory CreateAgentResponse.fromJson(Map<String, dynamic> json) {
     return CreateAgentResponse(
       agentArn: json['AgentArn'] as String?,
@@ -2486,6 +2489,7 @@ class CreateLocationEfsResponse {
   CreateLocationEfsResponse({
     this.locationArn,
   });
+
   factory CreateLocationEfsResponse.fromJson(Map<String, dynamic> json) {
     return CreateLocationEfsResponse(
       locationArn: json['LocationArn'] as String?,
@@ -2508,6 +2512,7 @@ class CreateLocationFsxWindowsResponse {
   CreateLocationFsxWindowsResponse({
     this.locationArn,
   });
+
   factory CreateLocationFsxWindowsResponse.fromJson(Map<String, dynamic> json) {
     return CreateLocationFsxWindowsResponse(
       locationArn: json['LocationArn'] as String?,
@@ -2531,6 +2536,7 @@ class CreateLocationNfsResponse {
   CreateLocationNfsResponse({
     this.locationArn,
   });
+
   factory CreateLocationNfsResponse.fromJson(Map<String, dynamic> json) {
     return CreateLocationNfsResponse(
       locationArn: json['LocationArn'] as String?,
@@ -2554,6 +2560,7 @@ class CreateLocationObjectStorageResponse {
   CreateLocationObjectStorageResponse({
     this.locationArn,
   });
+
   factory CreateLocationObjectStorageResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateLocationObjectStorageResponse(
@@ -2578,6 +2585,7 @@ class CreateLocationS3Response {
   CreateLocationS3Response({
     this.locationArn,
   });
+
   factory CreateLocationS3Response.fromJson(Map<String, dynamic> json) {
     return CreateLocationS3Response(
       locationArn: json['LocationArn'] as String?,
@@ -2601,6 +2609,7 @@ class CreateLocationSmbResponse {
   CreateLocationSmbResponse({
     this.locationArn,
   });
+
   factory CreateLocationSmbResponse.fromJson(Map<String, dynamic> json) {
     return CreateLocationSmbResponse(
       locationArn: json['LocationArn'] as String?,
@@ -2623,6 +2632,7 @@ class CreateTaskResponse {
   CreateTaskResponse({
     this.taskArn,
   });
+
   factory CreateTaskResponse.fromJson(Map<String, dynamic> json) {
     return CreateTaskResponse(
       taskArn: json['TaskArn'] as String?,
@@ -2639,6 +2649,7 @@ class CreateTaskResponse {
 
 class DeleteAgentResponse {
   DeleteAgentResponse();
+
   factory DeleteAgentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAgentResponse();
   }
@@ -2650,6 +2661,7 @@ class DeleteAgentResponse {
 
 class DeleteLocationResponse {
   DeleteLocationResponse();
+
   factory DeleteLocationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLocationResponse();
   }
@@ -2661,6 +2673,7 @@ class DeleteLocationResponse {
 
 class DeleteTaskResponse {
   DeleteTaskResponse();
+
   factory DeleteTaskResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTaskResponse();
   }
@@ -2708,6 +2721,7 @@ class DescribeAgentResponse {
     this.privateLinkConfig,
     this.status,
   });
+
   factory DescribeAgentResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAgentResponse(
       agentArn: json['AgentArn'] as String?,
@@ -2763,6 +2777,7 @@ class DescribeLocationEfsResponse {
     this.locationArn,
     this.locationUri,
   });
+
   factory DescribeLocationEfsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLocationEfsResponse(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -2820,6 +2835,7 @@ class DescribeLocationFsxWindowsResponse {
     this.securityGroupArns,
     this.user,
   });
+
   factory DescribeLocationFsxWindowsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeLocationFsxWindowsResponse(
@@ -2876,6 +2892,7 @@ class DescribeLocationNfsResponse {
     this.mountOptions,
     this.onPremConfig,
   });
+
   factory DescribeLocationNfsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLocationNfsResponse(
       creationTime: timeStampFromJson(json['CreationTime']),
@@ -2949,6 +2966,7 @@ class DescribeLocationObjectStorageResponse {
     this.serverPort,
     this.serverProtocol,
   });
+
   factory DescribeLocationObjectStorageResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeLocationObjectStorageResponse(
@@ -3024,6 +3042,7 @@ class DescribeLocationS3Response {
     this.s3Config,
     this.s3StorageClass,
   });
+
   factory DescribeLocationS3Response.fromJson(Map<String, dynamic> json) {
     return DescribeLocationS3Response(
       agentArns: (json['AgentArns'] as List?)
@@ -3094,6 +3113,7 @@ class DescribeLocationSmbResponse {
     this.mountOptions,
     this.user,
   });
+
   factory DescribeLocationSmbResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLocationSmbResponse(
       agentArns: (json['AgentArns'] as List?)
@@ -3217,6 +3237,7 @@ class DescribeTaskExecutionResponse {
     this.status,
     this.taskExecutionArn,
   });
+
   factory DescribeTaskExecutionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTaskExecutionResponse(
       bytesTransferred: json['BytesTransferred'] as int?,
@@ -3367,6 +3388,7 @@ class DescribeTaskResponse {
     this.status,
     this.taskArn,
   });
+
   factory DescribeTaskResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTaskResponse(
       cloudWatchLogGroupArn: json['CloudWatchLogGroupArn'] as String?,
@@ -3461,6 +3483,7 @@ class Ec2Config {
     required this.securityGroupArns,
     required this.subnetArn,
   });
+
   factory Ec2Config.fromJson(Map<String, dynamic> json) {
     return Ec2Config(
       securityGroupArns: (json['SecurityGroupArns'] as List)
@@ -3532,6 +3555,7 @@ class FilterRule {
     this.filterType,
     this.value,
   });
+
   factory FilterRule.fromJson(Map<String, dynamic> json) {
     return FilterRule(
       filterType: (json['FilterType'] as String?)?.toFilterType(),
@@ -3623,6 +3647,7 @@ class ListAgentsResponse {
     this.agents,
     this.nextToken,
   });
+
   factory ListAgentsResponse.fromJson(Map<String, dynamic> json) {
     return ListAgentsResponse(
       agents: (json['Agents'] as List?)
@@ -3656,6 +3681,7 @@ class ListLocationsResponse {
     this.locations,
     this.nextToken,
   });
+
   factory ListLocationsResponse.fromJson(Map<String, dynamic> json) {
     return ListLocationsResponse(
       locations: (json['Locations'] as List?)
@@ -3689,6 +3715,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       nextToken: json['NextToken'] as String?,
@@ -3722,6 +3749,7 @@ class ListTaskExecutionsResponse {
     this.nextToken,
     this.taskExecutions,
   });
+
   factory ListTaskExecutionsResponse.fromJson(Map<String, dynamic> json) {
     return ListTaskExecutionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3756,6 +3784,7 @@ class ListTasksResponse {
     this.nextToken,
     this.tasks,
   });
+
   factory ListTasksResponse.fromJson(Map<String, dynamic> json) {
     return ListTasksResponse(
       nextToken: json['NextToken'] as String?,
@@ -3802,6 +3831,7 @@ class LocationFilter {
     required this.operator,
     required this.values,
   });
+
   factory LocationFilter.fromJson(Map<String, dynamic> json) {
     return LocationFilter(
       name: (json['Name'] as String).toLocationFilterName(),
@@ -3896,6 +3926,7 @@ class LocationListEntry {
     this.locationArn,
     this.locationUri,
   });
+
   factory LocationListEntry.fromJson(Map<String, dynamic> json) {
     return LocationListEntry(
       locationArn: json['LocationArn'] as String?,
@@ -4007,6 +4038,7 @@ class NfsMountOptions {
   NfsMountOptions({
     this.version,
   });
+
   factory NfsMountOptions.fromJson(Map<String, dynamic> json) {
     return NfsMountOptions(
       version: (json['Version'] as String?)?.toNfsVersion(),
@@ -4096,6 +4128,7 @@ class OnPremConfig {
   OnPremConfig({
     required this.agentArns,
   });
+
   factory OnPremConfig.fromJson(Map<String, dynamic> json) {
     return OnPremConfig(
       agentArns: (json['AgentArns'] as List)
@@ -4452,6 +4485,7 @@ class Options {
     this.uid,
     this.verifyMode,
   });
+
   factory Options.fromJson(Map<String, dynamic> json) {
     return Options(
       atime: (json['Atime'] as String?)?.toAtime(),
@@ -4688,6 +4722,7 @@ class PrivateLinkConfig {
     this.subnetArns,
     this.vpcEndpointId,
   });
+
   factory PrivateLinkConfig.fromJson(Map<String, dynamic> json) {
     return PrivateLinkConfig(
       privateLinkEndpoint: json['PrivateLinkEndpoint'] as String?,
@@ -4732,6 +4767,7 @@ class S3Config {
   S3Config({
     required this.bucketAccessRoleArn,
   });
+
   factory S3Config.fromJson(Map<String, dynamic> json) {
     return S3Config(
       bucketAccessRoleArn: json['BucketAccessRoleArn'] as String,
@@ -4811,6 +4847,7 @@ class SmbMountOptions {
   SmbMountOptions({
     this.version,
   });
+
   factory SmbMountOptions.fromJson(Map<String, dynamic> json) {
     return SmbMountOptions(
       version: (json['Version'] as String?)?.toSmbVersion(),
@@ -4901,6 +4938,7 @@ class StartTaskExecutionResponse {
   StartTaskExecutionResponse({
     this.taskExecutionArn,
   });
+
   factory StartTaskExecutionResponse.fromJson(Map<String, dynamic> json) {
     return StartTaskExecutionResponse(
       taskExecutionArn: json['TaskExecutionArn'] as String?,
@@ -4931,6 +4969,7 @@ class TagListEntry {
     required this.key,
     this.value,
   });
+
   factory TagListEntry.fromJson(Map<String, dynamic> json) {
     return TagListEntry(
       key: json['Key'] as String,
@@ -4950,6 +4989,7 @@ class TagListEntry {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4975,6 +5015,7 @@ class TaskExecutionListEntry {
     this.status,
     this.taskExecutionArn,
   });
+
   factory TaskExecutionListEntry.fromJson(Map<String, dynamic> json) {
     return TaskExecutionListEntry(
       status: (json['Status'] as String?)?.toTaskExecutionStatus(),
@@ -5040,6 +5081,7 @@ class TaskExecutionResultDetail {
     this.verifyDuration,
     this.verifyStatus,
   });
+
   factory TaskExecutionResultDetail.fromJson(Map<String, dynamic> json) {
     return TaskExecutionResultDetail(
       errorCode: json['ErrorCode'] as String?,
@@ -5158,6 +5200,7 @@ class TaskFilter {
     required this.operator,
     required this.values,
   });
+
   factory TaskFilter.fromJson(Map<String, dynamic> json) {
     return TaskFilter(
       name: (json['Name'] as String).toTaskFilterName(),
@@ -5229,6 +5272,7 @@ class TaskListEntry {
     this.status,
     this.taskArn,
   });
+
   factory TaskListEntry.fromJson(Map<String, dynamic> json) {
     return TaskListEntry(
       name: json['Name'] as String?,
@@ -5289,6 +5333,7 @@ class TaskSchedule {
   TaskSchedule({
     required this.scheduleExpression,
   });
+
   factory TaskSchedule.fromJson(Map<String, dynamic> json) {
     return TaskSchedule(
       scheduleExpression: json['ScheduleExpression'] as String,
@@ -5414,6 +5459,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5425,6 +5471,7 @@ class UntagResourceResponse {
 
 class UpdateAgentResponse {
   UpdateAgentResponse();
+
   factory UpdateAgentResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAgentResponse();
   }
@@ -5436,6 +5483,7 @@ class UpdateAgentResponse {
 
 class UpdateLocationNfsResponse {
   UpdateLocationNfsResponse();
+
   factory UpdateLocationNfsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationNfsResponse();
   }
@@ -5447,6 +5495,7 @@ class UpdateLocationNfsResponse {
 
 class UpdateLocationObjectStorageResponse {
   UpdateLocationObjectStorageResponse();
+
   factory UpdateLocationObjectStorageResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationObjectStorageResponse();
   }
@@ -5458,6 +5507,7 @@ class UpdateLocationObjectStorageResponse {
 
 class UpdateLocationSmbResponse {
   UpdateLocationSmbResponse();
+
   factory UpdateLocationSmbResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLocationSmbResponse();
   }
@@ -5469,6 +5519,7 @@ class UpdateLocationSmbResponse {
 
 class UpdateTaskExecutionResponse {
   UpdateTaskExecutionResponse();
+
   factory UpdateTaskExecutionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTaskExecutionResponse();
   }
@@ -5480,6 +5531,7 @@ class UpdateTaskExecutionResponse {
 
 class UpdateTaskResponse {
   UpdateTaskResponse();
+
   factory UpdateTaskResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTaskResponse();
   }

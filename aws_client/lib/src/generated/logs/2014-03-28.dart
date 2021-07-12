@@ -2979,6 +2979,7 @@ class CreateExportTaskResponse {
   CreateExportTaskResponse({
     this.taskId,
   });
+
   factory CreateExportTaskResponse.fromJson(Map<String, dynamic> json) {
     return CreateExportTaskResponse(
       taskId: json['taskId'] as String?,
@@ -3001,6 +3002,7 @@ class DeleteQueryDefinitionResponse {
   DeleteQueryDefinitionResponse({
     this.success,
   });
+
   factory DeleteQueryDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return DeleteQueryDefinitionResponse(
       success: json['success'] as bool?,
@@ -3024,6 +3026,7 @@ class DescribeDestinationsResponse {
     this.destinations,
     this.nextToken,
   });
+
   factory DescribeDestinationsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDestinationsResponse(
       destinations: (json['destinations'] as List?)
@@ -3053,6 +3056,7 @@ class DescribeExportTasksResponse {
     this.exportTasks,
     this.nextToken,
   });
+
   factory DescribeExportTasksResponse.fromJson(Map<String, dynamic> json) {
     return DescribeExportTasksResponse(
       exportTasks: (json['exportTasks'] as List?)
@@ -3085,6 +3089,7 @@ class DescribeLogGroupsResponse {
     this.logGroups,
     this.nextToken,
   });
+
   factory DescribeLogGroupsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLogGroupsResponse(
       logGroups: (json['logGroups'] as List?)
@@ -3114,6 +3119,7 @@ class DescribeLogStreamsResponse {
     this.logStreams,
     this.nextToken,
   });
+
   factory DescribeLogStreamsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLogStreamsResponse(
       logStreams: (json['logStreams'] as List?)
@@ -3143,6 +3149,7 @@ class DescribeMetricFiltersResponse {
     this.metricFilters,
     this.nextToken,
   });
+
   factory DescribeMetricFiltersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeMetricFiltersResponse(
       metricFilters: (json['metricFilters'] as List?)
@@ -3173,6 +3180,7 @@ class DescribeQueriesResponse {
     this.nextToken,
     this.queries,
   });
+
   factory DescribeQueriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeQueriesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3203,6 +3211,7 @@ class DescribeQueryDefinitionsResponse {
     this.nextToken,
     this.queryDefinitions,
   });
+
   factory DescribeQueryDefinitionsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeQueryDefinitionsResponse(
       nextToken: json['nextToken'] as String?,
@@ -3233,6 +3242,7 @@ class DescribeResourcePoliciesResponse {
     this.nextToken,
     this.resourcePolicies,
   });
+
   factory DescribeResourcePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeResourcePoliciesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3263,6 +3273,7 @@ class DescribeSubscriptionFiltersResponse {
     this.nextToken,
     this.subscriptionFilters,
   });
+
   factory DescribeSubscriptionFiltersResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSubscriptionFiltersResponse(
@@ -3317,6 +3328,7 @@ class Destination {
     this.roleArn,
     this.targetArn,
   });
+
   factory Destination.fromJson(Map<String, dynamic> json) {
     return Destination(
       accessPolicy: json['accessPolicy'] as String?,
@@ -3419,6 +3431,7 @@ class ExportTask {
     this.taskName,
     this.to,
   });
+
   factory ExportTask.fromJson(Map<String, dynamic> json) {
     return ExportTask(
       destination: json['destination'] as String?,
@@ -3476,6 +3489,7 @@ class ExportTaskExecutionInfo {
     this.completionTime,
     this.creationTime,
   });
+
   factory ExportTaskExecutionInfo.fromJson(Map<String, dynamic> json) {
     return ExportTaskExecutionInfo(
       completionTime: json['completionTime'] as int?,
@@ -3505,6 +3519,7 @@ class ExportTaskStatus {
     this.code,
     this.message,
   });
+
   factory ExportTaskStatus.fromJson(Map<String, dynamic> json) {
     return ExportTaskStatus(
       code: (json['code'] as String?)?.toExportTaskStatusCode(),
@@ -3591,6 +3606,7 @@ class FilterLogEventsResponse {
     this.nextToken,
     this.searchedLogStreams,
   });
+
   factory FilterLogEventsResponse.fromJson(Map<String, dynamic> json) {
     return FilterLogEventsResponse(
       events: (json['events'] as List?)
@@ -3643,6 +3659,7 @@ class FilteredLogEvent {
     this.message,
     this.timestamp,
   });
+
   factory FilteredLogEvent.fromJson(Map<String, dynamic> json) {
     return FilteredLogEvent(
       eventId: json['eventId'] as String?,
@@ -3688,6 +3705,7 @@ class GetLogEventsResponse {
     this.nextBackwardToken,
     this.nextForwardToken,
   });
+
   factory GetLogEventsResponse.fromJson(Map<String, dynamic> json) {
     return GetLogEventsResponse(
       events: (json['events'] as List?)
@@ -3720,6 +3738,7 @@ class GetLogGroupFieldsResponse {
   GetLogGroupFieldsResponse({
     this.logGroupFields,
   });
+
   factory GetLogGroupFieldsResponse.fromJson(Map<String, dynamic> json) {
     return GetLogGroupFieldsResponse(
       logGroupFields: (json['logGroupFields'] as List?)
@@ -3744,6 +3763,7 @@ class GetLogRecordResponse {
   GetLogRecordResponse({
     this.logRecord,
   });
+
   factory GetLogRecordResponse.fromJson(Map<String, dynamic> json) {
     return GetLogRecordResponse(
       logRecord: (json['logRecord'] as Map<String, dynamic>?)
@@ -3789,6 +3809,7 @@ class GetQueryResultsResponse {
     this.statistics,
     this.status,
   });
+
   factory GetQueryResultsResponse.fromJson(Map<String, dynamic> json) {
     return GetQueryResultsResponse(
       results: (json['results'] as List?)
@@ -3831,6 +3852,7 @@ class InputLogEvent {
     required this.message,
     required this.timestamp,
   });
+
   factory InputLogEvent.fromJson(Map<String, dynamic> json) {
     return InputLogEvent(
       message: json['message'] as String,
@@ -3855,6 +3877,7 @@ class ListTagsLogGroupResponse {
   ListTagsLogGroupResponse({
     this.tags,
   });
+
   factory ListTagsLogGroupResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsLogGroupResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -3901,6 +3924,7 @@ class LogGroup {
     this.retentionInDays,
     this.storedBytes,
   });
+
   factory LogGroup.fromJson(Map<String, dynamic> json) {
     return LogGroup(
       arn: json['arn'] as String?,
@@ -3947,6 +3971,7 @@ class LogGroupField {
     this.name,
     this.percent,
   });
+
   factory LogGroupField.fromJson(Map<String, dynamic> json) {
     return LogGroupField(
       name: json['name'] as String?,
@@ -4013,6 +4038,7 @@ class LogStream {
     this.storedBytes,
     this.uploadSequenceToken,
   });
+
   factory LogStream.fromJson(Map<String, dynamic> json) {
     return LogStream(
       arn: json['arn'] as String?,
@@ -4075,6 +4101,7 @@ class MetricFilter {
     this.logGroupName,
     this.metricTransformations,
   });
+
   factory MetricFilter.fromJson(Map<String, dynamic> json) {
     return MetricFilter(
       creationTime: json['creationTime'] as int?,
@@ -4121,6 +4148,7 @@ class MetricFilterMatchRecord {
     this.eventNumber,
     this.extractedValues,
   });
+
   factory MetricFilterMatchRecord.fromJson(Map<String, dynamic> json) {
     return MetricFilterMatchRecord(
       eventMessage: json['eventMessage'] as String?,
@@ -4193,6 +4221,7 @@ class MetricTransformation {
     this.dimensions,
     this.unit,
   });
+
   factory MetricTransformation.fromJson(Map<String, dynamic> json) {
     return MetricTransformation(
       metricName: json['metricName'] as String,
@@ -4269,6 +4298,7 @@ class OutputLogEvent {
     this.message,
     this.timestamp,
   });
+
   factory OutputLogEvent.fromJson(Map<String, dynamic> json) {
     return OutputLogEvent(
       ingestionTime: json['ingestionTime'] as int?,
@@ -4296,6 +4326,7 @@ class PutDestinationResponse {
   PutDestinationResponse({
     this.destination,
   });
+
   factory PutDestinationResponse.fromJson(Map<String, dynamic> json) {
     return PutDestinationResponse(
       destination: json['destination'] != null
@@ -4323,6 +4354,7 @@ class PutLogEventsResponse {
     this.nextSequenceToken,
     this.rejectedLogEventsInfo,
   });
+
   factory PutLogEventsResponse.fromJson(Map<String, dynamic> json) {
     return PutLogEventsResponse(
       nextSequenceToken: json['nextSequenceToken'] as String?,
@@ -4351,6 +4383,7 @@ class PutQueryDefinitionResponse {
   PutQueryDefinitionResponse({
     this.queryDefinitionId,
   });
+
   factory PutQueryDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return PutQueryDefinitionResponse(
       queryDefinitionId: json['queryDefinitionId'] as String?,
@@ -4372,6 +4405,7 @@ class PutResourcePolicyResponse {
   PutResourcePolicyResponse({
     this.resourcePolicy,
   });
+
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutResourcePolicyResponse(
       resourcePolicy: json['resourcePolicy'] != null
@@ -4417,6 +4451,7 @@ class QueryDefinition {
     this.queryDefinitionId,
     this.queryString,
   });
+
   factory QueryDefinition.fromJson(Map<String, dynamic> json) {
     return QueryDefinition(
       lastModified: json['lastModified'] as int?,
@@ -4473,6 +4508,7 @@ class QueryInfo {
     this.queryString,
     this.status,
   });
+
   factory QueryInfo.fromJson(Map<String, dynamic> json) {
     return QueryInfo(
       createTime: json['createTime'] as int?,
@@ -4517,6 +4553,7 @@ class QueryStatistics {
     this.recordsMatched,
     this.recordsScanned,
   });
+
   factory QueryStatistics.fromJson(Map<String, dynamic> json) {
     return QueryStatistics(
       bytesScanned: json['bytesScanned'] as double?,
@@ -4606,6 +4643,7 @@ class RejectedLogEventsInfo {
     this.tooNewLogEventStartIndex,
     this.tooOldLogEventEndIndex,
   });
+
   factory RejectedLogEventsInfo.fromJson(Map<String, dynamic> json) {
     return RejectedLogEventsInfo(
       expiredLogEventEndIndex: json['expiredLogEventEndIndex'] as int?,
@@ -4647,6 +4685,7 @@ class ResourcePolicy {
     this.policyDocument,
     this.policyName,
   });
+
   factory ResourcePolicy.fromJson(Map<String, dynamic> json) {
     return ResourcePolicy(
       lastUpdatedTime: json['lastUpdatedTime'] as int?,
@@ -4685,6 +4724,7 @@ class ResultField {
     this.field,
     this.value,
   });
+
   factory ResultField.fromJson(Map<String, dynamic> json) {
     return ResultField(
       field: json['field'] as String?,
@@ -4714,6 +4754,7 @@ class SearchedLogStream {
     this.logStreamName,
     this.searchedCompletely,
   });
+
   factory SearchedLogStream.fromJson(Map<String, dynamic> json) {
     return SearchedLogStream(
       logStreamName: json['logStreamName'] as String?,
@@ -4891,6 +4932,7 @@ class StartQueryResponse {
   StartQueryResponse({
     this.queryId,
   });
+
   factory StartQueryResponse.fromJson(Map<String, dynamic> json) {
     return StartQueryResponse(
       queryId: json['queryId'] as String?,
@@ -4913,6 +4955,7 @@ class StopQueryResponse {
   StopQueryResponse({
     this.success,
   });
+
   factory StopQueryResponse.fromJson(Map<String, dynamic> json) {
     return StopQueryResponse(
       success: json['success'] as bool?,
@@ -4956,6 +4999,7 @@ class SubscriptionFilter {
     this.logGroupName,
     this.roleArn,
   });
+
   factory SubscriptionFilter.fromJson(Map<String, dynamic> json) {
     return SubscriptionFilter(
       creationTime: json['creationTime'] as int?,
@@ -4995,6 +5039,7 @@ class TestMetricFilterResponse {
   TestMetricFilterResponse({
     this.matches,
   });
+
   factory TestMetricFilterResponse.fromJson(Map<String, dynamic> json) {
     return TestMetricFilterResponse(
       matches: (json['matches'] as List?)

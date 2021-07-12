@@ -513,6 +513,7 @@ class CreateSavingsPlanResponse {
   CreateSavingsPlanResponse({
     this.savingsPlanId,
   });
+
   factory CreateSavingsPlanResponse.fromJson(Map<String, dynamic> json) {
     return CreateSavingsPlanResponse(
       savingsPlanId: json['savingsPlanId'] as String?,
@@ -557,6 +558,7 @@ extension on String {
 
 class DeleteQueuedSavingsPlanResponse {
   DeleteQueuedSavingsPlanResponse();
+
   factory DeleteQueuedSavingsPlanResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQueuedSavingsPlanResponse();
   }
@@ -582,6 +584,7 @@ class DescribeSavingsPlanRatesResponse {
     this.savingsPlanId,
     this.searchResults,
   });
+
   factory DescribeSavingsPlanRatesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSavingsPlanRatesResponse(
       nextToken: json['nextToken'] as String?,
@@ -617,6 +620,7 @@ class DescribeSavingsPlansOfferingRatesResponse {
     this.nextToken,
     this.searchResults,
   });
+
   factory DescribeSavingsPlansOfferingRatesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSavingsPlansOfferingRatesResponse(
@@ -651,6 +655,7 @@ class DescribeSavingsPlansOfferingsResponse {
     this.nextToken,
     this.searchResults,
   });
+
   factory DescribeSavingsPlansOfferingsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeSavingsPlansOfferingsResponse(
@@ -684,6 +689,7 @@ class DescribeSavingsPlansResponse {
     this.nextToken,
     this.savingsPlans,
   });
+
   factory DescribeSavingsPlansResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSavingsPlansResponse(
       nextToken: json['nextToken'] as String?,
@@ -711,6 +717,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -754,6 +761,7 @@ class ParentSavingsPlanOffering {
     this.planDescription,
     this.planType,
   });
+
   factory ParentSavingsPlanOffering.fromJson(Map<String, dynamic> json) {
     return ParentSavingsPlanOffering(
       currency: (json['currency'] as String?)?.toCurrencyCode(),
@@ -860,6 +868,7 @@ class SavingsPlan {
     this.termDurationInSeconds,
     this.upfrontPaymentAmount,
   });
+
   factory SavingsPlan.fromJson(Map<String, dynamic> json) {
     return SavingsPlan(
       commitment: json['commitment'] as String?,
@@ -947,6 +956,7 @@ class SavingsPlanFilter {
     this.name,
     this.values,
   });
+
   factory SavingsPlanFilter.fromJson(Map<String, dynamic> json) {
     return SavingsPlanFilter(
       name: (json['name'] as String?)?.toSavingsPlansFilterName(),
@@ -1015,6 +1025,7 @@ class SavingsPlanOffering {
     this.serviceCode,
     this.usageType,
   });
+
   factory SavingsPlanOffering.fromJson(Map<String, dynamic> json) {
     return SavingsPlanOffering(
       currency: (json['currency'] as String?)?.toCurrencyCode(),
@@ -1109,6 +1120,7 @@ class SavingsPlanOfferingFilterElement {
     this.name,
     this.values,
   });
+
   factory SavingsPlanOfferingFilterElement.fromJson(Map<String, dynamic> json) {
     return SavingsPlanOfferingFilterElement(
       name: (json['name'] as String?)?.toSavingsPlanOfferingFilterAttribute(),
@@ -1141,6 +1153,7 @@ class SavingsPlanOfferingProperty {
     this.name,
     this.value,
   });
+
   factory SavingsPlanOfferingProperty.fromJson(Map<String, dynamic> json) {
     return SavingsPlanOfferingProperty(
       name: (json['name'] as String?)?.toSavingsPlanOfferingPropertyKey(),
@@ -1223,6 +1236,7 @@ class SavingsPlanOfferingRate {
     this.unit,
     this.usageType,
   });
+
   factory SavingsPlanOfferingRate.fromJson(Map<String, dynamic> json) {
     return SavingsPlanOfferingRate(
       operation: json['operation'] as String?,
@@ -1279,6 +1293,7 @@ class SavingsPlanOfferingRateFilterElement {
     this.name,
     this.values,
   });
+
   factory SavingsPlanOfferingRateFilterElement.fromJson(
       Map<String, dynamic> json) {
     return SavingsPlanOfferingRateFilterElement(
@@ -1312,6 +1327,7 @@ class SavingsPlanOfferingRateProperty {
     this.name,
     this.value,
   });
+
   factory SavingsPlanOfferingRateProperty.fromJson(Map<String, dynamic> json) {
     return SavingsPlanOfferingRateProperty(
       name: json['name'] as String?,
@@ -1436,6 +1452,7 @@ class SavingsPlanRate {
     this.unit,
     this.usageType,
   });
+
   factory SavingsPlanRate.fromJson(Map<String, dynamic> json) {
     return SavingsPlanRate(
       currency: (json['currency'] as String?)?.toCurrencyCode(),
@@ -1488,6 +1505,7 @@ class SavingsPlanRateFilter {
     this.name,
     this.values,
   });
+
   factory SavingsPlanRateFilter.fromJson(Map<String, dynamic> json) {
     return SavingsPlanRateFilter(
       name: (json['name'] as String?)?.toSavingsPlanRateFilterName(),
@@ -1627,6 +1645,7 @@ class SavingsPlanRateProperty {
     this.name,
     this.value,
   });
+
   factory SavingsPlanRateProperty.fromJson(Map<String, dynamic> json) {
     return SavingsPlanRateProperty(
       name: (json['name'] as String?)?.toSavingsPlanRatePropertyKey(),
@@ -1909,6 +1928,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1920,6 +1940,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

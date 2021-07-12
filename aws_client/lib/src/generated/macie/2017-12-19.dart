@@ -347,6 +347,7 @@ class AssociateS3ResourcesResult {
   AssociateS3ResourcesResult({
     this.failedS3Resources,
   });
+
   factory AssociateS3ResourcesResult.fromJson(Map<String, dynamic> json) {
     return AssociateS3ResourcesResult(
       failedS3Resources: (json['failedS3Resources'] as List?)
@@ -380,6 +381,7 @@ class ClassificationType {
     required this.continuous,
     required this.oneTime,
   });
+
   factory ClassificationType.fromJson(Map<String, dynamic> json) {
     return ClassificationType(
       continuous:
@@ -415,6 +417,7 @@ class ClassificationTypeUpdate {
     this.continuous,
     this.oneTime,
   });
+
   factory ClassificationTypeUpdate.fromJson(Map<String, dynamic> json) {
     return ClassificationTypeUpdate(
       continuous:
@@ -442,6 +445,7 @@ class DisassociateS3ResourcesResult {
   DisassociateS3ResourcesResult({
     this.failedS3Resources,
   });
+
   factory DisassociateS3ResourcesResult.fromJson(Map<String, dynamic> json) {
     return DisassociateS3ResourcesResult(
       failedS3Resources: (json['failedS3Resources'] as List?)
@@ -475,6 +479,7 @@ class FailedS3Resource {
     this.errorMessage,
     this.failedItem,
   });
+
   factory FailedS3Resource.fromJson(Map<String, dynamic> json) {
     return FailedS3Resource(
       errorCode: json['errorCode'] as String?,
@@ -513,6 +518,7 @@ class ListMemberAccountsResult {
     this.memberAccounts,
     this.nextToken,
   });
+
   factory ListMemberAccountsResult.fromJson(Map<String, dynamic> json) {
     return ListMemberAccountsResult(
       memberAccounts: (json['memberAccounts'] as List?)
@@ -547,6 +553,7 @@ class ListS3ResourcesResult {
     this.nextToken,
     this.s3Resources,
   });
+
   factory ListS3ResourcesResult.fromJson(Map<String, dynamic> json) {
     return ListS3ResourcesResult(
       nextToken: json['nextToken'] as String?,
@@ -576,6 +583,7 @@ class MemberAccount {
   MemberAccount({
     this.accountId,
   });
+
   factory MemberAccount.fromJson(Map<String, dynamic> json) {
     return MemberAccount(
       accountId: json['accountId'] as String?,
@@ -657,6 +665,7 @@ class S3Resource {
     required this.bucketName,
     this.prefix,
   });
+
   factory S3Resource.fromJson(Map<String, dynamic> json) {
     return S3Resource(
       bucketName: json['bucketName'] as String,
@@ -696,6 +705,7 @@ class S3ResourceClassification {
     required this.classificationType,
     this.prefix,
   });
+
   factory S3ResourceClassification.fromJson(Map<String, dynamic> json) {
     return S3ResourceClassification(
       bucketName: json['bucketName'] as String,
@@ -735,6 +745,7 @@ class S3ResourceClassificationUpdate {
     required this.classificationTypeUpdate,
     this.prefix,
   });
+
   factory S3ResourceClassificationUpdate.fromJson(Map<String, dynamic> json) {
     return S3ResourceClassificationUpdate(
       bucketName: json['bucketName'] as String,
@@ -764,6 +775,7 @@ class UpdateS3ResourcesResult {
   UpdateS3ResourcesResult({
     this.failedS3Resources,
   });
+
   factory UpdateS3ResourcesResult.fromJson(Map<String, dynamic> json) {
     return UpdateS3ResourcesResult(
       failedS3Resources: (json['failedS3Resources'] as List?)

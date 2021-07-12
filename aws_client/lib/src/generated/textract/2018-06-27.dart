@@ -701,6 +701,7 @@ class AnalyzeDocumentResponse {
     this.documentMetadata,
     this.humanLoopActivationOutput,
   });
+
   factory AnalyzeDocumentResponse.fromJson(Map<String, dynamic> json) {
     return AnalyzeDocumentResponse(
       analyzeDocumentModelVersion:
@@ -913,6 +914,7 @@ class Block {
     this.text,
     this.textType,
   });
+
   factory Block.fromJson(Map<String, dynamic> json) {
     return Block(
       blockType: (json['BlockType'] as String?)?.toBlockType(),
@@ -1067,6 +1069,7 @@ class BoundingBox {
     this.top,
     this.width,
   });
+
   factory BoundingBox.fromJson(Map<String, dynamic> json) {
     return BoundingBox(
       height: json['Height'] as double?,
@@ -1135,6 +1138,7 @@ class DetectDocumentTextResponse {
     this.detectDocumentTextModelVersion,
     this.documentMetadata,
   });
+
   factory DetectDocumentTextResponse.fromJson(Map<String, dynamic> json) {
     return DetectDocumentTextResponse(
       blocks: (json['Blocks'] as List?)
@@ -1203,6 +1207,7 @@ class Document {
     this.bytes,
     this.s3Object,
   });
+
   factory Document.fromJson(Map<String, dynamic> json) {
     return Document(
       bytes: _s.decodeNullableUint8List(json['Bytes'] as String?),
@@ -1234,6 +1239,7 @@ class DocumentLocation {
   DocumentLocation({
     this.s3Object,
   });
+
   factory DocumentLocation.fromJson(Map<String, dynamic> json) {
     return DocumentLocation(
       s3Object: json['S3Object'] != null
@@ -1258,6 +1264,7 @@ class DocumentMetadata {
   DocumentMetadata({
     this.pages,
   });
+
   factory DocumentMetadata.fromJson(Map<String, dynamic> json) {
     return DocumentMetadata(
       pages: json['Pages'] as int?,
@@ -1343,6 +1350,7 @@ class Geometry {
     this.boundingBox,
     this.polygon,
   });
+
   factory Geometry.fromJson(Map<String, dynamic> json) {
     return Geometry(
       boundingBox: json['BoundingBox'] != null
@@ -1401,6 +1409,7 @@ class GetDocumentAnalysisResponse {
     this.statusMessage,
     this.warnings,
   });
+
   factory GetDocumentAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return GetDocumentAnalysisResponse(
       analyzeDocumentModelVersion:
@@ -1481,6 +1490,7 @@ class GetDocumentTextDetectionResponse {
     this.statusMessage,
     this.warnings,
   });
+
   factory GetDocumentTextDetectionResponse.fromJson(Map<String, dynamic> json) {
     return GetDocumentTextDetectionResponse(
       blocks: (json['Blocks'] as List?)
@@ -1542,6 +1552,7 @@ class HumanLoopActivationOutput {
     this.humanLoopActivationReasons,
     this.humanLoopArn,
   });
+
   factory HumanLoopActivationOutput.fromJson(Map<String, dynamic> json) {
     return HumanLoopActivationOutput(
       humanLoopActivationConditionsEvaluationResults:
@@ -1593,6 +1604,7 @@ class HumanLoopConfig {
     required this.humanLoopName,
     this.dataAttributes,
   });
+
   factory HumanLoopConfig.fromJson(Map<String, dynamic> json) {
     return HumanLoopConfig(
       flowDefinitionArn: json['FlowDefinitionArn'] as String,
@@ -1626,6 +1638,7 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     this.contentClassifiers,
   });
+
   factory HumanLoopDataAttributes.fromJson(Map<String, dynamic> json) {
     return HumanLoopDataAttributes(
       contentClassifiers: (json['ContentClassifiers'] as List?)
@@ -1698,6 +1711,7 @@ class NotificationChannel {
     required this.roleArn,
     required this.sNSTopicArn,
   });
+
   factory NotificationChannel.fromJson(Map<String, dynamic> json) {
     return NotificationChannel(
       roleArn: json['RoleArn'] as String,
@@ -1729,6 +1743,7 @@ class OutputConfig {
     required this.s3Bucket,
     this.s3Prefix,
   });
+
   factory OutputConfig.fromJson(Map<String, dynamic> json) {
     return OutputConfig(
       s3Bucket: json['S3Bucket'] as String,
@@ -1767,6 +1782,7 @@ class Point {
     this.x,
     this.y,
   });
+
   factory Point.fromJson(Map<String, dynamic> json) {
     return Point(
       x: json['X'] as double?,
@@ -1808,6 +1824,7 @@ class Relationship {
     this.ids,
     this.type,
   });
+
   factory Relationship.fromJson(Map<String, dynamic> json) {
     return Relationship(
       ids: (json['Ids'] as List?)
@@ -1885,6 +1902,7 @@ class S3Object {
     this.name,
     this.version,
   });
+
   factory S3Object.fromJson(Map<String, dynamic> json) {
     return S3Object(
       bucket: json['Bucket'] as String?,
@@ -1943,6 +1961,7 @@ class StartDocumentAnalysisResponse {
   StartDocumentAnalysisResponse({
     this.jobId,
   });
+
   factory StartDocumentAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return StartDocumentAnalysisResponse(
       jobId: json['JobId'] as String?,
@@ -1967,6 +1986,7 @@ class StartDocumentTextDetectionResponse {
   StartDocumentTextDetectionResponse({
     this.jobId,
   });
+
   factory StartDocumentTextDetectionResponse.fromJson(
       Map<String, dynamic> json) {
     return StartDocumentTextDetectionResponse(
@@ -2024,6 +2044,7 @@ class Warning {
     this.errorCode,
     this.pages,
   });
+
   factory Warning.fromJson(Map<String, dynamic> json) {
     return Warning(
       errorCode: json['ErrorCode'] as String?,

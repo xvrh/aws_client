@@ -2973,6 +2973,7 @@ class CancelRotateSecretResponse {
     this.name,
     this.versionId,
   });
+
   factory CancelRotateSecretResponse.fromJson(Map<String, dynamic> json) {
     return CancelRotateSecretResponse(
       arn: json['ARN'] as String?,
@@ -3022,6 +3023,7 @@ class CreateSecretResponse {
     this.replicationStatus,
     this.versionId,
   });
+
   factory CreateSecretResponse.fromJson(Map<String, dynamic> json) {
     return CreateSecretResponse(
       arn: json['ARN'] as String?,
@@ -3060,6 +3062,7 @@ class DeleteResourcePolicyResponse {
     this.arn,
     this.name,
   });
+
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteResourcePolicyResponse(
       arn: json['ARN'] as String?,
@@ -3095,6 +3098,7 @@ class DeleteSecretResponse {
     this.deletionDate,
     this.name,
   });
+
   factory DeleteSecretResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSecretResponse(
       arn: json['ARN'] as String?,
@@ -3220,6 +3224,7 @@ class DescribeSecretResponse {
     this.tags,
     this.versionIdsToStages,
   });
+
   factory DescribeSecretResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSecretResponse(
       arn: json['ARN'] as String?,
@@ -3312,6 +3317,7 @@ class Filter {
     this.key,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       key: (json['Key'] as String?)?.toFilterNameStringType(),
@@ -3387,6 +3393,7 @@ class GetRandomPasswordResponse {
   GetRandomPasswordResponse({
     this.randomPassword,
   });
+
   factory GetRandomPasswordResponse.fromJson(Map<String, dynamic> json) {
     return GetRandomPasswordResponse(
       randomPassword: json['RandomPassword'] as String?,
@@ -3424,6 +3431,7 @@ class GetResourcePolicyResponse {
     this.name,
     this.resourcePolicy,
   });
+
   factory GetResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcePolicyResponse(
       arn: json['ARN'] as String?,
@@ -3499,6 +3507,7 @@ class GetSecretValueResponse {
     this.versionId,
     this.versionStages,
   });
+
   factory GetSecretValueResponse.fromJson(Map<String, dynamic> json) {
     return GetSecretValueResponse(
       arn: json['ARN'] as String?,
@@ -3568,6 +3577,7 @@ class ListSecretVersionIdsResponse {
     this.nextToken,
     this.versions,
   });
+
   factory ListSecretVersionIdsResponse.fromJson(Map<String, dynamic> json) {
     return ListSecretVersionIdsResponse(
       arn: json['ARN'] as String?,
@@ -3613,6 +3623,7 @@ class ListSecretsResponse {
     this.nextToken,
     this.secretList,
   });
+
   factory ListSecretsResponse.fromJson(Map<String, dynamic> json) {
     return ListSecretsResponse(
       nextToken: json['NextToken'] as String?,
@@ -3644,6 +3655,7 @@ class PutResourcePolicyResponse {
     this.arn,
     this.name,
   });
+
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutResourcePolicyResponse(
       arn: json['ARN'] as String?,
@@ -3685,6 +3697,7 @@ class PutSecretValueResponse {
     this.versionId,
     this.versionStages,
   });
+
   factory PutSecretValueResponse.fromJson(Map<String, dynamic> json) {
     return PutSecretValueResponse(
       arn: json['ARN'] as String?,
@@ -3723,6 +3736,7 @@ class RemoveRegionsFromReplicationResponse {
     this.arn,
     this.replicationStatus,
   });
+
   factory RemoveRegionsFromReplicationResponse.fromJson(
       Map<String, dynamic> json) {
     return RemoveRegionsFromReplicationResponse(
@@ -3758,6 +3772,7 @@ class ReplicaRegionType {
     this.kmsKeyId,
     this.region,
   });
+
   factory ReplicaRegionType.fromJson(Map<String, dynamic> json) {
     return ReplicaRegionType(
       kmsKeyId: json['KmsKeyId'] as String?,
@@ -3789,6 +3804,7 @@ class ReplicateSecretToRegionsResponse {
     this.arn,
     this.replicationStatus,
   });
+
   factory ReplicateSecretToRegionsResponse.fromJson(Map<String, dynamic> json) {
     return ReplicateSecretToRegionsResponse(
       arn: json['ARN'] as String?,
@@ -3836,6 +3852,7 @@ class ReplicationStatusType {
     this.status,
     this.statusMessage,
   });
+
   factory ReplicationStatusType.fromJson(Map<String, dynamic> json) {
     return ReplicationStatusType(
       kmsKeyId: json['KmsKeyId'] as String?,
@@ -3874,6 +3891,7 @@ class RestoreSecretResponse {
     this.arn,
     this.name,
   });
+
   factory RestoreSecretResponse.fromJson(Map<String, dynamic> json) {
     return RestoreSecretResponse(
       arn: json['ARN'] as String?,
@@ -3907,6 +3925,7 @@ class RotateSecretResponse {
     this.name,
     this.versionId,
   });
+
   factory RotateSecretResponse.fromJson(Map<String, dynamic> json) {
     return RotateSecretResponse(
       arn: json['ARN'] as String?,
@@ -3943,6 +3962,7 @@ class RotationRulesType {
   RotationRulesType({
     this.automaticallyAfterDays,
   });
+
   factory RotationRulesType.fromJson(Map<String, dynamic> json) {
     return RotationRulesType(
       automaticallyAfterDays: json['AutomaticallyAfterDays'] as int?,
@@ -4058,6 +4078,7 @@ class SecretListEntry {
     this.secretVersionsToStages,
     this.tags,
   });
+
   factory SecretListEntry.fromJson(Map<String, dynamic> json) {
     return SecretListEntry(
       arn: json['ARN'] as String?,
@@ -4152,6 +4173,7 @@ class SecretVersionsListEntry {
     this.versionId,
     this.versionStages,
   });
+
   factory SecretVersionsListEntry.fromJson(Map<String, dynamic> json) {
     return SecretVersionsListEntry(
       createdDate: timeStampFromJson(json['CreatedDate']),
@@ -4248,6 +4270,7 @@ class StopReplicationToReplicaResponse {
   StopReplicationToReplicaResponse({
     this.arn,
   });
+
   factory StopReplicationToReplicaResponse.fromJson(Map<String, dynamic> json) {
     return StopReplicationToReplicaResponse(
       arn: json['ARN'] as String?,
@@ -4274,6 +4297,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -4315,6 +4339,7 @@ class UpdateSecretResponse {
     this.name,
     this.versionId,
   });
+
   factory UpdateSecretResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSecretResponse(
       arn: json['ARN'] as String?,
@@ -4346,6 +4371,7 @@ class UpdateSecretVersionStageResponse {
     this.arn,
     this.name,
   });
+
   factory UpdateSecretVersionStageResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSecretVersionStageResponse(
       arn: json['ARN'] as String?,
@@ -4374,6 +4400,7 @@ class ValidateResourcePolicyResponse {
     this.policyValidationPassed,
     this.validationErrors,
   });
+
   factory ValidateResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return ValidateResourcePolicyResponse(
       policyValidationPassed: json['PolicyValidationPassed'] as bool?,
@@ -4408,6 +4435,7 @@ class ValidationErrorsEntry {
     this.checkName,
     this.errorMessage,
   });
+
   factory ValidationErrorsEntry.fromJson(Map<String, dynamic> json) {
     return ValidationErrorsEntry(
       checkName: json['CheckName'] as String?,

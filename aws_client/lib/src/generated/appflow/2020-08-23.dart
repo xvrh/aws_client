@@ -963,6 +963,7 @@ class AggregationConfig {
   AggregationConfig({
     this.aggregationType,
   });
+
   factory AggregationConfig.fromJson(Map<String, dynamic> json) {
     return AggregationConfig(
       aggregationType:
@@ -1042,6 +1043,7 @@ class AmplitudeConnectorProfileCredentials {
     required this.apiKey,
     required this.secretKey,
   });
+
   factory AmplitudeConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return AmplitudeConnectorProfileCredentials(
@@ -1063,6 +1065,7 @@ class AmplitudeConnectorProfileCredentials {
 /// The connector-specific profile properties required when using Amplitude.
 class AmplitudeConnectorProfileProperties {
   AmplitudeConnectorProfileProperties();
+
   factory AmplitudeConnectorProfileProperties.fromJson(Map<String, dynamic> _) {
     return AmplitudeConnectorProfileProperties();
   }
@@ -1075,6 +1078,7 @@ class AmplitudeConnectorProfileProperties {
 /// The connector metadata specific to Amplitude.
 class AmplitudeMetadata {
   AmplitudeMetadata();
+
   factory AmplitudeMetadata.fromJson(Map<String, dynamic> _) {
     return AmplitudeMetadata();
   }
@@ -1092,6 +1096,7 @@ class AmplitudeSourceProperties {
   AmplitudeSourceProperties({
     required this.object,
   });
+
   factory AmplitudeSourceProperties.fromJson(Map<String, dynamic> json) {
     return AmplitudeSourceProperties(
       object: json['object'] as String,
@@ -1172,6 +1177,7 @@ class ConnectorConfiguration {
     this.supportedSchedulingFrequencies,
     this.supportedTriggerTypes,
   });
+
   factory ConnectorConfiguration.fromJson(Map<String, dynamic> json) {
     return ConnectorConfiguration(
       canUseAsDestination: json['canUseAsDestination'] as bool?,
@@ -1255,6 +1261,7 @@ class ConnectorEntity {
     this.hasNestedEntities,
     this.label,
   });
+
   factory ConnectorEntity.fromJson(Map<String, dynamic> json) {
     return ConnectorEntity(
       name: json['name'] as String,
@@ -1309,6 +1316,7 @@ class ConnectorEntityField {
     this.sourceProperties,
     this.supportedFieldTypeDetails,
   });
+
   factory ConnectorEntityField.fromJson(Map<String, dynamic> json) {
     return ConnectorEntityField(
       identifier: json['identifier'] as String,
@@ -1435,6 +1443,7 @@ class ConnectorMetadata {
     this.veeva,
     this.zendesk,
   });
+
   factory ConnectorMetadata.fromJson(Map<String, dynamic> json) {
     return ConnectorMetadata(
       amplitude: json['Amplitude'] != null
@@ -1572,6 +1581,7 @@ class ConnectorOAuthRequest {
     this.authCode,
     this.redirectUri,
   });
+
   factory ConnectorOAuthRequest.fromJson(Map<String, dynamic> json) {
     return ConnectorOAuthRequest(
       authCode: json['authCode'] as String?,
@@ -1650,6 +1660,7 @@ class ConnectorOperator {
     this.veeva,
     this.zendesk,
   });
+
   factory ConnectorOperator.fromJson(Map<String, dynamic> json) {
     return ConnectorOperator(
       amplitude: (json['Amplitude'] as String?)?.toAmplitudeConnectorOperator(),
@@ -1750,6 +1761,7 @@ class ConnectorProfile {
     this.credentialsArn,
     this.lastUpdatedAt,
   });
+
   factory ConnectorProfile.fromJson(Map<String, dynamic> json) {
     return ConnectorProfile(
       connectionMode: (json['connectionMode'] as String?)?.toConnectionMode(),
@@ -1805,6 +1817,7 @@ class ConnectorProfileConfig {
     required this.connectorProfileCredentials,
     required this.connectorProfileProperties,
   });
+
   factory ConnectorProfileConfig.fromJson(Map<String, dynamic> json) {
     return ConnectorProfileConfig(
       connectorProfileCredentials: ConnectorProfileCredentials.fromJson(
@@ -1892,6 +1905,7 @@ class ConnectorProfileCredentials {
     this.veeva,
     this.zendesk,
   });
+
   factory ConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
     return ConnectorProfileCredentials(
       amplitude: json['Amplitude'] != null
@@ -2067,6 +2081,7 @@ class ConnectorProfileProperties {
     this.veeva,
     this.zendesk,
   });
+
   factory ConnectorProfileProperties.fromJson(Map<String, dynamic> json) {
     return ConnectorProfileProperties(
       amplitude: json['Amplitude'] != null
@@ -2304,6 +2319,7 @@ class CreateConnectorProfileResponse {
   CreateConnectorProfileResponse({
     this.connectorProfileArn,
   });
+
   factory CreateConnectorProfileResponse.fromJson(Map<String, dynamic> json) {
     return CreateConnectorProfileResponse(
       connectorProfileArn: json['connectorProfileArn'] as String?,
@@ -2330,6 +2346,7 @@ class CreateFlowResponse {
     this.flowArn,
     this.flowStatus,
   });
+
   factory CreateFlowResponse.fromJson(Map<String, dynamic> json) {
     return CreateFlowResponse(
       flowArn: json['flowArn'] as String?,
@@ -2361,6 +2378,7 @@ class CustomerProfilesDestinationProperties {
     required this.domainName,
     this.objectTypeName,
   });
+
   factory CustomerProfilesDestinationProperties.fromJson(
       Map<String, dynamic> json) {
     return CustomerProfilesDestinationProperties(
@@ -2382,6 +2400,7 @@ class CustomerProfilesDestinationProperties {
 /// The connector metadata specific to Amazon Connect Customer Profiles.
 class CustomerProfilesMetadata {
   CustomerProfilesMetadata();
+
   factory CustomerProfilesMetadata.fromJson(Map<String, dynamic> _) {
     return CustomerProfilesMetadata();
   }
@@ -2528,6 +2547,7 @@ class DatadogConnectorProfileCredentials {
     required this.apiKey,
     required this.applicationKey,
   });
+
   factory DatadogConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return DatadogConnectorProfileCredentials(
@@ -2554,6 +2574,7 @@ class DatadogConnectorProfileProperties {
   DatadogConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory DatadogConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return DatadogConnectorProfileProperties(
@@ -2572,6 +2593,7 @@ class DatadogConnectorProfileProperties {
 /// The connector metadata specific to Datadog.
 class DatadogMetadata {
   DatadogMetadata();
+
   factory DatadogMetadata.fromJson(Map<String, dynamic> _) {
     return DatadogMetadata();
   }
@@ -2589,6 +2611,7 @@ class DatadogSourceProperties {
   DatadogSourceProperties({
     required this.object,
   });
+
   factory DatadogSourceProperties.fromJson(Map<String, dynamic> json) {
     return DatadogSourceProperties(
       object: json['object'] as String,
@@ -2605,6 +2628,7 @@ class DatadogSourceProperties {
 
 class DeleteConnectorProfileResponse {
   DeleteConnectorProfileResponse();
+
   factory DeleteConnectorProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConnectorProfileResponse();
   }
@@ -2616,6 +2640,7 @@ class DeleteConnectorProfileResponse {
 
 class DeleteFlowResponse {
   DeleteFlowResponse();
+
   factory DeleteFlowResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowResponse();
   }
@@ -2634,6 +2659,7 @@ class DescribeConnectorEntityResponse {
   DescribeConnectorEntityResponse({
     required this.connectorEntityFields,
   });
+
   factory DescribeConnectorEntityResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConnectorEntityResponse(
       connectorEntityFields: (json['connectorEntityFields'] as List)
@@ -2663,6 +2689,7 @@ class DescribeConnectorProfilesResponse {
     this.connectorProfileDetails,
     this.nextToken,
   });
+
   factory DescribeConnectorProfilesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConnectorProfilesResponse(
@@ -2696,6 +2723,7 @@ class DescribeConnectorsResponse {
     this.connectorConfigurations,
     this.nextToken,
   });
+
   factory DescribeConnectorsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConnectorsResponse(
       connectorConfigurations:
@@ -2729,6 +2757,7 @@ class DescribeFlowExecutionRecordsResponse {
     this.flowExecutions,
     this.nextToken,
   });
+
   factory DescribeFlowExecutionRecordsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeFlowExecutionRecordsResponse(
@@ -2826,6 +2855,7 @@ class DescribeFlowResponse {
     this.tasks,
     this.triggerConfig,
   });
+
   factory DescribeFlowResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFlowResponse(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -2949,6 +2979,7 @@ class DestinationConnectorProperties {
     this.upsolver,
     this.zendesk,
   });
+
   factory DestinationConnectorProperties.fromJson(Map<String, dynamic> json) {
     return DestinationConnectorProperties(
       customerProfiles: json['CustomerProfiles'] != null
@@ -3048,6 +3079,7 @@ class DestinationFieldProperties {
     this.isUpsertable,
     this.supportedWriteOperations,
   });
+
   factory DestinationFieldProperties.fromJson(Map<String, dynamic> json) {
     return DestinationFieldProperties(
       isCreatable: json['isCreatable'] as bool?,
@@ -3098,6 +3130,7 @@ class DestinationFlowConfig {
     required this.destinationConnectorProperties,
     this.connectorProfileName,
   });
+
   factory DestinationFlowConfig.fromJson(Map<String, dynamic> json) {
     return DestinationFlowConfig(
       connectorType: (json['connectorType'] as String).toConnectorType(),
@@ -3221,6 +3254,7 @@ class DynatraceConnectorProfileCredentials {
   DynatraceConnectorProfileCredentials({
     required this.apiToken,
   });
+
   factory DynatraceConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return DynatraceConnectorProfileCredentials(
@@ -3244,6 +3278,7 @@ class DynatraceConnectorProfileProperties {
   DynatraceConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory DynatraceConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return DynatraceConnectorProfileProperties(
@@ -3262,6 +3297,7 @@ class DynatraceConnectorProfileProperties {
 /// The connector metadata specific to Dynatrace.
 class DynatraceMetadata {
   DynatraceMetadata();
+
   factory DynatraceMetadata.fromJson(Map<String, dynamic> _) {
     return DynatraceMetadata();
   }
@@ -3279,6 +3315,7 @@ class DynatraceSourceProperties {
   DynatraceSourceProperties({
     required this.object,
   });
+
   factory DynatraceSourceProperties.fromJson(Map<String, dynamic> json) {
     return DynatraceSourceProperties(
       object: json['object'] as String,
@@ -3315,6 +3352,7 @@ class ErrorHandlingConfig {
     this.bucketPrefix,
     this.failOnFirstDestinationError,
   });
+
   factory ErrorHandlingConfig.fromJson(Map<String, dynamic> json) {
     return ErrorHandlingConfig(
       bucketName: json['bucketName'] as String?,
@@ -3349,6 +3387,7 @@ class ErrorInfo {
     this.executionMessage,
     this.putFailuresCount,
   });
+
   factory ErrorInfo.fromJson(Map<String, dynamic> json) {
     return ErrorInfo(
       executionMessage: json['executionMessage'] as String?,
@@ -3377,6 +3416,7 @@ class EventBridgeDestinationProperties {
     required this.object,
     this.errorHandlingConfig,
   });
+
   factory EventBridgeDestinationProperties.fromJson(Map<String, dynamic> json) {
     return EventBridgeDestinationProperties(
       object: json['object'] as String,
@@ -3401,6 +3441,7 @@ class EventBridgeDestinationProperties {
 /// The connector metadata specific to Amazon EventBridge.
 class EventBridgeMetadata {
   EventBridgeMetadata();
+
   factory EventBridgeMetadata.fromJson(Map<String, dynamic> _) {
     return EventBridgeMetadata();
   }
@@ -3427,6 +3468,7 @@ class ExecutionDetails {
     this.mostRecentExecutionStatus,
     this.mostRecentExecutionTime,
   });
+
   factory ExecutionDetails.fromJson(Map<String, dynamic> json) {
     return ExecutionDetails(
       mostRecentExecutionMessage: json['mostRecentExecutionMessage'] as String?,
@@ -3487,6 +3529,7 @@ class ExecutionRecord {
     this.lastUpdatedAt,
     this.startedAt,
   });
+
   factory ExecutionRecord.fromJson(Map<String, dynamic> json) {
     return ExecutionRecord(
       dataPullEndTime: timeStampFromJson(json['dataPullEndTime']),
@@ -3546,6 +3589,7 @@ class ExecutionResult {
     this.errorInfo,
     this.recordsProcessed,
   });
+
   factory ExecutionResult.fromJson(Map<String, dynamic> json) {
     return ExecutionResult(
       bytesProcessed: json['bytesProcessed'] as int?,
@@ -3622,6 +3666,7 @@ class FieldTypeDetails {
     required this.filterOperators,
     this.supportedValues,
   });
+
   factory FieldTypeDetails.fromJson(Map<String, dynamic> json) {
     return FieldTypeDetails(
       fieldType: json['fieldType'] as String,
@@ -3742,6 +3787,7 @@ class FlowDefinition {
     this.tags,
     this.triggerType,
   });
+
   factory FlowDefinition.fromJson(Map<String, dynamic> json) {
     return FlowDefinition(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -3906,6 +3952,7 @@ class GoogleAnalyticsConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+
   factory GoogleAnalyticsConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return GoogleAnalyticsConnectorProfileCredentials(
@@ -3939,6 +3986,7 @@ class GoogleAnalyticsConnectorProfileCredentials {
 /// The connector-specific profile properties required by Google Analytics.
 class GoogleAnalyticsConnectorProfileProperties {
   GoogleAnalyticsConnectorProfileProperties();
+
   factory GoogleAnalyticsConnectorProfileProperties.fromJson(
       Map<String, dynamic> _) {
     return GoogleAnalyticsConnectorProfileProperties();
@@ -3957,6 +4005,7 @@ class GoogleAnalyticsMetadata {
   GoogleAnalyticsMetadata({
     this.oAuthScopes,
   });
+
   factory GoogleAnalyticsMetadata.fromJson(Map<String, dynamic> json) {
     return GoogleAnalyticsMetadata(
       oAuthScopes: (json['oAuthScopes'] as List?)
@@ -3983,6 +4032,7 @@ class GoogleAnalyticsSourceProperties {
   GoogleAnalyticsSourceProperties({
     required this.object,
   });
+
   factory GoogleAnalyticsSourceProperties.fromJson(Map<String, dynamic> json) {
     return GoogleAnalyticsSourceProperties(
       object: json['object'] as String,
@@ -4011,6 +4061,7 @@ class HoneycodeConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+
   factory HoneycodeConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return HoneycodeConnectorProfileCredentials(
@@ -4038,6 +4089,7 @@ class HoneycodeConnectorProfileCredentials {
 /// The connector-specific properties required when using Amazon Honeycode.
 class HoneycodeConnectorProfileProperties {
   HoneycodeConnectorProfileProperties();
+
   factory HoneycodeConnectorProfileProperties.fromJson(Map<String, dynamic> _) {
     return HoneycodeConnectorProfileProperties();
   }
@@ -4058,6 +4110,7 @@ class HoneycodeDestinationProperties {
     required this.object,
     this.errorHandlingConfig,
   });
+
   factory HoneycodeDestinationProperties.fromJson(Map<String, dynamic> json) {
     return HoneycodeDestinationProperties(
       object: json['object'] as String,
@@ -4087,6 +4140,7 @@ class HoneycodeMetadata {
   HoneycodeMetadata({
     this.oAuthScopes,
   });
+
   factory HoneycodeMetadata.fromJson(Map<String, dynamic> json) {
     return HoneycodeMetadata(
       oAuthScopes: (json['oAuthScopes'] as List?)
@@ -4114,6 +4168,7 @@ class IncrementalPullConfig {
   IncrementalPullConfig({
     this.datetimeTypeFieldName,
   });
+
   factory IncrementalPullConfig.fromJson(Map<String, dynamic> json) {
     return IncrementalPullConfig(
       datetimeTypeFieldName: json['datetimeTypeFieldName'] as String?,
@@ -4242,6 +4297,7 @@ class InforNexusConnectorProfileCredentials {
     required this.secretAccessKey,
     required this.userId,
   });
+
   factory InforNexusConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return InforNexusConnectorProfileCredentials(
@@ -4274,6 +4330,7 @@ class InforNexusConnectorProfileProperties {
   InforNexusConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory InforNexusConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return InforNexusConnectorProfileProperties(
@@ -4292,6 +4349,7 @@ class InforNexusConnectorProfileProperties {
 /// The connector metadata specific to Infor Nexus.
 class InforNexusMetadata {
   InforNexusMetadata();
+
   factory InforNexusMetadata.fromJson(Map<String, dynamic> _) {
     return InforNexusMetadata();
   }
@@ -4309,6 +4367,7 @@ class InforNexusSourceProperties {
   InforNexusSourceProperties({
     required this.object,
   });
+
   factory InforNexusSourceProperties.fromJson(Map<String, dynamic> json) {
     return InforNexusSourceProperties(
       object: json['object'] as String,
@@ -4332,6 +4391,7 @@ class ListConnectorEntitiesResponse {
   ListConnectorEntitiesResponse({
     required this.connectorEntityMap,
   });
+
   factory ListConnectorEntitiesResponse.fromJson(Map<String, dynamic> json) {
     return ListConnectorEntitiesResponse(
       connectorEntityMap: (json['connectorEntityMap'] as Map<String, dynamic>)
@@ -4364,6 +4424,7 @@ class ListFlowsResponse {
     this.flows,
     this.nextToken,
   });
+
   factory ListFlowsResponse.fromJson(Map<String, dynamic> json) {
     return ListFlowsResponse(
       flows: (json['flows'] as List?)
@@ -4391,6 +4452,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -4410,6 +4472,7 @@ class ListTagsForResourceResponse {
 /// destination.
 class LookoutMetricsDestinationProperties {
   LookoutMetricsDestinationProperties();
+
   factory LookoutMetricsDestinationProperties.fromJson(Map<String, dynamic> _) {
     return LookoutMetricsDestinationProperties();
   }
@@ -4539,6 +4602,7 @@ class MarketoConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+
   factory MarketoConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return MarketoConnectorProfileCredentials(
@@ -4574,6 +4638,7 @@ class MarketoConnectorProfileProperties {
   MarketoConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory MarketoConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return MarketoConnectorProfileProperties(
@@ -4592,6 +4657,7 @@ class MarketoConnectorProfileProperties {
 /// The connector metadata specific to Marketo.
 class MarketoMetadata {
   MarketoMetadata();
+
   factory MarketoMetadata.fromJson(Map<String, dynamic> _) {
     return MarketoMetadata();
   }
@@ -4609,6 +4675,7 @@ class MarketoSourceProperties {
   MarketoSourceProperties({
     required this.object,
   });
+
   factory MarketoSourceProperties.fromJson(Map<String, dynamic> json) {
     return MarketoSourceProperties(
       object: json['object'] as String,
@@ -4854,6 +4921,7 @@ class PrefixConfig {
     this.prefixFormat,
     this.prefixType,
   });
+
   factory PrefixConfig.fromJson(Map<String, dynamic> json) {
     return PrefixConfig(
       prefixFormat: (json['prefixFormat'] as String?)?.toPrefixFormat(),
@@ -4960,6 +5028,7 @@ class RedshiftConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+
   factory RedshiftConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return RedshiftConnectorProfileCredentials(
@@ -4999,6 +5068,7 @@ class RedshiftConnectorProfileProperties {
     required this.roleArn,
     this.bucketPrefix,
   });
+
   factory RedshiftConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return RedshiftConnectorProfileProperties(
@@ -5051,6 +5121,7 @@ class RedshiftDestinationProperties {
     this.bucketPrefix,
     this.errorHandlingConfig,
   });
+
   factory RedshiftDestinationProperties.fromJson(Map<String, dynamic> json) {
     return RedshiftDestinationProperties(
       intermediateBucketName: json['intermediateBucketName'] as String,
@@ -5081,6 +5152,7 @@ class RedshiftDestinationProperties {
 /// The connector metadata specific to Amazon Redshift.
 class RedshiftMetadata {
   RedshiftMetadata();
+
   factory RedshiftMetadata.fromJson(Map<String, dynamic> _) {
     return RedshiftMetadata();
   }
@@ -5224,6 +5296,7 @@ class S3DestinationProperties {
     this.bucketPrefix,
     this.s3OutputFormatConfig,
   });
+
   factory S3DestinationProperties.fromJson(Map<String, dynamic> json) {
     return S3DestinationProperties(
       bucketName: json['bucketName'] as String,
@@ -5251,6 +5324,7 @@ class S3DestinationProperties {
 /// The connector metadata specific to Amazon S3.
 class S3Metadata {
   S3Metadata();
+
   factory S3Metadata.fromJson(Map<String, dynamic> _) {
     return S3Metadata();
   }
@@ -5278,6 +5352,7 @@ class S3OutputFormatConfig {
     this.fileType,
     this.prefixConfig,
   });
+
   factory S3OutputFormatConfig.fromJson(Map<String, dynamic> json) {
     return S3OutputFormatConfig(
       aggregationConfig: json['aggregationConfig'] != null
@@ -5317,6 +5392,7 @@ class S3SourceProperties {
     required this.bucketName,
     this.bucketPrefix,
   });
+
   factory S3SourceProperties.fromJson(Map<String, dynamic> json) {
     return S3SourceProperties(
       bucketName: json['bucketName'] as String,
@@ -5479,6 +5555,7 @@ class SalesforceConnectorProfileCredentials {
     this.oAuthRequest,
     this.refreshToken,
   });
+
   factory SalesforceConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return SalesforceConnectorProfileCredentials(
@@ -5520,6 +5597,7 @@ class SalesforceConnectorProfileProperties {
     this.instanceUrl,
     this.isSandboxEnvironment,
   });
+
   factory SalesforceConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return SalesforceConnectorProfileProperties(
@@ -5568,6 +5646,7 @@ class SalesforceDestinationProperties {
     this.idFieldNames,
     this.writeOperationType,
   });
+
   factory SalesforceDestinationProperties.fromJson(Map<String, dynamic> json) {
     return SalesforceDestinationProperties(
       object: json['object'] as String,
@@ -5608,6 +5687,7 @@ class SalesforceMetadata {
   SalesforceMetadata({
     this.oAuthScopes,
   });
+
   factory SalesforceMetadata.fromJson(Map<String, dynamic> json) {
     return SalesforceMetadata(
       oAuthScopes: (json['oAuthScopes'] as List?)
@@ -5642,6 +5722,7 @@ class SalesforceSourceProperties {
     this.enableDynamicFieldUpdate,
     this.includeDeletedRecords,
   });
+
   factory SalesforceSourceProperties.fromJson(Map<String, dynamic> json) {
     return SalesforceSourceProperties(
       object: json['object'] as String,
@@ -5751,6 +5832,7 @@ class ScheduledTriggerProperties {
     this.scheduleStartTime,
     this.timezone,
   });
+
   factory ScheduledTriggerProperties.fromJson(Map<String, dynamic> json) {
     return ScheduledTriggerProperties(
       scheduleExpression: json['scheduleExpression'] as String,
@@ -5921,6 +6003,7 @@ class ServiceNowConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+
   factory ServiceNowConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return ServiceNowConnectorProfileCredentials(
@@ -5947,6 +6030,7 @@ class ServiceNowConnectorProfileProperties {
   ServiceNowConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory ServiceNowConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return ServiceNowConnectorProfileProperties(
@@ -5965,6 +6049,7 @@ class ServiceNowConnectorProfileProperties {
 /// The connector metadata specific to ServiceNow.
 class ServiceNowMetadata {
   ServiceNowMetadata();
+
   factory ServiceNowMetadata.fromJson(Map<String, dynamic> _) {
     return ServiceNowMetadata();
   }
@@ -5982,6 +6067,7 @@ class ServiceNowSourceProperties {
   ServiceNowSourceProperties({
     required this.object,
   });
+
   factory ServiceNowSourceProperties.fromJson(Map<String, dynamic> json) {
     return ServiceNowSourceProperties(
       object: json['object'] as String,
@@ -6093,6 +6179,7 @@ class SingularConnectorProfileCredentials {
   SingularConnectorProfileCredentials({
     required this.apiKey,
   });
+
   factory SingularConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return SingularConnectorProfileCredentials(
@@ -6111,6 +6198,7 @@ class SingularConnectorProfileCredentials {
 /// The connector-specific profile properties required when using Singular.
 class SingularConnectorProfileProperties {
   SingularConnectorProfileProperties();
+
   factory SingularConnectorProfileProperties.fromJson(Map<String, dynamic> _) {
     return SingularConnectorProfileProperties();
   }
@@ -6123,6 +6211,7 @@ class SingularConnectorProfileProperties {
 /// The connector metadata specific to Singular.
 class SingularMetadata {
   SingularMetadata();
+
   factory SingularMetadata.fromJson(Map<String, dynamic> _) {
     return SingularMetadata();
   }
@@ -6140,6 +6229,7 @@ class SingularSourceProperties {
   SingularSourceProperties({
     required this.object,
   });
+
   factory SingularSourceProperties.fromJson(Map<String, dynamic> json) {
     return SingularSourceProperties(
       object: json['object'] as String,
@@ -6289,6 +6379,7 @@ class SlackConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+
   factory SlackConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
     return SlackConnectorProfileCredentials(
       clientId: json['clientId'] as String,
@@ -6323,6 +6414,7 @@ class SlackConnectorProfileProperties {
   SlackConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory SlackConnectorProfileProperties.fromJson(Map<String, dynamic> json) {
     return SlackConnectorProfileProperties(
       instanceUrl: json['instanceUrl'] as String,
@@ -6345,6 +6437,7 @@ class SlackMetadata {
   SlackMetadata({
     this.oAuthScopes,
   });
+
   factory SlackMetadata.fromJson(Map<String, dynamic> json) {
     return SlackMetadata(
       oAuthScopes: (json['oAuthScopes'] as List?)
@@ -6370,6 +6463,7 @@ class SlackSourceProperties {
   SlackSourceProperties({
     required this.object,
   });
+
   factory SlackSourceProperties.fromJson(Map<String, dynamic> json) {
     return SlackSourceProperties(
       object: json['object'] as String,
@@ -6396,6 +6490,7 @@ class SnowflakeConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+
   factory SnowflakeConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return SnowflakeConnectorProfileCredentials(
@@ -6450,6 +6545,7 @@ class SnowflakeConnectorProfileProperties {
     this.privateLinkServiceName,
     this.region,
   });
+
   factory SnowflakeConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return SnowflakeConnectorProfileProperties(
@@ -6512,6 +6608,7 @@ class SnowflakeDestinationProperties {
     this.bucketPrefix,
     this.errorHandlingConfig,
   });
+
   factory SnowflakeDestinationProperties.fromJson(Map<String, dynamic> json) {
     return SnowflakeDestinationProperties(
       intermediateBucketName: json['intermediateBucketName'] as String,
@@ -6547,6 +6644,7 @@ class SnowflakeMetadata {
   SnowflakeMetadata({
     this.supportedRegions,
   });
+
   factory SnowflakeMetadata.fromJson(Map<String, dynamic> json) {
     return SnowflakeMetadata(
       supportedRegions: (json['supportedRegions'] as List?)
@@ -6624,6 +6722,7 @@ class SourceConnectorProperties {
     this.veeva,
     this.zendesk,
   });
+
   factory SourceConnectorProperties.fromJson(Map<String, dynamic> json) {
     return SourceConnectorProperties(
       amplitude: json['Amplitude'] != null
@@ -6731,6 +6830,7 @@ class SourceFieldProperties {
     this.isQueryable,
     this.isRetrievable,
   });
+
   factory SourceFieldProperties.fromJson(Map<String, dynamic> json) {
     return SourceFieldProperties(
       isQueryable: json['isQueryable'] as bool?,
@@ -6773,6 +6873,7 @@ class SourceFlowConfig {
     this.connectorProfileName,
     this.incrementalPullConfig,
   });
+
   factory SourceFlowConfig.fromJson(Map<String, dynamic> json) {
     return SourceFlowConfig(
       connectorType: (json['connectorType'] as String).toConnectorType(),
@@ -6818,6 +6919,7 @@ class StartFlowResponse {
     this.flowArn,
     this.flowStatus,
   });
+
   factory StartFlowResponse.fromJson(Map<String, dynamic> json) {
     return StartFlowResponse(
       executionId: json['executionId'] as String?,
@@ -6849,6 +6951,7 @@ class StopFlowResponse {
     this.flowArn,
     this.flowStatus,
   });
+
   factory StopFlowResponse.fromJson(Map<String, dynamic> json) {
     return StopFlowResponse(
       flowArn: json['flowArn'] as String?,
@@ -6877,6 +6980,7 @@ class SupportedFieldTypeDetails {
   SupportedFieldTypeDetails({
     required this.v1,
   });
+
   factory SupportedFieldTypeDetails.fromJson(Map<String, dynamic> json) {
     return SupportedFieldTypeDetails(
       v1: FieldTypeDetails.fromJson(json['v1'] as Map<String, dynamic>),
@@ -6893,6 +6997,7 @@ class SupportedFieldTypeDetails {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6929,6 +7034,7 @@ class Task {
     this.destinationField,
     this.taskProperties,
   });
+
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       sourceFields: (json['sourceFields'] as List)
@@ -7118,6 +7224,7 @@ class TrendmicroConnectorProfileCredentials {
   TrendmicroConnectorProfileCredentials({
     required this.apiSecretKey,
   });
+
   factory TrendmicroConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return TrendmicroConnectorProfileCredentials(
@@ -7136,6 +7243,7 @@ class TrendmicroConnectorProfileCredentials {
 /// The connector-specific profile properties required when using Trend Micro.
 class TrendmicroConnectorProfileProperties {
   TrendmicroConnectorProfileProperties();
+
   factory TrendmicroConnectorProfileProperties.fromJson(
       Map<String, dynamic> _) {
     return TrendmicroConnectorProfileProperties();
@@ -7149,6 +7257,7 @@ class TrendmicroConnectorProfileProperties {
 /// The connector metadata specific to Trend Micro.
 class TrendmicroMetadata {
   TrendmicroMetadata();
+
   factory TrendmicroMetadata.fromJson(Map<String, dynamic> _) {
     return TrendmicroMetadata();
   }
@@ -7166,6 +7275,7 @@ class TrendmicroSourceProperties {
   TrendmicroSourceProperties({
     required this.object,
   });
+
   factory TrendmicroSourceProperties.fromJson(Map<String, dynamic> json) {
     return TrendmicroSourceProperties(
       object: json['object'] as String,
@@ -7196,6 +7306,7 @@ class TriggerConfig {
     required this.triggerType,
     this.triggerProperties,
   });
+
   factory TriggerConfig.fromJson(Map<String, dynamic> json) {
     return TriggerConfig(
       triggerType: (json['triggerType'] as String).toTriggerType(),
@@ -7227,6 +7338,7 @@ class TriggerProperties {
   TriggerProperties({
     this.scheduled,
   });
+
   factory TriggerProperties.fromJson(Map<String, dynamic> json) {
     return TriggerProperties(
       scheduled: json['Scheduled'] != null
@@ -7279,6 +7391,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -7295,6 +7408,7 @@ class UpdateConnectorProfileResponse {
   UpdateConnectorProfileResponse({
     this.connectorProfileArn,
   });
+
   factory UpdateConnectorProfileResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConnectorProfileResponse(
       connectorProfileArn: json['connectorProfileArn'] as String?,
@@ -7317,6 +7431,7 @@ class UpdateFlowResponse {
   UpdateFlowResponse({
     this.flowStatus,
   });
+
   factory UpdateFlowResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFlowResponse(
       flowStatus: (json['flowStatus'] as String?)?.toFlowStatus(),
@@ -7350,6 +7465,7 @@ class UpsolverDestinationProperties {
     required this.s3OutputFormatConfig,
     this.bucketPrefix,
   });
+
   factory UpsolverDestinationProperties.fromJson(Map<String, dynamic> json) {
     return UpsolverDestinationProperties(
       bucketName: json['bucketName'] as String,
@@ -7374,6 +7490,7 @@ class UpsolverDestinationProperties {
 /// The connector metadata specific to Upsolver.
 class UpsolverMetadata {
   UpsolverMetadata();
+
   factory UpsolverMetadata.fromJson(Map<String, dynamic> _) {
     return UpsolverMetadata();
   }
@@ -7398,6 +7515,7 @@ class UpsolverS3OutputFormatConfig {
     this.aggregationConfig,
     this.fileType,
   });
+
   factory UpsolverS3OutputFormatConfig.fromJson(Map<String, dynamic> json) {
     return UpsolverS3OutputFormatConfig(
       prefixConfig:
@@ -7557,6 +7675,7 @@ class VeevaConnectorProfileCredentials {
     required this.password,
     required this.username,
   });
+
   factory VeevaConnectorProfileCredentials.fromJson(Map<String, dynamic> json) {
     return VeevaConnectorProfileCredentials(
       password: json['password'] as String,
@@ -7582,6 +7701,7 @@ class VeevaConnectorProfileProperties {
   VeevaConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory VeevaConnectorProfileProperties.fromJson(Map<String, dynamic> json) {
     return VeevaConnectorProfileProperties(
       instanceUrl: json['instanceUrl'] as String,
@@ -7599,6 +7719,7 @@ class VeevaConnectorProfileProperties {
 /// The connector metadata specific to Veeva.
 class VeevaMetadata {
   VeevaMetadata();
+
   factory VeevaMetadata.fromJson(Map<String, dynamic> _) {
     return VeevaMetadata();
   }
@@ -7616,6 +7737,7 @@ class VeevaSourceProperties {
   VeevaSourceProperties({
     required this.object,
   });
+
   factory VeevaSourceProperties.fromJson(Map<String, dynamic> json) {
     return VeevaSourceProperties(
       object: json['object'] as String,
@@ -7775,6 +7897,7 @@ class ZendeskConnectorProfileCredentials {
     this.accessToken,
     this.oAuthRequest,
   });
+
   factory ZendeskConnectorProfileCredentials.fromJson(
       Map<String, dynamic> json) {
     return ZendeskConnectorProfileCredentials(
@@ -7810,6 +7933,7 @@ class ZendeskConnectorProfileProperties {
   ZendeskConnectorProfileProperties({
     required this.instanceUrl,
   });
+
   factory ZendeskConnectorProfileProperties.fromJson(
       Map<String, dynamic> json) {
     return ZendeskConnectorProfileProperties(
@@ -7839,6 +7963,7 @@ class ZendeskDestinationProperties {
     this.idFieldNames,
     this.writeOperationType,
   });
+
   factory ZendeskDestinationProperties.fromJson(Map<String, dynamic> json) {
     return ZendeskDestinationProperties(
       object: json['object'] as String,
@@ -7879,6 +8004,7 @@ class ZendeskMetadata {
   ZendeskMetadata({
     this.oAuthScopes,
   });
+
   factory ZendeskMetadata.fromJson(Map<String, dynamic> json) {
     return ZendeskMetadata(
       oAuthScopes: (json['oAuthScopes'] as List?)
@@ -7904,6 +8030,7 @@ class ZendeskSourceProperties {
   ZendeskSourceProperties({
     required this.object,
   });
+
   factory ZendeskSourceProperties.fromJson(Map<String, dynamic> json) {
     return ZendeskSourceProperties(
       object: json['object'] as String,

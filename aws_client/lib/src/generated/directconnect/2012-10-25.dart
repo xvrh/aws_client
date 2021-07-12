@@ -2943,6 +2943,7 @@ class AcceptDirectConnectGatewayAssociationProposalResult {
   AcceptDirectConnectGatewayAssociationProposalResult({
     this.directConnectGatewayAssociation,
   });
+
   factory AcceptDirectConnectGatewayAssociationProposalResult.fromJson(
       Map<String, dynamic> json) {
     return AcceptDirectConnectGatewayAssociationProposalResult(
@@ -2999,6 +3000,7 @@ class AllocateTransitVirtualInterfaceResult {
   AllocateTransitVirtualInterfaceResult({
     this.virtualInterface,
   });
+
   factory AllocateTransitVirtualInterfaceResult.fromJson(
       Map<String, dynamic> json) {
     return AllocateTransitVirtualInterfaceResult(
@@ -3030,6 +3032,7 @@ class AssociateMacSecKeyResponse {
     this.connectionId,
     this.macSecKeys,
   });
+
   factory AssociateMacSecKeyResponse.fromJson(Map<String, dynamic> json) {
     return AssociateMacSecKeyResponse(
       connectionId: json['connectionId'] as String?,
@@ -3071,6 +3074,7 @@ class AssociatedGateway {
     this.region,
     this.type,
   });
+
   factory AssociatedGateway.fromJson(Map<String, dynamic> json) {
     return AssociatedGateway(
       id: json['id'] as String?,
@@ -3171,6 +3175,7 @@ class BGPPeer {
     this.bgpStatus,
     this.customerAddress,
   });
+
   factory BGPPeer.fromJson(Map<String, dynamic> json) {
     return BGPPeer(
       addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
@@ -3330,6 +3335,7 @@ class ConfirmConnectionResponse {
   ConfirmConnectionResponse({
     this.connectionState,
   });
+
   factory ConfirmConnectionResponse.fromJson(Map<String, dynamic> json) {
     return ConfirmConnectionResponse(
       connectionState:
@@ -3394,6 +3400,7 @@ class ConfirmPrivateVirtualInterfaceResponse {
   ConfirmPrivateVirtualInterfaceResponse({
     this.virtualInterfaceState,
   });
+
   factory ConfirmPrivateVirtualInterfaceResponse.fromJson(
       Map<String, dynamic> json) {
     return ConfirmPrivateVirtualInterfaceResponse(
@@ -3460,6 +3467,7 @@ class ConfirmPublicVirtualInterfaceResponse {
   ConfirmPublicVirtualInterfaceResponse({
     this.virtualInterfaceState,
   });
+
   factory ConfirmPublicVirtualInterfaceResponse.fromJson(
       Map<String, dynamic> json) {
     return ConfirmPublicVirtualInterfaceResponse(
@@ -3526,6 +3534,7 @@ class ConfirmTransitVirtualInterfaceResponse {
   ConfirmTransitVirtualInterfaceResponse({
     this.virtualInterfaceState,
   });
+
   factory ConfirmTransitVirtualInterfaceResponse.fromJson(
       Map<String, dynamic> json) {
     return ConfirmTransitVirtualInterfaceResponse(
@@ -3677,6 +3686,7 @@ class Connection {
     this.tags,
     this.vlan,
   });
+
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       awsDevice: json['awsDevice'] as String?,
@@ -3832,6 +3842,7 @@ class Connections {
   Connections({
     this.connections,
   });
+
   factory Connections.fromJson(Map<String, dynamic> json) {
     return Connections(
       connections: (json['connections'] as List?)
@@ -3856,6 +3867,7 @@ class CreateBGPPeerResponse {
   CreateBGPPeerResponse({
     this.virtualInterface,
   });
+
   factory CreateBGPPeerResponse.fromJson(Map<String, dynamic> json) {
     return CreateBGPPeerResponse(
       virtualInterface: json['virtualInterface'] != null
@@ -3881,6 +3893,7 @@ class CreateDirectConnectGatewayAssociationProposalResult {
   CreateDirectConnectGatewayAssociationProposalResult({
     this.directConnectGatewayAssociationProposal,
   });
+
   factory CreateDirectConnectGatewayAssociationProposalResult.fromJson(
       Map<String, dynamic> json) {
     return CreateDirectConnectGatewayAssociationProposalResult(
@@ -3911,6 +3924,7 @@ class CreateDirectConnectGatewayAssociationResult {
   CreateDirectConnectGatewayAssociationResult({
     this.directConnectGatewayAssociation,
   });
+
   factory CreateDirectConnectGatewayAssociationResult.fromJson(
       Map<String, dynamic> json) {
     return CreateDirectConnectGatewayAssociationResult(
@@ -3940,6 +3954,7 @@ class CreateDirectConnectGatewayResult {
   CreateDirectConnectGatewayResult({
     this.directConnectGateway,
   });
+
   factory CreateDirectConnectGatewayResult.fromJson(Map<String, dynamic> json) {
     return CreateDirectConnectGatewayResult(
       directConnectGateway: json['directConnectGateway'] != null
@@ -3964,6 +3979,7 @@ class CreateTransitVirtualInterfaceResult {
   CreateTransitVirtualInterfaceResult({
     this.virtualInterface,
   });
+
   factory CreateTransitVirtualInterfaceResult.fromJson(
       Map<String, dynamic> json) {
     return CreateTransitVirtualInterfaceResult(
@@ -3989,6 +4005,7 @@ class DeleteBGPPeerResponse {
   DeleteBGPPeerResponse({
     this.virtualInterface,
   });
+
   factory DeleteBGPPeerResponse.fromJson(Map<String, dynamic> json) {
     return DeleteBGPPeerResponse(
       virtualInterface: json['virtualInterface'] != null
@@ -4014,6 +4031,7 @@ class DeleteDirectConnectGatewayAssociationProposalResult {
   DeleteDirectConnectGatewayAssociationProposalResult({
     this.directConnectGatewayAssociationProposal,
   });
+
   factory DeleteDirectConnectGatewayAssociationProposalResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteDirectConnectGatewayAssociationProposalResult(
@@ -4044,6 +4062,7 @@ class DeleteDirectConnectGatewayAssociationResult {
   DeleteDirectConnectGatewayAssociationResult({
     this.directConnectGatewayAssociation,
   });
+
   factory DeleteDirectConnectGatewayAssociationResult.fromJson(
       Map<String, dynamic> json) {
     return DeleteDirectConnectGatewayAssociationResult(
@@ -4073,6 +4092,7 @@ class DeleteDirectConnectGatewayResult {
   DeleteDirectConnectGatewayResult({
     this.directConnectGateway,
   });
+
   factory DeleteDirectConnectGatewayResult.fromJson(Map<String, dynamic> json) {
     return DeleteDirectConnectGatewayResult(
       directConnectGateway: json['directConnectGateway'] != null
@@ -4126,6 +4146,7 @@ class DeleteInterconnectResponse {
   DeleteInterconnectResponse({
     this.interconnectState,
   });
+
   factory DeleteInterconnectResponse.fromJson(Map<String, dynamic> json) {
     return DeleteInterconnectResponse(
       interconnectState:
@@ -4191,6 +4212,7 @@ class DeleteVirtualInterfaceResponse {
   DeleteVirtualInterfaceResponse({
     this.virtualInterfaceState,
   });
+
   factory DeleteVirtualInterfaceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteVirtualInterfaceResponse(
       virtualInterfaceState:
@@ -4214,6 +4236,7 @@ class DescribeConnectionLoaResponse {
   DescribeConnectionLoaResponse({
     this.loa,
   });
+
   factory DescribeConnectionLoaResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConnectionLoaResponse(
       loa: json['loa'] != null
@@ -4243,6 +4266,7 @@ class DescribeDirectConnectGatewayAssociationProposalsResult {
     this.directConnectGatewayAssociationProposals,
     this.nextToken,
   });
+
   factory DescribeDirectConnectGatewayAssociationProposalsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeDirectConnectGatewayAssociationProposalsResult(
@@ -4280,6 +4304,7 @@ class DescribeDirectConnectGatewayAssociationsResult {
     this.directConnectGatewayAssociations,
     this.nextToken,
   });
+
   factory DescribeDirectConnectGatewayAssociationsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeDirectConnectGatewayAssociationsResult(
@@ -4316,6 +4341,7 @@ class DescribeDirectConnectGatewayAttachmentsResult {
     this.directConnectGatewayAttachments,
     this.nextToken,
   });
+
   factory DescribeDirectConnectGatewayAttachmentsResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeDirectConnectGatewayAttachmentsResult(
@@ -4352,6 +4378,7 @@ class DescribeDirectConnectGatewaysResult {
     this.directConnectGateways,
     this.nextToken,
   });
+
   factory DescribeDirectConnectGatewaysResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeDirectConnectGatewaysResult(
@@ -4381,6 +4408,7 @@ class DescribeInterconnectLoaResponse {
   DescribeInterconnectLoaResponse({
     this.loa,
   });
+
   factory DescribeInterconnectLoaResponse.fromJson(Map<String, dynamic> json) {
     return DescribeInterconnectLoaResponse(
       loa: json['loa'] != null
@@ -4404,6 +4432,7 @@ class DescribeTagsResponse {
   DescribeTagsResponse({
     this.resourceTags,
   });
+
   factory DescribeTagsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTagsResponse(
       resourceTags: (json['resourceTags'] as List?)
@@ -4469,6 +4498,7 @@ class DirectConnectGateway {
     this.ownerAccount,
     this.stateChangeError,
   });
+
   factory DirectConnectGateway.fromJson(Map<String, dynamic> json) {
     return DirectConnectGateway(
       amazonSideAsn: json['amazonSideAsn'] as int?,
@@ -4570,6 +4600,7 @@ class DirectConnectGatewayAssociation {
     this.virtualGatewayOwnerAccount,
     this.virtualGatewayRegion,
   });
+
   factory DirectConnectGatewayAssociation.fromJson(Map<String, dynamic> json) {
     return DirectConnectGatewayAssociation(
       allowedPrefixesToDirectConnectGateway:
@@ -4678,6 +4709,7 @@ class DirectConnectGatewayAssociationProposal {
     this.proposalState,
     this.requestedAllowedPrefixesToDirectConnectGateway,
   });
+
   factory DirectConnectGatewayAssociationProposal.fromJson(
       Map<String, dynamic> json) {
     return DirectConnectGatewayAssociationProposal(
@@ -4866,6 +4898,7 @@ class DirectConnectGatewayAttachment {
     this.virtualInterfaceOwnerAccount,
     this.virtualInterfaceRegion,
   });
+
   factory DirectConnectGatewayAttachment.fromJson(Map<String, dynamic> json) {
     return DirectConnectGatewayAttachment(
       attachmentState: (json['attachmentState'] as String?)
@@ -5023,6 +5056,7 @@ class DisassociateMacSecKeyResponse {
     this.connectionId,
     this.macSecKeys,
   });
+
   factory DisassociateMacSecKeyResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateMacSecKeyResponse(
       connectionId: json['connectionId'] as String?,
@@ -5193,6 +5227,7 @@ class Interconnect {
     this.region,
     this.tags,
   });
+
   factory Interconnect.fromJson(Map<String, dynamic> json) {
     return Interconnect(
       awsDevice: json['awsDevice'] as String?,
@@ -5314,6 +5349,7 @@ class Interconnects {
   Interconnects({
     this.interconnects,
   });
+
   factory Interconnects.fromJson(Map<String, dynamic> json) {
     return Interconnects(
       interconnects: (json['interconnects'] as List?)
@@ -5448,6 +5484,7 @@ class Lag {
     this.region,
     this.tags,
   });
+
   factory Lag.fromJson(Map<String, dynamic> json) {
     return Lag(
       allowsHostedConnections: json['allowsHostedConnections'] as bool?,
@@ -5593,6 +5630,7 @@ class Lags {
   Lags({
     this.lags,
   });
+
   factory Lags.fromJson(Map<String, dynamic> json) {
     return Lags(
       lags: (json['lags'] as List?)
@@ -5622,6 +5660,7 @@ class ListVirtualInterfaceTestHistoryResponse {
     this.nextToken,
     this.virtualInterfaceTestHistory,
   });
+
   factory ListVirtualInterfaceTestHistoryResponse.fromJson(
       Map<String, dynamic> json) {
     return ListVirtualInterfaceTestHistoryResponse(
@@ -5660,6 +5699,7 @@ class Loa {
     this.loaContent,
     this.loaContentType,
   });
+
   factory Loa.fromJson(Map<String, dynamic> json) {
     return Loa(
       loaContent: _s.decodeNullableUint8List(json['loaContent'] as String?),
@@ -5729,6 +5769,7 @@ class Location {
     this.locationName,
     this.region,
   });
+
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       availableMacSecPortSpeeds: (json['availableMacSecPortSpeeds'] as List?)
@@ -5776,6 +5817,7 @@ class Locations {
   Locations({
     this.locations,
   });
+
   factory Locations.fromJson(Map<String, dynamic> json) {
     return Locations(
       locations: (json['locations'] as List?)
@@ -5835,6 +5877,7 @@ class MacSecKey {
     this.startOn,
     this.state,
   });
+
   factory MacSecKey.fromJson(Map<String, dynamic> json) {
     return MacSecKey(
       ckn: json['ckn'] as String?,
@@ -5884,6 +5927,7 @@ class NewBGPPeer {
     this.authKey,
     this.customerAddress,
   });
+
   factory NewBGPPeer.fromJson(Map<String, dynamic> json) {
     return NewBGPPeer(
       addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
@@ -5965,6 +6009,7 @@ class NewPrivateVirtualInterface {
     this.tags,
     this.virtualGatewayId,
   });
+
   factory NewPrivateVirtualInterface.fromJson(Map<String, dynamic> json) {
     return NewPrivateVirtualInterface(
       asn: json['asn'] as int,
@@ -6061,6 +6106,7 @@ class NewPrivateVirtualInterfaceAllocation {
     this.mtu,
     this.tags,
   });
+
   factory NewPrivateVirtualInterfaceAllocation.fromJson(
       Map<String, dynamic> json) {
     return NewPrivateVirtualInterfaceAllocation(
@@ -6150,6 +6196,7 @@ class NewPublicVirtualInterface {
     this.routeFilterPrefixes,
     this.tags,
   });
+
   factory NewPublicVirtualInterface.fromJson(Map<String, dynamic> json) {
     return NewPublicVirtualInterface(
       asn: json['asn'] as int,
@@ -6243,6 +6290,7 @@ class NewPublicVirtualInterfaceAllocation {
     this.routeFilterPrefixes,
     this.tags,
   });
+
   factory NewPublicVirtualInterfaceAllocation.fromJson(
       Map<String, dynamic> json) {
     return NewPublicVirtualInterfaceAllocation(
@@ -6340,6 +6388,7 @@ class NewTransitVirtualInterface {
     this.virtualInterfaceName,
     this.vlan,
   });
+
   factory NewTransitVirtualInterface.fromJson(Map<String, dynamic> json) {
     return NewTransitVirtualInterface(
       addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
@@ -6434,6 +6483,7 @@ class NewTransitVirtualInterfaceAllocation {
     this.virtualInterfaceName,
     this.vlan,
   });
+
   factory NewTransitVirtualInterfaceAllocation.fromJson(
       Map<String, dynamic> json) {
     return NewTransitVirtualInterfaceAllocation(
@@ -6489,6 +6539,7 @@ class ResourceTag {
     this.resourceArn,
     this.tags,
   });
+
   factory ResourceTag.fromJson(Map<String, dynamic> json) {
     return ResourceTag(
       resourceArn: json['resourceArn'] as String?,
@@ -6519,6 +6570,7 @@ class RouteFilterPrefix {
   RouteFilterPrefix({
     this.cidr,
   });
+
   factory RouteFilterPrefix.fromJson(Map<String, dynamic> json) {
     return RouteFilterPrefix(
       cidr: json['cidr'] as String?,
@@ -6540,6 +6592,7 @@ class StartBgpFailoverTestResponse {
   StartBgpFailoverTestResponse({
     this.virtualInterfaceTest,
   });
+
   factory StartBgpFailoverTestResponse.fromJson(Map<String, dynamic> json) {
     return StartBgpFailoverTestResponse(
       virtualInterfaceTest: json['virtualInterfaceTest'] != null
@@ -6565,6 +6618,7 @@ class StopBgpFailoverTestResponse {
   StopBgpFailoverTestResponse({
     this.virtualInterfaceTest,
   });
+
   factory StopBgpFailoverTestResponse.fromJson(Map<String, dynamic> json) {
     return StopBgpFailoverTestResponse(
       virtualInterfaceTest: json['virtualInterfaceTest'] != null
@@ -6595,6 +6649,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['key'] as String,
@@ -6614,6 +6669,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -6625,6 +6681,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -6640,6 +6697,7 @@ class UpdateDirectConnectGatewayAssociationResult {
   UpdateDirectConnectGatewayAssociationResult({
     this.directConnectGatewayAssociation,
   });
+
   factory UpdateDirectConnectGatewayAssociationResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateDirectConnectGatewayAssociationResult(
@@ -6693,6 +6751,7 @@ class VirtualGateway {
     this.virtualGatewayId,
     this.virtualGatewayState,
   });
+
   factory VirtualGateway.fromJson(Map<String, dynamic> json) {
     return VirtualGateway(
       virtualGatewayId: json['virtualGatewayId'] as String?,
@@ -6718,6 +6777,7 @@ class VirtualGateways {
   VirtualGateways({
     this.virtualGateways,
   });
+
   factory VirtualGateways.fromJson(Map<String, dynamic> json) {
     return VirtualGateways(
       virtualGateways: (json['virtualGateways'] as List?)
@@ -6887,6 +6947,7 @@ class VirtualInterface {
     this.virtualInterfaceType,
     this.vlan,
   });
+
   factory VirtualInterface.fromJson(Map<String, dynamic> json) {
     return VirtualInterface(
       addressFamily: (json['addressFamily'] as String?)?.toAddressFamily(),
@@ -7086,6 +7147,7 @@ class VirtualInterfaceTestHistory {
     this.testId,
     this.virtualInterfaceId,
   });
+
   factory VirtualInterfaceTestHistory.fromJson(Map<String, dynamic> json) {
     return VirtualInterfaceTestHistory(
       bgpPeers: (json['bgpPeers'] as List?)
@@ -7132,6 +7194,7 @@ class VirtualInterfaces {
   VirtualInterfaces({
     this.virtualInterfaces,
   });
+
   factory VirtualInterfaces.fromJson(Map<String, dynamic> json) {
     return VirtualInterfaces(
       virtualInterfaces: (json['virtualInterfaces'] as List?)

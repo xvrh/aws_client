@@ -53,6 +53,7 @@ class OutputShape {
   OutputShape({
     this.map,
   });
+
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       map: (json['Map'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -88,6 +89,7 @@ class SingleStructure {
   SingleStructure({
     this.foo,
   });
+
   factory SingleStructure.fromJson(Map<String, dynamic> json) {
     return SingleStructure(
       foo: json['foo'] as String?,

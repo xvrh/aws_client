@@ -4731,6 +4731,7 @@ class ActivitiesType {
     required this.activities,
     this.nextToken,
   });
+
   factory ActivitiesType.fromJson(Map<String, dynamic> json) {
     return ActivitiesType(
       activities: (json['Activities'] as List)
@@ -4817,6 +4818,7 @@ class Activity {
     this.progress,
     this.statusMessage,
   });
+
   factory Activity.fromJson(Map<String, dynamic> json) {
     return Activity(
       activityId: json['ActivityId'] as String,
@@ -4895,6 +4897,7 @@ class ActivityType {
   ActivityType({
     this.activity,
   });
+
   factory ActivityType.fromJson(Map<String, dynamic> json) {
     return ActivityType(
       activity: json['Activity'] != null
@@ -4928,6 +4931,7 @@ class AdjustmentType {
   AdjustmentType({
     this.adjustmentType,
   });
+
   factory AdjustmentType.fromJson(Map<String, dynamic> json) {
     return AdjustmentType(
       adjustmentType: json['AdjustmentType'] as String?,
@@ -4960,6 +4964,7 @@ class Alarm {
     this.alarmARN,
     this.alarmName,
   });
+
   factory Alarm.fromJson(Map<String, dynamic> json) {
     return Alarm(
       alarmARN: json['AlarmARN'] as String?,
@@ -4986,6 +4991,7 @@ class Alarm {
 
 class AttachLoadBalancerTargetGroupsResultType {
   AttachLoadBalancerTargetGroupsResultType();
+
   factory AttachLoadBalancerTargetGroupsResultType.fromJson(
       Map<String, dynamic> _) {
     return AttachLoadBalancerTargetGroupsResultType();
@@ -5004,6 +5010,7 @@ class AttachLoadBalancerTargetGroupsResultType {
 
 class AttachLoadBalancersResultType {
   AttachLoadBalancersResultType();
+
   factory AttachLoadBalancersResultType.fromJson(Map<String, dynamic> _) {
     return AttachLoadBalancersResultType();
   }
@@ -5157,6 +5164,7 @@ class AutoScalingGroup {
     this.warmPoolConfiguration,
     this.warmPoolSize,
   });
+
   factory AutoScalingGroup.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroup(
       autoScalingGroupName: json['AutoScalingGroupName'] as String,
@@ -5386,6 +5394,7 @@ class AutoScalingGroupsType {
     required this.autoScalingGroups,
     this.nextToken,
   });
+
   factory AutoScalingGroupsType.fromJson(Map<String, dynamic> json) {
     return AutoScalingGroupsType(
       autoScalingGroups: (json['AutoScalingGroups'] as List)
@@ -5484,6 +5493,7 @@ class AutoScalingInstanceDetails {
     this.launchTemplate,
     this.weightedCapacity,
   });
+
   factory AutoScalingInstanceDetails.fromJson(Map<String, dynamic> json) {
     return AutoScalingInstanceDetails(
       autoScalingGroupName: json['AutoScalingGroupName'] as String,
@@ -5563,6 +5573,7 @@ class AutoScalingInstancesType {
     this.autoScalingInstances,
     this.nextToken,
   });
+
   factory AutoScalingInstancesType.fromJson(Map<String, dynamic> json) {
     return AutoScalingInstancesType(
       autoScalingInstances: (json['AutoScalingInstances'] as List?)
@@ -5605,6 +5616,7 @@ class BatchDeleteScheduledActionAnswer {
   BatchDeleteScheduledActionAnswer({
     this.failedScheduledActions,
   });
+
   factory BatchDeleteScheduledActionAnswer.fromJson(Map<String, dynamic> json) {
     return BatchDeleteScheduledActionAnswer(
       failedScheduledActions: (json['FailedScheduledActions'] as List?)
@@ -5644,6 +5656,7 @@ class BatchPutScheduledUpdateGroupActionAnswer {
   BatchPutScheduledUpdateGroupActionAnswer({
     this.failedScheduledUpdateGroupActions,
   });
+
   factory BatchPutScheduledUpdateGroupActionAnswer.fromJson(
       Map<String, dynamic> json) {
     return BatchPutScheduledUpdateGroupActionAnswer(
@@ -5715,6 +5728,7 @@ class BlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
   factory BlockDeviceMapping.fromJson(Map<String, dynamic> json) {
     return BlockDeviceMapping(
       deviceName: json['DeviceName'] as String,
@@ -5756,6 +5770,7 @@ class CancelInstanceRefreshAnswer {
   CancelInstanceRefreshAnswer({
     this.instanceRefreshId,
   });
+
   factory CancelInstanceRefreshAnswer.fromJson(Map<String, dynamic> json) {
     return CancelInstanceRefreshAnswer(
       instanceRefreshId: json['InstanceRefreshId'] as String?,
@@ -5791,6 +5806,7 @@ class CapacityForecast {
     required this.timestamps,
     required this.values,
   });
+
   factory CapacityForecast.fromJson(Map<String, dynamic> json) {
     return CapacityForecast(
       timestamps: (json['Timestamps'] as List)
@@ -5825,6 +5841,7 @@ class CapacityForecast {
 
 class CompleteLifecycleActionAnswer {
   CompleteLifecycleActionAnswer();
+
   factory CompleteLifecycleActionAnswer.fromJson(Map<String, dynamic> _) {
     return CompleteLifecycleActionAnswer();
   }
@@ -5890,6 +5907,7 @@ class CustomizedMetricSpecification {
     this.dimensions,
     this.unit,
   });
+
   factory CustomizedMetricSpecification.fromJson(Map<String, dynamic> json) {
     return CustomizedMetricSpecification(
       metricName: json['MetricName'] as String,
@@ -5935,6 +5953,7 @@ class CustomizedMetricSpecification {
 
 class DeleteLifecycleHookAnswer {
   DeleteLifecycleHookAnswer();
+
   factory DeleteLifecycleHookAnswer.fromJson(Map<String, dynamic> _) {
     return DeleteLifecycleHookAnswer();
   }
@@ -5952,6 +5971,7 @@ class DeleteLifecycleHookAnswer {
 
 class DeleteWarmPoolAnswer {
   DeleteWarmPoolAnswer();
+
   factory DeleteWarmPoolAnswer.fromJson(Map<String, dynamic> _) {
     return DeleteWarmPoolAnswer();
   }
@@ -5988,6 +6008,7 @@ class DescribeAccountLimitsAnswer {
     this.numberOfAutoScalingGroups,
     this.numberOfLaunchConfigurations,
   });
+
   factory DescribeAccountLimitsAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeAccountLimitsAnswer(
       maxNumberOfAutoScalingGroups:
@@ -6039,6 +6060,7 @@ class DescribeAdjustmentTypesAnswer {
   DescribeAdjustmentTypesAnswer({
     this.adjustmentTypes,
   });
+
   factory DescribeAdjustmentTypesAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeAdjustmentTypesAnswer(
       adjustmentTypes: (json['AdjustmentTypes'] as List?)
@@ -6073,6 +6095,7 @@ class DescribeAutoScalingNotificationTypesAnswer {
   DescribeAutoScalingNotificationTypesAnswer({
     this.autoScalingNotificationTypes,
   });
+
   factory DescribeAutoScalingNotificationTypesAnswer.fromJson(
       Map<String, dynamic> json) {
     return DescribeAutoScalingNotificationTypesAnswer(
@@ -6116,6 +6139,7 @@ class DescribeInstanceRefreshesAnswer {
     this.instanceRefreshes,
     this.nextToken,
   });
+
   factory DescribeInstanceRefreshesAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeInstanceRefreshesAnswer(
       instanceRefreshes: (json['InstanceRefreshes'] as List?)
@@ -6154,6 +6178,7 @@ class DescribeLifecycleHookTypesAnswer {
   DescribeLifecycleHookTypesAnswer({
     this.lifecycleHookTypes,
   });
+
   factory DescribeLifecycleHookTypesAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeLifecycleHookTypesAnswer(
       lifecycleHookTypes: (json['LifecycleHookTypes'] as List?)
@@ -6186,6 +6211,7 @@ class DescribeLifecycleHooksAnswer {
   DescribeLifecycleHooksAnswer({
     this.lifecycleHooks,
   });
+
   factory DescribeLifecycleHooksAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeLifecycleHooksAnswer(
       lifecycleHooks: (json['LifecycleHooks'] as List?)
@@ -6227,6 +6253,7 @@ class DescribeLoadBalancerTargetGroupsResponse {
     this.loadBalancerTargetGroups,
     this.nextToken,
   });
+
   factory DescribeLoadBalancerTargetGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeLoadBalancerTargetGroupsResponse(
@@ -6276,6 +6303,7 @@ class DescribeLoadBalancersResponse {
     this.loadBalancers,
     this.nextToken,
   });
+
   factory DescribeLoadBalancersResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLoadBalancersResponse(
       loadBalancers: (json['LoadBalancers'] as List?)
@@ -6318,6 +6346,7 @@ class DescribeMetricCollectionTypesAnswer {
     this.granularities,
     this.metrics,
   });
+
   factory DescribeMetricCollectionTypesAnswer.fromJson(
       Map<String, dynamic> json) {
     return DescribeMetricCollectionTypesAnswer(
@@ -6370,6 +6399,7 @@ class DescribeNotificationConfigurationsAnswer {
     required this.notificationConfigurations,
     this.nextToken,
   });
+
   factory DescribeNotificationConfigurationsAnswer.fromJson(
       Map<String, dynamic> json) {
     return DescribeNotificationConfigurationsAnswer(
@@ -6414,6 +6444,7 @@ class DescribeTerminationPolicyTypesAnswer {
   DescribeTerminationPolicyTypesAnswer({
     this.terminationPolicyTypes,
   });
+
   factory DescribeTerminationPolicyTypesAnswer.fromJson(
       Map<String, dynamic> json) {
     return DescribeTerminationPolicyTypesAnswer(
@@ -6457,6 +6488,7 @@ class DescribeWarmPoolAnswer {
     this.nextToken,
     this.warmPoolConfiguration,
   });
+
   factory DescribeWarmPoolAnswer.fromJson(Map<String, dynamic> json) {
     return DescribeWarmPoolAnswer(
       instances: (json['Instances'] as List?)
@@ -6503,6 +6535,7 @@ class DetachInstancesAnswer {
   DetachInstancesAnswer({
     this.activities,
   });
+
   factory DetachInstancesAnswer.fromJson(Map<String, dynamic> json) {
     return DetachInstancesAnswer(
       activities: (json['Activities'] as List?)
@@ -6529,6 +6562,7 @@ class DetachInstancesAnswer {
 
 class DetachLoadBalancerTargetGroupsResultType {
   DetachLoadBalancerTargetGroupsResultType();
+
   factory DetachLoadBalancerTargetGroupsResultType.fromJson(
       Map<String, dynamic> _) {
     return DetachLoadBalancerTargetGroupsResultType();
@@ -6547,6 +6581,7 @@ class DetachLoadBalancerTargetGroupsResultType {
 
 class DetachLoadBalancersResultType {
   DetachLoadBalancersResultType();
+
   factory DetachLoadBalancersResultType.fromJson(Map<String, dynamic> _) {
     return DetachLoadBalancersResultType();
   }
@@ -6679,6 +6714,7 @@ class Ebs {
     this.volumeSize,
     this.volumeType,
   });
+
   factory Ebs.fromJson(Map<String, dynamic> json) {
     return Ebs(
       deleteOnTermination: json['DeleteOnTermination'] as bool?,
@@ -6799,6 +6835,7 @@ class EnabledMetric {
     this.granularity,
     this.metric,
   });
+
   factory EnabledMetric.fromJson(Map<String, dynamic> json) {
     return EnabledMetric(
       granularity: json['Granularity'] as String?,
@@ -6830,6 +6867,7 @@ class EnterStandbyAnswer {
   EnterStandbyAnswer({
     this.activities,
   });
+
   factory EnterStandbyAnswer.fromJson(Map<String, dynamic> json) {
     return EnterStandbyAnswer(
       activities: (json['Activities'] as List?)
@@ -6861,6 +6899,7 @@ class ExitStandbyAnswer {
   ExitStandbyAnswer({
     this.activities,
   });
+
   factory ExitStandbyAnswer.fromJson(Map<String, dynamic> json) {
     return ExitStandbyAnswer(
       activities: (json['Activities'] as List?)
@@ -6901,6 +6940,7 @@ class FailedScheduledUpdateGroupActionRequest {
     this.errorCode,
     this.errorMessage,
   });
+
   factory FailedScheduledUpdateGroupActionRequest.fromJson(
       Map<String, dynamic> json) {
     return FailedScheduledUpdateGroupActionRequest(
@@ -6951,6 +6991,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   factory Filter.fromJson(Map<String, dynamic> json) {
     return Filter(
       name: json['Name'] as String?,
@@ -6986,6 +7027,7 @@ class GetPredictiveScalingForecastAnswer {
     required this.loadForecast,
     required this.updateTime,
   });
+
   factory GetPredictiveScalingForecastAnswer.fromJson(
       Map<String, dynamic> json) {
     return GetPredictiveScalingForecastAnswer(
@@ -7074,6 +7116,7 @@ class Instance {
     this.launchTemplate,
     this.weightedCapacity,
   });
+
   factory Instance.fromJson(Map<String, dynamic> json) {
     return Instance(
       availabilityZone: json['AvailabilityZone'] as String,
@@ -7233,6 +7276,7 @@ class InstanceMetadataOptions {
     this.httpPutResponseHopLimit,
     this.httpTokens,
   });
+
   factory InstanceMetadataOptions.fromJson(Map<String, dynamic> json) {
     return InstanceMetadataOptions(
       httpEndpoint:
@@ -7279,6 +7323,7 @@ class InstanceMonitoring {
   InstanceMonitoring({
     this.enabled,
   });
+
   factory InstanceMonitoring.fromJson(Map<String, dynamic> json) {
     return InstanceMonitoring(
       enabled: json['Enabled'] as bool?,
@@ -7369,6 +7414,7 @@ class InstanceRefresh {
     this.status,
     this.statusReason,
   });
+
   factory InstanceRefresh.fromJson(Map<String, dynamic> json) {
     return InstanceRefresh(
       autoScalingGroupName: json['AutoScalingGroupName'] as String?,
@@ -7446,6 +7492,7 @@ class InstanceRefreshLivePoolProgress {
     this.instancesToUpdate,
     this.percentageComplete,
   });
+
   factory InstanceRefreshLivePoolProgress.fromJson(Map<String, dynamic> json) {
     return InstanceRefreshLivePoolProgress(
       instancesToUpdate: json['InstancesToUpdate'] as int?,
@@ -7486,6 +7533,7 @@ class InstanceRefreshProgressDetails {
     this.livePoolProgress,
     this.warmPoolProgress,
   });
+
   factory InstanceRefreshProgressDetails.fromJson(Map<String, dynamic> json) {
     return InstanceRefreshProgressDetails(
       livePoolProgress: json['LivePoolProgress'] != null
@@ -7585,6 +7633,7 @@ class InstanceRefreshWarmPoolProgress {
     this.instancesToUpdate,
     this.percentageComplete,
   });
+
   factory InstanceRefreshWarmPoolProgress.fromJson(Map<String, dynamic> json) {
     return InstanceRefreshWarmPoolProgress(
       instancesToUpdate: json['InstancesToUpdate'] as int?,
@@ -7690,6 +7739,7 @@ class InstancesDistribution {
     this.spotInstancePools,
     this.spotMaxPrice,
   });
+
   factory InstancesDistribution.fromJson(Map<String, dynamic> json) {
     return InstancesDistribution(
       onDemandAllocationStrategy: json['OnDemandAllocationStrategy'] as String?,
@@ -7899,6 +7949,7 @@ class LaunchConfiguration {
     this.spotPrice,
     this.userData,
   });
+
   factory LaunchConfiguration.fromJson(Map<String, dynamic> json) {
     return LaunchConfiguration(
       createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
@@ -8044,6 +8095,7 @@ class LaunchConfigurationsType {
     required this.launchConfigurations,
     this.nextToken,
   });
+
   factory LaunchConfigurationsType.fromJson(Map<String, dynamic> json) {
     return LaunchConfigurationsType(
       launchConfigurations: (json['LaunchConfigurations'] as List)
@@ -8097,6 +8149,7 @@ class LaunchTemplate {
     this.launchTemplateSpecification,
     this.overrides,
   });
+
   factory LaunchTemplate.fromJson(Map<String, dynamic> json) {
     return LaunchTemplate(
       launchTemplateSpecification: json['LaunchTemplateSpecification'] != null
@@ -8178,6 +8231,7 @@ class LaunchTemplateOverrides {
     this.launchTemplateSpecification,
     this.weightedCapacity,
   });
+
   factory LaunchTemplateOverrides.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateOverrides(
       instanceType: json['InstanceType'] as String?,
@@ -8260,6 +8314,7 @@ class LaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+
   factory LaunchTemplateSpecification.fromJson(Map<String, dynamic> json) {
     return LaunchTemplateSpecification(
       launchTemplateId: json['LaunchTemplateId'] as String?,
@@ -8351,6 +8406,7 @@ class LifecycleHook {
     this.notificationTargetARN,
     this.roleARN,
   });
+
   factory LifecycleHook.fromJson(Map<String, dynamic> json) {
     return LifecycleHook(
       autoScalingGroupName: json['AutoScalingGroupName'] as String?,
@@ -8501,6 +8557,7 @@ class LifecycleHookSpecification {
     this.notificationTargetARN,
     this.roleARN,
   });
+
   factory LifecycleHookSpecification.fromJson(Map<String, dynamic> json) {
     return LifecycleHookSpecification(
       lifecycleHookName: json['LifecycleHookName'] as String,
@@ -8700,6 +8757,7 @@ class LoadBalancerState {
     this.loadBalancerName,
     this.state,
   });
+
   factory LoadBalancerState.fromJson(Map<String, dynamic> json) {
     return LoadBalancerState(
       loadBalancerName: json['LoadBalancerName'] as String?,
@@ -8761,6 +8819,7 @@ class LoadBalancerTargetGroupState {
     this.loadBalancerTargetGroupARN,
     this.state,
   });
+
   factory LoadBalancerTargetGroupState.fromJson(Map<String, dynamic> json) {
     return LoadBalancerTargetGroupState(
       loadBalancerTargetGroupARN: json['LoadBalancerTargetGroupARN'] as String?,
@@ -8806,6 +8865,7 @@ class LoadForecast {
     required this.timestamps,
     required this.values,
   });
+
   factory LoadForecast.fromJson(Map<String, dynamic> json) {
     return LoadForecast(
       metricSpecification: PredictiveScalingMetricSpecification.fromJson(
@@ -8915,6 +8975,7 @@ class MetricCollectionType {
   MetricCollectionType({
     this.metric,
   });
+
   factory MetricCollectionType.fromJson(Map<String, dynamic> json) {
     return MetricCollectionType(
       metric: json['Metric'] as String?,
@@ -8947,6 +9008,7 @@ class MetricDimension {
     required this.name,
     required this.value,
   });
+
   factory MetricDimension.fromJson(Map<String, dynamic> json) {
     return MetricDimension(
       name: json['Name'] as String,
@@ -8979,6 +9041,7 @@ class MetricGranularityType {
   MetricGranularityType({
     this.granularity,
   });
+
   factory MetricGranularityType.fromJson(Map<String, dynamic> json) {
     return MetricGranularityType(
       granularity: json['Granularity'] as String?,
@@ -9106,6 +9169,7 @@ class MixedInstancesPolicy {
     this.instancesDistribution,
     this.launchTemplate,
   });
+
   factory MixedInstancesPolicy.fromJson(Map<String, dynamic> json) {
     return MixedInstancesPolicy(
       instancesDistribution: json['InstancesDistribution'] != null
@@ -9176,6 +9240,7 @@ class NotificationConfiguration {
     this.notificationType,
     this.topicARN,
   });
+
   factory NotificationConfiguration.fromJson(Map<String, dynamic> json) {
     return NotificationConfiguration(
       autoScalingGroupName: json['AutoScalingGroupName'] as String?,
@@ -9220,6 +9285,7 @@ class PoliciesType {
     this.nextToken,
     this.scalingPolicies,
   });
+
   factory PoliciesType.fromJson(Map<String, dynamic> json) {
     return PoliciesType(
       nextToken: json['NextToken'] as String?,
@@ -9263,6 +9329,7 @@ class PolicyARNType {
     this.alarms,
     this.policyARN,
   });
+
   factory PolicyARNType.fromJson(Map<String, dynamic> json) {
     return PolicyARNType(
       alarms: (json['Alarms'] as List?)
@@ -9427,6 +9494,7 @@ class PredefinedMetricSpecification {
     required this.predefinedMetricType,
     this.resourceLabel,
   });
+
   factory PredefinedMetricSpecification.fromJson(Map<String, dynamic> json) {
     return PredefinedMetricSpecification(
       predefinedMetricType:
@@ -9560,6 +9628,7 @@ class PredictiveScalingConfiguration {
     this.mode,
     this.schedulingBufferTime,
   });
+
   factory PredictiveScalingConfiguration.fromJson(Map<String, dynamic> json) {
     return PredictiveScalingConfiguration(
       metricSpecifications: (json['MetricSpecifications'] as List)
@@ -9707,6 +9776,7 @@ class PredictiveScalingMetricSpecification {
     this.predefinedMetricPairSpecification,
     this.predefinedScalingMetricSpecification,
   });
+
   factory PredictiveScalingMetricSpecification.fromJson(
       Map<String, dynamic> json) {
     return PredictiveScalingMetricSpecification(
@@ -9840,6 +9910,7 @@ class PredictiveScalingPredefinedLoadMetric {
     required this.predefinedMetricType,
     this.resourceLabel,
   });
+
   factory PredictiveScalingPredefinedLoadMetric.fromJson(
       Map<String, dynamic> json) {
     return PredictiveScalingPredefinedLoadMetric(
@@ -9912,6 +9983,7 @@ class PredictiveScalingPredefinedMetricPair {
     required this.predefinedMetricType,
     this.resourceLabel,
   });
+
   factory PredictiveScalingPredefinedMetricPair.fromJson(
       Map<String, dynamic> json) {
     return PredictiveScalingPredefinedMetricPair(
@@ -9984,6 +10056,7 @@ class PredictiveScalingPredefinedScalingMetric {
     required this.predefinedMetricType,
     this.resourceLabel,
   });
+
   factory PredictiveScalingPredefinedScalingMetric.fromJson(
       Map<String, dynamic> json) {
     return PredictiveScalingPredefinedScalingMetric(
@@ -10054,6 +10127,7 @@ class ProcessType {
   ProcessType({
     required this.processName,
   });
+
   factory ProcessType.fromJson(Map<String, dynamic> json) {
     return ProcessType(
       processName: json['ProcessName'] as String,
@@ -10081,6 +10155,7 @@ class ProcessesType {
   ProcessesType({
     this.processes,
   });
+
   factory ProcessesType.fromJson(Map<String, dynamic> json) {
     return ProcessesType(
       processes: (json['Processes'] as List?)
@@ -10109,6 +10184,7 @@ class ProcessesType {
 
 class PutLifecycleHookAnswer {
   PutLifecycleHookAnswer();
+
   factory PutLifecycleHookAnswer.fromJson(Map<String, dynamic> _) {
     return PutLifecycleHookAnswer();
   }
@@ -10126,6 +10202,7 @@ class PutLifecycleHookAnswer {
 
 class PutWarmPoolAnswer {
   PutWarmPoolAnswer();
+
   factory PutWarmPoolAnswer.fromJson(Map<String, dynamic> _) {
     return PutWarmPoolAnswer();
   }
@@ -10143,6 +10220,7 @@ class PutWarmPoolAnswer {
 
 class RecordLifecycleActionHeartbeatAnswer {
   RecordLifecycleActionHeartbeatAnswer();
+
   factory RecordLifecycleActionHeartbeatAnswer.fromJson(
       Map<String, dynamic> _) {
     return RecordLifecycleActionHeartbeatAnswer();
@@ -10201,6 +10279,7 @@ class RefreshPreferences {
     this.instanceWarmup,
     this.minHealthyPercentage,
   });
+
   factory RefreshPreferences.fromJson(Map<String, dynamic> json) {
     return RefreshPreferences(
       checkpointDelay: json['CheckpointDelay'] as int?,
@@ -10430,6 +10509,7 @@ class ScalingPolicy {
     this.stepAdjustments,
     this.targetTrackingConfiguration,
   });
+
   factory ScalingPolicy.fromJson(Map<String, dynamic> json) {
     return ScalingPolicy(
       adjustmentType: json['AdjustmentType'] as String?,
@@ -10556,6 +10636,7 @@ class ScheduledActionsType {
     this.nextToken,
     this.scheduledUpdateGroupActions,
   });
+
   factory ScheduledActionsType.fromJson(Map<String, dynamic> json) {
     return ScheduledActionsType(
       nextToken: json['NextToken'] as String?,
@@ -10646,6 +10727,7 @@ class ScheduledUpdateGroupAction {
     this.time,
     this.timeZone,
   });
+
   factory ScheduledUpdateGroupAction.fromJson(Map<String, dynamic> json) {
     return ScheduledUpdateGroupAction(
       autoScalingGroupName: json['AutoScalingGroupName'] as String?,
@@ -10773,6 +10855,7 @@ class ScheduledUpdateGroupActionRequest {
     this.startTime,
     this.timeZone,
   });
+
   factory ScheduledUpdateGroupActionRequest.fromJson(
       Map<String, dynamic> json) {
     return ScheduledUpdateGroupActionRequest(
@@ -10811,6 +10894,7 @@ class ScheduledUpdateGroupActionRequest {
 
 class SetInstanceProtectionAnswer {
   SetInstanceProtectionAnswer();
+
   factory SetInstanceProtectionAnswer.fromJson(Map<String, dynamic> _) {
     return SetInstanceProtectionAnswer();
   }
@@ -10833,6 +10917,7 @@ class StartInstanceRefreshAnswer {
   StartInstanceRefreshAnswer({
     this.instanceRefreshId,
   });
+
   factory StartInstanceRefreshAnswer.fromJson(Map<String, dynamic> json) {
     return StartInstanceRefreshAnswer(
       instanceRefreshId: json['InstanceRefreshId'] as String?,
@@ -10921,6 +11006,7 @@ class StepAdjustment {
     this.metricIntervalLowerBound,
     this.metricIntervalUpperBound,
   });
+
   factory StepAdjustment.fromJson(Map<String, dynamic> json) {
     return StepAdjustment(
       scalingAdjustment: json['ScalingAdjustment'] as int,
@@ -10969,6 +11055,7 @@ class SuspendedProcess {
     this.processName,
     this.suspensionReason,
   });
+
   factory SuspendedProcess.fromJson(Map<String, dynamic> json) {
     return SuspendedProcess(
       processName: json['ProcessName'] as String?,
@@ -11019,6 +11106,7 @@ class Tag {
     this.resourceType,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -11071,6 +11159,7 @@ class TagDescription {
     this.resourceType,
     this.value,
   });
+
   factory TagDescription.fromJson(Map<String, dynamic> json) {
     return TagDescription(
       key: json['Key'] as String?,
@@ -11121,6 +11210,7 @@ class TagsType {
     this.nextToken,
     this.tags,
   });
+
   factory TagsType.fromJson(Map<String, dynamic> json) {
     return TagsType(
       nextToken: json['NextToken'] as String?,
@@ -11178,6 +11268,7 @@ class TargetTrackingConfiguration {
     this.disableScaleIn,
     this.predefinedMetricSpecification,
   });
+
   factory TargetTrackingConfiguration.fromJson(Map<String, dynamic> json) {
     return TargetTrackingConfiguration(
       targetValue: json['TargetValue'] as double,
@@ -11246,6 +11337,7 @@ class WarmPoolConfiguration {
     this.poolState,
     this.status,
   });
+
   factory WarmPoolConfiguration.fromJson(Map<String, dynamic> json) {
     return WarmPoolConfiguration(
       maxGroupPreparedCapacity: json['MaxGroupPreparedCapacity'] as int?,

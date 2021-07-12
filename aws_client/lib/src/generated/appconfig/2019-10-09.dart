@@ -1774,6 +1774,7 @@ class Application {
     this.id,
     this.name,
   });
+
   factory Application.fromJson(Map<String, dynamic> json) {
     return Application(
       description: json['Description'] as String?,
@@ -1806,6 +1807,7 @@ class Applications {
     this.items,
     this.nextToken,
   });
+
   factory Applications.fromJson(Map<String, dynamic> json) {
     return Applications(
       items: (json['Items'] as List?)
@@ -1843,6 +1845,7 @@ class Configuration {
     this.content,
     this.contentType,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       configurationVersion: json['Configuration-Version'] as String?,
@@ -1893,6 +1896,7 @@ class ConfigurationProfile {
     this.retrievalRoleArn,
     this.validators,
   });
+
   factory ConfigurationProfile.fromJson(Map<String, dynamic> json) {
     return ConfigurationProfile(
       applicationId: json['ApplicationId'] as String?,
@@ -1952,6 +1956,7 @@ class ConfigurationProfileSummary {
     this.name,
     this.validatorTypes,
   });
+
   factory ConfigurationProfileSummary.fromJson(Map<String, dynamic> json) {
     return ConfigurationProfileSummary(
       applicationId: json['ApplicationId'] as String?,
@@ -1994,6 +1999,7 @@ class ConfigurationProfiles {
     this.items,
     this.nextToken,
   });
+
   factory ConfigurationProfiles.fromJson(Map<String, dynamic> json) {
     return ConfigurationProfiles(
       items: (json['Items'] as List?)
@@ -2093,6 +2099,7 @@ class Deployment {
     this.startedAt,
     this.state,
   });
+
   factory Deployment.fromJson(Map<String, dynamic> json) {
     return Deployment(
       applicationId: json['ApplicationId'] as String?,
@@ -2193,6 +2200,7 @@ class DeploymentEvent {
     this.occurredAt,
     this.triggeredBy,
   });
+
   factory DeploymentEvent.fromJson(Map<String, dynamic> json) {
     return DeploymentEvent(
       description: json['Description'] as String?,
@@ -2324,6 +2332,7 @@ class DeploymentStrategies {
     this.items,
     this.nextToken,
   });
+
   factory DeploymentStrategies.fromJson(Map<String, dynamic> json) {
     return DeploymentStrategies(
       items: (json['Items'] as List?)
@@ -2381,6 +2390,7 @@ class DeploymentStrategy {
     this.name,
     this.replicateTo,
   });
+
   factory DeploymentStrategy.fromJson(Map<String, dynamic> json) {
     return DeploymentStrategy(
       deploymentDurationInMinutes: json['DeploymentDurationInMinutes'] as int?,
@@ -2468,6 +2478,7 @@ class DeploymentSummary {
     this.startedAt,
     this.state,
   });
+
   factory DeploymentSummary.fromJson(Map<String, dynamic> json) {
     return DeploymentSummary(
       completedAt: timeStampFromJson(json['CompletedAt']),
@@ -2527,6 +2538,7 @@ class Deployments {
     this.items,
     this.nextToken,
   });
+
   factory Deployments.fromJson(Map<String, dynamic> json) {
     return Deployments(
       items: (json['Items'] as List?)
@@ -2576,6 +2588,7 @@ class Environment {
     this.name,
     this.state,
   });
+
   factory Environment.fromJson(Map<String, dynamic> json) {
     return Environment(
       applicationId: json['ApplicationId'] as String?,
@@ -2658,6 +2671,7 @@ class Environments {
     this.items,
     this.nextToken,
   });
+
   factory Environments.fromJson(Map<String, dynamic> json) {
     return Environments(
       items: (json['Items'] as List?)
@@ -2735,6 +2749,7 @@ class HostedConfigurationVersion {
     this.description,
     this.versionNumber,
   });
+
   factory HostedConfigurationVersion.fromJson(Map<String, dynamic> json) {
     return HostedConfigurationVersion(
       applicationId: json['Application-Id'] as String?,
@@ -2785,6 +2800,7 @@ class HostedConfigurationVersionSummary {
     this.description,
     this.versionNumber,
   });
+
   factory HostedConfigurationVersionSummary.fromJson(
       Map<String, dynamic> json) {
     return HostedConfigurationVersionSummary(
@@ -2825,6 +2841,7 @@ class HostedConfigurationVersions {
     this.items,
     this.nextToken,
   });
+
   factory HostedConfigurationVersions.fromJson(Map<String, dynamic> json) {
     return HostedConfigurationVersions(
       items: (json['Items'] as List?)
@@ -2858,6 +2875,7 @@ class Monitor {
     this.alarmArn,
     this.alarmRoleArn,
   });
+
   factory Monitor.fromJson(Map<String, dynamic> json) {
     return Monitor(
       alarmArn: json['AlarmArn'] as String?,
@@ -2912,6 +2930,7 @@ class ResourceTags {
   ResourceTags({
     this.tags,
   });
+
   factory ResourceTags.fromJson(Map<String, dynamic> json) {
     return ResourceTags(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2983,6 +3002,7 @@ class Validator {
     required this.content,
     required this.type,
   });
+
   factory Validator.fromJson(Map<String, dynamic> json) {
     return Validator(
       content: json['Content'] as String,

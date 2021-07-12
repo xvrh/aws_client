@@ -55,6 +55,7 @@ class Grant {
   Grant({
     this.grantee,
   });
+
   factory Grant.fromJson(Map<String, dynamic> json) {
     return Grant(
       grantee: json['Grantee'] != null
@@ -94,6 +95,7 @@ class Grantee {
     this.emailAddress,
     this.type,
   });
+
   factory Grantee.fromJson(Map<String, dynamic> json) {
     return Grantee(
       emailAddress: json['EmailAddress'] as String?,

@@ -1850,6 +1850,7 @@ class Address {
     this.street2,
     this.street3,
   });
+
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       addressId: json['AddressId'] as String?,
@@ -1906,6 +1907,7 @@ class Address {
 
 class CancelClusterResult {
   CancelClusterResult();
+
   factory CancelClusterResult.fromJson(Map<String, dynamic> _) {
     return CancelClusterResult();
   }
@@ -1917,6 +1919,7 @@ class CancelClusterResult {
 
 class CancelJobResult {
   CancelJobResult();
+
   factory CancelJobResult.fromJson(Map<String, dynamic> _) {
     return CancelJobResult();
   }
@@ -1949,6 +1952,7 @@ class ClusterListEntry {
     this.creationDate,
     this.description,
   });
+
   factory ClusterListEntry.fromJson(Map<String, dynamic> json) {
     return ClusterListEntry(
       clusterId: json['ClusterId'] as String?,
@@ -2073,6 +2077,7 @@ class ClusterMetadata {
     this.snowballType,
     this.taxDocuments,
   });
+
   factory ClusterMetadata.fromJson(Map<String, dynamic> json) {
     return ClusterMetadata(
       addressId: json['AddressId'] as String?,
@@ -2199,6 +2204,7 @@ class CompatibleImage {
     this.amiId,
     this.name,
   });
+
   factory CompatibleImage.fromJson(Map<String, dynamic> json) {
     return CompatibleImage(
       amiId: json['AmiId'] as String?,
@@ -2225,6 +2231,7 @@ class CreateAddressResult {
   CreateAddressResult({
     this.addressId,
   });
+
   factory CreateAddressResult.fromJson(Map<String, dynamic> json) {
     return CreateAddressResult(
       addressId: json['AddressId'] as String?,
@@ -2246,6 +2253,7 @@ class CreateClusterResult {
   CreateClusterResult({
     this.clusterId,
   });
+
   factory CreateClusterResult.fromJson(Map<String, dynamic> json) {
     return CreateClusterResult(
       clusterId: json['ClusterId'] as String?,
@@ -2268,6 +2276,7 @@ class CreateJobResult {
   CreateJobResult({
     this.jobId,
   });
+
   factory CreateJobResult.fromJson(Map<String, dynamic> json) {
     return CreateJobResult(
       jobId: json['JobId'] as String?,
@@ -2289,6 +2298,7 @@ class CreateLongTermPricingResult {
   CreateLongTermPricingResult({
     this.longTermPricingId,
   });
+
   factory CreateLongTermPricingResult.fromJson(Map<String, dynamic> json) {
     return CreateLongTermPricingResult(
       longTermPricingId: json['LongTermPricingId'] as String?,
@@ -2311,6 +2321,7 @@ class CreateReturnShippingLabelResult {
   CreateReturnShippingLabelResult({
     this.status,
   });
+
   factory CreateReturnShippingLabelResult.fromJson(Map<String, dynamic> json) {
     return CreateReturnShippingLabelResult(
       status: (json['Status'] as String?)?.toShippingLabelStatus(),
@@ -2352,6 +2363,7 @@ class DataTransfer {
     this.totalBytes,
     this.totalObjects,
   });
+
   factory DataTransfer.fromJson(Map<String, dynamic> json) {
     return DataTransfer(
       bytesTransferred: json['BytesTransferred'] as int?,
@@ -2383,6 +2395,7 @@ class DescribeAddressResult {
   DescribeAddressResult({
     this.address,
   });
+
   factory DescribeAddressResult.fromJson(Map<String, dynamic> json) {
     return DescribeAddressResult(
       address: json['Address'] != null
@@ -2413,6 +2426,7 @@ class DescribeAddressesResult {
     this.addresses,
     this.nextToken,
   });
+
   factory DescribeAddressesResult.fromJson(Map<String, dynamic> json) {
     return DescribeAddressesResult(
       addresses: (json['Addresses'] as List?)
@@ -2441,6 +2455,7 @@ class DescribeClusterResult {
   DescribeClusterResult({
     this.clusterMetadata,
   });
+
   factory DescribeClusterResult.fromJson(Map<String, dynamic> json) {
     return DescribeClusterResult(
       clusterMetadata: json['ClusterMetadata'] != null
@@ -2471,6 +2486,7 @@ class DescribeJobResult {
     this.jobMetadata,
     this.subJobMetadata,
   });
+
   factory DescribeJobResult.fromJson(Map<String, dynamic> json) {
     return DescribeJobResult(
       jobMetadata: json['JobMetadata'] != null
@@ -2505,6 +2521,7 @@ class DescribeReturnShippingLabelResult {
     this.expirationDate,
     this.status,
   });
+
   factory DescribeReturnShippingLabelResult.fromJson(
       Map<String, dynamic> json) {
     return DescribeReturnShippingLabelResult(
@@ -2532,6 +2549,7 @@ class DeviceConfiguration {
   DeviceConfiguration({
     this.snowconeDeviceConfiguration,
   });
+
   factory DeviceConfiguration.fromJson(Map<String, dynamic> json) {
     return DeviceConfiguration(
       snowconeDeviceConfiguration: json['SnowconeDeviceConfiguration'] != null
@@ -2593,6 +2611,7 @@ class Ec2AmiResource {
     required this.amiId,
     this.snowballAmiId,
   });
+
   factory Ec2AmiResource.fromJson(Map<String, dynamic> json) {
     return Ec2AmiResource(
       amiId: json['AmiId'] as String,
@@ -2619,6 +2638,7 @@ class EventTriggerDefinition {
   EventTriggerDefinition({
     this.eventResourceARN,
   });
+
   factory EventTriggerDefinition.fromJson(Map<String, dynamic> json) {
     return EventTriggerDefinition(
       eventResourceARN: json['EventResourceARN'] as String?,
@@ -2641,6 +2661,7 @@ class GetJobManifestResult {
   GetJobManifestResult({
     this.manifestURI,
   });
+
   factory GetJobManifestResult.fromJson(Map<String, dynamic> json) {
     return GetJobManifestResult(
       manifestURI: json['ManifestURI'] as String?,
@@ -2664,6 +2685,7 @@ class GetJobUnlockCodeResult {
   GetJobUnlockCodeResult({
     this.unlockCode,
   });
+
   factory GetJobUnlockCodeResult.fromJson(Map<String, dynamic> json) {
     return GetJobUnlockCodeResult(
       unlockCode: json['UnlockCode'] as String?,
@@ -2690,6 +2712,7 @@ class GetSnowballUsageResult {
     this.snowballLimit,
     this.snowballsInUse,
   });
+
   factory GetSnowballUsageResult.fromJson(Map<String, dynamic> json) {
     return GetSnowballUsageResult(
       snowballLimit: json['SnowballLimit'] as int?,
@@ -2718,6 +2741,7 @@ class GetSoftwareUpdatesResult {
   GetSoftwareUpdatesResult({
     this.updatesURI,
   });
+
   factory GetSoftwareUpdatesResult.fromJson(Map<String, dynamic> json) {
     return GetSoftwareUpdatesResult(
       updatesURI: json['UpdatesURI'] as String?,
@@ -2740,6 +2764,7 @@ class INDTaxDocuments {
   INDTaxDocuments({
     this.gstin,
   });
+
   factory INDTaxDocuments.fromJson(Map<String, dynamic> json) {
     return INDTaxDocuments(
       gstin: json['GSTIN'] as String?,
@@ -2795,6 +2820,7 @@ class JobListEntry {
     this.jobType,
     this.snowballType,
   });
+
   factory JobListEntry.fromJson(Map<String, dynamic> json) {
     return JobListEntry(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -2864,6 +2890,7 @@ class JobLogs {
     this.jobFailureLogURI,
     this.jobSuccessLogURI,
   });
+
   factory JobLogs.fromJson(Map<String, dynamic> json) {
     return JobLogs(
       jobCompletionReportURI: json['JobCompletionReportURI'] as String?,
@@ -3010,6 +3037,7 @@ class JobMetadata {
     this.snowballType,
     this.taxDocuments,
   });
+
   factory JobMetadata.fromJson(Map<String, dynamic> json) {
     return JobMetadata(
       addressId: json['AddressId'] as String?,
@@ -3134,6 +3162,7 @@ class JobResource {
     this.lambdaResources,
     this.s3Resources,
   });
+
   factory JobResource.fromJson(Map<String, dynamic> json) {
     return JobResource(
       ec2AmiResources: (json['Ec2AmiResources'] as List?)
@@ -3297,6 +3326,7 @@ class KeyRange {
     this.beginMarker,
     this.endMarker,
   });
+
   factory KeyRange.fromJson(Map<String, dynamic> json) {
     return KeyRange(
       beginMarker: json['BeginMarker'] as String?,
@@ -3328,6 +3358,7 @@ class LambdaResource {
     this.eventTriggers,
     this.lambdaArn,
   });
+
   factory LambdaResource.fromJson(Map<String, dynamic> json) {
     return LambdaResource(
       eventTriggers: (json['EventTriggers'] as List?)
@@ -3364,6 +3395,7 @@ class ListClusterJobsResult {
     this.jobListEntries,
     this.nextToken,
   });
+
   factory ListClusterJobsResult.fromJson(Map<String, dynamic> json) {
     return ListClusterJobsResult(
       jobListEntries: (json['JobListEntries'] as List?)
@@ -3399,6 +3431,7 @@ class ListClustersResult {
     this.clusterListEntries,
     this.nextToken,
   });
+
   factory ListClustersResult.fromJson(Map<String, dynamic> json) {
     return ListClustersResult(
       clusterListEntries: (json['ClusterListEntries'] as List?)
@@ -3432,6 +3465,7 @@ class ListCompatibleImagesResult {
     this.compatibleImages,
     this.nextToken,
   });
+
   factory ListCompatibleImagesResult.fromJson(Map<String, dynamic> json) {
     return ListCompatibleImagesResult(
       compatibleImages: (json['CompatibleImages'] as List?)
@@ -3468,6 +3502,7 @@ class ListJobsResult {
     this.jobListEntries,
     this.nextToken,
   });
+
   factory ListJobsResult.fromJson(Map<String, dynamic> json) {
     return ListJobsResult(
       jobListEntries: (json['JobListEntries'] as List?)
@@ -3501,6 +3536,7 @@ class ListLongTermPricingResult {
     this.longTermPricingEntries,
     this.nextToken,
   });
+
   factory ListLongTermPricingResult.fromJson(Map<String, dynamic> json) {
     return ListLongTermPricingResult(
       longTermPricingEntries: (json['LongTermPricingEntries'] as List?)
@@ -3571,6 +3607,7 @@ class LongTermPricingListEntry {
     this.replacementJob,
     this.snowballType,
   });
+
   factory LongTermPricingListEntry.fromJson(Map<String, dynamic> json) {
     return LongTermPricingListEntry(
       currentActiveJob: json['CurrentActiveJob'] as String?,
@@ -3666,6 +3703,7 @@ class NFSOnDeviceServiceConfiguration {
     this.storageLimit,
     this.storageUnit,
   });
+
   factory NFSOnDeviceServiceConfiguration.fromJson(Map<String, dynamic> json) {
     return NFSOnDeviceServiceConfiguration(
       storageLimit: json['StorageLimit'] as int?,
@@ -3716,6 +3754,7 @@ class Notification {
     this.notifyAll,
     this.snsTopicARN,
   });
+
   factory Notification.fromJson(Map<String, dynamic> json) {
     return Notification(
       jobStatesToNotify: (json['JobStatesToNotify'] as List?)
@@ -3749,6 +3788,7 @@ class OnDeviceServiceConfiguration {
   OnDeviceServiceConfiguration({
     this.nFSOnDeviceService,
   });
+
   factory OnDeviceServiceConfiguration.fromJson(Map<String, dynamic> json) {
     return OnDeviceServiceConfiguration(
       nFSOnDeviceService: json['NFSOnDeviceService'] != null
@@ -3820,6 +3860,7 @@ class S3Resource {
     this.keyRange,
     this.targetOnDeviceServices,
   });
+
   factory S3Resource.fromJson(Map<String, dynamic> json) {
     return S3Resource(
       bucketArn: json['BucketArn'] as String?,
@@ -3864,6 +3905,7 @@ class Shipment {
     this.status,
     this.trackingNumber,
   });
+
   factory Shipment.fromJson(Map<String, dynamic> json) {
     return Shipment(
       status: json['Status'] as String?,
@@ -3952,6 +3994,7 @@ class ShippingDetails {
     this.outboundShipment,
     this.shippingOption,
   });
+
   factory ShippingDetails.fromJson(Map<String, dynamic> json) {
     return ShippingDetails(
       inboundShipment: json['InboundShipment'] != null
@@ -4171,6 +4214,7 @@ class SnowconeDeviceConfiguration {
   SnowconeDeviceConfiguration({
     this.wirelessConnection,
   });
+
   factory SnowconeDeviceConfiguration.fromJson(Map<String, dynamic> json) {
     return SnowconeDeviceConfiguration(
       wirelessConnection: json['WirelessConnection'] != null
@@ -4227,6 +4271,7 @@ class TargetOnDeviceService {
     this.serviceName,
     this.transferOption,
   });
+
   factory TargetOnDeviceService.fromJson(Map<String, dynamic> json) {
     return TargetOnDeviceService(
       serviceName: (json['ServiceName'] as String?)?.toDeviceServiceName(),
@@ -4251,6 +4296,7 @@ class TaxDocuments {
   TaxDocuments({
     this.ind,
   });
+
   factory TaxDocuments.fromJson(Map<String, dynamic> json) {
     return TaxDocuments(
       ind: json['IND'] != null
@@ -4302,6 +4348,7 @@ extension on String {
 
 class UpdateClusterResult {
   UpdateClusterResult();
+
   factory UpdateClusterResult.fromJson(Map<String, dynamic> _) {
     return UpdateClusterResult();
   }
@@ -4313,6 +4360,7 @@ class UpdateClusterResult {
 
 class UpdateJobResult {
   UpdateJobResult();
+
   factory UpdateJobResult.fromJson(Map<String, dynamic> _) {
     return UpdateJobResult();
   }
@@ -4324,6 +4372,7 @@ class UpdateJobResult {
 
 class UpdateJobShipmentStateResult {
   UpdateJobShipmentStateResult();
+
   factory UpdateJobShipmentStateResult.fromJson(Map<String, dynamic> _) {
     return UpdateJobShipmentStateResult();
   }
@@ -4335,6 +4384,7 @@ class UpdateJobShipmentStateResult {
 
 class UpdateLongTermPricingResult {
   UpdateLongTermPricingResult();
+
   factory UpdateLongTermPricingResult.fromJson(Map<String, dynamic> _) {
     return UpdateLongTermPricingResult();
   }
@@ -4352,6 +4402,7 @@ class WirelessConnection {
   WirelessConnection({
     this.isWifiEnabled,
   });
+
   factory WirelessConnection.fromJson(Map<String, dynamic> json) {
     return WirelessConnection(
       isWifiEnabled: json['IsWifiEnabled'] as bool?,

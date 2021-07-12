@@ -1182,6 +1182,7 @@ class CancelJournalKinesisStreamResponse {
   CancelJournalKinesisStreamResponse({
     this.streamId,
   });
+
   factory CancelJournalKinesisStreamResponse.fromJson(
       Map<String, dynamic> json) {
     return CancelJournalKinesisStreamResponse(
@@ -1232,6 +1233,7 @@ class CreateLedgerResponse {
     this.permissionsMode,
     this.state,
   });
+
   factory CreateLedgerResponse.fromJson(Map<String, dynamic> json) {
     return CreateLedgerResponse(
       arn: json['Arn'] as String?,
@@ -1271,6 +1273,7 @@ class DescribeJournalKinesisStreamResponse {
   DescribeJournalKinesisStreamResponse({
     this.stream,
   });
+
   factory DescribeJournalKinesisStreamResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeJournalKinesisStreamResponse(
@@ -1297,6 +1300,7 @@ class DescribeJournalS3ExportResponse {
   DescribeJournalS3ExportResponse({
     required this.exportDescription,
   });
+
   factory DescribeJournalS3ExportResponse.fromJson(Map<String, dynamic> json) {
     return DescribeJournalS3ExportResponse(
       exportDescription: JournalS3ExportDescription.fromJson(
@@ -1347,6 +1351,7 @@ class DescribeLedgerResponse {
     this.permissionsMode,
     this.state,
   });
+
   factory DescribeLedgerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeLedgerResponse(
       arn: json['Arn'] as String?,
@@ -1417,6 +1422,7 @@ class ExportJournalToS3Response {
   ExportJournalToS3Response({
     required this.exportId,
   });
+
   factory ExportJournalToS3Response.fromJson(Map<String, dynamic> json) {
     return ExportJournalToS3Response(
       exportId: json['ExportId'] as String,
@@ -1477,6 +1483,7 @@ class GetBlockResponse {
     required this.block,
     this.proof,
   });
+
   factory GetBlockResponse.fromJson(Map<String, dynamic> json) {
     return GetBlockResponse(
       block: ValueHolder.fromJson(json['Block'] as Map<String, dynamic>),
@@ -1510,6 +1517,7 @@ class GetDigestResponse {
     required this.digest,
     required this.digestTipAddress,
   });
+
   factory GetDigestResponse.fromJson(Map<String, dynamic> json) {
     return GetDigestResponse(
       digest: _s.decodeUint8List(json['Digest']! as String),
@@ -1542,6 +1550,7 @@ class GetRevisionResponse {
     required this.revision,
     this.proof,
   });
+
   factory GetRevisionResponse.fromJson(Map<String, dynamic> json) {
     return GetRevisionResponse(
       revision: ValueHolder.fromJson(json['Revision'] as Map<String, dynamic>),
@@ -1620,6 +1629,7 @@ class JournalKinesisStreamDescription {
     this.exclusiveEndTime,
     this.inclusiveStartTime,
   });
+
   factory JournalKinesisStreamDescription.fromJson(Map<String, dynamic> json) {
     return JournalKinesisStreamDescription(
       kinesisConfiguration: KinesisConfiguration.fromJson(
@@ -1719,6 +1729,7 @@ class JournalS3ExportDescription {
     required this.s3ExportConfiguration,
     required this.status,
   });
+
   factory JournalS3ExportDescription.fromJson(Map<String, dynamic> json) {
     return JournalS3ExportDescription(
       exclusiveEndTime:
@@ -1781,6 +1792,7 @@ class KinesisConfiguration {
     required this.streamArn,
     this.aggregationEnabled,
   });
+
   factory KinesisConfiguration.fromJson(Map<String, dynamic> json) {
     return KinesisConfiguration(
       streamArn: json['StreamArn'] as String,
@@ -1855,6 +1867,7 @@ class LedgerSummary {
     this.name,
     this.state,
   });
+
   factory LedgerSummary.fromJson(Map<String, dynamic> json) {
     return LedgerSummary(
       creationDateTime: timeStampFromJson(json['CreationDateTime']),
@@ -1899,6 +1912,7 @@ class ListJournalKinesisStreamsForLedgerResponse {
     this.nextToken,
     this.streams,
   });
+
   factory ListJournalKinesisStreamsForLedgerResponse.fromJson(
       Map<String, dynamic> json) {
     return ListJournalKinesisStreamsForLedgerResponse(
@@ -1944,6 +1958,7 @@ class ListJournalS3ExportsForLedgerResponse {
     this.journalS3Exports,
     this.nextToken,
   });
+
   factory ListJournalS3ExportsForLedgerResponse.fromJson(
       Map<String, dynamic> json) {
     return ListJournalS3ExportsForLedgerResponse(
@@ -1989,6 +2004,7 @@ class ListJournalS3ExportsResponse {
     this.journalS3Exports,
     this.nextToken,
   });
+
   factory ListJournalS3ExportsResponse.fromJson(Map<String, dynamic> json) {
     return ListJournalS3ExportsResponse(
       journalS3Exports: (json['JournalS3Exports'] as List?)
@@ -2034,6 +2050,7 @@ class ListLedgersResponse {
     this.ledgers,
     this.nextToken,
   });
+
   factory ListLedgersResponse.fromJson(Map<String, dynamic> json) {
     return ListLedgersResponse(
       ledgers: (json['Ledgers'] as List?)
@@ -2062,6 +2079,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2131,6 +2149,7 @@ class S3EncryptionConfiguration {
     required this.objectEncryptionType,
     this.kmsKeyArn,
   });
+
   factory S3EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return S3EncryptionConfiguration(
       objectEncryptionType:
@@ -2193,6 +2212,7 @@ class S3ExportConfiguration {
     required this.encryptionConfiguration,
     required this.prefix,
   });
+
   factory S3ExportConfiguration.fromJson(Map<String, dynamic> json) {
     return S3ExportConfiguration(
       bucket: json['Bucket'] as String,
@@ -2255,6 +2275,7 @@ class StreamJournalToKinesisResponse {
   StreamJournalToKinesisResponse({
     this.streamId,
   });
+
   factory StreamJournalToKinesisResponse.fromJson(Map<String, dynamic> json) {
     return StreamJournalToKinesisResponse(
       streamId: json['StreamId'] as String?,
@@ -2314,6 +2335,7 @@ extension on String {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2325,6 +2347,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2349,6 +2372,7 @@ class UpdateLedgerPermissionsModeResponse {
     this.name,
     this.permissionsMode,
   });
+
   factory UpdateLedgerPermissionsModeResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateLedgerPermissionsModeResponse(
@@ -2402,6 +2426,7 @@ class UpdateLedgerResponse {
     this.name,
     this.state,
   });
+
   factory UpdateLedgerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateLedgerResponse(
       arn: json['Arn'] as String?,
@@ -2438,6 +2463,7 @@ class ValueHolder {
   ValueHolder({
     this.ionText,
   });
+
   factory ValueHolder.fromJson(Map<String, dynamic> json) {
     return ValueHolder(
       ionText: json['IonText'] as String?,

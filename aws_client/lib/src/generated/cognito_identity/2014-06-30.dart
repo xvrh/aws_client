@@ -1678,6 +1678,7 @@ class CognitoIdentityProvider {
     this.providerName,
     this.serverSideTokenCheck,
   });
+
   factory CognitoIdentityProvider.fromJson(Map<String, dynamic> json) {
     return CognitoIdentityProvider(
       clientId: json['ClientId'] as String?,
@@ -1719,6 +1720,7 @@ class Credentials {
     this.secretKey,
     this.sessionToken,
   });
+
   factory Credentials.fromJson(Map<String, dynamic> json) {
     return Credentials(
       accessKeyId: json['AccessKeyId'] as String?,
@@ -1752,6 +1754,7 @@ class DeleteIdentitiesResponse {
   DeleteIdentitiesResponse({
     this.unprocessedIdentityIds,
   });
+
   factory DeleteIdentitiesResponse.fromJson(Map<String, dynamic> json) {
     return DeleteIdentitiesResponse(
       unprocessedIdentityIds: (json['UnprocessedIdentityIds'] as List?)
@@ -1811,6 +1814,7 @@ class GetCredentialsForIdentityResponse {
     this.credentials,
     this.identityId,
   });
+
   factory GetCredentialsForIdentityResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCredentialsForIdentityResponse(
@@ -1839,6 +1843,7 @@ class GetIdResponse {
   GetIdResponse({
     this.identityId,
   });
+
   factory GetIdResponse.fromJson(Map<String, dynamic> json) {
     return GetIdResponse(
       identityId: json['IdentityId'] as String?,
@@ -1874,6 +1879,7 @@ class GetIdentityPoolRolesResponse {
     this.roleMappings,
     this.roles,
   });
+
   factory GetIdentityPoolRolesResponse.fromJson(Map<String, dynamic> json) {
     return GetIdentityPoolRolesResponse(
       identityPoolId: json['IdentityPoolId'] as String?,
@@ -1910,6 +1916,7 @@ class GetOpenIdTokenForDeveloperIdentityResponse {
     this.identityId,
     this.token,
   });
+
   factory GetOpenIdTokenForDeveloperIdentityResponse.fromJson(
       Map<String, dynamic> json) {
     return GetOpenIdTokenForDeveloperIdentityResponse(
@@ -1941,6 +1948,7 @@ class GetOpenIdTokenResponse {
     this.identityId,
     this.token,
   });
+
   factory GetOpenIdTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetOpenIdTokenResponse(
       identityId: json['IdentityId'] as String?,
@@ -1980,6 +1988,7 @@ class GetPrincipalTagAttributeMapResponse {
     this.principalTags,
     this.useDefaults,
   });
+
   factory GetPrincipalTagAttributeMapResponse.fromJson(
       Map<String, dynamic> json) {
     return GetPrincipalTagAttributeMapResponse(
@@ -2026,6 +2035,7 @@ class IdentityDescription {
     this.lastModifiedDate,
     this.logins,
   });
+
   factory IdentityDescription.fromJson(Map<String, dynamic> json) {
     return IdentityDescription(
       creationDate: timeStampFromJson(json['CreationDate']),
@@ -2105,6 +2115,7 @@ class IdentityPool {
     this.samlProviderARNs,
     this.supportedLoginProviders,
   });
+
   factory IdentityPool.fromJson(Map<String, dynamic> json) {
     return IdentityPool(
       allowUnauthenticatedIdentities:
@@ -2176,6 +2187,7 @@ class IdentityPoolShortDescription {
     this.identityPoolId,
     this.identityPoolName,
   });
+
   factory IdentityPoolShortDescription.fromJson(Map<String, dynamic> json) {
     return IdentityPoolShortDescription(
       identityPoolId: json['IdentityPoolId'] as String?,
@@ -2209,6 +2221,7 @@ class ListIdentitiesResponse {
     this.identityPoolId,
     this.nextToken,
   });
+
   factory ListIdentitiesResponse.fromJson(Map<String, dynamic> json) {
     return ListIdentitiesResponse(
       identities: (json['Identities'] as List?)
@@ -2244,6 +2257,7 @@ class ListIdentityPoolsResponse {
     this.identityPools,
     this.nextToken,
   });
+
   factory ListIdentityPoolsResponse.fromJson(Map<String, dynamic> json) {
     return ListIdentityPoolsResponse(
       identityPools: (json['IdentityPools'] as List?)
@@ -2272,6 +2286,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2312,6 +2327,7 @@ class LookupDeveloperIdentityResponse {
     this.identityId,
     this.nextToken,
   });
+
   factory LookupDeveloperIdentityResponse.fromJson(Map<String, dynamic> json) {
     return LookupDeveloperIdentityResponse(
       developerUserIdentifierList:
@@ -2360,6 +2376,7 @@ class MappingRule {
     required this.roleARN,
     required this.value,
   });
+
   factory MappingRule.fromJson(Map<String, dynamic> json) {
     return MappingRule(
       claim: json['Claim'] as String,
@@ -2430,6 +2447,7 @@ class MergeDeveloperIdentitiesResponse {
   MergeDeveloperIdentitiesResponse({
     this.identityId,
   });
+
   factory MergeDeveloperIdentitiesResponse.fromJson(Map<String, dynamic> json) {
     return MergeDeveloperIdentitiesResponse(
       identityId: json['IdentityId'] as String?,
@@ -2472,6 +2490,7 @@ class RoleMapping {
     this.ambiguousRoleResolution,
     this.rulesConfiguration,
   });
+
   factory RoleMapping.fromJson(Map<String, dynamic> json) {
     return RoleMapping(
       type: (json['Type'] as String).toRoleMappingType(),
@@ -2535,6 +2554,7 @@ class RulesConfigurationType {
   RulesConfigurationType({
     required this.rules,
   });
+
   factory RulesConfigurationType.fromJson(Map<String, dynamic> json) {
     return RulesConfigurationType(
       rules: (json['Rules'] as List)
@@ -2574,6 +2594,7 @@ class SetPrincipalTagAttributeMapResponse {
     this.principalTags,
     this.useDefaults,
   });
+
   factory SetPrincipalTagAttributeMapResponse.fromJson(
       Map<String, dynamic> json) {
     return SetPrincipalTagAttributeMapResponse(
@@ -2602,6 +2623,7 @@ class SetPrincipalTagAttributeMapResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2624,6 +2646,7 @@ class UnprocessedIdentityId {
     this.errorCode,
     this.identityId,
   });
+
   factory UnprocessedIdentityId.fromJson(Map<String, dynamic> json) {
     return UnprocessedIdentityId(
       errorCode: (json['ErrorCode'] as String?)?.toErrorCode(),
@@ -2643,6 +2666,7 @@ class UnprocessedIdentityId {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

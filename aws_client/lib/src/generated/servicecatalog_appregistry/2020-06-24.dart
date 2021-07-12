@@ -997,6 +997,7 @@ class Application {
     this.name,
     this.tags,
   });
+
   factory Application.fromJson(Map<String, dynamic> json) {
     return Application(
       arn: json['arn'] as String?,
@@ -1063,6 +1064,7 @@ class ApplicationSummary {
     this.lastUpdateTime,
     this.name,
   });
+
   factory ApplicationSummary.fromJson(Map<String, dynamic> json) {
     return ApplicationSummary(
       arn: json['arn'] as String?,
@@ -1106,6 +1108,7 @@ class AssociateAttributeGroupResponse {
     this.applicationArn,
     this.attributeGroupArn,
   });
+
   factory AssociateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
     return AssociateAttributeGroupResponse(
       applicationArn: json['applicationArn'] as String?,
@@ -1135,6 +1138,7 @@ class AssociateResourceResponse {
     this.applicationArn,
     this.resourceArn,
   });
+
   factory AssociateResourceResponse.fromJson(Map<String, dynamic> json) {
     return AssociateResourceResponse(
       applicationArn: json['applicationArn'] as String?,
@@ -1189,6 +1193,7 @@ class AttributeGroup {
     this.name,
     this.tags,
   });
+
   factory AttributeGroup.fromJson(Map<String, dynamic> json) {
     return AttributeGroup(
       arn: json['arn'] as String?,
@@ -1255,6 +1260,7 @@ class AttributeGroupSummary {
     this.lastUpdateTime,
     this.name,
   });
+
   factory AttributeGroupSummary.fromJson(Map<String, dynamic> json) {
     return AttributeGroupSummary(
       arn: json['arn'] as String?,
@@ -1292,6 +1298,7 @@ class CreateApplicationResponse {
   CreateApplicationResponse({
     this.application,
   });
+
   factory CreateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return CreateApplicationResponse(
       application: json['application'] != null
@@ -1315,6 +1322,7 @@ class CreateAttributeGroupResponse {
   CreateAttributeGroupResponse({
     this.attributeGroup,
   });
+
   factory CreateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateAttributeGroupResponse(
       attributeGroup: json['attributeGroup'] != null
@@ -1339,6 +1347,7 @@ class DeleteApplicationResponse {
   DeleteApplicationResponse({
     this.application,
   });
+
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> json) {
     return DeleteApplicationResponse(
       application: json['application'] != null
@@ -1363,6 +1372,7 @@ class DeleteAttributeGroupResponse {
   DeleteAttributeGroupResponse({
     this.attributeGroup,
   });
+
   factory DeleteAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteAttributeGroupResponse(
       attributeGroup: json['attributeGroup'] != null
@@ -1391,6 +1401,7 @@ class DisassociateAttributeGroupResponse {
     this.applicationArn,
     this.attributeGroupArn,
   });
+
   factory DisassociateAttributeGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return DisassociateAttributeGroupResponse(
@@ -1420,6 +1431,7 @@ class DisassociateResourceResponse {
     this.applicationArn,
     this.resourceArn,
   });
+
   factory DisassociateResourceResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateResourceResponse(
       applicationArn: json['applicationArn'] as String?,
@@ -1477,6 +1489,7 @@ class GetApplicationResponse {
     this.name,
     this.tags,
   });
+
   factory GetApplicationResponse.fromJson(Map<String, dynamic> json) {
     return GetApplicationResponse(
       arn: json['arn'] as String?,
@@ -1555,6 +1568,7 @@ class GetAttributeGroupResponse {
     this.name,
     this.tags,
   });
+
   factory GetAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
     return GetAttributeGroupResponse(
       arn: json['arn'] as String?,
@@ -1603,6 +1617,7 @@ class ListApplicationsResponse {
     this.applications,
     this.nextToken,
   });
+
   factory ListApplicationsResponse.fromJson(Map<String, dynamic> json) {
     return ListApplicationsResponse(
       applications: (json['applications'] as List?)
@@ -1634,6 +1649,7 @@ class ListAssociatedAttributeGroupsResponse {
     this.attributeGroups,
     this.nextToken,
   });
+
   factory ListAssociatedAttributeGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListAssociatedAttributeGroupsResponse(
@@ -1666,6 +1682,7 @@ class ListAssociatedResourcesResponse {
     this.nextToken,
     this.resources,
   });
+
   factory ListAssociatedResourcesResponse.fromJson(Map<String, dynamic> json) {
     return ListAssociatedResourcesResponse(
       nextToken: json['nextToken'] as String?,
@@ -1697,6 +1714,7 @@ class ListAttributeGroupsResponse {
     this.attributeGroups,
     this.nextToken,
   });
+
   factory ListAttributeGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListAttributeGroupsResponse(
       attributeGroups: (json['attributeGroups'] as List?)
@@ -1724,6 +1742,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -1751,6 +1770,7 @@ class ResourceInfo {
     this.arn,
     this.name,
   });
+
   factory ResourceInfo.fromJson(Map<String, dynamic> json) {
     return ResourceInfo(
       arn: json['arn'] as String?,
@@ -1835,6 +1855,7 @@ class SyncResourceResponse {
     this.applicationArn,
     this.resourceArn,
   });
+
   factory SyncResourceResponse.fromJson(Map<String, dynamic> json) {
     return SyncResourceResponse(
       actionTaken: (json['actionTaken'] as String?)?.toSyncAction(),
@@ -1857,6 +1878,7 @@ class SyncResourceResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1868,6 +1890,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1884,6 +1907,7 @@ class UpdateApplicationResponse {
   UpdateApplicationResponse({
     this.application,
   });
+
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateApplicationResponse(
       application: json['application'] != null
@@ -1907,6 +1931,7 @@ class UpdateAttributeGroupResponse {
   UpdateAttributeGroupResponse({
     this.attributeGroup,
   });
+
   factory UpdateAttributeGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAttributeGroupResponse(
       attributeGroup: json['attributeGroup'] != null

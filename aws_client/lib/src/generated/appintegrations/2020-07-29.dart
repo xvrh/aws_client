@@ -472,6 +472,7 @@ class CreateEventIntegrationResponse {
   CreateEventIntegrationResponse({
     this.eventIntegrationArn,
   });
+
   factory CreateEventIntegrationResponse.fromJson(Map<String, dynamic> json) {
     return CreateEventIntegrationResponse(
       eventIntegrationArn: json['EventIntegrationArn'] as String?,
@@ -489,6 +490,7 @@ class CreateEventIntegrationResponse {
 
 class DeleteEventIntegrationResponse {
   DeleteEventIntegrationResponse();
+
   factory DeleteEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEventIntegrationResponse();
   }
@@ -509,6 +511,7 @@ class EventFilter {
   EventFilter({
     required this.source,
   });
+
   factory EventFilter.fromJson(Map<String, dynamic> json) {
     return EventFilter(
       source: json['Source'] as String,
@@ -554,6 +557,7 @@ class EventIntegration {
     this.name,
     this.tags,
   });
+
   factory EventIntegration.fromJson(Map<String, dynamic> json) {
     return EventIntegration(
       description: json['Description'] as String?,
@@ -618,6 +622,7 @@ class EventIntegrationAssociation {
     this.eventIntegrationAssociationId,
     this.eventIntegrationName,
   });
+
   factory EventIntegrationAssociation.fromJson(Map<String, dynamic> json) {
     return EventIntegrationAssociation(
       clientAssociationMetadata:
@@ -683,6 +688,7 @@ class GetEventIntegrationResponse {
     this.name,
     this.tags,
   });
+
   factory GetEventIntegrationResponse.fromJson(Map<String, dynamic> json) {
     return GetEventIntegrationResponse(
       description: json['Description'] as String?,
@@ -728,6 +734,7 @@ class ListEventIntegrationAssociationsResponse {
     this.eventIntegrationAssociations,
     this.nextToken,
   });
+
   factory ListEventIntegrationAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListEventIntegrationAssociationsResponse(
@@ -764,6 +771,7 @@ class ListEventIntegrationsResponse {
     this.eventIntegrations,
     this.nextToken,
   });
+
   factory ListEventIntegrationsResponse.fromJson(Map<String, dynamic> json) {
     return ListEventIntegrationsResponse(
       eventIntegrations: (json['EventIntegrations'] as List?)
@@ -791,6 +799,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -808,6 +817,7 @@ class ListTagsForResourceResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -819,6 +829,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -830,6 +841,7 @@ class UntagResourceResponse {
 
 class UpdateEventIntegrationResponse {
   UpdateEventIntegrationResponse();
+
   factory UpdateEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEventIntegrationResponse();
   }

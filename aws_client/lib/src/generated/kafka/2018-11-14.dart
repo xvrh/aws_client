@@ -1458,6 +1458,7 @@ class BatchAssociateScramSecretResponse {
     this.clusterArn,
     this.unprocessedScramSecrets,
   });
+
   factory BatchAssociateScramSecretResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchAssociateScramSecretResponse(
@@ -1534,6 +1535,7 @@ class BrokerEBSVolumeInfo {
     required this.kafkaBrokerNodeId,
     required this.volumeSizeGB,
   });
+
   factory BrokerEBSVolumeInfo.fromJson(Map<String, dynamic> json) {
     return BrokerEBSVolumeInfo(
       kafkaBrokerNodeId: json['kafkaBrokerNodeId'] as String,
@@ -1561,6 +1563,7 @@ class BrokerLogs {
     this.firehose,
     this.s3,
   });
+
   factory BrokerLogs.fromJson(Map<String, dynamic> json) {
     return BrokerLogs(
       cloudWatchLogs: json['cloudWatchLogs'] != null
@@ -1640,6 +1643,7 @@ class BrokerNodeGroupInfo {
     this.securityGroups,
     this.storageInfo,
   });
+
   factory BrokerNodeGroupInfo.fromJson(Map<String, dynamic> json) {
     return BrokerNodeGroupInfo(
       clientSubnets: (json['clientSubnets'] as List)
@@ -1719,6 +1723,7 @@ class BrokerNodeInfo {
     this.currentBrokerSoftwareInfo,
     this.endpoints,
   });
+
   factory BrokerNodeInfo.fromJson(Map<String, dynamic> json) {
     return BrokerNodeInfo(
       attachedENIId: json['attachedENIId'] as String?,
@@ -1781,6 +1786,7 @@ class BrokerSoftwareInfo {
     this.configurationRevision,
     this.kafkaVersion,
   });
+
   factory BrokerSoftwareInfo.fromJson(Map<String, dynamic> json) {
     return BrokerSoftwareInfo(
       configurationArn: json['configurationArn'] as String?,
@@ -1820,6 +1826,7 @@ class ClientAuthentication {
     this.sasl,
     this.tls,
   });
+
   factory ClientAuthentication.fromJson(Map<String, dynamic> json) {
     return ClientAuthentication(
       sasl: json['sasl'] != null
@@ -1885,6 +1892,7 @@ class CloudWatchLogs {
     required this.enabled,
     this.logGroup,
   });
+
   factory CloudWatchLogs.fromJson(Map<String, dynamic> json) {
     return CloudWatchLogs(
       enabled: json['enabled'] as bool,
@@ -2014,6 +2022,7 @@ class ClusterInfo {
     this.zookeeperConnectString,
     this.zookeeperConnectStringTls,
   });
+
   factory ClusterInfo.fromJson(Map<String, dynamic> json) {
     return ClusterInfo(
       activeOperationArn: json['activeOperationArn'] as String?,
@@ -2179,6 +2188,7 @@ class ClusterOperationInfo {
     this.sourceClusterInfo,
     this.targetClusterInfo,
   });
+
   factory ClusterOperationInfo.fromJson(Map<String, dynamic> json) {
     return ClusterOperationInfo(
       clientRequestId: json['clientRequestId'] as String?,
@@ -2252,6 +2262,7 @@ class ClusterOperationStep {
     this.stepInfo,
     this.stepName,
   });
+
   factory ClusterOperationStep.fromJson(Map<String, dynamic> json) {
     return ClusterOperationStep(
       stepInfo: json['stepInfo'] != null
@@ -2284,6 +2295,7 @@ class ClusterOperationStepInfo {
   ClusterOperationStepInfo({
     this.stepStatus,
   });
+
   factory ClusterOperationStepInfo.fromJson(Map<String, dynamic> json) {
     return ClusterOperationStepInfo(
       stepStatus: json['stepStatus'] as String?,
@@ -2377,6 +2389,7 @@ class CompatibleKafkaVersion {
     this.sourceVersion,
     this.targetVersions,
   });
+
   factory CompatibleKafkaVersion.fromJson(Map<String, dynamic> json) {
     return CompatibleKafkaVersion(
       sourceVersion: json['sourceVersion'] as String?,
@@ -2448,6 +2461,7 @@ class Configuration {
     required this.name,
     required this.state,
   });
+
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
       arn: json['arn'] as String,
@@ -2503,6 +2517,7 @@ class ConfigurationInfo {
     required this.arn,
     required this.revision,
   });
+
   factory ConfigurationInfo.fromJson(Map<String, dynamic> json) {
     return ConfigurationInfo(
       arn: json['arn'] as String,
@@ -2544,6 +2559,7 @@ class ConfigurationRevision {
     required this.revision,
     this.description,
   });
+
   factory ConfigurationRevision.fromJson(Map<String, dynamic> json) {
     return ConfigurationRevision(
       creationTime:
@@ -2623,6 +2639,7 @@ class CreateClusterResponse {
     this.clusterName,
     this.state,
   });
+
   factory CreateClusterResponse.fromJson(Map<String, dynamic> json) {
     return CreateClusterResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -2677,6 +2694,7 @@ class CreateConfigurationResponse {
     this.name,
     this.state,
   });
+
   factory CreateConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return CreateConfigurationResponse(
       arn: json['arn'] as String?,
@@ -2722,6 +2740,7 @@ class DeleteClusterResponse {
     this.clusterArn,
     this.state,
   });
+
   factory DeleteClusterResponse.fromJson(Map<String, dynamic> json) {
     return DeleteClusterResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -2756,6 +2775,7 @@ class DeleteConfigurationResponse {
     this.arn,
     this.state,
   });
+
   factory DeleteConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return DeleteConfigurationResponse(
       arn: json['arn'] as String?,
@@ -2782,6 +2802,7 @@ class DescribeClusterOperationResponse {
   DescribeClusterOperationResponse({
     this.clusterOperationInfo,
   });
+
   factory DescribeClusterOperationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeClusterOperationResponse(
       clusterOperationInfo: json['clusterOperationInfo'] != null
@@ -2809,6 +2830,7 @@ class DescribeClusterResponse {
   DescribeClusterResponse({
     this.clusterInfo,
   });
+
   factory DescribeClusterResponse.fromJson(Map<String, dynamic> json) {
     return DescribeClusterResponse(
       clusterInfo: json['clusterInfo'] != null
@@ -2871,6 +2893,7 @@ class DescribeConfigurationResponse {
     this.name,
     this.state,
   });
+
   factory DescribeConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return DescribeConfigurationResponse(
       arn: json['arn'] as String?,
@@ -2945,6 +2968,7 @@ class DescribeConfigurationRevisionResponse {
     this.revision,
     this.serverProperties,
   });
+
   factory DescribeConfigurationRevisionResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeConfigurationRevisionResponse(
@@ -2989,6 +3013,7 @@ class BatchDisassociateScramSecretResponse {
     this.clusterArn,
     this.unprocessedScramSecrets,
   });
+
   factory BatchDisassociateScramSecretResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchDisassociateScramSecretResponse(
@@ -3025,6 +3050,7 @@ class EBSStorageInfo {
   EBSStorageInfo({
     this.volumeSize,
   });
+
   factory EBSStorageInfo.fromJson(Map<String, dynamic> json) {
     return EBSStorageInfo(
       volumeSize: json['volumeSize'] as int?,
@@ -3052,6 +3078,7 @@ class EncryptionAtRest {
   EncryptionAtRest({
     required this.dataVolumeKMSKeyId,
   });
+
   factory EncryptionAtRest.fromJson(Map<String, dynamic> json) {
     return EncryptionAtRest(
       dataVolumeKMSKeyId: json['dataVolumeKMSKeyId'] as String,
@@ -3107,6 +3134,7 @@ class EncryptionInTransit {
     this.clientBroker,
     this.inCluster,
   });
+
   factory EncryptionInTransit.fromJson(Map<String, dynamic> json) {
     return EncryptionInTransit(
       clientBroker: (json['clientBroker'] as String?)?.toClientBroker(),
@@ -3144,6 +3172,7 @@ class EncryptionInfo {
     this.encryptionAtRest,
     this.encryptionInTransit,
   });
+
   factory EncryptionInfo.fromJson(Map<String, dynamic> json) {
     return EncryptionInfo(
       encryptionAtRest: json['encryptionAtRest'] != null
@@ -3231,6 +3260,7 @@ class ErrorInfo {
     this.errorCode,
     this.errorString,
   });
+
   factory ErrorInfo.fromJson(Map<String, dynamic> json) {
     return ErrorInfo(
       errorCode: json['errorCode'] as String?,
@@ -3256,6 +3286,7 @@ class Firehose {
     required this.enabled,
     this.deliveryStream,
   });
+
   factory Firehose.fromJson(Map<String, dynamic> json) {
     return Firehose(
       enabled: json['enabled'] as bool,
@@ -3301,6 +3332,7 @@ class GetBootstrapBrokersResponse {
     this.bootstrapBrokerStringSaslScram,
     this.bootstrapBrokerStringTls,
   });
+
   factory GetBootstrapBrokersResponse.fromJson(Map<String, dynamic> json) {
     return GetBootstrapBrokersResponse(
       bootstrapBrokerString: json['bootstrapBrokerString'] as String?,
@@ -3339,6 +3371,7 @@ class GetCompatibleKafkaVersionsResponse {
   GetCompatibleKafkaVersionsResponse({
     this.compatibleKafkaVersions,
   });
+
   factory GetCompatibleKafkaVersionsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetCompatibleKafkaVersionsResponse(
@@ -3367,6 +3400,7 @@ class KafkaVersion {
     this.status,
     this.version,
   });
+
   factory KafkaVersion.fromJson(Map<String, dynamic> json) {
     return KafkaVersion(
       status: (json['status'] as String?)?.toKafkaVersionStatus(),
@@ -3429,6 +3463,7 @@ class ListClusterOperationsResponse {
     this.clusterOperationInfoList,
     this.nextToken,
   });
+
   factory ListClusterOperationsResponse.fromJson(Map<String, dynamic> json) {
     return ListClusterOperationsResponse(
       clusterOperationInfoList: (json['clusterOperationInfoList'] as List?)
@@ -3467,6 +3502,7 @@ class ListClustersResponse {
     this.clusterInfoList,
     this.nextToken,
   });
+
   factory ListClustersResponse.fromJson(Map<String, dynamic> json) {
     return ListClustersResponse(
       clusterInfoList: (json['clusterInfoList'] as List?)
@@ -3502,6 +3538,7 @@ class ListConfigurationRevisionsResponse {
     this.nextToken,
     this.revisions,
   });
+
   factory ListConfigurationRevisionsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListConfigurationRevisionsResponse(
@@ -3541,6 +3578,7 @@ class ListConfigurationsResponse {
     this.configurations,
     this.nextToken,
   });
+
   factory ListConfigurationsResponse.fromJson(Map<String, dynamic> json) {
     return ListConfigurationsResponse(
       configurations: (json['configurations'] as List?)
@@ -3569,6 +3607,7 @@ class ListKafkaVersionsResponse {
     this.kafkaVersions,
     this.nextToken,
   });
+
   factory ListKafkaVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListKafkaVersionsResponse(
       kafkaVersions: (json['kafkaVersions'] as List?)
@@ -3606,6 +3645,7 @@ class ListNodesResponse {
     this.nextToken,
     this.nodeInfoList,
   });
+
   factory ListNodesResponse.fromJson(Map<String, dynamic> json) {
     return ListNodesResponse(
       nextToken: json['nextToken'] as String?,
@@ -3641,6 +3681,7 @@ class ListScramSecretsResponse {
     this.nextToken,
     this.secretArnList,
   });
+
   factory ListScramSecretsResponse.fromJson(Map<String, dynamic> json) {
     return ListScramSecretsResponse(
       nextToken: json['nextToken'] as String?,
@@ -3670,6 +3711,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -3691,6 +3733,7 @@ class LoggingInfo {
   LoggingInfo({
     required this.brokerLogs,
   });
+
   factory LoggingInfo.fromJson(Map<String, dynamic> json) {
     return LoggingInfo(
       brokerLogs:
@@ -3757,6 +3800,7 @@ class MutableClusterInfo {
     this.numberOfBrokerNodes,
     this.openMonitoring,
   });
+
   factory MutableClusterInfo.fromJson(Map<String, dynamic> json) {
     return MutableClusterInfo(
       brokerEBSVolumeInfo: (json['brokerEBSVolumeInfo'] as List?)
@@ -3819,6 +3863,7 @@ class NodeExporter {
   NodeExporter({
     required this.enabledInBroker,
   });
+
   factory NodeExporter.fromJson(Map<String, dynamic> json) {
     return NodeExporter(
       enabledInBroker: json['enabledInBroker'] as bool,
@@ -3845,6 +3890,7 @@ class NodeExporterInfo {
   NodeExporterInfo({
     required this.enabledInBroker,
   });
+
   factory NodeExporterInfo.fromJson(Map<String, dynamic> json) {
     return NodeExporterInfo(
       enabledInBroker: json['enabledInBroker'] as bool,
@@ -3871,6 +3917,7 @@ class JmxExporter {
   JmxExporter({
     required this.enabledInBroker,
   });
+
   factory JmxExporter.fromJson(Map<String, dynamic> json) {
     return JmxExporter(
       enabledInBroker: json['enabledInBroker'] as bool,
@@ -3897,6 +3944,7 @@ class JmxExporterInfo {
   JmxExporterInfo({
     required this.enabledInBroker,
   });
+
   factory JmxExporterInfo.fromJson(Map<String, dynamic> json) {
     return JmxExporterInfo(
       enabledInBroker: json['enabledInBroker'] as bool,
@@ -3923,6 +3971,7 @@ class OpenMonitoring {
   OpenMonitoring({
     required this.prometheus,
   });
+
   factory OpenMonitoring.fromJson(Map<String, dynamic> json) {
     return OpenMonitoring(
       prometheus:
@@ -3950,6 +3999,7 @@ class OpenMonitoringInfo {
   OpenMonitoringInfo({
     required this.prometheus,
   });
+
   factory OpenMonitoringInfo.fromJson(Map<String, dynamic> json) {
     return OpenMonitoringInfo(
       prometheus:
@@ -3983,6 +4033,7 @@ class Prometheus {
     this.jmxExporter,
     this.nodeExporter,
   });
+
   factory Prometheus.fromJson(Map<String, dynamic> json) {
     return Prometheus(
       jmxExporter: json['jmxExporter'] != null
@@ -4022,6 +4073,7 @@ class PrometheusInfo {
     this.jmxExporter,
     this.nodeExporter,
   });
+
   factory PrometheusInfo.fromJson(Map<String, dynamic> json) {
     return PrometheusInfo(
       jmxExporter: json['jmxExporter'] != null
@@ -4060,6 +4112,7 @@ class RebootBrokerResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory RebootBrokerResponse.fromJson(Map<String, dynamic> json) {
     return RebootBrokerResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -4088,6 +4141,7 @@ class S3 {
     this.bucket,
     this.prefix,
   });
+
   factory S3.fromJson(Map<String, dynamic> json) {
     return S3(
       enabled: json['enabled'] as bool,
@@ -4126,6 +4180,7 @@ class Sasl {
     this.iam,
     this.scram,
   });
+
   factory Sasl.fromJson(Map<String, dynamic> json) {
     return Sasl(
       iam: json['iam'] != null
@@ -4159,6 +4214,7 @@ class Scram {
   Scram({
     this.enabled,
   });
+
   factory Scram.fromJson(Map<String, dynamic> json) {
     return Scram(
       enabled: json['enabled'] as bool?,
@@ -4185,6 +4241,7 @@ class Iam {
   Iam({
     this.enabled,
   });
+
   factory Iam.fromJson(Map<String, dynamic> json) {
     return Iam(
       enabled: json['enabled'] as bool?,
@@ -4241,6 +4298,7 @@ class NodeInfo {
     this.nodeType,
     this.zookeeperNodeInfo,
   });
+
   factory NodeInfo.fromJson(Map<String, dynamic> json) {
     return NodeInfo(
       addedToClusterTime: json['addedToClusterTime'] as String?,
@@ -4310,6 +4368,7 @@ class StateInfo {
     this.code,
     this.message,
   });
+
   factory StateInfo.fromJson(Map<String, dynamic> json) {
     return StateInfo(
       code: json['code'] as String?,
@@ -4339,6 +4398,7 @@ class StorageInfo {
   StorageInfo({
     this.ebsStorageInfo,
   });
+
   factory StorageInfo.fromJson(Map<String, dynamic> json) {
     return StorageInfo(
       ebsStorageInfo: json['ebsStorageInfo'] != null
@@ -4368,6 +4428,7 @@ class Tls {
   Tls({
     this.certificateAuthorityArnList,
   });
+
   factory Tls.fromJson(Map<String, dynamic> json) {
     return Tls(
       certificateAuthorityArnList:
@@ -4411,6 +4472,7 @@ class UnprocessedScramSecret {
     this.errorMessage,
     this.secretArn,
   });
+
   factory UnprocessedScramSecret.fromJson(Map<String, dynamic> json) {
     return UnprocessedScramSecret(
       errorCode: json['errorCode'] as String?,
@@ -4446,6 +4508,7 @@ class UpdateBrokerCountResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateBrokerCountResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerCountResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -4479,6 +4542,7 @@ class UpdateBrokerTypeResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateBrokerTypeResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerTypeResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -4512,6 +4576,7 @@ class UpdateBrokerStorageResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateBrokerStorageResponse.fromJson(Map<String, dynamic> json) {
     return UpdateBrokerStorageResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -4545,6 +4610,7 @@ class UpdateClusterConfigurationResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateClusterConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateClusterConfigurationResponse(
@@ -4579,6 +4645,7 @@ class UpdateClusterKafkaVersionResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateClusterKafkaVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateClusterKafkaVersionResponse(
@@ -4613,6 +4680,7 @@ class UpdateMonitoringResponse {
     this.clusterArn,
     this.clusterOperationArn,
   });
+
   factory UpdateMonitoringResponse.fromJson(Map<String, dynamic> json) {
     return UpdateMonitoringResponse(
       clusterArn: json['clusterArn'] as String?,
@@ -4646,6 +4714,7 @@ class UpdateConfigurationResponse {
     this.arn,
     this.latestRevision,
   });
+
   factory UpdateConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return UpdateConfigurationResponse(
       arn: json['arn'] as String?,
@@ -4702,6 +4771,7 @@ class ZookeeperNodeInfo {
     this.zookeeperId,
     this.zookeeperVersion,
   });
+
   factory ZookeeperNodeInfo.fromJson(Map<String, dynamic> json) {
     return ZookeeperNodeInfo(
       attachedENIId: json['attachedENIId'] as String?,

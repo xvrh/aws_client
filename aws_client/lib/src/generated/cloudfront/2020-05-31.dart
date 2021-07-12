@@ -3889,6 +3889,7 @@ class ActiveTrustedKeyGroups {
     required this.quantity,
     this.items,
   });
+
   factory ActiveTrustedKeyGroups.fromJson(Map<String, dynamic> json) {
     return ActiveTrustedKeyGroups(
       enabled: json['Enabled'] as bool,
@@ -3945,6 +3946,7 @@ class ActiveTrustedSigners {
     required this.quantity,
     this.items,
   });
+
   factory ActiveTrustedSigners.fromJson(Map<String, dynamic> json) {
     return ActiveTrustedSigners(
       enabled: json['Enabled'] as bool,
@@ -4024,6 +4026,7 @@ class AliasICPRecordal {
     this.cname,
     this.iCPRecordalStatus,
   });
+
   factory AliasICPRecordal.fromJson(Map<String, dynamic> json) {
     return AliasICPRecordal(
       cname: json['CNAME'] as String?,
@@ -4067,6 +4070,7 @@ class Aliases {
     required this.quantity,
     this.items,
   });
+
   factory Aliases.fromJson(Map<String, dynamic> json) {
     return Aliases(
       quantity: json['Quantity'] as int,
@@ -4154,6 +4158,7 @@ class AllowedMethods {
     required this.quantity,
     this.cachedMethods,
   });
+
   factory AllowedMethods.fromJson(Map<String, dynamic> json) {
     return AllowedMethods(
       items: (json['Items'] as List)
@@ -4501,6 +4506,7 @@ class CacheBehavior {
     this.trustedKeyGroups,
     this.trustedSigners,
   });
+
   factory CacheBehavior.fromJson(Map<String, dynamic> json) {
     return CacheBehavior(
       pathPattern: json['PathPattern'] as String,
@@ -4703,6 +4709,7 @@ class CacheBehaviors {
     required this.quantity,
     this.items,
   });
+
   factory CacheBehaviors.fromJson(Map<String, dynamic> json) {
     return CacheBehaviors(
       quantity: json['Quantity'] as int,
@@ -4789,6 +4796,7 @@ class CachePolicy {
     required this.id,
     required this.lastModifiedTime,
   });
+
   factory CachePolicy.fromJson(Map<String, dynamic> json) {
     return CachePolicy(
       cachePolicyConfig: CachePolicyConfig.fromJson(
@@ -4901,6 +4909,7 @@ class CachePolicyConfig {
     this.maxTTL,
     this.parametersInCacheKeyAndForwardedToOrigin,
   });
+
   factory CachePolicyConfig.fromJson(Map<String, dynamic> json) {
     return CachePolicyConfig(
       minTTL: json['MinTTL'] as int,
@@ -5057,6 +5066,7 @@ class CachePolicyCookiesConfig {
     required this.cookieBehavior,
     this.cookies,
   });
+
   factory CachePolicyCookiesConfig.fromJson(Map<String, dynamic> json) {
     return CachePolicyCookiesConfig(
       cookieBehavior:
@@ -5162,6 +5172,7 @@ class CachePolicyHeadersConfig {
     required this.headerBehavior,
     this.headers,
   });
+
   factory CachePolicyHeadersConfig.fromJson(Map<String, dynamic> json) {
     return CachePolicyHeadersConfig(
       headerBehavior:
@@ -5232,6 +5243,7 @@ class CachePolicyList {
     this.items,
     this.nextMarker,
   });
+
   factory CachePolicyList.fromJson(Map<String, dynamic> json) {
     return CachePolicyList(
       maxItems: json['MaxItems'] as int,
@@ -5359,6 +5371,7 @@ class CachePolicyQueryStringsConfig {
     required this.queryStringBehavior,
     this.queryStrings,
   });
+
   factory CachePolicyQueryStringsConfig.fromJson(Map<String, dynamic> json) {
     return CachePolicyQueryStringsConfig(
       queryStringBehavior: (json['QueryStringBehavior'] as String)
@@ -5422,6 +5435,7 @@ class CachePolicySummary {
     required this.cachePolicy,
     required this.type,
   });
+
   factory CachePolicySummary.fromJson(Map<String, dynamic> json) {
     return CachePolicySummary(
       cachePolicy:
@@ -5507,6 +5521,7 @@ class CachedMethods {
     required this.items,
     required this.quantity,
   });
+
   factory CachedMethods.fromJson(Map<String, dynamic> json) {
     return CachedMethods(
       items: (json['Items'] as List)
@@ -5608,6 +5623,7 @@ class CloudFrontOriginAccessIdentity {
     required this.s3CanonicalUserId,
     this.cloudFrontOriginAccessIdentityConfig,
   });
+
   factory CloudFrontOriginAccessIdentity.fromJson(Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentity(
       id: json['Id'] as String,
@@ -5678,6 +5694,7 @@ class CloudFrontOriginAccessIdentityConfig {
     required this.callerReference,
     required this.comment,
   });
+
   factory CloudFrontOriginAccessIdentityConfig.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityConfig(
@@ -5770,6 +5787,7 @@ class CloudFrontOriginAccessIdentityList {
     this.items,
     this.nextMarker,
   });
+
   factory CloudFrontOriginAccessIdentityList.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentityList(
@@ -5838,6 +5856,7 @@ class CloudFrontOriginAccessIdentitySummary {
     required this.id,
     required this.s3CanonicalUserId,
   });
+
   factory CloudFrontOriginAccessIdentitySummary.fromJson(
       Map<String, dynamic> json) {
     return CloudFrontOriginAccessIdentitySummary(
@@ -5889,6 +5908,7 @@ class ConflictingAlias {
     this.alias,
     this.distributionId,
   });
+
   factory ConflictingAlias.fromJson(Map<String, dynamic> json) {
     return ConflictingAlias(
       accountId: json['AccountId'] as String?,
@@ -5944,6 +5964,7 @@ class ConflictingAliasesList {
     this.nextMarker,
     this.quantity,
   });
+
   factory ConflictingAliasesList.fromJson(Map<String, dynamic> json) {
     return ConflictingAliasesList(
       items: (json['Items'] as List?)
@@ -5998,6 +6019,7 @@ class ContentTypeProfile {
     required this.format,
     this.profileId,
   });
+
   factory ContentTypeProfile.fromJson(Map<String, dynamic> json) {
     return ContentTypeProfile(
       contentType: json['ContentType'] as String,
@@ -6061,6 +6083,7 @@ class ContentTypeProfileConfig {
     required this.forwardWhenContentTypeIsUnknown,
     this.contentTypeProfiles,
   });
+
   factory ContentTypeProfileConfig.fromJson(Map<String, dynamic> json) {
     return ContentTypeProfileConfig(
       forwardWhenContentTypeIsUnknown:
@@ -6126,6 +6149,7 @@ class ContentTypeProfiles {
     required this.quantity,
     this.items,
   });
+
   factory ContentTypeProfiles.fromJson(Map<String, dynamic> json) {
     return ContentTypeProfiles(
       quantity: json['Quantity'] as int,
@@ -6187,6 +6211,7 @@ class CookieNames {
     required this.quantity,
     this.items,
   });
+
   factory CookieNames.fromJson(Map<String, dynamic> json) {
     return CookieNames(
       quantity: json['Quantity'] as int,
@@ -6309,6 +6334,7 @@ class CookiePreference {
     required this.forward,
     this.whitelistedNames,
   });
+
   factory CookiePreference.fromJson(Map<String, dynamic> json) {
     return CookiePreference(
       forward: (json['Forward'] as String).toItemSelection(),
@@ -6370,6 +6396,7 @@ class CreateCachePolicyResult {
     this.eTag,
     this.location,
   });
+
   factory CreateCachePolicyResult.fromJson(Map<String, dynamic> json) {
     return CreateCachePolicyResult(
       cachePolicy: json['CachePolicy'] != null
@@ -6406,6 +6433,7 @@ class CreateCloudFrontOriginAccessIdentityResult {
     this.eTag,
     this.location,
   });
+
   factory CreateCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return CreateCloudFrontOriginAccessIdentityResult(
@@ -6446,6 +6474,7 @@ class CreateDistributionResult {
     this.eTag,
     this.location,
   });
+
   factory CreateDistributionResult.fromJson(Map<String, dynamic> json) {
     return CreateDistributionResult(
       distribution: json['Distribution'] != null
@@ -6482,6 +6511,7 @@ class CreateDistributionWithTagsResult {
     this.eTag,
     this.location,
   });
+
   factory CreateDistributionWithTagsResult.fromJson(Map<String, dynamic> json) {
     return CreateDistributionWithTagsResult(
       distribution: json['Distribution'] != null
@@ -6518,6 +6548,7 @@ class CreateFieldLevelEncryptionConfigResult {
     this.fieldLevelEncryption,
     this.location,
   });
+
   factory CreateFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return CreateFieldLevelEncryptionConfigResult(
@@ -6557,6 +6588,7 @@ class CreateFieldLevelEncryptionProfileResult {
     this.fieldLevelEncryptionProfile,
     this.location,
   });
+
   factory CreateFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return CreateFieldLevelEncryptionProfileResult(
@@ -6600,6 +6632,7 @@ class CreateFunctionRequest {
     required this.functionConfig,
     required this.name,
   });
+
   factory CreateFunctionRequest.fromJson(Map<String, dynamic> json) {
     return CreateFunctionRequest(
       functionCode: _s.decodeUint8List(json['FunctionCode']! as String),
@@ -6656,6 +6689,7 @@ class CreateFunctionResult {
     this.functionSummary,
     this.location,
   });
+
   factory CreateFunctionResult.fromJson(Map<String, dynamic> json) {
     return CreateFunctionResult(
       eTag: json['ETag'] as String?,
@@ -6690,6 +6724,7 @@ class CreateInvalidationResult {
     this.invalidation,
     this.location,
   });
+
   factory CreateInvalidationResult.fromJson(Map<String, dynamic> json) {
     return CreateInvalidationResult(
       invalidation: json['Invalidation'] != null
@@ -6723,6 +6758,7 @@ class CreateKeyGroupResult {
     this.keyGroup,
     this.location,
   });
+
   factory CreateKeyGroupResult.fromJson(Map<String, dynamic> json) {
     return CreateKeyGroupResult(
       eTag: json['ETag'] as String?,
@@ -6752,6 +6788,7 @@ class CreateMonitoringSubscriptionResult {
   CreateMonitoringSubscriptionResult({
     this.monitoringSubscription,
   });
+
   factory CreateMonitoringSubscriptionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateMonitoringSubscriptionResult(
@@ -6786,6 +6823,7 @@ class CreateOriginRequestPolicyResult {
     this.location,
     this.originRequestPolicy,
   });
+
   factory CreateOriginRequestPolicyResult.fromJson(Map<String, dynamic> json) {
     return CreateOriginRequestPolicyResult(
       eTag: json['ETag'] as String?,
@@ -6823,6 +6861,7 @@ class CreatePublicKeyResult {
     this.location,
     this.publicKey,
   });
+
   factory CreatePublicKeyResult.fromJson(Map<String, dynamic> json) {
     return CreatePublicKeyResult(
       eTag: json['ETag'] as String?,
@@ -6871,6 +6910,7 @@ class CreateRealtimeLogConfigRequest {
     required this.name,
     required this.samplingRate,
   });
+
   factory CreateRealtimeLogConfigRequest.fromJson(Map<String, dynamic> json) {
     return CreateRealtimeLogConfigRequest(
       endPoints: (json['EndPoints'] as List)
@@ -6930,6 +6970,7 @@ class CreateRealtimeLogConfigResult {
   CreateRealtimeLogConfigResult({
     this.realtimeLogConfig,
   });
+
   factory CreateRealtimeLogConfigResult.fromJson(Map<String, dynamic> json) {
     return CreateRealtimeLogConfigResult(
       realtimeLogConfig: json['RealtimeLogConfig'] != null
@@ -6972,6 +7013,7 @@ class CreateStreamingDistributionResult {
     this.location,
     this.streamingDistribution,
   });
+
   factory CreateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionResult(
@@ -7012,6 +7054,7 @@ class CreateStreamingDistributionWithTagsResult {
     this.location,
     this.streamingDistribution,
   });
+
   factory CreateStreamingDistributionWithTagsResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionWithTagsResult(
@@ -7128,6 +7171,7 @@ class CustomErrorResponse {
     this.responseCode,
     this.responsePagePath,
   });
+
   factory CustomErrorResponse.fromJson(Map<String, dynamic> json) {
     return CustomErrorResponse(
       errorCode: json['ErrorCode'] as int,
@@ -7213,6 +7257,7 @@ class CustomErrorResponses {
     required this.quantity,
     this.items,
   });
+
   factory CustomErrorResponses.fromJson(Map<String, dynamic> json) {
     return CustomErrorResponses(
       quantity: json['Quantity'] as int,
@@ -7276,6 +7321,7 @@ class CustomHeaders {
     required this.quantity,
     this.items,
   });
+
   factory CustomHeaders.fromJson(Map<String, dynamic> json) {
     return CustomHeaders(
       quantity: json['Quantity'] as int,
@@ -7393,6 +7439,7 @@ class CustomOriginConfig {
     this.originReadTimeout,
     this.originSslProtocols,
   });
+
   factory CustomOriginConfig.fromJson(Map<String, dynamic> json) {
     return CustomOriginConfig(
       hTTPPort: json['HTTPPort'] as int,
@@ -7714,6 +7761,7 @@ class DefaultCacheBehavior {
     this.trustedKeyGroups,
     this.trustedSigners,
   });
+
   factory DefaultCacheBehavior.fromJson(Map<String, dynamic> json) {
     return DefaultCacheBehavior(
       targetOriginId: json['TargetOriginId'] as String,
@@ -7897,6 +7945,7 @@ class DefaultCacheBehavior {
 
 class DeleteMonitoringSubscriptionResult {
   DeleteMonitoringSubscriptionResult();
+
   factory DeleteMonitoringSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return DeleteMonitoringSubscriptionResult();
   }
@@ -7923,6 +7972,7 @@ class DeleteRealtimeLogConfigRequest {
     this.arn,
     this.name,
   });
+
   factory DeleteRealtimeLogConfigRequest.fromJson(Map<String, dynamic> json) {
     return DeleteRealtimeLogConfigRequest(
       arn: json['ARN'] as String?,
@@ -7968,6 +8018,7 @@ class DescribeFunctionResult {
     this.eTag,
     this.functionSummary,
   });
+
   factory DescribeFunctionResult.fromJson(Map<String, dynamic> json) {
     return DescribeFunctionResult(
       eTag: json['ETag'] as String?,
@@ -8061,6 +8112,7 @@ class Distribution {
     this.activeTrustedSigners,
     this.aliasICPRecordals,
   });
+
   factory Distribution.fromJson(Map<String, dynamic> json) {
     return Distribution(
       arn: json['ARN'] as String,
@@ -8356,6 +8408,7 @@ class DistributionConfig {
     this.viewerCertificate,
     this.webACLId,
   });
+
   factory DistributionConfig.fromJson(Map<String, dynamic> json) {
     return DistributionConfig(
       callerReference: json['CallerReference'] as String,
@@ -8540,6 +8593,7 @@ class DistributionConfigWithTags {
     required this.distributionConfig,
     required this.tags,
   });
+
   factory DistributionConfigWithTags.fromJson(Map<String, dynamic> json) {
     return DistributionConfigWithTags(
       distributionConfig: DistributionConfig.fromJson(
@@ -8607,6 +8661,7 @@ class DistributionIdList {
     this.items,
     this.nextMarker,
   });
+
   factory DistributionIdList.fromJson(Map<String, dynamic> json) {
     return DistributionIdList(
       isTruncated: json['IsTruncated'] as bool,
@@ -8685,6 +8740,7 @@ class DistributionList {
     this.items,
     this.nextMarker,
   });
+
   factory DistributionList.fromJson(Map<String, dynamic> json) {
     return DistributionList(
       isTruncated: json['IsTruncated'] as bool,
@@ -8845,6 +8901,7 @@ class DistributionSummary {
     this.aliasICPRecordals,
     this.originGroups,
   });
+
   factory DistributionSummary.fromJson(Map<String, dynamic> json) {
     return DistributionSummary(
       arn: json['ARN'] as String,
@@ -8979,6 +9036,7 @@ class EncryptionEntities {
     required this.quantity,
     this.items,
   });
+
   factory EncryptionEntities.fromJson(Map<String, dynamic> json) {
     return EncryptionEntities(
       quantity: json['Quantity'] as int,
@@ -9052,6 +9110,7 @@ class EncryptionEntity {
     required this.providerId,
     required this.publicKeyId,
   });
+
   factory EncryptionEntity.fromJson(Map<String, dynamic> json) {
     return EncryptionEntity(
       fieldPatterns:
@@ -9116,6 +9175,7 @@ class EndPoint {
     required this.streamType,
     this.kinesisStreamConfig,
   });
+
   factory EndPoint.fromJson(Map<String, dynamic> json) {
     return EndPoint(
       streamType: json['StreamType'] as String,
@@ -9222,6 +9282,7 @@ class FieldLevelEncryption {
     required this.id,
     required this.lastModifiedTime,
   });
+
   factory FieldLevelEncryption.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryption(
       fieldLevelEncryptionConfig: FieldLevelEncryptionConfig.fromJson(
@@ -9279,6 +9340,7 @@ class FieldLevelEncryptionConfig {
     this.contentTypeProfileConfig,
     this.queryArgProfileConfig,
   });
+
   factory FieldLevelEncryptionConfig.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryptionConfig(
       callerReference: json['CallerReference'] as String,
@@ -9368,6 +9430,7 @@ class FieldLevelEncryptionList {
     this.items,
     this.nextMarker,
   });
+
   factory FieldLevelEncryptionList.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryptionList(
       maxItems: json['MaxItems'] as int,
@@ -9426,6 +9489,7 @@ class FieldLevelEncryptionProfile {
     required this.id,
     required this.lastModifiedTime,
   });
+
   factory FieldLevelEncryptionProfile.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryptionProfile(
       fieldLevelEncryptionProfileConfig:
@@ -9484,6 +9548,7 @@ class FieldLevelEncryptionProfileConfig {
     required this.name,
     this.comment,
   });
+
   factory FieldLevelEncryptionProfileConfig.fromJson(
       Map<String, dynamic> json) {
     return FieldLevelEncryptionProfileConfig(
@@ -9563,6 +9628,7 @@ class FieldLevelEncryptionProfileList {
     this.items,
     this.nextMarker,
   });
+
   factory FieldLevelEncryptionProfileList.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryptionProfileList(
       maxItems: json['MaxItems'] as int,
@@ -9630,6 +9696,7 @@ class FieldLevelEncryptionProfileSummary {
     required this.name,
     this.comment,
   });
+
   factory FieldLevelEncryptionProfileSummary.fromJson(
       Map<String, dynamic> json) {
     return FieldLevelEncryptionProfileSummary(
@@ -9695,6 +9762,7 @@ class FieldLevelEncryptionSummary {
     this.contentTypeProfileConfig,
     this.queryArgProfileConfig,
   });
+
   factory FieldLevelEncryptionSummary.fromJson(Map<String, dynamic> json) {
     return FieldLevelEncryptionSummary(
       id: json['Id'] as String,
@@ -9757,6 +9825,7 @@ class FieldPatterns {
     required this.quantity,
     this.items,
   });
+
   factory FieldPatterns.fromJson(Map<String, dynamic> json) {
     return FieldPatterns(
       quantity: json['Quantity'] as int,
@@ -9954,6 +10023,7 @@ class ForwardedValues {
     this.headers,
     this.queryStringCacheKeys,
   });
+
   factory ForwardedValues.fromJson(Map<String, dynamic> json) {
     return ForwardedValues(
       cookies:
@@ -10034,6 +10104,7 @@ class FunctionAssociation {
     required this.eventType,
     required this.functionARN,
   });
+
   factory FunctionAssociation.fromJson(Map<String, dynamic> json) {
     return FunctionAssociation(
       eventType: (json['EventType'] as String).toEventType(),
@@ -10091,6 +10162,7 @@ class FunctionAssociations {
     required this.quantity,
     this.items,
   });
+
   factory FunctionAssociations.fromJson(Map<String, dynamic> json) {
     return FunctionAssociations(
       quantity: json['Quantity'] as int,
@@ -10153,6 +10225,7 @@ class FunctionConfig {
     required this.comment,
     required this.runtime,
   });
+
   factory FunctionConfig.fromJson(Map<String, dynamic> json) {
     return FunctionConfig(
       comment: json['Comment'] as String,
@@ -10217,6 +10290,7 @@ class FunctionList {
     this.items,
     this.nextMarker,
   });
+
   factory FunctionList.fromJson(Map<String, dynamic> json) {
     return FunctionList(
       maxItems: json['MaxItems'] as int,
@@ -10284,6 +10358,7 @@ class FunctionMetadata {
     this.createdTime,
     this.stage,
   });
+
   factory FunctionMetadata.fromJson(Map<String, dynamic> json) {
     return FunctionMetadata(
       functionARN: json['FunctionARN'] as String,
@@ -10388,6 +10463,7 @@ class FunctionSummary {
     required this.name,
     this.status,
   });
+
   factory FunctionSummary.fromJson(Map<String, dynamic> json) {
     return FunctionSummary(
       functionConfig: FunctionConfig.fromJson(
@@ -10475,6 +10551,7 @@ class GeoRestriction {
     required this.restrictionType,
     this.items,
   });
+
   factory GeoRestriction.fromJson(Map<String, dynamic> json) {
     return GeoRestriction(
       quantity: json['Quantity'] as int,
@@ -10576,6 +10653,7 @@ class GetCachePolicyConfigResult {
     this.cachePolicyConfig,
     this.eTag,
   });
+
   factory GetCachePolicyConfigResult.fromJson(Map<String, dynamic> json) {
     return GetCachePolicyConfigResult(
       cachePolicyConfig: json['CachePolicyConfig'] != null
@@ -10606,6 +10684,7 @@ class GetCachePolicyResult {
     this.cachePolicy,
     this.eTag,
   });
+
   factory GetCachePolicyResult.fromJson(Map<String, dynamic> json) {
     return GetCachePolicyResult(
       cachePolicy: json['CachePolicy'] != null
@@ -10638,6 +10717,7 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
     this.cloudFrontOriginAccessIdentityConfig,
     this.eTag,
   });
+
   factory GetCloudFrontOriginAccessIdentityConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetCloudFrontOriginAccessIdentityConfigResult(
@@ -10676,6 +10756,7 @@ class GetCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
   factory GetCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return GetCloudFrontOriginAccessIdentityResult(
@@ -10711,6 +10792,7 @@ class GetDistributionConfigResult {
     this.distributionConfig,
     this.eTag,
   });
+
   factory GetDistributionConfigResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionConfigResult(
       distributionConfig: json['DistributionConfig'] != null
@@ -10743,6 +10825,7 @@ class GetDistributionResult {
     this.distribution,
     this.eTag,
   });
+
   factory GetDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetDistributionResult(
       distribution: json['Distribution'] != null
@@ -10773,6 +10856,7 @@ class GetFieldLevelEncryptionConfigResult {
     this.eTag,
     this.fieldLevelEncryptionConfig,
   });
+
   factory GetFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionConfigResult(
@@ -10806,6 +10890,7 @@ class GetFieldLevelEncryptionProfileConfigResult {
     this.eTag,
     this.fieldLevelEncryptionProfileConfig,
   });
+
   factory GetFieldLevelEncryptionProfileConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionProfileConfigResult(
@@ -10842,6 +10927,7 @@ class GetFieldLevelEncryptionProfileResult {
     this.eTag,
     this.fieldLevelEncryptionProfile,
   });
+
   factory GetFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionProfileResult(
@@ -10875,6 +10961,7 @@ class GetFieldLevelEncryptionResult {
     this.eTag,
     this.fieldLevelEncryption,
   });
+
   factory GetFieldLevelEncryptionResult.fromJson(Map<String, dynamic> json) {
     return GetFieldLevelEncryptionResult(
       eTag: json['ETag'] as String?,
@@ -10910,6 +10997,7 @@ class GetFunctionResult {
     this.eTag,
     this.functionCode,
   });
+
   factory GetFunctionResult.fromJson(Map<String, dynamic> json) {
     return GetFunctionResult(
       contentType: json['Content-Type'] as String?,
@@ -10938,6 +11026,7 @@ class GetInvalidationResult {
   GetInvalidationResult({
     this.invalidation,
   });
+
   factory GetInvalidationResult.fromJson(Map<String, dynamic> json) {
     return GetInvalidationResult(
       invalidation: json['Invalidation'] != null
@@ -10965,6 +11054,7 @@ class GetKeyGroupConfigResult {
     this.eTag,
     this.keyGroupConfig,
   });
+
   factory GetKeyGroupConfigResult.fromJson(Map<String, dynamic> json) {
     return GetKeyGroupConfigResult(
       eTag: json['ETag'] as String?,
@@ -10995,6 +11085,7 @@ class GetKeyGroupResult {
     this.eTag,
     this.keyGroup,
   });
+
   factory GetKeyGroupResult.fromJson(Map<String, dynamic> json) {
     return GetKeyGroupResult(
       eTag: json['ETag'] as String?,
@@ -11022,6 +11113,7 @@ class GetMonitoringSubscriptionResult {
   GetMonitoringSubscriptionResult({
     this.monitoringSubscription,
   });
+
   factory GetMonitoringSubscriptionResult.fromJson(Map<String, dynamic> json) {
     return GetMonitoringSubscriptionResult(
       monitoringSubscription: json['MonitoringSubscription'] != null
@@ -11051,6 +11143,7 @@ class GetOriginRequestPolicyConfigResult {
     this.eTag,
     this.originRequestPolicyConfig,
   });
+
   factory GetOriginRequestPolicyConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetOriginRequestPolicyConfigResult(
@@ -11083,6 +11176,7 @@ class GetOriginRequestPolicyResult {
     this.eTag,
     this.originRequestPolicy,
   });
+
   factory GetOriginRequestPolicyResult.fromJson(Map<String, dynamic> json) {
     return GetOriginRequestPolicyResult(
       eTag: json['ETag'] as String?,
@@ -11114,6 +11208,7 @@ class GetPublicKeyConfigResult {
     this.eTag,
     this.publicKeyConfig,
   });
+
   factory GetPublicKeyConfigResult.fromJson(Map<String, dynamic> json) {
     return GetPublicKeyConfigResult(
       eTag: json['ETag'] as String?,
@@ -11144,6 +11239,7 @@ class GetPublicKeyResult {
     this.eTag,
     this.publicKey,
   });
+
   factory GetPublicKeyResult.fromJson(Map<String, dynamic> json) {
     return GetPublicKeyResult(
       eTag: json['ETag'] as String?,
@@ -11173,6 +11269,7 @@ class GetRealtimeLogConfigRequest {
     this.arn,
     this.name,
   });
+
   factory GetRealtimeLogConfigRequest.fromJson(Map<String, dynamic> json) {
     return GetRealtimeLogConfigRequest(
       arn: json['ARN'] as String?,
@@ -11214,6 +11311,7 @@ class GetRealtimeLogConfigResult {
   GetRealtimeLogConfigResult({
     this.realtimeLogConfig,
   });
+
   factory GetRealtimeLogConfigResult.fromJson(Map<String, dynamic> json) {
     return GetRealtimeLogConfigResult(
       realtimeLogConfig: json['RealtimeLogConfig'] != null
@@ -11252,6 +11350,7 @@ class GetStreamingDistributionConfigResult {
     this.eTag,
     this.streamingDistributionConfig,
   });
+
   factory GetStreamingDistributionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetStreamingDistributionConfigResult(
@@ -11286,6 +11385,7 @@ class GetStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
   factory GetStreamingDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetStreamingDistributionResult(
       eTag: json['ETag'] as String?,
@@ -11318,6 +11418,7 @@ class Headers {
     required this.quantity,
     this.items,
   });
+
   factory Headers.fromJson(Map<String, dynamic> json) {
     return Headers(
       quantity: json['Quantity'] as int,
@@ -11449,6 +11550,7 @@ class Invalidation {
     required this.invalidationBatch,
     required this.status,
   });
+
   factory Invalidation.fromJson(Map<String, dynamic> json) {
     return Invalidation(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -11516,6 +11618,7 @@ class InvalidationBatch {
     required this.callerReference,
     required this.paths,
   });
+
   factory InvalidationBatch.fromJson(Map<String, dynamic> json) {
     return InvalidationBatch(
       callerReference: json['CallerReference'] as String,
@@ -11595,6 +11698,7 @@ class InvalidationList {
     this.items,
     this.nextMarker,
   });
+
   factory InvalidationList.fromJson(Map<String, dynamic> json) {
     return InvalidationList(
       isTruncated: json['IsTruncated'] as bool,
@@ -11657,6 +11761,7 @@ class InvalidationSummary {
     required this.id,
     required this.status,
   });
+
   factory InvalidationSummary.fromJson(Map<String, dynamic> json) {
     return InvalidationSummary(
       createTime: nonNullableTimeStampFromJson(json['CreateTime'] as Object),
@@ -11729,6 +11834,7 @@ class KGKeyPairIds {
     this.keyGroupId,
     this.keyPairIds,
   });
+
   factory KGKeyPairIds.fromJson(Map<String, dynamic> json) {
     return KGKeyPairIds(
       keyGroupId: json['KeyGroupId'] as String?,
@@ -11777,6 +11883,7 @@ class KeyGroup {
     required this.keyGroupConfig,
     required this.lastModifiedTime,
   });
+
   factory KeyGroup.fromJson(Map<String, dynamic> json) {
     return KeyGroup(
       id: json['Id'] as String,
@@ -11829,6 +11936,7 @@ class KeyGroupConfig {
     required this.name,
     this.comment,
   });
+
   factory KeyGroupConfig.fromJson(Map<String, dynamic> json) {
     return KeyGroupConfig(
       items: (json['Items'] as List)
@@ -11904,6 +12012,7 @@ class KeyGroupList {
     this.items,
     this.nextMarker,
   });
+
   factory KeyGroupList.fromJson(Map<String, dynamic> json) {
     return KeyGroupList(
       maxItems: json['MaxItems'] as int,
@@ -11950,6 +12059,7 @@ class KeyGroupSummary {
   KeyGroupSummary({
     required this.keyGroup,
   });
+
   factory KeyGroupSummary.fromJson(Map<String, dynamic> json) {
     return KeyGroupSummary(
       keyGroup: KeyGroup.fromJson(json['KeyGroup'] as Map<String, dynamic>),
@@ -11982,6 +12092,7 @@ class KeyPairIds {
     required this.quantity,
     this.items,
   });
+
   factory KeyPairIds.fromJson(Map<String, dynamic> json) {
     return KeyPairIds(
       quantity: json['Quantity'] as int,
@@ -12032,6 +12143,7 @@ class KinesisStreamConfig {
     required this.roleARN,
     required this.streamARN,
   });
+
   factory KinesisStreamConfig.fromJson(Map<String, dynamic> json) {
     return KinesisStreamConfig(
       roleARN: json['RoleARN'] as String,
@@ -12122,6 +12234,7 @@ class LambdaFunctionAssociation {
     required this.lambdaFunctionARN,
     this.includeBody,
   });
+
   factory LambdaFunctionAssociation.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionAssociation(
       eventType: (json['EventType'] as String).toEventType(),
@@ -12197,6 +12310,7 @@ class LambdaFunctionAssociations {
     required this.quantity,
     this.items,
   });
+
   factory LambdaFunctionAssociations.fromJson(Map<String, dynamic> json) {
     return LambdaFunctionAssociations(
       quantity: json['Quantity'] as int,
@@ -12254,6 +12368,7 @@ class ListCachePoliciesResult {
   ListCachePoliciesResult({
     this.cachePolicyList,
   });
+
   factory ListCachePoliciesResult.fromJson(Map<String, dynamic> json) {
     return ListCachePoliciesResult(
       cachePolicyList: json['CachePolicyList'] != null
@@ -12279,6 +12394,7 @@ class ListCloudFrontOriginAccessIdentitiesResult {
   ListCloudFrontOriginAccessIdentitiesResult({
     this.cloudFrontOriginAccessIdentityList,
   });
+
   factory ListCloudFrontOriginAccessIdentitiesResult.fromJson(
       Map<String, dynamic> json) {
     return ListCloudFrontOriginAccessIdentitiesResult(
@@ -12309,6 +12425,7 @@ class ListConflictingAliasesResult {
   ListConflictingAliasesResult({
     this.conflictingAliasesList,
   });
+
   factory ListConflictingAliasesResult.fromJson(Map<String, dynamic> json) {
     return ListConflictingAliasesResult(
       conflictingAliasesList: json['ConflictingAliasesList'] != null
@@ -12334,6 +12451,7 @@ class ListDistributionsByCachePolicyIdResult {
   ListDistributionsByCachePolicyIdResult({
     this.distributionIdList,
   });
+
   factory ListDistributionsByCachePolicyIdResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByCachePolicyIdResult(
@@ -12358,6 +12476,7 @@ class ListDistributionsByKeyGroupResult {
   ListDistributionsByKeyGroupResult({
     this.distributionIdList,
   });
+
   factory ListDistributionsByKeyGroupResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByKeyGroupResult(
@@ -12383,6 +12502,7 @@ class ListDistributionsByOriginRequestPolicyIdResult {
   ListDistributionsByOriginRequestPolicyIdResult({
     this.distributionIdList,
   });
+
   factory ListDistributionsByOriginRequestPolicyIdResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByOriginRequestPolicyIdResult(
@@ -12426,6 +12546,7 @@ class ListDistributionsByRealtimeLogConfigRequest {
     this.realtimeLogConfigArn,
     this.realtimeLogConfigName,
   });
+
   factory ListDistributionsByRealtimeLogConfigRequest.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByRealtimeLogConfigRequest(
@@ -12481,6 +12602,7 @@ class ListDistributionsByRealtimeLogConfigResult {
   ListDistributionsByRealtimeLogConfigResult({
     this.distributionList,
   });
+
   factory ListDistributionsByRealtimeLogConfigResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByRealtimeLogConfigResult(
@@ -12508,6 +12630,7 @@ class ListDistributionsByWebACLIdResult {
   ListDistributionsByWebACLIdResult({
     this.distributionList,
   });
+
   factory ListDistributionsByWebACLIdResult.fromJson(
       Map<String, dynamic> json) {
     return ListDistributionsByWebACLIdResult(
@@ -12534,6 +12657,7 @@ class ListDistributionsResult {
   ListDistributionsResult({
     this.distributionList,
   });
+
   factory ListDistributionsResult.fromJson(Map<String, dynamic> json) {
     return ListDistributionsResult(
       distributionList: json['DistributionList'] != null
@@ -12559,6 +12683,7 @@ class ListFieldLevelEncryptionConfigsResult {
   ListFieldLevelEncryptionConfigsResult({
     this.fieldLevelEncryptionList,
   });
+
   factory ListFieldLevelEncryptionConfigsResult.fromJson(
       Map<String, dynamic> json) {
     return ListFieldLevelEncryptionConfigsResult(
@@ -12586,6 +12711,7 @@ class ListFieldLevelEncryptionProfilesResult {
   ListFieldLevelEncryptionProfilesResult({
     this.fieldLevelEncryptionProfileList,
   });
+
   factory ListFieldLevelEncryptionProfilesResult.fromJson(
       Map<String, dynamic> json) {
     return ListFieldLevelEncryptionProfilesResult(
@@ -12615,6 +12741,7 @@ class ListFunctionsResult {
   ListFunctionsResult({
     this.functionList,
   });
+
   factory ListFunctionsResult.fromJson(Map<String, dynamic> json) {
     return ListFunctionsResult(
       functionList: json['FunctionList'] != null
@@ -12639,6 +12766,7 @@ class ListInvalidationsResult {
   ListInvalidationsResult({
     this.invalidationList,
   });
+
   factory ListInvalidationsResult.fromJson(Map<String, dynamic> json) {
     return ListInvalidationsResult(
       invalidationList: json['InvalidationList'] != null
@@ -12663,6 +12791,7 @@ class ListKeyGroupsResult {
   ListKeyGroupsResult({
     this.keyGroupList,
   });
+
   factory ListKeyGroupsResult.fromJson(Map<String, dynamic> json) {
     return ListKeyGroupsResult(
       keyGroupList: json['KeyGroupList'] != null
@@ -12686,6 +12815,7 @@ class ListOriginRequestPoliciesResult {
   ListOriginRequestPoliciesResult({
     this.originRequestPolicyList,
   });
+
   factory ListOriginRequestPoliciesResult.fromJson(Map<String, dynamic> json) {
     return ListOriginRequestPoliciesResult(
       originRequestPolicyList: json['OriginRequestPolicyList'] != null
@@ -12712,6 +12842,7 @@ class ListPublicKeysResult {
   ListPublicKeysResult({
     this.publicKeyList,
   });
+
   factory ListPublicKeysResult.fromJson(Map<String, dynamic> json) {
     return ListPublicKeysResult(
       publicKeyList: json['PublicKeyList'] != null
@@ -12736,6 +12867,7 @@ class ListRealtimeLogConfigsResult {
   ListRealtimeLogConfigsResult({
     this.realtimeLogConfigs,
   });
+
   factory ListRealtimeLogConfigsResult.fromJson(Map<String, dynamic> json) {
     return ListRealtimeLogConfigsResult(
       realtimeLogConfigs: json['RealtimeLogConfigs'] != null
@@ -12761,6 +12893,7 @@ class ListStreamingDistributionsResult {
   ListStreamingDistributionsResult({
     this.streamingDistributionList,
   });
+
   factory ListStreamingDistributionsResult.fromJson(Map<String, dynamic> json) {
     return ListStreamingDistributionsResult(
       streamingDistributionList: json['StreamingDistributionList'] != null
@@ -12787,6 +12920,7 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     required this.tags,
   });
+
   factory ListTagsForResourceResult.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResult(
       tags: Tags.fromJson(json['Tags'] as Map<String, dynamic>),
@@ -12840,6 +12974,7 @@ class LoggingConfig {
     required this.includeCookies,
     required this.prefix,
   });
+
   factory LoggingConfig.fromJson(Map<String, dynamic> json) {
     return LoggingConfig(
       bucket: json['Bucket'] as String,
@@ -13009,6 +13144,7 @@ class MonitoringSubscription {
   MonitoringSubscription({
     this.realtimeMetricsSubscriptionConfig,
   });
+
   factory MonitoringSubscription.fromJson(Map<String, dynamic> json) {
     return MonitoringSubscription(
       realtimeMetricsSubscriptionConfig:
@@ -13181,6 +13317,7 @@ class Origin {
     this.originShield,
     this.s3OriginConfig,
   });
+
   factory Origin.fromJson(Map<String, dynamic> json) {
     return Origin(
       domainName: json['DomainName'] as String,
@@ -13304,6 +13441,7 @@ class OriginCustomHeader {
     required this.headerName,
     required this.headerValue,
   });
+
   factory OriginCustomHeader.fromJson(Map<String, dynamic> json) {
     return OriginCustomHeader(
       headerName: json['HeaderName'] as String,
@@ -13368,6 +13506,7 @@ class OriginGroup {
     required this.id,
     required this.members,
   });
+
   factory OriginGroup.fromJson(Map<String, dynamic> json) {
     return OriginGroup(
       failoverCriteria: OriginGroupFailoverCriteria.fromJson(
@@ -13429,6 +13568,7 @@ class OriginGroupFailoverCriteria {
   OriginGroupFailoverCriteria({
     required this.statusCodes,
   });
+
   factory OriginGroupFailoverCriteria.fromJson(Map<String, dynamic> json) {
     return OriginGroupFailoverCriteria(
       statusCodes:
@@ -13474,6 +13614,7 @@ class OriginGroupMember {
   OriginGroupMember({
     required this.originId,
   });
+
   factory OriginGroupMember.fromJson(Map<String, dynamic> json) {
     return OriginGroupMember(
       originId: json['OriginId'] as String,
@@ -13521,6 +13662,7 @@ class OriginGroupMembers {
     required this.items,
     required this.quantity,
   });
+
   factory OriginGroupMembers.fromJson(Map<String, dynamic> json) {
     return OriginGroupMembers(
       items: (json['Items'] as List)
@@ -13582,6 +13724,7 @@ class OriginGroups {
     required this.quantity,
     this.items,
   });
+
   factory OriginGroups.fromJson(Map<String, dynamic> json) {
     return OriginGroups(
       quantity: json['Quantity'] as int,
@@ -13705,6 +13848,7 @@ class OriginRequestPolicy {
     required this.lastModifiedTime,
     required this.originRequestPolicyConfig,
   });
+
   factory OriginRequestPolicy.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicy(
       id: json['Id'] as String,
@@ -13787,6 +13931,7 @@ class OriginRequestPolicyConfig {
     required this.queryStringsConfig,
     this.comment,
   });
+
   factory OriginRequestPolicyConfig.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicyConfig(
       cookiesConfig: OriginRequestPolicyCookiesConfig.fromJson(
@@ -13916,6 +14061,7 @@ class OriginRequestPolicyCookiesConfig {
     required this.cookieBehavior,
     this.cookies,
   });
+
   factory OriginRequestPolicyCookiesConfig.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicyCookiesConfig(
       cookieBehavior: (json['CookieBehavior'] as String)
@@ -14040,6 +14186,7 @@ class OriginRequestPolicyHeadersConfig {
     required this.headerBehavior,
     this.headers,
   });
+
   factory OriginRequestPolicyHeadersConfig.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicyHeadersConfig(
       headerBehavior: (json['HeaderBehavior'] as String)
@@ -14110,6 +14257,7 @@ class OriginRequestPolicyList {
     this.items,
     this.nextMarker,
   });
+
   factory OriginRequestPolicyList.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicyList(
       maxItems: json['MaxItems'] as int,
@@ -14218,6 +14366,7 @@ class OriginRequestPolicyQueryStringsConfig {
     required this.queryStringBehavior,
     this.queryStrings,
   });
+
   factory OriginRequestPolicyQueryStringsConfig.fromJson(
       Map<String, dynamic> json) {
     return OriginRequestPolicyQueryStringsConfig(
@@ -14282,6 +14431,7 @@ class OriginRequestPolicySummary {
     required this.originRequestPolicy,
     required this.type,
   });
+
   factory OriginRequestPolicySummary.fromJson(Map<String, dynamic> json) {
     return OriginRequestPolicySummary(
       originRequestPolicy: OriginRequestPolicy.fromJson(
@@ -14369,6 +14519,7 @@ class OriginShield {
     required this.enabled,
     this.originShieldRegion,
   });
+
   factory OriginShield.fromJson(Map<String, dynamic> json) {
     return OriginShield(
       enabled: json['Enabled'] as bool,
@@ -14425,6 +14576,7 @@ class OriginSslProtocols {
     required this.items,
     required this.quantity,
   });
+
   factory OriginSslProtocols.fromJson(Map<String, dynamic> json) {
     return OriginSslProtocols(
       items: (json['Items'] as List)
@@ -14489,6 +14641,7 @@ class Origins {
     required this.items,
     required this.quantity,
   });
+
   factory Origins.fromJson(Map<String, dynamic> json) {
     return Origins(
       items: (json['Items'] as List)
@@ -14652,6 +14805,7 @@ class ParametersInCacheKeyAndForwardedToOrigin {
     required this.queryStringsConfig,
     this.enableAcceptEncodingBrotli,
   });
+
   factory ParametersInCacheKeyAndForwardedToOrigin.fromJson(
       Map<String, dynamic> json) {
     return ParametersInCacheKeyAndForwardedToOrigin(
@@ -14742,6 +14896,7 @@ class Paths {
     required this.quantity,
     this.items,
   });
+
   factory Paths.fromJson(Map<String, dynamic> json) {
     return Paths(
       quantity: json['Quantity'] as int,
@@ -14847,6 +15002,7 @@ class PublicKey {
     required this.id,
     required this.publicKeyConfig,
   });
+
   factory PublicKey.fromJson(Map<String, dynamic> json) {
     return PublicKey(
       createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
@@ -14907,6 +15063,7 @@ class PublicKeyConfig {
     required this.name,
     this.comment,
   });
+
   factory PublicKeyConfig.fromJson(Map<String, dynamic> json) {
     return PublicKeyConfig(
       callerReference: json['CallerReference'] as String,
@@ -14986,6 +15143,7 @@ class PublicKeyList {
     this.items,
     this.nextMarker,
   });
+
   factory PublicKeyList.fromJson(Map<String, dynamic> json) {
     return PublicKeyList(
       maxItems: json['MaxItems'] as int,
@@ -15049,6 +15207,7 @@ class PublicKeySummary {
     required this.name,
     this.comment,
   });
+
   factory PublicKeySummary.fromJson(Map<String, dynamic> json) {
     return PublicKeySummary(
       createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
@@ -15092,6 +15251,7 @@ class PublishFunctionResult {
   PublishFunctionResult({
     this.functionSummary,
   });
+
   factory PublishFunctionResult.fromJson(Map<String, dynamic> json) {
     return PublishFunctionResult(
       functionSummary: json['FunctionSummary'] != null
@@ -15122,6 +15282,7 @@ class QueryArgProfile {
     required this.profileId,
     required this.queryArg,
   });
+
   factory QueryArgProfile.fromJson(Map<String, dynamic> json) {
     return QueryArgProfile(
       profileId: json['ProfileId'] as String,
@@ -15178,6 +15339,7 @@ class QueryArgProfileConfig {
     required this.forwardWhenQueryArgProfileIsUnknown,
     this.queryArgProfiles,
   });
+
   factory QueryArgProfileConfig.fromJson(Map<String, dynamic> json) {
     return QueryArgProfileConfig(
       forwardWhenQueryArgProfileIsUnknown:
@@ -15244,6 +15406,7 @@ class QueryArgProfiles {
     required this.quantity,
     this.items,
   });
+
   factory QueryArgProfiles.fromJson(Map<String, dynamic> json) {
     return QueryArgProfiles(
       quantity: json['Quantity'] as int,
@@ -15320,6 +15483,7 @@ class QueryStringCacheKeys {
     required this.quantity,
     this.items,
   });
+
   factory QueryStringCacheKeys.fromJson(Map<String, dynamic> json) {
     return QueryStringCacheKeys(
       quantity: json['Quantity'] as int,
@@ -15380,6 +15544,7 @@ class QueryStringNames {
     required this.quantity,
     this.items,
   });
+
   factory QueryStringNames.fromJson(Map<String, dynamic> json) {
     return QueryStringNames(
       quantity: json['Quantity'] as int,
@@ -15463,6 +15628,7 @@ class RealtimeLogConfig {
     required this.name,
     required this.samplingRate,
   });
+
   factory RealtimeLogConfig.fromJson(Map<String, dynamic> json) {
     return RealtimeLogConfig(
       arn: json['ARN'] as String,
@@ -15540,6 +15706,7 @@ class RealtimeLogConfigs {
     this.items,
     this.nextMarker,
   });
+
   factory RealtimeLogConfigs.fromJson(Map<String, dynamic> json) {
     return RealtimeLogConfigs(
       isTruncated: json['IsTruncated'] as bool,
@@ -15591,6 +15758,7 @@ class RealtimeMetricsSubscriptionConfig {
   RealtimeMetricsSubscriptionConfig({
     required this.realtimeMetricsSubscriptionStatus,
   });
+
   factory RealtimeMetricsSubscriptionConfig.fromJson(
       Map<String, dynamic> json) {
     return RealtimeMetricsSubscriptionConfig(
@@ -15675,6 +15843,7 @@ class Restrictions {
   Restrictions({
     required this.geoRestriction,
   });
+
   factory Restrictions.fromJson(Map<String, dynamic> json) {
     return Restrictions(
       geoRestriction: GeoRestriction.fromJson(
@@ -15743,6 +15912,7 @@ class S3Origin {
     required this.domainName,
     required this.originAccessIdentity,
   });
+
   factory S3Origin.fromJson(Map<String, dynamic> json) {
     return S3Origin(
       domainName: json['DomainName'] as String,
@@ -15820,6 +15990,7 @@ class S3OriginConfig {
   S3OriginConfig({
     required this.originAccessIdentity,
   });
+
   factory S3OriginConfig.fromJson(Map<String, dynamic> json) {
     return S3OriginConfig(
       originAccessIdentity: json['OriginAccessIdentity'] as String,
@@ -15906,6 +16077,7 @@ class Signer {
     this.awsAccountNumber,
     this.keyPairIds,
   });
+
   factory Signer.fromJson(Map<String, dynamic> json) {
     return Signer(
       awsAccountNumber: json['AwsAccountNumber'] as String?,
@@ -15986,6 +16158,7 @@ class StatusCodes {
     required this.items,
     required this.quantity,
   });
+
   factory StatusCodes.fromJson(Map<String, dynamic> json) {
     return StatusCodes(
       items:
@@ -16085,6 +16258,7 @@ class StreamingDistribution {
     required this.streamingDistributionConfig,
     this.lastModifiedTime,
   });
+
   factory StreamingDistribution.fromJson(Map<String, dynamic> json) {
     return StreamingDistribution(
       arn: json['ARN'] as String,
@@ -16190,6 +16364,7 @@ class StreamingDistributionConfig {
     this.logging,
     this.priceClass,
   });
+
   factory StreamingDistributionConfig.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionConfig(
       callerReference: json['CallerReference'] as String,
@@ -16291,6 +16466,7 @@ class StreamingDistributionConfigWithTags {
     required this.streamingDistributionConfig,
     required this.tags,
   });
+
   factory StreamingDistributionConfigWithTags.fromJson(
       Map<String, dynamic> json) {
     return StreamingDistributionConfigWithTags(
@@ -16362,6 +16538,7 @@ class StreamingDistributionList {
     this.items,
     this.nextMarker,
   });
+
   factory StreamingDistributionList.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionList(
       isTruncated: json['IsTruncated'] as bool,
@@ -16483,6 +16660,7 @@ class StreamingDistributionSummary {
     required this.status,
     required this.trustedSigners,
   });
+
   factory StreamingDistributionSummary.fromJson(Map<String, dynamic> json) {
     return StreamingDistributionSummary(
       arn: json['ARN'] as String,
@@ -16575,6 +16753,7 @@ class StreamingLoggingConfig {
     required this.enabled,
     required this.prefix,
   });
+
   factory StreamingLoggingConfig.fromJson(Map<String, dynamic> json) {
     return StreamingLoggingConfig(
       bucket: json['Bucket'] as String,
@@ -16643,6 +16822,7 @@ class Tag {
     required this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -16692,6 +16872,7 @@ class TagKeys {
   TagKeys({
     this.items,
   });
+
   factory TagKeys.fromJson(Map<String, dynamic> json) {
     return TagKeys(
       items: (json['Items'] as List?)
@@ -16734,6 +16915,7 @@ class Tags {
   Tags({
     this.items,
   });
+
   factory Tags.fromJson(Map<String, dynamic> json) {
     return Tags(
       items: (json['Items'] as List?)
@@ -16799,6 +16981,7 @@ class TestFunctionRequest {
     required this.name,
     this.stage,
   });
+
   factory TestFunctionRequest.fromJson(Map<String, dynamic> json) {
     return TestFunctionRequest(
       eventObject: _s.decodeUint8List(json['EventObject']! as String),
@@ -16847,6 +17030,7 @@ class TestFunctionResult {
   TestFunctionResult({
     this.testResult,
   });
+
   factory TestFunctionResult.fromJson(Map<String, dynamic> json) {
     return TestFunctionResult(
       testResult: json['TestResult'] != null
@@ -16896,6 +17080,7 @@ class TestResult {
     this.functionOutput,
     this.functionSummary,
   });
+
   factory TestResult.fromJson(Map<String, dynamic> json) {
     return TestResult(
       computeUtilization: json['ComputeUtilization'] as String?,
@@ -16964,6 +17149,7 @@ class TrustedKeyGroups {
     required this.quantity,
     this.items,
   });
+
   factory TrustedKeyGroups.fromJson(Map<String, dynamic> json) {
     return TrustedKeyGroups(
       enabled: json['Enabled'] as bool,
@@ -17037,6 +17223,7 @@ class TrustedSigners {
     required this.quantity,
     this.items,
   });
+
   factory TrustedSigners.fromJson(Map<String, dynamic> json) {
     return TrustedSigners(
       enabled: json['Enabled'] as bool,
@@ -17101,6 +17288,7 @@ class UpdateCachePolicyResult {
     this.cachePolicy,
     this.eTag,
   });
+
   factory UpdateCachePolicyResult.fromJson(Map<String, dynamic> json) {
     return UpdateCachePolicyResult(
       cachePolicy: json['CachePolicy'] != null
@@ -17132,6 +17320,7 @@ class UpdateCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
   factory UpdateCloudFrontOriginAccessIdentityResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateCloudFrontOriginAccessIdentityResult(
@@ -17167,6 +17356,7 @@ class UpdateDistributionResult {
     this.distribution,
     this.eTag,
   });
+
   factory UpdateDistributionResult.fromJson(Map<String, dynamic> json) {
     return UpdateDistributionResult(
       distribution: json['Distribution'] != null
@@ -17197,6 +17387,7 @@ class UpdateFieldLevelEncryptionConfigResult {
     this.eTag,
     this.fieldLevelEncryption,
   });
+
   factory UpdateFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateFieldLevelEncryptionConfigResult(
@@ -17229,6 +17420,7 @@ class UpdateFieldLevelEncryptionProfileResult {
     this.eTag,
     this.fieldLevelEncryptionProfile,
   });
+
   factory UpdateFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateFieldLevelEncryptionProfileResult(
@@ -17274,6 +17466,7 @@ class UpdateFunctionRequest {
     required this.ifMatch,
     required this.name,
   });
+
   factory UpdateFunctionRequest.fromJson(Map<String, dynamic> json) {
     return UpdateFunctionRequest(
       functionCode: _s.decodeUint8List(json['FunctionCode']! as String),
@@ -17326,6 +17519,7 @@ class UpdateFunctionResult {
     this.eTag,
     this.functionSummary,
   });
+
   factory UpdateFunctionResult.fromJson(Map<String, dynamic> json) {
     return UpdateFunctionResult(
       eTag: json['ETtag'] as String?,
@@ -17356,6 +17550,7 @@ class UpdateKeyGroupResult {
     this.eTag,
     this.keyGroup,
   });
+
   factory UpdateKeyGroupResult.fromJson(Map<String, dynamic> json) {
     return UpdateKeyGroupResult(
       eTag: json['ETag'] as String?,
@@ -17385,6 +17580,7 @@ class UpdateOriginRequestPolicyResult {
     this.eTag,
     this.originRequestPolicy,
   });
+
   factory UpdateOriginRequestPolicyResult.fromJson(Map<String, dynamic> json) {
     return UpdateOriginRequestPolicyResult(
       eTag: json['ETag'] as String?,
@@ -17416,6 +17612,7 @@ class UpdatePublicKeyResult {
     this.eTag,
     this.publicKey,
   });
+
   factory UpdatePublicKeyResult.fromJson(Map<String, dynamic> json) {
     return UpdatePublicKeyResult(
       eTag: json['ETag'] as String?,
@@ -17466,6 +17663,7 @@ class UpdateRealtimeLogConfigRequest {
     this.name,
     this.samplingRate,
   });
+
   factory UpdateRealtimeLogConfigRequest.fromJson(Map<String, dynamic> json) {
     return UpdateRealtimeLogConfigRequest(
       arn: json['ARN'] as String?,
@@ -17533,6 +17731,7 @@ class UpdateRealtimeLogConfigResult {
   UpdateRealtimeLogConfigResult({
     this.realtimeLogConfig,
   });
+
   factory UpdateRealtimeLogConfigResult.fromJson(Map<String, dynamic> json) {
     return UpdateRealtimeLogConfigResult(
       realtimeLogConfig: json['RealtimeLogConfig'] != null
@@ -17571,6 +17770,7 @@ class UpdateStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
   factory UpdateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateStreamingDistributionResult(
@@ -17808,6 +18008,7 @@ class ViewerCertificate {
     this.minimumProtocolVersion,
     this.sSLSupportMethod,
   });
+
   factory ViewerCertificate.fromJson(Map<String, dynamic> json) {
     return ViewerCertificate(
       aCMCertificateArn: json['ACMCertificateArn'] as String?,

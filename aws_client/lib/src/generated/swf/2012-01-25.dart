@@ -4236,6 +4236,7 @@ class ActivityTask {
     required this.workflowExecution,
     this.input,
   });
+
   factory ActivityTask.fromJson(Map<String, dynamic> json) {
     return ActivityTask(
       activityId: json['activityId'] as String,
@@ -4283,6 +4284,7 @@ class ActivityTaskCancelRequestedEventAttributes {
     required this.activityId,
     required this.decisionTaskCompletedEventId,
   });
+
   factory ActivityTaskCancelRequestedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskCancelRequestedEventAttributes(
@@ -4329,6 +4331,7 @@ class ActivityTaskCanceledEventAttributes {
     this.details,
     this.latestCancelRequestedEventId,
   });
+
   factory ActivityTaskCanceledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskCanceledEventAttributes(
@@ -4376,6 +4379,7 @@ class ActivityTaskCompletedEventAttributes {
     required this.startedEventId,
     this.result,
   });
+
   factory ActivityTaskCompletedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskCompletedEventAttributes(
@@ -4422,6 +4426,7 @@ class ActivityTaskFailedEventAttributes {
     this.details,
     this.reason,
   });
+
   factory ActivityTaskFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskFailedEventAttributes(
@@ -4514,6 +4519,7 @@ class ActivityTaskScheduledEventAttributes {
     this.startToCloseTimeout,
     this.taskPriority,
   });
+
   factory ActivityTaskScheduledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskScheduledEventAttributes(
@@ -4579,6 +4585,7 @@ class ActivityTaskStartedEventAttributes {
     required this.scheduledEventId,
     this.identity,
   });
+
   factory ActivityTaskStartedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskStartedEventAttributes(
@@ -4605,6 +4612,7 @@ class ActivityTaskStatus {
   ActivityTaskStatus({
     required this.cancelRequested,
   });
+
   factory ActivityTaskStatus.fromJson(Map<String, dynamic> json) {
     return ActivityTaskStatus(
       cancelRequested: json['cancelRequested'] as bool,
@@ -4645,6 +4653,7 @@ class ActivityTaskTimedOutEventAttributes {
     required this.timeoutType,
     this.details,
   });
+
   factory ActivityTaskTimedOutEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ActivityTaskTimedOutEventAttributes(
@@ -4727,6 +4736,7 @@ class ActivityType {
     required this.name,
     required this.version,
   });
+
   factory ActivityType.fromJson(Map<String, dynamic> json) {
     return ActivityType(
       name: json['name'] as String,
@@ -4816,6 +4826,7 @@ class ActivityTypeConfiguration {
     this.defaultTaskScheduleToStartTimeout,
     this.defaultTaskStartToCloseTimeout,
   });
+
   factory ActivityTypeConfiguration.fromJson(Map<String, dynamic> json) {
     return ActivityTypeConfiguration(
       defaultTaskHeartbeatTimeout:
@@ -4885,6 +4896,7 @@ class ActivityTypeDetail {
     required this.configuration,
     required this.typeInfo,
   });
+
   factory ActivityTypeDetail.fromJson(Map<String, dynamic> json) {
     return ActivityTypeDetail(
       configuration: ActivityTypeConfiguration.fromJson(
@@ -4930,6 +4942,7 @@ class ActivityTypeInfo {
     this.deprecationDate,
     this.description,
   });
+
   factory ActivityTypeInfo.fromJson(Map<String, dynamic> json) {
     return ActivityTypeInfo(
       activityType:
@@ -4977,6 +4990,7 @@ class ActivityTypeInfos {
     required this.typeInfos,
     this.nextPageToken,
   });
+
   factory ActivityTypeInfos.fromJson(Map<String, dynamic> json) {
     return ActivityTypeInfos(
       typeInfos: (json['typeInfos'] as List)
@@ -5032,6 +5046,7 @@ class CancelTimerDecisionAttributes {
   CancelTimerDecisionAttributes({
     required this.timerId,
   });
+
   factory CancelTimerDecisionAttributes.fromJson(Map<String, dynamic> json) {
     return CancelTimerDecisionAttributes(
       timerId: json['timerId'] as String,
@@ -5102,6 +5117,7 @@ class CancelTimerFailedEventAttributes {
     required this.decisionTaskCompletedEventId,
     required this.timerId,
   });
+
   factory CancelTimerFailedEventAttributes.fromJson(Map<String, dynamic> json) {
     return CancelTimerFailedEventAttributes(
       cause: (json['cause'] as String).toCancelTimerFailedCause(),
@@ -5157,6 +5173,7 @@ class CancelWorkflowExecutionDecisionAttributes {
   CancelWorkflowExecutionDecisionAttributes({
     this.details,
   });
+
   factory CancelWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return CancelWorkflowExecutionDecisionAttributes(
@@ -5227,6 +5244,7 @@ class CancelWorkflowExecutionFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory CancelWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return CancelWorkflowExecutionFailedEventAttributes(
@@ -5309,6 +5327,7 @@ class ChildWorkflowExecutionCanceledEventAttributes {
     required this.workflowType,
     this.details,
   });
+
   factory ChildWorkflowExecutionCanceledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionCanceledEventAttributes(
@@ -5370,6 +5389,7 @@ class ChildWorkflowExecutionCompletedEventAttributes {
     required this.workflowType,
     this.result,
   });
+
   factory ChildWorkflowExecutionCompletedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionCompletedEventAttributes(
@@ -5434,6 +5454,7 @@ class ChildWorkflowExecutionFailedEventAttributes {
     this.details,
     this.reason,
   });
+
   factory ChildWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionFailedEventAttributes(
@@ -5487,6 +5508,7 @@ class ChildWorkflowExecutionStartedEventAttributes {
     required this.workflowExecution,
     required this.workflowType,
   });
+
   factory ChildWorkflowExecutionStartedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionStartedEventAttributes(
@@ -5538,6 +5560,7 @@ class ChildWorkflowExecutionTerminatedEventAttributes {
     required this.workflowExecution,
     required this.workflowType,
   });
+
   factory ChildWorkflowExecutionTerminatedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionTerminatedEventAttributes(
@@ -5597,6 +5620,7 @@ class ChildWorkflowExecutionTimedOutEventAttributes {
     required this.workflowExecution,
     required this.workflowType,
   });
+
   factory ChildWorkflowExecutionTimedOutEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ChildWorkflowExecutionTimedOutEventAttributes(
@@ -5685,6 +5709,7 @@ class CloseStatusFilter {
   CloseStatusFilter({
     required this.status,
   });
+
   factory CloseStatusFilter.fromJson(Map<String, dynamic> json) {
     return CloseStatusFilter(
       status: (json['status'] as String).toCloseStatus(),
@@ -5735,6 +5760,7 @@ class CompleteWorkflowExecutionDecisionAttributes {
   CompleteWorkflowExecutionDecisionAttributes({
     this.result,
   });
+
   factory CompleteWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return CompleteWorkflowExecutionDecisionAttributes(
@@ -5806,6 +5832,7 @@ class CompleteWorkflowExecutionFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory CompleteWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return CompleteWorkflowExecutionFailedEventAttributes(
@@ -5970,6 +5997,7 @@ class ContinueAsNewWorkflowExecutionDecisionAttributes {
     this.taskStartToCloseTimeout,
     this.workflowTypeVersion,
   });
+
   factory ContinueAsNewWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return ContinueAsNewWorkflowExecutionDecisionAttributes(
@@ -6119,6 +6147,7 @@ class ContinueAsNewWorkflowExecutionFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory ContinueAsNewWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ContinueAsNewWorkflowExecutionFailedEventAttributes(
@@ -6449,6 +6478,7 @@ class Decision {
     this.startChildWorkflowExecutionDecisionAttributes,
     this.startTimerDecisionAttributes,
   });
+
   factory Decision.fromJson(Map<String, dynamic> json) {
     return Decision(
       decisionType: (json['decisionType'] as String).toDecisionType(),
@@ -6643,6 +6673,7 @@ class DecisionTask {
     this.nextPageToken,
     this.previousStartedEventId,
   });
+
   factory DecisionTask.fromJson(Map<String, dynamic> json) {
     return DecisionTask(
       events: (json['events'] as List)
@@ -6702,6 +6733,7 @@ class DecisionTaskCompletedEventAttributes {
     required this.startedEventId,
     this.executionContext,
   });
+
   factory DecisionTaskCompletedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return DecisionTaskCompletedEventAttributes(
@@ -6751,6 +6783,7 @@ class DecisionTaskScheduledEventAttributes {
     this.startToCloseTimeout,
     this.taskPriority,
   });
+
   factory DecisionTaskScheduledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return DecisionTaskScheduledEventAttributes(
@@ -6789,6 +6822,7 @@ class DecisionTaskStartedEventAttributes {
     required this.scheduledEventId,
     this.identity,
   });
+
   factory DecisionTaskStartedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return DecisionTaskStartedEventAttributes(
@@ -6829,6 +6863,7 @@ class DecisionTaskTimedOutEventAttributes {
     required this.startedEventId,
     required this.timeoutType,
   });
+
   factory DecisionTaskTimedOutEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return DecisionTaskTimedOutEventAttributes(
@@ -6964,6 +6999,7 @@ class DomainConfiguration {
   DomainConfiguration({
     required this.workflowExecutionRetentionPeriodInDays,
   });
+
   factory DomainConfiguration.fromJson(Map<String, dynamic> json) {
     return DomainConfiguration(
       workflowExecutionRetentionPeriodInDays:
@@ -6995,6 +7031,7 @@ class DomainDetail {
     required this.configuration,
     required this.domainInfo,
   });
+
   factory DomainDetail.fromJson(Map<String, dynamic> json) {
     return DomainDetail(
       configuration: DomainConfiguration.fromJson(
@@ -7047,6 +7084,7 @@ class DomainInfo {
     this.arn,
     this.description,
   });
+
   factory DomainInfo.fromJson(Map<String, dynamic> json) {
     return DomainInfo(
       name: json['name'] as String,
@@ -7088,6 +7126,7 @@ class DomainInfos {
     required this.domainInfos,
     this.nextPageToken,
   });
+
   factory DomainInfos.fromJson(Map<String, dynamic> json) {
     return DomainInfos(
       domainInfos: (json['domainInfos'] as List)
@@ -7440,6 +7479,7 @@ class ExecutionTimeFilter {
     required this.oldestDate,
     this.latestDate,
   });
+
   factory ExecutionTimeFilter.fromJson(Map<String, dynamic> json) {
     return ExecutionTimeFilter(
       oldestDate: nonNullableTimeStampFromJson(json['oldestDate'] as Object),
@@ -7475,6 +7515,7 @@ class ExternalWorkflowExecutionCancelRequestedEventAttributes {
     required this.initiatedEventId,
     required this.workflowExecution,
   });
+
   factory ExternalWorkflowExecutionCancelRequestedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ExternalWorkflowExecutionCancelRequestedEventAttributes(
@@ -7510,6 +7551,7 @@ class ExternalWorkflowExecutionSignaledEventAttributes {
     required this.initiatedEventId,
     required this.workflowExecution,
   });
+
   factory ExternalWorkflowExecutionSignaledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ExternalWorkflowExecutionSignaledEventAttributes(
@@ -7568,6 +7610,7 @@ class FailWorkflowExecutionDecisionAttributes {
     this.details,
     this.reason,
   });
+
   factory FailWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return FailWorkflowExecutionDecisionAttributes(
@@ -7640,6 +7683,7 @@ class FailWorkflowExecutionFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory FailWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return FailWorkflowExecutionFailedEventAttributes(
@@ -7678,6 +7722,7 @@ class History {
     required this.events,
     this.nextPageToken,
   });
+
   factory History.fromJson(Map<String, dynamic> json) {
     return History(
       events: (json['events'] as List)
@@ -8284,6 +8329,7 @@ class HistoryEvent {
     this.workflowExecutionTerminatedEventAttributes,
     this.workflowExecutionTimedOutEventAttributes,
   });
+
   factory HistoryEvent.fromJson(Map<String, dynamic> json) {
     return HistoryEvent(
       eventId: json['eventId'] as int,
@@ -8907,6 +8953,7 @@ class LambdaFunctionCompletedEventAttributes {
     required this.startedEventId,
     this.result,
   });
+
   factory LambdaFunctionCompletedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionCompletedEventAttributes(
@@ -8953,6 +9000,7 @@ class LambdaFunctionFailedEventAttributes {
     this.details,
     this.reason,
   });
+
   factory LambdaFunctionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionFailedEventAttributes(
@@ -9010,6 +9058,7 @@ class LambdaFunctionScheduledEventAttributes {
     this.input,
     this.startToCloseTimeout,
   });
+
   factory LambdaFunctionScheduledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionScheduledEventAttributes(
@@ -9052,6 +9101,7 @@ class LambdaFunctionStartedEventAttributes {
   LambdaFunctionStartedEventAttributes({
     required this.scheduledEventId,
   });
+
   factory LambdaFunctionStartedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionStartedEventAttributes(
@@ -9087,6 +9137,7 @@ class LambdaFunctionTimedOutEventAttributes {
     required this.startedEventId,
     this.timeoutType,
   });
+
   factory LambdaFunctionTimedOutEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return LambdaFunctionTimedOutEventAttributes(
@@ -9139,6 +9190,7 @@ class ListTagsForResourceOutput {
   ListTagsForResourceOutput({
     this.tags,
   });
+
   factory ListTagsForResourceOutput.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceOutput(
       tags: (json['tags'] as List?)
@@ -9175,6 +9227,7 @@ class MarkerRecordedEventAttributes {
     required this.markerName,
     this.details,
   });
+
   factory MarkerRecordedEventAttributes.fromJson(Map<String, dynamic> json) {
     return MarkerRecordedEventAttributes(
       decisionTaskCompletedEventId: json['decisionTaskCompletedEventId'] as int,
@@ -9208,6 +9261,7 @@ class PendingTaskCount {
     required this.count,
     this.truncated,
   });
+
   factory PendingTaskCount.fromJson(Map<String, dynamic> json) {
     return PendingTaskCount(
       count: json['count'] as int,
@@ -9264,6 +9318,7 @@ class RecordMarkerDecisionAttributes {
     required this.markerName,
     this.details,
   });
+
   factory RecordMarkerDecisionAttributes.fromJson(Map<String, dynamic> json) {
     return RecordMarkerDecisionAttributes(
       markerName: json['markerName'] as String,
@@ -9332,6 +9387,7 @@ class RecordMarkerFailedEventAttributes {
     required this.decisionTaskCompletedEventId,
     required this.markerName,
   });
+
   factory RecordMarkerFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return RecordMarkerFailedEventAttributes(
@@ -9416,6 +9472,7 @@ class RequestCancelActivityTaskDecisionAttributes {
   RequestCancelActivityTaskDecisionAttributes({
     required this.activityId,
   });
+
   factory RequestCancelActivityTaskDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return RequestCancelActivityTaskDecisionAttributes(
@@ -9492,6 +9549,7 @@ class RequestCancelActivityTaskFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory RequestCancelActivityTaskFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return RequestCancelActivityTaskFailedEventAttributes(
@@ -9558,6 +9616,7 @@ class RequestCancelExternalWorkflowExecutionDecisionAttributes {
     this.control,
     this.runId,
   });
+
   factory RequestCancelExternalWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return RequestCancelExternalWorkflowExecutionDecisionAttributes(
@@ -9668,6 +9727,7 @@ class RequestCancelExternalWorkflowExecutionFailedEventAttributes {
     this.control,
     this.runId,
   });
+
   factory RequestCancelExternalWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return RequestCancelExternalWorkflowExecutionFailedEventAttributes(
@@ -9726,6 +9786,7 @@ class RequestCancelExternalWorkflowExecutionInitiatedEventAttributes {
     this.control,
     this.runId,
   });
+
   factory RequestCancelExternalWorkflowExecutionInitiatedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return RequestCancelExternalWorkflowExecutionInitiatedEventAttributes(
@@ -9766,6 +9827,7 @@ class ResourceTag {
     required this.key,
     this.value,
   });
+
   factory ResourceTag.fromJson(Map<String, dynamic> json) {
     return ResourceTag(
       key: json['key'] as String,
@@ -9793,6 +9855,7 @@ class Run {
   Run({
     this.runId,
   });
+
   factory Run.fromJson(Map<String, dynamic> json) {
     return Run(
       runId: json['runId'] as String?,
@@ -9963,6 +10026,7 @@ class ScheduleActivityTaskDecisionAttributes {
     this.taskList,
     this.taskPriority,
   });
+
   factory ScheduleActivityTaskDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return ScheduleActivityTaskDecisionAttributes(
@@ -10124,6 +10188,7 @@ class ScheduleActivityTaskFailedEventAttributes {
     required this.cause,
     required this.decisionTaskCompletedEventId,
   });
+
   factory ScheduleActivityTaskFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ScheduleActivityTaskFailedEventAttributes(
@@ -10179,6 +10244,7 @@ class ScheduleLambdaFunctionDecisionAttributes {
     this.input,
     this.startToCloseTimeout,
   });
+
   factory ScheduleLambdaFunctionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return ScheduleLambdaFunctionDecisionAttributes(
@@ -10283,6 +10349,7 @@ class ScheduleLambdaFunctionFailedEventAttributes {
     required this.id,
     required this.name,
   });
+
   factory ScheduleLambdaFunctionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return ScheduleLambdaFunctionFailedEventAttributes(
@@ -10362,6 +10429,7 @@ class SignalExternalWorkflowExecutionDecisionAttributes {
     this.input,
     this.runId,
   });
+
   factory SignalExternalWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return SignalExternalWorkflowExecutionDecisionAttributes(
@@ -10476,6 +10544,7 @@ class SignalExternalWorkflowExecutionFailedEventAttributes {
     this.control,
     this.runId,
   });
+
   factory SignalExternalWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return SignalExternalWorkflowExecutionFailedEventAttributes(
@@ -10542,6 +10611,7 @@ class SignalExternalWorkflowExecutionInitiatedEventAttributes {
     this.input,
     this.runId,
   });
+
   factory SignalExternalWorkflowExecutionInitiatedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return SignalExternalWorkflowExecutionInitiatedEventAttributes(
@@ -10749,6 +10819,7 @@ class StartChildWorkflowExecutionDecisionAttributes {
     this.taskPriority,
     this.taskStartToCloseTimeout,
   });
+
   factory StartChildWorkflowExecutionDecisionAttributes.fromJson(
       Map<String, dynamic> json) {
     return StartChildWorkflowExecutionDecisionAttributes(
@@ -10936,6 +11007,7 @@ class StartChildWorkflowExecutionFailedEventAttributes {
     required this.workflowType,
     this.control,
   });
+
   factory StartChildWorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return StartChildWorkflowExecutionFailedEventAttributes(
@@ -11063,6 +11135,7 @@ class StartChildWorkflowExecutionInitiatedEventAttributes {
     this.taskPriority,
     this.taskStartToCloseTimeout,
   });
+
   factory StartChildWorkflowExecutionInitiatedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return StartChildWorkflowExecutionInitiatedEventAttributes(
@@ -11169,6 +11242,7 @@ class StartLambdaFunctionFailedEventAttributes {
     this.message,
     this.scheduledEventId,
   });
+
   factory StartLambdaFunctionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return StartLambdaFunctionFailedEventAttributes(
@@ -11243,6 +11317,7 @@ class StartTimerDecisionAttributes {
     required this.timerId,
     this.control,
   });
+
   factory StartTimerDecisionAttributes.fromJson(Map<String, dynamic> json) {
     return StartTimerDecisionAttributes(
       startToFireTimeout: json['startToFireTimeout'] as String,
@@ -11329,6 +11404,7 @@ class StartTimerFailedEventAttributes {
     required this.decisionTaskCompletedEventId,
     required this.timerId,
   });
+
   factory StartTimerFailedEventAttributes.fromJson(Map<String, dynamic> json) {
     return StartTimerFailedEventAttributes(
       cause: (json['cause'] as String).toStartTimerFailedCause(),
@@ -11361,6 +11437,7 @@ class TagFilter {
   TagFilter({
     required this.tag,
   });
+
   factory TagFilter.fromJson(Map<String, dynamic> json) {
     return TagFilter(
       tag: json['tag'] as String,
@@ -11383,6 +11460,7 @@ class TaskList {
   TaskList({
     required this.name,
   });
+
   factory TaskList.fromJson(Map<String, dynamic> json) {
     return TaskList(
       name: json['name'] as String,
@@ -11418,6 +11496,7 @@ class TimerCanceledEventAttributes {
     required this.startedEventId,
     required this.timerId,
   });
+
   factory TimerCanceledEventAttributes.fromJson(Map<String, dynamic> json) {
     return TimerCanceledEventAttributes(
       decisionTaskCompletedEventId: json['decisionTaskCompletedEventId'] as int,
@@ -11452,6 +11531,7 @@ class TimerFiredEventAttributes {
     required this.startedEventId,
     required this.timerId,
   });
+
   factory TimerFiredEventAttributes.fromJson(Map<String, dynamic> json) {
     return TimerFiredEventAttributes(
       startedEventId: json['startedEventId'] as int,
@@ -11496,6 +11576,7 @@ class TimerStartedEventAttributes {
     required this.timerId,
     this.control,
   });
+
   factory TimerStartedEventAttributes.fromJson(Map<String, dynamic> json) {
     return TimerStartedEventAttributes(
       decisionTaskCompletedEventId: json['decisionTaskCompletedEventId'] as int,
@@ -11531,6 +11612,7 @@ class WorkflowExecution {
     required this.runId,
     required this.workflowId,
   });
+
   factory WorkflowExecution.fromJson(Map<String, dynamic> json) {
     return WorkflowExecution(
       runId: json['runId'] as String,
@@ -11599,6 +11681,7 @@ class WorkflowExecutionCancelRequestedEventAttributes {
     this.externalInitiatedEventId,
     this.externalWorkflowExecution,
   });
+
   factory WorkflowExecutionCancelRequestedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionCancelRequestedEventAttributes(
@@ -11642,6 +11725,7 @@ class WorkflowExecutionCanceledEventAttributes {
     required this.decisionTaskCompletedEventId,
     this.details,
   });
+
   factory WorkflowExecutionCanceledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionCanceledEventAttributes(
@@ -11676,6 +11760,7 @@ class WorkflowExecutionCompletedEventAttributes {
     required this.decisionTaskCompletedEventId,
     this.result,
   });
+
   factory WorkflowExecutionCompletedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionCompletedEventAttributes(
@@ -11759,6 +11844,7 @@ class WorkflowExecutionConfiguration {
     this.lambdaRole,
     this.taskPriority,
   });
+
   factory WorkflowExecutionConfiguration.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionConfiguration(
       childPolicy: (json['childPolicy'] as String).toChildPolicy(),
@@ -11870,6 +11956,7 @@ class WorkflowExecutionContinuedAsNewEventAttributes {
     this.taskPriority,
     this.taskStartToCloseTimeout,
   });
+
   factory WorkflowExecutionContinuedAsNewEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionContinuedAsNewEventAttributes(
@@ -11936,6 +12023,7 @@ class WorkflowExecutionCount {
     required this.count,
     this.truncated,
   });
+
   factory WorkflowExecutionCount.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionCount(
       count: json['count'] as int,
@@ -11984,6 +12072,7 @@ class WorkflowExecutionDetail {
     this.latestActivityTaskTimestamp,
     this.latestExecutionContext,
   });
+
   factory WorkflowExecutionDetail.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionDetail(
       executionConfiguration: WorkflowExecutionConfiguration.fromJson(
@@ -12037,6 +12126,7 @@ class WorkflowExecutionFailedEventAttributes {
     this.details,
     this.reason,
   });
+
   factory WorkflowExecutionFailedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionFailedEventAttributes(
@@ -12067,6 +12157,7 @@ class WorkflowExecutionFilter {
   WorkflowExecutionFilter({
     required this.workflowId,
   });
+
   factory WorkflowExecutionFilter.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionFilter(
       workflowId: json['workflowId'] as String,
@@ -12151,6 +12242,7 @@ class WorkflowExecutionInfo {
     this.parent,
     this.tagList,
   });
+
   factory WorkflowExecutionInfo.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionInfo(
       execution:
@@ -12216,6 +12308,7 @@ class WorkflowExecutionInfos {
     required this.executionInfos,
     this.nextPageToken,
   });
+
   factory WorkflowExecutionInfos.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionInfos(
       executionInfos: (json['executionInfos'] as List)
@@ -12263,6 +12356,7 @@ class WorkflowExecutionOpenCounts {
     required this.openTimers,
     this.openLambdaFunctions,
   });
+
   factory WorkflowExecutionOpenCounts.fromJson(Map<String, dynamic> json) {
     return WorkflowExecutionOpenCounts(
       openActivityTasks: json['openActivityTasks'] as int,
@@ -12319,6 +12413,7 @@ class WorkflowExecutionSignaledEventAttributes {
     this.externalWorkflowExecution,
     this.input,
   });
+
   factory WorkflowExecutionSignaledEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionSignaledEventAttributes(
@@ -12437,6 +12532,7 @@ class WorkflowExecutionStartedEventAttributes {
     this.taskPriority,
     this.taskStartToCloseTimeout,
   });
+
   factory WorkflowExecutionStartedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionStartedEventAttributes(
@@ -12574,6 +12670,7 @@ class WorkflowExecutionTerminatedEventAttributes {
     this.details,
     this.reason,
   });
+
   factory WorkflowExecutionTerminatedEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionTerminatedEventAttributes(
@@ -12629,6 +12726,7 @@ class WorkflowExecutionTimedOutEventAttributes {
     required this.childPolicy,
     required this.timeoutType,
   });
+
   factory WorkflowExecutionTimedOutEventAttributes.fromJson(
       Map<String, dynamic> json) {
     return WorkflowExecutionTimedOutEventAttributes(
@@ -12691,6 +12789,7 @@ class WorkflowType {
     required this.name,
     required this.version,
   });
+
   factory WorkflowType.fromJson(Map<String, dynamic> json) {
     return WorkflowType(
       name: json['name'] as String,
@@ -12799,6 +12898,7 @@ class WorkflowTypeConfiguration {
     this.defaultTaskPriority,
     this.defaultTaskStartToCloseTimeout,
   });
+
   factory WorkflowTypeConfiguration.fromJson(Map<String, dynamic> json) {
     return WorkflowTypeConfiguration(
       defaultChildPolicy:
@@ -12868,6 +12968,7 @@ class WorkflowTypeDetail {
     required this.configuration,
     required this.typeInfo,
   });
+
   factory WorkflowTypeDetail.fromJson(Map<String, dynamic> json) {
     return WorkflowTypeDetail(
       configuration: WorkflowTypeConfiguration.fromJson(
@@ -12900,6 +13001,7 @@ class WorkflowTypeFilter {
     required this.name,
     this.version,
   });
+
   factory WorkflowTypeFilter.fromJson(Map<String, dynamic> json) {
     return WorkflowTypeFilter(
       name: json['name'] as String,
@@ -12942,6 +13044,7 @@ class WorkflowTypeInfo {
     this.deprecationDate,
     this.description,
   });
+
   factory WorkflowTypeInfo.fromJson(Map<String, dynamic> json) {
     return WorkflowTypeInfo(
       creationDate:
@@ -12989,6 +13092,7 @@ class WorkflowTypeInfos {
     required this.typeInfos,
     this.nextPageToken,
   });
+
   factory WorkflowTypeInfos.fromJson(Map<String, dynamic> json) {
     return WorkflowTypeInfos(
       typeInfos: (json['typeInfos'] as List)

@@ -1032,6 +1032,7 @@ class AssociateRepositoryResponse {
     this.repositoryAssociation,
     this.tags,
   });
+
   factory AssociateRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return AssociateRepositoryResponse(
       repositoryAssociation: json['RepositoryAssociation'] != null
@@ -1069,6 +1070,7 @@ class BranchDiffSourceCodeType {
     required this.destinationBranchName,
     required this.sourceBranchName,
   });
+
   factory BranchDiffSourceCodeType.fromJson(Map<String, dynamic> json) {
     return BranchDiffSourceCodeType(
       destinationBranchName: json['DestinationBranchName'] as String,
@@ -1115,6 +1117,7 @@ class CodeArtifacts {
     required this.sourceCodeArtifactsObjectKey,
     this.buildArtifactsObjectKey,
   });
+
   factory CodeArtifacts.fromJson(Map<String, dynamic> json) {
     return CodeArtifacts(
       sourceCodeArtifactsObjectKey:
@@ -1146,6 +1149,7 @@ class CodeCommitRepository {
   CodeCommitRepository({
     required this.name,
   });
+
   factory CodeCommitRepository.fromJson(Map<String, dynamic> json) {
     return CodeCommitRepository(
       name: json['Name'] as String,
@@ -1256,6 +1260,7 @@ class CodeReview {
     this.stateReason,
     this.type,
   });
+
   factory CodeReview.fromJson(Map<String, dynamic> json) {
     return CodeReview(
       analysisTypes: (json['AnalysisTypes'] as List?)
@@ -1398,6 +1403,7 @@ class CodeReviewSummary {
     this.state,
     this.type,
   });
+
   factory CodeReviewSummary.fromJson(Map<String, dynamic> json) {
     return CodeReviewSummary(
       codeReviewArn: json['CodeReviewArn'] as String?,
@@ -1485,6 +1491,7 @@ class CodeReviewType {
     required this.repositoryAnalysis,
     this.analysisTypes,
   });
+
   factory CodeReviewType.fromJson(Map<String, dynamic> json) {
     return CodeReviewType(
       repositoryAnalysis: RepositoryAnalysis.fromJson(
@@ -1530,6 +1537,7 @@ class CommitDiffSourceCodeType {
     this.mergeBaseCommit,
     this.sourceCommit,
   });
+
   factory CommitDiffSourceCodeType.fromJson(Map<String, dynamic> json) {
     return CommitDiffSourceCodeType(
       destinationCommit: json['DestinationCommit'] as String?,
@@ -1556,6 +1564,7 @@ class CreateCodeReviewResponse {
   CreateCodeReviewResponse({
     this.codeReview,
   });
+
   factory CreateCodeReviewResponse.fromJson(Map<String, dynamic> json) {
     return CreateCodeReviewResponse(
       codeReview: json['CodeReview'] != null
@@ -1579,6 +1588,7 @@ class DescribeCodeReviewResponse {
   DescribeCodeReviewResponse({
     this.codeReview,
   });
+
   factory DescribeCodeReviewResponse.fromJson(Map<String, dynamic> json) {
     return DescribeCodeReviewResponse(
       codeReview: json['CodeReview'] != null
@@ -1602,6 +1612,7 @@ class DescribeRecommendationFeedbackResponse {
   DescribeRecommendationFeedbackResponse({
     this.recommendationFeedback,
   });
+
   factory DescribeRecommendationFeedbackResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRecommendationFeedbackResponse(
@@ -1647,6 +1658,7 @@ class DescribeRepositoryAssociationResponse {
     this.repositoryAssociation,
     this.tags,
   });
+
   factory DescribeRepositoryAssociationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeRepositoryAssociationResponse(
@@ -1696,6 +1708,7 @@ class DisassociateRepositoryResponse {
     this.repositoryAssociation,
     this.tags,
   });
+
   factory DisassociateRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return DisassociateRepositoryResponse(
       repositoryAssociation: json['RepositoryAssociation'] != null
@@ -1760,6 +1773,7 @@ class EventInfo {
     this.name,
     this.state,
   });
+
   factory EventInfo.fromJson(Map<String, dynamic> json) {
     return EventInfo(
       name: json['Name'] as String?,
@@ -1840,6 +1854,7 @@ class KMSKeyDetails {
     this.encryptionOption,
     this.kMSKeyId,
   });
+
   factory KMSKeyDetails.fromJson(Map<String, dynamic> json) {
     return KMSKeyDetails(
       encryptionOption:
@@ -1870,6 +1885,7 @@ class ListCodeReviewsResponse {
     this.codeReviewSummaries,
     this.nextToken,
   });
+
   factory ListCodeReviewsResponse.fromJson(Map<String, dynamic> json) {
     return ListCodeReviewsResponse(
       codeReviewSummaries: (json['CodeReviewSummaries'] as List?)
@@ -1905,6 +1921,7 @@ class ListRecommendationFeedbackResponse {
     this.nextToken,
     this.recommendationFeedbackSummaries,
   });
+
   factory ListRecommendationFeedbackResponse.fromJson(
       Map<String, dynamic> json) {
     return ListRecommendationFeedbackResponse(
@@ -1941,6 +1958,7 @@ class ListRecommendationsResponse {
     this.nextToken,
     this.recommendationSummaries,
   });
+
   factory ListRecommendationsResponse.fromJson(Map<String, dynamic> json) {
     return ListRecommendationsResponse(
       nextToken: json['NextToken'] as String?,
@@ -1977,6 +1995,7 @@ class ListRepositoryAssociationsResponse {
     this.nextToken,
     this.repositoryAssociationSummaries,
   });
+
   factory ListRepositoryAssociationsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListRepositoryAssociationsResponse(
@@ -2023,6 +2042,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2060,6 +2080,7 @@ class Metrics {
     this.findingsCount,
     this.meteredLinesOfCodeCount,
   });
+
   factory Metrics.fromJson(Map<String, dynamic> json) {
     return Metrics(
       findingsCount: json['FindingsCount'] as int?,
@@ -2100,6 +2121,7 @@ class MetricsSummary {
     this.findingsCount,
     this.meteredLinesOfCodeCount,
   });
+
   factory MetricsSummary.fromJson(Map<String, dynamic> json) {
     return MetricsSummary(
       findingsCount: json['FindingsCount'] as int?,
@@ -2163,6 +2185,7 @@ extension on String {
 
 class PutRecommendationFeedbackResponse {
   PutRecommendationFeedbackResponse();
+
   factory PutRecommendationFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return PutRecommendationFeedbackResponse();
   }
@@ -2306,6 +2329,7 @@ class RecommendationFeedback {
     this.recommendationId,
     this.userId,
   });
+
   factory RecommendationFeedback.fromJson(Map<String, dynamic> json) {
     return RecommendationFeedback(
       codeReviewArn: json['CodeReviewArn'] as String?,
@@ -2364,6 +2388,7 @@ class RecommendationFeedbackSummary {
     this.recommendationId,
     this.userId,
   });
+
   factory RecommendationFeedbackSummary.fromJson(Map<String, dynamic> json) {
     return RecommendationFeedbackSummary(
       reactions: (json['Reactions'] as List?)
@@ -2421,6 +2446,7 @@ class RecommendationSummary {
     this.recommendationId,
     this.startLine,
   });
+
   factory RecommendationSummary.fromJson(Map<String, dynamic> json) {
     return RecommendationSummary(
       description: json['Description'] as String?,
@@ -2473,6 +2499,7 @@ class Repository {
     this.gitHubEnterpriseServer,
     this.s3Bucket,
   });
+
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
       bitbucket: json['Bitbucket'] != null
@@ -2525,6 +2552,7 @@ class RepositoryAnalysis {
     this.repositoryHead,
     this.sourceCodeType,
   });
+
   factory RepositoryAnalysis.fromJson(Map<String, dynamic> json) {
     return RepositoryAnalysis(
       repositoryHead: json['RepositoryHead'] != null
@@ -2669,6 +2697,7 @@ class RepositoryAssociation {
     this.state,
     this.stateReason,
   });
+
   factory RepositoryAssociation.fromJson(Map<String, dynamic> json) {
     return RepositoryAssociation(
       associationArn: json['AssociationArn'] as String?,
@@ -2867,6 +2896,7 @@ class RepositoryAssociationSummary {
     this.providerType,
     this.state,
   });
+
   factory RepositoryAssociationSummary.fromJson(Map<String, dynamic> json) {
     return RepositoryAssociationSummary(
       associationArn: json['AssociationArn'] as String?,
@@ -2915,6 +2945,7 @@ class RepositoryHeadSourceCodeType {
   RepositoryHeadSourceCodeType({
     required this.branchName,
   });
+
   factory RepositoryHeadSourceCodeType.fromJson(Map<String, dynamic> json) {
     return RepositoryHeadSourceCodeType(
       branchName: json['BranchName'] as String,
@@ -2958,6 +2989,7 @@ class RequestMetadata {
     this.requester,
     this.vendorName,
   });
+
   factory RequestMetadata.fromJson(Map<String, dynamic> json) {
     return RequestMetadata(
       eventInfo: json['EventInfo'] != null
@@ -3001,6 +3033,7 @@ class S3BucketRepository {
     required this.name,
     this.details,
   });
+
   factory S3BucketRepository.fromJson(Map<String, dynamic> json) {
     return S3BucketRepository(
       name: json['Name'] as String,
@@ -3034,6 +3067,7 @@ class S3Repository {
     required this.bucketName,
     required this.name,
   });
+
   factory S3Repository.fromJson(Map<String, dynamic> json) {
     return S3Repository(
       bucketName: json['BucketName'] as String,
@@ -3068,6 +3102,7 @@ class S3RepositoryDetails {
     this.bucketName,
     this.codeArtifacts,
   });
+
   factory S3RepositoryDetails.fromJson(Map<String, dynamic> json) {
     return S3RepositoryDetails(
       bucketName: json['BucketName'] as String?,
@@ -3126,6 +3161,7 @@ class SourceCodeType {
     this.requestMetadata,
     this.s3BucketRepository,
   });
+
   factory SourceCodeType.fromJson(Map<String, dynamic> json) {
     return SourceCodeType(
       branchDiff: json['BranchDiff'] != null
@@ -3169,6 +3205,7 @@ class SourceCodeType {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3203,6 +3240,7 @@ class ThirdPartySourceRepository {
     required this.name,
     required this.owner,
   });
+
   factory ThirdPartySourceRepository.fromJson(Map<String, dynamic> json) {
     return ThirdPartySourceRepository(
       connectionArn: json['ConnectionArn'] as String,
@@ -3253,6 +3291,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }

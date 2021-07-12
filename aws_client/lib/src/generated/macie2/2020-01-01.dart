@@ -2138,6 +2138,7 @@ class Macie2 {
 
 class AcceptInvitationResponse {
   AcceptInvitationResponse();
+
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
   }
@@ -2162,6 +2163,7 @@ class AccessControlList {
     this.allowsPublicReadAccess,
     this.allowsPublicWriteAccess,
   });
+
   factory AccessControlList.fromJson(Map<String, dynamic> json) {
     return AccessControlList(
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
@@ -2194,6 +2196,7 @@ class AccountDetail {
     required this.accountId,
     required this.email,
   });
+
   factory AccountDetail.fromJson(Map<String, dynamic> json) {
     return AccountDetail(
       accountId: json['accountId'] as String,
@@ -2221,6 +2224,7 @@ class AccountLevelPermissions {
   AccountLevelPermissions({
     this.blockPublicAccess,
   });
+
   factory AccountLevelPermissions.fromJson(Map<String, dynamic> json) {
     return AccountLevelPermissions(
       blockPublicAccess: json['blockPublicAccess'] != null
@@ -2252,6 +2256,7 @@ class AdminAccount {
     this.accountId,
     this.status,
   });
+
   factory AdminAccount.fromJson(Map<String, dynamic> json) {
     return AdminAccount(
       accountId: json['accountId'] as String?,
@@ -2358,6 +2363,7 @@ class ApiCallDetails {
     this.firstSeen,
     this.lastSeen,
   });
+
   factory ApiCallDetails.fromJson(Map<String, dynamic> json) {
     return ApiCallDetails(
       api: json['api'] as String?,
@@ -2411,6 +2417,7 @@ class AssumedRole {
     this.principalId,
     this.sessionContext,
   });
+
   factory AssumedRole.fromJson(Map<String, dynamic> json) {
     return AssumedRole(
       accessKeyId: json['accessKeyId'] as String?,
@@ -2455,6 +2462,7 @@ class AwsAccount {
     this.accountId,
     this.principalId,
   });
+
   factory AwsAccount.fromJson(Map<String, dynamic> json) {
     return AwsAccount(
       accountId: json['accountId'] as String?,
@@ -2481,6 +2489,7 @@ class AwsService {
   AwsService({
     this.invokedBy,
   });
+
   factory AwsService.fromJson(Map<String, dynamic> json) {
     return AwsService(
       invokedBy: json['invokedBy'] as String?,
@@ -2526,6 +2535,7 @@ class BatchGetCustomDataIdentifierSummary {
     this.id,
     this.name,
   });
+
   factory BatchGetCustomDataIdentifierSummary.fromJson(
       Map<String, dynamic> json) {
     return BatchGetCustomDataIdentifierSummary(
@@ -2569,6 +2579,7 @@ class BatchGetCustomDataIdentifiersResponse {
     this.customDataIdentifiers,
     this.notFoundIdentifierIds,
   });
+
   factory BatchGetCustomDataIdentifiersResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchGetCustomDataIdentifiersResponse(
@@ -2623,6 +2634,7 @@ class BlockPublicAccess {
     this.ignorePublicAcls,
     this.restrictPublicBuckets,
   });
+
   factory BlockPublicAccess.fromJson(Map<String, dynamic> json) {
     return BlockPublicAccess(
       blockPublicAcls: json['blockPublicAcls'] as bool?,
@@ -2673,6 +2685,7 @@ class BucketCountByEffectivePermission {
     this.publiclyWritable,
     this.unknown,
   });
+
   factory BucketCountByEffectivePermission.fromJson(Map<String, dynamic> json) {
     return BucketCountByEffectivePermission(
       publiclyAccessible: json['publiclyAccessible'] as int?,
@@ -2729,6 +2742,7 @@ class BucketCountByEncryptionType {
     this.unencrypted,
     this.unknown,
   });
+
   factory BucketCountByEncryptionType.fromJson(Map<String, dynamic> json) {
     return BucketCountByEncryptionType(
       kmsManaged: json['kmsManaged'] as int?,
@@ -2778,6 +2792,7 @@ class BucketCountBySharedAccessType {
     this.notShared,
     this.unknown,
   });
+
   factory BucketCountBySharedAccessType.fromJson(Map<String, dynamic> json) {
     return BucketCountBySharedAccessType(
       external: json['external'] as int?,
@@ -2829,6 +2844,7 @@ class BucketCountPolicyAllowsUnencryptedObjectUploads {
     this.deniesUnencryptedObjectUploads,
     this.unknown,
   });
+
   factory BucketCountPolicyAllowsUnencryptedObjectUploads.fromJson(
       Map<String, dynamic> json) {
     return BucketCountPolicyAllowsUnencryptedObjectUploads(
@@ -2890,6 +2906,7 @@ class BucketCriteriaAdditionalProperties {
     this.neq,
     this.prefix,
   });
+
   factory BucketCriteriaAdditionalProperties.fromJson(
       Map<String, dynamic> json) {
     return BucketCriteriaAdditionalProperties(
@@ -2948,6 +2965,7 @@ class BucketLevelPermissions {
     this.blockPublicAccess,
     this.bucketPolicy,
   });
+
   factory BucketLevelPermissions.fromJson(Map<String, dynamic> json) {
     return BucketLevelPermissions(
       accessControlList: json['accessControlList'] != null
@@ -3148,6 +3166,7 @@ class BucketMetadata {
     this.unclassifiableObjectSizeInBytes,
     this.versioning,
   });
+
   factory BucketMetadata.fromJson(Map<String, dynamic> json) {
     return BucketMetadata(
       accountId: json['accountId'] as String?,
@@ -3276,6 +3295,7 @@ class BucketPermissionConfiguration {
     this.accountLevelPermissions,
     this.bucketLevelPermissions,
   });
+
   factory BucketPermissionConfiguration.fromJson(Map<String, dynamic> json) {
     return BucketPermissionConfiguration(
       accountLevelPermissions: json['accountLevelPermissions'] != null
@@ -3316,6 +3336,7 @@ class BucketPolicy {
     this.allowsPublicReadAccess,
     this.allowsPublicWriteAccess,
   });
+
   factory BucketPolicy.fromJson(Map<String, dynamic> json) {
     return BucketPolicy(
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
@@ -3362,6 +3383,7 @@ class BucketPublicAccess {
     this.effectivePermission,
     this.permissionConfiguration,
   });
+
   factory BucketPublicAccess.fromJson(Map<String, dynamic> json) {
     return BucketPublicAccess(
       effectivePermission:
@@ -3422,6 +3444,7 @@ class BucketServerSideEncryption {
     this.kmsMasterKeyId,
     this.type,
   });
+
   factory BucketServerSideEncryption.fromJson(Map<String, dynamic> json) {
     return BucketServerSideEncryption(
       kmsMasterKeyId: json['kmsMasterKeyId'] as String?,
@@ -3457,6 +3480,7 @@ class BucketSortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory BucketSortCriteria.fromJson(Map<String, dynamic> json) {
     return BucketSortCriteria(
       attributeName: json['attributeName'] as String?,
@@ -3500,6 +3524,7 @@ class Cell {
     this.columnName,
     this.row,
   });
+
   factory Cell.fromJson(Map<String, dynamic> json) {
     return Cell(
       cellReference: json['cellReference'] as String?,
@@ -3548,6 +3573,7 @@ class ClassificationDetails {
     this.jobId,
     this.result,
   });
+
   factory ClassificationDetails.fromJson(Map<String, dynamic> json) {
     return ClassificationDetails(
       detailedResultsLocation: json['detailedResultsLocation'] as String?,
@@ -3586,6 +3612,7 @@ class ClassificationExportConfiguration {
   ClassificationExportConfiguration({
     this.s3Destination,
   });
+
   factory ClassificationExportConfiguration.fromJson(
       Map<String, dynamic> json) {
     return ClassificationExportConfiguration(
@@ -3645,6 +3672,7 @@ class ClassificationResult {
     this.sizeClassified,
     this.status,
   });
+
   factory ClassificationResult.fromJson(Map<String, dynamic> json) {
     return ClassificationResult(
       additionalOccurrences: json['additionalOccurrences'] as bool?,
@@ -3715,6 +3743,7 @@ class ClassificationResultStatus {
     this.code,
     this.reason,
   });
+
   factory ClassificationResultStatus.fromJson(Map<String, dynamic> json) {
     return ClassificationResultStatus(
       code: json['code'] as String?,
@@ -3743,6 +3772,7 @@ class CreateClassificationJobResponse {
     this.jobArn,
     this.jobId,
   });
+
   factory CreateClassificationJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateClassificationJobResponse(
       jobArn: json['jobArn'] as String?,
@@ -3767,6 +3797,7 @@ class CreateCustomDataIdentifierResponse {
   CreateCustomDataIdentifierResponse({
     this.customDataIdentifierId,
   });
+
   factory CreateCustomDataIdentifierResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCustomDataIdentifierResponse(
@@ -3794,6 +3825,7 @@ class CreateFindingsFilterResponse {
     this.arn,
     this.id,
   });
+
   factory CreateFindingsFilterResponse.fromJson(Map<String, dynamic> json) {
     return CreateFindingsFilterResponse(
       arn: json['arn'] as String?,
@@ -3820,6 +3852,7 @@ class CreateInvitationsResponse {
   CreateInvitationsResponse({
     this.unprocessedAccounts,
   });
+
   factory CreateInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return CreateInvitationsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List?)
@@ -3846,6 +3879,7 @@ class CreateMemberResponse {
   CreateMemberResponse({
     this.arn,
   });
+
   factory CreateMemberResponse.fromJson(Map<String, dynamic> json) {
     return CreateMemberResponse(
       arn: json['arn'] as String?,
@@ -3862,6 +3896,7 @@ class CreateMemberResponse {
 
 class CreateSampleFindingsResponse {
   CreateSampleFindingsResponse();
+
   factory CreateSampleFindingsResponse.fromJson(Map<String, dynamic> _) {
     return CreateSampleFindingsResponse();
   }
@@ -3882,6 +3917,7 @@ class CriteriaBlockForJob {
   CriteriaBlockForJob({
     this.and,
   });
+
   factory CriteriaBlockForJob.fromJson(Map<String, dynamic> json) {
     return CriteriaBlockForJob(
       and: (json['and'] as List?)
@@ -3914,6 +3950,7 @@ class CriteriaForJob {
     this.simpleCriterion,
     this.tagCriterion,
   });
+
   factory CriteriaForJob.fromJson(Map<String, dynamic> json) {
     return CriteriaForJob(
       simpleCriterion: json['simpleCriterion'] != null
@@ -3984,6 +4021,7 @@ class CriterionAdditionalProperties {
     this.lte,
     this.neq,
   });
+
   factory CriterionAdditionalProperties.fromJson(Map<String, dynamic> json) {
     return CriterionAdditionalProperties(
       eq: (json['eq'] as List?)
@@ -4075,6 +4113,7 @@ class CustomDataIdentifierSummary {
     this.id,
     this.name,
   });
+
   factory CustomDataIdentifierSummary.fromJson(Map<String, dynamic> json) {
     return CustomDataIdentifierSummary(
       arn: json['arn'] as String?,
@@ -4117,6 +4156,7 @@ class CustomDataIdentifiers {
     this.detections,
     this.totalCount,
   });
+
   factory CustomDataIdentifiers.fromJson(Map<String, dynamic> json) {
     return CustomDataIdentifiers(
       detections: (json['detections'] as List?)
@@ -4162,6 +4202,7 @@ class CustomDetection {
     this.name,
     this.occurrences,
   });
+
   factory CustomDetection.fromJson(Map<String, dynamic> json) {
     return CustomDetection(
       arn: json['arn'] as String?,
@@ -4191,6 +4232,7 @@ class CustomDetection {
 /// empty object.
 class DailySchedule {
   DailySchedule();
+
   factory DailySchedule.fromJson(Map<String, dynamic> _) {
     return DailySchedule();
   }
@@ -4262,6 +4304,7 @@ class DeclineInvitationsResponse {
   DeclineInvitationsResponse({
     this.unprocessedAccounts,
   });
+
   factory DeclineInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeclineInvitationsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List?)
@@ -4301,6 +4344,7 @@ class DefaultDetection {
     this.occurrences,
     this.type,
   });
+
   factory DefaultDetection.fromJson(Map<String, dynamic> json) {
     return DefaultDetection(
       count: json['count'] as int?,
@@ -4325,6 +4369,7 @@ class DefaultDetection {
 
 class DeleteCustomDataIdentifierResponse {
   DeleteCustomDataIdentifierResponse();
+
   factory DeleteCustomDataIdentifierResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomDataIdentifierResponse();
   }
@@ -4336,6 +4381,7 @@ class DeleteCustomDataIdentifierResponse {
 
 class DeleteFindingsFilterResponse {
   DeleteFindingsFilterResponse();
+
   factory DeleteFindingsFilterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFindingsFilterResponse();
   }
@@ -4354,6 +4400,7 @@ class DeleteInvitationsResponse {
   DeleteInvitationsResponse({
     this.unprocessedAccounts,
   });
+
   factory DeleteInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteInvitationsResponse(
       unprocessedAccounts: (json['unprocessedAccounts'] as List?)
@@ -4374,6 +4421,7 @@ class DeleteInvitationsResponse {
 
 class DeleteMemberResponse {
   DeleteMemberResponse();
+
   factory DeleteMemberResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMemberResponse();
   }
@@ -4396,6 +4444,7 @@ class DescribeBucketsResponse {
     this.buckets,
     this.nextToken,
   });
+
   factory DescribeBucketsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeBucketsResponse(
       buckets: (json['buckets'] as List?)
@@ -4547,6 +4596,7 @@ class DescribeClassificationJobResponse {
     this.tags,
     this.userPausedDetails,
   });
+
   factory DescribeClassificationJobResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeClassificationJobResponse(
@@ -4645,6 +4695,7 @@ class DescribeOrganizationConfigurationResponse {
     this.autoEnable,
     this.maxAccountLimitReached,
   });
+
   factory DescribeOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeOrganizationConfigurationResponse(
@@ -4666,6 +4717,7 @@ class DescribeOrganizationConfigurationResponse {
 
 class DisableMacieResponse {
   DisableMacieResponse();
+
   factory DisableMacieResponse.fromJson(Map<String, dynamic> _) {
     return DisableMacieResponse();
   }
@@ -4677,6 +4729,7 @@ class DisableMacieResponse {
 
 class DisableOrganizationAdminAccountResponse {
   DisableOrganizationAdminAccountResponse();
+
   factory DisableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
@@ -4689,6 +4742,7 @@ class DisableOrganizationAdminAccountResponse {
 
 class DisassociateFromAdministratorAccountResponse {
   DisassociateFromAdministratorAccountResponse();
+
   factory DisassociateFromAdministratorAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromAdministratorAccountResponse();
@@ -4701,6 +4755,7 @@ class DisassociateFromAdministratorAccountResponse {
 
 class DisassociateFromMasterAccountResponse {
   DisassociateFromMasterAccountResponse();
+
   factory DisassociateFromMasterAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
@@ -4713,6 +4768,7 @@ class DisassociateFromMasterAccountResponse {
 
 class DisassociateMemberResponse {
   DisassociateMemberResponse();
+
   factory DisassociateMemberResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMemberResponse();
   }
@@ -4731,6 +4787,7 @@ class DomainDetails {
   DomainDetails({
     this.domainName,
   });
+
   factory DomainDetails.fromJson(Map<String, dynamic> json) {
     return DomainDetails(
       domainName: json['domainName'] as String?,
@@ -4780,6 +4837,7 @@ extension on String {
 
 class EnableMacieResponse {
   EnableMacieResponse();
+
   factory EnableMacieResponse.fromJson(Map<String, dynamic> _) {
     return EnableMacieResponse();
   }
@@ -4791,6 +4849,7 @@ class EnableMacieResponse {
 
 class EnableOrganizationAdminAccountResponse {
   EnableOrganizationAdminAccountResponse();
+
   factory EnableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
@@ -4900,6 +4959,7 @@ class FederatedUser {
     this.principalId,
     this.sessionContext,
   });
+
   factory FederatedUser.fromJson(Map<String, dynamic> json) {
     return FederatedUser(
       accessKeyId: json['accessKeyId'] as String?,
@@ -5019,6 +5079,7 @@ class Finding {
     this.type,
     this.updatedAt,
   });
+
   factory Finding.fromJson(Map<String, dynamic> json) {
     return Finding(
       accountId: json['accountId'] as String?,
@@ -5112,6 +5173,7 @@ class FindingAction {
     this.actionType,
     this.apiCallDetails,
   });
+
   factory FindingAction.fromJson(Map<String, dynamic> json) {
     return FindingAction(
       actionType: (json['actionType'] as String?)?.toFindingActionType(),
@@ -5178,6 +5240,7 @@ class FindingActor {
     this.ipAddressDetails,
     this.userIdentity,
   });
+
   factory FindingActor.fromJson(Map<String, dynamic> json) {
     return FindingActor(
       domainDetails: json['domainDetails'] != null
@@ -5245,6 +5308,7 @@ class FindingCriteria {
   FindingCriteria({
     this.criterion,
   });
+
   factory FindingCriteria.fromJson(Map<String, dynamic> json) {
     return FindingCriteria(
       criterion: (json['criterion'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -5350,6 +5414,7 @@ class FindingStatisticsSortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory FindingStatisticsSortCriteria.fromJson(Map<String, dynamic> json) {
     return FindingStatisticsSortCriteria(
       attributeName: (json['attributeName'] as String?)
@@ -5498,6 +5563,7 @@ class FindingsFilterListItem {
     this.name,
     this.tags,
   });
+
   factory FindingsFilterListItem.fromJson(Map<String, dynamic> json) {
     return FindingsFilterListItem(
       action: (json['action'] as String?)?.toFindingsFilterAction(),
@@ -5535,6 +5601,7 @@ class GetAdministratorAccountResponse {
   GetAdministratorAccountResponse({
     this.administrator,
   });
+
   factory GetAdministratorAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetAdministratorAccountResponse(
       administrator: json['administrator'] != null
@@ -5638,6 +5705,7 @@ class GetBucketStatisticsResponse {
     this.unclassifiableObjectCount,
     this.unclassifiableObjectSizeInBytes,
   });
+
   factory GetBucketStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetBucketStatisticsResponse(
       bucketCount: json['bucketCount'] as int?,
@@ -5734,6 +5802,7 @@ class GetClassificationExportConfigurationResponse {
   GetClassificationExportConfigurationResponse({
     this.configuration,
   });
+
   factory GetClassificationExportConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetClassificationExportConfigurationResponse(
@@ -5811,6 +5880,7 @@ class GetCustomDataIdentifierResponse {
     this.regex,
     this.tags,
   });
+
   factory GetCustomDataIdentifierResponse.fromJson(Map<String, dynamic> json) {
     return GetCustomDataIdentifierResponse(
       arn: json['arn'] as String?,
@@ -5871,6 +5941,7 @@ class GetFindingStatisticsResponse {
   GetFindingStatisticsResponse({
     this.countsByGroup,
   });
+
   factory GetFindingStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingStatisticsResponse(
       countsByGroup: (json['countsByGroup'] as List?)
@@ -5929,6 +6000,7 @@ class GetFindingsFilterResponse {
     this.position,
     this.tags,
   });
+
   factory GetFindingsFilterResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingsFilterResponse(
       action: (json['action'] as String?)?.toFindingsFilterAction(),
@@ -5976,6 +6048,7 @@ class GetFindingsPublicationConfigurationResponse {
   GetFindingsPublicationConfigurationResponse({
     this.securityHubConfiguration,
   });
+
   factory GetFindingsPublicationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return GetFindingsPublicationConfigurationResponse(
@@ -6003,6 +6076,7 @@ class GetFindingsResponse {
   GetFindingsResponse({
     this.findings,
   });
+
   factory GetFindingsResponse.fromJson(Map<String, dynamic> json) {
     return GetFindingsResponse(
       findings: (json['findings'] as List?)
@@ -6028,6 +6102,7 @@ class GetInvitationsCountResponse {
   GetInvitationsCountResponse({
     this.invitationsCount,
   });
+
   factory GetInvitationsCountResponse.fromJson(Map<String, dynamic> json) {
     return GetInvitationsCountResponse(
       invitationsCount: json['invitationsCount'] as int?,
@@ -6074,6 +6149,7 @@ class GetMacieSessionResponse {
     this.status,
     this.updatedAt,
   });
+
   factory GetMacieSessionResponse.fromJson(Map<String, dynamic> json) {
     return GetMacieSessionResponse(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -6113,6 +6189,7 @@ class GetMasterAccountResponse {
   GetMasterAccountResponse({
     this.master,
   });
+
   factory GetMasterAccountResponse.fromJson(Map<String, dynamic> json) {
     return GetMasterAccountResponse(
       master: json['master'] != null
@@ -6176,6 +6253,7 @@ class GetMemberResponse {
     this.tags,
     this.updatedAt,
   });
+
   factory GetMemberResponse.fromJson(Map<String, dynamic> json) {
     return GetMemberResponse(
       accountId: json['accountId'] as String?,
@@ -6238,6 +6316,7 @@ class GetUsageStatisticsResponse {
     this.records,
     this.timeRange,
   });
+
   factory GetUsageStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageStatisticsResponse(
       nextToken: json['nextToken'] as String?,
@@ -6275,6 +6354,7 @@ class GetUsageTotalsResponse {
     this.timeRange,
     this.usageTotals,
   });
+
   factory GetUsageTotalsResponse.fromJson(Map<String, dynamic> json) {
     return GetUsageTotalsResponse(
       timeRange: (json['timeRange'] as String?)?.toTimeRange(),
@@ -6347,6 +6427,7 @@ class GroupCount {
     this.count,
     this.groupKey,
   });
+
   factory GroupCount.fromJson(Map<String, dynamic> json) {
     return GroupCount(
       count: json['count'] as int?,
@@ -6388,6 +6469,7 @@ class IamUser {
     this.principalId,
     this.userName,
   });
+
   factory IamUser.fromJson(Map<String, dynamic> json) {
     return IamUser(
       accountId: json['accountId'] as String?,
@@ -6436,6 +6518,7 @@ class Invitation {
     this.invitedAt,
     this.relationshipStatus,
   });
+
   factory Invitation.fromJson(Map<String, dynamic> json) {
     return Invitation(
       accountId: json['accountId'] as String?,
@@ -6487,6 +6570,7 @@ class IpAddressDetails {
     this.ipGeoLocation,
     this.ipOwner,
   });
+
   factory IpAddressDetails.fromJson(Map<String, dynamic> json) {
     return IpAddressDetails(
       ipAddressV4: json['ipAddressV4'] as String?,
@@ -6530,6 +6614,7 @@ class IpCity {
   IpCity({
     this.name,
   });
+
   factory IpCity.fromJson(Map<String, dynamic> json) {
     return IpCity(
       name: json['name'] as String?,
@@ -6557,6 +6642,7 @@ class IpCountry {
     this.code,
     this.name,
   });
+
   factory IpCountry.fromJson(Map<String, dynamic> json) {
     return IpCountry(
       code: json['code'] as String?,
@@ -6587,6 +6673,7 @@ class IpGeoLocation {
     this.lat,
     this.lon,
   });
+
   factory IpGeoLocation.fromJson(Map<String, dynamic> json) {
     return IpGeoLocation(
       lat: json['lat'] as double?,
@@ -6626,6 +6713,7 @@ class IpOwner {
     this.isp,
     this.org,
   });
+
   factory IpOwner.fromJson(Map<String, dynamic> json) {
     return IpOwner(
       asn: json['asn'] as String?,
@@ -6850,6 +6938,7 @@ class JobDetails {
     this.lastJobId,
     this.lastJobRunTime,
   });
+
   factory JobDetails.fromJson(Map<String, dynamic> json) {
     return JobDetails(
       isDefinedInJob: (json['isDefinedInJob'] as String?)?.toIsDefinedInJob(),
@@ -6892,6 +6981,7 @@ class JobScheduleFrequency {
     this.monthlySchedule,
     this.weeklySchedule,
   });
+
   factory JobScheduleFrequency.fromJson(Map<String, dynamic> json) {
     return JobScheduleFrequency(
       dailySchedule: json['dailySchedule'] != null
@@ -6938,6 +7028,7 @@ class JobScopeTerm {
     this.simpleScopeTerm,
     this.tagScopeTerm,
   });
+
   factory JobScopeTerm.fromJson(Map<String, dynamic> json) {
     return JobScopeTerm(
       simpleScopeTerm: json['simpleScopeTerm'] != null
@@ -6971,6 +7062,7 @@ class JobScopingBlock {
   JobScopingBlock({
     this.and,
   });
+
   factory JobScopingBlock.fromJson(Map<String, dynamic> json) {
     return JobScopingBlock(
       and: (json['and'] as List?)
@@ -7132,6 +7224,7 @@ class JobSummary {
     this.name,
     this.userPausedDetails,
   });
+
   factory JobSummary.fromJson(Map<String, dynamic> json) {
     return JobSummary(
       bucketCriteria: json['bucketCriteria'] != null
@@ -7227,6 +7320,7 @@ class KeyValuePair {
     this.key,
     this.value,
   });
+
   factory KeyValuePair.fromJson(Map<String, dynamic> json) {
     return KeyValuePair(
       key: json['key'] as String?,
@@ -7269,6 +7363,7 @@ class LastRunErrorStatus {
   LastRunErrorStatus({
     this.code,
   });
+
   factory LastRunErrorStatus.fromJson(Map<String, dynamic> json) {
     return LastRunErrorStatus(
       code: (json['code'] as String?)?.toLastRunErrorStatusCode(),
@@ -7327,6 +7422,7 @@ class ListClassificationJobsResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListClassificationJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListClassificationJobsResponse(
       items: (json['items'] as List?)
@@ -7359,6 +7455,7 @@ class ListCustomDataIdentifiersResponse {
     this.items,
     this.nextToken,
   });
+
   factory ListCustomDataIdentifiersResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomDataIdentifiersResponse(
@@ -7393,6 +7490,7 @@ class ListFindingsFiltersResponse {
     this.findingsFilterListItems,
     this.nextToken,
   });
+
   factory ListFindingsFiltersResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingsFiltersResponse(
       findingsFilterListItems: (json['findingsFilterListItems'] as List?)
@@ -7428,6 +7526,7 @@ class ListFindingsResponse {
     this.findingIds,
     this.nextToken,
   });
+
   factory ListFindingsResponse.fromJson(Map<String, dynamic> json) {
     return ListFindingsResponse(
       findingIds: (json['findingIds'] as List?)
@@ -7461,6 +7560,7 @@ class ListInvitationsResponse {
     this.invitations,
     this.nextToken,
   });
+
   factory ListInvitationsResponse.fromJson(Map<String, dynamic> json) {
     return ListInvitationsResponse(
       invitations: (json['invitations'] as List?)
@@ -7496,6 +7596,7 @@ class ListJobsFilterCriteria {
     this.excludes,
     this.includes,
   });
+
   factory ListJobsFilterCriteria.fromJson(Map<String, dynamic> json) {
     return ListJobsFilterCriteria(
       excludes: (json['excludes'] as List?)
@@ -7576,6 +7677,7 @@ class ListJobsFilterTerm {
     this.key,
     this.values,
   });
+
   factory ListJobsFilterTerm.fromJson(Map<String, dynamic> json) {
     return ListJobsFilterTerm(
       comparator: (json['comparator'] as String?)?.toJobComparator(),
@@ -7653,6 +7755,7 @@ class ListJobsSortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory ListJobsSortCriteria.fromJson(Map<String, dynamic> json) {
     return ListJobsSortCriteria(
       attributeName:
@@ -7685,6 +7788,7 @@ class ListMembersResponse {
     this.members,
     this.nextToken,
   });
+
   factory ListMembersResponse.fromJson(Map<String, dynamic> json) {
     return ListMembersResponse(
       members: (json['members'] as List?)
@@ -7719,6 +7823,7 @@ class ListOrganizationAdminAccountsResponse {
     this.adminAccounts,
     this.nextToken,
   });
+
   factory ListOrganizationAdminAccountsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListOrganizationAdminAccountsResponse(
@@ -7748,6 +7853,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as Map<String, dynamic>?)
@@ -7870,6 +7976,7 @@ class MatchingBucket {
     this.unclassifiableObjectCount,
     this.unclassifiableObjectSizeInBytes,
   });
+
   factory MatchingBucket.fromJson(Map<String, dynamic> json) {
     return MatchingBucket(
       accountId: json['accountId'] as String?,
@@ -7943,6 +8050,7 @@ class MatchingResource {
   MatchingResource({
     this.matchingBucket,
   });
+
   factory MatchingResource.fromJson(Map<String, dynamic> json) {
     return MatchingResource(
       matchingBucket: json['matchingBucket'] != null
@@ -8009,6 +8117,7 @@ class Member {
     this.tags,
     this.updatedAt,
   });
+
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       accountId: json['accountId'] as String?,
@@ -8066,6 +8175,7 @@ class MonthlySchedule {
   MonthlySchedule({
     this.dayOfMonth,
   });
+
   factory MonthlySchedule.fromJson(Map<String, dynamic> json) {
     return MonthlySchedule(
       dayOfMonth: json['dayOfMonth'] as int?,
@@ -8114,6 +8224,7 @@ class ObjectCountByEncryptionType {
     this.unencrypted,
     this.unknown,
   });
+
   factory ObjectCountByEncryptionType.fromJson(Map<String, dynamic> json) {
     return ObjectCountByEncryptionType(
       customerManaged: json['customerManaged'] as int?,
@@ -8167,6 +8278,7 @@ class ObjectLevelStatistics {
     this.storageClass,
     this.total,
   });
+
   factory ObjectLevelStatistics.fromJson(Map<String, dynamic> json) {
     return ObjectLevelStatistics(
       fileType: json['fileType'] as int?,
@@ -8238,6 +8350,7 @@ class Occurrences {
     this.pages,
     this.records,
   });
+
   factory Occurrences.fromJson(Map<String, dynamic> json) {
     return Occurrences(
       cells: (json['cells'] as List?)
@@ -8324,6 +8437,7 @@ class Page {
     this.offsetRange,
     this.pageNumber,
   });
+
   factory Page.fromJson(Map<String, dynamic> json) {
     return Page(
       lineRange: json['lineRange'] != null
@@ -8360,6 +8474,7 @@ class PolicyDetails {
     this.action,
     this.actor,
   });
+
   factory PolicyDetails.fromJson(Map<String, dynamic> json) {
     return PolicyDetails(
       action: json['action'] != null
@@ -8389,6 +8504,7 @@ class PutClassificationExportConfigurationResponse {
   PutClassificationExportConfigurationResponse({
     this.configuration,
   });
+
   factory PutClassificationExportConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutClassificationExportConfigurationResponse(
@@ -8409,6 +8525,7 @@ class PutClassificationExportConfigurationResponse {
 
 class PutFindingsPublicationConfigurationResponse {
   PutFindingsPublicationConfigurationResponse();
+
   factory PutFindingsPublicationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return PutFindingsPublicationConfigurationResponse();
@@ -8440,6 +8557,7 @@ class Range {
     this.start,
     this.startColumn,
   });
+
   factory Range.fromJson(Map<String, dynamic> json) {
     return Range(
       end: json['end'] as int?,
@@ -8488,6 +8606,7 @@ class Record {
     this.jsonPath,
     this.recordIndex,
   });
+
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
       jsonPath: json['jsonPath'] as String?,
@@ -8599,6 +8718,7 @@ class ReplicationDetails {
     this.replicatedExternally,
     this.replicationAccounts,
   });
+
   factory ReplicationDetails.fromJson(Map<String, dynamic> json) {
     return ReplicationDetails(
       replicated: json['replicated'] as bool?,
@@ -8636,6 +8756,7 @@ class ResourcesAffected {
     this.s3Bucket,
     this.s3Object,
   });
+
   factory ResourcesAffected.fromJson(Map<String, dynamic> json) {
     return ResourcesAffected(
       s3Bucket: json['s3Bucket'] != null
@@ -8718,6 +8839,7 @@ class S3Bucket {
     this.publicAccess,
     this.tags,
   });
+
   factory S3Bucket.fromJson(Map<String, dynamic> json) {
     return S3Bucket(
       allowsUnencryptedObjectUploads:
@@ -8785,6 +8907,7 @@ class S3BucketCriteriaForJob {
     this.excludes,
     this.includes,
   });
+
   factory S3BucketCriteriaForJob.fromJson(Map<String, dynamic> json) {
     return S3BucketCriteriaForJob(
       excludes: json['excludes'] != null
@@ -8823,6 +8946,7 @@ class S3BucketDefinitionForJob {
     required this.accountId,
     required this.buckets,
   });
+
   factory S3BucketDefinitionForJob.fromJson(Map<String, dynamic> json) {
     return S3BucketDefinitionForJob(
       accountId: json['accountId'] as String,
@@ -8855,6 +8979,7 @@ class S3BucketOwner {
     this.displayName,
     this.id,
   });
+
   factory S3BucketOwner.fromJson(Map<String, dynamic> json) {
     return S3BucketOwner(
       displayName: json['displayName'] as String?,
@@ -8893,6 +9018,7 @@ class S3Destination {
     required this.kmsKeyArn,
     this.keyPrefix,
   });
+
   factory S3Destination.fromJson(Map<String, dynamic> json) {
     return S3Destination(
       bucketName: json['bucketName'] as String,
@@ -8944,6 +9070,7 @@ class S3JobDefinition {
     this.bucketDefinitions,
     this.scoping,
   });
+
   factory S3JobDefinition.fromJson(Map<String, dynamic> json) {
     return S3JobDefinition(
       bucketCriteria: json['bucketCriteria'] != null
@@ -9030,6 +9157,7 @@ class S3Object {
     this.tags,
     this.versionId,
   });
+
   factory S3Object.fromJson(Map<String, dynamic> json) {
     return S3Object(
       bucketArn: json['bucketArn'] as String?,
@@ -9140,6 +9268,7 @@ class Scoping {
     this.excludes,
     this.includes,
   });
+
   factory Scoping.fromJson(Map<String, dynamic> json) {
     return Scoping(
       excludes: json['excludes'] != null
@@ -9177,6 +9306,7 @@ class SearchResourcesBucketCriteria {
     this.excludes,
     this.includes,
   });
+
   factory SearchResourcesBucketCriteria.fromJson(Map<String, dynamic> json) {
     return SearchResourcesBucketCriteria(
       excludes: json['excludes'] != null
@@ -9246,6 +9376,7 @@ class SearchResourcesCriteria {
     this.simpleCriterion,
     this.tagCriterion,
   });
+
   factory SearchResourcesCriteria.fromJson(Map<String, dynamic> json) {
     return SearchResourcesCriteria(
       simpleCriterion: json['simpleCriterion'] != null
@@ -9280,6 +9411,7 @@ class SearchResourcesCriteriaBlock {
   SearchResourcesCriteriaBlock({
     this.and,
   });
+
   factory SearchResourcesCriteriaBlock.fromJson(Map<String, dynamic> json) {
     return SearchResourcesCriteriaBlock(
       and: (json['and'] as List?)
@@ -9311,6 +9443,7 @@ class SearchResourcesResponse {
     this.matchingResources,
     this.nextToken,
   });
+
   factory SearchResourcesResponse.fromJson(Map<String, dynamic> json) {
     return SearchResourcesResponse(
       matchingResources: (json['matchingResources'] as List?)
@@ -9375,6 +9508,7 @@ class SearchResourcesSimpleCriterion {
     this.key,
     this.values,
   });
+
   factory SearchResourcesSimpleCriterion.fromJson(Map<String, dynamic> json) {
     return SearchResourcesSimpleCriterion(
       comparator:
@@ -9495,6 +9629,7 @@ class SearchResourcesSortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory SearchResourcesSortCriteria.fromJson(Map<String, dynamic> json) {
     return SearchResourcesSortCriteria(
       attributeName: (json['attributeName'] as String?)
@@ -9528,6 +9663,7 @@ class SearchResourcesTagCriterion {
     this.comparator,
     this.tagValues,
   });
+
   factory SearchResourcesTagCriterion.fromJson(Map<String, dynamic> json) {
     return SearchResourcesTagCriterion(
       comparator:
@@ -9565,6 +9701,7 @@ class SearchResourcesTagCriterionPair {
     this.key,
     this.value,
   });
+
   factory SearchResourcesTagCriterionPair.fromJson(Map<String, dynamic> json) {
     return SearchResourcesTagCriterionPair(
       key: json['key'] as String?,
@@ -9605,6 +9742,7 @@ class SecurityHubConfiguration {
     required this.publishClassificationFindings,
     required this.publishPolicyFindings,
   });
+
   factory SecurityHubConfiguration.fromJson(Map<String, dynamic> json) {
     return SecurityHubConfiguration(
       publishClassificationFindings:
@@ -9648,6 +9786,7 @@ class SensitiveDataItem {
     this.detections,
     this.totalCount,
   });
+
   factory SensitiveDataItem.fromJson(Map<String, dynamic> json) {
     return SensitiveDataItem(
       category: (json['category'] as String?)?.toSensitiveDataItemCategory(),
@@ -9729,6 +9868,7 @@ class ServerSideEncryption {
     this.encryptionType,
     this.kmsMasterKeyId,
   });
+
   factory ServerSideEncryption.fromJson(Map<String, dynamic> json) {
     return ServerSideEncryption(
       encryptionType: (json['encryptionType'] as String?)?.toEncryptionType(),
@@ -9764,6 +9904,7 @@ class ServiceLimit {
     this.unit,
     this.value,
   });
+
   factory ServiceLimit.fromJson(Map<String, dynamic> json) {
     return ServiceLimit(
       isServiceLimited: json['isServiceLimited'] as bool?,
@@ -9799,6 +9940,7 @@ class SessionContext {
     this.attributes,
     this.sessionIssuer,
   });
+
   factory SessionContext.fromJson(Map<String, dynamic> json) {
     return SessionContext(
       attributes: json['attributes'] != null
@@ -9837,6 +9979,7 @@ class SessionContextAttributes {
     this.creationDate,
     this.mfaAuthenticated,
   });
+
   factory SessionContextAttributes.fromJson(Map<String, dynamic> json) {
     return SessionContextAttributes(
       creationDate: timeStampFromJson(json['creationDate']),
@@ -9884,6 +10027,7 @@ class SessionIssuer {
     this.type,
     this.userName,
   });
+
   factory SessionIssuer.fromJson(Map<String, dynamic> json) {
     return SessionIssuer(
       accountId: json['accountId'] as String?,
@@ -9925,6 +10069,7 @@ class Severity {
     this.description,
     this.score,
   });
+
   factory Severity.fromJson(Map<String, dynamic> json) {
     return Severity(
       description: (json['description'] as String?)?.toSeverityDescription(),
@@ -10059,6 +10204,7 @@ class SimpleCriterionForJob {
     this.key,
     this.values,
   });
+
   factory SimpleCriterionForJob.fromJson(Map<String, dynamic> json) {
     return SimpleCriterionForJob(
       comparator: (json['comparator'] as String?)?.toJobComparator(),
@@ -10183,6 +10329,7 @@ class SimpleScopeTerm {
     this.key,
     this.values,
   });
+
   factory SimpleScopeTerm.fromJson(Map<String, dynamic> json) {
     return SimpleScopeTerm(
       comparator: (json['comparator'] as String?)?.toJobComparator(),
@@ -10221,6 +10368,7 @@ class SortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   factory SortCriteria.fromJson(Map<String, dynamic> json) {
     return SortCriteria(
       attributeName: json['attributeName'] as String?,
@@ -10251,6 +10399,7 @@ class Statistics {
     this.approximateNumberOfObjectsToProcess,
     this.numberOfRuns,
   });
+
   factory Statistics.fromJson(Map<String, dynamic> json) {
     return Statistics(
       approximateNumberOfObjectsToProcess:
@@ -10341,6 +10490,7 @@ class TagCriterionForJob {
     this.comparator,
     this.tagValues,
   });
+
   factory TagCriterionForJob.fromJson(Map<String, dynamic> json) {
     return TagCriterionForJob(
       comparator: (json['comparator'] as String?)?.toJobComparator(),
@@ -10378,6 +10528,7 @@ class TagCriterionPairForJob {
     this.key,
     this.value,
   });
+
   factory TagCriterionPairForJob.fromJson(Map<String, dynamic> json) {
     return TagCriterionPairForJob(
       key: json['key'] as String?,
@@ -10397,6 +10548,7 @@ class TagCriterionPairForJob {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -10430,6 +10582,7 @@ class TagScopeTerm {
     this.tagValues,
     this.target,
   });
+
   factory TagScopeTerm.fromJson(Map<String, dynamic> json) {
     return TagScopeTerm(
       comparator: (json['comparator'] as String?)?.toJobComparator(),
@@ -10498,6 +10651,7 @@ class TagValuePair {
     this.key,
     this.value,
   });
+
   factory TagValuePair.fromJson(Map<String, dynamic> json) {
     return TagValuePair(
       key: json['key'] as String?,
@@ -10523,6 +10677,7 @@ class TestCustomDataIdentifierResponse {
   TestCustomDataIdentifierResponse({
     this.matchCount,
   });
+
   factory TestCustomDataIdentifierResponse.fromJson(Map<String, dynamic> json) {
     return TestCustomDataIdentifierResponse(
       matchCount: json['matchCount'] as int?,
@@ -10641,6 +10796,7 @@ class UnprocessedAccount {
     this.errorCode,
     this.errorMessage,
   });
+
   factory UnprocessedAccount.fromJson(Map<String, dynamic> json) {
     return UnprocessedAccount(
       accountId: json['accountId'] as String?,
@@ -10663,6 +10819,7 @@ class UnprocessedAccount {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -10674,6 +10831,7 @@ class UntagResourceResponse {
 
 class UpdateClassificationJobResponse {
   UpdateClassificationJobResponse();
+
   factory UpdateClassificationJobResponse.fromJson(Map<String, dynamic> _) {
     return UpdateClassificationJobResponse();
   }
@@ -10694,6 +10852,7 @@ class UpdateFindingsFilterResponse {
     this.arn,
     this.id,
   });
+
   factory UpdateFindingsFilterResponse.fromJson(Map<String, dynamic> json) {
     return UpdateFindingsFilterResponse(
       arn: json['arn'] as String?,
@@ -10713,6 +10872,7 @@ class UpdateFindingsFilterResponse {
 
 class UpdateMacieSessionResponse {
   UpdateMacieSessionResponse();
+
   factory UpdateMacieSessionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMacieSessionResponse();
   }
@@ -10724,6 +10884,7 @@ class UpdateMacieSessionResponse {
 
 class UpdateMemberSessionResponse {
   UpdateMemberSessionResponse();
+
   factory UpdateMemberSessionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMemberSessionResponse();
   }
@@ -10735,6 +10896,7 @@ class UpdateMemberSessionResponse {
 
 class UpdateOrganizationConfigurationResponse {
   UpdateOrganizationConfigurationResponse();
+
   factory UpdateOrganizationConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
@@ -10770,6 +10932,7 @@ class UsageByAccount {
     this.serviceLimit,
     this.type,
   });
+
   factory UsageByAccount.fromJson(Map<String, dynamic> json) {
     return UsageByAccount(
       currency: (json['currency'] as String?)?.toCurrency(),
@@ -10815,6 +10978,7 @@ class UsageRecord {
     this.freeTrialStartDate,
     this.usage,
   });
+
   factory UsageRecord.fromJson(Map<String, dynamic> json) {
     return UsageRecord(
       accountId: json['accountId'] as String?,
@@ -10880,6 +11044,7 @@ class UsageStatisticsFilter {
     this.key,
     this.values,
   });
+
   factory UsageStatisticsFilter.fromJson(Map<String, dynamic> json) {
     return UsageStatisticsFilter(
       comparator:
@@ -11015,6 +11180,7 @@ class UsageStatisticsSortBy {
     this.key,
     this.orderBy,
   });
+
   factory UsageStatisticsSortBy.fromJson(Map<String, dynamic> json) {
     return UsageStatisticsSortBy(
       key: (json['key'] as String?)?.toUsageStatisticsSortKey(),
@@ -11094,6 +11260,7 @@ class UsageTotal {
     this.estimatedCost,
     this.type,
   });
+
   factory UsageTotal.fromJson(Map<String, dynamic> json) {
     return UsageTotal(
       currency: (json['currency'] as String?)?.toCurrency(),
@@ -11186,6 +11353,7 @@ class UserIdentity {
     this.root,
     this.type,
   });
+
   factory UserIdentity.fromJson(Map<String, dynamic> json) {
     return UserIdentity(
       assumedRole: json['assumedRole'] != null
@@ -11251,6 +11419,7 @@ class UserIdentityRoot {
     this.arn,
     this.principalId,
   });
+
   factory UserIdentityRoot.fromJson(Map<String, dynamic> json) {
     return UserIdentityRoot(
       accountId: json['accountId'] as String?,
@@ -11347,6 +11516,7 @@ class UserPausedDetails {
     this.jobImminentExpirationHealthEventArn,
     this.jobPausedAt,
   });
+
   factory UserPausedDetails.fromJson(Map<String, dynamic> json) {
     return UserPausedDetails(
       jobExpiresAt: timeStampFromJson(json['jobExpiresAt']),
@@ -11379,6 +11549,7 @@ class WeeklySchedule {
   WeeklySchedule({
     this.dayOfWeek,
   });
+
   factory WeeklySchedule.fromJson(Map<String, dynamic> json) {
     return WeeklySchedule(
       dayOfWeek: (json['dayOfWeek'] as String?)?.toDayOfWeek(),

@@ -1564,6 +1564,7 @@ class WorkLink {
 
 class AssociateDomainResponse {
   AssociateDomainResponse();
+
   factory AssociateDomainResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDomainResponse();
   }
@@ -1580,6 +1581,7 @@ class AssociateWebsiteAuthorizationProviderResponse {
   AssociateWebsiteAuthorizationProviderResponse({
     this.authorizationProviderId,
   });
+
   factory AssociateWebsiteAuthorizationProviderResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateWebsiteAuthorizationProviderResponse(
@@ -1603,6 +1605,7 @@ class AssociateWebsiteCertificateAuthorityResponse {
   AssociateWebsiteCertificateAuthorityResponse({
     this.websiteCaId,
   });
+
   factory AssociateWebsiteCertificateAuthorityResponse.fromJson(
       Map<String, dynamic> json) {
     return AssociateWebsiteCertificateAuthorityResponse(
@@ -1648,6 +1651,7 @@ class CreateFleetResponse {
   CreateFleetResponse({
     this.fleetArn,
   });
+
   factory CreateFleetResponse.fromJson(Map<String, dynamic> json) {
     return CreateFleetResponse(
       fleetArn: json['FleetArn'] as String?,
@@ -1664,6 +1668,7 @@ class CreateFleetResponse {
 
 class DeleteFleetResponse {
   DeleteFleetResponse();
+
   factory DeleteFleetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFleetResponse();
   }
@@ -1681,6 +1686,7 @@ class DescribeAuditStreamConfigurationResponse {
   DescribeAuditStreamConfigurationResponse({
     this.auditStreamArn,
   });
+
   factory DescribeAuditStreamConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAuditStreamConfigurationResponse(
@@ -1712,6 +1718,7 @@ class DescribeCompanyNetworkConfigurationResponse {
     this.subnetIds,
     this.vpcId,
   });
+
   factory DescribeCompanyNetworkConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCompanyNetworkConfigurationResponse(
@@ -1747,6 +1754,7 @@ class DescribeDevicePolicyConfigurationResponse {
   DescribeDevicePolicyConfigurationResponse({
     this.deviceCaCertificate,
   });
+
   factory DescribeDevicePolicyConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeDevicePolicyConfigurationResponse(
@@ -1802,6 +1810,7 @@ class DescribeDeviceResponse {
     this.status,
     this.username,
   });
+
   factory DescribeDeviceResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDeviceResponse(
       firstAccessedTime: timeStampFromJson(json['FirstAccessedTime']),
@@ -1867,6 +1876,7 @@ class DescribeDomainResponse {
     this.domainName,
     this.domainStatus,
   });
+
   factory DescribeDomainResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDomainResponse(
       acmCertificateArn: json['AcmCertificateArn'] as String?,
@@ -1929,6 +1939,7 @@ class DescribeFleetMetadataResponse {
     this.optimizeForEndUserLocation,
     this.tags,
   });
+
   factory DescribeFleetMetadataResponse.fromJson(Map<String, dynamic> json) {
     return DescribeFleetMetadataResponse(
       companyCode: json['CompanyCode'] as String?,
@@ -1982,6 +1993,7 @@ class DescribeIdentityProviderConfigurationResponse {
     this.identityProviderType,
     this.serviceProviderSamlMetadata,
   });
+
   factory DescribeIdentityProviderConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeIdentityProviderConfigurationResponse(
@@ -2024,6 +2036,7 @@ class DescribeWebsiteCertificateAuthorityResponse {
     this.createdTime,
     this.displayName,
   });
+
   factory DescribeWebsiteCertificateAuthorityResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeWebsiteCertificateAuthorityResponse(
@@ -2085,6 +2098,7 @@ class DeviceSummary {
     this.deviceId,
     this.deviceStatus,
   });
+
   factory DeviceSummary.fromJson(Map<String, dynamic> json) {
     return DeviceSummary(
       deviceId: json['DeviceId'] as String?,
@@ -2104,6 +2118,7 @@ class DeviceSummary {
 
 class DisassociateDomainResponse {
   DisassociateDomainResponse();
+
   factory DisassociateDomainResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDomainResponse();
   }
@@ -2115,6 +2130,7 @@ class DisassociateDomainResponse {
 
 class DisassociateWebsiteAuthorizationProviderResponse {
   DisassociateWebsiteAuthorizationProviderResponse();
+
   factory DisassociateWebsiteAuthorizationProviderResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWebsiteAuthorizationProviderResponse();
@@ -2127,6 +2143,7 @@ class DisassociateWebsiteAuthorizationProviderResponse {
 
 class DisassociateWebsiteCertificateAuthorityResponse {
   DisassociateWebsiteCertificateAuthorityResponse();
+
   factory DisassociateWebsiteCertificateAuthorityResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateWebsiteCertificateAuthorityResponse();
@@ -2215,6 +2232,7 @@ class DomainSummary {
     required this.domainStatus,
     this.displayName,
   });
+
   factory DomainSummary.fromJson(Map<String, dynamic> json) {
     return DomainSummary(
       createdTime: nonNullableTimeStampFromJson(json['CreatedTime'] as Object),
@@ -2322,6 +2340,7 @@ class FleetSummary {
     this.lastUpdatedTime,
     this.tags,
   });
+
   factory FleetSummary.fromJson(Map<String, dynamic> json) {
     return FleetSummary(
       companyCode: json['CompanyCode'] as String?,
@@ -2394,6 +2413,7 @@ class ListDevicesResponse {
     this.devices,
     this.nextToken,
   });
+
   factory ListDevicesResponse.fromJson(Map<String, dynamic> json) {
     return ListDevicesResponse(
       devices: (json['Devices'] as List?)
@@ -2426,6 +2446,7 @@ class ListDomainsResponse {
     this.domains,
     this.nextToken,
   });
+
   factory ListDomainsResponse.fromJson(Map<String, dynamic> json) {
     return ListDomainsResponse(
       domains: (json['Domains'] as List?)
@@ -2458,6 +2479,7 @@ class ListFleetsResponse {
     this.fleetSummaryList,
     this.nextToken,
   });
+
   factory ListFleetsResponse.fromJson(Map<String, dynamic> json) {
     return ListFleetsResponse(
       fleetSummaryList: (json['FleetSummaryList'] as List?)
@@ -2485,6 +2507,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -2513,6 +2536,7 @@ class ListWebsiteAuthorizationProvidersResponse {
     this.nextToken,
     this.websiteAuthorizationProviders,
   });
+
   factory ListWebsiteAuthorizationProvidersResponse.fromJson(
       Map<String, dynamic> json) {
     return ListWebsiteAuthorizationProvidersResponse(
@@ -2549,6 +2573,7 @@ class ListWebsiteCertificateAuthoritiesResponse {
     this.nextToken,
     this.websiteCertificateAuthorities,
   });
+
   factory ListWebsiteCertificateAuthoritiesResponse.fromJson(
       Map<String, dynamic> json) {
     return ListWebsiteCertificateAuthoritiesResponse(
@@ -2574,6 +2599,7 @@ class ListWebsiteCertificateAuthoritiesResponse {
 
 class RestoreDomainAccessResponse {
   RestoreDomainAccessResponse();
+
   factory RestoreDomainAccessResponse.fromJson(Map<String, dynamic> _) {
     return RestoreDomainAccessResponse();
   }
@@ -2585,6 +2611,7 @@ class RestoreDomainAccessResponse {
 
 class RevokeDomainAccessResponse {
   RevokeDomainAccessResponse();
+
   factory RevokeDomainAccessResponse.fromJson(Map<String, dynamic> _) {
     return RevokeDomainAccessResponse();
   }
@@ -2596,6 +2623,7 @@ class RevokeDomainAccessResponse {
 
 class SignOutUserResponse {
   SignOutUserResponse();
+
   factory SignOutUserResponse.fromJson(Map<String, dynamic> _) {
     return SignOutUserResponse();
   }
@@ -2607,6 +2635,7 @@ class SignOutUserResponse {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -2618,6 +2647,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -2629,6 +2659,7 @@ class UntagResourceResponse {
 
 class UpdateAuditStreamConfigurationResponse {
   UpdateAuditStreamConfigurationResponse();
+
   factory UpdateAuditStreamConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateAuditStreamConfigurationResponse();
@@ -2641,6 +2672,7 @@ class UpdateAuditStreamConfigurationResponse {
 
 class UpdateCompanyNetworkConfigurationResponse {
   UpdateCompanyNetworkConfigurationResponse();
+
   factory UpdateCompanyNetworkConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateCompanyNetworkConfigurationResponse();
@@ -2653,6 +2685,7 @@ class UpdateCompanyNetworkConfigurationResponse {
 
 class UpdateDevicePolicyConfigurationResponse {
   UpdateDevicePolicyConfigurationResponse();
+
   factory UpdateDevicePolicyConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateDevicePolicyConfigurationResponse();
@@ -2665,6 +2698,7 @@ class UpdateDevicePolicyConfigurationResponse {
 
 class UpdateDomainMetadataResponse {
   UpdateDomainMetadataResponse();
+
   factory UpdateDomainMetadataResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDomainMetadataResponse();
   }
@@ -2676,6 +2710,7 @@ class UpdateDomainMetadataResponse {
 
 class UpdateFleetMetadataResponse {
   UpdateFleetMetadataResponse();
+
   factory UpdateFleetMetadataResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFleetMetadataResponse();
   }
@@ -2687,6 +2722,7 @@ class UpdateFleetMetadataResponse {
 
 class UpdateIdentityProviderConfigurationResponse {
   UpdateIdentityProviderConfigurationResponse();
+
   factory UpdateIdentityProviderConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateIdentityProviderConfigurationResponse();
@@ -2718,6 +2754,7 @@ class WebsiteAuthorizationProviderSummary {
     this.createdTime,
     this.domainName,
   });
+
   factory WebsiteAuthorizationProviderSummary.fromJson(
       Map<String, dynamic> json) {
     return WebsiteAuthorizationProviderSummary(
@@ -2760,6 +2797,7 @@ class WebsiteCaSummary {
     this.displayName,
     this.websiteCaId,
   });
+
   factory WebsiteCaSummary.fromJson(Map<String, dynamic> json) {
     return WebsiteCaSummary(
       createdTime: timeStampFromJson(json['CreatedTime']),

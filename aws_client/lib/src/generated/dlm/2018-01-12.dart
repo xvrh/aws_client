@@ -392,6 +392,7 @@ class Action {
     required this.crossRegionCopy,
     required this.name,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       crossRegionCopy: (json['CrossRegionCopy'] as List)
@@ -419,6 +420,7 @@ class CreateLifecyclePolicyResponse {
   CreateLifecyclePolicyResponse({
     this.policyId,
   });
+
   factory CreateLifecyclePolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreateLifecyclePolicyResponse(
       policyId: json['PolicyId'] as String?,
@@ -479,6 +481,7 @@ class CreateRule {
     this.location,
     this.times,
   });
+
   factory CreateRule.fromJson(Map<String, dynamic> json) {
     return CreateRule(
       cronExpression: json['CronExpression'] as String?,
@@ -522,6 +525,7 @@ class CrossRegionCopyAction {
     required this.target,
     this.retainRule,
   });
+
   factory CrossRegionCopyAction.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyAction(
       encryptionConfiguration: EncryptionConfiguration.fromJson(
@@ -559,6 +563,7 @@ class CrossRegionCopyRetainRule {
     this.interval,
     this.intervalUnit,
   });
+
   factory CrossRegionCopyRetainRule.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyRetainRule(
       interval: json['Interval'] as int?,
@@ -617,6 +622,7 @@ class CrossRegionCopyRule {
     this.target,
     this.targetRegion,
   });
+
   factory CrossRegionCopyRule.fromJson(Map<String, dynamic> json) {
     return CrossRegionCopyRule(
       encrypted: json['Encrypted'] as bool,
@@ -651,6 +657,7 @@ class CrossRegionCopyRule {
 
 class DeleteLifecyclePolicyResponse {
   DeleteLifecyclePolicyResponse();
+
   factory DeleteLifecyclePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLifecyclePolicyResponse();
   }
@@ -678,6 +685,7 @@ class EncryptionConfiguration {
     required this.encrypted,
     this.cmkArn,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       encrypted: json['Encrypted'] as bool,
@@ -721,6 +729,7 @@ class EventParameters {
     required this.eventType,
     required this.snapshotOwner,
   });
+
   factory EventParameters.fromJson(Map<String, dynamic> json) {
     return EventParameters(
       descriptionRegex: json['DescriptionRegex'] as String,
@@ -757,6 +766,7 @@ class EventSource {
     required this.type,
     this.parameters,
   });
+
   factory EventSource.fromJson(Map<String, dynamic> json) {
     return EventSource(
       type: (json['Type'] as String).toEventSourceValues(),
@@ -844,6 +854,7 @@ class FastRestoreRule {
     this.interval,
     this.intervalUnit,
   });
+
   factory FastRestoreRule.fromJson(Map<String, dynamic> json) {
     return FastRestoreRule(
       availabilityZones: (json['AvailabilityZones'] as List)
@@ -878,6 +889,7 @@ class GetLifecyclePoliciesResponse {
   GetLifecyclePoliciesResponse({
     this.policies,
   });
+
   factory GetLifecyclePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return GetLifecyclePoliciesResponse(
       policies: (json['Policies'] as List?)
@@ -903,6 +915,7 @@ class GetLifecyclePolicyResponse {
   GetLifecyclePolicyResponse({
     this.policy,
   });
+
   factory GetLifecyclePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetLifecyclePolicyResponse(
       policy: json['Policy'] != null
@@ -1020,6 +1033,7 @@ class LifecyclePolicy {
     this.statusMessage,
     this.tags,
   });
+
   factory LifecyclePolicy.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicy(
       dateCreated: timeStampFromJson(json['DateCreated']),
@@ -1092,6 +1106,7 @@ class LifecyclePolicySummary {
     this.state,
     this.tags,
   });
+
   factory LifecyclePolicySummary.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicySummary(
       description: json['Description'] as String?,
@@ -1126,6 +1141,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -1189,6 +1205,7 @@ class Parameters {
     this.excludeBootVolume,
     this.noReboot,
   });
+
   factory Parameters.fromJson(Map<String, dynamic> json) {
     return Parameters(
       excludeBootVolume: json['ExcludeBootVolume'] as bool?,
@@ -1280,6 +1297,7 @@ class PolicyDetails {
     this.schedules,
     this.targetTags,
   });
+
   factory PolicyDetails.fromJson(Map<String, dynamic> json) {
     return PolicyDetails(
       actions: (json['Actions'] as List?)
@@ -1443,6 +1461,7 @@ class RetainRule {
     this.interval,
     this.intervalUnit,
   });
+
   factory RetainRule.fromJson(Map<String, dynamic> json) {
     return RetainRule(
       count: json['Count'] as int?,
@@ -1554,6 +1573,7 @@ class Schedule {
     this.tagsToAdd,
     this.variableTags,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       copyTags: json['CopyTags'] as bool?,
@@ -1657,6 +1677,7 @@ class ShareRule {
     this.unshareInterval,
     this.unshareIntervalUnit,
   });
+
   factory ShareRule.fromJson(Map<String, dynamic> json) {
     return ShareRule(
       targetAccounts: (json['TargetAccounts'] as List)
@@ -1694,6 +1715,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -1713,6 +1735,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -1724,6 +1747,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -1735,6 +1759,7 @@ class UntagResourceResponse {
 
 class UpdateLifecyclePolicyResponse {
   UpdateLifecyclePolicyResponse();
+
   factory UpdateLifecyclePolicyResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLifecyclePolicyResponse();
   }

@@ -9839,6 +9839,7 @@ class Action {
     this.securityConfiguration,
     this.timeout,
   });
+
   factory Action.fromJson(Map<String, dynamic> json) {
     return Action(
       arguments: (json['Arguments'] as Map<String, dynamic>?)
@@ -9913,6 +9914,7 @@ class BackfillError {
     this.code,
     this.partitions,
   });
+
   factory BackfillError.fromJson(Map<String, dynamic> json) {
     return BackfillError(
       code: (json['Code'] as String?)?.toBackfillErrorCode(),
@@ -9983,6 +9985,7 @@ class BatchCreatePartitionResponse {
   BatchCreatePartitionResponse({
     this.errors,
   });
+
   factory BatchCreatePartitionResponse.fromJson(Map<String, dynamic> json) {
     return BatchCreatePartitionResponse(
       errors: (json['Errors'] as List?)
@@ -10013,6 +10016,7 @@ class BatchDeleteConnectionResponse {
     this.errors,
     this.succeeded,
   });
+
   factory BatchDeleteConnectionResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteConnectionResponse(
       errors: (json['Errors'] as Map<String, dynamic>?)?.map((k, e) =>
@@ -10041,6 +10045,7 @@ class BatchDeletePartitionResponse {
   BatchDeletePartitionResponse({
     this.errors,
   });
+
   factory BatchDeletePartitionResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeletePartitionResponse(
       errors: (json['Errors'] as List?)
@@ -10065,6 +10070,7 @@ class BatchDeleteTableResponse {
   BatchDeleteTableResponse({
     this.errors,
   });
+
   factory BatchDeleteTableResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteTableResponse(
       errors: (json['Errors'] as List?)
@@ -10090,6 +10096,7 @@ class BatchDeleteTableVersionResponse {
   BatchDeleteTableVersionResponse({
     this.errors,
   });
+
   factory BatchDeleteTableVersionResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteTableVersionResponse(
       errors: (json['Errors'] as List?)
@@ -10118,6 +10125,7 @@ class BatchGetCrawlersResponse {
     this.crawlers,
     this.crawlersNotFound,
   });
+
   factory BatchGetCrawlersResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetCrawlersResponse(
       crawlers: (json['Crawlers'] as List?)
@@ -10152,6 +10160,7 @@ class BatchGetDevEndpointsResponse {
     this.devEndpoints,
     this.devEndpointsNotFound,
   });
+
   factory BatchGetDevEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetDevEndpointsResponse(
       devEndpoints: (json['DevEndpoints'] as List?)
@@ -10187,6 +10196,7 @@ class BatchGetJobsResponse {
     this.jobs,
     this.jobsNotFound,
   });
+
   factory BatchGetJobsResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetJobsResponse(
       jobs: (json['Jobs'] as List?)
@@ -10222,6 +10232,7 @@ class BatchGetPartitionResponse {
     this.partitions,
     this.unprocessedKeys,
   });
+
   factory BatchGetPartitionResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetPartitionResponse(
       partitions: (json['Partitions'] as List?)
@@ -10256,6 +10267,7 @@ class BatchGetTriggersResponse {
     this.triggers,
     this.triggersNotFound,
   });
+
   factory BatchGetTriggersResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetTriggersResponse(
       triggers: (json['Triggers'] as List?)
@@ -10290,6 +10302,7 @@ class BatchGetWorkflowsResponse {
     this.missingWorkflows,
     this.workflows,
   });
+
   factory BatchGetWorkflowsResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetWorkflowsResponse(
       missingWorkflows: (json['MissingWorkflows'] as List?)
@@ -10329,6 +10342,7 @@ class BatchStopJobRunError {
     this.jobName,
     this.jobRunId,
   });
+
   factory BatchStopJobRunError.fromJson(Map<String, dynamic> json) {
     return BatchStopJobRunError(
       errorDetail: json['ErrorDetail'] != null
@@ -10364,6 +10378,7 @@ class BatchStopJobRunResponse {
     this.errors,
     this.successfulSubmissions,
   });
+
   factory BatchStopJobRunResponse.fromJson(Map<String, dynamic> json) {
     return BatchStopJobRunResponse(
       errors: (json['Errors'] as List?)
@@ -10401,6 +10416,7 @@ class BatchStopJobRunSuccessfulSubmission {
     this.jobName,
     this.jobRunId,
   });
+
   factory BatchStopJobRunSuccessfulSubmission.fromJson(
       Map<String, dynamic> json) {
     return BatchStopJobRunSuccessfulSubmission(
@@ -10431,6 +10447,7 @@ class BatchUpdatePartitionFailureEntry {
     this.errorDetail,
     this.partitionValueList,
   });
+
   factory BatchUpdatePartitionFailureEntry.fromJson(Map<String, dynamic> json) {
     return BatchUpdatePartitionFailureEntry(
       errorDetail: json['ErrorDetail'] != null
@@ -10466,6 +10483,7 @@ class BatchUpdatePartitionRequestEntry {
     required this.partitionInput,
     required this.partitionValueList,
   });
+
   factory BatchUpdatePartitionRequestEntry.fromJson(Map<String, dynamic> json) {
     return BatchUpdatePartitionRequestEntry(
       partitionInput: PartitionInput.fromJson(
@@ -10495,6 +10513,7 @@ class BatchUpdatePartitionResponse {
   BatchUpdatePartitionResponse({
     this.errors,
   });
+
   factory BatchUpdatePartitionResponse.fromJson(Map<String, dynamic> json) {
     return BatchUpdatePartitionResponse(
       errors: (json['Errors'] as List?)
@@ -10529,6 +10548,7 @@ class BinaryColumnStatisticsData {
     required this.maximumLength,
     required this.numberOfNulls,
   });
+
   factory BinaryColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return BinaryColumnStatisticsData(
       averageLength: json['AverageLength'] as double,
@@ -10565,6 +10585,7 @@ class BooleanColumnStatisticsData {
     required this.numberOfNulls,
     required this.numberOfTrues,
   });
+
   factory BooleanColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return BooleanColumnStatisticsData(
       numberOfFalses: json['NumberOfFalses'] as int,
@@ -10600,6 +10621,7 @@ class CancelMLTaskRunResponse {
     this.taskRunId,
     this.transformId,
   });
+
   factory CancelMLTaskRunResponse.fromJson(Map<String, dynamic> json) {
     return CancelMLTaskRunResponse(
       status: (json['Status'] as String?)?.toTaskStatusType(),
@@ -10660,6 +10682,7 @@ class CatalogEntry {
     required this.databaseName,
     required this.tableName,
   });
+
   factory CatalogEntry.fromJson(Map<String, dynamic> json) {
     return CatalogEntry(
       databaseName: json['DatabaseName'] as String,
@@ -10694,6 +10717,7 @@ class CatalogImportStatus {
     this.importTime,
     this.importedBy,
   });
+
   factory CatalogImportStatus.fromJson(Map<String, dynamic> json) {
     return CatalogImportStatus(
       importCompleted: json['ImportCompleted'] as bool?,
@@ -10726,6 +10750,7 @@ class CatalogTarget {
     required this.databaseName,
     required this.tables,
   });
+
   factory CatalogTarget.fromJson(Map<String, dynamic> json) {
     return CatalogTarget(
       databaseName: json['DatabaseName'] as String,
@@ -10757,6 +10782,7 @@ class CheckSchemaVersionValidityResponse {
     this.error,
     this.valid,
   });
+
   factory CheckSchemaVersionValidityResponse.fromJson(
       Map<String, dynamic> json) {
     return CheckSchemaVersionValidityResponse(
@@ -10805,6 +10831,7 @@ class Classifier {
     this.jsonClassifier,
     this.xMLClassifier,
   });
+
   factory Classifier.fromJson(Map<String, dynamic> json) {
     return Classifier(
       csvClassifier: json['CsvClassifier'] != null
@@ -10853,6 +10880,7 @@ class CloudWatchEncryption {
     this.cloudWatchEncryptionMode,
     this.kmsKeyArn,
   });
+
   factory CloudWatchEncryption.fromJson(Map<String, dynamic> json) {
     return CloudWatchEncryption(
       cloudWatchEncryptionMode: (json['CloudWatchEncryptionMode'] as String?)
@@ -10916,6 +10944,7 @@ class CodeGenEdge {
     required this.target,
     this.targetParameter,
   });
+
   factory CodeGenEdge.fromJson(Map<String, dynamic> json) {
     return CodeGenEdge(
       source: json['Source'] as String,
@@ -10956,6 +10985,7 @@ class CodeGenNode {
     required this.nodeType,
     this.lineNumber,
   });
+
   factory CodeGenNode.fromJson(Map<String, dynamic> json) {
     return CodeGenNode(
       args: (json['Args'] as List)
@@ -10998,6 +11028,7 @@ class CodeGenNodeArg {
     required this.value,
     this.param,
   });
+
   factory CodeGenNodeArg.fromJson(Map<String, dynamic> json) {
     return CodeGenNodeArg(
       name: json['Name'] as String,
@@ -11038,6 +11069,7 @@ class Column {
     this.parameters,
     this.type,
   });
+
   factory Column.fromJson(Map<String, dynamic> json) {
     return Column(
       name: json['Name'] as String,
@@ -11074,6 +11106,7 @@ class ColumnError {
     this.columnName,
     this.error,
   });
+
   factory ColumnError.fromJson(Map<String, dynamic> json) {
     return ColumnError(
       columnName: json['ColumnName'] as String?,
@@ -11109,6 +11142,7 @@ class ColumnImportance {
     this.columnName,
     this.importance,
   });
+
   factory ColumnImportance.fromJson(Map<String, dynamic> json) {
     return ColumnImportance(
       columnName: json['ColumnName'] as String?,
@@ -11147,6 +11181,7 @@ class ColumnStatistics {
     required this.columnType,
     required this.statisticsData,
   });
+
   factory ColumnStatistics.fromJson(Map<String, dynamic> json) {
     return ColumnStatistics(
       analyzedTime:
@@ -11209,6 +11244,7 @@ class ColumnStatisticsData {
     this.longColumnStatisticsData,
     this.stringColumnStatisticsData,
   });
+
   factory ColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return ColumnStatisticsData(
       type: (json['Type'] as String).toColumnStatisticsType(),
@@ -11285,6 +11321,7 @@ class ColumnStatisticsError {
     this.columnStatistics,
     this.error,
   });
+
   factory ColumnStatisticsError.fromJson(Map<String, dynamic> json) {
     return ColumnStatisticsError(
       columnStatistics: json['ColumnStatistics'] != null
@@ -11490,6 +11527,7 @@ class Condition {
     this.logicalOperator,
     this.state,
   });
+
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
       crawlState: (json['CrawlState'] as String?)?.toCrawlState(),
@@ -11546,6 +11584,7 @@ class ConfusionMatrix {
     this.numTrueNegatives,
     this.numTruePositives,
   });
+
   factory ConfusionMatrix.fromJson(Map<String, dynamic> json) {
     return ConfusionMatrix(
       numFalseNegatives: json['NumFalseNegatives'] as int?,
@@ -11747,6 +11786,7 @@ class Connection {
     this.name,
     this.physicalConnectionRequirements,
   });
+
   factory Connection.fromJson(Map<String, dynamic> json) {
     return Connection(
       connectionProperties: (json['ConnectionProperties']
@@ -11859,6 +11899,7 @@ class ConnectionInput {
     this.matchCriteria,
     this.physicalConnectionRequirements,
   });
+
   factory ConnectionInput.fromJson(Map<String, dynamic> json) {
     return ConnectionInput(
       connectionProperties: (json['ConnectionProperties']
@@ -11935,6 +11976,7 @@ class ConnectionPasswordEncryption {
     required this.returnConnectionPasswordEncrypted,
     this.awsKmsKeyId,
   });
+
   factory ConnectionPasswordEncryption.fromJson(Map<String, dynamic> json) {
     return ConnectionPasswordEncryption(
       returnConnectionPasswordEncrypted:
@@ -12183,6 +12225,7 @@ class ConnectionsList {
   ConnectionsList({
     this.connections,
   });
+
   factory ConnectionsList.fromJson(Map<String, dynamic> json) {
     return ConnectionsList(
       connections: (json['Connections'] as List?)
@@ -12228,6 +12271,7 @@ class Crawl {
     this.startedOn,
     this.state,
   });
+
   factory Crawl.fromJson(Map<String, dynamic> json) {
     return Crawl(
       completedOn: timeStampFromJson(json['CompletedOn']),
@@ -12392,6 +12436,7 @@ class Crawler {
     this.targets,
     this.version,
   });
+
   factory Crawler.fromJson(Map<String, dynamic> json) {
     return Crawler(
       classifiers: (json['Classifiers'] as List?)
@@ -12547,6 +12592,7 @@ class CrawlerMetrics {
     this.tablesUpdated,
     this.timeLeftSeconds,
   });
+
   factory CrawlerMetrics.fromJson(Map<String, dynamic> json) {
     return CrawlerMetrics(
       crawlerName: json['CrawlerName'] as String?,
@@ -12591,6 +12637,7 @@ class CrawlerNodeDetails {
   CrawlerNodeDetails({
     this.crawls,
   });
+
   factory CrawlerNodeDetails.fromJson(Map<String, dynamic> json) {
     return CrawlerNodeDetails(
       crawls: (json['Crawls'] as List?)
@@ -12665,6 +12712,7 @@ class CrawlerTargets {
     this.mongoDBTargets,
     this.s3Targets,
   });
+
   factory CrawlerTargets.fromJson(Map<String, dynamic> json) {
     return CrawlerTargets(
       catalogTargets: (json['CatalogTargets'] as List?)
@@ -12708,6 +12756,7 @@ class CrawlerTargets {
 
 class CreateClassifierResponse {
   CreateClassifierResponse();
+
   factory CreateClassifierResponse.fromJson(Map<String, dynamic> _) {
     return CreateClassifierResponse();
   }
@@ -12719,6 +12768,7 @@ class CreateClassifierResponse {
 
 class CreateConnectionResponse {
   CreateConnectionResponse();
+
   factory CreateConnectionResponse.fromJson(Map<String, dynamic> _) {
     return CreateConnectionResponse();
   }
@@ -12730,6 +12780,7 @@ class CreateConnectionResponse {
 
 class CreateCrawlerResponse {
   CreateCrawlerResponse();
+
   factory CreateCrawlerResponse.fromJson(Map<String, dynamic> _) {
     return CreateCrawlerResponse();
   }
@@ -12774,6 +12825,7 @@ class CreateCsvClassifierRequest {
     this.header,
     this.quoteSymbol,
   });
+
   factory CreateCsvClassifierRequest.fromJson(Map<String, dynamic> json) {
     return CreateCsvClassifierRequest(
       name: json['Name'] as String,
@@ -12812,6 +12864,7 @@ class CreateCsvClassifierRequest {
 
 class CreateDatabaseResponse {
   CreateDatabaseResponse();
+
   factory CreateDatabaseResponse.fromJson(Map<String, dynamic> _) {
     return CreateDatabaseResponse();
   }
@@ -12927,6 +12980,7 @@ class CreateDevEndpointResponse {
     this.yarnEndpointAddress,
     this.zeppelinRemoteSparkInterpreterPort,
   });
+
   factory CreateDevEndpointResponse.fromJson(Map<String, dynamic> json) {
     return CreateDevEndpointResponse(
       arguments: (json['Arguments'] as Map<String, dynamic>?)
@@ -13029,6 +13083,7 @@ class CreateGrokClassifierRequest {
     required this.name,
     this.customPatterns,
   });
+
   factory CreateGrokClassifierRequest.fromJson(Map<String, dynamic> json) {
     return CreateGrokClassifierRequest(
       classification: json['Classification'] as String,
@@ -13059,6 +13114,7 @@ class CreateJobResponse {
   CreateJobResponse({
     this.name,
   });
+
   factory CreateJobResponse.fromJson(Map<String, dynamic> json) {
     return CreateJobResponse(
       name: json['Name'] as String?,
@@ -13088,6 +13144,7 @@ class CreateJsonClassifierRequest {
     required this.jsonPath,
     required this.name,
   });
+
   factory CreateJsonClassifierRequest.fromJson(Map<String, dynamic> json) {
     return CreateJsonClassifierRequest(
       jsonPath: json['JsonPath'] as String,
@@ -13112,6 +13169,7 @@ class CreateMLTransformResponse {
   CreateMLTransformResponse({
     this.transformId,
   });
+
   factory CreateMLTransformResponse.fromJson(Map<String, dynamic> json) {
     return CreateMLTransformResponse(
       transformId: json['TransformId'] as String?,
@@ -13128,6 +13186,7 @@ class CreateMLTransformResponse {
 
 class CreatePartitionIndexResponse {
   CreatePartitionIndexResponse();
+
   factory CreatePartitionIndexResponse.fromJson(Map<String, dynamic> _) {
     return CreatePartitionIndexResponse();
   }
@@ -13139,6 +13198,7 @@ class CreatePartitionIndexResponse {
 
 class CreatePartitionResponse {
   CreatePartitionResponse();
+
   factory CreatePartitionResponse.fromJson(Map<String, dynamic> _) {
     return CreatePartitionResponse();
   }
@@ -13167,6 +13227,7 @@ class CreateRegistryResponse {
     this.registryName,
     this.tags,
   });
+
   factory CreateRegistryResponse.fromJson(Map<String, dynamic> json) {
     return CreateRegistryResponse(
       description: json['Description'] as String?,
@@ -13254,6 +13315,7 @@ class CreateSchemaResponse {
     this.schemaVersionStatus,
     this.tags,
   });
+
   factory CreateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return CreateSchemaResponse(
       compatibility: (json['Compatibility'] as String?)?.toCompatibility(),
@@ -13322,6 +13384,7 @@ class CreateScriptResponse {
     this.pythonScript,
     this.scalaCode,
   });
+
   factory CreateScriptResponse.fromJson(Map<String, dynamic> json) {
     return CreateScriptResponse(
       pythonScript: json['PythonScript'] as String?,
@@ -13350,6 +13413,7 @@ class CreateSecurityConfigurationResponse {
     this.createdTimestamp,
     this.name,
   });
+
   factory CreateSecurityConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateSecurityConfigurationResponse(
@@ -13371,6 +13435,7 @@ class CreateSecurityConfigurationResponse {
 
 class CreateTableResponse {
   CreateTableResponse();
+
   factory CreateTableResponse.fromJson(Map<String, dynamic> _) {
     return CreateTableResponse();
   }
@@ -13387,6 +13452,7 @@ class CreateTriggerResponse {
   CreateTriggerResponse({
     this.name,
   });
+
   factory CreateTriggerResponse.fromJson(Map<String, dynamic> json) {
     return CreateTriggerResponse(
       name: json['Name'] as String?,
@@ -13403,6 +13469,7 @@ class CreateTriggerResponse {
 
 class CreateUserDefinedFunctionResponse {
   CreateUserDefinedFunctionResponse();
+
   factory CreateUserDefinedFunctionResponse.fromJson(Map<String, dynamic> _) {
     return CreateUserDefinedFunctionResponse();
   }
@@ -13419,6 +13486,7 @@ class CreateWorkflowResponse {
   CreateWorkflowResponse({
     this.name,
   });
+
   factory CreateWorkflowResponse.fromJson(Map<String, dynamic> json) {
     return CreateWorkflowResponse(
       name: json['Name'] as String?,
@@ -13454,6 +13522,7 @@ class CreateXMLClassifierRequest {
     required this.name,
     this.rowTag,
   });
+
   factory CreateXMLClassifierRequest.fromJson(Map<String, dynamic> json) {
     return CreateXMLClassifierRequest(
       classification: json['Classification'] as String,
@@ -13520,6 +13589,7 @@ class CsvClassifier {
     this.quoteSymbol,
     this.version,
   });
+
   factory CsvClassifier.fromJson(Map<String, dynamic> json) {
     return CsvClassifier(
       name: json['Name'] as String,
@@ -13615,6 +13685,7 @@ class DataCatalogEncryptionSettings {
     this.connectionPasswordEncryption,
     this.encryptionAtRest,
   });
+
   factory DataCatalogEncryptionSettings.fromJson(Map<String, dynamic> json) {
     return DataCatalogEncryptionSettings(
       connectionPasswordEncryption: json['ConnectionPasswordEncryption'] != null
@@ -13675,6 +13746,7 @@ class DataLakePrincipal {
   DataLakePrincipal({
     this.dataLakePrincipalIdentifier,
   });
+
   factory DataLakePrincipal.fromJson(Map<String, dynamic> json) {
     return DataLakePrincipal(
       dataLakePrincipalIdentifier:
@@ -13730,6 +13802,7 @@ class Database {
     this.parameters,
     this.targetDatabase,
   });
+
   factory Database.fromJson(Map<String, dynamic> json) {
     return Database(
       name: json['Name'] as String,
@@ -13786,6 +13859,7 @@ class DatabaseIdentifier {
     this.catalogId,
     this.databaseName,
   });
+
   factory DatabaseIdentifier.fromJson(Map<String, dynamic> json) {
     return DatabaseIdentifier(
       catalogId: json['CatalogId'] as String?,
@@ -13835,6 +13909,7 @@ class DatabaseInput {
     this.parameters,
     this.targetDatabase,
   });
+
   factory DatabaseInput.fromJson(Map<String, dynamic> json) {
     return DatabaseInput(
       name: json['Name'] as String,
@@ -13893,6 +13968,7 @@ class DateColumnStatisticsData {
     this.maximumValue,
     this.minimumValue,
   });
+
   factory DateColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return DateColumnStatisticsData(
       numberOfDistinctValues: json['NumberOfDistinctValues'] as int,
@@ -13938,6 +14014,7 @@ class DecimalColumnStatisticsData {
     this.maximumValue,
     this.minimumValue,
   });
+
   factory DecimalColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return DecimalColumnStatisticsData(
       numberOfDistinctValues: json['NumberOfDistinctValues'] as int,
@@ -13978,6 +14055,7 @@ class DecimalNumber {
     required this.scale,
     required this.unscaledValue,
   });
+
   factory DecimalNumber.fromJson(Map<String, dynamic> json) {
     return DecimalNumber(
       scale: json['Scale'] as int,
@@ -14030,6 +14108,7 @@ extension on String {
 
 class DeleteClassifierResponse {
   DeleteClassifierResponse();
+
   factory DeleteClassifierResponse.fromJson(Map<String, dynamic> _) {
     return DeleteClassifierResponse();
   }
@@ -14041,6 +14120,7 @@ class DeleteClassifierResponse {
 
 class DeleteColumnStatisticsForPartitionResponse {
   DeleteColumnStatisticsForPartitionResponse();
+
   factory DeleteColumnStatisticsForPartitionResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteColumnStatisticsForPartitionResponse();
@@ -14053,6 +14133,7 @@ class DeleteColumnStatisticsForPartitionResponse {
 
 class DeleteColumnStatisticsForTableResponse {
   DeleteColumnStatisticsForTableResponse();
+
   factory DeleteColumnStatisticsForTableResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteColumnStatisticsForTableResponse();
@@ -14065,6 +14146,7 @@ class DeleteColumnStatisticsForTableResponse {
 
 class DeleteConnectionResponse {
   DeleteConnectionResponse();
+
   factory DeleteConnectionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConnectionResponse();
   }
@@ -14076,6 +14158,7 @@ class DeleteConnectionResponse {
 
 class DeleteCrawlerResponse {
   DeleteCrawlerResponse();
+
   factory DeleteCrawlerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCrawlerResponse();
   }
@@ -14087,6 +14170,7 @@ class DeleteCrawlerResponse {
 
 class DeleteDatabaseResponse {
   DeleteDatabaseResponse();
+
   factory DeleteDatabaseResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDatabaseResponse();
   }
@@ -14098,6 +14182,7 @@ class DeleteDatabaseResponse {
 
 class DeleteDevEndpointResponse {
   DeleteDevEndpointResponse();
+
   factory DeleteDevEndpointResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDevEndpointResponse();
   }
@@ -14114,6 +14199,7 @@ class DeleteJobResponse {
   DeleteJobResponse({
     this.jobName,
   });
+
   factory DeleteJobResponse.fromJson(Map<String, dynamic> json) {
     return DeleteJobResponse(
       jobName: json['JobName'] as String?,
@@ -14135,6 +14221,7 @@ class DeleteMLTransformResponse {
   DeleteMLTransformResponse({
     this.transformId,
   });
+
   factory DeleteMLTransformResponse.fromJson(Map<String, dynamic> json) {
     return DeleteMLTransformResponse(
       transformId: json['TransformId'] as String?,
@@ -14151,6 +14238,7 @@ class DeleteMLTransformResponse {
 
 class DeletePartitionIndexResponse {
   DeletePartitionIndexResponse();
+
   factory DeletePartitionIndexResponse.fromJson(Map<String, dynamic> _) {
     return DeletePartitionIndexResponse();
   }
@@ -14162,6 +14250,7 @@ class DeletePartitionIndexResponse {
 
 class DeletePartitionResponse {
   DeletePartitionResponse();
+
   factory DeletePartitionResponse.fromJson(Map<String, dynamic> _) {
     return DeletePartitionResponse();
   }
@@ -14187,6 +14276,7 @@ class DeleteRegistryResponse {
     this.registryName,
     this.status,
   });
+
   factory DeleteRegistryResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRegistryResponse(
       registryArn: json['RegistryArn'] as String?,
@@ -14209,6 +14299,7 @@ class DeleteRegistryResponse {
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
+
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
   }
@@ -14233,6 +14324,7 @@ class DeleteSchemaResponse {
     this.schemaName,
     this.status,
   });
+
   factory DeleteSchemaResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSchemaResponse(
       schemaArn: json['SchemaArn'] as String?,
@@ -14261,6 +14353,7 @@ class DeleteSchemaVersionsResponse {
   DeleteSchemaVersionsResponse({
     this.schemaVersionErrors,
   });
+
   factory DeleteSchemaVersionsResponse.fromJson(Map<String, dynamic> json) {
     return DeleteSchemaVersionsResponse(
       schemaVersionErrors: (json['SchemaVersionErrors'] as List?)
@@ -14282,6 +14375,7 @@ class DeleteSchemaVersionsResponse {
 
 class DeleteSecurityConfigurationResponse {
   DeleteSecurityConfigurationResponse();
+
   factory DeleteSecurityConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSecurityConfigurationResponse();
   }
@@ -14293,6 +14387,7 @@ class DeleteSecurityConfigurationResponse {
 
 class DeleteTableResponse {
   DeleteTableResponse();
+
   factory DeleteTableResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTableResponse();
   }
@@ -14304,6 +14399,7 @@ class DeleteTableResponse {
 
 class DeleteTableVersionResponse {
   DeleteTableVersionResponse();
+
   factory DeleteTableVersionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTableVersionResponse();
   }
@@ -14320,6 +14416,7 @@ class DeleteTriggerResponse {
   DeleteTriggerResponse({
     this.name,
   });
+
   factory DeleteTriggerResponse.fromJson(Map<String, dynamic> json) {
     return DeleteTriggerResponse(
       name: json['Name'] as String?,
@@ -14336,6 +14433,7 @@ class DeleteTriggerResponse {
 
 class DeleteUserDefinedFunctionResponse {
   DeleteUserDefinedFunctionResponse();
+
   factory DeleteUserDefinedFunctionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserDefinedFunctionResponse();
   }
@@ -14352,6 +14450,7 @@ class DeleteWorkflowResponse {
   DeleteWorkflowResponse({
     this.name,
   });
+
   factory DeleteWorkflowResponse.fromJson(Map<String, dynamic> json) {
     return DeleteWorkflowResponse(
       name: json['Name'] as String?,
@@ -14557,6 +14656,7 @@ class DevEndpoint {
     this.yarnEndpointAddress,
     this.zeppelinRemoteSparkInterpreterPort,
   });
+
   factory DevEndpoint.fromJson(Map<String, dynamic> json) {
     return DevEndpoint(
       arguments: (json['Arguments'] as Map<String, dynamic>?)
@@ -14684,6 +14784,7 @@ class DevEndpointCustomLibraries {
     this.extraJarsS3Path,
     this.extraPythonLibsS3Path,
   });
+
   factory DevEndpointCustomLibraries.fromJson(Map<String, dynamic> json) {
     return DevEndpointCustomLibraries(
       extraJarsS3Path: json['ExtraJarsS3Path'] as String?,
@@ -14722,6 +14823,7 @@ class DoubleColumnStatisticsData {
     this.maximumValue,
     this.minimumValue,
   });
+
   factory DoubleColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return DoubleColumnStatisticsData(
       numberOfDistinctValues: json['NumberOfDistinctValues'] as int,
@@ -14775,6 +14877,7 @@ class DynamoDBTarget {
     this.scanAll,
     this.scanRate,
   });
+
   factory DynamoDBTarget.fromJson(Map<String, dynamic> json) {
     return DynamoDBTarget(
       path: json['Path'] as String?,
@@ -14808,6 +14911,7 @@ class Edge {
     this.destinationId,
     this.sourceId,
   });
+
   factory Edge.fromJson(Map<String, dynamic> json) {
     return Edge(
       destinationId: json['DestinationId'] as String?,
@@ -14865,6 +14969,7 @@ class EncryptionAtRest {
     required this.catalogEncryptionMode,
     this.sseAwsKmsKeyId,
   });
+
   factory EncryptionAtRest.fromJson(Map<String, dynamic> json) {
     return EncryptionAtRest(
       catalogEncryptionMode:
@@ -14900,6 +15005,7 @@ class EncryptionConfiguration {
     this.jobBookmarksEncryption,
     this.s3Encryption,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       cloudWatchEncryption: json['CloudWatchEncryption'] != null
@@ -14943,6 +15049,7 @@ class ErrorDetail {
     this.errorCode,
     this.errorMessage,
   });
+
   factory ErrorDetail.fromJson(Map<String, dynamic> json) {
     return ErrorDetail(
       errorCode: json['ErrorCode'] as String?,
@@ -14972,6 +15079,7 @@ class ErrorDetails {
     this.errorCode,
     this.errorMessage,
   });
+
   factory ErrorDetails.fromJson(Map<String, dynamic> json) {
     return ErrorDetails(
       errorCode: json['ErrorCode'] as String?,
@@ -15002,6 +15110,7 @@ class EvaluationMetrics {
     required this.transformType,
     this.findMatchesMetrics,
   });
+
   factory EvaluationMetrics.fromJson(Map<String, dynamic> json) {
     return EvaluationMetrics(
       transformType: (json['TransformType'] as String).toTransformType(),
@@ -15032,6 +15141,7 @@ class ExecutionProperty {
   ExecutionProperty({
     this.maxConcurrentRuns,
   });
+
   factory ExecutionProperty.fromJson(Map<String, dynamic> json) {
     return ExecutionProperty(
       maxConcurrentRuns: json['MaxConcurrentRuns'] as int?,
@@ -15088,6 +15198,7 @@ class ExportLabelsTaskRunProperties {
   ExportLabelsTaskRunProperties({
     this.outputS3Path,
   });
+
   factory ExportLabelsTaskRunProperties.fromJson(Map<String, dynamic> json) {
     return ExportLabelsTaskRunProperties(
       outputS3Path: json['OutputS3Path'] as String?,
@@ -15163,6 +15274,7 @@ class FindMatchesMetrics {
     this.precision,
     this.recall,
   });
+
   factory FindMatchesMetrics.fromJson(Map<String, dynamic> json) {
     return FindMatchesMetrics(
       areaUnderPRCurve: json['AreaUnderPRCurve'] as double?,
@@ -15250,6 +15362,7 @@ class FindMatchesParameters {
     this.precisionRecallTradeoff,
     this.primaryKeyColumnName,
   });
+
   factory FindMatchesParameters.fromJson(Map<String, dynamic> json) {
     return FindMatchesParameters(
       accuracyCostTradeoff: json['AccuracyCostTradeoff'] as double?,
@@ -15293,6 +15406,7 @@ class FindMatchesTaskRunProperties {
     this.jobName,
     this.jobRunId,
   });
+
   factory FindMatchesTaskRunProperties.fromJson(Map<String, dynamic> json) {
     return FindMatchesTaskRunProperties(
       jobId: json['JobId'] as String?,
@@ -15320,6 +15434,7 @@ class GetCatalogImportStatusResponse {
   GetCatalogImportStatusResponse({
     this.importStatus,
   });
+
   factory GetCatalogImportStatusResponse.fromJson(Map<String, dynamic> json) {
     return GetCatalogImportStatusResponse(
       importStatus: json['ImportStatus'] != null
@@ -15344,6 +15459,7 @@ class GetClassifierResponse {
   GetClassifierResponse({
     this.classifier,
   });
+
   factory GetClassifierResponse.fromJson(Map<String, dynamic> json) {
     return GetClassifierResponse(
       classifier: json['Classifier'] != null
@@ -15371,6 +15487,7 @@ class GetClassifiersResponse {
     this.classifiers,
     this.nextToken,
   });
+
   factory GetClassifiersResponse.fromJson(Map<String, dynamic> json) {
     return GetClassifiersResponse(
       classifiers: (json['Classifiers'] as List?)
@@ -15402,6 +15519,7 @@ class GetColumnStatisticsForPartitionResponse {
     this.columnStatisticsList,
     this.errors,
   });
+
   factory GetColumnStatisticsForPartitionResponse.fromJson(
       Map<String, dynamic> json) {
     return GetColumnStatisticsForPartitionResponse(
@@ -15438,6 +15556,7 @@ class GetColumnStatisticsForTableResponse {
     this.columnStatisticsList,
     this.errors,
   });
+
   factory GetColumnStatisticsForTableResponse.fromJson(
       Map<String, dynamic> json) {
     return GetColumnStatisticsForTableResponse(
@@ -15470,6 +15589,7 @@ class GetConnectionResponse {
   GetConnectionResponse({
     this.connection,
   });
+
   factory GetConnectionResponse.fromJson(Map<String, dynamic> json) {
     return GetConnectionResponse(
       connection: json['Connection'] != null
@@ -15500,6 +15620,7 @@ class GetConnectionsFilter {
     this.connectionType,
     this.matchCriteria,
   });
+
   factory GetConnectionsFilter.fromJson(Map<String, dynamic> json) {
     return GetConnectionsFilter(
       connectionType: (json['ConnectionType'] as String?)?.toConnectionType(),
@@ -15532,6 +15653,7 @@ class GetConnectionsResponse {
     this.connectionList,
     this.nextToken,
   });
+
   factory GetConnectionsResponse.fromJson(Map<String, dynamic> json) {
     return GetConnectionsResponse(
       connectionList: (json['ConnectionList'] as List?)
@@ -15564,6 +15686,7 @@ class GetCrawlerMetricsResponse {
     this.crawlerMetricsList,
     this.nextToken,
   });
+
   factory GetCrawlerMetricsResponse.fromJson(Map<String, dynamic> json) {
     return GetCrawlerMetricsResponse(
       crawlerMetricsList: (json['CrawlerMetricsList'] as List?)
@@ -15591,6 +15714,7 @@ class GetCrawlerResponse {
   GetCrawlerResponse({
     this.crawler,
   });
+
   factory GetCrawlerResponse.fromJson(Map<String, dynamic> json) {
     return GetCrawlerResponse(
       crawler: json['Crawler'] != null
@@ -15619,6 +15743,7 @@ class GetCrawlersResponse {
     this.crawlers,
     this.nextToken,
   });
+
   factory GetCrawlersResponse.fromJson(Map<String, dynamic> json) {
     return GetCrawlersResponse(
       crawlers: (json['Crawlers'] as List?)
@@ -15646,6 +15771,7 @@ class GetDataCatalogEncryptionSettingsResponse {
   GetDataCatalogEncryptionSettingsResponse({
     this.dataCatalogEncryptionSettings,
   });
+
   factory GetDataCatalogEncryptionSettingsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetDataCatalogEncryptionSettingsResponse(
@@ -15673,6 +15799,7 @@ class GetDatabaseResponse {
   GetDatabaseResponse({
     this.database,
   });
+
   factory GetDatabaseResponse.fromJson(Map<String, dynamic> json) {
     return GetDatabaseResponse(
       database: json['Database'] != null
@@ -15701,6 +15828,7 @@ class GetDatabasesResponse {
     required this.databaseList,
     this.nextToken,
   });
+
   factory GetDatabasesResponse.fromJson(Map<String, dynamic> json) {
     return GetDatabasesResponse(
       databaseList: (json['DatabaseList'] as List)
@@ -15732,6 +15860,7 @@ class GetDataflowGraphResponse {
     this.dagEdges,
     this.dagNodes,
   });
+
   factory GetDataflowGraphResponse.fromJson(Map<String, dynamic> json) {
     return GetDataflowGraphResponse(
       dagEdges: (json['DagEdges'] as List?)
@@ -15762,6 +15891,7 @@ class GetDevEndpointResponse {
   GetDevEndpointResponse({
     this.devEndpoint,
   });
+
   factory GetDevEndpointResponse.fromJson(Map<String, dynamic> json) {
     return GetDevEndpointResponse(
       devEndpoint: json['DevEndpoint'] != null
@@ -15790,6 +15920,7 @@ class GetDevEndpointsResponse {
     this.devEndpoints,
     this.nextToken,
   });
+
   factory GetDevEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return GetDevEndpointsResponse(
       devEndpoints: (json['DevEndpoints'] as List?)
@@ -15817,6 +15948,7 @@ class GetJobBookmarkResponse {
   GetJobBookmarkResponse({
     this.jobBookmarkEntry,
   });
+
   factory GetJobBookmarkResponse.fromJson(Map<String, dynamic> json) {
     return GetJobBookmarkResponse(
       jobBookmarkEntry: json['JobBookmarkEntry'] != null
@@ -15841,6 +15973,7 @@ class GetJobResponse {
   GetJobResponse({
     this.job,
   });
+
   factory GetJobResponse.fromJson(Map<String, dynamic> json) {
     return GetJobResponse(
       job: json['Job'] != null
@@ -15864,6 +15997,7 @@ class GetJobRunResponse {
   GetJobRunResponse({
     this.jobRun,
   });
+
   factory GetJobRunResponse.fromJson(Map<String, dynamic> json) {
     return GetJobRunResponse(
       jobRun: json['JobRun'] != null
@@ -15891,6 +16025,7 @@ class GetJobRunsResponse {
     this.jobRuns,
     this.nextToken,
   });
+
   factory GetJobRunsResponse.fromJson(Map<String, dynamic> json) {
     return GetJobRunsResponse(
       jobRuns: (json['JobRuns'] as List?)
@@ -15922,6 +16057,7 @@ class GetJobsResponse {
     this.jobs,
     this.nextToken,
   });
+
   factory GetJobsResponse.fromJson(Map<String, dynamic> json) {
     return GetJobsResponse(
       jobs: (json['Jobs'] as List?)
@@ -15985,6 +16121,7 @@ class GetMLTaskRunResponse {
     this.taskRunId,
     this.transformId,
   });
+
   factory GetMLTaskRunResponse.fromJson(Map<String, dynamic> json) {
     return GetMLTaskRunResponse(
       completedOn: timeStampFromJson(json['CompletedOn']),
@@ -16041,6 +16178,7 @@ class GetMLTaskRunsResponse {
     this.nextToken,
     this.taskRuns,
   });
+
   factory GetMLTaskRunsResponse.fromJson(Map<String, dynamic> json) {
     return GetMLTaskRunsResponse(
       nextToken: json['NextToken'] as String?,
@@ -16180,6 +16318,7 @@ class GetMLTransformResponse {
     this.transformId,
     this.workerType,
   });
+
   factory GetMLTransformResponse.fromJson(Map<String, dynamic> json) {
     return GetMLTransformResponse(
       createdOn: timeStampFromJson(json['CreatedOn']),
@@ -16276,6 +16415,7 @@ class GetMLTransformsResponse {
     required this.transforms,
     this.nextToken,
   });
+
   factory GetMLTransformsResponse.fromJson(Map<String, dynamic> json) {
     return GetMLTransformsResponse(
       transforms: (json['Transforms'] as List)
@@ -16303,6 +16443,7 @@ class GetMappingResponse {
   GetMappingResponse({
     required this.mapping,
   });
+
   factory GetMappingResponse.fromJson(Map<String, dynamic> json) {
     return GetMappingResponse(
       mapping: (json['Mapping'] as List)
@@ -16331,6 +16472,7 @@ class GetPartitionIndexesResponse {
     this.nextToken,
     this.partitionIndexDescriptorList,
   });
+
   factory GetPartitionIndexesResponse.fromJson(Map<String, dynamic> json) {
     return GetPartitionIndexesResponse(
       nextToken: json['NextToken'] as String?,
@@ -16361,6 +16503,7 @@ class GetPartitionResponse {
   GetPartitionResponse({
     this.partition,
   });
+
   factory GetPartitionResponse.fromJson(Map<String, dynamic> json) {
     return GetPartitionResponse(
       partition: json['Partition'] != null
@@ -16389,6 +16532,7 @@ class GetPartitionsResponse {
     this.nextToken,
     this.partitions,
   });
+
   factory GetPartitionsResponse.fromJson(Map<String, dynamic> json) {
     return GetPartitionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -16420,6 +16564,7 @@ class GetPlanResponse {
     this.pythonScript,
     this.scalaCode,
   });
+
   factory GetPlanResponse.fromJson(Map<String, dynamic> json) {
     return GetPlanResponse(
       pythonScript: json['PythonScript'] as String?,
@@ -16464,6 +16609,7 @@ class GetRegistryResponse {
     this.status,
     this.updatedTime,
   });
+
   factory GetRegistryResponse.fromJson(Map<String, dynamic> json) {
     return GetRegistryResponse(
       createdTime: json['CreatedTime'] as String?,
@@ -16506,6 +16652,7 @@ class GetResourcePoliciesResponse {
     this.getResourcePoliciesResponseList,
     this.nextToken,
   });
+
   factory GetResourcePoliciesResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcePoliciesResponse(
       getResourcePoliciesResponseList:
@@ -16548,6 +16695,7 @@ class GetResourcePolicyResponse {
     this.policyInJson,
     this.updateTime,
   });
+
   factory GetResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetResourcePolicyResponse(
       createTime: timeStampFromJson(json['CreateTime']),
@@ -16595,6 +16743,7 @@ class GetSchemaByDefinitionResponse {
     this.schemaVersionId,
     this.status,
   });
+
   factory GetSchemaByDefinitionResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaByDefinitionResponse(
       createdTime: json['CreatedTime'] as String?,
@@ -16680,6 +16829,7 @@ class GetSchemaResponse {
     this.schemaStatus,
     this.updatedTime,
   });
+
   factory GetSchemaResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaResponse(
       compatibility: (json['Compatibility'] as String?)?.toCompatibility(),
@@ -16763,6 +16913,7 @@ class GetSchemaVersionResponse {
     this.status,
     this.versionNumber,
   });
+
   factory GetSchemaVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaVersionResponse(
       createdTime: json['CreatedTime'] as String?,
@@ -16802,6 +16953,7 @@ class GetSchemaVersionsDiffResponse {
   GetSchemaVersionsDiffResponse({
     this.diff,
   });
+
   factory GetSchemaVersionsDiffResponse.fromJson(Map<String, dynamic> json) {
     return GetSchemaVersionsDiffResponse(
       diff: json['Diff'] as String?,
@@ -16823,6 +16975,7 @@ class GetSecurityConfigurationResponse {
   GetSecurityConfigurationResponse({
     this.securityConfiguration,
   });
+
   factory GetSecurityConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return GetSecurityConfigurationResponse(
       securityConfiguration: json['SecurityConfiguration'] != null
@@ -16852,6 +17005,7 @@ class GetSecurityConfigurationsResponse {
     this.nextToken,
     this.securityConfigurations,
   });
+
   factory GetSecurityConfigurationsResponse.fromJson(
       Map<String, dynamic> json) {
     return GetSecurityConfigurationsResponse(
@@ -16881,6 +17035,7 @@ class GetTableResponse {
   GetTableResponse({
     this.table,
   });
+
   factory GetTableResponse.fromJson(Map<String, dynamic> json) {
     return GetTableResponse(
       table: json['Table'] != null
@@ -16904,6 +17059,7 @@ class GetTableVersionResponse {
   GetTableVersionResponse({
     this.tableVersion,
   });
+
   factory GetTableVersionResponse.fromJson(Map<String, dynamic> json) {
     return GetTableVersionResponse(
       tableVersion: json['TableVersion'] != null
@@ -16932,6 +17088,7 @@ class GetTableVersionsResponse {
     this.nextToken,
     this.tableVersions,
   });
+
   factory GetTableVersionsResponse.fromJson(Map<String, dynamic> json) {
     return GetTableVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -16963,6 +17120,7 @@ class GetTablesResponse {
     this.nextToken,
     this.tableList,
   });
+
   factory GetTablesResponse.fromJson(Map<String, dynamic> json) {
     return GetTablesResponse(
       nextToken: json['NextToken'] as String?,
@@ -16990,6 +17148,7 @@ class GetTagsResponse {
   GetTagsResponse({
     this.tags,
   });
+
   factory GetTagsResponse.fromJson(Map<String, dynamic> json) {
     return GetTagsResponse(
       tags: (json['Tags'] as Map<String, dynamic>?)
@@ -17012,6 +17171,7 @@ class GetTriggerResponse {
   GetTriggerResponse({
     this.trigger,
   });
+
   factory GetTriggerResponse.fromJson(Map<String, dynamic> json) {
     return GetTriggerResponse(
       trigger: json['Trigger'] != null
@@ -17040,6 +17200,7 @@ class GetTriggersResponse {
     this.nextToken,
     this.triggers,
   });
+
   factory GetTriggersResponse.fromJson(Map<String, dynamic> json) {
     return GetTriggersResponse(
       nextToken: json['NextToken'] as String?,
@@ -17067,6 +17228,7 @@ class GetUserDefinedFunctionResponse {
   GetUserDefinedFunctionResponse({
     this.userDefinedFunction,
   });
+
   factory GetUserDefinedFunctionResponse.fromJson(Map<String, dynamic> json) {
     return GetUserDefinedFunctionResponse(
       userDefinedFunction: json['UserDefinedFunction'] != null
@@ -17097,6 +17259,7 @@ class GetUserDefinedFunctionsResponse {
     this.nextToken,
     this.userDefinedFunctions,
   });
+
   factory GetUserDefinedFunctionsResponse.fromJson(Map<String, dynamic> json) {
     return GetUserDefinedFunctionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -17125,6 +17288,7 @@ class GetWorkflowResponse {
   GetWorkflowResponse({
     this.workflow,
   });
+
   factory GetWorkflowResponse.fromJson(Map<String, dynamic> json) {
     return GetWorkflowResponse(
       workflow: json['Workflow'] != null
@@ -17148,6 +17312,7 @@ class GetWorkflowRunPropertiesResponse {
   GetWorkflowRunPropertiesResponse({
     this.runProperties,
   });
+
   factory GetWorkflowRunPropertiesResponse.fromJson(Map<String, dynamic> json) {
     return GetWorkflowRunPropertiesResponse(
       runProperties: (json['RunProperties'] as Map<String, dynamic>?)
@@ -17170,6 +17335,7 @@ class GetWorkflowRunResponse {
   GetWorkflowRunResponse({
     this.run,
   });
+
   factory GetWorkflowRunResponse.fromJson(Map<String, dynamic> json) {
     return GetWorkflowRunResponse(
       run: json['Run'] != null
@@ -17197,6 +17363,7 @@ class GetWorkflowRunsResponse {
     this.nextToken,
     this.runs,
   });
+
   factory GetWorkflowRunsResponse.fromJson(Map<String, dynamic> json) {
     return GetWorkflowRunsResponse(
       nextToken: json['NextToken'] as String?,
@@ -17237,6 +17404,7 @@ class GluePolicy {
     this.policyInJson,
     this.updateTime,
   });
+
   factory GluePolicy.fromJson(Map<String, dynamic> json) {
     return GluePolicy(
       createTime: timeStampFromJson(json['CreateTime']),
@@ -17281,6 +17449,7 @@ class GlueTable {
     this.catalogId,
     this.connectionName,
   });
+
   factory GlueTable.fromJson(Map<String, dynamic> json) {
     return GlueTable(
       databaseName: json['DatabaseName'] as String,
@@ -17343,6 +17512,7 @@ class GrokClassifier {
     this.lastUpdated,
     this.version,
   });
+
   factory GrokClassifier.fromJson(Map<String, dynamic> json) {
     return GrokClassifier(
       classification: json['Classification'] as String,
@@ -17378,6 +17548,7 @@ class GrokClassifier {
 
 class ImportCatalogToGlueResponse {
   ImportCatalogToGlueResponse();
+
   factory ImportCatalogToGlueResponse.fromJson(Map<String, dynamic> _) {
     return ImportCatalogToGlueResponse();
   }
@@ -17400,6 +17571,7 @@ class ImportLabelsTaskRunProperties {
     this.inputS3Path,
     this.replace,
   });
+
   factory ImportLabelsTaskRunProperties.fromJson(Map<String, dynamic> json) {
     return ImportLabelsTaskRunProperties(
       inputS3Path: json['InputS3Path'] as String?,
@@ -17436,6 +17608,7 @@ class JdbcTarget {
     this.exclusions,
     this.path,
   });
+
   factory JdbcTarget.fromJson(Map<String, dynamic> json) {
     return JdbcTarget(
       connectionName: json['ConnectionName'] as String?,
@@ -17628,6 +17801,7 @@ class Job {
     this.timeout,
     this.workerType,
   });
+
   factory Job.fromJson(Map<String, dynamic> json) {
     return Job(
       allocatedCapacity: json['AllocatedCapacity'] as int?,
@@ -17749,6 +17923,7 @@ class JobBookmarkEntry {
     this.runId,
     this.version,
   });
+
   factory JobBookmarkEntry.fromJson(Map<String, dynamic> json) {
     return JobBookmarkEntry(
       attempt: json['Attempt'] as int?,
@@ -17794,6 +17969,7 @@ class JobBookmarksEncryption {
     this.jobBookmarksEncryptionMode,
     this.kmsKeyArn,
   });
+
   factory JobBookmarksEncryption.fromJson(Map<String, dynamic> json) {
     return JobBookmarksEncryption(
       jobBookmarksEncryptionMode:
@@ -17863,6 +18039,7 @@ class JobCommand {
     this.pythonVersion,
     this.scriptLocation,
   });
+
   factory JobCommand.fromJson(Map<String, dynamic> json) {
     return JobCommand(
       name: json['Name'] as String?,
@@ -17891,6 +18068,7 @@ class JobNodeDetails {
   JobNodeDetails({
     this.jobRuns,
   });
+
   factory JobNodeDetails.fromJson(Map<String, dynamic> json) {
     return JobNodeDetails(
       jobRuns: (json['JobRuns'] as List?)
@@ -18087,6 +18265,7 @@ class JobRun {
     this.triggerName,
     this.workerType,
   });
+
   factory JobRun.fromJson(Map<String, dynamic> json) {
     return JobRun(
       allocatedCapacity: json['AllocatedCapacity'] as int?,
@@ -18381,6 +18560,7 @@ class JobUpdate {
     this.timeout,
     this.workerType,
   });
+
   factory JobUpdate.fromJson(Map<String, dynamic> json) {
     return JobUpdate(
       allocatedCapacity: json['AllocatedCapacity'] as int?,
@@ -18487,6 +18667,7 @@ class JsonClassifier {
     this.lastUpdated,
     this.version,
   });
+
   factory JsonClassifier.fromJson(Map<String, dynamic> json) {
     return JsonClassifier(
       jsonPath: json['JsonPath'] as String,
@@ -18526,6 +18707,7 @@ class KeySchemaElement {
     required this.name,
     required this.type,
   });
+
   factory KeySchemaElement.fromJson(Map<String, dynamic> json) {
     return KeySchemaElement(
       name: json['Name'] as String,
@@ -18552,6 +18734,7 @@ class LabelingSetGenerationTaskRunProperties {
   LabelingSetGenerationTaskRunProperties({
     this.outputS3Path,
   });
+
   factory LabelingSetGenerationTaskRunProperties.fromJson(
       Map<String, dynamic> json) {
     return LabelingSetGenerationTaskRunProperties(
@@ -18623,6 +18806,7 @@ class LastCrawlInfo {
     this.startTime,
     this.status,
   });
+
   factory LastCrawlInfo.fromJson(Map<String, dynamic> json) {
     return LastCrawlInfo(
       errorMessage: json['ErrorMessage'] as String?,
@@ -18702,6 +18886,7 @@ class LineageConfiguration {
   LineageConfiguration({
     this.crawlerLineageSettings,
   });
+
   factory LineageConfiguration.fromJson(Map<String, dynamic> json) {
     return LineageConfiguration(
       crawlerLineageSettings: (json['CrawlerLineageSettings'] as String?)
@@ -18731,6 +18916,7 @@ class ListCrawlersResponse {
     this.crawlerNames,
     this.nextToken,
   });
+
   factory ListCrawlersResponse.fromJson(Map<String, dynamic> json) {
     return ListCrawlersResponse(
       crawlerNames: (json['CrawlerNames'] as List?)
@@ -18764,6 +18950,7 @@ class ListDevEndpointsResponse {
     this.devEndpointNames,
     this.nextToken,
   });
+
   factory ListDevEndpointsResponse.fromJson(Map<String, dynamic> json) {
     return ListDevEndpointsResponse(
       devEndpointNames: (json['DevEndpointNames'] as List?)
@@ -18796,6 +18983,7 @@ class ListJobsResponse {
     this.jobNames,
     this.nextToken,
   });
+
   factory ListJobsResponse.fromJson(Map<String, dynamic> json) {
     return ListJobsResponse(
       jobNames: (json['JobNames'] as List?)
@@ -18829,6 +19017,7 @@ class ListMLTransformsResponse {
     required this.transformIds,
     this.nextToken,
   });
+
   factory ListMLTransformsResponse.fromJson(Map<String, dynamic> json) {
     return ListMLTransformsResponse(
       transformIds: (json['TransformIds'] as List)
@@ -18862,6 +19051,7 @@ class ListRegistriesResponse {
     this.nextToken,
     this.registries,
   });
+
   factory ListRegistriesResponse.fromJson(Map<String, dynamic> json) {
     return ListRegistriesResponse(
       nextToken: json['NextToken'] as String?,
@@ -18895,6 +19085,7 @@ class ListSchemaVersionsResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory ListSchemaVersionsResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemaVersionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -18928,6 +19119,7 @@ class ListSchemasResponse {
     this.nextToken,
     this.schemas,
   });
+
   factory ListSchemasResponse.fromJson(Map<String, dynamic> json) {
     return ListSchemasResponse(
       nextToken: json['NextToken'] as String?,
@@ -18961,6 +19153,7 @@ class ListTriggersResponse {
     this.nextToken,
     this.triggerNames,
   });
+
   factory ListTriggersResponse.fromJson(Map<String, dynamic> json) {
     return ListTriggersResponse(
       nextToken: json['NextToken'] as String?,
@@ -18992,6 +19185,7 @@ class ListWorkflowsResponse {
     this.nextToken,
     this.workflows,
   });
+
   factory ListWorkflowsResponse.fromJson(Map<String, dynamic> json) {
     return ListWorkflowsResponse(
       nextToken: json['NextToken'] as String?,
@@ -19028,6 +19222,7 @@ class Location {
     this.jdbc,
     this.s3,
   });
+
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       dynamoDB: (json['DynamoDB'] as List?)
@@ -19128,6 +19323,7 @@ class LongColumnStatisticsData {
     this.maximumValue,
     this.minimumValue,
   });
+
   factory LongColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return LongColumnStatisticsData(
       numberOfDistinctValues: json['NumberOfDistinctValues'] as int,
@@ -19339,6 +19535,7 @@ class MLTransform {
     this.transformId,
     this.workerType,
   });
+
   factory MLTransform.fromJson(Map<String, dynamic> json) {
     return MLTransform(
       createdOn: timeStampFromJson(json['CreatedOn']),
@@ -19447,6 +19644,7 @@ class MLUserDataEncryption {
     required this.mlUserDataEncryptionMode,
     this.kmsKeyId,
   });
+
   factory MLUserDataEncryption.fromJson(Map<String, dynamic> json) {
     return MLUserDataEncryption(
       mlUserDataEncryptionMode: (json['MlUserDataEncryptionMode'] as String)
@@ -19522,6 +19720,7 @@ class MappingEntry {
     this.targetTable,
     this.targetType,
   });
+
   factory MappingEntry.fromJson(Map<String, dynamic> json) {
     return MappingEntry(
       sourcePath: json['SourcePath'] as String?,
@@ -19567,6 +19766,7 @@ class MetadataInfo {
     this.metadataValue,
     this.otherMetadataValueList,
   });
+
   factory MetadataInfo.fromJson(Map<String, dynamic> json) {
     return MetadataInfo(
       createdTime: json['CreatedTime'] as String?,
@@ -19604,6 +19804,7 @@ class MetadataKeyValuePair {
     this.metadataKey,
     this.metadataValue,
   });
+
   factory MetadataKeyValuePair.fromJson(Map<String, dynamic> json) {
     return MetadataKeyValuePair(
       metadataKey: json['MetadataKey'] as String?,
@@ -19644,6 +19845,7 @@ class MongoDBTarget {
     this.path,
     this.scanAll,
   });
+
   factory MongoDBTarget.fromJson(Map<String, dynamic> json) {
     return MongoDBTarget(
       connectionName: json['ConnectionName'] as String?,
@@ -19693,6 +19895,7 @@ class Node {
     this.type,
     this.uniqueId,
   });
+
   factory Node.fromJson(Map<String, dynamic> json) {
     return Node(
       crawlerDetails: json['CrawlerDetails'] != null
@@ -19772,6 +19975,7 @@ class NotificationProperty {
   NotificationProperty({
     this.notifyDelayAfter,
   });
+
   factory NotificationProperty.fromJson(Map<String, dynamic> json) {
     return NotificationProperty(
       notifyDelayAfter: json['NotifyDelayAfter'] as int?,
@@ -19799,6 +20003,7 @@ class Order {
     required this.column,
     required this.sortOrder,
   });
+
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
       column: json['Column'] as String,
@@ -19830,6 +20035,7 @@ class OtherMetadataValueListItem {
     this.createdTime,
     this.metadataValue,
   });
+
   factory OtherMetadataValueListItem.fromJson(Map<String, dynamic> json) {
     return OtherMetadataValueListItem(
       createdTime: json['CreatedTime'] as String?,
@@ -19888,6 +20094,7 @@ class Partition {
     this.tableName,
     this.values,
   });
+
   factory Partition.fromJson(Map<String, dynamic> json) {
     return Partition(
       catalogId: json['CatalogId'] as String?,
@@ -19948,6 +20155,7 @@ class PartitionError {
     this.errorDetail,
     this.partitionValues,
   });
+
   factory PartitionError.fromJson(Map<String, dynamic> json) {
     return PartitionError(
       errorDetail: json['ErrorDetail'] != null
@@ -19982,6 +20190,7 @@ class PartitionIndex {
     required this.indexName,
     required this.keys,
   });
+
   factory PartitionIndex.fromJson(Map<String, dynamic> json) {
     return PartitionIndex(
       indexName: json['IndexName'] as String,
@@ -20042,6 +20251,7 @@ class PartitionIndexDescriptor {
     required this.keys,
     this.backfillErrors,
   });
+
   factory PartitionIndexDescriptor.fromJson(Map<String, dynamic> json) {
     return PartitionIndexDescriptor(
       indexName: json['IndexName'] as String,
@@ -20140,6 +20350,7 @@ class PartitionInput {
     this.storageDescriptor,
     this.values,
   });
+
   factory PartitionInput.fromJson(Map<String, dynamic> json) {
     return PartitionInput(
       lastAccessTime: timeStampFromJson(json['LastAccessTime']),
@@ -20183,6 +20394,7 @@ class PartitionValueList {
   PartitionValueList({
     required this.values,
   });
+
   factory PartitionValueList.fromJson(Map<String, dynamic> json) {
     return PartitionValueList(
       values: (json['Values'] as List)
@@ -20281,6 +20493,7 @@ class PhysicalConnectionRequirements {
     this.securityGroupIdList,
     this.subnetId,
   });
+
   factory PhysicalConnectionRequirements.fromJson(Map<String, dynamic> json) {
     return PhysicalConnectionRequirements(
       availabilityZone: json['AvailabilityZone'] as String?,
@@ -20318,6 +20531,7 @@ class Predecessor {
     this.jobName,
     this.runId,
   });
+
   factory Predecessor.fromJson(Map<String, dynamic> json) {
     return Predecessor(
       jobName: json['JobName'] as String?,
@@ -20348,6 +20562,7 @@ class Predicate {
     this.conditions,
     this.logical,
   });
+
   factory Predicate.fromJson(Map<String, dynamic> json) {
     return Predicate(
       conditions: (json['Conditions'] as List?)
@@ -20380,6 +20595,7 @@ class PrincipalPermissions {
     this.permissions,
     this.principal,
   });
+
   factory PrincipalPermissions.fromJson(Map<String, dynamic> json) {
     return PrincipalPermissions(
       permissions: (json['Permissions'] as List?)
@@ -20453,6 +20669,7 @@ class PropertyPredicate {
     this.key,
     this.value,
   });
+
   factory PropertyPredicate.fromJson(Map<String, dynamic> json) {
     return PropertyPredicate(
       comparator: (json['Comparator'] as String?)?.toComparator(),
@@ -20475,6 +20692,7 @@ class PropertyPredicate {
 
 class PutDataCatalogEncryptionSettingsResponse {
   PutDataCatalogEncryptionSettingsResponse();
+
   factory PutDataCatalogEncryptionSettingsResponse.fromJson(
       Map<String, dynamic> _) {
     return PutDataCatalogEncryptionSettingsResponse();
@@ -20493,6 +20711,7 @@ class PutResourcePolicyResponse {
   PutResourcePolicyResponse({
     this.policyHash,
   });
+
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutResourcePolicyResponse(
       policyHash: json['PolicyHash'] as String?,
@@ -20542,6 +20761,7 @@ class PutSchemaVersionMetadataResponse {
     this.schemaVersionId,
     this.versionNumber,
   });
+
   factory PutSchemaVersionMetadataResponse.fromJson(Map<String, dynamic> json) {
     return PutSchemaVersionMetadataResponse(
       latestVersion: json['LatestVersion'] as bool?,
@@ -20579,6 +20799,7 @@ class PutSchemaVersionMetadataResponse {
 
 class PutWorkflowRunPropertiesResponse {
   PutWorkflowRunPropertiesResponse();
+
   factory PutWorkflowRunPropertiesResponse.fromJson(Map<String, dynamic> _) {
     return PutWorkflowRunPropertiesResponse();
   }
@@ -20604,6 +20825,7 @@ class QuerySchemaVersionMetadataResponse {
     this.nextToken,
     this.schemaVersionId,
   });
+
   factory QuerySchemaVersionMetadataResponse.fromJson(
       Map<String, dynamic> json) {
     return QuerySchemaVersionMetadataResponse(
@@ -20674,6 +20896,7 @@ class RecrawlPolicy {
   RecrawlPolicy({
     this.recrawlBehavior,
   });
+
   factory RecrawlPolicy.fromJson(Map<String, dynamic> json) {
     return RecrawlPolicy(
       recrawlBehavior:
@@ -20705,6 +20928,7 @@ class RegisterSchemaVersionResponse {
     this.status,
     this.versionNumber,
   });
+
   factory RegisterSchemaVersionResponse.fromJson(Map<String, dynamic> json) {
     return RegisterSchemaVersionResponse(
       schemaVersionId: json['SchemaVersionId'] as String?,
@@ -20740,6 +20964,7 @@ class RegistryId {
     this.registryArn,
     this.registryName,
   });
+
   factory RegistryId.fromJson(Map<String, dynamic> json) {
     return RegistryId(
       registryArn: json['RegistryArn'] as String?,
@@ -20785,6 +21010,7 @@ class RegistryListItem {
     this.status,
     this.updatedTime,
   });
+
   factory RegistryListItem.fromJson(Map<String, dynamic> json) {
     return RegistryListItem(
       createdTime: json['CreatedTime'] as String?,
@@ -20877,6 +21103,7 @@ class RemoveSchemaVersionMetadataResponse {
     this.schemaVersionId,
     this.versionNumber,
   });
+
   factory RemoveSchemaVersionMetadataResponse.fromJson(
       Map<String, dynamic> json) {
     return RemoveSchemaVersionMetadataResponse(
@@ -20920,6 +21147,7 @@ class ResetJobBookmarkResponse {
   ResetJobBookmarkResponse({
     this.jobBookmarkEntry,
   });
+
   factory ResetJobBookmarkResponse.fromJson(Map<String, dynamic> json) {
     return ResetJobBookmarkResponse(
       jobBookmarkEntry: json['JobBookmarkEntry'] != null
@@ -21010,6 +21238,7 @@ class ResourceUri {
     this.resourceType,
     this.uri,
   });
+
   factory ResourceUri.fromJson(Map<String, dynamic> json) {
     return ResourceUri(
       resourceType: (json['ResourceType'] as String?)?.toResourceType(),
@@ -21039,6 +21268,7 @@ class ResumeWorkflowRunResponse {
     this.nodeIds,
     this.runId,
   });
+
   factory ResumeWorkflowRunResponse.fromJson(Map<String, dynamic> json) {
     return ResumeWorkflowRunResponse(
       nodeIds: (json['NodeIds'] as List?)
@@ -21073,6 +21303,7 @@ class S3Encryption {
     this.kmsKeyArn,
     this.s3EncryptionMode,
   });
+
   factory S3Encryption.fromJson(Map<String, dynamic> json) {
     return S3Encryption(
       kmsKeyArn: json['KmsKeyArn'] as String?,
@@ -21151,6 +21382,7 @@ class S3Target {
     this.path,
     this.sampleSize,
   });
+
   factory S3Target.fromJson(Map<String, dynamic> json) {
     return S3Target(
       connectionName: json['ConnectionName'] as String?,
@@ -21193,6 +21425,7 @@ class Schedule {
     this.scheduleExpression,
     this.state,
   });
+
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
       scheduleExpression: json['ScheduleExpression'] as String?,
@@ -21255,6 +21488,7 @@ class SchemaChangePolicy {
     this.deleteBehavior,
     this.updateBehavior,
   });
+
   factory SchemaChangePolicy.fromJson(Map<String, dynamic> json) {
     return SchemaChangePolicy(
       deleteBehavior: (json['DeleteBehavior'] as String?)?.toDeleteBehavior(),
@@ -21286,6 +21520,7 @@ class SchemaColumn {
     this.dataType,
     this.name,
   });
+
   factory SchemaColumn.fromJson(Map<String, dynamic> json) {
     return SchemaColumn(
       dataType: json['DataType'] as String?,
@@ -21344,6 +21579,7 @@ class SchemaId {
     this.schemaArn,
     this.schemaName,
   });
+
   factory SchemaId.fromJson(Map<String, dynamic> json) {
     return SchemaId(
       registryName: json['RegistryName'] as String?,
@@ -21396,6 +21632,7 @@ class SchemaListItem {
     this.schemaStatus,
     this.updatedTime,
   });
+
   factory SchemaListItem.fromJson(Map<String, dynamic> json) {
     return SchemaListItem(
       createdTime: json['CreatedTime'] as String?,
@@ -21446,6 +21683,7 @@ class SchemaReference {
     this.schemaVersionId,
     this.schemaVersionNumber,
   });
+
   factory SchemaReference.fromJson(Map<String, dynamic> json) {
     return SchemaReference(
       schemaId: json['SchemaId'] != null
@@ -21515,6 +21753,7 @@ class SchemaVersionErrorItem {
     this.errorDetails,
     this.versionNumber,
   });
+
   factory SchemaVersionErrorItem.fromJson(Map<String, dynamic> json) {
     return SchemaVersionErrorItem(
       errorDetails: json['ErrorDetails'] != null
@@ -21558,6 +21797,7 @@ class SchemaVersionListItem {
     this.status,
     this.versionNumber,
   });
+
   factory SchemaVersionListItem.fromJson(Map<String, dynamic> json) {
     return SchemaVersionListItem(
       createdTime: json['CreatedTime'] as String?,
@@ -21596,6 +21836,7 @@ class SchemaVersionNumber {
     this.latestVersion,
     this.versionNumber,
   });
+
   factory SchemaVersionNumber.fromJson(Map<String, dynamic> json) {
     return SchemaVersionNumber(
       latestVersion: json['LatestVersion'] as bool?,
@@ -21664,6 +21905,7 @@ class SearchTablesResponse {
     this.nextToken,
     this.tableList,
   });
+
   factory SearchTablesResponse.fromJson(Map<String, dynamic> json) {
     return SearchTablesResponse(
       nextToken: json['NextToken'] as String?,
@@ -21700,6 +21942,7 @@ class SecurityConfiguration {
     this.encryptionConfiguration,
     this.name,
   });
+
   factory SecurityConfiguration.fromJson(Map<String, dynamic> json) {
     return SecurityConfiguration(
       createdTimeStamp: timeStampFromJson(json['CreatedTimeStamp']),
@@ -21739,6 +21982,7 @@ class Segment {
     required this.segmentNumber,
     required this.totalSegments,
   });
+
   factory Segment.fromJson(Map<String, dynamic> json) {
     return Segment(
       segmentNumber: json['SegmentNumber'] as int,
@@ -21774,6 +22018,7 @@ class SerDeInfo {
     this.parameters,
     this.serializationLibrary,
   });
+
   factory SerDeInfo.fromJson(Map<String, dynamic> json) {
     return SerDeInfo(
       name: json['Name'] as String?,
@@ -21813,6 +22058,7 @@ class SkewedInfo {
     this.skewedColumnValueLocationMaps,
     this.skewedColumnValues,
   });
+
   factory SkewedInfo.fromJson(Map<String, dynamic> json) {
     return SkewedInfo(
       skewedColumnNames: (json['SkewedColumnNames'] as List?)
@@ -21882,6 +22128,7 @@ class SortCriterion {
     this.fieldName,
     this.sort,
   });
+
   factory SortCriterion.fromJson(Map<String, dynamic> json) {
     return SortCriterion(
       fieldName: json['FieldName'] as String?,
@@ -21929,6 +22176,7 @@ extension on String {
 
 class StartCrawlerResponse {
   StartCrawlerResponse();
+
   factory StartCrawlerResponse.fromJson(Map<String, dynamic> _) {
     return StartCrawlerResponse();
   }
@@ -21940,6 +22188,7 @@ class StartCrawlerResponse {
 
 class StartCrawlerScheduleResponse {
   StartCrawlerScheduleResponse();
+
   factory StartCrawlerScheduleResponse.fromJson(Map<String, dynamic> _) {
     return StartCrawlerScheduleResponse();
   }
@@ -21956,6 +22205,7 @@ class StartExportLabelsTaskRunResponse {
   StartExportLabelsTaskRunResponse({
     this.taskRunId,
   });
+
   factory StartExportLabelsTaskRunResponse.fromJson(Map<String, dynamic> json) {
     return StartExportLabelsTaskRunResponse(
       taskRunId: json['TaskRunId'] as String?,
@@ -21977,6 +22227,7 @@ class StartImportLabelsTaskRunResponse {
   StartImportLabelsTaskRunResponse({
     this.taskRunId,
   });
+
   factory StartImportLabelsTaskRunResponse.fromJson(Map<String, dynamic> json) {
     return StartImportLabelsTaskRunResponse(
       taskRunId: json['TaskRunId'] as String?,
@@ -21998,6 +22249,7 @@ class StartJobRunResponse {
   StartJobRunResponse({
     this.jobRunId,
   });
+
   factory StartJobRunResponse.fromJson(Map<String, dynamic> json) {
     return StartJobRunResponse(
       jobRunId: json['JobRunId'] as String?,
@@ -22019,6 +22271,7 @@ class StartMLEvaluationTaskRunResponse {
   StartMLEvaluationTaskRunResponse({
     this.taskRunId,
   });
+
   factory StartMLEvaluationTaskRunResponse.fromJson(Map<String, dynamic> json) {
     return StartMLEvaluationTaskRunResponse(
       taskRunId: json['TaskRunId'] as String?,
@@ -22040,6 +22293,7 @@ class StartMLLabelingSetGenerationTaskRunResponse {
   StartMLLabelingSetGenerationTaskRunResponse({
     this.taskRunId,
   });
+
   factory StartMLLabelingSetGenerationTaskRunResponse.fromJson(
       Map<String, dynamic> json) {
     return StartMLLabelingSetGenerationTaskRunResponse(
@@ -22062,6 +22316,7 @@ class StartTriggerResponse {
   StartTriggerResponse({
     this.name,
   });
+
   factory StartTriggerResponse.fromJson(Map<String, dynamic> json) {
     return StartTriggerResponse(
       name: json['Name'] as String?,
@@ -22083,6 +22338,7 @@ class StartWorkflowRunResponse {
   StartWorkflowRunResponse({
     this.runId,
   });
+
   factory StartWorkflowRunResponse.fromJson(Map<String, dynamic> json) {
     return StartWorkflowRunResponse(
       runId: json['RunId'] as String?,
@@ -22099,6 +22355,7 @@ class StartWorkflowRunResponse {
 
 class StopCrawlerResponse {
   StopCrawlerResponse();
+
   factory StopCrawlerResponse.fromJson(Map<String, dynamic> _) {
     return StopCrawlerResponse();
   }
@@ -22110,6 +22367,7 @@ class StopCrawlerResponse {
 
 class StopCrawlerScheduleResponse {
   StopCrawlerScheduleResponse();
+
   factory StopCrawlerScheduleResponse.fromJson(Map<String, dynamic> _) {
     return StopCrawlerScheduleResponse();
   }
@@ -22126,6 +22384,7 @@ class StopTriggerResponse {
   StopTriggerResponse({
     this.name,
   });
+
   factory StopTriggerResponse.fromJson(Map<String, dynamic> json) {
     return StopTriggerResponse(
       name: json['Name'] as String?,
@@ -22142,6 +22401,7 @@ class StopTriggerResponse {
 
 class StopWorkflowRunResponse {
   StopWorkflowRunResponse();
+
   factory StopWorkflowRunResponse.fromJson(Map<String, dynamic> _) {
     return StopWorkflowRunResponse();
   }
@@ -22218,6 +22478,7 @@ class StorageDescriptor {
     this.sortColumns,
     this.storedAsSubDirectories,
   });
+
   factory StorageDescriptor.fromJson(Map<String, dynamic> json) {
     return StorageDescriptor(
       bucketColumns: (json['BucketColumns'] as List?)
@@ -22306,6 +22567,7 @@ class StringColumnStatisticsData {
     required this.numberOfDistinctValues,
     required this.numberOfNulls,
   });
+
   factory StringColumnStatisticsData.fromJson(Map<String, dynamic> json) {
     return StringColumnStatisticsData(
       averageLength: json['AverageLength'] as double,
@@ -22423,6 +22685,7 @@ class Table {
     this.viewExpandedText,
     this.viewOriginalText,
   });
+
   factory Table.fromJson(Map<String, dynamic> json) {
     return Table(
       name: json['Name'] as String,
@@ -22518,6 +22781,7 @@ class TableError {
     this.errorDetail,
     this.tableName,
   });
+
   factory TableError.fromJson(Map<String, dynamic> json) {
     return TableError(
       errorDetail: json['ErrorDetail'] != null
@@ -22553,6 +22817,7 @@ class TableIdentifier {
     this.databaseName,
     this.name,
   });
+
   factory TableIdentifier.fromJson(Map<String, dynamic> json) {
     return TableIdentifier(
       catalogId: json['CatalogId'] as String?,
@@ -22642,6 +22907,7 @@ class TableInput {
     this.viewExpandedText,
     this.viewOriginalText,
   });
+
   factory TableInput.fromJson(Map<String, dynamic> json) {
     return TableInput(
       name: json['Name'] as String,
@@ -22717,6 +22983,7 @@ class TableVersion {
     this.table,
     this.versionId,
   });
+
   factory TableVersion.fromJson(Map<String, dynamic> json) {
     return TableVersion(
       table: json['Table'] != null
@@ -22753,6 +23020,7 @@ class TableVersionError {
     this.tableName,
     this.versionId,
   });
+
   factory TableVersionError.fromJson(Map<String, dynamic> json) {
     return TableVersionError(
       errorDetail: json['ErrorDetail'] != null
@@ -22777,6 +23045,7 @@ class TableVersionError {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -22832,6 +23101,7 @@ class TaskRun {
     this.taskRunId,
     this.transformId,
   });
+
   factory TaskRun.fromJson(Map<String, dynamic> json) {
     return TaskRun(
       completedOn: timeStampFromJson(json['CompletedOn']),
@@ -22898,6 +23168,7 @@ class TaskRunFilterCriteria {
     this.status,
     this.taskRunType,
   });
+
   factory TaskRunFilterCriteria.fromJson(Map<String, dynamic> json) {
     return TaskRunFilterCriteria(
       startedAfter: timeStampFromJson(json['StartedAfter']),
@@ -22948,6 +23219,7 @@ class TaskRunProperties {
     this.labelingSetGenerationTaskRunProperties,
     this.taskType,
   });
+
   factory TaskRunProperties.fromJson(Map<String, dynamic> json) {
     return TaskRunProperties(
       exportLabelsTaskRunProperties:
@@ -23044,6 +23316,7 @@ class TaskRunSortCriteria {
     required this.column,
     required this.sortDirection,
   });
+
   factory TaskRunSortCriteria.fromJson(Map<String, dynamic> json) {
     return TaskRunSortCriteria(
       column: (json['Column'] as String).toTaskRunSortColumnType(),
@@ -23175,6 +23448,7 @@ class TransformEncryption {
     this.mlUserDataEncryption,
     this.taskRunSecurityConfigurationName,
   });
+
   factory TransformEncryption.fromJson(Map<String, dynamic> json) {
     return TransformEncryption(
       mlUserDataEncryption: json['MlUserDataEncryption'] != null
@@ -23252,6 +23526,7 @@ class TransformFilterCriteria {
     this.status,
     this.transformType,
   });
+
   factory TransformFilterCriteria.fromJson(Map<String, dynamic> json) {
     return TransformFilterCriteria(
       createdAfter: timeStampFromJson(json['CreatedAfter']),
@@ -23314,6 +23589,7 @@ class TransformParameters {
     required this.transformType,
     this.findMatchesParameters,
   });
+
   factory TransformParameters.fromJson(Map<String, dynamic> json) {
     return TransformParameters(
       transformType: (json['TransformType'] as String).toTransformType(),
@@ -23393,6 +23669,7 @@ class TransformSortCriteria {
     required this.column,
     required this.sortDirection,
   });
+
   factory TransformSortCriteria.fromJson(Map<String, dynamic> json) {
     return TransformSortCriteria(
       column: (json['Column'] as String).toTransformSortColumnType(),
@@ -23509,6 +23786,7 @@ class Trigger {
     this.type,
     this.workflowName,
   });
+
   factory Trigger.fromJson(Map<String, dynamic> json) {
     return Trigger(
       actions: (json['Actions'] as List?)
@@ -23560,6 +23838,7 @@ class TriggerNodeDetails {
   TriggerNodeDetails({
     this.trigger,
   });
+
   factory TriggerNodeDetails.fromJson(Map<String, dynamic> json) {
     return TriggerNodeDetails(
       trigger: json['Trigger'] != null
@@ -23695,6 +23974,7 @@ class TriggerUpdate {
     this.predicate,
     this.schedule,
   });
+
   factory TriggerUpdate.fromJson(Map<String, dynamic> json) {
     return TriggerUpdate(
       actions: (json['Actions'] as List?)
@@ -23728,6 +24008,7 @@ class TriggerUpdate {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -23767,6 +24048,7 @@ extension on String {
 
 class UpdateClassifierResponse {
   UpdateClassifierResponse();
+
   factory UpdateClassifierResponse.fromJson(Map<String, dynamic> _) {
     return UpdateClassifierResponse();
   }
@@ -23783,6 +24065,7 @@ class UpdateColumnStatisticsForPartitionResponse {
   UpdateColumnStatisticsForPartitionResponse({
     this.errors,
   });
+
   factory UpdateColumnStatisticsForPartitionResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateColumnStatisticsForPartitionResponse(
@@ -23808,6 +24091,7 @@ class UpdateColumnStatisticsForTableResponse {
   UpdateColumnStatisticsForTableResponse({
     this.errors,
   });
+
   factory UpdateColumnStatisticsForTableResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateColumnStatisticsForTableResponse(
@@ -23828,6 +24112,7 @@ class UpdateColumnStatisticsForTableResponse {
 
 class UpdateConnectionResponse {
   UpdateConnectionResponse();
+
   factory UpdateConnectionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateConnectionResponse();
   }
@@ -23839,6 +24124,7 @@ class UpdateConnectionResponse {
 
 class UpdateCrawlerResponse {
   UpdateCrawlerResponse();
+
   factory UpdateCrawlerResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCrawlerResponse();
   }
@@ -23850,6 +24136,7 @@ class UpdateCrawlerResponse {
 
 class UpdateCrawlerScheduleResponse {
   UpdateCrawlerScheduleResponse();
+
   factory UpdateCrawlerScheduleResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCrawlerScheduleResponse();
   }
@@ -23893,6 +24180,7 @@ class UpdateCsvClassifierRequest {
     this.header,
     this.quoteSymbol,
   });
+
   factory UpdateCsvClassifierRequest.fromJson(Map<String, dynamic> json) {
     return UpdateCsvClassifierRequest(
       name: json['Name'] as String,
@@ -23931,6 +24219,7 @@ class UpdateCsvClassifierRequest {
 
 class UpdateDatabaseResponse {
   UpdateDatabaseResponse();
+
   factory UpdateDatabaseResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDatabaseResponse();
   }
@@ -23942,6 +24231,7 @@ class UpdateDatabaseResponse {
 
 class UpdateDevEndpointResponse {
   UpdateDevEndpointResponse();
+
   factory UpdateDevEndpointResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDevEndpointResponse();
   }
@@ -23973,6 +24263,7 @@ class UpdateGrokClassifierRequest {
     this.customPatterns,
     this.grokPattern,
   });
+
   factory UpdateGrokClassifierRequest.fromJson(Map<String, dynamic> json) {
     return UpdateGrokClassifierRequest(
       name: json['Name'] as String,
@@ -24003,6 +24294,7 @@ class UpdateJobResponse {
   UpdateJobResponse({
     this.jobName,
   });
+
   factory UpdateJobResponse.fromJson(Map<String, dynamic> json) {
     return UpdateJobResponse(
       jobName: json['JobName'] as String?,
@@ -24032,6 +24324,7 @@ class UpdateJsonClassifierRequest {
     required this.name,
     this.jsonPath,
   });
+
   factory UpdateJsonClassifierRequest.fromJson(Map<String, dynamic> json) {
     return UpdateJsonClassifierRequest(
       name: json['Name'] as String,
@@ -24056,6 +24349,7 @@ class UpdateMLTransformResponse {
   UpdateMLTransformResponse({
     this.transformId,
   });
+
   factory UpdateMLTransformResponse.fromJson(Map<String, dynamic> json) {
     return UpdateMLTransformResponse(
       transformId: json['TransformId'] as String?,
@@ -24072,6 +24366,7 @@ class UpdateMLTransformResponse {
 
 class UpdatePartitionResponse {
   UpdatePartitionResponse();
+
   factory UpdatePartitionResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePartitionResponse();
   }
@@ -24092,6 +24387,7 @@ class UpdateRegistryResponse {
     this.registryArn,
     this.registryName,
   });
+
   factory UpdateRegistryResponse.fromJson(Map<String, dynamic> json) {
     return UpdateRegistryResponse(
       registryArn: json['RegistryArn'] as String?,
@@ -24124,6 +24420,7 @@ class UpdateSchemaResponse {
     this.schemaArn,
     this.schemaName,
   });
+
   factory UpdateSchemaResponse.fromJson(Map<String, dynamic> json) {
     return UpdateSchemaResponse(
       registryName: json['RegistryName'] as String?,
@@ -24146,6 +24443,7 @@ class UpdateSchemaResponse {
 
 class UpdateTableResponse {
   UpdateTableResponse();
+
   factory UpdateTableResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTableResponse();
   }
@@ -24162,6 +24460,7 @@ class UpdateTriggerResponse {
   UpdateTriggerResponse({
     this.trigger,
   });
+
   factory UpdateTriggerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTriggerResponse(
       trigger: json['Trigger'] != null
@@ -24180,6 +24479,7 @@ class UpdateTriggerResponse {
 
 class UpdateUserDefinedFunctionResponse {
   UpdateUserDefinedFunctionResponse();
+
   factory UpdateUserDefinedFunctionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateUserDefinedFunctionResponse();
   }
@@ -24196,6 +24496,7 @@ class UpdateWorkflowResponse {
   UpdateWorkflowResponse({
     this.name,
   });
+
   factory UpdateWorkflowResponse.fromJson(Map<String, dynamic> json) {
     return UpdateWorkflowResponse(
       name: json['Name'] as String?,
@@ -24231,6 +24532,7 @@ class UpdateXMLClassifierRequest {
     this.classification,
     this.rowTag,
   });
+
   factory UpdateXMLClassifierRequest.fromJson(Map<String, dynamic> json) {
     return UpdateXMLClassifierRequest(
       name: json['Name'] as String,
@@ -24288,6 +24590,7 @@ class UserDefinedFunction {
     this.ownerType,
     this.resourceUris,
   });
+
   factory UserDefinedFunction.fromJson(Map<String, dynamic> json) {
     return UserDefinedFunction(
       catalogId: json['CatalogId'] as String?,
@@ -24350,6 +24653,7 @@ class UserDefinedFunctionInput {
     this.ownerType,
     this.resourceUris,
   });
+
   factory UserDefinedFunctionInput.fromJson(Map<String, dynamic> json) {
     return UserDefinedFunctionInput(
       className: json['ClassName'] as String?,
@@ -24454,6 +24758,7 @@ class Workflow {
     this.maxConcurrentRuns,
     this.name,
   });
+
   factory Workflow.fromJson(Map<String, dynamic> json) {
     return Workflow(
       createdOn: timeStampFromJson(json['CreatedOn']),
@@ -24513,6 +24818,7 @@ class WorkflowGraph {
     this.edges,
     this.nodes,
   });
+
   factory WorkflowGraph.fromJson(Map<String, dynamic> json) {
     return WorkflowGraph(
       edges: (json['Edges'] as List?)
@@ -24584,6 +24890,7 @@ class WorkflowRun {
     this.workflowRunId,
     this.workflowRunProperties,
   });
+
   factory WorkflowRun.fromJson(Map<String, dynamic> json) {
     return WorkflowRun(
       completedOn: timeStampFromJson(json['CompletedOn']),
@@ -24661,6 +24968,7 @@ class WorkflowRunStatistics {
     this.timeoutActions,
     this.totalActions,
   });
+
   factory WorkflowRunStatistics.fromJson(Map<String, dynamic> json) {
     return WorkflowRunStatistics(
       failedActions: json['FailedActions'] as int?,
@@ -24766,6 +25074,7 @@ class XMLClassifier {
     this.rowTag,
     this.version,
   });
+
   factory XMLClassifier.fromJson(Map<String, dynamic> json) {
     return XMLClassifier(
       classification: json['Classification'] as String,

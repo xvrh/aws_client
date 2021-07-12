@@ -277,6 +277,7 @@ class GetPersonalizedRankingResponse {
     this.personalizedRanking,
     this.recommendationId,
   });
+
   factory GetPersonalizedRankingResponse.fromJson(Map<String, dynamic> json) {
     return GetPersonalizedRankingResponse(
       personalizedRanking: (json['personalizedRanking'] as List?)
@@ -310,6 +311,7 @@ class GetRecommendationsResponse {
     this.itemList,
     this.recommendationId,
   });
+
   factory GetRecommendationsResponse.fromJson(Map<String, dynamic> json) {
     return GetRecommendationsResponse(
       itemList: (json['itemList'] as List?)
@@ -346,6 +348,7 @@ class PredictedItem {
     this.itemId,
     this.score,
   });
+
   factory PredictedItem.fromJson(Map<String, dynamic> json) {
     return PredictedItem(
       itemId: json['itemId'] as String?,

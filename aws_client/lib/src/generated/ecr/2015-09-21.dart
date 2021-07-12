@@ -2059,6 +2059,7 @@ class Attribute {
     required this.key,
     this.value,
   });
+
   factory Attribute.fromJson(Map<String, dynamic> json) {
     return Attribute(
       key: json['key'] as String,
@@ -2099,6 +2100,7 @@ class AuthorizationData {
     this.expiresAt,
     this.proxyEndpoint,
   });
+
   factory AuthorizationData.fromJson(Map<String, dynamic> json) {
     return AuthorizationData(
       authorizationToken: json['authorizationToken'] as String?,
@@ -2131,6 +2133,7 @@ class BatchCheckLayerAvailabilityResponse {
     this.failures,
     this.layers,
   });
+
   factory BatchCheckLayerAvailabilityResponse.fromJson(
       Map<String, dynamic> json) {
     return BatchCheckLayerAvailabilityResponse(
@@ -2166,6 +2169,7 @@ class BatchDeleteImageResponse {
     this.failures,
     this.imageIds,
   });
+
   factory BatchDeleteImageResponse.fromJson(Map<String, dynamic> json) {
     return BatchDeleteImageResponse(
       failures: (json['failures'] as List?)
@@ -2201,6 +2205,7 @@ class BatchGetImageResponse {
     this.failures,
     this.images,
   });
+
   factory BatchGetImageResponse.fromJson(Map<String, dynamic> json) {
     return BatchGetImageResponse(
       failures: (json['failures'] as List?)
@@ -2243,6 +2248,7 @@ class CompleteLayerUploadResponse {
     this.repositoryName,
     this.uploadId,
   });
+
   factory CompleteLayerUploadResponse.fromJson(Map<String, dynamic> json) {
     return CompleteLayerUploadResponse(
       layerDigest: json['layerDigest'] as String?,
@@ -2273,6 +2279,7 @@ class CreateRepositoryResponse {
   CreateRepositoryResponse({
     this.repository,
   });
+
   factory CreateRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return CreateRepositoryResponse(
       repository: json['repository'] != null
@@ -2308,6 +2315,7 @@ class DeleteLifecyclePolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory DeleteLifecyclePolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteLifecyclePolicyResponse(
       lastEvaluatedAt: timeStampFromJson(json['lastEvaluatedAt']),
@@ -2344,6 +2352,7 @@ class DeleteRegistryPolicyResponse {
     this.policyText,
     this.registryId,
   });
+
   factory DeleteRegistryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRegistryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -2376,6 +2385,7 @@ class DeleteRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory DeleteRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -2403,6 +2413,7 @@ class DeleteRepositoryResponse {
   DeleteRepositoryResponse({
     this.repository,
   });
+
   factory DeleteRepositoryResponse.fromJson(Map<String, dynamic> json) {
     return DeleteRepositoryResponse(
       repository: json['repository'] != null
@@ -2449,6 +2460,7 @@ class DescribeImageScanFindingsResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory DescribeImageScanFindingsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeImageScanFindingsResponse(
@@ -2497,6 +2509,7 @@ class DescribeImagesFilter {
   DescribeImagesFilter({
     this.tagStatus,
   });
+
   factory DescribeImagesFilter.fromJson(Map<String, dynamic> json) {
     return DescribeImagesFilter(
       tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
@@ -2526,6 +2539,7 @@ class DescribeImagesResponse {
     this.imageDetails,
     this.nextToken,
   });
+
   factory DescribeImagesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeImagesResponse(
       imageDetails: (json['imageDetails'] as List?)
@@ -2557,6 +2571,7 @@ class DescribeRegistryResponse {
     this.registryId,
     this.replicationConfiguration,
   });
+
   factory DescribeRegistryResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRegistryResponse(
       registryId: json['registryId'] as String?,
@@ -2593,6 +2608,7 @@ class DescribeRepositoriesResponse {
     this.nextToken,
     this.repositories,
   });
+
   factory DescribeRepositoriesResponse.fromJson(Map<String, dynamic> json) {
     return DescribeRepositoriesResponse(
       nextToken: json['nextToken'] as String?,
@@ -2663,6 +2679,7 @@ class EncryptionConfiguration {
     required this.encryptionType,
     this.kmsKey,
   });
+
   factory EncryptionConfiguration.fromJson(Map<String, dynamic> json) {
     return EncryptionConfiguration(
       encryptionType: (json['encryptionType'] as String).toEncryptionType(),
@@ -2764,6 +2781,7 @@ class GetAuthorizationTokenResponse {
   GetAuthorizationTokenResponse({
     this.authorizationData,
   });
+
   factory GetAuthorizationTokenResponse.fromJson(Map<String, dynamic> json) {
     return GetAuthorizationTokenResponse(
       authorizationData: (json['authorizationData'] as List?)
@@ -2792,6 +2810,7 @@ class GetDownloadUrlForLayerResponse {
     this.downloadUrl,
     this.layerDigest,
   });
+
   factory GetDownloadUrlForLayerResponse.fromJson(Map<String, dynamic> json) {
     return GetDownloadUrlForLayerResponse(
       downloadUrl: json['downloadUrl'] as String?,
@@ -2845,6 +2864,7 @@ class GetLifecyclePolicyPreviewResponse {
     this.status,
     this.summary,
   });
+
   factory GetLifecyclePolicyPreviewResponse.fromJson(
       Map<String, dynamic> json) {
     return GetLifecyclePolicyPreviewResponse(
@@ -2905,6 +2925,7 @@ class GetLifecyclePolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory GetLifecyclePolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetLifecyclePolicyResponse(
       lastEvaluatedAt: timeStampFromJson(json['lastEvaluatedAt']),
@@ -2941,6 +2962,7 @@ class GetRegistryPolicyResponse {
     this.policyText,
     this.registryId,
   });
+
   factory GetRegistryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetRegistryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -2973,6 +2995,7 @@ class GetRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory GetRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return GetRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -3018,6 +3041,7 @@ class Image {
     this.registryId,
     this.repositoryName,
   });
+
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
       imageId: json['imageId'] != null
@@ -3125,6 +3149,7 @@ class ImageDetail {
     this.registryId,
     this.repositoryName,
   });
+
   factory ImageDetail.fromJson(Map<String, dynamic> json) {
     return ImageDetail(
       artifactMediaType: json['artifactMediaType'] as String?,
@@ -3194,6 +3219,7 @@ class ImageFailure {
     this.failureReason,
     this.imageId,
   });
+
   factory ImageFailure.fromJson(Map<String, dynamic> json) {
     return ImageFailure(
       failureCode: (json['failureCode'] as String?)?.toImageFailureCode(),
@@ -3281,6 +3307,7 @@ class ImageIdentifier {
     this.imageDigest,
     this.imageTag,
   });
+
   factory ImageIdentifier.fromJson(Map<String, dynamic> json) {
     return ImageIdentifier(
       imageDigest: json['imageDigest'] as String?,
@@ -3322,6 +3349,7 @@ class ImageScanFinding {
     this.severity,
     this.uri,
   });
+
   factory ImageScanFinding.fromJson(Map<String, dynamic> json) {
     return ImageScanFinding(
       attributes: (json['attributes'] as List?)
@@ -3371,6 +3399,7 @@ class ImageScanFindings {
     this.imageScanCompletedAt,
     this.vulnerabilitySourceUpdatedAt,
   });
+
   factory ImageScanFindings.fromJson(Map<String, dynamic> json) {
     return ImageScanFindings(
       findingSeverityCounts:
@@ -3421,6 +3450,7 @@ class ImageScanFindingsSummary {
     this.imageScanCompletedAt,
     this.vulnerabilitySourceUpdatedAt,
   });
+
   factory ImageScanFindingsSummary.fromJson(Map<String, dynamic> json) {
     return ImageScanFindingsSummary(
       findingSeverityCounts:
@@ -3461,6 +3491,7 @@ class ImageScanStatus {
     this.description,
     this.status,
   });
+
   factory ImageScanStatus.fromJson(Map<String, dynamic> json) {
     return ImageScanStatus(
       description: json['description'] as String?,
@@ -3490,6 +3521,7 @@ class ImageScanningConfiguration {
   ImageScanningConfiguration({
     this.scanOnPush,
   });
+
   factory ImageScanningConfiguration.fromJson(Map<String, dynamic> json) {
     return ImageScanningConfiguration(
       scanOnPush: json['scanOnPush'] as bool?,
@@ -3544,6 +3576,7 @@ class InitiateLayerUploadResponse {
     this.partSize,
     this.uploadId,
   });
+
   factory InitiateLayerUploadResponse.fromJson(Map<String, dynamic> json) {
     return InitiateLayerUploadResponse(
       partSize: json['partSize'] as int?,
@@ -3583,6 +3616,7 @@ class Layer {
     this.layerSize,
     this.mediaType,
   });
+
   factory Layer.fromJson(Map<String, dynamic> json) {
     return Layer(
       layerAvailability:
@@ -3652,6 +3686,7 @@ class LayerFailure {
     this.failureReason,
     this.layerDigest,
   });
+
   factory LayerFailure.fromJson(Map<String, dynamic> json) {
     return LayerFailure(
       failureCode: (json['failureCode'] as String?)?.toLayerFailureCode(),
@@ -3708,6 +3743,7 @@ class LifecyclePolicyPreviewFilter {
   LifecyclePolicyPreviewFilter({
     this.tagStatus,
   });
+
   factory LifecyclePolicyPreviewFilter.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicyPreviewFilter(
       tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
@@ -3747,6 +3783,7 @@ class LifecyclePolicyPreviewResult {
     this.imagePushedAt,
     this.imageTags,
   });
+
   factory LifecyclePolicyPreviewResult.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicyPreviewResult(
       action: json['action'] != null
@@ -3827,6 +3864,7 @@ class LifecyclePolicyPreviewSummary {
   LifecyclePolicyPreviewSummary({
     this.expiringImageTotalCount,
   });
+
   factory LifecyclePolicyPreviewSummary.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicyPreviewSummary(
       expiringImageTotalCount: json['expiringImageTotalCount'] as int?,
@@ -3850,6 +3888,7 @@ class LifecyclePolicyRuleAction {
   LifecyclePolicyRuleAction({
     this.type,
   });
+
   factory LifecyclePolicyRuleAction.fromJson(Map<String, dynamic> json) {
     return LifecyclePolicyRuleAction(
       type: (json['type'] as String?)?.toImageActionType(),
@@ -3874,6 +3913,7 @@ class ListImagesFilter {
   ListImagesFilter({
     this.tagStatus,
   });
+
   factory ListImagesFilter.fromJson(Map<String, dynamic> json) {
     return ListImagesFilter(
       tagStatus: (json['tagStatus'] as String?)?.toTagStatus(),
@@ -3903,6 +3943,7 @@ class ListImagesResponse {
     this.imageIds,
     this.nextToken,
   });
+
   factory ListImagesResponse.fromJson(Map<String, dynamic> json) {
     return ListImagesResponse(
       imageIds: (json['imageIds'] as List?)
@@ -3930,6 +3971,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['tags'] as List?)
@@ -3954,6 +3996,7 @@ class PutImageResponse {
   PutImageResponse({
     this.image,
   });
+
   factory PutImageResponse.fromJson(Map<String, dynamic> json) {
     return PutImageResponse(
       image: json['image'] != null
@@ -3985,6 +4028,7 @@ class PutImageScanningConfigurationResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory PutImageScanningConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutImageScanningConfigurationResponse(
@@ -4025,6 +4069,7 @@ class PutImageTagMutabilityResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory PutImageTagMutabilityResponse.fromJson(Map<String, dynamic> json) {
     return PutImageTagMutabilityResponse(
       imageTagMutability:
@@ -4062,6 +4107,7 @@ class PutLifecyclePolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory PutLifecyclePolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutLifecyclePolicyResponse(
       lifecyclePolicyText: json['lifecyclePolicyText'] as String?,
@@ -4094,6 +4140,7 @@ class PutRegistryPolicyResponse {
     this.policyText,
     this.registryId,
   });
+
   factory PutRegistryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return PutRegistryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -4118,6 +4165,7 @@ class PutReplicationConfigurationResponse {
   PutReplicationConfigurationResponse({
     this.replicationConfiguration,
   });
+
   factory PutReplicationConfigurationResponse.fromJson(
       Map<String, dynamic> json) {
     return PutReplicationConfigurationResponse(
@@ -4147,6 +4195,7 @@ class ReplicationConfiguration {
   ReplicationConfiguration({
     required this.rules,
   });
+
   factory ReplicationConfiguration.fromJson(Map<String, dynamic> json) {
     return ReplicationConfiguration(
       rules: (json['rules'] as List)
@@ -4176,6 +4225,7 @@ class ReplicationDestination {
     required this.region,
     required this.registryId,
   });
+
   factory ReplicationDestination.fromJson(Map<String, dynamic> json) {
     return ReplicationDestination(
       region: json['region'] as String,
@@ -4204,6 +4254,7 @@ class ReplicationRule {
   ReplicationRule({
     required this.destinations,
   });
+
   factory ReplicationRule.fromJson(Map<String, dynamic> json) {
     return ReplicationRule(
       destinations: (json['destinations'] as List)
@@ -4264,6 +4315,7 @@ class Repository {
     this.repositoryName,
     this.repositoryUri,
   });
+
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
       createdAt: timeStampFromJson(json['createdAt']),
@@ -4357,6 +4409,7 @@ class SetRepositoryPolicyResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory SetRepositoryPolicyResponse.fromJson(Map<String, dynamic> json) {
     return SetRepositoryPolicyResponse(
       policyText: json['policyText'] as String?,
@@ -4395,6 +4448,7 @@ class StartImageScanResponse {
     this.registryId,
     this.repositoryName,
   });
+
   factory StartImageScanResponse.fromJson(Map<String, dynamic> json) {
     return StartImageScanResponse(
       imageId: json['imageId'] != null
@@ -4442,6 +4496,7 @@ class StartLifecyclePolicyPreviewResponse {
     this.repositoryName,
     this.status,
   });
+
   factory StartLifecyclePolicyPreviewResponse.fromJson(
       Map<String, dynamic> json) {
     return StartLifecyclePolicyPreviewResponse(
@@ -4484,6 +4539,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -4503,6 +4559,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -4547,6 +4604,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -4575,6 +4633,7 @@ class UploadLayerPartResponse {
     this.repositoryName,
     this.uploadId,
   });
+
   factory UploadLayerPartResponse.fromJson(Map<String, dynamic> json) {
     return UploadLayerPartResponse(
       lastByteReceived: json['lastByteReceived'] as int?,

@@ -1606,6 +1606,7 @@ class Shield {
 
 class AssociateDRTLogBucketResponse {
   AssociateDRTLogBucketResponse();
+
   factory AssociateDRTLogBucketResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDRTLogBucketResponse();
   }
@@ -1617,6 +1618,7 @@ class AssociateDRTLogBucketResponse {
 
 class AssociateDRTRoleResponse {
   AssociateDRTRoleResponse();
+
   factory AssociateDRTRoleResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDRTRoleResponse();
   }
@@ -1628,6 +1630,7 @@ class AssociateDRTRoleResponse {
 
 class AssociateHealthCheckResponse {
   AssociateHealthCheckResponse();
+
   factory AssociateHealthCheckResponse.fromJson(Map<String, dynamic> _) {
     return AssociateHealthCheckResponse();
   }
@@ -1639,6 +1642,7 @@ class AssociateHealthCheckResponse {
 
 class AssociateProactiveEngagementDetailsResponse {
   AssociateProactiveEngagementDetailsResponse();
+
   factory AssociateProactiveEngagementDetailsResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateProactiveEngagementDetailsResponse();
@@ -1690,6 +1694,7 @@ class AttackDetail {
     this.startTime,
     this.subResources,
   });
+
   factory AttackDetail.fromJson(Map<String, dynamic> json) {
     return AttackDetail(
       attackCounters: (json['AttackCounters'] as List?)
@@ -1796,6 +1801,7 @@ class AttackProperty {
     this.total,
     this.unit,
   });
+
   factory AttackProperty.fromJson(Map<String, dynamic> json) {
     return AttackProperty(
       attackLayer: (json['AttackLayer'] as String?)?.toAttackLayer(),
@@ -1901,6 +1907,7 @@ class AttackStatisticsDataItem {
     required this.attackCount,
     this.attackVolume,
   });
+
   factory AttackStatisticsDataItem.fromJson(Map<String, dynamic> json) {
     return AttackStatisticsDataItem(
       attackCount: json['AttackCount'] as int,
@@ -1948,6 +1955,7 @@ class AttackSummary {
     this.resourceArn,
     this.startTime,
   });
+
   factory AttackSummary.fromJson(Map<String, dynamic> json) {
     return AttackSummary(
       attackId: json['AttackId'] as String?,
@@ -2043,6 +2051,7 @@ class AttackVectorDescription {
   AttackVectorDescription({
     required this.vectorType,
   });
+
   factory AttackVectorDescription.fromJson(Map<String, dynamic> json) {
     return AttackVectorDescription(
       vectorType: json['VectorType'] as String,
@@ -2080,6 +2089,7 @@ class AttackVolume {
     this.packetsPerSecond,
     this.requestsPerSecond,
   });
+
   factory AttackVolume.fromJson(Map<String, dynamic> json) {
     return AttackVolume(
       bitsPerSecond: json['BitsPerSecond'] != null
@@ -2117,6 +2127,7 @@ class AttackVolumeStatistics {
   AttackVolumeStatistics({
     required this.max,
   });
+
   factory AttackVolumeStatistics.fromJson(Map<String, dynamic> json) {
     return AttackVolumeStatistics(
       max: json['Max'] as double,
@@ -2175,6 +2186,7 @@ class Contributor {
     this.name,
     this.value,
   });
+
   factory Contributor.fromJson(Map<String, dynamic> json) {
     return Contributor(
       name: json['Name'] as String?,
@@ -2194,6 +2206,7 @@ class Contributor {
 
 class CreateProtectionGroupResponse {
   CreateProtectionGroupResponse();
+
   factory CreateProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return CreateProtectionGroupResponse();
   }
@@ -2210,6 +2223,7 @@ class CreateProtectionResponse {
   CreateProtectionResponse({
     this.protectionId,
   });
+
   factory CreateProtectionResponse.fromJson(Map<String, dynamic> json) {
     return CreateProtectionResponse(
       protectionId: json['ProtectionId'] as String?,
@@ -2226,6 +2240,7 @@ class CreateProtectionResponse {
 
 class CreateSubscriptionResponse {
   CreateSubscriptionResponse();
+
   factory CreateSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return CreateSubscriptionResponse();
   }
@@ -2237,6 +2252,7 @@ class CreateSubscriptionResponse {
 
 class DeleteProtectionGroupResponse {
   DeleteProtectionGroupResponse();
+
   factory DeleteProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProtectionGroupResponse();
   }
@@ -2248,6 +2264,7 @@ class DeleteProtectionGroupResponse {
 
 class DeleteProtectionResponse {
   DeleteProtectionResponse();
+
   factory DeleteProtectionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProtectionResponse();
   }
@@ -2260,6 +2277,7 @@ class DeleteProtectionResponse {
 @deprecated
 class DeleteSubscriptionResponse {
   DeleteSubscriptionResponse();
+
   factory DeleteSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSubscriptionResponse();
   }
@@ -2276,6 +2294,7 @@ class DescribeAttackResponse {
   DescribeAttackResponse({
     this.attack,
   });
+
   factory DescribeAttackResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAttackResponse(
       attack: json['Attack'] != null
@@ -2301,6 +2320,7 @@ class DescribeAttackStatisticsResponse {
     required this.dataItems,
     required this.timeRange,
   });
+
   factory DescribeAttackStatisticsResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAttackStatisticsResponse(
       dataItems: (json['DataItems'] as List)
@@ -2334,6 +2354,7 @@ class DescribeDRTAccessResponse {
     this.logBucketList,
     this.roleArn,
   });
+
   factory DescribeDRTAccessResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDRTAccessResponse(
       logBucketList: (json['LogBucketList'] as List?)
@@ -2363,6 +2384,7 @@ class DescribeEmergencyContactSettingsResponse {
   DescribeEmergencyContactSettingsResponse({
     this.emergencyContactList,
   });
+
   factory DescribeEmergencyContactSettingsResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeEmergencyContactSettingsResponse(
@@ -2391,6 +2413,7 @@ class DescribeProtectionGroupResponse {
   DescribeProtectionGroupResponse({
     required this.protectionGroup,
   });
+
   factory DescribeProtectionGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProtectionGroupResponse(
       protectionGroup: ProtectionGroup.fromJson(
@@ -2413,6 +2436,7 @@ class DescribeProtectionResponse {
   DescribeProtectionResponse({
     this.protection,
   });
+
   factory DescribeProtectionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeProtectionResponse(
       protection: json['Protection'] != null
@@ -2436,6 +2460,7 @@ class DescribeSubscriptionResponse {
   DescribeSubscriptionResponse({
     this.subscription,
   });
+
   factory DescribeSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSubscriptionResponse(
       subscription: json['Subscription'] != null
@@ -2454,6 +2479,7 @@ class DescribeSubscriptionResponse {
 
 class DisableProactiveEngagementResponse {
   DisableProactiveEngagementResponse();
+
   factory DisableProactiveEngagementResponse.fromJson(Map<String, dynamic> _) {
     return DisableProactiveEngagementResponse();
   }
@@ -2465,6 +2491,7 @@ class DisableProactiveEngagementResponse {
 
 class DisassociateDRTLogBucketResponse {
   DisassociateDRTLogBucketResponse();
+
   factory DisassociateDRTLogBucketResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDRTLogBucketResponse();
   }
@@ -2476,6 +2503,7 @@ class DisassociateDRTLogBucketResponse {
 
 class DisassociateDRTRoleResponse {
   DisassociateDRTRoleResponse();
+
   factory DisassociateDRTRoleResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateDRTRoleResponse();
   }
@@ -2487,6 +2515,7 @@ class DisassociateDRTRoleResponse {
 
 class DisassociateHealthCheckResponse {
   DisassociateHealthCheckResponse();
+
   factory DisassociateHealthCheckResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateHealthCheckResponse();
   }
@@ -2514,6 +2543,7 @@ class EmergencyContact {
     this.contactNotes,
     this.phoneNumber,
   });
+
   factory EmergencyContact.fromJson(Map<String, dynamic> json) {
     return EmergencyContact(
       emailAddress: json['EmailAddress'] as String,
@@ -2536,6 +2566,7 @@ class EmergencyContact {
 
 class EnableProactiveEngagementResponse {
   EnableProactiveEngagementResponse();
+
   factory EnableProactiveEngagementResponse.fromJson(Map<String, dynamic> _) {
     return EnableProactiveEngagementResponse();
   }
@@ -2552,6 +2583,7 @@ class GetSubscriptionStateResponse {
   GetSubscriptionStateResponse({
     required this.subscriptionState,
   });
+
   factory GetSubscriptionStateResponse.fromJson(Map<String, dynamic> json) {
     return GetSubscriptionStateResponse(
       subscriptionState:
@@ -2580,6 +2612,7 @@ class Limit {
     this.max,
     this.type,
   });
+
   factory Limit.fromJson(Map<String, dynamic> json) {
     return Limit(
       max: json['Max'] as int?,
@@ -2616,6 +2649,7 @@ class ListAttacksResponse {
     this.attackSummaries,
     this.nextToken,
   });
+
   factory ListAttacksResponse.fromJson(Map<String, dynamic> json) {
     return ListAttacksResponse(
       attackSummaries: (json['AttackSummaries'] as List?)
@@ -2650,6 +2684,7 @@ class ListProtectionGroupsResponse {
     required this.protectionGroups,
     this.nextToken,
   });
+
   factory ListProtectionGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListProtectionGroupsResponse(
       protectionGroups: (json['ProtectionGroups'] as List)
@@ -2691,6 +2726,7 @@ class ListProtectionsResponse {
     this.nextToken,
     this.protections,
   });
+
   factory ListProtectionsResponse.fromJson(Map<String, dynamic> json) {
     return ListProtectionsResponse(
       nextToken: json['NextToken'] as String?,
@@ -2726,6 +2762,7 @@ class ListResourcesInProtectionGroupResponse {
     required this.resourceArns,
     this.nextToken,
   });
+
   factory ListResourcesInProtectionGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return ListResourcesInProtectionGroupResponse(
@@ -2754,6 +2791,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -2779,6 +2817,7 @@ class Mitigation {
   Mitigation({
     this.mitigationName,
   });
+
   factory Mitigation.fromJson(Map<String, dynamic> json) {
     return Mitigation(
       mitigationName: json['MitigationName'] as String?,
@@ -2900,6 +2939,7 @@ class Protection {
     this.protectionArn,
     this.resourceArn,
   });
+
   factory Protection.fromJson(Map<String, dynamic> json) {
     return Protection(
       healthCheckIds: (json['HealthCheckIds'] as List?)
@@ -2990,6 +3030,7 @@ class ProtectionGroup {
     this.protectionGroupArn,
     this.resourceType,
   });
+
   factory ProtectionGroup.fromJson(Map<String, dynamic> json) {
     return ProtectionGroup(
       aggregation:
@@ -3066,6 +3107,7 @@ class ProtectionGroupArbitraryPatternLimits {
   ProtectionGroupArbitraryPatternLimits({
     required this.maxMembers,
   });
+
   factory ProtectionGroupArbitraryPatternLimits.fromJson(
       Map<String, dynamic> json) {
     return ProtectionGroupArbitraryPatternLimits(
@@ -3094,6 +3136,7 @@ class ProtectionGroupLimits {
     required this.maxProtectionGroups,
     required this.patternTypeLimits,
   });
+
   factory ProtectionGroupLimits.fromJson(Map<String, dynamic> json) {
     return ProtectionGroupLimits(
       maxProtectionGroups: json['MaxProtectionGroups'] as int,
@@ -3154,6 +3197,7 @@ class ProtectionGroupPatternTypeLimits {
   ProtectionGroupPatternTypeLimits({
     required this.arbitraryPatternLimits,
   });
+
   factory ProtectionGroupPatternTypeLimits.fromJson(Map<String, dynamic> json) {
     return ProtectionGroupPatternTypeLimits(
       arbitraryPatternLimits: ProtectionGroupArbitraryPatternLimits.fromJson(
@@ -3177,6 +3221,7 @@ class ProtectionLimits {
   ProtectionLimits({
     required this.protectedResourceTypeLimits,
   });
+
   factory ProtectionLimits.fromJson(Map<String, dynamic> json) {
     return ProtectionLimits(
       protectedResourceTypeLimits: (json['ProtectedResourceTypeLimits'] as List)
@@ -3214,6 +3259,7 @@ class SubResourceSummary {
     this.id,
     this.type,
   });
+
   factory SubResourceSummary.fromJson(Map<String, dynamic> json) {
     return SubResourceSummary(
       attackVectors: (json['AttackVectors'] as List?)
@@ -3328,6 +3374,7 @@ class Subscription {
     this.subscriptionArn,
     this.timeCommitmentInSeconds,
   });
+
   factory Subscription.fromJson(Map<String, dynamic> json) {
     return Subscription(
       subscriptionLimits: SubscriptionLimits.fromJson(
@@ -3382,6 +3429,7 @@ class SubscriptionLimits {
     required this.protectionGroupLimits,
     required this.protectionLimits,
   });
+
   factory SubscriptionLimits.fromJson(Map<String, dynamic> json) {
     return SubscriptionLimits(
       protectionGroupLimits: ProtectionGroupLimits.fromJson(
@@ -3441,6 +3489,7 @@ class SummarizedAttackVector {
     required this.vectorType,
     this.vectorCounters,
   });
+
   factory SummarizedAttackVector.fromJson(Map<String, dynamic> json) {
     return SummarizedAttackVector(
       vectorType: json['VectorType'] as String,
@@ -3489,6 +3538,7 @@ class SummarizedCounter {
     this.sum,
     this.unit,
   });
+
   factory SummarizedCounter.fromJson(Map<String, dynamic> json) {
     return SummarizedCounter(
       average: json['Average'] as double?,
@@ -3541,6 +3591,7 @@ class Tag {
     this.key,
     this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String?,
@@ -3560,6 +3611,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -3583,6 +3635,7 @@ class TimeRange {
     this.fromInclusive,
     this.toExclusive,
   });
+
   factory TimeRange.fromJson(Map<String, dynamic> json) {
     return TimeRange(
       fromInclusive: timeStampFromJson(json['FromInclusive']),
@@ -3641,6 +3694,7 @@ extension on String {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -3652,6 +3706,7 @@ class UntagResourceResponse {
 
 class UpdateEmergencyContactSettingsResponse {
   UpdateEmergencyContactSettingsResponse();
+
   factory UpdateEmergencyContactSettingsResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateEmergencyContactSettingsResponse();
@@ -3664,6 +3719,7 @@ class UpdateEmergencyContactSettingsResponse {
 
 class UpdateProtectionGroupResponse {
   UpdateProtectionGroupResponse();
+
   factory UpdateProtectionGroupResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProtectionGroupResponse();
   }
@@ -3675,6 +3731,7 @@ class UpdateProtectionGroupResponse {
 
 class UpdateSubscriptionResponse {
   UpdateSubscriptionResponse();
+
   factory UpdateSubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSubscriptionResponse();
   }

@@ -3094,6 +3094,7 @@ class Accelerator {
     this.name,
     this.status,
   });
+
   factory Accelerator.fromJson(Map<String, dynamic> json) {
     return Accelerator(
       acceleratorArn: json['AcceleratorArn'] as String?,
@@ -3169,6 +3170,7 @@ class AcceleratorAttributes {
     this.flowLogsS3Bucket,
     this.flowLogsS3Prefix,
   });
+
   factory AcceleratorAttributes.fromJson(Map<String, dynamic> json) {
     return AcceleratorAttributes(
       flowLogsEnabled: json['FlowLogsEnabled'] as bool?,
@@ -3229,6 +3231,7 @@ class AddCustomRoutingEndpointsResponse {
     this.endpointDescriptions,
     this.endpointGroupArn,
   });
+
   factory AddCustomRoutingEndpointsResponse.fromJson(
       Map<String, dynamic> json) {
     return AddCustomRoutingEndpointsResponse(
@@ -3259,6 +3262,7 @@ class AdvertiseByoipCidrResponse {
   AdvertiseByoipCidrResponse({
     this.byoipCidr,
   });
+
   factory AdvertiseByoipCidrResponse.fromJson(Map<String, dynamic> json) {
     return AdvertiseByoipCidrResponse(
       byoipCidr: json['ByoipCidr'] != null
@@ -3353,6 +3357,7 @@ class ByoipCidr {
     this.events,
     this.state,
   });
+
   factory ByoipCidr.fromJson(Map<String, dynamic> json) {
     return ByoipCidr(
       cidr: json['Cidr'] as String?,
@@ -3394,6 +3399,7 @@ class ByoipCidrEvent {
     this.message,
     this.timestamp,
   });
+
   factory ByoipCidrEvent.fromJson(Map<String, dynamic> json) {
     return ByoipCidrEvent(
       message: json['Message'] as String?,
@@ -3502,6 +3508,7 @@ class CidrAuthorizationContext {
     required this.message,
     required this.signature,
   });
+
   factory CidrAuthorizationContext.fromJson(Map<String, dynamic> json) {
     return CidrAuthorizationContext(
       message: json['Message'] as String,
@@ -3555,6 +3562,7 @@ class CreateAcceleratorResponse {
   CreateAcceleratorResponse({
     this.accelerator,
   });
+
   factory CreateAcceleratorResponse.fromJson(Map<String, dynamic> json) {
     return CreateAcceleratorResponse(
       accelerator: json['Accelerator'] != null
@@ -3578,6 +3586,7 @@ class CreateCustomRoutingAcceleratorResponse {
   CreateCustomRoutingAcceleratorResponse({
     this.accelerator,
   });
+
   factory CreateCustomRoutingAcceleratorResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCustomRoutingAcceleratorResponse(
@@ -3604,6 +3613,7 @@ class CreateCustomRoutingEndpointGroupResponse {
   CreateCustomRoutingEndpointGroupResponse({
     this.endpointGroup,
   });
+
   factory CreateCustomRoutingEndpointGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCustomRoutingEndpointGroupResponse(
@@ -3629,6 +3639,7 @@ class CreateCustomRoutingListenerResponse {
   CreateCustomRoutingListenerResponse({
     this.listener,
   });
+
   factory CreateCustomRoutingListenerResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateCustomRoutingListenerResponse(
@@ -3654,6 +3665,7 @@ class CreateEndpointGroupResponse {
   CreateEndpointGroupResponse({
     this.endpointGroup,
   });
+
   factory CreateEndpointGroupResponse.fromJson(Map<String, dynamic> json) {
     return CreateEndpointGroupResponse(
       endpointGroup: json['EndpointGroup'] != null
@@ -3678,6 +3690,7 @@ class CreateListenerResponse {
   CreateListenerResponse({
     this.listener,
   });
+
   factory CreateListenerResponse.fromJson(Map<String, dynamic> json) {
     return CreateListenerResponse(
       listener: json['Listener'] != null
@@ -3751,6 +3764,7 @@ class CustomRoutingAccelerator {
     this.name,
     this.status,
   });
+
   factory CustomRoutingAccelerator.fromJson(Map<String, dynamic> json) {
     return CustomRoutingAccelerator(
       acceleratorArn: json['AcceleratorArn'] as String?,
@@ -3826,6 +3840,7 @@ class CustomRoutingAcceleratorAttributes {
     this.flowLogsS3Bucket,
     this.flowLogsS3Prefix,
   });
+
   factory CustomRoutingAcceleratorAttributes.fromJson(
       Map<String, dynamic> json) {
     return CustomRoutingAcceleratorAttributes(
@@ -3897,6 +3912,7 @@ class CustomRoutingDestinationConfiguration {
     required this.protocols,
     required this.toPort,
   });
+
   factory CustomRoutingDestinationConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CustomRoutingDestinationConfiguration(
@@ -3942,6 +3958,7 @@ class CustomRoutingDestinationDescription {
     this.protocols,
     this.toPort,
   });
+
   factory CustomRoutingDestinationDescription.fromJson(
       Map<String, dynamic> json) {
     return CustomRoutingDestinationDescription(
@@ -4007,6 +4024,7 @@ class CustomRoutingEndpointConfiguration {
   CustomRoutingEndpointConfiguration({
     this.endpointId,
   });
+
   factory CustomRoutingEndpointConfiguration.fromJson(
       Map<String, dynamic> json) {
     return CustomRoutingEndpointConfiguration(
@@ -4033,6 +4051,7 @@ class CustomRoutingEndpointDescription {
   CustomRoutingEndpointDescription({
     this.endpointId,
   });
+
   factory CustomRoutingEndpointDescription.fromJson(Map<String, dynamic> json) {
     return CustomRoutingEndpointDescription(
       endpointId: json['EndpointId'] as String?,
@@ -4071,6 +4090,7 @@ class CustomRoutingEndpointGroup {
     this.endpointGroupArn,
     this.endpointGroupRegion,
   });
+
   factory CustomRoutingEndpointGroup.fromJson(Map<String, dynamic> json) {
     return CustomRoutingEndpointGroup(
       destinationDescriptions: (json['DestinationDescriptions'] as List?)
@@ -4121,6 +4141,7 @@ class CustomRoutingListener {
     this.listenerArn,
     this.portRanges,
   });
+
   factory CustomRoutingListener.fromJson(Map<String, dynamic> json) {
     return CustomRoutingListener(
       listenerArn: json['ListenerArn'] as String?,
@@ -4176,6 +4197,7 @@ class DeprovisionByoipCidrResponse {
   DeprovisionByoipCidrResponse({
     this.byoipCidr,
   });
+
   factory DeprovisionByoipCidrResponse.fromJson(Map<String, dynamic> json) {
     return DeprovisionByoipCidrResponse(
       byoipCidr: json['ByoipCidr'] != null
@@ -4199,6 +4221,7 @@ class DescribeAcceleratorAttributesResponse {
   DescribeAcceleratorAttributesResponse({
     this.acceleratorAttributes,
   });
+
   factory DescribeAcceleratorAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeAcceleratorAttributesResponse(
@@ -4225,6 +4248,7 @@ class DescribeAcceleratorResponse {
   DescribeAcceleratorResponse({
     this.accelerator,
   });
+
   factory DescribeAcceleratorResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAcceleratorResponse(
       accelerator: json['Accelerator'] != null
@@ -4248,6 +4272,7 @@ class DescribeCustomRoutingAcceleratorAttributesResponse {
   DescribeCustomRoutingAcceleratorAttributesResponse({
     this.acceleratorAttributes,
   });
+
   factory DescribeCustomRoutingAcceleratorAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCustomRoutingAcceleratorAttributesResponse(
@@ -4274,6 +4299,7 @@ class DescribeCustomRoutingAcceleratorResponse {
   DescribeCustomRoutingAcceleratorResponse({
     this.accelerator,
   });
+
   factory DescribeCustomRoutingAcceleratorResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCustomRoutingAcceleratorResponse(
@@ -4299,6 +4325,7 @@ class DescribeCustomRoutingEndpointGroupResponse {
   DescribeCustomRoutingEndpointGroupResponse({
     this.endpointGroup,
   });
+
   factory DescribeCustomRoutingEndpointGroupResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCustomRoutingEndpointGroupResponse(
@@ -4324,6 +4351,7 @@ class DescribeCustomRoutingListenerResponse {
   DescribeCustomRoutingListenerResponse({
     this.listener,
   });
+
   factory DescribeCustomRoutingListenerResponse.fromJson(
       Map<String, dynamic> json) {
     return DescribeCustomRoutingListenerResponse(
@@ -4349,6 +4377,7 @@ class DescribeEndpointGroupResponse {
   DescribeEndpointGroupResponse({
     this.endpointGroup,
   });
+
   factory DescribeEndpointGroupResponse.fromJson(Map<String, dynamic> json) {
     return DescribeEndpointGroupResponse(
       endpointGroup: json['EndpointGroup'] != null
@@ -4373,6 +4402,7 @@ class DescribeListenerResponse {
   DescribeListenerResponse({
     this.listener,
   });
+
   factory DescribeListenerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeListenerResponse(
       listener: json['Listener'] != null
@@ -4430,6 +4460,7 @@ class DestinationPortMapping {
     this.endpointId,
     this.ipAddressType,
   });
+
   factory DestinationPortMapping.fromJson(Map<String, dynamic> json) {
     return DestinationPortMapping(
       acceleratorArn: json['AcceleratorArn'] as String?,
@@ -4519,6 +4550,7 @@ class EndpointConfiguration {
     this.endpointId,
     this.weight,
   });
+
   factory EndpointConfiguration.fromJson(Map<String, dynamic> json) {
     return EndpointConfiguration(
       clientIPPreservationEnabled: json['ClientIPPreservationEnabled'] as bool?,
@@ -4591,6 +4623,7 @@ class EndpointDescription {
     this.healthState,
     this.weight,
   });
+
   factory EndpointDescription.fromJson(Map<String, dynamic> json) {
     return EndpointDescription(
       clientIPPreservationEnabled: json['ClientIPPreservationEnabled'] as bool?,
@@ -4685,6 +4718,7 @@ class EndpointGroup {
     this.thresholdCount,
     this.trafficDialPercentage,
   });
+
   factory EndpointGroup.fromJson(Map<String, dynamic> json) {
     return EndpointGroup(
       endpointDescriptions: (json['EndpointDescriptions'] as List?)
@@ -4840,6 +4874,7 @@ class IpSet {
     this.ipAddresses,
     this.ipFamily,
   });
+
   factory IpSet.fromJson(Map<String, dynamic> json) {
     return IpSet(
       ipAddresses: (json['IpAddresses'] as List?)
@@ -4872,6 +4907,7 @@ class ListAcceleratorsResponse {
     this.accelerators,
     this.nextToken,
   });
+
   factory ListAcceleratorsResponse.fromJson(Map<String, dynamic> json) {
     return ListAcceleratorsResponse(
       accelerators: (json['Accelerators'] as List?)
@@ -4903,6 +4939,7 @@ class ListByoipCidrsResponse {
     this.byoipCidrs,
     this.nextToken,
   });
+
   factory ListByoipCidrsResponse.fromJson(Map<String, dynamic> json) {
     return ListByoipCidrsResponse(
       byoipCidrs: (json['ByoipCidrs'] as List?)
@@ -4935,6 +4972,7 @@ class ListCustomRoutingAcceleratorsResponse {
     this.accelerators,
     this.nextToken,
   });
+
   factory ListCustomRoutingAcceleratorsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomRoutingAcceleratorsResponse(
@@ -4970,6 +5008,7 @@ class ListCustomRoutingEndpointGroupsResponse {
     this.endpointGroups,
     this.nextToken,
   });
+
   factory ListCustomRoutingEndpointGroupsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomRoutingEndpointGroupsResponse(
@@ -5004,6 +5043,7 @@ class ListCustomRoutingListenersResponse {
     this.listeners,
     this.nextToken,
   });
+
   factory ListCustomRoutingListenersResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomRoutingListenersResponse(
@@ -5038,6 +5078,7 @@ class ListCustomRoutingPortMappingsByDestinationResponse {
     this.destinationPortMappings,
     this.nextToken,
   });
+
   factory ListCustomRoutingPortMappingsByDestinationResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomRoutingPortMappingsByDestinationResponse(
@@ -5073,6 +5114,7 @@ class ListCustomRoutingPortMappingsResponse {
     this.nextToken,
     this.portMappings,
   });
+
   factory ListCustomRoutingPortMappingsResponse.fromJson(
       Map<String, dynamic> json) {
     return ListCustomRoutingPortMappingsResponse(
@@ -5106,6 +5148,7 @@ class ListEndpointGroupsResponse {
     this.endpointGroups,
     this.nextToken,
   });
+
   factory ListEndpointGroupsResponse.fromJson(Map<String, dynamic> json) {
     return ListEndpointGroupsResponse(
       endpointGroups: (json['EndpointGroups'] as List?)
@@ -5138,6 +5181,7 @@ class ListListenersResponse {
     this.listeners,
     this.nextToken,
   });
+
   factory ListListenersResponse.fromJson(Map<String, dynamic> json) {
     return ListListenersResponse(
       listeners: (json['Listeners'] as List?)
@@ -5165,6 +5209,7 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       tags: (json['Tags'] as List?)
@@ -5222,6 +5267,7 @@ class Listener {
     this.portRanges,
     this.protocol,
   });
+
   factory Listener.fromJson(Map<String, dynamic> json) {
     return Listener(
       clientAffinity: (json['ClientAffinity'] as String?)?.toClientAffinity(),
@@ -5283,6 +5329,7 @@ class PortMapping {
     this.endpointId,
     this.protocols,
   });
+
   factory PortMapping.fromJson(Map<String, dynamic> json) {
     return PortMapping(
       acceleratorPort: json['AcceleratorPort'] as int?,
@@ -5345,6 +5392,7 @@ class PortOverride {
     this.endpointPort,
     this.listenerPort,
   });
+
   factory PortOverride.fromJson(Map<String, dynamic> json) {
     return PortOverride(
       endpointPort: json['EndpointPort'] as int?,
@@ -5374,6 +5422,7 @@ class PortRange {
     this.fromPort,
     this.toPort,
   });
+
   factory PortRange.fromJson(Map<String, dynamic> json) {
     return PortRange(
       fromPort: json['FromPort'] as int?,
@@ -5426,6 +5475,7 @@ class ProvisionByoipCidrResponse {
   ProvisionByoipCidrResponse({
     this.byoipCidr,
   });
+
   factory ProvisionByoipCidrResponse.fromJson(Map<String, dynamic> json) {
     return ProvisionByoipCidrResponse(
       byoipCidr: json['ByoipCidr'] != null
@@ -5454,6 +5504,7 @@ class SocketAddress {
     this.ipAddress,
     this.port,
   });
+
   factory SocketAddress.fromJson(Map<String, dynamic> json) {
     return SocketAddress(
       ipAddress: json['IpAddress'] as String?,
@@ -5484,6 +5535,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -5503,6 +5555,7 @@ class Tag {
 
 class TagResourceResponse {
   TagResourceResponse();
+
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
@@ -5514,6 +5567,7 @@ class TagResourceResponse {
 
 class UntagResourceResponse {
   UntagResourceResponse();
+
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
@@ -5530,6 +5584,7 @@ class UpdateAcceleratorAttributesResponse {
   UpdateAcceleratorAttributesResponse({
     this.acceleratorAttributes,
   });
+
   factory UpdateAcceleratorAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateAcceleratorAttributesResponse(
@@ -5556,6 +5611,7 @@ class UpdateAcceleratorResponse {
   UpdateAcceleratorResponse({
     this.accelerator,
   });
+
   factory UpdateAcceleratorResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAcceleratorResponse(
       accelerator: json['Accelerator'] != null
@@ -5579,6 +5635,7 @@ class UpdateCustomRoutingAcceleratorAttributesResponse {
   UpdateCustomRoutingAcceleratorAttributesResponse({
     this.acceleratorAttributes,
   });
+
   factory UpdateCustomRoutingAcceleratorAttributesResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateCustomRoutingAcceleratorAttributesResponse(
@@ -5605,6 +5662,7 @@ class UpdateCustomRoutingAcceleratorResponse {
   UpdateCustomRoutingAcceleratorResponse({
     this.accelerator,
   });
+
   factory UpdateCustomRoutingAcceleratorResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateCustomRoutingAcceleratorResponse(
@@ -5630,6 +5688,7 @@ class UpdateCustomRoutingListenerResponse {
   UpdateCustomRoutingListenerResponse({
     this.listener,
   });
+
   factory UpdateCustomRoutingListenerResponse.fromJson(
       Map<String, dynamic> json) {
     return UpdateCustomRoutingListenerResponse(
@@ -5655,6 +5714,7 @@ class UpdateEndpointGroupResponse {
   UpdateEndpointGroupResponse({
     this.endpointGroup,
   });
+
   factory UpdateEndpointGroupResponse.fromJson(Map<String, dynamic> json) {
     return UpdateEndpointGroupResponse(
       endpointGroup: json['EndpointGroup'] != null
@@ -5679,6 +5739,7 @@ class UpdateListenerResponse {
   UpdateListenerResponse({
     this.listener,
   });
+
   factory UpdateListenerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateListenerResponse(
       listener: json['Listener'] != null
@@ -5702,6 +5763,7 @@ class WithdrawByoipCidrResponse {
   WithdrawByoipCidrResponse({
     this.byoipCidr,
   });
+
   factory WithdrawByoipCidrResponse.fromJson(Map<String, dynamic> json) {
     return WithdrawByoipCidrResponse(
       byoipCidr: json['ByoipCidr'] != null

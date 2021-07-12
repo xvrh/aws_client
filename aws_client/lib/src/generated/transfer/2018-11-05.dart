@@ -2467,6 +2467,7 @@ class CreateAccessResponse {
     required this.externalId,
     required this.serverId,
   });
+
   factory CreateAccessResponse.fromJson(Map<String, dynamic> json) {
     return CreateAccessResponse(
       externalId: json['ExternalId'] as String,
@@ -2491,6 +2492,7 @@ class CreateServerResponse {
   CreateServerResponse({
     required this.serverId,
   });
+
   factory CreateServerResponse.fromJson(Map<String, dynamic> json) {
     return CreateServerResponse(
       serverId: json['ServerId'] as String,
@@ -2516,6 +2518,7 @@ class CreateUserResponse {
     required this.serverId,
     required this.userName,
   });
+
   factory CreateUserResponse.fromJson(Map<String, dynamic> json) {
     return CreateUserResponse(
       serverId: json['ServerId'] as String,
@@ -2545,6 +2548,7 @@ class DescribeAccessResponse {
     required this.access,
     required this.serverId,
   });
+
   factory DescribeAccessResponse.fromJson(Map<String, dynamic> json) {
     return DescribeAccessResponse(
       access: DescribedAccess.fromJson(json['Access'] as Map<String, dynamic>),
@@ -2569,6 +2573,7 @@ class DescribeSecurityPolicyResponse {
   DescribeSecurityPolicyResponse({
     required this.securityPolicy,
   });
+
   factory DescribeSecurityPolicyResponse.fromJson(Map<String, dynamic> json) {
     return DescribeSecurityPolicyResponse(
       securityPolicy: DescribedSecurityPolicy.fromJson(
@@ -2592,6 +2597,7 @@ class DescribeServerResponse {
   DescribeServerResponse({
     required this.server,
   });
+
   factory DescribeServerResponse.fromJson(Map<String, dynamic> json) {
     return DescribeServerResponse(
       server: DescribedServer.fromJson(json['Server'] as Map<String, dynamic>),
@@ -2619,6 +2625,7 @@ class DescribeUserResponse {
     required this.serverId,
     required this.user,
   });
+
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       serverId: json['ServerId'] as String,
@@ -2715,6 +2722,7 @@ class DescribedAccess {
     this.posixProfile,
     this.role,
   });
+
   factory DescribedAccess.fromJson(Map<String, dynamic> json) {
     return DescribedAccess(
       externalId: json['ExternalId'] as String?,
@@ -2791,6 +2799,7 @@ class DescribedSecurityPolicy {
     this.sshMacs,
     this.tlsCiphers,
   });
+
   factory DescribedSecurityPolicy.fromJson(Map<String, dynamic> json) {
     return DescribedSecurityPolicy(
       securityPolicyName: json['SecurityPolicyName'] as String,
@@ -2961,6 +2970,7 @@ class DescribedServer {
     this.tags,
     this.userCount,
   });
+
   factory DescribedServer.fromJson(Map<String, dynamic> json) {
     return DescribedServer(
       arn: json['Arn'] as String,
@@ -3127,6 +3137,7 @@ class DescribedUser {
     this.tags,
     this.userName,
   });
+
   factory DescribedUser.fromJson(Map<String, dynamic> json) {
     return DescribedUser(
       arn: json['Arn'] as String,
@@ -3284,6 +3295,7 @@ class EndpointDetails {
     this.vpcEndpointId,
     this.vpcId,
   });
+
   factory EndpointDetails.fromJson(Map<String, dynamic> json) {
     return EndpointDetails(
       addressAllocationIds: (json['AddressAllocationIds'] as List?)
@@ -3383,6 +3395,7 @@ class HomeDirectoryMapEntry {
     required this.entry,
     required this.target,
   });
+
   factory HomeDirectoryMapEntry.fromJson(Map<String, dynamic> json) {
     return HomeDirectoryMapEntry(
       entry: json['Entry'] as String,
@@ -3448,6 +3461,7 @@ class IdentityProviderDetails {
     this.invocationRole,
     this.url,
   });
+
   factory IdentityProviderDetails.fromJson(Map<String, dynamic> json) {
     return IdentityProviderDetails(
       directoryId: json['DirectoryId'] as String?,
@@ -3526,6 +3540,7 @@ class ImportSshPublicKeyResponse {
     required this.sshPublicKeyId,
     required this.userName,
   });
+
   factory ImportSshPublicKeyResponse.fromJson(Map<String, dynamic> json) {
     return ImportSshPublicKeyResponse(
       serverId: json['ServerId'] as String,
@@ -3566,6 +3581,7 @@ class ListAccessesResponse {
     required this.serverId,
     this.nextToken,
   });
+
   factory ListAccessesResponse.fromJson(Map<String, dynamic> json) {
     return ListAccessesResponse(
       accesses: (json['Accesses'] as List)
@@ -3603,6 +3619,7 @@ class ListSecurityPoliciesResponse {
     required this.securityPolicyNames,
     this.nextToken,
   });
+
   factory ListSecurityPoliciesResponse.fromJson(Map<String, dynamic> json) {
     return ListSecurityPoliciesResponse(
       securityPolicyNames: (json['SecurityPolicyNames'] as List)
@@ -3637,6 +3654,7 @@ class ListServersResponse {
     required this.servers,
     this.nextToken,
   });
+
   factory ListServersResponse.fromJson(Map<String, dynamic> json) {
     return ListServersResponse(
       servers: (json['Servers'] as List)
@@ -3676,6 +3694,7 @@ class ListTagsForResourceResponse {
     this.nextToken,
     this.tags,
   });
+
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       arn: json['Arn'] as String?,
@@ -3719,6 +3738,7 @@ class ListUsersResponse {
     required this.users,
     this.nextToken,
   });
+
   factory ListUsersResponse.fromJson(Map<String, dynamic> json) {
     return ListUsersResponse(
       serverId: json['ServerId'] as String,
@@ -3792,6 +3812,7 @@ class ListedAccess {
     this.homeDirectoryType,
     this.role,
   });
+
   factory ListedAccess.fromJson(Map<String, dynamic> json) {
     return ListedAccess(
       externalId: json['ExternalId'] as String?,
@@ -3882,6 +3903,7 @@ class ListedServer {
     this.state,
     this.userCount,
   });
+
   factory ListedServer.fromJson(Map<String, dynamic> json) {
     return ListedServer(
       arn: json['Arn'] as String,
@@ -3973,6 +3995,7 @@ class ListedUser {
     this.sshPublicKeyCount,
     this.userName,
   });
+
   factory ListedUser.fromJson(Map<String, dynamic> json) {
     return ListedUser(
       arn: json['Arn'] as String,
@@ -4025,6 +4048,7 @@ class PosixProfile {
     required this.uid,
     this.secondaryGids,
   });
+
   factory PosixProfile.fromJson(Map<String, dynamic> json) {
     return PosixProfile(
       gid: json['Gid'] as int,
@@ -4100,6 +4124,7 @@ class ProtocolDetails {
   ProtocolDetails({
     this.passiveIp,
   });
+
   factory ProtocolDetails.fromJson(Map<String, dynamic> json) {
     return ProtocolDetails(
       passiveIp: json['PassiveIp'] as String?,
@@ -4137,6 +4162,7 @@ class SshPublicKey {
     required this.sshPublicKeyBody,
     required this.sshPublicKeyId,
   });
+
   factory SshPublicKey.fromJson(Map<String, dynamic> json) {
     return SshPublicKey(
       dateImported:
@@ -4236,6 +4262,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -4272,6 +4299,7 @@ class TestIdentityProviderResponse {
     this.message,
     this.response,
   });
+
   factory TestIdentityProviderResponse.fromJson(Map<String, dynamic> json) {
     return TestIdentityProviderResponse(
       statusCode: json['StatusCode'] as int,
@@ -4308,6 +4336,7 @@ class UpdateAccessResponse {
     required this.externalId,
     required this.serverId,
   });
+
   factory UpdateAccessResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAccessResponse(
       externalId: json['ExternalId'] as String,
@@ -4333,6 +4362,7 @@ class UpdateServerResponse {
   UpdateServerResponse({
     required this.serverId,
   });
+
   factory UpdateServerResponse.fromJson(Map<String, dynamic> json) {
     return UpdateServerResponse(
       serverId: json['ServerId'] as String,
@@ -4362,6 +4392,7 @@ class UpdateUserResponse {
     required this.serverId,
     required this.userName,
   });
+
   factory UpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserResponse(
       serverId: json['ServerId'] as String,

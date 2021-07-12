@@ -375,6 +375,7 @@ class BatchMeterUsageResult {
     this.results,
     this.unprocessedRecords,
   });
+
   factory BatchMeterUsageResult.fromJson(Map<String, dynamic> json) {
     return BatchMeterUsageResult(
       results: (json['Results'] as List?)
@@ -405,6 +406,7 @@ class MeterUsageResult {
   MeterUsageResult({
     this.meteringRecordId,
   });
+
   factory MeterUsageResult.fromJson(Map<String, dynamic> json) {
     return MeterUsageResult(
       meteringRecordId: json['MeteringRecordId'] as String?,
@@ -430,6 +432,7 @@ class RegisterUsageResult {
     this.publicKeyRotationTimestamp,
     this.signature,
   });
+
   factory RegisterUsageResult.fromJson(Map<String, dynamic> json) {
     return RegisterUsageResult(
       publicKeyRotationTimestamp:
@@ -467,6 +470,7 @@ class ResolveCustomerResult {
     this.customerIdentifier,
     this.productCode,
   });
+
   factory ResolveCustomerResult.fromJson(Map<String, dynamic> json) {
     return ResolveCustomerResult(
       customerIdentifier: json['CustomerIdentifier'] as String?,
@@ -499,6 +503,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       key: json['Key'] as String,
@@ -532,6 +537,7 @@ class UsageAllocation {
     required this.allocatedUsageQuantity,
     this.tags,
   });
+
   factory UsageAllocation.fromJson(Map<String, dynamic> json) {
     return UsageAllocation(
       allocatedUsageQuantity: json['AllocatedUsageQuantity'] as int,
@@ -588,6 +594,7 @@ class UsageRecord {
     this.quantity,
     this.usageAllocations,
   });
+
   factory UsageRecord.fromJson(Map<String, dynamic> json) {
     return UsageRecord(
       customerIdentifier: json['CustomerIdentifier'] as String,
@@ -652,6 +659,7 @@ class UsageRecordResult {
     this.status,
     this.usageRecord,
   });
+
   factory UsageRecordResult.fromJson(Map<String, dynamic> json) {
     return UsageRecordResult(
       meteringRecordId: json['MeteringRecordId'] as String?,
