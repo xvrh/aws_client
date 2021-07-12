@@ -4800,11 +4800,13 @@ class GetMapGlyphsResponse {
   factory GetMapGlyphsResponse.fromJson(Map<String, dynamic> json) {
     return GetMapGlyphsResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final blob = this.blob;
+    final contentType = this.contentType;
     return {
       if (blob != null) 'Blob': base64Encode(blob),
     };
@@ -4827,11 +4829,13 @@ class GetMapSpritesResponse {
   factory GetMapSpritesResponse.fromJson(Map<String, dynamic> json) {
     return GetMapSpritesResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final blob = this.blob;
+    final contentType = this.contentType;
     return {
       if (blob != null) 'Blob': base64Encode(blob),
     };
@@ -4853,11 +4857,13 @@ class GetMapStyleDescriptorResponse {
   factory GetMapStyleDescriptorResponse.fromJson(Map<String, dynamic> json) {
     return GetMapStyleDescriptorResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final blob = this.blob;
+    final contentType = this.contentType;
     return {
       if (blob != null) 'Blob': base64Encode(blob),
     };
@@ -4879,11 +4885,13 @@ class GetMapTileResponse {
   factory GetMapTileResponse.fromJson(Map<String, dynamic> json) {
     return GetMapTileResponse(
       blob: _s.decodeNullableUint8List(json['Blob'] as String?),
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final blob = this.blob;
+    final contentType = this.contentType;
     return {
       if (blob != null) 'Blob': base64Encode(blob),
     };

@@ -103,12 +103,16 @@ class OutputShape {
               .map((v) => jsonDecode(v as String))
               .toList()
               .cast<Object>(),
+      headerField: json['X-Amz-Foo'] == null
+          ? null
+          : jsonDecode(json['X-Amz-Foo'] as String),
     );
   }
 
   Map<String, dynamic> toJson() {
     final bodyField = this.bodyField;
     final bodyListField = this.bodyListField;
+    final headerField = this.headerField;
     return {
       if (bodyField != null) 'BodyField': jsonEncode(bodyField),
       if (bodyListField != null)

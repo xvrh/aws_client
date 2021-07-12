@@ -1732,11 +1732,13 @@ class GetClipOutput {
   });
   factory GetClipOutput.fromJson(Map<String, dynamic> json) {
     return GetClipOutput(
+      contentType: json['Content-Type'] as String?,
       payload: _s.decodeNullableUint8List(json['Payload'] as String?),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
     final payload = this.payload;
     return {
       if (payload != null) 'Payload': base64Encode(payload),
@@ -1836,11 +1838,13 @@ class GetMediaForFragmentListOutput {
   });
   factory GetMediaForFragmentListOutput.fromJson(Map<String, dynamic> json) {
     return GetMediaForFragmentListOutput(
+      contentType: json['Content-Type'] as String?,
       payload: _s.decodeNullableUint8List(json['Payload'] as String?),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
     final payload = this.payload;
     return {
       if (payload != null) 'Payload': base64Encode(payload),

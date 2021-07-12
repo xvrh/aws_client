@@ -1901,12 +1901,58 @@ class PostContentResponse {
   });
   factory PostContentResponse.fromJson(Map<String, dynamic> json) {
     return PostContentResponse(
+      activeContexts: json['x-amz-lex-active-contexts'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-active-contexts'] as String),
+      alternativeIntents: json['x-amz-lex-alternative-intents'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-alternative-intents'] as String),
       audioStream: _s.decodeNullableUint8List(json['audioStream'] as String?),
+      botVersion: json['x-amz-lex-bot-version'] as String?,
+      contentType: json['Content-Type'] as String?,
+      dialogState: (json['x-amz-lex-dialog-state'] as String?)?.toDialogState(),
+      encodedInputTranscript:
+          json['x-amz-lex-encoded-input-transcript'] as String?,
+      encodedMessage: json['x-amz-lex-encoded-message'] as String?,
+      inputTranscript: json['x-amz-lex-input-transcript'] as String?,
+      intentName: json['x-amz-lex-intent-name'] as String?,
+      message: json['x-amz-lex-message'] as String?,
+      messageFormat:
+          (json['x-amz-lex-message-format'] as String?)?.toMessageFormatType(),
+      nluIntentConfidence: json['x-amz-lex-nlu-intent-confidence'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-nlu-intent-confidence'] as String),
+      sentimentResponse: json['x-amz-lex-sentiment'] as String?,
+      sessionAttributes: json['x-amz-lex-session-attributes'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-session-attributes'] as String),
+      sessionId: json['x-amz-lex-session-id'] as String?,
+      slotToElicit: json['x-amz-lex-slot-to-elicit'] as String?,
+      slots: json['x-amz-lex-slots'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-slots'] as String),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
+    final alternativeIntents = this.alternativeIntents;
     final audioStream = this.audioStream;
+    final botVersion = this.botVersion;
+    final contentType = this.contentType;
+    final dialogState = this.dialogState;
+    final encodedInputTranscript = this.encodedInputTranscript;
+    final encodedMessage = this.encodedMessage;
+    final inputTranscript = this.inputTranscript;
+    final intentName = this.intentName;
+    final message = this.message;
+    final messageFormat = this.messageFormat;
+    final nluIntentConfidence = this.nluIntentConfidence;
+    final sentimentResponse = this.sentimentResponse;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    final slotToElicit = this.slotToElicit;
+    final slots = this.slots;
     return {
       if (audioStream != null) 'audioStream': base64Encode(audioStream),
     };
@@ -2331,12 +2377,41 @@ class PutSessionResponse {
   });
   factory PutSessionResponse.fromJson(Map<String, dynamic> json) {
     return PutSessionResponse(
+      activeContexts: json['x-amz-lex-active-contexts'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-active-contexts'] as String),
       audioStream: _s.decodeNullableUint8List(json['audioStream'] as String?),
+      contentType: json['Content-Type'] as String?,
+      dialogState: (json['x-amz-lex-dialog-state'] as String?)?.toDialogState(),
+      encodedMessage: json['x-amz-lex-encoded-message'] as String?,
+      intentName: json['x-amz-lex-intent-name'] as String?,
+      message: json['x-amz-lex-message'] as String?,
+      messageFormat:
+          (json['x-amz-lex-message-format'] as String?)?.toMessageFormatType(),
+      sessionAttributes: json['x-amz-lex-session-attributes'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-session-attributes'] as String),
+      sessionId: json['x-amz-lex-session-id'] as String?,
+      slotToElicit: json['x-amz-lex-slot-to-elicit'] as String?,
+      slots: json['x-amz-lex-slots'] == null
+          ? null
+          : jsonDecode(json['x-amz-lex-slots'] as String),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
     final audioStream = this.audioStream;
+    final contentType = this.contentType;
+    final dialogState = this.dialogState;
+    final encodedMessage = this.encodedMessage;
+    final intentName = this.intentName;
+    final message = this.message;
+    final messageFormat = this.messageFormat;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    final slotToElicit = this.slotToElicit;
+    final slots = this.slots;
     return {
       if (audioStream != null) 'audioStream': base64Encode(audioStream),
     };

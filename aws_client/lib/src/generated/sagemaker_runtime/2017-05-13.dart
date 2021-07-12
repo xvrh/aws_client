@@ -277,11 +277,18 @@ class InvokeEndpointOutput {
   factory InvokeEndpointOutput.fromJson(Map<String, dynamic> json) {
     return InvokeEndpointOutput(
       body: _s.decodeUint8List(json['Body']! as String),
+      contentType: json['Content-Type'] as String?,
+      customAttributes: json['X-Amzn-SageMaker-Custom-Attributes'] as String?,
+      invokedProductionVariant:
+          json['x-Amzn-Invoked-Production-Variant'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final contentType = this.contentType;
+    final customAttributes = this.customAttributes;
+    final invokedProductionVariant = this.invokedProductionVariant;
     return {
       'Body': base64Encode(body),
     };

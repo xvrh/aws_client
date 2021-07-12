@@ -835,11 +835,18 @@ class GetSnapshotBlockResponse {
   factory GetSnapshotBlockResponse.fromJson(Map<String, dynamic> json) {
     return GetSnapshotBlockResponse(
       blockData: _s.decodeNullableUint8List(json['BlockData'] as String?),
+      checksum: json['x-amz-Checksum'] as String?,
+      checksumAlgorithm:
+          (json['x-amz-Checksum-Algorithm'] as String?)?.toChecksumAlgorithm(),
+      dataLength: json['x-amz-Data-Length'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final blockData = this.blockData;
+    final checksum = this.checksum;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final dataLength = this.dataLength;
     return {
       if (blockData != null) 'BlockData': base64Encode(blockData),
     };
@@ -963,11 +970,17 @@ class PutSnapshotBlockResponse {
     this.checksum,
     this.checksumAlgorithm,
   });
-  factory PutSnapshotBlockResponse.fromJson(Map<String, dynamic> _) {
-    return PutSnapshotBlockResponse();
+  factory PutSnapshotBlockResponse.fromJson(Map<String, dynamic> json) {
+    return PutSnapshotBlockResponse(
+      checksum: json['x-amz-Checksum'] as String?,
+      checksumAlgorithm:
+          (json['x-amz-Checksum-Algorithm'] as String?)?.toChecksumAlgorithm(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final checksumAlgorithm = this.checksumAlgorithm;
     return {};
   }
 }

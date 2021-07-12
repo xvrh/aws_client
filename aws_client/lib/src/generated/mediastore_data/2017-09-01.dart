@@ -397,11 +397,22 @@ class DescribeObjectResponse {
     this.eTag,
     this.lastModified,
   });
-  factory DescribeObjectResponse.fromJson(Map<String, dynamic> _) {
-    return DescribeObjectResponse();
+  factory DescribeObjectResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeObjectResponse(
+      cacheControl: json['Cache-Control'] as String?,
+      contentLength: json['Content-Length'] as int?,
+      contentType: json['Content-Type'] as String?,
+      eTag: json['ETag'] as String?,
+      lastModified: timeStampFromJson(json['Last-Modified']),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final cacheControl = this.cacheControl;
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
     return {};
   }
 }
@@ -450,12 +461,26 @@ class GetObjectResponse {
   });
   factory GetObjectResponse.fromJson(Map<String, dynamic> json) {
     return GetObjectResponse(
+      statusCode: json['StatusCode'] as int,
       body: _s.decodeNullableUint8List(json['Body'] as String?),
+      cacheControl: json['Cache-Control'] as String?,
+      contentLength: json['Content-Length'] as int?,
+      contentRange: json['Content-Range'] as String?,
+      contentType: json['Content-Type'] as String?,
+      eTag: json['ETag'] as String?,
+      lastModified: timeStampFromJson(json['Last-Modified']),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
     final body = this.body;
+    final cacheControl = this.cacheControl;
+    final contentLength = this.contentLength;
+    final contentRange = this.contentRange;
+    final contentType = this.contentType;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
     return {
       if (body != null) 'Body': base64Encode(body),
     };

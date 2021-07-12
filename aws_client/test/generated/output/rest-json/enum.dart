@@ -93,6 +93,7 @@ class OutputShape {
   factory OutputShape.fromJson(Map<String, dynamic> json) {
     return OutputShape(
       fooEnum: (json['FooEnum'] as String?)?.toRESTJSONEnumType(),
+      headerEnum: (json['x-amz-enum'] as String?)?.toRESTJSONEnumType(),
       listEnums: (json['ListEnums'] as List?)
           ?.whereNotNull()
           .map((e) => (e as String).toRESTJSONEnumType())
@@ -102,6 +103,7 @@ class OutputShape {
 
   Map<String, dynamic> toJson() {
     final fooEnum = this.fooEnum;
+    final headerEnum = this.headerEnum;
     final listEnums = this.listEnums;
     return {
       if (fooEnum != null) 'FooEnum': fooEnum.toValue(),

@@ -80,11 +80,30 @@ class OutputShape {
     this.timestamp,
     this.trueBool,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> _) {
-    return OutputShape();
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      char: json['x-char'] as String?,
+      doubleValue: json['x-double'] as double?,
+      falseBool: json['x-false-bool'] as bool?,
+      float: json['x-float'] as double?,
+      integer: json['x-int'] as int?,
+      long: json['x-long'] as int?,
+      str: json['x-str'] as String?,
+      timestamp: timeStampFromJson(json['x-timestamp']),
+      trueBool: json['x-true-bool'] as bool?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final char = this.char;
+    final doubleValue = this.doubleValue;
+    final falseBool = this.falseBool;
+    final float = this.float;
+    final integer = this.integer;
+    final long = this.long;
+    final str = this.str;
+    final timestamp = this.timestamp;
+    final trueBool = this.trueBool;
     return {};
   }
 }

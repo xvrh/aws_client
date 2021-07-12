@@ -114,6 +114,8 @@ class OutputShape {
       doubleValue: json['Double'] as double?,
       falseBool: json['FalseBool'] as bool?,
       float: json['Float'] as double?,
+      imaHeader: json['ImaHeader'] as String?,
+      imaHeaderLocation: json['X-Foo'] as String?,
       long: json['Long'] as int?,
       num: json['FooNum'] as int?,
       str: json['Str'] as String?,
@@ -127,6 +129,8 @@ class OutputShape {
     final doubleValue = this.doubleValue;
     final falseBool = this.falseBool;
     final float = this.float;
+    final imaHeader = this.imaHeader;
+    final imaHeaderLocation = this.imaHeaderLocation;
     final long = this.long;
     final num = this.num;
     final str = this.str;

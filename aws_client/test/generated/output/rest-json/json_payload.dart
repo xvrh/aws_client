@@ -65,11 +65,13 @@ class OutputShape {
       data: json['Data'] != null
           ? BodyStructure.fromJson(json['Data'] as Map<String, dynamic>)
           : null,
+      header: json['X-Foo'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final data = this.data;
+    final header = this.header;
     return {
       if (data != null) 'Data': data,
     };

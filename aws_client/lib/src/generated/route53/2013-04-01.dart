@@ -5438,12 +5438,14 @@ class AssociateVPCWithHostedZoneRequest {
   factory AssociateVPCWithHostedZoneRequest.fromJson(
       Map<String, dynamic> json) {
     return AssociateVPCWithHostedZoneRequest(
+      hostedZoneId: json['Id'] as String,
       vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
       comment: json['Comment'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
     final comment = this.comment;
     return {
@@ -5738,11 +5740,13 @@ class ChangeResourceRecordSetsRequest {
     return ChangeResourceRecordSetsRequest(
       changeBatch:
           ChangeBatch.fromJson(json['ChangeBatch'] as Map<String, dynamic>),
+      hostedZoneId: json['Id'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     final changeBatch = this.changeBatch;
+    final hostedZoneId = this.hostedZoneId;
     return {
       'ChangeBatch': changeBatch,
     };
@@ -5864,6 +5868,8 @@ class ChangeTagsForResourceRequest {
   });
   factory ChangeTagsForResourceRequest.fromJson(Map<String, dynamic> json) {
     return ChangeTagsForResourceRequest(
+      resourceId: json['ResourceId'] as String,
+      resourceType: (json['ResourceType'] as String).toTagResourceType(),
       addTags: (json['AddTags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -5876,6 +5882,8 @@ class ChangeTagsForResourceRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
     final addTags = this.addTags;
     final removeTagKeys = this.removeTagKeys;
     return {
@@ -6315,11 +6323,13 @@ class CreateHealthCheckResponse {
     return CreateHealthCheckResponse(
       healthCheck:
           HealthCheck.fromJson(json['HealthCheck'] as Map<String, dynamic>),
+      location: json['Location'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     final healthCheck = this.healthCheck;
+    final location = this.location;
     return {
       'HealthCheck': healthCheck,
     };
@@ -6475,6 +6485,7 @@ class CreateHostedZoneResponse {
           DelegationSet.fromJson(json['DelegationSet'] as Map<String, dynamic>),
       hostedZone:
           HostedZone.fromJson(json['HostedZone'] as Map<String, dynamic>),
+      location: json['Location'] as String,
       vpc: json['VPC'] != null
           ? VPC.fromJson(json['VPC'] as Map<String, dynamic>)
           : null,
@@ -6485,6 +6496,7 @@ class CreateHostedZoneResponse {
     final changeInfo = this.changeInfo;
     final delegationSet = this.delegationSet;
     final hostedZone = this.hostedZone;
+    final location = this.location;
     final vpc = this.vpc;
     return {
       'ChangeInfo': changeInfo,
@@ -6630,12 +6642,14 @@ class CreateKeySigningKeyResponse {
           ChangeInfo.fromJson(json['ChangeInfo'] as Map<String, dynamic>),
       keySigningKey:
           KeySigningKey.fromJson(json['KeySigningKey'] as Map<String, dynamic>),
+      location: json['Location'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     final changeInfo = this.changeInfo;
     final keySigningKey = this.keySigningKey;
+    final location = this.location;
     return {
       'ChangeInfo': changeInfo,
       'KeySigningKey': keySigningKey,
@@ -6714,12 +6728,14 @@ class CreateQueryLoggingConfigResponse {
   });
   factory CreateQueryLoggingConfigResponse.fromJson(Map<String, dynamic> json) {
     return CreateQueryLoggingConfigResponse(
+      location: json['Location'] as String,
       queryLoggingConfig: QueryLoggingConfig.fromJson(
           json['QueryLoggingConfig'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     final queryLoggingConfig = this.queryLoggingConfig;
     return {
       'QueryLoggingConfig': queryLoggingConfig,
@@ -6797,11 +6813,13 @@ class CreateReusableDelegationSetResponse {
     return CreateReusableDelegationSetResponse(
       delegationSet:
           DelegationSet.fromJson(json['DelegationSet'] as Map<String, dynamic>),
+      location: json['Location'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     final delegationSet = this.delegationSet;
+    final location = this.location;
     return {
       'DelegationSet': delegationSet,
     };
@@ -6906,12 +6924,14 @@ class CreateTrafficPolicyInstanceResponse {
   factory CreateTrafficPolicyInstanceResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyInstanceResponse(
+      location: json['Location'] as String,
       trafficPolicyInstance: TrafficPolicyInstance.fromJson(
           json['TrafficPolicyInstance'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     final trafficPolicyInstance = this.trafficPolicyInstance;
     return {
       'TrafficPolicyInstance': trafficPolicyInstance,
@@ -6993,12 +7013,14 @@ class CreateTrafficPolicyResponse {
   });
   factory CreateTrafficPolicyResponse.fromJson(Map<String, dynamic> json) {
     return CreateTrafficPolicyResponse(
+      location: json['Location'] as String,
       trafficPolicy:
           TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     final trafficPolicy = this.trafficPolicy;
     return {
       'TrafficPolicy': trafficPolicy,
@@ -7031,12 +7053,14 @@ class CreateTrafficPolicyVersionRequest {
       Map<String, dynamic> json) {
     return CreateTrafficPolicyVersionRequest(
       document: json['Document'] as String,
+      id: json['Id'] as String,
       comment: json['Comment'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final document = this.document;
+    final id = this.id;
     final comment = this.comment;
     return {
       'Document': document,
@@ -7080,12 +7104,14 @@ class CreateTrafficPolicyVersionResponse {
   factory CreateTrafficPolicyVersionResponse.fromJson(
       Map<String, dynamic> json) {
     return CreateTrafficPolicyVersionResponse(
+      location: json['Location'] as String,
       trafficPolicy:
           TrafficPolicy.fromJson(json['TrafficPolicy'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     final trafficPolicy = this.trafficPolicy;
     return {
       'TrafficPolicy': trafficPolicy,
@@ -7113,11 +7139,13 @@ class CreateVPCAssociationAuthorizationRequest {
   factory CreateVPCAssociationAuthorizationRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateVPCAssociationAuthorizationRequest(
+      hostedZoneId: json['Id'] as String,
       vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
     return {
       'VPC': vpc,
@@ -7483,11 +7511,13 @@ class DeleteVPCAssociationAuthorizationRequest {
   factory DeleteVPCAssociationAuthorizationRequest.fromJson(
       Map<String, dynamic> json) {
     return DeleteVPCAssociationAuthorizationRequest(
+      hostedZoneId: json['Id'] as String,
       vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
     return {
       'VPC': vpc,
@@ -7617,12 +7647,14 @@ class DisassociateVPCFromHostedZoneRequest {
   factory DisassociateVPCFromHostedZoneRequest.fromJson(
       Map<String, dynamic> json) {
     return DisassociateVPCFromHostedZoneRequest(
+      hostedZoneId: json['Id'] as String,
       vpc: VPC.fromJson(json['VPC'] as Map<String, dynamic>),
       comment: json['Comment'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
     final comment = this.comment;
     return {
@@ -10690,11 +10722,13 @@ class ListTagsForResourcesRequest {
           .whereNotNull()
           .map((e) => e as String)
           .toList(),
+      resourceType: (json['ResourceType'] as String).toTagResourceType(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final resourceIds = this.resourceIds;
+    final resourceType = this.resourceType;
     return {
       'ResourceIds': resourceIds,
     };
@@ -13425,6 +13459,7 @@ class UpdateHealthCheckRequest {
   });
   factory UpdateHealthCheckRequest.fromJson(Map<String, dynamic> json) {
     return UpdateHealthCheckRequest(
+      healthCheckId: json['HealthCheckId'] as String,
       alarmIdentifier: json['AlarmIdentifier'] != null
           ? AlarmIdentifier.fromJson(
               json['AlarmIdentifier'] as Map<String, dynamic>)
@@ -13459,6 +13494,7 @@ class UpdateHealthCheckRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final healthCheckId = this.healthCheckId;
     final alarmIdentifier = this.alarmIdentifier;
     final childHealthChecks = this.childHealthChecks;
     final disabled = this.disabled;
@@ -13614,11 +13650,13 @@ class UpdateHostedZoneCommentRequest {
   });
   factory UpdateHostedZoneCommentRequest.fromJson(Map<String, dynamic> json) {
     return UpdateHostedZoneCommentRequest(
+      id: json['Id'] as String,
       comment: json['Comment'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final id = this.id;
     final comment = this.comment;
     return {
       if (comment != null) 'Comment': comment,
@@ -13696,11 +13734,15 @@ class UpdateTrafficPolicyCommentRequest {
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyCommentRequest(
       comment: json['Comment'] as String,
+      id: json['Id'] as String,
+      version: json['Version'] as int,
     );
   }
 
   Map<String, dynamic> toJson() {
     final comment = this.comment;
+    final id = this.id;
+    final version = this.version;
     return {
       'Comment': comment,
     };
@@ -13783,6 +13825,7 @@ class UpdateTrafficPolicyInstanceRequest {
   factory UpdateTrafficPolicyInstanceRequest.fromJson(
       Map<String, dynamic> json) {
     return UpdateTrafficPolicyInstanceRequest(
+      id: json['Id'] as String,
       ttl: json['TTL'] as int,
       trafficPolicyId: json['TrafficPolicyId'] as String,
       trafficPolicyVersion: json['TrafficPolicyVersion'] as int,
@@ -13790,6 +13833,7 @@ class UpdateTrafficPolicyInstanceRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final id = this.id;
     final ttl = this.ttl;
     final trafficPolicyId = this.trafficPolicyId;
     final trafficPolicyVersion = this.trafficPolicyVersion;

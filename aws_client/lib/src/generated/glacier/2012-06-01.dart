@@ -2249,11 +2249,18 @@ class ArchiveCreationOutput {
     this.checksum,
     this.location,
   });
-  factory ArchiveCreationOutput.fromJson(Map<String, dynamic> _) {
-    return ArchiveCreationOutput();
+  factory ArchiveCreationOutput.fromJson(Map<String, dynamic> json) {
+    return ArchiveCreationOutput(
+      archiveId: json['x-amz-archive-id'] as String?,
+      checksum: json['x-amz-sha256-tree-hash'] as String?,
+      location: json['Location'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final archiveId = this.archiveId;
+    final checksum = this.checksum;
+    final location = this.location;
     return {};
   }
 }
@@ -2437,11 +2444,14 @@ class CreateVaultOutput {
   CreateVaultOutput({
     this.location,
   });
-  factory CreateVaultOutput.fromJson(Map<String, dynamic> _) {
-    return CreateVaultOutput();
+  factory CreateVaultOutput.fromJson(Map<String, dynamic> json) {
+    return CreateVaultOutput(
+      location: json['Location'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     return {};
   }
 }
@@ -2788,12 +2798,24 @@ class GetJobOutputOutput {
   });
   factory GetJobOutputOutput.fromJson(Map<String, dynamic> json) {
     return GetJobOutputOutput(
+      acceptRanges: json['Accept-Ranges'] as String?,
+      archiveDescription: json['x-amz-archive-description'] as String?,
       body: _s.decodeNullableUint8List(json['body'] as String?),
+      checksum: json['x-amz-sha256-tree-hash'] as String?,
+      contentRange: json['Content-Range'] as String?,
+      contentType: json['Content-Type'] as String?,
+      status: json['status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final acceptRanges = this.acceptRanges;
+    final archiveDescription = this.archiveDescription;
     final body = this.body;
+    final checksum = this.checksum;
+    final contentRange = this.contentRange;
+    final contentType = this.contentType;
+    final status = this.status;
     return {
       if (body != null) 'body': base64Encode(body),
     };
@@ -3217,11 +3239,18 @@ class InitiateJobOutput {
     this.jobOutputPath,
     this.location,
   });
-  factory InitiateJobOutput.fromJson(Map<String, dynamic> _) {
-    return InitiateJobOutput();
+  factory InitiateJobOutput.fromJson(Map<String, dynamic> json) {
+    return InitiateJobOutput(
+      jobId: json['x-amz-job-id'] as String?,
+      jobOutputPath: json['x-amz-job-output-path'] as String?,
+      location: json['Location'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobOutputPath = this.jobOutputPath;
+    final location = this.location;
     return {};
   }
 }
@@ -3239,11 +3268,16 @@ class InitiateMultipartUploadOutput {
     this.location,
     this.uploadId,
   });
-  factory InitiateMultipartUploadOutput.fromJson(Map<String, dynamic> _) {
-    return InitiateMultipartUploadOutput();
+  factory InitiateMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
+    return InitiateMultipartUploadOutput(
+      location: json['Location'] as String?,
+      uploadId: json['x-amz-multipart-upload-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
+    final uploadId = this.uploadId;
     return {};
   }
 }
@@ -3256,11 +3290,14 @@ class InitiateVaultLockOutput {
   InitiateVaultLockOutput({
     this.lockId,
   });
-  factory InitiateVaultLockOutput.fromJson(Map<String, dynamic> _) {
-    return InitiateVaultLockOutput();
+  factory InitiateVaultLockOutput.fromJson(Map<String, dynamic> json) {
+    return InitiateVaultLockOutput(
+      lockId: json['x-amz-lock-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final lockId = this.lockId;
     return {};
   }
 }
@@ -3921,11 +3958,15 @@ class PurchaseProvisionedCapacityOutput {
   PurchaseProvisionedCapacityOutput({
     this.capacityId,
   });
-  factory PurchaseProvisionedCapacityOutput.fromJson(Map<String, dynamic> _) {
-    return PurchaseProvisionedCapacityOutput();
+  factory PurchaseProvisionedCapacityOutput.fromJson(
+      Map<String, dynamic> json) {
+    return PurchaseProvisionedCapacityOutput(
+      capacityId: json['x-amz-capacity-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final capacityId = this.capacityId;
     return {};
   }
 }
@@ -4248,11 +4289,14 @@ class UploadMultipartPartOutput {
   UploadMultipartPartOutput({
     this.checksum,
   });
-  factory UploadMultipartPartOutput.fromJson(Map<String, dynamic> _) {
-    return UploadMultipartPartOutput();
+  factory UploadMultipartPartOutput.fromJson(Map<String, dynamic> json) {
+    return UploadMultipartPartOutput(
+      checksum: json['x-amz-sha256-tree-hash'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
     return {};
   }
 }

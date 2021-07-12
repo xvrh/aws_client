@@ -234,11 +234,13 @@ class GetMediaOutput {
   });
   factory GetMediaOutput.fromJson(Map<String, dynamic> json) {
     return GetMediaOutput(
+      contentType: json['Content-Type'] as String?,
       payload: _s.decodeNullableUint8List(json['Payload'] as String?),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
     final payload = this.payload;
     return {
       if (payload != null) 'Payload': base64Encode(payload),

@@ -4317,11 +4317,17 @@ class GetPackageVersionAssetResult {
   factory GetPackageVersionAssetResult.fromJson(Map<String, dynamic> json) {
     return GetPackageVersionAssetResult(
       asset: _s.decodeNullableUint8List(json['asset'] as String?),
+      assetName: json['X-AssetName'] as String?,
+      packageVersion: json['X-PackageVersion'] as String?,
+      packageVersionRevision: json['X-PackageVersionRevision'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final asset = this.asset;
+    final assetName = this.assetName;
+    final packageVersion = this.packageVersion;
+    final packageVersionRevision = this.packageVersionRevision;
     return {
       if (asset != null) 'asset': base64Encode(asset),
     };

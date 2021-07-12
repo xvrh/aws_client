@@ -7068,11 +7068,15 @@ class ExportResponse {
   factory ExportResponse.fromJson(Map<String, dynamic> json) {
     return ExportResponse(
       body: _s.decodeNullableUint8List(json['body'] as String?),
+      contentDisposition: json['Content-Disposition'] as String?,
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final contentDisposition = this.contentDisposition;
+    final contentType = this.contentType;
     return {
       if (body != null) 'body': base64Encode(body),
     };
@@ -9502,11 +9506,15 @@ class SdkResponse {
   factory SdkResponse.fromJson(Map<String, dynamic> json) {
     return SdkResponse(
       body: _s.decodeNullableUint8List(json['body'] as String?),
+      contentDisposition: json['Content-Disposition'] as String?,
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final contentDisposition = this.contentDisposition;
+    final contentType = this.contentType;
     return {
       if (body != null) 'body': base64Encode(body),
     };

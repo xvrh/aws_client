@@ -11607,11 +11607,15 @@ class AbortMultipartUploadOutput {
   AbortMultipartUploadOutput({
     this.requestCharged,
   });
-  factory AbortMultipartUploadOutput.fromJson(Map<String, dynamic> _) {
-    return AbortMultipartUploadOutput();
+  factory AbortMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
+    return AbortMultipartUploadOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
     return {};
   }
 }
@@ -13116,17 +13120,33 @@ class CompleteMultipartUploadOutput {
   factory CompleteMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
     return CompleteMultipartUploadOutput(
       bucket: json['Bucket'] as String?,
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
       eTag: json['ETag'] as String?,
+      expiration: json['x-amz-expiration'] as String?,
       key: json['Key'] as String?,
       location: json['Location'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+      versionId: json['x-amz-version-id'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
     final eTag = this.eTag;
+    final expiration = this.expiration;
     final key = this.key;
     final location = this.location;
+    final requestCharged = this.requestCharged;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
     return {
       if (bucket != null) 'Bucket': bucket,
       if (eTag != null) 'ETag': eTag,
@@ -13411,15 +13431,42 @@ class CopyObjectOutput {
   });
   factory CopyObjectOutput.fromJson(Map<String, dynamic> json) {
     return CopyObjectOutput(
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
       copyObjectResult: json['CopyObjectResult'] != null
           ? CopyObjectResult.fromJson(
               json['CopyObjectResult'] as Map<String, dynamic>)
           : null,
+      copySourceVersionId: json['x-amz-copy-source-version-id'] as String?,
+      expiration: json['x-amz-expiration'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSEncryptionContext:
+          json['x-amz-server-side-encryption-context'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+      versionId: json['x-amz-version-id'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
     final copyObjectResult = this.copyObjectResult;
+    final copySourceVersionId = this.copySourceVersionId;
+    final expiration = this.expiration;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
     return {
       if (copyObjectResult != null) 'CopyObjectResult': copyObjectResult,
     };
@@ -13554,11 +13601,14 @@ class CreateBucketOutput {
   CreateBucketOutput({
     this.location,
   });
-  factory CreateBucketOutput.fromJson(Map<String, dynamic> _) {
-    return CreateBucketOutput();
+  factory CreateBucketOutput.fromJson(Map<String, dynamic> json) {
+    return CreateBucketOutput(
+      location: json['Location'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final location = this.location;
     return {};
   }
 }
@@ -13654,15 +13704,40 @@ class CreateMultipartUploadOutput {
   });
   factory CreateMultipartUploadOutput.fromJson(Map<String, dynamic> json) {
     return CreateMultipartUploadOutput(
+      abortDate: timeStampFromJson(json['x-amz-abort-date']),
+      abortRuleId: json['x-amz-abort-rule-id'] as String?,
       bucket: json['Bucket'] as String?,
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
       key: json['Key'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSEncryptionContext:
+          json['x-amz-server-side-encryption-context'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
       uploadId: json['UploadId'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final abortDate = this.abortDate;
+    final abortRuleId = this.abortRuleId;
     final bucket = this.bucket;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
     final key = this.key;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
     final uploadId = this.uploadId;
     return {
       if (bucket != null) 'Bucket': bucket,
@@ -13975,11 +14050,19 @@ class DeleteObjectOutput {
     this.requestCharged,
     this.versionId,
   });
-  factory DeleteObjectOutput.fromJson(Map<String, dynamic> _) {
-    return DeleteObjectOutput();
+  factory DeleteObjectOutput.fromJson(Map<String, dynamic> json) {
+    return DeleteObjectOutput(
+      deleteMarker: json['x-amz-delete-marker'] as bool?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      versionId: json['x-amz-version-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final deleteMarker = this.deleteMarker;
+    final requestCharged = this.requestCharged;
+    final versionId = this.versionId;
     return {};
   }
 }
@@ -13991,11 +14074,14 @@ class DeleteObjectTaggingOutput {
   DeleteObjectTaggingOutput({
     this.versionId,
   });
-  factory DeleteObjectTaggingOutput.fromJson(Map<String, dynamic> _) {
-    return DeleteObjectTaggingOutput();
+  factory DeleteObjectTaggingOutput.fromJson(Map<String, dynamic> json) {
+    return DeleteObjectTaggingOutput(
+      versionId: json['x-amz-version-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final versionId = this.versionId;
     return {};
   }
 }
@@ -14025,12 +14111,15 @@ class DeleteObjectsOutput {
           ?.whereNotNull()
           .map((e) => Error.fromJson(e as Map<String, dynamic>))
           .toList(),
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final deleted = this.deleted;
     final errors = this.errors;
+    final requestCharged = this.requestCharged;
     return {
       if (deleted != null) 'Deleted': deleted,
       if (errors != null) 'Error': errors,
@@ -16926,12 +17015,15 @@ class GetObjectAclOutput {
       owner: json['Owner'] != null
           ? Owner.fromJson(json['Owner'] as Map<String, dynamic>)
           : null,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final grants = this.grants;
     final owner = this.owner;
+    final requestCharged = this.requestCharged;
     return {
       if (grants != null) 'AccessControlList': grants,
       if (owner != null) 'Owner': owner,
@@ -17145,12 +17237,87 @@ class GetObjectOutput {
   });
   factory GetObjectOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectOutput(
+      acceptRanges: json['accept-ranges'] as String?,
       body: _s.decodeNullableUint8List(json['Body'] as String?),
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
+      cacheControl: json['Cache-Control'] as String?,
+      contentDisposition: json['Content-Disposition'] as String?,
+      contentEncoding: json['Content-Encoding'] as String?,
+      contentLanguage: json['Content-Language'] as String?,
+      contentLength: json['Content-Length'] as int?,
+      contentRange: json['Content-Range'] as String?,
+      contentType: json['Content-Type'] as String?,
+      deleteMarker: json['x-amz-delete-marker'] as bool?,
+      eTag: json['ETag'] as String?,
+      expiration: json['x-amz-expiration'] as String?,
+      expires: timeStampFromJson(json['Expires']),
+      lastModified: timeStampFromJson(json['Last-Modified']),
+      metadata: (json['x-amz-meta-'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      missingMeta: json['x-amz-missing-meta'] as int?,
+      objectLockLegalHoldStatus:
+          (json['x-amz-object-lock-legal-hold'] as String?)
+              ?.toObjectLockLegalHoldStatus(),
+      objectLockMode:
+          (json['x-amz-object-lock-mode'] as String?)?.toObjectLockMode(),
+      objectLockRetainUntilDate:
+          timeStampFromJson(json['x-amz-object-lock-retain-until-date']),
+      partsCount: json['x-amz-mp-parts-count'] as int?,
+      replicationStatus:
+          (json['x-amz-replication-status'] as String?)?.toReplicationStatus(),
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      restore: json['x-amz-restore'] as String?,
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+      storageClass: (json['x-amz-storage-class'] as String?)?.toStorageClass(),
+      tagCount: json['x-amz-tagging-count'] as int?,
+      versionId: json['x-amz-version-id'] as String?,
+      websiteRedirectLocation:
+          json['x-amz-website-redirect-location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final acceptRanges = this.acceptRanges;
     final body = this.body;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final cacheControl = this.cacheControl;
+    final contentDisposition = this.contentDisposition;
+    final contentEncoding = this.contentEncoding;
+    final contentLanguage = this.contentLanguage;
+    final contentLength = this.contentLength;
+    final contentRange = this.contentRange;
+    final contentType = this.contentType;
+    final deleteMarker = this.deleteMarker;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final expires = this.expires;
+    final lastModified = this.lastModified;
+    final metadata = this.metadata;
+    final missingMeta = this.missingMeta;
+    final objectLockLegalHoldStatus = this.objectLockLegalHoldStatus;
+    final objectLockMode = this.objectLockMode;
+    final objectLockRetainUntilDate = this.objectLockRetainUntilDate;
+    final partsCount = this.partsCount;
+    final replicationStatus = this.replicationStatus;
+    final requestCharged = this.requestCharged;
+    final restore = this.restore;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final storageClass = this.storageClass;
+    final tagCount = this.tagCount;
+    final versionId = this.versionId;
+    final websiteRedirectLocation = this.websiteRedirectLocation;
     return {
       if (body != null) 'Body': base64Encode(body),
     };
@@ -17198,11 +17365,13 @@ class GetObjectTaggingOutput {
           .whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
+      versionId: json['x-amz-version-id'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final tagSet = this.tagSet;
+    final versionId = this.versionId;
     return {
       'TagSet': tagSet,
     };
@@ -17221,11 +17390,14 @@ class GetObjectTorrentOutput {
   factory GetObjectTorrentOutput.fromJson(Map<String, dynamic> json) {
     return GetObjectTorrentOutput(
       body: _s.decodeNullableUint8List(json['Body'] as String?),
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final requestCharged = this.requestCharged;
     return {
       if (body != null) 'Body': base64Encode(body),
     };
@@ -17693,11 +17865,86 @@ class HeadObjectOutput {
     this.versionId,
     this.websiteRedirectLocation,
   });
-  factory HeadObjectOutput.fromJson(Map<String, dynamic> _) {
-    return HeadObjectOutput();
+  factory HeadObjectOutput.fromJson(Map<String, dynamic> json) {
+    return HeadObjectOutput(
+      acceptRanges: json['accept-ranges'] as String?,
+      archiveStatus:
+          (json['x-amz-archive-status'] as String?)?.toArchiveStatus(),
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
+      cacheControl: json['Cache-Control'] as String?,
+      contentDisposition: json['Content-Disposition'] as String?,
+      contentEncoding: json['Content-Encoding'] as String?,
+      contentLanguage: json['Content-Language'] as String?,
+      contentLength: json['Content-Length'] as int?,
+      contentType: json['Content-Type'] as String?,
+      deleteMarker: json['x-amz-delete-marker'] as bool?,
+      eTag: json['ETag'] as String?,
+      expiration: json['x-amz-expiration'] as String?,
+      expires: timeStampFromJson(json['Expires']),
+      lastModified: timeStampFromJson(json['Last-Modified']),
+      metadata: (json['x-amz-meta-'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      missingMeta: json['x-amz-missing-meta'] as int?,
+      objectLockLegalHoldStatus:
+          (json['x-amz-object-lock-legal-hold'] as String?)
+              ?.toObjectLockLegalHoldStatus(),
+      objectLockMode:
+          (json['x-amz-object-lock-mode'] as String?)?.toObjectLockMode(),
+      objectLockRetainUntilDate:
+          timeStampFromJson(json['x-amz-object-lock-retain-until-date']),
+      partsCount: json['x-amz-mp-parts-count'] as int?,
+      replicationStatus:
+          (json['x-amz-replication-status'] as String?)?.toReplicationStatus(),
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      restore: json['x-amz-restore'] as String?,
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+      storageClass: (json['x-amz-storage-class'] as String?)?.toStorageClass(),
+      versionId: json['x-amz-version-id'] as String?,
+      websiteRedirectLocation:
+          json['x-amz-website-redirect-location'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final acceptRanges = this.acceptRanges;
+    final archiveStatus = this.archiveStatus;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final cacheControl = this.cacheControl;
+    final contentDisposition = this.contentDisposition;
+    final contentEncoding = this.contentEncoding;
+    final contentLanguage = this.contentLanguage;
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final deleteMarker = this.deleteMarker;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final expires = this.expires;
+    final lastModified = this.lastModified;
+    final metadata = this.metadata;
+    final missingMeta = this.missingMeta;
+    final objectLockLegalHoldStatus = this.objectLockLegalHoldStatus;
+    final objectLockMode = this.objectLockMode;
+    final objectLockRetainUntilDate = this.objectLockRetainUntilDate;
+    final partsCount = this.partsCount;
+    final replicationStatus = this.replicationStatus;
+    final requestCharged = this.requestCharged;
+    final restore = this.restore;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final storageClass = this.storageClass;
+    final versionId = this.versionId;
+    final websiteRedirectLocation = this.websiteRedirectLocation;
     return {};
   }
 }
@@ -20397,6 +20644,8 @@ class ListPartsOutput {
   });
   factory ListPartsOutput.fromJson(Map<String, dynamic> json) {
     return ListPartsOutput(
+      abortDate: timeStampFromJson(json['x-amz-abort-date']),
+      abortRuleId: json['x-amz-abort-rule-id'] as String?,
       bucket: json['Bucket'] as String?,
       initiator: json['Initiator'] != null
           ? Initiator.fromJson(json['Initiator'] as Map<String, dynamic>)
@@ -20413,12 +20662,16 @@ class ListPartsOutput {
           ?.whereNotNull()
           .map((e) => Part.fromJson(e as Map<String, dynamic>))
           .toList(),
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
       storageClass: (json['StorageClass'] as String?)?.toStorageClass(),
       uploadId: json['UploadId'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final abortDate = this.abortDate;
+    final abortRuleId = this.abortRuleId;
     final bucket = this.bucket;
     final initiator = this.initiator;
     final isTruncated = this.isTruncated;
@@ -20428,6 +20681,7 @@ class ListPartsOutput {
     final owner = this.owner;
     final partNumberMarker = this.partNumberMarker;
     final parts = this.parts;
+    final requestCharged = this.requestCharged;
     final storageClass = this.storageClass;
     final uploadId = this.uploadId;
     return {
@@ -22775,11 +23029,15 @@ class PutObjectAclOutput {
   PutObjectAclOutput({
     this.requestCharged,
   });
-  factory PutObjectAclOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectAclOutput();
+  factory PutObjectAclOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectAclOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
     return {};
   }
 }
@@ -22790,11 +23048,15 @@ class PutObjectLegalHoldOutput {
   PutObjectLegalHoldOutput({
     this.requestCharged,
   });
-  factory PutObjectLegalHoldOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectLegalHoldOutput();
+  factory PutObjectLegalHoldOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectLegalHoldOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
     return {};
   }
 }
@@ -22805,11 +23067,15 @@ class PutObjectLockConfigurationOutput {
   PutObjectLockConfigurationOutput({
     this.requestCharged,
   });
-  factory PutObjectLockConfigurationOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectLockConfigurationOutput();
+  factory PutObjectLockConfigurationOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectLockConfigurationOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
     return {};
   }
 }
@@ -22872,11 +23138,39 @@ class PutObjectOutput {
     this.serverSideEncryption,
     this.versionId,
   });
-  factory PutObjectOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectOutput();
+  factory PutObjectOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectOutput(
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
+      eTag: json['ETag'] as String?,
+      expiration: json['x-amz-expiration'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSEncryptionContext:
+          json['x-amz-server-side-encryption-context'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+      versionId: json['x-amz-version-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
     return {};
   }
 }
@@ -22887,11 +23181,15 @@ class PutObjectRetentionOutput {
   PutObjectRetentionOutput({
     this.requestCharged,
   });
-  factory PutObjectRetentionOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectRetentionOutput();
+  factory PutObjectRetentionOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectRetentionOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
     return {};
   }
 }
@@ -22903,11 +23201,14 @@ class PutObjectTaggingOutput {
   PutObjectTaggingOutput({
     this.versionId,
   });
-  factory PutObjectTaggingOutput.fromJson(Map<String, dynamic> _) {
-    return PutObjectTaggingOutput();
+  factory PutObjectTaggingOutput.fromJson(Map<String, dynamic> json) {
+    return PutObjectTaggingOutput(
+      versionId: json['x-amz-version-id'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final versionId = this.versionId;
     return {};
   }
 }
@@ -24123,11 +24424,17 @@ class RestoreObjectOutput {
     this.requestCharged,
     this.restoreOutputPath,
   });
-  factory RestoreObjectOutput.fromJson(Map<String, dynamic> _) {
-    return RestoreObjectOutput();
+  factory RestoreObjectOutput.fromJson(Map<String, dynamic> json) {
+    return RestoreObjectOutput(
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      restoreOutputPath: json['x-amz-restore-output-path'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    final restoreOutputPath = this.restoreOutputPath;
     return {};
   }
 }
@@ -24974,16 +25281,25 @@ class SelectObjectContentRequest {
   });
   factory SelectObjectContentRequest.fromJson(Map<String, dynamic> json) {
     return SelectObjectContentRequest(
+      bucket: json['Bucket'] as String,
       expression: json['Expression'] as String,
       expressionType: (json['ExpressionType'] as String).toExpressionType(),
       inputSerialization: InputSerialization.fromJson(
           json['InputSerialization'] as Map<String, dynamic>),
+      key: json['Key'] as String,
       outputSerialization: OutputSerialization.fromJson(
           json['OutputSerialization'] as Map<String, dynamic>),
+      expectedBucketOwner: json['x-amz-expected-bucket-owner'] as String?,
       requestProgress: json['RequestProgress'] != null
           ? RequestProgress.fromJson(
               json['RequestProgress'] as Map<String, dynamic>)
           : null,
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKey: _s.decodeNullableUint8List(
+          json['x-amz-server-side-encryption-customer-key'] as String?),
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
       scanRange: json['ScanRange'] != null
           ? ScanRange.fromJson(json['ScanRange'] as Map<String, dynamic>)
           : null,
@@ -24991,11 +25307,17 @@ class SelectObjectContentRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
     final expression = this.expression;
     final expressionType = this.expressionType;
     final inputSerialization = this.inputSerialization;
+    final key = this.key;
     final outputSerialization = this.outputSerialization;
+    final expectedBucketOwner = this.expectedBucketOwner;
     final requestProgress = this.requestProgress;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKey = this.sSECustomerKey;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
     final scanRange = this.scanRange;
     return {
       'Expression': expression,
@@ -26417,15 +26739,35 @@ class UploadPartCopyOutput {
   });
   factory UploadPartCopyOutput.fromJson(Map<String, dynamic> json) {
     return UploadPartCopyOutput(
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
       copyPartResult: json['CopyPartResult'] != null
           ? CopyPartResult.fromJson(
               json['CopyPartResult'] as Map<String, dynamic>)
           : null,
+      copySourceVersionId: json['x-amz-copy-source-version-id'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
     );
   }
 
   Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
     final copyPartResult = this.copyPartResult;
+    final copySourceVersionId = this.copySourceVersionId;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
     return {
       if (copyPartResult != null) 'CopyPartResult': copyPartResult,
     };
@@ -26469,11 +26811,32 @@ class UploadPartOutput {
     this.sSEKMSKeyId,
     this.serverSideEncryption,
   });
-  factory UploadPartOutput.fromJson(Map<String, dynamic> _) {
-    return UploadPartOutput();
+  factory UploadPartOutput.fromJson(Map<String, dynamic> json) {
+    return UploadPartOutput(
+      bucketKeyEnabled:
+          json['x-amz-server-side-encryption-bucket-key-enabled'] as bool?,
+      eTag: json['ETag'] as String?,
+      requestCharged:
+          (json['x-amz-request-charged'] as String?)?.toRequestCharged(),
+      sSECustomerAlgorithm:
+          json['x-amz-server-side-encryption-customer-algorithm'] as String?,
+      sSECustomerKeyMD5:
+          json['x-amz-server-side-encryption-customer-key-MD5'] as String?,
+      sSEKMSKeyId:
+          json['x-amz-server-side-encryption-aws-kms-key-id'] as String?,
+      serverSideEncryption: (json['x-amz-server-side-encryption'] as String?)
+          ?.toServerSideEncryption(),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final eTag = this.eTag;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
     return {};
   }
 }

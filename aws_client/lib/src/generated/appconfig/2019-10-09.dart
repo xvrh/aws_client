@@ -1845,12 +1845,16 @@ class Configuration {
   });
   factory Configuration.fromJson(Map<String, dynamic> json) {
     return Configuration(
+      configurationVersion: json['Configuration-Version'] as String?,
       content: _s.decodeNullableUint8List(json['Content'] as String?),
+      contentType: json['Content-Type'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final configurationVersion = this.configurationVersion;
     final content = this.content;
+    final contentType = this.contentType;
     return {
       if (content != null) 'Content': base64Encode(content),
     };
@@ -2733,12 +2737,22 @@ class HostedConfigurationVersion {
   });
   factory HostedConfigurationVersion.fromJson(Map<String, dynamic> json) {
     return HostedConfigurationVersion(
+      applicationId: json['Application-Id'] as String?,
+      configurationProfileId: json['Configuration-Profile-Id'] as String?,
       content: _s.decodeNullableUint8List(json['Content'] as String?),
+      contentType: json['Content-Type'] as String?,
+      description: json['Description'] as String?,
+      versionNumber: json['Version-Number'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final configurationProfileId = this.configurationProfileId;
     final content = this.content;
+    final contentType = this.contentType;
+    final description = this.description;
+    final versionNumber = this.versionNumber;
     return {
       if (content != null) 'Content': base64Encode(content),
     };

@@ -116,8 +116,14 @@ class InputShape {
   });
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
+      uRIFooEnum: (json['URIEnum'] as String).toEnumType(),
       fooEnum: (json['FooEnum'] as String?)?.toEnumType(),
+      headerEnum: (json['x-amz-enum'] as String?)?.toEnumType(),
       listEnums: (json['ListEnums'] as List?)
+          ?.whereNotNull()
+          .map((e) => (e as String).toEnumType())
+          .toList(),
+      uRIListEnums: (json['ListEnums'] as List?)
           ?.whereNotNull()
           .map((e) => (e as String).toEnumType())
           .toList(),
@@ -125,8 +131,11 @@ class InputShape {
   }
 
   Map<String, dynamic> toJson() {
+    final uRIFooEnum = this.uRIFooEnum;
     final fooEnum = this.fooEnum;
+    final headerEnum = this.headerEnum;
     final listEnums = this.listEnums;
+    final uRIListEnums = this.uRIListEnums;
     return {
       if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
       if (listEnums != null)

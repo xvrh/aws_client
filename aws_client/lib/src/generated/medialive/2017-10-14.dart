@@ -6751,11 +6751,19 @@ class DescribeInputDeviceThumbnailResponse {
       Map<String, dynamic> json) {
     return DescribeInputDeviceThumbnailResponse(
       body: _s.decodeNullableUint8List(json['body'] as String?),
+      contentLength: json['Content-Length'] as int?,
+      contentType: (json['Content-Type'] as String?)?.toContentType(),
+      eTag: json['ETag'] as String?,
+      lastModified: timeStampFromJson(json['Last-Modified']),
     );
   }
 
   Map<String, dynamic> toJson() {
     final body = this.body;
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
     return {
       if (body != null) 'body': base64Encode(body),
     };

@@ -4504,13 +4504,17 @@ class CreateAccessPointForObjectLambdaRequest {
   factory CreateAccessPointForObjectLambdaRequest.fromJson(
       Map<String, dynamic> json) {
     return CreateAccessPointForObjectLambdaRequest(
+      accountId: json['x-amz-account-id'] as String,
       configuration: ObjectLambdaConfiguration.fromJson(
           json['Configuration'] as Map<String, dynamic>),
+      name: json['name'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
     final configuration = this.configuration;
+    final name = this.name;
     return {
       'Configuration': configuration,
     };
@@ -4608,7 +4612,9 @@ class CreateAccessPointRequest {
   });
   factory CreateAccessPointRequest.fromJson(Map<String, dynamic> json) {
     return CreateAccessPointRequest(
+      accountId: json['x-amz-account-id'] as String,
       bucket: json['Bucket'] as String,
+      name: json['name'] as String,
       publicAccessBlockConfiguration: json['PublicAccessBlockConfiguration'] !=
               null
           ? PublicAccessBlockConfiguration.fromJson(
@@ -4622,7 +4628,9 @@ class CreateAccessPointRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
     final bucket = this.bucket;
+    final name = this.name;
     final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
     final vpcConfiguration = this.vpcConfiguration;
     return {
@@ -4761,11 +4769,13 @@ class CreateBucketResult {
   factory CreateBucketResult.fromJson(Map<String, dynamic> json) {
     return CreateBucketResult(
       bucketArn: json['BucketArn'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final bucketArn = this.bucketArn;
+    final location = this.location;
     return {
       if (bucketArn != null) 'BucketArn': bucketArn,
     };
@@ -4829,6 +4839,7 @@ class CreateJobRequest {
   });
   factory CreateJobRequest.fromJson(Map<String, dynamic> json) {
     return CreateJobRequest(
+      accountId: json['x-amz-account-id'] as String,
       manifest: JobManifest.fromJson(json['Manifest'] as Map<String, dynamic>),
       operation:
           JobOperation.fromJson(json['Operation'] as Map<String, dynamic>),
@@ -4846,6 +4857,7 @@ class CreateJobRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
     final manifest = this.manifest;
     final operation = this.operation;
     final priority = this.priority;
@@ -8353,13 +8365,17 @@ class PutAccessPointConfigurationForObjectLambdaRequest {
   factory PutAccessPointConfigurationForObjectLambdaRequest.fromJson(
       Map<String, dynamic> json) {
     return PutAccessPointConfigurationForObjectLambdaRequest(
+      accountId: json['x-amz-account-id'] as String,
       configuration: ObjectLambdaConfiguration.fromJson(
           json['Configuration'] as Map<String, dynamic>),
+      name: json['name'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
     final configuration = this.configuration;
+    final name = this.name;
     return {
       'Configuration': configuration,
     };
@@ -8402,11 +8418,15 @@ class PutAccessPointPolicyForObjectLambdaRequest {
   factory PutAccessPointPolicyForObjectLambdaRequest.fromJson(
       Map<String, dynamic> json) {
     return PutAccessPointPolicyForObjectLambdaRequest(
+      accountId: json['x-amz-account-id'] as String,
+      name: json['name'] as String,
       policy: json['Policy'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final name = this.name;
     final policy = this.policy;
     return {
       'Policy': policy,
@@ -8466,11 +8486,15 @@ class PutAccessPointPolicyRequest {
   });
   factory PutAccessPointPolicyRequest.fromJson(Map<String, dynamic> json) {
     return PutAccessPointPolicyRequest(
+      accountId: json['x-amz-account-id'] as String,
+      name: json['name'] as String,
       policy: json['Policy'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final name = this.name;
     final policy = this.policy;
     return {
       'Policy': policy,
@@ -8532,12 +8556,19 @@ class PutBucketPolicyRequest {
   });
   factory PutBucketPolicyRequest.fromJson(Map<String, dynamic> json) {
     return PutBucketPolicyRequest(
+      accountId: json['x-amz-account-id'] as String,
+      bucket: json['name'] as String,
       policy: json['Policy'] as String,
+      confirmRemoveSelfBucketAccess:
+          json['x-amz-confirm-remove-self-bucket-access'] as bool?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final bucket = this.bucket;
     final policy = this.policy;
+    final confirmRemoveSelfBucketAccess = this.confirmRemoveSelfBucketAccess;
     return {
       'Policy': policy,
     };
@@ -8579,6 +8610,8 @@ class PutJobTaggingRequest {
   });
   factory PutJobTaggingRequest.fromJson(Map<String, dynamic> json) {
     return PutJobTaggingRequest(
+      accountId: json['x-amz-account-id'] as String,
+      jobId: json['id'] as String,
       tags: (json['Tags'] as List)
           .whereNotNull()
           .map((e) => S3Tag.fromJson(e as Map<String, dynamic>))
@@ -8587,6 +8620,8 @@ class PutJobTaggingRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final jobId = this.jobId;
     final tags = this.tags;
     return {
       'Tags': tags,
@@ -8653,6 +8688,8 @@ class PutStorageLensConfigurationRequest {
   factory PutStorageLensConfigurationRequest.fromJson(
       Map<String, dynamic> json) {
     return PutStorageLensConfigurationRequest(
+      accountId: json['x-amz-account-id'] as String,
+      configId: json['storagelensid'] as String,
       storageLensConfiguration: StorageLensConfiguration.fromJson(
           json['StorageLensConfiguration'] as Map<String, dynamic>),
       tags: (json['Tags'] as List?)
@@ -8663,6 +8700,8 @@ class PutStorageLensConfigurationRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configId = this.configId;
     final storageLensConfiguration = this.storageLensConfiguration;
     final tags = this.tags;
     return {
@@ -8713,6 +8752,8 @@ class PutStorageLensConfigurationTaggingRequest {
   factory PutStorageLensConfigurationTaggingRequest.fromJson(
       Map<String, dynamic> json) {
     return PutStorageLensConfigurationTaggingRequest(
+      accountId: json['x-amz-account-id'] as String,
+      configId: json['storagelensid'] as String,
       tags: (json['Tags'] as List)
           .whereNotNull()
           .map((e) => StorageLensTag.fromJson(e as Map<String, dynamic>))
@@ -8721,6 +8762,8 @@ class PutStorageLensConfigurationTaggingRequest {
   }
 
   Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configId = this.configId;
     final tags = this.tags;
     return {
       'Tags': tags,

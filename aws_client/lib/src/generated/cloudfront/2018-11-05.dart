@@ -3231,11 +3231,15 @@ class CreateCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -3266,11 +3270,15 @@ class CreateDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -3300,11 +3308,15 @@ class CreateDistributionWithTagsResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -3332,15 +3344,19 @@ class CreateFieldLevelEncryptionConfigResult {
   factory CreateFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return CreateFieldLevelEncryptionConfigResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryption: json['FieldLevelEncryption'] != null
           ? FieldLevelEncryption.fromJson(
               json['FieldLevelEncryption'] as Map<String, dynamic>)
           : null,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryption = this.fieldLevelEncryption;
+    final location = this.location;
     return {
       if (fieldLevelEncryption != null)
         'FieldLevelEncryption': fieldLevelEncryption,
@@ -3369,15 +3385,19 @@ class CreateFieldLevelEncryptionProfileResult {
   factory CreateFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return CreateFieldLevelEncryptionProfileResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
           ? FieldLevelEncryptionProfile.fromJson(
               json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
           : null,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
+    final location = this.location;
     return {
       if (fieldLevelEncryptionProfile != null)
         'FieldLevelEncryptionProfile': fieldLevelEncryptionProfile,
@@ -3403,11 +3423,13 @@ class CreateInvalidationResult {
       invalidation: json['Invalidation'] != null
           ? Invalidation.fromJson(json['Invalidation'] as Map<String, dynamic>)
           : null,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final invalidation = this.invalidation;
+    final location = this.location;
     return {
       if (invalidation != null) 'Invalidation': invalidation,
     };
@@ -3434,6 +3456,8 @@ class CreatePublicKeyResult {
   });
   factory CreatePublicKeyResult.fromJson(Map<String, dynamic> json) {
     return CreatePublicKeyResult(
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
       publicKey: json['PublicKey'] != null
           ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
           : null,
@@ -3441,6 +3465,8 @@ class CreatePublicKeyResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
     final publicKey = this.publicKey;
     return {
       if (publicKey != null) 'PublicKey': publicKey,
@@ -3469,6 +3495,8 @@ class CreateStreamingDistributionResult {
   factory CreateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -3477,6 +3505,8 @@ class CreateStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -3506,6 +3536,8 @@ class CreateStreamingDistributionWithTagsResult {
   factory CreateStreamingDistributionWithTagsResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionWithTagsResult(
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -3514,6 +3546,8 @@ class CreateStreamingDistributionWithTagsResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -6112,12 +6146,14 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
                   json['CloudFrontOriginAccessIdentityConfig']
                       as Map<String, dynamic>)
               : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentityConfig =
         this.cloudFrontOriginAccessIdentityConfig;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentityConfig != null)
         'CloudFrontOriginAccessIdentityConfig':
@@ -6147,11 +6183,13 @@ class GetCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -6178,11 +6216,13 @@ class GetDistributionConfigResult {
           ? DistributionConfig.fromJson(
               json['DistributionConfig'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distributionConfig = this.distributionConfig;
+    final eTag = this.eTag;
     return {
       if (distributionConfig != null) 'DistributionConfig': distributionConfig,
     };
@@ -6207,11 +6247,13 @@ class GetDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -6233,6 +6275,7 @@ class GetFieldLevelEncryptionConfigResult {
   factory GetFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionConfigResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryptionConfig: json['FieldLevelEncryptionConfig'] != null
           ? FieldLevelEncryptionConfig.fromJson(
               json['FieldLevelEncryptionConfig'] as Map<String, dynamic>)
@@ -6241,6 +6284,7 @@ class GetFieldLevelEncryptionConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryptionConfig = this.fieldLevelEncryptionConfig;
     return {
       if (fieldLevelEncryptionConfig != null)
@@ -6264,6 +6308,7 @@ class GetFieldLevelEncryptionProfileConfigResult {
   factory GetFieldLevelEncryptionProfileConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionProfileConfigResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryptionProfileConfig:
           json['FieldLevelEncryptionProfileConfig'] != null
               ? FieldLevelEncryptionProfileConfig.fromJson(
@@ -6274,6 +6319,7 @@ class GetFieldLevelEncryptionProfileConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryptionProfileConfig =
         this.fieldLevelEncryptionProfileConfig;
     return {
@@ -6298,6 +6344,7 @@ class GetFieldLevelEncryptionProfileResult {
   factory GetFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return GetFieldLevelEncryptionProfileResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
           ? FieldLevelEncryptionProfile.fromJson(
               json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
@@ -6306,6 +6353,7 @@ class GetFieldLevelEncryptionProfileResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
     return {
       if (fieldLevelEncryptionProfile != null)
@@ -6328,6 +6376,7 @@ class GetFieldLevelEncryptionResult {
   });
   factory GetFieldLevelEncryptionResult.fromJson(Map<String, dynamic> json) {
     return GetFieldLevelEncryptionResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryption: json['FieldLevelEncryption'] != null
           ? FieldLevelEncryption.fromJson(
               json['FieldLevelEncryption'] as Map<String, dynamic>)
@@ -6336,6 +6385,7 @@ class GetFieldLevelEncryptionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryption = this.fieldLevelEncryption;
     return {
       if (fieldLevelEncryption != null)
@@ -6384,6 +6434,7 @@ class GetPublicKeyConfigResult {
   });
   factory GetPublicKeyConfigResult.fromJson(Map<String, dynamic> json) {
     return GetPublicKeyConfigResult(
+      eTag: json['ETag'] as String?,
       publicKeyConfig: json['PublicKeyConfig'] != null
           ? PublicKeyConfig.fromJson(
               json['PublicKeyConfig'] as Map<String, dynamic>)
@@ -6392,6 +6443,7 @@ class GetPublicKeyConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final publicKeyConfig = this.publicKeyConfig;
     return {
       if (publicKeyConfig != null) 'PublicKeyConfig': publicKeyConfig,
@@ -6413,6 +6465,7 @@ class GetPublicKeyResult {
   });
   factory GetPublicKeyResult.fromJson(Map<String, dynamic> json) {
     return GetPublicKeyResult(
+      eTag: json['ETag'] as String?,
       publicKey: json['PublicKey'] != null
           ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
           : null,
@@ -6420,6 +6473,7 @@ class GetPublicKeyResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final publicKey = this.publicKey;
     return {
       if (publicKey != null) 'PublicKey': publicKey,
@@ -6443,6 +6497,7 @@ class GetStreamingDistributionConfigResult {
   factory GetStreamingDistributionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetStreamingDistributionConfigResult(
+      eTag: json['ETag'] as String?,
       streamingDistributionConfig: json['StreamingDistributionConfig'] != null
           ? StreamingDistributionConfig.fromJson(
               json['StreamingDistributionConfig'] as Map<String, dynamic>)
@@ -6451,6 +6506,7 @@ class GetStreamingDistributionConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistributionConfig = this.streamingDistributionConfig;
     return {
       if (streamingDistributionConfig != null)
@@ -6474,6 +6530,7 @@ class GetStreamingDistributionResult {
   });
   factory GetStreamingDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -6482,6 +6539,7 @@ class GetStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -10096,11 +10154,13 @@ class UpdateCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -10126,11 +10186,13 @@ class UpdateDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -10152,6 +10214,7 @@ class UpdateFieldLevelEncryptionConfigResult {
   factory UpdateFieldLevelEncryptionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateFieldLevelEncryptionConfigResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryption: json['FieldLevelEncryption'] != null
           ? FieldLevelEncryption.fromJson(
               json['FieldLevelEncryption'] as Map<String, dynamic>)
@@ -10160,6 +10223,7 @@ class UpdateFieldLevelEncryptionConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryption = this.fieldLevelEncryption;
     return {
       if (fieldLevelEncryption != null)
@@ -10182,6 +10246,7 @@ class UpdateFieldLevelEncryptionProfileResult {
   factory UpdateFieldLevelEncryptionProfileResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateFieldLevelEncryptionProfileResult(
+      eTag: json['ETag'] as String?,
       fieldLevelEncryptionProfile: json['FieldLevelEncryptionProfile'] != null
           ? FieldLevelEncryptionProfile.fromJson(
               json['FieldLevelEncryptionProfile'] as Map<String, dynamic>)
@@ -10190,6 +10255,7 @@ class UpdateFieldLevelEncryptionProfileResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final fieldLevelEncryptionProfile = this.fieldLevelEncryptionProfile;
     return {
       if (fieldLevelEncryptionProfile != null)
@@ -10212,6 +10278,7 @@ class UpdatePublicKeyResult {
   });
   factory UpdatePublicKeyResult.fromJson(Map<String, dynamic> json) {
     return UpdatePublicKeyResult(
+      eTag: json['ETag'] as String?,
       publicKey: json['PublicKey'] != null
           ? PublicKey.fromJson(json['PublicKey'] as Map<String, dynamic>)
           : null,
@@ -10219,6 +10286,7 @@ class UpdatePublicKeyResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final publicKey = this.publicKey;
     return {
       if (publicKey != null) 'PublicKey': publicKey,
@@ -10242,6 +10310,7 @@ class UpdateStreamingDistributionResult {
   factory UpdateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -10250,6 +10319,7 @@ class UpdateStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)

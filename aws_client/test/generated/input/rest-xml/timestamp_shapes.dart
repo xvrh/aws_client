@@ -121,15 +121,27 @@ class InputShape {
   factory InputShape.fromJson(Map<String, dynamic> json) {
     return InputShape(
       timeArg: timeStampFromJson(json['TimeArg']),
+      timeArgInHeader: timeStampFromJson(json['x-amz-timearg']),
+      timeArgInQuery: timeStampFromJson(json['TimeQuery']),
       timeCustom: timeStampFromJson(json['TimeCustom']),
+      timeCustomInHeader: timeStampFromJson(json['x-amz-timecustom-header']),
+      timeCustomInQuery: timeStampFromJson(json['TimeCustomQuery']),
       timeFormat: timeStampFromJson(json['TimeFormat']),
+      timeFormatInHeader: timeStampFromJson(json['x-amz-timeformat-header']),
+      timeFormatInQuery: timeStampFromJson(json['TimeFormatQuery']),
     );
   }
 
   Map<String, dynamic> toJson() {
     final timeArg = this.timeArg;
+    final timeArgInHeader = this.timeArgInHeader;
+    final timeArgInQuery = this.timeArgInQuery;
     final timeCustom = this.timeCustom;
+    final timeCustomInHeader = this.timeCustomInHeader;
+    final timeCustomInQuery = this.timeCustomInQuery;
     final timeFormat = this.timeFormat;
+    final timeFormatInHeader = this.timeFormatInHeader;
+    final timeFormatInQuery = this.timeFormatInQuery;
     return {
       if (timeArg != null) 'TimeArg': unixTimestampToJson(timeArg),
       if (timeCustom != null) 'TimeCustom': rfc822ToJson(timeCustom),

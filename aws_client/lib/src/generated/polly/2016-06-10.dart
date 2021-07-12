@@ -1406,11 +1406,15 @@ class SynthesizeSpeechOutput {
   factory SynthesizeSpeechOutput.fromJson(Map<String, dynamic> json) {
     return SynthesizeSpeechOutput(
       audioStream: _s.decodeNullableUint8List(json['AudioStream'] as String?),
+      contentType: json['Content-Type'] as String?,
+      requestCharacters: json['x-amzn-RequestCharacters'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final audioStream = this.audioStream;
+    final contentType = this.contentType;
+    final requestCharacters = this.requestCharacters;
     return {
       if (audioStream != null) 'AudioStream': base64Encode(audioStream),
     };

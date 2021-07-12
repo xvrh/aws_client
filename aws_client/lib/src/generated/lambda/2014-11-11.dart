@@ -952,11 +952,14 @@ class InvokeAsyncResponse {
   InvokeAsyncResponse({
     this.status,
   });
-  factory InvokeAsyncResponse.fromJson(Map<String, dynamic> _) {
-    return InvokeAsyncResponse();
+  factory InvokeAsyncResponse.fromJson(Map<String, dynamic> json) {
+    return InvokeAsyncResponse(
+      status: json['Status'] as int?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final status = this.status;
     return {};
   }
 }

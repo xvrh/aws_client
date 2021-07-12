@@ -2450,12 +2450,16 @@ class GetProfileResponse {
   });
   factory GetProfileResponse.fromJson(Map<String, dynamic> json) {
     return GetProfileResponse(
+      contentType: json['Content-Type'] as String,
       profile: _s.decodeUint8List(json['profile']! as String),
+      contentEncoding: json['Content-Encoding'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
     final profile = this.profile;
+    final contentEncoding = this.contentEncoding;
     return {
       'profile': base64Encode(profile),
     };

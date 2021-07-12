@@ -645,11 +645,13 @@ class LimitExceededException implements _s.AwsException {
   factory LimitExceededException.fromJson(Map<String, dynamic> json) {
     return LimitExceededException(
       message: json['message'] as String?,
+      retryAfterSeconds: json['Retry-After'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final message = this.message;
+    final retryAfterSeconds = this.retryAfterSeconds;
     return {
       if (message != null) 'message': message,
     };
@@ -976,11 +978,13 @@ class ServiceUnavailableException implements _s.AwsException {
   factory ServiceUnavailableException.fromJson(Map<String, dynamic> json) {
     return ServiceUnavailableException(
       message: json['message'] as String?,
+      retryAfterSeconds: json['Retry-After'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final message = this.message;
+    final retryAfterSeconds = this.retryAfterSeconds;
     return {
       if (message != null) 'message': message,
     };
@@ -1000,11 +1004,13 @@ class TooManyRequestsException implements _s.AwsException {
   factory TooManyRequestsException.fromJson(Map<String, dynamic> json) {
     return TooManyRequestsException(
       message: json['message'] as String?,
+      retryAfterSeconds: json['Retry-After'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final message = this.message;
+    final retryAfterSeconds = this.retryAfterSeconds;
     return {
       if (message != null) 'message': message,
     };

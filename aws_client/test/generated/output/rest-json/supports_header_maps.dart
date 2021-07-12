@@ -60,11 +60,18 @@ class OutputShape {
     this.allHeaders,
     this.prefixedHeaders,
   });
-  factory OutputShape.fromJson(Map<String, dynamic> _) {
-    return OutputShape();
+  factory OutputShape.fromJson(Map<String, dynamic> json) {
+    return OutputShape(
+      allHeaders: (json['AllHeaders'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      prefixedHeaders: (json['X-'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final allHeaders = this.allHeaders;
+    final prefixedHeaders = this.prefixedHeaders;
     return {};
   }
 }

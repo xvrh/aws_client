@@ -2537,11 +2537,15 @@ class CreateCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -2572,11 +2576,15 @@ class CreateDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -2606,11 +2614,15 @@ class CreateDistributionWithTagsResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -2635,11 +2647,13 @@ class CreateInvalidationResult {
       invalidation: json['Invalidation'] != null
           ? Invalidation.fromJson(json['Invalidation'] as Map<String, dynamic>)
           : null,
+      location: json['Location'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final invalidation = this.invalidation;
+    final location = this.location;
     return {
       if (invalidation != null) 'Invalidation': invalidation,
     };
@@ -2667,6 +2681,8 @@ class CreateStreamingDistributionResult {
   factory CreateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -2675,6 +2691,8 @@ class CreateStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -2703,6 +2721,8 @@ class CreateStreamingDistributionWithTagsResult {
   factory CreateStreamingDistributionWithTagsResult.fromJson(
       Map<String, dynamic> json) {
     return CreateStreamingDistributionWithTagsResult(
+      eTag: json['ETag'] as String?,
+      location: json['Location'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -2711,6 +2731,8 @@ class CreateStreamingDistributionWithTagsResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -4559,12 +4581,14 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
                   json['CloudFrontOriginAccessIdentityConfig']
                       as Map<String, dynamic>)
               : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentityConfig =
         this.cloudFrontOriginAccessIdentityConfig;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentityConfig != null)
         'CloudFrontOriginAccessIdentityConfig':
@@ -4594,11 +4618,13 @@ class GetCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -4625,11 +4651,13 @@ class GetDistributionConfigResult {
           ? DistributionConfig.fromJson(
               json['DistributionConfig'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distributionConfig = this.distributionConfig;
+    final eTag = this.eTag;
     return {
       if (distributionConfig != null) 'DistributionConfig': distributionConfig,
     };
@@ -4654,11 +4682,13 @@ class GetDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -4707,6 +4737,7 @@ class GetStreamingDistributionConfigResult {
   factory GetStreamingDistributionConfigResult.fromJson(
       Map<String, dynamic> json) {
     return GetStreamingDistributionConfigResult(
+      eTag: json['ETag'] as String?,
       streamingDistributionConfig: json['StreamingDistributionConfig'] != null
           ? StreamingDistributionConfig.fromJson(
               json['StreamingDistributionConfig'] as Map<String, dynamic>)
@@ -4715,6 +4746,7 @@ class GetStreamingDistributionConfigResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistributionConfig = this.streamingDistributionConfig;
     return {
       if (streamingDistributionConfig != null)
@@ -4738,6 +4770,7 @@ class GetStreamingDistributionResult {
   });
   factory GetStreamingDistributionResult.fromJson(Map<String, dynamic> json) {
     return GetStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -4746,6 +4779,7 @@ class GetStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)
@@ -8916,11 +8950,13 @@ class UpdateCloudFrontOriginAccessIdentityResult {
           ? CloudFrontOriginAccessIdentity.fromJson(
               json['CloudFrontOriginAccessIdentity'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
     return {
       if (cloudFrontOriginAccessIdentity != null)
         'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
@@ -8946,11 +8982,13 @@ class UpdateDistributionResult {
       distribution: json['Distribution'] != null
           ? Distribution.fromJson(json['Distribution'] as Map<String, dynamic>)
           : null,
+      eTag: json['ETag'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final distribution = this.distribution;
+    final eTag = this.eTag;
     return {
       if (distribution != null) 'Distribution': distribution,
     };
@@ -8973,6 +9011,7 @@ class UpdateStreamingDistributionResult {
   factory UpdateStreamingDistributionResult.fromJson(
       Map<String, dynamic> json) {
     return UpdateStreamingDistributionResult(
+      eTag: json['ETag'] as String?,
       streamingDistribution: json['StreamingDistribution'] != null
           ? StreamingDistribution.fromJson(
               json['StreamingDistribution'] as Map<String, dynamic>)
@@ -8981,6 +9020,7 @@ class UpdateStreamingDistributionResult {
   }
 
   Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
     final streamingDistribution = this.streamingDistribution;
     return {
       if (streamingDistribution != null)

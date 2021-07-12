@@ -8507,6 +8507,7 @@ class CancelIngestionResponse {
       arn: json['Arn'] as String?,
       ingestionId: json['IngestionId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -8514,6 +8515,7 @@ class CancelIngestionResponse {
     final arn = this.arn;
     final ingestionId = this.ingestionId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (ingestionId != null) 'IngestionId': ingestionId,
@@ -8855,6 +8857,7 @@ class CreateAccountCustomizationResponse {
       awsAccountId: json['AwsAccountId'] as String?,
       namespace: json['Namespace'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -8864,6 +8867,7 @@ class CreateAccountCustomizationResponse {
     final awsAccountId = this.awsAccountId;
     final namespace = this.namespace;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (accountCustomization != null)
         'AccountCustomization': accountCustomization,
@@ -8904,6 +8908,7 @@ class CreateAnalysisResponse {
       arn: json['Arn'] as String?,
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -8912,6 +8917,7 @@ class CreateAnalysisResponse {
     final arn = this.arn;
     final creationStatus = this.creationStatus;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisId != null) 'AnalysisId': analysisId,
       if (arn != null) 'Arn': arn,
@@ -8981,6 +8987,7 @@ class CreateDashboardResponse {
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       dashboardId: json['DashboardId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       versionArn: json['VersionArn'] as String?,
     );
   }
@@ -8990,6 +8997,7 @@ class CreateDashboardResponse {
     final creationStatus = this.creationStatus;
     final dashboardId = this.dashboardId;
     final requestId = this.requestId;
+    final status = this.status;
     final versionArn = this.versionArn;
     return {
       if (arn != null) 'Arn': arn,
@@ -9038,6 +9046,7 @@ class CreateDataSetResponse {
       ingestionArn: json['IngestionArn'] as String?,
       ingestionId: json['IngestionId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9047,6 +9056,7 @@ class CreateDataSetResponse {
     final ingestionArn = this.ingestionArn;
     final ingestionId = this.ingestionId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (dataSetId != null) 'DataSetId': dataSetId,
@@ -9087,6 +9097,7 @@ class CreateDataSourceResponse {
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       dataSourceId: json['DataSourceId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9095,6 +9106,7 @@ class CreateDataSourceResponse {
     final creationStatus = this.creationStatus;
     final dataSourceId = this.dataSourceId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (creationStatus != null) 'CreationStatus': creationStatus.toValue(),
@@ -9167,6 +9179,7 @@ class CreateFolderResponse {
       arn: json['Arn'] as String?,
       folderId: json['FolderId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9174,6 +9187,7 @@ class CreateFolderResponse {
     final arn = this.arn;
     final folderId = this.folderId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (folderId != null) 'FolderId': folderId,
@@ -9203,12 +9217,14 @@ class CreateGroupMembershipResponse {
           ? GroupMember.fromJson(json['GroupMember'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final groupMember = this.groupMember;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (groupMember != null) 'GroupMember': groupMember,
       if (requestId != null) 'RequestId': requestId,
@@ -9238,12 +9254,14 @@ class CreateGroupResponse {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final group = this.group;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (group != null) 'Group': group,
       if (requestId != null) 'RequestId': requestId,
@@ -9310,6 +9328,7 @@ class CreateIAMPolicyAssignmentResponse {
               k, (e as List).whereNotNull().map((e) => e as String).toList())),
       policyArn: json['PolicyArn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9320,6 +9339,7 @@ class CreateIAMPolicyAssignmentResponse {
     final identities = this.identities;
     final policyArn = this.policyArn;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (assignmentId != null) 'AssignmentId': assignmentId,
       if (assignmentName != null) 'AssignmentName': assignmentName,
@@ -9362,6 +9382,7 @@ class CreateIngestionResponse {
       ingestionStatus:
           (json['IngestionStatus'] as String?)?.toIngestionStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9370,6 +9391,7 @@ class CreateIngestionResponse {
     final ingestionId = this.ingestionId;
     final ingestionStatus = this.ingestionStatus;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (ingestionId != null) 'IngestionId': ingestionId,
@@ -9424,6 +9446,7 @@ class CreateNamespaceResponse {
       identityStore: (json['IdentityStore'] as String?)?.toIdentityStore(),
       name: json['Name'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -9434,6 +9457,7 @@ class CreateNamespaceResponse {
     final identityStore = this.identityStore;
     final name = this.name;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (capacityRegion != null) 'CapacityRegion': capacityRegion,
@@ -9463,6 +9487,7 @@ class CreateTemplateAliasResponse {
   factory CreateTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return CreateTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateAlias: json['TemplateAlias'] != null
           ? TemplateAlias.fromJson(
               json['TemplateAlias'] as Map<String, dynamic>)
@@ -9472,6 +9497,7 @@ class CreateTemplateAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final templateAlias = this.templateAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -9513,6 +9539,7 @@ class CreateTemplateResponse {
       arn: json['Arn'] as String?,
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateId: json['TemplateId'] as String?,
       versionArn: json['VersionArn'] as String?,
     );
@@ -9522,6 +9549,7 @@ class CreateTemplateResponse {
     final arn = this.arn;
     final creationStatus = this.creationStatus;
     final requestId = this.requestId;
+    final status = this.status;
     final templateId = this.templateId;
     final versionArn = this.versionArn;
     return {
@@ -9552,6 +9580,7 @@ class CreateThemeAliasResponse {
   factory CreateThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return CreateThemeAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeAlias: json['ThemeAlias'] != null
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
@@ -9560,6 +9589,7 @@ class CreateThemeAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final themeAlias = this.themeAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -9600,6 +9630,7 @@ class CreateThemeResponse {
       arn: json['Arn'] as String?,
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeId: json['ThemeId'] as String?,
       versionArn: json['VersionArn'] as String?,
     );
@@ -9609,6 +9640,7 @@ class CreateThemeResponse {
     final arn = this.arn;
     final creationStatus = this.creationStatus;
     final requestId = this.requestId;
+    final status = this.status;
     final themeId = this.themeId;
     final versionArn = this.versionArn;
     return {
@@ -11413,11 +11445,13 @@ class DeleteAccountCustomizationResponse {
       Map<String, dynamic> json) {
     return DeleteAccountCustomizationResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -11453,6 +11487,7 @@ class DeleteAnalysisResponse {
       arn: json['Arn'] as String?,
       deletionTime: timeStampFromJson(json['DeletionTime']),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -11461,6 +11496,7 @@ class DeleteAnalysisResponse {
     final arn = this.arn;
     final deletionTime = this.deletionTime;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisId != null) 'AnalysisId': analysisId,
       if (arn != null) 'Arn': arn,
@@ -11495,6 +11531,7 @@ class DeleteDashboardResponse {
       arn: json['Arn'] as String?,
       dashboardId: json['DashboardId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -11502,6 +11539,7 @@ class DeleteDashboardResponse {
     final arn = this.arn;
     final dashboardId = this.dashboardId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (dashboardId != null) 'DashboardId': dashboardId,
@@ -11535,6 +11573,7 @@ class DeleteDataSetResponse {
       arn: json['Arn'] as String?,
       dataSetId: json['DataSetId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -11542,6 +11581,7 @@ class DeleteDataSetResponse {
     final arn = this.arn;
     final dataSetId = this.dataSetId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (dataSetId != null) 'DataSetId': dataSetId,
@@ -11575,6 +11615,7 @@ class DeleteDataSourceResponse {
       arn: json['Arn'] as String?,
       dataSourceId: json['DataSourceId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -11582,6 +11623,7 @@ class DeleteDataSourceResponse {
     final arn = this.arn;
     final dataSourceId = this.dataSourceId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (dataSourceId != null) 'DataSourceId': dataSourceId,
@@ -11644,6 +11686,7 @@ class DeleteFolderResponse {
       arn: json['Arn'] as String?,
       folderId: json['FolderId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -11651,6 +11694,7 @@ class DeleteFolderResponse {
     final arn = this.arn;
     final folderId = this.folderId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (folderId != null) 'FolderId': folderId,
@@ -11673,11 +11717,13 @@ class DeleteGroupMembershipResponse {
   factory DeleteGroupMembershipResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGroupMembershipResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -11698,11 +11744,13 @@ class DeleteGroupResponse {
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> json) {
     return DeleteGroupResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -11729,12 +11777,14 @@ class DeleteIAMPolicyAssignmentResponse {
     return DeleteIAMPolicyAssignmentResponse(
       assignmentName: json['AssignmentName'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final assignmentName = this.assignmentName;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (assignmentName != null) 'AssignmentName': assignmentName,
       if (requestId != null) 'RequestId': requestId,
@@ -11756,11 +11806,13 @@ class DeleteNamespaceResponse {
   factory DeleteNamespaceResponse.fromJson(Map<String, dynamic> json) {
     return DeleteNamespaceResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -11795,6 +11847,7 @@ class DeleteTemplateAliasResponse {
       aliasName: json['AliasName'] as String?,
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateId: json['TemplateId'] as String?,
     );
   }
@@ -11803,6 +11856,7 @@ class DeleteTemplateAliasResponse {
     final aliasName = this.aliasName;
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     final templateId = this.templateId;
     return {
       if (aliasName != null) 'AliasName': aliasName,
@@ -11836,6 +11890,7 @@ class DeleteTemplateResponse {
     return DeleteTemplateResponse(
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateId: json['TemplateId'] as String?,
     );
   }
@@ -11843,6 +11898,7 @@ class DeleteTemplateResponse {
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     final templateId = this.templateId;
     return {
       if (arn != null) 'Arn': arn,
@@ -11881,6 +11937,7 @@ class DeleteThemeAliasResponse {
       aliasName: json['AliasName'] as String?,
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeId: json['ThemeId'] as String?,
     );
   }
@@ -11889,6 +11946,7 @@ class DeleteThemeAliasResponse {
     final aliasName = this.aliasName;
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     final themeId = this.themeId;
     return {
       if (aliasName != null) 'AliasName': aliasName,
@@ -11922,6 +11980,7 @@ class DeleteThemeResponse {
     return DeleteThemeResponse(
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeId: json['ThemeId'] as String?,
     );
   }
@@ -11929,6 +11988,7 @@ class DeleteThemeResponse {
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     final themeId = this.themeId;
     return {
       if (arn != null) 'Arn': arn,
@@ -11952,11 +12012,13 @@ class DeleteUserByPrincipalIdResponse {
   factory DeleteUserByPrincipalIdResponse.fromJson(Map<String, dynamic> json) {
     return DeleteUserByPrincipalIdResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -11977,11 +12039,13 @@ class DeleteUserResponse {
   factory DeleteUserResponse.fromJson(Map<String, dynamic> json) {
     return DeleteUserResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -12027,6 +12091,7 @@ class DescribeAccountCustomizationResponse {
       awsAccountId: json['AwsAccountId'] as String?,
       namespace: json['Namespace'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12036,6 +12101,7 @@ class DescribeAccountCustomizationResponse {
     final awsAccountId = this.awsAccountId;
     final namespace = this.namespace;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (accountCustomization != null)
         'AccountCustomization': accountCustomization,
@@ -12076,12 +12142,14 @@ class DescribeAccountSettingsResponse {
               json['AccountSettings'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final accountSettings = this.accountSettings;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (accountSettings != null) 'AccountSettings': accountSettings,
       if (requestId != null) 'RequestId': requestId,
@@ -12124,6 +12192,7 @@ class DescribeAnalysisPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12132,6 +12201,7 @@ class DescribeAnalysisPermissionsResponse {
     final analysisId = this.analysisId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisArn != null) 'AnalysisArn': analysisArn,
       if (analysisId != null) 'AnalysisId': analysisId,
@@ -12163,12 +12233,14 @@ class DescribeAnalysisResponse {
           ? Analysis.fromJson(json['Analysis'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final analysis = this.analysis;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysis != null) 'Analysis': analysis,
       if (requestId != null) 'RequestId': requestId,
@@ -12209,6 +12281,7 @@ class DescribeDashboardPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12217,6 +12290,7 @@ class DescribeDashboardPermissionsResponse {
     final dashboardId = this.dashboardId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardArn != null) 'DashboardArn': dashboardArn,
       if (dashboardId != null) 'DashboardId': dashboardId,
@@ -12247,12 +12321,14 @@ class DescribeDashboardResponse {
           ? Dashboard.fromJson(json['Dashboard'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final dashboard = this.dashboard;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboard != null) 'Dashboard': dashboard,
       if (requestId != null) 'RequestId': requestId,
@@ -12294,6 +12370,7 @@ class DescribeDataSetPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12302,6 +12379,7 @@ class DescribeDataSetPermissionsResponse {
     final dataSetId = this.dataSetId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSetArn != null) 'DataSetArn': dataSetArn,
       if (dataSetId != null) 'DataSetId': dataSetId,
@@ -12332,12 +12410,14 @@ class DescribeDataSetResponse {
           ? DataSet.fromJson(json['DataSet'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final dataSet = this.dataSet;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSet != null) 'DataSet': dataSet,
       if (requestId != null) 'RequestId': requestId,
@@ -12379,6 +12459,7 @@ class DescribeDataSourcePermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12387,6 +12468,7 @@ class DescribeDataSourcePermissionsResponse {
     final dataSourceId = this.dataSourceId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSourceArn != null) 'DataSourceArn': dataSourceArn,
       if (dataSourceId != null) 'DataSourceId': dataSourceId,
@@ -12417,12 +12499,14 @@ class DescribeDataSourceResponse {
           ? DataSource.fromJson(json['DataSource'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final dataSource = this.dataSource;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSource != null) 'DataSource': dataSource,
       if (requestId != null) 'RequestId': requestId,
@@ -12463,6 +12547,7 @@ class DescribeFolderPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12471,6 +12556,7 @@ class DescribeFolderPermissionsResponse {
     final folderId = this.folderId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (folderId != null) 'FolderId': folderId,
@@ -12513,6 +12599,7 @@ class DescribeFolderResolvedPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -12521,6 +12608,7 @@ class DescribeFolderResolvedPermissionsResponse {
     final folderId = this.folderId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (folderId != null) 'FolderId': folderId,
@@ -12551,12 +12639,14 @@ class DescribeFolderResponse {
           ? Folder.fromJson(json['Folder'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final folder = this.folder;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (folder != null) 'Folder': folder,
       if (requestId != null) 'RequestId': requestId,
@@ -12585,12 +12675,14 @@ class DescribeGroupResponse {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final group = this.group;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (group != null) 'Group': group,
       if (requestId != null) 'RequestId': requestId,
@@ -12621,12 +12713,14 @@ class DescribeIAMPolicyAssignmentResponse {
               json['IAMPolicyAssignment'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final iAMPolicyAssignment = this.iAMPolicyAssignment;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (iAMPolicyAssignment != null)
         'IAMPolicyAssignment': iAMPolicyAssignment,
@@ -12656,12 +12750,14 @@ class DescribeIngestionResponse {
           ? Ingestion.fromJson(json['Ingestion'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final ingestion = this.ingestion;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (ingestion != null) 'Ingestion': ingestion,
       if (requestId != null) 'RequestId': requestId,
@@ -12695,12 +12791,14 @@ class DescribeNamespaceResponse {
           ? NamespaceInfoV2.fromJson(json['Namespace'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final namespace = this.namespace;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (namespace != null) 'Namespace': namespace,
       if (requestId != null) 'RequestId': requestId,
@@ -12726,6 +12824,7 @@ class DescribeTemplateAliasResponse {
   factory DescribeTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateAlias: json['TemplateAlias'] != null
           ? TemplateAlias.fromJson(
               json['TemplateAlias'] as Map<String, dynamic>)
@@ -12735,6 +12834,7 @@ class DescribeTemplateAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final templateAlias = this.templateAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -12774,6 +12874,7 @@ class DescribeTemplatePermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateArn: json['TemplateArn'] as String?,
       templateId: json['TemplateId'] as String?,
     );
@@ -12782,6 +12883,7 @@ class DescribeTemplatePermissionsResponse {
   Map<String, dynamic> toJson() {
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     final templateArn = this.templateArn;
     final templateId = this.templateId;
     return {
@@ -12811,6 +12913,7 @@ class DescribeTemplateResponse {
   factory DescribeTemplateResponse.fromJson(Map<String, dynamic> json) {
     return DescribeTemplateResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       template: json['Template'] != null
           ? Template.fromJson(json['Template'] as Map<String, dynamic>)
           : null,
@@ -12819,6 +12922,7 @@ class DescribeTemplateResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final template = this.template;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -12845,6 +12949,7 @@ class DescribeThemeAliasResponse {
   factory DescribeThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThemeAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeAlias: json['ThemeAlias'] != null
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
@@ -12853,6 +12958,7 @@ class DescribeThemeAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final themeAlias = this.themeAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -12891,6 +12997,7 @@ class DescribeThemePermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeArn: json['ThemeArn'] as String?,
       themeId: json['ThemeId'] as String?,
     );
@@ -12899,6 +13006,7 @@ class DescribeThemePermissionsResponse {
   Map<String, dynamic> toJson() {
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     final themeArn = this.themeArn;
     final themeId = this.themeId;
     return {
@@ -12928,6 +13036,7 @@ class DescribeThemeResponse {
   factory DescribeThemeResponse.fromJson(Map<String, dynamic> json) {
     return DescribeThemeResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       theme: json['Theme'] != null
           ? Theme.fromJson(json['Theme'] as Map<String, dynamic>)
           : null,
@@ -12936,6 +13045,7 @@ class DescribeThemeResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final theme = this.theme;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -12962,6 +13072,7 @@ class DescribeUserResponse {
   factory DescribeUserResponse.fromJson(Map<String, dynamic> json) {
     return DescribeUserResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       user: json['User'] != null
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
@@ -12970,6 +13081,7 @@ class DescribeUserResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final user = this.user;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -13599,12 +13711,14 @@ class GetDashboardEmbedUrlResponse {
     return GetDashboardEmbedUrlResponse(
       embedUrl: json['EmbedUrl'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final embedUrl = this.embedUrl;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (embedUrl != null) 'EmbedUrl': embedUrl,
       if (requestId != null) 'RequestId': requestId,
@@ -13634,12 +13748,14 @@ class GetSessionEmbedUrlResponse {
     return GetSessionEmbedUrlResponse(
       embedUrl: json['EmbedUrl'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final embedUrl = this.embedUrl;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (embedUrl != null) 'EmbedUrl': embedUrl,
       if (requestId != null) 'RequestId': requestId,
@@ -14604,6 +14720,7 @@ class ListAnalysesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14611,6 +14728,7 @@ class ListAnalysesResponse {
     final analysisSummaryList = this.analysisSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisSummaryList != null)
         'AnalysisSummaryList': analysisSummaryList,
@@ -14649,6 +14767,7 @@ class ListDashboardVersionsResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14656,6 +14775,7 @@ class ListDashboardVersionsResponse {
     final dashboardVersionSummaryList = this.dashboardVersionSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardVersionSummaryList != null)
         'DashboardVersionSummaryList': dashboardVersionSummaryList,
@@ -14693,6 +14813,7 @@ class ListDashboardsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14700,6 +14821,7 @@ class ListDashboardsResponse {
     final dashboardSummaryList = this.dashboardSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardSummaryList != null)
         'DashboardSummaryList': dashboardSummaryList,
@@ -14736,6 +14858,7 @@ class ListDataSetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14743,6 +14866,7 @@ class ListDataSetsResponse {
     final dataSetSummaries = this.dataSetSummaries;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSetSummaries != null) 'DataSetSummaries': dataSetSummaries,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14778,6 +14902,7 @@ class ListDataSourcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14785,6 +14910,7 @@ class ListDataSourcesResponse {
     final dataSources = this.dataSources;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSources != null) 'DataSources': dataSources,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14821,6 +14947,7 @@ class ListFolderMembersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14828,6 +14955,7 @@ class ListFolderMembersResponse {
     final folderMemberList = this.folderMemberList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (folderMemberList != null) 'FolderMemberList': folderMemberList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14864,6 +14992,7 @@ class ListFoldersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14871,6 +15000,7 @@ class ListFoldersResponse {
     final folderSummaryList = this.folderSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (folderSummaryList != null) 'FolderSummaryList': folderSummaryList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14906,6 +15036,7 @@ class ListGroupMembershipsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14913,6 +15044,7 @@ class ListGroupMembershipsResponse {
     final groupMemberList = this.groupMemberList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (groupMemberList != null) 'GroupMemberList': groupMemberList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14948,6 +15080,7 @@ class ListGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14955,6 +15088,7 @@ class ListGroupsResponse {
     final groupList = this.groupList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (groupList != null) 'GroupList': groupList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -14992,6 +15126,7 @@ class ListIAMPolicyAssignmentsForUserResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -14999,6 +15134,7 @@ class ListIAMPolicyAssignmentsForUserResponse {
     final activeAssignments = this.activeAssignments;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (activeAssignments != null) 'ActiveAssignments': activeAssignments,
       if (nextToken != null) 'NextToken': nextToken,
@@ -15035,6 +15171,7 @@ class ListIAMPolicyAssignmentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -15042,6 +15179,7 @@ class ListIAMPolicyAssignmentsResponse {
     final iAMPolicyAssignments = this.iAMPolicyAssignments;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (iAMPolicyAssignments != null)
         'IAMPolicyAssignments': iAMPolicyAssignments,
@@ -15078,6 +15216,7 @@ class ListIngestionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -15085,6 +15224,7 @@ class ListIngestionsResponse {
     final ingestions = this.ingestions;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (ingestions != null) 'Ingestions': ingestions,
       if (nextToken != null) 'NextToken': nextToken,
@@ -15122,6 +15262,7 @@ class ListNamespacesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -15129,6 +15270,7 @@ class ListNamespacesResponse {
     final namespaces = this.namespaces;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (namespaces != null) 'Namespaces': namespaces,
       if (nextToken != null) 'NextToken': nextToken,
@@ -15156,6 +15298,7 @@ class ListTagsForResourceResponse {
   factory ListTagsForResourceResponse.fromJson(Map<String, dynamic> json) {
     return ListTagsForResourceResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       tags: (json['Tags'] as List?)
           ?.whereNotNull()
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
@@ -15165,6 +15308,7 @@ class ListTagsForResourceResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final tags = this.tags;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -15196,6 +15340,7 @@ class ListTemplateAliasesResponse {
     return ListTemplateAliasesResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateAliasList: (json['TemplateAliasList'] as List?)
           ?.whereNotNull()
           .map((e) => TemplateAlias.fromJson(e as Map<String, dynamic>))
@@ -15206,6 +15351,7 @@ class ListTemplateAliasesResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final templateAliasList = this.templateAliasList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15238,6 +15384,7 @@ class ListTemplateVersionsResponse {
     return ListTemplateVersionsResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateVersionSummaryList: (json['TemplateVersionSummaryList'] as List?)
           ?.whereNotNull()
           .map(
@@ -15249,6 +15396,7 @@ class ListTemplateVersionsResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final templateVersionSummaryList = this.templateVersionSummaryList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15282,6 +15430,7 @@ class ListTemplatesResponse {
     return ListTemplatesResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateSummaryList: (json['TemplateSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => TemplateSummary.fromJson(e as Map<String, dynamic>))
@@ -15292,6 +15441,7 @@ class ListTemplatesResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final templateSummaryList = this.templateSummaryList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15325,6 +15475,7 @@ class ListThemeAliasesResponse {
     return ListThemeAliasesResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeAliasList: (json['ThemeAliasList'] as List?)
           ?.whereNotNull()
           .map((e) => ThemeAlias.fromJson(e as Map<String, dynamic>))
@@ -15335,6 +15486,7 @@ class ListThemeAliasesResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final themeAliasList = this.themeAliasList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15367,6 +15519,7 @@ class ListThemeVersionsResponse {
     return ListThemeVersionsResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeVersionSummaryList: (json['ThemeVersionSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => ThemeVersionSummary.fromJson(e as Map<String, dynamic>))
@@ -15377,6 +15530,7 @@ class ListThemeVersionsResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final themeVersionSummaryList = this.themeVersionSummaryList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15410,6 +15564,7 @@ class ListThemesResponse {
     return ListThemesResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeSummaryList: (json['ThemeSummaryList'] as List?)
           ?.whereNotNull()
           .map((e) => ThemeSummary.fromJson(e as Map<String, dynamic>))
@@ -15420,6 +15575,7 @@ class ListThemesResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final themeSummaryList = this.themeSummaryList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -15456,6 +15612,7 @@ class ListUserGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -15463,6 +15620,7 @@ class ListUserGroupsResponse {
     final groupList = this.groupList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (groupList != null) 'GroupList': groupList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -15494,6 +15652,7 @@ class ListUsersResponse {
     return ListUsersResponse(
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       userList: (json['UserList'] as List?)
           ?.whereNotNull()
           .map((e) => User.fromJson(e as Map<String, dynamic>))
@@ -15504,6 +15663,7 @@ class ListUsersResponse {
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     final userList = this.userList;
     return {
       if (nextToken != null) 'NextToken': nextToken,
@@ -16337,6 +16497,7 @@ class RegisterUserResponse {
   factory RegisterUserResponse.fromJson(Map<String, dynamic> json) {
     return RegisterUserResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       user: json['User'] != null
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
@@ -16346,6 +16507,7 @@ class RegisterUserResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final user = this.user;
     final userInvitationUrl = this.userInvitationUrl;
     return {
@@ -16564,6 +16726,7 @@ class RestoreAnalysisResponse {
       analysisId: json['AnalysisId'] as String?,
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -16571,6 +16734,7 @@ class RestoreAnalysisResponse {
     final analysisId = this.analysisId;
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisId != null) 'AnalysisId': analysisId,
       if (arn != null) 'Arn': arn,
@@ -16824,6 +16988,7 @@ class SearchAnalysesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -16831,6 +16996,7 @@ class SearchAnalysesResponse {
     final analysisSummaryList = this.analysisSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisSummaryList != null)
         'AnalysisSummaryList': analysisSummaryList,
@@ -16868,6 +17034,7 @@ class SearchDashboardsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -16875,6 +17042,7 @@ class SearchDashboardsResponse {
     final dashboardSummaryList = this.dashboardSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardSummaryList != null)
         'DashboardSummaryList': dashboardSummaryList,
@@ -16912,6 +17080,7 @@ class SearchFoldersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -16919,6 +17088,7 @@ class SearchFoldersResponse {
     final folderSummaryList = this.folderSummaryList;
     final nextToken = this.nextToken;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (folderSummaryList != null) 'FolderSummaryList': folderSummaryList,
       if (nextToken != null) 'NextToken': nextToken,
@@ -17275,11 +17445,13 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> json) {
     return TagResourceResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -18564,11 +18736,13 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> json) {
     return UntagResourceResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -18615,6 +18789,7 @@ class UpdateAccountCustomizationResponse {
       awsAccountId: json['AwsAccountId'] as String?,
       namespace: json['Namespace'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18624,6 +18799,7 @@ class UpdateAccountCustomizationResponse {
     final awsAccountId = this.awsAccountId;
     final namespace = this.namespace;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (accountCustomization != null)
         'AccountCustomization': accountCustomization,
@@ -18649,11 +18825,13 @@ class UpdateAccountSettingsResponse {
   factory UpdateAccountSettingsResponse.fromJson(Map<String, dynamic> json) {
     return UpdateAccountSettingsResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (requestId != null) 'RequestId': requestId,
     };
@@ -18694,6 +18872,7 @@ class UpdateAnalysisPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18702,6 +18881,7 @@ class UpdateAnalysisPermissionsResponse {
     final analysisId = this.analysisId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (analysisArn != null) 'AnalysisArn': analysisArn,
       if (analysisId != null) 'AnalysisId': analysisId,
@@ -18739,6 +18919,7 @@ class UpdateAnalysisResponse {
       analysisId: json['AnalysisId'] as String?,
       arn: json['Arn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       updateStatus: (json['UpdateStatus'] as String?)?.toResourceStatus(),
     );
   }
@@ -18747,6 +18928,7 @@ class UpdateAnalysisResponse {
     final analysisId = this.analysisId;
     final arn = this.arn;
     final requestId = this.requestId;
+    final status = this.status;
     final updateStatus = this.updateStatus;
     return {
       if (analysisId != null) 'AnalysisId': analysisId,
@@ -18790,6 +18972,7 @@ class UpdateDashboardPermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18798,6 +18981,7 @@ class UpdateDashboardPermissionsResponse {
     final dashboardId = this.dashboardId;
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardArn != null) 'DashboardArn': dashboardArn,
       if (dashboardId != null) 'DashboardId': dashboardId,
@@ -18832,6 +19016,7 @@ class UpdateDashboardPublishedVersionResponse {
       dashboardArn: json['DashboardArn'] as String?,
       dashboardId: json['DashboardId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18839,6 +19024,7 @@ class UpdateDashboardPublishedVersionResponse {
     final dashboardArn = this.dashboardArn;
     final dashboardId = this.dashboardId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dashboardArn != null) 'DashboardArn': dashboardArn,
       if (dashboardId != null) 'DashboardId': dashboardId,
@@ -18928,6 +19114,7 @@ class UpdateDataSetPermissionsResponse {
       dataSetArn: json['DataSetArn'] as String?,
       dataSetId: json['DataSetId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18935,6 +19122,7 @@ class UpdateDataSetPermissionsResponse {
     final dataSetArn = this.dataSetArn;
     final dataSetId = this.dataSetId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSetArn != null) 'DataSetArn': dataSetArn,
       if (dataSetId != null) 'DataSetId': dataSetId,
@@ -18980,6 +19168,7 @@ class UpdateDataSetResponse {
       ingestionArn: json['IngestionArn'] as String?,
       ingestionId: json['IngestionId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -18989,6 +19178,7 @@ class UpdateDataSetResponse {
     final ingestionArn = this.ingestionArn;
     final ingestionId = this.ingestionId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (dataSetId != null) 'DataSetId': dataSetId,
@@ -19025,6 +19215,7 @@ class UpdateDataSourcePermissionsResponse {
       dataSourceArn: json['DataSourceArn'] as String?,
       dataSourceId: json['DataSourceId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -19032,6 +19223,7 @@ class UpdateDataSourcePermissionsResponse {
     final dataSourceArn = this.dataSourceArn;
     final dataSourceId = this.dataSourceId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (dataSourceArn != null) 'DataSourceArn': dataSourceArn,
       if (dataSourceId != null) 'DataSourceId': dataSourceId,
@@ -19069,6 +19261,7 @@ class UpdateDataSourceResponse {
       arn: json['Arn'] as String?,
       dataSourceId: json['DataSourceId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       updateStatus: (json['UpdateStatus'] as String?)?.toResourceStatus(),
     );
   }
@@ -19077,6 +19270,7 @@ class UpdateDataSourceResponse {
     final arn = this.arn;
     final dataSourceId = this.dataSourceId;
     final requestId = this.requestId;
+    final status = this.status;
     final updateStatus = this.updateStatus;
     return {
       if (arn != null) 'Arn': arn,
@@ -19163,6 +19357,7 @@ class UpdateFolderResponse {
       arn: json['Arn'] as String?,
       folderId: json['FolderId'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -19170,6 +19365,7 @@ class UpdateFolderResponse {
     final arn = this.arn;
     final folderId = this.folderId;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (arn != null) 'Arn': arn,
       if (folderId != null) 'FolderId': folderId,
@@ -19199,12 +19395,14 @@ class UpdateGroupResponse {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final group = this.group;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (group != null) 'Group': group,
       if (requestId != null) 'RequestId': requestId,
@@ -19271,6 +19469,7 @@ class UpdateIAMPolicyAssignmentResponse {
               k, (e as List).whereNotNull().map((e) => e as String).toList())),
       policyArn: json['PolicyArn'] as String?,
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
     );
   }
 
@@ -19281,6 +19480,7 @@ class UpdateIAMPolicyAssignmentResponse {
     final identities = this.identities;
     final policyArn = this.policyArn;
     final requestId = this.requestId;
+    final status = this.status;
     return {
       if (assignmentId != null) 'AssignmentId': assignmentId,
       if (assignmentName != null) 'AssignmentName': assignmentName,
@@ -19311,6 +19511,7 @@ class UpdateTemplateAliasResponse {
   factory UpdateTemplateAliasResponse.fromJson(Map<String, dynamic> json) {
     return UpdateTemplateAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateAlias: json['TemplateAlias'] != null
           ? TemplateAlias.fromJson(
               json['TemplateAlias'] as Map<String, dynamic>)
@@ -19320,6 +19521,7 @@ class UpdateTemplateAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final templateAlias = this.templateAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -19359,6 +19561,7 @@ class UpdateTemplatePermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateArn: json['TemplateArn'] as String?,
       templateId: json['TemplateId'] as String?,
     );
@@ -19367,6 +19570,7 @@ class UpdateTemplatePermissionsResponse {
   Map<String, dynamic> toJson() {
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     final templateArn = this.templateArn;
     final templateId = this.templateId;
     return {
@@ -19411,6 +19615,7 @@ class UpdateTemplateResponse {
       arn: json['Arn'] as String?,
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       templateId: json['TemplateId'] as String?,
       versionArn: json['VersionArn'] as String?,
     );
@@ -19420,6 +19625,7 @@ class UpdateTemplateResponse {
     final arn = this.arn;
     final creationStatus = this.creationStatus;
     final requestId = this.requestId;
+    final status = this.status;
     final templateId = this.templateId;
     final versionArn = this.versionArn;
     return {
@@ -19450,6 +19656,7 @@ class UpdateThemeAliasResponse {
   factory UpdateThemeAliasResponse.fromJson(Map<String, dynamic> json) {
     return UpdateThemeAliasResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeAlias: json['ThemeAlias'] != null
           ? ThemeAlias.fromJson(json['ThemeAlias'] as Map<String, dynamic>)
           : null,
@@ -19458,6 +19665,7 @@ class UpdateThemeAliasResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final themeAlias = this.themeAlias;
     return {
       if (requestId != null) 'RequestId': requestId,
@@ -19496,6 +19704,7 @@ class UpdateThemePermissionsResponse {
           .map((e) => ResourcePermission.fromJson(e as Map<String, dynamic>))
           .toList(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeArn: json['ThemeArn'] as String?,
       themeId: json['ThemeId'] as String?,
     );
@@ -19504,6 +19713,7 @@ class UpdateThemePermissionsResponse {
   Map<String, dynamic> toJson() {
     final permissions = this.permissions;
     final requestId = this.requestId;
+    final status = this.status;
     final themeArn = this.themeArn;
     final themeId = this.themeId;
     return {
@@ -19547,6 +19757,7 @@ class UpdateThemeResponse {
       arn: json['Arn'] as String?,
       creationStatus: (json['CreationStatus'] as String?)?.toResourceStatus(),
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       themeId: json['ThemeId'] as String?,
       versionArn: json['VersionArn'] as String?,
     );
@@ -19556,6 +19767,7 @@ class UpdateThemeResponse {
     final arn = this.arn;
     final creationStatus = this.creationStatus;
     final requestId = this.requestId;
+    final status = this.status;
     final themeId = this.themeId;
     final versionArn = this.versionArn;
     return {
@@ -19586,6 +19798,7 @@ class UpdateUserResponse {
   factory UpdateUserResponse.fromJson(Map<String, dynamic> json) {
     return UpdateUserResponse(
       requestId: json['RequestId'] as String?,
+      status: json['Status'] as int?,
       user: json['User'] != null
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
@@ -19594,6 +19807,7 @@ class UpdateUserResponse {
 
   Map<String, dynamic> toJson() {
     final requestId = this.requestId;
+    final status = this.status;
     final user = this.user;
     return {
       if (requestId != null) 'RequestId': requestId,

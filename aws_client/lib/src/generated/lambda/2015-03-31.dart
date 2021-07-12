@@ -6536,12 +6536,20 @@ class InvocationResponse {
   });
   factory InvocationResponse.fromJson(Map<String, dynamic> json) {
     return InvocationResponse(
+      executedVersion: json['X-Amz-Executed-Version'] as String?,
+      functionError: json['X-Amz-Function-Error'] as String?,
+      logResult: json['X-Amz-Log-Result'] as String?,
       payload: _s.decodeNullableUint8List(json['Payload'] as String?),
+      statusCode: json['StatusCode'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final executedVersion = this.executedVersion;
+    final functionError = this.functionError;
+    final logResult = this.logResult;
     final payload = this.payload;
+    final statusCode = this.statusCode;
     return {
       if (payload != null) 'Payload': base64Encode(payload),
     };
@@ -6591,11 +6599,14 @@ class InvokeAsyncResponse {
   InvokeAsyncResponse({
     this.status,
   });
-  factory InvokeAsyncResponse.fromJson(Map<String, dynamic> _) {
-    return InvokeAsyncResponse();
+  factory InvokeAsyncResponse.fromJson(Map<String, dynamic> json) {
+    return InvokeAsyncResponse(
+      status: json['Status'] as int?,
+    );
   }
 
   Map<String, dynamic> toJson() {
+    final status = this.status;
     return {};
   }
 }

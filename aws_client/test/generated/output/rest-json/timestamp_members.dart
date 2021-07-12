@@ -89,16 +89,22 @@ class OutputShape {
           ? TimeContainer.fromJson(json['StructMember'] as Map<String, dynamic>)
           : null,
       timeArg: timeStampFromJson(json['TimeArg']),
+      timeArgInHeader: timeStampFromJson(json['x-amz-timearg']),
       timeCustom: timeStampFromJson(json['TimeCustom']),
+      timeCustomInHeader: timeStampFromJson(json['x-amz-timecustom']),
       timeFormat: timeStampFromJson(json['TimeFormat']),
+      timeFormatInHeader: timeStampFromJson(json['x-amz-timeformat']),
     );
   }
 
   Map<String, dynamic> toJson() {
     final structMember = this.structMember;
     final timeArg = this.timeArg;
+    final timeArgInHeader = this.timeArgInHeader;
     final timeCustom = this.timeCustom;
+    final timeCustomInHeader = this.timeCustomInHeader;
     final timeFormat = this.timeFormat;
+    final timeFormatInHeader = this.timeFormatInHeader;
     return {
       if (structMember != null) 'StructMember': structMember,
       if (timeArg != null) 'TimeArg': unixTimestampToJson(timeArg),
