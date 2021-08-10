@@ -24,6 +24,6 @@ class AwsClientCredentials {
   });
 
   static AwsClientCredentials? resolve() => CredentialsUtil.resolve();
-  static AwsClientCredentials? fromFile({String? profile}) =>
+  static AwsClientCredentials? fromProfileFile({String? profile}) =>
       CredentialsUtil.fromProfileFile(profile: profile);
 }
