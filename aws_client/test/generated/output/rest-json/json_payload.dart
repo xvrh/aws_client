@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
     show

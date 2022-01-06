@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -45,12 +46,12 @@ class ApiGateway {
   /// href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
   /// CLI</a></div>
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
-  /// May throw [LimitExceededException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [customerId] :
   /// An AWS Marketplace customer identifier , when integrating with the AWS
@@ -116,9 +117,10 @@ class ApiGateway {
   /// CLI</a></div>
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
+  /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [name] :
@@ -246,10 +248,11 @@ class ApiGateway {
 
   /// Creates a new <a>BasePathMapping</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
@@ -295,11 +298,11 @@ class ApiGateway {
   /// Creates a <a>Deployment</a> resource, which makes a specified
   /// <a>RestApi</a> callable over the internet.
   ///
-  /// May throw [UnauthorizedException].
   /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
   /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   /// May throw [ServiceUnavailableException].
   ///
@@ -374,9 +377,9 @@ class ApiGateway {
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [location] :
@@ -415,9 +418,9 @@ class ApiGateway {
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationVersion] :
@@ -456,9 +459,10 @@ class ApiGateway {
 
   /// Creates a new domain name.
   ///
-  /// May throw [UnauthorizedException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
@@ -495,6 +499,11 @@ class ApiGateway {
   /// The endpoint configuration of this <a>DomainName</a> showing the endpoint
   /// types of the domain name.
   ///
+  /// Parameter [ownershipVerificationCertificateArn] :
+  /// The ARN of the public certificate issued by ACM to validate ownership of
+  /// your custom domain. Only required when configuring mutual TLS and using an
+  /// ACM imported or private CA certificate ARN as the regionalCertificateArn.
+  ///
   /// Parameter [regionalCertificateArn] :
   /// The reference to an AWS-managed certificate that will be used by regional
   /// endpoint for this domain name. AWS Certificate Manager is the only
@@ -522,6 +531,7 @@ class ApiGateway {
     String? certificatePrivateKey,
     EndpointConfiguration? endpointConfiguration,
     MutualTlsAuthenticationInput? mutualTlsAuthentication,
+    String? ownershipVerificationCertificateArn,
     String? regionalCertificateArn,
     String? regionalCertificateName,
     SecurityPolicy? securityPolicy,
@@ -540,6 +550,9 @@ class ApiGateway {
         'endpointConfiguration': endpointConfiguration,
       if (mutualTlsAuthentication != null)
         'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (ownershipVerificationCertificateArn != null)
+        'ownershipVerificationCertificateArn':
+            ownershipVerificationCertificateArn,
       if (regionalCertificateArn != null)
         'regionalCertificateArn': regionalCertificateArn,
       if (regionalCertificateName != null)
@@ -559,10 +572,10 @@ class ApiGateway {
   /// Adds a new <a>Model</a> resource to an existing <a>RestApi</a> resource.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [contentType] :
@@ -610,9 +623,10 @@ class ApiGateway {
   /// Creates a <a>ReqeustValidator</a> of a given <a>RestApi</a>.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
+  /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -693,9 +707,10 @@ class ApiGateway {
 
   /// Creates a new <a>RestApi</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [LimitExceededException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [name] :
@@ -884,11 +899,11 @@ class ApiGateway {
   /// associated API stages, specified in the payload.
   ///
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [LimitExceededException].
-  /// May throw [ConflictException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [name] :
   /// [Required] The name of the usage plan.
@@ -939,8 +954,9 @@ class ApiGateway {
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
-  /// May throw [UnauthorizedException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [keyId] :
@@ -980,8 +996,10 @@ class ApiGateway {
   /// become operational. The caller must have permissions to create and update
   /// VPC Endpoint services.
   ///
-  /// May throw [UnauthorizedException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [name] :
@@ -1024,8 +1042,10 @@ class ApiGateway {
 
   /// Deletes the <a>ApiKey</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [apiKey] :
@@ -1047,11 +1067,11 @@ class ApiGateway {
   /// href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
   /// CLI</a></div>
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [authorizerId] :
   /// [Required] The identifier of the <a>Authorizer</a> resource.
@@ -1075,10 +1095,10 @@ class ApiGateway {
 
   /// Deletes the <a>BasePathMapping</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [basePath] :
@@ -1108,10 +1128,11 @@ class ApiGateway {
 
   /// Deletes the <a>ClientCertificate</a> resource.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [clientCertificateId] :
   /// [Required] The identifier of the <a>ClientCertificate</a> resource to be
@@ -1132,9 +1153,11 @@ class ApiGateway {
   /// Deletes a <a>Deployment</a> resource. Deleting a deployment will only
   /// succeed if there are no <a>Stage</a> resources associated with it.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [deploymentId] :
@@ -1158,11 +1181,11 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationPartId] :
   /// [Required] The identifier of the to-be-deleted documentation part.
@@ -1185,10 +1208,10 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationVersion] :
@@ -1214,10 +1237,11 @@ class ApiGateway {
 
   /// Deletes the <a>DomainName</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
   /// [Required] The name of the <a>DomainName</a> resource to be deleted.
@@ -1237,38 +1261,15 @@ class ApiGateway {
   /// response type on the given <a>RestApi</a> and resets it with the default
   /// settings.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [responseType] :
   /// [Required]
-  /// The response type of the associated <a>GatewayResponse</a>. Valid values
-  /// are
-  /// <ul>
-  /// <li>ACCESS_DENIED</li>
-  /// <li>API_CONFIGURATION_ERROR</li>
-  /// <li>AUTHORIZER_FAILURE</li>
-  /// <li> AUTHORIZER_CONFIGURATION_ERROR</li>
-  /// <li>BAD_REQUEST_PARAMETERS</li>
-  /// <li>BAD_REQUEST_BODY</li>
-  /// <li>DEFAULT_4XX</li>
-  /// <li>DEFAULT_5XX</li>
-  /// <li>EXPIRED_TOKEN</li>
-  /// <li>INVALID_SIGNATURE</li>
-  /// <li>INTEGRATION_FAILURE</li>
-  /// <li>INTEGRATION_TIMEOUT</li>
-  /// <li>INVALID_API_KEY</li>
-  /// <li>MISSING_AUTHENTICATION_TOKEN</li>
-  /// <li> QUOTA_EXCEEDED</li>
-  /// <li>REQUEST_TOO_LARGE</li>
-  /// <li>RESOURCE_NOT_FOUND</li>
-  /// <li>THROTTLED</li>
-  /// <li>UNAUTHORIZED</li>
-  /// <li>UNSUPPORTED_MEDIA_TYPE</li>
-  /// </ul>
+  /// The response type of the associated <a>GatewayResponse</a>.
   ///
   ///
   /// Parameter [restApiId] :
@@ -1290,10 +1291,11 @@ class ApiGateway {
 
   /// Represents a delete integration.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
+  /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
   /// [Required] Specifies a delete integration request's HTTP method.
@@ -1322,11 +1324,11 @@ class ApiGateway {
 
   /// Represents a delete integration response.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
   /// [Required] Specifies a delete integration response request's HTTP method.
@@ -1433,11 +1435,11 @@ class ApiGateway {
 
   /// Deletes a model.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [modelName] :
   /// [Required] The name of the model to delete.
@@ -1461,11 +1463,11 @@ class ApiGateway {
 
   /// Deletes a <a>RequestValidator</a> of a given <a>RestApi</a>.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [requestValidatorId] :
   /// [Required] The identifier of the <a>RequestValidator</a> to be deleted.
@@ -1517,10 +1519,11 @@ class ApiGateway {
 
   /// Deletes the specified API.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
   /// [Required] The string identifier of the associated <a>RestApi</a>.
@@ -1538,10 +1541,12 @@ class ApiGateway {
 
   /// Deletes a <a>Stage</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
   /// [Required] The string identifier of the associated <a>RestApi</a>.
@@ -1565,10 +1570,11 @@ class ApiGateway {
 
   /// Deletes a usage plan of a given plan Id.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [usagePlanId] :
   /// [Required] The Id of the to-be-deleted usage plan.
@@ -1589,8 +1595,8 @@ class ApiGateway {
   ///
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [keyId] :
@@ -1617,10 +1623,11 @@ class ApiGateway {
 
   /// Deletes an existing <a>VpcLink</a> of a specified identifier.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [vpcLinkId] :
   /// [Required] The identifier of the <a>VpcLink</a>. It is used in an
@@ -1639,9 +1646,11 @@ class ApiGateway {
 
   /// Flushes all authorizer cache entries on a stage.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -1666,9 +1675,11 @@ class ApiGateway {
 
   /// Flushes a stage's cache.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -1693,9 +1704,11 @@ class ApiGateway {
 
   /// Generates a <a>ClientCertificate</a> resource.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [LimitExceededException].
   ///
   /// Parameter [description] :
   /// The description of the <a>ClientCertificate</a>.
@@ -1723,8 +1736,9 @@ class ApiGateway {
 
   /// Gets information about the current <a>Account</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   Future<Account> getAccount() async {
     final response = await _protocol.send(
@@ -1738,8 +1752,9 @@ class ApiGateway {
 
   /// Gets information about the current <a>ApiKey</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [apiKey] :
@@ -1769,6 +1784,7 @@ class ApiGateway {
   /// Gets information about the current <a>ApiKeys</a> resource.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -1818,8 +1834,9 @@ class ApiGateway {
   /// href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
   /// CLI</a></div>
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [authorizerId] :
@@ -1849,8 +1866,8 @@ class ApiGateway {
   /// CLI</a></div>
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -1884,8 +1901,9 @@ class ApiGateway {
 
   /// Describe a <a>BasePathMapping</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [basePath] :
@@ -1915,8 +1933,9 @@ class ApiGateway {
 
   /// Represents a collection of <a>BasePathMapping</a> resources.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
@@ -1951,8 +1970,9 @@ class ApiGateway {
 
   /// Gets information about the current <a>ClientCertificate</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [clientCertificateId] :
@@ -1975,6 +1995,7 @@ class ApiGateway {
   /// Gets a collection of <a>ClientCertificate</a> resources.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -2004,8 +2025,9 @@ class ApiGateway {
 
   /// Gets information about a <a>Deployment</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   /// May throw [ServiceUnavailableException].
   ///
@@ -2087,8 +2109,9 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationPartId] :
@@ -2114,8 +2137,8 @@ class ApiGateway {
 
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -2237,9 +2260,9 @@ class ApiGateway {
   /// Represents a domain name that is contained in a simpler, more intuitive
   /// URL that can be called.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
-  /// May throw [ServiceUnavailableException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
@@ -2260,6 +2283,7 @@ class ApiGateway {
   /// Represents a collection of <a>DomainName</a> resources.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -2289,10 +2313,11 @@ class ApiGateway {
 
   /// Exports a deployed version of a <a>RestApi</a> in a specified format.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [exportType] :
@@ -2362,36 +2387,14 @@ class ApiGateway {
   /// Gets a <a>GatewayResponse</a> of a specified response type on the given
   /// <a>RestApi</a>.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [responseType] :
   /// [Required]
-  /// The response type of the associated <a>GatewayResponse</a>. Valid values
-  /// are
-  /// <ul>
-  /// <li>ACCESS_DENIED</li>
-  /// <li>API_CONFIGURATION_ERROR</li>
-  /// <li>AUTHORIZER_FAILURE</li>
-  /// <li> AUTHORIZER_CONFIGURATION_ERROR</li>
-  /// <li>BAD_REQUEST_PARAMETERS</li>
-  /// <li>BAD_REQUEST_BODY</li>
-  /// <li>DEFAULT_4XX</li>
-  /// <li>DEFAULT_5XX</li>
-  /// <li>EXPIRED_TOKEN</li>
-  /// <li>INVALID_SIGNATURE</li>
-  /// <li>INTEGRATION_FAILURE</li>
-  /// <li>INTEGRATION_TIMEOUT</li>
-  /// <li>INVALID_API_KEY</li>
-  /// <li>MISSING_AUTHENTICATION_TOKEN</li>
-  /// <li> QUOTA_EXCEEDED</li>
-  /// <li>REQUEST_TOO_LARGE</li>
-  /// <li>RESOURCE_NOT_FOUND</li>
-  /// <li>THROTTLED</li>
-  /// <li>UNAUTHORIZED</li>
-  /// <li>UNSUPPORTED_MEDIA_TYPE</li>
-  /// </ul>
+  /// The response type of the associated <a>GatewayResponse</a>.
   ///
   ///
   /// Parameter [restApiId] :
@@ -2418,8 +2421,8 @@ class ApiGateway {
   /// <a>GatewayResponses</a> collection for the supported response types.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -2457,8 +2460,9 @@ class ApiGateway {
 
   /// Get the integration settings.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
@@ -2489,8 +2493,9 @@ class ApiGateway {
 
   /// Represents a get integration response.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
@@ -2597,8 +2602,9 @@ class ApiGateway {
 
   /// Describes an existing model defined for a <a>RestApi</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [modelName] :
@@ -2700,8 +2706,9 @@ class ApiGateway {
 
   /// Gets a <a>RequestValidator</a> of a given <a>RestApi</a>.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [requestValidatorId] :
@@ -2728,8 +2735,8 @@ class ApiGateway {
   /// Gets the <a>RequestValidators</a> collection of a given <a>RestApi</a>.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -2853,8 +2860,9 @@ class ApiGateway {
 
   /// Lists the <a>RestApi</a> resource in the collection.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -2875,6 +2883,7 @@ class ApiGateway {
   /// Lists the <a>RestApis</a> resources for your collection.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -2904,10 +2913,11 @@ class ApiGateway {
 
   /// Generates a client SDK for a <a>RestApi</a> and <a>Stage</a>.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -2963,8 +2973,9 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [id] :
@@ -2983,6 +2994,8 @@ class ApiGateway {
   }
 
   ///
+  /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -3012,8 +3025,11 @@ class ApiGateway {
 
   /// Gets information about a <a>Stage</a> resource.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -3039,8 +3055,11 @@ class ApiGateway {
 
   /// Gets information about one or more <a>Stage</a> resources.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -3069,10 +3088,9 @@ class ApiGateway {
   /// Gets the <a>Tags</a> collection for a given resource.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [NotFoundException].
-  /// May throw [LimitExceededException].
   ///
   /// Parameter [resourceArn] :
   /// [Required] The ARN of a resource that can be tagged.
@@ -3160,8 +3178,8 @@ class ApiGateway {
   /// Gets a usage plan of a given plan identifier.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [usagePlanId] :
@@ -3183,8 +3201,8 @@ class ApiGateway {
   /// Gets a usage plan key of a given key identifier.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [keyId] :
@@ -3215,8 +3233,8 @@ class ApiGateway {
   /// specified usage plan.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [usagePlanId] :
@@ -3259,10 +3277,9 @@ class ApiGateway {
   /// Gets all the usage plans of the caller's account.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [ConflictException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [keyId] :
   /// The identifier of the API key associated with the usage plans.
@@ -3295,8 +3312,9 @@ class ApiGateway {
 
   /// Gets a specified VPC link under the caller's account in a region.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [vpcLinkId] :
@@ -3319,6 +3337,7 @@ class ApiGateway {
   /// selected region.
   ///
   /// May throw [BadRequestException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
@@ -3348,12 +3367,12 @@ class ApiGateway {
 
   /// Import API keys from an external source, such as a CSV-formatted file.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [TooManyRequestsException].
-  /// May throw [LimitExceededException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [body] :
   /// The payload of the POST request to import API keys. For the payload
@@ -3391,10 +3410,11 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [body] :
@@ -3440,11 +3460,12 @@ class ApiGateway {
   /// A feature of the API Gateway control service for creating a new API from
   /// an external API definition file.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [LimitExceededException].
   /// May throw [BadRequestException].
-  /// May throw [TooManyRequestsException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [body] :
   /// [Required] The POST request body containing external API definitions.
@@ -3508,37 +3529,15 @@ class ApiGateway {
   /// response type and status code on the given <a>RestApi</a>.
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
+  /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [responseType] :
   /// [Required]
-  /// The response type of the associated <a>GatewayResponse</a>. Valid values
-  /// are
-  /// <ul>
-  /// <li>ACCESS_DENIED</li>
-  /// <li>API_CONFIGURATION_ERROR</li>
-  /// <li>AUTHORIZER_FAILURE</li>
-  /// <li> AUTHORIZER_CONFIGURATION_ERROR</li>
-  /// <li>BAD_REQUEST_PARAMETERS</li>
-  /// <li>BAD_REQUEST_BODY</li>
-  /// <li>DEFAULT_4XX</li>
-  /// <li>DEFAULT_5XX</li>
-  /// <li>EXPIRED_TOKEN</li>
-  /// <li>INVALID_SIGNATURE</li>
-  /// <li>INTEGRATION_FAILURE</li>
-  /// <li>INTEGRATION_TIMEOUT</li>
-  /// <li>INVALID_API_KEY</li>
-  /// <li>MISSING_AUTHENTICATION_TOKEN</li>
-  /// <li> QUOTA_EXCEEDED</li>
-  /// <li>REQUEST_TOO_LARGE</li>
-  /// <li>RESOURCE_NOT_FOUND</li>
-  /// <li>THROTTLED</li>
-  /// <li>UNAUTHORIZED</li>
-  /// <li>UNSUPPORTED_MEDIA_TYPE</li>
-  /// </ul>
+  /// The response type of the associated <a>GatewayResponse</a>.
   ///
   ///
   /// Parameter [restApiId] :
@@ -3584,10 +3583,11 @@ class ApiGateway {
 
   /// Sets up a method's integration.
   ///
-  /// May throw [UnauthorizedException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
@@ -3788,12 +3788,12 @@ class ApiGateway {
 
   /// Represents a put integration.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [LimitExceededException].
   /// May throw [BadRequestException].
-  /// May throw [TooManyRequestsException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
   /// [Required] Specifies a put integration response request's HTTP method.
@@ -4058,12 +4058,12 @@ class ApiGateway {
   /// merging the supplied definition into the existing API or overwriting the
   /// existing API.
   ///
-  /// May throw [UnauthorizedException].
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
   /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
-  /// May throw [BadRequestException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [ConflictException].
   ///
   /// Parameter [body] :
   /// [Required] The PUT request body containing external API definitions.
@@ -4118,11 +4118,11 @@ class ApiGateway {
   /// Adds or updates a tag on a given resource.
   ///
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [NotFoundException].
-  /// May throw [LimitExceededException].
-  /// May throw [ConflictException].
   ///
   /// Parameter [resourceArn] :
   /// [Required] The ARN of a resource that can be tagged.
@@ -4299,10 +4299,11 @@ class ApiGateway {
   /// Removes a tag from a given resource.
   ///
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   ///
   /// Parameter [resourceArn] :
   /// [Required] The ARN of a resource that can be tagged.
@@ -4329,9 +4330,11 @@ class ApiGateway {
 
   /// Changes information about the current <a>Account</a> resource.
   ///
-  /// May throw [UnauthorizedException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
   /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [patchOperations] :
@@ -4354,11 +4357,12 @@ class ApiGateway {
 
   /// Changes information about an <a>ApiKey</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
-  /// May throw [TooManyRequestsException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [apiKey] :
   /// [Required] The identifier of the <a>ApiKey</a> resource to be updated.
@@ -4388,9 +4392,11 @@ class ApiGateway {
   /// href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
   /// CLI</a></div>
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [authorizerId] :
@@ -4424,10 +4430,11 @@ class ApiGateway {
 
   /// Changes information about the <a>BasePathMapping</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [basePath] :
@@ -4465,10 +4472,12 @@ class ApiGateway {
 
   /// Changes information about an <a>ClientCertificate</a> resource.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [clientCertificateId] :
   /// [Required] The identifier of the <a>ClientCertificate</a> resource to be
@@ -4497,9 +4506,11 @@ class ApiGateway {
 
   /// Changes information about a <a>Deployment</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   /// May throw [ServiceUnavailableException].
   ///
@@ -4535,10 +4546,10 @@ class ApiGateway {
 
   ///
   /// May throw [BadRequestException].
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [ConflictException].
   /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationPartId] :
@@ -4571,10 +4582,11 @@ class ApiGateway {
   }
 
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [documentationVersion] :
@@ -4609,10 +4621,11 @@ class ApiGateway {
 
   /// Changes information about the <a>DomainName</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [domainName] :
@@ -4641,37 +4654,16 @@ class ApiGateway {
   /// Updates a <a>GatewayResponse</a> of a specified response type on the given
   /// <a>RestApi</a>.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [responseType] :
   /// [Required]
-  /// The response type of the associated <a>GatewayResponse</a>. Valid values
-  /// are
-  /// <ul>
-  /// <li>ACCESS_DENIED</li>
-  /// <li>API_CONFIGURATION_ERROR</li>
-  /// <li>AUTHORIZER_FAILURE</li>
-  /// <li> AUTHORIZER_CONFIGURATION_ERROR</li>
-  /// <li>BAD_REQUEST_PARAMETERS</li>
-  /// <li>BAD_REQUEST_BODY</li>
-  /// <li>DEFAULT_4XX</li>
-  /// <li>DEFAULT_5XX</li>
-  /// <li>EXPIRED_TOKEN</li>
-  /// <li>INVALID_SIGNATURE</li>
-  /// <li>INTEGRATION_FAILURE</li>
-  /// <li>INTEGRATION_TIMEOUT</li>
-  /// <li>INVALID_API_KEY</li>
-  /// <li>MISSING_AUTHENTICATION_TOKEN</li>
-  /// <li> QUOTA_EXCEEDED</li>
-  /// <li>REQUEST_TOO_LARGE</li>
-  /// <li>RESOURCE_NOT_FOUND</li>
-  /// <li>THROTTLED</li>
-  /// <li>UNAUTHORIZED</li>
-  /// <li>UNSUPPORTED_MEDIA_TYPE</li>
-  /// </ul>
+  /// The response type of the associated <a>GatewayResponse</a>.
   ///
   ///
   /// Parameter [restApiId] :
@@ -4702,11 +4694,12 @@ class ApiGateway {
 
   /// Represents an update integration.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
-  /// May throw [TooManyRequestsException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
+  /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
   /// [Required] Represents an update integration request's HTTP method.
@@ -4744,10 +4737,11 @@ class ApiGateway {
 
   /// Represents an update integration response.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [httpMethod] :
@@ -4883,10 +4877,11 @@ class ApiGateway {
 
   /// Changes information about a model.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [modelName] :
@@ -4920,9 +4915,11 @@ class ApiGateway {
 
   /// Updates a <a>RequestValidator</a> of a given <a>RestApi</a>.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [requestValidatorId] :
@@ -4993,10 +4990,11 @@ class ApiGateway {
 
   /// Changes information about the specified API.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -5024,10 +5022,11 @@ class ApiGateway {
 
   /// Changes information about a <a>Stage</a> resource.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [restApiId] :
@@ -5063,10 +5062,12 @@ class ApiGateway {
   /// Grants a temporary extension to the remaining quota of a usage plan
   /// associated with a specified API key.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
   ///
   /// Parameter [keyId] :
   /// [Required] The identifier of the API key associated with the usage plan in
@@ -5100,11 +5101,12 @@ class ApiGateway {
 
   /// Updates a usage plan of a given plan Id.
   ///
+  /// May throw [BadRequestException].
+  /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
   /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
-  /// May throw [BadRequestException].
-  /// May throw [NotFoundException].
-  /// May throw [ConflictException].
   ///
   /// Parameter [usagePlanId] :
   /// [Required] The Id of the to-be-updated usage plan.
@@ -5131,10 +5133,11 @@ class ApiGateway {
 
   /// Updates an existing <a>VpcLink</a> of a specified identifier.
   ///
-  /// May throw [UnauthorizedException].
-  /// May throw [NotFoundException].
   /// May throw [BadRequestException].
   /// May throw [ConflictException].
+  /// May throw [LimitExceededException].
+  /// May throw [NotFoundException].
+  /// May throw [UnauthorizedException].
   /// May throw [TooManyRequestsException].
   ///
   /// Parameter [vpcLinkId] :
@@ -6776,7 +6779,9 @@ class DomainName {
   final String? domainName;
 
   /// The status of the <a>DomainName</a> migration. The valid values are
-  /// <code>AVAILABLE</code> and <code>UPDATING</code>. If the status is
+  /// <code>AVAILABLE</code>, <code>UPDATING</code>,
+  /// <code>PENDING_CERTIFICATE_REIMPORT</code>, and
+  /// <code>PENDING_OWNERSHIP_VERIFICATION</code>. If the status is
   /// <code>UPDATING</code>, the domain cannot be modified further until the
   /// existing operation is complete. If it is <code>AVAILABLE</code>, the domain
   /// can be updated.
@@ -6795,6 +6800,11 @@ class DomainName {
   /// and the server. Clients must present a trusted certificate to access your
   /// API.
   final MutualTlsAuthentication? mutualTlsAuthentication;
+
+  /// The ARN of the public certificate issued by ACM to validate ownership of
+  /// your custom domain. Only required when configuring mutual TLS and using an
+  /// ACM imported or private CA certificate ARN as the regionalCertificateArn.
+  final String? ownershipVerificationCertificateArn;
 
   /// The reference to an AWS-managed certificate that will be used for validating
   /// the regional domain name. AWS Certificate Manager is the only supported
@@ -6839,6 +6849,7 @@ class DomainName {
     this.domainNameStatusMessage,
     this.endpointConfiguration,
     this.mutualTlsAuthentication,
+    this.ownershipVerificationCertificateArn,
     this.regionalCertificateArn,
     this.regionalCertificateName,
     this.regionalDomainName,
@@ -6866,6 +6877,8 @@ class DomainName {
           ? MutualTlsAuthentication.fromJson(
               json['mutualTlsAuthentication'] as Map<String, dynamic>)
           : null,
+      ownershipVerificationCertificateArn:
+          json['ownershipVerificationCertificateArn'] as String?,
       regionalCertificateArn: json['regionalCertificateArn'] as String?,
       regionalCertificateName: json['regionalCertificateName'] as String?,
       regionalDomainName: json['regionalDomainName'] as String?,
@@ -6887,6 +6900,8 @@ class DomainName {
     final domainNameStatusMessage = this.domainNameStatusMessage;
     final endpointConfiguration = this.endpointConfiguration;
     final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final ownershipVerificationCertificateArn =
+        this.ownershipVerificationCertificateArn;
     final regionalCertificateArn = this.regionalCertificateArn;
     final regionalCertificateName = this.regionalCertificateName;
     final regionalDomainName = this.regionalDomainName;
@@ -6911,6 +6926,9 @@ class DomainName {
         'endpointConfiguration': endpointConfiguration,
       if (mutualTlsAuthentication != null)
         'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (ownershipVerificationCertificateArn != null)
+        'ownershipVerificationCertificateArn':
+            ownershipVerificationCertificateArn,
       if (regionalCertificateArn != null)
         'regionalCertificateArn': regionalCertificateArn,
       if (regionalCertificateName != null)
@@ -6928,6 +6946,8 @@ enum DomainNameStatus {
   available,
   updating,
   pending,
+  pendingCertificateReimport,
+  pendingOwnershipVerification,
 }
 
 extension on DomainNameStatus {
@@ -6939,6 +6959,10 @@ extension on DomainNameStatus {
         return 'UPDATING';
       case DomainNameStatus.pending:
         return 'PENDING';
+      case DomainNameStatus.pendingCertificateReimport:
+        return 'PENDING_CERTIFICATE_REIMPORT';
+      case DomainNameStatus.pendingOwnershipVerification:
+        return 'PENDING_OWNERSHIP_VERIFICATION';
     }
   }
 }
@@ -6952,6 +6976,10 @@ extension on String {
         return DomainNameStatus.updating;
       case 'PENDING':
         return DomainNameStatus.pending;
+      case 'PENDING_CERTIFICATE_REIMPORT':
+        return DomainNameStatus.pendingCertificateReimport;
+      case 'PENDING_OWNERSHIP_VERIFICATION':
+        return DomainNameStatus.pendingOwnershipVerification;
     }
     throw Exception('$this is not known in enum DomainNameStatus');
   }
@@ -7170,29 +7198,7 @@ class GatewayResponse {
   /// of key-value pairs.
   final Map<String, String>? responseTemplates;
 
-  /// The response type of the associated <a>GatewayResponse</a>. Valid values are
-  /// <ul>
-  /// <li>ACCESS_DENIED</li>
-  /// <li>API_CONFIGURATION_ERROR</li>
-  /// <li>AUTHORIZER_FAILURE</li>
-  /// <li> AUTHORIZER_CONFIGURATION_ERROR</li>
-  /// <li>BAD_REQUEST_PARAMETERS</li>
-  /// <li>BAD_REQUEST_BODY</li>
-  /// <li>DEFAULT_4XX</li>
-  /// <li>DEFAULT_5XX</li>
-  /// <li>EXPIRED_TOKEN</li>
-  /// <li>INVALID_SIGNATURE</li>
-  /// <li>INTEGRATION_FAILURE</li>
-  /// <li>INTEGRATION_TIMEOUT</li>
-  /// <li>INVALID_API_KEY</li>
-  /// <li>MISSING_AUTHENTICATION_TOKEN</li>
-  /// <li> QUOTA_EXCEEDED</li>
-  /// <li>REQUEST_TOO_LARGE</li>
-  /// <li>RESOURCE_NOT_FOUND</li>
-  /// <li>THROTTLED</li>
-  /// <li>UNAUTHORIZED</li>
-  /// <li>UNSUPPORTED_MEDIA_TYPE</li>
-  /// </ul>
+  /// The response type of the associated <a>GatewayResponse</a>.
   final GatewayResponseType? responseType;
 
   /// The HTTP status code for this <a>GatewayResponse</a>.
@@ -7255,6 +7261,7 @@ enum GatewayResponseType {
   requestTooLarge,
   throttled,
   quotaExceeded,
+  wafFiltered,
 }
 
 extension on GatewayResponseType {
@@ -7300,6 +7307,8 @@ extension on GatewayResponseType {
         return 'THROTTLED';
       case GatewayResponseType.quotaExceeded:
         return 'QUOTA_EXCEEDED';
+      case GatewayResponseType.wafFiltered:
+        return 'WAF_FILTERED';
     }
   }
 }
@@ -7347,6 +7356,8 @@ extension on String {
         return GatewayResponseType.throttled;
       case 'QUOTA_EXCEEDED':
         return GatewayResponseType.quotaExceeded;
+      case 'WAF_FILTERED':
+        return GatewayResponseType.wafFiltered;
     }
     throw Exception('$this is not known in enum GatewayResponseType');
   }
@@ -8479,10 +8490,13 @@ class MethodSetting {
   /// Boolean.
   final bool? cachingEnabled;
 
-  /// Specifies whether data trace logging is enabled for this method, which
-  /// affects the log entries pushed to Amazon CloudWatch Logs. The PATCH path for
-  /// this setting is <code>/{method_setting_key}/logging/dataTrace</code>, and
-  /// the value is a Boolean.
+  /// Specifies whether full requests and responses are logged for this method,
+  /// which affects the log entries pushed to Amazon CloudWatch Logs. This can be
+  /// useful to troubleshoot APIs, but can result in logging sensitive data. We
+  /// recommend that you don't enable this option for production APIs. The PATCH
+  /// path for this setting is
+  /// <code>/{method_setting_key}/logging/dataTrace</code>, and the value is a
+  /// Boolean.
   final bool? dataTraceEnabled;
 
   /// Specifies the logging level for this method, which affects the log entries
@@ -9000,7 +9014,8 @@ extension on String {
 
 /// Quotas configured for a usage plan.
 class QuotaSettings {
-  /// The maximum number of requests that can be made in a given time period.
+  /// The target maximum number of requests that can be made in a given time
+  /// period.
   final int? limit;
 
   /// The day that a time period starts. For example, with a time period of
@@ -10097,12 +10112,11 @@ class TestInvokeMethodResponse {
 
 /// The API request rate limits.
 class ThrottleSettings {
-  /// The API request burst limit, the maximum rate limit over a time ranging from
-  /// one to a few seconds, depending upon whether the underlying token bucket is
-  /// at its full capacity.
+  /// The API target request burst rate limit. This allows more requests through
+  /// for a period of time than the target rate limit.
   final int? burstLimit;
 
-  /// The API request steady-state rate limit.
+  /// The API target request rate limit.
   final double? rateLimit;
 
   ThrottleSettings({
@@ -10260,8 +10274,14 @@ class Usage {
   }
 }
 
-/// Represents a usage plan than can specify who can assess associated API
-/// stages with specified request limits and quotas.
+/// Represents a usage plan used to specify who can assess associated API
+/// stages. Optionally, target request rate and quota limits can be set. In some
+/// cases clients can exceed the targets that you set. Don’t rely on usage plans
+/// to control costs. Consider using <a
+/// href="https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html">AWS
+/// Budgets</a> to monitor costs and <a
+/// href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html">AWS
+/// WAF</a> to manage API requests.
 /// <div class="remarks">
 /// In a usage plan, you associate an API by specifying the API's Id and a stage
 /// name of the specified API. You add plan customers by adding API keys to the
@@ -10286,14 +10306,16 @@ class UsagePlan {
   /// SaaS product on AWS Marketplace.
   final String? productCode;
 
-  /// The maximum number of permitted requests per a given unit time interval.
+  /// The target maximum number of permitted requests per a given unit time
+  /// interval.
   final QuotaSettings? quota;
 
   /// The collection of tags. Each tag element is associated with a given
   /// resource.
   final Map<String, String>? tags;
 
-  /// The request throttle limits of a usage plan.
+  /// Map containing method level throttling information for API stage in a usage
+  /// plan.
   final ThrottleSettings? throttle;
 
   UsagePlan({

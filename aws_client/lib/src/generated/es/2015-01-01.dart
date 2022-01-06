@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -1170,11 +1171,21 @@ class Elasticsearch {
   ///
   /// May throw [BaseException].
   /// May throw [ValidationException].
-  Future<ListDomainNamesResponse> listDomainNames() async {
+  ///
+  /// Parameter [engineType] :
+  /// Optional parameter to filter the output by domain engine type. Acceptable
+  /// values are 'Elasticsearch' and 'OpenSearch'.
+  Future<ListDomainNamesResponse> listDomainNames({
+    EngineType? engineType,
+  }) async {
+    final $query = <String, List<String>>{
+      if (engineType != null) 'engineType': [engineType.toValue()],
+    };
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
       requestUri: '/2015-01-01/domain',
+      queryParams: $query,
       exceptionFnMap: _exceptionFns,
     );
     return ListDomainNamesResponse.fromJson(response);
@@ -1580,6 +1591,13 @@ class Elasticsearch {
   /// Options to specify configuration that will be applied to the domain
   /// endpoint.
   ///
+  /// Parameter [dryRun] :
+  /// This flag, when set to True, specifies whether the
+  /// <code>UpdateElasticsearchDomain</code> request should return the results
+  /// of validation checks without actually applying the change. This flag, when
+  /// set to True, specifies the deployment mechanism through which the update
+  /// shall be applied on the domain. This will not actually perform the Update.
+  ///
   /// Parameter [eBSOptions] :
   /// Specify the type and size of the EBS volume that you want to use.
   ///
@@ -1615,6 +1633,7 @@ class Elasticsearch {
     AutoTuneOptions? autoTuneOptions,
     CognitoOptions? cognitoOptions,
     DomainEndpointOptions? domainEndpointOptions,
+    bool? dryRun,
     EBSOptions? eBSOptions,
     ElasticsearchClusterConfig? elasticsearchClusterConfig,
     EncryptionAtRestOptions? encryptionAtRestOptions,
@@ -1640,6 +1659,7 @@ class Elasticsearch {
       if (cognitoOptions != null) 'CognitoOptions': cognitoOptions,
       if (domainEndpointOptions != null)
         'DomainEndpointOptions': domainEndpointOptions,
+      if (dryRun != null) 'DryRun': dryRun,
       if (eBSOptions != null) 'EBSOptions': eBSOptions,
       if (elasticsearchClusterConfig != null)
         'ElasticsearchClusterConfig': elasticsearchClusterConfig,
@@ -2630,9 +2650,9 @@ class CognitoOptionsStatus {
   }
 }
 
-/// Specifies settings for cold storage.
+/// Specifies the configuration for cold storage options such as enabled
 class ColdStorageOptions {
-  /// True to enable cold storage for an Elasticsearch domain.
+  /// Enable cold storage option. Accepted values true or false
   final bool enabled;
 
   ColdStorageOptions({
@@ -3512,20 +3532,27 @@ class DomainInfo {
   /// Specifies the <code>DomainName</code>.
   final String? domainName;
 
+  /// Specifies the <code>EngineType</code> of the domain.
+  final EngineType? engineType;
+
   DomainInfo({
     this.domainName,
+    this.engineType,
   });
 
   factory DomainInfo.fromJson(Map<String, dynamic> json) {
     return DomainInfo(
       domainName: json['DomainName'] as String?,
+      engineType: (json['EngineType'] as String?)?.toEngineType(),
     );
   }
 
   Map<String, dynamic> toJson() {
     final domainName = this.domainName;
+    final engineType = this.engineType;
     return {
       if (domainName != null) 'DomainName': domainName,
+      if (engineType != null) 'EngineType': engineType.toValue(),
     };
   }
 }
@@ -3684,6 +3711,42 @@ extension on String {
         return DomainPackageStatus.dissociationFailed;
     }
     throw Exception('$this is not known in enum DomainPackageStatus');
+  }
+}
+
+class DryRunResults {
+  /// Specifies the deployment mechanism through which the update shall be applied
+  /// on the domain. Possible responses are <code>Blue/Green</code> (The update
+  /// will require a blue/green deployment.) <code>DynamicUpdate</code> (The
+  /// update can be applied in-place without a Blue/Green deployment required.)
+  /// <code>Undetermined</code> (The domain is undergoing an update which needs to
+  /// complete before the deployment type can be predicted.) <code>None</code>
+  /// (The configuration change matches the current configuration and will not
+  /// result in any update.)
+  final String? deploymentType;
+
+  /// Contains an optional message associated with the DryRunResults.
+  final String? message;
+
+  DryRunResults({
+    this.deploymentType,
+    this.message,
+  });
+
+  factory DryRunResults.fromJson(Map<String, dynamic> json) {
+    return DryRunResults(
+      deploymentType: json['DeploymentType'] as String?,
+      message: json['Message'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentType = this.deploymentType;
+    final message = this.message;
+    return {
+      if (deploymentType != null) 'DeploymentType': deploymentType,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4142,8 +4205,8 @@ extension on String {
 /// Specifies the configuration for the domain cluster, such as the type and
 /// number of instances.
 class ElasticsearchClusterConfig {
-  /// Specifies the <code>ColdStorageOptions</code> configuration for an
-  /// Elasticsearch domain.
+  /// Specifies the <code>ColdStorageOptions</code> config for Elasticsearch
+  /// Domain
   final ColdStorageOptions? coldStorageOptions;
 
   /// Total number of dedicated master nodes, active and on standby, for the
@@ -4808,6 +4871,34 @@ class EncryptionAtRestOptionsStatus {
   }
 }
 
+enum EngineType {
+  openSearch,
+  elasticsearch,
+}
+
+extension on EngineType {
+  String toValue() {
+    switch (this) {
+      case EngineType.openSearch:
+        return 'OpenSearch';
+      case EngineType.elasticsearch:
+        return 'Elasticsearch';
+    }
+  }
+}
+
+extension on String {
+  EngineType toEngineType() {
+    switch (this) {
+      case 'OpenSearch':
+        return EngineType.openSearch;
+      case 'Elasticsearch':
+        return EngineType.elasticsearch;
+    }
+    throw Exception('$this is not known in enum EngineType');
+  }
+}
+
 class ErrorDetails {
   final String? errorMessage;
   final String? errorType;
@@ -5290,9 +5381,9 @@ class Limits {
 }
 
 /// The result of a <code>ListDomainNames</code> operation. Contains the names
-/// of all Elasticsearch domains owned by this account.
+/// of all domains owned by this account and their respective engine types.
 class ListDomainNamesResponse {
-  /// List of Elasticsearch domain names.
+  /// List of domain names and respective engine types.
   final List<DomainInfo>? domainNames;
 
   ListDomainNamesResponse({
@@ -7195,8 +7286,12 @@ class UpdateElasticsearchDomainConfigResponse {
   /// The status of the updated Elasticsearch domain.
   final ElasticsearchDomainConfig domainConfig;
 
+  /// Contains result of DryRun.
+  final DryRunResults? dryRunResults;
+
   UpdateElasticsearchDomainConfigResponse({
     required this.domainConfig,
+    this.dryRunResults,
   });
 
   factory UpdateElasticsearchDomainConfigResponse.fromJson(
@@ -7204,13 +7299,19 @@ class UpdateElasticsearchDomainConfigResponse {
     return UpdateElasticsearchDomainConfigResponse(
       domainConfig: ElasticsearchDomainConfig.fromJson(
           json['DomainConfig'] as Map<String, dynamic>),
+      dryRunResults: json['DryRunResults'] != null
+          ? DryRunResults.fromJson(
+              json['DryRunResults'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final domainConfig = this.domainConfig;
+    final dryRunResults = this.dryRunResults;
     return {
       'DomainConfig': domainConfig,
+      if (dryRunResults != null) 'DryRunResults': dryRunResults,
     };
   }
 }

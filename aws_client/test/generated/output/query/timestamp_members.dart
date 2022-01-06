@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import 'package:aws_client/src/shared/shared.dart' as _s;
 import 'package:aws_client/src/shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import 'package:aws_client/src/shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import 'timestamp_members.meta.dart';
 
+import 'timestamp_members.meta.dart';
 export 'package:aws_client/src/shared/shared.dart' show AwsClientCredentials;
 
 /// Timestamp members

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -40,8 +41,12 @@ class DynamoDB {
           endpointUrl: endpointUrl,
         );
 
-  /// This operation allows you to perform batch reads and writes on data stored
+  /// This operation allows you to perform batch reads or writes on data stored
   /// in DynamoDB, using PartiQL.
+  /// <note>
+  /// The entire batch must consist of either read statements or write
+  /// statements, you cannot mix both in one batch.
+  /// </note>
   ///
   /// May throw [RequestLimitExceeded].
   /// May throw [InternalServerError].
@@ -50,6 +55,7 @@ class DynamoDB {
   /// The list of PartiQL statements representing the batch to run.
   Future<BatchExecuteStatementOutput> batchExecuteStatement({
     required List<BatchStatementRequest> statements,
+    ReturnConsumedCapacity? returnConsumedCapacity,
   }) async {
     ArgumentError.checkNotNull(statements, 'statements');
     final headers = <String, String>{
@@ -64,6 +70,8 @@ class DynamoDB {
       headers: headers,
       payload: {
         'Statements': statements,
+        if (returnConsumedCapacity != null)
+          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
       },
     );
 
@@ -627,9 +635,9 @@ class DynamoDB {
   }
 
   /// The <code>CreateTable</code> operation adds a new table to your account.
-  /// In an AWS account, table names must be unique within each Region. That is,
-  /// you can have two tables with same name if you create the tables in
-  /// different Regions.
+  /// In an Amazon Web Services account, table names must be unique within each
+  /// Region. That is, you can have two tables with same name if you create the
+  /// tables in different Regions.
   ///
   /// <code>CreateTable</code> is an asynchronous operation. Upon receiving a
   /// <code>CreateTable</code> request, DynamoDB immediately returns a response
@@ -884,6 +892,10 @@ class DynamoDB {
   /// </ul> </li>
   /// </ul>
   ///
+  /// Parameter [tableClass] :
+  /// The table class of the new table. Valid values are <code>STANDARD</code>
+  /// and <code>STANDARD_INFREQUENT_ACCESS</code>.
+  ///
   /// Parameter [tags] :
   /// A list of key-value pairs to label the table. For more information, see <a
   /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
@@ -898,6 +910,7 @@ class DynamoDB {
     ProvisionedThroughput? provisionedThroughput,
     SSESpecification? sSESpecification,
     StreamSpecification? streamSpecification,
+    TableClass? tableClass,
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(attributeDefinitions, 'attributeDefinitions');
@@ -934,6 +947,7 @@ class DynamoDB {
         if (sSESpecification != null) 'SSESpecification': sSESpecification,
         if (streamSpecification != null)
           'StreamSpecification': streamSpecification,
+        if (tableClass != null) 'TableClass': tableClass.toValue(),
         if (tags != null) 'Tags': tags,
       },
     );
@@ -1587,28 +1601,29 @@ class DynamoDB {
         jsonResponse.body);
   }
 
-  /// Returns the current provisioned-capacity quotas for your AWS account in a
-  /// Region, both for the Region as a whole and for any one DynamoDB table that
-  /// you create there.
+  /// Returns the current provisioned-capacity quotas for your Amazon Web
+  /// Services account in a Region, both for the Region as a whole and for any
+  /// one DynamoDB table that you create there.
   ///
-  /// When you establish an AWS account, the account has initial quotas on the
-  /// maximum read capacity units and write capacity units that you can
-  /// provision across all of your DynamoDB tables in a given Region. Also,
-  /// there are per-table quotas that apply when you create a table there. For
-  /// more information, see <a
+  /// When you establish an Amazon Web Services account, the account has initial
+  /// quotas on the maximum read capacity units and write capacity units that
+  /// you can provision across all of your DynamoDB tables in a given Region.
+  /// Also, there are per-table quotas that apply when you create a table there.
+  /// For more information, see <a
   /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Service,
   /// Account, and Table Quotas</a> page in the <i>Amazon DynamoDB Developer
   /// Guide</i>.
   ///
   /// Although you can increase these quotas by filing a case at <a
-  /// href="https://console.aws.amazon.com/support/home#/">AWS Support
-  /// Center</a>, obtaining the increase is not instantaneous. The
+  /// href="https://console.aws.amazon.com/support/home#/">Amazon Web Services
+  /// Support Center</a>, obtaining the increase is not instantaneous. The
   /// <code>DescribeLimits</code> action lets you write code to compare the
   /// capacity you are currently using to those quotas imposed by your account
   /// so that you have enough time to apply for an increase before you hit a
   /// quota.
   ///
-  /// For example, you could use one of the AWS SDKs to do the following:
+  /// For example, you could use one of the Amazon Web Services SDKs to do the
+  /// following:
   /// <ol>
   /// <li>
   /// Call <code>DescribeLimits</code> for a particular Region to obtain your
@@ -1942,6 +1957,7 @@ class DynamoDB {
     bool? consistentRead,
     String? nextToken,
     List<AttributeValue>? parameters,
+    ReturnConsumedCapacity? returnConsumedCapacity,
   }) async {
     ArgumentError.checkNotNull(statement, 'statement');
     _s.validateStringLength(
@@ -1972,6 +1988,8 @@ class DynamoDB {
         if (consistentRead != null) 'ConsistentRead': consistentRead,
         if (nextToken != null) 'NextToken': nextToken,
         if (parameters != null) 'Parameters': parameters,
+        if (returnConsumedCapacity != null)
+          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
       },
     );
 
@@ -1980,6 +1998,14 @@ class DynamoDB {
 
   /// This operation allows you to perform transactional reads or writes on data
   /// stored in DynamoDB, using PartiQL.
+  /// <note>
+  /// The entire transaction must consist of either read statements or write
+  /// statements, you cannot mix both in one transaction. The EXISTS function is
+  /// an exception and can be used to check the condition of specific attributes
+  /// of the item in a similar manner to <code>ConditionCheck</code> in the <a
+  /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems">TransactWriteItems</a>
+  /// API.
+  /// </note>
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [TransactionCanceledException].
@@ -1995,9 +2021,18 @@ class DynamoDB {
   /// Parameter [clientRequestToken] :
   /// Set this value to get remaining results, if <code>NextToken</code> was
   /// returned in the statement response.
+  ///
+  /// Parameter [returnConsumedCapacity] :
+  /// Determines the level of detail about either provisioned or on-demand
+  /// throughput consumption that is returned in the response. For more
+  /// information, see <a
+  /// href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactGetItems.html">TransactGetItems</a>
+  /// and <a
+  /// href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html">TransactWriteItems</a>.
   Future<ExecuteTransactionOutput> executeTransaction({
     required List<ParameterizedStatement> transactStatements,
     String? clientRequestToken,
+    ReturnConsumedCapacity? returnConsumedCapacity,
   }) async {
     ArgumentError.checkNotNull(transactStatements, 'transactStatements');
     _s.validateStringLength(
@@ -2020,6 +2055,8 @@ class DynamoDB {
         'TransactStatements': transactStatements,
         'ClientRequestToken':
             clientRequestToken ?? _s.generateIdempotencyToken(),
+        if (returnConsumedCapacity != null)
+          'ReturnConsumedCapacity': returnConsumedCapacity.toValue(),
       },
     );
 
@@ -2067,8 +2104,8 @@ class DynamoDB {
   /// a snapshot of the table's state at this point in time.
   ///
   /// Parameter [s3BucketOwner] :
-  /// The ID of the AWS account that owns the bucket the export will be stored
-  /// in.
+  /// The ID of the Amazon Web Services account that owns the bucket the export
+  /// will be stored in.
   ///
   /// Parameter [s3Prefix] :
   /// The Amazon S3 bucket prefix to use as the file name and path of the
@@ -2083,13 +2120,13 @@ class DynamoDB {
   /// <code>AES256</code> - server-side encryption with Amazon S3 managed keys
   /// </li>
   /// <li>
-  /// <code>KMS</code> - server-side encryption with AWS KMS managed keys
+  /// <code>KMS</code> - server-side encryption with KMS managed keys
   /// </li>
   /// </ul>
   ///
   /// Parameter [s3SseKmsKeyId] :
-  /// The ID of the AWS KMS managed key used to encrypt the S3 bucket where
-  /// export data will be stored (if applicable).
+  /// The ID of the KMS managed key used to encrypt the S3 bucket where export
+  /// data will be stored (if applicable).
   Future<ExportTableToPointInTimeOutput> exportTableToPointInTime({
     required String s3Bucket,
     required String tableArn,
@@ -2284,10 +2321,11 @@ class DynamoDB {
     return GetItemOutput.fromJson(jsonResponse.body);
   }
 
-  /// List backups associated with an AWS account. To list backups for a given
-  /// table, specify <code>TableName</code>. <code>ListBackups</code> returns a
-  /// paginated list of results with at most 1 MB worth of items in a page. You
-  /// can also specify a maximum number of entries to be returned in a page.
+  /// List backups associated with an Amazon Web Services account. To list
+  /// backups for a given table, specify <code>TableName</code>.
+  /// <code>ListBackups</code> returns a paginated list of results with at most
+  /// 1 MB worth of items in a page. You can also specify a maximum number of
+  /// entries to be returned in a page.
   ///
   /// In the request, start time is inclusive, but end time is exclusive. Note
   /// that these boundaries are for the time at which the original backup was
@@ -2656,54 +2694,54 @@ class DynamoDB {
   /// This topic provides general information about the <code>PutItem</code>
   /// API.
   ///
-  /// For information on how to call the <code>PutItem</code> API using the AWS
-  /// SDK in specific languages, see the following:
+  /// For information on how to call the <code>PutItem</code> API using the
+  /// Amazon Web Services SDK in specific languages, see the following:
   ///
   /// <ul>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS Command Line Interface</a>
+  /// PutItem in the Command Line Interface</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for .NET</a>
+  /// PutItem in the SDK for .NET</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for C++</a>
+  /// PutItem in the SDK for C++</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for Go</a>
+  /// PutItem in the SDK for Go</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for Java</a>
+  /// PutItem in the SDK for Java</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for JavaScript</a>
+  /// PutItem in the SDK for JavaScript</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for PHP V3</a>
+  /// PutItem in the SDK for PHP V3</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for Python</a>
+  /// PutItem in the SDK for Python (Boto)</a>
   /// </li>
   /// <li>
   /// <a
   /// href="http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem">
-  /// PutItem in the AWS SDK for Ruby V2</a>
+  /// PutItem in the SDK for Ruby V2</a>
   /// </li>
   /// </ul> </important>
   /// When you add an item, the primary key attributes are the only required
@@ -2899,7 +2937,9 @@ class DynamoDB {
   /// <code>ALL_OLD</code> - If <code>PutItem</code> overwrote an attribute
   /// name-value pair, then the content of the old item is returned.
   /// </li>
-  /// </ul> <note>
+  /// </ul>
+  /// The values returned are strongly consistent.
+  /// <note>
   /// The <code>ReturnValues</code> parameter is used by several DynamoDB
   /// operations; however, <code>PutItem</code> does not recognize any values
   /// other than <code>NONE</code> or <code>ALL_OLD</code>.
@@ -2958,9 +2998,10 @@ class DynamoDB {
     return PutItemOutput.fromJson(jsonResponse.body);
   }
 
-  /// The <code>Query</code> operation finds items based on primary key values.
-  /// You can query any table or secondary index that has a composite primary
-  /// key (a partition key and a sort key).
+  /// You must provide the name of the partition key attribute and a single
+  /// value for that attribute. <code>Query</code> returns all items with that
+  /// partition key value. Optionally, you can provide a sort key attribute and
+  /// use a comparison operator to refine the search results.
   ///
   /// Use the <code>KeyConditionExpression</code> parameter to provide a
   /// specific value for the partition key. The <code>Query</code> operation
@@ -4179,8 +4220,8 @@ class DynamoDB {
   /// contains a <code>Get</code> structure that specifies an item to retrieve
   /// from a table in the account and Region. A call to
   /// <code>TransactGetItems</code> cannot retrieve items from tables in more
-  /// than one AWS account or Region. The aggregate size of the items in the
-  /// transaction cannot exceed 4 MB.
+  /// than one Amazon Web Services account or Region. The aggregate size of the
+  /// items in the transaction cannot exceed 4 MB.
   ///
   /// DynamoDB rejects the entire <code>TransactGetItems</code> request if any
   /// of the following is true:
@@ -4242,43 +4283,44 @@ class DynamoDB {
 
   /// <code>TransactWriteItems</code> is a synchronous write operation that
   /// groups up to 25 action requests. These actions can target items in
-  /// different tables, but not in different AWS accounts or Regions, and no two
-  /// actions can target the same item. For example, you cannot both
-  /// <code>ConditionCheck</code> and <code>Update</code> the same item. The
-  /// aggregate size of the items in the transaction cannot exceed 4 MB.
+  /// different tables, but not in different Amazon Web Services accounts or
+  /// Regions, and no two actions can target the same item. For example, you
+  /// cannot both <code>ConditionCheck</code> and <code>Update</code> the same
+  /// item. The aggregate size of the items in the transaction cannot exceed 4
+  /// MB.
   ///
   /// The actions are completed atomically so that either all of them succeed,
   /// or all of them fail. They are defined by the following objects:
   ///
   /// <ul>
   /// <li>
-  /// <code>Put</code>  &#x97;   Initiates a <code>PutItem</code> operation to
-  /// write a new item. This structure specifies the primary key of the item to
-  /// be written, the name of the table to write it in, an optional condition
+  /// <code>Put</code>  —   Initiates a <code>PutItem</code> operation to write
+  /// a new item. This structure specifies the primary key of the item to be
+  /// written, the name of the table to write it in, an optional condition
   /// expression that must be satisfied for the write to succeed, a list of the
   /// item's attributes, and a field indicating whether to retrieve the item's
   /// attributes if the condition is not met.
   /// </li>
   /// <li>
-  /// <code>Update</code>  &#x97;   Initiates an <code>UpdateItem</code>
-  /// operation to update an existing item. This structure specifies the primary
-  /// key of the item to be updated, the name of the table where it resides, an
-  /// optional condition expression that must be satisfied for the update to
-  /// succeed, an expression that defines one or more attributes to be updated,
+  /// <code>Update</code>  —   Initiates an <code>UpdateItem</code> operation to
+  /// update an existing item. This structure specifies the primary key of the
+  /// item to be updated, the name of the table where it resides, an optional
+  /// condition expression that must be satisfied for the update to succeed, an
+  /// expression that defines one or more attributes to be updated, and a field
+  /// indicating whether to retrieve the item's attributes if the condition is
+  /// not met.
+  /// </li>
+  /// <li>
+  /// <code>Delete</code>  —   Initiates a <code>DeleteItem</code> operation to
+  /// delete an existing item. This structure specifies the primary key of the
+  /// item to be deleted, the name of the table where it resides, an optional
+  /// condition expression that must be satisfied for the deletion to succeed,
   /// and a field indicating whether to retrieve the item's attributes if the
   /// condition is not met.
   /// </li>
   /// <li>
-  /// <code>Delete</code>  &#x97;   Initiates a <code>DeleteItem</code>
-  /// operation to delete an existing item. This structure specifies the primary
-  /// key of the item to be deleted, the name of the table where it resides, an
-  /// optional condition expression that must be satisfied for the deletion to
-  /// succeed, and a field indicating whether to retrieve the item's attributes
-  /// if the condition is not met.
-  /// </li>
-  /// <li>
-  /// <code>ConditionCheck</code>  &#x97;   Applies a condition to an item that
-  /// is not being modified by the transaction. This structure specifies the
+  /// <code>ConditionCheck</code>  —   Applies a condition to an item that is
+  /// not being modified by the transaction. This structure specifies the
   /// primary key of the item to be checked, the name of the table where it
   /// resides, a condition expression that must be satisfied for the transaction
   /// to succeed, and a field indicating whether to retrieve the item's
@@ -4324,8 +4366,9 @@ class DynamoDB {
   /// An ordered array of up to 25 <code>TransactWriteItem</code> objects, each
   /// of which contains a <code>ConditionCheck</code>, <code>Put</code>,
   /// <code>Update</code>, or <code>Delete</code> object. These can operate on
-  /// items in different tables, but the tables must reside in the same AWS
-  /// account and Region, and no two of them can operate on the same item.
+  /// items in different tables, but the tables must reside in the same Amazon
+  /// Web Services account and Region, and no two of them can operate on the
+  /// same item.
   ///
   /// Parameter [clientRequestToken] :
   /// Providing a <code>ClientRequestToken</code> makes the call to
@@ -4503,6 +4546,12 @@ class DynamoDB {
   }
 
   /// Updates the status for contributor insights for a specific table or index.
+  /// CloudWatch Contributor Insights for DynamoDB graphs display the partition
+  /// key and (if applicable) sort key of frequently accessed items and
+  /// frequently throttled items in plaintext. If you require the use of AWS Key
+  /// Management Service (KMS) to encrypt this table’s partition key and sort
+  /// key data with an AWS managed key or customer managed key, you should not
+  /// enable CloudWatch Contributor Insights for DynamoDB for this table.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServerError].
@@ -5194,6 +5243,10 @@ class DynamoDB {
   /// stream on a table that already has a stream, or if you try to disable a
   /// stream on a table that doesn't have a stream.
   /// </note>
+  ///
+  /// Parameter [tableClass] :
+  /// The table class of the table to be updated. Valid values are
+  /// <code>STANDARD</code> and <code>STANDARD_INFREQUENT_ACCESS</code>.
   Future<UpdateTableOutput> updateTable({
     required String tableName,
     List<AttributeDefinition>? attributeDefinitions,
@@ -5203,6 +5256,7 @@ class DynamoDB {
     List<ReplicationGroupUpdate>? replicaUpdates,
     SSESpecification? sSESpecification,
     StreamSpecification? streamSpecification,
+    TableClass? tableClass,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
     _s.validateStringLength(
@@ -5235,6 +5289,7 @@ class DynamoDB {
         if (sSESpecification != null) 'SSESpecification': sSESpecification,
         if (streamSpecification != null)
           'StreamSpecification': streamSpecification,
+        if (tableClass != null) 'TableClass': tableClass.toValue(),
       },
     );
 
@@ -5394,8 +5449,8 @@ class ArchivalSummary {
   /// <ul>
   /// <li>
   /// <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The table was archived
-  /// due to the table's AWS KMS key being inaccessible for more than seven days.
-  /// An On-Demand backup was created at the archival time.
+  /// due to the table's KMS key being inaccessible for more than seven days. An
+  /// On-Demand backup was created at the archival time.
   /// </li>
   /// </ul>
   final String? archivalReason;
@@ -6165,7 +6220,7 @@ class BackupDetails {
   /// deletion.
   /// </li>
   /// <li>
-  /// <code>AWS_BACKUP</code> - On-demand backup created by you from AWS Backup
+  /// <code>AWS_BACKUP</code> - On-demand backup created by you from Backup
   /// service.
   /// </li>
   /// </ul>
@@ -6293,7 +6348,7 @@ class BackupSummary {
   /// deletion.
   /// </li>
   /// <li>
-  /// <code>AWS_BACKUP</code> - On-demand backup created by you from AWS Backup
+  /// <code>AWS_BACKUP</code> - On-demand backup created by you from Backup
   /// service.
   /// </li>
   /// </ul>
@@ -6436,15 +6491,24 @@ extension on String {
 }
 
 class BatchExecuteStatementOutput {
+  /// The capacity units consumed by the entire operation. The values of the list
+  /// are ordered according to the ordering of the statements.
+  final List<ConsumedCapacity>? consumedCapacity;
+
   /// The response to each PartiQL statement in the batch.
   final List<BatchStatementResponse>? responses;
 
   BatchExecuteStatementOutput({
+    this.consumedCapacity,
     this.responses,
   });
 
   factory BatchExecuteStatementOutput.fromJson(Map<String, dynamic> json) {
     return BatchExecuteStatementOutput(
+      consumedCapacity: (json['ConsumedCapacity'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConsumedCapacity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       responses: (json['Responses'] as List?)
           ?.whereNotNull()
           .map(
@@ -6454,8 +6518,10 @@ class BatchExecuteStatementOutput {
   }
 
   Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
     final responses = this.responses;
     return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
       if (responses != null) 'Responses': responses,
     };
   }
@@ -7806,22 +7872,26 @@ class CreateReplicationGroupMemberAction {
   /// Replica-specific global secondary index settings.
   final List<ReplicaGlobalSecondaryIndex>? globalSecondaryIndexes;
 
-  /// The AWS KMS customer master key (CMK) that should be used for AWS KMS
-  /// encryption in the new replica. To specify a CMK, use its key ID, Amazon
-  /// Resource Name (ARN), alias name, or alias ARN. Note that you should only
-  /// provide this parameter if the key is different from the default DynamoDB KMS
-  /// master key alias/aws/dynamodb.
+  /// The KMS key that should be used for KMS encryption in the new replica. To
+  /// specify a key, use its key ID, Amazon Resource Name (ARN), alias name, or
+  /// alias ARN. Note that you should only provide this parameter if the key is
+  /// different from the default DynamoDB KMS key <code>alias/aws/dynamodb</code>.
   final String? kMSMasterKeyId;
 
   /// Replica-specific provisioned throughput. If not specified, uses the source
   /// table's provisioned throughput settings.
   final ProvisionedThroughputOverride? provisionedThroughputOverride;
 
+  /// Replica-specific table class. If not specified, uses the source table's
+  /// table class.
+  final TableClass? tableClassOverride;
+
   CreateReplicationGroupMemberAction({
     required this.regionName,
     this.globalSecondaryIndexes,
     this.kMSMasterKeyId,
     this.provisionedThroughputOverride,
+    this.tableClassOverride,
   });
 
   factory CreateReplicationGroupMemberAction.fromJson(
@@ -7839,6 +7909,8 @@ class CreateReplicationGroupMemberAction {
               ? ProvisionedThroughputOverride.fromJson(
                   json['ProvisionedThroughputOverride'] as Map<String, dynamic>)
               : null,
+      tableClassOverride:
+          (json['TableClassOverride'] as String?)?.toTableClass(),
     );
   }
 
@@ -7847,6 +7919,7 @@ class CreateReplicationGroupMemberAction {
     final globalSecondaryIndexes = this.globalSecondaryIndexes;
     final kMSMasterKeyId = this.kMSMasterKeyId;
     final provisionedThroughputOverride = this.provisionedThroughputOverride;
+    final tableClassOverride = this.tableClassOverride;
     return {
       'RegionName': regionName,
       if (globalSecondaryIndexes != null)
@@ -7854,6 +7927,8 @@ class CreateReplicationGroupMemberAction {
       if (kMSMasterKeyId != null) 'KMSMasterKeyId': kMSMasterKeyId,
       if (provisionedThroughputOverride != null)
         'ProvisionedThroughputOverride': provisionedThroughputOverride,
+      if (tableClassOverride != null)
+        'TableClassOverride': tableClassOverride.toValue(),
     };
   }
 }
@@ -8243,13 +8318,13 @@ class DescribeContinuousBackupsOutput {
 }
 
 class DescribeContributorInsightsOutput {
-  /// List of names of the associated Alpine rules.
+  /// List of names of the associated contributor insights rules.
   final List<String>? contributorInsightsRuleList;
 
-  /// Current Status contributor insights.
+  /// Current status of contributor insights.
   final ContributorInsightsStatus? contributorInsightsStatus;
 
-  /// Returns information about the last failure that encountered.
+  /// Returns information about the last failure that was encountered.
   ///
   /// The most common exceptions for a FAILED status are:
   ///
@@ -8686,8 +8761,10 @@ class Endpoint {
 }
 
 class ExecuteStatementOutput {
+  final ConsumedCapacity? consumedCapacity;
+
   /// If a read operation was used, this property will contain the result of the
-  /// reade operation; a map of attribute names and their values. For the write
+  /// read operation; a map of attribute names and their values. For the write
   /// operations this value will be empty.
   final List<Map<String, AttributeValue>>? items;
 
@@ -8697,12 +8774,17 @@ class ExecuteStatementOutput {
   final String? nextToken;
 
   ExecuteStatementOutput({
+    this.consumedCapacity,
     this.items,
     this.nextToken,
   });
 
   factory ExecuteStatementOutput.fromJson(Map<String, dynamic> json) {
     return ExecuteStatementOutput(
+      consumedCapacity: json['ConsumedCapacity'] != null
+          ? ConsumedCapacity.fromJson(
+              json['ConsumedCapacity'] as Map<String, dynamic>)
+          : null,
       items: (json['Items'] as List?)
           ?.whereNotNull()
           .map((e) => (e as Map<String, dynamic>).map((k, e) =>
@@ -8713,9 +8795,11 @@ class ExecuteStatementOutput {
   }
 
   Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
     final items = this.items;
     final nextToken = this.nextToken;
     return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
       if (items != null) 'Items': items,
       if (nextToken != null) 'NextToken': nextToken,
     };
@@ -8723,15 +8807,24 @@ class ExecuteStatementOutput {
 }
 
 class ExecuteTransactionOutput {
+  /// The capacity units consumed by the entire operation. The values of the list
+  /// are ordered according to the ordering of the statements.
+  final List<ConsumedCapacity>? consumedCapacity;
+
   /// The response to a PartiQL transaction.
   final List<ItemResponse>? responses;
 
   ExecuteTransactionOutput({
+    this.consumedCapacity,
     this.responses,
   });
 
   factory ExecuteTransactionOutput.fromJson(Map<String, dynamic> json) {
     return ExecuteTransactionOutput(
+      consumedCapacity: (json['ConsumedCapacity'] as List?)
+          ?.whereNotNull()
+          .map((e) => ConsumedCapacity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       responses: (json['Responses'] as List?)
           ?.whereNotNull()
           .map((e) => ItemResponse.fromJson(e as Map<String, dynamic>))
@@ -8740,8 +8833,10 @@ class ExecuteTransactionOutput {
   }
 
   Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
     final responses = this.responses;
     return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
       if (responses != null) 'Responses': responses,
     };
   }
@@ -9091,7 +9186,8 @@ class ExportDescription {
   /// The name of the Amazon S3 bucket containing the export.
   final String? s3Bucket;
 
-  /// The ID of the AWS account that owns the bucket containing the export.
+  /// The ID of the Amazon Web Services account that owns the bucket containing
+  /// the export.
   final String? s3BucketOwner;
 
   /// The Amazon S3 bucket prefix used as the file name and path of the exported
@@ -9106,12 +9202,12 @@ class ExportDescription {
   /// <code>AES256</code> - server-side encryption with Amazon S3 managed keys
   /// </li>
   /// <li>
-  /// <code>KMS</code> - server-side encryption with AWS KMS managed keys
+  /// <code>KMS</code> - server-side encryption with KMS managed keys
   /// </li>
   /// </ul>
   final S3SseAlgorithm? s3SseAlgorithm;
 
-  /// The ID of the AWS KMS managed key used to encrypt the S3 bucket where export
+  /// The ID of the KMS managed key used to encrypt the S3 bucket where export
   /// data is stored (if applicable).
   final String? s3SseKmsKeyId;
 
@@ -11769,8 +11865,7 @@ class ReplicaDescription {
   /// Replica-specific global secondary index settings.
   final List<ReplicaGlobalSecondaryIndexDescription>? globalSecondaryIndexes;
 
-  /// The AWS KMS customer master key (CMK) of the replica that will be used for
-  /// AWS KMS encryption.
+  /// The KMS key of the replica that will be used for KMS encryption.
   final String? kMSMasterKeyId;
 
   /// Replica-specific provisioned throughput. If not described, uses the source
@@ -11801,19 +11896,20 @@ class ReplicaDescription {
   /// <code>ACTIVE</code> - The replica is ready for use.
   /// </li>
   /// <li>
-  /// <code>REGION_DISABLED</code> - The replica is inaccessible because the AWS
-  /// Region has been disabled.
+  /// <code>REGION_DISABLED</code> - The replica is inaccessible because the
+  /// Amazon Web Services Region has been disabled.
   /// <note>
-  /// If the AWS Region remains inaccessible for more than 20 hours, DynamoDB will
-  /// remove this replica from the replication group. The replica will not be
-  /// deleted and replication will stop from and to this region.
+  /// If the Amazon Web Services Region remains inaccessible for more than 20
+  /// hours, DynamoDB will remove this replica from the replication group. The
+  /// replica will not be deleted and replication will stop from and to this
+  /// region.
   /// </note> </li>
   /// <li>
-  /// <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS </code> - The AWS KMS key used to
+  /// <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS </code> - The KMS key used to
   /// encrypt the table is inaccessible.
   /// <note>
-  /// If the AWS KMS key remains inaccessible for more than 20 hours, DynamoDB
-  /// will remove this replica from the replication group. The replica will not be
+  /// If the KMS key remains inaccessible for more than 20 hours, DynamoDB will
+  /// remove this replica from the replication group. The replica will not be
   /// deleted and replication will stop from and to this region.
   /// </note> </li>
   /// </ul>
@@ -11825,6 +11921,7 @@ class ReplicaDescription {
   /// Specifies the progress of a Create, Update, or Delete action on the replica
   /// as a percentage.
   final String? replicaStatusPercentProgress;
+  final TableClassSummary? replicaTableClassSummary;
 
   ReplicaDescription({
     this.globalSecondaryIndexes,
@@ -11835,6 +11932,7 @@ class ReplicaDescription {
     this.replicaStatus,
     this.replicaStatusDescription,
     this.replicaStatusPercentProgress,
+    this.replicaTableClassSummary,
   });
 
   factory ReplicaDescription.fromJson(Map<String, dynamic> json) {
@@ -11857,6 +11955,10 @@ class ReplicaDescription {
       replicaStatusDescription: json['ReplicaStatusDescription'] as String?,
       replicaStatusPercentProgress:
           json['ReplicaStatusPercentProgress'] as String?,
+      replicaTableClassSummary: json['ReplicaTableClassSummary'] != null
+          ? TableClassSummary.fromJson(
+              json['ReplicaTableClassSummary'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -11869,6 +11971,7 @@ class ReplicaDescription {
     final replicaStatus = this.replicaStatus;
     final replicaStatusDescription = this.replicaStatusDescription;
     final replicaStatusPercentProgress = this.replicaStatusPercentProgress;
+    final replicaTableClassSummary = this.replicaTableClassSummary;
     return {
       if (globalSecondaryIndexes != null)
         'GlobalSecondaryIndexes': globalSecondaryIndexes,
@@ -11884,6 +11987,8 @@ class ReplicaDescription {
         'ReplicaStatusDescription': replicaStatusDescription,
       if (replicaStatusPercentProgress != null)
         'ReplicaStatusPercentProgress': replicaStatusPercentProgress,
+      if (replicaTableClassSummary != null)
+        'ReplicaTableClassSummary': replicaTableClassSummary,
     };
   }
 }
@@ -12279,6 +12384,7 @@ class ReplicaSettingsDescription {
   /// </li>
   /// </ul>
   final ReplicaStatus? replicaStatus;
+  final TableClassSummary? replicaTableClassSummary;
 
   ReplicaSettingsDescription({
     required this.regionName,
@@ -12289,6 +12395,7 @@ class ReplicaSettingsDescription {
     this.replicaProvisionedWriteCapacityAutoScalingSettings,
     this.replicaProvisionedWriteCapacityUnits,
     this.replicaStatus,
+    this.replicaTableClassSummary,
   });
 
   factory ReplicaSettingsDescription.fromJson(Map<String, dynamic> json) {
@@ -12322,6 +12429,10 @@ class ReplicaSettingsDescription {
       replicaProvisionedWriteCapacityUnits:
           json['ReplicaProvisionedWriteCapacityUnits'] as int?,
       replicaStatus: (json['ReplicaStatus'] as String?)?.toReplicaStatus(),
+      replicaTableClassSummary: json['ReplicaTableClassSummary'] != null
+          ? TableClassSummary.fromJson(
+              json['ReplicaTableClassSummary'] as Map<String, dynamic>)
+          : null,
     );
   }
 
@@ -12339,6 +12450,7 @@ class ReplicaSettingsDescription {
     final replicaProvisionedWriteCapacityUnits =
         this.replicaProvisionedWriteCapacityUnits;
     final replicaStatus = this.replicaStatus;
+    final replicaTableClassSummary = this.replicaTableClassSummary;
     return {
       'RegionName': regionName,
       if (replicaBillingModeSummary != null)
@@ -12359,6 +12471,8 @@ class ReplicaSettingsDescription {
         'ReplicaProvisionedWriteCapacityUnits':
             replicaProvisionedWriteCapacityUnits,
       if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaTableClassSummary != null)
+        'ReplicaTableClassSummary': replicaTableClassSummary,
     };
   }
 }
@@ -12387,11 +12501,16 @@ class ReplicaSettingsUpdate {
   /// Guide</i>.
   final int? replicaProvisionedReadCapacityUnits;
 
+  /// Replica-specific table class. If not specified, uses the source table's
+  /// table class.
+  final TableClass? replicaTableClass;
+
   ReplicaSettingsUpdate({
     required this.regionName,
     this.replicaGlobalSecondaryIndexSettingsUpdate,
     this.replicaProvisionedReadCapacityAutoScalingSettingsUpdate,
     this.replicaProvisionedReadCapacityUnits,
+    this.replicaTableClass,
   });
 
   factory ReplicaSettingsUpdate.fromJson(Map<String, dynamic> json) {
@@ -12412,6 +12531,7 @@ class ReplicaSettingsUpdate {
           : null,
       replicaProvisionedReadCapacityUnits:
           json['ReplicaProvisionedReadCapacityUnits'] as int?,
+      replicaTableClass: (json['ReplicaTableClass'] as String?)?.toTableClass(),
     );
   }
 
@@ -12423,6 +12543,7 @@ class ReplicaSettingsUpdate {
         this.replicaProvisionedReadCapacityAutoScalingSettingsUpdate;
     final replicaProvisionedReadCapacityUnits =
         this.replicaProvisionedReadCapacityUnits;
+    final replicaTableClass = this.replicaTableClass;
     return {
       'RegionName': regionName,
       if (replicaGlobalSecondaryIndexSettingsUpdate != null)
@@ -12434,6 +12555,8 @@ class ReplicaSettingsUpdate {
       if (replicaProvisionedReadCapacityUnits != null)
         'ReplicaProvisionedReadCapacityUnits':
             replicaProvisionedReadCapacityUnits,
+      if (replicaTableClass != null)
+        'ReplicaTableClass': replicaTableClass.toValue(),
     };
   }
 }
@@ -12696,8 +12819,8 @@ class RestoreTableToPointInTimeOutput {
   }
 }
 
-/// Determines the level of detail about provisioned throughput consumption that
-/// is returned in the response:
+/// Determines the level of detail about either provisioned or on-demand
+/// throughput consumption that is returned in the response:
 ///
 /// <ul>
 /// <li>
@@ -12884,22 +13007,21 @@ extension on String {
 /// The description of the server-side encryption status on the specified table.
 class SSEDescription {
   /// Indicates the time, in UNIX epoch date format, when DynamoDB detected that
-  /// the table's AWS KMS key was inaccessible. This attribute will automatically
-  /// be cleared when DynamoDB detects that the table's AWS KMS key is accessible
-  /// again. DynamoDB will initiate the table archival process when table's AWS
-  /// KMS key remains inaccessible for more than seven days from this date.
+  /// the table's KMS key was inaccessible. This attribute will automatically be
+  /// cleared when DynamoDB detects that the table's KMS key is accessible again.
+  /// DynamoDB will initiate the table archival process when table's KMS key
+  /// remains inaccessible for more than seven days from this date.
   final DateTime? inaccessibleEncryptionDateTime;
 
-  /// The AWS KMS customer master key (CMK) ARN used for the AWS KMS encryption.
+  /// The KMS key ARN used for the KMS encryption.
   final String? kMSMasterKeyArn;
 
   /// Server-side encryption type. The only supported value is:
   ///
   /// <ul>
   /// <li>
-  /// <code>KMS</code> - Server-side encryption that uses AWS Key Management
-  /// Service. The key is stored in your account and is managed by AWS KMS (AWS
-  /// KMS charges apply).
+  /// <code>KMS</code> - Server-side encryption that uses Key Management Service.
+  /// The key is stored in your account and is managed by KMS (KMS charges apply).
   /// </li>
   /// </ul>
   final SSEType? sSEType;
@@ -12952,27 +13074,25 @@ class SSEDescription {
 
 /// Represents the settings used to enable server-side encryption.
 class SSESpecification {
-  /// Indicates whether server-side encryption is done using an AWS managed CMK or
-  /// an AWS owned CMK. If enabled (true), server-side encryption type is set to
-  /// <code>KMS</code> and an AWS managed CMK is used (AWS KMS charges apply). If
-  /// disabled (false) or not specified, server-side encryption is set to AWS
-  /// owned CMK.
+  /// Indicates whether server-side encryption is done using an Amazon Web
+  /// Services managed key or an Amazon Web Services owned key. If enabled (true),
+  /// server-side encryption type is set to <code>KMS</code> and an Amazon Web
+  /// Services managed key is used (KMS charges apply). If disabled (false) or not
+  /// specified, server-side encryption is set to Amazon Web Services owned key.
   final bool? enabled;
 
-  /// The AWS KMS customer master key (CMK) that should be used for the AWS KMS
-  /// encryption. To specify a CMK, use its key ID, Amazon Resource Name (ARN),
-  /// alias name, or alias ARN. Note that you should only provide this parameter
-  /// if the key is different from the default DynamoDB customer master key
-  /// alias/aws/dynamodb.
+  /// The KMS key that should be used for the KMS encryption. To specify a key,
+  /// use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. Note
+  /// that you should only provide this parameter if the key is different from the
+  /// default DynamoDB key <code>alias/aws/dynamodb</code>.
   final String? kMSMasterKeyId;
 
   /// Server-side encryption type. The only supported value is:
   ///
   /// <ul>
   /// <li>
-  /// <code>KMS</code> - Server-side encryption that uses AWS Key Management
-  /// Service. The key is stored in your account and is managed by AWS KMS (AWS
-  /// KMS charges apply).
+  /// <code>KMS</code> - Server-side encryption that uses Key Management Service.
+  /// The key is stored in your account and is managed by KMS (KMS charges apply).
   /// </li>
   /// </ul>
   final SSEType? sSEType;
@@ -13560,6 +13680,66 @@ class TableAutoScalingDescription {
   }
 }
 
+enum TableClass {
+  standard,
+  standardInfrequentAccess,
+}
+
+extension on TableClass {
+  String toValue() {
+    switch (this) {
+      case TableClass.standard:
+        return 'STANDARD';
+      case TableClass.standardInfrequentAccess:
+        return 'STANDARD_INFREQUENT_ACCESS';
+    }
+  }
+}
+
+extension on String {
+  TableClass toTableClass() {
+    switch (this) {
+      case 'STANDARD':
+        return TableClass.standard;
+      case 'STANDARD_INFREQUENT_ACCESS':
+        return TableClass.standardInfrequentAccess;
+    }
+    throw Exception('$this is not known in enum TableClass');
+  }
+}
+
+/// Contains details of the table class.
+class TableClassSummary {
+  /// The date and time at which the table class was last updated.
+  final DateTime? lastUpdateDateTime;
+
+  /// The table class of the specified table. Valid values are
+  /// <code>STANDARD</code> and <code>STANDARD_INFREQUENT_ACCESS</code>.
+  final TableClass? tableClass;
+
+  TableClassSummary({
+    this.lastUpdateDateTime,
+    this.tableClass,
+  });
+
+  factory TableClassSummary.fromJson(Map<String, dynamic> json) {
+    return TableClassSummary(
+      lastUpdateDateTime: timeStampFromJson(json['LastUpdateDateTime']),
+      tableClass: (json['TableClass'] as String?)?.toTableClass(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdateDateTime = this.lastUpdateDateTime;
+    final tableClass = this.tableClass;
+    return {
+      if (lastUpdateDateTime != null)
+        'LastUpdateDateTime': unixTimestampToJson(lastUpdateDateTime),
+      if (tableClass != null) 'TableClass': tableClass.toValue(),
+    };
+  }
+}
+
 /// Represents the properties of a table.
 class TableDescription {
   /// Contains information about the table archive.
@@ -13686,7 +13866,8 @@ class TableDescription {
 
   /// Represents the version of <a
   /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">global
-  /// tables</a> in use, if the table is replicated across AWS Regions.
+  /// tables</a> in use, if the table is replicated across Amazon Web Services
+  /// Regions.
   final String? globalTableVersion;
 
   /// The number of items in the specified table. DynamoDB updates this value
@@ -13741,7 +13922,7 @@ class TableDescription {
   ///
   /// <ul>
   /// <li>
-  /// AWS customer ID
+  /// Amazon Web Services customer ID
   /// </li>
   /// <li>
   /// Table name
@@ -13835,6 +14016,9 @@ class TableDescription {
   /// The Amazon Resource Name (ARN) that uniquely identifies the table.
   final String? tableArn;
 
+  /// Contains details of the table class.
+  final TableClassSummary? tableClassSummary;
+
   /// Unique identifier for the table for which the backup was created.
   final String? tableId;
 
@@ -13862,10 +14046,10 @@ class TableDescription {
   /// <code>ACTIVE</code> - The table is ready for use.
   /// </li>
   /// <li>
-  /// <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The AWS KMS key used to
+  /// <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The KMS key used to
   /// encrypt the table in inaccessible. Table operations may fail due to failure
-  /// to use the AWS KMS key. DynamoDB will initiate the table archival process
-  /// when a table's AWS KMS key remains inaccessible for more than seven days.
+  /// to use the KMS key. DynamoDB will initiate the table archival process when a
+  /// table's KMS key remains inaccessible for more than seven days.
   /// </li>
   /// <li>
   /// <code>ARCHIVING</code> - The table is being archived. Operations are not
@@ -13896,6 +14080,7 @@ class TableDescription {
     this.sSEDescription,
     this.streamSpecification,
     this.tableArn,
+    this.tableClassSummary,
     this.tableId,
     this.tableName,
     this.tableSizeBytes,
@@ -13956,6 +14141,10 @@ class TableDescription {
               json['StreamSpecification'] as Map<String, dynamic>)
           : null,
       tableArn: json['TableArn'] as String?,
+      tableClassSummary: json['TableClassSummary'] != null
+          ? TableClassSummary.fromJson(
+              json['TableClassSummary'] as Map<String, dynamic>)
+          : null,
       tableId: json['TableId'] as String?,
       tableName: json['TableName'] as String?,
       tableSizeBytes: json['TableSizeBytes'] as int?,
@@ -13981,6 +14170,7 @@ class TableDescription {
     final sSEDescription = this.sSEDescription;
     final streamSpecification = this.streamSpecification;
     final tableArn = this.tableArn;
+    final tableClassSummary = this.tableClassSummary;
     final tableId = this.tableId;
     final tableName = this.tableName;
     final tableSizeBytes = this.tableSizeBytes;
@@ -14009,6 +14199,7 @@ class TableDescription {
       if (streamSpecification != null)
         'StreamSpecification': streamSpecification,
       if (tableArn != null) 'TableArn': tableArn,
+      if (tableClassSummary != null) 'TableClassSummary': tableClassSummary,
       if (tableId != null) 'TableId': tableId,
       if (tableName != null) 'TableName': tableName,
       if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
@@ -14073,11 +14264,11 @@ extension on String {
 /// Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a
 /// single DynamoDB table.
 ///
-/// AWS-assigned tag names and values are automatically assigned the
-/// <code>aws:</code> prefix, which the user cannot assign. AWS-assigned tag
-/// names do not count towards the tag limit of 50. User-assigned tag names have
-/// the prefix <code>user:</code> in the Cost Allocation Report. You cannot
-/// backdate the application of a tag.
+/// Amazon Web Services-assigned tag names and values are automatically assigned
+/// the <code>aws:</code> prefix, which the user cannot assign. Amazon Web
+/// Services-assigned tag names do not count towards the tag limit of 50.
+/// User-assigned tag names have the prefix <code>user:</code> in the Cost
+/// Allocation Report. You cannot backdate the application of a tag.
 ///
 /// For an overview on tagging DynamoDB resources, see <a
 /// href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Tagging
@@ -14727,22 +14918,26 @@ class UpdateReplicationGroupMemberAction {
   /// Replica-specific global secondary index settings.
   final List<ReplicaGlobalSecondaryIndex>? globalSecondaryIndexes;
 
-  /// The AWS KMS customer master key (CMK) of the replica that should be used for
-  /// AWS KMS encryption. To specify a CMK, use its key ID, Amazon Resource Name
-  /// (ARN), alias name, or alias ARN. Note that you should only provide this
-  /// parameter if the key is different from the default DynamoDB KMS master key
-  /// alias/aws/dynamodb.
+  /// The KMS key of the replica that should be used for KMS encryption. To
+  /// specify a key, use its key ID, Amazon Resource Name (ARN), alias name, or
+  /// alias ARN. Note that you should only provide this parameter if the key is
+  /// different from the default DynamoDB KMS key <code>alias/aws/dynamodb</code>.
   final String? kMSMasterKeyId;
 
   /// Replica-specific provisioned throughput. If not specified, uses the source
   /// table's provisioned throughput settings.
   final ProvisionedThroughputOverride? provisionedThroughputOverride;
 
+  /// Replica-specific table class. If not specified, uses the source table's
+  /// table class.
+  final TableClass? tableClassOverride;
+
   UpdateReplicationGroupMemberAction({
     required this.regionName,
     this.globalSecondaryIndexes,
     this.kMSMasterKeyId,
     this.provisionedThroughputOverride,
+    this.tableClassOverride,
   });
 
   factory UpdateReplicationGroupMemberAction.fromJson(
@@ -14760,6 +14955,8 @@ class UpdateReplicationGroupMemberAction {
               ? ProvisionedThroughputOverride.fromJson(
                   json['ProvisionedThroughputOverride'] as Map<String, dynamic>)
               : null,
+      tableClassOverride:
+          (json['TableClassOverride'] as String?)?.toTableClass(),
     );
   }
 
@@ -14768,6 +14965,7 @@ class UpdateReplicationGroupMemberAction {
     final globalSecondaryIndexes = this.globalSecondaryIndexes;
     final kMSMasterKeyId = this.kMSMasterKeyId;
     final provisionedThroughputOverride = this.provisionedThroughputOverride;
+    final tableClassOverride = this.tableClassOverride;
     return {
       'RegionName': regionName,
       if (globalSecondaryIndexes != null)
@@ -14775,6 +14973,8 @@ class UpdateReplicationGroupMemberAction {
       if (kMSMasterKeyId != null) 'KMSMasterKeyId': kMSMasterKeyId,
       if (provisionedThroughputOverride != null)
         'ProvisionedThroughputOverride': provisionedThroughputOverride,
+      if (tableClassOverride != null)
+        'TableClassOverride': tableClassOverride.toValue(),
     };
   }
 }

@@ -1,3 +1,5 @@
+import 'package:aws_client.generator/utils/case.dart';
+
 import '../model/region_config.dart';
 
 String buildEndpointConfig(RegionConfigData regionConfigData) {
@@ -26,7 +28,7 @@ final rules = <String, RegionConfig>{
   for (var pattern in regionConfigData.patterns.entries) {
     code.writeln('');
     code.writeln(
-        'final _${pattern.key} = ${_regionConfigToCode(pattern.value)};');
+        'final _${lowerCamel(splitWords(pattern.key))} = ${_regionConfigToCode(pattern.value)};');
   }
 
   return '$code';

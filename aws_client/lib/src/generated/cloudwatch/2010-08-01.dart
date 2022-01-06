@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,14 +16,14 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2010-08-01.meta.dart';
 
+import '2010-08-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// Amazon CloudWatch monitors your Amazon Web Services (AWS) resources and the
-/// applications you run on AWS in real time. You can use CloudWatch to collect
-/// and track metrics, which are the variables you want to measure for your
-/// resources and applications.
+/// Amazon CloudWatch monitors your Amazon Web Services (Amazon Web Services)
+/// resources and the applications you run on Amazon Web Services in real time.
+/// You can use CloudWatch to collect and track metrics, which are the variables
+/// you want to measure for your resources and applications.
 ///
 /// CloudWatch alarms send notifications or automatically change the resources
 /// you are monitoring based on rules that you define. For example, you can
@@ -31,10 +32,10 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// additional instances to handle increased load. You can also use this data to
 /// stop under-used instances to save money.
 ///
-/// In addition to monitoring the built-in metrics that come with AWS, you can
-/// monitor your own custom metrics. With CloudWatch, you gain system-wide
-/// visibility into resource utilization, application performance, and
-/// operational health.
+/// In addition to monitoring the built-in metrics that come with Amazon Web
+/// Services, you can monitor your own custom metrics. With CloudWatch, you gain
+/// system-wide visibility into resource utilization, application performance,
+/// and operational health.
 class CloudWatch {
   final _s.QueryProtocol _protocol;
   final Map<String, _s.Shape> shapes;
@@ -106,6 +107,38 @@ class CloudWatch {
   /// May throw [InternalServiceFault].
   /// May throw [InvalidParameterValueException].
   /// May throw [MissingRequiredParameterException].
+  /// May throw [InvalidParameterCombinationException].
+  ///
+  /// Parameter [dimensions] :
+  /// The metric dimensions associated with the anomaly detection model to
+  /// delete.
+  ///
+  /// Parameter [metricMathAnomalyDetector] :
+  /// The metric math anomaly detector to be deleted.
+  ///
+  /// When using <code>MetricMathAnomalyDetector</code>, you cannot include
+  /// following parameters in the same operation:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Dimensions</code>,
+  /// </li>
+  /// <li>
+  /// <code>MetricName</code>
+  /// </li>
+  /// <li>
+  /// <code>Namespace</code>
+  /// </li>
+  /// <li>
+  /// <code>Stat</code>
+  /// </li>
+  /// <li>
+  /// the <code>SingleMetricAnomalyDetector</code> parameters of
+  /// <code>DeleteAnomalyDetectorInput</code>
+  /// </li>
+  /// </ul>
+  /// Instead, specify the metric math anomaly detector attributes as part of
+  /// the <code>MetricMathAnomalyDetector</code> property.
   ///
   /// Parameter [metricName] :
   /// The metric name associated with the anomaly detection model to delete.
@@ -113,40 +146,70 @@ class CloudWatch {
   /// Parameter [namespace] :
   /// The namespace associated with the anomaly detection model to delete.
   ///
+  /// Parameter [singleMetricAnomalyDetector] :
+  /// A single metric anomaly detector to be deleted.
+  ///
+  /// When using <code>SingleMetricAnomalyDetector</code>, you cannot include
+  /// the following parameters in the same operation:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Dimensions</code>,
+  /// </li>
+  /// <li>
+  /// <code>MetricName</code>
+  /// </li>
+  /// <li>
+  /// <code>Namespace</code>
+  /// </li>
+  /// <li>
+  /// <code>Stat</code>
+  /// </li>
+  /// <li>
+  /// the <code>MetricMathAnomalyDetector</code> parameters of
+  /// <code>DeleteAnomalyDetectorInput</code>
+  /// </li>
+  /// </ul>
+  /// Instead, specify the single metric anomaly detector attributes as part of
+  /// the <code>SingleMetricAnomalyDetector</code> property.
+  ///
   /// Parameter [stat] :
   /// The statistic associated with the anomaly detection model to delete.
-  ///
-  /// Parameter [dimensions] :
-  /// The metric dimensions associated with the anomaly detection model to
-  /// delete.
   Future<void> deleteAnomalyDetector({
-    required String metricName,
-    required String namespace,
-    required String stat,
     List<Dimension>? dimensions,
+    MetricMathAnomalyDetector? metricMathAnomalyDetector,
+    String? metricName,
+    String? namespace,
+    SingleMetricAnomalyDetector? singleMetricAnomalyDetector,
+    String? stat,
   }) async {
-    ArgumentError.checkNotNull(metricName, 'metricName');
     _s.validateStringLength(
       'metricName',
       metricName,
       1,
       255,
-      isRequired: true,
     );
-    ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-      isRequired: true,
     );
-    ArgumentError.checkNotNull(stat, 'stat');
+    _s.validateStringLength(
+      'stat',
+      stat,
+      0,
+      50,
+    );
     final $request = <String, dynamic>{};
-    $request['MetricName'] = metricName;
-    $request['Namespace'] = namespace;
-    $request['Stat'] = stat;
     dimensions?.also((arg) => $request['Dimensions'] = arg);
+    metricMathAnomalyDetector
+        ?.also((arg) => $request['MetricMathAnomalyDetector'] = arg);
+    metricName?.also((arg) => $request['MetricName'] = arg);
+    namespace?.also((arg) => $request['Namespace'] = arg);
+    singleMetricAnomalyDetector
+        ?.also((arg) => $request['SingleMetricAnomalyDetector'] = arg);
+    stat?.also((arg) => $request['Stat'] = arg);
     await _protocol.send(
       $request,
       action: 'DeleteAnomalyDetector',
@@ -263,6 +326,13 @@ class CloudWatch {
   ///
   /// CloudWatch retains the history of an alarm even if you delete the alarm.
   ///
+  /// To use this operation and return information about a composite alarm, you
+  /// must be signed on with the <code>cloudwatch:DescribeAlarmHistory</code>
+  /// permission that is scoped to <code>*</code>. You can't return information
+  /// about composite alarms if your
+  /// <code>cloudwatch:DescribeAlarmHistory</code> permission has a narrower
+  /// scope.
+  ///
   /// May throw [InvalidNextToken].
   ///
   /// Parameter [alarmName] :
@@ -342,6 +412,12 @@ class CloudWatch {
 
   /// Retrieves the specified alarms. You can filter the results by specifying a
   /// prefix for the alarm name, the alarm state, or a prefix for any action.
+  ///
+  /// To use this operation and return information about composite alarms, you
+  /// must be signed on with the <code>cloudwatch:DescribeAlarms</code>
+  /// permission that is scoped to <code>*</code>. You can't return information
+  /// about composite alarms if your <code>cloudwatch:DescribeAlarms</code>
+  /// permission has a narrower scope.
   ///
   /// May throw [InvalidNextToken].
   ///
@@ -566,13 +642,22 @@ class CloudWatch {
   }
 
   /// Lists the anomaly detection models that you have created in your account.
-  /// You can list all models in your account or filter the results to only the
-  /// models that are related to a certain namespace, metric name, or metric
-  /// dimension.
+  /// For single metric anomaly detectors, you can list all of the models in
+  /// your account or filter the results to only the models that are related to
+  /// a certain namespace, metric name, or metric dimension. For metric math
+  /// anomaly detectors, you can list them by adding <code>METRIC_MATH</code> to
+  /// the <code>AnomalyDetectorTypes</code> array. This will return all metric
+  /// math anomaly detectors in your account.
   ///
   /// May throw [InvalidNextToken].
   /// May throw [InternalServiceFault].
   /// May throw [InvalidParameterValueException].
+  /// May throw [InvalidParameterCombinationException].
+  ///
+  /// Parameter [anomalyDetectorTypes] :
+  /// The anomaly detector types to request when using
+  /// <code>DescribeAnomalyDetectorsInput</code>. If empty, defaults to
+  /// <code>SINGLE_METRIC</code>.
   ///
   /// Parameter [dimensions] :
   /// Limits the results to only the anomaly detection models that are
@@ -601,6 +686,7 @@ class CloudWatch {
   /// Use the token returned by the previous operation to request the next page
   /// of results.
   Future<DescribeAnomalyDetectorsOutput> describeAnomalyDetectors({
+    List<AnomalyDetectorType>? anomalyDetectorTypes,
     List<Dimension>? dimensions,
     int? maxResults,
     String? metricName,
@@ -626,6 +712,8 @@ class CloudWatch {
       255,
     );
     final $request = <String, dynamic>{};
+    anomalyDetectorTypes?.also((arg) => $request['AnomalyDetectorTypes'] =
+        arg.map((e) => e.toValue()).toList());
     dimensions?.also((arg) => $request['Dimensions'] = arg);
     maxResults?.also((arg) => $request['MaxResults'] = arg);
     metricName?.also((arg) => $request['MetricName'] = arg);
@@ -1225,8 +1313,8 @@ class CloudWatch {
   /// CloudWatch started retaining 5-minute and 1-hour metric data as of July 9,
   /// 2016.
   ///
-  /// For information about metrics and dimensions supported by AWS services,
-  /// see the <a
+  /// For information about metrics and dimensions supported by Amazon Web
+  /// Services services, see the <a
   /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html">Amazon
   /// CloudWatch Metrics and Dimensions Reference</a> in the <i>Amazon
   /// CloudWatch User Guide</i>.
@@ -1510,10 +1598,10 @@ class CloudWatch {
   /// <code>&lt;/GetMetricWidgetImageResponse&gt;</code>
   ///
   /// The <code>image/png</code> setting is intended only for custom HTTP
-  /// requests. For most use cases, and all actions using an AWS SDK, you should
-  /// use <code>png</code>. If you specify <code>image/png</code>, the HTTP
-  /// response has a content-type set to <code>image/png</code>, and the body of
-  /// the response is a PNG image.
+  /// requests. For most use cases, and all actions using an Amazon Web Services
+  /// SDK, you should use <code>png</code>. If you specify
+  /// <code>image/png</code>, the HTTP response has a content-type set to
+  /// <code>image/png</code>, and the body of the response is a PNG image.
   Future<GetMetricWidgetImageOutput> getMetricWidgetImage({
     required String metricWidget,
     String? outputFormat,
@@ -1769,15 +1857,7 @@ class CloudWatch {
   /// May throw [InternalServiceFault].
   /// May throw [InvalidParameterValueException].
   /// May throw [MissingRequiredParameterException].
-  ///
-  /// Parameter [metricName] :
-  /// The name of the metric to create the anomaly detection model for.
-  ///
-  /// Parameter [namespace] :
-  /// The namespace of the metric to create the anomaly detection model for.
-  ///
-  /// Parameter [stat] :
-  /// The statistic to use for the metric and the anomaly detection model.
+  /// May throw [InvalidParameterCombinationException].
   ///
   /// Parameter [configuration] :
   /// The configuration specifies details about how the anomaly detection model
@@ -1788,36 +1868,106 @@ class CloudWatch {
   ///
   /// Parameter [dimensions] :
   /// The metric dimensions to create the anomaly detection model for.
+  ///
+  /// Parameter [metricMathAnomalyDetector] :
+  /// The metric math anomaly detector to be created.
+  ///
+  /// When using <code>MetricMathAnomalyDetector</code>, you cannot include the
+  /// following parameters in the same operation:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Dimensions</code>
+  /// </li>
+  /// <li>
+  /// <code>MetricName</code>
+  /// </li>
+  /// <li>
+  /// <code>Namespace</code>
+  /// </li>
+  /// <li>
+  /// <code>Stat</code>
+  /// </li>
+  /// <li>
+  /// the <code>SingleMetricAnomalyDetector</code> parameters of
+  /// <code>PutAnomalyDetectorInput</code>
+  /// </li>
+  /// </ul>
+  /// Instead, specify the metric math anomaly detector attributes as part of
+  /// the property <code>MetricMathAnomalyDetector</code>.
+  ///
+  /// Parameter [metricName] :
+  /// The name of the metric to create the anomaly detection model for.
+  ///
+  /// Parameter [namespace] :
+  /// The namespace of the metric to create the anomaly detection model for.
+  ///
+  /// Parameter [singleMetricAnomalyDetector] :
+  /// A single metric anomaly detector to be created.
+  ///
+  /// When using <code>SingleMetricAnomalyDetector</code>, you cannot include
+  /// the following parameters in the same operation:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>Dimensions</code>
+  /// </li>
+  /// <li>
+  /// <code>MetricName</code>
+  /// </li>
+  /// <li>
+  /// <code>Namespace</code>
+  /// </li>
+  /// <li>
+  /// <code>Stat</code>
+  /// </li>
+  /// <li>
+  /// the <code>MetricMatchAnomalyDetector</code> parameters of
+  /// <code>PutAnomalyDetectorInput</code>
+  /// </li>
+  /// </ul>
+  /// Instead, specify the single metric anomaly detector attributes as part of
+  /// the property <code>SingleMetricAnomalyDetector</code>.
+  ///
+  /// Parameter [stat] :
+  /// The statistic to use for the metric and the anomaly detection model.
   Future<void> putAnomalyDetector({
-    required String metricName,
-    required String namespace,
-    required String stat,
     AnomalyDetectorConfiguration? configuration,
     List<Dimension>? dimensions,
+    MetricMathAnomalyDetector? metricMathAnomalyDetector,
+    String? metricName,
+    String? namespace,
+    SingleMetricAnomalyDetector? singleMetricAnomalyDetector,
+    String? stat,
   }) async {
-    ArgumentError.checkNotNull(metricName, 'metricName');
     _s.validateStringLength(
       'metricName',
       metricName,
       1,
       255,
-      isRequired: true,
     );
-    ArgumentError.checkNotNull(namespace, 'namespace');
     _s.validateStringLength(
       'namespace',
       namespace,
       1,
       255,
-      isRequired: true,
     );
-    ArgumentError.checkNotNull(stat, 'stat');
+    _s.validateStringLength(
+      'stat',
+      stat,
+      0,
+      50,
+    );
     final $request = <String, dynamic>{};
-    $request['MetricName'] = metricName;
-    $request['Namespace'] = namespace;
-    $request['Stat'] = stat;
     configuration?.also((arg) => $request['Configuration'] = arg);
     dimensions?.also((arg) => $request['Dimensions'] = arg);
+    metricMathAnomalyDetector
+        ?.also((arg) => $request['MetricMathAnomalyDetector'] = arg);
+    metricName?.also((arg) => $request['MetricName'] = arg);
+    namespace?.also((arg) => $request['Namespace'] = arg);
+    singleMetricAnomalyDetector
+        ?.also((arg) => $request['SingleMetricAnomalyDetector'] = arg);
+    stat?.also((arg) => $request['Stat'] = arg);
     await _protocol.send(
       $request,
       action: 'PutAnomalyDetector',
@@ -1872,6 +2022,11 @@ class CloudWatch {
   ///
   /// When you update an existing alarm, its state is left unchanged, but the
   /// update completely overwrites the previous configuration of the alarm.
+  ///
+  /// To use this operation, you must be signed on with the
+  /// <code>cloudwatch:PutCompositeAlarm</code> permission that is scoped to
+  /// <code>*</code>. You can't create a composite alarms if your
+  /// <code>cloudwatch:PutCompositeAlarm</code> permission has a narrower scope.
   ///
   /// If you are an IAM user, you must have
   /// <code>iam:CreateServiceLinkedRole</code> to create a composite alarm that
@@ -2225,14 +2380,44 @@ class CloudWatch {
   /// Systems Manager OpsItem actions.
   /// </li>
   /// </ul>
-  /// The first time you create an alarm in the AWS Management Console, the CLI,
-  /// or by using the PutMetricAlarm API, CloudWatch creates the necessary
-  /// service-linked role for you. The service-linked roles are called
-  /// <code>AWSServiceRoleForCloudWatchEvents</code> and
+  /// The first time you create an alarm in the Amazon Web Services Management
+  /// Console, the CLI, or by using the PutMetricAlarm API, CloudWatch creates
+  /// the necessary service-linked role for you. The service-linked roles are
+  /// called <code>AWSServiceRoleForCloudWatchEvents</code> and
   /// <code>AWSServiceRoleForCloudWatchAlarms_ActionSSM</code>. For more
   /// information, see <a
-  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">AWS
-  /// service-linked role</a>.
+  /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">Amazon
+  /// Web Services service-linked role</a>.
+  ///
+  /// <b>Cross-account alarms</b>
+  ///
+  /// You can set an alarm on metrics in the current account, or in another
+  /// account. To create a cross-account alarm that watches a metric in a
+  /// different account, you must have completed the following pre-requisites:
+  ///
+  /// <ul>
+  /// <li>
+  /// The account where the metrics are located (the <i>sharing account</i>)
+  /// must already have a sharing role named
+  /// <b>CloudWatch-CrossAccountSharingRole</b>. If it does not already have
+  /// this role, you must create it using the instructions in <b>Set up a
+  /// sharing account</b> in <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Cross-Account-Cross-Region.html#enable-cross-account-cross-Region">
+  /// Cross-account cross-Region CloudWatch console</a>. The policy for that
+  /// role must grant access to the ID of the account where you are creating the
+  /// alarm.
+  /// </li>
+  /// <li>
+  /// The account where you are creating the alarm (the <i>monitoring
+  /// account</i>) must already have a service-linked role named
+  /// <b>AWSServiceRoleForCloudWatchCrossAccount</b> to allow CloudWatch to
+  /// assume the sharing role in the sharing account. If it does not, you must
+  /// create it following the directions in <b>Set up a monitoring account</b>
+  /// in <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Cross-Account-Cross-Region.html#enable-cross-account-cross-Region">
+  /// Cross-account cross-Region CloudWatch console</a>.
+  /// </li>
+  /// </ul>
   ///
   /// May throw [LimitExceededFault].
   ///
@@ -2277,6 +2462,8 @@ class CloudWatch {
   /// <code>arn:aws:autoscaling:<i>region</i>:<i>account-id</i>:scalingPolicy:<i>policy-id</i>:autoScalingGroupName/<i>group-friendly-name</i>:policyName/<i>policy-friendly-name</i>
   /// </code> |
   /// <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:opsitem:<i>severity</i>
+  /// </code> |
+  /// <code>arn:aws:ssm-incidents::<i>account-id</i>:response-plan:<i>response-plan-name</i>
   /// </code>
   ///
   /// Valid Values (for use with IAM roles):
@@ -2285,6 +2472,8 @@ class CloudWatch {
   /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Terminate/1.0</code>
   /// |
   /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Reboot/1.0</code>
+  /// |
+  /// <code>arn:aws:swf:<i>region</i>:<i>account-id</i>:action/actions/AWS_EC2.InstanceId.Recover/1.0</code>
   ///
   /// Parameter [alarmDescription] :
   /// The description for the alarm.
@@ -2691,8 +2880,8 @@ class CloudWatch {
   /// Parameter [namespace] :
   /// The namespace for the metric data.
   ///
-  /// To avoid conflicts with AWS service namespaces, you should not specify a
-  /// namespace that begins with <code>AWS/</code>
+  /// To avoid conflicts with Amazon Web Services service namespaces, you should
+  /// not specify a namespace that begins with <code>AWS/</code>
   Future<void> putMetricData({
     required List<MetricDatum> metricData,
     required String namespace,
@@ -2722,11 +2911,11 @@ class CloudWatch {
   }
 
   /// Creates or updates a metric stream. Metric streams can automatically
-  /// stream CloudWatch metrics to AWS destinations including Amazon S3 and to
-  /// many third-party solutions.
+  /// stream CloudWatch metrics to Amazon Web Services destinations including
+  /// Amazon S3 and to many third-party solutions.
   ///
   /// For more information, see <a
-  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Metric-Streams.html">
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html">
   /// Using Metric Streams</a>.
   ///
   /// To create a metric stream, you must be logged on to an account that has
@@ -2817,6 +3006,14 @@ class CloudWatch {
   /// Tags can help you organize and categorize your resources. You can also use
   /// them to scope user permissions by granting a user permission to access or
   /// change only resources with certain tag values.
+  ///
+  /// You can use this parameter only when you are creating a new metric stream.
+  /// If you are using this operation to update an existing metric stream, any
+  /// tags you specify in this parameter are ignored. To change the tags of an
+  /// existing metric stream, use <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html">TagResource</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html">UntagResource</a>.
   Future<PutMetricStreamOutput> putMetricStream({
     required String firehoseArn,
     required String name,
@@ -3028,8 +3225,8 @@ class CloudWatch {
   /// them to scope user permissions by granting a user permission to access or
   /// change only resources with certain tag values.
   ///
-  /// Tags don't have any semantic meaning to AWS and are interpreted strictly
-  /// as strings of characters.
+  /// Tags don't have any semantic meaning to Amazon Web Services and are
+  /// interpreted strictly as strings of characters.
   ///
   /// You can use the <code>TagResource</code> action with an alarm that already
   /// has tags. If you specify a new tag key for the alarm, this tag is appended
@@ -3246,9 +3443,9 @@ extension on String {
   }
 }
 
-/// An anomaly detection model associated with a particular CloudWatch metric
-/// and statistic. You can use the model to display a band of expected normal
-/// values when the metric is graphed.
+/// An anomaly detection model associated with a particular CloudWatch metric,
+/// statistic, or metric math expression. You can use the model to display a
+/// band of expected, normal values when the metric is graphed.
 class AnomalyDetector {
   /// The configuration specifies details about how the anomaly detection model is
   /// to be trained, including time ranges to exclude from use for training the
@@ -3258,11 +3455,17 @@ class AnomalyDetector {
   /// The metric dimensions associated with the anomaly detection model.
   final List<Dimension>? dimensions;
 
+  /// The CloudWatch metric math expression for this anomaly detector.
+  final MetricMathAnomalyDetector? metricMathAnomalyDetector;
+
   /// The name of the metric associated with the anomaly detection model.
   final String? metricName;
 
   /// The namespace of the metric associated with the anomaly detection model.
   final String? namespace;
+
+  /// The CloudWatch metric and statistic for this anomaly detector.
+  final SingleMetricAnomalyDetector? singleMetricAnomalyDetector;
 
   /// The statistic associated with the anomaly detection model.
   final String? stat;
@@ -3274,8 +3477,10 @@ class AnomalyDetector {
   AnomalyDetector({
     this.configuration,
     this.dimensions,
+    this.metricMathAnomalyDetector,
     this.metricName,
     this.namespace,
+    this.singleMetricAnomalyDetector,
     this.stat,
     this.stateValue,
   });
@@ -3290,8 +3495,16 @@ class AnomalyDetector {
           ?.whereNotNull()
           .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
           .toList(),
+      metricMathAnomalyDetector: json['MetricMathAnomalyDetector'] != null
+          ? MetricMathAnomalyDetector.fromJson(
+              json['MetricMathAnomalyDetector'] as Map<String, dynamic>)
+          : null,
       metricName: json['MetricName'] as String?,
       namespace: json['Namespace'] as String?,
+      singleMetricAnomalyDetector: json['SingleMetricAnomalyDetector'] != null
+          ? SingleMetricAnomalyDetector.fromJson(
+              json['SingleMetricAnomalyDetector'] as Map<String, dynamic>)
+          : null,
       stat: json['Stat'] as String?,
       stateValue:
           (json['StateValue'] as String?)?.toAnomalyDetectorStateValue(),
@@ -3307,8 +3520,14 @@ class AnomalyDetector {
           .findElements('member')
           .map((c) => Dimension.fromXml(c))
           .toList()),
+      metricMathAnomalyDetector: _s
+          .extractXmlChild(elem, 'MetricMathAnomalyDetector')
+          ?.let((e) => MetricMathAnomalyDetector.fromXml(e)),
       metricName: _s.extractXmlStringValue(elem, 'MetricName'),
       namespace: _s.extractXmlStringValue(elem, 'Namespace'),
+      singleMetricAnomalyDetector: _s
+          .extractXmlChild(elem, 'SingleMetricAnomalyDetector')
+          ?.let((e) => SingleMetricAnomalyDetector.fromXml(e)),
       stat: _s.extractXmlStringValue(elem, 'Stat'),
       stateValue: _s
           .extractXmlStringValue(elem, 'StateValue')
@@ -3319,15 +3538,21 @@ class AnomalyDetector {
   Map<String, dynamic> toJson() {
     final configuration = this.configuration;
     final dimensions = this.dimensions;
+    final metricMathAnomalyDetector = this.metricMathAnomalyDetector;
     final metricName = this.metricName;
     final namespace = this.namespace;
+    final singleMetricAnomalyDetector = this.singleMetricAnomalyDetector;
     final stat = this.stat;
     final stateValue = this.stateValue;
     return {
       if (configuration != null) 'Configuration': configuration,
       if (dimensions != null) 'Dimensions': dimensions,
+      if (metricMathAnomalyDetector != null)
+        'MetricMathAnomalyDetector': metricMathAnomalyDetector,
       if (metricName != null) 'MetricName': metricName,
       if (namespace != null) 'Namespace': namespace,
+      if (singleMetricAnomalyDetector != null)
+        'SingleMetricAnomalyDetector': singleMetricAnomalyDetector,
       if (stat != null) 'Stat': stat,
       if (stateValue != null) 'StateValue': stateValue.toValue(),
     };
@@ -3419,6 +3644,34 @@ extension on String {
         return AnomalyDetectorStateValue.trained;
     }
     throw Exception('$this is not known in enum AnomalyDetectorStateValue');
+  }
+}
+
+enum AnomalyDetectorType {
+  singleMetric,
+  metricMath,
+}
+
+extension on AnomalyDetectorType {
+  String toValue() {
+    switch (this) {
+      case AnomalyDetectorType.singleMetric:
+        return 'SINGLE_METRIC';
+      case AnomalyDetectorType.metricMath:
+        return 'METRIC_MATH';
+    }
+  }
+}
+
+extension on String {
+  AnomalyDetectorType toAnomalyDetectorType() {
+    switch (this) {
+      case 'SINGLE_METRIC':
+        return AnomalyDetectorType.singleMetric;
+      case 'METRIC_MATH':
+        return AnomalyDetectorType.metricMath;
+    }
+    throw Exception('$this is not known in enum AnomalyDetectorType');
   }
 }
 
@@ -4132,12 +4385,12 @@ class DescribeInsightRulesOutput {
 /// pair to one of your metrics, you are creating a new variation of that
 /// metric.
 class Dimension {
-  /// The name of the dimension. Dimension names cannot contain blank spaces or
-  /// non-ASCII characters.
+  /// The name of the dimension. Dimension names must contain only ASCII
+  /// characters and must include at least one non-whitespace character.
   final String name;
 
-  /// The value of the dimension. Dimension values cannot contain blank spaces or
-  /// non-ASCII characters.
+  /// The value of the dimension. Dimension values must contain only ASCII
+  /// characters and must include at least one non-whitespace character.
   final String value;
 
   Dimension({
@@ -4713,7 +4966,11 @@ extension on String {
   }
 }
 
-/// This structure contains the definition for a Contributor Insights rule.
+/// This structure contains the definition for a Contributor Insights rule. For
+/// more information about this rule, see<a
+/// href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html">
+/// Using Constributor Insights to analyze high-cardinality data</a> in the
+/// <i>Amazon CloudWatch User Guide</i>.
 class InsightRule {
   /// The definition of the rule, as a JSON object. The definition contains the
   /// keywords used to define contributors, the value to aggregate on if this rule
@@ -4727,7 +4984,7 @@ class InsightRule {
   final String name;
 
   /// For rules that you create, this is always <code>{"Name":
-  /// "CloudWatchLogRule", "Version": 1}</code>. For built-in rules, this is
+  /// "CloudWatchLogRule", "Version": 1}</code>. For managed rules, this is
   /// <code>{"Name": "ServiceLogRule", "Version": 1}</code>
   final String schema;
 
@@ -5197,6 +5454,12 @@ class ListTagsForResourceOutput {
 
 /// A message returned by the <code>GetMetricData</code>API, including a code
 /// and a description.
+///
+/// If a cross-Region <code>GetMetricData</code> operation fails with a code of
+/// <code>Forbidden</code> and a value of <code>Authentication too complex to
+/// retrieve cross region data</code>, you can correct the problem by running
+/// the <code>GetMetricData</code> operation in the same Region where the metric
+/// data is.
 class MessageData {
   /// The error code or status code associated with the message.
   final String? code;
@@ -5627,6 +5890,13 @@ class MetricDataQuery {
   /// first character must be a lowercase letter.
   final String id;
 
+  /// The ID of the account where the metrics are located, if this is a
+  /// cross-account alarm.
+  ///
+  /// Use this field only for <code>PutMetricAlarm</code> operations. It is not
+  /// used in <code>GetMetricData</code> operations.
+  final String? accountId;
+
   /// The math expression to be performed on the returned data, if this object is
   /// performing a math expression. This expression can use the <code>Id</code> of
   /// the other metrics to refer to those metrics, and can also use the
@@ -5681,6 +5951,7 @@ class MetricDataQuery {
 
   MetricDataQuery({
     required this.id,
+    this.accountId,
     this.expression,
     this.label,
     this.metricStat,
@@ -5691,6 +5962,7 @@ class MetricDataQuery {
   factory MetricDataQuery.fromJson(Map<String, dynamic> json) {
     return MetricDataQuery(
       id: json['Id'] as String,
+      accountId: json['AccountId'] as String?,
       expression: json['Expression'] as String?,
       label: json['Label'] as String?,
       metricStat: json['MetricStat'] != null
@@ -5704,6 +5976,7 @@ class MetricDataQuery {
   factory MetricDataQuery.fromXml(_s.XmlElement elem) {
     return MetricDataQuery(
       id: _s.extractXmlStringValue(elem, 'Id')!,
+      accountId: _s.extractXmlStringValue(elem, 'AccountId'),
       expression: _s.extractXmlStringValue(elem, 'Expression'),
       label: _s.extractXmlStringValue(elem, 'Label'),
       metricStat: _s
@@ -5716,6 +5989,7 @@ class MetricDataQuery {
 
   Map<String, dynamic> toJson() {
     final id = this.id;
+    final accountId = this.accountId;
     final expression = this.expression;
     final label = this.label;
     final metricStat = this.metricStat;
@@ -5723,6 +5997,7 @@ class MetricDataQuery {
     final returnData = this.returnData;
     return {
       'Id': id,
+      if (accountId != null) 'AccountId': accountId,
       if (expression != null) 'Expression': expression,
       if (label != null) 'Label': label,
       if (metricStat != null) 'MetricStat': metricStat,
@@ -5956,6 +6231,52 @@ class MetricDatum {
       if (unit != null) 'Unit': unit.toValue(),
       if (value != null) 'Value': value,
       if (values != null) 'Values': values,
+    };
+  }
+}
+
+/// Indicates the CloudWatch math expression that provides the time series the
+/// anomaly detector uses as input. The designated math expression must return a
+/// single time series.
+class MetricMathAnomalyDetector {
+  /// An array of metric data query structures that enables you to create an
+  /// anomaly detector based on the result of a metric math expression. Each item
+  /// in <code>MetricDataQueries</code> gets a metric or performs a math
+  /// expression. One item in <code>MetricDataQueries</code> is the expression
+  /// that provides the time series that the anomaly detector uses as input.
+  /// Designate the expression by setting <code>ReturnData</code> to
+  /// <code>True</code> for this object in the array. For all other expressions
+  /// and metrics, set <code>ReturnData</code> to <code>False</code>. The
+  /// designated expression must return a single time series.
+  final List<MetricDataQuery>? metricDataQueries;
+
+  MetricMathAnomalyDetector({
+    this.metricDataQueries,
+  });
+
+  factory MetricMathAnomalyDetector.fromJson(Map<String, dynamic> json) {
+    return MetricMathAnomalyDetector(
+      metricDataQueries: (json['MetricDataQueries'] as List?)
+          ?.whereNotNull()
+          .map((e) => MetricDataQuery.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  factory MetricMathAnomalyDetector.fromXml(_s.XmlElement elem) {
+    return MetricMathAnomalyDetector(
+      metricDataQueries: _s.extractXmlChild(elem, 'MetricDataQueries')?.let(
+          (elem) => elem
+              .findElements('member')
+              .map((c) => MetricDataQuery.fromXml(c))
+              .toList()),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDataQueries = this.metricDataQueries;
+    return {
+      if (metricDataQueries != null) 'MetricDataQueries': metricDataQueries,
     };
   }
 }
@@ -6450,6 +6771,66 @@ extension on String {
         return ScanBy.timestampAscending;
     }
     throw Exception('$this is not known in enum ScanBy');
+  }
+}
+
+/// Designates the CloudWatch metric and statistic that provides the time series
+/// the anomaly detector uses as input.
+class SingleMetricAnomalyDetector {
+  /// The metric dimensions to create the anomaly detection model for.
+  final List<Dimension>? dimensions;
+
+  /// The name of the metric to create the anomaly detection model for.
+  final String? metricName;
+
+  /// The namespace of the metric to create the anomaly detection model for.
+  final String? namespace;
+
+  /// The statistic to use for the metric and anomaly detection model.
+  final String? stat;
+
+  SingleMetricAnomalyDetector({
+    this.dimensions,
+    this.metricName,
+    this.namespace,
+    this.stat,
+  });
+
+  factory SingleMetricAnomalyDetector.fromJson(Map<String, dynamic> json) {
+    return SingleMetricAnomalyDetector(
+      dimensions: (json['Dimensions'] as List?)
+          ?.whereNotNull()
+          .map((e) => Dimension.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      metricName: json['MetricName'] as String?,
+      namespace: json['Namespace'] as String?,
+      stat: json['Stat'] as String?,
+    );
+  }
+
+  factory SingleMetricAnomalyDetector.fromXml(_s.XmlElement elem) {
+    return SingleMetricAnomalyDetector(
+      dimensions: _s.extractXmlChild(elem, 'Dimensions')?.let((elem) => elem
+          .findElements('member')
+          .map((c) => Dimension.fromXml(c))
+          .toList()),
+      metricName: _s.extractXmlStringValue(elem, 'MetricName'),
+      namespace: _s.extractXmlStringValue(elem, 'Namespace'),
+      stat: _s.extractXmlStringValue(elem, 'Stat'),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final stat = this.stat;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (stat != null) 'Stat': stat,
+    };
   }
 }
 

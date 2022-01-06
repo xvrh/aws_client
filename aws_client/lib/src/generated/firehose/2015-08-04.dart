@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -191,6 +192,8 @@ class Firehose {
   /// You can specify up to 50 tags when creating a delivery stream.
   Future<CreateDeliveryStreamOutput> createDeliveryStream({
     required String deliveryStreamName,
+    AmazonopensearchserviceDestinationConfiguration?
+        amazonopensearchserviceDestinationConfiguration,
     DeliveryStreamEncryptionConfigurationInput?
         deliveryStreamEncryptionConfigurationInput,
     DeliveryStreamType? deliveryStreamType,
@@ -224,6 +227,9 @@ class Firehose {
       headers: headers,
       payload: {
         'DeliveryStreamName': deliveryStreamName,
+        if (amazonopensearchserviceDestinationConfiguration != null)
+          'AmazonopensearchserviceDestinationConfiguration':
+              amazonopensearchserviceDestinationConfiguration,
         if (deliveryStreamEncryptionConfigurationInput != null)
           'DeliveryStreamEncryptionConfigurationInput':
               deliveryStreamEncryptionConfigurationInput,
@@ -542,7 +548,7 @@ class Firehose {
   ///
   /// You must specify the name of the delivery stream and the data record when
   /// using <a>PutRecord</a>. The data record consists of a data blob that can
-  /// be up to 1,000 KB in size, and any kind of data. For example, it can be a
+  /// be up to 1,000 KiB in size, and any kind of data. For example, it can be a
   /// segment from a log file, geographic location data, website clickstream
   /// data, and so on.
   ///
@@ -625,7 +631,7 @@ class Firehose {
   /// Kinesis Data Firehose Quota</a>.
   ///
   /// Each <a>PutRecordBatch</a> request supports up to 500 records. Each record
-  /// in the request can be as large as 1,000 KB (before 64-bit encoding), up to
+  /// in the request can be as large as 1,000 KB (before base64 encoding), up to
   /// a limit of 4 MB for the entire request. These limits cannot be changed.
   ///
   /// You must specify the name of the delivery stream and the data record when
@@ -1063,6 +1069,8 @@ class Firehose {
     required String currentDeliveryStreamVersionId,
     required String deliveryStreamName,
     required String destinationId,
+    AmazonopensearchserviceDestinationUpdate?
+        amazonopensearchserviceDestinationUpdate,
     ElasticsearchDestinationUpdate? elasticsearchDestinationUpdate,
     ExtendedS3DestinationUpdate? extendedS3DestinationUpdate,
     HttpEndpointDestinationUpdate? httpEndpointDestinationUpdate,
@@ -1109,6 +1117,9 @@ class Firehose {
         'CurrentDeliveryStreamVersionId': currentDeliveryStreamVersionId,
         'DeliveryStreamName': deliveryStreamName,
         'DestinationId': destinationId,
+        if (amazonopensearchserviceDestinationUpdate != null)
+          'AmazonopensearchserviceDestinationUpdate':
+              amazonopensearchserviceDestinationUpdate,
         if (elasticsearchDestinationUpdate != null)
           'ElasticsearchDestinationUpdate': elasticsearchDestinationUpdate,
         if (extendedS3DestinationUpdate != null)
@@ -1123,6 +1134,430 @@ class Firehose {
           'SplunkDestinationUpdate': splunkDestinationUpdate,
       },
     );
+  }
+}
+
+class AmazonopensearchserviceBufferingHints {
+  final int? intervalInSeconds;
+  final int? sizeInMBs;
+
+  AmazonopensearchserviceBufferingHints({
+    this.intervalInSeconds,
+    this.sizeInMBs,
+  });
+
+  factory AmazonopensearchserviceBufferingHints.fromJson(
+      Map<String, dynamic> json) {
+    return AmazonopensearchserviceBufferingHints(
+      intervalInSeconds: json['IntervalInSeconds'] as int?,
+      sizeInMBs: json['SizeInMBs'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final intervalInSeconds = this.intervalInSeconds;
+    final sizeInMBs = this.sizeInMBs;
+    return {
+      if (intervalInSeconds != null) 'IntervalInSeconds': intervalInSeconds,
+      if (sizeInMBs != null) 'SizeInMBs': sizeInMBs,
+    };
+  }
+}
+
+class AmazonopensearchserviceDestinationConfiguration {
+  final String indexName;
+  final String roleARN;
+  final S3DestinationConfiguration s3Configuration;
+  final AmazonopensearchserviceBufferingHints? bufferingHints;
+  final CloudWatchLoggingOptions? cloudWatchLoggingOptions;
+  final String? clusterEndpoint;
+  final String? domainARN;
+  final AmazonopensearchserviceIndexRotationPeriod? indexRotationPeriod;
+  final ProcessingConfiguration? processingConfiguration;
+  final AmazonopensearchserviceRetryOptions? retryOptions;
+  final AmazonopensearchserviceS3BackupMode? s3BackupMode;
+  final String? typeName;
+  final VpcConfiguration? vpcConfiguration;
+
+  AmazonopensearchserviceDestinationConfiguration({
+    required this.indexName,
+    required this.roleARN,
+    required this.s3Configuration,
+    this.bufferingHints,
+    this.cloudWatchLoggingOptions,
+    this.clusterEndpoint,
+    this.domainARN,
+    this.indexRotationPeriod,
+    this.processingConfiguration,
+    this.retryOptions,
+    this.s3BackupMode,
+    this.typeName,
+    this.vpcConfiguration,
+  });
+
+  factory AmazonopensearchserviceDestinationConfiguration.fromJson(
+      Map<String, dynamic> json) {
+    return AmazonopensearchserviceDestinationConfiguration(
+      indexName: json['IndexName'] as String,
+      roleARN: json['RoleARN'] as String,
+      s3Configuration: S3DestinationConfiguration.fromJson(
+          json['S3Configuration'] as Map<String, dynamic>),
+      bufferingHints: json['BufferingHints'] != null
+          ? AmazonopensearchserviceBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterEndpoint: json['ClusterEndpoint'] as String?,
+      domainARN: json['DomainARN'] as String?,
+      indexRotationPeriod: (json['IndexRotationPeriod'] as String?)
+          ?.toAmazonopensearchserviceIndexRotationPeriod(),
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? AmazonopensearchserviceRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      s3BackupMode: (json['S3BackupMode'] as String?)
+          ?.toAmazonopensearchserviceS3BackupMode(),
+      typeName: json['TypeName'] as String?,
+      vpcConfiguration: json['VpcConfiguration'] != null
+          ? VpcConfiguration.fromJson(
+              json['VpcConfiguration'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final roleARN = this.roleARN;
+    final s3Configuration = this.s3Configuration;
+    final bufferingHints = this.bufferingHints;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final clusterEndpoint = this.clusterEndpoint;
+    final domainARN = this.domainARN;
+    final indexRotationPeriod = this.indexRotationPeriod;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final s3BackupMode = this.s3BackupMode;
+    final typeName = this.typeName;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      'IndexName': indexName,
+      'RoleARN': roleARN,
+      'S3Configuration': s3Configuration,
+      if (bufferingHints != null) 'BufferingHints': bufferingHints,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (clusterEndpoint != null) 'ClusterEndpoint': clusterEndpoint,
+      if (domainARN != null) 'DomainARN': domainARN,
+      if (indexRotationPeriod != null)
+        'IndexRotationPeriod': indexRotationPeriod.toValue(),
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+      if (typeName != null) 'TypeName': typeName,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
+  }
+}
+
+class AmazonopensearchserviceDestinationDescription {
+  final AmazonopensearchserviceBufferingHints? bufferingHints;
+  final CloudWatchLoggingOptions? cloudWatchLoggingOptions;
+  final String? clusterEndpoint;
+  final String? domainARN;
+  final String? indexName;
+  final AmazonopensearchserviceIndexRotationPeriod? indexRotationPeriod;
+  final ProcessingConfiguration? processingConfiguration;
+  final AmazonopensearchserviceRetryOptions? retryOptions;
+  final String? roleARN;
+  final AmazonopensearchserviceS3BackupMode? s3BackupMode;
+  final S3DestinationDescription? s3DestinationDescription;
+  final String? typeName;
+  final VpcConfigurationDescription? vpcConfigurationDescription;
+
+  AmazonopensearchserviceDestinationDescription({
+    this.bufferingHints,
+    this.cloudWatchLoggingOptions,
+    this.clusterEndpoint,
+    this.domainARN,
+    this.indexName,
+    this.indexRotationPeriod,
+    this.processingConfiguration,
+    this.retryOptions,
+    this.roleARN,
+    this.s3BackupMode,
+    this.s3DestinationDescription,
+    this.typeName,
+    this.vpcConfigurationDescription,
+  });
+
+  factory AmazonopensearchserviceDestinationDescription.fromJson(
+      Map<String, dynamic> json) {
+    return AmazonopensearchserviceDestinationDescription(
+      bufferingHints: json['BufferingHints'] != null
+          ? AmazonopensearchserviceBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterEndpoint: json['ClusterEndpoint'] as String?,
+      domainARN: json['DomainARN'] as String?,
+      indexName: json['IndexName'] as String?,
+      indexRotationPeriod: (json['IndexRotationPeriod'] as String?)
+          ?.toAmazonopensearchserviceIndexRotationPeriod(),
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? AmazonopensearchserviceRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3BackupMode: (json['S3BackupMode'] as String?)
+          ?.toAmazonopensearchserviceS3BackupMode(),
+      s3DestinationDescription: json['S3DestinationDescription'] != null
+          ? S3DestinationDescription.fromJson(
+              json['S3DestinationDescription'] as Map<String, dynamic>)
+          : null,
+      typeName: json['TypeName'] as String?,
+      vpcConfigurationDescription: json['VpcConfigurationDescription'] != null
+          ? VpcConfigurationDescription.fromJson(
+              json['VpcConfigurationDescription'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bufferingHints = this.bufferingHints;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final clusterEndpoint = this.clusterEndpoint;
+    final domainARN = this.domainARN;
+    final indexName = this.indexName;
+    final indexRotationPeriod = this.indexRotationPeriod;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final roleARN = this.roleARN;
+    final s3BackupMode = this.s3BackupMode;
+    final s3DestinationDescription = this.s3DestinationDescription;
+    final typeName = this.typeName;
+    final vpcConfigurationDescription = this.vpcConfigurationDescription;
+    return {
+      if (bufferingHints != null) 'BufferingHints': bufferingHints,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (clusterEndpoint != null) 'ClusterEndpoint': clusterEndpoint,
+      if (domainARN != null) 'DomainARN': domainARN,
+      if (indexName != null) 'IndexName': indexName,
+      if (indexRotationPeriod != null)
+        'IndexRotationPeriod': indexRotationPeriod.toValue(),
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (s3BackupMode != null) 'S3BackupMode': s3BackupMode.toValue(),
+      if (s3DestinationDescription != null)
+        'S3DestinationDescription': s3DestinationDescription,
+      if (typeName != null) 'TypeName': typeName,
+      if (vpcConfigurationDescription != null)
+        'VpcConfigurationDescription': vpcConfigurationDescription,
+    };
+  }
+}
+
+class AmazonopensearchserviceDestinationUpdate {
+  final AmazonopensearchserviceBufferingHints? bufferingHints;
+  final CloudWatchLoggingOptions? cloudWatchLoggingOptions;
+  final String? clusterEndpoint;
+  final String? domainARN;
+  final String? indexName;
+  final AmazonopensearchserviceIndexRotationPeriod? indexRotationPeriod;
+  final ProcessingConfiguration? processingConfiguration;
+  final AmazonopensearchserviceRetryOptions? retryOptions;
+  final String? roleARN;
+  final S3DestinationUpdate? s3Update;
+  final String? typeName;
+
+  AmazonopensearchserviceDestinationUpdate({
+    this.bufferingHints,
+    this.cloudWatchLoggingOptions,
+    this.clusterEndpoint,
+    this.domainARN,
+    this.indexName,
+    this.indexRotationPeriod,
+    this.processingConfiguration,
+    this.retryOptions,
+    this.roleARN,
+    this.s3Update,
+    this.typeName,
+  });
+
+  factory AmazonopensearchserviceDestinationUpdate.fromJson(
+      Map<String, dynamic> json) {
+    return AmazonopensearchserviceDestinationUpdate(
+      bufferingHints: json['BufferingHints'] != null
+          ? AmazonopensearchserviceBufferingHints.fromJson(
+              json['BufferingHints'] as Map<String, dynamic>)
+          : null,
+      cloudWatchLoggingOptions: json['CloudWatchLoggingOptions'] != null
+          ? CloudWatchLoggingOptions.fromJson(
+              json['CloudWatchLoggingOptions'] as Map<String, dynamic>)
+          : null,
+      clusterEndpoint: json['ClusterEndpoint'] as String?,
+      domainARN: json['DomainARN'] as String?,
+      indexName: json['IndexName'] as String?,
+      indexRotationPeriod: (json['IndexRotationPeriod'] as String?)
+          ?.toAmazonopensearchserviceIndexRotationPeriod(),
+      processingConfiguration: json['ProcessingConfiguration'] != null
+          ? ProcessingConfiguration.fromJson(
+              json['ProcessingConfiguration'] as Map<String, dynamic>)
+          : null,
+      retryOptions: json['RetryOptions'] != null
+          ? AmazonopensearchserviceRetryOptions.fromJson(
+              json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+      roleARN: json['RoleARN'] as String?,
+      s3Update: json['S3Update'] != null
+          ? S3DestinationUpdate.fromJson(
+              json['S3Update'] as Map<String, dynamic>)
+          : null,
+      typeName: json['TypeName'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bufferingHints = this.bufferingHints;
+    final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
+    final clusterEndpoint = this.clusterEndpoint;
+    final domainARN = this.domainARN;
+    final indexName = this.indexName;
+    final indexRotationPeriod = this.indexRotationPeriod;
+    final processingConfiguration = this.processingConfiguration;
+    final retryOptions = this.retryOptions;
+    final roleARN = this.roleARN;
+    final s3Update = this.s3Update;
+    final typeName = this.typeName;
+    return {
+      if (bufferingHints != null) 'BufferingHints': bufferingHints,
+      if (cloudWatchLoggingOptions != null)
+        'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
+      if (clusterEndpoint != null) 'ClusterEndpoint': clusterEndpoint,
+      if (domainARN != null) 'DomainARN': domainARN,
+      if (indexName != null) 'IndexName': indexName,
+      if (indexRotationPeriod != null)
+        'IndexRotationPeriod': indexRotationPeriod.toValue(),
+      if (processingConfiguration != null)
+        'ProcessingConfiguration': processingConfiguration,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (s3Update != null) 'S3Update': s3Update,
+      if (typeName != null) 'TypeName': typeName,
+    };
+  }
+}
+
+enum AmazonopensearchserviceIndexRotationPeriod {
+  noRotation,
+  oneHour,
+  oneDay,
+  oneWeek,
+  oneMonth,
+}
+
+extension on AmazonopensearchserviceIndexRotationPeriod {
+  String toValue() {
+    switch (this) {
+      case AmazonopensearchserviceIndexRotationPeriod.noRotation:
+        return 'NoRotation';
+      case AmazonopensearchserviceIndexRotationPeriod.oneHour:
+        return 'OneHour';
+      case AmazonopensearchserviceIndexRotationPeriod.oneDay:
+        return 'OneDay';
+      case AmazonopensearchserviceIndexRotationPeriod.oneWeek:
+        return 'OneWeek';
+      case AmazonopensearchserviceIndexRotationPeriod.oneMonth:
+        return 'OneMonth';
+    }
+  }
+}
+
+extension on String {
+  AmazonopensearchserviceIndexRotationPeriod
+      toAmazonopensearchserviceIndexRotationPeriod() {
+    switch (this) {
+      case 'NoRotation':
+        return AmazonopensearchserviceIndexRotationPeriod.noRotation;
+      case 'OneHour':
+        return AmazonopensearchserviceIndexRotationPeriod.oneHour;
+      case 'OneDay':
+        return AmazonopensearchserviceIndexRotationPeriod.oneDay;
+      case 'OneWeek':
+        return AmazonopensearchserviceIndexRotationPeriod.oneWeek;
+      case 'OneMonth':
+        return AmazonopensearchserviceIndexRotationPeriod.oneMonth;
+    }
+    throw Exception(
+        '$this is not known in enum AmazonopensearchserviceIndexRotationPeriod');
+  }
+}
+
+class AmazonopensearchserviceRetryOptions {
+  final int? durationInSeconds;
+
+  AmazonopensearchserviceRetryOptions({
+    this.durationInSeconds,
+  });
+
+  factory AmazonopensearchserviceRetryOptions.fromJson(
+      Map<String, dynamic> json) {
+    return AmazonopensearchserviceRetryOptions(
+      durationInSeconds: json['DurationInSeconds'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final durationInSeconds = this.durationInSeconds;
+    return {
+      if (durationInSeconds != null) 'DurationInSeconds': durationInSeconds,
+    };
+  }
+}
+
+enum AmazonopensearchserviceS3BackupMode {
+  failedDocumentsOnly,
+  allDocuments,
+}
+
+extension on AmazonopensearchserviceS3BackupMode {
+  String toValue() {
+    switch (this) {
+      case AmazonopensearchserviceS3BackupMode.failedDocumentsOnly:
+        return 'FailedDocumentsOnly';
+      case AmazonopensearchserviceS3BackupMode.allDocuments:
+        return 'AllDocuments';
+    }
+  }
+}
+
+extension on String {
+  AmazonopensearchserviceS3BackupMode toAmazonopensearchserviceS3BackupMode() {
+    switch (this) {
+      case 'FailedDocumentsOnly':
+        return AmazonopensearchserviceS3BackupMode.failedDocumentsOnly;
+      case 'AllDocuments':
+        return AmazonopensearchserviceS3BackupMode.allDocuments;
+    }
+    throw Exception(
+        '$this is not known in enum AmazonopensearchserviceS3BackupMode');
   }
 }
 
@@ -2016,6 +2451,8 @@ class Deserializer {
 class DestinationDescription {
   /// The ID of the destination.
   final String destinationId;
+  final AmazonopensearchserviceDestinationDescription?
+      amazonopensearchserviceDestinationDescription;
 
   /// The destination in Amazon ES.
   final ElasticsearchDestinationDescription?
@@ -2038,6 +2475,7 @@ class DestinationDescription {
 
   DestinationDescription({
     required this.destinationId,
+    this.amazonopensearchserviceDestinationDescription,
     this.elasticsearchDestinationDescription,
     this.extendedS3DestinationDescription,
     this.httpEndpointDestinationDescription,
@@ -2049,6 +2487,12 @@ class DestinationDescription {
   factory DestinationDescription.fromJson(Map<String, dynamic> json) {
     return DestinationDescription(
       destinationId: json['DestinationId'] as String,
+      amazonopensearchserviceDestinationDescription:
+          json['AmazonopensearchserviceDestinationDescription'] != null
+              ? AmazonopensearchserviceDestinationDescription.fromJson(
+                  json['AmazonopensearchserviceDestinationDescription']
+                      as Map<String, dynamic>)
+              : null,
       elasticsearchDestinationDescription:
           json['ElasticsearchDestinationDescription'] != null
               ? ElasticsearchDestinationDescription.fromJson(
@@ -2085,6 +2529,8 @@ class DestinationDescription {
 
   Map<String, dynamic> toJson() {
     final destinationId = this.destinationId;
+    final amazonopensearchserviceDestinationDescription =
+        this.amazonopensearchserviceDestinationDescription;
     final elasticsearchDestinationDescription =
         this.elasticsearchDestinationDescription;
     final extendedS3DestinationDescription =
@@ -2096,6 +2542,9 @@ class DestinationDescription {
     final splunkDestinationDescription = this.splunkDestinationDescription;
     return {
       'DestinationId': destinationId,
+      if (amazonopensearchserviceDestinationDescription != null)
+        'AmazonopensearchserviceDestinationDescription':
+            amazonopensearchserviceDestinationDescription,
       if (elasticsearchDestinationDescription != null)
         'ElasticsearchDestinationDescription':
             elasticsearchDestinationDescription,
@@ -2110,6 +2559,44 @@ class DestinationDescription {
         'S3DestinationDescription': s3DestinationDescription,
       if (splunkDestinationDescription != null)
         'SplunkDestinationDescription': splunkDestinationDescription,
+    };
+  }
+}
+
+/// The configuration of the dynamic partitioning mechanism that creates smaller
+/// data sets from the streaming data by partitioning it based on partition
+/// keys. Currently, dynamic partitioning is only supported for Amazon S3
+/// destinations. For more information, see <a
+/// href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+class DynamicPartitioningConfiguration {
+  /// Specifies that the dynamic partitioning is enabled for this Kinesis Data
+  /// Firehose delivery stream.
+  final bool? enabled;
+
+  /// The retry behavior in case Kinesis Data Firehose is unable to deliver data
+  /// to an Amazon S3 prefix.
+  final RetryOptions? retryOptions;
+
+  DynamicPartitioningConfiguration({
+    this.enabled,
+    this.retryOptions,
+  });
+
+  factory DynamicPartitioningConfiguration.fromJson(Map<String, dynamic> json) {
+    return DynamicPartitioningConfiguration(
+      enabled: json['Enabled'] as bool?,
+      retryOptions: json['RetryOptions'] != null
+          ? RetryOptions.fromJson(json['RetryOptions'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final retryOptions = this.retryOptions;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (retryOptions != null) 'RetryOptions': retryOptions,
     };
   }
 }
@@ -2770,6 +3257,13 @@ class ExtendedS3DestinationConfiguration {
   /// format to the Parquet or ORC format before writing it to Amazon S3.
   final DataFormatConversionConfiguration? dataFormatConversionConfiguration;
 
+  /// The configuration of the dynamic partitioning mechanism that creates smaller
+  /// data sets from the streaming data by partitioning it based on partition
+  /// keys. Currently, dynamic partitioning is only supported for Amazon S3
+  /// destinations. For more information, see <a
+  /// href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+  final DynamicPartitioningConfiguration? dynamicPartitioningConfiguration;
+
   /// The encryption configuration. If no value is specified, the default is no
   /// encryption.
   final EncryptionConfiguration? encryptionConfiguration;
@@ -2805,6 +3299,7 @@ class ExtendedS3DestinationConfiguration {
     this.cloudWatchLoggingOptions,
     this.compressionFormat,
     this.dataFormatConversionConfiguration,
+    this.dynamicPartitioningConfiguration,
     this.encryptionConfiguration,
     this.errorOutputPrefix,
     this.prefix,
@@ -2834,6 +3329,12 @@ class ExtendedS3DestinationConfiguration {
                   json['DataFormatConversionConfiguration']
                       as Map<String, dynamic>)
               : null,
+      dynamicPartitioningConfiguration:
+          json['DynamicPartitioningConfiguration'] != null
+              ? DynamicPartitioningConfiguration.fromJson(
+                  json['DynamicPartitioningConfiguration']
+                      as Map<String, dynamic>)
+              : null,
       encryptionConfiguration: json['EncryptionConfiguration'] != null
           ? EncryptionConfiguration.fromJson(
               json['EncryptionConfiguration'] as Map<String, dynamic>)
@@ -2860,6 +3361,8 @@ class ExtendedS3DestinationConfiguration {
     final compressionFormat = this.compressionFormat;
     final dataFormatConversionConfiguration =
         this.dataFormatConversionConfiguration;
+    final dynamicPartitioningConfiguration =
+        this.dynamicPartitioningConfiguration;
     final encryptionConfiguration = this.encryptionConfiguration;
     final errorOutputPrefix = this.errorOutputPrefix;
     final prefix = this.prefix;
@@ -2876,6 +3379,8 @@ class ExtendedS3DestinationConfiguration {
         'CompressionFormat': compressionFormat.toValue(),
       if (dataFormatConversionConfiguration != null)
         'DataFormatConversionConfiguration': dataFormatConversionConfiguration,
+      if (dynamicPartitioningConfiguration != null)
+        'DynamicPartitioningConfiguration': dynamicPartitioningConfiguration,
       if (encryptionConfiguration != null)
         'EncryptionConfiguration': encryptionConfiguration,
       if (errorOutputPrefix != null) 'ErrorOutputPrefix': errorOutputPrefix,
@@ -2920,6 +3425,13 @@ class ExtendedS3DestinationDescription {
   /// format to the Parquet or ORC format before writing it to Amazon S3.
   final DataFormatConversionConfiguration? dataFormatConversionConfiguration;
 
+  /// The configuration of the dynamic partitioning mechanism that creates smaller
+  /// data sets from the streaming data by partitioning it based on partition
+  /// keys. Currently, dynamic partitioning is only supported for Amazon S3
+  /// destinations. For more information, see <a
+  /// href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+  final DynamicPartitioningConfiguration? dynamicPartitioningConfiguration;
+
   /// A prefix that Kinesis Data Firehose evaluates and adds to failed records
   /// before writing them to S3. This prefix appears immediately following the
   /// bucket name. For information about how to specify this prefix, see <a
@@ -2950,6 +3462,7 @@ class ExtendedS3DestinationDescription {
     required this.roleARN,
     this.cloudWatchLoggingOptions,
     this.dataFormatConversionConfiguration,
+    this.dynamicPartitioningConfiguration,
     this.errorOutputPrefix,
     this.prefix,
     this.processingConfiguration,
@@ -2977,6 +3490,12 @@ class ExtendedS3DestinationDescription {
                   json['DataFormatConversionConfiguration']
                       as Map<String, dynamic>)
               : null,
+      dynamicPartitioningConfiguration:
+          json['DynamicPartitioningConfiguration'] != null
+              ? DynamicPartitioningConfiguration.fromJson(
+                  json['DynamicPartitioningConfiguration']
+                      as Map<String, dynamic>)
+              : null,
       errorOutputPrefix: json['ErrorOutputPrefix'] as String?,
       prefix: json['Prefix'] as String?,
       processingConfiguration: json['ProcessingConfiguration'] != null
@@ -3000,6 +3519,8 @@ class ExtendedS3DestinationDescription {
     final cloudWatchLoggingOptions = this.cloudWatchLoggingOptions;
     final dataFormatConversionConfiguration =
         this.dataFormatConversionConfiguration;
+    final dynamicPartitioningConfiguration =
+        this.dynamicPartitioningConfiguration;
     final errorOutputPrefix = this.errorOutputPrefix;
     final prefix = this.prefix;
     final processingConfiguration = this.processingConfiguration;
@@ -3015,6 +3536,8 @@ class ExtendedS3DestinationDescription {
         'CloudWatchLoggingOptions': cloudWatchLoggingOptions,
       if (dataFormatConversionConfiguration != null)
         'DataFormatConversionConfiguration': dataFormatConversionConfiguration,
+      if (dynamicPartitioningConfiguration != null)
+        'DynamicPartitioningConfiguration': dynamicPartitioningConfiguration,
       if (errorOutputPrefix != null) 'ErrorOutputPrefix': errorOutputPrefix,
       if (prefix != null) 'Prefix': prefix,
       if (processingConfiguration != null)
@@ -3046,6 +3569,13 @@ class ExtendedS3DestinationUpdate {
   /// The serializer, deserializer, and schema for converting data from the JSON
   /// format to the Parquet or ORC format before writing it to Amazon S3.
   final DataFormatConversionConfiguration? dataFormatConversionConfiguration;
+
+  /// The configuration of the dynamic partitioning mechanism that creates smaller
+  /// data sets from the streaming data by partitioning it based on partition
+  /// keys. Currently, dynamic partitioning is only supported for Amazon S3
+  /// destinations. For more information, see <a
+  /// href="https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html">https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html</a>
+  final DynamicPartitioningConfiguration? dynamicPartitioningConfiguration;
 
   /// The encryption configuration. If no value is specified, the default is no
   /// encryption.
@@ -3087,6 +3617,7 @@ class ExtendedS3DestinationUpdate {
     this.cloudWatchLoggingOptions,
     this.compressionFormat,
     this.dataFormatConversionConfiguration,
+    this.dynamicPartitioningConfiguration,
     this.encryptionConfiguration,
     this.errorOutputPrefix,
     this.prefix,
@@ -3115,6 +3646,12 @@ class ExtendedS3DestinationUpdate {
                   json['DataFormatConversionConfiguration']
                       as Map<String, dynamic>)
               : null,
+      dynamicPartitioningConfiguration:
+          json['DynamicPartitioningConfiguration'] != null
+              ? DynamicPartitioningConfiguration.fromJson(
+                  json['DynamicPartitioningConfiguration']
+                      as Map<String, dynamic>)
+              : null,
       encryptionConfiguration: json['EncryptionConfiguration'] != null
           ? EncryptionConfiguration.fromJson(
               json['EncryptionConfiguration'] as Map<String, dynamic>)
@@ -3141,6 +3678,8 @@ class ExtendedS3DestinationUpdate {
     final compressionFormat = this.compressionFormat;
     final dataFormatConversionConfiguration =
         this.dataFormatConversionConfiguration;
+    final dynamicPartitioningConfiguration =
+        this.dynamicPartitioningConfiguration;
     final encryptionConfiguration = this.encryptionConfiguration;
     final errorOutputPrefix = this.errorOutputPrefix;
     final prefix = this.prefix;
@@ -3157,6 +3696,8 @@ class ExtendedS3DestinationUpdate {
         'CompressionFormat': compressionFormat.toValue(),
       if (dataFormatConversionConfiguration != null)
         'DataFormatConversionConfiguration': dataFormatConversionConfiguration,
+      if (dynamicPartitioningConfiguration != null)
+        'DynamicPartitioningConfiguration': dynamicPartitioningConfiguration,
       if (encryptionConfiguration != null)
         'EncryptionConfiguration': encryptionConfiguration,
       if (errorOutputPrefix != null) 'ErrorOutputPrefix': errorOutputPrefix,
@@ -3346,6 +3887,12 @@ class HttpEndpointCommonAttribute {
 /// delivers data.
 class HttpEndpointConfiguration {
   /// The URL of the HTTP endpoint selected as the destination.
+  /// <important>
+  /// If you choose an HTTP endpoint as your destination, review and follow the
+  /// instructions in the <a
+  /// href="https://docs.aws.amazon.com/firehose/latest/dev/httpdeliveryrequestresponse.html">Appendix
+  /// - HTTP Endpoint Delivery Request and Response Specifications</a>.
+  /// </important>
   final String url;
 
   /// The access key required for Kinesis Firehose to authenticate with the HTTP
@@ -4607,9 +5154,13 @@ class ProcessorParameter {
 enum ProcessorParameterName {
   lambdaArn,
   numberOfRetries,
+  metadataExtractionQuery,
+  jsonParsingEngine,
   roleArn,
   bufferSizeInMBs,
   bufferIntervalInSeconds,
+  subRecordType,
+  delimiter,
 }
 
 extension on ProcessorParameterName {
@@ -4619,12 +5170,20 @@ extension on ProcessorParameterName {
         return 'LambdaArn';
       case ProcessorParameterName.numberOfRetries:
         return 'NumberOfRetries';
+      case ProcessorParameterName.metadataExtractionQuery:
+        return 'MetadataExtractionQuery';
+      case ProcessorParameterName.jsonParsingEngine:
+        return 'JsonParsingEngine';
       case ProcessorParameterName.roleArn:
         return 'RoleArn';
       case ProcessorParameterName.bufferSizeInMBs:
         return 'BufferSizeInMBs';
       case ProcessorParameterName.bufferIntervalInSeconds:
         return 'BufferIntervalInSeconds';
+      case ProcessorParameterName.subRecordType:
+        return 'SubRecordType';
+      case ProcessorParameterName.delimiter:
+        return 'Delimiter';
     }
   }
 }
@@ -4636,26 +5195,43 @@ extension on String {
         return ProcessorParameterName.lambdaArn;
       case 'NumberOfRetries':
         return ProcessorParameterName.numberOfRetries;
+      case 'MetadataExtractionQuery':
+        return ProcessorParameterName.metadataExtractionQuery;
+      case 'JsonParsingEngine':
+        return ProcessorParameterName.jsonParsingEngine;
       case 'RoleArn':
         return ProcessorParameterName.roleArn;
       case 'BufferSizeInMBs':
         return ProcessorParameterName.bufferSizeInMBs;
       case 'BufferIntervalInSeconds':
         return ProcessorParameterName.bufferIntervalInSeconds;
+      case 'SubRecordType':
+        return ProcessorParameterName.subRecordType;
+      case 'Delimiter':
+        return ProcessorParameterName.delimiter;
     }
     throw Exception('$this is not known in enum ProcessorParameterName');
   }
 }
 
 enum ProcessorType {
+  recordDeAggregation,
   lambda,
+  metadataExtraction,
+  appendDelimiterToRecord,
 }
 
 extension on ProcessorType {
   String toValue() {
     switch (this) {
+      case ProcessorType.recordDeAggregation:
+        return 'RecordDeAggregation';
       case ProcessorType.lambda:
         return 'Lambda';
+      case ProcessorType.metadataExtraction:
+        return 'MetadataExtraction';
+      case ProcessorType.appendDelimiterToRecord:
+        return 'AppendDelimiterToRecord';
     }
   }
 }
@@ -4663,8 +5239,14 @@ extension on ProcessorType {
 extension on String {
   ProcessorType toProcessorType() {
     switch (this) {
+      case 'RecordDeAggregation':
+        return ProcessorType.recordDeAggregation;
       case 'Lambda':
         return ProcessorType.lambda;
+      case 'MetadataExtraction':
+        return ProcessorType.metadataExtraction;
+      case 'AppendDelimiterToRecord':
+        return ProcessorType.appendDelimiterToRecord;
     }
     throw Exception('$this is not known in enum ProcessorType');
   }
@@ -5218,6 +5800,31 @@ extension on String {
   }
 }
 
+/// The retry behavior in case Kinesis Data Firehose is unable to deliver data
+/// to an Amazon S3 prefix.
+class RetryOptions {
+  /// The period of time during which Kinesis Data Firehose retries to deliver
+  /// data to the specified Amazon S3 prefix.
+  final int? durationInSeconds;
+
+  RetryOptions({
+    this.durationInSeconds,
+  });
+
+  factory RetryOptions.fromJson(Map<String, dynamic> json) {
+    return RetryOptions(
+      durationInSeconds: json['DurationInSeconds'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final durationInSeconds = this.durationInSeconds;
+    return {
+      if (durationInSeconds != null) 'DurationInSeconds': durationInSeconds,
+    };
+  }
+}
+
 enum S3BackupMode {
   disabled,
   enabled,
@@ -5560,6 +6167,12 @@ class SchemaConfiguration {
 
   /// Specifies the name of the AWS Glue database that contains the schema for the
   /// output data.
+  /// <important>
+  /// If the <code>SchemaConfiguration</code> request parameter is used as part of
+  /// invoking the <code>CreateDeliveryStream</code> API, then the
+  /// <code>DatabaseName</code> property is required and its value must be
+  /// specified.
+  /// </important>
   final String? databaseName;
 
   /// If you don't specify an AWS Region, the default is the current Region.
@@ -5568,10 +6181,20 @@ class SchemaConfiguration {
   /// The role that Kinesis Data Firehose can use to access AWS Glue. This role
   /// must be in the same account you use for Kinesis Data Firehose. Cross-account
   /// roles aren't allowed.
+  /// <important>
+  /// If the <code>SchemaConfiguration</code> request parameter is used as part of
+  /// invoking the <code>CreateDeliveryStream</code> API, then the
+  /// <code>RoleARN</code> property is required and its value must be specified.
+  /// </important>
   final String? roleARN;
 
   /// Specifies the AWS Glue table that contains the column information that
   /// constitutes your data schema.
+  /// <important>
+  /// If the <code>SchemaConfiguration</code> request parameter is used as part of
+  /// invoking the <code>CreateDeliveryStream</code> API, then the
+  /// <code>TableName</code> property is required and its value must be specified.
+  /// </important>
   final String? tableName;
 
   /// Specifies the table version for the output data schema. If you don't specify

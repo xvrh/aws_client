@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2012-11-05.meta.dart';
 
+import '2012-11-05.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Welcome to the <i>Amazon SQS API Reference</i>.
@@ -155,10 +156,10 @@ class Sqs {
   /// May throw [OverLimit].
   ///
   /// Parameter [awsAccountIds] :
-  /// The account numbers of the <a
+  /// The Amazon Web Services account numbers of the <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P">principals</a>
-  /// who are to receive permission. For information about locating the account
-  /// identification, see <a
+  /// who are to receive permission. For information about locating the Amazon
+  /// Web Services account identification, see <a
   /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html#sqs-api-request-authentication">Your
   /// Amazon Web Services Identifiers</a> in the <i>Amazon SQS Developer
   /// Guide</i>.
@@ -557,6 +558,14 @@ class Sqs {
   /// incur charges after Free Tier. For more information, see <a
   /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work">How
   /// Does the Data Key Reuse Period Work?</a>.
+  /// </li>
+  /// <li>
+  /// <code>SqsManagedSseEnabled</code> – Enables server-side queue encryption
+  /// using SQS owned encryption keys. Only one server-side encryption option is
+  /// supported per queue (e.g. <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</a>).
   /// </li>
   /// </ul>
   /// The following attributes apply only to <a
@@ -1008,6 +1017,14 @@ class Sqs {
   /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work">How
   /// Does the Data Key Reuse Period Work?</a>.
   /// </li>
+  /// <li>
+  /// <code>SqsManagedSseEnabled</code> – Returns information about whether the
+  /// queue is using SSE-SQS encryption using SQS owned encryption keys. Only
+  /// one server-side encryption option is supported per queue (e.g. <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</a>).
+  /// </li>
   /// </ul>
   /// The following attributes apply only to <a
   /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">FIFO
@@ -1111,7 +1128,7 @@ class Sqs {
   /// Queue URLs and names are case-sensitive.
   ///
   /// Parameter [queueOwnerAWSAccountId] :
-  /// The account ID of the account that created the queue.
+  /// The Amazon Web Services account ID of the account that created the queue.
   Future<GetQueueUrlResult> getQueueUrl({
     required String queueName,
     String? queueOwnerAWSAccountId,
@@ -1430,6 +1447,14 @@ class Sqs {
   /// <code>SentTimestamp</code> – Returns the time the message was sent to the
   /// queue (<a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
   /// milliseconds).
+  /// </li>
+  /// <li>
+  /// <code>SqsManagedSseEnabled</code> – Enables server-side queue encryption
+  /// using SQS owned encryption keys. Only one server-side encryption option is
+  /// supported per queue (e.g. <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</a>).
   /// </li>
   /// <li>
   /// <code>MessageDeduplicationId</code> – Returns the value provided by the
@@ -2071,6 +2096,14 @@ class Sqs {
   /// incur charges after Free Tier. For more information, see <a
   /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work">How
   /// Does the Data Key Reuse Period Work?</a>.
+  /// </li>
+  /// <li>
+  /// <code>SqsManagedSseEnabled</code> – Enables server-side queue encryption
+  /// using SQS owned encryption keys. Only one server-side encryption option is
+  /// supported per queue (e.g. <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sse-existing-queue.html">SSE-KMS</a>
+  /// or <a
+  /// href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-sqs-sse-queue.html">SSE-SQS</a>).
   /// </li>
   /// </ul>
   /// The following attribute applies only to <a
@@ -2876,7 +2909,8 @@ class Message {
   final Map<String, MessageAttributeValue>? messageAttributes;
 
   /// A unique identifier for the message. A <code>MessageId</code>is considered
-  /// unique across all accounts for an extended period of time.
+  /// unique across all Amazon Web Services accounts for an extended period of
+  /// time.
   final String? messageId;
 
   /// An identifier associated with the act of receiving the message. A new
@@ -3223,6 +3257,8 @@ enum QueueAttributeName {
   kmsDataKeyReusePeriodSeconds,
   deduplicationScope,
   fifoThroughputLimit,
+  redriveAllowPolicy,
+  sqsManagedSseEnabled,
 }
 
 extension on QueueAttributeName {
@@ -3268,6 +3304,10 @@ extension on QueueAttributeName {
         return 'DeduplicationScope';
       case QueueAttributeName.fifoThroughputLimit:
         return 'FifoThroughputLimit';
+      case QueueAttributeName.redriveAllowPolicy:
+        return 'RedriveAllowPolicy';
+      case QueueAttributeName.sqsManagedSseEnabled:
+        return 'SqsManagedSseEnabled';
     }
   }
 }
@@ -3315,6 +3355,10 @@ extension on String {
         return QueueAttributeName.deduplicationScope;
       case 'FifoThroughputLimit':
         return QueueAttributeName.fifoThroughputLimit;
+      case 'RedriveAllowPolicy':
+        return QueueAttributeName.redriveAllowPolicy;
+      case 'SqsManagedSseEnabled':
+        return QueueAttributeName.sqsManagedSseEnabled;
     }
     throw Exception('$this is not known in enum QueueAttributeName');
   }

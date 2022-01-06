@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -196,6 +197,11 @@ class GlueDataBrew {
   /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
   /// role to be assumed when DataBrew runs the job.
   ///
+  /// Parameter [configuration] :
+  /// Configuration for profile jobs. Used to select columns, do evaluations,
+  /// and override default parameters of evaluations. When configuration is
+  /// null, the profile job will run with default settings.
+  ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
   /// protect the job.
@@ -237,11 +243,15 @@ class GlueDataBrew {
   /// Parameter [timeout] :
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
+  ///
+  /// Parameter [validationConfigurations] :
+  /// List of validation configurations that are applied to the profile job.
   Future<CreateProfileJobResponse> createProfileJob({
     required String datasetName,
     required String name,
     required S3Location outputLocation,
     required String roleArn,
+    ProfileConfiguration? configuration,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
     JobSample? jobSample,
@@ -250,6 +260,7 @@ class GlueDataBrew {
     int? maxRetries,
     Map<String, String>? tags,
     int? timeout,
+    List<ValidationConfiguration>? validationConfigurations,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
     _s.validateStringLength(
@@ -299,6 +310,7 @@ class GlueDataBrew {
       'Name': name,
       'OutputLocation': outputLocation,
       'RoleArn': roleArn,
+      if (configuration != null) 'Configuration': configuration,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
       if (jobSample != null) 'JobSample': jobSample,
@@ -307,6 +319,8 @@ class GlueDataBrew {
       if (maxRetries != null) 'MaxRetries': maxRetries,
       if (tags != null) 'Tags': tags,
       if (timeout != null) 'Timeout': timeout,
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -471,8 +485,12 @@ class GlueDataBrew {
   /// role to be assumed when DataBrew runs the job.
   ///
   /// Parameter [dataCatalogOutputs] :
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
+  ///
+  /// Parameter [databaseOutputs] :
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write to.
   ///
   /// Parameter [datasetName] :
   /// The name of the dataset that this job processes.
@@ -522,6 +540,7 @@ class GlueDataBrew {
     required String name,
     required String roleArn,
     List<DataCatalogOutput>? dataCatalogOutputs,
+    List<DatabaseOutput>? databaseOutputs,
     String? datasetName,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
@@ -584,6 +603,7 @@ class GlueDataBrew {
       'Name': name,
       'RoleArn': roleArn,
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
@@ -603,6 +623,76 @@ class GlueDataBrew {
       exceptionFnMap: _exceptionFns,
     );
     return CreateRecipeJobResponse.fromJson(response);
+  }
+
+  /// Creates a new ruleset that can be used in a profile job to validate the
+  /// data quality of a dataset.
+  ///
+  /// May throw [ConflictException].
+  /// May throw [ServiceQuotaExceededException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [name] :
+  /// The name of the ruleset to be created. Valid characters are alphanumeric
+  /// (A-Z, a-z, 0-9), hyphen (-), period (.), and space.
+  ///
+  /// Parameter [rules] :
+  /// A list of rules that are defined with the ruleset. A rule includes one or
+  /// more checks to be validated on a DataBrew dataset.
+  ///
+  /// Parameter [targetArn] :
+  /// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+  /// associated with.
+  ///
+  /// Parameter [description] :
+  /// The description of the ruleset.
+  ///
+  /// Parameter [tags] :
+  /// Metadata tags to apply to the ruleset.
+  Future<CreateRulesetResponse> createRuleset({
+    required String name,
+    required List<Rule> rules,
+    required String targetArn,
+    String? description,
+    Map<String, String>? tags,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(rules, 'rules');
+    ArgumentError.checkNotNull(targetArn, 'targetArn');
+    _s.validateStringLength(
+      'targetArn',
+      targetArn,
+      20,
+      2048,
+      isRequired: true,
+    );
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      1024,
+    );
+    final $payload = <String, dynamic>{
+      'Name': name,
+      'Rules': rules,
+      'TargetArn': targetArn,
+      if (description != null) 'Description': description,
+      if (tags != null) 'Tags': tags,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/rulesets',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateRulesetResponse.fromJson(response);
   }
 
   /// Creates a new schedule for one or more DataBrew jobs. Jobs can be run at a
@@ -789,6 +879,34 @@ class GlueDataBrew {
       exceptionFnMap: _exceptionFns,
     );
     return DeleteRecipeVersionResponse.fromJson(response);
+  }
+
+  /// Deletes a ruleset.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  /// May throw [ConflictException].
+  ///
+  /// Parameter [name] :
+  /// The name of the ruleset to be deleted.
+  Future<DeleteRulesetResponse> deleteRuleset({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/rulesets/${Uri.encodeComponent(name)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DeleteRulesetResponse.fromJson(response);
   }
 
   /// Deletes the specified DataBrew schedule.
@@ -980,6 +1098,33 @@ class GlueDataBrew {
       exceptionFnMap: _exceptionFns,
     );
     return DescribeRecipeResponse.fromJson(response);
+  }
+
+  /// Retrieves detailed information about the ruleset.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [name] :
+  /// The name of the ruleset to be described.
+  Future<DescribeRulesetResponse> describeRuleset({
+    required String name,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/rulesets/${Uri.encodeComponent(name)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return DescribeRulesetResponse.fromJson(response);
   }
 
   /// Returns the definition of a specific DataBrew schedule.
@@ -1310,6 +1455,62 @@ class GlueDataBrew {
       exceptionFnMap: _exceptionFns,
     );
     return ListRecipesResponse.fromJson(response);
+  }
+
+  /// List all rulesets available in the current account or rulesets associated
+  /// with a specific resource (dataset).
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of results to return in this request.
+  ///
+  /// Parameter [nextToken] :
+  /// A token generated by DataBrew that specifies where to continue pagination
+  /// if a previous request was truncated. To get the next set of pages, pass in
+  /// the NextToken value from the response object of the previous page call.
+  ///
+  /// Parameter [targetArn] :
+  /// The Amazon Resource Name (ARN) of a resource (dataset). Using this
+  /// parameter indicates to return only those rulesets that are associated with
+  /// the specified resource.
+  Future<ListRulesetsResponse> listRulesets({
+    int? maxResults,
+    String? nextToken,
+    String? targetArn,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      1,
+      100,
+    );
+    _s.validateStringLength(
+      'nextToken',
+      nextToken,
+      1,
+      2000,
+    );
+    _s.validateStringLength(
+      'targetArn',
+      targetArn,
+      20,
+      2048,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+      if (targetArn != null) 'targetArn': [targetArn],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/rulesets',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListRulesetsResponse.fromJson(response);
   }
 
   /// Lists the DataBrew schedules that are defined.
@@ -1741,6 +1942,11 @@ class GlueDataBrew {
   /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
   /// role to be assumed when DataBrew runs the job.
   ///
+  /// Parameter [configuration] :
+  /// Configuration for profile jobs. Used to select columns, do evaluations,
+  /// and override default parameters of evaluations. When configuration is
+  /// null, the profile job will run with default settings.
+  ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
   /// protect the job.
@@ -1779,10 +1985,14 @@ class GlueDataBrew {
   /// Parameter [timeout] :
   /// The job's timeout in minutes. A job that attempts to run longer than this
   /// timeout period ends with a status of <code>TIMEOUT</code>.
+  ///
+  /// Parameter [validationConfigurations] :
+  /// List of validation configurations that are applied to the profile job.
   Future<UpdateProfileJobResponse> updateProfileJob({
     required String name,
     required S3Location outputLocation,
     required String roleArn,
+    ProfileConfiguration? configuration,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
     JobSample? jobSample,
@@ -1790,6 +2000,7 @@ class GlueDataBrew {
     int? maxCapacity,
     int? maxRetries,
     int? timeout,
+    List<ValidationConfiguration>? validationConfigurations,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     _s.validateStringLength(
@@ -1829,6 +2040,7 @@ class GlueDataBrew {
     final $payload = <String, dynamic>{
       'OutputLocation': outputLocation,
       'RoleArn': roleArn,
+      if (configuration != null) 'Configuration': configuration,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
       if (jobSample != null) 'JobSample': jobSample,
@@ -1836,6 +2048,8 @@ class GlueDataBrew {
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
       if (timeout != null) 'Timeout': timeout,
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
     final response = await _protocol.send(
       payload: $payload,
@@ -1952,8 +2166,12 @@ class GlueDataBrew {
   /// role to be assumed when DataBrew runs the job.
   ///
   /// Parameter [dataCatalogOutputs] :
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
+  ///
+  /// Parameter [databaseOutputs] :
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write into.
   ///
   /// Parameter [encryptionKeyArn] :
   /// The Amazon Resource Name (ARN) of an encryption key that is used to
@@ -1993,6 +2211,7 @@ class GlueDataBrew {
     required String name,
     required String roleArn,
     List<DataCatalogOutput>? dataCatalogOutputs,
+    List<DatabaseOutput>? databaseOutputs,
     String? encryptionKeyArn,
     EncryptionMode? encryptionMode,
     LogSubscription? logSubscription,
@@ -2038,6 +2257,7 @@ class GlueDataBrew {
     final $payload = <String, dynamic>{
       'RoleArn': roleArn,
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
@@ -2053,6 +2273,53 @@ class GlueDataBrew {
       exceptionFnMap: _exceptionFns,
     );
     return UpdateRecipeJobResponse.fromJson(response);
+  }
+
+  /// Updates specified ruleset.
+  ///
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [name] :
+  /// The name of the ruleset to be updated.
+  ///
+  /// Parameter [rules] :
+  /// A list of rules that are defined with the ruleset. A rule includes one or
+  /// more checks to be validated on a DataBrew dataset.
+  ///
+  /// Parameter [description] :
+  /// The description of the ruleset.
+  Future<UpdateRulesetResponse> updateRuleset({
+    required String name,
+    required List<Rule> rules,
+    String? description,
+  }) async {
+    ArgumentError.checkNotNull(name, 'name');
+    _s.validateStringLength(
+      'name',
+      name,
+      1,
+      255,
+      isRequired: true,
+    );
+    ArgumentError.checkNotNull(rules, 'rules');
+    _s.validateStringLength(
+      'description',
+      description,
+      0,
+      1024,
+    );
+    final $payload = <String, dynamic>{
+      'Rules': rules,
+      if (description != null) 'Description': description,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'PUT',
+      requestUri: '/rulesets/${Uri.encodeComponent(name)}',
+      exceptionFnMap: _exceptionFns,
+    );
+    return UpdateRulesetResponse.fromJson(response);
   }
 
   /// Modifies the definition of an existing DataBrew schedule.
@@ -2107,6 +2374,63 @@ class GlueDataBrew {
   }
 }
 
+/// Configuration of statistics that are allowed to be run on columns that
+/// contain detected entities. When undefined, no statistics will be computed on
+/// columns that contain detected entities.
+class AllowedStatistics {
+  /// One or more column statistics to allow for columns that contain detected
+  /// entities.
+  final List<String> statistics;
+
+  AllowedStatistics({
+    required this.statistics,
+  });
+
+  factory AllowedStatistics.fromJson(Map<String, dynamic> json) {
+    return AllowedStatistics(
+      statistics: (json['Statistics'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statistics = this.statistics;
+    return {
+      'Statistics': statistics,
+    };
+  }
+}
+
+enum AnalyticsMode {
+  enable,
+  disable,
+}
+
+extension on AnalyticsMode {
+  String toValue() {
+    switch (this) {
+      case AnalyticsMode.enable:
+        return 'ENABLE';
+      case AnalyticsMode.disable:
+        return 'DISABLE';
+    }
+  }
+}
+
+extension on String {
+  AnalyticsMode toAnalyticsMode() {
+    switch (this) {
+      case 'ENABLE':
+        return AnalyticsMode.enable;
+      case 'DISABLE':
+        return AnalyticsMode.disable;
+    }
+    throw Exception('$this is not known in enum AnalyticsMode');
+  }
+}
+
 class BatchDeleteRecipeVersionResponse {
   /// The name of the recipe that was modified.
   final String name;
@@ -2137,6 +2461,76 @@ class BatchDeleteRecipeVersionResponse {
     return {
       'Name': name,
       if (errors != null) 'Errors': errors,
+    };
+  }
+}
+
+/// Selector of a column from a dataset for profile job configuration. One
+/// selector includes either a column name or a regular expression.
+class ColumnSelector {
+  /// The name of a column from a dataset.
+  final String? name;
+
+  /// A regular expression for selecting a column from a dataset.
+  final String? regex;
+
+  ColumnSelector({
+    this.name,
+    this.regex,
+  });
+
+  factory ColumnSelector.fromJson(Map<String, dynamic> json) {
+    return ColumnSelector(
+      name: json['Name'] as String?,
+      regex: json['Regex'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final regex = this.regex;
+    return {
+      if (name != null) 'Name': name,
+      if (regex != null) 'Regex': regex,
+    };
+  }
+}
+
+/// Configuration for column evaluations for a profile job.
+/// ColumnStatisticsConfiguration can be used to select evaluations and override
+/// parameters of evaluations for particular columns.
+class ColumnStatisticsConfiguration {
+  /// Configuration for evaluations. Statistics can be used to select evaluations
+  /// and override parameters of evaluations.
+  final StatisticsConfiguration statistics;
+
+  /// List of column selectors. Selectors can be used to select columns from the
+  /// dataset. When selectors are undefined, configuration will be applied to all
+  /// supported columns.
+  final List<ColumnSelector>? selectors;
+
+  ColumnStatisticsConfiguration({
+    required this.statistics,
+    this.selectors,
+  });
+
+  factory ColumnStatisticsConfiguration.fromJson(Map<String, dynamic> json) {
+    return ColumnStatisticsConfiguration(
+      statistics: StatisticsConfiguration.fromJson(
+          json['Statistics'] as Map<String, dynamic>),
+      selectors: (json['Selectors'] as List?)
+          ?.whereNotNull()
+          .map((e) => ColumnSelector.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statistics = this.statistics;
+    final selectors = this.selectors;
+    return {
+      'Statistics': statistics,
+      if (selectors != null) 'Selectors': selectors,
     };
   }
 }
@@ -2362,6 +2756,28 @@ class CreateRecipeResponse {
   }
 }
 
+class CreateRulesetResponse {
+  /// The unique name of the created ruleset.
+  final String name;
+
+  CreateRulesetResponse({
+    required this.name,
+  });
+
+  factory CreateRulesetResponse.fromJson(Map<String, dynamic> json) {
+    return CreateRulesetResponse(
+      name: json['Name'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
+}
+
 class CreateScheduleResponse {
   /// The name of the schedule that was created.
   final String name;
@@ -2490,8 +2906,8 @@ class DataCatalogInputDefinition {
   }
 }
 
-/// Represents options that specify how and where DataBrew writes the output
-/// generated by recipe jobs.
+/// Represents options that specify how and where in the Glue Data Catalog
+/// DataBrew writes the output generated by recipe jobs.
 class DataCatalogOutput {
   /// The name of a database in the Data Catalog.
   final String databaseName;
@@ -2499,8 +2915,8 @@ class DataCatalogOutput {
   /// The name of a table in the Data Catalog.
   final String tableName;
 
-  /// The unique identifier of the AWS account that holds the Data Catalog that
-  /// stores the data.
+  /// The unique identifier of the Amazon Web Services account that holds the Data
+  /// Catalog that stores the data.
   final String? catalogId;
 
   /// Represents options that specify how and where DataBrew writes the database
@@ -2511,8 +2927,8 @@ class DataCatalogOutput {
   /// output is overwritten with new output. Not supported with DatabaseOptions.
   final bool? overwrite;
 
-  /// Represents options that specify how and where DataBrew writes the S3 output
-  /// generated by recipe jobs.
+  /// Represents options that specify how and where DataBrew writes the Amazon S3
+  /// output generated by recipe jobs.
   final S3TableOutputOptions? s3Options;
 
   DataCatalogOutput({
@@ -2561,24 +2977,30 @@ class DataCatalogOutput {
 
 /// Connection information for dataset input files stored in a database.
 class DatabaseInputDefinition {
-  /// The table within the target database.
-  final String databaseTableName;
-
   /// The Glue Connection that stores the connection information for the target
   /// database.
   final String glueConnectionName;
+
+  /// The table within the target database.
+  final String? databaseTableName;
+
+  /// Custom SQL to run against the provided Glue connection. This SQL will be
+  /// used as the input for DataBrew projects and jobs.
+  final String? queryString;
   final S3Location? tempDirectory;
 
   DatabaseInputDefinition({
-    required this.databaseTableName,
     required this.glueConnectionName,
+    this.databaseTableName,
+    this.queryString,
     this.tempDirectory,
   });
 
   factory DatabaseInputDefinition.fromJson(Map<String, dynamic> json) {
     return DatabaseInputDefinition(
-      databaseTableName: json['DatabaseTableName'] as String,
       glueConnectionName: json['GlueConnectionName'] as String,
+      databaseTableName: json['DatabaseTableName'] as String?,
+      queryString: json['QueryString'] as String?,
       tempDirectory: json['TempDirectory'] != null
           ? S3Location.fromJson(json['TempDirectory'] as Map<String, dynamic>)
           : null,
@@ -2586,14 +3008,83 @@ class DatabaseInputDefinition {
   }
 
   Map<String, dynamic> toJson() {
-    final databaseTableName = this.databaseTableName;
     final glueConnectionName = this.glueConnectionName;
+    final databaseTableName = this.databaseTableName;
+    final queryString = this.queryString;
     final tempDirectory = this.tempDirectory;
     return {
-      'DatabaseTableName': databaseTableName,
       'GlueConnectionName': glueConnectionName,
+      if (databaseTableName != null) 'DatabaseTableName': databaseTableName,
+      if (queryString != null) 'QueryString': queryString,
       if (tempDirectory != null) 'TempDirectory': tempDirectory,
     };
+  }
+}
+
+/// Represents a JDBC database output object which defines the output
+/// destination for a DataBrew recipe job to write into.
+class DatabaseOutput {
+  /// Represents options that specify how and where DataBrew writes the database
+  /// output generated by recipe jobs.
+  final DatabaseTableOutputOptions databaseOptions;
+
+  /// The Glue connection that stores the connection information for the target
+  /// database.
+  final String glueConnectionName;
+
+  /// The output mode to write into the database. Currently supported option:
+  /// NEW_TABLE.
+  final DatabaseOutputMode? databaseOutputMode;
+
+  DatabaseOutput({
+    required this.databaseOptions,
+    required this.glueConnectionName,
+    this.databaseOutputMode,
+  });
+
+  factory DatabaseOutput.fromJson(Map<String, dynamic> json) {
+    return DatabaseOutput(
+      databaseOptions: DatabaseTableOutputOptions.fromJson(
+          json['DatabaseOptions'] as Map<String, dynamic>),
+      glueConnectionName: json['GlueConnectionName'] as String,
+      databaseOutputMode:
+          (json['DatabaseOutputMode'] as String?)?.toDatabaseOutputMode(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseOptions = this.databaseOptions;
+    final glueConnectionName = this.glueConnectionName;
+    final databaseOutputMode = this.databaseOutputMode;
+    return {
+      'DatabaseOptions': databaseOptions,
+      'GlueConnectionName': glueConnectionName,
+      if (databaseOutputMode != null)
+        'DatabaseOutputMode': databaseOutputMode.toValue(),
+    };
+  }
+}
+
+enum DatabaseOutputMode {
+  newTable,
+}
+
+extension on DatabaseOutputMode {
+  String toValue() {
+    switch (this) {
+      case DatabaseOutputMode.newTable:
+        return 'NEW_TABLE';
+    }
+  }
+}
+
+extension on String {
+  DatabaseOutputMode toDatabaseOutputMode() {
+    switch (this) {
+      case 'NEW_TABLE':
+        return DatabaseOutputMode.newTable;
+    }
+    throw Exception('$this is not known in enum DatabaseOutputMode');
   }
 }
 
@@ -2950,6 +3441,28 @@ class DeleteRecipeVersionResponse {
   }
 }
 
+class DeleteRulesetResponse {
+  /// The name of the deleted ruleset.
+  final String name;
+
+  DeleteRulesetResponse({
+    required this.name,
+  });
+
+  factory DeleteRulesetResponse.fromJson(Map<String, dynamic> json) {
+    return DeleteRulesetResponse(
+      name: json['Name'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
+}
+
 class DeleteScheduleResponse {
   /// The name of the schedule that was deleted.
   final String name;
@@ -3089,9 +3602,13 @@ class DescribeJobResponse {
   /// job.
   final String? createdBy;
 
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
   final List<DataCatalogOutput>? dataCatalogOutputs;
+
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write into.
+  final List<DatabaseOutput>? databaseOutputs;
 
   /// The dataset that the job acts upon.
   final String? datasetName;
@@ -3135,6 +3652,11 @@ class DescribeJobResponse {
   /// One or more artifacts that represent the output from running the job.
   final List<Output>? outputs;
 
+  /// Configuration for profile jobs. Used to select columns, do evaluations, and
+  /// override default parameters of evaluations. When configuration is null, the
+  /// profile job will run with default settings.
+  final ProfileConfiguration? profileConfiguration;
+
   /// The DataBrew project associated with this job.
   final String? projectName;
   final RecipeReference? recipeReference;
@@ -3167,11 +3689,15 @@ class DescribeJobResponse {
   /// </ul>
   final JobType? type;
 
+  /// List of validation configurations that are applied to the profile job.
+  final List<ValidationConfiguration>? validationConfigurations;
+
   DescribeJobResponse({
     required this.name,
     this.createDate,
     this.createdBy,
     this.dataCatalogOutputs,
+    this.databaseOutputs,
     this.datasetName,
     this.encryptionKeyArn,
     this.encryptionMode,
@@ -3182,6 +3708,7 @@ class DescribeJobResponse {
     this.maxCapacity,
     this.maxRetries,
     this.outputs,
+    this.profileConfiguration,
     this.projectName,
     this.recipeReference,
     this.resourceArn,
@@ -3189,6 +3716,7 @@ class DescribeJobResponse {
     this.tags,
     this.timeout,
     this.type,
+    this.validationConfigurations,
   });
 
   factory DescribeJobResponse.fromJson(Map<String, dynamic> json) {
@@ -3199,6 +3727,10 @@ class DescribeJobResponse {
       dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
           ?.whereNotNull()
           .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      databaseOutputs: (json['DatabaseOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DatabaseOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
       datasetName: json['DatasetName'] as String?,
       encryptionKeyArn: json['EncryptionKeyArn'] as String?,
@@ -3216,6 +3748,10 @@ class DescribeJobResponse {
           ?.whereNotNull()
           .map((e) => Output.fromJson(e as Map<String, dynamic>))
           .toList(),
+      profileConfiguration: json['ProfileConfiguration'] != null
+          ? ProfileConfiguration.fromJson(
+              json['ProfileConfiguration'] as Map<String, dynamic>)
+          : null,
       projectName: json['ProjectName'] as String?,
       recipeReference: json['RecipeReference'] != null
           ? RecipeReference.fromJson(
@@ -3227,6 +3763,11 @@ class DescribeJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       timeout: json['Timeout'] as int?,
       type: (json['Type'] as String?)?.toJobType(),
+      validationConfigurations: (json['ValidationConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ValidationConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -3235,6 +3776,7 @@ class DescribeJobResponse {
     final createDate = this.createDate;
     final createdBy = this.createdBy;
     final dataCatalogOutputs = this.dataCatalogOutputs;
+    final databaseOutputs = this.databaseOutputs;
     final datasetName = this.datasetName;
     final encryptionKeyArn = this.encryptionKeyArn;
     final encryptionMode = this.encryptionMode;
@@ -3245,6 +3787,7 @@ class DescribeJobResponse {
     final maxCapacity = this.maxCapacity;
     final maxRetries = this.maxRetries;
     final outputs = this.outputs;
+    final profileConfiguration = this.profileConfiguration;
     final projectName = this.projectName;
     final recipeReference = this.recipeReference;
     final resourceArn = this.resourceArn;
@@ -3252,11 +3795,13 @@ class DescribeJobResponse {
     final tags = this.tags;
     final timeout = this.timeout;
     final type = this.type;
+    final validationConfigurations = this.validationConfigurations;
     return {
       'Name': name,
       if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
       if (createdBy != null) 'CreatedBy': createdBy,
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
@@ -3268,6 +3813,8 @@ class DescribeJobResponse {
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (maxRetries != null) 'MaxRetries': maxRetries,
       if (outputs != null) 'Outputs': outputs,
+      if (profileConfiguration != null)
+        'ProfileConfiguration': profileConfiguration,
       if (projectName != null) 'ProjectName': projectName,
       if (recipeReference != null) 'RecipeReference': recipeReference,
       if (resourceArn != null) 'ResourceArn': resourceArn,
@@ -3275,6 +3822,8 @@ class DescribeJobResponse {
       if (tags != null) 'Tags': tags,
       if (timeout != null) 'Timeout': timeout,
       if (type != null) 'Type': type.toValue(),
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
   }
 }
@@ -3289,9 +3838,13 @@ class DescribeJobRunResponse {
   /// The date and time when the job completed processing.
   final DateTime? completedOn;
 
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
   final List<DataCatalogOutput>? dataCatalogOutputs;
+
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write into.
+  final List<DatabaseOutput>? databaseOutputs;
 
   /// The name of the dataset for the job to process.
   final String? datasetName;
@@ -3318,6 +3871,11 @@ class DescribeJobRunResponse {
 
   /// One or more output artifacts from a job run.
   final List<Output>? outputs;
+
+  /// Configuration for profile jobs. Used to select columns, do evaluations, and
+  /// override default parameters of evaluations. When configuration is null, the
+  /// profile job will run with default settings.
+  final ProfileConfiguration? profileConfiguration;
   final RecipeReference? recipeReference;
 
   /// The unique identifier of the job run.
@@ -3332,11 +3890,15 @@ class DescribeJobRunResponse {
   /// The current state of the job run entity itself.
   final JobRunState? state;
 
+  /// List of validation configurations that are applied to the profile job.
+  final List<ValidationConfiguration>? validationConfigurations;
+
   DescribeJobRunResponse({
     required this.jobName,
     this.attempt,
     this.completedOn,
     this.dataCatalogOutputs,
+    this.databaseOutputs,
     this.datasetName,
     this.errorMessage,
     this.executionTime,
@@ -3344,11 +3906,13 @@ class DescribeJobRunResponse {
     this.logGroupName,
     this.logSubscription,
     this.outputs,
+    this.profileConfiguration,
     this.recipeReference,
     this.runId,
     this.startedBy,
     this.startedOn,
     this.state,
+    this.validationConfigurations,
   });
 
   factory DescribeJobRunResponse.fromJson(Map<String, dynamic> json) {
@@ -3359,6 +3923,10 @@ class DescribeJobRunResponse {
       dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
           ?.whereNotNull()
           .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      databaseOutputs: (json['DatabaseOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DatabaseOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
       datasetName: json['DatasetName'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
@@ -3373,6 +3941,10 @@ class DescribeJobRunResponse {
           ?.whereNotNull()
           .map((e) => Output.fromJson(e as Map<String, dynamic>))
           .toList(),
+      profileConfiguration: json['ProfileConfiguration'] != null
+          ? ProfileConfiguration.fromJson(
+              json['ProfileConfiguration'] as Map<String, dynamic>)
+          : null,
       recipeReference: json['RecipeReference'] != null
           ? RecipeReference.fromJson(
               json['RecipeReference'] as Map<String, dynamic>)
@@ -3381,6 +3953,11 @@ class DescribeJobRunResponse {
       startedBy: json['StartedBy'] as String?,
       startedOn: timeStampFromJson(json['StartedOn']),
       state: (json['State'] as String?)?.toJobRunState(),
+      validationConfigurations: (json['ValidationConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ValidationConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -3389,6 +3966,7 @@ class DescribeJobRunResponse {
     final attempt = this.attempt;
     final completedOn = this.completedOn;
     final dataCatalogOutputs = this.dataCatalogOutputs;
+    final databaseOutputs = this.databaseOutputs;
     final datasetName = this.datasetName;
     final errorMessage = this.errorMessage;
     final executionTime = this.executionTime;
@@ -3396,16 +3974,19 @@ class DescribeJobRunResponse {
     final logGroupName = this.logGroupName;
     final logSubscription = this.logSubscription;
     final outputs = this.outputs;
+    final profileConfiguration = this.profileConfiguration;
     final recipeReference = this.recipeReference;
     final runId = this.runId;
     final startedBy = this.startedBy;
     final startedOn = this.startedOn;
     final state = this.state;
+    final validationConfigurations = this.validationConfigurations;
     return {
       'JobName': jobName,
       if (attempt != null) 'Attempt': attempt,
       if (completedOn != null) 'CompletedOn': unixTimestampToJson(completedOn),
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (errorMessage != null) 'ErrorMessage': errorMessage,
       if (executionTime != null) 'ExecutionTime': executionTime,
@@ -3413,11 +3994,15 @@ class DescribeJobRunResponse {
       if (logGroupName != null) 'LogGroupName': logGroupName,
       if (logSubscription != null) 'LogSubscription': logSubscription.toValue(),
       if (outputs != null) 'Outputs': outputs,
+      if (profileConfiguration != null)
+        'ProfileConfiguration': profileConfiguration,
       if (recipeReference != null) 'RecipeReference': recipeReference,
       if (runId != null) 'RunId': runId,
       if (startedBy != null) 'StartedBy': startedBy,
       if (startedOn != null) 'StartedOn': unixTimestampToJson(startedOn),
       if (state != null) 'State': state.toValue(),
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
   }
 }
@@ -3663,6 +4248,98 @@ class DescribeRecipeResponse {
   }
 }
 
+class DescribeRulesetResponse {
+  /// The name of the ruleset.
+  final String name;
+
+  /// The date and time that the ruleset was created.
+  final DateTime? createDate;
+
+  /// The Amazon Resource Name (ARN) of the user who created the ruleset.
+  final String? createdBy;
+
+  /// The description of the ruleset.
+  final String? description;
+
+  /// The Amazon Resource Name (ARN) of the user who last modified the ruleset.
+  final String? lastModifiedBy;
+
+  /// The modification date and time of the ruleset.
+  final DateTime? lastModifiedDate;
+
+  /// The Amazon Resource Name (ARN) for the ruleset.
+  final String? resourceArn;
+
+  /// A list of rules that are defined with the ruleset. A rule includes one or
+  /// more checks to be validated on a DataBrew dataset.
+  final List<Rule>? rules;
+
+  /// Metadata tags that have been applied to the ruleset.
+  final Map<String, String>? tags;
+
+  /// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+  /// associated with.
+  final String? targetArn;
+
+  DescribeRulesetResponse({
+    required this.name,
+    this.createDate,
+    this.createdBy,
+    this.description,
+    this.lastModifiedBy,
+    this.lastModifiedDate,
+    this.resourceArn,
+    this.rules,
+    this.tags,
+    this.targetArn,
+  });
+
+  factory DescribeRulesetResponse.fromJson(Map<String, dynamic> json) {
+    return DescribeRulesetResponse(
+      name: json['Name'] as String,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      description: json['Description'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      rules: (json['Rules'] as List?)
+          ?.whereNotNull()
+          .map((e) => Rule.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      targetArn: json['TargetArn'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final resourceArn = this.resourceArn;
+    final rules = this.rules;
+    final tags = this.tags;
+    final targetArn = this.targetArn;
+    return {
+      'Name': name,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (rules != null) 'Rules': rules,
+      if (tags != null) 'Tags': tags,
+      if (targetArn != null) 'TargetArn': targetArn,
+    };
+  }
+}
+
 class DescribeScheduleResponse {
   /// The name of the schedule.
   final String name;
@@ -3777,6 +4454,107 @@ extension on String {
   }
 }
 
+/// Configuration of entity detection for a profile job. When undefined, entity
+/// detection is disabled.
+class EntityDetectorConfiguration {
+  /// Entity types to detect. Can be any of the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// USA_SSN
+  /// </li>
+  /// <li>
+  /// EMAIL
+  /// </li>
+  /// <li>
+  /// USA_ITIN
+  /// </li>
+  /// <li>
+  /// USA_PASSPORT_NUMBER
+  /// </li>
+  /// <li>
+  /// PHONE_NUMBER
+  /// </li>
+  /// <li>
+  /// USA_DRIVING_LICENSE
+  /// </li>
+  /// <li>
+  /// BANK_ACCOUNT
+  /// </li>
+  /// <li>
+  /// CREDIT_CARD
+  /// </li>
+  /// <li>
+  /// IP_ADDRESS
+  /// </li>
+  /// <li>
+  /// MAC_ADDRESS
+  /// </li>
+  /// <li>
+  /// USA_DEA_NUMBER
+  /// </li>
+  /// <li>
+  /// USA_HCPCS_CODE
+  /// </li>
+  /// <li>
+  /// USA_NATIONAL_PROVIDER_IDENTIFIER
+  /// </li>
+  /// <li>
+  /// USA_NATIONAL_DRUG_CODE
+  /// </li>
+  /// <li>
+  /// USA_HEALTH_INSURANCE_CLAIM_NUMBER
+  /// </li>
+  /// <li>
+  /// USA_MEDICARE_BENEFICIARY_IDENTIFIER
+  /// </li>
+  /// <li>
+  /// USA_CPT_CODE
+  /// </li>
+  /// <li>
+  /// PERSON_NAME
+  /// </li>
+  /// <li>
+  /// DATE
+  /// </li>
+  /// </ul>
+  /// The Entity type group USA_ALL is also supported, and includes all of the
+  /// above entity types except PERSON_NAME and DATE.
+  final List<String> entityTypes;
+
+  /// Configuration of statistics that are allowed to be run on columns that
+  /// contain detected entities. When undefined, no statistics will be computed on
+  /// columns that contain detected entities.
+  final List<AllowedStatistics>? allowedStatistics;
+
+  EntityDetectorConfiguration({
+    required this.entityTypes,
+    this.allowedStatistics,
+  });
+
+  factory EntityDetectorConfiguration.fromJson(Map<String, dynamic> json) {
+    return EntityDetectorConfiguration(
+      entityTypes: (json['EntityTypes'] as List)
+          .whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      allowedStatistics: (json['AllowedStatistics'] as List?)
+          ?.whereNotNull()
+          .map((e) => AllowedStatistics.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entityTypes = this.entityTypes;
+    final allowedStatistics = this.allowedStatistics;
+    return {
+      'EntityTypes': entityTypes,
+      if (allowedStatistics != null) 'AllowedStatistics': allowedStatistics,
+    };
+  }
+}
+
 /// Represents a set of options that define how DataBrew will interpret a
 /// Microsoft Excel file when creating a dataset from that file.
 class ExcelOptions {
@@ -3868,7 +4646,7 @@ class FilesLimit {
 
 /// Represents a structure for defining parameter conditions. Supported
 /// conditions are described here: <a
-/// href="https://docs-aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets">Supported
+/// href="https://docs.aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets">Supported
 /// conditions for dynamic datasets</a> in the <i>Glue DataBrew Developer
 /// Guide</i>.
 class FilterExpression {
@@ -3958,12 +4736,16 @@ class Input {
   /// Connection information for dataset input files stored in a database.
   final DatabaseInputDefinition? databaseInputDefinition;
 
+  /// Contains additional resource information needed for specific datasets.
+  final Metadata? metadata;
+
   /// The Amazon S3 location where the data is stored.
   final S3Location? s3InputDefinition;
 
   Input({
     this.dataCatalogInputDefinition,
     this.databaseInputDefinition,
+    this.metadata,
     this.s3InputDefinition,
   });
 
@@ -3977,6 +4759,9 @@ class Input {
           ? DatabaseInputDefinition.fromJson(
               json['DatabaseInputDefinition'] as Map<String, dynamic>)
           : null,
+      metadata: json['Metadata'] != null
+          ? Metadata.fromJson(json['Metadata'] as Map<String, dynamic>)
+          : null,
       s3InputDefinition: json['S3InputDefinition'] != null
           ? S3Location.fromJson(
               json['S3InputDefinition'] as Map<String, dynamic>)
@@ -3987,12 +4772,14 @@ class Input {
   Map<String, dynamic> toJson() {
     final dataCatalogInputDefinition = this.dataCatalogInputDefinition;
     final databaseInputDefinition = this.databaseInputDefinition;
+    final metadata = this.metadata;
     final s3InputDefinition = this.s3InputDefinition;
     return {
       if (dataCatalogInputDefinition != null)
         'DataCatalogInputDefinition': dataCatalogInputDefinition,
       if (databaseInputDefinition != null)
         'DatabaseInputDefinition': databaseInputDefinition,
+      if (metadata != null) 'Metadata': metadata,
       if (s3InputDefinition != null) 'S3InputDefinition': s3InputDefinition,
     };
   }
@@ -4050,9 +4837,13 @@ class Job {
   /// The Amazon Resource Name (ARN) of the user who created the job.
   final String? createdBy;
 
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
   final List<DataCatalogOutput>? dataCatalogOutputs;
+
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write into.
+  final List<DatabaseOutput>? databaseOutputs;
 
   /// A dataset that the job is to process.
   final String? datasetName;
@@ -4133,12 +4924,16 @@ class Job {
   /// </ul>
   final JobType? type;
 
+  /// List of validation configurations that are applied to the profile job.
+  final List<ValidationConfiguration>? validationConfigurations;
+
   Job({
     required this.name,
     this.accountId,
     this.createDate,
     this.createdBy,
     this.dataCatalogOutputs,
+    this.databaseOutputs,
     this.datasetName,
     this.encryptionKeyArn,
     this.encryptionMode,
@@ -4156,6 +4951,7 @@ class Job {
     this.tags,
     this.timeout,
     this.type,
+    this.validationConfigurations,
   });
 
   factory Job.fromJson(Map<String, dynamic> json) {
@@ -4167,6 +4963,10 @@ class Job {
       dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
           ?.whereNotNull()
           .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      databaseOutputs: (json['DatabaseOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DatabaseOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
       datasetName: json['DatasetName'] as String?,
       encryptionKeyArn: json['EncryptionKeyArn'] as String?,
@@ -4195,6 +4995,11 @@ class Job {
           ?.map((k, e) => MapEntry(k, e as String)),
       timeout: json['Timeout'] as int?,
       type: (json['Type'] as String?)?.toJobType(),
+      validationConfigurations: (json['ValidationConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ValidationConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -4204,6 +5009,7 @@ class Job {
     final createDate = this.createDate;
     final createdBy = this.createdBy;
     final dataCatalogOutputs = this.dataCatalogOutputs;
+    final databaseOutputs = this.databaseOutputs;
     final datasetName = this.datasetName;
     final encryptionKeyArn = this.encryptionKeyArn;
     final encryptionMode = this.encryptionMode;
@@ -4221,12 +5027,14 @@ class Job {
     final tags = this.tags;
     final timeout = this.timeout;
     final type = this.type;
+    final validationConfigurations = this.validationConfigurations;
     return {
       'Name': name,
       if (accountId != null) 'AccountId': accountId,
       if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
       if (createdBy != null) 'CreatedBy': createdBy,
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
       if (encryptionMode != null) 'EncryptionMode': encryptionMode.toValue(),
@@ -4245,6 +5053,8 @@ class Job {
       if (tags != null) 'Tags': tags,
       if (timeout != null) 'Timeout': timeout,
       if (type != null) 'Type': type.toValue(),
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
   }
 }
@@ -4257,9 +5067,13 @@ class JobRun {
   /// The date and time when the job completed processing.
   final DateTime? completedOn;
 
-  /// One or more artifacts that represent the AWS Glue Data Catalog output from
+  /// One or more artifacts that represent the Glue Data Catalog output from
   /// running the job.
   final List<DataCatalogOutput>? dataCatalogOutputs;
+
+  /// Represents a list of JDBC database output objects which defines the output
+  /// destination for a DataBrew recipe job to write into.
+  final List<DatabaseOutput>? databaseOutputs;
 
   /// The name of the dataset for the job to process.
   final String? datasetName;
@@ -4305,10 +5119,14 @@ class JobRun {
   /// The current state of the job run entity itself.
   final JobRunState? state;
 
+  /// List of validation configurations that are applied to the profile job run.
+  final List<ValidationConfiguration>? validationConfigurations;
+
   JobRun({
     this.attempt,
     this.completedOn,
     this.dataCatalogOutputs,
+    this.databaseOutputs,
     this.datasetName,
     this.errorMessage,
     this.executionTime,
@@ -4322,6 +5140,7 @@ class JobRun {
     this.startedBy,
     this.startedOn,
     this.state,
+    this.validationConfigurations,
   });
 
   factory JobRun.fromJson(Map<String, dynamic> json) {
@@ -4331,6 +5150,10 @@ class JobRun {
       dataCatalogOutputs: (json['DataCatalogOutputs'] as List?)
           ?.whereNotNull()
           .map((e) => DataCatalogOutput.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      databaseOutputs: (json['DatabaseOutputs'] as List?)
+          ?.whereNotNull()
+          .map((e) => DatabaseOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
       datasetName: json['DatasetName'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
@@ -4354,6 +5177,11 @@ class JobRun {
       startedBy: json['StartedBy'] as String?,
       startedOn: timeStampFromJson(json['StartedOn']),
       state: (json['State'] as String?)?.toJobRunState(),
+      validationConfigurations: (json['ValidationConfigurations'] as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ValidationConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -4361,6 +5189,7 @@ class JobRun {
     final attempt = this.attempt;
     final completedOn = this.completedOn;
     final dataCatalogOutputs = this.dataCatalogOutputs;
+    final databaseOutputs = this.databaseOutputs;
     final datasetName = this.datasetName;
     final errorMessage = this.errorMessage;
     final executionTime = this.executionTime;
@@ -4374,10 +5203,12 @@ class JobRun {
     final startedBy = this.startedBy;
     final startedOn = this.startedOn;
     final state = this.state;
+    final validationConfigurations = this.validationConfigurations;
     return {
       if (attempt != null) 'Attempt': attempt,
       if (completedOn != null) 'CompletedOn': unixTimestampToJson(completedOn),
       if (dataCatalogOutputs != null) 'DataCatalogOutputs': dataCatalogOutputs,
+      if (databaseOutputs != null) 'DatabaseOutputs': databaseOutputs,
       if (datasetName != null) 'DatasetName': datasetName,
       if (errorMessage != null) 'ErrorMessage': errorMessage,
       if (executionTime != null) 'ExecutionTime': executionTime,
@@ -4391,6 +5222,8 @@ class JobRun {
       if (startedBy != null) 'StartedBy': startedBy,
       if (startedOn != null) 'StartedOn': unixTimestampToJson(startedOn),
       if (state != null) 'State': state.toValue(),
+      if (validationConfigurations != null)
+        'ValidationConfigurations': validationConfigurations,
     };
   }
 }
@@ -4747,6 +5580,39 @@ class ListRecipesResponse {
   }
 }
 
+class ListRulesetsResponse {
+  /// A list of RulesetItem. RulesetItem contains meta data of a ruleset.
+  final List<RulesetItem> rulesets;
+
+  /// A token that you can use in a subsequent call to retrieve the next set of
+  /// results.
+  final String? nextToken;
+
+  ListRulesetsResponse({
+    required this.rulesets,
+    this.nextToken,
+  });
+
+  factory ListRulesetsResponse.fromJson(Map<String, dynamic> json) {
+    return ListRulesetsResponse(
+      rulesets: (json['Rulesets'] as List)
+          .whereNotNull()
+          .map((e) => RulesetItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rulesets = this.rulesets;
+    final nextToken = this.nextToken;
+    return {
+      'Rulesets': rulesets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
+}
+
 class ListSchedulesResponse {
   /// A list of schedules that are defined.
   final List<Schedule> schedules;
@@ -4831,6 +5697,30 @@ extension on String {
   }
 }
 
+/// Contains additional resource information needed for specific datasets.
+class Metadata {
+  /// The Amazon Resource Name (ARN) associated with the dataset. Currently,
+  /// DataBrew only supports ARNs from Amazon AppFlow.
+  final String? sourceArn;
+
+  Metadata({
+    this.sourceArn,
+  });
+
+  factory Metadata.fromJson(Map<String, dynamic> json) {
+    return Metadata(
+      sourceArn: json['SourceArn'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceArn = this.sourceArn;
+    return {
+      if (sourceArn != null) 'SourceArn': sourceArn,
+    };
+  }
+}
+
 enum Order {
   descending,
   ascending,
@@ -4882,8 +5772,8 @@ extension on String {
   }
 }
 
-/// Represents options that specify how and where DataBrew writes the output
-/// generated by recipe jobs or profile jobs.
+/// Represents options that specify how and where in Amazon S3 DataBrew writes
+/// the output generated by recipe jobs or profile jobs.
 class Output {
   /// The location in Amazon S3 where the job writes its output.
   final S3Location location;
@@ -4958,6 +5848,7 @@ enum OutputFormat {
   avro,
   orc,
   xml,
+  tableauhyper,
 }
 
 extension on OutputFormat {
@@ -4977,6 +5868,8 @@ extension on OutputFormat {
         return 'ORC';
       case OutputFormat.xml:
         return 'XML';
+      case OutputFormat.tableauhyper:
+        return 'TABLEAUHYPER';
     }
   }
 }
@@ -4998,6 +5891,8 @@ extension on String {
         return OutputFormat.orc;
       case 'XML':
         return OutputFormat.xml;
+      case 'TABLEAUHYPER':
+        return OutputFormat.tableauhyper;
     }
     throw Exception('$this is not known in enum OutputFormat');
   }
@@ -5107,6 +6002,81 @@ class PathOptions {
       if (lastModifiedDateCondition != null)
         'LastModifiedDateCondition': lastModifiedDateCondition,
       if (parameters != null) 'Parameters': parameters,
+    };
+  }
+}
+
+/// Configuration for profile jobs. Configuration can be used to select columns,
+/// do evaluations, and override default parameters of evaluations. When
+/// configuration is undefined, the profile job will apply default settings to
+/// all supported columns.
+class ProfileConfiguration {
+  /// List of configurations for column evaluations.
+  /// ColumnStatisticsConfigurations are used to select evaluations and override
+  /// parameters of evaluations for particular columns. When
+  /// ColumnStatisticsConfigurations is undefined, the profile job will profile
+  /// all supported columns and run all supported evaluations.
+  final List<ColumnStatisticsConfiguration>? columnStatisticsConfigurations;
+
+  /// Configuration for inter-column evaluations. Configuration can be used to
+  /// select evaluations and override parameters of evaluations. When
+  /// configuration is undefined, the profile job will run all supported
+  /// inter-column evaluations.
+  final StatisticsConfiguration? datasetStatisticsConfiguration;
+
+  /// Configuration of entity detection for a profile job. When undefined, entity
+  /// detection is disabled.
+  final EntityDetectorConfiguration? entityDetectorConfiguration;
+
+  /// List of column selectors. ProfileColumns can be used to select columns from
+  /// the dataset. When ProfileColumns is undefined, the profile job will profile
+  /// all supported columns.
+  final List<ColumnSelector>? profileColumns;
+
+  ProfileConfiguration({
+    this.columnStatisticsConfigurations,
+    this.datasetStatisticsConfiguration,
+    this.entityDetectorConfiguration,
+    this.profileColumns,
+  });
+
+  factory ProfileConfiguration.fromJson(Map<String, dynamic> json) {
+    return ProfileConfiguration(
+      columnStatisticsConfigurations: (json['ColumnStatisticsConfigurations']
+              as List?)
+          ?.whereNotNull()
+          .map((e) =>
+              ColumnStatisticsConfiguration.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      datasetStatisticsConfiguration: json['DatasetStatisticsConfiguration'] !=
+              null
+          ? StatisticsConfiguration.fromJson(
+              json['DatasetStatisticsConfiguration'] as Map<String, dynamic>)
+          : null,
+      entityDetectorConfiguration: json['EntityDetectorConfiguration'] != null
+          ? EntityDetectorConfiguration.fromJson(
+              json['EntityDetectorConfiguration'] as Map<String, dynamic>)
+          : null,
+      profileColumns: (json['ProfileColumns'] as List?)
+          ?.whereNotNull()
+          .map((e) => ColumnSelector.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columnStatisticsConfigurations = this.columnStatisticsConfigurations;
+    final datasetStatisticsConfiguration = this.datasetStatisticsConfiguration;
+    final entityDetectorConfiguration = this.entityDetectorConfiguration;
+    final profileColumns = this.profileColumns;
+    return {
+      if (columnStatisticsConfigurations != null)
+        'ColumnStatisticsConfigurations': columnStatisticsConfigurations,
+      if (datasetStatisticsConfiguration != null)
+        'DatasetStatisticsConfiguration': datasetStatisticsConfiguration,
+      if (entityDetectorConfiguration != null)
+        'EntityDetectorConfiguration': entityDetectorConfiguration,
+      if (profileColumns != null) 'ProfileColumns': profileColumns,
     };
   }
 }
@@ -5523,6 +6493,188 @@ class RecipeVersionErrorDetail {
   }
 }
 
+/// Represents a single data quality requirement that should be validated in the
+/// scope of this dataset.
+class Rule {
+  /// The expression which includes column references, condition names followed by
+  /// variable references, possibly grouped and combined with other conditions.
+  /// For example, <code>(:col1 starts_with :prefix1 or :col1 starts_with
+  /// :prefix2) and (:col1 ends_with :suffix1 or :col1 ends_with :suffix2)</code>.
+  /// Column and value references are substitution variables that should start
+  /// with the ':' symbol. Depending on the context, substitution variables'
+  /// values can be either an actual value or a column name. These values are
+  /// defined in the SubstitutionMap. If a CheckExpression starts with a column
+  /// reference, then ColumnSelectors in the rule should be null. If
+  /// ColumnSelectors has been defined, then there should be no columnn reference
+  /// in the left side of a condition, for example, <code>is_between :val1 and
+  /// :val2</code>.
+  final String checkExpression;
+
+  /// The name of the rule.
+  final String name;
+
+  /// List of column selectors. Selectors can be used to select columns using a
+  /// name or regular expression from the dataset. Rule will be applied to
+  /// selected columns.
+  final List<ColumnSelector>? columnSelectors;
+
+  /// A value that specifies whether the rule is disabled. Once a rule is
+  /// disabled, a profile job will not validate it during a job run. Default value
+  /// is false.
+  final bool? disabled;
+
+  /// The map of substitution variable names to their values used in a check
+  /// expression. Variable names should start with a ':' (colon). Variable values
+  /// can either be actual values or column names. To differentiate between the
+  /// two, column names should be enclosed in backticks, for example,
+  /// <code>":col1": "`Column A`".</code>
+  final Map<String, String>? substitutionMap;
+
+  /// The threshold used with a non-aggregate check expression. Non-aggregate
+  /// check expressions will be applied to each row in a specific column, and the
+  /// threshold will be used to determine whether the validation succeeds.
+  final Threshold? threshold;
+
+  Rule({
+    required this.checkExpression,
+    required this.name,
+    this.columnSelectors,
+    this.disabled,
+    this.substitutionMap,
+    this.threshold,
+  });
+
+  factory Rule.fromJson(Map<String, dynamic> json) {
+    return Rule(
+      checkExpression: json['CheckExpression'] as String,
+      name: json['Name'] as String,
+      columnSelectors: (json['ColumnSelectors'] as List?)
+          ?.whereNotNull()
+          .map((e) => ColumnSelector.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      disabled: json['Disabled'] as bool?,
+      substitutionMap: (json['SubstitutionMap'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+      threshold: json['Threshold'] != null
+          ? Threshold.fromJson(json['Threshold'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkExpression = this.checkExpression;
+    final name = this.name;
+    final columnSelectors = this.columnSelectors;
+    final disabled = this.disabled;
+    final substitutionMap = this.substitutionMap;
+    final threshold = this.threshold;
+    return {
+      'CheckExpression': checkExpression,
+      'Name': name,
+      if (columnSelectors != null) 'ColumnSelectors': columnSelectors,
+      if (disabled != null) 'Disabled': disabled,
+      if (substitutionMap != null) 'SubstitutionMap': substitutionMap,
+      if (threshold != null) 'Threshold': threshold,
+    };
+  }
+}
+
+/// Contains metadata about the ruleset.
+class RulesetItem {
+  /// The name of the ruleset.
+  final String name;
+
+  /// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+  /// associated with.
+  final String targetArn;
+
+  /// The ID of the Amazon Web Services account that owns the ruleset.
+  final String? accountId;
+
+  /// The date and time that the ruleset was created.
+  final DateTime? createDate;
+
+  /// The Amazon Resource Name (ARN) of the user who created the ruleset.
+  final String? createdBy;
+
+  /// The description of the ruleset.
+  final String? description;
+
+  /// The Amazon Resource Name (ARN) of the user who last modified the ruleset.
+  final String? lastModifiedBy;
+
+  /// The modification date and time of the ruleset.
+  final DateTime? lastModifiedDate;
+
+  /// The Amazon Resource Name (ARN) for the ruleset.
+  final String? resourceArn;
+
+  /// The number of rules that are defined in the ruleset.
+  final int? ruleCount;
+
+  /// Metadata tags that have been applied to the ruleset.
+  final Map<String, String>? tags;
+
+  RulesetItem({
+    required this.name,
+    required this.targetArn,
+    this.accountId,
+    this.createDate,
+    this.createdBy,
+    this.description,
+    this.lastModifiedBy,
+    this.lastModifiedDate,
+    this.resourceArn,
+    this.ruleCount,
+    this.tags,
+  });
+
+  factory RulesetItem.fromJson(Map<String, dynamic> json) {
+    return RulesetItem(
+      name: json['Name'] as String,
+      targetArn: json['TargetArn'] as String,
+      accountId: json['AccountId'] as String?,
+      createDate: timeStampFromJson(json['CreateDate']),
+      createdBy: json['CreatedBy'] as String?,
+      description: json['Description'] as String?,
+      lastModifiedBy: json['LastModifiedBy'] as String?,
+      lastModifiedDate: timeStampFromJson(json['LastModifiedDate']),
+      resourceArn: json['ResourceArn'] as String?,
+      ruleCount: json['RuleCount'] as int?,
+      tags: (json['Tags'] as Map<String, dynamic>?)
+          ?.map((k, e) => MapEntry(k, e as String)),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final targetArn = this.targetArn;
+    final accountId = this.accountId;
+    final createDate = this.createDate;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final resourceArn = this.resourceArn;
+    final ruleCount = this.ruleCount;
+    final tags = this.tags;
+    return {
+      'Name': name,
+      'TargetArn': targetArn,
+      if (accountId != null) 'AccountId': accountId,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (ruleCount != null) 'RuleCount': ruleCount,
+      if (tags != null) 'Tags': tags,
+    };
+  }
+}
+
 /// Represents an Amazon S3 location (bucket name and object key) where DataBrew
 /// can read input data, or write output from a job.
 class S3Location {
@@ -5554,8 +6706,8 @@ class S3Location {
   }
 }
 
-/// Represents options that specify how and where DataBrew writes the S3 output
-/// generated by recipe jobs.
+/// Represents options that specify how and where DataBrew writes the Amazon S3
+/// output generated by recipe jobs.
 class S3TableOutputOptions {
   /// Represents an Amazon S3 location (bucket name and object key) where DataBrew
   /// can write output from a job.
@@ -5952,6 +7104,76 @@ class StartProjectSessionResponse {
   }
 }
 
+/// Override of a particular evaluation for a profile job.
+class StatisticOverride {
+  /// A map that includes overrides of an evaluation’s parameters.
+  final Map<String, String> parameters;
+
+  /// The name of an evaluation
+  final String statistic;
+
+  StatisticOverride({
+    required this.parameters,
+    required this.statistic,
+  });
+
+  factory StatisticOverride.fromJson(Map<String, dynamic> json) {
+    return StatisticOverride(
+      parameters: (json['Parameters'] as Map<String, dynamic>)
+          .map((k, e) => MapEntry(k, e as String)),
+      statistic: json['Statistic'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final parameters = this.parameters;
+    final statistic = this.statistic;
+    return {
+      'Parameters': parameters,
+      'Statistic': statistic,
+    };
+  }
+}
+
+/// Configuration of evaluations for a profile job. This configuration can be
+/// used to select evaluations and override the parameters of selected
+/// evaluations.
+class StatisticsConfiguration {
+  /// List of included evaluations. When the list is undefined, all supported
+  /// evaluations will be included.
+  final List<String>? includedStatistics;
+
+  /// List of overrides for evaluations.
+  final List<StatisticOverride>? overrides;
+
+  StatisticsConfiguration({
+    this.includedStatistics,
+    this.overrides,
+  });
+
+  factory StatisticsConfiguration.fromJson(Map<String, dynamic> json) {
+    return StatisticsConfiguration(
+      includedStatistics: (json['IncludedStatistics'] as List?)
+          ?.whereNotNull()
+          .map((e) => e as String)
+          .toList(),
+      overrides: (json['Overrides'] as List?)
+          ?.whereNotNull()
+          .map((e) => StatisticOverride.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final includedStatistics = this.includedStatistics;
+    final overrides = this.overrides;
+    return {
+      if (includedStatistics != null) 'IncludedStatistics': includedStatistics,
+      if (overrides != null) 'Overrides': overrides,
+    };
+  }
+}
+
 class StopJobRunResponse {
   /// The ID of the job run that you stopped.
   final String runId;
@@ -5983,6 +7205,113 @@ class TagResourceResponse {
 
   Map<String, dynamic> toJson() {
     return {};
+  }
+}
+
+/// The threshold used with a non-aggregate check expression. The non-aggregate
+/// check expression will be applied to each row in a specific column. Then the
+/// threshold will be used to determine whether the validation succeeds.
+class Threshold {
+  /// The value of a threshold.
+  final double value;
+
+  /// The type of a threshold. Used for comparison of an actual count of rows that
+  /// satisfy the rule to the threshold value.
+  final ThresholdType? type;
+
+  /// Unit of threshold value. Can be either a COUNT or PERCENTAGE of the full
+  /// sample size used for validation.
+  final ThresholdUnit? unit;
+
+  Threshold({
+    required this.value,
+    this.type,
+    this.unit,
+  });
+
+  factory Threshold.fromJson(Map<String, dynamic> json) {
+    return Threshold(
+      value: json['Value'] as double,
+      type: (json['Type'] as String?)?.toThresholdType(),
+      unit: (json['Unit'] as String?)?.toThresholdUnit(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    final type = this.type;
+    final unit = this.unit;
+    return {
+      'Value': value,
+      if (type != null) 'Type': type.toValue(),
+      if (unit != null) 'Unit': unit.toValue(),
+    };
+  }
+}
+
+enum ThresholdType {
+  greaterThanOrEqual,
+  lessThanOrEqual,
+  greaterThan,
+  lessThan,
+}
+
+extension on ThresholdType {
+  String toValue() {
+    switch (this) {
+      case ThresholdType.greaterThanOrEqual:
+        return 'GREATER_THAN_OR_EQUAL';
+      case ThresholdType.lessThanOrEqual:
+        return 'LESS_THAN_OR_EQUAL';
+      case ThresholdType.greaterThan:
+        return 'GREATER_THAN';
+      case ThresholdType.lessThan:
+        return 'LESS_THAN';
+    }
+  }
+}
+
+extension on String {
+  ThresholdType toThresholdType() {
+    switch (this) {
+      case 'GREATER_THAN_OR_EQUAL':
+        return ThresholdType.greaterThanOrEqual;
+      case 'LESS_THAN_OR_EQUAL':
+        return ThresholdType.lessThanOrEqual;
+      case 'GREATER_THAN':
+        return ThresholdType.greaterThan;
+      case 'LESS_THAN':
+        return ThresholdType.lessThan;
+    }
+    throw Exception('$this is not known in enum ThresholdType');
+  }
+}
+
+enum ThresholdUnit {
+  count,
+  percentage,
+}
+
+extension on ThresholdUnit {
+  String toValue() {
+    switch (this) {
+      case ThresholdUnit.count:
+        return 'COUNT';
+      case ThresholdUnit.percentage:
+        return 'PERCENTAGE';
+    }
+  }
+}
+
+extension on String {
+  ThresholdUnit toThresholdUnit() {
+    switch (this) {
+      case 'COUNT':
+        return ThresholdUnit.count;
+      case 'PERCENTAGE':
+        return ThresholdUnit.percentage;
+    }
+    throw Exception('$this is not known in enum ThresholdUnit');
   }
 }
 
@@ -6116,6 +7445,28 @@ class UpdateRecipeResponse {
   }
 }
 
+class UpdateRulesetResponse {
+  /// The name of the updated ruleset.
+  final String name;
+
+  UpdateRulesetResponse({
+    required this.name,
+  });
+
+  factory UpdateRulesetResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateRulesetResponse(
+      name: json['Name'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
+  }
+}
+
 class UpdateScheduleResponse {
   /// The name of the schedule that was updated.
   final String name;
@@ -6138,10 +7489,73 @@ class UpdateScheduleResponse {
   }
 }
 
+/// Configuration for data quality validation. Used to select the Rulesets and
+/// Validation Mode to be used in the profile job. When ValidationConfiguration
+/// is null, the profile job will run without data quality validation.
+class ValidationConfiguration {
+  /// The Amazon Resource Name (ARN) for the ruleset to be validated in the
+  /// profile job. The TargetArn of the selected ruleset should be the same as the
+  /// Amazon Resource Name (ARN) of the dataset that is associated with the
+  /// profile job.
+  final String rulesetArn;
+
+  /// Mode of data quality validation. Default mode is “CHECK_ALL” which verifies
+  /// all rules defined in the selected ruleset.
+  final ValidationMode? validationMode;
+
+  ValidationConfiguration({
+    required this.rulesetArn,
+    this.validationMode,
+  });
+
+  factory ValidationConfiguration.fromJson(Map<String, dynamic> json) {
+    return ValidationConfiguration(
+      rulesetArn: json['RulesetArn'] as String,
+      validationMode: (json['ValidationMode'] as String?)?.toValidationMode(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rulesetArn = this.rulesetArn;
+    final validationMode = this.validationMode;
+    return {
+      'RulesetArn': rulesetArn,
+      if (validationMode != null) 'ValidationMode': validationMode.toValue(),
+    };
+  }
+}
+
+enum ValidationMode {
+  checkAll,
+}
+
+extension on ValidationMode {
+  String toValue() {
+    switch (this) {
+      case ValidationMode.checkAll:
+        return 'CHECK_ALL';
+    }
+  }
+}
+
+extension on String {
+  ValidationMode toValidationMode() {
+    switch (this) {
+      case 'CHECK_ALL':
+        return ValidationMode.checkAll;
+    }
+    throw Exception('$this is not known in enum ValidationMode');
+  }
+}
+
 /// Represents the data being transformed during an action.
 class ViewFrame {
   /// The starting index for the range of columns to return in the view frame.
   final int startColumnIndex;
+
+  /// Controls if analytics computation is enabled or disabled. Enabled by
+  /// default.
+  final AnalyticsMode? analytics;
 
   /// The number of columns to include in the view frame, beginning with the
   /// <code>StartColumnIndex</code> value and ignoring any columns in the
@@ -6151,31 +7565,50 @@ class ViewFrame {
   /// A list of columns to hide in the view frame.
   final List<String>? hiddenColumns;
 
+  /// The number of rows to include in the view frame, beginning with the
+  /// <code>StartRowIndex</code> value.
+  final int? rowRange;
+
+  /// The starting index for the range of rows to return in the view frame.
+  final int? startRowIndex;
+
   ViewFrame({
     required this.startColumnIndex,
+    this.analytics,
     this.columnRange,
     this.hiddenColumns,
+    this.rowRange,
+    this.startRowIndex,
   });
 
   factory ViewFrame.fromJson(Map<String, dynamic> json) {
     return ViewFrame(
       startColumnIndex: json['StartColumnIndex'] as int,
+      analytics: (json['Analytics'] as String?)?.toAnalyticsMode(),
       columnRange: json['ColumnRange'] as int?,
       hiddenColumns: (json['HiddenColumns'] as List?)
           ?.whereNotNull()
           .map((e) => e as String)
           .toList(),
+      rowRange: json['RowRange'] as int?,
+      startRowIndex: json['StartRowIndex'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final startColumnIndex = this.startColumnIndex;
+    final analytics = this.analytics;
     final columnRange = this.columnRange;
     final hiddenColumns = this.hiddenColumns;
+    final rowRange = this.rowRange;
+    final startRowIndex = this.startRowIndex;
     return {
       'StartColumnIndex': startColumnIndex,
+      if (analytics != null) 'Analytics': analytics.toValue(),
       if (columnRange != null) 'ColumnRange': columnRange,
       if (hiddenColumns != null) 'HiddenColumns': hiddenColumns,
+      if (rowRange != null) 'RowRange': rowRange,
+      if (startRowIndex != null) 'StartRowIndex': startRowIndex,
     };
   }
 }

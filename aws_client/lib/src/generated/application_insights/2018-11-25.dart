@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -50,9 +51,6 @@ class ApplicationInsights {
   /// May throw [TagsAlreadyExistException].
   /// May throw [AccessDeniedException].
   ///
-  /// Parameter [resourceGroupName] :
-  /// The name of the resource group.
-  ///
   /// Parameter [cWEMonitorEnabled] :
   /// Indicates whether Application Insights can listen to CloudWatch events for
   /// the application resources, such as <code>instance terminated</code>,
@@ -67,30 +65,33 @@ class ApplicationInsights {
   /// created opsItem. Allows you to receive notifications for updates to the
   /// opsItem.
   ///
+  /// Parameter [resourceGroupName] :
+  /// The name of the resource group.
+  ///
   /// Parameter [tags] :
   /// List of tags to add to the application. tag key (<code>Key</code>) and an
   /// associated tag value (<code>Value</code>). The maximum length of a tag key
   /// is 128 characters. The maximum length of a tag value is 256 characters.
   Future<CreateApplicationResponse> createApplication({
-    required String resourceGroupName,
+    bool? autoConfigEnabled,
+    bool? autoCreate,
     bool? cWEMonitorEnabled,
     bool? opsCenterEnabled,
     String? opsItemSNSTopicArn,
+    String? resourceGroupName,
     List<Tag>? tags,
   }) async {
-    ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateStringLength(
       'opsItemSNSTopicArn',
       opsItemSNSTopicArn,
       20,
       300,
+    );
+    _s.validateStringLength(
+      'resourceGroupName',
+      resourceGroupName,
+      1,
+      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -103,11 +104,13 @@ class ApplicationInsights {
       // TODO queryParams
       headers: headers,
       payload: {
-        'ResourceGroupName': resourceGroupName,
+        if (autoConfigEnabled != null) 'AutoConfigEnabled': autoConfigEnabled,
+        if (autoCreate != null) 'AutoCreate': autoCreate,
         if (cWEMonitorEnabled != null) 'CWEMonitorEnabled': cWEMonitorEnabled,
         if (opsCenterEnabled != null) 'OpsCenterEnabled': opsCenterEnabled,
         if (opsItemSNSTopicArn != null)
           'OpsItemSNSTopicArn': opsItemSNSTopicArn,
+        if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
         if (tags != null) 'Tags': tags,
       },
     );
@@ -1158,12 +1161,19 @@ class ApplicationInsights {
   /// specify a time frame for the request, problems within the past seven days
   /// are returned.
   Future<ListProblemsResponse> listProblems({
+    String? componentName,
     DateTime? endTime,
     int? maxResults,
     String? nextToken,
     String? resourceGroupName,
     DateTime? startTime,
   }) async {
+    _s.validateStringLength(
+      'componentName',
+      componentName,
+      1,
+      1011,
+    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1193,6 +1203,7 @@ class ApplicationInsights {
       // TODO queryParams
       headers: headers,
       payload: {
+        if (componentName != null) 'ComponentName': componentName,
         if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
         if (maxResults != null) 'MaxResults': maxResults,
         if (nextToken != null) 'NextToken': nextToken,
@@ -1374,6 +1385,7 @@ class ApplicationInsights {
   /// problems.
   Future<UpdateApplicationResponse> updateApplication({
     required String resourceGroupName,
+    bool? autoConfigEnabled,
     bool? cWEMonitorEnabled,
     bool? opsCenterEnabled,
     String? opsItemSNSTopicArn,
@@ -1405,6 +1417,7 @@ class ApplicationInsights {
       headers: headers,
       payload: {
         'ResourceGroupName': resourceGroupName,
+        if (autoConfigEnabled != null) 'AutoConfigEnabled': autoConfigEnabled,
         if (cWEMonitorEnabled != null) 'CWEMonitorEnabled': cWEMonitorEnabled,
         if (opsCenterEnabled != null) 'OpsCenterEnabled': opsCenterEnabled,
         if (opsItemSNSTopicArn != null)
@@ -1519,6 +1532,7 @@ class ApplicationInsights {
   Future<void> updateComponentConfiguration({
     required String componentName,
     required String resourceGroupName,
+    bool? autoConfigEnabled,
     String? componentConfiguration,
     bool? monitor,
     Tier? tier,
@@ -1558,6 +1572,7 @@ class ApplicationInsights {
       payload: {
         'ComponentName': componentName,
         'ResourceGroupName': resourceGroupName,
+        if (autoConfigEnabled != null) 'AutoConfigEnabled': autoConfigEnabled,
         if (componentConfiguration != null)
           'ComponentConfiguration': componentConfiguration,
         if (monitor != null) 'Monitor': monitor,
@@ -1735,10 +1750,13 @@ class ApplicationComponent {
 
 /// Describes the status of the application.
 class ApplicationInfo {
+  final bool? autoConfigEnabled;
+
   /// Indicates whether Application Insights can listen to CloudWatch events for
   /// the application resources, such as <code>instance terminated</code>,
   /// <code>failed deployment</code>, and others.
   final bool? cWEMonitorEnabled;
+  final DiscoveryType? discoveryType;
 
   /// The lifecycle of the application.
   final String? lifeCycle;
@@ -1768,7 +1786,9 @@ class ApplicationInfo {
   final String? resourceGroupName;
 
   ApplicationInfo({
+    this.autoConfigEnabled,
     this.cWEMonitorEnabled,
+    this.discoveryType,
     this.lifeCycle,
     this.opsCenterEnabled,
     this.opsItemSNSTopicArn,
@@ -1778,7 +1798,9 @@ class ApplicationInfo {
 
   factory ApplicationInfo.fromJson(Map<String, dynamic> json) {
     return ApplicationInfo(
+      autoConfigEnabled: json['AutoConfigEnabled'] as bool?,
       cWEMonitorEnabled: json['CWEMonitorEnabled'] as bool?,
+      discoveryType: (json['DiscoveryType'] as String?)?.toDiscoveryType(),
       lifeCycle: json['LifeCycle'] as String?,
       opsCenterEnabled: json['OpsCenterEnabled'] as bool?,
       opsItemSNSTopicArn: json['OpsItemSNSTopicArn'] as String?,
@@ -1788,14 +1810,18 @@ class ApplicationInfo {
   }
 
   Map<String, dynamic> toJson() {
+    final autoConfigEnabled = this.autoConfigEnabled;
     final cWEMonitorEnabled = this.cWEMonitorEnabled;
+    final discoveryType = this.discoveryType;
     final lifeCycle = this.lifeCycle;
     final opsCenterEnabled = this.opsCenterEnabled;
     final opsItemSNSTopicArn = this.opsItemSNSTopicArn;
     final remarks = this.remarks;
     final resourceGroupName = this.resourceGroupName;
     return {
+      if (autoConfigEnabled != null) 'AutoConfigEnabled': autoConfigEnabled,
       if (cWEMonitorEnabled != null) 'CWEMonitorEnabled': cWEMonitorEnabled,
+      if (discoveryType != null) 'DiscoveryType': discoveryType.toValue(),
       if (lifeCycle != null) 'LifeCycle': lifeCycle,
       if (opsCenterEnabled != null) 'OpsCenterEnabled': opsCenterEnabled,
       if (opsItemSNSTopicArn != null) 'OpsItemSNSTopicArn': opsItemSNSTopicArn,
@@ -2315,6 +2341,34 @@ class DescribeProblemResponse {
   }
 }
 
+enum DiscoveryType {
+  resourceGroupBased,
+  accountBased,
+}
+
+extension on DiscoveryType {
+  String toValue() {
+    switch (this) {
+      case DiscoveryType.resourceGroupBased:
+        return 'RESOURCE_GROUP_BASED';
+      case DiscoveryType.accountBased:
+        return 'ACCOUNT_BASED';
+    }
+  }
+}
+
+extension on String {
+  DiscoveryType toDiscoveryType() {
+    switch (this) {
+      case 'RESOURCE_GROUP_BASED':
+        return DiscoveryType.resourceGroupBased;
+      case 'ACCOUNT_BASED':
+        return DiscoveryType.accountBased;
+    }
+    throw Exception('$this is not known in enum DiscoveryType');
+  }
+}
+
 enum FeedbackKey {
   insightsFeedback,
 }
@@ -2562,10 +2616,12 @@ class ListProblemsResponse {
 
   /// The list of problems.
   final List<Problem>? problemList;
+  final String? resourceGroupName;
 
   ListProblemsResponse({
     this.nextToken,
     this.problemList,
+    this.resourceGroupName,
   });
 
   factory ListProblemsResponse.fromJson(Map<String, dynamic> json) {
@@ -2575,15 +2631,18 @@ class ListProblemsResponse {
           ?.whereNotNull()
           .map((e) => Problem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      resourceGroupName: json['ResourceGroupName'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     final nextToken = this.nextToken;
     final problemList = this.problemList;
+    final resourceGroupName = this.resourceGroupName;
     return {
       if (nextToken != null) 'NextToken': nextToken,
       if (problemList != null) 'ProblemList': problemList,
+      if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
     };
   }
 }
@@ -3108,6 +3167,8 @@ class Problem {
 
   /// A detailed analysis of the problem using machine learning.
   final String? insights;
+  final DateTime? lastRecurrenceTime;
+  final int? recurringCount;
 
   /// The name of the resource group affected by the problem.
   final String? resourceGroupName;
@@ -3130,6 +3191,8 @@ class Problem {
     this.feedback,
     this.id,
     this.insights,
+    this.lastRecurrenceTime,
+    this.recurringCount,
     this.resourceGroupName,
     this.severityLevel,
     this.startTime,
@@ -3145,6 +3208,8 @@ class Problem {
           MapEntry(k.toFeedbackKey(), (e as String).toFeedbackValue())),
       id: json['Id'] as String?,
       insights: json['Insights'] as String?,
+      lastRecurrenceTime: timeStampFromJson(json['LastRecurrenceTime']),
+      recurringCount: json['RecurringCount'] as int?,
       resourceGroupName: json['ResourceGroupName'] as String?,
       severityLevel: (json['SeverityLevel'] as String?)?.toSeverityLevel(),
       startTime: timeStampFromJson(json['StartTime']),
@@ -3159,6 +3224,8 @@ class Problem {
     final feedback = this.feedback;
     final id = this.id;
     final insights = this.insights;
+    final lastRecurrenceTime = this.lastRecurrenceTime;
+    final recurringCount = this.recurringCount;
     final resourceGroupName = this.resourceGroupName;
     final severityLevel = this.severityLevel;
     final startTime = this.startTime;
@@ -3171,6 +3238,9 @@ class Problem {
         'Feedback': feedback.map((k, e) => MapEntry(k.toValue(), e.toValue())),
       if (id != null) 'Id': id,
       if (insights != null) 'Insights': insights,
+      if (lastRecurrenceTime != null)
+        'LastRecurrenceTime': unixTimestampToJson(lastRecurrenceTime),
+      if (recurringCount != null) 'RecurringCount': recurringCount,
       if (resourceGroupName != null) 'ResourceGroupName': resourceGroupName,
       if (severityLevel != null) 'SeverityLevel': severityLevel.toValue(),
       if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
@@ -3243,6 +3313,7 @@ enum Status {
   ignore,
   resolved,
   pending,
+  recurring,
 }
 
 extension on Status {
@@ -3254,6 +3325,8 @@ extension on Status {
         return 'RESOLVED';
       case Status.pending:
         return 'PENDING';
+      case Status.recurring:
+        return 'RECURRING';
     }
   }
 }
@@ -3267,6 +3340,8 @@ extension on String {
         return Status.resolved;
       case 'PENDING':
         return Status.pending;
+      case 'RECURRING':
+        return Status.recurring;
     }
     throw Exception('$this is not known in enum Status');
   }
@@ -3358,6 +3433,10 @@ enum Tier {
   postgresql,
   javaJmx,
   oracle,
+  sapHanaMultiNode,
+  sapHanaSingleNode,
+  sapHanaHighAvailability,
+  sqlServerFailoverClusterInstance,
 }
 
 extension on Tier {
@@ -3387,6 +3466,14 @@ extension on Tier {
         return 'JAVA_JMX';
       case Tier.oracle:
         return 'ORACLE';
+      case Tier.sapHanaMultiNode:
+        return 'SAP_HANA_MULTI_NODE';
+      case Tier.sapHanaSingleNode:
+        return 'SAP_HANA_SINGLE_NODE';
+      case Tier.sapHanaHighAvailability:
+        return 'SAP_HANA_HIGH_AVAILABILITY';
+      case Tier.sqlServerFailoverClusterInstance:
+        return 'SQL_SERVER_FAILOVER_CLUSTER_INSTANCE';
     }
   }
 }
@@ -3418,6 +3505,14 @@ extension on String {
         return Tier.javaJmx;
       case 'ORACLE':
         return Tier.oracle;
+      case 'SAP_HANA_MULTI_NODE':
+        return Tier.sapHanaMultiNode;
+      case 'SAP_HANA_SINGLE_NODE':
+        return Tier.sapHanaSingleNode;
+      case 'SAP_HANA_HIGH_AVAILABILITY':
+        return Tier.sapHanaHighAvailability;
+      case 'SQL_SERVER_FAILOVER_CLUSTER_INSTANCE':
+        return Tier.sqlServerFailoverClusterInstance;
     }
     throw Exception('$this is not known in enum Tier');
   }

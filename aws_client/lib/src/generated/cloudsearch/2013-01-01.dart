@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2013-01-01.meta.dart';
 
+import '2013-01-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// You use the Amazon CloudSearch configuration service to create, configure,
@@ -49,6 +50,7 @@ class CloudSearch {
   /// May throw [BaseException].
   /// May throw [InternalException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   Future<BuildSuggestersResponse> buildSuggesters({
     required String domainName,
   }) async {
@@ -130,6 +132,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   Future<DefineAnalysisSchemeResponse> defineAnalysisScheme({
     required AnalysisScheme analysisScheme,
     required String domainName,
@@ -173,6 +176,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   Future<DefineExpressionResponse> defineExpression({
     required String domainName,
     required Expression expression,
@@ -220,6 +224,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [indexField] :
   /// The index field and field options you want to configure.
@@ -267,6 +272,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   Future<DefineSuggesterResponse> defineSuggester({
     required String domainName,
     required Suggester suggester,
@@ -306,6 +312,7 @@ class CloudSearch {
   /// May throw [InternalException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [analysisSchemeName] :
   /// The name of the analysis scheme you want to delete.
@@ -394,6 +401,7 @@ class CloudSearch {
   /// May throw [InternalException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [expressionName] :
   /// The name of the <code><a>Expression</a></code> to delete.
@@ -444,6 +452,7 @@ class CloudSearch {
   /// May throw [InternalException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [indexFieldName] :
   /// The name of the index field your want to remove from the domain's indexing
@@ -494,6 +503,7 @@ class CloudSearch {
   /// May throw [InternalException].
   /// May throw [InvalidTypeException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [suggesterName] :
   /// Specifies the name of the suggester you want to delete.
@@ -981,6 +991,7 @@ class CloudSearch {
   /// May throw [BaseException].
   /// May throw [InternalException].
   /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
   Future<IndexDocumentsResponse> indexDocuments({
     required String domainName,
   }) async {
@@ -1145,6 +1156,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidTypeException].
+  /// May throw [ValidationException].
   Future<UpdateScalingParametersResponse> updateScalingParameters({
     required String domainName,
     required ScalingParameters scalingParameters,
@@ -1185,6 +1197,7 @@ class CloudSearch {
   /// May throw [LimitExceededException].
   /// May throw [ResourceNotFoundException].
   /// May throw [InvalidTypeException].
+  /// May throw [ValidationException].
   ///
   /// Parameter [accessPolicies] :
   /// The access rules you want to configure. These rules replace any existing

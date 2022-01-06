@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -203,7 +204,7 @@ class KinesisAnalyticsV2 {
   /// Analytics application. An input processor pre-processes records on the
   /// input stream before the application's SQL code executes. Currently, the
   /// only input processor available is <a
-  /// href="https://docs.aws.amazon.com/lambda/">AWS Lambda</a>.
+  /// href="https://docs.aws.amazon.com/lambda/">Amazon Lambda</a>.
   ///
   /// May throw [ResourceNotFoundException].
   /// May throw [ResourceInUseException].
@@ -291,7 +292,7 @@ class KinesisAnalyticsV2 {
   ///
   /// If you want Kinesis Data Analytics to deliver data from an in-application
   /// stream within your application to an external destination (such as an
-  /// Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS
+  /// Kinesis data stream, a Kinesis Data Firehose delivery stream, or an Amazon
   /// Lambda function), you add the relevant configuration to your application
   /// using this operation. You can configure one or more outputs for your
   /// application. Each output configuration maps an in-application stream and
@@ -327,8 +328,8 @@ class KinesisAnalyticsV2 {
   /// An array of objects, each describing one output configuration. In the
   /// output configuration, you specify the name of an in-application stream, a
   /// destination (that is, a Kinesis data stream, a Kinesis Data Firehose
-  /// delivery stream, or an AWS Lambda function), and record the formation to
-  /// use when writing to the destination.
+  /// delivery stream, or an Amazon Lambda function), and record the formation
+  /// to use when writing to the destination.
   Future<AddApplicationOutputResponse> addApplicationOutput({
     required String applicationName,
     required int currentApplicationVersionId,
@@ -558,6 +559,7 @@ class KinesisAnalyticsV2 {
   /// May throw [InvalidRequestException].
   /// May throw [TooManyTagsException].
   /// May throw [ConcurrentModificationException].
+  /// May throw [UnsupportedOperationException].
   ///
   /// Parameter [applicationName] :
   /// The name of your application (for example, <code>sample-app</code>).
@@ -1473,6 +1475,7 @@ class KinesisAnalyticsV2 {
   /// May throw [ResourceProvisionedThroughputExceededException].
   /// May throw [ServiceUnavailableException].
   /// May throw [InvalidRequestException].
+  /// May throw [UnsupportedOperationException].
   ///
   /// Parameter [serviceExecutionRole] :
   /// The ARN of the role that is used to access the streaming source.
@@ -1625,7 +1628,7 @@ class KinesisAnalyticsV2 {
   /// pass it into this value to retrieve the next set of results. For more
   /// information about pagination, see <a
   /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
-  /// the AWS Command Line Interface's Pagination Options</a>.
+  /// the Amazon Command Line Interface's Pagination Options</a>.
   Future<ListApplicationVersionsResponse> listApplicationVersions({
     required String applicationName,
     int? limit,
@@ -1688,7 +1691,7 @@ class KinesisAnalyticsV2 {
   /// to retrieve the next set of results. For more information about
   /// pagination, see <a
   /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
-  /// the AWS Command Line Interface's Pagination Options</a>.
+  /// the Amazon Command Line Interface's Pagination Options</a>.
   Future<ListApplicationsResponse> listApplications({
     int? limit,
     String? nextToken,
@@ -3412,8 +3415,8 @@ enum ApplicationStatus {
   updating,
   autoscaling,
   forceStopping,
-  maintenance,
   rollingBack,
+  maintenance,
   rolledBack,
 }
 
@@ -3436,10 +3439,10 @@ extension on ApplicationStatus {
         return 'AUTOSCALING';
       case ApplicationStatus.forceStopping:
         return 'FORCE_STOPPING';
-      case ApplicationStatus.maintenance:
-        return 'MAINTENANCE';
       case ApplicationStatus.rollingBack:
         return 'ROLLING_BACK';
+      case ApplicationStatus.maintenance:
+        return 'MAINTENANCE';
       case ApplicationStatus.rolledBack:
         return 'ROLLED_BACK';
     }
@@ -3465,10 +3468,10 @@ extension on String {
         return ApplicationStatus.autoscaling;
       case 'FORCE_STOPPING':
         return ApplicationStatus.forceStopping;
-      case 'MAINTENANCE':
-        return ApplicationStatus.maintenance;
       case 'ROLLING_BACK':
         return ApplicationStatus.rollingBack;
+      case 'MAINTENANCE':
+        return ApplicationStatus.maintenance;
       case 'ROLLED_BACK':
         return ApplicationStatus.rolledBack;
     }
@@ -3640,12 +3643,12 @@ class CSVMappingParameters {
   }
 }
 
-/// The configuration parameters for the default AWS Glue database. You use this
-/// database for SQL queries that you write in a Kinesis Data Analytics Studio
-/// notebook.
+/// The configuration parameters for the default Amazon Glue database. You use
+/// this database for SQL queries that you write in a Kinesis Data Analytics
+/// Studio notebook.
 class CatalogConfiguration {
-  /// The configuration parameters for the default AWS Glue database. You use this
-  /// database for Apache Flink SQL queries and table API transforms that you
+  /// The configuration parameters for the default Amazon Glue database. You use
+  /// this database for Apache Flink SQL queries and table API transforms that you
   /// write in a Kinesis Data Analytics Studio notebook.
   final GlueDataCatalogConfiguration glueDataCatalogConfiguration;
 
@@ -3668,13 +3671,13 @@ class CatalogConfiguration {
   }
 }
 
-/// The configuration parameters for the default AWS Glue database. You use this
-/// database for Apache Flink SQL queries and table API transforms that you
+/// The configuration parameters for the default Amazon Glue database. You use
+/// this database for Apache Flink SQL queries and table API transforms that you
 /// write in a Kinesis Data Analytics Studio notebook.
 class CatalogConfigurationDescription {
-  /// The configuration parameters for the default AWS Glue database. You use this
-  /// database for SQL queries that you write in a Kinesis Data Analytics Studio
-  /// notebook.
+  /// The configuration parameters for the default Amazon Glue database. You use
+  /// this database for SQL queries that you write in a Kinesis Data Analytics
+  /// Studio notebook.
   final GlueDataCatalogConfigurationDescription
       glueDataCatalogConfigurationDescription;
 
@@ -3701,11 +3704,13 @@ class CatalogConfigurationDescription {
   }
 }
 
-/// Updates to
+/// Updates to the configuration parameters for the default Amazon Glue
+/// database. You use this database for SQL queries that you write in a Kinesis
+/// Data Analytics Studio notebook.
 class CatalogConfigurationUpdate {
-  /// Updates to the configuration parameters for the default AWS Glue database.
-  /// You use this database for SQL queries that you write in a Kinesis Data
-  /// Analytics Studio notebook.
+  /// Updates to the configuration parameters for the default Amazon Glue
+  /// database. You use this database for SQL queries that you write in a Kinesis
+  /// Data Analytics Studio notebook.
   final GlueDataCatalogConfigurationUpdate glueDataCatalogConfigurationUpdate;
 
   CatalogConfigurationUpdate({
@@ -4654,7 +4659,7 @@ class DeleteApplicationVpcConfigurationResponse {
 }
 
 /// The information required to deploy a Kinesis Data Analytics Studio notebook
-/// as an application with durable state..
+/// as an application with durable state.
 class DeployAsApplicationConfiguration {
   /// The description of an Amazon S3 object that contains the Amazon Data
   /// Analytics application, including the Amazon Resource Name (ARN) of the S3
@@ -4709,28 +4714,31 @@ class DeployAsApplicationConfigurationDescription {
 }
 
 /// Updates to the configuration information required to deploy an Amazon Data
-/// Analytics Studio notebook as an application with durable state..
+/// Analytics Studio notebook as an application with durable state.
 class DeployAsApplicationConfigurationUpdate {
   /// Updates to the location that holds the data required to specify an Amazon
   /// Data Analytics application.
-  final S3ContentBaseLocationUpdate s3ContentLocationUpdate;
+  final S3ContentBaseLocationUpdate? s3ContentLocationUpdate;
 
   DeployAsApplicationConfigurationUpdate({
-    required this.s3ContentLocationUpdate,
+    this.s3ContentLocationUpdate,
   });
 
   factory DeployAsApplicationConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return DeployAsApplicationConfigurationUpdate(
-      s3ContentLocationUpdate: S3ContentBaseLocationUpdate.fromJson(
-          json['S3ContentLocationUpdate'] as Map<String, dynamic>),
+      s3ContentLocationUpdate: json['S3ContentLocationUpdate'] != null
+          ? S3ContentBaseLocationUpdate.fromJson(
+              json['S3ContentLocationUpdate'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     final s3ContentLocationUpdate = this.s3ContentLocationUpdate;
     return {
-      'S3ContentLocationUpdate': s3ContentLocationUpdate,
+      if (s3ContentLocationUpdate != null)
+        'S3ContentLocationUpdate': s3ContentLocationUpdate,
     };
   }
 }
@@ -5264,23 +5272,23 @@ class GlueDataCatalogConfigurationDescription {
 /// queries that you write in a Kinesis Data Analytics Studio notebook.
 class GlueDataCatalogConfigurationUpdate {
   /// The updated Amazon Resource Name (ARN) of the database.
-  final String? databaseARNUpdate;
+  final String databaseARNUpdate;
 
   GlueDataCatalogConfigurationUpdate({
-    this.databaseARNUpdate,
+    required this.databaseARNUpdate,
   });
 
   factory GlueDataCatalogConfigurationUpdate.fromJson(
       Map<String, dynamic> json) {
     return GlueDataCatalogConfigurationUpdate(
-      databaseARNUpdate: json['DatabaseARNUpdate'] as String?,
+      databaseARNUpdate: json['DatabaseARNUpdate'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     final databaseARNUpdate = this.databaseARNUpdate;
     return {
-      if (databaseARNUpdate != null) 'DatabaseARNUpdate': databaseARNUpdate,
+      'DatabaseARNUpdate': databaseARNUpdate,
     };
   }
 }
@@ -5502,17 +5510,18 @@ class InputDescription {
   }
 }
 
-/// An object that contains the Amazon Resource Name (ARN) of the AWS Lambda
+/// An object that contains the Amazon Resource Name (ARN) of the Amazon Lambda
 /// function that is used to preprocess records in the stream in a SQL-based
 /// Kinesis Data Analytics application.
 class InputLambdaProcessor {
-  /// The ARN of the AWS Lambda function that operates on records in the stream.
+  /// The ARN of the Amazon Lambda function that operates on records in the
+  /// stream.
   /// <note>
   /// To specify an earlier version of the Lambda function than the latest,
   /// include the Lambda function version in the Lambda function ARN. For more
   /// information about Lambda ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda">Example
-  /// ARNs: AWS Lambda</a>
+  /// ARNs: Amazon Lambda</a>
   /// </note>
   final String resourceARN;
 
@@ -5535,21 +5544,21 @@ class InputLambdaProcessor {
 }
 
 /// For a SQL-based Kinesis Data Analytics application, an object that contains
-/// the Amazon Resource Name (ARN) of the AWS Lambda function that is used to
+/// the Amazon Resource Name (ARN) of the Amazon Lambda function that is used to
 /// preprocess records in the stream.
 class InputLambdaProcessorDescription {
-  /// The ARN of the AWS Lambda function that is used to preprocess the records in
-  /// the stream.
+  /// The ARN of the Amazon Lambda function that is used to preprocess the records
+  /// in the stream.
   /// <note>
   /// To specify an earlier version of the Lambda function than the latest,
   /// include the Lambda function version in the Lambda function ARN. For more
   /// information about Lambda ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda">Example
-  /// ARNs: AWS Lambda</a>
+  /// ARNs: Amazon Lambda</a>
   /// </note>
   final String resourceARN;
 
-  /// The ARN of the IAM role that is used to access the AWS Lambda function.
+  /// The ARN of the IAM role that is used to access the Amazon Lambda function.
   /// <note>
   /// Provided for backward compatibility. Applications that are created with the
   /// current API version have an application-level service execution role rather
@@ -5583,14 +5592,14 @@ class InputLambdaProcessorDescription {
 /// the <a>InputLambdaProcessor</a> that is used to preprocess the records in
 /// the stream.
 class InputLambdaProcessorUpdate {
-  /// The Amazon Resource Name (ARN) of the new AWS Lambda function that is used
-  /// to preprocess the records in the stream.
+  /// The Amazon Resource Name (ARN) of the new Amazon Lambda function that is
+  /// used to preprocess the records in the stream.
   /// <note>
   /// To specify an earlier version of the Lambda function than the latest,
   /// include the Lambda function version in the Lambda function ARN. For more
   /// information about Lambda ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda">Example
-  /// ARNs: AWS Lambda</a>
+  /// ARNs: Amazon Lambda</a>
   /// </note>
   final String resourceARNUpdate;
 
@@ -5664,7 +5673,7 @@ class InputParallelismUpdate {
 /// For a SQL-based Kinesis Data Analytics application, describes a processor
 /// that is used to preprocess the records in the stream before being processed
 /// by your application code. Currently, the only input processor available is
-/// <a href="https://docs.aws.amazon.com/lambda/">AWS Lambda</a>.
+/// <a href="https://docs.aws.amazon.com/lambda/">Amazon Lambda</a>.
 class InputProcessingConfiguration {
   /// The <a>InputLambdaProcessor</a> that is used to preprocess the records in
   /// the stream before being processed by your application code.
@@ -5692,7 +5701,7 @@ class InputProcessingConfiguration {
 /// For a SQL-based Kinesis Data Analytics application, provides the
 /// configuration information about an input processor. Currently, the only
 /// input processor available is <a
-/// href="https://docs.aws.amazon.com/lambda/">AWS Lambda</a>.
+/// href="https://docs.aws.amazon.com/lambda/">Amazon Lambda</a>.
 class InputProcessingConfigurationDescription {
   /// Provides configuration information about the associated
   /// <a>InputLambdaProcessorDescription</a>
@@ -6348,7 +6357,7 @@ class KinesisStreamsOutputUpdate {
 }
 
 /// When you configure a SQL-based Kinesis Data Analytics application's output,
-/// identifies an AWS Lambda function as the destination. You provide the
+/// identifies an Amazon Lambda function as the destination. You provide the
 /// function Amazon Resource Name (ARN) of the Lambda function.
 class LambdaOutput {
   /// The Amazon Resource Name (ARN) of the destination Lambda function to write
@@ -6358,7 +6367,7 @@ class LambdaOutput {
   /// include the Lambda function version in the Lambda function ARN. For more
   /// information about Lambda ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda">Example
-  /// ARNs: AWS Lambda</a>
+  /// ARNs: Amazon Lambda</a>
   /// </note>
   final String resourceARN;
 
@@ -6381,7 +6390,7 @@ class LambdaOutput {
 }
 
 /// For a SQL-based Kinesis Data Analytics application's output, describes the
-/// AWS Lambda function that is configured as its destination.
+/// Amazon Lambda function that is configured as its destination.
 class LambdaOutputDescription {
   /// The Amazon Resource Name (ARN) of the destination Lambda function.
   final String resourceARN;
@@ -6419,16 +6428,16 @@ class LambdaOutputDescription {
 
 /// When you update an SQL-based Kinesis Data Analytics application's output
 /// configuration using the <a>UpdateApplication</a> operation, provides
-/// information about an AWS Lambda function that is configured as the
+/// information about an Amazon Lambda function that is configured as the
 /// destination.
 class LambdaOutputUpdate {
-  /// The Amazon Resource Name (ARN) of the destination AWS Lambda function.
+  /// The Amazon Resource Name (ARN) of the destination Amazon Lambda function.
   /// <note>
   /// To specify an earlier version of the Lambda function than the latest,
   /// include the Lambda function version in the Lambda function ARN. For more
   /// information about Lambda ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda">Example
-  /// ARNs: AWS Lambda</a>
+  /// ARNs: Amazon Lambda</a>
   /// </note>
   final String resourceARNUpdate;
 
@@ -6497,7 +6506,7 @@ class ListApplicationVersionsResponse {
   /// this token into a subsequent invocation of this operation. For more
   /// information about pagination, see <a
   /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
-  /// the AWS Command Line Interface's Pagination Options</a>.
+  /// the Amazon Command Line Interface's Pagination Options</a>.
   final String? nextToken;
 
   ListApplicationVersionsResponse({
@@ -6537,7 +6546,7 @@ class ListApplicationsResponse {
   /// to retrieve the next set of items For more information about pagination, see
   /// <a
   /// href="https://docs.aws.amazon.com/cli/latest/userguide/pagination.html">Using
-  /// the AWS Command Line Interface's Pagination Options</a>.
+  /// the Amazon Command Line Interface's Pagination Options</a>.
   final String? nextToken;
 
   ListApplicationsResponse({
@@ -6900,7 +6909,7 @@ class Output {
   /// Identifies a Kinesis data stream as the destination.
   final KinesisStreamsOutput? kinesisStreamsOutput;
 
-  /// Identifies an AWS Lambda function as the destination.
+  /// Identifies an Amazon Lambda function as the destination.
   final LambdaOutput? lambdaOutput;
 
   Output({
@@ -7049,7 +7058,7 @@ class OutputUpdate {
   /// Describes a Kinesis data stream as the destination for the output.
   final KinesisStreamsOutputUpdate? kinesisStreamsOutputUpdate;
 
-  /// Describes an AWS Lambda function as the destination for the output.
+  /// Describes an Amazon Lambda function as the destination for the output.
   final LambdaOutputUpdate? lambdaOutputUpdate;
 
   /// If you want to specify a different in-application stream for this output
@@ -7796,8 +7805,10 @@ enum RuntimeEnvironment {
   sql_1_0,
   flink_1_6,
   flink_1_8,
-  flink_1_11,
   zeppelinFlink_1_0,
+  flink_1_11,
+  flink_1_13,
+  zeppelinFlink_2_0,
 }
 
 extension on RuntimeEnvironment {
@@ -7809,10 +7820,14 @@ extension on RuntimeEnvironment {
         return 'FLINK-1_6';
       case RuntimeEnvironment.flink_1_8:
         return 'FLINK-1_8';
-      case RuntimeEnvironment.flink_1_11:
-        return 'FLINK-1_11';
       case RuntimeEnvironment.zeppelinFlink_1_0:
         return 'ZEPPELIN-FLINK-1_0';
+      case RuntimeEnvironment.flink_1_11:
+        return 'FLINK-1_11';
+      case RuntimeEnvironment.flink_1_13:
+        return 'FLINK-1_13';
+      case RuntimeEnvironment.zeppelinFlink_2_0:
+        return 'ZEPPELIN-FLINK-2_0';
     }
   }
 }
@@ -7826,10 +7841,14 @@ extension on String {
         return RuntimeEnvironment.flink_1_6;
       case 'FLINK-1_8':
         return RuntimeEnvironment.flink_1_8;
-      case 'FLINK-1_11':
-        return RuntimeEnvironment.flink_1_11;
       case 'ZEPPELIN-FLINK-1_0':
         return RuntimeEnvironment.zeppelinFlink_1_0;
+      case 'FLINK-1_11':
+        return RuntimeEnvironment.flink_1_11;
+      case 'FLINK-1_13':
+        return RuntimeEnvironment.flink_1_13;
+      case 'ZEPPELIN-FLINK-2_0':
+        return RuntimeEnvironment.zeppelinFlink_2_0;
     }
     throw Exception('$this is not known in enum RuntimeEnvironment');
   }
@@ -7969,30 +7988,30 @@ class S3ContentBaseLocationDescription {
 /// The information required to update the S3 base location that holds the
 /// application.
 class S3ContentBaseLocationUpdate {
-  /// The updated Amazon Resource Name (ARN) of the S3 bucket.
-  final String bucketARNUpdate;
-
   /// The updated S3 bucket path.
   final String? basePathUpdate;
 
+  /// The updated Amazon Resource Name (ARN) of the S3 bucket.
+  final String? bucketARNUpdate;
+
   S3ContentBaseLocationUpdate({
-    required this.bucketARNUpdate,
     this.basePathUpdate,
+    this.bucketARNUpdate,
   });
 
   factory S3ContentBaseLocationUpdate.fromJson(Map<String, dynamic> json) {
     return S3ContentBaseLocationUpdate(
-      bucketARNUpdate: json['BucketARNUpdate'] as String,
       basePathUpdate: json['BasePathUpdate'] as String?,
+      bucketARNUpdate: json['BucketARNUpdate'] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
-    final bucketARNUpdate = this.bucketARNUpdate;
     final basePathUpdate = this.basePathUpdate;
+    final bucketARNUpdate = this.bucketARNUpdate;
     return {
-      'BucketARNUpdate': bucketARNUpdate,
       if (basePathUpdate != null) 'BasePathUpdate': basePathUpdate,
+      if (bucketARNUpdate != null) 'BucketARNUpdate': bucketARNUpdate,
     };
   }
 }
@@ -8539,7 +8558,7 @@ class StopApplicationResponse {
 }
 
 /// A key-value pair (the value is optional) that you can define and assign to
-/// AWS resources. If you specify a tag that already exists, the tag value is
+/// Amazon resources. If you specify a tag that already exists, the tag value is
 /// replaced with the value that you specify in the request. Note that the
 /// maximum number of application tags includes system tags. The maximum number
 /// of user-defined application tags is 50. For more information, see <a
@@ -8832,7 +8851,7 @@ class VpcConfigurationUpdate {
 
 /// The configuration of a Kinesis Data Analytics Studio notebook.
 class ZeppelinApplicationConfiguration {
-  /// The AWS Glue Data Catalog that you use in queries in a Kinesis Data
+  /// The Amazon Glue Data Catalog that you use in queries in a Kinesis Data
   /// Analytics Studio notebook.
   final CatalogConfiguration? catalogConfiguration;
 
@@ -8840,7 +8859,7 @@ class ZeppelinApplicationConfiguration {
   final List<CustomArtifactConfiguration>? customArtifactsConfiguration;
 
   /// The information required to deploy a Kinesis Data Analytics Studio notebook
-  /// as an application with durable state..
+  /// as an application with durable state.
   final DeployAsApplicationConfiguration? deployAsApplicationConfiguration;
 
   /// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
@@ -8903,8 +8922,8 @@ class ZeppelinApplicationConfigurationDescription {
   final ZeppelinMonitoringConfigurationDescription
       monitoringConfigurationDescription;
 
-  /// The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics
-  /// Studio notebook.
+  /// The Amazon Glue Data Catalog that is associated with the Kinesis Data
+  /// Analytics Studio notebook.
   final CatalogConfigurationDescription? catalogConfigurationDescription;
 
   /// Custom artifacts are dependency JARs and user-defined functions (UDF).
@@ -8912,7 +8931,7 @@ class ZeppelinApplicationConfigurationDescription {
       customArtifactsConfigurationDescription;
 
   /// The parameters required to deploy a Kinesis Data Analytics Studio notebook
-  /// as an application with durable state..
+  /// as an application with durable state.
   final DeployAsApplicationConfigurationDescription?
       deployAsApplicationConfigurationDescription;
 
@@ -8976,8 +8995,8 @@ class ZeppelinApplicationConfigurationDescription {
 
 /// Updates to the configuration of Kinesis Data Analytics Studio notebook.
 class ZeppelinApplicationConfigurationUpdate {
-  /// Updates to the configuration of the AWS Glue Data Catalog that is associated
-  /// with the Kinesis Data Analytics Studio notebook.
+  /// Updates to the configuration of the Amazon Glue Data Catalog that is
+  /// associated with the Kinesis Data Analytics Studio notebook.
   final CatalogConfigurationUpdate? catalogConfigurationUpdate;
 
   /// Updates to the customer artifacts. Custom artifacts are dependency JAR files

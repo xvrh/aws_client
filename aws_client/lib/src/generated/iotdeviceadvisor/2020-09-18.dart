@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -18,16 +19,18 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// AWS IoT Core Device Advisor is a cloud-based, fully managed test capability
-/// for validating IoT devices during device software development. Device
-/// Advisor provides pre-built tests that you can use to validate IoT devices
-/// for reliable and secure connectivity with AWS IoT Core before deploying
-/// devices to production. By using Device Advisor, you can confirm that your
-/// devices can connect to AWS IoT Core, follow security best practices and, if
-/// applicable, receive software updates from IoT Device Management. You can
-/// also download signed qualification reports to submit to the AWS Partner
-/// Network to get your device qualified for the AWS Partner Device Catalog
-/// without the need to send your device in and wait for it to be tested.
+/// Amazon Web Services IoT Core Device Advisor is a cloud-based, fully managed
+/// test capability for validating IoT devices during device software
+/// development. Device Advisor provides pre-built tests that you can use to
+/// validate IoT devices for reliable and secure connectivity with Amazon Web
+/// Services IoT Core before deploying devices to production. By using Device
+/// Advisor, you can confirm that your devices can connect to Amazon Web
+/// Services IoT Core, follow security best practices and, if applicable,
+/// receive software updates from IoT Device Management. You can also download
+/// signed qualification reports to submit to the Amazon Web Services Partner
+/// Network to get your device qualified for the Amazon Web Services Partner
+/// Device Catalog without the need to send your device in and wait for it to be
+/// tested.
 class IoTDeviceAdvisor {
   final _s.RestJsonProtocol _protocol;
   IoTDeviceAdvisor({
@@ -47,6 +50,10 @@ class IoTDeviceAdvisor {
         );
 
   /// Creates a Device Advisor test suite.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateSuiteDefinition</a>
+  /// action.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -76,11 +83,15 @@ class IoTDeviceAdvisor {
 
   /// Deletes a Device Advisor test suite.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">DeleteSuiteDefinition</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite to be deleted.
+  /// Suite definition ID of the test suite to be deleted.
   Future<void> deleteSuiteDefinition({
     required String suiteDefinitionId,
   }) async {
@@ -100,14 +111,59 @@ class IoTDeviceAdvisor {
     );
   }
 
+  /// Gets information about an Device Advisor endpoint.
+  ///
+  /// May throw [ValidationException].
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  ///
+  /// Parameter [certificateArn] :
+  /// The certificate ARN of the device. This is an optional parameter.
+  ///
+  /// Parameter [thingArn] :
+  /// The thing ARN of the device. This is an optional parameter.
+  Future<GetEndpointResponse> getEndpoint({
+    String? certificateArn,
+    String? thingArn,
+  }) async {
+    _s.validateStringLength(
+      'certificateArn',
+      certificateArn,
+      20,
+      2048,
+    );
+    _s.validateStringLength(
+      'thingArn',
+      thingArn,
+      20,
+      2048,
+    );
+    final $query = <String, List<String>>{
+      if (certificateArn != null) 'certificateArn': [certificateArn],
+      if (thingArn != null) 'thingArn': [thingArn],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/endpoint',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return GetEndpointResponse.fromJson(response);
+  }
+
   /// Gets information about a Device Advisor test suite.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">GetSuiteDefinition</a>
+  /// action.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite to get.
+  /// Suite definition ID of the test suite to get.
   ///
   /// Parameter [suiteDefinitionVersion] :
   /// Suite definition version of the test suite to get.
@@ -145,15 +201,19 @@ class IoTDeviceAdvisor {
 
   /// Gets information about a Device Advisor test suite run.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">GetSuiteRun</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id for the test suite run.
+  /// Suite definition ID for the test suite run.
   ///
   /// Parameter [suiteRunId] :
-  /// Suite run Id for the test suite run.
+  /// Suite run ID for the test suite run.
   Future<GetSuiteRunResponse> getSuiteRun({
     required String suiteDefinitionId,
     required String suiteRunId,
@@ -187,15 +247,19 @@ class IoTDeviceAdvisor {
   /// Gets a report download link for a successful Device Advisor qualifying
   /// test suite run.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">GetSuiteRunReport</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   /// May throw [ResourceNotFoundException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite.
+  /// Suite definition ID of the test suite.
   ///
   /// Parameter [suiteRunId] :
-  /// Suite run Id of the test suite run.
+  /// Suite run ID of the test suite run.
   Future<GetSuiteRunReportResponse> getSuiteRunReport({
     required String suiteDefinitionId,
     required String suiteRunId,
@@ -227,6 +291,10 @@ class IoTDeviceAdvisor {
   }
 
   /// Lists the Device Advisor test suites you have created.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListSuiteDefinitions</a>
+  /// action.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -266,9 +334,13 @@ class IoTDeviceAdvisor {
     return ListSuiteDefinitionsResponse.fromJson(response);
   }
 
-  /// Lists the runs of the specified Device Advisor test suite. You can list
-  /// all runs of the test suite, or the runs of a specific version of the test
+  /// Lists runs of the specified Device Advisor test suite. You can list all
+  /// runs of the test suite, or the runs of a specific version of the test
   /// suite.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListSuiteRuns</a>
+  /// action.
   ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
@@ -281,11 +353,11 @@ class IoTDeviceAdvisor {
   ///
   /// Parameter [suiteDefinitionId] :
   /// Lists the test suite runs of the specified test suite based on suite
-  /// definition Id.
+  /// definition ID.
   ///
   /// Parameter [suiteDefinitionVersion] :
-  /// Must be passed along with suiteDefinitionId. Lists the test suite runs of
-  /// the specified test suite based on suite definition version.
+  /// Must be passed along with <code>suiteDefinitionId</code>. Lists the test
+  /// suite runs of the specified test suite based on suite definition version.
   Future<ListSuiteRunsResponse> listSuiteRuns({
     int? maxResults,
     String? nextToken,
@@ -335,6 +407,10 @@ class IoTDeviceAdvisor {
 
   /// Lists the tags attached to an IoT Device Advisor resource.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">ListTagsForResource</a>
+  /// action.
+  ///
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
@@ -363,12 +439,16 @@ class IoTDeviceAdvisor {
 
   /// Starts a Device Advisor test suite run.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">StartSuiteRun</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   /// May throw [ConflictException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite.
+  /// Suite definition ID of the test suite.
   ///
   /// Parameter [suiteDefinitionVersion] :
   /// Suite definition version of the test suite.
@@ -417,15 +497,19 @@ class IoTDeviceAdvisor {
 
   /// Stops a Device Advisor test suite run that is currently running.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">StopSuiteRun</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [ResourceNotFoundException].
   /// May throw [InternalServerException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite run to be stopped.
+  /// Suite definition ID of the test suite run to be stopped.
   ///
   /// Parameter [suiteRunId] :
-  /// Suite run Id of the test suite run to be stopped.
+  /// Suite run ID of the test suite run to be stopped.
   Future<void> stopSuiteRun({
     required String suiteDefinitionId,
     required String suiteRunId,
@@ -456,6 +540,10 @@ class IoTDeviceAdvisor {
   }
 
   /// Adds to and modifies existing tags of an IoT Device Advisor resource.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">TagResource</a>
+  /// action.
   ///
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
@@ -491,6 +579,10 @@ class IoTDeviceAdvisor {
   }
 
   /// Removes tags from an IoT Device Advisor resource.
+  ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UntagResource</a>
+  /// action.
   ///
   /// May throw [InternalServerException].
   /// May throw [ValidationException].
@@ -528,11 +620,15 @@ class IoTDeviceAdvisor {
 
   /// Updates a Device Advisor test suite.
   ///
+  /// Requires permission to access the <a
+  /// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">UpdateSuiteDefinition</a>
+  /// action.
+  ///
   /// May throw [ValidationException].
   /// May throw [InternalServerException].
   ///
   /// Parameter [suiteDefinitionId] :
-  /// Suite definition Id of the test suite to be updated.
+  /// Suite definition ID of the test suite to be updated.
   ///
   /// Parameter [suiteDefinitionConfiguration] :
   /// Updates a Device Advisor test suite with suite definition configuration.
@@ -566,7 +662,7 @@ class CreateSuiteDefinitionResponse {
   /// Creates a Device Advisor test suite with TimeStamp of when it was created.
   final DateTime? createdAt;
 
-  /// Creates a Device Advisor test suite with Amazon Resource name.
+  /// Creates a Device Advisor test suite with Amazon Resource Name (ARN).
   final String? suiteDefinitionArn;
 
   /// Creates a Device Advisor test suite with suite UUID.
@@ -618,12 +714,12 @@ class DeleteSuiteDefinitionResponse {
   }
 }
 
-/// Lists all the devices under test
+/// Information of a test device. A thing ARN or a certificate ARN is required.
 class DeviceUnderTest {
-  /// Lists devices certificate arn
+  /// Lists devices certificate ARN.
   final String? certificateArn;
 
-  /// Lists devices thing arn
+  /// Lists devices thing ARN.
   final String? thingArn;
 
   DeviceUnderTest({
@@ -648,6 +744,28 @@ class DeviceUnderTest {
   }
 }
 
+class GetEndpointResponse {
+  /// The response of an Device Advisor endpoint.
+  final String? endpoint;
+
+  GetEndpointResponse({
+    this.endpoint,
+  });
+
+  factory GetEndpointResponse.fromJson(Map<String, dynamic> json) {
+    return GetEndpointResponse(
+      endpoint: json['endpoint'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
+  }
+}
+
 class GetSuiteDefinitionResponse {
   /// Date (in Unix epoch time) when the suite definition was created.
   final DateTime? createdAt;
@@ -664,7 +782,7 @@ class GetSuiteDefinitionResponse {
   /// Suite configuration of the suite definition.
   final SuiteDefinitionConfiguration? suiteDefinitionConfiguration;
 
-  /// Suite definition Id of the suite definition.
+  /// Suite definition ID of the suite definition.
   final String? suiteDefinitionId;
 
   /// Suite definition version of the suite definition.
@@ -757,13 +875,13 @@ class GetSuiteRunResponse {
   /// Error reason for any test suite run failure.
   final String? errorReason;
 
-  /// Date (in Unix epoch time) when the test suite run was started.
+  /// Date (in Unix epoch time) when the test suite run started.
   final DateTime? startTime;
 
   /// Status for the test suite run.
   final SuiteRunStatus? status;
 
-  /// Suite definition Id for the test suite run.
+  /// Suite definition ID for the test suite run.
   final String? suiteDefinitionId;
 
   /// Suite definition version for the test suite run.
@@ -775,7 +893,7 @@ class GetSuiteRunResponse {
   /// Suite run configuration for the test suite run.
   final SuiteRunConfiguration? suiteRunConfiguration;
 
-  /// Suite run Id for the test suite run.
+  /// Suite run ID for the test suite run.
   final String? suiteRunId;
 
   /// The tags attached to the suite run.
@@ -852,7 +970,7 @@ class GetSuiteRunResponse {
 
 /// Show Group Result.
 class GroupResult {
-  /// Group result Id.
+  /// Group result ID.
   final String? groupId;
 
   /// Group Result Name.
@@ -983,13 +1101,13 @@ class ListTagsForResourceResponse {
 }
 
 class StartSuiteRunResponse {
-  /// Date (in Unix epoch time) when the suite run was created.
+  /// Starts a Device Advisor test suite run based on suite create time.
   final DateTime? createdAt;
 
-  /// Amazon resource name of the started suite run.
+  /// Amazon Resource Name (ARN) of the started suite run.
   final String? suiteRunArn;
 
-  /// Suite Run Id of the started suite run.
+  /// Suite Run ID of the started suite run.
   final String? suiteRunId;
 
   StartSuiteRunResponse({
@@ -1095,7 +1213,7 @@ class StopSuiteRunResponse {
 
 /// Gets Suite Definition Configuration.
 class SuiteDefinitionConfiguration {
-  /// Gets device permission arn.
+  /// Gets the device permission ARN.
   final String? devicePermissionRoleArn;
 
   /// Gets the devices configured.
@@ -1155,13 +1273,13 @@ class SuiteDefinitionInformation {
   /// Date (in Unix epoch time) when the test suite was created.
   final DateTime? createdAt;
 
-  /// Specifies the devices under test for the test suite.
+  /// Specifies the devices that are under test for the test suite.
   final List<DeviceUnderTest>? defaultDevices;
 
   /// Specifies if the test suite is intended for qualification.
   final bool? intendedForQualification;
 
-  /// Suite definition Id of the test suite.
+  /// Suite definition ID of the test suite.
   final String? suiteDefinitionId;
 
   /// Suite name of the test suite.
@@ -1208,6 +1326,9 @@ class SuiteDefinitionInformation {
 
 /// Gets suite run configuration.
 class SuiteRunConfiguration {
+  /// TRUE if multiple test suites run in parallel.
+  final bool? parallelRun;
+
   /// Gets the primary device for suite run.
   final DeviceUnderTest? primaryDevice;
 
@@ -1215,12 +1336,14 @@ class SuiteRunConfiguration {
   final List<String>? selectedTestList;
 
   SuiteRunConfiguration({
+    this.parallelRun,
     this.primaryDevice,
     this.selectedTestList,
   });
 
   factory SuiteRunConfiguration.fromJson(Map<String, dynamic> json) {
     return SuiteRunConfiguration(
+      parallelRun: json['parallelRun'] as bool?,
       primaryDevice: json['primaryDevice'] != null
           ? DeviceUnderTest.fromJson(
               json['primaryDevice'] as Map<String, dynamic>)
@@ -1233,9 +1356,11 @@ class SuiteRunConfiguration {
   }
 
   Map<String, dynamic> toJson() {
+    final parallelRun = this.parallelRun;
     final primaryDevice = this.primaryDevice;
     final selectedTestList = this.selectedTestList;
     return {
+      if (parallelRun != null) 'parallelRun': parallelRun,
       if (primaryDevice != null) 'primaryDevice': primaryDevice,
       if (selectedTestList != null) 'selectedTestList': selectedTestList,
     };
@@ -1243,6 +1368,10 @@ class SuiteRunConfiguration {
 }
 
 /// Information about the suite run.
+///
+/// Requires permission to access the <a
+/// href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">SuiteRunInformation</a>
+/// action.
 class SuiteRunInformation {
   /// Date (in Unix epoch time) when the suite run was created.
   final DateTime? createdAt;
@@ -1262,7 +1391,7 @@ class SuiteRunInformation {
   /// Status of the suite run.
   final SuiteRunStatus? status;
 
-  /// Suite definition Id of the suite run.
+  /// Suite definition ID of the suite run.
   final String? suiteDefinitionId;
 
   /// Suite definition name of the suite run.
@@ -1271,7 +1400,7 @@ class SuiteRunInformation {
   /// Suite definition version of the suite run.
   final String? suiteDefinitionVersion;
 
-  /// Suite run Id of the suite run.
+  /// Suite run ID of the suite run.
   final String? suiteRunId;
 
   SuiteRunInformation({
@@ -1405,7 +1534,7 @@ class TagResourceResponse {
   }
 }
 
-/// Provides test case run.
+/// Provides the test case run.
 class TestCaseRun {
   /// Provides test case run end time.
   final DateTime? endTime;
@@ -1413,22 +1542,52 @@ class TestCaseRun {
   /// Provides test case run failure result.
   final String? failure;
 
-  /// Provides test case run log Url.
+  /// Provides test case run log URL.
   final String? logUrl;
 
   /// Provides test case run start time.
   final DateTime? startTime;
 
-  /// Provides test case run status.
+  /// Provides the test case run status. Status is one of the following:
+  ///
+  /// <ul>
+  /// <li>
+  /// <code>PASS</code>: Test passed.
+  /// </li>
+  /// <li>
+  /// <code>FAIL</code>: Test failed.
+  /// </li>
+  /// <li>
+  /// <code>PENDING</code>: Test has not started running but is scheduled.
+  /// </li>
+  /// <li>
+  /// <code>RUNNING</code>: Test is running.
+  /// </li>
+  /// <li>
+  /// <code>STOPPING</code>: Test is performing cleanup steps. You will see this
+  /// status only if you stop a suite run.
+  /// </li>
+  /// <li>
+  /// <code>STOPPED</code> Test is stopped. You will see this status only if you
+  /// stop a suite run.
+  /// </li>
+  /// <li>
+  /// <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.
+  /// </li>
+  /// <li>
+  /// <code>ERORR</code>: Test faced an error when running due to an internal
+  /// issue.
+  /// </li>
+  /// </ul>
   final Status? status;
 
-  /// Provides test case run definition Id.
+  /// Provides the test case run definition ID.
   final String? testCaseDefinitionId;
 
-  /// Provides test case run definition Name.
+  /// Provides the test case run definition name.
   final String? testCaseDefinitionName;
 
-  /// Provides test case run Id.
+  /// Provides the test case run ID.
   final String? testCaseRunId;
 
   /// Provides test case run warnings.
@@ -1531,10 +1690,10 @@ class UpdateSuiteDefinitionResponse {
   /// Timestamp of when the test suite was updated.
   final DateTime? lastUpdatedAt;
 
-  /// Amazon Resource name of the updated test suite.
+  /// Amazon Resource Name (ARN) of the updated test suite.
   final String? suiteDefinitionArn;
 
-  /// Suite definition Id of the updated test suite.
+  /// Suite definition ID of the updated test suite.
   final String? suiteDefinitionId;
 
   /// Suite definition name of the updated test suite.

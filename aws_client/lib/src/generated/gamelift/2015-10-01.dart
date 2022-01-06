@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -560,6 +561,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [TaggingFailedException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [eC2InstanceType] :
   /// The GameLift-supported EC2 instance type to use for all fleet instances.
@@ -879,6 +881,7 @@ class GameLift {
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
   /// May throw [InvalidFleetStatusException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to add locations to. You can use either
@@ -1249,6 +1252,7 @@ class GameLift {
   /// May throw [FleetCapacityExceededException].
   /// May throw [LimitExceededException].
   /// May throw [IdempotentParameterMismatchException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [maximumPlayerSessionCount] :
   /// The maximum number of players that can be connected simultaneously to the
@@ -2655,6 +2659,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to delete locations for. You can use
@@ -3449,6 +3454,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [InternalServiceException].
   /// May throw [UnauthorizedException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [eC2InstanceType] :
   /// Name of an EC2 instance type that is supported in GameLift. A fleet
@@ -3842,6 +3848,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to retrieve remote locations for. You
@@ -3938,6 +3945,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to request location capacity for. You
@@ -4015,6 +4023,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to request location utilization for. You
@@ -4550,6 +4559,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [TerminalRoutingStrategyException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [aliasId] :
   /// A unique identifier for the alias associated with the fleet to retrieve
@@ -4830,6 +4840,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [TerminalRoutingStrategyException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [aliasId] :
   /// A unique identifier for the alias associated with the fleet to retrieve
@@ -4970,6 +4981,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [NotFoundException].
   /// May throw [InternalServiceException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to retrieve instance information for.
@@ -5514,6 +5526,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to retrieve scaling policies for. You
@@ -7146,6 +7159,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [TerminalRoutingStrategyException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [aliasId] :
   /// A unique identifier for the alias associated with the fleet to search for
@@ -7362,6 +7376,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [actions] :
   /// List of actions to restart on the fleet.
@@ -7882,6 +7897,7 @@ class GameLift {
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
   /// May throw [NotFoundException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [actions] :
   /// List of actions to suspend on the fleet.
@@ -8643,6 +8659,7 @@ class GameLift {
   /// May throw [InternalServiceException].
   /// May throw [InvalidRequestException].
   /// May throw [UnauthorizedException].
+  /// May throw [UnsupportedRegionException].
   ///
   /// Parameter [fleetId] :
   /// A unique identifier for the fleet to update capacity settings for. You can
@@ -13969,6 +13986,14 @@ enum GameServerGroupInstanceType {
   c5a_12xlarge,
   c5a_16xlarge,
   c5a_24xlarge,
+  c6gMedium,
+  c6gLarge,
+  c6gXlarge,
+  c6g_2xlarge,
+  c6g_4xlarge,
+  c6g_8xlarge,
+  c6g_12xlarge,
+  c6g_16xlarge,
   r4Large,
   r4Xlarge,
   r4_2xlarge,
@@ -13991,6 +14016,14 @@ enum GameServerGroupInstanceType {
   r5a_12xlarge,
   r5a_16xlarge,
   r5a_24xlarge,
+  r6gMedium,
+  r6gLarge,
+  r6gXlarge,
+  r6g_2xlarge,
+  r6g_4xlarge,
+  r6g_8xlarge,
+  r6g_12xlarge,
+  r6g_16xlarge,
   m4Large,
   m4Xlarge,
   m4_2xlarge,
@@ -14012,6 +14045,14 @@ enum GameServerGroupInstanceType {
   m5a_12xlarge,
   m5a_16xlarge,
   m5a_24xlarge,
+  m6gMedium,
+  m6gLarge,
+  m6gXlarge,
+  m6g_2xlarge,
+  m6g_4xlarge,
+  m6g_8xlarge,
+  m6g_12xlarge,
+  m6g_16xlarge,
 }
 
 extension on GameServerGroupInstanceType {
@@ -14059,6 +14100,22 @@ extension on GameServerGroupInstanceType {
         return 'c5a.16xlarge';
       case GameServerGroupInstanceType.c5a_24xlarge:
         return 'c5a.24xlarge';
+      case GameServerGroupInstanceType.c6gMedium:
+        return 'c6g.medium';
+      case GameServerGroupInstanceType.c6gLarge:
+        return 'c6g.large';
+      case GameServerGroupInstanceType.c6gXlarge:
+        return 'c6g.xlarge';
+      case GameServerGroupInstanceType.c6g_2xlarge:
+        return 'c6g.2xlarge';
+      case GameServerGroupInstanceType.c6g_4xlarge:
+        return 'c6g.4xlarge';
+      case GameServerGroupInstanceType.c6g_8xlarge:
+        return 'c6g.8xlarge';
+      case GameServerGroupInstanceType.c6g_12xlarge:
+        return 'c6g.12xlarge';
+      case GameServerGroupInstanceType.c6g_16xlarge:
+        return 'c6g.16xlarge';
       case GameServerGroupInstanceType.r4Large:
         return 'r4.large';
       case GameServerGroupInstanceType.r4Xlarge:
@@ -14103,6 +14160,22 @@ extension on GameServerGroupInstanceType {
         return 'r5a.16xlarge';
       case GameServerGroupInstanceType.r5a_24xlarge:
         return 'r5a.24xlarge';
+      case GameServerGroupInstanceType.r6gMedium:
+        return 'r6g.medium';
+      case GameServerGroupInstanceType.r6gLarge:
+        return 'r6g.large';
+      case GameServerGroupInstanceType.r6gXlarge:
+        return 'r6g.xlarge';
+      case GameServerGroupInstanceType.r6g_2xlarge:
+        return 'r6g.2xlarge';
+      case GameServerGroupInstanceType.r6g_4xlarge:
+        return 'r6g.4xlarge';
+      case GameServerGroupInstanceType.r6g_8xlarge:
+        return 'r6g.8xlarge';
+      case GameServerGroupInstanceType.r6g_12xlarge:
+        return 'r6g.12xlarge';
+      case GameServerGroupInstanceType.r6g_16xlarge:
+        return 'r6g.16xlarge';
       case GameServerGroupInstanceType.m4Large:
         return 'm4.large';
       case GameServerGroupInstanceType.m4Xlarge:
@@ -14145,6 +14218,22 @@ extension on GameServerGroupInstanceType {
         return 'm5a.16xlarge';
       case GameServerGroupInstanceType.m5a_24xlarge:
         return 'm5a.24xlarge';
+      case GameServerGroupInstanceType.m6gMedium:
+        return 'm6g.medium';
+      case GameServerGroupInstanceType.m6gLarge:
+        return 'm6g.large';
+      case GameServerGroupInstanceType.m6gXlarge:
+        return 'm6g.xlarge';
+      case GameServerGroupInstanceType.m6g_2xlarge:
+        return 'm6g.2xlarge';
+      case GameServerGroupInstanceType.m6g_4xlarge:
+        return 'm6g.4xlarge';
+      case GameServerGroupInstanceType.m6g_8xlarge:
+        return 'm6g.8xlarge';
+      case GameServerGroupInstanceType.m6g_12xlarge:
+        return 'm6g.12xlarge';
+      case GameServerGroupInstanceType.m6g_16xlarge:
+        return 'm6g.16xlarge';
     }
   }
 }
@@ -14194,6 +14283,22 @@ extension on String {
         return GameServerGroupInstanceType.c5a_16xlarge;
       case 'c5a.24xlarge':
         return GameServerGroupInstanceType.c5a_24xlarge;
+      case 'c6g.medium':
+        return GameServerGroupInstanceType.c6gMedium;
+      case 'c6g.large':
+        return GameServerGroupInstanceType.c6gLarge;
+      case 'c6g.xlarge':
+        return GameServerGroupInstanceType.c6gXlarge;
+      case 'c6g.2xlarge':
+        return GameServerGroupInstanceType.c6g_2xlarge;
+      case 'c6g.4xlarge':
+        return GameServerGroupInstanceType.c6g_4xlarge;
+      case 'c6g.8xlarge':
+        return GameServerGroupInstanceType.c6g_8xlarge;
+      case 'c6g.12xlarge':
+        return GameServerGroupInstanceType.c6g_12xlarge;
+      case 'c6g.16xlarge':
+        return GameServerGroupInstanceType.c6g_16xlarge;
       case 'r4.large':
         return GameServerGroupInstanceType.r4Large;
       case 'r4.xlarge':
@@ -14238,6 +14343,22 @@ extension on String {
         return GameServerGroupInstanceType.r5a_16xlarge;
       case 'r5a.24xlarge':
         return GameServerGroupInstanceType.r5a_24xlarge;
+      case 'r6g.medium':
+        return GameServerGroupInstanceType.r6gMedium;
+      case 'r6g.large':
+        return GameServerGroupInstanceType.r6gLarge;
+      case 'r6g.xlarge':
+        return GameServerGroupInstanceType.r6gXlarge;
+      case 'r6g.2xlarge':
+        return GameServerGroupInstanceType.r6g_2xlarge;
+      case 'r6g.4xlarge':
+        return GameServerGroupInstanceType.r6g_4xlarge;
+      case 'r6g.8xlarge':
+        return GameServerGroupInstanceType.r6g_8xlarge;
+      case 'r6g.12xlarge':
+        return GameServerGroupInstanceType.r6g_12xlarge;
+      case 'r6g.16xlarge':
+        return GameServerGroupInstanceType.r6g_16xlarge;
       case 'm4.large':
         return GameServerGroupInstanceType.m4Large;
       case 'm4.xlarge':
@@ -14280,6 +14401,22 @@ extension on String {
         return GameServerGroupInstanceType.m5a_16xlarge;
       case 'm5a.24xlarge':
         return GameServerGroupInstanceType.m5a_24xlarge;
+      case 'm6g.medium':
+        return GameServerGroupInstanceType.m6gMedium;
+      case 'm6g.large':
+        return GameServerGroupInstanceType.m6gLarge;
+      case 'm6g.xlarge':
+        return GameServerGroupInstanceType.m6gXlarge;
+      case 'm6g.2xlarge':
+        return GameServerGroupInstanceType.m6g_2xlarge;
+      case 'm6g.4xlarge':
+        return GameServerGroupInstanceType.m6g_4xlarge;
+      case 'm6g.8xlarge':
+        return GameServerGroupInstanceType.m6g_8xlarge;
+      case 'm6g.12xlarge':
+        return GameServerGroupInstanceType.m6g_12xlarge;
+      case 'm6g.16xlarge':
+        return GameServerGroupInstanceType.m6g_16xlarge;
     }
     throw Exception('$this is not known in enum GameServerGroupInstanceType');
   }

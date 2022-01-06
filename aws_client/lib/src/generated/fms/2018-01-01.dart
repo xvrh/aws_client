@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -3870,6 +3871,13 @@ class Policy {
   /// resources.
   final SecurityServicePolicyData securityServicePolicyData;
 
+  /// Indicates whether Firewall Manager should delete Firewall Manager managed
+  /// resources, such as web ACLs and security groups, when they are not in use by
+  /// the Firewall Manager policy. By default, Firewall Manager doesn't delete
+  /// unused Firewall Manager managed resources. This option is not available for
+  /// Shield Advanced or WAF Classic policies.
+  final bool? deleteUnusedFMManagedResources;
+
   /// Specifies the Amazon Web Services account IDs and Organizations
   /// organizational units (OUs) to exclude from the policy. Specifying an OU is
   /// the equivalent of specifying all accounts in the OU and in any of its child
@@ -3960,6 +3968,7 @@ class Policy {
     required this.remediationEnabled,
     required this.resourceType,
     required this.securityServicePolicyData,
+    this.deleteUnusedFMManagedResources,
     this.excludeMap,
     this.includeMap,
     this.policyId,
@@ -3976,6 +3985,8 @@ class Policy {
       resourceType: json['ResourceType'] as String,
       securityServicePolicyData: SecurityServicePolicyData.fromJson(
           json['SecurityServicePolicyData'] as Map<String, dynamic>),
+      deleteUnusedFMManagedResources:
+          json['DeleteUnusedFMManagedResources'] as bool?,
       excludeMap: (json['ExcludeMap'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k.toCustomerPolicyScopeIdType(),
               (e as List).whereNotNull().map((e) => e as String).toList())),
@@ -4001,6 +4012,7 @@ class Policy {
     final remediationEnabled = this.remediationEnabled;
     final resourceType = this.resourceType;
     final securityServicePolicyData = this.securityServicePolicyData;
+    final deleteUnusedFMManagedResources = this.deleteUnusedFMManagedResources;
     final excludeMap = this.excludeMap;
     final includeMap = this.includeMap;
     final policyId = this.policyId;
@@ -4013,6 +4025,8 @@ class Policy {
       'RemediationEnabled': remediationEnabled,
       'ResourceType': resourceType,
       'SecurityServicePolicyData': securityServicePolicyData,
+      if (deleteUnusedFMManagedResources != null)
+        'DeleteUnusedFMManagedResources': deleteUnusedFMManagedResources,
       if (excludeMap != null)
         'ExcludeMap': excludeMap.map((k, e) => MapEntry(k.toValue(), e)),
       if (includeMap != null)
@@ -4207,6 +4221,13 @@ extension on String {
 
 /// Details of the Firewall Manager policy.
 class PolicySummary {
+  /// Indicates whether Firewall Manager should delete Firewall Manager managed
+  /// resources, such as web ACLs and security groups, when they are not in use by
+  /// the Firewall Manager policy. By default, Firewall Manager doesn't delete
+  /// unused Firewall Manager managed resources. This option is not available for
+  /// Shield Advanced or WAF Classic policies.
+  final bool? deleteUnusedFMManagedResources;
+
   /// The Amazon Resource Name (ARN) of the specified policy.
   final String? policyArn;
 
@@ -4240,6 +4261,7 @@ class PolicySummary {
   final SecurityServiceType? securityServiceType;
 
   PolicySummary({
+    this.deleteUnusedFMManagedResources,
     this.policyArn,
     this.policyId,
     this.policyName,
@@ -4250,6 +4272,8 @@ class PolicySummary {
 
   factory PolicySummary.fromJson(Map<String, dynamic> json) {
     return PolicySummary(
+      deleteUnusedFMManagedResources:
+          json['DeleteUnusedFMManagedResources'] as bool?,
       policyArn: json['PolicyArn'] as String?,
       policyId: json['PolicyId'] as String?,
       policyName: json['PolicyName'] as String?,
@@ -4261,6 +4285,7 @@ class PolicySummary {
   }
 
   Map<String, dynamic> toJson() {
+    final deleteUnusedFMManagedResources = this.deleteUnusedFMManagedResources;
     final policyArn = this.policyArn;
     final policyId = this.policyId;
     final policyName = this.policyName;
@@ -4268,6 +4293,8 @@ class PolicySummary {
     final resourceType = this.resourceType;
     final securityServiceType = this.securityServiceType;
     return {
+      if (deleteUnusedFMManagedResources != null)
+        'DeleteUnusedFMManagedResources': deleteUnusedFMManagedResources,
       if (policyArn != null) 'PolicyArn': policyArn,
       if (policyId != null) 'PolicyId': policyId,
       if (policyName != null) 'PolicyName': policyName,
@@ -5234,7 +5261,11 @@ class SecurityServicePolicyData {
   /// Example: <code>DNS_FIREWALL</code>
   ///
   /// <code>"{\"type\":\"DNS_FIREWALL\",\"preProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-1\",\"priority\":10}],\"postProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-2\",\"priority\":9911}]}"</code>
-  /// </li>
+  /// <note>
+  /// Valid values for <code>preProcessRuleGroups</code> are between 1 and 99.
+  /// Valid values for <code>postProcessRuleGroups</code> are between 9901 and
+  /// 10000.
+  /// </note> </li>
   /// <li>
   /// Example: <code>NETWORK_FIREWALL</code>
   ///
@@ -5244,7 +5275,7 @@ class SecurityServicePolicyData {
   /// <li>
   /// Example: <code>WAFV2</code>
   ///
-  /// <code>"{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"</code>
+  /// <code>"{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[{\"name\":\"NoUserAgent_HEADER\"}]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"</code>
   ///
   /// In the <code>loggingConfiguration</code>, you can specify one
   /// <code>logDestinationConfigs</code>, you can optionally provide up to 20

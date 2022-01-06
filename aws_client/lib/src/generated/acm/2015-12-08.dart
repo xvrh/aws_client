@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -18,9 +19,10 @@ import '../../shared/shared.dart'
 
 export '../../shared/shared.dart' show AwsClientCredentials;
 
-/// You can use AWS Certificate Manager (ACM) to manage SSL/TLS certificates for
-/// your AWS-based websites and applications. For more information about using
-/// ACM, see the <a href="https://docs.aws.amazon.com/acm/latest/userguide/">AWS
+/// You can use Amazon Web Services Certificate Manager (ACM) to manage SSL/TLS
+/// certificates for your Amazon Web Services-based websites and applications.
+/// For more information about using ACM, see the <a
+/// href="https://docs.aws.amazon.com/acm/latest/userguide/">Amazon Web Services
 /// Certificate Manager User Guide</a>.
 class Acm {
   final _s.JsonProtocol _protocol;
@@ -40,10 +42,10 @@ class Acm {
         );
 
   /// Adds one or more tags to an ACM certificate. Tags are labels that you can
-  /// use to identify and organize your AWS resources. Each tag consists of a
-  /// <code>key</code> and an optional <code>value</code>. You specify the
-  /// certificate on input by its Amazon Resource Name (ARN). You specify the
-  /// tag by using a key-value pair.
+  /// use to identify and organize your Amazon Web Services resources. Each tag
+  /// consists of a <code>key</code> and an optional <code>value</code>. You
+  /// specify the certificate on input by its Amazon Resource Name (ARN). You
+  /// specify the tag by using a key-value pair.
   ///
   /// You can apply a tag to just one certificate if you want to identify a
   /// specific characteristic of that certificate, or you can apply the same tag
@@ -114,11 +116,11 @@ class Acm {
   /// succeeds, the certificate no longer appears in the list that can be
   /// displayed by calling the <a>ListCertificates</a> action or be retrieved by
   /// calling the <a>GetCertificate</a> action. The certificate will not be
-  /// available for use by AWS services integrated with ACM.
+  /// available for use by Amazon Web Services services integrated with ACM.
   /// <note>
-  /// You cannot delete an ACM certificate that is being used by another AWS
-  /// service. To delete a certificate that is in use, the certificate
-  /// association must first be removed.
+  /// You cannot delete an ACM certificate that is being used by another Amazon
+  /// Web Services service. To delete a certificate that is in use, the
+  /// certificate association must first be removed.
   /// </note>
   ///
   /// May throw [ResourceNotFoundException].
@@ -263,7 +265,8 @@ class Acm {
     return ExportCertificateResponse.fromJson(jsonResponse.body);
   }
 
-  /// Returns the account configuration options associated with an AWS account.
+  /// Returns the account configuration options associated with an Amazon Web
+  /// Services account.
   ///
   /// May throw [AccessDeniedException].
   /// May throw [ThrottlingException].
@@ -331,8 +334,8 @@ class Acm {
     return GetCertificateResponse.fromJson(jsonResponse.body);
   }
 
-  /// Imports a certificate into AWS Certificate Manager (ACM) to use with
-  /// services that are integrated with ACM. Note that <a
+  /// Imports a certificate into Amazon Web Services Certificate Manager (ACM)
+  /// to use with services that are integrated with ACM. Note that <a
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html">integrated
   /// services</a> allow only certificate types and keys they support to be
   /// associated with their resources. Further, their support differs depending
@@ -340,7 +343,8 @@ class Acm {
   /// information, see the documentation for each service. For more information
   /// about importing certificates into ACM, see <a
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html">Importing
-  /// Certificates</a> in the <i>AWS Certificate Manager User Guide</i>.
+  /// Certificates</a> in the <i>Amazon Web Services Certificate Manager User
+  /// Guide</i>.
   /// <note>
   /// ACM does not provide <a
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html">managed
@@ -746,10 +750,11 @@ class Acm {
     );
   }
 
-  /// Requests an ACM certificate for use with other AWS services. To request an
-  /// ACM certificate, you must specify a fully qualified domain name (FQDN) in
-  /// the <code>DomainName</code> parameter. You can also specify additional
-  /// FQDNs in the <code>SubjectAlternativeNames</code> parameter.
+  /// Requests an ACM certificate for use with other Amazon Web Services
+  /// services. To request an ACM certificate, you must specify a fully
+  /// qualified domain name (FQDN) in the <code>DomainName</code> parameter. You
+  /// can also specify additional FQDNs in the
+  /// <code>SubjectAlternativeNames</code> parameter.
   ///
   /// If you are requesting a private certificate, domain validation is not
   /// required. If you are requesting a public certificate, each domain name
@@ -760,6 +765,13 @@ class Acm {
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html">email
   /// validation</a>. We recommend that you use DNS validation. ACM issues
   /// public certificates after receiving approval from the domain owner.
+  /// <note>
+  /// ACM behavior differs from the <a
+  /// href="https://tools.ietf.org/html/rfc6125#appendix-B.2">https://tools.ietf.org/html/rfc6125#appendix-B.2</a>RFC
+  /// 6125 specification of the certificate validation process. first checks for
+  /// a subject alternative name, and, if it finds one, ignores the common name
+  /// (CN)
+  /// </note>
   ///
   /// May throw [LimitExceededException].
   /// May throw [InvalidDomainValidationOptionsException].
@@ -786,9 +798,9 @@ class Acm {
   /// and you are trying to request a private certificate, ACM will attempt to
   /// issue a public certificate. For more information about private CAs, see
   /// the <a
-  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html">AWS
-  /// Certificate Manager Private Certificate Authority (PCA)</a> user guide.
-  /// The ARN must have the following form:
+  /// href="https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html">Amazon
+  /// Web Services Certificate Manager Private Certificate Authority (PCA)</a>
+  /// user guide. The ARN must have the following form:
   ///
   /// <code>arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012</code>
   ///
@@ -1081,7 +1093,8 @@ class CertificateDetail {
   /// The Amazon Resource Name (ARN) of the certificate. For more information
   /// about ARNs, see <a
   /// href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
-  /// Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.
+  /// Resource Names (ARNs)</a> in the <i>Amazon Web Services General
+  /// Reference</i>.
   final String? certificateArn;
 
   /// The Amazon Resource Name (ARN) of the ACM PCA private certificate authority
@@ -1110,15 +1123,17 @@ class CertificateDetail {
   /// The reason the certificate request failed. This value exists only when the
   /// certificate status is <code>FAILED</code>. For more information, see <a
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html#troubleshooting-failed">Certificate
-  /// Request Failed</a> in the <i>AWS Certificate Manager User Guide</i>.
+  /// Request Failed</a> in the <i>Amazon Web Services Certificate Manager User
+  /// Guide</i>.
   final FailureReason? failureReason;
 
   /// The date and time at which the certificate was imported. This value exists
   /// only when the certificate type is <code>IMPORTED</code>.
   final DateTime? importedAt;
 
-  /// A list of ARNs for the AWS resources that are using the certificate. A
-  /// certificate can be used by multiple AWS resources.
+  /// A list of ARNs for the Amazon Web Services resources that are using the
+  /// certificate. A certificate can be used by multiple Amazon Web Services
+  /// resources.
   final List<String>? inUseBy;
 
   /// The time at which the certificate was issued. This value exists only when
@@ -1199,7 +1214,8 @@ class CertificateDetail {
   /// differences between certificates that you import and those that ACM
   /// provides, see <a
   /// href="https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html">Importing
-  /// Certificates</a> in the <i>AWS Certificate Manager User Guide</i>.
+  /// Certificates</a> in the <i>Amazon Web Services Certificate Manager User
+  /// Guide</i>.
   final CertificateType? type;
 
   CertificateDetail({
@@ -1743,7 +1759,8 @@ class DomainValidationOption {
   }
 }
 
-/// Object containing expiration events options associated with an AWS account.
+/// Object containing expiration events options associated with an Amazon Web
+/// Services account.
 class ExpiryEventsConfiguration {
   /// Specifies the number of days prior to certificate expiration when ACM starts
   /// generating <code>EventBridge</code> events. ACM sends one event per day per
@@ -2110,7 +2127,8 @@ class Filters {
 }
 
 class GetAccountConfigurationResponse {
-  /// Expiration events configuration options associated with the AWS account.
+  /// Expiration events configuration options associated with the Amazon Web
+  /// Services account.
   final ExpiryEventsConfiguration? expiryEvents;
 
   GetAccountConfigurationResponse({
@@ -2190,8 +2208,9 @@ class ImportCertificateResponse {
 }
 
 enum KeyAlgorithm {
-  rsa_2048,
   rsa_1024,
+  rsa_2048,
+  rsa_3072,
   rsa_4096,
   ecPrime256v1,
   ecSecp384r1,
@@ -2201,10 +2220,12 @@ enum KeyAlgorithm {
 extension on KeyAlgorithm {
   String toValue() {
     switch (this) {
-      case KeyAlgorithm.rsa_2048:
-        return 'RSA_2048';
       case KeyAlgorithm.rsa_1024:
         return 'RSA_1024';
+      case KeyAlgorithm.rsa_2048:
+        return 'RSA_2048';
+      case KeyAlgorithm.rsa_3072:
+        return 'RSA_3072';
       case KeyAlgorithm.rsa_4096:
         return 'RSA_4096';
       case KeyAlgorithm.ecPrime256v1:
@@ -2220,10 +2241,12 @@ extension on KeyAlgorithm {
 extension on String {
   KeyAlgorithm toKeyAlgorithm() {
     switch (this) {
-      case 'RSA_2048':
-        return KeyAlgorithm.rsa_2048;
       case 'RSA_1024':
         return KeyAlgorithm.rsa_1024;
+      case 'RSA_2048':
+        return KeyAlgorithm.rsa_2048;
+      case 'RSA_3072':
+        return KeyAlgorithm.rsa_3072;
       case 'RSA_4096':
         return KeyAlgorithm.rsa_4096;
       case 'EC_prime256v1':
@@ -2567,9 +2590,8 @@ class RequestCertificateResponse {
   }
 }
 
-/// Contains a DNS record value that you can use to can use to validate
-/// ownership or control of a domain. This is used by the
-/// <a>DescribeCertificate</a> action.
+/// Contains a DNS record value that you can use to validate ownership or
+/// control of a domain. This is used by the <a>DescribeCertificate</a> action.
 class ResourceRecord {
   /// The name of the DNS record to create in your domain. This is supplied by
   /// ACM.

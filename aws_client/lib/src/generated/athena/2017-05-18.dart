@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -34,7 +35,7 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// href="https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html">Accessing
 /// Amazon Athena with JDBC</a>.
 ///
-/// For code samples using the AWS SDK for Java, see <a
+/// For code samples using the Amazon Web Services SDK for Java, see <a
 /// href="https://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
 /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
 class Athena {
@@ -128,25 +129,21 @@ class Athena {
   }
 
   /// Creates (registers) a data catalog with the specified name and properties.
-  /// Catalogs created are visible to all users of the same AWS account.
+  /// Catalogs created are visible to all users of the same Amazon Web Services
+  /// account.
   ///
   /// May throw [InternalServerException].
   /// May throw [InvalidRequestException].
   ///
   /// Parameter [name] :
   /// The name of the data catalog to create. The catalog name must be unique
-  /// for the AWS account and can use a maximum of 128 alphanumeric, underscore,
-  /// at sign, or hyphen characters.
+  /// for the Amazon Web Services account and can use a maximum of 128
+  /// alphanumeric, underscore, at sign, or hyphen characters.
   ///
   /// Parameter [type] :
   /// The type of data catalog to create: <code>LAMBDA</code> for a federated
-  /// catalog or <code>HIVE</code> for an external hive metastore.
-  /// <note>
-  /// Do not use the <code>GLUE</code> type. This refers to the
-  /// <code>AwsDataCatalog</code> that already exists in your account, of which
-  /// you can have only one. Specifying the <code>GLUE</code> type will result
-  /// in an <code>INVALID_INPUT</code> error.
-  /// </note>
+  /// catalog, <code>HIVE</code> for an external hive metastore, or
+  /// <code>GLUE</code> for an Glue Data Catalog.
   ///
   /// Parameter [description] :
   /// A description of the data catalog to be created.
@@ -183,6 +180,28 @@ class Athena {
   /// data, use the following syntax to specify your Lambda function.
   ///
   /// <code>function=<i>lambda_arn</i> </code>
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// The <code>GLUE</code> type takes a catalog ID parameter and is required.
+  /// The <code> <i>catalog_id</i> </code> is the account ID of the Amazon Web
+  /// Services account to which the Glue Data Catalog belongs.
+  ///
+  /// <code>catalog-id=<i>catalog_id</i> </code>
+  ///
+  /// <ul>
+  /// <li>
+  /// The <code>GLUE</code> data catalog type also applies to the default
+  /// <code>AwsDataCatalog</code> that already exists in your account, of which
+  /// you can have only one and cannot modify.
+  /// </li>
+  /// <li>
+  /// Queries that specify a Glue Data Catalog other than the default
+  /// <code>AwsDataCatalog</code> must be run on Athena engine version 2.
+  /// </li>
+  /// <li>
+  /// In Regions where Athena engine version 2 is not available, creating new
+  /// Glue data catalogs results in an <code>INVALID_INPUT</code> error.
   /// </li>
   /// </ul> </li>
   /// </ul>
@@ -234,7 +253,7 @@ class Athena {
   /// Creates a named query in the specified workgroup. Requires that you have
   /// access to the workgroup.
   ///
-  /// For code samples using the AWS SDK for Java, see <a
+  /// For code samples using the Amazon Web Services SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -257,10 +276,10 @@ class Athena {
   /// returned and another query is not created. If a parameter has changed, for
   /// example, the <code>QueryString</code>, an error is returned.
   /// <important>
-  /// This token is listed as not required because AWS SDKs (for example the AWS
-  /// SDK for Java) auto-generate the token for users. If you are not using the
-  /// AWS SDK or the AWS CLI, you must provide this token or the action will
-  /// fail.
+  /// This token is listed as not required because Amazon Web Services SDKs (for
+  /// example the Amazon Web Services SDK for Java) auto-generate the token for
+  /// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+  /// Services CLI, you must provide this token or the action will fail.
   /// </important>
   ///
   /// Parameter [description] :
@@ -414,8 +433,8 @@ class Athena {
   /// used for encrypting query results, whether the Amazon CloudWatch Metrics
   /// are enabled for the workgroup, the limit for the amount of bytes scanned
   /// (cutoff) per query, if it is specified, and whether workgroup's settings
-  /// (specified with EnforceWorkGroupConfiguration) in the
-  /// WorkGroupConfiguration override client-side settings. See
+  /// (specified with <code>EnforceWorkGroupConfiguration</code>) in the
+  /// <code>WorkGroupConfiguration</code> override client-side settings. See
   /// <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
   ///
   /// Parameter [description] :
@@ -492,7 +511,7 @@ class Athena {
   /// Deletes the named query if you have access to the workgroup in which the
   /// query was saved.
   ///
-  /// For code samples using the AWS SDK for Java, see <a
+  /// For code samples using the Amazon Web Services SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -952,7 +971,7 @@ class Athena {
     return GetWorkGroupOutput.fromJson(jsonResponse.body);
   }
 
-  /// Lists the data catalogs in the current AWS account.
+  /// Lists the data catalogs in the current Amazon Web Services account.
   ///
   /// May throw [InternalServerException].
   /// May throw [InvalidRequestException].
@@ -1116,7 +1135,7 @@ class Athena {
   /// workgroup. If a workgroup is not specified, lists the saved queries for
   /// the primary workgroup.
   ///
-  /// For code samples using the AWS SDK for Java, see <a
+  /// For code samples using the Amazon Web Services SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -1232,7 +1251,7 @@ class Athena {
   /// query execution IDs for the primary workgroup. Requires you to have access
   /// to the workgroup in which the queries ran.
   ///
-  /// For code samples using the AWS SDK for Java, see <a
+  /// For code samples using the Amazon Web Services SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -1490,8 +1509,8 @@ class Athena {
   /// Runs the SQL query statements contained in the <code>Query</code>.
   /// Requires you to have access to the workgroup in which the query ran.
   /// Running queries against an external catalog requires <a>GetDataCatalog</a>
-  /// permission to the catalog. For code samples using the AWS SDK for Java,
-  /// see <a
+  /// permission to the catalog. For code samples using the Amazon Web Services
+  /// SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -1509,10 +1528,10 @@ class Athena {
   /// returned and another query is not created. If a parameter has changed, for
   /// example, the <code>QueryString</code>, an error is returned.
   /// <important>
-  /// This token is listed as not required because AWS SDKs (for example the AWS
-  /// SDK for Java) auto-generate the token for users. If you are not using the
-  /// AWS SDK or the AWS CLI, you must provide this token or the action will
-  /// fail.
+  /// This token is listed as not required because Amazon Web Services SDKs (for
+  /// example the Amazon Web Services SDK for Java) auto-generate the token for
+  /// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+  /// Services CLI, you must provide this token or the action will fail.
   /// </important>
   ///
   /// Parameter [queryExecutionContext] :
@@ -1577,7 +1596,7 @@ class Athena {
   /// Stops a query execution. Requires you to have access to the workgroup in
   /// which the query ran.
   ///
-  /// For code samples using the AWS SDK for Java, see <a
+  /// For code samples using the Amazon Web Services SDK for Java, see <a
   /// href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
   /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
   ///
@@ -1710,19 +1729,13 @@ class Athena {
   ///
   /// Parameter [name] :
   /// The name of the data catalog to update. The catalog name must be unique
-  /// for the AWS account and can use a maximum of 128 alphanumeric, underscore,
-  /// at sign, or hyphen characters.
+  /// for the Amazon Web Services account and can use a maximum of 128
+  /// alphanumeric, underscore, at sign, or hyphen characters.
   ///
   /// Parameter [type] :
   /// Specifies the type of data catalog to update. Specify <code>LAMBDA</code>
-  /// for a federated catalog or <code>HIVE</code> for an external hive
-  /// metastore.
-  /// <note>
-  /// Do not use the <code>GLUE</code> type. This refers to the
-  /// <code>AwsDataCatalog</code> that already exists in your account, of which
-  /// you can have only one. Specifying the <code>GLUE</code> type will result
-  /// in an <code>INVALID_INPUT</code> error.
-  /// </note>
+  /// for a federated catalog, <code>HIVE</code> for an external hive metastore,
+  /// or <code>GLUE</code> for an Glue Data Catalog.
   ///
   /// Parameter [description] :
   /// New or modified text that describes the data catalog.
@@ -2209,17 +2222,16 @@ class CreateWorkGroupOutput {
   }
 }
 
-/// Contains information about a data catalog in an AWS account.
+/// Contains information about a data catalog in an Amazon Web Services account.
 class DataCatalog {
-  /// The name of the data catalog. The catalog name must be unique for the AWS
-  /// account and can use a maximum of 128 alphanumeric, underscore, at sign, or
-  /// hyphen characters.
+  /// The name of the data catalog. The catalog name must be unique for the Amazon
+  /// Web Services account and can use a maximum of 128 alphanumeric, underscore,
+  /// at sign, or hyphen characters.
   final String name;
 
-  /// The type of data catalog: <code>LAMBDA</code> for a federated catalog or
-  /// <code>HIVE</code> for an external hive metastore. <code>GLUE</code> refers
-  /// to the <code>AwsDataCatalog</code> that already exists in your account, of
-  /// which you can have only one.
+  /// The type of data catalog to create: <code>LAMBDA</code> for a federated
+  /// catalog, <code>HIVE</code> for an external hive metastore, or
+  /// <code>GLUE</code> for an Glue Data Catalog.
   final DataCatalogType type;
 
   /// An optional description of the data catalog.
@@ -2256,6 +2268,24 @@ class DataCatalog {
   /// data, use the following syntax to specify your Lambda function.
   ///
   /// <code>function=<i>lambda_arn</i> </code>
+  /// </li>
+  /// </ul> </li>
+  /// <li>
+  /// The <code>GLUE</code> type takes a catalog ID parameter and is required. The
+  /// <code> <i>catalog_id</i> </code> is the account ID of the Amazon Web
+  /// Services account to which the Glue catalog belongs.
+  ///
+  /// <code>catalog-id=<i>catalog_id</i> </code>
+  ///
+  /// <ul>
+  /// <li>
+  /// The <code>GLUE</code> data catalog type also applies to the default
+  /// <code>AwsDataCatalog</code> that already exists in your account, of which
+  /// you can have only one and cannot modify.
+  /// </li>
+  /// <li>
+  /// Queries that specify a Glue Data Catalog other than the default
+  /// <code>AwsDataCatalog</code> must be run on Athena engine version 2.
   /// </li>
   /// </ul> </li>
   /// </ul>
@@ -2712,7 +2742,8 @@ class GetQueryResultsOutput {
   /// The results of the query execution.
   final ResultSet? resultSet;
 
-  /// The number of rows inserted with a CREATE TABLE AS SELECT statement.
+  /// The number of rows inserted with a <code>CREATE TABLE AS SELECT</code>
+  /// statement.
   final int? updateCount;
 
   GetQueryResultsOutput({
@@ -3271,7 +3302,7 @@ class QueryExecution {
   /// query statements. <code>DML</code> indicates DML (Data Manipulation
   /// Language) query statements, such as <code>CREATE TABLE AS SELECT</code>.
   /// <code>UTILITY</code> indicates query statements other than DDL and DML, such
-  /// as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.
+  /// as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE TABLE</code>.
   final StatementType? statementType;
 
   /// Query execution statistics, such as the amount of data scanned, the amount
@@ -3358,7 +3389,8 @@ class QueryExecutionContext {
   /// The name of the data catalog used in the query execution.
   final String? catalog;
 
-  /// The name of the database used in the query execution.
+  /// The name of the database used in the query execution. The database must
+  /// exist in the catalog.
   final String? database;
 
   QueryExecutionContext({
@@ -3637,18 +3669,19 @@ class ResultConfigurationUpdates {
   /// Results</a> If workgroup settings override client-side settings, then the
   /// query uses the location for the query results and the encryption
   /// configuration that are specified for the workgroup. The "workgroup settings
-  /// override" is specified in EnforceWorkGroupConfiguration (true/false) in the
-  /// WorkGroupConfiguration. See
+  /// override" is specified in <code>EnforceWorkGroupConfiguration</code>
+  /// (true/false) in the <code>WorkGroupConfiguration</code>. See
   /// <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
   final String? outputLocation;
 
   /// If set to "true", indicates that the previously-specified encryption
   /// configuration (also known as the client-side setting) for queries in this
   /// workgroup should be ignored and set to null. If set to "false" or not set,
-  /// and a value is present in the EncryptionConfiguration in
-  /// ResultConfigurationUpdates (the client-side setting), the
-  /// EncryptionConfiguration in the workgroup's ResultConfiguration will be
-  /// updated with the new value. For more information, see <a
+  /// and a value is present in the <code>EncryptionConfiguration</code> in
+  /// <code>ResultConfigurationUpdates</code> (the client-side setting), the
+  /// <code>EncryptionConfiguration</code> in the workgroup's
+  /// <code>ResultConfiguration</code> will be updated with the new value. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html">Workgroup
   /// Settings Override Client-Side Settings</a>.
   final bool? removeEncryptionConfiguration;
@@ -3656,10 +3689,11 @@ class ResultConfigurationUpdates {
   /// If set to "true", indicates that the previously-specified query results
   /// location (also known as a client-side setting) for queries in this workgroup
   /// should be ignored and set to null. If set to "false" or not set, and a value
-  /// is present in the OutputLocation in ResultConfigurationUpdates (the
-  /// client-side setting), the OutputLocation in the workgroup's
-  /// ResultConfiguration will be updated with the new value. For more
-  /// information, see <a
+  /// is present in the <code>OutputLocation</code> in
+  /// <code>ResultConfigurationUpdates</code> (the client-side setting), the
+  /// <code>OutputLocation</code> in the workgroup's
+  /// <code>ResultConfiguration</code> will be updated with the new value. For
+  /// more information, see <a
   /// href="https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html">Workgroup
   /// Settings Override Client-Side Settings</a>.
   final bool? removeOutputLocation;
@@ -4126,8 +4160,8 @@ class UpdateWorkGroupOutput {
 /// and the encryption configuration (known as workgroup settings), to enable
 /// sending query metrics to Amazon CloudWatch, and to establish per-query data
 /// usage control limits for all queries in a workgroup. The workgroup settings
-/// override is specified in EnforceWorkGroupConfiguration (true/false) in the
-/// WorkGroupConfiguration. See
+/// override is specified in <code>EnforceWorkGroupConfiguration</code>
+/// (true/false) in the <code>WorkGroupConfiguration</code>. See
 /// <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
 class WorkGroup {
   /// The workgroup name.
@@ -4139,8 +4173,9 @@ class WorkGroup {
   /// workgroup; whether workgroup settings override client-side settings; and the
   /// data usage limits for the amount of data scanned per query or per workgroup.
   /// The workgroup settings override is specified in
-  /// EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration.
-  /// See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
+  /// <code>EnforceWorkGroupConfiguration</code> (true/false) in the
+  /// <code>WorkGroupConfiguration</code>. See
+  /// <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
   final WorkGroupConfiguration? configuration;
 
   /// The date and time the workgroup was created.
@@ -4196,8 +4231,9 @@ class WorkGroup {
 /// workgroup and whether workgroup settings override query settings, and the
 /// data usage limits for the amount of data scanned per query or per workgroup.
 /// The workgroup settings override is specified in
-/// EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration.
-/// See <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
+/// <code>EnforceWorkGroupConfiguration</code> (true/false) in the
+/// <code>WorkGroupConfiguration</code>. See
+/// <a>WorkGroupConfiguration$EnforceWorkGroupConfiguration</a>.
 class WorkGroupConfiguration {
   /// The upper data usage limit (cutoff) for the amount of bytes a single query
   /// in a workgroup is allowed to scan.

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -49,6 +50,10 @@ class Schemas {
   /// Parameter [sourceArn] :
   /// The ARN of the event bus.
   ///
+  /// Parameter [crossAccount] :
+  /// Support discovery of schemas in events sent to the bus from another
+  /// account. (default: true).
+  ///
   /// Parameter [description] :
   /// A description for the discoverer.
   ///
@@ -56,6 +61,7 @@ class Schemas {
   /// Tags associated with the resource.
   Future<CreateDiscovererResponse> createDiscoverer({
     required String sourceArn,
+    bool? crossAccount,
     String? description,
     Map<String, String>? tags,
   }) async {
@@ -75,6 +81,7 @@ class Schemas {
     );
     final $payload = <String, dynamic>{
       'SourceArn': sourceArn,
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
       if (tags != null) 'tags': tags,
     };
@@ -1049,10 +1056,15 @@ class Schemas {
   /// Parameter [discovererId] :
   /// The ID of the discoverer.
   ///
+  /// Parameter [crossAccount] :
+  /// Support discovery of schemas in events sent to the bus from another
+  /// account. (default: true)
+  ///
   /// Parameter [description] :
   /// The description of the discoverer to update.
   Future<UpdateDiscovererResponse> updateDiscoverer({
     required String discovererId,
+    bool? crossAccount,
     String? description,
   }) async {
     ArgumentError.checkNotNull(discovererId, 'discovererId');
@@ -1063,6 +1075,7 @@ class Schemas {
       256,
     );
     final $payload = <String, dynamic>{
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
     };
     final response = await _protocol.send(
@@ -1218,6 +1231,10 @@ extension on String {
 }
 
 class CreateDiscovererResponse {
+  /// The Status if the discoverer will discover schemas from events sent from
+  /// another account.
+  final bool? crossAccount;
+
   /// The description of the discoverer.
   final String? description;
 
@@ -1237,6 +1254,7 @@ class CreateDiscovererResponse {
   final Map<String, String>? tags;
 
   CreateDiscovererResponse({
+    this.crossAccount,
     this.description,
     this.discovererArn,
     this.discovererId,
@@ -1247,6 +1265,7 @@ class CreateDiscovererResponse {
 
   factory CreateDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return CreateDiscovererResponse(
+      crossAccount: json['CrossAccount'] as bool?,
       description: json['Description'] as String?,
       discovererArn: json['DiscovererArn'] as String?,
       discovererId: json['DiscovererId'] as String?,
@@ -1258,6 +1277,7 @@ class CreateDiscovererResponse {
   }
 
   Map<String, dynamic> toJson() {
+    final crossAccount = this.crossAccount;
     final description = this.description;
     final discovererArn = this.discovererArn;
     final discovererId = this.discovererId;
@@ -1265,6 +1285,7 @@ class CreateDiscovererResponse {
     final state = this.state;
     final tags = this.tags;
     return {
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
       if (discovererArn != null) 'DiscovererArn': discovererArn,
       if (discovererId != null) 'DiscovererId': discovererId,
@@ -1434,6 +1455,10 @@ class DescribeCodeBindingResponse {
 }
 
 class DescribeDiscovererResponse {
+  /// The Status if the discoverer will discover schemas from events sent from
+  /// another account.
+  final bool? crossAccount;
+
   /// The description of the discoverer.
   final String? description;
 
@@ -1453,6 +1478,7 @@ class DescribeDiscovererResponse {
   final Map<String, String>? tags;
 
   DescribeDiscovererResponse({
+    this.crossAccount,
     this.description,
     this.discovererArn,
     this.discovererId,
@@ -1463,6 +1489,7 @@ class DescribeDiscovererResponse {
 
   factory DescribeDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return DescribeDiscovererResponse(
+      crossAccount: json['CrossAccount'] as bool?,
       description: json['Description'] as String?,
       discovererArn: json['DiscovererArn'] as String?,
       discovererId: json['DiscovererId'] as String?,
@@ -1474,6 +1501,7 @@ class DescribeDiscovererResponse {
   }
 
   Map<String, dynamic> toJson() {
+    final crossAccount = this.crossAccount;
     final description = this.description;
     final discovererArn = this.discovererArn;
     final discovererId = this.discovererId;
@@ -1481,6 +1509,7 @@ class DescribeDiscovererResponse {
     final state = this.state;
     final tags = this.tags;
     return {
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
       if (discovererArn != null) 'DiscovererArn': discovererArn,
       if (discovererId != null) 'DiscovererId': discovererId,
@@ -1644,6 +1673,10 @@ extension on String {
 }
 
 class DiscovererSummary {
+  /// The Status if the discoverer will discover schemas from events sent from
+  /// another account.
+  final bool? crossAccount;
+
   /// The ARN of the discoverer.
   final String? discovererArn;
 
@@ -1660,6 +1693,7 @@ class DiscovererSummary {
   final Map<String, String>? tags;
 
   DiscovererSummary({
+    this.crossAccount,
     this.discovererArn,
     this.discovererId,
     this.sourceArn,
@@ -1669,6 +1703,7 @@ class DiscovererSummary {
 
   factory DiscovererSummary.fromJson(Map<String, dynamic> json) {
     return DiscovererSummary(
+      crossAccount: json['CrossAccount'] as bool?,
       discovererArn: json['DiscovererArn'] as String?,
       discovererId: json['DiscovererId'] as String?,
       sourceArn: json['SourceArn'] as String?,
@@ -1679,12 +1714,14 @@ class DiscovererSummary {
   }
 
   Map<String, dynamic> toJson() {
+    final crossAccount = this.crossAccount;
     final discovererArn = this.discovererArn;
     final discovererId = this.discovererId;
     final sourceArn = this.sourceArn;
     final state = this.state;
     final tags = this.tags;
     return {
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (discovererArn != null) 'DiscovererArn': discovererArn,
       if (discovererId != null) 'DiscovererId': discovererId,
       if (sourceArn != null) 'SourceArn': sourceArn,
@@ -2375,6 +2412,10 @@ extension on String {
 }
 
 class UpdateDiscovererResponse {
+  /// The Status if the discoverer will discover schemas from events sent from
+  /// another account.
+  final bool? crossAccount;
+
   /// The description of the discoverer.
   final String? description;
 
@@ -2394,6 +2435,7 @@ class UpdateDiscovererResponse {
   final Map<String, String>? tags;
 
   UpdateDiscovererResponse({
+    this.crossAccount,
     this.description,
     this.discovererArn,
     this.discovererId,
@@ -2404,6 +2446,7 @@ class UpdateDiscovererResponse {
 
   factory UpdateDiscovererResponse.fromJson(Map<String, dynamic> json) {
     return UpdateDiscovererResponse(
+      crossAccount: json['CrossAccount'] as bool?,
       description: json['Description'] as String?,
       discovererArn: json['DiscovererArn'] as String?,
       discovererId: json['DiscovererId'] as String?,
@@ -2415,6 +2458,7 @@ class UpdateDiscovererResponse {
   }
 
   Map<String, dynamic> toJson() {
+    final crossAccount = this.crossAccount;
     final description = this.description;
     final discovererArn = this.discovererArn;
     final discovererId = this.discovererId;
@@ -2422,6 +2466,7 @@ class UpdateDiscovererResponse {
     final state = this.state;
     final tags = this.tags;
     return {
+      if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
       if (discovererArn != null) 'DiscovererArn': discovererArn,
       if (discovererId != null) 'DiscovererId': discovererId,
